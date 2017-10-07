@@ -1,6 +1,6 @@
 ---
-title: "A helyszíni hálózat csatlakoztatása egy Azure-beli virtuális hálózathoz: Helyek közötti VPN: (klasszikus) portál | Microsoft Docs"
-description: "A helyszíni hálózatot az Azure-beli virtuális hálózattal a nyilvános interneten keresztül összekötő IPsec-kapcsolat létrehozásának lépései. Ezen lépéseket követve létrehozhat egy helyek közötti VPN-átjáró kapcsolatot a portál segítségével."
+title: "Csatlakozás a helyi hálózati tooan Azure-beli virtuális hálózat: telephelyek közötti VPN (klasszikus): portál |} Microsoft Docs"
+description: "Az IPsec-kapcsolat a helyszíni hálózati tooan Azure-beli virtuális hálózat felett lépéseket toocreate hello nyilvános internethez. A lépések segítségével hozhat létre egy hello portál használatával létesítmények közötti pont-pont VPN Gateway-kapcsolatot."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/010/2017
 ms.author: cherylmc
-ms.openlocfilehash: 0be8dd6d90edb7b32b6777c76c9778cda0dcd5ea
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b260bdf610b264458660b278bd32bf0fc5b519ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-site-to-site-connection-using-the-azure-portal-classic"></a>Helyek közötti kapcsolat létrehozása az Azure Portal használatával (klasszikus)
+# <a name="create-a-site-to-site-connection-using-hello-azure-portal-classic"></a>Pont-pont kapcsolatot hello (klasszikus) Azure-portál használatával
 
 [!INCLUDE [deployment models](../../includes/vpn-gateway-classic-deployment-model-include.md)]
 
-Ez a cikk bemutatja, hogyan használhatja az Azure Portalt egy helyek közötti VPN-átjárókapcsolat létrehozására egy helyszíni hálózat és a Vnet között. A cikkben ismertetett lépések a klasszikus üzemi modellre vonatkoznak. Ezt a konfigurációt más üzembehelyezési eszközzel vagy üzemi modellel is létrehozhatja, ha egy másik lehetőséget választ az alábbi listáról:
+Ez a cikk bemutatja, hogyan toouse hello Azure portál toocreate a helyszíni hálózati toohello VNet a pont-pont VPN gateway-kapcsolattal. a cikkben ismertetett hello toohello klasszikus üzembe helyezési modellel alkalmazni. Ezt a konfigurációt egy másik lehetőség kijelölésével a következő lista hello különböző központi telepítési eszköz vagy telepítési modell segítségével is létrehozhat:
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -35,23 +35,23 @@ Ez a cikk bemutatja, hogyan használhatja az Azure Portalt egy helyek közötti 
 > 
 >
 
-A helyek közötti VPN-átjárókapcsolat használatával kapcsolat hozható létre a helyszíni hálózat és egy Azure-beli virtuális hálózat között egy IPsec/IKE (IKEv1 vagy IKEv2) VPN-alagúton keresztül. Az ilyen típusú kapcsolatokhoz egy helyszíni VPN-eszközre van szükség, amelyhez hozzá van rendelve egy kifelé irányuló, nyilvános IP-cím. További információk a VPN-átjárókról: [Információk a VPN Gatewayről](vpn-gateway-about-vpngateways.md).
+Pont-pont VPN gateway-kapcsolattal használt tooconnect a helyszíni hálózati tooan Azure-beli virtuális hálózat (IKEv1 vagy IKEv2) IPsec/IKE VPN-alagúton keresztül. Ilyen típusú kapcsolat egy VPN található helyszíni Eszközkezelési, amely rendelkezik egy külsőleg irányuló nyilvános IP-cím tooit igényel. További információk a VPN-átjárókról: [Információk a VPN Gatewayről](vpn-gateway-about-vpngateways.md).
 
 ![Helyek közötti VPN Gateway létesítmények közötti kapcsolathoz – diagram](./media/vpn-gateway-howto-site-to-site-classic-portal/site-to-site-diagram.png)
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-A konfigurálás megkezdése előtt győződjön meg a következő feltételek teljesüléséről:
+Győződjön meg arról, hogy teljesül-e az hello feltételek konfigurációs megkezdése előtt a következő:
 
-* Erősítse meg, hogy a klasszikus üzemi modellt kívánja használni. Ha a Resource Manager-alapú üzemi modellt szeretné használni, lásd: [Helyek közötti kapcsolat létrehozása (Resource Manager)](vpn-gateway-howto-site-to-site-resource-manager-portal.md). Amikor lehet, javasoljuk, hogy használja a Resource Manager-alapú üzemi modellt.
-* Győződjön meg arról, hogy rendelkezésre áll egy kompatibilis VPN-eszköz és egy azt konfigurálni képes személy. További információk a kompatibilis VPN-eszközökről és az eszközkonfigurációról: [Tudnivalók a VPN-eszközökről](vpn-gateway-about-vpn-devices.md).
+* Győződjön meg arról, hogy szeretné-e toowork hello klasszikus üzembe helyezési modellben. Ha azt szeretné, hogy toowork hello Resource Manager üzembe helyezési modellel, lásd: [pont-pont kapcsolatot (erőforrás-kezelő)](vpn-gateway-howto-site-to-site-resource-manager-portal.md). Ha lehetséges, ajánlott hello Resource Manager üzembe helyezési modellben.
+* Győződjön meg arról, hogy egy kompatibilis VPN-eszköz és a rendszer képes tooconfigure azt. További információk a kompatibilis VPN-eszközökről és az eszközkonfigurációról: [Tudnivalók a VPN-eszközökről](vpn-gateway-about-vpn-devices.md).
 * Győződjön meg arról, hogy rendelkezik egy kifelé irányuló, nyilvános IPv4-címmel a VPN-eszköz számára. Ez az IP-cím nem lehet NAT mögötti.
-* Ha nem ismeri a helyszíni hálózati konfigurációjában található IP-címtereket, egyeztessen valakivel, aki ezeket az adatokat megadhatja Önnek. Amikor létrehozza ezt a konfigurációt, meg kell határoznia az IP-címtartományok előtagjait, amelyeket az Azure majd a helyszínre irányít. A helyszíni hálózat egyik alhálózata sem lehet átfedésben azokkal a virtuális alhálózatokkal, amelyekhez csatlakozni kíván.
-* Jelenleg a megosztott kulcs megadásához és a VPN Gateway-kapcsolat létrehozásához a PowerShellre van szükség. Telepítse az Azure Service Management (SM) PowerShell-parancsmagjainak legújabb verzióját. További információt [az Azure PowerShell telepítésével és konfigurálásával](/powershell/azure/overview) foglalkozó témakörben talál. Ahhoz, hogy ezt a konfigurációt elvégezhesse, a PowerShellt rendszergazdaként kell futtatnia. 
+* Ha nem ismeri a hello IP-címtartományok található, a helyszíni hálózati konfiguráció, a szükséges toocoordinate ezeket az információkat is tartalmazza, aki. Ez a konfiguráció létrehozásakor meg kell adnia hello IP-címtartomány címelőtagokat, hogy Azure tooyour helyszíni hely fogja átirányítani. A helyszíni hálózat alhálózatainak hello egyike is lap tooconnect a kívánt hello virtuális hálózati alhálózatokon keresztül.
+* PowerShell jelenleg szükséges toospecify hello megosztott kulcsot, és hello VPN gateway-kapcsolatot létrehozni. Hello hello Azure Service Management (SM) PowerShell-parancsmagok legújabb verziójának telepítéséhez. További információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). Ahhoz, hogy ezt a konfigurációt elvégezhesse, a PowerShellt rendszergazdaként kell futtatnia. 
 
 ### <a name="values"></a>Konfigurációs mintaértékek ehhez a gyakorlathoz
 
-A cikkben szereplő példák a következő értékeket használják. Ezekkel az értékekkel létrehozhat egy tesztkörnyezetet, vagy a segítségükkel értelmezheti a cikkben szereplő példákat.
+a cikkben szereplő példák hello hello a következő értékeket használja. Ezen értékek toocreate egy tesztkörnyezetben használhatja, vagy tekintse meg a toothem toobetter hello jelen cikk példái a megismeréséhez.
 
 * **Virtuális hálózat neve:** TestVNet1
 * **Címtér:** 
@@ -65,167 +65,167 @@ A cikkben szereplő példák a következő értékeket használják. Ezekkel az 
 * **Hely:** az USA keleti régiója
 * **DNS-kiszolgáló:** 10.11.0.3 (nem kötelező ehhez a gyakorlathoz)
 * **Helyi hely neve:** Site2
-* **Ügyfélcímtér:** A helyszíni helyen található címtér.
+* **Ügyfél-címtartomány:** hello címterületek használatát, amelyek a helyszíni-webhelyen található.
 
 ## <a name="CreatVNet"></a>1. Virtuális hálózat létrehozása
 
-Amikor helyek közötti használatra hoz létre virtuális hálózatot, gondoskodnia kell róla, hogy a megadott címterek ne legyenek átfedésben az azon helyi helyekhez tartozó ügyfélcímterekkel, amelyekhez csatlakozni szeretne. Egymást átfedő alhálózatok esetén a kapcsolat nem fog megfelelően működni.
+A virtuális hálózati toouse S2S kapcsolat létrehozásakor kell, hogy a megadott hello címterek nem átfedésben a hello ügyfél-címterét hello helyi helyekhez való tooconnect egyik toomake. Egymást átfedő alhálózatok esetén a kapcsolat nem fog megfelelően működni.
 
-* Ha már rendelkezik egy virtuális hálózattal, győződjön meg arról, hogy a beállításai kompatibilisek a VPN-átjáró kialakításával. Különösen ügyeljen az esetleges olyan alhálózatokra, amelyek átfedésbe kerülhetnek más hálózatokkal. 
+* Ha már rendelkezik egy Vnetet, győződjön meg arról, hogy a VPN-átjáró kialakítás kompatibilisek legyenek-e hello-beállítások. Különösen figyeljen az egyéb hálózatokkal átfedhetik tooany alhálózatokat. 
 
-* Ha még nem rendelkezik virtuális hálózattal, akkor hozzon létre egyet. A képernyőképek csak példaként szolgálnak. Ne felejtse el ezeket az értékeket a saját értékeire cserélni.
+* Ha még nem rendelkezik virtuális hálózattal, akkor hozzon létre egyet. A képernyőképek csak példaként szolgálnak. Lehet, hogy tooreplace hello értékeket a saját.
 
-### <a name="to-create-a-virtual-network"></a>Virtuális hálózat létrehozása
+### <a name="toocreate-a-virtual-network"></a>a virtuális hálózati toocreate
 
-1. Egy böngészőből keresse fel az [Azure portált](http://portal.azure.com), majd jelentkezzen be az Azure-fiókjával, ha szükséges.
-2. Kattintson az **+** elemre. A **Piactér keresése** mezőbe írja be a „Virtuális hálózat” kifejezést. A visszaadott listában keresse meg a **Virtuális hálózat** elemet, és rákattintva nyissa meg a **Virtuális hálózat** lapot.
+1. Egy böngészőből keresse meg a toohello [Azure-portálon](http://portal.azure.com) és szükség esetén jelentkezzen be az Azure-fiókjával.
+2. Kattintson az **+** elemre. A hello **hello a piactéren** mezőbe írja be a "Virtuális hálózat". Keresse meg **virtuális hálózati** hello adott vissza a listán, és kattintson a tooopen hello **virtuális hálózati** lap.
 
   ![Virtuális hálózat keresése lap](./media/vpn-gateway-howto-site-to-site-classic-portal/newvnetportal700.png)
-3. A Virtuális hálózat lap alján, az **Üzemi modell kiválasztása** legördülő listában válassza ki a **Klasszikus** lehetőséget, majd kattintson a **Létrehozás** elemre.
+3. Hello virtuális hálózat lap, a hello hello alján közelében **telepítési modell kiválasztása** legördülő listából válassza ki **klasszikus**, és kattintson a **létrehozása**.
 
   ![Üzemi modell kiválasztása](./media/vpn-gateway-howto-site-to-site-classic-portal/selectmodel.png)
-4. A **Virtuális hálózat létrehozása (klasszikus)** lapon konfigurálja a virtuális hálózat beállításait. Ezen a lapon adhatja hozzá az első címterét és egy önálló alhálózati címtartományt. A virtuális hálózat létrehozása után visszaléphet, és további alhálózatokat és címtereket vehet fel.
+4. A hello **hozzon létre virtuális network(classic)** lapján hello hálózatok beállításainak konfigurálása. Ezen a lapon adhatja hozzá az első címterét és egy önálló alhálózati címtartományt. Hello VNet létrehozása után visszaléphet, és adja hozzá a további alhálózatokat és címtereket.
 
   ![Virtuális hálózat létrehozása lap](./media/vpn-gateway-howto-site-to-site-classic-portal/createvnet.png "Virtuális hálózat létrehozása lap")
-5. Ellenőrizze, hogy a megfelelő előfizetés jelenik-e meg az **Előfizetés** résznél. Az előfizetéseket a legördülő menüben módosíthatja.
+5. Győződjön meg arról, hogy hello **előfizetés** hello, helyes-e egy. Előfizetések hello legördülő lista használatával módosíthatja.
 6. Kattintson az **Erőforráscsoport** elemre, és válasszon ki egy meglévő erőforráscsoportot, vagy hozzon létre egy újat egy név beírásával. További információ az erőforráscsoportokkal kapcsolatban: [Azure Resource Manager Overview](../azure-resource-manager/resource-group-overview.md#resource-groups) (Az Azure Resource Manager áttekintése).
-7. Ezután válassza ki a virtuális hálózatához tartozó **Hely** beállításokat. Ez a hely határozza meg a VNeten üzembe helyezett erőforrások helyét.
-8. Ha szeretné könnyen megtalálni a VNetet az irányítópulton, akkor válassza a **Rögzítés az irányítópulton** lehetőséget. A VNet létrehozásához kattintson a **Létrehozás** gombra.
+7. Ezután válassza ki a hello **hely** a VNet beállításait. hello hely határozza meg, központi telepítését toothis VNet hello erőforrások tároló.
+8. Ha toobe képes toofind egyszerűen a hello irányítópulton a Vnetet, jelölje be **PIN-kód toodashboard**. Kattintson a **létrehozása** toocreate a virtuális hálózat.
 
-  ![Rögzítés az irányítópulton](./media/vpn-gateway-howto-site-to-site-classic-portal/pintodashboard150.png "Rögzítés az irányítópulton")
-9. A Létrehozás gombra kattintva létrejön egy csempe az irányítópulton, amely a virtuális hálózat állapotát mutatja. A virtuális hálózat létrejöttével a csempe is módosul.
+  ![PIN-kód toodashboard](./media/vpn-gateway-howto-site-to-site-classic-portal/pintodashboard150.png "PIN-kód toodashboard")
+9. Miután rákattintott a "Létrehozás", egy csempe meg nem jelenik hello irányítópult lefedő hello a VNet állapotát mutatja. hello csempe változik hello virtuális hálózat létrehozása folyamatban van.
 
   ![Virtuális hálózat létrehozása csempe](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/deploying150.png "Virtuális hálózat létrehozása")
 
-Miután létrejött a virtuális hálózata, a **Létrehozva** érték jelenik meg az **Állapot** tulajdonságban a klasszikus Azure-portál hálózatok lapján.
+A virtuális hálózat létrehozása után megjelenik **Created** tartozó **állapot** hello hálózatok lapján hello a klasszikus Azure portálon.
 
 ## <a name="additionaladdress"></a>2. További címterek felvétele
 
-Miután létrehozta a virtuális hálózatot, hozzáadhat további címtereket. A további címterek felvétele nem kötelező lépése az S2S-konfigurációnak, de ha több címtérre van szüksége, kövesse az alábbi lépéseket:
+Miután létrehozta a virtuális hálózatot, hozzáadhat további címtereket. További címtartományok hozzáadása része nem szükséges egy S2S konfigurációs, de ha több címterek van szüksége, hello a következő lépéseket:
 
-1. Keresse meg a virtuális hálózatokat a portálon.
-2. A virtuális hálózat lapjának **Beállítások** szakasza alatt kattintson a **Címtér** elemre.
-3. A Címtér lapon kattintson a **+Hozzáadás** gombra, és adjon meg egy címteret.
+1. Keresse meg a virtuális hálózatok hello hello portálon.
+2. A virtuális hálózat, a hello hello oldalon **beállítások** területén kattintson **Címtéren**.
+3. Kattintson hello cím terület lap **+ Hozzáadás** , és írja be a további címtartományt.
 
 ## <a name="dns"></a>3. DNS-kiszolgáló megadása
 
-A DNS-beállítások megadása nem kötelező lépése az S2S-konfigurációnak, de a névfeloldáshoz szükség van DNS-re. Az érték megadásával nem jön létre új DNS-kiszolgáló. A megadott DNS-kiszolgáló IP-címének olyan DNS-kiszolgálónak kell lennie, amely fel tudja oldani azoknak az erőforrásoknak a nevét, amelyekkel Ön kapcsolatot fog létesíteni. A példabeállításokban egy magánhálózati IP-címet használtunk. A használt IP-cím valószínűleg nem az Ön DNS-kiszolgálójának IP-címe. Ügyeljen arra, hogy a saját értékeit használja.
+A DNS-beállítások megadása nem kötelező lépése az S2S-konfigurációnak, de a névfeloldáshoz szükség van DNS-re. Az érték megadásával nem jön létre új DNS-kiszolgáló. hello DNS kiszolgáló IP-cím megadott kell egy DNS-kiszolgáló, amely képes névfeloldásra hello hello erőforrásokhoz való kapcsolódás esetén. Hello például beállítások egy magánhálózati IP-cím használtuk. használjuk hello IP-cím nincs valószínűleg hello IP-címet a DNS-kiszolgáló. Lehet, hogy toouse a saját értékeit.
 
-Miután létrehozta a virtuális hálózatot, hozzáadhatja a DNS-kiszolgáló IP-címét a névfeloldás kezelésének érdekében. Nyissa meg a virtuális hálózat beállításait, kattintson a DNS-kiszolgálókra, majd adja hozzá a névfeloldáshoz használni kívánt DNS-kiszolgáló IP-címét.
+Miután létrehozta a virtuális hálózat, a DNS-kiszolgáló toohandle névfeloldás hello IP-címét is hozzáadhat. Nyissa meg a virtuális hálózat hello beállításait, majd a DNS-kiszolgálók hello IP-cím, amelyet az toouse névfeloldás hello DNS-kiszolgáló hozzáadása.
 
-1. Keresse meg a virtuális hálózatokat a portálon.
-2. A virtuális hálózat lapjának **Beállítások** szakasza alatt kattintson a **DNS-kiszolgálók** elemre.
+1. Keresse meg a virtuális hálózatok hello hello portálon.
+2. A virtuális hálózat, a hello hello oldalon **beállítások** kattintson **DNS-kiszolgálók**.
 3. Adjon meg egy DNS-kiszolgálót.
-4. A beállítások mentéséhez kattintson a lap tetején található **Mentés** gombra.
+4. toosave a beállításokat, kattintson a **mentése** hello oldal hello tetején.
 
-## <a name="localsite"></a>4. A helyi hely konfigurálása
+## <a name="localsite"></a>4. Hello helyi webhely konfigurálása
 
-A helyi hely általában a használat helyszínét jelenti. Tartalmazza azon VPN-eszköz IP-címét, amelyhez kapcsolatot szeretne létesíteni, valamint azokat az IP-címtartományokat, amelyek a VPN-átjárón keresztül a VPN-eszközre lesznek irányítva.
+hello helyi webhely általában tooyour helyszíni helyre hivatkozik. Létre fog hozni egy kapcsolat, illetve hello IP-címtartományok hello VPN gateway toohello VPN-eszközön keresztül történik hello VPN-eszköz toowhich hello IP-címét tartalmazza.
 
-1. Keresse meg a portálon azt a virtuális hálózatot, amelyhez létre kíván hozni egy átjárót.
-2. A virtuális hálózat lapján, az **Áttekintés** panel VPN-kapcsolatok szakaszában kattintson a **Átjáró** elemre az **Új VPN-kapcsolat** lap megnyitásához.
+1. Hello portálon lépjen toohello virtuális hálózati átjáró toocreate kívánt.
+2. A virtuális hálózat hello hello oldalon **áttekintése** hello VPN-kapcsolatok területen kattintson **átjáró** tooopen hello **új VPN-kapcsolat** lap.
 
-  ![Kattintson az átjáró beállításainak konfigurálásához](./media/vpn-gateway-howto-site-to-site-classic-portal/beforegw125.png "Kattintson az átjáró beállításainak konfigurálásához")
-3. Az **Új VPN-kapcsolat** lapon válassza a **Helyek közötti** beállítást.
-4. A **Helyi hely** lap megnyitásához kattintson a **Helyi hely – Kötelező beállítások megadása** elemre. Konfigurálja a beállításokat, majd kattintson az **OK** gombra a beállítások mentéséhez.
-  - **Név**: Adjon olyan nevet a helyi helynek, amely alapján könnyen azonosíthatja.
-  - **VPN-átjáró IP-címe**: Ez a helyszíni hálózaton található VPN-eszköz nyilvános IP-címe. A VPN-eszköznek nyilvános IPv4 IP-címmel kell rendelkeznie. Adjon meg egy érvényes nyilvános IP-címet azon VPN-eszköznek, amelyhez csatlakozni kíván. Ez nem lehet a NAT mögött, és elérhetőnek kell lennie az Azure számára. Ha nem ismeri a VPN-eszköz IP-címét, használhat egy helyőrző értéket (érvényes nyilvános IP-cím formátumban), amelyet később módosíthat.
-  - **Ügyfélcímtér**: A helyszíni hálózatra ezen az átjárón keresztül átirányítani kívánt IP-címtartományok listája. Több címtartományt is felvehet. Ügyeljen arra, hogy az itt megadott tartományok ne legyenek átfedésben olyan egyéb hálózatok tartományaival, amelyekhez a virtuális hálózat csatlakozik, illetve magának a virtuális hálózatnak a címtartományaival.
+  ![Kattintson az átjáró beállításainak tooconfigure](./media/vpn-gateway-howto-site-to-site-classic-portal/beforegw125.png "tooconfigure átjáró-beállítások gombra")
+3. A hello **új VPN-kapcsolat** lapon jelölje be **pont-pont**.
+4. Kattintson a **helyi hely - kötelező beállítások konfigurálása** tooopen hello **helyi** lap. Hello-beállítások konfigurálása, és kattintson a **OK** toosave hello beállításait.
+  - **Name:** hozzon létre egy nevet a helyi webhelyhez toomake megkönnyítik meg tooidentify.
+  - **VPN-átjáró IP-címe:** Ez az hello VPN-eszköz a helyszíni hálózat hello nyilvános IP-címét. hello VPN-eszköz nyilvános IP-cím IPv4 szükséges. Adjon meg egy érvényes nyilvános IP-címet hello tooconnect kívánt VPN-eszköz toowhich. Nem lehet NAT mögött, és az Azure-ban elérhető toobe rendelkezik. Ha nem tudja hello IP-címe a VPN-eszköz, is mindig put helyőrző értékét (feltéve, egy érvényes nyilvános IP-cím formátuma hello van), majd később módosítható.
+  - **Ügyfél-címtartomány:** lista hello IP-címtartományok, amelyet irányítása toohello helyi a helyi hálózaton keresztül ezt az átjárót. Több címtartományt is felvehet. Győződjön meg arról, hogy az itt megadott hello tartományok nincsenek átfedésben címtartományai más hálózatok, a virtuális hálózathoz csatlakozik, vagy hello címtartományai hello virtuális hálózat magát.
 
   ![Helyi hely](./media/vpn-gateway-howto-site-to-site-classic-portal/localnetworksite.png "Helyi hely konfigurálása")
 
-## <a name="gatewaysubnet"></a>5. Az átjáróalhálózat konfigurálása
+## <a name="gatewaysubnet"></a>5. Átjáró alhálózati hello konfigurálása
 
-Létre kell hoznia egy átjáróalhálózatot a VPN-átjáróhoz. Az átjáróalhálózat tartalmazza a VPN-átjáró szolgáltatásai által használt IP-címeket.
+Létre kell hoznia egy átjáróalhálózatot a VPN-átjáróhoz. hello átjáróalhálózatot hello IP-címek, amelyek hello VPN-átjáró szolgáltatásokat tartalmazza.
 
-1. Az **Új VPN-kapcsolat** lapon jelölje be az **Átjáró azonnali létrehozása** jelölőnégyzetet. Megjelenik az „Átjáró opcionális konfigurálása” lap. Ha nem jelöli be a jelölőnégyzetet, nem jelenik meg az átjáróalhálózat konfigurálását lehetővé tevő lap.
+1. A hello **új VPN-kapcsolat** lapra, jelölje be hello jelölőnégyzet **átjáró létrehozása azonnal**. hello "választható átjáró konfiguráció" lap jelenik meg. Hello jelölőnégyzet bejelölésekor nem hello lap tooconfigure hello átjáróalhálózatot nem fog látni.
 
   ![Átjáró konfigurálása – Alhálózat, méret, útválasztási típus](./media/vpn-gateway-howto-site-to-site-classic-portal/optional.png "Átjáró konfigurálása – Alhálózat, méret, útválasztási típus")
-2. Az **Átjáró konfigurálása** lap megnyitásához kattintson az **Átjáró opcionális konfigurálása – Alhálózat, méret és útválasztási típus** elemre.
-3. Az **Átjáró konfigurálása** lapon kattintson az **Alhálózat – Kötelező beállítások konfigurálása** elemre az **Alhálózat hozzáadása** lap megnyitásához.
+2. tooopen hello **átjáró konfigurációs** kattintson **konfigurációs választható átjáró - alhálózat, méret és útválasztási típus**.
+3. A hello **átjáró konfigurációs** kattintson **alhálózat - kötelező beállítások konfigurálása** tooopen hello **alhálózat hozzáadása** lap.
 
   ![Átjáró konfigurációja – átjáróalhálózat](./media/vpn-gateway-howto-site-to-site-classic-portal/subnetrequired.png "Átjáró konfigurációja – átjáró-alhálózat")
-4. Az **Alhálózat hozzáadása** lapon adja meg az átjáróalhálózatot. Az Ön által megadott átjáróalhálózat mérete a létrehozni kívánt VPN-átjárókonfigurációtól függ. Bár akár /29-es átjáróalhálózatot is létrehozhat, javasolt /27-eset vagy /28-asat használni. Ez nagyobb, több címet tartalmazó alhálózatot hoz létre. Nagyobb átjáróalhálózat használatával elegendő IP-cím áll rendelkezésre az esetleges jövőbeni konfigurációk megvalósításához.
+4. A hello **alhálózat hozzáadása** hello átjáró alhálózatának hozzáadása párbeszédpanelen. hello átjáróalhálózatot megadott hello mérete függ hello VPN-átjáró konfigurációs, amelyet az toocreate. Is lehetséges toocreate mérete /29 legyen egy átjáró-alhálózatot, azt javasoljuk, hogy /27 vagy /28. Ez nagyobb, több címet tartalmazó alhálózatot hoz létre. Egy nagyobb átjáróalhálózat használata lehetővé teszi a elegendő IP-címek tooaccommodate lehetséges jövőbeli konfigurációk.
 
   ![Átjáróalhálózat hozzáadása](./media/vpn-gateway-howto-site-to-site-classic-portal/addgwsubnet.png "Átjáróalhálózat hozzáadása")
 
-## <a name="sku"></a>6. A termékváltozat és a VPN típusának megadása
+## <a name="sku"></a>6. Adja meg a hello SKU- és VPN-típus
 
-1. Válassza ki az átjáró **méretét**. Ez az átjáró a virtuális hálózati átjáró létrehozásához használt termékváltozata. A portálon az alapértelmezett termékváltozat az **Alapszintű**. A klasszikus VPN-átjárók a régi (örökölt) átjáró-termékváltozatokat használják. Az átjárók örökölt termékváltozatairól [a virtuális hálózati átjárók termékváltozatainak (régi termékváltozatok) használatát bemutató](vpn-gateway-about-skus-legacy.md) cikkben talál további információt.
+1. Jelölje be hello átjáró **mérete**. Ez a hello átjáró használata toocreate a virtuális hálózati átjáró Termékváltozat. Hello portálon hello Termékváltozat alapértelmezett = **alapvető**. Hagyományos VPN-átjárók hello régi (örökölt) átjáró termékváltozatok használatára. Hello örökölt gateway SKU kapcsolatos további információkért lásd: [termékváltozatok (régi SKU) virtuális hálózati átjáró használata](vpn-gateway-about-skus-legacy.md).
 
   ![A termékváltozat és a VPN típusának kiválasztása](./media/vpn-gateway-howto-site-to-site-classic-portal/sku.png "A termékváltozat és a VPN típusának kiválasztása")
-2. Válassza ki az átjáró **útválasztási típusát**. Ez VPN-típus néven is ismert. Fontos a megfelelő átjárótípus kiválasztása, mert azt később nem lehet módosítani. A VPN-eszköznek kompatibilisnek kell lennie a kiválasztott útválasztási típussal. További, a VPN-típusokra vonatkozó információkért lásd [a VPN-átjárók beállításaival](vpn-gateway-about-vpn-gateway-settings.md#vpntype) foglalkozó témakört. A „RouteBased” és „PolicyBased” VPN-típusokkal további cikkek is foglalkozhatnak. A „Dynamic” (Dinamikus) a „RouteBased”, a „Static” (Statikus) a „PolicyBased” típusra utal.
-3. Kattintson az **OK** gombra a beállítások mentéséhez.
-4. Az **Új VPN-kapcsolat** lap alján kattintson az **OK** gombra a virtuális hálózati átjáró létrehozásához. A kiválasztott SKU függvényében egy virtuális hálózati átjáró létrehozása akár 45 percet is igénybe vehet.
+2. Jelölje be hello **útválasztási típus** az átjáró. Ez más néven a hello VPN-típus. Mivel hello átjáró konvertálása nem egy típus tooanother fontos tooselect hello megfelelő átjáró típusa. A VPN-eszköz hello útválasztási típusa kompatibilisnek kell lennie. További, a VPN-típusokra vonatkozó információkért lásd [a VPN-átjárók beállításaival](vpn-gateway-about-vpn-gateway-settings.md#vpntype) foglalkozó témakört. Cikkek too'RouteBased utaló jelenhetnek meg "és"PolicyBased"VPN típusok. "Dinamikus"megfelel-e too'RouteBased", és a"Static"megfelel-e"PolicyBased".
+3. Kattintson a **OK** toosave hello beállításait.
+4. A hello **új VPN-kapcsolat** kattintson **OK** hello lap toobegin a virtuális hálózati átjáró létrehozása hello alján. Attól függően, hogy hello SKU választja is eltarthat, too45 perc toocreate a virtuális hálózati átjáró.
 
 ## <a name="vpndevice"></a>7. VPN-eszköz konfigurálása
 
-A helyszíni hálózaton a helyek közötti kapcsolatok létesítéséhez VPN-eszközre van szükség. Ebben a lépésben a VPN-eszköz konfigurálása következik. A VPN-eszköz konfigurálásakor a következőkre van szüksége:
+Pont-pont kapcsolatok tooan a helyi hálózaton egy VPN-eszköz szükség. Ebben a lépésben a VPN-eszköz konfigurálása következik. A VPN-eszköz konfigurálásakor hello a következőkre lesz szüksége:
 
-- Megosztott kulcs. Ez ugyanaz a megosztott kulcs, amelyet a helyek közötti VPN-kapcsolat létrehozásakor ad meg. A példákban alapvető megosztott kulcsot használunk. Javasoljuk egy ennél összetettebb kulcs létrehozását.
-- A virtuális hálózati átjáró nyilvános IP-címe. A nyilvános IP-címet az Azure Portalon, valamint a PowerShell vagy a CLI használatával is megtekintheti.
+- Megosztott kulcs. Ez az azonos megosztott hello a telephelyek közötti VPN-kapcsolat létrehozásakor megadott kulcs. A példákban alapvető megosztott kulcsot használunk. Azt javasoljuk, hogy létrehozhat egy összetett kulcs toouse.
+- hello a virtuális hálózati átjáró nyilvános IP-címét. Hello nyilvános IP-cím hello Azure-portálon, a PowerShell vagy a parancssori felület használatával tekintheti meg.
 
 [!INCLUDE [vpn-gateway-configure-vpn-device-rm](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
 
-## <a name="CreateConnection"></a>8. A kapcsolat létrehozása
-Ebben a lépésben beállítja a megosztott kulcsot, és létrehozza a kapcsolatot. A beállított kulcsnak meg kell egyeznie a VPN-eszköz konfigurációjához használt kulccsal.
+## <a name="CreateConnection"></a>8. Hello kapcsolat létrehozása
+Ebben a lépésben hello megosztott kulcsot, és hello kapcsolat létrehozásához. hello kulcsot meg kell hello ugyanazzal a kulccsal, amelyet a VPN-eszköz konfigurációjában használt.
 
 > [!NOTE]
-> Ez a lépés jelenleg az Azure Portalon nem érhető el. A műveletekhez az Azure PowerShell-parancsmagjainak Service Management (SM) verzióját kell használnia.
+> Ez a lépés jelenleg nem elérhető hello Azure-portálon. Hello Azure PowerShell-parancsmagok hello szolgáltatás-felügyeleti (SM) verzióját kell használnia.
 >
 
-### <a name="step-1-connect-to-your-azure-account"></a>1. lépés Csatlakozás az Azure-fiókhoz
+### <a name="step-1-connect-tooyour-azure-account"></a>1. lépés Csatlakozás Azure-fiók tooyour
 
-1. Nyissa meg emelt szintű jogosultságokkal a PowerShell konzolt, és csatlakozzon a fiókjához. A következő példa segít a kapcsolódásban:
+1. Nyissa meg a PowerShell-konzolt emelt szintű jogosultságokkal, és csatlakozzon a tooyour fiók. A következő példa toohelp csatlakozás hello használata:
 
   ```powershell
   Add-AzureAccount
   ```
-2. Keresse meg a fiókot az előfizetésekben.
+2. Hello előfizetések hello fiók ellenőrzése.
 
   ```powershell
   Get-AzureSubscription
   ```
-3. Ha egynél több előfizetéssel rendelkezik, akkor válassza ki azt, amelyiket használni szeretné.
+3. Ha egynél több előfizetéssel rendelkezik, válassza ki a megjeleníteni kívánt toouse hello előfizetést.
 
   ```powershell
   Select-AzureSubscription -SubscriptionId "Replace_with_your_subscription_ID"
   ```
 
-### <a name="step-2-set-the-shared-key-and-create-the-connection"></a>2. lépés A megosztott kulcs beállítása és a kapcsolat létrehozása
+### <a name="step-2-set-hello-shared-key-and-create-hello-connection"></a>2. lépés Hello megosztott kulcsot, és hello kapcsolat létrehozása
 
-A PowerShell és a klasszikus üzemi modell használatakor a portálon található erőforrások neve néha nem egyezik azzal, amelyet az Azure elvár a PowerShell használatakor. Az alábbi lépések segítségével exportálhatja a hálózati konfigurációs fájlt a nevek pontos értékeinek lekéréséhez.
+Amikor olyan PowerShell és hello klasszikus üzembe helyezési modellel, néha hello nevében hello portálon erőforrások a rendszer nem hello nevek hello Azure toosee vár, amikor a PowerShell használatával. hello következő lépésekkel exportálhatja hello hálózati konfigurációs fájl tooobtain hello pontos értékek hello nevek.
 
-1. Hozzon létre egy könyvtárat a számítógépén, majd exportálja a hálózati konfigurációs fájlt a könyvtárba. Ebben a példában a hálózati konfigurációs fájlt a C:\AzureNet helyre exportálja.
+1. Hozzon létre egy könyvtárat a számítógépen, és exportálhatja a hálózati konfiguráció hello toohello könyvtára. Ebben a példában a hello hálózati konfigurációs fájl nem exportált tooC:\AzureNet.
 
   ```powershell
   Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
   ```
-2. Nyissa meg a hálózati konfigurációs fájlt egy xml-szerkesztővel, majd ellenőrizze a „LocalNetworkSite name” és a „VirtualNetworkSite name” értékeit. Módosítsa úgy a példát, hogy tükrözze a szükséges értékeket. Amikor szóközt tartalmazó nevet ad meg, zárja az értéket szimpla idézőjelek közé.
+2. Nyissa meg a hello hálózati konfigurációs fájlt egy xml-szerkesztővel, és ellenőrizze a "LocalNetworkSite" és "VirtualNetworkSite neve" hello értékeit. Hello példa tooreflect hello értékeket kell módosítani. Ha neve szóközt tartalmaz, idézőjelekbe egyetlen hello érték.
 
-3. Állítsa be a megosztott kulcsot, és hozza létre a kapcsolatot. A „-SharedKey” egy Ön által létrehozott és megadott érték. A példában az „abc123” értéket használtuk, de érdemesebb egy ennél összetettebb értéket használni. Vegye figyelembe, hogy az itt megadott értéknek meg kell egyeznie a VPN-eszköz konfigurálásakor meghatározott értékkel.
+3. Hello megosztott kulcsot, és hello kapcsolat létrehozásához. hello "-SharedKey" érték, amely Ön hozza létre, és adja meg. Hello példában használtuk "abc123", de hozhat létre (és kell) összetettebb használja. fontos dolog, hogy az itt megadott hello érték hello azonos értéket, a VPN-eszköz beállításakor megadott hello kell lennie.
 
   ```powershell
   Set-AzureVNetGatewayKey -VNetName 'Group TestRG1 TestVNet1' `
   -LocalNetworkSiteName 'D1BFC9CB_Site2' -SharedKey abc123
   ```
-Amikor létrejött a kapcsolat, az eredmény **Status: Successful** (Állapot: Sikeres) lesz.
+Hello kapcsolat létrehozásakor hello eredménye: **állapota: sikeres**.
 
 ## <a name="verify"></a>9. A kapcsolat ellenőrzése
 
 [!INCLUDE [vpn-gateway-verify-connection-azureportal-classic](../../includes/vpn-gateway-verify-connection-azureportal-classic-include.md)]
 
-Ha nem tud csatlakozni, tekintse át a **Hibaelhárítás** című szakaszt a tartalomjegyzékben a bal oldali panelen.
+Ha a hiba történt a kapcsolódás, lásd: hello **kapcsolatos problémák elhárítása** szakasz hello tartalomjegyzék hello bal oldali ablaktáblán.
 
-## <a name="reset"></a>VPN-átjáró alaphelyzetbe állítása
+## <a name="reset"></a>Hogyan tooreset VPN-átjáró
 
-Az Azure VPN Gateway alaphelyzetbe állítása akkor hasznos, ha egy vagy több helyek közötti VPN-alagúton elveszíti a létesítmények közötti VPN-kapcsolatot. Ebben az esetben a helyszíni VPN-eszközei megfelelően működnek, de nem tudnak Ipsec-alagutakat létesíteni az Azure VPN Gateway átjárókkal. A lépéseket lásd: [VPN Gateway alaphelyzetbe állítása](vpn-gateway-resetgw-classic.md).
+Az Azure VPN Gateway alaphelyzetbe állítása akkor hasznos, ha egy vagy több helyek közötti VPN-alagúton elveszíti a létesítmények közötti VPN-kapcsolatot. Ebben a helyzetben a helyszíni VPN-eszközök minden megfelelően működik-e, de nem tudta tooestablish hello Azure VPN gatewayek az IPsec-alagutak. A lépéseket lásd: [VPN Gateway alaphelyzetbe állítása](vpn-gateway-resetgw-classic.md).
 
-## <a name="changesku"></a>Az átjárók termékváltozatainak módosítása
+## <a name="changesku"></a>Hogyan toochange egy átjáró-Termékváltozat
 
-Az átjárók termékváltozatainak módosításához szükséges lépésekért lásd: [Átjáró-termékváltozatok átméretezése](vpn-gateway-about-SKUS-legacy.md).
+Hello lépések toochange egy átjáró-Termékváltozat, a következő témakörben: [egy átjáró-Termékváltozat átméretezése](vpn-gateway-about-SKUS-legacy.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Miután a kapcsolat létrejött, hozzáadhat virtuális gépeket a virtuális hálózataihoz. További információkért lásd: [Virtuális gépek](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
+* Ha a kapcsolat befejeződött, a virtuális gépek tooyour virtuális hálózatok is hozzáadhat. További információkért lásd: [Virtuális gépek](https://docs.microsoft.com/azure/#pivot=services&panel=Compute).
 * Információk a kényszerített bújtatásról: [Információk a kényszerített bújtatásról](vpn-gateway-about-forced-tunneling.md).

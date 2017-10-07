@@ -1,6 +1,6 @@
 ---
-title: "A Windows Azure-ban testreszabása |} Microsoft Docs"
-description: "Útmutató az egyéni parancsprogramok futtatására szolgáló bővítmény és a Key Vault segítségével testre szabhatja a Windows-alapú virtuális gépek Azure-ban"
+title: a Windows Azure-ban aaaCustomize |} Microsoft Docs
+description: "Ismerje meg, hogyan toouse hello egyéni parancsprogramok futtatására szolgáló bővítmény és a Windows-alapú virtuális gépek az Azure Key Vault toocustomize"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,45 +16,45 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 3be58bf8afbcff018b2b0d69a0e08c2c9ab1fca7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c03b2bb6d70875134c63ea2fe4c2e2c1777c2188
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-a-windows-virtual-machine-in-azure"></a>A Windows Azure virtuális gép testreszabása
-Virtuális gépek (VM) gyors és egységes módon konfigurálásához valamilyen automatizált művelettel általában van szükség. A Windows virtuális gépek testreszabása általános gyakorlatként javasolt, hogy használja [egyéni parancsfájl kiterjesztése a Windows](extensions-customscript.md). Ezen oktatóanyag segítségével megtanulhatja a következőket:
+# <a name="how-toocustomize-a-windows-virtual-machine-in-azure"></a>Hogyan toocustomize Windows virtuális gépként az Azure-ban
+tooconfigure virtuális gépek (VM) gyors és konzisztens módon, valamilyen automatizált művelettel általában van szükség. Egy általános módszer toocustomize egy Windows virtuális gép toouse [egyéni parancsfájl kiterjesztése a Windows](extensions-customscript.md). Ezen oktatóanyag segítségével megtanulhatja a következőket:
 
 > [!div class="checklist"]
-> * Az egyéni parancsprogramok futtatására szolgáló bővítmény használatával az IIS telepítése
-> * Az egyéni parancsprogramok futtatására szolgáló bővítmény használó virtuális gép létrehozása
-> * Egy futó IIS-webhely megtekintheti a bővítmény alkalmazása után
+> * Hello egyéni parancsprogramok futtatására szolgáló bővítmény tooinstall IIS használata
+> * Egyéni parancsprogramok futtatására szolgáló bővítmény hello használó virtuális gép létrehozása
+> * Egy futó IIS-webhely megtekintése hello bővítmény alkalmazása után
 
-Az oktatóanyaghoz az Azure PowerShell-modul 3.6-os vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: ` Get-Module -ListAvailable AzureRM`. Ha frissítenie kell, lásd: [telepítése Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
+Ez az oktatóanyag hello Azure PowerShell 3,6 vagy újabb verziója szükséges. Futtatás ` Get-Module -ListAvailable AzureRM` toofind hello verziója. Ha tooupgrade van szüksége, tekintse meg [telepítése Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
 
 
 ## <a name="custom-script-extension-overview"></a>Egyéni parancsfájl-bővítmény áttekintése
-Az egyéni parancsprogramok futtatására szolgáló bővítmény és hajtanak végre a parancsfájlok Azure virtuális gépeken. A bővítmény akkor hasznos, ha a feladás egy vagy több központi telepítés konfigurálása, a szoftver telepítése vagy a más beállításokat / kezelési feladatot. Parancsfájlok le: az Azure storage vagy a Githubon, vagy megadott futásidejű bővítmény: az Azure portálon.
+Egyéni parancsprogramok futtatására szolgáló bővítmény hello és hajtanak végre a parancsfájlok Azure virtuális gépeken. A bővítmény akkor hasznos, ha a feladás egy vagy több központi telepítés konfigurálása, a szoftver telepítése vagy a más beállításokat / kezelési feladatot. Parancsfájlok le: az Azure storage vagy a Githubon, vagy megadott toohello az Azure portálon, a bővítmény futási időt.
 
-Az egyéni parancsprogramok futtatására szolgáló bővítmény integrálódik az Azure Resource Manager-sablonok, és is futtathat az Azure parancssori felület, PowerShell, Azure-portálon vagy az Azure virtuális gép REST API használatával.
+Egyéni parancsprogramok futtatására szolgáló bővítmény hello integrálódik az Azure Resource Manager-sablonok, és is futtathat a hello Azure CLI, PowerShell, Azure-portálon vagy hello Azure virtuális gép REST API használatával.
 
-Az egyéni parancsprogramok futtatására szolgáló bővítmény Windows és Linux virtuális gépek egyaránt használható.
+Windows és Linux virtuális gépek hello egyéni parancsprogramok futtatására szolgáló bővítmény használható.
 
 
 ## <a name="create-virtual-machine"></a>Virtuális gép létrehozása
-A virtuális gépek létrehozása előtt hozzon létre egy erőforráscsoportot, a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupAutomate* a a *EastUS* helye:
+A virtuális gépek létrehozása előtt hozzon létre egy erőforráscsoportot, a [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupAutomate* a hello *EastUS* helye:
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroupAutomate -Location EastUS
 ```
 
-Állítsa a Rendszergazda felhasználónévvel és jelszóval rendelkező virtuális gépek [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
+Állítsa a rendszergazda felhasználónevét és jelszavát hello rendelkező virtuális gépek [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential):
 
 ```powershell
 $cred = Get-Credential
 ```
 
-Most a virtuális Géphez a hozhat létre [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). Az alábbi példa hoz létre a szükséges virtuális hálózati összetevők, az operációs rendszer konfigurációja, és létrehoz egy nevű virtuális gép *myVM*:
+Most hozhat létre a virtuális gép hello [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). hello alábbi példa létrehoz hello szükséges virtuális hálózati összetevők hello az operációs rendszer konfigurációs, és létrehoz egy nevű virtuális gép *myVM*:
 
 ```powershell
 # Create a subnet configuration
@@ -128,11 +128,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName myResourceGroupAutomate -Location EastUS -VM $vmConfig
 ```
 
-Az erőforrások és a virtuális gép, létre kell néhány percet vesz igénybe.
+Hello erőforrások és a létrehozott virtuális gép toobe néhány percet vesz igénybe.
 
 
 ## <a name="automate-iis-install"></a>Az IIS-telepítés automatizálása
-Használjon [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) az egyéni parancsprogramok futtatására szolgáló bővítmény telepítése. A bővítmény fut `powershell Add-WindowsFeature Web-Server` az IIS webkiszolgálót, és a frissítések telepítése a *Default.htm* a virtuális gép állomásnevét lapjait:
+Használjon [Set-AzureRmVMExtension](/powershell/module/azurerm.compute/set-azurermvmextension) tooinstall hello egyéni parancsprogramok futtatására szolgáló bővítmény. bővítmény futtatása hello `powershell Add-WindowsFeature Web-Server` tooinstall hello IIS webkiszolgálót, majd a frissítések hello *Default.htm* lap tooshow hello hello virtuális gép állomásnevét:
 
 ```powershell
 Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
@@ -147,7 +147,7 @@ Set-AzureRmVMExtension -ResourceGroupName myResourceGroupAutomate `
 
 
 ## <a name="test-web-site"></a>Teszt webhely
-Szerezze be a terheléselosztó a nyilvános IP-címe [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). Az alábbi példa beolvassa az IP-címek *myPublicIP* korábban létrehozott:
+Hello nyilvános IP-cím a terheléselosztó az beszerzése [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). hello alábbi példa beszerzi hello IP-címet *myPublicIP* korábban létrehozott:
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -155,21 +155,21 @@ Get-AzureRmPublicIPAddress `
     -Name myPublicIP | select IpAddress
 ```
 
-Beírhatja a nyilvános IP-címet a webböngésző. A webhely jelenik meg, beleértve az állomásnevet, a virtuális gép, amelyek a terheléselosztó felé irányuló forgalom az alábbi példában látható módon:
+Majd tooa webböngészőben hello nyilvános IP-címet adhat meg. hello webhely jelenik meg, beleértve a virtuális gép hello hello állomásnevét adott hello terheléselosztó forgalom tooas hello a következő példa az elosztott:
 
 ![Futó IIS-webhely](./media/tutorial-automate-vm-deployment/running-iis-website.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban az IIS telepítése a virtuális gép automatikus. Megtudta, hogyan, hogy:
+Ebben az oktatóanyagban automatikus hello IIS telepítése egy virtuális Gépre. Megismerte, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
-> * Az egyéni parancsprogramok futtatására szolgáló bővítmény használatával az IIS telepítése
-> * Az egyéni parancsprogramok futtatására szolgáló bővítmény használó virtuális gép létrehozása
-> * Egy futó IIS-webhely megtekintheti a bővítmény alkalmazása után
+> * Hello egyéni parancsprogramok futtatására szolgáló bővítmény tooinstall IIS használata
+> * Egyéni parancsprogramok futtatására szolgáló bővítmény hello használó virtuális gép létrehozása
+> * Egy futó IIS-webhely megtekintése hello bővítmény alkalmazása után
 
-Továbblépés a következő oktatóanyag áttekintésével megismerheti, hogyan hozza létre egyéni Virtuálisgép-lemezképeket.
+Hogyan előzetes toohello következő útmutató toolearn toocreate egyéni Virtuálisgép-lemezképek.
 
 > [!div class="nextstepaction"]
 > [Egyéni virtuálisgép-rendszerképek létrehozása](./tutorial-custom-images.md)

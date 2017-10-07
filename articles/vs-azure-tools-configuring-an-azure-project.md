@@ -1,6 +1,6 @@
 ---
-title: "A Visual Studio egy Azure-felhőszolgáltatás-projekt konfigurálása |} Microsoft Docs"
-description: "További tudnivalók az Azure-felhőszolgáltatás-projekt konfigurálása a Visual Studio, a projekt követelményeitől függően."
+title: "a Visual Studio egy Azure-felhőszolgáltatás-projekt aaaConfigure |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure az Azure felhőalapú szolgáltatás projektre a Visual Studio, a projekt követelményeitől függően."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/06/2017
 ms.author: kraigb
-ms.openlocfilehash: 799715093bd1a8c8e77e6cdb7168670dc263dfa5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 40eb5eedd6ea23bf03c8707431799be28beae701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-an-azure-cloud-service-project-with-visual-studio"></a>A Visual Studio egy Azure-felhőszolgáltatás-projekt konfigurálása
-Egy Azure-felhőszolgáltatás-projekt, beállíthatja a projekt követelményeitől függően. Beállítható a projekthez az alábbi kategóriákban:
+Egy Azure-felhőszolgáltatás-projekt, beállíthatja a projekt követelményeitől függően. A következő kategóriák hello hello projekt tulajdonságait állíthatja be:
 
-- **Egy felhőalapú szolgáltatás közzététele az Azure-bA** -győződjön meg arról, hogy egy meglévő felhőalapú szolgáltatást, az Azure rendszerbe telepítendő nem véletlenül törli egy tulajdonságot.
-- **Futtassa, vagy egy felhőalapú szolgáltatás a helyi számítógépen debug** -kiválaszthatja, hogy a szolgáltatás konfigurációját használja, és adja meg, hogy az Azure storage emulator elindításához.
-- **Ellenőrizze a cloud service-csomag létrehozásakor** -úgy is dönt, hogy hibaként figyelmeztetéseket, így biztosítható, hogy a cloud service-csomag probléma nélkül telepíti. 
+- **Közzétételéhez egy cloud service tooAzure** -beállíthat egy tulajdonság toomake meg arról, hogy egy meglévő felhőalapú környezetben telepített tooAzure nem véletlenül törli.
+- **Futtassa, vagy egy felhőalapú szolgáltatás a helyi számítógépen hello debug** -kiválaszthatja a szolgáltatás konfigurációs toouse, és adja meg, hogy toostart hello az Azure storage emulator.
+- **Ellenőrizze a cloud service-csomag létrehozásakor** -eldöntheti, így biztosíthatja, hogy hello cloud service-csomag összes figyelmeztetés hibaként telepíti probléma nélkül tootreat. 
 
-## <a name="steps-to-configure-an-azure-cloud-service-project"></a>Egy Azure-felhőszolgáltatás-projekt konfigurálásának lépései
+## <a name="steps-tooconfigure-an-azure-cloud-service-project"></a>Lépéseket tooconfigure egy Azure-felhőszolgáltatás-projekt
 1. Nyissa meg vagy egy felhőszolgáltatás-projekt létrehozása a Visual Studióban
 
-1. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki a helyi menüből **tulajdonságok**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a projekt hello és, hello helyi menüből válassza ki a **tulajdonságok**.
    
-1. A projekt Tulajdonságok lapján válassza a **fejlesztési** fülre.
+1. Hello projekt Tulajdonságok lapján válassza hello **fejlesztési** fülre.
 
     ![Projekt tulajdonságai menü](./media/vs-azure-tools-configuring-an-azure-project/solution-explorer-project-properties-menu.png)
 
-1. Állítsa be **Rákérdezés a meglévő telepítés törlése előtt** való **igaz**. Ez a beállítás segít biztosítani, ne véletlenül törli egy meglévő Azure-telepítés
+1. Állítsa be **Rákérdezés a meglévő telepítés törlése előtt** túl**igaz**. Ez a beállítás segít tooensure véletlenül törli nem egy meglévő Azure-telepítés
 
-1. Válassza ki a kívánt **szolgáltatáskonfiguráció** mely szolgáltatáskonfiguráció jelzi a futtatásakor vagy a felhőalapú szolgáltatás helyileg debug használni kívánt. A szerepkör szolgáltatáskonfiguráció módosítása további információkért lásd: [a szerepkörök az Azure-felhőszolgáltatás konfigurálása a Visual Studio](./vs-azure-tools-configure-roles-for-cloud-service.md).
+1. Szükséges válassza hello **szolgáltatáskonfiguráció** mely szolgáltatáskonfiguráció kívánt toouse futtatásakor vagy a felhőalapú szolgáltatás helyileg debug tooindicate. További információt a toomodify szolgáltatáskonfiguráció szerepkör, lásd: [hogyan tooconfigure hello szerepkörök az Azure cloud service, a Visual Studio](./vs-azure-tools-configure-roles-for-cloud-service.md).
 
-1. Állítsa be **Start Azure storage emulator** való **igaz** futtatásakor vagy a felhőalapú szolgáltatás helyi hibakeresése az Azure storage emulator indításához.
+1. Állítsa be **Start Azure storage emulator** túl**igaz** toostart hello az Azure storage emulator futtatásakor vagy a felhőalapú szolgáltatás helyi hibakeresése.
 
-1. Állítsa be **figyelmeztetések hibaként** való **igaz** győződjön meg arról, nem tehető közzé, ha a csomag érvényesítési hibák vannak.
+1. Állítsa be **figyelmeztetések hibaként** túl**igaz** toomake meg arról, hogy Ön nem tehető közzé, ha a csomag érvényesítési hibák vannak.
 
-1. Állítsa be **webes projekt portok használatára** való **igaz** győződjön meg arról, hogy a webes szerepkör ugyanazt a portot használja minden egyes elindításakor azt a helyi IIS Express.
+1. Állítsa be **webes projekt portok használatára** túl**igaz** toomake arról, hogy, hogy a webes szerepkör hello azonos port minden egyes elindításakor azt a helyi IIS Express.
 
-1. Válassza ki a Visual Studio eszköztár **mentése**.
+1. Hello Visual Studio eszköztárán válassza **mentése**.
 
 ## <a name="next-steps"></a>Következő lépések
 - [Több szolgáltatáskonfiguráció használata Azure-projekt konfigurálása](vs-azure-tools-multiple-services-project-configurations.md)

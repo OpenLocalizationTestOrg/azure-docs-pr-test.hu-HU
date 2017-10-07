@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Storage Azure PowerShell használatával |} Microsoft Docs"
-description: "Az Azure Storage Azure PowerShell-parancsmagok használata létrehozásához és kezeléséhez a storage-fiókok; blobok, táblák, üzenetsorok és fájlok; használata konfigurálja és tárolási analitika lekérdezése, és a közös hozzáférésű jogosultságkód létrehozása."
+title: az Azure Storage Azure PowerShell aaaUsing |} Microsoft Docs
+description: "Megtudhatja, hogyan toouse hello Azure Storage toocreate Azure PowerShell-parancsmagok és a storage-fiókok; kezelése blobok, táblák, üzenetsorok és fájlok; használata konfigurálja és tárolási analitika lekérdezése, és a közös hozzáférésű jogosultságkód létrehozása."
 services: storage
 documentationcenter: na
 author: robinsh
@@ -13,49 +13,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
-ms.openlocfilehash: 51e3e93ebedd31370857e61a00139294bcee9237
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: befe7adda2384f8bcdb8b9f1a063e4eafc158271
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-powershell-with-azure-storage"></a>Using Azure PowerShell with Azure Storage (Az Azure PowerShell és az Azure Storage együttes használata)
 ## <a name="overview"></a>Áttekintés
-Az Azure PowerShell modul, amely kezelése a Windows PowerShell segítségével Azure-parancsmagokat kínál. Ez egy feladatalapú parancshéj és parancsnyelv, amely kifejezetten rendszerfelügyeleti célra készült. A PowerShell-lel könnyen szabályozhatja és az Azure-szolgáltatások és alkalmazások automatizálják. Például használhatja a parancsmagokat a azonos feladatok végrehajtását, amelyek segítségével végezheti el a [Azure-portálon](https://portal.azure.com).
+Az Azure PowerShell egy modul, amely a parancsmagok toomanage Azure, a Windows PowerShell segítségével. Ez egy feladatalapú parancshéj és parancsnyelv, amely kifejezetten rendszerfelügyeleti célra készült. A PowerShell-lel könnyen szabályozhatja és hello felügyelete az Azure-szolgáltatások és alkalmazások automatizálása. Például használhatja hello parancsmagok tooperform hello hello keresztül végzett feladatok azonos [Azure-portálon](https://portal.azure.com).
 
-Az útmutató azt fogja felfedezés használata a [Azure tárolási parancsmagok](/powershell/module/azurerm.storage/#storage) különböző az Azure Storage fejlesztői és felügyeleti feladatok elvégzéséhez.
+Ez az útmutató azt fogja feltárja hogyan toouse hello [Azure tárolási parancsmagok](/powershell/module/azurerm.storage/#storage) tooperform számos fejlesztését és a felügyeleti feladatot az Azure Storage.
 
-Ez az útmutató feltételezi, hogy rendelkezik tapasztalattal használatával [Azure Storage](https://azure.microsoft.com/documentation/services/storage/) és [Windows PowerShell](http://technet.microsoft.com/library/bb978526.aspx). Az útmutató számos bemutatásához az használatát, az Azure Storage PowerShell parancsfájlt. Minden parancsprogram futtatása előtt a konfiguráció alapján a parancsfájl-változókat frissítenie kell.
+Ez az útmutató feltételezi, hogy rendelkezik tapasztalattal használatával [Azure Storage](https://azure.microsoft.com/documentation/services/storage/) és [Windows PowerShell](http://technet.microsoft.com/library/bb978526.aspx). hello az útmutató számos parancsfájlt toodemonstrate hello használata az Azure Storage PowerShell. Minden parancsprogram futtatása előtt a konfiguráció alapján hello parancsfájl-változókat frissítenie kell.
 
-A jelen útmutató az első szakaszban Azure Storage és a PowerShell kiadványok biztosít. Részletes információk és utasítások, indítását a [az Azure Storage Azure PowerShell használatára vonatkozó Előfeltételek](#prerequisites-for-using-azure-powershell-with-azure-storage).
+hello első rész a jelen útmutató az Azure Storage és a PowerShell kiadványok biztosít. Részletes információk és utasítások, indítsa el a hello [az Azure Storage Azure PowerShell használatára vonatkozó Előfeltételek](#prerequisites-for-using-azure-powershell-with-azure-storage).
 
 ## <a name="getting-started-with-azure-storage-and-powershell-in-5-minutes"></a>Ismerkedés az Azure Storage és a PowerShell 5 perc
-Ez a szakasz bemutatja, hogyan számára az Azure Storage PowerShell 5 perc.
+Ez a szakasz bemutatja, hogyan tooaccess Azure Storage PowerShell 5 perc múlva.
 
-**Új Azure-bA:** a Microsoft Azure-előfizetés és az adott előfizetéshez tartozó Microsoft-fiókkal. Az Azure megvásárlási lehetőségeinek információkért lásd: [ingyenes](https://azure.microsoft.com/pricing/free-trial/), [beszerzési lehetőségek](https://azure.microsoft.com/pricing/purchase-options/), és [ajánlatok](https://azure.microsoft.com/pricing/member-offers/) (az MSDN, a Microsoft Partner Network, és a BizSpark és egyéb Microsoft programok tagjai).
+**Új tooAzure:** a Microsoft Azure-előfizetés és az adott előfizetéshez tartozó Microsoft-fiókkal. Az Azure megvásárlási lehetőségeinek információkért lásd: [ingyenes](https://azure.microsoft.com/pricing/free-trial/), [beszerzési lehetőségek](https://azure.microsoft.com/pricing/purchase-options/), és [ajánlatok](https://azure.microsoft.com/pricing/member-offers/) (az MSDN, a Microsoft Partner Network, és a BizSpark és egyéb Microsoft programok tagjai).
 
 Lásd: [rendszergazdai szerepkörök hozzárendelése az Azure Active Directory (Azure AD)](https://msdn.microsoft.com/library/azure/hh531793.aspx) Azure-előfizetések további információt.
 
 **Miután létrehozta a Microsoft Azure-előfizetésre és -fiókra:**
 
-1. Töltse le és telepítse a legújabb [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/latest).
-2. Kezdő Windows PowerShell integrált parancsfájlkezelés környezet (ISE): A helyi számítógépen, válassza a **Start** menü. Típus **felügyeleti eszközök** kattintson futtatni. Az a **felügyeleti eszközök** ablak, kattintson a jobb gombbal **Windows PowerShell ISE**, kattintson a **Futtatás rendszergazdaként**.
-3. A **Windows PowerShell ISE**, kattintson a **fájl** > **új** létrehozni egy új parancsfájlt.
-4. Most lesz ad egy egyszerű parancsprogram, amely alapszintű PowerShell-parancsok Azure Storage eléréséhez. A parancsfájl először kérje meg az Azure fiók hitelesítő adatait az Azure hozzáadandó fiókot a helyi PowerShell környezetben. Ezt követően a parancsfájl az alapértelmezett Azure-előfizetés, és új tárfiók létrehozása az Azure-ban. Ezután a parancsfájl hozzon létre egy új tárolót az új tárfiókot, és töltse fel a meglévő képfájl (blob) a tárolóban. Miután a parancsfájl megjeleníti az adott tároló összes BLOB, a helyi számítógépen egy új célkönyvtáron létrehozza, és töltse le a lemezképet.
-5. A következő kódot a szakaszban válassza ki a parancsfájl a megjegyzések között **#begin** és **#end**. Nyomja le a CTRL + C billentyűkombinációval másolja a vágólapra.
+1. Töltse le és telepítse legújabb hello [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/latest).
+2. Kezdő Windows PowerShell integrált parancsfájlkezelés környezet (ISE): A helyi számítógépen, váltson toohello **Start** menü. Típus **felügyeleti eszközök** toorun kattintson azt. A hello **felügyeleti eszközök** ablak, kattintson a jobb gombbal **Windows PowerShell ISE**, kattintson a **Futtatás rendszergazdaként**.
+3. A **Windows PowerShell ISE**, kattintson a **fájl** > **új** toocreate egy új parancsfájlt.
+4. Most lesz ad egy egyszerű parancsprogram, amely bemutatja az alapvető PowerShell parancsok tooaccess Azure Storage. hello parancsfájl először kéri az Azure-fiók hitelesítő adatait tooadd az Azure-fiók toohello helyi PowerShell környezetben. Ezután hello parancsfájl hello alapértelmezett Azure-előfizetéssel, és hozzon létre egy új tárfiókot az Azure-ban. A következő hello parancsfájl hozzon létre egy új tárolót az új tárfiókot, és töltse fel a meglévő lemezkép fájl (blob) toothat tároló. Hello parancsfájl megjeleníti az adott tároló összes BLOB, miután egy új célkönyvtáron létrehozza a helyi számítógépen, és hello képfájl letöltése.
+5. A következő kódot a szakasz hello, válassza ki hello parancsfájl hello megjegyzések közötti **#begin** és **#end**. Nyomja le a CTRL + C toocopy azt toohello vágólapra.
 
     ```powershell
     # begin
-    # Update with the name of your subscription.
+    # Update with hello name of your subscription.
     $SubscriptionName = "YourSubscriptionName"
        
-    # Give a name to your new storage account. It must be lowercase!
+    # Give a name tooyour new storage account. It must be lowercase!
     $StorageAccountName = "yourstorageaccountname"
        
     # Choose "West US" as an example.
     $Location = "West US"
        
-    # Give a name to your new container.
+    # Give a name tooyour new container.
     $ContainerName = "imagecontainer"
        
     # Have an image file and a source directory in your local computer.
@@ -64,7 +64,7 @@ Lásd: [rendszergazdai szerepkörök hozzárendelése az Azure Active Directory 
     # A destination directory in your local computer.
     $DestinationFolder = "C:\DownloadImages"
        
-    # Add your Azure account to the local PowerShell environment.
+    # Add your Azure account toohello local PowerShell environment.
     Add-AzureAccount
        
     # Set a default Azure subscription.
@@ -85,115 +85,115 @@ Lásd: [rendszergazdai szerepkörök hozzárendelése az Azure Active Directory 
     # List all blobs in a container.
     Get-AzureStorageBlob -Container $ContainerName
        
-    # Download blobs from the container:
-    # Get a reference to a list of all blobs in a container.
+    # Download blobs from hello container:
+    # Get a reference tooa list of all blobs in a container.
     $blobs = Get-AzureStorageBlob -Container $ContainerName
        
-    # Create the destination directory.
+    # Create hello destination directory.
     New-Item -Path $DestinationFolder -ItemType Directory -Force  
        
-    # Download blobs into the local destination directory.
+    # Download blobs into hello local destination directory.
     $blobs | Get-AzureStorageBlobContent –Destination $DestinationFolder
        
     # end
     ```
 
-6. A **Windows PowerShell ISE**, nyomja le a CTRL + V billentyűkombinációval másolja a parancsfájlt. Kattintson a **fájl** > **mentése**. Az a **Mentés másként** párbeszédpanelen írja be a nevét, a parancsfájl, például a "mystoragescript." Kattintson a **Save** (Mentés) gombra.
-7. Most módosítania a parancsfájl-változókat a konfigurációs beállítások alapján. Frissítenie kell a **$SubscriptionName** változó a saját előfizetésével. Tartsa a többi változó a parancsfájlban megadott, vagy igény szerint frissítse azokat.
+6. A **Windows PowerShell ISE**, nyomja le a CTRL + V toocopy hello parancsfájl. Kattintson a **fájl** > **mentése**. A hello **Mentés másként** párbeszédpanelen, a típusnév hello hello parancsfájl, például a "mystoragescript." Kattintson a **Save** (Mentés) gombra.
+7. Most tooupdate hello parancsfájl-változókat a konfigurációs beállítások alapján van szüksége. Frissítenie kell a hello **$SubscriptionName** változó a saját előfizetésével. Tartsa hello más változók a parancsfájl hello, vagy igény szerint frissítse azokat.
    
-   * **$SubscriptionName:** ezt a változót a saját előfizetés nevével kell frissíteni. Kövesse a következő háromféleképpen keresse meg az előfizetés nevét:
+   * **$SubscriptionName:** ezt a változót a saját előfizetés nevével kell frissíteni. Kövesse a következő három módon toolocate hello nevét az előfizetésben hello egyikét:
      
-    a. A **Windows PowerShell ISE**, kattintson a **fájl** > **új** létrehozni egy új parancsfájlt. Másolja a következő parancsfájlt az új parancsfájlt, és kattintson a **Debug** > **futtatása**. A következő parancsfájl először kérje meg az Azure fiók hitelesítő adatait az Azure hozzáadása a helyi PowerShell környezetre fiókot, és majd az összes olyan előfizetést, a helyi PowerShell-munkamenethez kapcsolódó megjelenítése. Jegyezze fel az oktatóanyag során használni kívánt előfizetést nevét:
+    a. A **Windows PowerShell ISE**, kattintson a **fájl** > **új** toocreate egy új parancsfájlt. Másolás hello alábbi parancsfájl-toohello új parancsfájlt, és kattintson **Debug** > **futtatása**. hello következő parancsfájlt a rendszer először kérje meg az Azure-fiók hitelesítő adatait tooadd az Azure-fiók toohello helyi PowerShell környezet és ezután meg lehet jeleníteni hello előfizetéseket, amelyek csatlakoztatott toohello helyi PowerShell-munkamenetben. Jegyezze fel az hello előfizetés hello neve, amelyet az toouse az oktatóanyag során:
      
     ```powershell
     Add-AzureAccount 
       Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName
     ```
 
-    b. Keresse meg és másolja a előfizetés nevét a [Azure-portálon](https://portal.azure.com), kattintson a bal oldali menüben **előfizetések**. Másolja át az előfizetést, amelyet a jelen útmutató a parancsfájlok futtatása során használni kívánt nevét.
+    b. toolocate, és másolja az előfizetés neve hello [Azure-portálon](https://portal.azure.com), a központ menü a bal oldali hello hello, kattintson a **előfizetések**. Másolja a megjeleníteni kívánt toouse hello parancsfájlok futtatása az útmutató során előfizetés hello neve.
      
      ![Azure Portal](./media/storage-powershell-guide-full/Subscription_Previewportal.png)
 
-    c. Keresse meg és másolja a előfizetés nevét a [klasszikus Azure portál](https://manage.windowsazure.com/), görgessen lefelé, és kattintson a **beállítások** a portál bal oldalán. Kattintson a **előfizetések** az előfizetések listájának megjelenítéséhez. Másolja át az előfizetést, amelyet a jelen útmutató a megadott parancsfájlok futtatása során használni kívánt nevét.
+    c. toolocate, és másolja az előfizetés neve hello [klasszikus Azure portál](https://manage.windowsazure.com/), görgessen lefelé, és kattintson a **beállítások** a bal oldalán található hello portal hello. Kattintson a **előfizetések** toosee az előfizetések listája. Másolja ki toouse az útmutatóban megadott hello parancsfájlok futtatása közben előfizetést hello nevét.
      
      ![klasszikus Azure portál](./media/storage-powershell-guide-full/Subscription_currentportal.png)
 
-   * **$StorageAccountName:** használja a parancsfájl a megadott névvel, vagy adjon meg egy új nevet a tárfiók. **Fontos:** a tárfiók nevét az Azure-ban egyedinek kell lennie. Az kisbetűnek kell lennie, túl!
-   * **$Location:** a parancsfájl a megadott "USA nyugati régiója" használja, vagy válasszon más Azure helyeken, például az USA keleti régiója, Észak-Európa, és így tovább.
-   * **$ContainerName:** használja a parancsfájl a megadott névvel, vagy adjon meg egy új nevet a tároló.
-   * **$ImageToUpload:** adja meg egy elérési utat kép a helyi számítógépen, például: "C:\Images\HelloWorld.png".
-   * **$DestinationFolder:** meg elérési útját a helyi könyvtárat, többek között az Azure Storage-ból letöltött fájlok tárolására szolgáló: "C:\DownloadImages".
-8. Miután frissítette a parancsfájl-változókat a "mystoragescript.ps1" fájlban, kattintson a **fájl** > **mentése**. Kattintson a **Debug** > **futtatása** vagy nyomja le az ENTER **F5** a parancsfájl futtatásához.  
+   * **$StorageAccountName:** hello megadott hello parancsfájl nevét használja, vagy adjon meg egy új nevet a tárfiók. **Fontos:** hello tárfiókja nevére hello Azure egyedinek kell lennie. Az kisbetűnek kell lennie, túl!
+   * **$Location:** hello parancsfájlban használja a megadott "USA nyugati régiója" hello, vagy válasszon más Azure helyeken, például az USA keleti régiója, Észak-Európa, és így tovább.
+   * **$ContainerName:** hello megadott hello parancsfájl nevét használja, vagy adjon meg egy új nevet a tároló.
+   * **$ImageToUpload:** , mint a helyi számítógépen, adja meg egy elérési utat tooa kép: "C:\Images\HelloWorld.png".
+   * **$DestinationFolder:** adjon meg egy elérési utat tooa helyi könyvtár toostore fájlokat töltött le az Azure Storage, például: "C:\DownloadImages".
+8. Miután frissítette a parancsfájl-változókat hello hello "mystoragescript.ps1" fájlban, kattintson a **fájl** > **mentése**. Kattintson a **Debug** > **futtatása** vagy nyomja le az ENTER **F5** toorun hello parancsfájl.  
 
-A parancsfájl futtatása után rendelkeznie kell egy helyi célmappát, amely tartalmazza a letöltött lemezképfájlt. Az alábbi képernyőfelvételen látható egy példa a kimenetre:
+Hello parancsfájl futtatása után rendelkeznie kell egy helyi célmappát, amely tartalmazza a letöltött hello lemezképfájlt. a következő képernyőkép hello látható egy példa a kimenetre:
 
 ![Blobok letöltése](./media/storage-powershell-guide-full/Blobdownload.png)
 
 > [!NOTE]
-> A "Bevezetés az Azure Storage és a PowerShell 5 percben" szakaszban megadott gyors Bevezetés az Azure Storage Azure PowerShell használatával. Részletes információk és utasítások javasoljuk, hogy olvassa el a következő szakaszokat.
+> hello "Bevezetés az Azure Storage és a PowerShell 5 percben" című szakaszt a megadott gyors bevezetés hogyan toouse az Azure Storage Azure PowerShell. Részletes információk és utasítások javasoljuk, a következő szakaszok tooread hello.
 > 
 
 ## <a name="prerequisites-for-using-azure-powershell-with-azure-storage"></a>Az Azure Storage Azure PowerShell használatának előfeltételei
-Egy Azure-előfizetés és a fiók ebben az útmutatóban megadott PowerShell-parancsmagok futtatásához a fent leírt módon van szükség.
+Szüksége van egy Azure előfizetésre és -fiókra toorun hello PowerShell-parancsmagok ebben az útmutatóban megadott fent leírt módon.
 
-Az Azure PowerShell modul, amely kezelése a Windows PowerShell segítségével Azure-parancsmagokat kínál. A telepítése és beállítása az Azure PowerShell információkért lásd: [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview). Azt javasoljuk, hogy letöltése és telepítése vagy frissítése a legújabb Azure PowerShell modulra az útmutató használata előtt.
+Az Azure PowerShell egy modul, amely a parancsmagok toomanage Azure, a Windows PowerShell segítségével. A telepítése és beállítása az Azure PowerShell információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). Azt javasoljuk, hogy letöltése és telepítése vagy frissítése toohello legújabb Azure PowerShell modul az útmutató használata előtt.
 
-A parancsmagokat futtathatja a szabványos Windows PowerShell-konzol vagy a Windows PowerShell integrált parancsfájlkezelési környezet (ISE). Ahhoz például, hogy nyissa meg a **Windows PowerShell ISE**, válassza a Start menü, írja be a felügyeleti eszközök, és kattintson a futtatni. A felügyeleti eszközök ablakban kattintson a jobb gombbal a Windows PowerShell ISE, kattintson a Futtatás rendszergazdaként.
+Hello szabványos Windows PowerShell konzol vagy a Windows PowerShell integrált parancsfájlkezelési környezet (ISE) hello hello parancsmagokat futtathat. Például tooopen **Windows PowerShell ISE**nyissa meg toohello Start menüben, írja be a felügyeleti eszközök és toorun kattintson azt. Hello felügyeleti eszközök ablakban kattintson a jobb gombbal a Windows PowerShell ISE, kattintson a Futtatás rendszergazdaként.
 
-## <a name="how-to-manage-storage-accounts-in-azure"></a>Az Azure storage-fiókok kezelése
+## <a name="how-toomanage-storage-accounts-in-azure"></a>Hogyan toomanage tárfiókot az Azure-ban
 
 Vessen egy pillantást a PowerShell-lel Azure storage-fiók kezelése
 
-### <a name="how-to-set-a-default-azure-subscription"></a>Az alapértelmezett Azure-előfizetés beállítása
-Kezeli az Azure Storage Azure PowerShell használatával, az ügyfél-környezet Azure az Azure Active Directory-hitelesítés vagy Tanúsítványalapú hitelesítés használatával hitelesíteni kell. Részletes információkért lásd: [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) oktatóanyag. Ez az útmutató az Azure Active Directory-hitelesítést használ.
+### <a name="how-tooset-a-default-azure-subscription"></a>Hogyan tooset egy alapértelmezett Azure-előfizetés
+Azure Storage Azure PowerShell használatával, kell tooauthenticate az ügyfél-környezet Azure az Azure Active Directory-hitelesítés vagy Tanúsítványalapú hitelesítés használatával toomanage. Részletes információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) oktatóanyag. Ez az útmutató hello Azure Active Directory-hitelesítést használ.
 
-1. A Windows PowerShell ISE, írja be a következő parancs futtatásával adja hozzá az Azure fiók a helyi PowerShell környezetre:
+1. A Windows PowerShell ISE írja be a következő parancs tooadd hello az Azure-fiók toohello helyi PowerShell környezetben:
 
     ```powershell
     Add-AzureAccount
     ```
 
-2. A "Bejelentkezés a Microsoft Azure-beli" ablakban írja be az e-mail címet és a fiókhoz társított jelszót. Az Azure hitelesíti és menti a hitelesítő adatokat, majd bezárja az ablakot.
+2. Hello "tooMicrosoft Azure bejelentkezés", típus hello e-mail címét és a fiókhoz társított jelszót. Azure hitelesíti és menti a hello hitelesítő adatokat, és majd a hello ablak bezárása.
 
-3. Ezután futtassa a következő parancsot az Azure-fiókra megtekintheti a helyi PowerShell-környezetében, és győződjön meg arról, hogy a fiók szerepel:
+3. Ezután futtassa a következő parancs tooview hello Azure fiókok helyi PowerShell-környezetében, és ellenőrizze, hogy szerepel-e a fiók hello:
    
     ```powershell
     Get-AzureAccount
     ```
-4. Ezután futtassa a következő parancsmagot a helyi PowerShell-munkamenethez kapcsolódó összes előfizetés megtekintéséhez, és ellenőrizze, hogy szerepel-e az előfizetés:
+4. Ezután futtassa a következő parancsmag tooview hello hello előfizetéseket, amelyek csatlakoztatott toohello helyi PowerShell-munkamenetet, és ellenőrizze, hogy szerepel-e az előfizetés:
 
     ```powershell
     Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName`
     ```
-5. Az alapértelmezett Azure-előfizetés beállításához futtassa a Select-AzureSubscription parancsmagot:
+5. Azure-előfizetésre, az alapértelmezett tooset hello válassza-AzureSubscription parancsmag futtatásához:
 
     ```powershell
     $SubscriptionName = 'Your subscription Name'
     Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
     ```
 
-6. Ellenőrizze a nevét, az alapértelmezett előfizetés a Get-AzureSubscription parancsmag futtatásával:
+6. Ellenőrizze a hello alapértelmezett előfizetés neve hello hello Get-AzureSubscription parancsmag futtatásával:
 
     ```powershell
     Get-AzureSubscription -Default
     ```
 
-7. Az Azure Storage összes rendelkezésre álló PowerShell-parancsmagok megtekintéséhez futtassa:
+7. Futtassa az toosee összes hello elérhető PowerShell-parancsmagok az Azure Storage:
     
     ```powershell
     Get-Command -Module Azure -Noun *Storage*`
     ```
 
-### <a name="how-to-create-a-new-azure-storage-account"></a>Egy új Azure storage-fiók létrehozása
-Az Azure storage használatához szüksége lesz egy tárfiókot. Egy új Azure-tárfiókot is létrehozhat, a számítógép csatlakozni az előfizetés konfigurálása után.
+### <a name="how-toocreate-a-new-azure-storage-account"></a>Hogyan toocreate egy új Azure storage-fiók
+az Azure storage toouse, szüksége lesz egy tárfiókot. Létrehozhat egy új Azure-tárfiókot, a számítógép tooconnect tooyour előfizetés konfigurálása után.
 
-1. Futtassa a Get-AzureLocation parancsmagot a rendelkezésre álló adatközpont-helyeinek kereséséhez:
+1. Futtassa a hello Get-AzureLocation parancsmag toofind összes hello elérhető adatközpont-helyeinek:
 
     ```powershell
     Get-AzureLocation | Format-Table -Property Name, AvailableServices, StorageAccountTypes
     ```
 
-2. Ezután futtassa a New-AzureStorageAccount parancsmaggal hozzon létre egy új tárfiókot. Az alábbi példában az "USA nyugati régiója" adatközpontban hoz létre egy új tárfiókot.
+2. Ezt követően futtassa hello New-AzureStorageAccount parancsmag toocreate egy új tárfiókot. hello alábbi példa létrehoz egy új tárfiókot hello "USA nyugati régiója" adatközpontban.
    
     ```powershell
     $location = "West US"
@@ -202,14 +202,14 @@ Az Azure storage használatához szüksége lesz egy tárfiókot. Egy új Azure-
     ```
 
 > [!IMPORTANT]
-> A tárfiók neve Azure belül egyedieknek kell lenniük, és kisbetűnek kell lennie. Az elnevezési konvenciókat és korlátozások, lásd: [kapcsolatos Azure Storage-fiókok](storage-create-storage-account.md) és [elnevezési és hivatkozó tárolók, Blobok és metaadatok](http://msdn.microsoft.com/library/azure/dd135715.aspx).
+> a tárfiók nevére hello Azure belül egyedieknek kell lenniük, és kisbetűnek kell lennie. Az elnevezési konvenciókat és korlátozások, lásd: [kapcsolatos Azure Storage-fiókok](storage-create-storage-account.md) és [elnevezési és hivatkozó tárolók, Blobok és metaadatok](http://msdn.microsoft.com/library/azure/dd135715.aspx).
 > 
 > 
 
-### <a name="how-to-set-a-default-azure-storage-account"></a>Egy alapértelmezett Azure storage-fiók beállítása
-Az előfizetés több tárfiókot is lehet. Válasszon egyet közülük, és állítsa be az alapértelmezett tárfiókot, a tárolási parancs összes ugyanabban a PowerShell-munkamenetben. Ez lehetővé teszi, hogy az Azure PowerShell tárolási parancsok az adattároló-környezet explicit megadása nélkül futtatja.
+### <a name="how-tooset-a-default-azure-storage-account"></a>Hogyan tooset egy alapértelmezett Azure storage-fiók
+Az előfizetés több tárfiókot is lehet. Válassza ki az egyiket, és állítsa be úgy, mint hello alapértelmezett tárfiókot az összes tárolási hello parancsai hello azonos PowerShell-munkamenetben. Ez lehetővé teszi toorun hello Azure PowerShell tárolási parancsok hello adattároló-környezet explicit megadása nélkül.
 
-1. Állítsa be az előfizetés egy alapértelmezett tárfiókot, a Set-AzureSubscription parancsmag is futtathatja.
+1. egy alapértelmezett tárfiókot az előfizetéshez tartozó tooset, hello Set-AzureSubscription parancsmag is futtathatja.
 
     ```powershell
     $SubscriptionName = "Your subscription name"
@@ -217,27 +217,27 @@ Az előfizetés több tárfiókot is lehet. Válasszon egyet közülük, és ál
     Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
     ```
 
-2. Ezután futtassa a Get-AzureSubscription parancsmagot, ellenőrizze, hogy a storage-fiók alapértelmezett előfizetés fiókhoz tartozó. Ez a parancs az előfizetés tulajdonságai a jelenlegi előfizetés, beleértve az aktuális tárfiók adja vissza.
+2. Ezután futtassa a Get-AzureSubscription hello parancsmag tooverify, hogy hello tárfiók kapcsolódik az alapértelmezett előfizetéses fiókba. Ez a parancs visszaadja a hello előfizetés tulajdonságai hello az aktuális előfizetésben többek között az aktuális tárfiók.
 
     ```powershell
     Get-AzureSubscription –Current
     ```
 
-### <a name="how-to-list-all-azure-storage-accounts-in-a-subscription"></a>Hogyan listázhat előfizetés minden Azure storage-fiók
-Minden Azure-előfizetés lehet akár 100 storage-fiókok. Korlátozások a legfrissebb információkért lásd: [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md).
+### <a name="how-toolist-all-azure-storage-accounts-in-a-subscription"></a>Hogyan toolist minden Azure tárfiókok egy előfizetésben található
+Minden Azure-előfizetés mentése too100 tárfiókok rendelkezhet. Hello legfrissebb információk korlátozások: [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md).
 
-Futtassa a nevét és a jelenlegi előfizetés tárfiókok állapotának megállapítása a következő parancsmagot:
+Futtassa a következő parancsmag toofind hello nevét és hello aktuális előfizetés tárfiókjai hello állapotának hello:
 
 ```powershell
 Get-AzureStorageAccount | Format-Table -Property StorageAccountName, Location, AccountType, StorageAccountStatus
 ```
 
-### <a name="how-to-create-an-azure-storage-context"></a>Egy Azure storage-környezet létrehozása
-Az Azure storage-környezet egy objektum a PowerShell foglalják magukban a tároló hitelesítő adatait. Tárolási környezetet használ, bármely ezt követő parancsmag lehetővé teszi, hogy a kérés hitelesítéséhez a tárfiók és a hozzáférési kulcs explicit megadása nélkül. Adattároló-környezet az sokféleképpen, például a tárolási fiók nevét és hívóbetűjét, a közös hozzáférésű jogosultságkód (SAS) jogkivonatot, a kapcsolati karakterlánc használatával hozhat létre vagy névtelen. További információkért lásd: [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext).  
+### <a name="how-toocreate-an-azure-storage-context"></a>Hogyan toocreate egy Azure storage-környezetben
+Az Azure storage-környezet egy objektum PowerShell tooencapsulate hello tároló hitelesítő adatait. Tárolási környezetet használ a következő parancsmag futtatása közben lehetővé teszi, hogy Ön tooauthenticate kérelmét hello tárfiók és a hozzáférési kulcs explicit megadása nélkül. Adattároló-környezet az sokféleképpen, például a tárolási fiók nevét és hívóbetűjét, a közös hozzáférésű jogosultságkód (SAS) jogkivonatot, a kapcsolati karakterlánc használatával hozhat létre vagy névtelen. További információkért lásd: [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext).  
 
-Adattároló-környezet létrehozása a következő három módon egyikét használja:
+Adattároló-környezet használja a következő három módon toocreate hello egyikét:
 
-* Futtassa a [Get-AzureStorageKey](/powershell/module/azure.storage/get-azurestoragekey) parancsmag tudja meg a elsődleges hozzáférési kulcsot az Azure-tárfiókot. Ezután hívja a [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext) parancsmaggal hozzon létre egy tárolási környezetben:
+* Futtassa a hello [Get-AzureStorageKey](/powershell/module/azure.storage/get-azurestoragekey) parancsmag toofind kimenő hello elsődleges tárelérési kulcs az Azure-tárfiókot. Ezután hívja hello [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext) parancsmag toocreate adattároló-környezet:
 
     ```powershell
     $StorageAccountName = "yourstorageaccount"
@@ -245,7 +245,7 @@ Adattároló-környezet létrehozása a következő három módon egyikét haszn
     $Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
     ```
 
-* Az Azure storage-tároló megosztott hozzáférési aláírást jogkivonat előállítása és adattároló-környezet létrehozására használható:
+* Az Azure storage-tároló megosztott hozzáférési aláírást jogkivonat előállítása és toocreate adattároló-környezet használhatja:
 
     ```powershell
     $sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
@@ -254,25 +254,25 @@ Adattároló-környezet létrehozása a következő három módon egyikét haszn
 
     További információkért lásd: [New-AzureStorageContainerSASToken](/powershell/module/azure.storage/new-azurestoragecontainersastoken) és [használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md).
 
-* Bizonyos esetekben érdemes lehet a szolgáltatás végpontokat határoz meg az új adattároló-környezet létrehozásakor. Erre akkor lehet szükség, ha egy egyéni tartománynevet a tárfiók a Blob szolgáltatásban regisztrált vagy a közös hozzáférésű jogosultságkód használandó tárolási erőforrások eléréséhez. Állítsa be a végpontok a kapcsolati karakterláncot, és segítségével hozzon létre egy új adattároló-környezet alább látható módon:
+* Bizonyos esetekben érdemes lehet toospecify hello Szolgáltatásvégpontok egy új adattároló-környezet létrehozásakor. Erre akkor lehet szükség, ha egy egyéni tartománynevet a tárfiók hello Blob szolgáltatásban regisztrált vagy a közös hozzáférésű jogosultságkód toouse kívánt tárolási erőforrások eléréséhez. Hello szolgáltatás végpontokat a kapcsolódási karakterláncban és az új adattároló-környezet toocreate alább látható:
 
     ```powershell
     $ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=<blobEndpoint>;QueueEndpoint=<QueueEndpoint>;TableEndpoint=<TableEndpoint>;AccountName=<AccountName>;AccountKey=<AccountKey>"
     $Ctx = New-AzureStorageContext -ConnectionString $ConnectionString
     ```
 
-A tárolási kapcsolati karakterlánc konfigurálásával kapcsolatos további információkért lásd: [kapcsolati karakterláncok konfigurálása](storage-configure-connection-string.md).
+További információt a tooconfigure egy tárolási kapcsolati karakterlánc, lásd: [kapcsolati karakterláncok konfigurálása](storage-configure-connection-string.md).
 
-Most, hogy a számítógépet, és megtanulta, előfizetések és az Azure PowerShell storage-fiókok kezelése, ugorjon a következő szakaszban megtudhatja, hogyan kezelheti az Azure BLOB, és a blob-pillanatképek.
+Most, hogy a számítógépet, és megtanulta, hogyan toomanage előfizetések és a storage-fiókok az Azure PowerShell, lépjen a toohello hogyan toomanage Azure blobok következő szakasz toolearn és blob-pillanatképeket.
 
-### <a name="how-to-retrieve-and-regenerate-azure-storage-keys"></a>Hogyan kérhető le, és az Azure storage kulcsok újragenerálása
-Egy Azure Storage-fiók két kulcsait tartalmaz. A következő parancsmag segítségével a kulcsok beolvasása.
+### <a name="how-tooretrieve-and-regenerate-azure-storage-keys"></a>Hogyan tooretrieve és újragenerálása az Azure storage-kulcsok
+Egy Azure Storage-fiók két kulcsait tartalmaz. A következő parancsmag tooretrieve hello használhatja a kulcsokat.
 
 ```powershell
 Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
 ```
 
-A következő parancsmag segítségével egy adott kulcs beolvasása. Érvényes értékek: az elsődleges és másodlagos.  
+A következő parancsmag tooretrieve egy adott kulcs hello használata. Érvényes értékek: az elsődleges és másodlagos.  
 
 ```powershell
 (Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary
@@ -280,7 +280,7 @@ A következő parancsmag segítségével egy adott kulcs beolvasása. Érvényes
 (Get-AzureStorageKey -StorageAccountName $StorageAccountName).Secondary
 ```
 
-Ha azt szeretné, újragenerálja a kulcsokat, használja a következő parancsmagot. KeyType – az érvényes értékek: "Elsődleges" és "Másodlagos"
+Ha azt szeretné, hogy tooregenerate a kulcs, használja a következő parancsmag hello. KeyType – az érvényes értékek: "Elsődleges" és "Másodlagos"
 
 ```powershell
 New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType "Primary"
@@ -288,11 +288,11 @@ New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType "Primary"
 New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType "Secondary"
 ```
 
-## <a name="how-to-manage-azure-blobs"></a>Azure-blobokat kezelése
-Az Azure Blob storage egy olyan szolgáltatás nagy mennyiségű strukturálatlan adatok, például szövegek vagy bináris adatok, hozzáfér a bárhol a világon HTTP vagy HTTPS PROTOKOLLON keresztül tárolásához. Ez a szakasz feltételezi, hogy Ön már ismeri az Azure Blob Storage szolgáltatással kapcsolatos fogalmak. Részletes információkért lásd: [az Blob storage .NET használatának első lépései](storage-dotnet-how-to-use-blobs.md) és [Blob szolgáltatással kapcsolatos fogalmak](http://msdn.microsoft.com/library/azure/dd179376.aspx).
+## <a name="how-toomanage-azure-blobs"></a>Hogyan toomanage Azure blobok
+Az Azure Blob storage egy olyan szolgáltatás nagy mennyiségű strukturálatlan adatok, például szövegek vagy bináris adatok, hozzáfér a bárhol a HTTP vagy HTTPS PROTOKOLLON keresztül hello world tárolásához. Ez a szakasz feltételezi, hogy Ön már ismeri a hello Azure Blob Storage szolgáltatással kapcsolatos fogalmak. Részletes információkért lásd: [az Blob storage .NET használatának első lépései](storage-dotnet-how-to-use-blobs.md) és [Blob szolgáltatással kapcsolatos fogalmak](http://msdn.microsoft.com/library/azure/dd179376.aspx).
 
-### <a name="how-to-create-a-container"></a>Egy tároló létrehozása
-Az Azure storage összes blobjának egy tárolóban kell lennie. A személyes tárolók a New-AzureStorageContainer parancsmaggal hozhat létre:
+### <a name="how-toocreate-a-container"></a>Hogyan toocreate tárolója
+Az Azure storage összes blobjának egy tárolóban kell lennie. Egy személyes tárolót hello New-AzureStorageContainer parancsmaggal hozhat létre:
 
 ```powershell
 $StorageContainerName = "yourcontainername"
@@ -300,30 +300,30 @@ New-AzureStorageContainer -Name $StorageContainerName -Permission Off
 ```
 
 > [!NOTE]
-> A névtelen olvasási hozzáférés három szintje van: **ki**, **Blob**, és **tároló**. Blobok névtelen hozzáférés érdekében a engedély paraméter értéke **ki**. Alapértelmezés szerint az új tároló privát, és csak a fiók tulajdonosa férhet. A névtelen felhasználók engedélyezése nyilvános olvasási hozzáférés a blob-erőforrásokhoz, de nem csomagtároló metaadatai vagy a tárolóban lévő blobok listájának értékre az engedély paraméter **Blob**. A blob-erőforrások, tároló metaadatait és a tárolóban lévő blobok listájának teljes nyilvános olvasási hozzáférés engedélyezéséhez a engedély paraméter értéke **tároló**. További információkért lásd: [tárolók és blobok névtelen olvasási hozzáférés kezelése](storage-manage-access-to-resources.md).
+> A névtelen olvasási hozzáférés három szintje van: **ki**, **Blob**, és **tároló**. tooprevent névtelen hozzáférés tooblobs, set hello engedély paraméter túl**ki**. Alapértelmezés szerint a hello új tároló privát, és csak a fiók tulajdonosának hello keresztül elérhető legyen. tooallow névtelen nyilvános olvasási hozzáférés tooblob erőforrásokat, de nem toocontainer metaadatok vagy toohello listája hello tárolóban lévő blobok, hello engedély paraméter értéke túl**Blob**. tooallow teljes nyilvános olvasási tooblob erőforrások eléréséhez, a tároló metaadatait, és a hello tárolóban lévő blobok hello listája, hello engedély paraméter értéke túl**tároló**. További információkért lásd: [kezelheti a névtelen olvasási hozzáférés toocontainers és blobok](storage-manage-access-to-resources.md).
 > 
 > 
 
-### <a name="how-to-upload-a-blob-into-a-container"></a>Hogyan tölthetők fel blobok egy tárolóba
+### <a name="how-tooupload-a-blob-into-a-container"></a>Hogyan tooupload blob egy tárolóba
 Az Azure Blob Storage támogatja a blokkblobokat és a lapblobokat. További információkért lásd: [ismertetése Blokkblobokat, hozzáfűző blobokat és Lapblobokat](http://msdn.microsoft.com/library/azure/ee691964.aspx).
 
-A blobok feltöltése tárolót, használhatja a [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) parancsmag. Alapértelmezés szerint ez a parancs a helyi fájlok feltöltése blokkblobba. Adja meg a BLOB, - BlobType paraméterét használhatja.
+tooa tárolóban lévő blobok tooupload, hello használható [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) parancsmag. Alapértelmezés szerint ez a parancs hello helyi fájlok tooa blokkblob feltöltését. toospecify hello típus hello BLOB, hello - BlobType paraméterrel is használhatja.
 
-A következő példában a [Get-ChildItem](http://technet.microsoft.com/library/hh849800.aspx) parancsmagot, hogy megkapja a megadott mappában lévő összes fájlt és majd továbbadja őket a következő parancsmag használatával a csővezeték-kezelőt. A [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) parancsmag feltölti a helyi fájlok a tároló:
+hello alábbi példa fut hello [Get-ChildItem](http://technet.microsoft.com/library/hh849800.aspx) parancsmag tooget összes hello hello megadott mappában található fájlokat, és majd azokat továbbítja toohello a következő parancsmag használatával hello csővezeték-kezelőt. Hello [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) parancsmag feltölt hello helyi fájlok tooyour tároló:
 
 ```powershell
 Get-ChildItem –Path C:\Images\* | Set-AzureStorageBlobContent -Container "yourcontainername"
 ```
 
-### <a name="how-to-download-blobs-from-a-container"></a>Blobok letöltése tárolója
-A következő példa bemutatja, hogyan töltheti le blobok egy tárolóba. A példa első Azure Storage használata a tárfiók környezetét, amely tartalmazza a tárfiók nevét és az elsődleges elérési kulcsát kapcsolatot létesít. Majd, lekéri a példa egy blob hivatkozás segítségével a [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag. Ezután a példában a [Get-AzureStorageBlobContent](/powershell/module/azure.storage/get-azurestorageblobcontent) parancsmag használatával töltheti le a blobok a helyi cél mappába.
+### <a name="how-toodownload-blobs-from-a-container"></a>Hogyan toodownload blobok egy tárolójából.
+hello a következő példa bemutatja, hogyan toodownload blobok a tárolóból. hello példa először hoz létre a kapcsolat tooAzure tárolási hello tárfiók környezetét, ide tartozik az hello tárfiók neve és az elsődleges elérési kulcsot használ. Ezt követően hello példa kéri le egy blobhivatkozást, hello segítségével [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag. Ezután a hello példában hello [Get-AzureStorageBlobContent](/powershell/module/azure.storage/get-azurestorageblobcontent) parancsmag toodownload blobok hello helyi cél mappába.
 
 ```powershell
-#Define the variables.
+#Define hello variables.
 $ContainerName = "yourcontainername"
 $DestinationFolder = "C:\DownloadImages"
 
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = "Storage key for yourstorageaccount ends with =="
 $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
@@ -336,33 +336,33 @@ New-Item -Path $DestinationFolder -ItemType Directory -Force
 $blobs | Get-AzureStorageBlobContent -Destination $DestinationFolder -Context $Ctx
 ```
 
-### <a name="how-to-copy-blobs-from-one-storage-container-to-another"></a>A tároló egy másik BLOB másolása
-Átmásolhatja BLOB storage-fiókok és régiók közötti aszinkron módon. A következő példa bemutatja, hogyan BLOB másolása egy tároló között két különböző tárfiókokban. A példa első beállítja a forrás és cél storage-fiókok változókat, és létrehoz egy adattároló-környezet az egyes fiókok számára. Ezután a példa másolja blobok a forrás-tárolójából. a cél tároló használata a [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) parancsmag. A példa feltételezi, hogy a forrás és cél tárfiók és tároló már létezik.
+### <a name="how-toocopy-blobs-from-one-storage-container-tooanother"></a>Hogyan toocopy egy tárolási tároló tooanother a blobok
+Átmásolhatja BLOB storage-fiókok és régiók közötti aszinkron módon. hello következő példa bemutatja, hogyan toocopy blobok a egy tárolási tároló tooanother két különböző tárfiókokban. hello példa először beállítja a forrás és cél storage-fiókok változókat, és létrehoz egy adattároló-környezet az egyes fiókok számára. A következő hello példa átmásolja blobok hello forrás tároló toohello céltárolója hello segítségével [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) parancsmag. hello példa feltételezi, hogy hello forrás és cél tárfiók és tároló már létezik.
 
 ```powershell
-#Define the source storage account and context.
+#Define hello source storage account and context.
 $SourceStorageAccountName = "yoursourcestorageaccount"
 $SourceStorageAccountKey = "Storage key for yoursourcestorageaccount"
 $SrcContainerName = "yoursrccontainername"
 $SourceContext = New-AzureStorageContext -StorageAccountName $SourceStorageAccountName -StorageAccountKey $SourceStorageAccountKey
 
-#Define the destination storage account and context.
+#Define hello destination storage account and context.
 $DestStorageAccountName = "yourdeststorageaccount"
 $DestStorageAccountKey = "Storage key for yourdeststorageaccount"
 $DestContainerName = "destcontainername"
 $DestContext = New-AzureStorageContext -StorageAccountName $DestStorageAccountName -StorageAccountKey $DestStorageAccountKey
 
-#Get a reference to blobs in the source container.
+#Get a reference tooblobs in hello source container.
 $blobs = Get-AzureStorageBlob -Container $SrcContainerName -Context $SourceContext
 
-#Copy blobs from one container to another.
+#Copy blobs from one container tooanother.
 $blobs| Start-AzureStorageBlobCopy -DestContainer $DestContainerName -DestContext $DestContext
 ```
 
-Vegye figyelembe, hogy az ebben a példában egy aszinkron másolatot végez. Minden egyes példányra állapotának futtassa a figyelheti a [Get-AzureStorageBlobCopyState](/powershell/module/azure.storage/start-azurestorageblobcopystate) parancsmag.
+Vegye figyelembe, hogy az ebben a példában egy aszinkron másolatot végez. Minden egyes példányra hello állapotának figyelheti hello futtatásával [Get-AzureStorageBlobCopyState](/powershell/module/azure.storage/start-azurestorageblobcopystate) parancsmag.
 
-### <a name="how-to-copy-blobs-from-a-secondary-location"></a>Egy másodlagos helyet BLOB másolása
-Blobok RA-GRS-engedélyezett fiók másodlagos helyre másolhatja.
+### <a name="how-toocopy-blobs-from-a-secondary-location"></a>Hogyan toocopy blobok egy másodlagos helyen
+Blobok RA-GRS-engedélyezett fiók hello a másodlagos helyre másolhatja.
 
 ```powershell
 #define secondary storage context using a connection string constructed from secondary endpoints.
@@ -370,92 +370,92 @@ $SrcContext = New-AzureStorageContext -ConnectionString "DefaultEndpointsProtoco
 Start-AzureStorageBlobCopy –Container *** -Blob *** -Context $SrcContext –DestContainer *** -DestBlob *** -DestContext $DestContext
 ```
 
-### <a name="how-to-delete-a-blob"></a>Egy blob törlése
-Blobok törléséhez először kérjen le egy blobhivatkozást, és majd hívja meg a Remove-AzureStorageBlob parancsmagot rajta. A következő példa egy adott tároló összes blobjának törli. A példa első beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő példában kéri le egy blob hivatkozás segítségével a [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag és futtatja a [Remove-AzureStorageBlob](/powershell/module/azure.storage/remove-azurestorageblob) parancsmag segítségével távolítsa el a blobok az Azure storage-tárolójából.
+### <a name="how-toodelete-a-blob"></a>Hogyan toodelete blob
+toodelete blob, először kérjen le egy blobhivatkozást, és hívhatja hello Remove-AzureStorageBlob parancsmag rajta. a következő példa hello egy adott tárolóban lévő összes hello blobok törlése. hello példa először beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő hello példa kéri le egy blobhivatkozást, hello segítségével [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag és futtatása hello [Remove-AzureStorageBlob](/powershell/module/azure.storage/remove-azurestorageblob) parancsmag tooremove BLOB az Azure storage-tárolójából.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = "Storage key for yourstorageaccount ends with =="
 $ContainerName = "containername"
 $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
 
-#Get a reference to all the blobs in the container.
+#Get a reference tooall hello blobs in hello container.
 $blobs = Get-AzureStorageBlob -Container $ContainerName -Context $Ctx
 
 #Delete blobs in a specified container.
 $blobs| Remove-AzureStorageBlob
 ```
 
-## <a name="how-to-manage-azure-blob-snapshots"></a>Az Azure blob pillanatfelvételek kezelése
-Azure lehetővé teszi a pillanatkép létrehozása a blob. Pillanatkép egy blobot, amely egy adott időben csak olvasható verziója telepítve. Pillanatkép létrehozása, azt is kell olvasni, másolja, vagy törölni, de nem módosított. A pillanatképek lehetőséget nyújtanak olyan biztonsági mentése blob, ahogyan megjelenik egy időben el. További információkért lásd: [egy pillanatképet készíteni egy Blob](http://msdn.microsoft.com/library/azure/hh488361.aspx).
+## <a name="how-toomanage-azure-blob-snapshots"></a>Hogyan toomanage Azure blob-pillanatképek
+Azure lehetővé teszi a pillanatkép létrehozása a blob. Pillanatkép egy blobot, amely egy adott időben csak olvasható verziója telepítve. Pillanatkép létrehozása, azt is kell olvasni, másolja, vagy törölni, de nem módosított. Pillanatképek adja meg egy módon tooback blob be időben a jelenleg megjelenített. További információkért lásd: [egy pillanatképet készíteni egy Blob](http://msdn.microsoft.com/library/azure/hh488361.aspx).
 
-### <a name="how-to-create-a-blob-snapshot"></a>Egy blob pillanatkép létrehozása
-Hozzon létre egy BLOB snaphot, először kérjen le egy blobhivatkozást, és majd hívja a `ICloudBlob.CreateSnapshot` metódust. Az alábbi példa először beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő példában kéri le egy blob hivatkozás segítségével a [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmagot, és futtatja a [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) módszer segítségével készít pillanatképet.
+### <a name="how-toocreate-a-blob-snapshot"></a>Hogyan toocreate blob pillanatkép
+egy BLOB, snaphot toocreate először kérjen le egy blobhivatkozást, és majd meghívják a hello `ICloudBlob.CreateSnapshot` metódust. hello alábbi példa először beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő hello példa kéri le egy blobhivatkozást, hello segítségével [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag és futtatása hello [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) metódus toocreate pillanatképet.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = "Storage key for yourstorageaccount ends with =="
 $ContainerName = "yourcontainername"
 $BlobName = "yourblobname"
 $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
 
-#Get a reference to a blob.
+#Get a reference tooa blob.
 $blob = Get-AzureStorageBlob -Context $Ctx -Container $ContainerName -Blob $BlobName
 
-#Create a snapshot of the blob.
+#Create a snapshot of hello blob.
 $snap = $blob.ICloudBlob.CreateSnapshot()
 ```
 
-### <a name="how-to-list-a-blobs-snapshots"></a>Hogyan listázhat egy blob pillanatképek
-Egy BLOB kívánt annyi pillanatképeket hozhat létre. A pillanatképek a blob nyomon követéséhez a jelenlegi pillanatképek társított felsorolása Az alábbi példában egy előre meghatározott blob és a hívások a [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) felsorolása található, hogy a blob-parancsmagot.  
+### <a name="how-toolist-a-blobs-snapshots"></a>Hogyan toolist blob pillanatképek
+Egy BLOB kívánt annyi pillanatképeket hozhat létre. A blob tootrack tartozó hello pillanatképet listázhatja a jelenlegi pillanatképeket. hello alábbi példában egy előre meghatározott blob és hívások hello [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag toolist hello pillanatképek készítése, hogy a blob.  
 
 ```powershell
-#Define the blob name.
+#Define hello blob name.
 $BlobName = "yourblobname"
 
-#List the snapshots of a blob.
+#List hello snapshots of a blob.
 Get-AzureStorageBlob –Context $Ctx -Prefix $BlobName -Container $ContainerName  | Where-Object  { $_.ICloudBlob.IsSnapshot -and $_.Name -eq $BlobName }
 ```
 
-### <a name="how-to-copy-a-snapshot-of-a-blob"></a>Pillanatkép készítése a blob másolása
-Pillanatkép készítése a pillanatkép visszaállítása blob másolhatja. Részletes információk és korlátozások: [egy pillanatképet készíteni egy Blob](http://msdn.microsoft.com/library/azure/hh488361.aspx). Az alábbi példa először beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő példában a tároló és a blob neve változók határozza meg. A példa lekéri a blob hivatkozás segítségével a [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmagot, és futtatja a [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) módszer segítségével készít pillanatképet. A példa fut majd, a [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) parancsmagot, hogy a pillanatkép a ICloudBlob objektum használatával a forrás BLOB BLOB másolása. Ne felejtse el frissíteni a változók a példa futtatása előtt a konfiguráció alapján. Vegye figyelembe, hogy az alábbi példa azt feltételezi, hogy a forrás és cél tárolókat, és a forrás blob már létezik.
+### <a name="how-toocopy-a-snapshot-of-a-blob"></a>Hogyan toocopy blob pillanatképe
+A blob toorestore hello pillanatfelvétel pillanatkép másolhatja. Részletes információk és korlátozások: [egy pillanatképet készíteni egy Blob](http://msdn.microsoft.com/library/azure/hh488361.aspx). hello alábbi példa először beállítja a változókat a tárfiók, és létrehoz egy adattároló-környezet. A következő hello példa hello tároló és a blob változók határozza meg. hello példa kéri le egy blobhivatkozást, hello segítségével [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) parancsmag és futtatása hello [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) metódus toocreate pillanatképet. Ezt követően hello példa fut hello [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) parancsmag toocopy hello pillanatképe a hello ICloudBlob objektummal hello forrás BLOB blob. Lehet, hogy tooupdate hello változók a konfiguráció alapján futó hello példa előtt. Vegye figyelembe, hogy a következő példa hello feltételezi, hogy hello forrás és cél tárolók, és hello forrás blob már létezik.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = "Storage key for yourstorageaccount ends with =="
 $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
 
-#Define the variables.
+#Define hello variables.
 $SrcContainerName = "yoursourcecontainername"
 $DestContainerName = "yourdestcontainername"
 $SrcBlobName = "yourblobname"
 $DestBlobName = "CopyBlobName"
 
-#Get a reference to a blob.
+#Get a reference tooa blob.
 $blob = Get-AzureStorageBlob -Context $Ctx -Container $SrcContainerName -Blob $SrcBlobName
 
 #Create a snapshot of a blob.
 $snap = $blob.ICloudBlob.CreateSnapshot()
 
-#Copy the snapshot to another container.
+#Copy hello snapshot tooanother container.
 Start-AzureStorageBlobCopy –Context $Ctx -ICloudBlob $snap -DestBlob $DestBlobName -DestContainer $DestContainerName
 ```
 
-Most, hogy rendelkezik megtudta, hogyan kezelheti az Azure BLOB, és a blob-pillanatképeket az Azure PowerShell, ugorjon a következő szakaszban megtudhatja, hogyan kezelheti a táblák, üzenetsorok és fájlokat.
+Most, hogy megtanulhatta, hogyan toomanage Azure-blobok és az Azure PowerShell pillanatképek blob, nyissa meg toohello következő szakasz toolearn hogyan toomanage táblák, várólisták és fájlokat.
 
-## <a name="how-to-manage-azure-tables-and-table-entities"></a>Azure-táblákban és táblaentitásokat kezelése
-Az Azure Table storage szolgáltatás egy NoSQL-adattár, amely segítségével tárolja, és hatalmas strukturált, nem relációs adatok lekérdezése. A szolgáltatás fő összetevőit táblák, entitásokat és tulajdonságok. A tábla az entitások gyűjteményét. Egy entitás tulajdonságait. Minden entitás legfeljebb 252 tulajdonságot, amely minden név-érték pár is rendelkezik. Ez a szakasz feltételezi, hogy Ön már ismeri az Azure Table Storage szolgáltatással kapcsolatos fogalmak. Részletes információkért lásd: [ismertetése a Table szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx) és [Ismerkedés az Azure Table storage használatának .NET](storage-dotnet-how-to-use-tables.md).
+## <a name="how-toomanage-azure-tables-and-table-entities"></a>Hogyan toomanage Azure táblázatok és a tábla az entitások
+Az Azure Table storage szolgáltatás egy NoSQL-adattár, amelynek segítségével toostore és lekérdezés hatalmas strukturált, nem relációs adatokat. hello hello szolgáltatás fő összetevőit táblák, entitásokat és tulajdonságok. A tábla az entitások gyűjteményét. Egy entitás tulajdonságait. Minden entitás legfeljebb too252 tulajdonságait, amelyek minden név-érték párok tartalmazhat. Ez a szakasz feltételezi, hogy Ön már ismeri a hello Azure Table Storage szolgáltatással kapcsolatos fogalmak. Részletes információkért lásd: [ismertetése hello tábla szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx) és [Ismerkedés az Azure Table storage használatának .NET](storage-dotnet-how-to-use-tables.md).
 
-A következő szakaszban akkor megtudhatja, hogyan kezelheti az Azure Table storage szolgáltatást Azure PowerShell használatával. Az ismertetett forgatókönyvek **létrehozása**, **törlése**, és **beolvasása** **táblák**, valamint **hozzáadása**, **lekérdezése**, és **tábla entitások törlése**.
+A következő alszakaszokat hello megtudhatja, hogyan toomanage Azure Table storage szolgáltatást Azure PowerShell használatával. hello tárgyalt forgatókönyvekben szerepel a **létrehozása**, **törlése**, és **beolvasása** **táblák**, valamint **hozzáadása**, **lekérdezése**, és **tábla entitások törlése**.
 
-### <a name="how-to-create-a-table"></a>Táblázat létrehozása
-Minden táblának kell lennie az Azure storage-fiók. A következő példa bemutatja, hogyan hozzon létre egy táblát az Azure Storage. A példa első Azure Storage használata a tárfiók környezetét, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. Ezután használja a [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) parancsmaggal hozzon létre egy táblát az Azure Storage.
+### <a name="how-toocreate-a-table"></a>Hogyan toocreate tábla
+Minden táblának kell lennie az Azure storage-fiók. hello következő példa bemutatja, hogyan toocreate Azure Storage-táblázathoz. hello példa először hoz létre a kapcsolat tooAzure tárolási hello tárfiók környezetét, beleértve hello a tárfiók neve vagy a hozzáférési kulcs használatával. Hello használja a következő [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) parancsmag toocreate Azure Storage-táblázathoz.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = "Storage key for yourstorageaccount ends with =="
 $Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey
@@ -465,8 +465,8 @@ $tabName = "yourtablename"
 New-AzureStorageTable –Name $tabName –Context $Ctx
 ```
 
-### <a name="how-to-retrieve-a-table"></a>Hogyan lehet lekérni egy tábla
-Lekérdezi, és egy vagy az összes tábla tárfiókokban beolvasása. A következő példa bemutatja, hogyan lehet lekérni a megadott tábla használatával a [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag.
+### <a name="how-tooretrieve-a-table"></a>Hogyan tooretrieve tábla
+Lekérdezi, és egy vagy az összes tábla tárfiókokban beolvasása. hello következő példa bemutatja, hogyan egy adott táblához használatával tooretrieve hello [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag.
 
 ```powershell
 #Retrieve a table.
@@ -474,10 +474,10 @@ $tabName = "yourtablename"
 Get-AzureStorageTable –Name $tabName –Context $Ctx
 ```
 
-Ha felhívja a Get-AzureStorageTable parancsmag paraméterek nélkül, egy tárfiók lekérdezi összes storage-táblákat.
+Meghívja a hello Get-AzureStorageTable parancsmag paraméterek nélkül, ha a tárfiók lekérdezi összes storage-táblákat.
 
-### <a name="how-to-delete-a-table"></a>Tábla törlése
-Törölheti a tábla a tárfiókból használatával a [Remove-AzureStorageTable](/powershell/module/azure.storage/remove-azurestoragetable) parancsmag.  
+### <a name="how-toodelete-a-table"></a>Hogyan toodelete tábla
+Törölheti a tábla a tárfiókból hello segítségével [Remove-AzureStorageTable](/powershell/module/azure.storage/remove-azurestoragetable) parancsmag.  
 
 ```powershell
 #Delete a table.
@@ -485,21 +485,21 @@ $tabName = "yourtablename"
 Remove-AzureStorageTable –Name $tabName –Context $Ctx
 ```
 
-### <a name="how-to-manage-table-entities"></a>Táblaentitásokat kezelése
-Azure PowerShell jelenleg nem biztosít parancsmaggal táblaentitásokat közvetlenül. A táblaentitásokat műveletek végrehajtásához használhatja a megadott osztályok a [Azure Storage ügyféloldali kódtára a .NET](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx).
+### <a name="how-toomanage-table-entities"></a>Hogyan toomanage tábla entitások
+Jelenleg az Azure PowerShell nem biztosít parancsmagok toomanage táblaentitásokat közvetlenül. táblaentitásokat tooperform műveleteket, használhatja hello megadott hello osztályok [Azure Storage ügyféloldali kódtára a .NET](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx).
 
-#### <a name="how-to-add-table-entities"></a>Táblaentitásokat hozzáadása
-Entitás hozzáadása egy táblát, először létre kell hoznia egy objektum, amely meghatározza az entitás tulajdonságait. Egy entitás legfeljebb 255 tulajdonságokat, beleértve a 3 rendszertulajdonsággal állhat: **PartitionKey**, **RowKey**, és **időbélyeg**. Ön felelőssége lesz beszúrva, és az értékek frissítése **PartitionKey** és **RowKey**. A kiszolgáló kezeli értékének **időbélyeg**, amely nem módosítható. Együtt a **PartitionKey** és **RowKey** egyedi módon azonosítja az egy táblázaton belüli összes entitás.
+#### <a name="how-tooadd-table-entities"></a>Hogyan tooadd tábla entitások
+egy entitás tooa tábla tooadd először létre kell hoznia egy objektum, amely meghatározza az entitás tulajdonságait. Egy entitás legfeljebb too255 tulajdonságokat, beleértve a 3 rendszertulajdonsággal tartalmazhat: **PartitionKey**, **RowKey**, és **időbélyeg**. Ön felelőssége lesz beszúrva, és hello értékek frissítése **PartitionKey** és **RowKey**. hello kiszolgáló kezeli hello értékének **időbélyeg**, amely nem módosítható. Együtt hello **PartitionKey** és **RowKey** egyedi módon azonosítja az egy táblázaton belüli összes entitás.
 
-* **PartitionKey**: meghatározza a partíció az entitás tárolt.
-* **RowKey**: egyedileg azonosítja az entitást a partíción belül.
+* **PartitionKey**: hello partíció hello entitás tárolt határozza meg.
+* **RowKey**: hello entitás hello partíción belül egyedi azonosítására szolgál.
 
-Egy entitás legfeljebb 252 egyéni tulajdonságok adhatók meg. További információkért lásd: [ismertetése a Table szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).
+Be too252 egyéni tulajdonságait, hogy egy entitás adhatók meg. További információkért lásd: [ismertetése hello tábla szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).
 
-A következő példa bemutatja, hogyan entitások hozzáadása a táblához. A példa bemutatja, hogyan kérhető le az alkalmazott tábla, és vegyen fel több entitás. Először az Azure Storage használata a tárfiók környezetét, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. Ezt követően lekérdezi a megadott tábla használatával a [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Ha a tábla nem létezik, a [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) parancsmag létrehoz egy táblát az Azure Storage szolgál. A példában a következő egyéni függvény Add-entitás entitások hozzáadása a tábla minden egyes entitás partíció- és sorkulcsa megadásával határozza meg. Az Add-entitás függvényhívásokat a [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmagot a [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) osztály entitásobjektumra létrehozásához. Később, a példában meghívja a [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) metódust a forrásentitás-objektum hozzáadása a táblához.
+hello következő példa bemutatja, hogyan tooadd entitások tooa tábla. hello példa bemutatja, hogyan tooretrieve hello alkalmazott tábla, és vegyen fel több entitás. Először hoz létre a kapcsolat tooAzure tárolási hello tárfiók környezetét, beleértve hello a tárfiók neve vagy a hozzáférési kulcs használatával. Ezt követően lekérdezi a megadott tábla hello hello [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Ha hello tábla nem létezik, hello [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) parancsmag használt toocreate Azure Storage-táblázathoz. A következő hello példa minden entitás partíció- és sorkulcsa megadásával határozza meg Add-entitás tooadd entitások toohello tábla egyéni függvény. Add-entitás hello függvény hívások hello [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmagot a hello [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) osztály toocreate entitásobjektumra. Később, a hello példa meghívja a hello [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) ez entity objektum tooadd metódust azt tooa tábla.
 
 ```powershell
-#Function Add-Entity: Adds an employee entity to a table.
+#Function Add-Entity: Adds an employee entity tooa table.
 function Add-Entity() {
     [CmdletBinding()]
     param(
@@ -517,13 +517,13 @@ function Add-Entity() {
   $result = $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Insert($entity))
 }
 
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
 $TableName = "Employees"
 
-#Retrieve the table if it already exists.
+#Retrieve hello table if it already exists.
 $table = Get-AzureStorageTable –Name $TableName -Context $Ctx -ErrorAction Ignore
 
 #Create a new table if it does not exist.
@@ -532,30 +532,30 @@ if ($table -eq $null)
    $table = New-AzureStorageTable –Name $TableName -Context $Ctx
 }
 
-#Add multiple entities to a table.
+#Add multiple entities tooa table.
 Add-Entity -Table $table -PartitionKey Partition1 -RowKey Row1 -Name Chris -Id 1
 Add-Entity -Table $table -PartitionKey Partition1 -RowKey Row2 -Name Jessie -Id 2
 Add-Entity -Table $table -PartitionKey Partition2 -RowKey Row1 -Name Christine -Id 3
 Add-Entity -Table $table -PartitionKey Partition2 -RowKey Row2 -Name Steven -Id 4
 ```
 
-#### <a name="how-to-query-table-entities"></a>Táblaentitásokat lekérdezése
-Ha egy táblából, használja a [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) osztály. Az alábbi példa azt feltételezi, hogy már futtatását a parancsfájl a megadott hozzáadása entitások című szakaszában talál. A példa első Azure Storage a tárolási adataival, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. A következő megpróbálja beolvasni a korábban létrehozott "alkalmazottak" tábla használatával a [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Hívja a [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmagot a Microsoft.WindowsAzure.Storage.Table.TableQuery osztály az új objektumot hoz létre lekérdezést. A példa egy "ID" oszlop, amelynek értéke 1 megadott egy karakterlánc-szűrővel rendelkező entitások keresi. Részletes információkért lásd: [lekérdezése táblákat és entitásokat](http://msdn.microsoft.com/library/azure/dd894031.aspx). Ez a lekérdezés futtatásakor a szűrési feltételeknek megfelelő összes entitásokat ad vissza.
+#### <a name="how-tooquery-table-entities"></a>Hogyan tooquery tábla entitások
+egy tábla tooquery hello használata [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) osztály. hello alábbi példa feltételezi, hogy már futtatását hello hogyan megadott hello parancsfájl tooadd entitások című szakaszában talál. hello példa először hoz létre a kapcsolat tooAzure tárolási hello tárolási adataival, ide tartozik az hello tárfiók neve és a hozzáférési kulcsot. Ezt követően próbálja meg tooretrieve korábban létrehozott hello "alkalmazottak" tábla hello [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Hívása hello [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmagot a hello Microsoft.WindowsAzure.Storage.Table.TableQuery osztály új objektumot hoz létre lekérdezést. hello például egy "ID" oszlop, amelynek értéke 1 megadott egy karakterlánc-szűrővel rendelkező hello entitásokat keresi. Részletes információkért lásd: [lekérdezése táblákat és entitásokat](http://msdn.microsoft.com/library/azure/dd894031.aspx). Ez a lekérdezés futtatásakor hello szűrési feltételeknek megfelelő összes entitásokat ad vissza.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
 $TableName = "Employees"
 
-#Get a reference to a table.
+#Get a reference tooa table.
 $table = Get-AzureStorageTable –Name $TableName -Context $Ctx
 
 #Create a table query.
 $query = New-Object Microsoft.WindowsAzure.Storage.Table.TableQuery
 
-#Define columns to select.
+#Define columns tooselect.
 $list = New-Object System.Collections.Generic.List[string]
 $list.Add("RowKey")
 $list.Add("ID")
@@ -566,51 +566,51 @@ $query.FilterString = "ID gt 0"
 $query.SelectColumns = $list
 $query.TakeCount = 20
 
-#Execute the query.
+#Execute hello query.
 $entities = $table.CloudTable.ExecuteQuery($query)
 
-#Display entity properties with the table format.
+#Display entity properties with hello table format.
 $entities  | Format-Table PartitionKey, RowKey, @{ Label = "Name"; Expression={$_.Properties["Name"].StringValue}}, @{ Label = "ID"; Expression={$_.Properties["ID"].Int32Value}} -AutoSize
 ```
 
-#### <a name="how-to-delete-table-entities"></a>Tábla entitás törlése
-A partíció- és sorfejlécek kulcsokkal entitás törölheti. Az alábbi példa azt feltételezi, hogy már futtatását a parancsfájl a megadott hozzáadása entitások című szakaszában talál. A példa első Azure Storage a tárolási adataival, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. A következő megpróbálja beolvasni a korábban létrehozott "alkalmazottak" tábla használatával a [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Ha a tábla létezik, a példában meghívja a [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) metódusának segítéségével lekérheti az entitást a partíció- és sorfejlécek értékek alapján. Így az az entitás továbbítsa a [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) metódus törlése.
+#### <a name="how-toodelete-table-entities"></a>Hogyan toodelete tábla entitások
+A partíció- és sorfejlécek kulcsokkal entitás törölheti. hello alábbi példa feltételezi, hogy már futtatását hello hogyan megadott hello parancsfájl tooadd entitások című szakaszában talál. hello példa először hoz létre a kapcsolat tooAzure tárolási hello tárolási adataival, ide tartozik az hello tárfiók neve és a hozzáférési kulcsot. Ezt követően próbálja meg tooretrieve korábban létrehozott hello "alkalmazottak" tábla hello [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) parancsmag. Ha hello tábla létezik, hello példa meghívja a hello [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) metódus tooretrieve entitás a partíció- és sorfejlécek értékek alapján. Így továbbítsa hello entitás toohello [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) metódus toodelete.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
 
-#Retrieve the table.
+#Retrieve hello table.
 $TableName = "Employees"
 $table = Get-AzureStorageTable -Name $TableName -Context $Ctx -ErrorAction Ignore
 
-#If the table exists, start deleting its entities.
+#If hello table exists, start deleting its entities.
 if ($table -ne $null) 
 {
-    #Together the PartitionKey and RowKey uniquely identify every  
+    #Together hello PartitionKey and RowKey uniquely identify every  
     #entity within a table.
     $tableResult = $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Retrieve("Partition2", "Row1"))
     $entity = $tableResult.Result
     if ($entity -ne $null)
     {
-        #Delete the entity.
+        #Delete hello entity.
         $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Delete($entity))
     }
 }
 ```
 
-## <a name="how-to-manage-azure-queues-and-queue-messages"></a>Az Azure várólisták és üzenetek kezelése
-Az Azure Queue Storage szolgáltatás üzenetek nagy számban történő tárolására szolgál, amelyek HTTP- vagy HTTPS-kapcsolattal, hitelesített hívásokon keresztül a világon bárhonnan elérhetők. Ez a szakasz feltételezi, hogy Ön már ismeri az Azure Queue Storage szolgáltatás fogalmakat. Részletes információkért lásd: [Ismerkedés az Azure Queue storage használatának .NET](storage-dotnet-how-to-use-queues.md).
+## <a name="how-toomanage-azure-queues-and-queue-messages"></a>Hogyan toomanage Azure várólisták és üzenetek várólistára
+Az Azure Queue storage egy olyan szolgáltatás, amely képes bárhonnan elérhetők a HTTP vagy HTTPS PROTOKOLLT használ, hitelesített hívásokon keresztül hello world üzenetek nagy számban tárolásához. Ez a szakasz feltételezi, hogy Ön már ismeri a hello Azure Queue Storage szolgáltatás fogalmakat. Részletes információkért lásd: [Ismerkedés az Azure Queue storage használatának .NET](storage-dotnet-how-to-use-queues.md).
 
-Ez a szakasz bemutatja, hogyan kezelheti az Azure Queue storage szolgáltatás Azure PowerShell használatával. Az ismertetett forgatókönyvek **beszúrása** és **törlése** üzenetek várólistára, valamint **létrehozása**, **törlése**, és **sorok beolvasása**.
+Ez a szakasz bemutatja, hogyan toomanage Azure Queue storage szolgáltatás Azure PowerShell használatával. hello tárgyalt forgatókönyvekben szerepel a **beszúrása** és **törlése** üzenetek, várólista, valamint **létrehozása**, **törlése**, és **sorok beolvasása**.
 
-### <a name="how-to-create-a-queue"></a>A várólista létrehozása
-Az alábbi példa első Azure Storage használata a tárfiók környezetét, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. Ezután meghívja [New-AzureStorageQueue](/powershell/module/azure.storage/new-azurestoragequeue) parancsmag segítségével hozzon létre egy "queuename" nevű várólistát.
+### <a name="how-toocreate-a-queue"></a>Hogyan toocreate várólista
+hello alábbi példa először hoz létre a kapcsolat tooAzure tárolási hello tárfiók környezetét, beleértve hello a tárfiók neve vagy a hozzáférési kulcs használatával. Ezután meghívja [New-AzureStorageQueue](/powershell/module/azure.storage/new-azurestoragequeue) parancsmag toocreate "queuename" nevű várólista.
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
@@ -620,8 +620,8 @@ $Queue = New-AzureStorageQueue –Name $QueueName -Context $Ctx
 
 Azure Queue szolgáltatás elnevezési konvencióira vonatkozó információkért lásd: [elnevezési üzenetsorok és metaadatok](http://msdn.microsoft.com/library/azure/dd179349.aspx).
 
-### <a name="how-to-retrieve-a-queue"></a>Hogyan lehet lekérni egy várólistát
-Lekérdezi, és egy konkrét várólistába helyezi vagy a tárfiókban lévő összes várólistán listájának beolvasása. A következő példa bemutatja, hogyan lehet lekérni a megadott várólista használatával a [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) parancsmag.
+### <a name="how-tooretrieve-a-queue"></a>Hogyan tooretrieve várólista
+Lekérdezi, és egy konkrét várólistába helyezi vagy a tárfiókban lévő összes hello várólisták listájának beolvasása. hello következő példa bemutatja, hogy a megadott várólista használatával tooretrieve hello [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) parancsmag.
 
 ```powershell
 #Retrieve a queue.
@@ -629,10 +629,10 @@ $QueueName = "queuename"
 $Queue = Get-AzureStorageQueue –Name $QueueName –Context $Ctx
 ```
 
-Ha meghívja a [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) parancsmag-paraméterek nélkül, akkor a várólisták listájának lekérése.
+Ha meghívja a hello [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) parancsmag-paraméterek nélkül, akkor minden hello várólista listájának lekérése.
 
-### <a name="how-to-delete-a-queue"></a>A várólista törlése
-Egy üzenetsor és a benne tárolt összes üzenet törléséhez hívja meg a Remove-AzureStorageQueue parancsmagot. A következő példa bemutatja, hogyan használja a Remove-AzureStorageQueue parancsmag egy megadott várólista törlése.
+### <a name="how-toodelete-a-queue"></a>Hogyan toodelete várólista
+toodelete várólista és köszönőüzenetei minden benne tárolt, hívás hello Remove-AzureStorageQueue parancsmag. hello a következő példa bemutatja, hogyan a megadott várólista használatával toodelete hello Remove-AzureStorageQueue parancsmag.
 
 ```powershell
 #Delete a queue.
@@ -640,83 +640,83 @@ $QueueName = "yourqueuename"
 Remove-AzureStorageQueue –Name $QueueName –Context $Ctx
 ```
 
-#### <a name="how-to-insert-a-message-into-a-queue"></a>Üzenet beszúrása egy várólistára
-Üzenet beszúrása egy létező üzenetsorba, először létre kell hoznia egy új példányt a [Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage](http://msdn.microsoft.com/library/azure/jj732474.aspx) osztály. Ezután hívja meg az [AddMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.addmessage.aspx) módszert. Egy CloudQueueMessage egy karakterláncból (UTF-8 formátumban), illetve egy bájttömböt hozhatók létre.
+#### <a name="how-tooinsert-a-message-into-a-queue"></a>Hogyan tooinsert egy várólistára üzenet
+tooinsert egy létező üzenetsorba, az üzenet először létre kell hoznia egy új példányát hello [Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage](http://msdn.microsoft.com/library/azure/jj732474.aspx) osztály. Ezután hívja hello [AddMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.addmessage.aspx) metódust. Egy CloudQueueMessage egy karakterláncból (UTF-8 formátumban), illetve egy bájttömböt hozhatók létre.
 
-A következő példa bemutatja, hogyan üzenet hozzáadása egy üzenetsort. A példa első Azure Storage használata a tárfiók környezetét, amely tartalmazza a tárfiók nevét és a hozzáférési kulcsot kapcsolatot létesít. Ezt követően lekérdezi a megadott várólista használatával a [Get-AzureStorageQueue](https://msdn.microsoft.com/library/azure/dn806377.aspx) parancsmag. Ha a várólista létezik, a [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmag segítségével hozzon létre egy példányát a [Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage](http://msdn.microsoft.com/library/azure/jj732474.aspx) osztály. Később, a példában meghívja a [AddMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.addmessage.aspx) az üzenet objektum egy várólista veheti fel a metódust. Itt található kód, amely lekérdezi a várólistát, és szúrja be a "MessageInfo" üzenet:
+hello a következő példa bemutatja, hogyan tooadd üzenet-várólista tooa. hello példa először hoz létre a kapcsolat tooAzure tárolási hello tárfiók környezetét, beleértve hello a tárfiók neve vagy a hozzáférési kulcs használatával. Ezt követően lekérdezi a megadott várólista hello hello segítségével [Get-AzureStorageQueue](https://msdn.microsoft.com/library/azure/dn806377.aspx) parancsmag. Ha hello várólista létezik, hello [New-Object](http://technet.microsoft.com/library/hh849885.aspx) parancsmag használt toocreate hello példányának [Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage](http://msdn.microsoft.com/library/azure/jj732474.aspx) osztály. Később, a hello példa meghívja a hello [AddMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.addmessage.aspx) ezen üzenet objektum tooadd metódust azt tooa várólista. Itt található kód, amely lekérdezi a várólista, és szúrja be a "MessageInfo" üdvözlőüzenetére:
 
 ```powershell
-#Define the storage account and context.
+#Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
 
-#Retrieve the queue.
+#Retrieve hello queue.
 $QueueName = "queuename"
 $Queue = Get-AzureStorageQueue -Name $QueueName -Context $ctx
 
-#If the queue exists, add a new message.
+#If hello queue exists, add a new message.
 if ($Queue -ne $null) {
-   # Create a new message using a constructor of the CloudQueueMessage class.
+   # Create a new message using a constructor of hello CloudQueueMessage class.
    $QueueMessage = New-Object -TypeName Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage -ArgumentList MessageInfo
 
-   # Add a new message to the queue.
+   # Add a new message toohello queue.
    $Queue.CloudQueue.AddMessage($QueueMessage)
 }
 ```
 
-#### <a name="how-to-de-queue-at-the-next-message"></a>Útmutató a következő üzenet kivétele az üzenetsorból
-A kód két lépésben távolít el egy üzenetet az üzenetsorból. A hívás esetén a [Microsoft.WindowsAzure.Storage.Queue.CloudQueue.GetMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.getmessage.aspx) metódus, a következő üzenetet kap a sorhoz. A **GetMessage** módszerrel lekért üzenet láthatatlanná válik az adott üzenetsorban található üzeneteket olvasó többi kód számára. Szeretné távolítani az üzenetet az üzenetsorból, is hívja meg a [Microsoft.WindowsAzure.Storage.Queue.CloudQueue.DeleteMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.deletemessage.aspx) metódust. Az üzenetek kétlépéses eltávolítása lehetővé teszi, hogy ha a kód hardver- vagy szoftverhiba miatt nem tud feldolgozni egy üzenetet, a kód egy másik példánya megkaphassa ugyanazt az üzenetet, és újra megpróbálkozhasson a feldolgozásával. A kód a **DeleteMessage** módszert rögtön az üzenet feldolgozása után hívja meg.
+#### <a name="how-toode-queue-at-hello-next-message"></a>Hogyan toode-várólista hello a következő üzenet
+A kód két lépésben távolít el egy üzenetet az üzenetsorból. Hello hívás esetén [Microsoft.WindowsAzure.Storage.Queue.CloudQueue.GetMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.getmessage.aspx) metódus, a hibaüzenet hello tovább a sorhoz. Az üzenet **GetMessage** láthatatlan tooany ebből a várólistából üzeneteket olvasó többi kód válik. toofinish eltávolításakor üdvözlőüzenetére hello üzenetsorból, meg kell is hívni hello [Microsoft.WindowsAzure.Storage.Queue.CloudQueue.DeleteMessage](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.deletemessage.aspx) metódust. A kétlépéses folyamat eltávolításával előállított üzenet biztosítja, hogy a kód meghibásodásakor tooprocess miatt toohardware vagy szoftver-hiba, a kód egy másik példánya üzenet kérheti le hello ugyanazt az üzenetet, és próbálkozzon újra. A kód hívások **DeleteMessage** jobb gombbal az üdvözlő üzenet feldolgozása után.
 
 ```powershell
-# Define the storage account and context.
+# Define hello storage account and context.
 $StorageAccountName = "yourstorageaccount"
 $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
 $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
 
-# Retrieve the queue.
+# Retrieve hello queue.
 $QueueName = "queuename"
 $Queue = Get-AzureStorageQueue -Name $QueueName -Context $ctx
 
 $InvisibleTimeout = [System.TimeSpan]::FromSeconds(10)
 
-# Get the message object from the queue.
+# Get hello message object from hello queue.
 $QueueMessage = $Queue.CloudQueue.GetMessage($InvisibleTimeout)
-# Delete the message.
+# Delete hello message.
 $Queue.CloudQueue.DeleteMessage($QueueMessage)
 ```
 
-## <a name="how-to-manage-azure-file-shares-and-files"></a>Az Azure fájlmegosztások és fájlok kezelése
-Az Azure File storage közös tárterületet biztosít számára a szabványos SMB protokollt használó alkalmazások. Microsoft Azure virtuális gépek és felhőszolgáltatások megosztott csatlakoztatott megosztásokon keresztül alkalmazások összetevői között, és a helyszíni alkalmazások hozzáférhetnek a fájladatok egy megosztáson található, a File storage API vagy az Azure PowerShell használatával.
+## <a name="how-toomanage-azure-file-shares-and-files"></a>Hogyan toomanage az Azure file közösen használja, és a fájlok
+Az Azure File storage közös tárterületet hello szabványos SMB protokollt használó alkalmazások számára biztosít. Microsoft Azure virtuális gépek és felhőszolgáltatások megosztott csatlakoztatott megosztásokon keresztül alkalmazások összetevői között, és a helyszíni alkalmazások hozzáférhetnek a fájladatok olyan megosztáson található hello File storage API- vagy Azure PowerShell használatával.
 
 További információ az Azure File storage: [Ismerkedés az Azure File storage on Windows](storage-dotnet-how-to-use-files.md) és [File szolgáltatás REST API](http://msdn.microsoft.com/library/azure/dn167006.aspx).
 
-## <a name="how-to-set-and-query-storage-analytics"></a>Beállítása és a lekérdezés tárolási analitika
-Használhat [Azure Storage Analytics](storage-analytics.md) gyűjtéséhez az Azure storage-fiókok és a tárfiók küldött kérelmek naplózni. Storage mérőszámainak segítségével egy tárfiókot, és a tárolási naplózási diagnosztizálása és elhárítása a tárfiók állapotának figyelésére. Az Azure portálon vagy a Windows PowerShell használatával, vagy programozott módon, a storage ügyféloldali kódtár figyelését be tudja állítani. Tárolási naplózási kiszolgálóoldali történik, és lehetővé teszi a tárfiókban lévő sikeres és a sikertelen kérelmek adatainak rögzítését. Ezek a naplók lehetővé teszik a Részletek területen az olvasási, írási és törlési műveleteket a táblák, üzenetsorok, blobok, valamint a sikertelen kérelmek okait.
+## <a name="how-tooset-and-query-storage-analytics"></a>Hogyan tooset és lekérdezés tárolási analitika
+Használhat [Azure Storage Analytics](storage-analytics.md) toocollect metrikák az Azure storage-fiókok és a naplóadatok kérelmekkel kapcsolatos küldött tooyour tárfiók. Tárolási metrikák toomonitor hello állapotát egy tárfiók és tároló naplózási toodiagnose használja, és a problémák elhárítása a tárfiók. Használatával figyelését be tudja állítani az Azure portál vagy a Windows PowerShell hello, vagy programozott módon hello a storage ügyféloldali kódtára. Tárolási naplózási kiszolgálóoldali történik, és lehetővé teszi a sikeres és a sikertelen kérelmek a tárfiókban lévő toorecord részleteit. Ezek a naplók engedélyezése olvasási, írási és törlési műveleteket a táblák, üzenetsorok, blobok, valamint hello okok miatt a sikertelen kérelmek toosee részleteit.
 
-Engedélyezése és megtekintése a PowerShell használatával Storage Metrics data kapcsolatban [PowerShell-lel Storage mérőszámainak engedélyezése](http://msdn.microsoft.com/library/azure/dn782843.aspx#HowtoenableStorageMetricsusingPowerShell).
+Hogyan powershellel, tooenable és nézet Storage Metrics data: toolearn [hogyan tooenable Storage Metrics PowerShell-lel](http://msdn.microsoft.com/library/azure/dn782843.aspx#HowtoenableStorageMetricsusingPowerShell).
 
-Engedélyezése és a PowerShell használatával tároló-naplózás adatainak beolvasása további tudnivalókért lásd: [engedélyezése a tárolási-naplózás PowerShell-lel](http://msdn.microsoft.com/library/azure/dn782840.aspx#HowtoenableStorageLoggingusingPowerShell) és [keresése a naplózás tárolási naplóadatok](http://msdn.microsoft.com/library/azure/dn782840.aspx#FindingyourStorageLogginglogdata).
-A Storage Metrics és a naplózás tárolási tárolási problémák elhárítása részletes információkért lásd: [figyelés felismerése és hibaelhárítása a Microsoft Azure Storage](storage-monitoring-diagnosing-troubleshooting.md).
+Hogyan powershellel, tooenable és lekérése tárolási naplózási adatait: toolearn [hogyan tooenable tároló-naplózás PowerShell-lel](http://msdn.microsoft.com/library/azure/dn782840.aspx#HowtoenableStorageLoggingusingPowerShell) és [keresése a naplózás tárolási naplóadatok](http://msdn.microsoft.com/library/azure/dn782840.aspx#FindingyourStorageLogginglogdata).
+A Storage Metrics és tootroubleshoot tárolási problémák naplózási tároló részletes információkért lásd: [figyelés felismerése és hibaelhárítása a Microsoft Azure Storage](storage-monitoring-diagnosing-troubleshooting.md).
 
-## <a name="how-to-manage-shared-access-signature-sas-and-stored-access-policy"></a>Közös hozzáférésű Jogosultságkód (SAS) és a tárolt házirend kezelése
-Közös hozzáférésű jogosultságkód bármely alkalmazás Azure-tárolót a biztonsági modell fontos részét képezik. A tárfiókhoz korlátozott engedélyekkel biztosítani az ügyfelek nem rendelkezhet a fiókkulcs hasznosak. Alapértelmezés szerint csak a tárfiók tulajdonosa elérhessék blobot, táblát és üzenetsort, hogy a fiókon belül. Ha a szolgáltatás vagy alkalmazás ezek erőforrásai elérhetővé más ügyfelek számára a hozzáférési kulcs megosztása nélkül, három lehetőség közül választhat:
+## <a name="how-toomanage-shared-access-signature-sas-and-stored-access-policy"></a>Hogyan toomanage közös hozzáférésű Jogosultságkód (SAS) és a hozzáférési házirendben tárolt
+Közös hozzáférésű jogosultságkód hello biztonsági modellt az Azure Storage használó alkalmazások fontos részét képezik. Azok a megtekinthetik a korlátozott engedélyekkel tooyour tárolási fiók tooclients, amely nem rendelkezhet hello kulcsára. Alapértelmezés szerint csak hello tulajdonosa hello tárfiók elérhessék blobot, táblát és üzenetsort, hogy a fiókon belül. Ha a szolgáltatás vagy alkalmazás toomake ezen erőforrások elérhető tooother ügyfelek a hozzáférési kulcs megosztása nélkül, három lehetőség közül választhat:
 
-* Egy tároló engedélyeket a tároló és a blobok névtelen olvasási hozzáférés engedélyezéséhez. Ez nem engedélyezett táblák vagy olyan várólisták esetében.
-* Használjon egy közös hozzáférésű jogosultságkódot, hogy korlátozott hozzáférési jogosultsága ahhoz, tárolók, blobok, üzenetsorok és táblák biztosít egy adott időintervallumban.
-* A tárolt házirend segítségével szerezzen be egy közös hozzáférésű jogosultságkód egy tárolót vagy a benne található blobokat, egy sor vagy tábla szabályozhatják további szintet. A tárolt házirend lehetővé teszi a kezdő időpont, a lejárat időpontjának és az aláírás engedélyeinek módosítása, vagy visszavonni az azt követő ki van állítva.
+* Állítsa be a tároló engedélyeit toopermit névtelen olvasási hozzáférés toohello tároló és a benne található blobokat. Ez nem engedélyezett táblák vagy olyan várólisták esetében.
+* Használjon egy közös hozzáférésű jogosultságkódot, amely engedélyezi a korlátozott hozzáférésű jogok toocontainers, blobokat, üzenetsorokat és táblákat egy adott időtartam alatt.
+* A tárolt hozzáférési házirend tooobtain egy közös hozzáférésű jogosultságkód szabályozhatják további szintet használja, egy tárolót vagy a benne található blobokat, egy sor vagy tábla. hello tárolt házirend lehetővé teszi toochange hello kezdési ideje, a lejárat időpontjának vagy az engedélyek az aláírás, vagy toorevoke azt követően, hogy ki van állítva.
 
 A közös hozzáférésű jogosultságkód lehet két űrlap egyikében:
 
-* **Ad hoc biztonsági Társítások**: egy ad hoc SAS-a kezdési ideje, a lejárat időpontjának létrehozásakor, és a SAS engedélyeinek összes adhatók meg a SAS URI-t. Az ilyen típusú SAS lehet létrehozni egy tárolót, a blob, tábla, vagy várólista, és nem visszavonható.
-* **SAS tárolt hozzáférési házirenddel**: A tárolt házirend van definiálva az erőforrás-tárolónak egy blob-tároló, táblázat vagy várólista -, és legalább egy közös hozzáférésű jogosultságkód megkötéseit kezelésére használhatja. SAS-kód társítása a tárolt házirend, a SAS - a kezdési ideje, a lejárat időpontjának és a-vonatkozó engedélyeit a tárolt házirend korlátozásait örökölnek. Ez a biztonsági Társítások típus visszavonható.
+* **Ad hoc biztonsági Társítások**: egy alkalmi SAS, a hello kezdési ideje, a lejárat időpontjának létrehozásakor, és a hello SAS engedélyeinek összes adhatók meg hello SAS URI-t. Az ilyen típusú SAS lehet létrehozni egy tárolót, a blob, tábla, vagy várólista, és nem visszavonható.
+* **SAS tárolt hozzáférési házirenddel**: A tárolt házirend van definiálva az erőforrás-tárolónak egy blob-tároló, táblázat vagy várólista - és használhatja azt toomanage megkötések legalább egy közös hozzáférésű jogosultságkódokat. Ha SAS-kód társítja a tárolt házirend, hello SAS hello korlátozásokat örököl - hello start idő, a lejárati idő és a tárolt hello hozzáférési házirend definiált - engedélyek. Ez a biztonsági Társítások típus visszavonható.
 
-További információkért lásd: [használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md) és [tárolók és blobok névtelen olvasási hozzáférés kezelése](storage-manage-access-to-resources.md).
+További információkért lásd: [használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md) és [kezelheti a névtelen olvasási hozzáférés toocontainers és blobok](storage-manage-access-to-resources.md).
 
-A következő szakaszokban lévő, megtudhatja, hogyan Azure-táblákban egy megosztott hozzáférési aláírást token és tárolt hozzáférési házirend létrehozásához. Az Azure PowerShell hasonló parancsmagokat tárolók, blobok és várólisták is kínál. Ez a szakasz a parancsfájlok futtatásához töltse le a [Azure PowerShell verziója 0.8.14](http://go.microsoft.com/?linkid=9811175&clcid=0x409) vagy újabb.
+A következő szakaszokban hello megtudhatja, hogyan toocreate egy megosztott hozzáférési aláírást token és tárolt hozzáférési házirend Azure-táblákban. Az Azure PowerShell hasonló parancsmagokat tárolók, blobok és várólisták is kínál. Ebben a szakaszban toorun hello parancsfájlok letöltése hello [Azure PowerShell verziója 0.8.14](http://go.microsoft.com/?linkid=9811175&clcid=0x409) vagy újabb.
 
-### <a name="how-to-create-a-policy-based-shared-access-signature-token"></a>A csoportházirend-alapú közös hozzáférésű Jogosultságkód jogkivonat létrehozása
-A New-AzureStorageTableStoredAccessPolicy parancsmag segítségével hozzon létre egy új tárolt házirend. Majd, meghívják a [New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) parancsmaggal hozzon létre egy új csoportházirend-alapú megosztott aláírás jogkivonatot egy Azure Storage tábla.
+### <a name="how-toocreate-a-policy-based-shared-access-signature-token"></a>Hogyan csoportházirend-alapú toocreate közös hozzáférésű Jogosultságkód jogkivonat
+Hello New-AzureStorageTableStoredAccessPolicy parancsmag toocreate egy új tárolt házirend használja. Majd, meghívják a hello [New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) parancsmag toocreate egy új csoportházirend-alapú megosztott aláírás jogkivonatot egy Azure Storage tábla.
 
 ```powershell
 $policy = "policy1"
@@ -724,47 +724,47 @@ New-AzureStorageTableStoredAccessPolicy -Name $tableName -Policy $policy -Permis
 New-AzureStorageTableSASToken -Name $tableName -Policy $policy -Context $Ctx
 ```
 
-### <a name="how-to-create-an-ad-hoc-non-revocable-shared-access-signature-token"></a>Az ad hoc (nem visszavonható) közös hozzáférésű Jogosultságkód-token létrehozása
-Használja a [New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) parancsmag segítségével hozzon létre egy új alkalmi (nem visszavonható) közös hozzáférésű Jogosultságkód tokent egy Azure Storage-tábla a(z):
+### <a name="how-toocreate-an-ad-hoc-non-revocable-shared-access-signature-token"></a>Hogyan toocreate egy ad hoc (nem visszavonható) közös hozzáférésű Jogosultságkód-jogkivonatot
+Használjon hello [New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) parancsmag toocreate új alkalmi (nem visszavonható) közös hozzáférésű Jogosultságkód tokent egy Azure Storage-tábla a(z):
 
 ```powershell
 New-AzureStorageTableSASToken -Name $tableName -Permission "rqud" -StartTime "2015-01-01" -ExpiryTime "2015-02-01" -Context $Ctx
 ```
     
-### <a name="how-to-create-a-stored-access-policy"></a>A tárolt hozzáférési házirend létrehozása
-A New-AzureStorageTableStoredAccessPolicy parancsmag segítségével hozzon létre egy új tárolt házirend egy Azure Storage táblához:
+### <a name="how-toocreate-a-stored-access-policy"></a>Hogyan toocreate a tárolt házirend
+Használja az Azure Storage tábla hello New-AzureStorageTableStoredAccessPolicy parancsmag toocreate egy új tárolt házirend:
 
 ```powershell
 $policy = "policy1"
 New-AzureStorageTableStoredAccessPolicy -Name $tableName -Policy $policy -Permission "rd" -StartTime "2015-01-01" -ExpiryTime "2016-01-01" -Context $Ctx
 ```
     
-### <a name="how-to-update-a-stored-access-policy"></a>A tárolt házirend frissítése
-A Set-AzureStorageTableStoredAccessPolicy parancsmag segítségével egy meglévő tárolt hozzáférési házirendet egy Azure Storage-táblázat frissítése:
+### <a name="how-tooupdate-a-stored-access-policy"></a>Hogyan tooupdate a tárolt házirend
+Egy Azure Storage tábla hello Set-AzureStorageTableStoredAccessPolicy parancsmag tooupdate egy meglévő tárolt hozzáférési házirendet használja:
 
 ```powershell
 Set-AzureStorageTableStoredAccessPolicy -Policy $policy -Table $tableName -Permission "rd" -NoExpiryTime -NoStartTime -Context $Ctx
 ```
 
-### <a name="how-to-delete-a-stored-access-policy"></a>A tárolt házirend törlése
-A Remove-AzureStorageTableStoredAccessPolicy parancsmag segítségével törölheti a tárolt házirend egy Azure Storage táblán:
+### <a name="how-toodelete-a-stored-access-policy"></a>Hogyan toodelete a tárolt házirend
+Használja a Remove-AzureStorageTableStoredAccessPolicy hello parancsmag toodelete egy tárolt házirend egy Azure Storage táblán:
 
 ```powershell
 Remove-AzureStorageTableStoredAccessPolicy -Policy $policy -Table $tableName -Context $Ctx
 ```
 
-## <a name="how-to-use-azure-storage-for-us-government-and-azure-china"></a>Azure Storage használata az Amerikai Egyesült Államok kormánya és Azure Kínában
+## <a name="how-toouse-azure-storage-for-us-government-and-azure-china"></a>Hogyan toouse Azure Storage az Amerikai Egyesült Államok kormánya és Azure Kínában
 Környezetet az Azure például egy Microsoft Azure-ban független telepítését [Azure Government az Amerikai Egyesült Államok kormánya](https://azure.microsoft.com/features/gov/), [globális Azure AzureCloud](https://portal.azure.com), és [AzureChinaCloud Azure Kínában a 21Vianet által működtetett](http://www.windowsazure.cn/). Új Azure-környezetek Egyesült kormányzati és Azure Kína telepítése.
 
-AzureChinaCloud az Azure Storage használatához szüksége AzureChinaCloud társított adattároló-környezet létrehozása. Kövesse az alábbi lépéseket az első lépésekhez:
+Azure Storage a AzureChinaCloud toouse, kell toocreate AzureChinaCloud társított adattároló-környezet. Kövesse a lépéseket tooget használatba:
 
-1. Futtassa a [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) parancsmag használatával ellenőrizheti az elérhető az Azure-környezetek:
+1. Futtassa a hello [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) parancsmag toosee hello érhető el az Azure-környezetek:
    
     ```powershell
     Get-AzureEnvironment
     ```
 
-2. Egy Azure Kína fiók hozzáadása a Windows PowerShell:
+2. Egy Azure Kína fiók tooWindows PowerShell hozzáadása:
    
     ```powershell
     Add-AzureAccount –Environment AzureChinaCloud
@@ -776,15 +776,15 @@ AzureChinaCloud az Azure Storage használatához szüksége AzureChinaCloud tár
     $Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureChinaCloud
     ```
 
-Az Azure Storage használatához [USA Az Azure Government](https://azure.microsoft.com/features/gov/), érdemes egy új környezet, és ezután hozzon létre egy új adattároló-környezet ebben a környezetben:
+Azure Storage toouse rendelkező [USA Az Azure Government](https://azure.microsoft.com/features/gov/), érdemes egy új környezet, és ezután hozzon létre egy új adattároló-környezet ebben a környezetben:
 
-1. Futtassa a [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) parancsmag használatával ellenőrizheti az elérhető az Azure-környezetek:
+1. Futtassa a hello [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) parancsmag toosee hello érhető el az Azure-környezetek:
 
     ```powershell
     Get-AzureEnvironment
     ```
 
-2. A Windows PowerShell Azure Amerikai Egyesült államokbeli kormányzati fiók hozzáadása:
+2. Egy Azure Amerikai Egyesült államokbeli kormányzati fiók tooWindows PowerShell hozzáadása:
    
     ```powershell
     Add-AzureAccount –Environment AzureUSGovernment
@@ -802,7 +802,7 @@ További információkért lásd:
 * [Kínai szolgáltatás egy alkalmazás létrehozásakor különbségek áttekintése](https://msdn.microsoft.com/library/azure/dn578439.aspx)
 
 ## <a name="next-steps"></a>Következő lépések
-Ez az útmutató az Azure PowerShell Azure Storage kezelése hogy megismerte. Íme, néhány kapcsolódó cikkek és a velük kapcsolatos további források.
+Az útmutatóban, hogy megismerte hogyan toomanage Azure Storage Azure PowerShell használatával. Íme, néhány kapcsolódó cikkek és a velük kapcsolatos további források.
 
 * [Az Azure Storage dokumentációja](https://azure.microsoft.com/documentation/services/storage/)
 * [Az Azure Storage PowerShell-parancsmagok](/powershell/module/azurerm.storage/#storage)
@@ -810,39 +810,39 @@ Ez az útmutató az Azure PowerShell Azure Storage kezelése hogy megismerte. Í
 
 [Getting started with Azure Storage and PowerShell in 5 minutes]: #getstart
 [Prerequisites for using Azure PowerShell with Azure Storage]: #pre
-[How to manage storage accounts in Azure]: #manageaccount
-[How to set a default Azure subscription]: #setdefsub
-[How to create a new Azure storage account]: #createaccount
-[How to set a default Azure storage account]: #defaultaccount
-[How to list all Azure storage accounts in a subscription]: #listaccounts
-[How to create an Azure storage context]: #createctx
-[How to manage Azure blobs and blob snapshots]: #manageblobs
-[How to create a container]: #container
-[How to upload a blob into a container]: #uploadblob
-[How to download blobs from a container]: #downblob
-[How to copy blobs from one storage container to another]: #copyblob
-[How to delete a blob]: #deleteblob
-[How to manage Azure blob snapshots]: #manageshots
-[How to create a blob snapshot]: #createshot
-[How to list snapshots of a blob]: #listshot
-[How to copy a snapshot of a blob]: #copyshot
-[How to manage Azure tables and table entities]: #managetables
-[How to create a table]: #createtable
-[How to retrieve a table]: #gettable
-[How to delete a table]: #remtable
-[How to manage table entities]: #mngentity
-[How to add table entities]: #addentity
-[How to query table entities]: #queryentity
-[How to delete table entities]: #deleteentity
-[How to manage Azure queues and queue messages]: #managequeues
-[How to create a queue]: #createqueue
-[How to retrieve a queue]: #getqueue
-[How to delete a queue]: #remqueue
-[How to manage queue messages]: #mngqueuemsg
-[How to insert a message into a queue]: #addqueuemsg
-[How to de-queue at the next message]: #dequeuemsg
-[How to manage Azure file shares and files]: #files
-[How to set and query storage analytics]: #stganalytics
-[How to manage Shared Access Signature (SAS) and Stored Access Policy]: #sas
-[How to use Azure Storage for U.S. government and Azure China]: #gov
+[How toomanage storage accounts in Azure]: #manageaccount
+[How tooset a default Azure subscription]: #setdefsub
+[How toocreate a new Azure storage account]: #createaccount
+[How tooset a default Azure storage account]: #defaultaccount
+[How toolist all Azure storage accounts in a subscription]: #listaccounts
+[How toocreate an Azure storage context]: #createctx
+[How toomanage Azure blobs and blob snapshots]: #manageblobs
+[How toocreate a container]: #container
+[How tooupload a blob into a container]: #uploadblob
+[How toodownload blobs from a container]: #downblob
+[How toocopy blobs from one storage container tooanother]: #copyblob
+[How toodelete a blob]: #deleteblob
+[How toomanage Azure blob snapshots]: #manageshots
+[How toocreate a blob snapshot]: #createshot
+[How toolist snapshots of a blob]: #listshot
+[How toocopy a snapshot of a blob]: #copyshot
+[How toomanage Azure tables and table entities]: #managetables
+[How toocreate a table]: #createtable
+[How tooretrieve a table]: #gettable
+[How toodelete a table]: #remtable
+[How toomanage table entities]: #mngentity
+[How tooadd table entities]: #addentity
+[How tooquery table entities]: #queryentity
+[How toodelete table entities]: #deleteentity
+[How toomanage Azure queues and queue messages]: #managequeues
+[How toocreate a queue]: #createqueue
+[How tooretrieve a queue]: #getqueue
+[How toodelete a queue]: #remqueue
+[How toomanage queue messages]: #mngqueuemsg
+[How tooinsert a message into a queue]: #addqueuemsg
+[How toode-queue at hello next message]: #dequeuemsg
+[How toomanage Azure file shares and files]: #files
+[How tooset and query storage analytics]: #stganalytics
+[How toomanage Shared Access Signature (SAS) and Stored Access Policy]: #sas
+[How toouse Azure Storage for U.S. government and Azure China]: #gov
 [Next Steps]: #next

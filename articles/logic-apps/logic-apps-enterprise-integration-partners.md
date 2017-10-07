@@ -1,6 +1,6 @@
 ---
-title: "Az üzleti vállalatközi (B2B) üzenetek - Azure Logic Apps partnerek létrehozása |} Microsoft Docs"
-description: "Útmutató a vállalati integrációs csomag és a Logic Apps integrációs fiókjába partnerek hozzáadása"
+title: "az üzleti vállalatközi (B2B) üzenetek - Azure Logic Apps aaaCreate partnerek |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooadd partnerek tooyour integrációs hello vállalati integrációs csomag és a Logic Apps fiók"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,75 +15,75 @@ ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 950cb449b53f400f0f0f860caf5415bbb5212269
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8dc70a8f441fcf228ed178029dcdbac940d794b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-or-update-partners-in-business-to-business-agreements-in-your-workflow"></a>Hozzáadásakor vagy módosításakor a partnerek a munkafolyamat vállalatok szerződések
 
-A partnerek olyan entitásokat, üzleti vállalatközi (B2B) tranzakciók részt, és az exchange-üzenetek között. Létrehozhat, és ezek a tranzakciók a másik szervezet képviselő partnerekkel, előtt is, amely azonosítja, és ellenőrzi az egyes küldött üzenetek az információkat. Miután vitassa meg ezeket az adatokat, és az üzleti kapcsolat készen áll, az integráció fiókban partnerek számára, hogy megfelelnek az Ön is hozhat létre.
+A partnerek olyan entitásokat, üzleti vállalatközi (B2B) tranzakciók részt, és az exchange-üzenetek között. Létrehozhat, és ezek a tranzakciók a másik szervezet képviselő partnerekkel, előtt is, amely azonosítja, és ellenőrzi az egyes küldött üzenetek az információkat. Miután vitassa meg ezeket az adatokat, és készen áll a toostart az üzleti kapcsolat, az integráció fiók toorepresent partnerek hozhat létre, mindkét.
 
 ## <a name="what-roles-do-partners-have-in-your-integration-account"></a>Milyen szerepkörök rendelkeznek partnerek integrációs fiókja?
 
-Adja meg a partnerek között váltott üzenetek részleteit, ezeket a partnerek között létrejött megállapodások kell létrehozni. Azonban létrehozhat egy szerződést, mielőtt hozzá kellett adnia legalább két partner integrációs fiókjába. A szervezet, a szerződés részét kell képeznie a **fogadó partner**. A másik partnert vagy **Vendég partner** azt a szervezetet, amely az üzeneteket a szervezet jelöli. A Vendég partner lehet egy másik vállalat, vagy akár egy részleget a saját szervezetében.
+partnerek között váltott köszönőüzenetei toodefine részleteit, ezeket a partnerek között létrejött megállapodások létrehozása. Azonban létrehozhat egy szerződést, mielőtt hozzá kellett adnia legalább két partner tooyour integrációs fiók. A szervezet hello hello megállapodás részét kell képeznie **fogadó partner**. másik partnert hello vagy **Vendég partner** jelöli, mely a szervezet üzenetek szervezet hello. hello Vendég partner lehet egy másik vállalat, vagy akár egy részleget a saját szervezetében.
 
 Miután hozzáadta a partnerek, létrehozhat egy szerződést.
 
-Értesítések fogadásához és küldéséhez a beállítások a üzemeltetett Partner szempontból irányulnak. Például egy szerződést a fogadási beállítások határozzák meg, hogyan az üzemeltetett partner kap egy Vendég partner küldött üzenetek. Hasonlóképpen a Küldés beállításai a szerződésben azt jelzik, hogyan az üzemeltetett partner üzeneteket küld a Vendég partner.
+Értesítések fogadásához és küldéséhez beállítások hello szempontból a birtokolt Partner hello irányulnak. Például hello kap a szerződés beállítások határozza meg, hogyan üzemeltetett hello partner kap egy Vendég partner küldött üzenetek. Hasonlóképpen hello küldési beállítások hello megállapodás azt jelzik, hogyan üzemeltetett hello partner küld üzeneteket toohello Vendég partner.
 
-## <a name="how-to-create-a-partner"></a>Hogyan hozhat létre a partner?
+## <a name="how-toocreate-a-partner"></a>Hogyan toocreate partner?
 
-1. Válassza ki az Azure-portálon **Tallózás**.
+1. Hello Azure-portálon, válassza ki **Tallózás**.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-1.png)
 
-2. A szűrő a keresőmezőbe írja be **integrációs**, majd jelölje be **integrációs fiókok** az eredménylistában.
+2. Hello szűrő keresési mezőbe, írja be a **integrációs**, majd jelölje be **integrációs fiókok** hello eredménylistában.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-2.png)
 
-3. Válassza ki az integráció fiókra, amelyhez a partnerek hozzáadni.
+3. Válassza ki a hello integrációs fiókra, amelyhez tooadd partnereivel.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. Válassza ki a **partnerek** csempére.
+4. Jelölje be hello **partnerek** csempére.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-1.png)
 
-5. A partnerek paneljén válassza **Hozzáadás**.
+5. Hello partnerek paneljén válassza **Hozzáadás**.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-2.png)
 
-6. Adja meg a partner nevét, majd válasszon egy **minősítő**. Végül adja meg a **érték** dokumentumok, amelyek az alkalmazások azonosítása.
+6. Adja meg a partner nevét, majd válasszon egy **minősítő**. Végül adja meg a **érték** toohelp dokumentumok, amelyek az alkalmazások azonosítása.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-3.png)
 
-7. A partner-létrehozási folyamat előrehaladásának megtekintéséhez válassza ki a *harang* értesítési ikon.
+7. a partner létrehozási folyamata, jelölje be hello toosee hello folyamatban *harang* értesítési ikon.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-4.png)
 
-8. Győződjön meg arról, hogy az új partnerek sikerült hozzáadni, jelölje be a **partnerek** csempére.
+8. tooconfirm, amely az új partnerek sikeresen létre lettek hozzáadva, jelölje be hello **partnerek** csempére.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-5.png)
 
-    Miután kiválasztotta a partnerek csempe, azt is megtudhatja újonnan hozzáadott partnerek a partnerek a panelen.
+    Hello partnerek csempe kiválasztása után is megjelenik az újonnan hozzáadott partnerek hello partnerek panelen.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-6.png)
 
-## <a name="how-to-edit-existing-partners-in-your-integration-account"></a>Az integráció fiókban meglévő partnerek szerkesztése
+## <a name="how-tooedit-existing-partners-in-your-integration-account"></a>Hogyan tooedit meglévő partnereknek az integráció-fiókban
 
-1. Válassza ki a **partnerek** csempére.
-2. Panel megnyitása után a partnerek, válassza ki a szerkeszteni kívánt partnert.
-3. Az a **frissítés Partner** csempére, hajtsa végre a módosításokat.
-4. Miután elkészült, válassza ki azt **mentése**, vagy a Mégse gombra a módosítások, jelöljön ki **elvetése**.
+1. Jelölje be hello **partnerek** csempére.
+2. Ha megnyílt az hello partnerek panelen, válassza ki a tooedit kívánt hello partnert.
+3. A hello **frissítés Partner** csempére, hajtsa végre a módosításokat.
+4. Miután elkészült, válassza ki azt **mentése**, toocancel a módosításokat, válassza ki vagy **elvetése**.
 
     ![](./media/logic-apps-enterprise-integration-partners/edit-1.png)
 
-## <a name="how-to-delete-a-partner"></a>Egy partner törlése
+## <a name="how-toodelete-a-partner"></a>Hogyan toodelete partner
 
-1. Válassza ki a **partnerek** csempére.
-2. A Partner után panel nyílik meg, válassza ki a törölni kívánt partnert.
+1. Jelölje be hello **partnerek** csempére.
+2. Miután hello Partner panel nyílik meg, válassza ki a megjeleníteni kívánt toodelete hello partnert.
 3. Válasszon **törlése**.
 
     ![](./media/logic-apps-enterprise-integration-partners/delete-1.png)

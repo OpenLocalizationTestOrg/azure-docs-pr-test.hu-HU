@@ -1,6 +1,6 @@
 ---
-title: "Létrehozása és kezelése az Azure virtuális gép Java használatával |} Microsoft Docs"
-description: "Java és az Azure Resource Manager segítségével telepítheti a virtuális gép és annak támogató erőforrásokat."
+title: "aaaCreate és kezelése az Azure virtuális gép használata Java |} Microsoft Docs"
+description: "Java és az Azure Resource Manager toodeploy használja a virtuális gép és annak támogató erőforrásokat."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: davidmu
-ms.openlocfilehash: b9e739a07c5863577285fb3a221b372b385c6762
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 31ac8d59f92ecff887e64906940933dd6fd50815
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-java"></a>Létrehozása és kezelése Windows-alapú virtuális gépek az Azure-ban Java
 
@@ -32,15 +32,15 @@ Egy [Azure virtuális gép](overview.md?toc=%2fazure%2fvirtual-machines%2fwindow
 > * Erőforrások létrehozása
 > * Felügyeleti feladatok végrehajtása
 > * Erőforrások törlése
-> * Az alkalmazás futtatása
+> * Hello alkalmazás futtatása
 
-A lépések elvégzéséhez körülbelül 20 percet vesz igénybe.
+Körülbelül 20 percet toodo szükséges lépéseket.
 
 ## <a name="create-a-maven-project"></a>Maven-projekt létrehozása
 
 1. Ha még nem tette meg, telepítse [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 2. Telepítés [Maven](http://maven.apache.org/download.cgi).
-3. Hozzon létre egy új mappát és a projekthez:
+3. Hozzon létre egy új mappát és hello projektet:
     
     ```
     mkdir java-azure-test
@@ -51,7 +51,7 @@ A lépések elvégzéséhez körülbelül 20 percet vesz igénybe.
 
 ## <a name="add-dependencies"></a>Adja hozzá a függőségek
 
-1. Az a `testAzureApp` mappa, nyissa meg a `pom.xml` fájlt, és a build konfigurációját, és &lt;projekt&gt; ahhoz, hogy az alkalmazás összeállítása:
+1. A hello `testAzureApp` mappa, nyissa meg hello `pom.xml` fájlt, és hello build konfigurációját túl&lt;projekt&gt; tooenable hello épület az alkalmazás:
 
     ```xml
     <build>
@@ -67,7 +67,7 @@ A lépések elvégzéséhez körülbelül 20 percet vesz igénybe.
     </build>
     ```
 
-2. Adja a függőségeket, az Azure Java SDK eléréséhez szükséges.
+2. Adja hozzá a szükséges tooaccess hello Azure Java SDK hello függőségek.
 
     ```xml
     <dependency>
@@ -112,15 +112,15 @@ A lépések elvégzéséhez körülbelül 20 percet vesz igénybe.
     </dependency>
     ```
 
-3. Mentse a fájlt.
+3. Hello fájl mentéséhez.
 
 ## <a name="create-credentials"></a>Hitelesítő adatok létrehozása
 
-Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e a hozzáférést egy [Active Directory szolgáltatás egyszerű](../../azure-resource-manager/resource-group-create-service-principal-portal.md). Is rögzíteni kell az alkalmazás Azonosítóját, a hitelesítési kulcs és a bérlő azonosítója, amelyekre szüksége van egy későbbi lépésben.
+Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e hozzáférési tooan [Active Directory szolgáltatás egyszerű](../../azure-resource-manager/resource-group-create-service-principal-portal.md). Is rögzíteni kell hello Alkalmazásazonosító, hello hitelesítési kulcs és hello Bérlőazonosító, amelyekre szüksége van egy későbbi lépésben.
 
-### <a name="create-the-authorization-file"></a>Az engedélyezési fájl létrehozása
+### <a name="create-hello-authorization-file"></a>Hello engedélyezési fájl létrehozása
 
-1. Hozzon létre egy fájlt `azureauth.properties` , és ezek a tulajdonságok felvétele:
+1. Hozzon létre egy fájlt `azureauth.properties` , és adja hozzá ezeket a tulajdonságokat tooit:
 
     ```
     subscription=<subscription-id>
@@ -133,20 +133,20 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e a ho
     graphURL=https://graph.windows.net/
     ```
 
-    Cserélje le  **&lt;előfizetés-azonosító&gt;**  az előfizetés-azonosítóval rendelkező  **&lt;alkalmazásazonosító&gt;**  való a Active Directory-azonosítót,  **&lt;hitelesítési kulcs&gt;**  az alkalmazás kulccsal és  **&lt;bérlőazonosító&gt;**  a bérlő azonosítója.
+    Cserélje le  **&lt;előfizetés-azonosító&gt;**  az előfizetés-azonosítóval rendelkező  **&lt;alkalmazásazonosító&gt;**  a hello Active Directory-alkalmazás azonosítóval  **&lt;hitelesítési kulcs&gt;**  hello alkalmazás kulccsal, és  **&lt;bérlőazonosító&gt;**  hello bérlővel azonosítója.
 
-2. Mentse a fájlt.
-3. A fájl teljes elérési útját a hitelesítés a rendszerhéj AZURE_AUTH_LOCATION nevű környezeti változó értéke.
+2. Hello fájl mentéséhez.
+3. A rendszerhéj AZURE_AUTH_LOCATION hello teljes elérési útja toohello hitelesítési fájl nevű környezeti változó értéke.
 
-### <a name="create-the-management-client"></a>A felügyeleti ügyfél létrehozása
+### <a name="create-hello-management-client"></a>Hello felügyeleti ügyfél létrehozása
 
-1. Nyissa meg a `App.java` a fájl `src\main\java\com\fabrikam` , és győződjön meg arról, hogy a csomag utasítás szerepel a szabálylista:
+1. Nyissa meg hello `App.java` a fájl `src\main\java\com\fabrikam` , és győződjön meg arról, hogy a csomag utasítás hello felső:
 
     ```java
     package com.fabrikam.testAzureApp;
     ```
 
-2. A csomag utasítás alatt adja hozzá ezek kimutatások importálása:
+2. Hello csomag utasítás, alatt adja hozzá ezek kimutatások importálása:
    
     ```java
     import com.microsoft.azure.management.Azure;
@@ -168,7 +168,7 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e a ho
     import java.util.Scanner;
     ```
 
-2. Az Active Directory hitelesítő adatait hozhatják létre, meg kell győződnie kérelmeket, adja hozzá ezt a kódot a fő metódus App osztály:
+2. toocreate hello Active Directorybeli hitelesítő adatokat, hogy kell-e toomake kérelmekről, a kód toohello fő hello App osztály metódus hozzáadása:
    
     ```java
     try {    
@@ -186,11 +186,11 @@ Ez a lépés megkezdése előtt győződjön meg arról, hogy rendelkezik-e a ho
 
 ## <a name="create-resources"></a>Erőforrások létrehozása
 
-### <a name="create-the-resource-group"></a>Az erőforráscsoport létrehozása
+### <a name="create-hello-resource-group"></a>Hello erőforráscsoport létrehozása
 
 Minden erőforrás tartalmaznia kell egy [erőforráscsoport](../../azure-resource-manager/resource-group-overview.md).
 
-Adja meg az alkalmazás az értékét, és az erőforráscsoport létrehozása, vegye fel ezt a kódot a try blokk fő metódus:
+toospecify értékei alkalmazás hello és hello erőforráscsoport létrehozása, adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Creating resource group...");
@@ -200,11 +200,11 @@ ResourceGroup resourceGroup = azure.resourceGroups()
     .create();
 ```
 
-### <a name="create-the-availability-set"></a>A rendelkezésre állási csoport létrehozása
+### <a name="create-hello-availability-set"></a>Hello rendelkezésre állási csoport létrehozása
 
-[Rendelkezésre állási készletek](tutorial-availability-sets.md) megkönnyíti, hogy a virtuális gépeket, amelyet az alkalmazás karbantartása.
+[Rendelkezésre állási készletek](tutorial-availability-sets.md) könnyebben meg az alkalmazás által használt toomaintain hello virtuális gépeket.
 
-A rendelkezésre állási csoport létrehozása, vegye fel ezt a kódot a try blokk a fő metódusban:
+toocreate hello rendelkezésre állási megadásához adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Creating availability set...");
@@ -215,11 +215,11 @@ AvailabilitySet availabilitySet = azure.availabilitySets()
     .withSku(AvailabilitySetSkuTypes.MANAGED)
     .create();
 ```
-### <a name="create-the-public-ip-address"></a>A nyilvános IP-cím létrehozása
+### <a name="create-hello-public-ip-address"></a>Hello nyilvános IP-cím létrehozása
 
-A [nyilvános IP-cím](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) kommunikálni a virtuális gép van szükség.
+A [nyilvános IP-cím](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) szükséges toocommunicate hello virtuális gép van.
 
-A nyilvános IP-cím a virtuális gép létrehozása, vegye fel ezt a kódot a try blokk a fő metódusban:
+toocreate hello nyilvános IP-cím hello virtuális géphez, a kód toohello try blokk hello fő metódus adja hozzá:
 
 ```java
 System.out.println("Creating public IP address...");
@@ -231,11 +231,11 @@ PublicIPAddress publicIPAddress = azure.publicIPAddresses()
     .create();
 ```
 
-### <a name="create-the-virtual-network"></a>A virtuális hálózat létrehozása
+### <a name="create-hello-virtual-network"></a>Hello virtuális hálózat létrehozása
 
 Az alhálózat szerepelnie kell egy virtuális gépet egy [virtuális hálózati](../../virtual-network/virtual-networks-overview.md).
 
-Hozzon létre egy alhálózatot és egy virtuális hálózatot, vegye fel ezt a kódot a try blokk a fő metódusban:
+egy alhálózat toocreate és egy virtuális hálózatot, adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Creating virtual network...");
@@ -248,11 +248,11 @@ Network network = azure.networks()
     .create();
 ```
 
-### <a name="create-the-network-interface"></a>A hálózati illesztő létrehozása
+### <a name="create-hello-network-interface"></a>Hello hálózati illesztő létrehozása
 
-A virtuális gépek kell a hálózati adaptert a virtuális hálózaton való kommunikációhoz.
+A virtuális gép egy hálózati illesztő toocommunicate hello virtuális hálózaton kell.
 
-Hozzon létre egy hálózati adapter, vegye fel ezt a kódot a try blokk a fő metódusban:
+egy adott hálózati csatoló toocreate a kód toohello try blokk hello fő metódus adja hozzá:
 
 ```java
 System.out.println("Creating network interface...");
@@ -267,11 +267,11 @@ NetworkInterface networkInterface = azure.networkInterfaces()
     .create();
 ```
 
-### <a name="create-the-virtual-machine"></a>A virtuális gép létrehozása
+### <a name="create-hello-virtual-machine"></a>Hello virtuális gép létrehozása
 
-Most, hogy létrehozta a támogató erőforrásokat, létrehozhat egy virtuális gépet.
+Most, hogy a létrehozott összes hello erőforrások támogatása, létrehozhat egy virtuális gépet.
 
-A virtuális gép létrehozásához, vegye fel ezt a kódot a try blokk a fő metódusban:
+toocreate hello virtuális gépet, adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Creating virtual machine...");
@@ -288,16 +288,16 @@ VirtualMachine virtualMachine = azure.virtualMachines()
     .withSize("Standard_DS1")
     .create();
 Scanner input = new Scanner(System.in);
-System.out.println("Press enter to get information about the VM...");
+System.out.println("Press enter tooget information about hello VM...");
 input.nextLine();
 ```
 
 > [!NOTE]
-> Ebben az oktatóanyagban létrehoz egy virtuális gépet, a Windows Server operációs rendszer verziója. Más rendszerképek kiválasztásáról kapcsolatos további információkért lásd: [keresse meg és válassza ki azokat a Windows PowerShell és az Azure CLI Azure virtuális gép lemezképeket](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Ebben az oktatóanyagban létrehoz egy virtuális gépet, hello Windows Server operációs rendszer verziója. További információ az egyéb rendszerképek kiválasztásáról toolearn lásd: [keresse meg és válassza ki azokat a Windows PowerShell és az Azure parancssori felület hello Azure virtuális gép lemezképeket](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 > 
 >
 
-Ha szeretné használni a meglévő lemez Piactéri rendszerkép helyett, használja ezt a kódot: 
+Ha azt szeretné, hogy a meglévő lemez Piactéri rendszerkép helyett toouse, használja ezt a kódot: 
 
 ```java
 ManagedDisk managedDisk = azure.disks.define("myosdisk") 
@@ -320,17 +320,17 @@ azure.virtualMachines.define("myVM")
 
 ## <a name="perform-management-tasks"></a>Felügyeleti feladatok végrehajtása
 
-A virtuális gépek életciklusa folyamán érdemes lehet indítása, leállítása vagy törlése a virtuális gépek például a felügyeleti feladatok futtatásához. Emellett érdemes bonyolult vagy ismétlődő feladatok automatizálásához kódot létrehozni.
+A virtuális gépek hello életciklusa során szükség lehet a toorun felügyeleti feladatokhoz, mint az indítása, leállítása vagy egy virtuális gép törlése. Emellett érdemes lehet toocreate kód tooautomate ismétlődő vagy összetett feladatokat.
 
-Ha semmit a a virtuális Géphez van szüksége, kell egy példányát. Ez a kód hozzáadása a try blokk a fő metódus:
+Kell toodo minden hello VM, úgy kell tooget egy példányát. A kód toohello try blokk hello fő metódus hozzáadása:
 
 ```java
 VirtualMachine vm = azure.virtualMachines().getByResourceGroup("myResourceGroup", "myVM");
 ```
 
-### <a name="get-information-about-the-vm"></a>A virtuális gép adatainak beolvasása
+### <a name="get-information-about-hello-vm"></a>Hello virtuális gép adatainak beolvasása
 
-A virtuális géppel kapcsolatos információk beszerzéséhez vegye fel ezt a kódot a try blokk fő metódus:
+hello virtuális gép, tooget adatait a kód toohello try blokk hello fő metódus adja hozzá:
 
 ```java
 System.out.println("hardwareProfile");
@@ -382,94 +382,94 @@ for(InstanceViewStatus status : vm.instanceView().statuses()) {
     System.out.println("  code: " + status.code());
     System.out.println("  displayStatus: " + status.displayStatus());
 }
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();   
 ```
 
-### <a name="stop-the-vm"></a>A virtuális gép leállítása
+### <a name="stop-hello-vm"></a>Hello VM leállítása
 
-Állítsa le a virtuális gépet és a beállítások megőrzése, de továbbra is azt számlázni, vagy állítsa le a virtuális gépet, és azt felszabadítani. Ha egy virtuális gép fel van szabadítva, vele társított összes erőforrás is felszabadított és számlázási végpontjainak.
+Állítsa le a virtuális gépet és a beállítások megtartásához, de továbbra is toobe felszámított, vagy állítsa le a virtuális gépet, és azt felszabadítani. Ha egy virtuális gép fel van szabadítva, vele társított összes erőforrás is felszabadított és számlázási végpontjainak.
 
-A virtuális gép leállítása nélkül felszabadítása azt, vegye fel ezt a kódot a try blokk a fő metódusban:
+toostop hello virtuális gép felszabadítása, nélkül adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Stopping vm...");
 vm.powerOff();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-Ha a virtuális gép felszabadítása, módosítsa ezt a kódot kikapcsolt hívása:
+Ha azt szeretné, hogy toodeallocate hello virtuális gép, módosítsa a hello kikapcsolt hívás toothis kódot:
 
 ```java
 vm.deallocate();
 ```
 
-### <a name="start-the-vm"></a>Indítsa el a virtuális Gépet
+### <a name="start-hello-vm"></a>Indítsa el a virtuális gép hello
 
-Indítsa el a virtuális gépet, vegye fel ezt a kódot a try blokk a fő metódusban:
+toostart hello virtuális gépet, adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Starting vm...");
 vm.start();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-### <a name="resize-the-vm"></a>A virtuális gép átméretezésével
+### <a name="resize-hello-vm"></a>Automatikus oszlopszélesség hello méretű VM
 
 Telepítési sok szempontját figyelembe kell venni, amikor eldönti, a virtuális gép méretét. További információkért lásd: [Virtuálisgép-méretek](sizes.md).  
 
-A virtuális gép Oldalméret módosítása oly módon, vegye fel ezt a kódot a try blokk a fő metódusban:
+hello virtuális gép, toochange mérete a kód toohello try blokk hello fő metódus adja hozzá:
 
 ```java
 System.out.println("Resizing vm...");
 vm.update()
     .withSize(VirtualMachineSizeTypes.STANDARD_DS2)
     .apply();
-System.out.println("Press enter to continue...");
+System.out.println("Press enter toocontinue...");
 input.nextLine();
 ```
 
-### <a name="add-a-data-disk-to-the-vm"></a>Adatlemez hozzáadása a virtuális gép
+### <a name="add-a-data-disk-toohello-vm"></a>Adja hozzá a adatok lemez toohello méretű VM
 
-Adatlemez hozzáadása a virtuális gépet, amely pedig 2 GB-nál, 0 és ReadWrite gyorsítótárazási típusú logikai egység tartozik, vegye fel ezt a kódot a try blokk a fő metódusban:
+tooadd adatok lemez toohello virtuális gép számára pedig 2 GB-nál, 0 és ReadWrite gyorsítótárazási típusú logikai egység van, adja hozzá a kódot toohello try blokk hello fő metódus:
 
 ```java
 System.out.println("Adding data disk...");
 vm.update()
     .withNewDataDisk(2, 0, CachingTypes.READ_WRITE)
     .apply();
-System.out.println("Press enter to delete resources...");
+System.out.println("Press enter toodelete resources...");
 input.nextLine();
 ```
 
 ## <a name="delete-resources"></a>Erőforrások törlése
 
-Mivel az Azure-ban használt erőforrásokhoz van szó, ajánlott mindig törli az erőforrást, amely már nem szükséges. Ha törölni szeretné a virtuális gépek és a támogató erőforrásokat, meg kell nyitnia csak törölje a csoportot.
+Mivel az Azure-ban használt erőforrásokhoz van szó, még mindig célszerű toodelete erőforrásokat, amelyek már nem szükséges. Ha azt szeretné, hogy toodelete hello virtuális gépek és erőforrások támogató összes hello, minden toodo van hello erőforrás csoport törlése.
 
-1. Törölje a csoportot, vegye fel ezt a kódot a try blokk a fő metódusban:
+1. toodelete hello erőforrás csoportjában adja hozzá a kódot toohello try blokk hello fő metódus:
    
 ```java
 System.out.println("Deleting resources...");
 azure.resourceGroups().deleteByName("myResourceGroup");
 ```
 
-2. Mentse a App.java fájlt.
+2. Hello App.java fájl mentéséhez.
 
-## <a name="run-the-application"></a>Az alkalmazás futtatása
+## <a name="run-hello-application"></a>Hello alkalmazás futtatása
 
-Öt perc a konzol alkalmazás teljesen futtatásához indítás kell vennie a befejezéshez.
+Akkor kell a konzol alkalmazás toorun teljesen a start toofinish körülbelül öt percet is igénybe vehet.
 
-1. Az alkalmazás futtatásához használja a Maven-parancsot:
+1. toorun hello alkalmazást, használja ezt a Maven-parancsot:
 
     ```
     mvn compile exec:java
     ```
 
-2. Ahhoz, hogy nyomja le az ENTER **Enter** erőforrások törlése elindításához eltarthat néhány percig az Azure-portálon az erőforrások létrehozásának ellenőrzése. Kattintson a telepítés állapota a telepítéssel kapcsolatos információk megjelenítéséhez.
+2. Ahhoz, hogy nyomja le az ENTER **Enter** toostart törlése erőforrásokat, készíthet néhány perc múlva hello erőforrások tooverify hello létrehozását a hello Azure-portálon. Kattintson a hello telepítési toosee telepítésére vonatkozó állapotadatok hello.
 
 
 ## <a name="next-steps"></a>Következő lépések
-* További információ a [Azure Java-könyvtárakban](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview).
+* További információ hello [Azure Java-könyvtárakban](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-overview).
 

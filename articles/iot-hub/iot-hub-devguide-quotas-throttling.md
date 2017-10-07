@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub kvóták megértéséhez, valamint a sávszélesség-szabályozás |} Microsoft Docs"
-description: "Fejlesztői útmutató – az IoT-központ és az elvárt szabályozási viselkedés vonatkozó kvótákat leírása."
+title: "aaaUnderstand Azure IoT Hub kvóták és sávszélesség-szabályozási |} Microsoft Docs"
+description: "Fejlesztői útmutató - hello kvóták tooIoT Hub és hello vonatkozó leírása szabályozási viselkedés várható."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.openlocfilehash: dfe06ee6b8fadfe6d34397661c974181f870239e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 023fa29bfbfb1de35708d6d121a1c56b50adfed9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference---iot-hub-quotas-and-throttling"></a>Referencia - IoT-központ kvóták és sávszélesség-szabályozás
 
 ## <a name="quotas-and-throttling"></a>Kvóták és szabályozás
 Minden Azure-előfizetéssel, legfeljebb 10 IoT-központok, és legfeljebb 1 szabad hub rendelkezhet.
 
-Minden egyes IoT-központot egy adott SKU egység bizonyos számú ki van építve (további információkért lásd: [Azure IoT Hub árképzési][lnk-pricing]). A Termékváltozat és egységek számát határozza meg, küldhet üzeneteket napi kvóta felső határát.
+Minden egyes IoT-központot egy adott SKU egység bizonyos számú ki van építve (további információkért lásd: [Azure IoT Hub árképzési][lnk-pricing]). hello SKU és egységek száma határozza meg, hello maximális napi beállított kvótát küldhet üzeneteket.
 
-A Termékváltozat is meghatározza, hogy az IoT-központ az összes művelet kikényszeríti szabályozási korlát.
+hello SKU határozza meg a sávszélesség-szabályozás korlátozza az összes művelet kikényszeríti az IoT-központ hello is.
 
 ## <a name="operation-throttles"></a>A művelet szabályozások
-A művelet szabályozások percben tartományok lesznek alkalmazva, és célja, hogy visszaélés elkerülése sebessége korlátozások is. Az IoT-központ megpróbál ad vissza, amikor csak lehetséges hibák elkerülése érdekében, de kivételek ad vissza, ha a késleltetési sérül túl sokáig kezdődik.
+A művelet szabályozások hello percben tartományok lesznek alkalmazva, és sebessége korlátozások is tooavoid visszaélés készült. Az IoT-központ megpróbál tooavoid visszaadó hibák, amikor csak lehetséges, de kivételek ad vissza, ha túl sokáig hello késleltetési sérül kezdődik.
 
-A következő táblázat a kényszerített szabályozások. Értékek egyes hubhoz hivatkozik.
+a következő táblázat azt mutatja be hello hello szabályozások lépnek érvénybe. Értékek tooan egyedi hub hivatkozik.
 
 | Szabályozás | Szabad és S1 hubok | S2 hubok | S3 hubok | 
 | -------- | ------- | ------- | ------- |
@@ -48,14 +48,14 @@ A következő táblázat a kényszerített szabályozások. Értékek egyes hubh
 | Feladatműveletek <br/> (létrehozás, frissítés, listázás, törlés) | 1.67/sec/Unit (100/perc/egység) | 1.67/sec/Unit (100/perc/egység) | 83.33/sec/Unit (5000/perc/egység) |
 | Feladatok eszközönkénti műveleti teljesítménye | 10/mp | Legfeljebb 10 másodpercenként vagy 1/mp/egység | 50/mp/egység |
 
-Fontos, hogy a *eszközcsatlakozás* késleltetési szabályozza a sebesség, amellyel új eszköz kapcsolatok hozhatók létre és az IoT-központ. A *eszközcsatlakozás* késleltetési nem szabályozza a egyidejűleg csatlakoztatott eszközök maximális számát. A szabályozási attól függ, hogy az IoT hub kiépített egységek száma.
+Fontos, hogy hello tooclarify *eszközcsatlakozás* késleltetési irányító hello sebesség, amellyel új eszköz kapcsolatok hozhatók létre és az IoT-központ. Hello *eszközcsatlakozás* késleltetési nem szabályozza a hello egyidejűleg csatlakoztatott eszközök maximális számát. hello adatátviteli egység az IoT-központ hello kiépített hello száma függ.
 
-Például ha vásárol S1 egyetlen egységben, kap egy 100-kapcsolatok a késleltetési. Ezért 100 000 eszközt a csatlakozáshoz tart legalább 1 000 másodperc (körülbelül 16 perc). Rendelkezik a identitásjegyzékhez-ben regisztrált eszközök annyi egyidejűleg csatlakoztatott eszközök azonban akkor is.
+Például ha vásárol S1 egyetlen egységben, kap egy 100-kapcsolatok a késleltetési. Ezért tooconnect 100 000 eszközt, hogy másodpercet vesz igénybe legalább 1000 (körülbelül 16 perc). Rendelkezik a identitásjegyzékhez-ben regisztrált eszközök annyi egyidejűleg csatlakoztatott eszközök azonban akkor is.
 
-Az IoT-központot egy részletes ismertető a sávszélesség-szabályozás viselkedését, lásd a következő blogbejegyzésben [IoT Hub-szabályozás és][lnk-throttle-blog].
+Az IoT-központot egy részletes ismertető viselkedését, szabályozási hello ismertető blogbejegyzésben talál [IoT Hub-szabályozás és][lnk-throttle-blog].
 
 > [!NOTE]
-> Egy adott időpontban az IoT-központ a kiépített egységek számának növelésével kvótákat vagy korlátozásokat késleltetési növelése érdekében.
+> Lehetséges tooincrease kvóták egy adott időpontban vagy a sávszélesség-szabályozási korlátok kiosztott egység az IoT-központ hello számának növelésével.
 > 
 > [!IMPORTANT]
 > Identitás kapcsolatos műveletek az eszközkezelés és a üzembe helyezési forgatókönyvek futásidejű használatra lettek tervezve. Keresztül támogatja a olvasása vagy frissítése nagyszámú eszköz identitások [importálni és exportálni a feladatokat][lnk-importexport].
@@ -69,7 +69,7 @@ Az IoT-központ érvényesíti a más működési korlátai:
 | Művelet | Korlát |
 | --------- | ----- |
 | Fájl feltöltése URI-azonosítók | SAS URI-azonosítók 10000 lehet ki egy tárfiók egy időben. <br/> Eszközönként egyszerre 10 SAS URI lehet használatban. |
-| Feladatok | Feladat előzményei őrződnek meg mentése vagy 30 napig <br/> Egyidejű feladatok maximális értéke 1 (szabad és S1, (az S2) 5, 10 (S3). |
+| Feladatok | Feladat előzményei őrződnek meg too30 nap mentése <br/> Egyidejű feladatok maximális értéke 1 (szabad és S1, (az S2) 5, 10 (S3). |
 | További végpontok | Termékváltozat fizetős hubok 10 további végpontokat is rendelkezhet. Szabad SKU hubok előfordulhat, hogy egy további végpontot. |
 | Üzenet útválasztási szabályokat | Termékváltozat fizetős hubok 100 útválasztási szabályokat is rendelkezhet. Előfordulhat, hogy az ingyenes SKU hubok öt útválasztási szabályokat. |
 | Üzenetküldési eszközről a felhőbe | Maximális üzenet mérete 256 KB |
@@ -77,14 +77,14 @@ Az IoT-központ érvényesíti a más működési korlátai:
 | Felhő eszközre üzenetkezelés | Függőben levő üzenetek a szállítási maximális érték 50 |
 
 > [!NOTE]
-> Csatlakozhat egy IoT-központ eszközök maximális számát jelenleg 500 000 értéket. Ha azt szeretné, a korlát növeléséhez, forduljon a [Microsoft Support](https://azure.microsoft.com/support/options/).
+> Jelenleg a maximális szám hello tooa egyetlen IoT-központ eszközökön is elérheti az 500 000 értéket. Ha azt szeretné, tooincrease ezt a határt, forduljon a [Microsoft Support](https://azure.microsoft.com/support/options/).
 
 ## <a name="latency"></a>Késés
-Az IoT-központ nagy hangsúlyt fektet adja meg a kis késleltetésű minden műveletnél. Azonban hálózati körülmények és egyéb előre nem látható tényezők miatt azt a maximális késés nem garantálja. A megoldás tervezésekor a következőket:
+Az IoT-központ nagy hangsúlyt fektet tooprovide kis késleltetésű minden műveletnél. Azonban toonetwork feltételek és egyéb előre nem látható tényezők miatt azt a maximális késés nem garantálja. A megoldás tervezésekor a következőket:
 
-* Ne bármely a maximális késleltetés feltételezéseket minden IoT Hub művelet elvégzése.
-* Az IoT hub, az eszközök legközelebb Azure-régióban kiépítéséhez.
-* Érdemes Azure IoT peremhálózati késésérzékeny műveletek elvégzésére, az eszköz vagy egy átjáró megközelíti az eszközt.
+* Ne bármely hello maximális késleltetés feltételezéseket minden IoT Hub művelet elvégzése.
+* Az IoT hub hello Azure-régiót legközelebbi tooyour eszközökön használhatók.
+* Érdemes lehet Azure IoT peremhálózati tooperform késésérzékeny műveletek hello eszközön vagy az átjáró Bezárás toohello eszközön.
 
 Több IoT Hub-egységek befolyásolja a sávszélesség-szabályozás korábban leírt, de nem nyújtanak semmilyen további késés előnyöket vagy garanciát.
 Ha nem várt növekszik művelet késés jelenik meg, forduljon a [Microsoft Support](https://azure.microsoft.com/support/options/).

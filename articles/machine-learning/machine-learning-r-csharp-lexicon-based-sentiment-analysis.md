@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Lexicon véleményeket Analysis - alapú Azure |} Microsoft Docs"
+title: "aaa(deprecated) Lexicon alapú véleményeket Analysis - Azure |} Microsoft Docs"
 description: "(elavult) Lexicon alapú véleményeket elemzés"
 services: machine-learning
 documentationcenter: 
@@ -16,40 +16,40 @@ ms.date: 01/06/2017
 ms.author: pengxia
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 7bc80a1e1067296528eca1a843ea30b0c27af616
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 1ed7e19441c6a8ad270a0c0f567b4aea588a583e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-lexicon-based-sentiment-analysis"></a>(elavult) Lexicon alapú véleményeket elemzés
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
 Hogyan lehet mérni a felhasználói vélemények és márkákat vagy online közösségi hálózatokkal, témakörei felé szokások, mint például a visszaküldés Facebook, Twitter-üzeneteket, értékelést, stb.? Véleményeket elemzés ilyen kérdések elemzésére szolgáló módszert biztosít.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Kétféleképpen általában véleményeket elemzés céljából. Egy felügyelt tanulási algoritmus használ, és a másik felügyeletlen tanulás képes kezelni. Felügyelt tanulási algoritmus a besorolási modell általában egy nagy megjegyzésekkel ellátott corpus épít. Pontosságát főként a jegyzet minőségének alapul, és általában a képzési folyamat hosszú időt vesz igénybe. Amellett, hogy ha egy másik tartományra, az algoritmus érvénybe lépni eredménye általában nem helyes. Felügyelt tanulási, lexicon alapú felügyeletlen tanulás által használt véleményeket szótár, amely nem igényli a tárolása egy nagy méretű adatok corpus és képzési képest – így az egész folyamat sokkal gyorsabb. 
+Kétféleképpen általában véleményeket elemzés céljából. Egy felügyelt tanulási algoritmus használ, és más hello felügyeletlen tanulási kell tekinteni. Felügyelt tanulási algoritmus a besorolási modell általában egy nagy megjegyzésekkel ellátott corpus épít. A pontosság főként alapul hello jegyzet hello minőségének, és általában hello képzési folyamat hosszú időt vesz igénybe. Amellett, hogy a Microsoft hello algoritmus tooanother tartomány alkalmazásakor hello eredménye általában nem helyes. Toosupervised tanulási lexicon alapú felügyeletlen tanulási véleményeket szótár, amely nem igényli a tárolása egy nagy méretű adatok corpus használ, és képzési – így az egész folyamat sokkal gyorsabb hello képest. 
 
-A [szolgáltatás](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) a MPQA szubjektivitás Lexicon (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), amely a leggyakrabban használt szubjektivitás lexikonok egyike épül. Nincsenek MPQA 5097 negatív és 2533 pozitív szavakat. És az összes ezeknek a szavaknak vannak leképezésként erős vagy gyenge polaritás. A teljes corpus GNU általános nyilvános licenc alatt áll. A webszolgáltatás alkalmazhatók minden rövid mondatokat, például a Twitter-üzeneteket és a Facebook-bejegyzéseket. 
+A [szolgáltatás](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) hello MPQA szubjektivitás Lexicon (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), az egyik leggyakrabban használt hello szubjektivitás lexikonok épül. Nincsenek MPQA 5097 negatív és 2533 pozitív szavakat. És az összes ezeknek a szavaknak vannak leképezésként erős vagy gyenge polaritás. hello teljes corpus GNU általános nyilvános licenc alatt áll. hello webszolgáltatás lehet alkalmazott tooany rövid mondatokat, például a Twitter-üzeneteket és a Facebook-bejegyzéseket. 
 
-> Ez a webszolgáltatás kell fenntartania – potenciálisan a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen végig a felhasználókat például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd közzé az Azure piactéren, és felhasználók és eszközök által felhasznált világszerte a szerző, a webszolgáltatás által infrastruktúra beállítás nélkül.
+> Ez a webszolgáltatás kell fenntartania – potenciálisan a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen végig a felhasználókat például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és a felhasználók és eszközök által felhasznált között hello world hello Szerző hello webszolgáltatás infrastruktúra beállítás nélkül.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-A bemeneti adatok szöveget, de a webszolgáltatás jobban rövid mondat működik. Egy 1 és 1 közötti számértéknek eredménye. Bármely alábbi 0 érték azt jelzi, hogy a szöveg a céggel kapcsolatos véleményeket negatív; Ha a fenti 0 pozitív. Az eredmény abszolút értéke azt jelzi, hogy a kapcsolódó véleményeket erősségével. 
+hello bemeneti adatok szöveget, de hello webszolgáltatás jobban rövid mondat működik. hello kimeneti numerikus értéke -1 és 1 között. Bármely alábbi 0 érték azt jelzi, hogy hello véleményeket hello szöveg negatív; Ha a fenti 0 pozitív. hello abszolút értékét hello eredmény azt jelzi, hogy hello erősségével hello kapcsolatos véleményeket. 
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/)).
+Többféleképpen is az automatizált módon hello szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
     public class ScoreResult
@@ -81,20 +81,20 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa al
 
 
 
-A bemeneti érték a "Ma egy jó napon." A kimeneti értéke "1", amely megadja, hogy a bemeneti mondat társított egy pozitív véleményeket. 
+hello bemeneti érték a "Ma egy jó napon." hello eredménye "1", amely megadja, hogy a bemeneti mondat hello társított pozitív véleményeket. 
 
 ## <a name="creation-of-web-service"></a>Webes szolgáltatás létrehozása
-> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 > 
 > 
 
-Azure Machine Learning belül egy új üres kísérlet létrehozásához. Az alábbi ábra szemlélteti a kísérlet lexicon alapú véleményeket elemzési. A "sent_dict.csv" fájl MPQA szubjektivitás lexikonban, és az adatokat a rendelkezésre álló [R-parancsfájl végrehajtása][execute-r-script]. Egy másik bemeneti érték a mintában szereplő tekintse át a vizsgálat, ahol azt végre kijelölés, az oszlop neve módosítását, és ossza fel a műveletek Amazon felülvizsgálati adatkészletből. Egy kivonatoló csomag szubjektivitás lexikonban tárolása a memória, valamint a pontszám számítási folyamatban érdekében használjuk. A teljes szöveges a rendszer "tm" csomag tokenekre, majd a word, a céggel kapcsolatos véleményeket szótárban képest. Végezetül pontszámot akkor lesz kiszámítva, a szöveg minden szubjektív szó súlya hozzáadásával. 
+Azure Machine Learning belül egy új üres kísérlet létrehozásához. hello az alábbi ábra szemlélteti hello kísérlet lexicon alapú véleményeket elemzési. hello "sent_dict.csv" fájl hello MPQA szubjektivitás lexicon, és be van állítva egy hello bevitelének [R-parancsfájl végrehajtása][execute-r-script]. Egy másik bemeneti érték a mintában szereplő felülvizsgálati adatkészletből hello Amazon felülvizsgálati vizsgálat, ahol azt végre kijelölés, az oszlop neve módosítását, és ossza fel a műveletek. Egy kivonatoló csomag toostore hello szubjektivitás lexicon hello memóriában felhasználása és hello pontszám számítási folyamatban érdekében. hello teljes szöveges a rendszer "tm" csomag tokenekre majd hello word hello véleményeket szótárban képest. Végezetül a pontszám akkor lesz kiszámítva, hello szöveg hello súlyozást az összes szubjektív szó hozzáadásával. 
 
 ### <a name="experiment-flow"></a>Kísérlet folyamata:
 ![Kísérlet folyamata][2]
 
 #### <a name="module-1"></a>1. modul:
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     sent_dict_data<- maml.mapInputPort(1) # class: data.frame
     dataset2 <- maml.mapInputPort(2) # class: data.frame
 
@@ -145,16 +145,16 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához. Az al�
     # Sample operation
     data.set <- data.frame(result)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("data.set")
 
 
 
 ## <a name="limitations"></a>Korlátozások
-Algoritmus szempontból a lexikonban-alapú véleményeket elemzésre egy általános véleményeket elemző eszközt, amely nem az adott mezők besorolási módszert jobban hajthatja végre. A negálás problémát nem is foglalkozik. A Microsoft megoldás több tagadásának jelenti a program, de jobb módja van tagadásának dictionary és néhány szabály hozhat létre. A webszolgáltatás végez jobban a rövid és egyszerű mondatokat, például a Twitter-üzeneteket és a Facebook-bejegyzéseket, mint például az Amazon értékelést hosszú és összetett mondatokat. 
+Algoritmus szempontból a lexikonban-alapú véleményeket elemzésre egy általános véleményeket elemző eszközt, amely nem adott mezők hello besorolási módszert jobban hajthatja végre. hello tagadásának probléma nem is foglalkozik. A Microsoft megoldás több tagadásának jelenti a program, de jobb módja van tagadásának dictionary és néhány szabály hozhat létre. hello webszolgáltatás végez jobban a rövid és egyszerű mondatokat, például a Twitter-üzeneteket és a Facebook-bejegyzéseket, mint például az Amazon értékelést hosszú és összetett mondatokat. 
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_1.png
 [2]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_2.png

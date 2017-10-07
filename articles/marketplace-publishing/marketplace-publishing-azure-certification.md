@@ -1,6 +1,6 @@
 ---
-title: "Első előzetesen jóváhagyott a hivatalos Microsoft Azure programon keresztül |} Microsoft Docs"
-description: "További tudnivalók a Microsoft Azure hitelesített partner program és a virtuálisgép-lemezkép, megoldássablonban, fejlesztői szolgáltatás vagy az Azure piactéren adatszolgáltatás eladásra elérése"
+title: "hello hivatalos Microsoft Azure programon keresztül előzetesen jóváhagyott aaaGet |} Microsoft Docs"
+description: "További tudnivalók: hello Microsoft Azure Certified partneren, a programot, és hogyan szolgáltatás a virtuális gép lemezképére, megoldássablonban, fejlesztői szolgáltatás vagy adatok tooget toosell hello Azure piactéren"
 services: marketplace-publishing
 documentationcenter: na
 author: HannibalSII
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
 ms.author: hascipio
-ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5741b59435a24125f6ecd55c3e7d934fd012961
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>Első előzetesen jóváhagyott a hivatalos Microsoft Azure programon keresztül
-Ez a cikk útmutatás válik a hivatalos Microsoft Azure, hogy a megoldás közzététele az Azure piactéren, és érvényes marketing előnyeit. Részletes áttekintést nyújt a Microsoft Azure hitelesített program és előnyeit, a Microsoft [http://azure.com/certified](http://azure.com/certified).
+# <a name="get-pre-approved-via-hello-microsoft-azure-certified-program"></a>Első előzetesen jóváhagyott hello hivatalos Microsoft Azure programon keresztül
+Ez a cikk biztosítanak utasításokat toobecome hivatalos Microsoft Azure, hogy a megoldás történő közzététele hello Azure piactér és előnyök marketing érvényes. Hello hivatalos Microsoft Azure program és előnye részletes áttekintése a Microsoft [http://azure.com/certified](http://azure.com/certified).
 
 > [!IMPORTANT]
-> Az Azure hitelesítő is alkalmazható, csak akkor, ha azt tervezi, a virtuális gép vagy a megoldássablon létrehozásához az Azure piactéren.
+> hello Azure hitelesítő is alkalmazható, csak ha toocreate egy virtuális gép vagy hello Azure piactér megoldás sablonját.
 
 ## <a name="getting-started"></a>Bevezetés
-1. A hitelesített megoldás és az Azure piactéren előkészítve az elérési úton első lépése az, hogy töltse ki az alkalmazás űrlapot a a [hivatalos Microsoft Azure](https://createopportunity.azurewebsites.net) weblap.
-2. Ha a jogosultsági feltételeknek, és az alkalmazás jóváhagyva, azt kezdő együtt előkészítéséről a megoldás az Azure piactéren.
-3. Ha egy Partner-Ügyfélreferenséhez vagy a DX Partner Manager dolgozik, kérje meg őket, hogy jelöljön ki a megoldás az Azure hitelesített a program, vagy keresse fel a [hivatalos Microsoft Azure](http://createopportunity.azurewebsites.net) weblap, töltse ki az alkalmazás az űrlapot, és adja meg az e-mailt a Partner Ügyfélfelelőshöz vagy a DX Partner vezető támogatója forduljon a Microsoft mezőben.
+1. első lépésben hello hello elérési toogetting a megoldás hitelesített, és előkészítve toohello Azure piactér toofill hello alkalmazás űrlapot a hello [hivatalos Microsoft Azure](https://createopportunity.azurewebsites.net) weblap.
+2. Ha hello jogosultsági feltételeknek megfelelő, és az alkalmazás jóváhagyva, azt Ön tooonboard használata a megoldás toohello Azure piactér indul el.
+3. Ha egy Partner-Ügyfélreferenséhez vagy a DX Partner Manager dolgozik, kérje meg őket toonominate hello Azure hitelesített a megoldás a programot, vagy válassza a toohello [hivatalos Microsoft Azure](http://createopportunity.azurewebsites.net) weboldal – hello alkalmazás űrlapot kitöltés mezőbe pedig írja be a Partner Ügyfélfelelőshöz vagy a DX Partner vezető hello e-mail hello támogató Microsoft-kapcsolattartóját.
 
 > [!IMPORTANT]
-> **"Értékesít-feladó" országok** – ahhoz, hogy a szolgáltatások a Microsoft Azure piactérre, a regisztrált entitás rendelkeznie kell egy, a jóváhagyott "értékesít-feladó" országok el. Ez a korlátozás kifizetés és adózás okból is. A közeljövőben bontsa ki a országok listája, így kövessen bennünket aktívan azt olyan eszközökre. A teljes listát lásd a szakasz 1.b. a [Azure piactér részvételét házirendek](http://go.microsoft.com/fwlink/?LinkID=526833).
+> **"Értékesít-feladó" országok** – az a Microsoft Azure piactérről hello a szolgáltatások toosell sorrendben, a regisztrált entitás szüksége van egy jóváhagyott hello "értékesít-feladó" országok toobe. Ez a korlátozás kifizetés és adózás okból is. Azt aktívan keresést tooexpand a országok listája hello jövőbeli közelében, így kövessen bennünket. Hello teljes listáját, lásd: a hello szakasz 1b [Azure piactér részvételét házirendek](http://go.microsoft.com/fwlink/?LinkID=526833).
 
 
 ## <a name="next-step"></a>Következő lépés
-Miután a Microsoft Azure hitelesített program előtti jóváhagyási kapott, folytathatja [regisztrálható a Microsoft-fiókjával a Microsoft értékesítő](marketplace-publishing-accounts-creation-registration.md).
+Miután hello hivatalos Microsoft Azure program előtti jóváhagyási kapott, a Folytatás túl[regisztrálható a Microsoft-fiókjával a Microsoft értékesítő](marketplace-publishing-accounts-creation-registration.md).
 
 ## <a name="see-also"></a>Lásd még:
-* [Első lépések: az ajánlat közzététele az Azure piactéren](marketplace-publishing-getting-started.md)
+* [Első lépések: hogyan toopublish egy ajánlat toohello Azure piactéren](marketplace-publishing-getting-started.md)

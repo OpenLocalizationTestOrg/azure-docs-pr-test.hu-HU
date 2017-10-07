@@ -1,6 +1,6 @@
 ---
-title: "Naplóelemzési jelentkezzen search REST API |} Microsoft Docs"
-description: "Ez az útmutató egy alapszintű oktatóanyag: hogyan használhatja a Naplóelemzési search REST API-t az Operations Management Suite (OMS) és példák a parancsok használata biztosít."
+title: "aaaLog Analytics napló search REST API |} Microsoft Docs"
+description: "Ez az útmutató egy alapszintű hello használatát ismertető oktatóanyag Naplóelemzési keresni REST API hello Operations Management Suite (OMS), és példák, amelyek bemutatják, hogyan biztosít toouse hello parancsok."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 78afb2f065dde4a3e7a3ab787c939b3c52b72cc6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dafe5eeb8cc11a339f2cbf78cec657e344d87cac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-log-search-rest-api"></a>A Naplóelemzési jelentkezzen search REST API-n
-Ez az útmutató egy alapszintű oktatóanyag, valamint az, a napló Analytics Search REST API használatát. A Naplóelemzési része az Operations Management Suite (OMS).
+Ez az útmutató egy alapszintű oktatóanyag, beleértve a példákat a hello napló Analytics Search REST API használatát. A Naplóelemzési hello Operations Management Suite (OMS) részét képezi.
 
 > [!NOTE]
-> Ha a munkaterületet lett frissítve a [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), akkor kell továbbra is a hagyományos lekérdezési nyelv használata a naplófájl-keresési API, ebben a cikkben leírtak szerint.  Egy olyan új API megjelenik frissített munkaterületek, valamint a dokumentáció frissülni fog ekkor. 
+> Ha a munkaterületet frissített toohello [új Log Analytics lekérdezési nyelv](log-analytics-log-search-upgrade.md), majd folytatja kell toouse hello örökölt lekérdezési nyelv hello napló keresése API az ebben a cikkben leírtak szerint.  Egy olyan új API megjelenik frissített munkaterületek, valamint hello dokumentáció frissülni fog ekkor. 
 
 > [!NOTE]
-> Naplóelemzési korábban meghívták az Operational Insights, ezért az erőforrás-szolgáltató használt a név.
+> Naplóelemzési korábban meghívták az Operational Insights, ezért az erőforrás-szolgáltatón hello használt hello név.
 >
 >
 
-## <a name="overview-of-the-log-search-rest-api"></a>A naplófájl-keresési REST API – áttekintés
-A napló Analytics Search REST API RESTful, és az Azure Resource Manager API-n keresztül érhető el. Ez a cikk ismerteti az API használatával történő eléréséhez példák [ARMClient](https://github.com/projectkudu/ARMClient), egy nyílt forráskódú parancssori eszköz, amely leegyszerűsíti az Azure Resource Manager API meghívása. A ARMClient használata számos lehetőség a napló Analytics Search API eléréséhez. Lehetősége az Azure PowerShell modul használandó OperationalInsights, amely keresési eléréséhez parancsmagokat tartalmaz. Ezekkel az eszközökkel használhatja az Azure Resource Manager API-hívások indítása az OMS-munkaterület, és rajtuk keresési parancsok végrehajtása. Az API-t kiírja a keresési eredmények JSON formátumban, hogy lehetővé teszi a programozott módon használja a keresési eredmények között számos különböző módja.
+## <a name="overview-of-hello-log-search-rest-api"></a>Hello napló Search REST API – áttekintés
+hello napló Analytics Search REST API RESTful és hello Azure Resource Manager API keresztül érhető el. Ez a cikk példákat hello API használatával történő eléréséhez [ARMClient](https://github.com/projectkudu/ARMClient), egy nyílt forráskódú parancssori eszköz, amely egyszerűbbé teszi a meghívása hello Azure Resource Manager API-val. hello ARMClient használata sok beállítások tooaccess hello napló Analytics Search API közül. Másik lehetőség is toouse hello Azure PowerShell-modul OperationalInsights, amely keresési eléréséhez parancsmagokat tartalmaz. Ezekkel az eszközökkel hello Azure Resource Manager API toomake hívások tooOMS munkaterületek használják, és hajtsa végre a keresési parancsok rajtuk. hello API kiírja a keresési eredmények JSON formátumban, így toouse hello keresési eredmények között számos különböző módon programozott módon.
 
-Az Azure Resource Managerrel használható keresztül egy [.NET-keretrendszerhez készült](https://msdn.microsoft.com/library/azure/dn910477.aspx) és a [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx). További információkért tekintse át a csatolt weblapokat.
+hello Azure Resource Manager használható keresztül egy [.NET-keretrendszerhez készült](https://msdn.microsoft.com/library/azure/dn910477.aspx) és hello [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx). toolearn több, tekintse át a kapcsolódó hello weblapok.
 
 > [!NOTE]
-> Ha egy összesítési paranccsal például `|measure count()` vagy `distinct`, minden hívás kereséséhez lépjen vissza legfeljebb 500 000 rekordot. Keresések, amelyek nem tartalmaznak egy összesítési parancs legfeljebb 5 000 rekordot ad vissza.
+> Ha egy összesítési paranccsal például `|measure count()` vagy `distinct`, minden hívás toosearch visszatérhessen legfeljebb 500 000 rekordot. Keresések, amelyek nem tartalmaznak egy összesítési parancs legfeljebb 5 000 rekordot ad vissza.
 >
 >
 
 ## <a name="basic-log-analytics-search-rest-api-tutorial"></a>Egyszerű napló Analytics Search REST API-oktatóanyag
-### <a name="to-use-armclient"></a>ARMClient használata
-1. Telepítés [Chocolatey](https://chocolatey.org/), amelyen egy megnyitott forrás Package Manager Windows. Nyisson meg egy parancssort rendszergazdaként, és futtassa a következő parancsot:
+### <a name="toouse-armclient"></a>toouse ARMClient
+1. Telepítés [Chocolatey](https://chocolatey.org/), amelyen egy megnyitott forrás Package Manager Windows. Nyisson meg egy parancssort rendszergazdaként, és futtassa a parancsot a következő hello:
 
     ```
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
     ```
-2. ARMClient telepítse a következő parancs futtatásával:
+2. Telepítse a ARMClient hello a következő parancs futtatásával:
 
     ```
     choco install armclient
     ```
 
-### <a name="to-perform-a-search-using-armclient"></a>A keresések ARMClient végrehajtásához
+### <a name="tooperform-a-search-using-armclient"></a>a kívánt ARMClient használatával tooperform
 1. Jelentkezzen be Microsoft-fiókjával vagy a munkahelyi vagy iskolai fiók használatával:
 
     ```
     armclient login
     ```
 
-    Sikeres bejelentkezés kötve az adott fiókhoz az összes előfizetés listája:
+    Sikeres bejelentkezés megadott fiók összes kötött előfizetések toohello sorolja fel:
 
     ```
     PS C:\Users\SampleUserName> armclient login
@@ -72,13 +72,13 @@ Az Azure Resource Managerrel használható keresztül egy [.NET-keretrendszerhez
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 2)
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 3)
     ```
-2. Az Operations Management Suite-munkaterület érhető el:
+2. Hello Operations Management Suite-munkaterület érhető el:
 
     ```
     armclient get /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces?api-version=2015-03-20
     ```
 
-    Sikeres Get hívást volna kimeneti összes munkaterületek előfizetéshez társítva:
+    Sikeres Get hívást volna kimeneti összes munkaterületek toohello előfizetés társítva:
 
     ```
     {
@@ -108,7 +108,7 @@ Az Azure Resource Managerrel használható keresztül egy [.NET-keretrendszerhez
     ```
 
 ## <a name="log-analytics-search-rest-api-reference-examples"></a>Naplófájl Analytics Search REST API referencia példák
-A következő példák azt szemléltetik, hogyan használhatja a keresési API-t.
+hello a következő példák bemutatják, hogyan használhatja a keresés API hello.
 
 ### <a name="search---actionread"></a>Keresési - művelet olvasása
 **A minta URL-címe:**
@@ -133,17 +133,17 @@ A következő példák azt szemléltetik, hogyan használhatja a keresési API-t
     }
     armclient post /subscriptions/{Subscription ID}/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{Workspace ID}/search?api-version=2015-03-20 $searchParametersJson
 ```
-A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
+a következő táblázat hello hello tulajdonságait ismerteti.
 
 | **Tulajdonság** | **Leírás** |
 | --- | --- |
-| Felső |A visszaadandó eredmény maximális száma. |
+| Felső |az eredmények tooreturn hello maximális számát. |
 | Jelöljön ki |Megfelelő mezőkben konzolban használt általában előtti és utáni paramétereket tartalmaz |
-| előre |Előtagok az adott karakterlánc, a megfelelő mezőket. |
-| Post |A megadott karakterlánc hozzáfűzi a megfelelő mezőket. |
-| lekérdezés |A keresési lekérdezést, és adja vissza az eredményeket. |
-| start |A kívánt eredmény található időszak kezdete. |
-| Vége |A kívánt eredmény található időszak végén. |
+| előre |Előtagok hello megadott karakterlánc megfelel tooyour mezőket. |
+| Post |Hozzáfűzi a megadott karakterlánc megfelel tooyour mezők hello. |
+| lekérdezés |hello keresési lekérdezés toocollect használja, és adja vissza az eredményeket. |
+| start |azt szeretné, hogy a található eredmények toobe hello időkerete hello elejére. |
+| Vége |azt szeretné, hogy a található eredmények toobe hello időkerete hello végét. |
 
 **Válasz:**
 
@@ -197,14 +197,14 @@ A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
 ```
 
 ### <a name="searchid---actionread"></a>Keresés / {azonosító} - művelet olvasása
-**A kérelem egy mentett keresés tartalma:**
+**A kérelem egy mentett keresés hello tartalma:**
 
 ```
     armclient post /subscriptions/{SubId}/resourceGroups/{ResourceGroupId}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/search/{SearchId}?api-version=2015-03-20
 ```
 
 > [!NOTE]
-> A search függvény "Folyamatban" állapotú, majd a frissített eredményeit lekérdezési végezhető el ez az API. 6 perc után a a Keresés eredménye így a rendszer eldobja a gyorsítótárból, és HTTP állapotba adja vissza. A kezdeti keresési kérelem azonnal visszaadja a "Sikeres" állapotba, ha az eredmények nem kerülnek a gyorsítótárba, amely az API vissza HTTP állapotba, ha a lekérdezés. Egy 200-as HTTP-eredmény tartalma ugyanabban a formában, a kezdeti keresési kérelem csak a frissített értékekkel.
+> Ha hello keresési "Folyamatban" állapotú ad vissza, majd lekérdezési frissítése hello eredmények végezhető el ez az API. 6 perc után hello hello keresés eredménye így a rendszer eldobja hello gyorsítótárból, és HTTP állapotba adja vissza. Hello kezdeti keresési kérelem azonnal visszaadja a "Sikeres" állapotba, ha hello eredmények nem lettek hozzáadva a HTTP már meg API tooreturn okoz, ha a lekérdezés toohello gyorsítótár. hello egy 200-as HTTP-eredmény tartalma a hello hello kezdeti keresési kérelem csak a frissített értékekkel formátuma azonos.
 >
 >
 
@@ -219,18 +219,18 @@ Támogatott módszerek: GET PUT törlése
 
 Gyűjtemény módszereket támogatja: beolvasása
 
-A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
+a következő táblázat hello hello tulajdonságait ismerteti.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Azonosító |Az egyedi azonosítója. |
-| ETag |**Szükséges javítás**. Minden egyes kiszolgáló frissítve. Értéket meg kell egyeznie az aktuális tárolt érték vagy "*" frissítéséhez. 409 régi vagy érvénytelen értéket adott vissza. |
-| Properties.Query |**Szükséges**. A keresési lekérdezés. |
-| properties.displayName |**Szükséges**. A lekérdezés felhasználói megjelenítendő nevét. |
-| Properties.Category |**Szükséges**. A lekérdezés felhasználói kategóriát. |
+| Azonosító |hello egyedi azonosítója. |
+| ETag |**Szükséges javítás**. Minden egyes kiszolgáló frissítve. Érték egyenlő toohello aktuális tárolt értéknek kell lennie, vagy "*" tooupdate. 409 régi vagy érvénytelen értéket adott vissza. |
+| Properties.Query |**Szükséges**. hello keresési lekérdezés. |
+| properties.displayName |**Szükséges**. hello lekérdezés hello felhasználó által definiált megjelenítési neve. |
+| Properties.Category |**Szükséges**. hello felhasználói kategória hello lekérdezés. |
 
 > [!NOTE]
-> A Naplóelemzési keresési API jelenleg adja vissza a felhasználó által létrehozott mentett keresések során kérdezi le azt a mentett kereséseket a munkaterületen. Az API nem ad vissza a mentett keresések megoldások által biztosított.
+> hello Naplóelemzési keresési API-JÁNAK jelenleg ad vissza, felhasználó által létrehozott mentett keresések során kérdezi le azt a mentett kereséseket a munkaterületen. hello API nem ad vissza a mentett keresések megoldások által biztosított.
 >
 >
 
@@ -243,7 +243,7 @@ A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
 ```
 
 > [!NOTE]
-> A nevet minden mentett keresések, ütemezéseihez és napló Analytics API-val létrehozott kisbetűs kell lennie.
+> minden mentett keresések, ütemezéseihez és hello napló Analytics API létre műveletek hello nevét kisbetűs kell lennie.
 
 ### <a name="delete-saved-searches"></a>Törölje a mentett kereséseket
 **A kérelem:**
@@ -261,7 +261,7 @@ A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
 ```
 
 ### <a name="metadata---json-only"></a>Metaadat - JSON csak
-Itt módja a mezőket az adatok gyűjtése a munkaterületen az összes napló megjelenítéséhez. Például ha szeretné tudni, hogy ha az esemény típusa van-e a számítógép neve mező, majd a lekérdezés módja egy ellenőrzése.
+Íme egy módon toosee hello mezők a munkaterület hello adatgyűjtés az összes napló típusához. Például ha szeretné tudni, hogy ha hello eseménytípus van-e a számítógép neve mező, akkor ez a lekérdezés értéke egyirányú toocheck.
 
 **Kérelem mezők:**
 
@@ -300,25 +300,25 @@ Itt módja a mezőket az adatok gyűjtése a munkaterületen az összes napló m
     }
 ```
 
-A következő táblázat ismerteti a rendelkezésre álló tulajdonságok.
+a következő táblázat hello hello tulajdonságait ismerteti.
 
 | **Tulajdonság** | **Leírás** |
 | --- | --- |
 | név |Mező neve. |
-| displayName |A mezőben megjelenítendő nevét. |
-| type |A mező értékének típusa. |
+| displayName |hello hello mező nevét jeleníti meg. |
+| type |hello hello mező értékének típusa. |
 | kategorizálható |"Indexed", aktuális kombinációja "tárolt" és "dimenzió" tulajdonságait. |
 | Megjelenítése |Aktuális "üzenet megjelenítése" tulajdonság. Értéke TRUE, ha mező a keresési látható. |
-| ownerType |Csak a előkészítve IP-címekhez tartozó típusok csökken. |
+| ownerType |Csökkentett tooonly típusok tooonboarded IP-címekhez tartozó. |
 
 ## <a name="optional-parameters"></a>Nem kötelező paraméterek
-A következő rendelkezésre álló választható paramétereket ismerteti.
+a következő információk hello rendelkezésre álló választható paramétereket ismerteti.
 
 ### <a name="highlighting"></a>Kiemelve
-A "Kiemelt" paraméter egy nem kötelező paraméter, használhatja a keresés alrendszer kéréséhez tartalmaznak jelölők válaszában.
+hello "Highlight" paraméter egy nem kötelező paraméter, használhatja a toorequest hello keresési alrendszer tartalmaznak jelölők válaszában.
 
-Ezek a jelölők jelzik kezdetét, és a záró kijelölt szöveg, amely megfelel a keresési lekérdezés megadott feltételek.
-Előfordulhat, hogy adja meg a kezdő és záró jelölők kiemelt kifejezés csomagolásához keresés által használt.
+Ezek a jelölők hello start jelzik, és a záró kijelölt szöveg, amely megfelel a keresési lekérdezés megadott hello feltételeket.
+Előfordulhat, hogy adja meg a hello kezdő és záró jelölők toowrap kiemelt hello keresőkifejezéssel által használt.
 
 **Példa keresési lekérdezés**
 
@@ -361,10 +361,10 @@ Előfordulhat, hogy adja meg a kezdő és záró jelölők kiemelt kifejezés cs
     }
 ```
 
-Figyelje meg, hogy az előző eredmény tartalmazza-e olyan hibaüzenetet, amely a következő előtaggal, és hozzáfűzi.
+Figyelje meg, hogy az előző eredmény hello olyan hibaüzenetet, amely a következő előtaggal, és hozzáfűzi tartalmazza.
 
 ## <a name="computer-groups"></a>Számítógépcsoportok
-Számítógépcsoportok különleges mentett keresések, amely a számítógépek készlettel tért vissza.  A számítógép (csoport) további lekérdezések segítségével az eredményeket a csoport számítógépeinek korlátozza.  A számítógép (csoport), a mentett kereséseket értékkel rendelkező számítógép csoport címkével ellátott lett megvalósítva.
+Számítógépcsoportok különleges mentett keresések, amely a számítógépek készlettel tért vissza.  Más lekérdezések toolimit hello eredmények toohello csoportban lévő számítógépek hello is használhatja a számítógép (csoport).  A számítógép (csoport), a mentett kereséseket értékkel rendelkező számítógép csoport címkével ellátott lett megvalósítva.
 
 Az alábbiakban látható egy számítógépcsoport mintát választ.
 
@@ -383,18 +383,18 @@ Az alábbiakban látható egy számítógépcsoport mintát választ.
 ```
 
 ### <a name="retrieving-computer-groups"></a>Számítógépcsoportok beolvasása
-Egy számítógépcsoport lekéréséhez használja a Get metódust csoport azonosítóval.
+tooretrieve egy számítógépcsoport használata hello Get metódus hello csoporttal azonosítóját.
 
 ```
 armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Group ID}`?api-version=2015-03-20
 ```
 
 ### <a name="creating-or-updating-a-computer-group"></a>Létrehozásakor vagy frissítésekor. a számítógép (csoport)
-Hozzon létre egy számítógépcsoportot, használja a Put metódust a mentett keresés egyedi azonosítót. Használjon egy meglévő számítógép-csoport azonosítója, ha egy módosul. Ha egy számítógép (csoport) hoz létre a Log Analytics-portálról, majd az azonosító a csoportból, a név jön létre.
+toocreate egy számítógépcsoport hello Put metódust használja a mentett keresés egyedi azonosítót. Használjon egy meglévő számítógép-csoport azonosítója, ha egy módosul. Ha hello Log Analytics-portálról egy számítógép (csoport) hoz létre, majd hello azonosító hello csoportból, neve jön létre.
 
-A lekérdezés a meghatározása használt számítógépek csoportjára működnek majd megfelelően kell visszaadnia.  Javasoljuk, hogy a lekérdezés leállítása `| Distinct Computer` annak érdekében, hogy a megfelelő adat.
+hello lekérdezés hello csoport definíciójának megfelelően a hello csoport toofunction számítógépcsoportot kell visszaadnia.  Javasoljuk, hogy a lekérdezés leállítása `| Distinct Computer` tooensure hello megfelelő adat.
 
-A mentett keresés definition tartalmaznia kell egy címke nevű csoport a számítógép a következő keresésre számítógépcsoportként besorolását értékű.
+mentett keresés hello hello meghatározása tartalmaznia kell egy csoport nevű számítógép érték hello keresési toobe fontosként megjelölt számítógépcsoport címkét.
 
 ```
     $etag=Get-Date -Format yyyy-MM-ddThh:mm:ss.msZ
@@ -409,7 +409,7 @@ A mentett keresés definition tartalmaznia kell egy címke nevű csoport a szám
 ```
 
 ### <a name="deleting-computer-groups"></a>Számítógép-csoportok törlése
-Olyan számítógép-csoport törléséhez használja a Delete metódus csoport azonosítóval.
+toodelete egy számítógépcsoport használata hello Delete metódust hello csoporttal azonosítóját.
 
 ```
 armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/$groupId`?api-version=2015-03-20
@@ -417,4 +417,4 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 
 
 ## <a name="next-steps"></a>Következő lépések
-* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) egyéni mezőkkel feltétel lekérdezések összeállításához.
+* További tudnivalók [keresések jelentkezzen](log-analytics-log-searches.md) toobuild lekérdezések egyéni mezők feltétel használatával.

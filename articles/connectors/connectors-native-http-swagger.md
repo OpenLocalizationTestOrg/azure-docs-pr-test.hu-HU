@@ -1,6 +1,6 @@
 ---
-title: "Hívja a Swagger kiegészítve HTTP REST-végpontok Azure Logic Apps-összekötője |} Microsoft Docs"
-description: "REST-végpontok csatlakozni a logic Apps alkalmazásokból, kiegészítve a HTTP Swagger Swagger keresztül összekötő"
+title: "kiegészítve HTTP Swagger aaaCall REST-végpontok Azure Logic Apps-összekötője |} Microsoft Docs"
+description: "Csatlakozás tooREST végpontok a logic Apps alkalmazásokból keresztül Swagger kiegészítve hello HTTP Swagger-összekötő"
 services: logic-apps
 author: jeffhollan
 manager: anneta
@@ -15,81 +15,81 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: 3e9229d94e96aad7b769d0e55d208d856e3b80bc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: baaa57689ff41fcd052f9d86086e36619ddec46e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-http--swagger-action"></a>Ismerkedjen meg a HTTP és a Swagger művelet
+# <a name="get-started-with-hello-http--swagger-action"></a>Ismerkedés a hello HTTP + Swagger művelet
 
-A REST-végpont keresztül az első osztályú összekötő hozhat létre egy [Swagger-dokumentum](https://swagger.io) a HTTP és a Swagger használata esetén a logic app munkafolyamat művelet. A logic apps hívni minden REST-végpont első osztályú Logic App Designer nyújthassunk is kiterjeszthető.
+Első osztályú összekötő tooany REST-végpont használatával hozhat létre egy [Swagger-dokumentum](https://swagger.io) használatakor hello HTTP + Swagger műveleti a logic app munkafolyamat. Logic apps toocall bármely REST-végpont első osztályú Logic App Designer nyújthassunk is kiterjeszthető.
 
-Az összekötők logic Apps alkalmazások létrehozásához, lásd: [új logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
+Hogyan toocreate a logic apps, összekötőkkel: toolearn [új logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
 ## <a name="use-http--swagger-as-a-trigger-or-an-action"></a>A HTTP + Swagger egy eseményindító vagy egy műveletet
 
-A HTTP + Swagger indul el, és azonos módon működik, a művelet a [HTTP-művelet](connectors-native-http.md) jelentkezik, mintha az API-struktúra és kimeneteinek Logic App Designer jobb környezetet biztosítson, de a [Swagger-metaadatok](https://swagger.io). Használhatja a HTTP + Swagger összekötő kiindulópontként. Lekérdezési eseményindító végrehajtásához, hajtsa végre a lekérdezés minta ismertetett [hozzon létre egyéni API-k hívására más API-k, a szolgáltatások és a rendszer a logic Apps alkalmazásokból](../logic-apps/logic-apps-create-api-app.md#polling-triggers).
+hello HTTP + Swagger eseményindítója és tevékenysége fel munkahelyi hello ugyanaz, mint hello [HTTP-művelet](connectors-native-http.md) jelentkezik, mintha hello API struktúra és kimeneteinek hello Logic App Designer jobb környezetet biztosítson, de [Swagger-metaadatok](https://swagger.io) . Hello HTTP + Swagger-összekötőt használhatja kiindulópontként. Tooimplement lekérdezési eseményindítót, hajtsa végre hello lekérdezési mintát ismertetett [más API-k, a szolgáltatások és a rendszer hozzon létre egyéni API-k toocall a logic Apps alkalmazásokból](../logic-apps/logic-apps-create-api-app.md#polling-triggers).
 
 További információ [logic app eseményindítók és műveletek](connectors-overview.md).
 
-Itt található példa bemutatja, hogyan használja a HTTP és a Swagger-műveleti logikai alkalmazás munkafolyamata a műveletet.
+Íme egy példa a hogyan toouse hello HTTP + Swagger műveletet, mert a logikai alkalmazás munkafolyamata művelet.
 
-1. Válassza ki a **új lépés** gombra.
+1. Jelölje be hello **új lépés** gombra.
 2. Válassza ki **művelet hozzáadása**.
-3. A művelet a keresőmezőbe írja be **swagger** lista a HTTP + Swagger művelet.
+3. Hello művelet keresési mezőbe, írja be a **swagger** toolist hello HTTP + Swagger művelet.
    
     ![Válassza ki a HTTP + Swagger művelet](./media/connectors-native-http-swagger/using-action-1.png)
-4. Írja be a Swagger-dokumentum URL-címe:
+4. Írja be a Swagger-dokumentum hello URL-címe:
    
-   * A Logic App Designer használatához az URL-cím HTTPS-végpontnak kell lennie, és a CORS engedélyezve van.
-   * A Swagger-dokumentum nem felel meg ennek a követelménynek, ha [Azure Storage a CORS engedélyezése mellett](#hosting-swagger-from-storage) a fájlt kívánja tárolni.
-5. Kattintson a **következő** olvassa el és a Swagger-dokumentumból.
-6. Adja hozzá a HTTP-hívás a szükséges paramétereket.
+   * toowork hello Logic App Designer hello URL-címet a HTTPS-végpontnak kell lennie, és a CORS engedélyezve van.
+   * Hello Swagger-dokumentum nem felel meg ennek a követelménynek, ha [Azure Storage a CORS engedélyezése mellett](#hosting-swagger-from-storage) toostore hello dokumentum.
+5. Kattintson a **következő** tooread és a leképezési hello Swagger-dokumentum.
+6. Adja hozzá a hello HTTP hívás a szükséges paramétereket.
    
     ![Teljes HTTP-művelet](./media/connectors-native-http-swagger/using-action-2.png)
-7. Mentse, és tegye közzé a Logic Apps alkalmazást, kattintson a **mentése** designer eszköztáron.
+7. toosave és a logikai alkalmazás közzétételéhez kattintson **mentése** designer eszköztáron.
 
 ### <a name="host-swagger-from-azure-storage"></a>Az Azure Storage állomás Swagger
-Előfordulhat, hogy szeretne hivatkozni, amely nem található, vagy, amely nem felel meg a biztonsági és a Tervező eltérő eredetű követelményei Swagger dokumentumot. A probléma megoldásához, a Swagger-dokumentum az Azure Storage tárolja, és hivatkozni, a dokumentum a CORS engedélyezése.  
+Érdemes lehet tooreference, amely nem található, vagy, amely nem felel meg a hello biztonsági és eltérő eredetű követelményei hello designer Swagger dokumentumot. tooresolve a probléma hello Swagger-dokumentum tárolására az Azure Storage és a CORS tooreference hello dokumentum engedélyezése.  
 
-Létrehozása, konfigurálása és a Swagger-dokumentumok tárolására az Azure Storage lépései a következők:
+Az alábbiakban hello lépéseket toocreate, konfigurálása és Swagger dokumentumok tárolására az Azure Storage:
 
-1. [Az Azure storage-fiók létrehozása az Azure Blob storage szolgáltatással](../storage/common/storage-create-storage-account.md). Ez a lépés végrehajtásához engedélyek beállítása **nyilvános hozzáférés**.
+1. [Az Azure storage-fiók létrehozása az Azure Blob storage szolgáltatással](../storage/common/storage-create-storage-account.md). tooperform ez. lépés:, engedélyek beállítása túl**nyilvános hozzáférés**.
 
-2. A CORS engedélyezése blobot. 
+2. A CORS engedélyezése hello blob. 
 
-   Ezzel a beállítással automatikusan konfigurálásához használható [a PowerShell parancsfájl](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1).
+   tooautomatically konfigurálja ezt a beállítást, használja [a PowerShell parancsfájl](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1).
 
-3. A Swagger-fájl feltöltése a blob. 
+3. Hello Swagger-fájl toohello blob feltöltése. 
 
-   Az ebben a lépésben végezheti el a [Azure-portálon](https://portal.azure.com) vagy egy eszköz, például a [Azure Tártallózó](http://storageexplorer.com/).
+   Ebben a lépésben végezhető el hello [Azure-portálon](https://portal.azure.com) vagy egy eszköz, például a [Azure Tártallózó](http://storageexplorer.com/).
 
-4. A dokumentum az Azure Blob storage HTTPS-kapcsolat hivatkozik. 
+4. Egy HTTPS kapcsolat toohello dokumentum az Azure Blob storage hivatkozik. 
 
-   A hivatkozás ezt a formátumot használja:
+   hello hivatkozás ezt a formátumot használja:
 
    `https://*storageAccountName*.blob.core.windows.net/*container*/*filename*`
 
 ## <a name="technical-details"></a>Technikai részletek
-Az alábbiakban az eseményindítók és műveletek részleteit, amely a HTTP + Swagger összekötő támogatja.
+Az alábbiakban részletesen hello hello eseményindítók és műveletek, amelyhez a HTTP + Swagger összekötő támogatja.
 
 ## <a name="http--swagger-triggers"></a>HTTP + Swagger eseményindítók
-Egy eseményindító egy eseményt, amely segítségével indítsa el a munkafolyamatot, amely a logikai alkalmazás van definiálva. [További tudnivalók az eseményindítók.](connectors-overview.md) A HTTP és a Swagger összekötő egy eseményindító tartozik.
+Egy eseményindító nem lehet a logikai alkalmazás definiált használt toostart hello munkafolyamat esemény. [További tudnivalók az eseményindítók.](connectors-overview.md) HTTP + Swagger hello összekötő egy eseményindító tartozik.
 
 | Eseményindító | Leírás |
 | --- | --- |
-| HTTP + Swagger |Egy HTTP-hívást, és vissza válasz tartalma |
+| HTTP + Swagger |Egy HTTP-hívást, és térjen vissza a hello válasz tartalom |
 
 ## <a name="http--swagger-actions"></a>HTTP + Swagger műveletek
-Egy művelet során, amely a logikai alkalmazás definiált munkafolyamat végzi. [Ismerje meg a műveletet.](connectors-overview.md) A HTTP és a Swagger összekötő tartozik egy lehetséges művelet.
+Egy művelet során, amely logikai alkalmazás definiált hello munkafolyamat végzi. [Ismerje meg a műveletet.](connectors-overview.md) HTTP + Swagger hello összekötő tartozik egy lehetséges művelet.
 
 | Műveletek | Leírás |
 | --- | --- |
-| HTTP + Swagger |Egy HTTP-hívást, és vissza válasz tartalma |
+| HTTP + Swagger |Egy HTTP-hívást, és térjen vissza a hello válasz tartalom |
 
 ### <a name="action-details"></a>A művelet részletei
-A HTTP és a Swagger összekötő egy lehetséges műveletet tartalmaz. Az alábbiakban az egyes műveletek, a szükséges és választható beviteli mezők és a megfelelő kimeneti részletek használatát társított információkat.
+HTTP + Swagger hello összekötő egy lehetséges műveletet tartalmaz. Az alábbiakban az egyes hello műveletek, a szükséges és választható beviteli mezőt, és a megfelelő kimeneti részletek használatát társított hello kapcsolatos információkat.
 
 #### <a name="http--swagger"></a>HTTP + Swagger
 Ellenőrizze a kimenő HTTP-kérelem a Swagger-metaadatok segítséget.
@@ -97,11 +97,11 @@ Egy csillag (*) azt jelenti, hogy a mezőt kötelező kitölteni.
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| Módszer * |Módszer |Használja a HTTP-műveletet. |
-| URI * |URI |A HTTP-kérelem URI-Azonosítóját. |
-| Fejlécek |Fejlécek |A HTTP-fejlécek tartalmazza JSON-objektum. |
-| Törzs |Törzs |A HTTP-kérés törzsében. |
-| Authentication |Hitelesítés |Hitelesítési kérelem használatára. További információkért lásd: a [HTTP összekötő](connectors-native-http.md#authentication). |
+| Módszer * |Módszer |HTTP-művelet toouse. |
+| URI * |URI |Hello HTTP-kérelem URI-Azonosítóját. |
+| Fejlécek |Fejlécek |A HTTP-fejlécek tooinclude JSON-objektum. |
+| Törzs |Törzs |hello HTTP-kérés törzsében. |
+| Authentication |Hitelesítés |Hitelesítési toouse kérelem. További információkért lásd: hello [HTTP összekötő](connectors-native-http.md#authentication). |
 
 **Kimeneti részletei**
 
@@ -114,7 +114,7 @@ HTTP-válasz
 | Állapotkód |int |HTTP-állapotkód: |
 
 ### <a name="http-responses"></a>HTTP-válaszok
-Amikor különböző műveletekkel, bizonyos válaszokat kaphat. Az alábbiakban látható egy táblázat a megfelelő válaszok és leírásokat.
+Hívások toovarious műveletek meghozásakor bizonyos válaszokat kaphat. Az alábbiakban látható egy táblázat a megfelelő válaszok és leírásokat.
 
 | Név | Leírás |
 | --- | --- |

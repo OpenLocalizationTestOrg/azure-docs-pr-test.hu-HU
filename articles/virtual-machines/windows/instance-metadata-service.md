@@ -1,6 +1,6 @@
 ---
-title: "A Windows Azure-példányokon metaadat-szolgáltatás |} Microsoft Docs"
-description: "Windows virtuális gép számítási, hálózati, és a közelgő karbantartásokról események adatainak beolvasása rESTful felületet."
+title: "Példány metaadat-szolgáltatás Windows aaaAzure |} Microsoft Docs"
+description: "RESTful felület tooget információ Windows virtuális gép számítási, hálózati, és a közelgő karbantartásokról események."
 services: virtual-machines-windows
 documentationcenter: 
 author: harijay
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 08/11/2017
 ms.author: harijay
-ms.openlocfilehash: 55b97b89cb297dc08dc73f6714c5159d4565a97c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a33c26b5e9ed650be639598cdb6895fc19ccb605
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-instance-metadata-service-for-windows-vms"></a>Windows virtuális gépek Azure példány metaadat-szolgáltatás
 
 
-Az Azure példány metaadat-szolgáltatás kezelése és konfigurálása a virtuális gépek használható virtuálisgép-példányok futtatásával kapcsolatos információkat biztosít.
+hello Azure példány metaadat-szolgáltatás fut a virtuális gépet állíthat be és használt toomanage lehet virtuálisgép-példányok információkat biztosít.
 Ide tartoznak például Termékváltozat, a hálózati konfigurációs és a közelgő karbantartásokról események. Milyen típusú információkat érhető el a további információkért lásd: [metaadat-kategóriák](#instance-metadata-data-categories).
 
-Azure-példány metaadat-szolgáltatás segítségével létrehozott összes infrastruktúra-szolgáltatási virtuális gép számára elérhető REST-végpont a [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). A végpont egy jól ismert nem irányítható IP-címen érhető el (`169.254.169.254`), amely elérhető csak a virtuális Gépen belül.
+Azure példány metaadatok szolgáltatás nem érhető el tooall IaaS virtuális gépeket hello segítségével létrehozott REST-végpont [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). hello végpont egy jól ismert nem irányítható IP-címen érhető el (`169.254.169.254`), amely elérhető csak hello VM belül.
 
 
 
 > [!IMPORTANT]
-> Ez a szolgáltatás **általánosan elérhető** globális Azure-régióban. Nyilvános előzetes kormányzati, Kína és német Azure felhőben van. Rendszeresen teszi közzé a virtuálisgép-példányok új információ a frissítések kap. Ezen a lapon tükrözi a legfrissebb [az adatkategóriákat](#instance-metadata-data-categories) érhető el.
+> Ez a szolgáltatás **általánosan elérhető** globális Azure-régióban. Nyilvános előzetes kormányzati, Kína és német Azure felhőben van. Rendszeresen kap frissítéseket tooexpose vonatkozó új információt virtuálisgép-példánya. Ezen a lapon tükrözi naprakész hello [az adatkategóriákat](#instance-metadata-data-categories) érhető el.
 
 
 
 ## <a name="service-availability"></a>Szolgáltatás rendelkezésre állása
-A szolgáltatás minden általánosan elérhető globális Azure területen érhető el. A szolgáltatás a kormányzati, Kína vagy Németország régiókban nyilvános előzetes verzió van.
+hello szolgáltatás minden általánosan elérhető globális Azure területen érhető el. hello szolgáltatás nyilvános előzetes hello kormányzati, Kína vagy Németország régióban van.
 
 Régiók                                        | Rendelkezésre állási?
 -----------------------------------------------|-----------------------------------------------
@@ -45,26 +45,26 @@ Régiók                                        | Rendelkezésre állási?
 [Az Azure Kínában](https://www.azure.cn/)                                                           | Az előzetes verzió
 [Az Azure-Németország](https://azure.microsoft.com/overview/clouds/germany/)                    | Az előzetes verzió
 
-Ez a táblázat frissülni fog, amikor a szolgáltatás elérhetővé válnak más Azure felhőben.
+Ez a táblázat frissülni fog, amikor más Azure felhőben hello szolgáltatás elérhetővé válik.
 
-A példány metaadat-szolgáltatás kipróbálására, a virtuális gép létrehozása az [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) vagy a [Azure-portálon](http://portal.azure.com) a fenti régiókban, és kövesse az alábbi példák.
+tootry kimenő hello példány metaadat-szolgáltatás, a virtuális gép létrehozása [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) vagy hello [Azure-portálon](http://portal.azure.com) a hello régiók és kövesse hello példák az alábbi felett.
 
 ## <a name="usage"></a>Használat
 
 ### <a name="versioning"></a>Versioning
-A példány metaadat-szolgáltatás nem rendszerverzióval ellátott. Verziók kötelező, és a jelenlegi verzió: `2017-04-02`.
+hello példány metaadat-szolgáltatás rendszerverzióval ellátott. Verziók kötelező, és hello verziószámának `2017-04-02`.
 
 > [!NOTE] 
-> Előző előzetes kiadásaiban ütemezett események {legújabb} támogatott api-verzióval. Ez a formátum már nem támogatott, és a jövőben elavulttá válik.
+> Előző előzetes kiadásaiban ütemezett események {legújabb} hello api-verziója támogatott. Ez a formátum már nem támogatott, és a jövőbeli hello elavulttá válik.
 
-Azt hozzáadja az újabb verziók, régebbi verziók továbbra is elérhető kompatibilitás, ha a parancsfájlok tartalmazhat függőségeket, meghatározott formátumban. Azonban előfordulhat, hogy az aktuális előnézeti version(2017-03-01) nem érhető el a szolgáltatás általánosan elérhetővé válik.
+Azt hozzáadja az újabb verziók, régebbi verziók továbbra is elérhető kompatibilitás, ha a parancsfájlok tartalmazhat függőségeket, meghatározott formátumban. Vegye figyelembe azonban, hogy hello aktuális előzetes version(2017-03-01) nem érhető el hello szolgáltatás általánosan elérhetővé válik.
 
 ### <a name="using-headers"></a>Fejlécek használata
-Ha a példány metaadat-szolgáltatás, meg kell adnia a fejléc `Metadata: true` annak érdekében, hogy nem szándékos átirányítja a kérést.
+Ha hello példány metaadat-szolgáltatás, meg kell adnia hello fejléc `Metadata: true` tooensure hello kérést nem volt szándékos átirányítja.
 
 ### <a name="retrieving-metadata"></a>Metaadatainak lekérése során
 
-Példány metaadatai nem érhető el a futó virtuális gépek létrehozása/segítségével kezelt [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). Elérhető összes az adatkategóriákat a virtuális gép példány használatával a következő kérelmet:
+Példány metaadatai nem érhető el a futó virtuális gépek létrehozása/segítségével kezelt [Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/). Elérhető összes az adatkategóriákat a virtuális gép példány hello kérelem a következő használatával:
 
 ```
 curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-04-02"
@@ -74,34 +74,34 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 > Minden példány metaadatok lekérdezés-és nagybetűk.
 
 ### <a name="data-output"></a>Kimeneti adatok
-Alapértelmezés szerint a példány metaadat-szolgáltatás adatokat adja vissza JSON formátumban (`Content-Type: application/json`). Azonban más API-k adhatnak vissza adatokat különböző formátumokban kérésre.
-A következő táblázat a más adatok formátumok API-k támogathatja a hivatkozás.
+Alapértelmezés szerint hello példány metaadat-szolgáltatás adatokat adja vissza JSON formátumban (`Content-Type: application/json`). Azonban más API-k adhatnak vissza adatokat különböző formátumokban kérésre.
+hello következő tábla más adatok formátumú API-k támogathatja a hivatkozást.
 
 API | Alapértelmezett adatformátum | Eltérő formátumban
 --------|---------------------|--------------
 /instance | JSON-ban | Szöveg
 /scheduledevents | JSON-ban | Egyik sem
 
-Egy nem alapértelmezett válaszformátum szeretne használni, adja meg a kért formátumát a kérelem lekérdezési karakterlánc paraméterként. Példa:
+egy nem alapértelmezett válaszformátum tooaccess hello kért formátum hello kérelem lekérdezési karakterlánc paraméterként adja meg. Példa:
 
 ```
 curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-04-02&format=text"
 ```
 
 ### <a name="security"></a>Biztonság
-A példány metaadatok szolgáltatás végpontjának értéke csak a futó virtuális gép példány nem irányítható IP-címnek a belülről érhetők el. Emellett a kérelmet egy `X-Forwarded-For` fejléc elutasította a szolgáltatást.
-Azt is igénylik, magában foglalja a kérelmek egy `Metadata: true` fejlécének győződjön meg arról, hogy a tényleges kérelem volt közvetlenül tervezett és nem szándékos átirányítási része. 
+hello példány metaadatok szolgáltatás végpontjának értéke csak nem irányítható IP-címnek a virtuálisgép-példányt futtató hello belülről érhetők el. Emellett a kérelmet egy `X-Forwarded-For` fejléc hello szolgáltatás elutasította.
+Azt is igénylik kérelmek toocontain egy `Metadata: true` fejléc tooensure, amelyek tényleges kérelem hello közvetlenül volt a tervezett és nem szándékos átirányítási része. 
 
 ### <a name="error"></a>Hiba
-Ha nem található egy adatelem vagy hibás formátumú kérelem, a példány metaadat-szolgáltatás szabványos HTTP-hibák adja vissza. Példa:
+Ha nem található egy adatelem vagy hibás formátumú kérelem, a példány metaadat-szolgáltatás hello szabványos HTTP-hibák adja vissza. Példa:
 
 HTTP-állapotkód | Ok
 ----------------|-------
 200 OK |
 400 Hibás kérés | Hiányzó `Metadata: true` fejléc
-404 – Nem található | A kért elem does't létezik 
+404 – Nem található | hello kért elem does't létezik 
 405 metódus nem engedélyezett | Csak `GET` és `POST` kérelmek támogatottak.
-429 túl sok kérelem | Az API-t jelenleg legfeljebb 5 lekérdezések száma másodpercenként
+429 túl sok kérelem | hello API jelenleg legfeljebb 5 lekérdezések száma másodpercenként
 500 szolgáltatási hiba     | Némi várakozás után próbálja meg újra
 
 ### <a name="examples"></a>Példák
@@ -120,7 +120,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/network?api-vers
 **Válasz**
 
 > [!NOTE] 
-> A válasz egy JSON-karakterláncban. A következő példa egy válasz pretty nyomtatott olvashatóság érdekében.
+> a rendszer hello választ, egy JSON-karakterláncban. a következő példa egy válasz hello pretty nyomtatott olvashatóság érdekében.
 
 ```
 {
@@ -167,7 +167,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 **Válasz**
 
 > [!NOTE] 
-> A válasz egy JSON-karakterláncban. A következő példa egy válasz pretty nyomtatott olvashatóság érdekében.
+> a rendszer hello választ, egy JSON-karakterláncban. a következő példa egy válasz hello pretty nyomtatott olvashatóság érdekében.
 
 ```
 {
@@ -215,13 +215,13 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017
 
 **Kérés**
 
-Példány metaadatok lehet beolvasni a Windows a PowerShell segédprogram segítségével `curl`: 
+Példány metaadatok lehet beolvasni a Windows hello PowerShell segédprogram segítségével `curl`: 
 
 ```
 curl -H @{'Metadata'='true'} http://169.254.169.254/metadata/instance?api-version=2017-04-02 | select -ExpandProperty Content
 ```
 
-Vagy a `Invoke-RestMethod` parancsmagot:
+Vagy hello `Invoke-RestMethod` parancsmagot:
     
 ```
 Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/metadata/instance?api-version=2017-04-02 -Method get 
@@ -230,7 +230,7 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/meta
 **Válasz**
 
 > [!NOTE] 
-> A válasz egy JSON-karakterláncban. A következő példa egy válasz pretty nyomtatott olvashatóság érdekében.
+> a rendszer hello választ, egy JSON-karakterláncban. a következő példa egy válasz hello pretty nyomtatott olvashatóság érdekében.
 
 ```
 {
@@ -277,26 +277,26 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -URI http://169.254.169.254/meta
 ```
 
 ## <a name="instance-metadata-data-categories"></a>Példány metaadat az adatkategóriákat
-A következő az adatkategóriákat a példány metaadatok szolgáltatáson keresztül érhetők el:
+az adatkategóriákat a következő hello hello példány metaadat-szolgáltatás keresztül érhetők el:
 
 Adatok | Leírás
 -----|------------
-location | Azure-régió, a virtuális gép fut.
-név | A virtuális gép neve 
-az ajánlat | A VM-lemezkép információkat nyújtanak. Kép: Azure-galériából telepített lemezképek nincs csak ezt az értéket.
-Közzétevő | A Virtuálisgép-lemezkép kiadója
-Termékváltozat | A VM-lemezkép adott Termékváltozat  
-Verzió | A Virtuálisgép-lemezkép verziója 
+location | Az Azure régióban hello virtuális gép fut.
+név | Hello virtuális gép neve 
+az ajánlat | Hello VM-lemezkép információkat nyújtanak. Kép: Azure-galériából telepített lemezképek nincs csak ezt az értéket.
+Közzétevő | Hello Virtuálisgép-lemezkép kiadója
+Termékváltozat | Adott SKU hello VM-lemezkép  
+Verzió | Hello Virtuálisgép-lemezkép verziója 
 osType | Linux- vagy Windows 
-platformUpdateDomain |  [Frissítési tartományok](manage-availability.md) a virtuális gép fut.
-platformFaultDomain | [Tartalék tartomány](manage-availability.md) a virtuális gép fut.
-vmId | [Egyedi azonosító](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/) a virtuális géphez
+platformUpdateDomain |  [Frissítési tartományok](manage-availability.md) hello virtuális gép fut.
+platformFaultDomain | [Tartalék tartomány](manage-availability.md) hello virtuális gép fut.
+vmId | [Egyedi azonosító](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/) hello virtuális gép számára
 vmSize | [Virtuálisgép-mérettel](sizes.md)
-IPv4/privateipaddress tulajdonságot | A virtuális gép helyi IPv4-címe 
-IPv4-vagy nyilvános | A virtuális gép nyilvános IPv4-cím
-alhálózat és címét | A virtuális gép alhálózati cím
+IPv4/privateipaddress tulajdonságot | Virtuális gép hello helyi IPv4-címe 
+IPv4-vagy nyilvános | Virtuális gép hello nyilvános IPv4-címe
+alhálózat és címét | Virtuális gép hello alhálózati címe
 / előtagot. | Példa 24 alhálózati előtag
-IPv6/IP-cím | A virtuális gép helyi IPv6-cím
+IPv6/IP-cím | Virtuális gép hello helyi IPv6-cím
 MacAddress | Virtuális gép mac-cím 
 scheduledevents | Jelenleg a nyilvános előzetes lásd: [scheduledevents](scheduled-events.md)
 
@@ -304,7 +304,7 @@ scheduledevents | Jelenleg a nyilvános előzetes lásd: [scheduledevents](sched
 
 ### <a name="tracking-vm-running-on-azure"></a>Azure-on futó virtuális gép nyomon követése
 
-Szolgáltató akkor szükség lehet a nyomon követheti a szoftvert futtató virtuális gépek számát, vagy ügynököket, amelyeket a virtuális gép egyediségi nyomon kell rendelkeznie. Kell helyeznie egy egyedi Azonosítót a virtuális gépek, használja a `vmId` példány metaadat-szolgáltatásának mezőjét.
+Szolgáltató előfordulhat, hogy a szoftver futó virtuális gépek száma tootrack hello, vagy hello VM tootrack egyediségének igénylő ügynökök. toobe képes tooget egyedi Azonosítót a virtuális gépek használata hello `vmId` példány metaadat-szolgáltatásának mezőjét.
 
 **Kérés**
 
@@ -320,8 +320,8 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/vmId?api
 
 ### <a name="placement-of-containers-data-partitions-based-faultupdate-domain"></a>Tárolók elhelyezését, adat-partíciók alapú tartalék/frissítési tartomány 
 
-Az egyes forgatókönyvek, más adatok replikák elhelyezését van elsődleges fontosságú. Például [HDFS replika elhelyezésének](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html#Replica_Placement:_The_First_Baby_Steps) vagy tároló elhelyezési keresztül egy [orchestrator](https://kubernetes.io/docs/user-guide/node-selection/) , szükség lehet tudni, hogy a `platformFaultDomain` és `platformUpdateDomain` fut a virtuális Gépet.
-Ezek az adatok közvetlenül a példány metaadatok szolgáltatásával lekérdezheti.
+Az egyes forgatókönyvek, más adatok replikák elhelyezését van elsődleges fontosságú. Például [HDFS replika elhelyezésének](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html#Replica_Placement:_The_First_Baby_Steps) vagy tároló elhelyezési keresztül egy [orchestrator](https://kubernetes.io/docs/user-guide/node-selection/) igényelheti tooknow hello `platformFaultDomain` és `platformUpdateDomain` hello futó virtuális gép.
+Ezek az adatok közvetlenül hello példány metaadat-szolgáltatás segítségével lekérdezheti.
 
 **Kérés**
 
@@ -335,9 +335,9 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute/platform
 0
 ```
 
-### <a name="getting-more-information-about-the-vm-during-support-case"></a>További információ a virtuális gép támogatási esetet során beolvasása 
+### <a name="getting-more-information-about-hello-vm-during-support-case"></a>További információ a virtuális gép hello során támogatási esetet beolvasása 
 
-Szolgáltató akkor jelenhet meg a támogatási hívás hol szeretné tudni, hogy a virtuális gép további információt. Az ügyfél a számítási metaadatok megosztásához kérni a támogatási szakember, milyen típusú Azure virtuális gép tudnia alapvető információkat nyújtanak. 
+Szolgáltató előfordulhat, hogy kap egy támogatási hívás tooknow helyének hello VM további információt. Hello ügyfél tooshare kérése a hello számítási metaadatok alapvető információkat a támogatási szakemberek tooknow hello hello típusú virtuális gép Azure biztosíthat. 
 
 **Kérés**
 
@@ -348,7 +348,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute?api-vers
 **Válasz**
 
 > [!NOTE] 
-> A válasz egy JSON-karakterláncban. A következő példa egy válasz pretty nyomtatott olvashatóság érdekében.
+> a rendszer hello választ, egy JSON-karakterláncban. a következő példa egy válasz hello pretty nyomtatott olvashatóság érdekében.
 
 ```
 {
@@ -368,7 +368,7 @@ curl -H Metadata:true "http://169.254.169.254/metadata/instance/compute?api-vers
 }
 ```
 
-### <a name="examples-of-calling-metadata-service-using-different-languages-inside-the-vm"></a>Példák a virtuális Gépen belül különböző nyelveken használó metaadatok szolgáltatás hívása 
+### <a name="examples-of-calling-metadata-service-using-different-languages-inside-hello-vm"></a>Példák hello VM belül különböző nyelveken használó metaadatok szolgáltatás hívása 
 
 Nyelv | Példa 
 ---------|----------------
@@ -383,23 +383,23 @@ Bash       | https://github.com/Microsoft/azureimds/BLOB/Master/IMDSSample.SH
     
 
 ## <a name="faq"></a>GYIK
-1. A hiba azért kapom `400 Bad Request, Required metadata header not specified`. Ez mit jelent?
-   * A példány metaadat-szolgáltatás a fejlécet igényel `Metadata: true` átadni a kérelemben. Ezt a fejlécet a REST-hívást benyújtása lehetővé teszi, hogy a példány metaadat-szolgáltatás eléréséhez. 
+1. Hello hiba azért kapom `400 Bad Request, Required metadata header not specified`. Ez mit jelent?
+   * hello példány metaadat-szolgáltatás hello fejlécet igényel `Metadata: true` toobe átadott hello kérelemben. Ezt a fejlécet benyújtása hello REST-hívást lehetővé teszi, hogy a hozzáférés toohello példány metaadat-szolgáltatás. 
 2. Miért nem jelenik meg a virtuális gép számítási adatai?
-   * A példány metaadat-szolgáltatás jelenleg csak az Azure Resource Manager eszközzel létrehozott példányokat támogatja. A jövőben azt előfordulhat, hogy támogassa az Cloud Service virtuális gépeken.
+   * Hello példány metaadat-szolgáltatás jelenleg csak az Azure Resource Manager eszközzel létrehozott példányokat támogatja. A jövőbeli hello azt is támogatásáról Cloud Service virtuális gépeken.
 3. A virtuális gép Azure Resource Manager használatával létrehozott egy while vissza. Miért nem tudok lásd számítási metaadat-információ?
-   * A 2016. szeptember után létrehozott virtuális gépek hozzáadása egy [címke](../../azure-resource-manager/resource-group-using-tags.md) jelenítse meg a számítási metaadatok. (Szeptember 2016 előtt létrehozott) régebbi virtuális gépek hozzáadása a virtuális gép metaadatait extensions vagy adatok lemezét.
-4. Miért jelenik meg a hiba `500 Internal Server Error`?
-   * Próbálja megismételni a kérést a rendszer ki exponenciális vissza alapján. Ha a probléma továbbra is fennáll, forduljon az Azure támogatási.
+   * A 2016. szeptember után létrehozott virtuális gépek hozzáadása egy [címke](../../azure-resource-manager/resource-group-using-tags.md) toostart megnéz számítási metaadatok. (Szeptember 2016 előtt létrehozott) régebbi virtuális gépek hozzáadása extensions vagy adatok lemezek toohello VM toorefresh metaadatok.
+4. Miért jelenik meg hello hiba `500 Internal Server Error`?
+   * Próbálja megismételni a kérést a rendszer ki exponenciális vissza alapján. Ha nem szűnik hello Azure ügyfélszolgálatához.
 5. Ha ugyanazt a további kérdéseit vagy megjegyzéseit?
    * A Megjegyzések küldése a http://feedback.azure.com.
 7. Ez használható lenne a virtuálisgép-méretezési beállítása példányt?
    * Igen metaadat-szolgáltatás esetén méretezési beállítása példányok érhető el. 
-6. Hogyan kérhet támogatást a szolgáltatás?
-   * Segítségre van szüksége a szolgáltatáshoz, hozzon létre egy támogatási probléma Azure-portálon a virtuális gép, amelyen még nem kérhető le a metaadatokat válasz hosszú újrapróbálkozás után 
+6. Hogyan kérhet támogatást hello szolgáltatás?
+   * tooget támogatása hello szolgáltatást, hozzon létre egy támogatási probléma Azure-portál a virtuális gép, amelyen még nem tud tooget metaadatok válasz hosszú újrapróbálkozás után hello 
 
    ![Példány metaadatok támogatása](./media/instance-metadata-service/InstanceMetadata-support.png)
     
 ## <a name="next-steps"></a>Következő lépések
 
-- További információ a [ütemezett események](scheduled-events.md) API **nyilvános előzetes verziójában** a példány metaadat-szolgáltatás által biztosított.
+- További tudnivalók hello [ütemezett események](scheduled-events.md) API **nyilvános előzetes verziójában** hello példány metaadat-szolgáltatás által biztosított.

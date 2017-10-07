@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Data Factory - ügyfél esettanulmányok |} Microsoft Docs"
+title: "aaaAzure Data Factory - ügyfél esettanulmányok |} Microsoft Docs"
 description: "Hogyan néhány ügyfeleink használt Azure Data Factory megismerése."
 services: data-factory
 documentationcenter: 
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: c5620a2c02ec4d2abfef40ab5c41bf6ad393a3d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8787a27c10cb9509d8f0d811b4fed3100595e480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---customer-case-studies"></a>Az Azure Data Factory - ügyfél esettanulmányok
-Adat-előállító egy felhőalapú információk felügyeleti szolgáltatás, amely automatizálja a mozgás és az adatok átalakítása. Az ügyfelek között számos iparágakban segítségével Data Factory és az egyéb Azure-szolgáltatások az analytics folyamatok felépítéséhez és az üzleti problémák megoldásához.  A felhasználók közvetlenül a megtudhatja, miért és hogyan használják adat-előállító.
+Adat-előállító egy felhőalapú információk felügyeleti szolgáltatás, amely automatizálja a hello mozgás és adatok átalakítása. Az ügyfelek között számos iparágakban Data Factory és az egyéb Azure-szolgáltatások toobuild használja az analytics folyamatok, és az üzleti problémák megoldásához.  A felhasználók közvetlenül a megtudhatja, miért és hogyan használják adat-előállító.
 
 ## <a name="milliman"></a>Milliman
-[Felső Actuarial vállalkozás átalakítja a biztosítási iparági](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
+[Felső Actuarial vállalkozás átalakítja hello biztosítási iparági](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20096)
 
 ## <a name="rockwell-automation"></a>Rockwell automatizálás
-[Ipari automatizálás vállalkozás kivágása költségek a big Data típusú adatok megoldások 90 %-át](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
+[Ipari automatizálás vállalkozás kivágása költségek too90 százaléka a big Data típusú adatok megoldások mentése](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18356)
 
 ## <a name="ziosk"></a>Ziosk
-[Nyissa meg az adott burger kívánja milyen játék? Ziosk már ismert.](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
+[Mi a meccs meg szeretné, hogy az adott burger toogo? Ziosk már ismert.](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18294)
 
 ## <a name="alaska-airlines"></a>Alaszkai légitársaság
-[Légitársaság használ táblagépek, a további kommunikáció zajlik az üzenetsoroktól Szórakozás felajánlott Cloud Services csomag](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
+[Légitársaság használ táblagépek, a Cloud Services tooOffer több kommunikáció zajlik In-Flight Szórakozás](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=19357)
 
 ## <a name="tacoma-public-schools"></a>Tata nyilvános iskolákat
 [Előrejelzésére student jelkiesés kockázatok felhő Analytics beosztása sebesség növelése](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20703)
 
 ## <a name="real-madrid-fc"></a>Valós Madridi FC
-[Valós Madridi közelebb a stadium biztosítható az a Microsoft Cloud rendelkező a világ minden táján 450 millió ventilátor](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
+[Valós Madridi számos lehetőséget kínál hello stadium szorosabb too450 millió ventilátorok hello földgolyó méretét, a Microsoft Cloud hello körül](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=20522)
 
 ## <a name="pier-1-imports"></a>Pier 1 Imports
 [Ügyfelek jobb kapcsolatot keresése keresztül felhő gépi tanulás](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11257)

@@ -1,6 +1,6 @@
 ---
-title: "Mi történt az ASP.NET 5 project (Visual Studio kapcsolódó szolgáltatások) |} Microsoft Docs"
-description: "Ismerteti, mi történik az services csatlakozik a Visual Studio ASP.NET 5 projektben Visual Studio használatával Azure storage-fiók összekötése után?"
+title: "aaaWhat történt toomy ASP.NET 5 project (Visual Studio kapcsolódó szolgáltatások) |} Microsoft Docs"
+description: "Ismerteti, mi történik, a Visual Studio használatával a Visual Studio ASP.NET 5 projektben tooan Azure storage-fiók összekötő szolgáltatások csatlakoztatása után"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: 2a25c24fd7625374d269622a805f386fcd52bb5f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 75ce3bfb59e085bf08d98d9b0cd9442722d7566b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-aspnet-5-project-visual-studio-azure-storage-connected-services"></a>Mi történt az ASP.NET 5 project (a Visual Studio Azure Storage szolgáltatások csatlakozik)?
+# <a name="what-happened-toomy-aspnet-5-project-visual-studio-azure-storage-connected-services"></a>Milyen történt toomy ASP.NET 5 project (a Visual Studio Azure Storage szolgáltatások csatlakozik)?
 ## <a name="references-added"></a>Hozzáadott
-Az Azure Storage NuGet-csomagot a Visual Studio-projekt lett adva.  
-Ez a csomag a következő .NET hivatkozásokat ad:
+hello Azure Storage NuGet-csomagot a Visual Studio-projekt tooyour lett hozzáadva.  
+Ez a csomag .NET hivatkozik a következő hello bővült:
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -34,10 +34,10 @@ Ez a csomag a következő .NET hivatkozásokat ad:
 * **System.Data**
 * **System.Spatial**
 
-Emellett a NuGet-csomag **Microsoft.Framework.Configuration.Json** hozzá lett adva.
+Emellett hello NuGet-csomag **Microsoft.Framework.Configuration.Json** hozzá lett adva.
 
 ## <a name="connection-string-for-azure-storage-added"></a>Hozzáadott Azure Storage kapcsolati karakterlánca
-A projekt config.json fájlban a kiválasztott tárfiók kapcsolati karakterláncot és a kulcs elem hozták létre.
+Hello config.json fájlt a projekt, a kiválasztott hello tárfiók kapcsolati karakterláncot és a kulcs elem hozták létre.
 
 További információkért lásd: [ASP.NET 5](http://www.asp.net/vnext).
 

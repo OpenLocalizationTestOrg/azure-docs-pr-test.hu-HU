@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric-fürt beállítása | Microsoft Docs"
+title: "az Azure Service Fabric-fürt aaaSet |} Microsoft Docs"
 description: "Rövid útmutató – Windows vagy Linux Service Fabric-fürt létrehozása az Azure-ban."
 services: service-fabric
 documentationcenter: .net
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: ec59450052b377412a28f7eaf55d1f1512b55195
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 13c60e293d19d607bb41ee4859706508c219a833
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-service-fabric-cluster-on-azure"></a>Az első saját Service Fabric-fürt létrehozása az Azure-on
-A [Service Fabric-fürt](service-fabric-deploy-anywhere.md) virtuális és fizikai gépek hálózaton keresztül csatlakozó készlete, amelyen mikroszolgáltatásokat helyezhet üzembe és felügyelhet. A rövid útmutató segítségével csupán pár perc alatt létrehozhat egy öt csomópontot számláló, Windows- vagy Linux-alapú fürtöt az [Azure PowerShellen](https://msdn.microsoft.com/library/dn135248) vagy az [Azure Portalon](http://portal.azure.com) keresztül.  
+A [Service Fabric-fürt](service-fabric-deploy-anywhere.md) virtuális és fizikai gépek hálózaton keresztül csatlakozó készlete, amelyen mikroszolgáltatásokat helyezhet üzembe és felügyelhet. A gyors üzembe helyezés toocreate öt csomópontból álló fürt, hello keresztül futó Windows vagy Linux-segít [Azure PowerShell](https://msdn.microsoft.com/library/dn135248) vagy [Azure-portálon](http://portal.azure.com) csak néhány perc múlva.  
 
 Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.
 
 
-## <a name="use-the-azure-portal"></a>Az Azure Portal használata
+## <a name="use-hello-azure-portal"></a>Hello Azure portál használata
 
-Jelentkezzen be az Azure Portalra a [http://portal.azure.com](http://portal.azure.com) webhelyen.
+Jelentkezzen be toohello: az Azure portál [http://portal.azure.com](http://portal.azure.com).
 
-### <a name="create-the-cluster"></a>A fürt létrehozása
+### <a name="create-hello-cluster"></a>Hello fürt létrehozása
 
-1. Kattintson az Azure Portal bal felső sarkában található **Új** gombra.
-2. Válassza a **Számítás** elemet az **Új** panelen, majd a **Service Fabric-fürt** elemet a **Számítás** panelen.
-3. Töltse ki a Service Fabric **Alapvető beállítások** űrlapját. Az **Operációs rendszer** beállításban adja meg a Windows vagy Linux azon verzióját, amelyiken a fürt csomópontjait futtatni szeretné. Az itt megadott felhasználónévvel és jelszóval bejelentkezhet a virtuális gépbe. Hozzon létre egy új **Erőforráscsoportot**. Az erőforráscsoport olyan logikai tároló, amelybe a rendszer létrehozza és együttesen kezeli az Azure-erőforrásokat. Amikor végzett, kattintson az **OK** gombra.
+1. Kattintson a hello **új** hello bal felső sarkában hello Azure-portálon található gombra.
+2. Válassza ki **számítási** a hello **új** panelen, majd válassza ki **Service Fabric-fürt** a hello **számítási** panelen.
+3. Töltse ki a Service Fabric hello **alapjai** űrlap. A **operációs rendszer**, jelölje be a Windows vagy Linux azt szeretné, hogy a fürt csomópontjai toorun hello hello verzióját. hello felhasználónevét és jelszavát, az itt megadott használt toolog toohello virtuális gépen. Hozzon létre egy új **Erőforráscsoportot**. Az erőforráscsoport olyan logikai tároló, amelybe a rendszer létrehozza és együttesen kezeli az Azure-erőforrásokat. Amikor végzett, kattintson az **OK** gombra.
 
     ![A fürtbeállítás kimenete][cluster-setup-basics]
 
-4. Töltse ki a **Fürtkonfiguráció** űrlapot.  A **Csomóponttípusok száma** elemnél adja meg az „1” értéket.
+4. Töltse ki a hello **fürtkonfiguráció** űrlap.  A **Csomóponttípusok száma** elemnél adja meg az „1” értéket.
 
-5. Válassza az **1. csomóponttípus (elsődleges)** lehetőséget, és töltse ki a **Csomóponttípus konfigurációja** űrlapot.  Írjon be egy csomóponttípust, és adja meg a [Tartóssági szint](service-fabric-cluster-capacity.md#the-durability-characteristics-of-the-cluster) elemnél a „Bronz” értéket.  Válassza ki a virtuális gép méretét.
+5. Válassza ki **1 (elsődleges) típusú csomópont** és kitöltése a hello **csomópont típuskonfigurációban** űrlap.  A csomóponttípus nevének megadása és hello beállítása [tartóssági szint](service-fabric-cluster-capacity.md#the-durability-characteristics-of-the-cluster) túl "bronz."  Válassza ki a virtuális gép méretét.
 
-    A csomóponttípusok határozzák meg a virtuális gépek méretét, számát, egyedi végpontjait, valamint az adott típusú virtuális gépek egyéb beállításait. Mindegyik megadott csomóponttípus külön virtuálisgép-méretezési csoportként lesz beállítva, amely a virtuális gépek csoportként való üzembe helyezésére és felügyeletére használható. Mindegyik csomóponttípus egymástól függetlenül skálázható vertikálisan le vagy föl, eltérő nyitott portokkal rendelkezik, és eltérő kapacitásmetrikái lehetnek.  Az első – vagy elsődleges – csomóponttípus az, ahol a Service Fabric rendszerszolgáltatásai futnak, és ennek öt vagy annál több virtuális gépet kell tartalmaznia.
+    Csomóponttípusok hello Virtuálisgép-méretet, a virtuális gépek, egyéni végpontokat számát határozza meg, és más beállításait az adott típusú virtuális gépek hello. Az egyes csomóponttípusok definiált egy különálló virtuális gép méretezési csoport, amely használt toodeploy és felügyelt virtuális gépek egyetlen egységként lett beállítva. Mindegyik csomóponttípus egymástól függetlenül skálázható vertikálisan le vagy föl, eltérő nyitott portokkal rendelkezik, és eltérő kapacitásmetrikái lehetnek.  első vagy elsődleges, csomóponttípus hello, ahol a Service Fabric rendszerszolgáltatások és kell rendelkeznie legalább öt virtuális gépeket.
 
-    A [kapacitástervezés](service-fabric-cluster-capacity.md) az éles rendszerek üzembe helyezésének lényeges lépése.  A jelen rövid útmutatóban azonban nem fog alkalmazásokat futtatni, így válassza a *DS1_v2 Standard* VM-méretet.  [Megbízhatósági szintként](service-fabric-cluster-capacity.md#the-reliability-characteristics-of-the-cluster) adja meg az „Ezüst” értéket, a virtuálisgép-méretezési csoport kezdő kapacitását pedig állítsa 5-re.  
+    A [kapacitástervezés](service-fabric-cluster-capacity.md) az éles rendszerek üzembe helyezésének lényeges lépése.  A jelen rövid útmutatóban azonban nem fog alkalmazásokat futtatni, így válassza a *DS1_v2 Standard* VM-méretet.  Válassza ki a "Silver" hello a [megbízhatósági szint](service-fabric-cluster-capacity.md#the-reliability-characteristics-of-the-cluster) és egy kezdeti virtuálisgép-méretezési csoport 5 kapacitását.  
 
-    Az egyedi végpontok portokat nyitnak meg az Azure Load Balancerben, hogy csatlakozni tudjon a fürtben futó alkalmazásokhoz.  Adja meg a „80, 8172” értéket a 80-as és a 8172-es portok megnyitásához.
+    Egyéni végpontokat, hogy hello fürtben futó alkalmazások kapcsolatba léphet hello Azure terheléselosztó a portok megnyitása.  Adja meg a "80, 8172" tooopen mentése 80-as és 8172-es portot.
 
-    Ne jelölje be a **Speciális beállítások konfigurálása** jelölőnégyzetet, amely a TCP/HTTP felügyeleti végpontok, alkalmazásport-tartományok, [elhelyezési korlátozások](service-fabric-cluster-resource-manager-configure-services.md#placement-constraints) és [kapacitástulajdonságok](service-fabric-cluster-resource-manager-metrics.md) testreszabására szolgál.    
+    Ne ellenőrizze hello **speciális beállítások konfigurálása** jelenik meg, amelyen a TCP/HTTP felügyeleti végpontok alkalmazás porttartományok, testreszabásához használt [placement Constraints korlátozásokat](service-fabric-cluster-resource-manager-configure-services.md#placement-constraints), és [kapacitás Tulajdonságok](service-fabric-cluster-resource-manager-metrics.md).    
 
     Kattintson az **OK** gombra.
 
-6. A **Fürtkonfiguráció** űrlapon állítsa a **Diagnosztika** beállítást **Be** értékre.  A jelen rövid útmutató során nem kell megadnia [hálóbeállítási](service-fabric-cluster-fabric-settings.md) tulajdonságokat.  A **Fabric verziója** elemnél válassza az **Automatikus** frissítési módot, így a Microsoft automatikusan frissíti a fürtön futó Fabric-kód verzióját.  Állítsa a módot **Manuálisra**, ha ki szeretne [választani egy támogatott verziót](service-fabric-cluster-upgrade.md), amelyre frissíteni szeretne. 
+6. A hello **fürtkonfiguráció** alkotnak, állítsa **diagnosztika** túl**a**.  A gyors üzembe helyezés, nem kell tooenter minden [beállítás háló](service-fabric-cluster-fabric-settings.md) tulajdonságait.  A **Fabric-verzió**, jelölje be **automatikus** frissítési mód, hogy a Microsoft automatikusan frissíti a hello fürtön futó hello háló kód hello verzióját.  Hello mód beállítása túl**manuális** Ha túl[válasszon egy támogatott verzióját](service-fabric-cluster-upgrade.md) tooupgrade számára. 
 
     ![Csomóponttípus konfigurálása][node-type-config]
 
     Kattintson az **OK** gombra.
 
-7. Töltse ki a **Biztonság** űrlapot.  Ehhez a rövid útmutatóhoz válassza a **Nem biztonságos** beállítást.  Az éles számítási feladatokhoz azonban határozottan javasolt biztonságos fürtöket létrehozni, mivel a nem biztonságos fürtökhöz bárki név nélkül csatlakozhat, és ott felügyeleti tevékenységeket hajthat végre.  
+7. Töltse ki a hello **biztonsági** űrlap.  Ehhez a rövid útmutatóhoz válassza a **Nem biztonságos** beállítást.  Nagyon fontos ajánlott toocreate a termelési számítási feladatokhoz, biztonságos fürt, bárki névtelenül csatlakoztassa tooan nem biztonságos fürtöt és felügyeleti műveletek végrehajtása óta.  
 
-    A Service Fabric tanúsítványokat használ a hitelesítéshez és titkosításhoz a fürtök és a rajtuk található alkalmazások különféle részeinek védelmére. A tanúsítványok Service Fabricban való használatával kapcsolatos további információkért lásd a [Service Fabric-fürtök biztonsági forgatókönyveit](service-fabric-cluster-security.md).  Az Azure Active Directoryval végzett felhasználóhitelesítés engedélyezéséhez, illetve a tanúsítványok alkalmazásbiztonsági célú beállításához [a fürtöt Resource Manager-sablonból hozza létre](service-fabric-cluster-creation-via-arm.md).
+    A rendszer tanúsítványokat használ a Service Fabric tooprovide hitelesítési és titkosítási toosecure különböző szempontjairól a fürt és az alkalmazásokhoz. A tanúsítványok Service Fabricban való használatával kapcsolatos további információkért lásd a [Service Fabric-fürtök biztonsági forgatókönyveit](service-fabric-cluster-security.md).  Azure Active Directory vagy a szükséges tanúsítványok tooset használatával az alkalmazásbiztonság, tooenable felhasználóhitelesítés [fürt létrehozása a Resource Manager-sablon](service-fabric-cluster-creation-via-arm.md).
 
     Kattintson az **OK** gombra.
 
-8. Tekintse át az összegzést.  Ha le szeretné tölteni a megadott beállítások alapján összeállított Resource Manager-sablont, válassza a **Sablon és paraméterek letöltése** lehetőséget.  A fürt létrehozásához kattintson a **Létrehozás** gombra.
+8. Tekintse át a hello összegzése.  Ha azt szeretné, hogy toodownload megadott beépített hello-beállítások a Resource Manager-sablon, jelölje be **töltse le a sablon és a paraméterek**.  Válassza ki **létrehozása** toocreate hello fürt.
 
-    A létrehozás folyamatát az értesítésekben követheti nyomon. (Kattintson a „Harang” ikonra az állapotsor mellett, a képernyő jobb felső részén.) Ha a fürt létrehozásakor **A kezdőpulton rögzít** lehetőségre kattintott, a **Service Fabric-fürt üzembe helyezése** a **Kezdőpultra** rögzítve látható.
+    Hello létrehozásának folyamata hello értesítések tekintheti meg. (Kattintson a hello "harang" ikonra hello állapotsorban hello jobb felső sarkában a képernyőn közelében.) Kattintott **PIN-kód tooStartboard** hello fürt létrehozásakor, lásd: **Fabric-fürt üzembe helyezése** toohello rögzítve **Start** tábla.
 
 ### <a name="view-cluster-status"></a>Fürt állapotának megtekintése
-Miután a fürt létrejött, a Portal **Áttekintés** paneljén tekintheti meg. A fürt részletei megjelennek az irányítópulton, beleértve a fürt nyilvános végpontját és egy, a Service Fabric Explorerre mutató hivatkozást.
+A fürt létrehozása után vizsgálhatja meg a fürt hello **áttekintése** hello portál panel. Most már megtekintheti a fürt hello irányítópulton, beleértve a nyilvános végpontot hello fürt és a hivatkozás tooService Fabric Explorer hello részleteit.
 
 ![Fürt állapota][cluster-status]
 
-### <a name="visualize-the-cluster-using-service-fabric-explorer"></a>A fürt megjelenítése a Service Fabric Explorerrel
-A [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) hatékony eszköz a fürtök megjelenítéséhez és az alkalmazások kezeléséhez.  A Service Fabric Explorer a fürtben futó szolgáltatás,  amely a webböngészőből érhető el, ha a **Service Fabric Explorer** hivatkozásra kattint a fürt **Áttekintés** oldalán a Portalon.  A címet közvetlenül a böngészőben is megadhatja: [http://quickstartcluster.westus.cloudapp.azure.com:19080/Explorer](http://quickstartcluster.westus.cloudapp.azure.com:19080/Explorer)
+### <a name="visualize-hello-cluster-using-service-fabric-explorer"></a>A Service Fabric Explorerrel hello fürt megjelenítése
+A [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) hatékony eszköz a fürtök megjelenítéséhez és az alkalmazások kezeléséhez.  Service Fabric Explorerben talál egy olyan szolgáltatás, hello fürtben futó.  Hozzáférési jogosultsága hello a webböngésző használatával **Service Fabric Explorer** hello fürt hivatkozás **áttekintése** hello lapjára.  Hello címet adja meg közvetlenül hello böngészőbe: [http://quickstartcluster.westus.cloudapp.azure.com:19080/Explorer](http://quickstartcluster.westus.cloudapp.azure.com:19080/Explorer)
 
-A fürt irányítópultja áttekintést nyújt a fürtről, beleértve az alkalmazások és a csomópontok állapotának összefoglalását. A csomópontnézet a fürt fizikai elrendezését mutatja. Az egyes csomópontoknál megtekintheti, hogy melyik alkalmazások kódja üzemel az adott csomóponton.
+hello fürt irányítópult áttekintése a fürt, beleértve az alkalmazás és a csomópont állapotának összegzését. hello csomópont nézetben látható hello hello fürt fizikai elrendezését. Az egyes csomópontoknál megtekintheti, hogy melyik alkalmazások kódja üzemel az adott csomóponton.
 
 ![Service Fabric Explorer][service-fabric-explorer]
 
-### <a name="connect-to-the-cluster-using-powershell"></a>Csatlakozás a fürthöz PowerShell használatával
-Ha ellenőrizni szeretné, hogy a fürt fut-e, csatlakozzon hozzá a PowerShell-lel.  A ServiceFabric PowerShell-modul a [Service Fabric SDK](service-fabric-get-started.md)-val települ.  A [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) parancsmag kiépít egy kapcsolatot a fürttel.   
+### <a name="connect-toohello-cluster-using-powershell"></a>Csatlakozás toohello fürt PowerShell-lel
+Győződjön meg arról, hogy hello fürt fut. csatlakozzon a PowerShell használatával.  hello ServiceFabric PowerShell modul telepítve van a hello [Service Fabric SDK](service-fabric-get-started.md).  Hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) parancsmag létesít kapcsolatot toohello fürt.   
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint quickstartcluster.westus2.cloudapp.azure.com:19000
 ```
-A fürtökhöz való csatlakozást bemutató egyéb példákért lásd: [Csatlakozás biztonságos fürthöz](service-fabric-connect-to-secure-cluster.md). Miután csatlakozott a fürthöz, a [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) parancsmaggal listázza a fürtben lévő csomópontokat és az egyes csomópontok állapotinformációit. A **HealthState** tulajdonságnak *OK* értékűnek kell lennie minden csomópont esetében.
+Lásd: [Connect tooa biztonságos fürt](service-fabric-connect-to-secure-cluster.md) csatlakozó tooa fürt más példákat. Miután toohello fürthöz kapcsolódó, használja a hello [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) parancsmag toodisplay hello fürt és a állapot információt az egyes csomópontok csomópontok listáját. A **HealthState** tulajdonságnak *OK* értékűnek kell lennie minden csomópont esetében.
 
 ```powershell
 PS C:\Users\sfuser> Get-ServiceFabricNode |Format-Table
@@ -100,31 +100,31 @@ NodeDeactivationInfo NodeName     IpAddressOrFQDN NodeType  CodeVersion  ConfigV
                      _nodetype1_3 10.0.0.7        nodetype1 5.7.198.9494 1                     Up 03:00:38   00:00:00              Ok
 ```
 
-### <a name="remove-the-cluster"></a>A fürt eltávolítása
-A Service Fabric-fürtben a fürt erőforrásán felül egyéb Azure-erőforrások is megtalálhatók. A Service Fabric-fürtök teljes törléséhez ezért az összes őket alkotó erőforrást is törölni kell. A fürt és az összes általa használt erőforrás törlésének legegyszerűbb módja az erőforráscsoport törlése. A fürt törlésének egyéb módjaival, illetve egy erőforráscsoportba tartozó némely (de nem az összes) erőforrás törlésével kapcsolatban lásd a [fürt törlésével](service-fabric-cluster-delete.md) foglalkozó témakört.
+### <a name="remove-hello-cluster"></a>Hello fürt eltávolítása
+A Service Fabric-fürt épül fel más Azure-erőforrások továbbá toohello fürterőforrás magát. Így toocompletely a Service Fabric-fürt törlése szükség toodelete összes hello történik, az erőforrásokat. hello legegyszerűbb módja toodelete hello fürt összes hello erőforrások pedig toodelete hello erőforráscsoportot. Más módokon toodelete egy fürtöt vagy toodelete néhány (de nem minden) hello erőforrások az erőforráscsoportban, tekintse meg a [egy fürt törlése](service-fabric-cluster-delete.md)
 
-Erőforráscsoport törlése az Azure Portalon:
-1. Lépjen a törölni kívánt Service Fabric-fürtre.
-2. Kattintson az **Erőforráscsoport** nevére a fürt alapvető erőforrásainak lapján.
-3. Az **Erőforráscsoport alapvető erőforrásai** oldalon kattintson az **Erőforráscsoport törlése** gombra, és kövesse a lapon megjelenő utasításokat az erőforráscsoport törléséhez.
-    ![Az erőforráscsoport törlése][cluster-delete]
+Az Azure-portálon hello erőforráscsoport törlése:
+1. Keresse meg a kívánt toodelete toohello Service Fabric-fürt.
+2. Kattintson a hello **erőforráscsoport** nevű hello fürt alapvető erőforrások lapon.
+3. A hello **erőforrás csoport Essentials** kattintson **erőforrás csoport törlése** és az adott lapon toocomplete hello törlési hello erőforráscsoport hello útmutatás.
+    ![Hello erőforráscsoport törlése][cluster-delete]
 
 
-## <a name="use-azure-powershell-to-deploy-a-secure-cluster"></a>Biztonságos fürt üzembe helyezése az Azure PowerShell használatával
-1. Töltse le a számítógépre az [Azure PowerShell-modul 4.0-s vagy újabb](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) verzióját.
+## <a name="use-azure-powershell-toodeploy-a-secure-cluster"></a>Azure Powershell toodeploy biztonságos fürt használatára
+1. Töltse le a hello [Azure Powershell 4.0-s vagy újabb verziója](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) a számítógépen.
 
-2. Nyisson meg egy Windows PowerShell-ablakot, és futtassa a következő parancsot. 
+2. Nyisson meg egy Windows PowerShell ablakot, a következő parancs futtatása hello. 
     
     ```powershell
 
     Get-Command -Module AzureRM.ServiceFabric 
     ```
 
-    Az alábbihoz hasonló kimenetnek kell megjelennie.
+    Meg kell jelennie egy kimeneti hasonló toohello következő.
 
     ![ps-list][ps-list]
 
-3. Jelentkezzen be az Azure-ba, és válassza ki azt az előfizetést, amelyikben létre szeretné hozni a fürtöt
+3. Bejelentkezési tooAzure és Select hello előfizetés toowhich toocreate hello fürt
 
     ```powershell
 
@@ -133,13 +133,13 @@ Erőforráscsoport törlése az Azure Portalon:
     Select-AzureRmSubscription -SubscriptionId "Subcription ID" 
     ```
 
-4. Futtassa az alábbi parancsot egy biztonságos fürt létrehozásához. Ne felejtse el testre szabni a paramétereket. 
+4. Futtassa a következő parancs toonow hello biztonságos fürt létrehozása. Ne feledje toocustomize hello paraméterek. 
 
     ```powershell
     $certpwd="Password#1234" | ConvertTo-SecureString -AsPlainText -Force
     $RDPpwd="Password#1234" | ConvertTo-SecureString -AsPlainText -Force 
     $RDPuser="vmadmin"
-    $RGname="mycluster" # this is also the name of your cluster
+    $RGname="mycluster" # this is also hello name of your cluster
     $clusterloc="SouthCentralUS"
     $subname="$RGname.$clusterloc.cloudapp.azure.com"
     $certfolder="c:\mycertificates\"
@@ -148,34 +148,34 @@ Erőforráscsoport törlése az Azure Portalon:
     New-AzureRmServiceFabricCluster -ResourceGroupName $RGname -Location $clusterloc -ClusterSize $clustersize -VmUserName $RDPuser -VmPassword $RDPpwd -CertificateSubjectName $subname -CertificatePassword $certpwd -CertificateOutputFolder $certfolder
     ```
 
-    A parancs végrehajtása 10 perctől akár 30 percig is eltarthat, és a végén az alábbihoz hasonló kimenetnek kell megjelennie. A kimenet információkat tartalmaz a tanúsítványról, arról a KeyVault tárolóról, ahová feltöltötték, és a helyi mappáról, ahová másolták. 
+    Hello parancsot is igénybe vehet 10 perc too30 perc toocomplete, azt a hello végén, egy kimeneti hasonló toohello következő kapja meg. hello kimeneti hello tanúsítvány, ahol töltöttek fel, KeyVault hello adatait és a helyi mappát, amelybe a hello tanúsítvány van másolja hello. 
 
     ![ps-out][ps-out]
 
-5. Másolja ki a teljes kimenetet, és mentse egy szövegfájlba, mivel később hivatkoznia kell rá. Jegyezze fel az alábbi, kimenetből származó adatokat. 
+5. Hello teljes kimenetének másolása HTML-, és mentse a szövegfájlt tooa toorefer tooit kell. Jegyezze fel a következő információ hello kimenetből hello. 
 
     - **CertificateSavedLocalPath** : c:\mycertificates\mycluster20170504141137.pfx
     - **CertificateThumbprint** : C4C1E541AD512B8065280292A8BA6079C3F26F10
     - **ManagementEndpoint** : https://mycluster.southcentralus.cloudapp.azure.com:19080
     - **ClientConnectionEndpointPort** : 19000
 
-### <a name="install-the-certificate-on-your-local-machine"></a>A tanúsítvány telepítése helyi számítógépre
+### <a name="install-hello-certificate-on-your-local-machine"></a>A helyi gépen hello tanúsítvány telepítése
   
-A fürthöz való csatlakozáshoz telepíteni kell a tanúsítványt az aktuális felhasználó Személyes (Saját) tárolójába. 
+tooconnect toohello fürt, tanúsítványra van szükség tooinstall hello hello aktuális felhasználó hello (a) személyes tárolóba. 
 
-Futtassa az alábbi PowerShell-parancsot
+Futtassa a következő PowerShell hello
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
-        -FilePath C:\mycertificates\the name of the cert.pfx `
+        -FilePath C:\mycertificates\hello name of hello cert.pfx `
         -Password (ConvertTo-SecureString -String certpwd -AsPlainText -Force)
 ```
 
-Most már készen áll a biztonságos fürthöz való csatlakozásra.
+Most már áll készen tooconnect tooyour biztonságos fürt.
 
-### <a name="connect-to-a-secure-cluster"></a>Csatlakozás biztonságos fürthöz 
+### <a name="connect-tooa-secure-cluster"></a>Csatlakoztassa tooa biztonságos fürtöt 
 
-A biztonságos fürthöz való csatlakozáshoz futtassa az alábbi PowerShell-parancsot. A tanúsítvány részleteinek meg kell egyezniük a fürt beállításához használt egyik tanúsítvány részleteivel. 
+Futtassa a következő PowerShell parancs tooconnect tooa biztonságos fürt hello. hello Tanúsítványadatok meg kell egyeznie egy tanúsítványt, de a használt tooset be hello fürtöt. 
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -186,7 +186,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 ```
 
 
-Az alábbi példa az eredményül kapott paramétereket mutatja be: 
+a következő példa azt mutatja be hello hello paraméterek befejeződött: 
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint mycluster.southcentralus.cloudapp.azure.com:19000 `
@@ -196,19 +196,19 @@ Connect-ServiceFabricCluster -ConnectionEndpoint mycluster.southcentralus.clouda
           -StoreLocation CurrentUser -StoreName My
 ```
 
-Az alábbi parancs futtatásával ellenőrizze, hogy csatlakozik-e, és hogy a fürt állapota kifogástalan-e.
+Futtassa a következő parancs toocheck, hogy csatlakozott hello, és hello fürt megfelelő állapotban.
 
 ```powershell
 
 Get-ServiceFabricClusterHealth
 
 ```
-### <a name="publish-your-apps-to-your-cluster-from-visual-studio"></a>Alkalmazások közzététele a fürtön a Visual Studióból
+### <a name="publish-your-apps-tooyour-cluster-from-visual-studio"></a>Visual Studio tooyour fürtöt alkalmazások közzététele
 
-Most, hogy beállított egy Azure-fürtöt, a [fürtön történő közzétételt](service-fabric-publish-app-remote-cluster.md) ismertető dokumentum utasításait követve közzéteheti rajta az alkalmazásait a Visual Studióból. 
+Most, hogy állította be az Azure-fürttel, közzéteheti a alkalmazások tooit Visual Studio által következő hello [közzététel tooan fürt](service-fabric-publish-app-remote-cluster.md) dokumentum. 
 
-### <a name="remove-the-cluster"></a>A fürt eltávolítása
-A fürtben a fürt erőforrásán felül egyéb Azure-erőforrások is megtalálhatók. A fürt és az összes általa használt erőforrás törlésének legegyszerűbb módja az erőforráscsoport törlése. 
+### <a name="remove-hello-cluster"></a>Hello fürt eltávolítása
+A fürt épül fel más Azure-erőforrások továbbá toohello fürterőforrás magát. hello legegyszerűbb módja toodelete hello fürt összes hello erőforrások pedig toodelete hello erőforráscsoportot. 
 
 ```powershell
 
@@ -217,8 +217,8 @@ Remove-AzureRmResourceGroup -Name $RGname -Force
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy üzembe helyezett egy fejlesztési fürtöt, megpróbálkozhat a következőkkel:
-* [Biztonságos fürt létrehozása a Portalon](service-fabric-cluster-creation-via-portal.md)
+Most, hogy úgy állította be a fejlesztési fürtöt, próbálkozzon a hello következő:
+* [Hozzon létre egy biztonságos fürt hello portálon](service-fabric-cluster-creation-via-portal.md)
 * [Fürt létrehozása sablonból](service-fabric-cluster-creation-via-arm.md) 
 * [Appokat helyezhet üzembe a PowerShell használatával](service-fabric-deploy-remove-applications.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Támogatási jegy létrehozása az SQL Data Warehouse-hoz| Microsoft Docs"
-description: "Támogatási jegy létrehozása az SQL Data Warehouse-hoz."
+title: "az SQL Data Warehouse egy támogatási jegy aaaHow toocreate |} Microsoft Docs"
+description: "Hogyan toocreate támogatási jegyet az Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,70 +15,70 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: 058ff1229acee5d03db7c0305c5565ae95a85758
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72f7eac82112fb7f1bfb05abca4ce40aeb3c828c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>Támogatási jegy létrehozása az SQL Data Warehouse-hoz
+# <a name="how-toocreate-a-support-ticket-for-sql-data-warehouse"></a>Hogyan toocreate támogatási jegyet az SQL Data Warehouse
 Ha bármilyen probléma merül fel az SQL Data Warehouses-szal kapcsolatban, hozzon létre egy támogatási jegyet, hogy mérnöki csapatunk a segítségére lehessen.
 
 > [!NOTE] 
-> 2016. december 20-tól az Azure Portal erőforrásállapot-ellenőrzése nem biztosít pontos eredményeket. Folyamatosan dolgozunk a probléma megoldásán. 
+> Azure-portálon hello hello erőforrás állapot-ellenőrzéssel nincs pontos 12/20/2016. Folyamatosan dolgozunk a toofix probléma. 
 
 
 ## <a name="create-a-support-ticket"></a>Támogatási jegy létrehozása
-1. Nyissa meg az [Azure Portalt][Azure portal].
-2. A kezdőképernyőn kattintson a **Súgó és támogatás** csempére.
+1. Nyissa meg hello [Azure-portálon][Azure portal].
+2. Hello kezdőképernyőn kattintson hello **súgó + támogatás** csempére.
    
     ![Súgó és támogatás](./media/sql-data-warehouse-get-started-create-support-ticket/help-support.png)
-3. A Súgó és támogatás panelen kattintson a **Támogatási kérelem létrehozása** gombra.
+3. A hello Súgó és támogatás panelen, kattintson **támogatási kérelem létrehozása**.
    
     ![Új támogatási kérelem](./media/sql-data-warehouse-get-started-create-support-ticket/create-support-request.png)
    
     <a name="request-quota-change"></a> 
-4. Válassza ki a **Kérelemtípust**.
+4. Jelölje be hello **kérelem típus**.
    
     ![Kérelemtípus](./media/sql-data-warehouse-get-started-create-support-ticket/request-type.png)
    
    > [!NOTE]
-   > Alapértelmezés szerint minden SQL-kiszolgáló (például a myserver.database.windows.net) rendelkezik egy 45 000 egységnyi **DTU-kvótával**. Ez a kvóta egyszerűen egy biztonsági korlát. A kvótát egy támogatási jegy létrehozásával, és a kérelem típusaként a *Kvóta* kiválasztásával növelheti meg. A DTU-igény kiszámításához szorozza meg 7,5-tel az összes szükséges [DWU][DWU] értékét. Ha például két DW6000-et szeretne üzemeltetni egy SQL-kiszolgálón, akkor 90 000 egységnyi DTU-kvótát kell igényelnie.  Az aktuális DTU-felhasználást az SQL-kiszolgáló panelen tekintheti meg a portálon. A DTU-kvótába a szüneteltetett és a nem szüneteltetett adatbázisok is beleszámítanak. 
+   > Alapértelmezés szerint minden SQL-kiszolgáló (például a myserver.database.windows.net) rendelkezik egy 45 000 egységnyi **DTU-kvótával**. Ez a kvóta egyszerűen egy biztonsági korlát. A támogatási jegy létrehozása, majd válassza a kvóta növelhető *kvóta* hello kérelem típusa. a DTU, meg kell szorozni toocalculate 7.5 hello teljes hello által [DWU] [ DWU] szükséges. Például azt szeretné, a két toohost egyetlen SQL Servert, majd DW6000s igényeljen egy 90,000 a DTU-kvótát.  Az aktuális DTU-használat hello SQL server panelen hello portálon tekintheti meg. Felfüggesztett, mind a nem felfüggesztett adatbázisok száma felé hello DTU-kvótát. 
    > 
    > 
-5. Válassza ki az **Előfizetést**, amely alatt az az adatbázis fut, amellyel kapcsolatban támogatást kér.
+5. Jelölje be hello **előfizetés** , hogy a gazdagépek hello hello hiba az adatbázisban.
    
-    ![Előfizetést](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
-6. Erőforrásként adja meg a **SQL Data Warehouse** szolgáltatást.
+    ![Előfizetés](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
+6. Válassza ki **SQL Data Warehouse** , hello erőforrás.
    
     ![Erőforrás](./media/sql-data-warehouse-get-started-create-support-ticket/resource.png)
 7. Jelölje ki az [Azure támogatási csomagot][Azure support plan].
    
    * A **számlázással, kvótával és az előfizetés kezelésével** kapcsolatos támogatás minden támogatási szinten elérhető.
-   * A **javítás/csere** támogatás a [Fejlesztői][Developer], a [Standard][Standard], a [Közvetlen professzionális támogatás][Professional Direct] vagy a [Premier szintű támogatás][Premier] esetén érhető el. A javítás/csere típusú problémákkal az Azure használata során fellépő hibák esetén lehet a támogatáshoz fordulni, ha a hibát nagy valószínűséggel a Microsoft terméke okozta.
-   * A **fejlesztői mentorálás** és a **tanácsadási szolgáltatás** [Közvetlen professzionális támogatás][Professional Direct] és [Premier szintű támogatás][Premier] esetén érhető el. 
+   * A **javítás/csere** támogatás a [Fejlesztői][Developer], a [Standard][Standard], a [Közvetlen professzionális támogatás][Professional Direct] vagy a [Premier szintű támogatás][Premier] esetén érhető el. Javítás / Csere problémák az Azure használata során az ügyfelek által tapasztalt problémák esetén egy ésszerű elvárásokat adott okozott Microsoft hello problémát.
+   * **Fejlesztői mentorálás** és **tanácsadási szolgáltatás** érhetők el hello [közvetlen professzionális] [ Professional Direct] és [Premier] [ Premier] szintek. 
      
-     Premier szintű támogatás megléte esetén az SQL Data Warehouse-szal kapcsolatos problémákat is jelentheti a [Microsoft Premier online portálon][Microsoft Premier online portal].  Az [Azure-támogatás ügyfeleknek][Azure support plan] című témakör részletesen bemutatja a támogatási csomagokat, beleértve azok hatókörét, a válaszidőt, a díjszabást és egyéb információkat.  Az Azure-támogatással kapcsolatos gyakori kérdéseket az [Azure-támogatás – gyakori kérdések][Azure support FAQs] című témakör tekinti át.  
+     Ha a Premier szintű támogatás megléte, az SQL Data Warehouse is jelentheti kapcsolatos hiba lépett fel a hello [Microsoft Premier online portálon][Microsoft Premier online portal].  Lásd: [Azure-támogatás ügyfeleknek] [ Azure support plan] további információk a különböző támogatja a csomagokat, beleértve azok hatókörét, a válaszidőt, díjszabást hello toolearn stb.  Az Azure-támogatással kapcsolatos gyakori kérdéseket az [Azure-támogatás – gyakori kérdések][Azure support FAQs] című témakör tekinti át.  
      
      ![Támogatási csomag](./media/sql-data-warehouse-get-started-create-support-ticket/support-plan.png)
-8. Válassza ki a **Problem Type** (Probléma típusa) és a **Category** (Kategória) mezőt. Ebben a példában a választott problématípus az „Eszközök”, a kategória pedig az „Ügyféleszközök”. 
+8. Jelölje be hello **problématípust** és **kategória**. Ebben a példában azt választotta, "Eszközök" hello probléma típusa és "Client tools" hello kategória szerint. 
    
     ![Probléma típusa és kategóriája](./media/sql-data-warehouse-get-started-create-support-ticket/problem-type-category.png)
-9. Írja le a problémát, és hogy az milyen mértékben hat az üzleti működésre.
+9. Hello probléma leíró, és válassza ki azt az üzletmenetre gyakorolt hatás hello szintet.
    
     ![A probléma leírása](./media/sql-data-warehouse-get-started-create-support-ticket/problem-description.png)
 10. A támogatási jegyen előre ki lesznek töltve a **kapcsolattartási adatok**. Ha szükséges, pontosítsa azokat.
     
     ![Kapcsolattartási adatok](./media/sql-data-warehouse-get-started-create-support-ticket/contact-info.png)
-11. Kattintson a**Create** (Létrehozás) gombra a támogatási kérelem elküldéséhez.
+11. Kattintson a **létrehozása** toosubmit hello támogatási kérelmet.
 
 ## <a name="monitor-a-support-ticket"></a>Támogatási jegy nyomon követése
-A támogatási kérelem elküldése után az Azure támogatási csapata kapcsolatba lép Önnel. A kérelem állapotának és részleteinek megtekintéséhez kattintson a **Támogatási kérelmek kezelése** elemre az irányítópulton.
+Miután hello támogatási kérelmet elküldte, hello Azure támogatási csapata kapcsolatba lép Önnel. toocheck a kérelem állapotának és részleteinek, kattintson a **támogatási kérelmek kezelése** hello irányítópulton.
 
 ![Állapot ellenőrzése](./media/sql-data-warehouse-get-started-create-support-ticket/check-status.png)
 
 ## <a name="other-resources"></a>Egyéb források
-Azt is megteheti, hogy kapcsolatba lép az SQL Data Warehouse-közösséggel a [Stack Overflow][Stack Overflow] webhelyen vagy az [Azure SQL Data Warehouse MSDN fórumon][Azure SQL Data Warehouse MSDN forum].
+Ezenkívül kapcsolatba léphet az SQL Data Warehouse-Közösséggel hello a [Stack Overflow] [ Stack Overflow] vagy hello [Azure SQL Data Warehouse MSDN fórumon] [ Azure SQL Data Warehouse MSDN forum].
 
 <!--Image references--> 
 

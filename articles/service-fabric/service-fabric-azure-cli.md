@@ -1,5 +1,5 @@
 ---
-title: "Ismerkedés az Azure Service Fabric XPlat parancssori felület"
+title: "az Azure Service Fabric XPlat parancssori felületen lépései aaaGetting"
 description: "Ismerkedés az Azure Service Fabric XPlat parancssori felület"
 services: service-fabric
 documentationcenter: .net
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: ddf881f6c202a82a3f64773639aa29b660057f8d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e4baa30536b4d8668d8efad301ed8210eb9c0335
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-xplat-cli-to-interact-with-a-service-fabric-cluster"></a>A XPlat parancssori felület használatával kommunikál a Service Fabric-fürt
+# <a name="using-hello-xplat-cli-toointeract-with-a-service-fabric-cluster"></a>A Service Fabric-fürt hello toointeract XPlat parancssori felület használatával
 
-Service Fabric-fürt Linux gépekről Linux rendszeren a XPlat parancssori felület használatával kommunikálhat.
+Service Fabric-fürt Linux gépekről Linux hello XPlat parancssori felület használatával kommunikálhat.
 
-Az első lépés get a git-rep a CLI legújabb verzióját, és állítsa be az elérési úthoz a következő parancsokkal:
+hello első lépése hello hello CLI legújabb verziója van beszerezni hello git rep és a készlet a következő parancsok hello azt fel az elérési út használatával:
 
 ```sh
  git clone https://github.com/Azure/azure-xplat-cli.git
@@ -34,20 +34,20 @@ Az első lépés get a git-rep a CLI legújabb verzióját, és állítsa be az 
  azure servicefabric
 ```
 
-Az egyes parancsok az támogatja-e, adhatja meg az adott parancshoz tartozó súgó a parancs nevét.
-Automatikus-kiegészítéshez a parancsok használata támogatott. Például a következő parancs lehetővé teszi az súgó összes alkalmazás parancs. 
+Az egyes parancsok az támogatja-e, adhatja meg, hogy a parancs hello hello parancs tooobtain hello súgó nevét.
+Automatikus-végrehajtási hello parancsok esetén támogatott. Például hello a következő parancs által biztosított összes hello alkalmazás parancs segítséget. 
 
 ```sh
  azure servicefabric application 
 ```
 
-További szűrheti a Súgó gombra egy adott parancs az alábbi példában látható módon:
+További szűrheti hello súgó tooa adott parancs, mint hello a következő példa azt mutatja meg:
 
 ```sh
  azure servicefabric application  create
 ```
 
-Ahhoz, hogy az automatikus-kiegészítés a CLI-t, a következő parancsokat:
+tooenable automatikus-kiegészítéshez a hello CLI, futtassa a következő parancsok hello:
 
 ```sh
 azure --completion >> ~/azure.completion.sh
@@ -55,70 +55,70 @@ echo 'source ~/azure.completion.sh' >> ~/.sh\_profile
 source ~/azure.completion.sh
 ```
 
-A következő parancsok csatlakozzon a fürthöz, és jelenjen meg a fürt a csomópontok:
+a következő parancsok hello csatlakozás toohello fürt és az Ön hello hello fürt csomópontja:
 
 ```sh
  azure servicefabric cluster connect http://localhost:19080
  azure servicefabric node show
 ```
 
-Az elnevezett paramétert használja, és keresse a definíció, beírhatja--súgójának parancs után. Példa:
+toouse elnevezett paramétereket, és keresse a definíció, beírhatja – Súgó parancs után. Példa:
 
 ```sh
  azure servicefabric node show --help
  azure servicefabric application create --help
 ```
 
-A gépről egy többgépes fürtben való csatlakozáskor **, amely nem része a fürtnek**, használja a következő parancsot:
+A gép tooa többgépes fürtben kapcsolódáskor **nem részét képező hello fürt**, a következő parancs hello használata:
 
 ```sh
  azure servicefabric cluster connect http://PublicIPorFQDN:19080
 ```
 
-Cserélje le a PublicIPorFQDN címke a valódi IP vagy FQDN szükség szerint. A gépről egy többgépes fürtben való csatlakozáskor **részét képező a fürt**, használja a következő parancsot:
+Cserélje le hello PublicIPorFQDN címke hello valós IP-cím vagy FQDN szükség szerint. A gép tooa többgépes fürtben kapcsolódáskor **részét képező hello fürt**, a következő parancs hello használata:
 
 ```sh
  azure servicefabric cluster connect --connection-endpoint http://localhost:19080 --client-connection-endpoint PublicIPorFQDN:19000
 ```
 
-A PowerShell segítségével, vagy a parancssori felület, amellyel kommunikálni tud a Linux Service Fabric-fürt létrehozása az Azure portálon keresztül.
+A PowerShell segítségével, vagy a Linux Service Fabric-fürt a CLI toointeract létrehozott hello Azure-portálon keresztül.
 
 > [!WARNING]
-> Ezeken a fürtökön nem biztonságos, így, akkor előfordulhat, hogy lehet megnyitása az egy beépített adja hozzá a nyilvános IP-cím a fürtjegyzékben.
+> Ezeken a fürtökön nem biztonságos, így, akkor előfordulhat, hogy kell megnyitása az egy beépített hello fürtjegyzékben hello nyilvános IP-cím hozzáadásával.
 
-## <a name="using-the-xplat-cli-to-connect-to-a-service-fabric-cluster"></a>A XPlat parancssori felület használatával kapcsolódni a Service Fabric-fürt
+## <a name="using-hello-xplat-cli-tooconnect-tooa-service-fabric-cluster"></a>Hello tooconnect tooa Service Fabric-fürt XPlat parancssori felület használatával
 
-A következő Azure parancssori felület parancsait azt ismertetik, hogyan kapcsolódik egy biztonságos fürthöz. A tanúsítvány részleteinél meg kell egyeznie a fürtcsomópontokon egy tanúsítványt.
+a következő Azure parancssori felület parancsait hello ismertetik, hogyan tooconnect tooa biztonságos fürt. hello Tanúsítványadatok hello fürtcsomópontokon tanúsítványt meg kell egyeznie.
 
 ```sh
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert
 ```
 
-Ha a tanúsítvány rendelkezik tanúsítványszolgáltatók (CA), adja hozzá a--ca-tanúsítvány-path paramétert, az alábbi példához hasonló szeretné: 
+Ha a tanúsítvány tanúsítványszolgáltatók (CA), tooadd hello – a ca-tanúsítvány-elérési út paraméter a következő példa hello hasonlóan kell: 
 
 ```sh
  azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 
 ```
 
-Ha több hitelesítésszolgáltató, használják az elválasztó vessző.
+Ha több ügyfélcím, használják hello elválasztó vessző.
 
-Ha a tanúsítvány a köznapi név nem egyezik meg a csatlakozási végpont, használhatja a paraméter `--strict-ssl-false` az ellenőrzés elkerülésére, ahogy az az alábbi parancsot:
+A hello tanúsítvány köznapi neve nem egyezik meg a hello csatlakozási végpont, használhatja hello paraméter `--strict-ssl-false` toobypass hello ellenőrzés, ahogy az a következő parancs hello:
 
 ```sh
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl-false 
 ```
 
-Ha szeretné a CA-ellenőrzés kihagyása, hozzáadhatja a--utasítsa el a nem engedélyezett hamis paraméter, ahogy az az alábbi parancsot: 
+Ha szeretné tooskip hello hitelesítésszolgáltató ellenőrzési, hozzáadhat hello – ahogy az a következő parancs hello utasítsa el a nem engedélyezett hamis paraméter: 
 
 ```sh
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized-false 
 ```
 
-A kapcsolódás után kell tudni futtatni, amellyel kommunikálni tud a fürt más parancssori felület parancsait.
+A kapcsolódás után meg kell tudni toorun más CLI parancsok toointeract a hello fürt.
 
 ## <a name="deploying-your-service-fabric-application"></a>A Service Fabric-alkalmazás telepítése
 
-A következő parancsok futtatásával másolja, regisztrálja, és indítsa el a service fabric-alkalmazás hajtható végre:
+A következő parancsok toocopy, regisztrálja, és indítsa el a service fabric-alkalmazás hello hello hajtható végre:
 
 ```sh
 azure servicefabric application package copy [applicationPackagePath] [imageStoreConnectionString] [applicationPathInImageStore]
@@ -128,9 +128,9 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 
 ## <a name="upgrading-your-application"></a>Az alkalmazás frissítése
 
-A folyamat hasonlít a [folyamatok Windows](service-fabric-application-upgrade-tutorial-powershell.md)).
+hello folyamatban a hasonló toohello [folyamatok Windows](service-fabric-application-upgrade-tutorial-powershell.md)).
 
-Build, másolása, regisztrálja és az alkalmazás létrehozása a projekt gyökérkönyvtárában. Ha az alkalmazás-példány neve `fabric:/MySFApp`, és a típus MySFApp, a parancs a következőképpen nézne ki:
+Build, másolása, regisztrálja és az alkalmazás létrehozása a projekt gyökérkönyvtárában. Ha az alkalmazás-példány neve `fabric:/MySFApp`, és hello típus MySFApp, hello parancsok a következőképpen nézne ki:
 
 ```sh
  azure servicefabric cluster connect http://localhost:19080
@@ -139,7 +139,7 @@ Build, másolása, regisztrálja és az alkalmazás létrehozása a projekt gyö
  azure servicefabric application create fabric:/MySFApp MySFApp 1.0
 ```
 
-Végezze el a módosítást az alkalmazáson, és építse újra a módosított szolgáltatást.  A módosított service manifest-fájl (ServiceManifest.xml) frissítése a frissített verziókat a szolgáltatás (és kód vagy Config vagy adatokat szükség szerint). Az alkalmazás és a módosított szolgáltatást a frissített verziószámú is módosíthatja a az alkalmazás jegyzékében (ApplicationManifest.xml).  Most másolja, és regisztrálja a frissített alkalmazás a következő parancsokkal:
+Ellenőrizze a hello tooyour alkalmazás módosítsa, majd újraépítése a módosított hello szolgáltatást.  Frissítés hello módosított szolgáltatás jegyzékfájljában (ServiceManifest.xml) frissítése hello verzióival hello szolgáltatás (és kód vagy Config vagy adatokat szükség szerint). Is frissíteni hello verziószámú hello alkalmazás hello alkalmazás jegyzékfájlja (ApplicationManifest.xml) módosítása és hello módosított szolgáltatás.  Most másolja, és regisztrálja az frissített alkalmazás hello a következő parancsok használatával:
 
 ```sh
  azure servicefabric cluster connect http://localhost:19080>
@@ -147,68 +147,68 @@ Végezze el a módosítást az alkalmazáson, és építse újra a módosított 
  azure servicefabric application type register MySFApp
 ```
 
-Az alkalmazásfrissítés most már elindíthatja a következő paranccsal:
+Most hello az alkalmazásfrissítés indítható hello a következő parancsot:
 
 ```sh
  azure servicefabric application upgrade start -–application-name fabric:/MySFApp -–target-application-type-version 2.0 --rolling-upgrade-mode UnmonitoredAuto
 ```
 
-Az alkalmazásfrissítés SFX használatával figyelheti. Az alkalmazás néhány percen belül frissült volna. Hiba történt a frissített alkalmazást is, és ellenőrizze az automatikus visszagörgetésre, ha a service fabric.
+Az alkalmazásfrissítés hello SFX használatával figyelheti. Néhány perc múlva hello alkalmazás lesz frissítve lett. Is hibával frissített alkalmazást, és ellenőrizze a hello automatikus visszaállítási funkciót az a service fabric.
 
-## <a name="converting-from-pfx-to-pem-and-vice-versa"></a>PEM, és ez fordítva is igaz PFX-ból
+## <a name="converting-from-pfx-toopem-and-vice-versa"></a>PFX-tooPEM, és ez fordítva is igaz alakítása
 
-Szükség lehet a tanúsítvány telepítése a helyi számítógépen (a Windows vagy Linux), amely a másik lehetséges, hogy nem biztonságos fürtök eléréséhez. Például egy Windows-gépen, és ez fordítva is igaz biztonságos Linux fürt használata közben: szükség lehet a tanúsítvány próbaverzióról PFX PEM, és ez fordítva is igaz. 
+A helyi számítógépen (a Windows vagy Linux) tooaccess biztonságos fürtök különböző környezetben esetlegesen szükség lehet tooinstall egy tanúsítványt. Például a Windows-gépről, és ez fordítva is igaz biztonságos Linux fürt használata közben esetleg tooconvert a tanúsítvány PFX tooPEM, és ez fordítva is igaz. 
 
-A PEM-fájl át az PFX-fájlba, a következő paranccsal:
+PEM fájl tooa PFX-fájlból, a következő parancs használata hello tooconvert:
 
 ```bash
 openssl pkcs12 -export -out certificate.pfx -inkey mycert.pem -in mycert.pem -certfile mycert.pem
 ```
 
-PFX-fájl a következő paranccsal konvertálható PEM fájllá:
+PFX-fájlból egy fájl tooa PEM, a következő parancs használata hello tooconvert:
 
 ```bash
 openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
 ```
 
-Részletes információkat az [OpenSSL-dokumentációban](https://www.openssl.org/docs/man1.0.1/apps/pkcs12.html) talál.
+Tekintse meg a túl[OpenSSL-dokumentáció](https://www.openssl.org/docs/man1.0.1/apps/pkcs12.html) részleteiről.
 
 <a id="troubleshooting"></a>
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 
 
-### <a name="copying-of-the-application-package-does-not-succeed"></a>Az alkalmazás csomag másolása sikertelen
+### <a name="copying-of-hello-application-package-does-not-succeed"></a>Hello alkalmazás csomag másolása sikertelen
 
-Ellenőrizze, hogy `openssh` telepítve van. Alapértelmezés szerint Ubuntu asztali nincs telepítve. Telepítse a következő parancsot:
+Ellenőrizze, hogy `openssh` telepítve van. Alapértelmezés szerint Ubuntu asztali nincs telepítve. Telepítse a következő parancs hello:
 
 ```sh
 sudo apt-get install openssh-server openssh-client**
 ```
 
-Ha a probléma továbbra is fennáll, próbálja letiltása a PAM ssh módosításával a `sshd_config` fájlt a következő parancsokkal:
+Ha hello a probléma továbbra is fennáll, próbálja letiltása a PAM ssh hello módosításával `sshd_config` fájl a következő parancsok hello használata:
 
 ```sh
 sudo vi /etc/ssh/sshd_config
-#Change the line with UsePAM to the following: UsePAM no
+#Change hello line with UsePAM toohello following: UsePAM no
 sudo service sshd reload
 ```
 
-Ha a probléma továbbra is fennáll, próbálja növelni a száma ssh munkamenetek a következő parancsok végrehajtásával:
+Ha hello a probléma továbbra is fennáll, próbálja meg egyre hello több ssh munkamenetek hello a következő parancsok végrehajtásával:
 
 ```sh
 sudo vi /etc/ssh/sshd\_config
-# Add the following to lines:
+# Add hello following toolines:
 # MaxSessions 500
 # MaxStartups 300:30:500
 sudo service sshd reload
 ```
 
-Kulcsok használata az ssh hitelesítés (jelszó) szemben még nem támogatott (mivel a platform használatával ssh csomagok másolása), ezért használja inkább a jelszó-hitelesítést.
+Billentyűparancsok használata ssh hitelesítés (a megakadályozását toopasswords) még nem támogatott (mivel hello platform használ ssh toocopy csomagok), ezért használja inkább a jelszó-hitelesítés.
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Állítsa be a fejlesztési környezetet, és a Service Fabric-alkalmazás egy Linux-fürt telepítése.](service-fabric-get-started-linux.md)
+[Hello fejlesztési környezet beállítását, és a Service Fabric-alkalmazás tooa Linux-fürt üzembe helyezése](service-fabric-get-started-linux.md)
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 

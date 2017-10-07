@@ -1,5 +1,5 @@
 ---
-title: "Rögzítheti az Azure Event Hubs áttekintése |} Microsoft Docs"
+title: "az Azure Event Hubs rögzítése aaaOverview |} Microsoft Docs"
 description: "Az Event Hubs rögzítése telemetrikus adatokat rögzítése"
 services: event-hubs
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: sethm;darosa
-ms.openlocfilehash: 9ae6aa57200b99f382c6e60565db9cfc69f1d3c6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0238cae712a0ed7bdf3e87ee93a069a553cb65df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-event-hubs-capture"></a>Az Azure Event Hubs rögzítése
 
-Az Azure Event Hubs rögzítése lehetővé teszi, hogy automatikusan a streamelési adatok az Event Hubs egy [Azure Blob Storage tárolóban](https://azure.microsoft.com/services/storage/blobs/) vagy [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) hozzáadott rugalmasan választhassa a kiválasztott fiók egy alkalommal vagy méret időköz megadása. Rögzítési beállítása gyors, nem futtatható. felügyeleti költségek van, és automatikusan méretezi az Event Hubs [átviteli egységek](event-hubs-features.md#capacity). Event Hubs rögzítése a legegyszerűbb módja a streamelési adatok betöltése az Azure, és lehetővé teszi az adatok feldolgozása és nem a rögzítés összpontosíthat.
+Az Azure Event Hubs rögzítése lehetővé teszi a streamelési adatok az Event Hubs tooan tooautomatically kézbesítése hello [Azure Blob Storage tárolóban](https://azure.microsoft.com/services/storage/blobs/) vagy [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) fiók az Ön által választott, a hello további rugalmasságot egy alkalommal vagy méret időszakban megadására. Rögzítési beállítása gyors, nem azt, és azt méretezi automatikusan az Event Hubs adminisztrációs költségek toorun van [átviteli egységek](event-hubs-features.md#capacity). Event Hubs rögzítése hello streamelési adatok az Azure legegyszerűbb módja tooload, és lehetővé teszi az adatok feldolgozása és nem a rögzítés toofocus.
 
-Event Hubs rögzítése lehetővé teszi az azonos adatfolyamon valós idejű és kötegelt alapú folyamatok feldolgozni. Ez azt jelenti, hogy idővel igényeknek nő megoldásokat hozhat létre. Batch-alapú rendszerek ma felé jövőbeli valós idejű feldolgozással követheti most felépítése, vagy hozzá szeretne adni egy hatékony cold útvonalat ad egy meglévő valós idejű megoldáshoz, Event Hubs rögzítése lehetővé teszi a könnyebb adatfolyam használata.
+Event Hubs rögzítése lehetővé teszi a valós idejű tooprocess, és a batch-alapú folyamatok hello ugyanaz az adatfolyam. Ez azt jelenti, hogy idővel igényeknek nő megoldásokat hozhat létre. Batch-alapú rendszerek ma felé jövőbeli valós idejű feldolgozással követheti most felépítése, kívánó tooadd hatékony cold elérési tooan meglévő valós idejű megoldás, Event Hubs rögzítése révén könnyebben adatfolyam használata.
 
 ## <a name="how-event-hubs-capture-works"></a>Event Hubs rögzítése működése
 
-Az Event Hubs egy idő-megőrzési telemetriai érkező, egy elosztott napló hasonló tartós puffer. A kulcs az Event Hubs skálázás a [particionált felhasználói modell](event-hubs-features.md#partitions). Mindegyik partíció az adatok egy független szegmense, és egymástól függetlenül felhasznált. Idővel ezek az adatok elavulnak, ki, a konfigurálható megőrzési időtartam alapján. Emiatt egy adott eseményközpont soha nem megtelik "túl."
+Az Event Hubs egy idő-megőrzési telemetriai érkező, hasonló tooa elosztott napló tartós puffer. hello kulcs tooscaling az Event Hubs hello [particionált felhasználói modell](event-hubs-features.md#partitions). Mindegyik partíció az adatok egy független szegmense, és egymástól függetlenül felhasznált. Ezek az adatok elavulnak ki idővel hello konfigurálható megőrzési időtartam alapján. Emiatt egy adott eseményközpont soha nem megtelik "túl."
 
-Event Hubs rögzítése lehetővé teszi a saját Azure Blob storage-fiók és a tároló vagy az Azure Data Lake Store-fiókot, a rögzített adatok tárolására használt megadását. Ezek a fiókok lehet az eseményközpont ugyanabban a régióban, vagy egy másik régióban, a rugalmasságot az Event Hubs rögzítése funkció hozzáadása.
+Event Hubs rögzítése lehetővé teszi, hogy Ön toospecify a saját Azure Blob storage-fiók és a tároló vagy az Azure Data Lake Store-fiók, amelyek használt toostore hello rögzített adatok. Ezek a fiókok hello lehet ugyanabban a régióban, az eseményközpont vagy egy másik régióban, toohello rugalmasságot hello Event Hubs rögzítése funkció hozzáadása.
 
-A rögzített adatok [Apache Avro] [ Apache Avro] formátum: kompakt, gyors és bináris formátum, amely a beágyazott sémák gazdag adatstruktúrák biztosít. Ezt a formátumot a Hadoop ökoszisztémájának, a Stream Analytics és az Azure Data Factory széles körben használja. Az Avro kezelésével kapcsolatos további információk a cikk későbbi részében érhető el.
+A rögzített adatok [Apache Avro] [ Apache Avro] formátum: kompakt, gyors és bináris formátum, amely a beágyazott sémák gazdag adatstruktúrák biztosít. Ebben a formátumban széles körben használt hello Hadoop ökoszisztémájának, a Stream Analytics és az Azure Data Factory. Az Avro kezelésével kapcsolatos további információk a cikk későbbi részében érhető el.
 
 ### <a name="capture-windowing"></a>Leképezési rögzítése
 
-Event Hubs rögzítése lehetővé teszi, hogy meg kell adnia egy ablak rögzítése szabályozására. Ebben az ablakban a minimális és időpontjának beállítása "első wins házirendnek," ami azt jelenti, hogy az első észlelt az eseményindító a rögzítési művelet. Ha egy 15 perc, 100 MB Rögzítés ablak, és 1 MB protokollüzenetek másodpercenkénti, a méret ablak eseményindítók a időszak előtt. Mindegyik partíció egymástól függetlenül rögzíti, és írási műveletek befejezett blokkblob rögzítési, időpontjában, ahol a rögzítési időköz történt alkalommal nevű. A tároló elnevezési egyezménynek a következőképpen történik:
+Event Hubs rögzítése lehetővé teszi, hogy a tooset fel egy ablak toocontrol rögzítése. Ebben az ablakban egy minimális és időpontjának beállítása "első wins házirendnek,", amely hello első észlelt eseményindító okok rögzítési művelet jelentését. Ha egy 15 perc, 100 MB Rögzítés ablak, és 1 MB protokollüzenetek másodpercenkénti, hello mérete ablak eseményindítók hello időszak előtt. Mindegyik partíció egymástól függetlenül rögzíti, és befejezett blokkblob írja a rögzítést, hello időpontjában az nevű hello ideje, mely hello rögzítési időköz történt. hello tároló elnevezési egyezmény a következőképpen történik:
 
 ```
 [namespace]/[event hub]/[partition]/[YYYY]/[MM]/[DD]/[HH]/[mm]/[ss]
 ```
 
-### <a name="scaling-to-throughput-units"></a>Átviteli egységek méretezhetők
+### <a name="scaling-toothroughput-units"></a>Toothroughput méretezési egységek
 
-Event Hubs forgalom által szabályozott [átviteli egységek](event-hubs-features.md#capacity). Egy átviteli egység lehetővé teszi, hogy 1 MB másodpercenkénti bemenő és kimenő forgalom kétszer adott mennyiségű második vagy 1000 esemény. Standard Event Hubs 1 – 20 átviteli egység konfigurálhatók, és vásárolhat további, a kvóta növeléséhez [támogatási kérelem][support request]. Használat meghaladja a megvásárolt átviteli egységek folyamatban van. Event Hubs rögzítése másol adatokat közvetlenül a belső tárolóban az Event Hubs átviteli egység kilépő kvóták kihagyásával, és a kimenő forgalom mentése más feldolgozási olvasók, például a Stream Analytics vagy Spark.
+Event Hubs forgalom által szabályozott [átviteli egységek](event-hubs-features.md#capacity). Egy átviteli egység lehetővé teszi, hogy 1 MB másodpercenkénti bemenő és kimenő forgalom kétszer adott mennyiségű második vagy 1000 esemény. Standard Event Hubs 1 – 20 átviteli egység konfigurálhatók, és vásárolhat további, a kvóta növeléséhez [támogatási kérelem][support request]. Használat meghaladja a megvásárolt átviteli egységek folyamatban van. Event Hubs rögzítése másol adatokat közvetlenül hello belső Event Hubs tároló átviteli egység kilépő kvóták kihagyásával, és a kimenő forgalom mentése más feldolgozási olvasók, például a Stream Analytics vagy Spark.
 
-Beállítása után Event Hubs rögzítése automatikusan fut, amikor az első esemény küldi el, és továbbra is futnak. Könnyebben tudnia, hogy működik-e a folyamat az alárendelt feldolgozásra, az Event Hubs üres fájlok ír, amikor nincsenek adatok. Ez a folyamat előre jelezhető ütemben történik és jelző, amely képes a kötegelt processzor biztosít.
+Beállítása után Event Hubs rögzítése automatikusan fut, amikor az első esemény küldi el, és továbbra is futnak. toomake könnyebb az alárendelt feldolgozási tooknow hello folyamat működik, az Event Hubs a ír, üres fájlok amikor nincsenek adatok. Ez a folyamat előre jelezhető ütemben történik és jelző, amely képes a kötegelt processzor biztosít.
 
 ## <a name="setting-up-event-hubs-capture"></a>Event Hubs rögzítése beállítása
 
-Rögzítési konfigurálhatja a event hub létrehozási ideje az az [Azure-portálon](https://portal.azure.com), vagy az Azure Resource Manager-sablonok használatával. További információkért tekintse át a következő cikkeket:
+Létrehozáskor hello event hub hello segítségével konfigurálhatja a rögzítési [Azure-portálon](https://portal.azure.com), vagy az Azure Resource Manager-sablonok használatával. További információkért tekintse meg a következő cikkek hello:
 
-- [Engedélyezze az Event Hubs rögzítheti az Azure portál használatával](event-hubs-capture-enable-through-portal.md)
+- [Engedélyezze az Event Hubs rögzítése hello Azure-portál használatával](event-hubs-capture-enable-through-portal.md)
 - [Hozzon létre egy Event Hubs névtér eseményközpontban, és engedélyezze a rögzítést az Azure Resource Manager-sablonok](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
 
-## <a name="exploring-the-captured-files-and-working-with-avro"></a>A rögzített fájlok fel, és az Avro használata
+## <a name="exploring-hello-captured-files-and-working-with-avro"></a>Hello rögzített fájlok fel, és az Avro használata
 
-Az Avro formátum, a megadott időszak megadott fájlok Event Hubs rögzítése hoz létre. Megtekintheti ezeket a fájlokat, mint bármely eszköz [Azure Tártallózó][Azure Storage Explorer]. Letöltheti a fájlokat helyileg őket.
+Event Hubs rögzítése fájlokat hozza létre az Avro formátum megadott hello beállított időszak. Megtekintheti ezeket a fájlokat, mint bármely eszköz [Azure Tártallózó][Azure Storage Explorer]. Letöltheti a hello fájlok helyi toowork rajtuk.
 
-Az Event Hubs rögzítése által előállított fájlokat a következő az Avro-séma rendelkezik:
+Event Hubs rögzítése által előállított hello fájlok az Avro-séma a következő hello rendelkezik:
 
 ![][3]
 
-Egy egyszerű módja felfedezése, mely az Avro-fájlok a [Avro eszközök] [ Avro Tools] az Apache jar. A jar a letöltés után megtekintheti a séma egy konkrét az Avro-fájl a következő parancs futtatásával:
+Egy egyszerű módot tooexplore az Avro-fájlok segítségével hello el [Avro eszközök] [ Avro Tools] az Apache jar. A jar a letöltés után megtekintheti egy konkrét Avro fájl hello séma hello a következő parancs futtatásával:
 
 ```
 java -jar avro-tools-1.8.2.jar getschema <name of capture file>
@@ -88,21 +88,21 @@ Ez a parancs visszaadja
 }
 ```
 
-Az Avro eszközök segítségével a fájl konvertálása JSON formátumú, és végezze el a más feldolgozása.
+Is Avro eszközök tooconvert hello tooJSON formátumát használja, és hajtsa végre a más feldolgozása.
 
-Speciális feldolgozási műveleteket, töltse le és telepítse a Avro a választott platform számára. A cikk írásának időpontjában érhetők el megvalósítások C, C++, C\#, Java, NodeJS, Perl, PHP, Python vagy Ruby.
+Speciális feldolgozása, letöltése és telepítése Avro a választott platform tooperform. Hello írásának időpontjában, megvalósítások rendelkezésre állnak olyan C, C++, C\#, Java, NodeJS, Perl, PHP, Python vagy Ruby.
 
-Apache Avro rendelkezik teljes bevezetés útmutatói [Java] [ Java] és [Python][Python]. Is a [Bevezetés az Event Hubs rögzítése](event-hubs-capture-python.md) cikk.
+Apache Avro rendelkezik teljes bevezetés útmutatói [Java] [ Java] és [Python][Python]. Hello is olvasható [Bevezetés az Event Hubs rögzítése](event-hubs-capture-python.md) cikk.
 
 ## <a name="how-event-hubs-capture-is-charged"></a>Hogyan Event Hubs rögzítése feladata
 
-Event Hubs rögzítése forgalmi díjas hasonlóan az átviteli egységek: mint egy óránkénti kell fizetni. Az elsők között közvetlenül a névtér megvásárolt átviteli egységek számával arányos. Átviteli egységek növelhető és csökkenthető, Event Hubs rögzítése mérőszámok növelheti és csökkentheti a megfelelő teljesítmény elérése érdekében. A mérőszámok párhuzamosan történik. Díjszabása, lásd: [Event Hubs-díjszabás](https://azure.microsoft.com/pricing/details/event-hubs/). 
+Event Hubs rögzítése forgalmi díjas hasonlóképpen toothroughput egységek: mint egy óránkénti kell fizetni. hello kell fizetni közvetlenül arányos toohello hello névtér megvásárolt átviteli egységek száma. Átviteli egységek növelhető és csökkenthető, Event Hubs rögzítése mérőszámok növelheti és csökkentheti a megfelelő teljesítmény tooprovide. hello mérőszámok párhuzamosan történik. Díjszabása, lásd: [Event Hubs-díjszabás](https://azure.microsoft.com/pricing/details/event-hubs/). 
 
 ## <a name="next-steps"></a>Következő lépések
 
-A legegyszerűbben az adatok lekérése az Azure Event Hubs rögzítése. Az Azure Data Lake, az Azure Data Factory és az Azure HDInsight, kötegfeldolgozási hajthat végre, és más jól ismert eszközökkel és a platformok elemzés, bármilyen léptékben van szüksége.
+Hello legegyszerűbb módja tooget adatokat az Azure Event Hubs rögzítése funkció. Az Azure Data Lake, az Azure Data Factory és az Azure HDInsight, kötegfeldolgozási hajthat végre, és más jól ismert eszközökkel és a platformok elemzés, bármilyen léptékben van szüksége.
 
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Küldés és fogadás események első lépései](event-hubs-dotnet-framework-getstarted-send.md)
 * [Az Event Hubsot használó teljes mintaalkalmazás][sample application that uses Event Hubs]

@@ -1,5 +1,5 @@
 ---
-title: "Hozzon létre Azure Service Bus névtér témakör előfizetést Azure Resource Manager-sablonnal |} Microsoft Docs"
+title: "aaaCreate Azure Service Bus névtér üzenettémakör-előfizetésben Azure Resource Manager-sablonnal |} Microsoft Docs"
 description: "Hozzon létre egy Service Bus-névtér témakör és előfizetés Azure Resource Manager-sablonnal"
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: 8dd48787e7b788d249085b3110484de1a2c1d265
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9b5f7d8710e598b73c0a7ea3daf8c300f7fa9ecd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-service-bus-namespace-with-topic-and-subscription-using-an-azure-resource-manager-template"></a>Hozzon létre egy Service Bus-névtér témakör és előfizetés Azure Resource Manager-sablonnal
 
-Ez a cikk bemutatja, hogyan használható az Azure Resource Manager-sablon által létrehozott Service Bus-névtér és a témakör és előfizetés az adott névtérben. Megtudhatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása. Ezt a sablont saját üzembe helyezési műveleteihez is használhatja, vagy akár igényeinek megfelelően testre is szabhatja
+Ez a cikk bemutatja, hogyan toouse Azure Resource Manager-sablon, amely létrehoz egy Service Bus-névtér és a témakör és az előfizetés az adott névtérben. Megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet a követelmények
 
 Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager-sablonok készítése][Authoring Azure Resource Manager templates].
 
-A teljes sablon, tekintse meg a [Service Bus-névtér témakör és előfizetés] [ Service Bus namespace with topic and subscription] sablont.
+Hello teljes sablon, lásd: hello [Service Bus-névtér témakör és előfizetés] [ Service Bus namespace with topic and subscription] sablont.
 
 > [!NOTE]
-> A következő Azure Resource Manager-sablonok letöltése és központi telepítés érhetők el.
+> Azure Resource Manager-sablonok a következő hello érhetők el a letöltés és telepítés.
 > 
 > * [Service Bus-névtér létrehozása](service-bus-resource-manager-namespace.md)
 > * [Hozzon létre egy Service Bus-névtér várólista](service-bus-resource-manager-namespace-queue.md)
 > * [Hozzon létre egy Service Bus-névtér várólista és engedélyezési szabály](service-bus-resource-manager-namespace-auth-rule.md)
 > * [A témakör, előfizetés és a szabály a Service Bus-névtér létrehozása](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> Ellenőrizze a legutóbbi sablonok, látogasson el a [Azure gyors üzembe helyezési sablonokat] [ Azure Quickstart Templates] gyűjteménye, és keressen a "Service Bus."
+> toocheck hello legújabb sablonok, látogasson el a hello [Azure gyors üzembe helyezési sablonokat] [ Azure Quickstart Templates] gyűjteménye, és keressen a "Service Bus."
 > 
 > 
 
@@ -46,18 +46,18 @@ Ezen sablon esetén telepíti a Service Bus-névtér témakör és előfizetés.
 
 [Service Bus-üzenettémák és előfizetések](service-bus-queues-topics-subscriptions.md#topics-and-subscriptions) egy egy-a-többhöz típusú kommunikációt biztosítanak a egy *közzétételi/előfizetési* mintát.
 
-Az automatikus üzembe helyezéshez kattintson az alábbi gombra:
+toorun telepítési hello automatikusan, kattintson a következő gombra hello:
 
-[![Üzembe helyezés az Azure-ban](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>Paraméterek
 
-Az Azure Resource Managerrel meghatározhatja a sablon üzembe helyezésekor megadandó értékek paramétereit. A sablon nevű szakaszban tartalmaz `Parameters` , amely tartalmazza az összes a paraméterértékek. Meg kell határozni egy paramétert ezeket az értékeket, amelyek a projekt telepít vagy telepít, hogy a környezet alapján változhatnak. Az értékeket, amelyeket a rendszer mindig ugyanaz maradjon paraméterek nem határoznak meg. A sablonban minden egyes paraméterérték az üzembe helyezendő erőforrások megadásához lesz felhasználva.
+Az Azure Resource Manager paraméterek megadása értékek keresi toospecify hello sablon telepítésekor. hello sablon tartalmaz nevű szakaszban `Parameters` , amely tartalmazza az összes hello paraméterértékeket. Ezeket az értékeket, amelyek eltérőek a hello projektet telepít vagy alapján hello környezet esetében helyez üzembe egy paramétert meg kell határozni. Paraméterek nem adják meg, az értékek, amelyek mindig maradnak hello azonos. Minden egyes paraméterérték hello sablon toodefine hello telepített erőforrások esetén használatos.
 
-A sablon a következő paramétereket adja meg.
+hello a sablon a következő paraméterek hello határozza meg.
 
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
-A Service Bus-névtér létrehozása neve.
+a Service Bus-névtér toocreate hello hello neve.
 
 ```json
 "serviceBusNamespaceName": {
@@ -66,7 +66,7 @@ A Service Bus-névtér létrehozása neve.
 ```
 
 ### <a name="servicebustopicname"></a>serviceBusTopicName
-A témakör a Service Bus-névtér létrehozása neve.
+Service Bus-névtér hello létrehozott hello témakör hello neve.
 
 ```json
 "serviceBusTopicName": {
@@ -75,7 +75,7 @@ A témakör a Service Bus-névtér létrehozása neve.
 ```
 
 ### <a name="servicebussubscriptionname"></a>serviceBusSubscriptionName
-Az előfizetés létrehozása a Service Bus-névtér neve.
+a Service Bus-névtér hello létrehozott hello előfizetés hello neve.
 
 ```json
 "serviceBusSubscriptionName": {
@@ -84,14 +84,14 @@ Az előfizetés létrehozása a Service Bus-névtér neve.
 ```
 
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
-A sablon Service Bus API verzióját.
+hello sablon hello Service Bus API verzióját.
 
 ```json
 "serviceBusApiVersion": {
 "type": "string"
 }
 ```
-## <a name="resources-to-deploy"></a>Üzembe helyezendő erőforrások
+## <a name="resources-toodeploy"></a>Erőforrások toodeploy
 Létrehoz egy standard Service Bus-névtér típusú **Messaging**, témakör és előfizetés.
 
 ```json
@@ -128,7 +128,7 @@ Létrehoz egy standard Service Bus-névtér típusú **Messaging**, témakör é
     }]
 ```
 
-## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
+## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
@@ -144,14 +144,14 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy már létrehozott és telepített Azure Resource Manager eszközzel, megtudhatja, hogyan kezelheti ezeket az erőforrásokat megtekintésével, ezek a cikkek:
+Most, hogy létrehozott és telepített Azure Resource Manager eszközzel, megtudhatja, hogyan toomanage ezeket az erőforrásokat, ezek a cikkek megtekintésével:
 
 * [A PowerShell használatával a Service Bus kezelése](service-bus-manage-with-ps.md)
-* [A Service Bus Explorer Service Bus-erőforrások kezelése](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
+* [A Service Bus Explorer hello Service Bus-erőforrások kezelése](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 [Learn more about Service Bus topics and subscriptions]: service-bus-queues-topics-subscriptions.md
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Service Bus namespace with topic and subscription]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-and-subscription/

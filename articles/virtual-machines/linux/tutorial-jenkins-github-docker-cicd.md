@@ -1,6 +1,6 @@
 ---
-title: "A fejlesztési folyamat létrehozása az Azure-ban Jenkins |} Microsoft Docs"
-description: "Megtudhatja, hogyan Jenkins virtuális gép létrehozása, amely kéri le a Githubról. az egyes kód véglegesítési és összeállít egy új Docker-tároló az alkalmazás futtatásához Azure-ban"
+title: "az Azure-ban Jenkins fejlesztési folyamat aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy Jenkins virtuális gépet, hogy minden egyes kódja a Githubon ponttá véglegesíteni és összeállít egy új Docker tároló toorun Azure-ban az alkalmazás"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,14 +16,14 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: d9849b5e061dd7f2ae0744a3522dc2eb1fb37035
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c079e3c9186c9da0a3e51e1823215779c565e0dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>A Linux virtuális gép az Azure-ban Jenkins, a Githubon és a Docker a fejlesztési infrastruktúra létrehozása
-Automatizálható a build és a tesztelési fázis alkalmazásának fejlesztését, használhatja a folyamatos integrációt és a központi telepítés (CI/CD) folyamat. Ebben az oktatóanyagban létrehoz egy CI/CD folyamat egy Azure virtuális gépen történő is beleértve:
+# <a name="how-toocreate-a-development-infrastructure-on-a-linux-vm-in-azure-with-jenkins-github-and-docker"></a>Hogyan toocreate egy Linux virtuális Gépet az Azure-ban Jenkins, a Githubon és a Docker-fejlesztési infrastruktúra
+tooautomate hello build, és tesztelési fázis alkalmazásának fejlesztését, használhatja a folyamatos integrációt és a központi telepítés (CI/CD) folyamat. Ebben az oktatóanyagban létrehoz egy CI/CD folyamat egy Azure virtuális gépen történő is beleértve:
 
 > [!div class="checklist"]
 > * Jenkins virtuális gép létrehozása
@@ -36,12 +36,12 @@ Automatizálható a build és a tesztelési fázis alkalmazásának fejlesztés�
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Telepítése és a parancssori felület helyileg használata mellett dönt, ha ez az oktatóanyag van szükség, hogy futnak-e az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ez az oktatóanyag van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-jenkins-instance"></a>Jenkins példány létrehozása
-Az oktatóanyag előző [első indításakor Linux virtuális gépek testreszabása](tutorial-automate-vm-deployment.md), megtudta, hogyan automatizálható a felhő inicializálás a virtuális gép testreszabása. Ez az oktatóanyag egy felhő-init fájl Jenkins és Docker telepítése a virtuális gép használja. 
+Az oktatóanyag előző [hogyan toocustomize egy Linux virtuális gép első indításakor](tutorial-automate-vm-deployment.md), akkor megtanulta, hogyan tooautomate virtuális gép testreszabása a felhő inicializálás. Ez az oktatóanyag a virtuális gép egy felhőben inicializálás fájl tooinstall Jenkins és a Docker használja. 
 
-Hozzon létre egy fájlt az aktuális rendszerhéjban *felhő-init.txt* , majd illessze be a következő konfigurációt. A felhő rendszerhéj nem a helyi számítógépen hozzon létre például a fájlt. Adja meg `sensible-editor cloud-init-jenkins.txt` hozza létre a fájlt, és elérhető szerkesztők listájának megtekintéséhez. Győződjön meg arról, hogy az egész felhő inicializálás fájl megfelelően lett lemásolva különösen az első sor:
+Hozzon létre egy fájlt az aktuális rendszerhéjban *felhő-init.txt* és a Beillesztés hello a következő konfigurációs. A felhő rendszerhéj hello nem a helyi számítógépen hozzon létre például hello fájlt. Adja meg `sensible-editor cloud-init-jenkins.txt` toocreate hello fájlt, és elérhető szerkesztők listájának megtekintéséhez. Győződjön meg arról, hogy hello egész felhő inicializálás fájl megfelelően lett lemásolva, különösen az első sor hello:
 
 ```yaml
 #cloud-config
@@ -67,13 +67,13 @@ runcmd:
   - service jenkins restart
 ```
 
-A virtuális gépek létrehozása előtt hozzon létre egy erőforráscsoportot, a [az csoport létrehozása](/cli/azure/group#create). Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupJenkins* a a *eastus* helye:
+A virtuális gépek létrehozása előtt hozzon létre egy erőforráscsoportot, a [az csoport létrehozása](/cli/azure/group#create). hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroupJenkins* a hello *eastus* helye:
 
 ```azurecli-interactive 
 az group create --name myResourceGroupJenkins --location eastus
 ```
 
-Most létrehozza a virtuális gép és [az virtuális gép létrehozása](/cli/azure/vm#create). Használja a `--custom-data` paraméter felelt meg a felhő inicializálás konfigurációs fájlban. Adja meg a teljes elérési útja *felhő-init-jenkins.txt* Ha mentette a fájlt a jelenlegi munkakönyvtár kívül.
+Most létrehozza a virtuális gép és [az virtuális gép létrehozása](/cli/azure/vm#create). Használjon hello `--custom-data` paraméter toopass a felhő inicializálás konfigurációs fájlban. Adja meg a hello teljes elérési útja túl*felhő-init-jenkins.txt* ha kívül a jelen munkakönyvtár hello fájlt mentette.
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroupJenkins \
@@ -84,9 +84,9 @@ az vm create --resource-group myResourceGroupJenkins \
     --custom-data cloud-init-jenkins.txt
 ```
 
-A virtuális gépek létrehozása és konfigurálása a néhány percet vesz igénybe.
+Hello VM toobe létrehozása és konfigurálása néhány percet vesz igénybe.
 
-A virtuális gép elérni kívánt webes forgalom engedélyezéséhez használja [az vm-port megnyitása](/cli/azure/vm#open-port) port megnyitásához *8080-as* Jenkins forgalom és a port *1337* számára a Node.js-alkalmazás, amely egy mintaalkalmazást futtatására szolgál:
+tooallow webes forgalom tooreach a virtuális gép használata [az vm-port megnyitása](/cli/azure/vm#open-port) tooopen port *8080* Jenkins forgalom és a port *1337* hello Node.js-alkalmazás, amely használt toorun egy mintaalkalmazást:
 
 ```azurecli-interactive 
 az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 8080 --priority 1001
@@ -95,86 +95,86 @@ az vm open-port --resource-group myResourceGroupJenkins --name myVM --port 1337 
 
 
 ## <a name="configure-jenkins"></a>Jenkins konfigurálása
-Fér hozzá a Jenkins példányát, szerezze be a virtuális gép nyilvános IP-címe:
+tooaccess a Jenkins példány, szerezze be a virtuális gép hello nyilvános IP-címe:
 
 ```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 
-Biztonsági okokból meg kell adnia a kezdeti rendszergazdai jelszavát, amelyet a virtuális gép Jenkins telepítés elindításához a fájlt tárolja. Az SSH-kapcsolatot a virtuális gép számára az előző lépésben beszerzett nyilvános IP-cím használata:
+Biztonsági okokból tooenter hello kezdeti rendszergazdai jelszó tárolt szövegfájlba a virtuális gép toostart hello Jenkins telepíteni kell. Hello hello előző lépés tooSSH tooyour VM beszerzett nyilvános IP-cím használata:
 
 ```bash
 ssh azureuser@<publicIps>
 ```
 
-Nézet a `initialAdminPassword` a Jenkins telepítése, és másolja azt:
+Nézet hello `initialAdminPassword` a Jenkins telepítése, és másolja azt:
 
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Ha a fájl még nem érhető el, várjon néhány percet a Jenkins és a Docker felhő inicializálás telepítse.
+Hello fájl még nem érhető el, ha Várjon néhány percet a cloud inicializálás toocomplete hello Jenkins és a Docker telepítésről.
 
-Most nyisson meg egy webböngészőt, és navigáljon a `http://<publicIps>:8080`. Végezze el a kezdeti Jenkins a telepítő az alábbiak szerint:
+Most nyisson meg egy webböngészőt, és nyissa meg túl`http://<publicIps>:8080`. Hajtsa végre az alábbiak szerint hello kezdeti Jenkins beállítás:
 
-- Adja meg a *initialAdminPassword* a virtuális gép az előző lépésben beszerzett.
-- Kattintson a **jelölje be a beépülő modulok telepítése**
-- Keresse meg *GitHub* a szövegmezőben látható, válassza ki a *GitHub beépülő modul*, majd kattintson a **telepítése**
-- Jenkins felhasználói fiók létrehozása, töltse ki a kívánt módon működjenek az űrlapot. Biztonsági szempontból a Folytatás, az alapértelmezett rendszergazdai fiók helyett az első Jenkins felhasználó kell létrehoznia.
+- Adja meg a hello *initialAdminPassword* hello VM hello előző lépésben beszerzett.
+- Kattintson a **beépülő modulok tooinstall kiválasztása**
+- Keresse meg *GitHub* hello szövegmezőben hello tetején, válassza ki a hello *GitHub beépülő modul*, majd kattintson a **telepítése**
+- toocreate Jenkins felhasználói fiók, töltse ki a kívánt hello űrlap. Biztonsági szempontból Folytatás hello alapértelmezett rendszergazdai fiók helyett az első Jenkins felhasználó kell létrehoznia.
 - Ha befejezte, kattintson a **Jenkins használatának megkezdése**
 
 
 ## <a name="create-github-webhook"></a>GitHub webhook létrehozása
-A rendszerrel történő integráció konfigurálása a GitHub, nyissa meg a [Node.js Hello World mintaalkalmazás](https://github.com/Azure-Samples/nodejs-docs-hello-world) az Azure-minták tárházból. A tárház a saját GitHub-fiók oszthatja ketté, kattintson a **elágazás** gombra a jobb felső sarkában.
+tooconfigure hello integráció a github webhelyen, nyissa meg hello [Node.js Hello World sample app](https://github.com/Azure-Samples/nodejs-docs-hello-world) hello Azure-minták tárházból. toofork hello tárház tooyour saját GitHub-fiók, kattintson a hello **elágazás** hello jobb felső sarkában található gombra.
 
-Hozzon létre egy webhook létrehozott elágazás belül:
+Hozzon létre egy webhook létrehozott hello elágazás belül:
 
-- Kattintson a **beállítások**, majd jelölje be **integrációja és a szolgáltatások** a bal oldalon.
+- Kattintson a **beállítások**, majd jelölje be **integrációja és a szolgáltatások** hello bal oldalán.
 - Kattintson a **-szolgáltatás hozzáadása a**, majd adja meg *Jenkins* a Szűrő mezőbe.
 - Válassza ki *Jenkins (GitHub beépülő modul)*
-- Az a **Jenkins hook URL-cím**, adja meg `http://<publicIps>:8080/github-webhook/`. Győződjön meg arról, a záró /
+- A hello **Jenkins hook URL-cím**, adja meg `http://<publicIps>:8080/github-webhook/`. Meg kell hello záró /
 - Kattintson a **szolgáltatás hozzáadása**
 
-![GitHub webhook hozzáadása a villás tárház](media/tutorial-jenkins-github-docker-cicd/github_webhook.png)
+![GitHub webhook ágazik el tooyour-tárház hozzáadása](media/tutorial-jenkins-github-docker-cicd/github_webhook.png)
 
 
 ## <a name="create-jenkins-job"></a>Jenkins feladat létrehozása
-Ahhoz, hogy eseményre Jenkins válaszoljon a Githubon például kód végrehajtása, hozzon létre egy Jenkins feladatot. 
+toohave Jenkins válaszoljon tooan esemény a Githubon véglegesítése kód, például hozzon létre egy Jenkins feladatot. 
 
-Kattintson a Jenkins webhely **hozzon létre új feladatokat** a kezdőlapról:
+Kattintson a Jenkins webhely **hozzon létre új feladatokat** hello kezdőlapról:
 
 - Adja meg *HelloWorld* feladat neve. Válasszon **Freestyle projekt**, majd jelölje be **OK**.
-- Az a **általános** szakaszban jelölje be **GitHub** projektre, és adja meg a villás tárház URL-CÍMÉT, például *https://github.com/iainfoulds/nodejs-docs-hello-world*
-- A a **kód felügyeleti forrás** szakaszban jelölje be **Git**, adja meg a villás tárház *.git* URL-CÍMÉT, például a *https://github.com/iainfoulds/nodejs-docs-hello-world.git*
-- Az a **Build eseményindítók** szakaszban jelölje be **GitHub hook eseményindítója a következőnek: GITscm lekérdezési**.
-- Az a **Build** területen válassza a **Hozzáadás összeállítása lépés**. Válassza ki **hajtható végre a rendszerhéj**, majd adja meg `echo "Testing"` a a parancsablakban.
-- Kattintson a **mentése** a feladatok ablak alján.
+- A hello **általános** szakaszban jelölje be **GitHub** projektre, és adja meg a villás tárház URL-CÍMÉT, például *https://github.com/iainfoulds/nodejs-docs-hello-world*
+- A hello **forrás kód felügyeleti** szakaszban jelölje be **Git**, adja meg a villás tárház *.git* URL-címet, például *https://github.com/iainfoulds/nodejs-docs-hello-world.git*
+- A hello **Build eseményindítók** szakaszban jelölje be **GitHub hook eseményindítója a következőnek: GITscm lekérdezési**.
+- A hello **Build** területen válasszon **Hozzáadás összeállítása lépés**. Válassza ki **hajtható végre a rendszerhéj**, majd adja meg `echo "Testing"` toocommand ablakban.
+- Kattintson a **mentése** hello feladatok ablak hello alján.
 
 
 ## <a name="test-github-integration"></a>GitHub-integráció tesztelése
-Jenkins GitHub integrációja teszteléséhez véglegesítse az elágazáshoz változását. 
+tootest hello Jenkins, GitHub integrációja az elágazáshoz változása véglegesítése. 
 
-Vissza a Githubon webes felhasználói felülete, válassza ki a villás tárház, majd kattintson a **index.js** fájlt. Kattintson a ceruza ikonra a fájl szerkesztése, sor: 6 olvassa be:
+Vissza a Githubon webes felhasználói felülete, válassza ki a villás tárház, és kattintson a hello **index.js** fájlt. Kattintson hello ceruza ikonra tooedit ezt a fájlt, sor: 6 olvassa be:
 
 ```nodejs
 response.end("Hello World!");
 ```
 
-A módosítások véglegesítéséhez, kattintson a **változtatások véglegesítése a határidő** panel alján.
+toocommit módosításait, kattintson a hello **változtatások véglegesítése a határidő** hello alsó gombra.
 
-Jenkins, az új buildverziót elindul, a a **előzmények Build** szakasza a feladat lap bal alsó sarkában. A build számú hivatkozásra, és válassza ki **a konzol kimeneti** bal mérete. Megtekintheti a Jenkins veszi, hogy a rendszer a kódot a Githubról hívja elő lépéseket, és a létrehozási művelet kiírja az üzenet `Testing` a konzolhoz. Minden alkalommal, amikor egy véglegesítési a Githubon történik a webhook egészítse ki a Jenkins és indul el, így új buildverziót.
+Jenkins, az új buildverziót elindul, a hello **előzmények Build** hello bal alsó sarkában a feladat lap szakasza. Kattintson a hello build számú hivatkozásra, és válassza ki **a konzol kimeneti** a hello bal mérete. Megtekintheti a Jenkins tesz a kódban van lekért GitHub és hello build művelet kimenetének üdvözlőüzenetére hello lépéseket `Testing` toohello konzol. Minden alkalommal, amikor egy véglegesítési legyen a Githubon, hello webhook egészítse ki tooJenkins és indul el, így új buildverziót.
 
 
 ## <a name="define-docker-build-image"></a>Adja meg a Docker build kép
-Tekintse meg a GitHub véglegesítések alapján futó Node.js-alkalmazás lehetővé teszi az alkalmazás futtatásához Docker-lemezkép elkészítése. A kép össze egy Dockerfile, amely meghatározza a konfigurálása a tárolóhoz, amelybe futtatja az alkalmazást. 
+a Githubon véglegesítések alapján futó toosee hello Node.js alkalmazás lehetővé teszi, hogy egy Docker-lemezkép toorun hello alkalmazás elkészítésére. hello kép össze egy Dockerfile, amely meghatározza, hogyan tooconfigure hello tároló, amely hello alkalmazást futtat. 
 
-Az SSH-kapcsolat a virtuális géphez módosítsa az előző lépésben létrehozott feladat elnevezve Jenkins munkaterület könyvtárba. A fenti példában, amely nevű *HelloWorld*.
+Hello SSH-kapcsolat tooyour VM módosítsa az előző lépésben létrehozott hello feladat után nevű toohello Jenkins munkaterület könyvtár. A fenti példában, amely nevű *HelloWorld*.
 
 ```bash
 cd /var/lib/jenkins/workspace/HelloWorld
 ```
 
-Fájl létrehozása a könyvtár munkaterület `sudo sensible-editor Dockerfile` , majd illessze be az alábbiakat. Győződjön meg arról, hogy a teljes Dockerfile megfelelően lett lemásolva különösen az első sor:
+Fájl létrehozása a könyvtár munkaterület `sudo sensible-editor Dockerfile` és a Beillesztés hello követő tartalmát. Győződjön meg arról, hogy teljes Dockerfile van hello lemásolva megfelelően, különösen akkor hello első sor:
 
 ```yaml
 FROM node:alpine
@@ -187,17 +187,17 @@ RUN npm install
 COPY index.js /var/www/
 ```
 
-A Dockerfile használ, a Node.js alaplemezképet Alpine Linux használatával, tesz elérhetővé port 1337, amely a Hello World alkalmazás fut, majd másolja át az alkalmazás fájljai és inicializálja azt.
+A Dockerfile hello alapszintű Node.js lemezkép Alpine Linux használ, tesz elérhetővé port 1337 app Hello World hello futtatja, akkor hello app fájlokat másolja és inicializálja azt.
 
 
 ## <a name="create-jenkins-build-rules"></a>Jenkins összeállítási szabályok létrehozása
-Az előző lépésben létrehozott egy alapszintű Jenkins build szabályt, amely egy üzenetet, amely a konzol kimeneti. Lehetővé teszi, hogy létrehozása a build lépés a Dockerfile használatára, majd futtassa az alkalmazást.
+Az előző lépésben létrehozott, amelyek kimenete egy üzenet toohello konzol alapvető Jenkins build szabály. Lehetővé teszi, hogy hozzon létre hello összeállítása lépés toouse a Dockerfile és hello alkalmazás futtatása.
 
-A Jenkins példánya válassza az előző lépésben létrehozott feladat. Kattintson a **konfigurálása** a bal oldalon, és görgessen le a **Build** szakasz:
+A Jenkins példánya válassza az előző lépésben létrehozott hello feladat. Kattintson a **konfigurálása** hello bal oldalán és toohello görgetve **Build** szakasz:
 
-- Távolítsa el a meglévő `echo "Test"` összeállítása lépés. Kattintson a jobb felső sarkában a meglévő összeállítása lépés párbeszédpanel a piros kereszt.
+- Távolítsa el a meglévő `echo "Test"` összeállítása lépés. Kattintson a hello közötti piros hello jobb felső sarkában hello meglévő összeállítása lépés párbeszédpanel.
 - Kattintson a **Hozzáadás összeállítása lépés**, majd jelölje be **rendszerhéj végrehajtása**
-- Az a **parancs** mezőbe, írja be a következő Docker-parancsokat, majd válassza ki **mentése**:
+- A hello **parancs** mezőbe, írja be a következő Docker parancsok hello, majd válassza ki **mentése**:
 
   ```bash
   docker build --tag helloworld:$BUILD_NUMBER .
@@ -205,29 +205,29 @@ A Jenkins példánya válassza az előző lépésben létrehozott feladat. Katti
   docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
   ```
 
-A Docker build lépéseket kép és a Jenkins a buildszám, akkor is fenntartható a képek előzményeit címke létrehozása. Az alkalmazást futtató meglévő tárolókkal leáll, és eltávolítja majd. Új tároló majd a lemezkép használatával elindult, és a legújabb véglegesíti a Githubon alapján a Node.js-alkalmazást futtat.
+hello Docker build lépéseket kép és a hello Jenkins buildszám, akkor is fenntartható a képek előzményeit címke létrehozása. Hello alkalmazást futtató meglévő tárolókkal leáll, és eltávolítja majd. Új tároló van, akkor hello lemezkép használatával elindult és hello legújabb véglegesíti a Githubon alapján a Node.js-alkalmazást futtat.
 
 
 ## <a name="test-your-pipeline"></a>A folyamat tesztelése
-A művelet a teljes folyamat megtekintéséhez szerkesztése a *index.js* újra a villás GitHub-tárház fájlt, és kattintson a **módosítás véglegesítése**. GitHub webhook meghatározásával Jenkins új feladat indítja el. A Docker-lemezképet, és indítsa el az alkalmazást egy új tároló néhány másodpercet vesz igénybe.
+toosee hello egész folyamat a művelet szerkesztése hello *index.js* újra a villás GitHub-tárház fájlt, és kattintson a **módosítás véglegesítése**. GitHub hello webhook meghatározásával Jenkins új feladat indítja el. Toocreate hello Docker kép néhány másodpercet vesz igénybe, és indítsa el az alkalmazást egy új tárolóba.
 
-Szükség esetén olvassa be újra a virtuális gép nyilvános IP-címe:
+Szükség esetén újra be hello nyilvános IP-címet a virtuális gép:
 
 ```azurecli-interactive 
 az vm show --resource-group myResourceGroupJenkins --name myVM -d --query [publicIps] --o tsv
 ```
 
-Nyisson meg egy webböngészőt, és írja be `http://<publicIps>:1337`. A Node.js-alkalmazás jelenik meg, és a legújabb véglegesíti a Githubon elágazás a tükrözi az alábbiak szerint:
+Nyisson meg egy webböngészőt, és írja be `http://<publicIps>:1337`. A Node.js-alkalmazás jelenik meg, és által adott jelentéseket tükrözik hello legújabb véglegesíti a Githubon elágazás a következőképpen:
 
 ![Futó Node.js-alkalmazás](media/tutorial-jenkins-github-docker-cicd/running_nodejs_app.png)
 
-Egy másik szerkesztése ellenőrizze a *index.js* fájlt a Githubon, és a módosítás véglegesítése. Várjon a feladat befejezése Jenkins néhány másodpercet, majd frissítse a webböngészőt a frissített verzió az alkalmazás fut egy új tároló az alábbiak szerint:
+Ellenőrizze egy másik Szerkesztés toohello *index.js* fájlt a Githubon és a véglegesítési hello módosítása. Várjon néhány másodpercet, amíg a Jenkins hello feladat toocomplete, majd frissítse a webes böngésző toosee hello frissített verziója az alkalmazás fut egy új tároló az alábbiak szerint:
 
 ![Node.js-alkalmazás futtatása után egy másik GitHub véglegesítési](media/tutorial-jenkins-github-docker-cicd/another_running_nodejs_app.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy Docker-tároló az alkalmazás tesztelése majd alkalmaznia kell egy Jenkins összeállítási feladat futtatása, minden kód véglegesítés a Githubon konfigurálva. Megtudta, hogyan, hogy:
+Ebben az oktatóanyagban GitHub toorun Jenkins összeállítási feladat minden kód véglegesítés konfigurált, és majd egy Docker-tároló tootest az alkalmazás üzembe helyezése. Megismerte, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 > * Jenkins virtuális gép létrehozása
@@ -237,7 +237,7 @@ Ebben az oktatóanyagban egy Docker-tároló az alkalmazás tesztelése majd alk
 > * Az alkalmazás Docker-lemezkép létrehozása
 > * Ellenőrizze a Githubon véglegesíti és hozhat létre. új Docker-lemezkép alkalmazást futtató frissítések
 
-További információt a Visual Studio Team Services Jenkins integrálása a következő oktatóanyag továbblépés.
+További információt következő útmutató toolearn toohello előzetes toointegrate a Visual Studio Team Services Jenkins.
 
 > [!div class="nextstepaction"]
 > [Alkalmazások telepítése a Jenkins és Team Services](tutorial-build-deploy-jenkins.md)

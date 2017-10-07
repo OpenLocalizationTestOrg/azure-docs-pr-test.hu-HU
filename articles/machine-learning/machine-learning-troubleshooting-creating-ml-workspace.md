@@ -1,6 +1,6 @@
 ---
-title: "Hibaelhárítás: Hozzon létre, és kapcsolódjon a Machine Learning-munkaterület |} Microsoft Docs"
-description: "Megoldások gyakori problémákat létrehozása és az Azure Machine Learning-munkaterülethez csatlakozik"
+title: "Hibáinak elhárítása: Hozzon létre, és csatlakozzon a Machine Learning-munkaterület tooa |} Microsoft Docs"
+description: "A gyakori problémákat hoz létre és tooan Azure Machine Learning-munkaterület csatlakoztatja a megoldások"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 398ac3d9c9d32a1ab10413ce0d7ce8d448890409
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 965a0025e85ba4e22c2b037edfa923e7f7599069
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-guide-create-and-connect-to-an-machine-learning-workspace"></a>Hibaelhárítási útmutató: Machine Learning-munkaterület létrehozása és kapcsolódás a Machine Learning-munkaterülethez
+# <a name="troubleshooting-guide-create-and-connect-tooan-machine-learning-workspace"></a>Hibaelhárítási útmutató: hozzon létre, és csatlakozzon a Machine Learning-munkaterület tooan
 Ez az útmutató egyes megoldások gyakran ütközött kihívást állítja be az Azure Machine Learning munkaterületek.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="workspace-owner"></a>Munkaterület tulajdonosa
-A munkaterület megnyitásához a Machine Learning Studióban be kell jelentkeznie Microsoft Account a munkaterület létrehozásához használt, vagy meghívót kapott a tulajdonos a munkaterület csatlakozni szeretne. Az Azure-portálon kezelheti a munkaterületen található, amely lehetővé teszi a hozzáférés konfigurálása.
+a Machine Learning Studio munkaterületének tooopen, kell lennie toohello Microsoft Account bejelentkezve toocreate hello munkaterület használt, vagy tooreceive hello tulajdonos toojoin hello munkaterületről meghívót van szüksége. Hello Azure-portálon kezelheti tartoznak a hello képességét tooconfigure hello munkaterületen.
 
 A munkaterület kezeléséről további információkért lásd: [kezelése az Azure Machine Learning-munkaterület].
 
 [kezelése az Azure Machine Learning-munkaterület]: machine-learning-manage-workspace.md
 
 ## <a name="allowed-regions"></a>Engedélyezett régiók
-Gépi tanulás már régiók korlátozott számú érhető el. Az előfizetés nem tartalmazza a régiók egyikéhez sem, ha a hiba üzenet jelenhet meg, "Nincs előfizetése van a megengedett régiókban."
+Gépi tanulás már régiók korlátozott számú érhető el. Az előfizetés nem tartalmazza a régiók egyikéhez sem, ha lehetséges, hogy hello hibaüzenet jelenik meg, "Nincs előfizetése van az engedélyezett régiók hello."
 
-Kérelem, az előfizetés fel egy régiót, hozzon létre egy új Microsoft-támogatási kérelmet az Azure-portálon, válassza a **számlázási** probléma típusa és kövesse a megjelenő utasításokat küldje el a kérést.
+amely egy régiót kell toorequest hozzáadott tooyour előfizetés, egy új Microsoft-támogatási kérelem létrehozása hello Azure-portálon, majd a **számlázási** hello probléma típusa, és hajtsa végre hello kéri toosubmit a kérést.
 
 ## <a name="storage-account"></a>Tárfiók
-A Machine Learning szolgáltatás szükséges a tárfiók adatok tárolására. Meglévő tárfiókot is használhatja, vagy létrehozhat egy új tárfiókot, az új Machine Learning munkaterületének létrehozásakor (ha van kvótát egy új tárfiók létrehozása).
+hello Machine Learning szolgáltatás a tárolási fiók toostore adatokra van szüksége. Meglévő tárfiókot is használhatja, vagy létrehozhat egy új tárfiókot, (ha kvóta toocreate új tárfiók) hello új Machine Learning munkaterületének létrehozásakor.
 
-Az új Machine Learning-munkaterület létrehozása után is bejelentkezik a Machine Learning Studio a munkaterület létrehozásához használt Microsoft-fiók használatával. Ha a hibaüzenet a következő, "Munkaterület nem található" (az alábbi képernyőfelvételhez hasonló) észlel, akkor használja a következő lépéseket a böngésző cookie-k törléséhez.
+Hello új Machine Learning-munkaterület létrehozása után által használt toocreate hello munkaterület hello Microsoft-fiókjával bejelentkezhet tooMachine Learning Studióban. Ha hello hibaüzenet jelenik meg, "Munkaterület nem található" (hasonló toohello a következő képernyőkép), használja a következő lépéseket toodelete hello a böngésző cookie-kat.
 
 ![Nem található munkaterület][screen3]
 
-**Törli a böngésző cookie-k**
+**toodelete böngésző cookie-k**
 
-1. Ha az Internet Explorer, kattintson a **eszközök** gombra a jobb felső sarokban, majd az **Internetbeállítások**.  
+1. Ha az Internet Explorer, kattintson a hello **eszközök** hello jobb felső sarkában található gombra, majd az **Internetbeállítások**.  
 
 ![Internetbeállítások][screen4]
 
-2. Az a **általános** lapra, majd **törlése...**
+2. A hello **általános** lapra, majd **törlése...**
 
 ![Általános lap][screen5]
 
-3. A a **böngészési előzmények törlése** párbeszédpanelen győződjön meg arról, hogy **cookie-k és a webhely adatok** van kiválasztva, és kattintson a **törlése**.
+3. A hello **böngészési előzmények törlése** párbeszédpanelen győződjön meg arról, hogy **cookie-k és a webhely adatok** van kiválasztva, és kattintson a **törlése**.
 
 ![Törölje a cookie-k][screen6]
 
-Miután a cookie-k törlődnek, indítsa újra a böngészőt, és folytassa a a [Microsoft Azure Machine Learning](https://studio.azureml.net) lap. Amikor a felhasználónevet és jelszót kéri, adja meg a Microsoft-fiók a munkaterület létrehozásához használt.
+Miután hello cookie-k törlődnek, indítsa újra hello böngészőt, és folytassa a toohello [Microsoft Azure Machine Learning](https://studio.azureml.net) lap. Amikor a rendszer kéri a felhasználónevet és jelszót, írja be a hello toocreate hello munkaterület használt Microsoft-fiók.
 
 ## <a name="comments"></a>Megjegyzések
 
-Célunk, zökkenőmentes lehető ellenőrizze a Machine Learning élmény. Tegye a megjegyzések és részén a problémák a [Azure Machine Learning fórum](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning) elküldésével kiszolgálására jobb.
+Célunk toomake hello Machine Learning élmény, a lehető zökkenőmentes. Tegye a megjegyzések és a problémák, hello [Azure Machine Learning fórum](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning) velünk kiszolgálására, jobb toohelp.
 
 [screen1]:media/machine-learning-troubleshooting-creating-ml-workspace/screen1.png
 [screen2]:media/machine-learning-troubleshooting-creating-ml-workspace/screen2.png

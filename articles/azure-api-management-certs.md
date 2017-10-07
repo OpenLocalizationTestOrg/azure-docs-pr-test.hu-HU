@@ -1,6 +1,6 @@
 ---
-title: "Az Azure felügyeleti API-tanúsítvány feltöltése |} Microsoft Docs"
-description: "Megtudhatja, hogyan athe felügyeleti API-tanúsítvány feltöltése a klasszikus Azure portálon."
+title: "az Azure felügyeleti API tanúsítvány aaaUpload |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooupload athe felügyeleti API a klasszikus Azure portál hello tanúsítvány."
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: adegeo
-ms.openlocfilehash: 9dc438e927acd9aef38f06807fabf3dda9b021c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8294d7131cfb01dba664bd4fd04b6fc22c1e93ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-an-azure-management-api-management-certificate"></a>Az Azure szolgáltatásfelügyeleti API Management-tanúsítvány feltöltése
-Felügyeleti tanúsítványok hitelesítik magukat az Azure által biztosított klasszikus üzembe helyezési modellel teszik lehetővé. Számos programok telepítése és eszközök (például a Visual Studio vagy az Azure SDK-val) és a különböző Azure-szolgáltatások telepítési automatizálására használható ezeket a tanúsítványokat. 
+Felügyeleti tanúsítványok engedélyezése az Azure által biztosított tooauthenticate hello klasszikus üzembe helyezési modellt. Számos programok telepítése és eszközök (például a Visual Studio vagy hello Azure SDK-t) használni ezeket a tanúsítványokat tooautomate konfigurációs és különböző Azure-szolgáltatásokhoz központi telepítését. 
 
 > [!WARNING]
-> légy óvatos! Ezek a típusok, a tanúsítványok bárki hitelesíti magát azokat kezelheti az előfizetést, amelyekhez tartoznak.
+> légy óvatos! Ezek a típusok, a tanúsítványok bárki hitelesíti magát őket toomanage hello előfizetéshez vannak hozzárendelve.
 >
 >
 
 Ha szeretne további információ az Azure (beleértve a önaláírt tanúsítvány létrehozása), lásd: [tanúsítványok áttekintése Azure-szolgáltatásokhoz](cloud-services/cloud-services-certs-create.md#what-are-management-certificates).
 
-Is [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) automation célokra Ügyfélkód hitelesítéséhez.
+Is [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) tooauthenticate-Ügyfélkód automation célokra.
 
 ## <a name="upload-a-management-certificate"></a>A felügyeleti tanúsítvány feltöltése
-Ha elvégezte a felügyeleti tanúsítvány létrehozása, (.cer-fájl csak a nyilvános kulcs) feltöltheti a portált. Ha a tanúsítvány áll rendelkezésre a portálon, bárki, aki egyező tanúsítványt (titkos kulcs) csatlakozzon a felügyeleti API-n keresztül, és a társított előfizetés erőforrásokhoz férnek hozzá.
+Ha elvégezte a felügyeleti tanúsítvány létrehozása, (.cer-fájl csak hello nyilvános kulcs) feltöltheti hello portált. Hello tanúsítvány nem érhető el a hello portál, bárki, aki egyező tanúsítványt (titkos kulcs) hello felügyeleti API és a hozzáférés hello hello tartozó előfizetés erőforrásainak keresztül kapcsolódhatnak.
 
-1. Jelentkezzen be az [Azure portálra](http://portal.azure.com).
-2. Kattintson a **további szolgáltatások** alsó Azure-szolgáltatások listája, majd válassza **előfizetések** a a _általános_ szolgáltatási csoport.
+1. Jelentkezzen be toohello [Azure-portálon](http://portal.azure.com).
+2. Kattintson a **további szolgáltatások** hello alsó Azure-szolgáltatások listáját, majd válassza **előfizetések** a hello _általános_ szolgáltatási csoport.
 
     ![Előfizetés menü](./media/azure-api-management-certs/subscriptions_menu.png)
 
-3. Ügyeljen arra, hogy válassza ki a megfelelő előfizetést, amelyet szeretne társítani a tanúsítványt.     
-4. Miután kiválasztotta a megfelelő előfizetés, nyomja le az **felügyeleti tanúsítványok** a a _beállítások_ csoport.
+3. Ellenőrizze, hogy tooselect hello megfelelő előfizetés, amelyet az tooassociate hello tanúsítvánnyal.     
+4. Miután kiválasztotta a megfelelő előfizetés hello, nyomja le az **felügyeleti tanúsítványok** a hello _beállítások_ csoport.
 
     ![Beállítások](./media/azure-api-management-certs/mgmtcerts_menu.png)
 
-5. Nyomja meg a **feltöltése** gombra.
+5. Nyomja le az hello **feltöltése** gombra.
 
     ![A lapon a tanúsítványok feltöltése](./media/azure-api-management-certs/certificates_page.png)
-6. Töltse ki a párbeszédpanelen információkat, és nyomja le az **feltöltése**.
+6. Töltse ki a hello párbeszédpanel adatai, és nyomja le az **feltöltése**.
 
     ![Beállítások](./media/azure-api-management-certs/certificate_details.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy egy előfizetéshez társított felügyeleti tanúsítvány, (miután helyileg a megfelelő tanúsítvány telepítése) programokon keresztül csatlakozhat a [klasszikus üzembe helyezési modellel REST API](https://msdn.microsoft.com/library/azure/mt420159.aspx) és automatizálhatja a különböző Azure-erőforrások, amelyek is, hogy az előfizetéshez társítva.
+Most, hogy egy előfizetéshez társított felügyeleti tanúsítvány, (a frissítés telepítése után helyileg a tanúsítvány megfelelő hello) programozott módon csatlakoztathatja toohello [klasszikus üzembe helyezési modellel REST API](https://msdn.microsoft.com/library/azure/mt420159.aspx) és automatizálásához hello különböző Azure-erőforrások is az adott előfizetéshez társítva van.

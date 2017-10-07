@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub (Python) szolgáltatással | Microsoft Docs"
-description: "Megtudhatja, hogyan küldhet eszközről a felhőbe irányuló üzeneteket az Azure IoT Hubba a Pythonhoz készült IoT SDK-k használatával. Szimulált eszközt és szolgáltatásalkalmazásokat hozhat létre az eszköz regisztrálásához, üzenetek küldéséhez és üzenetek olvasásához az IoT Hubról."
+title: "aaaGet Azure IoT Hub (Python) használatába |} Microsoft Docs"
+description: "Ismerje meg, hogyan toosend eszköz-felhő üzenetek tooAzure IoT Hub Python IoT SDK-k használatával. Szimulált eszköz és a szolgáltatás alkalmazások tooregister létrehozása az eszköz, üzenetküldés és üzenetek olvasni az IoT-központ."
 services: iot-hub
 author: dsk-2015
 manager: timlt
@@ -13,56 +13,56 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: dkshir
 ms.custom: na
-ms.openlocfilehash: 7ebbac4464d793717f68a4cb7905c53d1f5c051a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aa23e792fb144202e121274723bcfaeae0c04723
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-simulated-device-to-your-iot-hub-using-python"></a>A szimulált eszköz csatlakoztatása az IoT Hubhoz Pythonnal
+# <a name="connect-your-simulated-device-tooyour-iot-hub-using-python"></a>Csatlakoztassa a szimulált eszköz tooyour IoT hubot pythonos környezetekben
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-Az oktatóanyag végén kettő Python-alkalmazással fog rendelkezni:
+Ez az oktatóanyag végén hello hogy két Python-alkalmazások:
 
-* A **CreateDeviceIdentity.py** egy eszközidentitást, valamint egy társított biztonsági kulcsot hoz létre, amellyel csatlakozhat a szimulált eszközalkalmazáshoz.
-* A **SimulatedDevice.py** csatlakozik az IoT Hubhoz a korábban létrehozott eszközidentitással, és az MQTT protokoll használatával rendszeres időközönként telemetriai üzenetet küld.
+* **CreateDeviceIdentity.py**, ami létrehoz egy eszközidentitás, és a biztonsági kulcsok tooconnect a szimulált eszköz alkalmazás.
+* **SimulatedDevice.py**, IoT-központ tooyour köti össze a korábban létrehozott hello eszközidentitás, és rendszeres időközönként telemetriai adatokat küld üzenet hello MQTT protokoll használatával.
 
 > [!NOTE]
-> Az Azure IoT SDK-kat használhatja az eszközökön és a megoldás háttérrendszerén futó alkalmazások összeállításához egyaránt. Ezekről az [Azure IoT SDK-k][lnk-hub-sdks] című témakörben talál további információt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható toobuild mindkét alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello Azure IoT SDK-k információt nyújt.
 > 
 > 
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
-* [Python 2.x vagy 3.x][lnk-python-download]. Mindenképp a rendszernek megfelelő, 32 vagy 64 bites telepítést használja. Amikor a rendszer erre kéri, mindenképp adja hozzá a Pythont a platformspecifikus környezeti változóhoz. Ha a Python 2.x verziót használja, előfordulhat, hogy [telepítenie vagy frissítenie kell a *pip*-et, a Python csomagkezelő rendszerét][lnk-install-pip].
-* Ha Windows operációs rendszert használ, a [Visual C++ terjeszthető csomagra][lnk-visual-c-redist] van szükség a Python natív DLL-jei használatához.
-* [Node.js 4.0 vagy újabb][lnk-node-download]. Mindenképp a rendszernek megfelelő, 32 vagy 64 bites telepítést használja. Ez az [IoT Hub Explorer eszköz][lnk-iot-hub-explorer] telepítéséhez szükséges.
+* [Python 2.x vagy 3.x][lnk-python-download]. Győződjön meg arról, hogy toouse hello 32 bites vagy 64 bites telepítési a telepítő szükség szerint. Amikor a rendszer kéri, hello telepítése során, győződjön meg arról, hogy tooadd Python tooyour platform-specifikus környezeti változó. Python használata 2.x, szükség lehet a túl[telepítené vagy frissítené a *pip*, hello Python-csomag felügyeleti rendszer][lnk-install-pip].
+* Ha Windows operációs rendszer, majd használja [Visual C++ terjeszthető változatát tartalmazó csomagot] [ lnk-visual-c-redist] tooallow hello használata natív Python DLL-eket.
+* [Node.js 4.0 vagy újabb][lnk-node-download]. Győződjön meg arról, hogy toouse hello 32 bites vagy 64 bites telepítési a telepítő szükség szerint. Ez a szükséges tooinstall hello [IoT Hub Explorer eszköz][lnk-iot-hub-explorer].
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
 
 > [!NOTE]
-> `azure-iothub-service-client` és `azure-iothub-device-client` rendszerhez a *pip*-csomagok jelenleg csak Windows operációs rendszer alatt érhetőek el. Linux/Mac OS rendszer estében olvassa el a [Python fejlesztőkörnyezet előkészítése ][lnk-python-devbox] című bejegyzés Linuxra illetve Mac OS-re vonatkozó részét.
+> Hello *pip* a csomagok `azure-iothub-service-client` és `azure-iothub-device-client` jelenleg csak a Windows operációs rendszer elérhető. A Linux vagy Mac OS, tekintse meg az toohello Linux és Mac OS-specifikus szakaszokat hello [a fejlesztési környezet előkészítése a Python] [ lnk-python-devbox] utáni.
 > 
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-Ezzel létrehozta az IoT Hubot. Az oktatóanyag további részében használja az IoT Hub-gazdagépnevet és kapcsolati karakterláncot.
+Ezzel létrehozta az IoT Hubot. Hello rest oktatóanyag hello IoT-központ állomásnév és az IoT-központ kapcsolati karakterlánc hello használja.
 
 > [!NOTE]
-> Az IoT Hubot könnyedén létrehozhatja egy parancssorban a Python- vagy Node.js-alapú Azure CLI használatával. Ennek lépéseit az [IoT Hub Azure CLI 2.0-vel történő létrehozásával][lnk-azure-cli-hub] foglalkozó cikk ismerteti. 
+> Könnyen is létrehozhat az IoT hub a parancssorban, hello Python segítségével, vagy a Node.js-alapú Azure parancssori felület. hello cikk [létrehoz egy IoT-központot hello Azure CLI 2.0 használatával] [ lnk-azure-cli-hub] Gyorsműveletek toodo így hello jeleníti meg. 
 > 
 
 ## <a name="create-a-device-identity"></a>Eszközidentitás létrehozása
-Ez a szakasz egy Python-konzolalkalmazás létrehozásának lépéseit ismerteti, amely egy új eszközidentitást hoz létre az IoT Hub identitásjegyzékében. Egy eszköz csak akkor tud csatlakozni az IoT Hubhoz, ha be van jegyezve az identitásjegyzékbe. További információkért lásd az [IoT Hub fejlesztői útmutatójának][lnk-devguide-identity] **Identitásjegyzék** című szakaszát. A konzolalkalmazás egy egyedi eszközazonosítót állít elő a futtatásakor, valamint egy kulcsot, amellyel az eszköz azonosítani tudja magát, amikor az eszközről a felhőbe irányuló üzeneteket küld az IoT Hubnak.
+Ez a szakasz hello lépéseket toocreate egy Python-Konzolalkalmazás, az IoT hub hello identitásjegyzékhez egy eszközidentitás létrehozó. Egy eszköz csak kapcsolódhatnak tooIoT Hub-e azt egy bejegyzést a hello identitásjegyzékhez. További információkért lásd: hello **Identitásjegyzékhez** hello szakasza [IoT Hub fejlesztői útmutató][lnk-devguide-identity]. A konzol alkalmazás futtatásakor egy eszköz egyedi Azonosítót hoz létre, és az, hogy az eszköz használhatja tooidentify magát, eszköz-felhő küld a kulcs üzenetek tooIoT Hub.
 
-1. Nyisson meg egy parancssort, és telepítse a **Pythonhoz készült Azure IoT Hub szolgáltatási SDK-t**. Az SDK telepítése után zárja be a parancssort.
+1. Nyisson meg egy parancssort, és telepítse a hello **Azure IoT Hub szolgáltatás SDK for Python**. Zárja be a parancssort hello hello SDK telepítése után.
 
     ```
     pip install azure-iothub-service-client
     ```
 
-2. Hozzon létre egy Python-fájlt **CreateDeviceIdentity.py** néven. Nyissa meg a fájlt [egy szabadon választott Python-szerkesztőben/IDE-ben][lnk-python-ide-list], például az alapértelmezett [IDLE][lnk-idle] környezetben.
+2. Hozzon létre egy Python-fájlt **CreateDeviceIdentity.py** néven. Nyissa meg a [egy Python szerkesztő/IDE az Ön által választott][lnk-python-ide-list], például az alapértelmezett hello [ÜRESJÁRATBAN][lnk-idle].
 
-3. Adja hozzá az alábbi kódot a szükséges modulok importálásához a szolgáltatás SDK-jából:
+3. Adja hozzá a hello tooimport szükséges hello kódmodulok hello SDK szolgáltatástól a következő:
 
     ```python
     import sys
@@ -70,7 +70,7 @@ Ez a szakasz egy Python-konzolalkalmazás létrehozásának lépéseit ismerteti
     from iothub_service_client import IoTHubRegistryManager, IoTHubRegistryManagerAuthMethod
     from iothub_service_client import IoTHubDeviceStatus, IoTHubError
     ```
-2. Adja hozzá a következő kódot, és az `[IoTHub Connection String]` helyőrzőjét cserélje le az IoT Hub előző szakaszban létrehozott kapcsolati karakterláncára. Bármilyen nevet használhat `DEVICE_ID` azonosítóként.
+2. Adja hozzá a következő kódot, cseréje hello helyőrzője hello `[IoTHub Connection String]` hello IoT hub hello előző szakaszban létrehozott hello kapcsolati karakterlánccal. Egyetlen nevét használják hello `DEVICE_ID`.
    
     ```python
     CONNECTION_STRING = "[IoTHub Connection String]"
@@ -78,7 +78,7 @@ Ez a szakasz egy Python-konzolalkalmazás létrehozásának lépéseit ismerteti
     ```
    [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
-3. Adja hozzá a következő függvényt az eszköz egyes információinak kinyomtatása érdekében.
+3. Adja hozzá hello függvény tooprint következő hello eszköz adatok egy részét.
 
     ```python
     def print_device_info(title, iothub_device):
@@ -94,7 +94,7 @@ Ez a szakasz egy Python-konzolalkalmazás létrehozásának lépéseit ismerteti
         print ( "iothubDevice.authMethod                  = {0}".format(iothub_device.authMethod) )
         print ( "" )
     ```
-3. Adja hozzá a következő függvényt az eszköz azonosítójának létrehozásához a Registry Manager használatával. 
+3. Adja hozzá a következő függvény toocreate hello eszköz azonosítása hello beállításjegyzék-kezelő használatával hello. 
 
     ```python
     def iothub_createdevice():
@@ -110,45 +110,45 @@ Ez a szakasz egy Python-konzolalkalmazás létrehozásának lépéseit ismerteti
         except KeyboardInterrupt:
             print ( "iothub_createdevice stopped" )
     ```
-4. Végül adja hozzá a fő függvényt a következők szerint, és mentse a fájlt.
+4. Végül adja hozzá az alábbiak szerint hello fő funkciója, és mentse hello fájlt.
 
     ```python
     if __name__ == '__main__':
         print ( "" )
         print ( "Python {0}".format(sys.version) )
-        print ( "Creating device using the Azure IoT Hub Service SDK for Python" )
+        print ( "Creating device using hello Azure IoT Hub Service SDK for Python" )
         print ( "" )
         print ( "    Connection string = {0}".format(CONNECTION_STRING) )
         print ( "    Device ID         = {0}".format(DEVICE_ID) )
 
         iothub_createdevice()
     ```
-5. A parancssorban futtassa a **CreateDeviceIdentity.py** fájlt az alábbiak szerint:
+5. A hello parancssorból futtassa a hello **CreateDeviceIdentity.py** az alábbiak szerint:
 
     ```python
     python CreateDeviceIdentity.py
     ```
-6. Ekkor létre kell jönnie a szimulált eszköznek. Jegyezze fel az eszköz **deviceId** azonosítóját és **primaryKey** kulcsát. Ezekre az értékekre később szüksége lesz, amikor az IoT Hubhoz eszközként csatlakozó alkalmazást hoz létre.
+6. Hello szimulált eszköz létrehozva első kell megjelennie. Jegyezze fel a hello **deviceId** és hello **primaryKey** eszköz. Ezek az értékek később szüksége tooIoT eszközként központ kapcsolódó alkalmazásban létrehozásakor.
 
     ![Eszköz létrehozása sikeres][1]
 
 > [!NOTE]
-> Az IoT Hub-identitásjegyzék csak az IoT Hub biztonságos elérésének biztosításához tárolja az eszközidentitásokat. Az eszközazonosítókat és kulcsokat biztonsági hitelesítő adatokként tárolja, valamint tartalmaz egy engedélyezve/letiltva jelzőt, amellyel letilthatja egy adott eszköz hozzáférését. Ha az alkalmazásnak más eszközspecifikus metaadatokat kell tárolnia, egy alkalmazásspecifikus tárolót kell használnia. További információ: [IoT Hub fejlesztői útmutató][lnk-devguide-identity].
+> az IoT-központ identitásjegyzékhez hello csak eszköz identitások tooenable biztonságos hozzáférést toohello IoT-központ tárolja. Eszköz azonosítók és kulcsok toouse hitelesítő adatokat, és egy engedélyezett vagy letiltott jelző használható toodisable hozzáférést egy adott eszköz tárol. Ha az alkalmazásnak toostore más eszközre vonatkozó metaadatok, akkor az alkalmazás-specifikus tárolási használjon. További információkért lásd: hello [IoT Hub fejlesztői útmutató][lnk-devguide-identity].
 > 
 > 
 
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
-Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ismerteti, amely egy eszközt szimulál, és az eszközről a felhőbe irányuló üzeneteket küld az IoT Hubra.
+Ez a szakasz hello lépéseket toocreate egy Python-Konzolalkalmazás, szimulálja egy eszközt, és elküldi az eszköz a felhőbe küldött üzeneteket tooyour IoT-központ.
 
-1. Nyisson meg egy új parancssort, és telepítse a Pythonhoz készült Azure IoT Hub eszközoldali SDK-t az alábbiak szerint. A telepítés után zárja be a parancssort.
+1. Nyisson meg egy új parancssort, és telepítse az Azure IoT Hub eszköz SDK hello a Python az alábbiak szerint. Zárja be a hello parancssort hello telepítése után.
 
     ```
     pip install azure-iothub-device-client
     ```
 2. Hozzon létre egy **SimulatedDevice.py** nevű fájlt. Nyissa meg a fájlt egy szabadon választott Python-szerkesztőben/IDE-ben (például az IDLE környezetben).
 
-3. Adja hozzá az alábbi kódot a szükséges modulok importálásához az eszközoldali SDK-ból.
+3. Adja hozzá a következő tooimport szükséges hello kódmodulok SDK hello eszközről hello.
 
     ```python
     import random
@@ -158,10 +158,10 @@ Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ism
     from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvider, IoTHubClientResult
     from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError, DeviceMethodReturnValue
     ```
-4. Adja hozzá a következő kódot, és az `[IoTHub Device Connection String]` helyőrzőjét értékét cserélje le az eszköz kapcsolati karakterláncára. Az eszköz kapcsolati karakterláncának formátuma általában `HostName=<hostName>;DeviceId=<deviceId>;SharedAccessKey=<primaryKey>`. Az előző szakaszban létrehozott eszköz **deviceId** azonosítójára és **primaryKey** kulcsára cserélje le a `<deviceId>` és a `<primaryKey>` értékeit. A `<hostName>` nevet cserélje le az IoT Hub gazdagépnevére. Ez általában `<IoT hub name>.azure-devices.net`.
+4. Adja hozzá a hello alábbi kód, és cserélje le a helyőrző hello `[IoTHub Device Connection String]` az eszközhöz hello kapcsolati karakterlánccal. hello eszköz kapcsolati karakterlánca általában hello formátumban `HostName=<hostName>;DeviceId=<deviceId>;SharedAccessKey=<primaryKey>`. Használjon hello **deviceId** és **primaryKey** hello előző szakasz tooreplace hello létrehozott hello eszköz `<deviceId>` és `<primaryKey>` kulcsattribútumokkal. A `<hostName>` nevet cserélje le az IoT Hub gazdagépnevére. Ez általában `<IoT hub name>.azure-devices.net`.
 
     ```python
-    # String containing Hostname, Device Id & Device Key in the format
+    # String containing Hostname, Device Id & Device Key in hello format
     CONNECTION_STRING = "[IoTHub Device Connection String]"
     # choose HTTP, AMQP or MQTT as transport protocol
     PROTOCOL = IoTHubTransportProvider.MQTT
@@ -170,7 +170,7 @@ Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ism
     SEND_CALLBACKS = 0
     MSG_TXT = "{\"deviceId\": \"MyFirstPythonDevice\",\"windSpeed\": %.2f}"    
     ```
-5. Adja hozzá a következő kódot egy megerősítő visszahívás küldéséhez. 
+5. Adja hozzá a következő kód toodefine egy küldési megerősítő visszahívás hello. 
 
     ```python
     def send_confirmation_callback(message, result, user_context):
@@ -184,25 +184,25 @@ Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ism
         SEND_CALLBACKS += 1
         print ( "    Total calls confirmed: %d" % SEND_CALLBACKS )
     ```
-6. Adja hozzá a következő kódot az eszközügyfél inicializálásához.
+6. Adja hozzá a következő kód tooinitialize hello eszközügyfél hello.
 
     ```python
     def iothub_client_init():
         # prepare iothub client
         client = IoTHubClient(CONNECTION_STRING, PROTOCOL)
-        # set the time until a message times out
+        # set hello time until a message times out
         client.set_option("messageTimeout", MESSAGE_TIMEOUT)
         client.set_option("logtrace", 0)
         return client
     ```
-7. Adja hozzá a következő függvényt egy üzenet formázásához és elküldéséhez a szimulált eszközről az IoT Hubra.
+7. Adja hozzá a következő hello tooformat funkciót, és egy üzenetet küldeni a szimulált eszköz tooyour IoT-központ.
 
     ```python
     def iothub_client_telemetry_sample_run():
 
         try:
             client = iothub_client_init()
-            print ( "IoT Hub device sending periodic messages, press Ctrl-C to exit" )
+            print ( "IoT Hub device sending periodic messages, press Ctrl-C tooexit" )
             message_counter = 0
 
             while True:
@@ -221,7 +221,7 @@ Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ism
                 prop_map.add("Property", prop_text)
 
                 client.send_event_async(message, send_confirmation_callback, message_counter)
-                print ( "IoTHubClient.send_event_async accepted message [%d] for transmission to IoT Hub." % message_counter )
+                print ( "IoTHubClient.send_event_async accepted message [%d] for transmission tooIoT Hub." % message_counter )
 
                 status = client.get_send_status()
                 print ( "Send status: %s" % status )
@@ -238,61 +238,61 @@ Ez a szakasz egy olyan Python-konzolalkalmazás létrehozásának lépéseit ism
         except KeyboardInterrupt:
             print ( "IoTHubClient sample stopped" )
     ```
-8. Végül adja hozzá a fő függvényt. 
+8. Végül adja hozzá a hello fő funkciója. 
 
     ```python
     if __name__ == '__main__':
-        print ( "Simulating a device using the Azure IoT Hub Device SDK for Python" )
+        print ( "Simulating a device using hello Azure IoT Hub Device SDK for Python" )
         print ( "    Protocol %s" % PROTOCOL )
         print ( "    Connection string=%s" % CONNECTION_STRING )
 
         iothub_client_telemetry_sample_run()
     ```
-9. Mentse és zárja be a **SimulatedDevice.py** fájlt. Most már készen áll az alkalmazás futtatására.
+9. Mentse és zárja be a hello **SimulatedDevice.py** fájlt. Meg vannak most már készen áll a toorun ezt az alkalmazást.
 
 > [!NOTE]
-> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban újrapróbálkozási házirendeket is meg kell valósítania (például egy exponenciális leállítást) a [tranziens hibakezelést][lnk-transient-faults] ismertető MSDN-cikkben leírtak szerint.
+> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási házirendek (például az exponenciális leállítási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 > 
 > 
 
 ## <a name="receive-messages-from-your-simulated-device"></a>Üzenet fogadása a szimulált eszközről
-Az eszközről érkező telemetriaüzenetek fogadásához egy, az IoT Hub által feltárt [Event Hubs][lnk-event-hubs-overview]-kompatibilis végpontot kell használnia, amely beolvassa az eszközről a felhőbe irányuló üzeneteket. Az Event Hubstól az IoT Hub Event Hubs-kompatibilis végpontjára érkező üzenetek feldolgozásával kapcsolatos információkért olvassa el [az Event Hubs használatának első lépéseit][lnk-eventhubs-tutorial] ismertető oktatóanyagot. Az Event Hubs egyelőre nem támogatja a telemetriát a Pythonban, így létrehozhat egy [Node.js](iot-hub-node-node-getstarted.md#D2C_node) vagy [.NET](iot-hub-csharp-csharp-getstarted.md#D2C_csharp) Event Hubs-alapú konzolalkalmazást az IoT Hubról érkező, az eszközről a felhőbe irányuló üzenetek olvasásához. Az oktatóanyag bemutatja, hogyan használható az [IoT Hub Explorer eszköz][lnk-iot-hub-explorer] ezeknek az eszközüzeneteknek az olvasására.
+tooreceive telemetriai üzeneteket az eszközről, szükség toouse egy [Event Hubs][lnk-event-hubs-overview]-kompatibilis végpont által hello IoT-központot, amelyben a köszönőüzenetei eszközről a felhőbe. Olvasási hello [Bevezetés az Event Hubs használatába] [ lnk-eventhubs-tutorial] hogyan tooprocess érkező üzenetek Event Hubs az IoT hub Event Hub-kompatibilis végpont kapcsolatos útmutató. Az Event Hubs nem támogatja az telemetriai a Python, így hozhat létre egy [Node.js](iot-hub-node-node-getstarted.md#D2C_node) vagy egy [.NET](iot-hub-csharp-csharp-getstarted.md#D2C_csharp) az IoT-központ konzol Event Hubs-alapú eszköz-felhő app tooread köszönőüzenetei. Ez az oktatóanyag bemutatja, hogyan használhatja a hello [IoT Hub Explorer eszköz] [ lnk-iot-hub-explorer] tooread ezek eszközre küldött üzenetek.
 
-1. Nyisson meg egy parancssort, és telepítse az IoT Hub Explorert. 
+1. Nyisson meg egy parancssort, és az IoT Hub Explorer hello telepítse. 
 
     ```
     npm install -g iothub-explorer
     ```
 
-2. Futtassa az alábbi parancsot a parancssorban az eszközről érkező, az eszközről a felhőbe irányuló üzenetek megfigyelésének indításához. Használja az IoT Hub kapcsolati karakterláncát a helyőrzőben a `--login` után.
+2. Futtassa a parancsot a hello parancssor a következő hello, toobegin figyelési hello eszközről a felhőbe üzeneteket az eszközről. Az IoT hub kapcsolódási karakterlánc használata után hello helyőrző `--login`.
 
     ```
     iothub-explorer monitor-events MyFirstPythonDevice --login "[IoTHub connection string]"
     ```
 
-3. Nyisson egy új parancssort, és lépjen a **SimulatedDevice.py** fájlt tartalmazó könyvtárba.
+3. Nyisson meg egy új parancssort, és keresse meg a hello tartalmazó toohello könyvtár **SimulatedDevice.py** fájlt.
 
-4. Futtassa a **SimulatedDevice.py** fájlt, amely rendszeres időközönként telemetriaadatokat küld az IoT Hubnak. 
+4. Futtassa a hello **SimulatedDevice.py** fájlt, amely rendszeresen küld a telemetriai adatok tooyour IoT-központot. 
    
     ```
     python SimulatedDevice.py
     ```
-5. Vizsgálja meg az eszköz üzeneteit a parancssorban az előző szakaszban ismertetett IoT Hub Explorer futtatásával. 
+5. Az IoT Hub Explorer hello fut az előző szakasz hello hello parancssori eszköz köszönőüzenetei láthatja. 
 
     ![Eszközről felhőbe irányuló Python-üzenetek][2]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Ennek az eszközidentitásnak a segítségével lehetővé tette a szimulált eszközalkalmazásnak, hogy az eszközről a felhőbe irányuló üzeneteket küldjön az IoT Hubnak. Megfigyelte az IoT Hub által fogadott üzeneteket az IoT Hub Explorer eszköz segítségével. 
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Az eszköz identitás tooenable hello szimulált eszköz alkalmazás toosend eszköz a felhőbe küldött üzeneteket toohello IoT-központ használta. Ön megfigyelt köszönőüzenetei hello IoT Hub Explorer eszköz hello segítségével hello IoT-központ fogadja. 
 
-A Pythonhoz készült Azure IoT Hub SDK használatának részletesebb megismerése érdekében látogasson el [ebbe a GitHub-adattárba][lnk-python-github]. A Pythonhoz készült Azure IoT Hub szolgáltatási SDK üzenetküldési képességeinek áttekintéséhez töltse le és futtassa az [iothub_messaging_sample.py][lnk-messaging-sample] fájlt. A Pythonhoz készült Azure IoT Hub eszközoldali SDK használatával végzett eszközoldali szimulációkhoz töltse le és futtassa az [iothub_client_sample.py][lnk-client-sample] fájlt.
+Python SDK tooexplore hello Azure IoT Hub használati részletesen, látogasson el [a központ Git-tárház][lnk-python-github]. tooreview hello üzenetkezelési képességeket, hello Azure IoT Hub szolgáltatás SDK for Python, letöltése és futtatása [iothub_messaging_sample.py][lnk-messaging-sample]. Eszköz ügyféloldali szimuláció hello Azure IoT Hub eszköz SDK-t használ a Python, töltse le és futtassa a hello [iothub_client_sample.py][lnk-client-sample].
 
-További bevezetés az IoT Hub használatába, valamint egyéb IoT-forgatókönyvek megismerése:
+első lépések toocontinue az IoT Hub és tooexplore más IoT-forgatókönyvek esetén, lásd:
 
 * [Kapcsolódás az eszközhöz][lnk-connect-device]
 * [Eszközfelügyelet – első lépések][lnk-device-management]
 * [Ismerkedés az Azure IoT Edge szolgáltatással][lnk-iot-edge]
 
-Az IoT-megoldás kibővítésével és az eszközről a felhőbe irányuló üzenetek nagy léptékű feldolgozásával kapcsolatban tekintse meg [az eszközről a felhőbe irányuló üzenetek feldolgozását][lnk-process-d2c-tutorial] ismertető oktatóanyagot.
+toolearn hogyan tooextend az IoT megoldás és a folyamat eszközről a felhőbe üzenetek léptékű: hello [eszközről a felhőbe üzenetek feldolgozásához] [ lnk-process-d2c-tutorial] oktatóanyag.
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 
 <!-- Images. -->

@@ -1,6 +1,6 @@
 ---
-title: "Szabályozhatja az Azure - útválasztó és a virtuális készülékek sablon |} Microsoft Docs"
-description: "Megtudhatja, hogyan szabályozhatja az Azure Resource Manager-sablonnal útválasztási és a virtuális készülékek."
+title: "az Azure - útválasztó és a virtuális készülékek aaaControl sablon |} Microsoft Docs"
+description: "Megtudhatja, hogyan Azure Resource Manager-sablonnal toocontrol útválasztási és a virtuális készülékek."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-a-template"></a>Hozzon létre felhasználói útvonalakat (UDR) sablon használatával
 
@@ -31,14 +31,14 @@ ms.lasthandoff: 07/11/2017
 > * [Parancssori felület (klasszikus)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> Az Azure-erőforrásokkal való munka megkezdése előtt fontos megérteni, hogy az Azure jelenleg két üzembe helyezési modellel rendelkezik, a Resource Managerrel és a klasszikussal. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. A különféle eszközök dokumentációit a cikk tetején található fülekre kattintva tekintheti meg. Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti. 
+> Azure-erőforrások használata előtt-e, hogy Azure jelenleg két üzembe helyezési modellel rendelkezik fontos toounderstand: Azure Resource Manager és klasszikus. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. Ez a cikk hello tetején hello fülekre kattintva megtekintheti a különféle eszközök dokumentációit hello. Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben. 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 ## <a name="udr-resources-in-a-template-file"></a>Egy sablonfájlban UDR erőforrások
-Tekintheti meg és töltse le a [mintasablon](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).
+Tekintheti meg és töltse le a hello [mintasablon](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).
 
-A következő szakasz azt mutatja be az előtér-UDR definíciója a **azuredeploy-vnet-nsg-udr.json** fájl az esethez:
+hello következő szakasz azt mutatja be hello hello definíciója hello az előtér-UDR **azuredeploy-vnet-nsg-udr.json** fájl hello forgatókönyvhöz:
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ A következő szakasz azt mutatja be az előtér-UDR definíciója a **azuredepl
         }
       ]
 
-Rendelje hozzá a az előtér-alhálózathoz UDR, akkor módosítsa az alhálózati definíció a sablonban, majd a UDR a referencia-azonosító használata.
+tooassociate hello UDR toohello előtér-alhálózathoz, hogy a toochange hello alhálózati definíció hello sablonban és hello-hivatkozás esetén használja a hello UDR.
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ Rendelje hozzá a az előtér-alhálózathoz UDR, akkor módosítsa az alhálóz
           }
         },
 
-Figyelje meg, ugyanazt a háttér-NSG-t és a sablon a háttér-alhálózat számára történik.
+Figyelje meg, hello azonos hello háttér-NSG és hello háttér-alhálózat hello sablonban számára történik.
 
-Is gondoskodnia kell arról, hogy a **FW1** a virtuális gép rendelkezik az IP-továbbítás tulajdonság engedélyezve van a hálózati adapter által használandó kapnak, és továbbítsa a csomagokat. Az alábbi szakasz FW1 a hálózati adapter definícióját a azuredeploy-nsg-udr.json fájlban, a fenti forgatókönyv alapján jeleníti meg.
+Szükség tooensure adott hello **FW1** a virtuális gép rendelkezik hello IP-továbbítás engedélyezve van a hálózati adapterre használt tooreceive, és előre csomagok hello tulajdonság. hello szakasz alatt látható hello definíciója hello NIC FW1 hello azuredeploy-nsg-udr.json fájlban, a fenti hello forgatókönyv alapján.
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ Is gondoskodnia kell arról, hogy a **FW1** a virtuális gép rendelkezik az IP-
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>A sablon üzembe helyezése kattintással végrehajtható üzembe helyezéssel
-A nyilvános tárházban elérhető mintasablon a fent leírt forgatókönyv létrehozásához használt alapértelmezett értékeket tartalmazó paraméterfájlt használja. Ha a sablon üzembe helyezését kattintással végrehajtható üzembe helyezéssel szeretné elvégezni, kövesse [ezt a hivatkozást](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), kattintson az **Üzembe helyezés az Azure-on** lehetőségre, cserélje ki az alapértelmezett paraméterértékeket, ha szükséges, majd kövesse a portálon megjelenő utasításokat.
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Hello sablon üzembe helyezése a toodeploy kattintson
+hello mintasablon elérhető hello nyilvános tárházban hello alapértelmezett értékeket használja toogenerate hello forgatókönyv a fent leírt tartalmazó paraméter fájlt használ. toodeploy toodeploy, a sablon használatával kattintson kövesse [erre a hivatkozásra](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek szükség és hello portal hello utasításait kövesse.
 
-1. Ha még nem használta az Azure PowerShellt, tekintse meg [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című részt, majd kövesse az utasításokat egészen az utolsó lépésig az Azure-ba való bejelentkezéshez és az előfizetése kiválasztásához.
-2. Futtassa az alábbi parancsot egy erőforráscsoport létrehozásához:
+1. Ha még sosem használta az Azure PowerShell, lásd: [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) és az útmutatás hello összes hello módon toohello toosign befejezése az Azure, és jelölje ki az előfizetését.
+2. Futtassa a következő parancs toocreate hello erőforráscsoport:
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. A következő parancsot a sablon telepítéséhez:
+3. Futtassa a következő parancs toodeploy hello sablon hello:
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -171,22 +171,22 @@ A nyilvános tárházban elérhető mintasablon a fent leírt forgatókönyv lé
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>A sablon üzembe helyezése az Azure parancssori felület használatával
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Hello sablon üzembe helyezése hello Azure parancssori felület használatával
 
-Az ARM-sablon az Azure parancssori felület használatával történő telepítéséhez kövesse az alábbi lépéseket:
+toodeploy hello ARM-sablon Azure CLI használata esetén a lépéseket követve teljes hello hello segítségével:
 
-1. Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.
-2. Futtassa a következő parancs futtatásával váltson Resource Manager módra:
+1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
+2. Futtassa a következő parancs tooswitch tooResource kezelő módban hello:
 
     ```azurecli
     azure config mode arm
     ```
 
-    A fenti parancs várható kimenete:
+    Itt egy hello parancs fenti hello várt kimenet:
 
         info:    New mode is arm
 
-3. A böngészőben navigáljon **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, másolja a json-fájl tartalmát, és illessze be egy új fájlt a számítógép. Ebben a forgatókönyvben azt kellene másolni, alatt az értékeket nevű fájlba **c:\udr\azuredeploy.parameters.json**.
+3. A böngészőből keresse túl**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**hello hello json-fájlt másolja és illessze be egy új fájlt a számítógép. Ebben a forgatókönyvben meg kellene másolni, hello értékek nevű tooa fájl alábbi **c:\udr\azuredeploy.parameters.json**.
 
     ```json
         {
@@ -206,7 +206,7 @@ Az ARM-sablon az Azure parancssori felület használatával történő telepít�
         }
     ```
 
-4. Futtassa a következő parancsot az új VNet telepíteni, fent letöltött és módosított sablonnal és paraméterfájlokkal fájlok:
+4. Futtassa a következő parancs toodeploy új virtuális hálózat hello hello sablonnal és paraméterfájlokkal fájlokkal, fent letöltött és módosított hello:
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
@@ -229,7 +229,7 @@ Az ARM-sablon az Azure parancssori felület használatával történő telepít�
         data:    
         info:    group create command OK
 
-5. A következő parancsot az új erőforráscsoport létrehozása erőforrások:
+5. Futtassa a következő parancs tooview hello erőforrások hello új erőforráscsoport létrehozása hello:
 
     ```azurecli
     azure group show TestRG
@@ -239,7 +239,7 @@ Az ARM-sablon az Azure parancssori felület használatával történő telepít�
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for the group
+            info:    Listing resources for hello group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ Az ARM-sablon az Azure parancssori felület használatával történő telepít�
             info:    group show command OK
 
 > [!TIP]
-> Ha nem látja az erőforrásokat, futtassa a `azure group deployment show` parancs a központi telepítés a kiépítési állapot biztosításához *Succeded*.
+> Ha nem látja az összes hello erőforrások, futtassa a hello `azure group deployment show` kiépítés hello központi telepítésének állapotát a parancs tooensure hello van *Succeded*.
 > 

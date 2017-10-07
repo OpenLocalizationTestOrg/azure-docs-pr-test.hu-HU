@@ -1,6 +1,6 @@
 ---
-title: "IaaS-erőforrásokra a klasszikus Azure Resource Manager az áttelepítés tervezése |} Microsoft Docs"
-description: "IaaS-erőforrásokra a klasszikus Azure Resource Manager az áttelepítés tervezése"
+title: "IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítése aaaPlanning |} Microsoft Docs"
+description: "IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének tervezése"
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/01/2017
 ms.author: kasing
-ms.openlocfilehash: 5db4e5b18ad385e7eba125a1296a9c5054213446
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 53c6f640425b69cae2ef10afb8c92b8ac4394267
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>IaaS-erőforrásokra a klasszikus Azure Resource Manager az áttelepítés tervezése
-Azure Resource Manager nagy mennyiségű elképesztő funkciókat kínál, miközben nagyon fontos tervezze meg az áttelepítési út zökkenőmentesek sure művelet. Tervezési idő költségeik biztosítja, hogy nem tapasztal, az áttelepítési tevékenységek végrehajtása során. 
+# <a name="planning-for-migration-of-iaas-resources-from-classic-tooazure-resource-manager"></a>IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének tervezése
+Azure Resource Manager nagy mennyiségű elképesztő funkciókat kínál, de napjainkban ki az áttelepítési út toomake sure dolgot zökkenőmentesek kritikus tooplan. Tervezési idő költségeik biztosítja, hogy nem tapasztal, az áttelepítési tevékenységek végrehajtása során. 
 
 > [!NOTE] 
-> A következő volt fokozottan által közzétett útmutatásokat az az Azure felhasználói Ügyféltanácsadói csapatának és a felhőalapú megoldás fejlesztők használata az ügyfelek áttelepítése nagy enviornments. Ilyen Ez a dokumentum továbbra is frissülnek, sikeres új mintáinak merülnek fel, ezért ellenőrizze újból az idő, ha van-e új javaslatokkal időre.
+> a következő útmutatást hello fokozottan átadott tooby hello Azure felhasználói Ügyféltanácsadói csapatának és ügyfelek áttelepítése nagy enviornments használata felhőalapú megoldás fejlesztők volt. Ez a dokumentum használja, így továbbra is frissült az új mintáinak sikeres merülnek fel, újból az idő tootime toosee Igen ellenőrzés ha vannak új javaslatokkal tooget.
 
-Az áttelepítési út négy általános fázisból áll:
+Hello áttelepítési út négy általános fázisból áll:
 
 ![Áttelepítési fázis](../media/virtual-machines-windows-migration-classic-resource-manager/plan-labtest-migrate-beyond.png)
 
@@ -35,82 +35,82 @@ Az áttelepítési út négy általános fázisból áll:
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Technikai szempontokat és kompromisszumot
 
-Attól függően, hogy a műszaki követelményeiben méret, földrajzi és üzemeltetési eljárások érdemes figyelembe venni:
+Attól függően, hogy a műszaki követelményeiben méret, földrajzi és üzemeltetési eljárások érdemes lehet tooconsider:
 
-1. Miért szükséges a szervezet Azure Resource Manager?  Mik az üzleti okokból az áttelepítéshez?
-2. Mik a műszaki oka az Azure Resource Manager?  Mi (ha van ilyen) további Azure-szolgáltatások szeretné használni?
-3. Melyik alkalmazás (vagy a virtuális gépek beállítása) szerepel az áttelepítés?
-4. Az áttelepítés API mely forgatókönyvek támogatottak?  Tekintse át a [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations).
+1. Miért szükséges a szervezet Azure Resource Manager?  Mik azok a hello üzleti okokból az áttelepítéshez?
+2. Mik azok a hello technikai okokból az Azure Resource Manager?  Mi (ha van ilyen) további Azure-szolgáltatások szeretné tooleverage?
+3. Melyik alkalmazás (vagy a virtuális gépek beállítása) része a hello áttelepítési?
+4. Hello áttelepítési API mely forgatókönyvek támogatottak?  Felülvizsgálati hello [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations).
 5. Az operatív adapterekhez most támogatja alkalmazások/virtuális gépek Azure Resource Manager és klasszikus?
-6. Hogyan (ha egyáltalán) Azure Resource Manager változik a virtuális gép telepítési, kezelési, figyelési és jelentési folyamatok?  Az üzembe helyezési parancsfájlok kell frissíteni?
-7. Mi az, hogy a kommunikációs terv riasztást küldjön az érdekelt felek (a végfelhasználók alkalmazástulajdonosok és infrastruktúrák tulajdonosai)?
-8. Attól függően, hogy a környezet összetettsége kell a karbantartási időszak amikor az alkalmazás nem érhető el, a végfelhasználók számára, és az alkalmazástulajdonosok?  Ha igen, mennyi ideig?
-9. Mi az az érdekelt felek tájékozott és biztosításához az Azure Resource Manager jártassággal képzési terv?
-10. Mi az a program felügyeleti vagy a projekt felügyeleti csomag az áttelepítés?
-11. Mi az Azure erőforrás-kezelő áttelepítésének és más vonatkozóan kapcsolódó technológia közúti maps?  Ezek optimális igazított?
+6. Hogyan (ha egyáltalán) Azure Resource Manager változik a virtuális gép telepítési, kezelési, figyelési és jelentési folyamatok?  Az üzembe helyezési parancsfájlok kell frissíteni toobe?
+7. Mi az az hello kommunikáció tervezése a tooalert érdekelt felek (a végfelhasználók alkalmazástulajdonosok és infrastruktúrák tulajdonosai)?
+8. Attól függően, hogy hello környezet hello összetettségét kell a karbantartási időszak hello alkalmazás esetén nem érhető el tooend felhasználók és tooapplication tulajdonosok?  Ha igen, mennyi ideig?
+9. Mi az az hello képzési terv tooensure érdekelt felek tájékozott és az Azure Resource Manager jártassággal?
+10. Mi az a hello program felügyeleti vagy felügyeleti projektterv hello áttelepítésre?
+11. Mik azok a hello ütemtervek hello Azure Resource Manager áttelepítési és egyéb kapcsolódó technológia közúti maps?  Ezek optimális igazított?
 
 ### <a name="patterns-of-success"></a>Sikeres mintái
 
-Sikeres ügyfél terveket, ahol a fenti kérdések tárgyalt, dokumentált és szabályozott részletesen.  Győződjön meg arról, az áttelepítési terveket körben közlik szponzorok és az érdekelt felekkel.  Az áttelepítési beállítások; ismereteket ellátására saját kezűleg egész megadása az alábbi áttelepítési dokumentumban ajánlott.
+Sikeres ügyfél terveket, ahol hello a fenti kérdések tárgyalt, dokumentált és szabályozott részletesen.  Győződjön meg arról hello áttelepítési terveket körben közölt toosponsors és az érdekelt felekkel.  Az áttelepítési beállítások; ismereteket ellátására saját kezűleg egész megadása az alábbi áttelepítési dokumentumban ajánlott.
 
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus Azure Resource Managerbe](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Az IaaS-erőforrások klasszikusból Azure Resource Manager-alapú környezetbe való áttelepítésének megtervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [IaaS-erőforrások áttelepítése a klasszikus Azure Resource Manager PowerShell használatával](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [IaaS-erőforrások áttelepítése a klasszikus Azure Resource Manager parancssori felület használatával](migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [IaaS-erőforrásokra, erőforrás-kezelő klasszikus tooAzure a platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus tooAzure erőforrás-kezelő](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének tervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [PowerShell toomigrate IaaS erőforrásainak klasszikus tooAzure erőforrás-kezelő használata](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Parancssori felület toomigrate IaaS erőforrásainak klasszikus tooAzure erőforrás-kezelő használata](migration-classic-resource-manager-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [A leggyakoribb áttelepítési hibák áttekintése](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [A leggyakrabban feltett kérdésekre áttelepítése IaaS-erőforrásokra a klasszikus Azure Resource Manager áttekintése](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Felülvizsgálati hello legtöbb kapcsolatos gyakori kérdések a klasszikus tooAzure erőforrás-kezelő áttelepítése IaaS-erőforrásokra](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-### <a name="pitfalls-to-avoid"></a>Nehézségek elkerülése érdekében
+### <a name="pitfalls-tooavoid"></a>Nehézségek tooavoid
 
-- Nem sikerült a megtervezése.  Ez az áttelepítés technológia lépésein bizonyítottan, és előre jelezhető eredménye.
-- Mindegyik forgatókönyvben figyelembe veszi a azt feltételezi, hogy a platform támogatja-e az áttelepítés API. Olvassa el a [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations) megérteni, hogy milyen forgatókönyvek is támogatottak.
-- Nem lehetséges alkalmazás kimaradás tervezése végfelhasználók számára.  Tervezze meg a megfelelő figyelmeztesse a végfelhasználók számára a potenciálisan nem érhető el alkalmazás idő elegendő puffer.
+- Hiba tooplan.  az áttelepítés hello technológia lépésein bizonyítottan és hello eredménye előre jelezhető.
+- Feltételezve, hogy a hello támogatott platform áttelepítési API fog fiók minden forgatókönyve. Olvasási hello [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations) toounderstand milyen forgatókönyvek is támogatottak.
+- Nem lehetséges alkalmazás kimaradás tervezése végfelhasználók számára.  Tervezze meg elegendő puffer tooadequately figyelmeztetés a végfelhasználók számára a potenciálisan nem érhető el alkalmazás idő.
 
 
 ## <a name="lab-test"></a>Tesztelési labor 
 
 **A felhasználásához replikálja, és hajtsa végre a test-áttelepítés**
   > [!NOTE]
-  > A meglévő környezet replikációs végrehajtása hivatalosan nem támogatott Microsoft Support közösségi hozzájárultak eszköz használatával. Emiatt egy **választható** a legjobb módszer problémák a termelési környezetben érintése nélkül, de a lépést. Ha egy közösségi hozzájárult eszközzel lehetőség nem érhető el, majd olvassa el az alábbi ellenőrzése/Prepare/megszakítási próbafuttatást ajánlás.
+  > A meglévő környezet replikációs végrehajtása hivatalosan nem támogatott Microsoft Support közösségi hozzájárultak eszköz használatával. Emiatt egy **választható** hello legjobb módja toofind miatt a termelési környezetben érintése nélkül, de a lépést. Közösségi hozzájárultak eszköz használatával lehetőség nem érhető el, ha majd olvassa el az alábbi ellenőrzése/Prepare/megszakítási próbafuttatást javaslat hello.
   >
   
-  A legjobb módszer a zökkenőmentes áttelepítés végrehajtása egy laboratóriumi tesztelése a pontos forgatókönyv (számítási, hálózati és tárolási). Ezzel biztosítja:
+  Hello legjobb módja tooensure zökkenőmentes áttelepítés végrehajtása egy laboratóriumi tesztelése a pontos forgatókönyv (számítási, hálózati és tárolási). Ezzel biztosítja:
 
-  - Egy teljesen különálló labor- vagy egy meglévő nem éles környezetben történő teszteléséhez. Azt javasoljuk, hogy egy teljesen különálló tesztkörnyezetet, mely ismételten telepíthető át, és a korábbi módosítható.  A valós előfizetések metaadatok gyűjtése/hidrát parancsfájlok alább láthatók.
-  - Célszerű a labor létrehozása a különálló előfizetést. A hiba oka, hogy a labor fog kell bontva ismételten, és rendelkezik egy különálló, elkülönített előfizetés csökkenti az esélye, hogy valami valós kap véletlenül törölt.
+  - Egy teljesen elkülönített labor- vagy egy meglévő, nem éles környezetben tootest. Azt javasoljuk, hogy egy teljesen különálló tesztkörnyezetet, mely ismételten telepíthető át, és a korábbi módosítható.  Parancsfájlok toocollect/hidrát metaadatok hello valós előfizetések listája látható.
+  - Egy jó ötlet toocreate hello labor a különálló előfizetést is. hello oka az, hogy hello labor fog kell bontva ismételten, és hogy egy különálló, elkülönített előfizetés csökkenti hello alkalommal, hogy valami valós kap véletlenül törölt.
 
-  Ehhez a AsmMetadataParser eszközzel. [További tudnivalók az eszköz itt](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/AsmToArmMigrationApiToolset)
+  Ez az hello AsmMetadataParser eszköz használatával valósítható meg. [További tudnivalók az eszköz itt](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/AsmToArmMigrationApiToolset)
 
 ### <a name="patterns-of-success"></a>Sikeres mintái
 
-A következő volt a nagyobb áttelepítések számos felfedezett problémákat. Ez a nem egy lista tartalmazza, és tekintse át a [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations) további részletek. Lehet, vagy nem a műszaki problémák merülhetnek, de ha így tesz megoldása a migrálás megkísérlése előtt fog gördülékenyebb élményt nyújtsanak.
+hello következő számos olyan hello nagyobb áttelepítések felfedezett volt. Ez nem teljesnek és olvassa el az toohello [funkció és konfigurációs beállítás nem támogatott](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unsupported-features-and-configurations) további részletek. Lehet, vagy nem a műszaki problémák merülhetnek, de ha így tesz megoldása a migrálás megkísérlése előtt fog gördülékenyebb élményt nyújtsanak.
 
-- **Ellenőrzés/Prepare/megszakítási próbafuttatást tegye** – Ez lehet, hogy az a legfontosabb lépés annak biztosítása érdekében a klasszikus Azure Resource Manager áttelepítése sikeres. Az áttelepítés API rendelkezik három fő lépésből: Ellenőrizze, előkészítése, és véglegesítse. Fogja érvényesíteni olvassa el a klasszikus környezet állapotáról, és térjen vissza az összes probléma eredménye. Azonban bizonyos problémák előfordulhat, hogy az Azure Resource Manager-készletben található, mert ellenőrzése nem képes mindent. Az áttelepítési folyamat következő lépése, előkészítési segítségével teszi közzé a ismertetünk. Készítse elő a rendszer a metaadatok áthelyezése a klasszikus Azure Resource Managerbe, de fog nem véglegesítse az áthelyezés, és nem eltávolítása vagy a klasszikus oldalon bármit módosíthat. A próbafuttatást magában foglalja az áttelepítés előkészítése, majd megszakítása (**nem véglegesítése**) az áttelepítés előkészítése. A ellenőrzése/előkészítése/megszakítási próbafuttatást célja láthatja az összes, a metaadatok az Azure Resource Manager-készletben, akkor tekintse meg (*programozott módon, vagy a portálon*), és győződjön meg arról, hogy minden helyesen áttelepíti, és a munka – technikai problémák.  Azt is ad bizonyos értelemben az áttelepítés időtartamát, tervezéséhez állásidejét ennek megfelelően.  A validate/előkészítése/abort nem okoz felhasználói leállási; ezért nem-őket az alkalmazáshasználatot.
-  - Az alábbi elemek a próbafuttatást előtt megoldandó kell, de próbafuttatást teszt is nyugodtan kiüríti azokat a előkészítő lépések, ha azok kimaradt. Vállalati az áttelepítés során talált azt a próbafuttatást való biztosítható a biztonságos és hasznos információt áttelepítésre való készenlét biztosítására.
-  - Ha előkészítése fut, a vezérlő vezérlősík (az Azure felügyeleti műveletek) zárolva lesz a teljes virtuális hálózat, ezért nem módosítható a virtuális gép metaadatainak ellenőrzése/előkészítése/megszakítás alatt.  De egyébként bármely alkalmazás függvény (távoli asztali Munkamenetgazda, a virtuális gép kihasználtsága, stb.) nem érinti.  A virtuális gépek felhasználók nem fogja tudni, hogy a próbafuttatást végrehajtása zajlik.
+- **Ellenőrzés/Prepare/megszakítási próbafuttatást tegye** – Ez lehet, hogy a hello legfontosabb lépés tooensure klasszikus tooAzure erőforrás-kezelő áttelepítése sikeres. hello áttelepítési API rendelkezik három fő lépésből: Ellenőrizze, előkészítése, és véglegesítse. Ellenőrizni fogja a klasszikus környezet hello állapotadatokat olvasni, és térjen vissza az összes probléma eredménye. Azonban mivel bizonyos problémák előfordulhat, hogy létezik a hello Azure Resource Manager-készletben, érvényesítése nem képes mindent. áttelepítési folyamat következő lépésének hello, előkészítési segítségével teszi közzé a ismertetünk. Készítse elő lesz áthelyezése hello metaadatai a klasszikus tooAzure erőforrás-kezelő, de fog nem véglegesítési hello áthelyezése, és nem eltávolítása vagy a klasszikus ügyféloldali hello bármit módosíthat. hello próbafuttatást magában foglalja a hello áttelepítésének előkészítése, majd megszakítása (**nem véglegesítése**) hello áttelepítésének előkészítése. hello ellenőrzése/előkészítése/megszakítási próbafuttatást célja toosee összes hello metaadatok hello Azure Resource Manager-készletben, vizsgálja meg (*programozott módon, vagy a portálon*), és győződjön meg arról, hogy minden helyesen áttelepíti, és a munka – technikai problémák.  Azt is ad bizonyos értelemben az áttelepítés időtartamát, tervezéséhez állásidejét ennek megfelelően.  A validate/előkészítése/abort nem okoz felhasználói leállási; ezért nem zavaró tooapplication használati.
+  - hello elemeket kell toobe hello próbafuttatást előtt lehet megoldani, de próbafuttatást teszt is nyugodtan kiüríti azokat a előkészítő lépések, ha azok kimaradt. Vállalati az áttelepítés során is észleltünk hello próbafuttatást toobe egy biztonságos és hasznos információt módon tooensure áttelepítésre való készenlét biztosítására.
+  - Ha előkészítése fut, hello vezérlő vezérlősík (az Azure felügyeleti műveletek) zárolva lesz hello teljes virtuális hálózat, ezért nem módosítható tooVM metaadatok ellenőrzése/előkészítése/megszakítás során.  De egyébként bármely alkalmazás függvény (távoli asztali Munkamenetgazda, a virtuális gép kihasználtsága, stb.) nem érinti.  Felhasználók hello virtuális gépek nem fogja tudni, hogy hello próbafuttatást végrehajtása zajlik.
 
-- **Express Route Kapcsolatcsoportok és a VPN-**. Jelenleg Express Route átjárók engedélyezési hivatkozásokkal állásidő nélkül nem telepíthetők át. A probléma megoldásához tekintse meg [áttelepítése ExpressRoute áramkörök, és a Resource Manager üzembe helyezési modellel klasszikus virtuális hálózatok társított](../../expressroute/expressroute-migration-classic-resource-manager.md).
+- **Express Route Kapcsolatcsoportok és a VPN-**. Jelenleg Express Route átjárók engedélyezési hivatkozásokkal állásidő nélkül nem telepíthetők át. Hello megkerülő megoldás, lásd: [áttelepítése ExpressRoute áramkörök és társított virtuális hálózatokat hello klasszikus toohello Resource Manager üzembe helyezési modellben](../../expressroute/expressroute-migration-classic-resource-manager.md).
 
-- **Virtuálisgép-bővítmények** -virtuálisgép-bővítmények számára a legnagyobb roadblocks áttelepítése futó virtuális gépek közül. Virtuálisgép-bővítmények szervizelésének sikerült upwards of 1-2 nap igénybe, ezért ennek megfelelően tervezheti.  Egy működő Azure-ügynököt futtató virtuális gépek Virtuálisgép-bővítmény állapotának jelentést van szükség. Az állapot a futó virtuális gépek hibás ismét elérhető lesz, ha ez megáll áttelepítési. Az ügynök önmagát nem kell lenniük ahhoz, hogy áttelepítési, de ha bővítményei a virtuális Gépre, majd mindkét egy működő ügynök AND (DNS) a kimenő internetkapcsolat lesz szükség az áttelepítésre való előre.
-  - Ha a DNS-kiszolgálóhoz való csatlakozásra BGInfo v1 kivételével az összes Virtuálisgép-bővítmények az áttelepítés során elvész. \* először el kell távolítani a minden virtuális gép áttelepítésének előkészítése előtt, és ezt követően újból hozzá újra a virtuális gép Azure Resource Manager az áttelepítés után.  **Ez csak futó virtuális gépek esetén.**  Ha a virtuális gépek leállnak felszabadított, Virtuálisgép-bővítmények nem kell eltávolítani. **Megjegyzés:** maguk sok bővítmények, például az Azure diagnostics és a security center figyelési lesz telepítse újra az áttelepítést követően, távolítsa el nincs probléma.
-  - Emellett gondoskodjon arról, hogy hálózati biztonsági csoportok nem kimenő internet-hozzáférés korlátozása. Ez akkor fordulhat elő, az egyes hálózati biztonsági csoportok konfigurációk. Kimenő internet-hozzáférés (és a DNS-) szükséges Virtuálisgép-bővítmények az Azure Resource Manager kell áttelepíteni. 
-  - A BGInfo bővítményt két verziója van: v1 és v2.  Ha a virtuális gép létrehozása a klasszikus portál vagy a PowerShell használatával, a virtuális gép lesz valószínűleg kiterjesztése a v1 rajta. Ehhez a kiterjesztéshez nem kell őket távolítani, és a rendszer kihagyja (áttelepítése nem) által az áttelepítés API. Azonban ha a klasszikus virtuális Gépet az új Azure-portálon hozták létre, akkor valószínűleg lesz a JSON-alapú BGInfo, amely az Azure Resource Manager áttelepíthető v2 verziója lett megadva az ügynök működik-e, és a kimenő internet-hozzáférés (és a DNS-) rendelkezik. 
-  - **1. javítási lehetőséget**. Ha tudja, hogy a virtuális gépek nem fognak hozzáférni, egy működő DNS-szolgáltatás, és a virtuális gépek Azure ügynökök dolgozik, majd el kell távolítani az összes Virtuálisgép-bővítmények előkészítése előtt az áttelepítés részeként kimenő internet, majd újra kell telepítenie a Virtuálisgép-bővítmények az áttelepítés után. 
-  - **2. lehetőség szervizelési**. Ha a Virtuálisgép-bővítmények túl nagy, egy a küszöbértéket, egy másik lehetőség egy leállítás és felszabadítás/minden virtuális gép áttelepítése előtt. A felszabadított virtuális gépek, majd indítsa újra őket az Azure Resource Manager oldalán. Az itt előnye, hogy a Virtuálisgép-bővítmények lesz áttelepítve. A hátránya az, hogy az összes nyilvánosan elérhető a virtuális IP-cím el fog veszni (ez nem alapszintű lehet), és nyilvánvalóan a a virtuális gépeket egy sokkal nagyobb hatással vannak a működő alkalmazások, amely le fog állni.
+- **Virtuálisgép-bővítmények** -virtuálisgép-bővítmények számára hello futó virtuális gépek legnagyobb roadblocks toomigrating egyikét. Virtuálisgép-bővítmények szervizelésének sikerült upwards of 1-2 nap igénybe, ezért ennek megfelelően tervezheti.  Egy működő Azure-ügynök a szükséges tooreport hátsó Virtuálisgép-bővítmény állapotának futó virtuális gépek. Ha hello állapota hibás ismét elérhető lesz a futó virtuális gépek, megáll, hogy áttelepítés. hello megbízott maga nem üzemkész tooenable áttelepítés toobe szükséges, de ha léteznek bővítmények hello VM, akkor mindkét egy működő ügynök AND (DNS) a kimenő internetkapcsolat szükséges áttelepítési toomove előre.
+  - Ha a kapcsolat tooa DNS-kiszolgáló összes Virtuálisgép-bővítmények BGInfo v1 kivéve az áttelepítés során elvész. \* kell toofirst eltávolítja minden virtuális gép áttelepítésének előkészítése előtt, és ezt követően újból hozzá hátsó toohello VM Azure Resource Manager az áttelepítés után.  **Ez csak futó virtuális gépek esetén.**  Virtuális gépek hello felszabadított leállnak, ha Virtuálisgép-bővítmények nem kell toobe eltávolítva. **Megjegyzés:** maguk sok bővítmények, például az Azure diagnostics és a security center figyelési lesz telepítse újra az áttelepítést követően, távolítsa el nincs probléma.
+  - Emellett gondoskodjon arról, hogy hálózati biztonsági csoportok nem kimenő internet-hozzáférés korlátozása. Ez akkor fordulhat elő, az egyes hálózati biztonsági csoportok konfigurációk. Kimenő internet-hozzáférés (és a DNS-) van szükség a Virtuálisgép-bővítmények toobe tooAzure erőforrás-kezelő áttelepítése. 
+  - Hello BGInfo bővítményt két verziója van: v1 és v2.  Hello VM hello klasszikus portál vagy a PowerShell használatával hozták létre, ha a virtuális gép hello valószínűleg hello v1 kiterjesztéssel rendelkeznek a rajta. A bővítmény nem kell eltávolítani toobe, és a rendszer kihagyja (áttelepítése nem) hello áttelepítéssel API használatával. Azonban ha hello klasszikus virtuális gép hello új Azure-portálon hozták létre, azt fogja valószínűleg hello JSON-alapú v2 verziója van BGInfo, amely lehet áttelepített tooAzure erőforrás-kezelő hello ügynök működik-e, és a kimenő internet-hozzáférés (és a DNS-) van megadva. 
+  - **1. javítási lehetőséget**. Ha tudja, hogy a virtuális gépek nem fognak hozzáférni, egy működő DNS-szolgáltatás, és használata az Azure ügynökök hello virtuális gépeken, majd el kell távolítani az összes Virtuálisgép-bővítmények előkészítése előtt hello áttelepítés részeként kimenő internet, majd újra kell telepítenie hello Virtuálisgép-bővítmények az áttelepítés után. 
+  - **2. lehetőség szervizelési**. Ha a Virtuálisgép-bővítmények túl nagy, egy a küszöbértéket, a másik lehetőség is tooshutdown/felszabadítani minden virtuális gép áttelepítése előtt. Hello nincs lefoglalva a virtuális gépek áttelepítése, majd indítsa újra őket a hello Azure Resource Manager oldalán. hello itt előnye, hogy a Virtuálisgép-bővítmények lesz áttelepítve. hello hátránya az, hogy az összes nyilvánosan elérhető a virtuális IP-cím el fog veszni (ez nem alapszintű lehet), és nyilvánvalóan a hello virtuális gépek egy sokkal nagyobb hatással vannak a működő alkalmazások, amely le fog állni.
 
     > [!NOTE] 
-    > Ha az Azure Security Center házirend úgy van konfigurálva, az áttelepítés alatt álló futó virtuális gépek elleni, a biztonsági házirendnek kell kiterjesztések eltávolítása előtt le kell állítani, ellenkező esetben a biztonságfigyelés bővítmény újra lesz telepítve automatikusan a virtuális gép eltávolítása után.
+    > Ha az Azure Security Center házirend hello fut az áttelepítés alatt álló virtuális gépek elleni van konfigurálva, hello biztonsági házirendnek kell toobe kiterjesztések eltávolítása előtt leállt, ellenkező esetben a monitorozási bővítményt újra lesz telepítve automatikusan hello biztonsági hello után VM eltávolítása.
 
-- **Rendelkezésre állási készletek** – az Azure Resource Manager, a benne lévő virtuális gépek kell lenniük egy rendelkezésre állási csoport Classic deployment (azaz a felhőalapú szolgáltatás), vagy a virtuális gépeket áttelepíteni egy virtuális hálózatot (vNet) összes nem lehet a rendelkezésre állási csoportot. Egynél több rendelkezésre állási, a felhőalapú szolgáltatás csoport rendelkezik nem kompatibilis az Azure Resource Manager és megáll, és áttelepítési.  Emellett nem lehet néhány virtuális gépek rendelkezésre állási csoportba, és egyes virtuális gépek rendelkezésre állási csoport nem található. A probléma megoldásához, akkor javítsa vagy átütemezésével a felhőalapú szolgáltatás.  Tervezze meg ennek megfelelően, mert ez időigényes lehet. 
+- **Rendelkezésre állási készletek** - egy virtuális hálózathoz (vNet) toobe az áttelepített erőforrás-kezelő tooAzure, hello Classic deployment (azaz a felhőalapú szolgáltatás) található virtuális gépek kell lenniük egy rendelkezésre állási csoport vagy hello virtuális gépek összes nem lehet a rendelkezésre állási csoportot. Egynél több rendelkezésre állási hello felhőszolgáltatás csoport rendelkezik nem kompatibilis az Azure Resource Manager és megáll, és áttelepítési.  Emellett nem lehet néhány virtuális gépek rendelkezésre állási csoportba, és egyes virtuális gépek rendelkezésre állási csoport nem található. tooresolve, fog kell tooremediate vagy átütemezésével a felhőalapú szolgáltatás.  Tervezze meg ennek megfelelően, mert ez időigényes lehet. 
 
-- **Webes vagy feldolgozói szerepkör telepítéseket** -Felhőszolgáltatások tartalmazó webes és feldolgozói szerepkörök nem telepíthetők át, az Azure Resource Manager. A webes vagy feldolgozói szerepköröket először el kell távolítani a virtuális hálózati áttelepítés megkezdése előtt.  Egy tipikus megoldás, egyszerűen folytassa a webes/munkavégző szerepkörpéldányokat külön klasszikus virtuális hálózathoz ExpressRoute-kapcsolatcsoportot is kapcsolódó, illetve újabb PaaS alkalmazásszolgáltatások (ismertető már nem tartozik a jelen dokumentum) telepítse át a kódot. Volt eset újratelepíteni, hozzon létre egy új klasszikus virtuális hálózatot, áthelyezés/helyezze üzembe újra az új virtuális hálózat webes/munkavégző szerepkörök, majd törölje a központi telepítések áthelyezett virtuális hálózatról. Nem szükséges kódmódosításokat. Az új [virtuális hálózati társviszony-létesítés](../../virtual-network/virtual-network-peering-overview.md) funkció használható együtt a klasszikus virtuális hálózatot, a webes vagy feldolgozói szerepköröket és egyéb ugyanabban a régióban Azure például a virtuális hálózati áttelepítés alatt álló virtuális hálózatok tartalmazó egyenrangú (**, nem telepíthetők át a virtuális hálózatok társítottak, virtuális hálózati áttelepítés befejezése után**), így adatvesztés nélkül teljesítmény és a késés/sávszélesség büntetést nem biztosítható a ugyanazokat a képességeket. Mivel a [virtuális hálózati társviszony-létesítés](../../virtual-network/virtual-network-peering-overview.md), webes/munkavégző szerepkör telepítések mostantól egyszerűen kivédhető, és nem blokkolja az áttelepítés az Azure Resource Manager.
+- **Webes vagy feldolgozói szerepkör telepítéseket** -webes és feldolgozói szerepköröket tartalmazó Felhőszolgáltatások tooAzure erőforrás-kezelő nem tud áttelepíteni. hello webes vagy feldolgozói szerepköröket először el kell távolítani a virtuális hálózati hello áttelepítés megkezdése előtt.  Egy tipikus megoldás toojust áthelyezés webes/munkavégző szerepkör példányok tooa külön klasszikus virtuális hálózatot, amely is csatolt tooan ExpressRoute-kapcsolatcsoportot vagy toomigrate hello kód toonewer PaaS alkalmazásszolgáltatások (ismertető nem ez a dokumentum hello terjed). A hello volt eset újratelepíteni, hozzon létre egy új klasszikus virtuális hálózatot, áthelyezés/helyezze üzembe újra hello webes vagy feldolgozói szerepkörök toothat új virtuális hálózat, majd hello központi telepítések törlése hello áthelyezett virtuális hálózati. Nem szükséges kódmódosításokat. új hello [virtuális hálózati társviszony-létesítés](../../virtual-network/virtual-network-peering-overview.md) funkció használt toopeer együtt hello klasszikus virtuális hálózatot hello webes vagy feldolgozói szerepköröket tartalmazó, valamint az egyéb virtuális hálózatok hello azonos Azure-régiót például hello virtuális hálózati folyamatban áttelepített (**, nem telepíthetők át a virtuális hálózatok társítottak, virtuális hálózati áttelepítés befejezése után**), ezért hello azonos képességek biztosítása a teljesítmény adatvesztés nélkül és a késés/sávszélesség büntetést nem. Mivel hello [virtuális hálózati társviszony-létesítés](../../virtual-network/virtual-network-peering-overview.md), webes vagy feldolgozói szerepkör telepítéseket mostantól egyszerűen kivédhető, és nem blokkolja a hello áttelepítési tooAzure erőforrás-kezelő.
 
-- **Az Azure erőforrás-kezelő kvótái** -Azure-régiók Azure Resource Manager és klasszikus külön kvóták/korlátokkal rendelkeznek. Annak ellenére, hogy az áttelepítési forgatókönyvben új hardver nem feldolgozottként *(jelenleg éppen áttelepíteni a forráskörnyezetból meglévő virtuális gépek a klasszikus Azure Resource Manager)*, Azure erőforrás-kezelő kvótái továbbra is szeretné helyen elegendő kapacitással rendelkező az áttelepítés megkezdése előtt kell. Az alábbiakban is láttuk jelentős korlátokat problémákhoz.  Emelje meg a kvóta támogatási jegy megnyitása. 
+- **Az Azure erőforrás-kezelő kvótái** -Azure-régiók Azure Resource Manager és klasszikus külön kvóták/korlátokkal rendelkeznek. Annak ellenére, hogy az áttelepítési forgatókönyvben új hardver nem feldolgozottként *(azt a meglévő virtuális gépek a klasszikus tooAzure erőforrás-kezelő most csere)*, továbbra is meg kell toobe helyen elegendő kapacitással, mielőtt Azure erőforrás-kezelő kvótái áttelepítési elindíthatja. Az alábbiakban hello jelentős korlátokat is láttuk problémákhoz.  Nyissa meg a kvóta támogatási jegy tooraise hello korlátozza. 
 
     > [!NOTE]
-    > Ezek a korlátozások kell áttelepíteni az aktuális felhasználásához ugyanabban a régióban kell emelni.
+    > Ezek a korlátozások kell keletkezés toobe hello ugyanabban a régióban, mint a jelenlegi felhasználásához toobe át.
     >
 
     - Hálózati illesztők
@@ -121,7 +121,7 @@ A következő volt a nagyobb áttelepítések számos felfedezett problémákat.
     - Network Security Groups (Hálózati biztonsági csoportok)
     - Útvonaltáblák
 
-    Ellenőrizheti, hogy a jelenlegi Azure erőforrás-kezelő kvótái, az Azure CLI 2.0 a legújabb verzióra a következő parancsok használatával.
+    A jelenlegi Azure erőforrás-kezelő kvótái, a következő parancsokat az Azure CLI 2.0 hello legújabb verziójával hello segítségével ellenőrizheti.
 
     **Számítási** *(mag, Avaiability beállítása)*
 
@@ -141,55 +141,55 @@ A következő volt a nagyobb áttelepítések számos felfedezett problémákat.
     az storage account show-usage
     ```
 
-- **Az Azure Resource Manager API szabályozás korlátok** – Ha a elég nagy környezetekben (például) > 400 virtuális gépek a VNETEN belül), előfordulhat, hogy kattint az alapértelmezett API korlátozása korlátozza az írási műveletek (jelenleg **1200 írások óránként**) az Azure Resource Manager. Áttelepítés megkezdése előtt kell előléptetése egy támogatási jegy ezt az előfizetéshez tartozó korlát növelése érdekében.
+- **Az Azure Resource Manager API szabályozás korlátok** – Ha a elég nagy környezetekben (például) > 400 virtuális gépek a VNETEN belül), előfordulhat, hogy kattint az hello alapértelmezett API korlátozása korlátozza az írási műveletek (jelenleg **1200 írások óránként**) az Azure Resource Manager. Áttelepítés megkezdése előtt meg kell egy támogatási jegy tooincrease szolgálattól a korlát növelését az előfizetéséhez.
 
-- **Előkészítési virtuális gép állapotát túllépte az időkorlátot** – Ha a virtuális gép állapota **kiépítése túllépte az időkorlátot**, ez kell lennie a feloldott áttelepítés előtti. A csak ehhez, állásidővel megszüntetés/reprovisioning a virtuális gép (törlés, a lemez megőrzése, és hozza létre újra a virtuális gép). 
+- **Előkészítési virtuális gép állapotát túllépte az időkorlátot** – Ha a virtuális gép állapota hello **kiépítése túllépte az időkorlátot**, ez igények toobe áttelepítés előtti feloldva. hello csak úgy toodo ezen nem állásidővel megszüntetés/reprovisioning hello virtuális gép (törlés, hello lemez megőrzése, és hozza létre újra a virtuális gép hello). 
 
-- **RoleStateUnknown virtuális gép állapotát** – Ha az áttelepítés miatt leáll egy **szerepkör állapota ismeretlen** hibaüzenet jelenik meg, vizsgálja meg a virtuális Gépet a portálon, és ellenőrizze, fut-e. Ez a hiba általában eltűnik majd a (nem kötelező szervizelési) tulajdonosai néhány perc múlva, és gyakran egy átmeneti típus gyakran látható során a virtuális gép **start**, **leállítása**, **újraindítása** műveletek. **Ajánlott eljárás:** próbálja meg újból az áttelepítési újra néhány perc múlva. 
+- **RoleStateUnknown virtuális gép állapotát** – Ha az áttelepítés miatt leáll tooa **szerepkör állapota ismeretlen** hiba jelenik meg, vizsgálja meg hello VM hello portál használatával, és ellenőrizze, hogy fut-e. Ez a hiba általában eltűnik majd a (nem kötelező szervizelési) tulajdonosai néhány perc múlva, és gyakran egy átmeneti típus gyakran látható során a virtuális gép **start**, **leállítása**, **újraindítása** műveletek. **Ajánlott eljárás:** próbálja meg újból az áttelepítési újra néhány perc múlva. 
 
-- **Fabric-fürt nem létezik** – néhány esetben egyes virtuális gépek nem telepíthetők át a különböző páratlan okokból. Egy ismert ezekben az esetekben ha a virtuális gép nemrégiben jött létre (a múlt héten vagy így) és történt a megnyílik egy Azure-fürttel, amely még nem rendelkezik Azure Resource Manager munkaterhelésekhez.  Egy hiba, amely szerint jelenik **fabric-fürt nem létezik** és a virtuális gép nem telepíthető át. Néhány nap Várakozás fog általában adott probléma megoldásához, a fürt hamarosan megkapja az Azure Resource Manager engedélyezve van. Azonban egy azonnali kerülő megoldás lehet `stop-deallocate` a virtuális Gépet, majd áttelepítés előre folytatásához, és indítsa el a virtuális gép biztonsági mentése az Azure Resource Manager áttelepítése után.
+- **Fabric-fürt nem létezik** – néhány esetben egyes virtuális gépek nem telepíthetők át a különböző páratlan okokból. Ezekben az esetekben ismert egyik Ha hello virtuális gép (belül hello múlt héten vagy így) nemrég lett létrehozva, és egy Azure-fürttel, amely még nem rendelkezik Azure Resource Manager munkaterhelésekhez tooland történt.  Egy hiba, amely szerint jelenik **fabric-fürt nem létezik** és hello virtuális gép nem telepíthető át. Néhány nap Várakozás fog általában adott probléma megoldásához, hello fürt hamarosan megkapja az Azure Resource Manager engedélyezve van. Azonban egy azonnali megoldás túl,`stop-deallocate` hello a virtuális gép, majd áttelepítés előre folytatásához és start hello virtuális gép biztonsági mentése az Azure Resource Manager áttelepítése után.
 
-### <a name="pitfalls-to-avoid"></a>Nehézségek elkerülése érdekében
+### <a name="pitfalls-tooavoid"></a>Nehézségek tooavoid
 
-- Parancsikonok igénybe vehet, és ne hagyja el a ellenőrzése/előkészítése/megszakítási próbafuttatást áttelepítéseket.
-- Legtöbb, ha nem, a potenciális problémák fog surface a ellenőrzése/előkészítése/megszakítási lépések során.
+- Parancsikonok igénybe vehet, és ne hagyja el a hello ellenőrzése/előkészítése/megszakítási próbafuttatást áttelepítéseket.
+- Legtöbb, ha nem, a potenciális problémák fog surface hello ellenőrzése/előkészítése/megszakítási lépések során.
 
 ## <a name="migration"></a>Migrálás
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Technikai szempontokat és kompromisszumot
 
-Most már készen áll, mert a környezet keresztül az ismert problémák dolgozott.
+Most már készen áll, mert a környezet kapcsolatos ismert problémák hello keresztül dolgozott.
 
-A valódi áttelepítések érdemes figyelembe venni:
+Hello valós áttelepítések érdemes lehet tooconsider:
 
-1. Tervezze meg, és a virtuális hálózathoz (az áttelepítés legkisebb egység) prioritás növelése ütemezni.  Az egyszerű virtuális hálózatok kezdeti lépések, és a bonyolultabb virtuális hálózatokat előrehaladás.
+1. Tervezze meg, és ütemezés szerinti hello virtuális hálózat (áttelepítés a legkisebb egység) prioritás növelése.  Először hello egyszerű virtuális hálózatok, és további hello a folyamat bonyolult virtuális hálózatok.
 2. A legtöbb ügyfél nem éles és éles környezetben fog rendelkezni.  Éles utolsó ütemezni.
 3. **(VÁLASZTHATÓ)**  Tervezze egy karbantartási bőven puffer abban az esetben, ha váratlan problémák merülhetnek fel.
 4. Kommunikálni, és a támogatási csoportokkal igazodnak, abban az esetben, ha problémák merülnek fel.
 
 ### <a name="patterns-of-success"></a>Sikeres mintái
 
-A műszaki útmutatót a Lab Test részből legyen tekinthető, és a tényleges áttelepítése előtt problémák elhárításáról.  A megfelelő tesztek, az áttelepítés az ténylegesen nem esemény.  Éles környezetben hasznos lehet további támogatásához, például egy megbízható Microsoft-partnerével vagy Microsoft Premier szolgáltatások.
+hello műszaki útmutató a Lab Test szakasz fenti hello érdemes figyelembe venni, és a korábbi tooa valós áttelepítési problémák elhárításáról.  A megfelelő tesztek hello áttelepítési az ténylegesen nem esemény.  Éles környezetben lehet hasznos toohave további támogatást, például egy megbízható Microsoft-partnerével vagy Microsoft Premier szolgáltatások.
 
-### <a name="pitfalls-to-avoid"></a>Nehézségek elkerülése érdekében
+### <a name="pitfalls-tooavoid"></a>Nehézségek tooavoid
 
-Nincs teljesen tesztelése problémákat okozhat, és az áttelepítés késleltetés.  
+Nincs teljesen tesztelése problémákat okozhat, és hello áttelepítés késleltetés.  
 
 ## <a name="beyond-migration"></a>Áttelepítési túl
 
 ### <a name="technical-considerations-and-tradeoffs"></a>Technikai szempontokat és kompromisszumot
 
-Most, hogy az Azure Resource Manager, maximalizálhatja a platform.  Olvassa el a [áttekintése Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md) regisztrációval kapcsolatos további előnyökkel is jár.
+Most, hogy az Azure Resource Manager, maximalizálja hello platform.  Olvasási hello [áttekintése Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md) toofind kimenő kapcsolatos további előnyökkel is jár.
 
-Vegye figyelembe a következőkre:
+Dolgot tooconsider:
 
-- Az áttelepítés más tevékenységek kötegelése.  A legtöbb ügyfél opt egy alkalmazás karbantartási időszak.  Ha igen, előfordulhat, hogy használni kívánt üzemszünet engedélyezése az egyéb Azure Resource Manager-szolgáltatásokat, például a titkosítás és a felügyelt lemezek áttelepítés.
-- Le újra a műszaki és üzleti okokból az Azure Resource Manager; a további szolgáltatások csak az Azure Resource Manager érhető el, amelyek a saját környezetének engedélyezése.
+- Kötegelése hello áttelepítési más tevékenységek.  A legtöbb ügyfél opt egy alkalmazás karbantartási időszak.  Ha igen, érdemes lehet toouse az állásidő tooenable egyéb Azure Resource Manager funkciói, például titkosítást és áttelepítési tooManaged lemezek.
+- Le újra hello műszaki és üzleti okokból az Azure Resource Manager; hello további szolgáltatások engedélyezése csak az Azure Resource Manager érhető el, amelyek érvényesek a tooyour környezetben.
 - A környezet PaaS szolgáltatásokkal korszerűsítésére.
 
 ### <a name="patterns-of-success"></a>Sikeres mintái
 
-Kell a mely szolgáltatásokat szeretné engedélyezni az Azure Resource Manager szándékos.  Sok ügyfél található a alatt az Azure környezetben vonatkozóan:
+Kell a most kívánja tooenable az Azure Resource Manager szolgáltatásokról, szándékos.  Sok ügyfél hello vonatkozóan az Azure környezetben alatt található:
 
 - [Szerepköralapú hozzáférés-vezérlés](../../azure-resource-manager/resource-group-overview.md#access-control).
 - [Az Azure Resource Manager-sablonok egyszerűbbé és több ellenőrzött telepítéshez](../../azure-resource-manager/resource-group-overview.md#template-deployment).
@@ -197,17 +197,17 @@ Kell a mely szolgáltatásokat szeretné engedélyezni az Azure Resource Manager
 - [Tevékenység-vezérlő](../../azure-resource-manager/resource-group-audit.md)
 - [Erőforrás-házirendekkel](../../azure-resource-manager/resource-manager-policy.md)
 
-### <a name="pitfalls-to-avoid"></a>Nehézségek elkerülése érdekében
+### <a name="pitfalls-tooavoid"></a>Nehézségek tooavoid
 
-Ne feledje, hogy miért használatba a klasszikus – Azure Resource Manager áttelepítési út.  Mi volt az eredeti üzleti okokból? Sikerült elérni az üzleti okokból?
+Ne feledje, hogy miért használatba a klasszikus tooAzure erőforrás-kezelő áttelepítési út.  Mi volt a hello eredeti üzleti okokból? Sikerült elérni hello üzleti okokból?
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus Azure Resource Managerbe](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Az IaaS-erőforrások klasszikusból Azure Resource Manager-alapú környezetbe való áttelepítésének megtervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [IaaS-erőforrások áttelepítése a klasszikus Azure Resource Manager PowerShell használatával](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [IaaS-erőforrásokra a klasszikus Azure Resource Manager áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [IaaS-erőforrásokra, erőforrás-kezelő klasszikus tooAzure a platform által támogatott áttelepítésének áttekintése](migration-classic-resource-manager-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Műszaki részletes bemutatója a platform által támogatott áttelepítési a klasszikus tooAzure erőforrás-kezelő](migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének tervezése](migration-classic-resource-manager-plan.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [PowerShell toomigrate IaaS erőforrásainak klasszikus tooAzure erőforrás-kezelő használata](../windows/migration-classic-resource-manager-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [IaaS-erőforrásokra, a klasszikus tooAzure erőforrás-kezelő áttelepítésének védelmével kapcsolatos közösségi eszközök](../windows/migration-classic-resource-manager-community-tools.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [A leggyakoribb áttelepítési hibák áttekintése](migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [A leggyakrabban feltett kérdésekre áttelepítése IaaS-erőforrásokra a klasszikus Azure Resource Manager áttekintése](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Felülvizsgálati hello legtöbb kapcsolatos gyakori kérdések a klasszikus tooAzure erőforrás-kezelő áttelepítése IaaS-erőforrásokra](migration-classic-resource-manager-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

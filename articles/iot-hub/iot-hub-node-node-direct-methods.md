@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub közvetlen módszerek (csomópont) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub közvetlen módszerek. Az Azure IoT SDK for Node.js használatával megvalósítható a szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és a service-alkalmazást, amely hívja meg a közvetlen módszer."
+title: "az IoT-központ aaaAzure közvetlen módszerek (csomópont) |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub közvetlen módszerek. Hello Azure IoT SDK-k használata Node.js tooimplement a szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és egy szolgáltatás-alkalmazást, amely hello közvetlen metódust hívja."
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -15,26 +15,26 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 83725c3ae3fd3807f2469be888e270ba078a8972
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 12300ba451816fec1f80163b633f6b6e411d9e5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-direct-methods-on-your-iot-device-with-nodejs"></a>Az IoT-eszközön a Node.js közvetlen módszerekkel
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-Ez az oktatóanyag végén két Node.js konzol alkalmazások közül választhat:
+Ez az oktatóanyag végén hello két Node.js konzol alkalmazások közül választhat:
 
-* **CallMethodOnDevice.js**, amely egy metódus meghívja a szimulált eszköz alkalmazás és a válasz megjeleníti.
-* **SimulatedDevice.js**, amely a korábban létrehozott eszközidentitás az IoT hub kapcsolódik, és válaszol-e a felhő által meghívott metódus.
+* **CallMethodOnDevice.js**, amely metódus meghívja a szimulált eszköz app hello és hello válasz jeleníti meg.
+* **SimulatedDevice.js**, amely tooyour IoT-központ kapcsolódik a korábban létrehozott hello eszközidentitás, és hello felhő által meghívott toohello metódus válaszol.
 
 > [!NOTE]
-> Az Azure IoT SDK-kat használhatja az eszközökön és a megoldás háttérrendszerén futó alkalmazások összeállításához egyaránt. Ezekről az [Azure IoT SDK-k][lnk-hub-sdks] című témakörben talál további információt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható toobuild mindkét alkalmazások toorun eszközökön és a megoldás háttérrendszeréhez hello Azure IoT SDK-k információt nyújt.
 > 
 > 
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * A Node.js 0.10.x vagy újabb verziója.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
@@ -44,20 +44,20 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
-Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a felhő által meghívott metódus hoz létre.
+Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a hello felhő által meghívott tooa metódus hoz létre.
 
-1. Hozzon létre egy új, **simulateddevice** nevű üres mappát. A **simulateddevice** mappában hozza létre a package.json fájlt úgy, hogy beírja a következő parancsot a parancssorba. Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új, **simulateddevice** nevű üres mappát. A hello **simulateddevice** mappa, hozzon létre egy package.json fájlt a következő parancsot a parancssorba hello segítségével. Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. Telepítse az **azure-iot-device** eszközoldali SDK csomagot és az **azure-iot-device-mqtt** csomagot. Ehhez futtassa a parancssorban a következő parancsot a **simulateddevice** mappában:
+2. A parancssorban hello **simulateddevice** mappa, futtassa a következő parancs tooinstall hello hello **azure iot-eszközök** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt**csomag:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Egy szövegszerkesztővel hozzon létre egy új **SimulatedDevice.js** fájlt a **simulateddevice** mappában.
-4. Adja hozzá a következő `require` utasításokat a **SimulatedDevice.js** fájl elejéhez:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **SimulatedDevice.js** hello fájlban **simulateddevice** mappa.
+4. Adja hozzá a következő hello `require` hello utasításokat elejére hello **SimulatedDevice.js** fájlt:
    
     ```
     'use strict';
@@ -65,28 +65,28 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a felhő álta
     var Mqtt = require('azure-iot-device-mqtt').Mqtt;
     var DeviceClient = require('azure-iot-device').Client;
     ```
-5. Adja hozzá a **connectionString** változó, és hozzon létre egy **DeviceClient** példány. Cserélje le **{eszköz kapcsolati karakterlánc}** az eszköz kapcsolattal karakterlánc Ön hozott létre a *hozzon létre egy eszközidentitás* szakasz:
+5. Adja hozzá a **connectionString** változó, és toocreate használni egy **DeviceClient** példány. Cserélje le **{eszköz kapcsolati karakterlánc}** hello eszköz kapcsolati karakterlánccal hozta létre a hello *hozzon létre egy eszközidentitás* szakasz:
    
     ```
     var connectionString = '{device connection string}';
     var client = DeviceClient.fromConnectionString(connectionString, Mqtt);
     ```
-6. Adja hozzá a következő függvény az eszközön a metódus végrehajtásához:
+6. Adja hozzá a következő függvény tooimplement hello metódus hello eszközön hello:
    
     ```
     function onWriteLine(request, response) {
         console.log(request.payload);
    
-        response.send(200, 'Input was written to log.', function(err) {
+        response.send(200, 'Input was written toolog.', function(err) {
             if(err) {
                 console.error('An error ocurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
-7. Nyissa meg a kapcsolatot az IoT-központ és kezdő inicializálni a metódus figyelőt:
+7. Nyissa meg a hello kapcsolat tooyour IoT-központot, és inicializálási hello metódus figyelő elindítása:
    
     ```
     client.open(function(err) {
@@ -98,47 +98,47 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a felhő álta
         }
     });
     ```
-8. Mentse és zárja be a **SimulatedDevice.js** fájlt.
+8. Mentse és zárja be a hello **SimulatedDevice.js** fájlt.
 
 > [!NOTE]
-> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban, meg kell valósítania újrapróbálkozási szabályzatok (például újrapróbálkozási), az MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
+> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási szabályzatok (például újrapróbálkozási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 > 
 > 
 
 ## <a name="call-a-method-on-a-device"></a>A metódus hívása az eszközön
-Ebben a szakaszban hozzon létre egy Node.js-Konzolalkalmazás, amely egy metódus meghívja a szimulált eszköz alkalmazás és a válasz megjeleníti.
+Ebben a szakaszban hozzon létre egy Node.js-Konzolalkalmazás, amely egy metódust hívja be hello szimulált eszköz alkalmazásának és hello válasz megjeleníti.
 
-1. Hozzon létre egy új üres nevű **callmethodondevice**. Az a **callmethodondevice** mappa, hozzon létre egy package.json fájlt parancsot a parancssorba az alábbi parancs segítségével. Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **callmethodondevice**. A hello **callmethodondevice** mappa, hozzon létre egy package.json fájlt a következő parancsot a parancssorba hello segítségével. Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. A parancssorba a **callmethodondevice** mappa telepítéséhez a következő parancsot a **azure-IOT hubbal** csomag:
+2. A parancssorban hello **callmethodondevice** mappa, futtassa a következő parancs tooinstall hello hello **azure-IOT hubbal** csomag:
    
     ```
     npm install azure-iothub --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy **CallMethodOnDevice.js** fájlt a **callmethodondevice** mappa.
-4. Adja hozzá a következő `require` elején utasítások a **CallMethodOnDevice.js** fájlt:
+3. Egy szövegszerkesztő használatával hozzon létre egy **CallMethodOnDevice.js** hello fájlban **callmethodondevice** mappa.
+4. Adja hozzá a következő hello `require` hello utasításokat elejére hello **CallMethodOnDevice.js** fájlt:
    
     ```
     'use strict';
    
     var Client = require('azure-iothub').Client;
     ```
-5. Adja hozzá a következő változódeklarációt, és a helyőrző értékét cserélje le az IoT Hub kapcsolati karakterláncára:
+5. Adja hozzá a következő változó deklarációjában hello és hello helyőrző értékét lecserélheti egy hello IoT-központ kapcsolati karakterlánca:
    
     ```
     var connectionString = '{iothub connection string}';
     var methodName = 'writeLine';
     var deviceId = 'myDeviceId';
     ```
-6. Az ügyfél számára, nyissa meg a kapcsolatot az IoT hub létrehozása.
+6. Hello ügyfél tooopen hello kapcsolat tooyour IoT hub létrehozása.
    
     ```
     var client = Client.fromConnectionString(connectionString);
     ```
-7. Adja hozzá a következő működnek, mint az eszköz metódus meghívása, és nyomtassa ki az eszköz válasza a konzolhoz:
+7. Adja hozzá a következő függvény tooinvoke hello eszköz metódus és a nyomtató hello eszköz válasz toohello konzol hello:
    
     ```
     var methodParams = {
@@ -149,45 +149,45 @@ Ebben a szakaszban hozzon létre egy Node.js-Konzolalkalmazás, amely egy metód
    
     client.invokeDeviceMethod(deviceId, methodParams, function (err, result) {
         if (err) {
-            console.error('Failed to invoke method \'' + methodName + '\': ' + err.message);
+            console.error('Failed tooinvoke method \'' + methodName + '\': ' + err.message);
         } else {
             console.log(methodName + ' on ' + deviceId + ':');
             console.log(JSON.stringify(result, null, 2));
         }
     });
     ```
-8. Mentse és zárja be a **CallMethodOnDevice.js** fájlt.
+8. Mentse és zárja be a hello **CallMethodOnDevice.js** fájlt.
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
-Most már készen áll az alkalmazások futtatására.
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
+Most már áll készen toorun hello alkalmazásokat.
 
-1. A parancsot a parancssorba a **simulateddevice** mappa megkezdeni a figyelést az IoT Hub a metódushívások a következő parancsot:
+1. A parancssorba a hello **simulateddevice** mappa, futtassa a következő parancs toostart metódushívások az IoT-központ figyel hello:
    
     ```
     node SimulatedDevice.js
     ```
    
     ![][7]
-2. A parancsot a parancssorba a **callmethodondevice** mappa, a következő parancsot az IoT hub figyelés megkezdéséhez:
+2. A parancssorba a hello **callmethodondevice** mappa, futtassa a következő parancs toobegin az IoT hub figyelési hello:
    
     ```
     node CallMethodOnDevice.js 
     ```
    
     ![][8]
-3. A metódus által az üzenet és az alkalmazást, amely az eszközről a válasz a metódus megjelenítési nevű nyomtasson reagálni az eszköz jelenik meg:
+3. Hello eszköz reagálni toohello metódus által üdvözlőüzenetére és hello alkalmazást, amely hello metódus megjelenítési hello válasz nevű hello eszközről nyomtasson jelenik meg:
    
     ![][9]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Ez az eszközazonosító segítségével engedélyezheti a felhő által meghívott módszerek reagálni a szimulált eszköz alkalmazás. Létrehozott egy alkalmazást, amely meghívja a módszerek az eszközön, és megjeleníti az eszköz válaszára is. 
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Az eszköz identitás tooenable hello szimulált eszköz alkalmazás tooreact toomethods hello felhő által meghívott használta. Is létrehozott egy alkalmazást, amely hello eszközön módszereket hív, és megjeleníti hello válasz hello eszközről. 
 
-További bevezetés az IoT Hub használatába, valamint egyéb IoT-forgatókönyvek megismerése:
+első lépések toocontinue az IoT Hub és tooexplore más IoT-forgatókönyvek esetén, lásd:
 
 * [Ismerkedés az IoT-központ]
 * [Több eszközön feladatok ütemezése][lnk-devguide-jobs]
 
-Megtudhatja, hogyan terjeszthető ki az IoT-megoldás és az ütemezések metódushívások több eszközön, tekintse meg a [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
+toolearn hogyan tooextend az IoT megoldás és az ütemezések metódus meghívja a több eszközön, tekintse meg a hello [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
 
 <!-- Images. -->
 [7]: ./media/iot-hub-node-node-direct-methods/run-simulated-device.png

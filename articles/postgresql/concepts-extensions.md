@@ -1,6 +1,6 @@
 ---
-title: "Azure-adatbázis PostgreSQL-bővítményeket használ PostgreSQL |} Microsoft Docs"
-description: "Kiterjesztheti az Azure-adatbázis bővítményekkel PostgreSQL az adatbázis működését ismerteti."
+title: "aaaUsing PostgreSQL-kiterjesztések az Azure-adatbázis a PostgreSQL |} Microsoft Docs"
+description: "Az Azure-adatbázis bővítményekkel PostgreSQL az adatbázis az hello képességét tooextend hello funkcióit mutatja be."
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,22 +9,22 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/29/2017
-ms.openlocfilehash: 755d1cf1a921f6be8f28a4a8ae515db08d904fcd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: af2462d7a923b934bc0329153be7079ba86e8856
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="postgresql-extensions-in-azure-database-for-postgresql"></a>PostgreSQL-kiterjesztések az Azure PostgreSQL-adatbázishoz
-PostgreSQL teszi lehetővé az adatbázis bővítmény használatával bővítése. Bővítmények lehetővé teszik a több kapcsolódó SQL objektumok kell egybe kötegelik csomagban és a betöltése vagy eltávolítja az adatbázisból egyetlen paranccsal. Egyszer betölteni az adatbázis bővítmény hasonlóan a épített funkciók működjön. PostgreSQL-bővítmények további információkért lásd: [csomagolás kapcsolódó objektumok egy bővítmény](https://www.postgresql.org/docs/9.6/static/extend-extensions.html).
+PostgreSQL hello képességét tooextend hello funkciókat az adatbázis bővítmény használatával biztosítja. Bővítmények lehetővé teszik a több kapcsolódó SQL objektumok toobe egybe kötegelik csomagban és a betöltése vagy eltávolítva az adatbázisból, egyetlen parancs. Egyszer betölti hello adatbázis bővítmény hasonlóan a épített funkciók működjön. PostgreSQL-bővítmények további információkért lásd: [csomagolás kapcsolódó objektumok egy bővítmény](https://www.postgresql.org/docs/9.6/static/extend-extensions.html).
 
-## <a name="how-to-use-postgresql-extensions"></a>Hogyan PostgreSQL-bővítmények használatát?
-PostgreSQL-bővítmények telepítve kell lennie az adatbázis előtt is használhatja. Egy adott bővítmény telepítéséhez futtassa a [kiterjesztés létrehozása](https://www.postgresql.org/docs/9.6/static/sql-createextension.html) parancs psql eszközből a csomagolt objektumok betölteni az adatbázisba.
+## <a name="how-toouse-postgresql-extensions"></a>Hogyan toouse PostgreSQL-bővítmények?
+PostgreSQL bővítményekhez tartoznia kell toobe az adatbázis telepítve előtt is használhatja. tooinstall egy adott kiterjesztéssel, futtassa a [kiterjesztés létrehozása](https://www.postgresql.org/docs/9.6/static/sql-createextension.html) psql eszköz tooload parancsot hello csomagolt objektumok az adatbázisba.
 
-Az itt felsorolt Azure PostgreSQL-adatbázishoz támogatja kulcs bővítmények egy részét. Az alább felsorolt, túl egyéb bővítményei nem támogatottak. Nem hozható létre saját bővítmény Azure Database PostgreSQL-szolgáltatás.
+Az itt felsorolt Azure PostgreSQL-adatbázishoz támogatja kulcs bővítmények egy részét. Túl az alább felsorolt hello más bővítmények nem támogatottak. Nem hozható létre saját bővítmény Azure Database PostgreSQL-szolgáltatás.
 
 ## <a name="extensions-supported-by-azure-database-for-postgresql"></a>Azure-adatbázis által támogatott PostgreSQL bővítmények
-Az alábbi táblázatok a szabványos PostgreSQL-bővítmények PostgreSQL Azure-adatbázis által jelenleg támogatott. Ezeket az információkat szerezzen be pg lekérdezésével\_elérhető\_bővítmények. 
+hello alábbi táblázatokban hello szabványos PostgreSQL kiterjesztések listájából PostgreSQL Azure-adatbázis által jelenleg támogatott. Ezeket az információkat szerezzen be pg lekérdezésével\_elérhető\_bővítmények. 
 
 ### <a name="data-types-extensions"></a>Adattípus-bővítmények
 
@@ -39,11 +39,11 @@ Az alábbi táblázatok a szabványos PostgreSQL-bővítmények PostgreSQL Azure
 > [!div class="mx-tableFixed"]
 | **Bővítmény** | **Leírás** |
 |---|---|
-| [fuzzystrmatch](https://www.postgresql.org/docs/9.6/static/fuzzystrmatch.html) | Az Hasonlóságok és karakterláncok közötti távolság meghatározásához számos funkciókat biztosít. |
+| [fuzzystrmatch](https://www.postgresql.org/docs/9.6/static/fuzzystrmatch.html) | Itt több funkciók toodetermine Hasonlóságok és karakterláncok közötti távolságot. |
 | [intarray](https://www.postgresql.org/docs/9.6/static/intarray.html) | Biztosítja a funkciók és operátorok kezelésére szolgáló tömb null-mentes egész számok. |
 | [pgcrypto](https://www.postgresql.org/docs/9.6/static/pgcrypto.html) | Titkosítási funkciókat biztosít |
 | [a védelmi\_partman](https://pgxn.org/dist/pg_partman/doc/pg_partman.html) | Kezeli a particionált táblákat idő vagy azonosítója |
-| [a védelmi\_trgm](https://www.postgresql.org/docs/9.6/static/pgtrgm.html) | Függvények és operátorok biztosít a hasonlóság trigram megfelelő alfanumerikus szöveg meghatározása |
+| [a védelmi\_trgm](https://www.postgresql.org/docs/9.6/static/pgtrgm.html) | Függvények és operátorok biztosít hello hasonlóság trigram megfelelő alfanumerikus szöveg meghatározása |
 | [UUID-ossp](https://www.postgresql.org/docs/9.6/static/uuid-ossp.html) | Univerzálisan egyedi azonosítók (UUID-k) létrehozása |
 
 ### <a name="full-text-search-extensions"></a>Teljes szöveges keresési bővítmények
@@ -73,10 +73,10 @@ Az alábbi táblázatok a szabványos PostgreSQL-bővítmények PostgreSQL Azure
 > [!div class="mx-tableFixed"]
 | **Bővítmény** | **Leírás** |
 |---|---|
-| [a védelmi\_buffercache](https://www.postgresql.org/docs/9.6/static/pgbuffercache.html) | Arra szolgál, hogy mi történik a megosztott pufferből gyorsítótárban a valós idejű vizsgálata. |
-| [a védelmi\_prewarm](https://www.postgresql.org/docs/9.6/static/pgprewarm.html) | Relációs adatok betöltése a puffer gyorsítótárába lehetőséget biztosít. |
+| [a védelmi\_buffercache](https://www.postgresql.org/docs/9.6/static/pgbuffercache.html) | Arra szolgál, hogy mi történik a megosztott hello puffer gyorsítótár valós idejű vizsgálata. |
+| [a védelmi\_prewarm](https://www.postgresql.org/docs/9.6/static/pgprewarm.html) | Adja meg egy módon tooload kapcsolat adatait a hello puffer gyorsítótárába. |
 | [a védelmi\_stat\_utasítások](https://www.postgresql.org/docs/9.6/static/pgstatstatements.html) | Lehetővé teszi a kiszolgáló által végrehajtott összes SQL-utasítások végrehajtása statisztikáinak nyomon követése. |
-| [postgres\_fdw](https://www.postgresql.org/docs/9.6/static/postgres-fdw.html) | A külső PostgreSQL-kiszolgálókon tárolt adatok eléréséhez használt idegen-adatok burkoló |
+| [postgres\_fdw](https://www.postgresql.org/docs/9.6/static/postgres-fdw.html) | Idegen-adatok burkoló használt külső PostgreSQL-kiszolgálókon tárolt tooaccess adatok |
 
 ### <a name="postgis"></a>PostGIS
 
@@ -84,8 +84,8 @@ Az alábbi táblázatok a szabványos PostgreSQL-bővítmények PostgreSQL Azure
 | **Bővítmény** | **Leírás** |
 |---|---|
 | [PostGIS](http://www.postgis.net/), postgis\_topológia, postgis\_tiger\_geocoder, postgis\_sfcgal | Térbeli és földrajzi objektumok PostgreSQL. |
-| cím\_standardizer, cím\_standardizer\_adatok\_us | Egy címet értelmezhető alkotóelemeket is. Használja a geokódolás cím normalizálási lépés támogatásához. |
-| [pgrouting](http://pgrouting.org/) | Kiterjeszti a PostGIS / PostgreSQL földrajzi adatbázis adataival kínálnak a földrajzi útválasztási funkciót. |
+| cím\_standardizer, cím\_standardizer\_adatok\_us | Használt tooparse alkotó elemekre történő címet. Toosupport geokódolás cím normalizálási lépés használt. |
+| [pgrouting](http://pgrouting.org/) | Kiterjeszti a hello PostGIS / PostgreSQL földrajzi adatbázis tooprovide földrajzi útválasztási funkcióra. |
 
 ## <a name="next-steps"></a>Következő lépések
-Nem jelenik meg egy bővítmény szeretné használni? Tudassa velünk. Meglévő kérelmek szavazzon, vagy hozzon létre új visszajelzések és a kívánja a [ügyfél-visszajelzési fórumon](https://feedback.azure.com/forums/597976-azure-database-for-postgresql).
+Nem látja azt szeretné, hogy toouse kiterjesztéssel? Tudassa velünk. Meglévő kérelmek szavazzon, vagy hozzon létre új visszajelzések és a kívánja a [ügyfél-visszajelzési fórumon](https://feedback.azure.com/forums/597976-azure-database-for-postgresql).

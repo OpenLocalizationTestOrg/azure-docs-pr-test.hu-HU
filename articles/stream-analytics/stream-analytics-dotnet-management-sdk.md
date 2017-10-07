@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Stream Analytics-kezelés .NET SDK |} Microsoft Docs"
-description: "Első lépések a Stream Analytics felügyeleti .NET SDK-val. Megtudhatja, hogyan állítson be és az analytics-feladatok futtatásához. Hozzon létre egy projekt, bemenetek, kimenetek és átalakításához."
+title: az Azure Stream Analytics .NET SDK aaaManagement |} Microsoft Docs
+description: "Első lépések a Stream Analytics felügyeleti .NET SDK-val. Megtudhatja, hogyan tooset össze, és az analytics-feladatok futtatása. Hozzon létre egy projekt, bemenetek, kimenetek és átalakításához."
 keywords: .NET SDK-val analytics API
 services: stream-analytics
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/06/2017
 ms.author: jeffstok
-ms.openlocfilehash: f9aa812e6e82cc0f72d0cd1fe63058e53f794775
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 507c11938bc5bf2249a2e41f6bcc076db8ead3f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-the-azure-stream-analytics-api-for-net"></a>.NET SDK-kezelés: Beállítása és az Azure Stream Analytics API használatával a .NET-hez analytics-feladatok futtatása
-Megtudhatja, hogyan állítson be és használja a Stream Analytics API Management .NET SDK használatával .NET analytics-feladatok futtatása. Projekt beállítása, hozzon létre a bemeneti és kimeneti adatforrások, átalakítások, és úgy indítsa és feladatok. Az analytics-feladatok adatok Blob-tároló vagy az eseményközpont folyamatos átviteléhez.
+# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-hello-azure-stream-analytics-api-for-net"></a>.NET SDK-kezelés: Beállítása és hello Azure Stream Analytics API használatával a .NET-hez analytics-feladatok futtatása
+Ismerje meg, hogyan tooset fel és futtatási analytics-feladatok hello Stream Analytics API használatával a .NET használatával hello felügyeleti .NET SDK-val. Projekt beállítása, hozzon létre a bemeneti és kimeneti adatforrások, átalakítások, és úgy indítsa és feladatok. Az analytics-feladatok adatok Blob-tároló vagy az eseményközpont folyamatos átviteléhez.
 
-Tekintse meg a [felügyeleti referenciadokumentációt tartalmaz a Stream Analytics API .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).
+Lásd: hello [felügyeleti referenciadokumentációt hello Stream Analytics API a .NET-keretrendszerhez készült](https://msdn.microsoft.com/library/azure/dn889315.aspx).
 
-Az Azure Stream Analytics egy olyan teljes körűen felügyelt szolgáltatás biztosít alacsony késésű, magas rendelkezésre állású, méretezhető, összetett Eseményfeldolgozási keresztül a streamelési adatok a felhőben. A Stream Analytics lehetővé teszi az ügyfelek a folyamatos átviteli feladatok beállítása az adatfolyamokat elemzése, és lehetővé teszi a közel valós idejű elemzési meghajtó.  
+Az Azure Stream Analytics egy teljes körűen felügyelt szolgáltatás biztosítása kis késleltetésű, magas rendelkezésre állású, méretezhető, összetett esemény feldolgozása keresztül adatfolyam hello felhőben. A Stream Analytics lehetővé teszi, hogy az ügyfelek tooset folyamatos átviteli feladatok tooanalyze adatfolyamot fel, és közel valós idejű elemzési toodrive lehetővé teszi.  
 
 > [!NOTE]
-> Ebben a cikkben a példakód Azure Stream Analytics Management .NET SDK v2.x verziójával lett frissítve. A által használt lagecy (1.x) SDK-verzió használó példakódot, talál [a Management .NET SDK v1.x használja a Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).
+> Ebben a cikkben hello mintakód Azure Stream Analytics Management .NET SDK v2.x verziójával lett frissítve. A hello használó példakódot lagecy (1.x) SDK verzióját használja, ellenőrizze a [hello Management .NET SDK v1.x használja a Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).
 
 ## <a name="prerequisites"></a>Előfeltételek
-A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez a cikk elkezdéséhez hello következő kell rendelkeznie:
 
 * Telepítse a Visual Studio 2017 vagy 2015.
 * Töltse le és telepítse [Azure .NET SDK](https://azure.microsoft.com/downloads/).
-* Azure-erőforráscsoport létrehozása az előfizetésben. Egy Azure PowerShell-parancsfájlpélda a következő: Azure PowerShell információkért lásd: [telepítse és konfigurálja az Azure Powershellt](/powershell/azure/overview);  
+* Azure-erőforráscsoport létrehozása az előfizetésben. hello az alábbiakban látható egy minta Azure PowerShell-parancsfájlt. Azure PowerShell információkért lásd: [telepítse és konfigurálja az Azure Powershellt](/powershell/azure/overview);  
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Add-AzureAccount
 
-        # Select the Azure subscription you want to use to create the resource group
+        # Select hello Azure subscription you want toouse toocreate hello resource group
         Select-AzureSubscription -SubscriptionName <subscription name>
 
-            # If Stream Analytics has not been registered to the subscription, remove the remark symbol (#) to run the Register-AzureRMProvider cmdlet to register the provider namespace
+            # If Stream Analytics has not been registered toohello subscription, remove hello remark symbol (#) toorun hello Register-AzureRMProvider cmdlet tooregister hello provider namespace
             #Register-AzureRMProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
         New-AzureResourceGroup -Name <YOUR RESOURCE GROUP NAME> -Location <LOCATION>
 
 
-* Beállítása egy bemeneti forrás- és kimeneti használatára. A további tudnivalókat [bemenet hozzáadása](stream-analytics-add-inputs.md) állíthat be egy minta bemeneti és [hozzáadása kimenetek](stream-analytics-add-outputs.md) állíthat be egy minta kimenet.
+* Állítson be egy bemeneti forrás és cél toouse kimeneti. A további tudnivalókat [bemenet hozzáadása](stream-analytics-add-inputs.md) be egy minta bemeneti tooset és [hozzáadása kimenetek](stream-analytics-add-outputs.md) tooset be egy minta kimenet.
 
 ## <a name="set-up-a-project"></a>Projekt beállítása
-Az analytics-feladat használja a Stream Analytics API a .NET-hez, először állítsa be a projekthez.
+toocreate analytics-feladat hello Stream Analytics API használata a .NET, először állítsa be a projekthez.
 
 1. Hozzon létre egy Visual Studio C# .NET konzolalkalmazást.
-2. A Package Manager-konzolon, a következő parancsokat a NuGet-csomagok. Az első címtárra az Azure Stream Analytics felügyeleti .NET SDK. A második érték van az Azure ügyfél-hitelesítéshez.
+2. Hello Csomagkezelő konzol, a következő futtatási hello parancsokat tooinstall hello NuGet-csomagok. hello először egyik hello Azure Stream Analytics felügyeleti .NET SDK-t. hello második van az Azure ügyfél-hitelesítéshez.
    
         Install-Package Microsoft.Azure.Management.StreamAnalytics -Version 2.0.0
         Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Version 2.3.1
-3. Adja hozzá a következő **appSettings** szakaszt az App.config fájlban:
+3. Adja hozzá a következő hello **appSettings** szakasz toohello App.config fájlban:
    
         <appSettings>
           <add key="ClientId" value="1950a258-227b-4e31-a9cf-717495945fc2" />
@@ -70,15 +70,15 @@ Az analytics-feladat használja a Stream Analytics API a .NET-hez, először ál
           <add key="ActiveDirectoryTenantId" value="YOUR TENANT ID" />
         </appSettings>
 
-    Cserélje le az értékeket **SubscriptionId** és **ActiveDirectoryTenantId** a Azure-előfizetés és a bérlői azonosítók. Ezeket az értékeket a következő Azure PowerShell-parancsmag futtatásával kérhető le:
+    Cserélje le az értékeket **SubscriptionId** és **ActiveDirectoryTenantId** a Azure-előfizetés és a bérlői azonosítók. Ezek az értékek kaphat hello Azure PowerShell-parancsmag a következő futtatásával:
 
         Get-AzureAccount
 
-4. Adja hozzá a .csproj fájlban a következő hivatkozást:
+4. Adja hozzá a következő hivatkozás a .csproj fájlban hello:
 
         <Reference Include="System.Configuration" />
 
-5. Adja hozzá a következő **használatával** utasítást, hogy a projekt forrásfájl (Program.cs):
+5. Adja hozzá a következő hello **használatával** utasítások toohello forrásfájl (Program.cs) hello projektben:
    
         using System;
         using System.Collections.Generic;
@@ -103,9 +103,9 @@ Az analytics-feladat használja a Stream Analytics API a .NET-hez, először ál
    ```
 
 ## <a name="create-a-stream-analytics-management-client"></a>Hozzon létre egy Stream Analytics management ügyfél
-A **StreamAnalyticsManagementClient** objektum lehetővé teszi, hogy a feladat, és a feladat összetevők, például a bemeneti, kimeneti és átalakítása kezelheti.
+A **StreamAnalyticsManagementClient** objektum lehetővé teszi a toomanage hello feladat és hello feladat összetevők, például bemeneti, kimeneti és átalakítás.
 
-Adja hozzá a következő kódot elejéhez a **fő** módszert:
+Adja hozzá a következő kód toohello elejére hello hello **fő** módszert:
 
    ```
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
@@ -126,14 +126,14 @@ Adja hozzá a következő kódot elejéhez a **fő** módszert:
     };
    ```
 
-A **resourceGroupName** változó értékét meg kell egyeznie az erőforráscsoport létrehozása, vagy az előfeltételként szükséges lépések kivételezett nevével.
+Hello **resourceGroupName** változó értékét a hello erőforrás hello neve azonos gazdagépcsoport létrehozott vagy hello előfeltételként szükséges lépések kivételezett hello kell lennie.
 
-Feladat létrehozása a hitelesítő adatok megjelenítési aspektusa automatizálását, tekintse meg [hitelesítéséhez az Azure Resource Manager szolgáltatásnevet](../azure-resource-manager/resource-group-authenticate-service-principal.md).
+tooautomate hello credential bemutató szempontja, hogy a feladat létrehozása, tekintse meg a túl[hitelesítéséhez az Azure Resource Manager szolgáltatásnevet](../azure-resource-manager/resource-group-authenticate-service-principal.md).
 
-Ez a cikk fennmaradó részében feltételezik, hogy ez a kód elején a **fő** metódust.
+hello Ez a cikk fennmaradó részében feltételezik, hogy ez a kód hello hello elején **fő** metódust.
 
 ## <a name="create-a-stream-analytics-job"></a>Stream Analytics-feladat létrehozása
-A következő kódot a Stream Analytics-feladat a megadott erőforráscsoport alapján hoz létre. Hozzáadandó egy bemeneti, kimeneti és átalakítása a feladatot később.
+hello alábbi kód létrehoz egy Stream Analytics-feladat a megadott erőforráscsoport hello. Egy bemeneti, kimeneti és átalakítása toohello feladat később fogja hozzáadni.
 
    ```
    // Create a streaming job
@@ -160,7 +160,7 @@ A következő kódot a Stream Analytics-feladat a megadott erőforráscsoport al
    ```
 
 ## <a name="create-a-stream-analytics-input-source"></a>Hozzon létre egy Stream Analytics bemeneti forrása
-A következő kódot a Stream Analytics bemeneti forrás a blob bemeneti forrása típusa és a fürt megosztott kötetei szolgáltatás szerializálási hoz létre. Az event hubs ezen bemeneti forrása hozhat létre **EventHubStreamInputDataSource** helyett **BlobStreamInputDataSource**. Hasonlóképpen testre szabhatja a bemeneti forrás a szerializálási típushoz.
+hello alábbira hoz létre a Stream Analytics bemeneti forrás hello blob bemeneti forrása típusa és a fürt megosztott kötetei szolgáltatás szerializálást. az event hubs ezen bemeneti forrása, toocreate használja **EventHubStreamInputDataSource** helyett **BlobStreamInputDataSource**. Hasonlóképpen testre szabhatja a hello szerializálási típushoz hello bemeneti forrás.
 
    ```
    // Create an input
@@ -192,20 +192,20 @@ A következő kódot a Stream Analytics bemeneti forrás a blob bemeneti forrás
    Input createInputResult = streamAnalyticsManagementClient.Inputs.CreateOrReplace(input, resourceGroupName, streamingJobName, inputName);
    ```
 
-Beviteli móddal, akár a Blob-tároló vagy egy eseményközpontba kötődnek, egy adott feladat. Használja az ugyanazon bemeneti forrás a különböző feladatok, hívja meg ismét a metódust, és adjon meg egy másik feladatnévvel.
+Beviteli móddal, akár a Blob-tároló vagy egy eseményközpontot, kapcsolt tooa adott feladat. toouse hello ugyanazon bemeneti forrás a különböző feladatokhoz, kell hello metódust hívja meg ismét, és adjon meg egy másik feladatnévvel.
 
 ## <a name="test-a-stream-analytics-input-source"></a>A Stream Analytics bemeneti forrás tesztelése
-A **TestConnection** metódus teszteli, hogy a Stream Analytics-feladat csatlakozni tudjanak a bemeneti forrás a bemeneti forrás típusa különleges, valamint egyéb szempontokat. Például a blobbemeneti forrás egy korábbi lépésben létrehozott, a a módszerrel ellenőrzi, hogy a Tárfiók nevét és a kulcspár használatával lehet csatlakozni a tárfiókhoz, valamint a ellenőrizze, hogy létezik-e a megadott tároló.
+Hello **TestConnection** e hello Stream Analytics-feladat-e képes tooconnect toohello bemeneti forrás, valamint egyéb szempontok adott toohello metódus tesztek bemeneti forrás típusa. Például hello blob bemeneti forrása egy korábbi lépésben létrehozott hello metódus ellenőrzi, hogy hello tárfióknév kulcspár is használt tooconnect toohello tárfiókot kell, valamint ellenőrizze, hogy hello megadott tároló létezik-e.
 
    ```
-   // Test the connection to the input
+   // Test hello connection toohello input
    ResourceTestStatus testInputResult = streamAnalyticsManagementClient.Inputs.Test(resourceGroupName, streamingJobName, inputName);
    ```
 
 ## <a name="create-a-stream-analytics-output-target"></a>A Stream Analytics kimeneti cél létrehozásához
-Egy kimeneti cél létrehozása nagyon hasonlít a Stream Analytics bemeneti forrás létrehozása. Beviteli móddal, például a kimeneti célokat egy adott feladat vannak társítva. Kimeneti egyazon célobjektum használ a különböző feladatokhoz, hívja meg ismét a metódust, és adjon meg egy másik feladatnévvel.
+Nagyon hasonló toocreating a Stream Analytics bemeneti forrás egy kimeneti cél létrehozása történik. Beviteli móddal, például a kimeneti célpontjai kapcsolt tooa adott feladat. toouse hello azonos kimeneti célja a különböző feladatokhoz, kell hello metódust hívja meg ismét, és adjon meg egy másik feladatnévvel.
 
-Az alábbi kód létrehoz egy kimeneti célhoz (Azure SQL-adatbázis). Testre szabhatja a kimeneti adatok céltípus és/vagy szerializálási típushoz.
+a következő kód hello hoz létre egy kimeneti célhoz (Azure SQL-adatbázis). Testre szabhatja hello kimeneti cél adatok típusát és/vagy szerializálási típushoz.
 
    ```
    // Create an output
@@ -224,32 +224,32 @@ Az alábbi kód létrehoz egy kimeneti célhoz (Azure SQL-adatbázis). Testre sz
    ```
 
 ## <a name="test-a-stream-analytics-output-target"></a>A Stream Analytics kimeneti cél tesztelése
-A Stream Analytics kimeneti cél is tartozik. a **TestConnection** kapcsolatok tesztelése a módszert.
+A Stream Analytics kimeneti cél is tartozik hello **TestConnection** kapcsolatok tesztelése a módszert.
 
    ```
-   // Test the connection to the output
+   // Test hello connection toohello output
    ResourceTestStatus testOutputResult = streamAnalyticsManagementClient.Outputs.Test(resourceGroupName, streamingJobName, outputName);
    ```
 
 ## <a name="create-a-stream-analytics-transformation"></a>Hozzon létre egy Stream Analytics átalakítása
-A következő kódot a Stream Analytics átalakítás hoz létre a lekérdezés "Válasszon * bemeneti" és egy streamelési egységet a Stream Analytics-feladat lefoglalni határozza meg. A streamelési egységek beállítása további információkért lásd: [Scale Azure Stream Analytics-feladatok](stream-analytics-scale-jobs.md).
+hello alábbira hoz létre a Stream Analytics átalakítás hello lekérdezés "Válasszon * bemeneti" és egy streamelési egységet tooallocate hello Stream Analytics-feladat határozza meg. A streamelési egységek beállítása további információkért lásd: [Scale Azure Stream Analytics-feladatok](stream-analytics-scale-jobs.md).
 
    ```
    // Create a transformation
    Transformation transformation = new Transformation()
    {
-       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with the value you put for the 'inputName' variable above or in a previous step
+       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with hello value you put for hello 'inputName' variable above or in a previous step
        StreamingUnits = 1
    };
    Transformation createTransformationResult = streamAnalyticsManagementClient.Transformations.CreateOrReplace(transformation, resourceGroupName, streamingJobName, transformationName);
    ```
 
-Például a bemeneti és kimeneti átalakítás is van kötve az adott Stream Analytics-feladat csoportban hozták létre.
+Bemeneti és kimeneti, például átalakítás egyben a feltételekhez toohello adott Stream Analytics-feladat csoportban hozták létre.
 
 ## <a name="start-a-stream-analytics-job"></a>A Stream Analytics-feladat indítása
-Miután létrehozta a Stream Analytics-feladat, és a input(s), kimenete és átalakítása, megkezdheti a feladat meghívása a **Start** metódust.
+Miután létrehozta a Stream Analytics-feladat, és a input(s), kimenete és átalakítása, elindíthatja hello feladat hívó hello **Start** metódust.
 
-A következő példa egy egyéni kimeneti kezdési idejű Stream Analytics-feladat beállítása a 2012. December 12., 12:12:12 kód indítása (UTC):
+a következő példakód hello Stream Analytics-feladat kezdődik-e egy egyéni kimeneti kezdési idő beállítása tooDecember 12, 2012, 12:12:12 UTC:
 
    ```
    // Start a streaming job
@@ -262,7 +262,7 @@ A következő példa egy egyéni kimeneti kezdési idejű Stream Analytics-felad
    ```
 
 ## <a name="stop-a-stream-analytics-job"></a>A Stream Analytics-feladat leállítása
-Egy futó Stream Analytics-feladat meghívásával leállíthatja a **leállítása** metódust.
+Egy futó Stream Analytics-feladat leállításához hívó hello **leállítása** metódust.
 
    ```
    // Stop a streaming job
@@ -270,7 +270,7 @@ Egy futó Stream Analytics-feladat meghívásával leállíthatja a **leállít�
    ```
 
 ## <a name="delete-a-stream-analytics-job"></a>A Stream Analytics-feladat törlése
-A **törlése** metódus törli a feladatot, valamint az alapul szolgáló alárendelt erőforrások, például az input(s), kimenete és átalakítása a feladat.
+Hello **törlése** metódus hello feladat, valamint az alapul szolgáló alárendelt erőforrások, például az input(s), kimenete és átalakítása hello feladat hello törli.
 
    ```
    // Delete a streaming job
@@ -281,9 +281,9 @@ A **törlése** metódus törli a feladatot, valamint az alapul szolgáló alár
 Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Következő lépések
-Hogy megismerte a .NET SDK használatával hozhat létre és futtathat analytics-feladatok alapjait. További információ:
+Hogy megismerte a .NET SDK toocreate használatával hello alapjait és analytics-feladatok futtatásához. toolearn több, tekintse meg a hello következőt:
 
-* [Az Azure Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [A Stream Analytics bemutatása tooAzure](stream-analytics-introduction.md)
 * [Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)
 * [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)
 * [Az Azure Stream Analytics felügyeleti .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx).

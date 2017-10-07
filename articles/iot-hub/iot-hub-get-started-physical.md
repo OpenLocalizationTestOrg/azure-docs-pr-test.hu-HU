@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT-központ fizikai eszközök csatlakozás |} Microsoft Docs"
-description: "Útmutató: Azure IoT-központ fizikai eszközöket és a modulok csatlakozni. Az eszközök küldhet az IoT-központ és az IoT-központ telemetriai figyelheti és az eszközök kezeléséhez."
+title: "Ismerkedés az IoT-központ fizikai eszközök tooAzure kapcsolódás |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooconnect fizikai eszközöket és a modulok tooAzure IoT-központot. Az eszközök küldhet telemetriai tooIoT központ és az IoT-központ figyelheti és az eszközök kezeléséhez."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: f4128b6b049aa876e170c56dcf2e40720644dc3d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 47ce289c438b2f495d499d724c38ddc4b3307425
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-with-physical-devices-tutorials"></a>Az Azure IoT-központ fizikai eszközök oktatóanyagok az első lépései
 
-Ezek az oktatóanyagok bemutatják a Azure IoT-központ és az eszköz SDK-k. Az oktatóanyagok általános IoT-forgatókönyvek esetén az IoT-központ funkcióinak bemutatása foglalkozik. Az oktatóanyagok bemutatják, hogyan kombinálhatók az IoT-központ más Azure-szolgáltatások és eszközök nagyobb teljesítményű az IoT-megoldások létrehozásához is. A következő táblázatban található az oktatóanyagok bemutatják a fizikai az IoT-eszközök létrehozásához.
+Ezek az oktatóanyagok tooAzure IoT Hub és hello eszköz SDK-k bevezetése. hello oktatóanyagok általános IoT forgatókönyvek toodemonstrate hello képességeket IoT hub foglalkozik. hello oktatóanyagokat is bemutatják, hogyan-toocombine más Azure IoT hubot szolgáltatásokat és eszközöket több toobuild hatékony IoT-megoldásokhoz. hello felsorolt oktatóanyagok hello következő tábla megjelenítése, hogyan toocreate fizikai az IoT-eszközök.
 
 | IoT-eszközök                       | Programozási nyelv |
 |---------------------------------|----------------------|
@@ -33,7 +33,7 @@ Ezek az oktatóanyagok bemutatják a Azure IoT-központ és az eszköz SDK-k. Az
 | Sparkfun ESP8266 dolog fejlesztői      | [Arduino][Th_Ard]              |
 | Adafruit lágyított M0             | [Arduino][M0_Ard]              |
 
-Emellett az egy IoT peremhálózati átjáró segítségével engedélyezheti az eszközök csatlakoztatása az IoT hub.
+Továbbá az IoT-peremhálózati átjáró tooenable eszközök tooconnect tooyour IoT-központ is használhatja.
 
 | Átjáróeszköz               | Programozási nyelv | Platform         |
 |------------------------------|----------------------|------------------|

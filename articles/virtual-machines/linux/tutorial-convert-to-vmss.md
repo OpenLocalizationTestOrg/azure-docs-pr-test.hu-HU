@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure virtuális gép átalakítása egy méretezési |} Microsoft Docs"
-description: "Létrehozhat és telepíthet a Linux Azure virtuálisgép-méretezési beállítása az Azure parancssori felület segítségével."
+title: "aaaConvert egy Azure virtuális gép tooa méretezési |} Microsoft Docs"
+description: "Létrehozhat és telepíthet a Linux Azure virtuálisgép-méretezési hello Azure CLI állítható be."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: Thraka
@@ -15,52 +15,52 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 04/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 8d3376d2791b1349298db618d475ce5573083702
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e228282ac4855cef589b8500e74e9d461f9aed84
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-an-existing-azure-virtual-machine-to-a-scale-set"></a>Meglévő Azure virtuális gép átalakítása egy méretezési csoport
+# <a name="convert-an-existing-azure-virtual-machine-tooa-scale-set"></a>Alakítsa át egy meglévő Azure-beli virtuális gép tooa méretezési
 
-Az oktatóanyag bemutatja, hogyan használható az Azure CLI 2.0 egy virtuálisgép-méretezési csoport egy virtuális gép átalakítása. Is megismerheti, hogyan automatizálható a méretezési csoportban lévő virtuális gépek konfigurációját. Azure CLI 2.0 telepítéséről további információkért lásd: [Ismerkedés az Azure CLI 2.0](/cli/azure/get-started-with-azure-cli.md). Méretezési csoportok kapcsolatos további információkért lásd: [virtuálisgép-skálázási készletekben](../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).
+Az oktatóanyag bemutatja, hogyan toouse Azure CLI 2.0 tooconvert egy virtuális gép tooa virtuálisgép-méretezési készlet. Azt is megtudhatja, hogyan tooautomate hello konfigurációs hello virtuális gépek méretezési hello beállítása. További információ a hogyan tooinstall 2.0, az Azure CLI: [Ismerkedés az Azure CLI 2.0](/cli/azure/get-started-with-azure-cli.md). Méretezési csoportok kapcsolatos további információkért lásd: [virtuálisgép-skálázási készletekben](../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).
 
-## <a name="step-1---deprovision-the-vm"></a>1. lépés – a virtuális gép kiosztásának megszüntetése
+## <a name="step-1---deprovision-hello-vm"></a>1. lépés – hello VM kiosztásának megszüntetése
 
-Az SSH használata a virtuális Géphez való kapcsolódáshoz.
+SSH tooconnect toohello virtuális gép használja.
 
-Kiosztásának megszüntetése a virtuális Gépet az Azure Virtuálisgép-ügynök használatával törli a fájlokat és adatokat. A megszüntetés részletes áttekintése, lásd: [Linux virtuális gép rögzítése](capture-image.md).
+Virtuális gép deprovision hello segítségével hello Azure virtuális gép ügynök toodelete fájlokat és adatokat. A megszüntetés részletes áttekintése, lásd: [Linux virtuális gép rögzítése](capture-image.md).
 
 ```bash
 sudo waagent -deprovision+user -force
 exit
 ```
 
-## <a name="step-2---capture-an-image-of-the-vm"></a>2. lépés – a virtuális gép lemezképének rögzítése
+## <a name="step-2---capture-an-image-of-hello-vm"></a>2. lépés – hello virtuális gép képének rögzítése
 
 Részletes megtudhatja, hogy a, [Linux virtuális gép rögzítése](capture-image.md).
 
-A virtuális Géphez a felszabadítani [az virtuális gép felszabadítása](/cli/azure/vm#deallocate):
+Felszabadítani a virtuális gép és hello [az virtuális gép felszabadítása](/cli/azure/vm#deallocate):
 
 ```azurecli
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-A virtuális Géphez a generalize [az vm generalize](/cli/azure/vm#generalize):
+Generalize tulajdonsággal rendelkező virtuális gépet hello [az vm generalize](/cli/azure/vm#generalize):
 
 ```azurecli
 az vm generalize --resource-group myResourceGroup --name myVM
 ```
 
-Kép készítése a VM erőforrás [az lemezkép létrehozása](/cli/azure/image#create):
+Kép készítése hello VM erőforrás [az lemezkép létrehozása](/cli/azure/image#create):
 
 ```azurecli
 az image create --resource-group myResourceGroup --name myImage --source myVM
 ```
 
-## <a name="step-3---create-the-scale-set"></a>3. lépés - a méretezési készlet létrehozása
+## <a name="step-3---create-hello-scale-set"></a>3. lépés – hello méretezési készlet létrehozása
 
-Beolvasása a **azonosító** kép.
+Első hello **azonosító** hello kép.
 
 ```azurecli
 az image show --resource-group myResourceGroup --name myImage --query id
@@ -76,9 +76,9 @@ A kép erőforrás a virtuális gép létrehozása [az vmss létrehozása](/cli/
 az vmss create --resource-group myResourceGroup --name myScaleSet --image /subscriptions/afbdaf8b-9188-4651-bce1-9115dd57c98b/resourceGroups/vmtest/providers/Microsoft.Compute/images/myImage --upgrade-policy-mode automatic --vm-sku Standard_DS1_v2 --data-disk-sizes-gb 10 --admin-username azureuser --generate-ssh-keys
 ```
 
-Ez a parancs is 10 GB-os adatlemezt csatolni. Ne feledje, hogy attól függően, hogy a virtuális Géphez kiválasztott méret (használtuk **Standard_DS1_v2**), az adatlemezek száma az engedélyezett különböző. További információkért tekintse át a [virtuálisgép-méretek](sizes.md).
+Ez a parancs is 10 GB-os adatlemezt csatolni. Ne feledje, hogy attól függően, hogy a virtuális gép hello kiválasztott méret (használtuk **Standard_DS1_v2**), az adatlemezek megengedett hello száma nem egyezik. További információkért tekintse át a hello [virtuálisgép-méretek](sizes.md).
 
-Ha a skála befejeződik, kapcsolódni hozzá. A példányok IP-címek listájának lekérése az SSH [az vmss lista--kapcsolat-példányadatait](/cli/azure/vmss#list-instance-connection-info):
+Miután hello méretezési befejeződik, csatlakoztassa a tooit. IP-címek listájának lekérése az SSH hello példányok [az vmss lista--kapcsolat-példányadatait](/cli/azure/vmss#list-instance-connection-info):
 
 ```azurecli
 az vmss list-instance-connection-info --resource-group myResourceGroup --name myScaleSet
@@ -91,40 +91,40 @@ az vmss list-instance-connection-info --resource-group myResourceGroup --name my
 ]
 ```
 
-Most csatlakozhat a virtuálisgép-példányt a adatlemez inicializálása
+Most toohello virtuális gép példány tooinitialize hello adatlemezt csatlakoztathat
 
 ```bash
 ssh -i ~/.ssh/id_rsa.pub -p 50000 azureuser@52.183.00.000
 ```
 
-## <a name="step-4---initialize-the-data-disk"></a>4. lépés - az adatok lemez inicializálása
+## <a name="step-4---initialize-hello-data-disk"></a>4. lépés: hello adatok lemez inicializálása
 
-Ha a virtuális gép csatlakozik, a lemez partícióazonosító `fdisk`:
+Csatlakoztatott toohello virtuális gépet, miközben hello lemez particionálása `fdisk`:
 
 ```bash
 (echo n; echo p; echo 1; echo  ; echo  ; echo w) | sudo fdisk /dev/sdc
 ```
 
-A fájlrendszer írni a partíció a `mkfs` parancs:
+A fájl toohello rendszerpartíción hello írási `mkfs` parancs:
 
 ```bash
 sudo mkfs -t ext4 /dev/sdc1
 ```
 
-Csatlakoztassa az új lemezt, úgy, hogy az operációs rendszerben érhető el:
+Csatlakoztassa a hello új lemezt, így hello operációs rendszerben érhető el:
 
 ```bash
 sudo mkdir /datadrive ; sudo mount /dev/sdc1 /datadrive
 ```
 
-A lemez is lehet a datadrive csatlakozási pont, amely ellenőrizhető keresztül fér hozzá `ls /datadrive/`.
+hello lemez mostantól lehet ellenőrizni a hello datadrive csatlakozásipont keresztül fér hozzá `ls /datadrive/`.
 
-Az SSH-munkamenet befejezéséhez.
+Záró hello SSH-munkamenetet.
 
 
 ## <a name="step-5---configure-firewall"></a>5. lépés - a tűzfal konfigurálása
 
-Lyukasztás lyuk a webkiszolgálónak, a méretezési készlet által üzemeltetett a tűzfalon keresztül. A méretezési csoportban hozták létre, egy terhelés-kiegyenlítő is hozták létre, és használta **SSH** az egyes virtuális gépekhez. Nyisson meg egy portot, kétféle információt, amely akkor kell Azure parancssori felület használatával.
+Lyukasztás lyuk keresztül hello tűzfal toohello webkiszolgálón üzemeltetett hello méretezési készlet. Hello méretezési csoportban hozták létre, egy terhelés-kiegyenlítő is hozták létre, és használta **SSH** toohello egyedi virtuális gépeket. kétféle információt, amely akkor kell tooopen egy portot, az Azure parancssori felület használatával.
 
 * **Előtérbeli IP-címkészlet**  
 `az network lb show --resource-group myResourceGroup --name myScaleSetLB --output table --query frontendIpConfigurations[0].name`
@@ -141,14 +141,14 @@ az network lb rule create --backend-pool-name myScaleSetLBBEPool --backend-port 
 
 ## <a name="step-6---automate-configuration"></a>6. lépés - automatizálásához
 
-Az adatok lemezre kell megadni minden egyes virtuálisgép-példányon. Azt automatizálhatja a virtuális gép konfigurációját a **CustomScript** bővítmény.
+hello adatlemez toobe minden egyes virtuálisgép-példányt konfigurálni kell. A Microsoft automatizálhatja a virtuális gép hello hello hello konfigurálását **CustomScript** bővítmény.
 
-Először hozzon létre egy *.sh* parancsfájlt, ami a lemez formátum parancsokat tartalmazza.
+Először hozzon létre egy *.sh* parancsfájlt, ami hello lemez formátum parancsokat tartalmazza.
 
 ```sh
 #!/bin/bash
 
-# Setup the data disk
+# Setup hello data disk
 (echo n; echo p; echo 1; echo  ; echo  ; echo w) | fdisk /dev/sdc
 fdisk /dev/sdc
 mkfs -t ext4 /dev/sdc1
@@ -158,9 +158,9 @@ mount /dev/sdc1 /datadrive
 exit 0
 ```
 
-Ezt követően töltse fel, hogy a parancsfájl arra, ahol a **CustomScript** bővítmény-e hozzáférési engedélye. Egy példány érhető [Itt](https://gist.githubusercontent.com/Thraka/ab1d8b78ac4b23722f3d3c1c03ac5df4).
+Ezt követően töltse fel a parancsfájl fájl toowhere hello **CustomScript** bővítmény-e hozzáférési engedélye. Egy példány érhető [Itt](https://gist.githubusercontent.com/Thraka/ab1d8b78ac4b23722f3d3c1c03ac5df4).
 
-Hozzon létre egy helyi fájlt **settings.json** és a következő JSON-blokk be. A `flieUris` tulajdonságot kell beállítani, ahol a parancsfájl feltöltöttnek való.
+Hozzon létre egy helyi fájlt **settings.json** és hello JSON blokk azt követően. Hello `flieUris` tulajdonságot kell beállítani, a parancsfájl feltöltöttnek toowhere.
 
 ```json
 {
@@ -169,7 +169,7 @@ Hozzon létre egy helyi fájlt **settings.json** és a következő JSON-blokk be
 }
 ```
 
-Telepítse ezt a parancsot a skála állítható be a **CustomScript** bővítmény hivatkozik a **settings.json** imént létrehozott fájlt.
+A parancs tooyour skála hello beállított telepítése **CustomScript** bővítmény hello hivatkozó **settings.json** imént létrehozott fájl.
 
 ```azurecli
 az vmss extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --resource-group myResourceGroup --vmss-name myScaleSet --settings @settings.json
@@ -179,11 +179,11 @@ Aktuális példányainak, valamint a később létrehozott skálázással péld�
 
 ## <a name="step-7---configure-autoscale-rules"></a>7. lépés – az automatikus skálázási szabályok konfigurálása
 
-Automatikus skálázási szabályok jelenleg az Azure parancssori felület nem állítható be. Használja a [Azure-portálon](https://portal.azure.com) automatikus skálázás konfigurálása.
+Automatikus skálázási szabályok jelenleg az Azure parancssori felület nem állítható be. Használjon hello [Azure-portálon](https://portal.azure.com) tooconfigure automatikus skálázási.
 
 ## <a name="step-8---management-tasks"></a>8 - felügyeleti feladatokat. lépés
 
-A méretezési életciklusa során szükség lehet egy vagy több felügyeleti feladatok futtatásához. Emellett érdemes lehet különböző életciklus-feladatokat automatizáló parancsfájlokat hozhatnak létre, és az Azure parancssori felület e feladatok elvégzéséhez gyors lehetőséget kínál. Az alábbiakban néhány gyakori feladatot.
+Hello méretezési hello életciklusa során szükség lehet a toorun egy vagy több felügyeleti feladatokat. Emellett érdemes lehet különböző életciklus-feladatokat automatizáló parancsfájlokat toocreate, és hello Azure parancssori Felületet biztosít egy gyorsan toodo ezeket a feladatokat. Az alábbiakban néhány gyakori feladatot.
 
 ### <a name="get-connection-info"></a>Kapcsolat-adatok beolvasása
 
@@ -206,7 +206,7 @@ az group delete --name myResourceGroup
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban bevezetett virtuálisgép-méretezési készlet szolgáltatások némelyike kapcsolatos további tudnivalókért tekintse meg a következő információkat:
+További információ az egyes virtuálisgép-méretezési hello beállítása ebben az oktatóanyagban bevezetett szolgáltatások toolearn hello a következő információkat lásd:
 
 - [Az Azure virtuálisgép-méretezési csoportok áttekintése](../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)
 - [Az Azure Load Balancer áttekintése](../../load-balancer/load-balancer-overview.md)

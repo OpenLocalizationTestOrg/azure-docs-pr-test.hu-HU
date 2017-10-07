@@ -1,6 +1,6 @@
 ---
-title: "Szabályozhatja az Azure - PowerShell útválasztási és a virtuális készülékek |} Microsoft Docs"
-description: "Megtudhatja, hogyan ellenőrzésére Útválasztás és a virtuális készülékek PowerShell használatával."
+title: "az Azure - PowerShell útválasztási és a virtuális készülékek aaaControl |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocontrol útválasztási és a virtuális készülékek PowerShell használatával."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: 3ab24f193c74449ae7414b4ea0675c0aae0211f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7b8717529eb2cd8b1d28b8ab9c6e21159d14882
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-powershell"></a>Hozzon létre felhasználói útvonalakat (UDR) PowerShell használatával
 
@@ -34,21 +34,21 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 > [!IMPORTANT]
-> Az Azure-erőforrásokkal való munka megkezdése előtt fontos megérteni, hogy az Azure jelenleg két üzembe helyezési modellel rendelkezik, a Resource Managerrel és a klasszikussal. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. A különféle eszközök dokumentációit a cikk tetején található fülekre kattintva tekintheti meg.
+> Azure-erőforrások használata előtt-e, hogy Azure jelenleg két üzembe helyezési modellel rendelkezik fontos toounderstand: Azure Resource Manager és klasszikus. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. Ez a cikk hello tetején hello fülekre kattintva megtekintheti a különféle eszközök dokumentációit hello.
 >
 
-Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti. Emellett [udr-EK létrehozása a klasszikus üzembe helyezési modellel](virtual-network-create-udr-classic-ps.md).
+Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben. Emellett [udr-EK létrehozása hello klasszikus üzembe helyezési modellel](virtual-network-create-udr-classic-ps.md).
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-A minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell a fenti forgatókönyv alapján. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először összeállítása a tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), kattintson a **az Azure telepítéséhez**, cserélje le az alapértelmezett paraméterértékek, ha szükséges, és kövesse az utasításokat a portálon.
+hello minta az alábbi parancsok várt már létrehozott egy egyszerű környezetben PowerShell fenti hello forgatókönyv alapján. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre hello tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek Ha szükséges, és kövesse az utasításokat hello a hello portálon.
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Az előtér-alhálózat UDR létrehozása
-Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókönyv alapján szükséges útvonal létrehozásához kövesse az alábbi lépéseket:
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Hello UDR hello előtér-alhálózat létrehozása
+toocreate hello útválasztási táblázatot és hello előtér-alhálózatot a szükséges útvonal alapján a fenti lépések teljes hello hello forgatókönyv:
 
-1. A háttér-alhálózat (192.168.2.0/24) irányítása irányuló teljes forgalomra küldéséhez használt útvonal létrehozása a **FW1** virtuális készülék (192.168.0.4).
+1. Hozzon létre egy használt útvonal toosend összes adatforgalmat toohello háttér-alhálózat (192.168.2.0/24) irányított toobe toohello **FW1** virtuális készülék (192.168.0.4).
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToBackEnd `
@@ -56,20 +56,20 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. Hozzon létre egy útválasztási táblázatot nevű **UDR-előtérbeli** a a **westus** régiót, amelyben az útvonalat tartalmazza.
+2. Hozzon létre egy útválasztási táblázatot nevű **UDR-előtérbeli** a hello **westus** hello útvonal tartalmazó régióban.
 
     ```powershell
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-FrontEnd -Route $route
     ```
 
-3. Hozzon létre egy változó, amely tartalmazza a VNet, ahol az alhálózatban van. A mi esetünkben a VNet neve **TestVNet**.
+3. Hozzon létre egy változót, ahol hello alhálózati az VNet hello tartalmazó. A mi esetünkben hello VNet neve **TestVNet**.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
     ```
 
-4. A fentiekben létrehozott útvonaltábla társítsa a **előtér** alhálózat.
+4. A fenti toohello létrehozott társítása hello útvonaltábla **előtér** alhálózat.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd `
@@ -77,10 +77,10 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
     ```
 
     > [!WARNING]
-    > A fenti parancs kimenetét a virtuális hálózati konfiguráció objektumban, amelyet csak megtalálható a számítógépen, ahol a PowerShell futtatja tartalmának mutatja. Futtatnia kell a **Set-AzureVirtualNetwork** parancsmagot, hogy ezek a beállítások mentése az Azure-bA.
+    > hello kimeneti hello parancs a fenti csak létezik PowerShell futtató hello számítógépen hello virtuális hálózati konfiguráció objektum hello tartalmának mutatja. Toorun hello kell **Set-AzureVirtualNetwork** parancsmag toosave ezen beállítások tooAzure.
     > 
 
-5. Mentse az új alhálózat-konfigurációt az Azure-ban.
+5. Mentse a hello új alhálózat beállítása az Azure-ban.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -134,11 +134,11 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
                                 ...
                             ]    
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>A háttér-alhálózat UDR létrehozása
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Hello UDR hello háttér-alhálózat létrehozása
 
-Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján szükséges útvonal létrehozásához kövesse az alábbi lépéseket.
+toocreate hello útválasztási táblázatot és hello háttér-alhálózat a fenti hello forgatókönyv alapján szükséges útvonal kövesse a hello lépéseket.
 
-1. Hozzon létre az előtér-alhálózat (192.168.1.0/24) irányítása irányuló teljes forgalomra küldéséhez használt útvonalat a **FW1** virtuális készülék (192.168.0.4).
+1. Hozzon létre egy használt útvonal toosend összes adatforgalmat toohello előtér-alhálózat (192.168.1.0/24) irányított toobe toohello **FW1** virtuális készülék (192.168.0.4).
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToFrontEnd `
@@ -146,21 +146,21 @@ Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján sz
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. Hozzon létre egy útválasztási táblázatot nevű **UDR-háttérrendszer** a a **uswest** régió, amely tartalmazza az előbb létrehozott útvonal.
+2. Hozzon létre egy útválasztási táblázatot nevű **UDR-háttérrendszer** a hello **uswest** hello útvonal tartalmazó régió a fenti létrehozott.
 
     ```
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-BackEnd -Route $route
     ```
 
-3. A fentiekben létrehozott útvonaltábla társítsa a **háttér** alhálózat.
+3. A fenti toohello létrehozott társítása hello útvonaltábla **háttér** alhálózat.
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd `
     -AddressPrefix 192.168.2.0/24 -RouteTable $routeTable
     ```
 
-4. Mentse az új alhálózat-konfigurációt az Azure-ban.
+4. Mentse a hello új alhálózat beállítása az Azure-ban.
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -214,15 +214,15 @@ Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján sz
                             ]
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>IP-továbbítás a FW1 engedélyezése
-A hálózati adapter által használt IP-továbbítás engedélyezése **FW1**, kövesse az alábbi lépéseket.
+a hálózati adapter által használt hello tooenable IP-továbbítás **FW1**, kövesse az alábbi hello lépéseket.
 
-1. Hozzon létre egy változó, amely tartalmazza a FW1 által használt hálózati beállításait. A mi esetünkben a hálózati adapter neve **NICFW1**.
+1. Hozzon létre egy változó, amely hello FW1 által használt hálózati hello beállításait tartalmazza. A mi esetünkben hello hálózati adapter neve **NICFW1**.
 
     ```powershell
     $nicfw1 = Get-AzureRmNetworkInterface -ResourceGroupName TestRG -Name NICFW1
     ```
 
-2. IP-továbbítás engedélyezése, és a hálózati beállítások mentéséhez.
+2. IP-továbbítás engedélyezése, és mentse a hello hálózati kártya beállításait.
 
     ```powershell
     $nicfw1.EnableIPForwarding = 1

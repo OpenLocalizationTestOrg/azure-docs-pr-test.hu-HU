@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Media Services SDK használatával a .NET-keretrendszerhez készült media processzort létrehozása |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy adathordozó feldolgozó összetevő kódolni, formátum konvertálni, titkosítása vagy visszafejtése médiatartalom Azure Media Services. Kódminták C# nyelven íródtak, és a Media Services SDK használata a .NET-hez."
+title: "egy media feldolgozó használt aaaHow tooCreate .NET hello Azure Media Services SDK |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy adathordozó processzor összetevő tooencode formátum konvertálni, titkosítani, illetve visszafejteni a médiatartalom Azure Media Services. Kódminták C# nyelven íródtak, és a Media Services SDK hello használata a .NET-hez."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: c2cbe41b71afa8acc184f9d7f4cfe94686de783e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f133565cc1321d366013f17302adc8bc7585b251
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-to-get-a-media-processor-instance"></a>Útmutató: a Media Processzorpéldány beolvasása
 > [!div class="op_single_selector"]
@@ -28,18 +28,18 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Áttekintés
-A Media Services media processzort összetevő, amely kezeli a különleges feldolgozási feladat, például a kódolása titkosítása vagy visszafejtése médiatartalom az átalakítás formátumban. Általában létrehozhat egy adathordozó processzor kódolása, titkosítása vagy alakítsa át a formátum a médiatartalom feladat létrehozásakor.
+A Media Services media processzort összetevő, amely kezeli a különleges feldolgozási feladat, például a kódolása titkosítása vagy visszafejtése médiatartalom az átalakítás formátumban. Általában létrehozásakor media processzort egy feladat tooencode létrehozásakor, titkosítására, illetve hello formátum médiatartalom konvertálni.
 
 ## <a name="azure-media-processors"></a>Az Azure media processzor 
 
-A következő témakör sorolja fel az adathordozó processzorok:
+a következő témakör hello sorolja fel az adathordozó processzorok:
 
 * [Kódolási media processzor](scenarios-and-availability.md#encoding-media-processors)
 * [Elemzés media processzor](scenarios-and-availability.md#analytics-media-processors)
 
 ## <a name="get-media-processor"></a>Media processzor beolvasása
 
-A következő metódus hogyan kérhet egy adathordozó processzorpéldány jeleníti meg. A Kódpélda feltételezi nevű modul szintű változó használatát **_context** kiszolgálói környezetbe hivatkozni, a szakaszban leírt módon [Útmutató: Media Services programokon keresztül csatlakozni](media-services-use-aad-auth-to-access-ams-api.md).
+a következő módszert mutat be hogyan hello tooget egy media processzorpéldány. hello Kódpélda feltételezi, hogy a modul szintű változó nevű hello használata **_context** tooreference hello kiszolgálói környezetbe hello szakaszban leírt módon [hogyan: csatlakozás tooMedia programozott módon szolgáltatások](media-services-use-aad-auth-to-access-ams-api.md).
 
     private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
     {
@@ -60,5 +60,5 @@ A következő metódus hogyan kérhet egy adathordozó processzorpéldány jelen
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy hogyan kérhet egy adathordozó processzorpéldány ismeri, navigáljon a [egy eszköz kódolással](media-services-dotnet-encode-with-media-encoder-standard.md) témakör, amely tartalmazza a Media Encoder Standard segítségével egy eszköz kódolása.
+Most, hogy hogyan nyissa meg a media processzorpéldány tooget toohello [hogyan tooEncode egy eszköz](media-services-dotnet-encode-with-media-encoder-standard.md) témakör, amely bemutatja, hogyan toouse hello Media Encoder Standard tooencode egy eszköz.
 

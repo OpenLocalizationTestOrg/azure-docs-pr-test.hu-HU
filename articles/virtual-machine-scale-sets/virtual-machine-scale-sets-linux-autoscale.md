@@ -1,5 +1,5 @@
 ---
-title: "Automatikus skálázás Linux virtuálisgép-skálázási készletekben |} Microsoft Docs"
+title: "Linux virtuálisgép-méretezési csoportok aaaAutoscale |} Microsoft Docs"
 description: "A Linux virtuális gépek méretezési csoportján Azure parancssori felület használatával automatikus skálázás beállítása"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,18 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: eff4add1cb16fe25022787668dc1d2277845dd95
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4352b94ec2973c37bc5616e3be25bd0c9442632b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automatically-scale-linux-machines-in-a-virtual-machine-scale-set"></a>Automatikus méretezése a virtuálisgép-méretezési csoportban lévő Linux-gépek
-Virtuálisgép-méretezési csoportok könnyebben akkor helyezheti üzembe és felügyelheti az azonos virtuális gépek készletként. Méretezési csoportok hyperscale alkalmazások jól méretezhető és testre szabható számítási rétegét adja meg, és a Windows platform-lemezképek, Linux platformon képek, egyéni lemezképek és bővítmények támogatják. További tudnivalókért lásd: [virtuális gépek méretezési készletek áttekintése](virtual-machine-scale-sets-overview.md).
+Virtuálisgép-méretezési csoportok könnyítheti meg toodeploy, és egyetlen egységként azonos virtuális gépek kezeléséhez. Méretezési csoportok hyperscale alkalmazások jól méretezhető és testre szabható számítási rétegét adja meg, és a Windows platform-lemezképek, Linux platformon képek, egyéni lemezképek és bővítmények támogatják. több, lásd: toolearn [virtuális gépek méretezési készletek áttekintése](virtual-machine-scale-sets-overview.md).
 
-Az oktatóanyag bemutatja, hogyan Ubuntu Linux legújabb verzióját használja a Linux virtuális gépek méretezési csoportjának létrehozása. Az oktatóanyag is bemutatja, hogyan automatikus méretezése a gépek készletében. A skála, állíthatók be az Azure Resource Manager-sablon létrehozása és telepítése az Azure parancssori felület használatával méretezhetővé hoz létre. A sablonokról további információkat az [Authoring Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md) (Azure Resource Manager-sablonok készítése) című témakörben talál. Méretezési készlet automatikus skálázás kapcsolatos további információkért lásd: [automatikus skálázás és virtuálisgép-skálázási készletekben](virtual-machine-scale-sets-autoscale-overview.md).
+Az oktatóanyag bemutatja, hogyan toocreate terjedő skálán állítsa be a Linux virtuális gépek hello Ubuntu Linux legújabb verzióját használja. hello oktatóanyag is bemutatja, hogyan tooautomatically méretezési hello gépek hello beállítása. Állítsa be, és állítsa be az Azure Resource Manager-sablon létrehozása és telepítése az Azure parancssori felület használatával méretezhetővé hello méretezési hoz létre. A sablonokról további információkat az [Authoring Azure Resource Manager templates](../azure-resource-manager/resource-group-authoring-templates.md) (Azure Resource Manager-sablonok készítése) című témakörben talál. toolearn méretezési készlet automatikus skálázás kapcsolatos további információkért lásd: [automatikus skálázás és virtuálisgép-skálázási készletekben](virtual-machine-scale-sets-autoscale-overview.md).
 
-Ebben az oktatóanyagban telepít, a következő erőforrások és bővítmények:
+Ebben az oktatóanyagban hello következő telepít erőforrások és bővítmények:
 
 * Microsoft.Storage/storageAccounts
 * Microsoft.Network/virtualNetworks
@@ -40,12 +40,12 @@ Ebben az oktatóanyagban telepít, a következő erőforrások és bővítménye
 
 Erőforrás-kezelő erőforrásokra vonatkozó további információkért lásd: [Azure Resource Manager és klasszikus üzembe helyezési](../azure-resource-manager/resource-manager-deployment-model.md).
 
-Mielőtt hozzáfogna a lépésekről, ebben az oktatóanyagban [az Azure parancssori felület telepítése](../cli-install-nodejs.md).
+Mielőtt hozzáfogna ebben az oktatóanyagban hello lépésben [hello Azure parancssori felület telepítése](../cli-install-nodejs.md).
 
 ## <a name="step-1-create-a-resource-group-and-a-storage-account"></a>1. lépés: Az erőforráscsoportot és a storage-fiók létrehozása
 
-1. **Jelentkezzen be a Microsoft Azure**  
-A parancssori felület (Bash, terminál, parancssor), váltson a Resource Manager módra, majd [jelentkezzen be a munkahelyi vagy iskolai azonosítóját](../xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login). Kövesse az utasításokat egy interaktív bejelentkezési élmény a Azure-fiókjába.
+1. **Jelentkezzen be Azure tooMicrosoft**  
+A parancssori felület (Bash, terminál, parancssor), a kapcsoló tooResource kezelő módra, majd [jelentkezzen be a munkahelyi vagy iskolai azonosítóját](../xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login). Hajtsa végre az interaktív bejelentkezési élmény tooyour Azure-fiók hello kér.
 
     ```cli   
     azure config mode arm
@@ -54,26 +54,26 @@ A parancssori felület (Bash, terminál, parancssor), váltson a Resource Manage
     ```
    
     > [!NOTE]
-    > Ha rendelkezik munkahelyi vagy iskolai azonosítója, és nem kéttényezős hitelesítést, használja `azure login -u` nélkül egy interaktív munkamenet bejelentkezési azonosítóval. Ha nem rendelkezik munkahelyi vagy iskolai azonosítója, akkor [munkahelyi vagy iskolai azonosító létrehozása a személyes Microsoft-fiókhoz tartozó](../active-directory/active-directory-users-create-azure-portal.md).
+    > Ha rendelkezik munkahelyi vagy iskolai azonosítója, és nem kéttényezős hitelesítést, használja `azure login -u` a hello azonosító toolog a egy interaktív munkamenet nélkül. Ha nem rendelkezik munkahelyi vagy iskolai azonosítója, akkor [munkahelyi vagy iskolai azonosító létrehozása a személyes Microsoft-fiókhoz tartozó](../active-directory/active-directory-users-create-azure-portal.md).
     
 2. **Hozzon létre egy erőforráscsoportot**  
-Minden erőforrás telepíteni kell egy erőforráscsoportot. Ebben az oktatóanyagban nevezze el az erőforráscsoportot **vmsstest1**.
+Összes erőforrást erőforráscsoportban telepített tooa kell lennie. Ebben az oktatóanyagban nevezze el hello erőforráscsoportot **vmsstest1**.
    
     ```cli
     azure group create vmsstestrg1 centralus
     ```
 
-3. **A storage-fiók üzembe helyezés az új erőforráscsoport**  
-Ez a tárfiók, a sablon tárolására. Hozzon létre egy tárfiókot, nevű **vmsstestsa**.
+3. **A storage-fiók üzembe helyezés hello új erőforráscsoport**  
+Ez a tárfiók hello sablon tárolására. Hozzon létre egy tárfiókot, nevű **vmsstestsa**.
    
     ```cli
     azure storage account create -g vmsstestrg1 -l centralus --kind Storage --sku-name LRS vmsstestsa
     ```
 
-## <a name="step-2-create-the-template"></a>2. lépés: A sablon létrehozása
-Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforrások együtt kezelheti az erőforrásokat és a társított telepítési paraméterek JSON-leírásuk lehetővé teszi.
+## <a name="step-2-create-hello-template"></a>2. lépés: Hello sablon létrehozása
+Az Azure Resource Manager-sablon, toodeploy lehetővé teszi, és Azure-erőforrások együtt kezelheti a JSON-leírásuk hello erőforrások és a társított telepítési paramétereket.
 
-1. A kedvenc szerkesztőben VMSSTemplate.json létrehozásához, és adja hozzá a sablon támogatásához a kezdeti JSON struktúrában.
+1. A kedvenc szerkesztő hozzon létre VMSSTemplate.json hello fájlt, és hello kezdeti JSON struktúrában toosupport hello sablon hozzáadása.
 
     ```json
     {
@@ -88,7 +88,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     }
     ```
 
-2. Paraméterek nem mindig szükséges, de azok nyújtanak olyan értéket adjon meg a sablon telepítésekor. Adja hozzá ezeket a paramétereket a paraméterek szülőelem hozzáadott, a sablon alapján.
+2. Paraméterek nem mindig szükséges, de biztosítanak egy módon tooinput értékek hello sablon telepítésekor. Adja hozzá ezeket a paramétereket, hogy hozzáadta a toohello sablon hello paraméterek szülő elem alatt.
 
     ```json
     "vmName": { "type": "string" },
@@ -99,13 +99,13 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     "resourcePrefix": { "type": "string" }
     ```
    
-   * Állítsa be a külön, a méretezési gépek eléréséhez használt virtuális gép nevét.
-   * A tárfiók, amelyen megtalálható a sablon nevét.
-   * Állítsa be a virtuális gépek létrehozásához először a skála példányainak száma.
-   * Egy nevet és jelszót a rendszergazdai fiók, a virtuális gépeken.
-   * Az erőforrások, a méretezési támogatásához létrehozott előtagja.
+   * Hello külön virtuális gépre, amelyik használt tooaccess hello gépek hello méretezési csoportban lévő nevét.
+   * Hello sablon tárolására hello storage-fiók nevét.
+   * hello méretezési csoportban lévő virtuális gépek tooinitially példányainak száma hello hozzon létre.
+   * A név és jelszó hello rendszergazdai fiókjának hello virtuális gépeken.
+   * Állítsa be a nevének előtagját toosupport hello méretezési létrehozott hello erőforrások.
 
-3. Változók segítségével sablonban adja meg az értékeket, amelyeket gyakran változhat vagy értékeket, amelyeket a paraméterértékek kombinációjából kell létrehozni. Adja hozzá ezeket a változókat a változók szülőelem hozzáadott, a sablon alapján.
+3. A sablon toospecify értékek, amelyek gyakran változhat a változók használhatók, vagy toobe igénylő értékek paraméterértékek kombinációja alapján létrehozott. Adja hozzá ezeket a változókat, hogy hozzáadta a toohello sablon hello változók szülő elem alatt.
 
     ```json
     "dnsName1": "[concat(parameters('resourcePrefix'),'dn1')]",
@@ -127,13 +127,13 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     "wadcfgxend": "[concat('\"><MetricAggregation scheduledTransferPeriod=\"PT1H\"/><MetricAggregation scheduledTransferPeriod=\"PT1M\"/></Metrics></DiagnosticMonitorConfiguration></WadCfg>')]"
     ```
 
-   * A hálózati adapterek által használt DNS-neveket.
-   * Az IP-címet nevének és a virtuális hálózati és-alhálózatok előtagokat.
-   * A nevek és a virtuális hálózat azonosítók terheléselosztó és a hálózati adapterek betöltése.
-   * Állítsa be a fiókok a skála gépén társított tárfiókok neve.
-   * A diagnosztika bővítményt a virtuális gépeken telepített beállításait. A diagnosztika bővítmény kapcsolatos további információkért lásd: [Windows virtuális gép létrehozása a figyelési és -diagnosztika Azure Resource Manager-sablon](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+   * DNS-nevek hello által használt hálózati illesztőt.
+   * hello IP-címet nevének és a virtuális hálózati hello és-alhálózatok előtagok.
+   * hello nevek és hello virtuális hálózat, azonosítók betölteni a terheléselosztó és a hálózati adapterek.
+   * Hello fiókok hello gépek hello méretezési csoportban lévő társított tárfiókok neve.
+   * Hello hello virtuális gépeken telepített diagnosztika extension beállításait. Hello diagnosztika bővítmény kapcsolatos további információkért lásd: [Windows virtuális gép létrehozása a figyelési és -diagnosztika Azure Resource Manager-sablon](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-4. Adja hozzá a tárolási fiók erőforrások az erőforrások szülőelem hozzáadott, a sablon alapján. Ez a sablon használatával hurkot ajánlott öt tárfiókok létrehozása az operációs rendszer lemezek és diagnosztikai adatok tárolására. E fiókok csoportja, amelyek a jelenlegi maximális méretezési csoportban lévő támogathatja a legfeljebb 100 virtuális gépet. Minden tárfiók a utótagot, amelyet a sablon a paraméterek meg együtt változók definiált levél jelzéssel neve.
+4. Vegyen fel hello tárolási fiók erőforrást toohello sablon hozzáadásának hello erőforrások szülő elem alatt. Ez a sablon használ egy hurok toocreate hello öt tárfiókok ajánlott hello operációs rendszer lemezek és diagnosztikai adatok tárolására. E fiókok csoportja too100 virtuális gépek, amelyek hello aktuális maximális méretezési csoportban lévő képes támogatni. Minden tárfiók megadott hello paraméterek hello sablon hello utótaggal együtt hello változók definiált levél jelzéssel neve.
    
         {
           "type": "Microsoft.Storage/storageAccounts",
@@ -147,7 +147,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
           "properties": { "accountType": "Standard_LRS" }
         },
 
-5. Adja hozzá a virtuális hálózati erőforráshoz. További információkért lásd: [hálózati erőforrás-szolgáltató](../virtual-network/resource-groups-networking.md).
+5. Hello virtuális hálózati erőforrás hozzáadása. További információkért lásd: [hálózati erőforrás-szolgáltató](../virtual-network/resource-groups-networking.md).
 
     ```json
     {
@@ -167,7 +167,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-6. Adja hozzá a nyilvános IP-cím erőforrás a terheléselosztó és a hálózati adapter által használt.
+6. Adja hozzá a hello nyilvános IP-cím erőforrás hello által használt terheléselosztó és a hálózati kapcsolat betöltése.
 
     ```json
     {
@@ -196,7 +196,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-7. Adja hozzá a terheléselosztó erőforrást a méretezési készlet által használt. További információkért lásd: [Azure Resource Manager támogatása a terheléselosztó](../load-balancer/load-balancer-arm.md).
+7. Adja hozzá a hello méretezési készlet által használt hello terheléselosztó erőforrást. További információkért lásd: [Azure Resource Manager támogatása a terheléselosztó](../load-balancer/load-balancer-arm.md).
 
     ```json   
     {
@@ -237,7 +237,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-8. Vegye fel a különálló virtuális gép által használt hálózati illesztő erőforrás. Méretezési csoportban lévő gépek nem nyilvános IP-címnek keresztül érhető el, mert egy különálló virtuális gép jön létre az azonos virtuális hálózatban való távoli hozzáférés a gépek.
+8. Vegyen fel hello hálózati illesztő erőforrást hello különálló virtuális gép által használt. Méretezési csoportban lévő gépek nem nyilvános IP-címnek keresztül érhető el, mert egy különálló virtuális gép jön létre hello azonos virtuális hálózati tooremotely hozzáférés hello gépek.
 
     ```json
     {
@@ -268,7 +268,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-9. Vegye fel a különálló virtuális gép ugyanazon a hálózaton, a méretezési készlet.
+9. Adja hozzá azonos hálózati hello méretezési beállított hello hello különálló virtuális gép.
 
     ```json
     {
@@ -314,7 +314,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-10. A virtuálisgép-méretezési csoport erőforrás hozzáadása, és adja meg a diagnosztika-bővítménnyel, a méretezési csoportban lévő összes virtuális gép telepítve van. Az erőforrás beállításainak jelentős része hasonlóak a virtuálisgép-erőforrás. A fő különbség a kapacitás elemhez tartozó virtuális gépek számát határozza meg a méretezési és upgradePolicy, amely meghatározza, hogyan végrehajtott frissítések virtuális gépek. A méretezési készlet nem jön létre, amíg a storage-fiókok létrehozásához szükségesek a dependsOn elemmel megadottak szerint.
+10. Hello virtuálisgép-méretezési csoport erőforrás hozzáadása, és adja meg a hello diagnosztika-bővítménnyel, amely hello méretezési csoportban lévő összes virtuális gép telepítve van. Ehhez az erőforráshoz hello beállításainak jelentős része hasonlóak a hello virtuálisgép-erőforrást. hello fő különbségek a következők: hello kapacitás elem hello méretezési csoportban lévő virtuális gépek hello számát megadó és upgradePolicy, amely meghatározza, hogyan frissítések válnak, toovirtual gépek. hello méretezési készlet nem jön létre az összes hello tárfiók létrehozásáig hello dependsOn elemmel megadottak szerint.
 
     ```json
     {
@@ -419,7 +419,7 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     },
     ```
 
-11. Vegyen fel a autoscaleSettings erőforrást, amely meghatározza, hogyan a méretezési beállítja a készlet gépeken processzorhasználat alapján.
+11. Vegyen fel hello autoscaleSettings erőforrást, amely meghatározza, hogyan hello méretezési processzor kihasználtsága hello gépek hello beállítása alapján állítja be.
 
     ```json
     {
@@ -472,75 +472,75 @@ Az Azure Resource Manager-sablon általi telepítéséhez és az Azure-erőforr�
     Ebben az oktatóanyagban fontosak a ezeket az értékeket:
     
     * **metricName**  
-    Ez az érték megegyezik a wadperfcounter változóban meghatározott teljesítményszámláló. Használja ezt a változót, a diagnosztika bővítmény gyűjti a **Processor\PercentProcessorTime** számláló.
+    Ez az érték azonos a hello wadperfcounter változóban meghatározott hello teljesítményszámláló van hello. Használja ezt a változót, hello diagnosztika bővítmény gyűjt hello **Processor\PercentProcessorTime** számláló.
     
     * **metricResourceUri**  
-    Ezt az értéket az erőforrás-azonosítót a virtuálisgép-méretezési csoport.
+    Ez az érték hello erőforrás-azonosítót a virtuálisgép-méretezési csoport hello.
     
     * **időkeretben vannak**  
-    Ez az érték a metrikák összegyűjtött granularitása. Ez a sablon az érték egy perc alatt.
+    Ez az érték hello metrikák összegyűjtött hello granularitása. A sablon értéke tooone perc.
     
     * **statisztika**  
-    Ez az érték határozza meg, hogyan a metrikák egyesíti a rendszer megfeleljen az automatikus skálázási művelet. A lehetséges értékek: átlagos, Min, Max. A sablonban a virtuális gépek átlagos teljes processzorhasználatot gyűjti.
+    Ez az érték határozza meg, hogyan hello adatok gyűjtése le kombinált tooaccommodate hello automatikus skálázás művelet. hello lehetséges értékek a következők: átlagos, Min, Max. Ez a sablon a hello átlagos teljes CPU-használat hello virtuális gépek gyűjti.
 
     * **Az időtartomány értékének**  
-    Ez az érték, amely a, amelyben példány adatgyűjtés. 5 perc és 12 óra között kell lennie.
+    Ez az érték, amely hello amelyben példány adatgyűjtés. 5 perc és 12 óra között kell lennie.
     
     * **timeAggregation**  
-    az érték határozza meg, hogyan kell-e a gyűjtött adatok kombinált adott idő alatt. Alapértelmezett érték átlaga. A lehetséges értékek: átlagos, Minimum, Maximum, utolsó, összesen, száma.
+    az érték szabja meg, hogyan hello adatokat gyűjtött össze kell vonni adott idő alatt. hello alapértelmezett érték átlaga. hello lehetséges értékek a következők: átlagos, Minimum, Maximum, utolsó, összesen, száma.
     
     * **operátor**  
-    Az értéke az operátort, amelynek segítségével összehasonlíthatja a metrikaadatokat és a küszöbértéket. A lehetséges értékek: egyenlő NotEquals, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual.
+    Ez az érték használt toocompare hello metrika adatok és hello küszöbérték, hello operátor. hello lehetséges értékek a következők: egyenlő NotEquals, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual.
     
     * **küszöbérték**  
-    Ez az érték elindítja a műveletet. Ez a sablon a gépeket adnak a méretezési készletben, ha a készlet gépek között az átlagos CPU-használat több mint 50 %.
+    Ez az érték hello skálázási műveletet váltja ki. Ez a sablon a gépeket adnak toohello méretezési készletben, ha hello átlagos CPU-használat hello készlet gépek között több mint 50 %.
     
     * **iránya**  
-    Ez az érték határozza meg, amikor érhető el, a küszöbérték végrehajtandó műveletet. A lehetséges értékek a következők: növekedése vagy csökkenése. A sablonban a méretezési csoportban lévő virtuális gépek száma nő, amikor több mint 50 %-a meghatározott idő ablakban a küszöbértéket.
+    Ez az érték határozza meg a hello hello küszöbérték érhető el, amikor végrehajtandó műveletet. hello lehetséges értékei növekedése vagy csökkenése. Ez a sablon a hello hello méretezési csoportban lévő virtuális gépek száma nő, amikor több mint 50 %-a meghatározott hello időkerete hello küszöbértéket.
 
     * **típusa**  
-    Ez az érték műveletet kell végrehajtani, és ChangeCount értékre kell állítani.
+    Ez az érték egy végrehajtandó műveletet kell végrehajtani, és be kell állítani tooChangeCount hello típusú.
     
     * **érték**  
-    Ez az érték hozzáadásakor vagy eltávolításakor a méretezési csoport a virtuális gépek száma. Ez az érték 1 vagy nagyobb lehet. Az alapértelmezett értéke 1. Ez a sablon a méretezési gépek számát be növekszik 1 amikor teljesül a küszöbértéket.
+    Ez az érték hello hozzáadásakor vagy eltávolításakor hello méretezési csoport a virtuális gépek száma. Ez az érték 1 vagy nagyobb lehet. hello alapértelmezett értéke 1. A sablonban lévő hello méretezési gépek hello száma növekszik helyezésekor által beállított 1 hello küszöbérték elérése.
 
     * **cooldown**  
-    Ez az érték a szükséges időt a legutóbbi méretezési művelet óta várni, mielőtt a következő művelet történik. Ez az érték egy percet, és egy hét között kell lennie.
+    Ez az érték érték hello idő toowait óta hello utolsó méretezési művelet előtt hello a következő lépéseket. Ez az érték egy percet, és egy hét között kell lennie.
 
-12. A sablonfájl mentési.    
+12. Hello sablonfájl mentési.    
 
-## <a name="step-3-upload-the-template-to-storage"></a>3. lépés: Töltse fel a sablon tárolási
-A sablon mindaddig, amíg nevét és az 1. lépésben létrehozott tárfiók elsődleges kulcs ismeri fel kell tölteni.
+## <a name="step-3-upload-hello-template-toostorage"></a>3. lépés: Hello sablon toostorage feltöltése
+hello sablon mindaddig, amíg hello nevét és az 1. lépésben létrehozott hello tárfiók elsődleges kulcs ismeri fel kell tölteni.
 
-1. A parancssori felület (Bash, terminál, parancssor), futtassa az alábbi parancsokat a környezeti változók a tárfiók eléréséhez szükséges beállítani:
+1. A parancssori felület (Bash, terminál, parancssor) futtassa az alábbi parancsokat tooset hello környezeti változók szükséges tooaccess hello storage-fiók:
 
     ```cli   
     export AZURE_STORAGE_ACCOUNT={account_name}
     export AZURE_STORAGE_ACCESS_KEY={key}
     ```
     
-    A kulcs eléréséhez a kulcs ikonra kattint, a tárolási fiók erőforrások az Azure portálon megtekintésekor. Ha egy Windows parancssori ablakba, írja be a **beállítása** exportálása helyett.
+    Hello kulcs kaphat hello kulcs ikonra kattintva, amikor megtekintik hello tárolási fiók erőforrás hello Azure-portálon. Ha egy Windows parancssori ablakba, írja be a **beállítása** exportálása helyett.
 
-2. Az a sablon tárolására alkalmas a tároló létrehozása.
+2. Az hello sablon tárolására alkalmas hello tároló létrehozása.
    
     ```cli
     azure storage container create -p Blob templates
     ```
 
-3. A sablon fájlt feltölteni az új tárolóhoz.
+3. Töltse fel a hello sablon fájl toohello új tárolót.
    
     ```cli
     azure storage blob upload VMSSTemplate.json templates VMSSTemplate.json
     ```
 
-## <a name="step-4-deploy-the-template"></a>4. lépés: A sablon üzembe helyezése
-Most, hogy létrehozta a sablont, indítsa el az erőforrásokat üzembe helyezi. A folyamat elindításához használt a parancs:
+## <a name="step-4-deploy-hello-template"></a>4. lépés: Hello sablon üzembe helyezése
+Most, hogy létrehozta a hello sablon, megkezdheti a hello erőforrásokat üzembe helyezi. A parancs toostart hello folyamat használja:
 
 ```cli
 azure group deployment create --template-uri https://vmsstestsa.blob.core.windows.net/templates/VMSSTemplate.json vmsstestrg1 vmsstestdp1
 ```
 
-Amikor lenyomja az adja meg, adjon meg értékeket a változók hozzárendelt kéri. Adja meg ezeket az értékeket:
+Amikor lenyomja az adja meg, a hozzárendelt hello változók felszólító tooprovide értékei lesznek. Adja meg ezeket az értékeket:
 
 ```cli
 vmName: vmsstestvm1
@@ -551,36 +551,36 @@ adminPassword: VMpass1
 resourcePrefix: vmsstest
 ```
 
-Gondolja, hogy a szolgáltatás sikeresen telepíthető az összes erőforrás mintegy 15 percre leáll.
+Mintegy 15 percre leáll az összes hello erőforrások toosuccessfully telepíteni kell vennie.
 
 > [!NOTE]
-> A portál képességét segítségével is telepítheti az erőforrásokat. A hivatkozás: https://portal.azure.com/#create/Microsoft.Template/uri/<link to VM Scale Set JSON template>
+> Hello portal képességét toodeploy hello erőforrásokat is használhatja. A hivatkozás: https://portal.azure.com/#create/Microsoft.Template/uri/<link tooVM Scale Set JSON template>
 
 
 ## <a name="step-5-monitor-resources"></a>5. lépés: A figyelő erőforrások
 Virtuálisgép-méretezési csoportok ezekkel a módszerekkel kapcsolatos információkat kaphat:
 
-* Az Azure portál – jelenleg kaphat a korlátozott mennyiségű információt a portál használatával.
+* Azure-portálon hello – jelenleg korlátozott mennyiségű információt hello portál használatával kaphat.
 
-* A [Azure erőforrás-kezelő](https://resources.azure.com/) -Ez az eszköz a legjobb felderítését lehetővé tevő a méretezési csoport jelenlegi állapotában. Hajtsa végre ezt az elérési utat, és a létrehozott méretezési csoport példányait tartalmazó nézetet kell megjelennie:
+* Hello [Azure erőforrás-kezelő](https://resources.azure.com/) -Ez az eszköz felderítését lehetővé tevő hello aktuális állapotát, a méretezési legjobb hello. Hajtsa végre ezt az elérési utat, és megtekintheti az hello példányait tartalmazó nézetet hello méretezési beállítása létrehozott:
   
     ```cli
     subscriptions > {your subscription} > resourceGroups > vmsstestrg1 > providers > Microsoft.Compute > virtualMachineScaleSets > vmsstest1 > virtualMachines
     ```
 
-* Az Azure CLI - használja ezt a parancsot néhány adatra:
+* Az Azure CLI - használja a parancs tooget néhány információt:
 
     ```cli  
     azure resource show -n vmsstest1 -r Microsoft.Compute/virtualMachineScaleSets -o 2015-06-15 -g vmsstestrg1
     ```
 
-* Kapcsolódjon a jumpbox virtuális géphez, ugyanúgy, mint bármely más gép üzembe helyezése, és ezután távolról elérheti a virtuális gépek használata a méretezési készletben az egyes folyamatok figyelése.
+* Csatlakoztassa a toohello jumpbox virtuális gépet, ugyanúgy, mint bármely más gép üzembe helyezése, és ezután távolról elérheti hello virtuális gépek hello méretezési készlet toomonitor az egyes folyamatok.
 
 > [!NOTE]
 > A teljes REST API-t a méretezési készlet vonatkozó adatok találhatók [virtuálisgép-skálázási készletekben](https://msdn.microsoft.com/library/mt589023.aspx).
 
-## <a name="step-6-remove-the-resources"></a>6. lépés: Távolítsa el az erőforrásokat
-Mivel az Azure-ban használt erőforrásokhoz van szó, ajánlott mindig egy törli az erőforrást, amely már nem szükséges. Nem kell törölnie az egyes erőforrások külön-külön egy erőforráscsoportból. Az erőforráscsoport törlése, és az erőforrások automatikusan törlődnek.
+## <a name="step-6-remove-hello-resources"></a>6. lépés: Hello erőforrások eltávolítása
+Mivel van szó, az Azure-ban használt erőforrásokhoz, még mindig egy célszerű toodelete erőforrásokat, amelyek már nem szükséges. Nincs szükség a toodelete az egyes erőforrások elkülönítve egy erőforráscsoportot. Hello erőforráscsoport törlése és a hozzá tartozó összes erőforrásnak automatikusan törlődnek.
 
 ```cli
 azure group delete vmsstestrg1
@@ -588,7 +588,7 @@ azure group delete vmsstestrg1
 
 ## <a name="next-steps"></a>Következő lépések
 * Példák figyelési szolgáltatásokat az Azure-figyelő található [figyelő Azure platformfüggetlen parancssori felület gyors start minták](../monitoring-and-diagnostics/insights-cli-samples.md)
-* További tudnivalók az értesítési szolgáltatások [automatikus skálázási műveletek segítségével e-mailek és a webhook riasztási értesítések küldése az Azure-figyelő](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
-* Megtudhatja, hogyan [használata naplókat küldeni e-mailek és a webhook riasztási értesítések az Azure-figyelő](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
-* Tekintse meg a [automatikus skálázás bemutató alkalmazás Ubuntu 16.04](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) sablont, amely egy Python/bottle app beállítja gyakorolni az automatikus skálázási funkciót a virtuálisgép-skálázási készletekben.
+* További tudnivalók az értesítési szolgáltatások [automatikus skálázási műveletek toosend e-mailek és a webhook riasztási értesítések használata az Azure-figyelő](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
+* Ismerje meg, hogyan túl[használata auditnaplókat toosend e-mailek és a webhook riasztási értesítések az Azure-figyelő](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* Tekintse meg a hello [automatikus skálázás bemutató alkalmazás Ubuntu 16.04](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) sablont, amely beállítja a Python/bottle app tooexercise hello az automatikus skálázás működésének virtuálisgép-skálázási készletekben.
 

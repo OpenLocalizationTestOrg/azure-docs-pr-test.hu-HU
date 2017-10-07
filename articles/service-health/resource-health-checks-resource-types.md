@@ -1,5 +1,5 @@
 ---
-title: "Támogatott Azure-erőforrás állapotának keresztül erőforrástípusok |} Microsoft Docs"
+title: "Azure Resource Health keresztül erőforrástípusok aaaSupported |} Microsoft Docs"
 description: "Támogatott erőforrástípus keresztül Azure-erőforrás állapota"
 services: Resource health
 documentationcenter: 
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 03/19/2017
 ms.author: BernardoAMunoz
-ms.openlocfilehash: ed9c955096a5427e8184bb6c542ad85ff4c302be
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: fc7bef214702f8ba6954b5aca62236b38023d27a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-types-and-health-checks-in-azure-resource-health"></a>Erőforrástípusok és állapotát ellenőrzi az Azure-erőforrás állapota
-Alább az erőforrás állapota keresztül erőforrástípusok által végrehajtott egyetlen ellenőrzés sem teljes listáját.
+Az alábbiakban az erőforrás állapota keresztül hajtja végre erőforrástípusok összes hello ellenőrzések teljes listáját.
 
 ## <a name="microsoftcacheredisredis"></a>Microsoft.CacheRedis/Redis
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Megfelelően a gyorsítótár-csomópontok működik?</li><li>A gyorsítótár elérhető a az adatközponton belül?</li><li>A gyorsítótár elérte a kapcsolatok maximális száma?</li><li> A gyorsítótár kimerítette a rendelkezésre álló memória? </li><li>A gyorsítótár nagy mennyiségű laphibát tapasztal?</li><li>A gyorsítótár van terhelve?</li></ul>|
+|<ul><li>Minden hello gyorsítótár-csomópontok fel, és futtatja?</li><li>Hello gyorsítótárában elérhető a hello adatközponton belül?</li><li>Rendelkezik a gyorsítótár elérte a kapcsolatok maximális számát hello hello?</li><li> Hello gyorsítótár kimerítette a rendelkezésre álló memória? </li><li>Hello gyorsítótár nagy mennyiségű laphibát tapasztal?</li><li>Túl nagy terhelés alatt van hello a gyorsítótár?</li></ul>|
 
 ## <a name="microsoftcdnprofile"></a>Microsoft.CDN/profile
 |Végrehajtott ellenőrzések|
 |---|
-|<ul> <li>A végpontok bármelyikét leállt, eltávolított vagy helytelenül konfigurált?</li><li>A kiegészítő portálon érhető el a CDN a konfigurálási műveletek?</li><li>A CDN-végpontokat a folyamatban lévő kézbesítési problémái vannak?</li><li>Módosíthatja a felhasználók a CDN-erőforrások konfigurációs?</li><li>Konfigurációs módosítások az várt díj propagálása vannak?</li><li>Kezelheti a felhasználók a CDN-konfiguráció az Azure-portálon, PowerShell vagy az API-t?</li> </ul>|
+|<ul> <li>Bármely hello végpontok leállt, eltávolított vagy helytelenül konfigurált?</li><li>Az elérhető a CDN a konfigurálási műveletek hello kiegészítő portálon?</li><li>Vannak-e folyamatban lévő kézbesítési problémái hello CDN-végpontok?</li><li>Módosíthatja a felhasználók a CDN erőforrásaik hello konfigurációját?</li><li>Konfigurációs módosítások várt hello díj propagálása vannak?</li><li>Kezelheti a felhasználók hello CDN konfigurációs hello Azure-portálon, a PowerShell vagy a hello API használatával?</li> </ul>|
 
 ## <a name="microsoftclassiccomputevirtualmachines"></a>Microsoft.classiccompute/virtualmachines
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A gazdakiszolgáló megfelelően működik, és?</li><li>Befejeződött a gazdagép operációs rendszer rendszerindítást?</li><li>A virtuális gépet tároló kiosztásakor és kapcsolt?</li><li>A gazdagép és a tárfiók közötti hálózati kapcsolat van?</li><li>Befejeződött a vendég operációs rendszer rendszerindítást?</li><li>Nem tervezett karbantartást?</li></ul>|
+|<ul><li>Hello kiszolgáló működik-e és fut?</li><li>Befejeződött hello állomás operációs rendszer rendszerindítást?</li><li>Hello virtuálisgép-tárolót üzembe helyezve és kapcsolt?</li><li>Hello állomás és hello tárfiók közötti hálózati kapcsolat van?</li><li>Hello rendszerindítását hello vendég operációs rendszer befejeződött?</li><li>Nem tervezett karbantartást?</li></ul>|
 
 ## <a name="microsoftcognitiveservicesaccounts"></a>Microsoft.cognitiveservices/accounts
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A fiók elérhető a az adatközponton belül?</li><li>A szolgáltatások kognitív erőforrás-szolgáltató érhető el?</li><li>Érhető el a kognitív szolgáltatás a megfelelő régióban?</li><li>Elolvashatják műveletek hajthatók végre a tárfiók, az erőforrás-metaadatok okozó?</li><li>Elérte az API-hívás kvóta?</li><li>Elérte az API hívása olvasás-korlátot?</li></ul>|
+|<ul><li>Hello fiók elérhető a hello adatközponton belül?</li><li>Van hello kognitív szolgáltatások erőforrás-szolgáltató elérhető?</li><li>Van hello kognitív hello megfelelő régióban elérhető szolgáltatás?</li><li>Elolvashatják műveletek hajthatók végre hello erőforrás metaadatok okozó hello tárfiók?</li><li>Elérte a hello API-hívás kvóta?</li><li>Elérte a hello API hívása olvasás-korlátot?</li></ul>|
 
 ## <a name="microsoftcomputevirtualmachines"></a>Microsoft.COMPUTE/virtualmachines
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A kiszolgáló mentése a virtuális gépet szolgáltató, és fut?</li><li>Befejeződött a gazdagép operációs rendszer rendszerindítást?</li><li>A virtuális gépet tároló kiosztásakor és kapcsolt?</li><li>A gazdagép és a tárfiók közötti hálózati kapcsolat van?</li><li>Befejeződött a vendég operációs rendszer rendszerindítást?</li><li>Nem tervezett karbantartást?</li></ul>|
+|<ul><li>Hello server mentése a virtuális gépet szolgáltató, és fut?</li><li>Befejeződött hello állomás operációs rendszer rendszerindítást?</li><li>Hello virtuálisgép-tárolót üzembe helyezve és kapcsolt?</li><li>Hello állomás és hello tárfiók közötti hálózati kapcsolat van?</li><li>Hello rendszerindítását hello vendég operációs rendszer befejeződött?</li><li>Nem tervezett karbantartást?</li></ul>|
 
 ## <a name="microsoftdatalakeanalyticsaccounts"></a>Microsoft.datalakeanalytics/accounts
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Felhasználók elküldés feladatok Data Lake Analytics régióban is?</li><li>Hajtsa végre az alapvető feladatok futtatása, és sikeresen régióban?</li><li>Felhasználók készíthetünk a szolgáltatáskatalógusban található elemek a régióban?</li>|
+|<ul><li>Is submit feladatok tooData Lake Analytics a felhasználók hello régió?</li><li>Alapvető feladatok lefutott, és sikeresen megtörtént a teljes hello régió elvégezni?</li><li>Felhasználók készíthetünk katalóguselemek hello régióban?</li>|
 
 
 ## <a name="microsoftdatalakestoreaccounts"></a>Microsoft.datalakestore/accounts
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Felhasználók adatait feltöltheti Data Lake Store régióban?</li><li>Felhasználók is a Data Lake Store régióban le adatokat?</li></ul>|
+|<ul><li>Feltöltheti a felhasználók tooData Lake adattárban hello régióban?</li><li>Felhasználók is a Data Lake Store hello régióban le adatokat?</li></ul>|
 
 ## <a name="microsoftdocumentdbdatabaseaccounts"></a>Microsoft.documentdb/databaseAccounts
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Minden adatbázis vagy a gyűjtemény kérést, nem szolgálható ki a DocumentDB szolgáltatás elérhetetlensége miatt nem lett volna?</li><li>A dokumentum kéréseit nem szolgálható ki a DocumentDB szolgáltatás elérhetetlensége miatt nem lett volna?</li></ul>|
+|<ul><li>Nem volt tooa DocumentDB szolgáltatás elérhetetlensége miatt nem szolgálható ki semmilyen adatbázis vagy a gyűjtemény kérelmet?</li><li>A dokumentum kéréseit nem szolgálható ki tooa DocumentDB szolgáltatás elérhetetlensége miatt nem lett volna?</li></ul>|
 
 ## <a name="microsoftnetworkconnections"></a>Microsoft.Network/Connections
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A VPN-alagút csatlakoztatva van?</li><li>Vannak-e konfigurációjának ütközései a kapcsolatot?</li><li>Az előmegosztott kulcs megfelelően legyenek konfigurálva?</li><li>A helyszíni VPN-eszköz érhető el?</li><li>Vannak eltérések a IPSec/IKE biztonsági házirendben?</li><li>Az az S2S VPN-kapcsolat megfelelően kiosztott vagy hibás állapotban lévő?</li><li>Megfelelően kiosztott vagy hibás állapotban, az a VNET – VNET-kapcsolatot?</li></ul>|
+|<ul><li>Hello VPN-alagút csatlakoztatva van?</li><li>Vannak-e konfigurációs ütközést hello kapcsolatban?</li><li>Hello előmegosztott kulccsal megfelelően legyenek konfigurálva?</li><li>Hello VPN helyi eszköz érhető el?</li><li>Vannak-e eltérést hello IPSec/IKE biztonsági házirendben?</li><li>Az hello S2S VPN-kapcsolat megfelelően kiosztott vagy hibás állapotban lévő?</li><li>Megfelelően kiosztott vagy hibás állapotban, az hello VNET – VNET-kapcsolatot?</li></ul>|
 
 ## <a name="microsoftnetworkvirtualnetworkgateways"></a>Microsoft.network/virtualNetworkGateways
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Az internetről elérhető a VPN-átjáró?</li><li>A VPN-átjáró készenléti üzemmódban van?</li><li>A VPN szolgáltatást az átjáró fut?</li></ul>|
+|<ul><li>Hello VPN-átjáró elérhető az hello internet?</li><li>Készenléti üzemmódban van hello a VPN-átjáró?</li><li>Hello VPN szolgáltatás fut a hello átjáró?</li></ul>|
 
 ## <a name="microsoftnotificationhubsnamespace"></a>Microsoft.NotificationHubs/namespace
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li> A névtér elvégezhető futásidejű műveletek tartoznak, mint a regisztráció, a telepítés vagy a küldési?</li></ul>|
+|<ul><li> Regisztráció, a telepítés vagy a küldési futásidejű műveletek a végrehajtható hello névtér?</li></ul>|
 
 ## <a name="microsoftpowerbiworkspacecollections"></a>Microsoft.PowerBI/workspaceCollections
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A gazda operációs rendszer megfelelően működik, és?</li><li>Az elérhető az adatközponton kívülről a workspaceCollection?</li><li>A Power bi erőforrás-szolgáltató érhető el?</li><li>Érhető el a Power bi szolgáltatás a megfelelő régióban?</li></ul>|
+|<ul><li>Hello gazda operációs rendszer működik-e és fut?</li><li>Az elérhető hello adatközponton kívülről hello workspaceCollection?</li><li>Van rendelkezésre álló Power bi erőforrás-szolgáltató hello?</li><li>Van hello hello megfelelő régióban elérhető Power bi szolgáltatás?</li></ul>|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.search/searchServices
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Diagnosztikai műveletek végezhetők a fürt?</li></ul>|
+|<ul><li>Diagnosztikai műveletek végrehajtható hello fürtön?</li></ul>|
 
 ## <a name="microsoftsqlserverdatabase"></a>Microsoft.SQL/Server/database
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li> Nem volt az adatbázis-felhasználónevekhez?</li></ul>|
+|<ul><li> Nem volt bejelentkezések toohello adatbázis?</li></ul>|
 
 ## <a name="microsoftstreamanalyticsstreamingjobs"></a>Microsoft.StreamAnalytics/streamingjobs
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>Ha a feladat végrehajtása be, és fut minden gazdagép vannak?</li><li>Nem lehetett elindítani a feladatot?</li><li>Vannak-e folyamatban lévő futásidejű frissítéseket?</li><li>A feladat várt állapota (például fut vagy leállt ügyfél)?</li><li>A feladat észlelt kimenő memória kivételek?</li><li>Vannak-e folyamatban lévő ütemezett számítási frissítéseket?</li><li>A végrehajtás-kezelője (vezérlési tervek) érhető el?</li></ul>|
+|<ul><li>A rendszer minden hello gazdagép, ahol hello feladat végrehajtása fel, és fut?</li><li>Hello feladat nem toostart volt?</li><li>Vannak-e folyamatban lévő futásidejű frissítéseket?</li><li>Hello feladat (például fut vagy leállt ügyfél) várt állapotban van?</li><li>Hello feladat észlelt kimenő memória kivételek?</li><li>Vannak-e folyamatban lévő ütemezett számítási frissítéseket?</li><li>A végrehajtás-kezelő (vezérlési tervek) elérhető van hello?</li></ul>|
 
 ## <a name="microsoftwebserverfarms"></a>Microsoft.web/serverFarms
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A gazdakiszolgáló megfelelően működik, és?</li><li>Az Internet Information Services fut?</li><li>A Load balancer fut?</li><li>A Web Service-csomag elérhető a az adatközponton belül?</li><li>A tárfiók üzemelteti a kiszolgálófarm elérhető webhelyek tartalmának??</li></ul>|
+|<ul><li>Hello kiszolgáló működik-e és fut?</li><li>Az Internet Information Services fut?</li><li>Hello terheléselosztó fut?</li><li>Hello Web Service-csomag elérhető a hello adatközponton belül?</li><li>E hello tárolási fiók üzemeltetési hello helyek hello kiszolgálófarm az elérhető??</li></ul>|
 
 ## <a name="microsoftwebsites"></a>Microsoft.Web/Sites
 |Végrehajtott ellenőrzések|
 |---|
-|<ul><li>A gazdakiszolgáló megfelelően működik, és?</li><li>Internet Information server fut?</li><li>A Load balancer fut?</li><li>A webalkalmazás elérhetőségének a az adatközponton belül?</li><li>A tárfiók üzemeltető érhető el a webhely tartalmát?</li></ul>|
+|<ul><li>Hello kiszolgáló működik-e és fut?</li><li>Internet Information server fut?</li><li>Hello terheléselosztó fut?</li><li>Hello webalkalmazás elérhetőségének a hello adatközponton belül?</li><li>Hello tárfiók üzemeltető hello hely tartalom érhető el?</li></ul>|
 
 # <a name="next-steps"></a>Következő lépések
--  Lásd: [Bevezetés az Azure szolgáltatás állapota](service-health-overview.md) és [Bevezetés az Azure Resource Health](resource-health-overview.md) bővebb információt őket. 
+-  Lásd: [bemutatása tooAzure szolgáltatásának állapota](service-health-overview.md) és [bemutatása tooAzure erőforrás állapota](resource-health-overview.md) toounderstand további róluk. 
 -  [Az Azure Resource Health kapcsolatos gyakori kérdések](resource-health-faq.md)
 - Riasztások beállítása, így ügynökállapottal kapcsolatos hibákkal értesítést kap. További információkért lásd: [riasztások konfigurálása a szolgáltatás állapotát](../monitoring-and-diagnostics/monitoring-activity-log-alerts-on-service-notifications.md). 

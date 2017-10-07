@@ -1,6 +1,6 @@
 ---
-title: "Az NSG-k létrehozása a klasszikus mód az Azure parancssori felülettel |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre és telepíthet az NSG-k klasszikus módban, az Azure parancssori felület használatával"
+title: "aaaHow toocreate NSG-ket a klasszikus mód használatával hello Azure parancssori Felülettel |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és NSG-k telepítése a klasszikus módban, hello Azure parancssori felület használatával"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
-ms.openlocfilehash: 115a1937a4c88ba2b986a40c84b1b759ed5e03b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb78861e10a0dd950bb2c3783ee957d1cce55016
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-nsgs-classic-in-the-azure-cli"></a>Az NSG-k (klasszikus) létrehozása az Azure parancssori felület
+# <a name="how-toocreate-nsgs-classic-in-hello-azure-cli"></a>Hogyan toocreate NSG-k (klasszikus) hello Azure parancssori felület
 [!INCLUDE [virtual-networks-create-nsg-selectors-classic-include](../../includes/virtual-networks-create-nsg-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Emellett [NSG-k létrehozása a Resource Manager üzembe helyezési modellel](virtual-networks-create-nsg-arm-cli.md).
+Ez a cikk ismerteti a hello klasszikus üzembe helyezési modellben. Emellett [NSG-k létrehozása hello Resource Manager üzembe helyezési modellel](virtual-networks-create-nsg-arm-cli.md).
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-Az alábbi minta Azure parancssori felület parancsait már a fenti forgatókönyv alapján létre egy egyszerű környezetben várható. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először által a tesztkörnyezet felépítéséhez [létre virtuális hálózatok](virtual-networks-create-vnet-classic-cli.md).
+minta hello Azure CLI-t az alábbi parancsok már a fenti hello forgatókönyv alapján létre egy egyszerű környezetben várható. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre tesztkörnyezetben hello által [létre virtuális hálózatok](virtual-networks-create-vnet-classic-cli.md).
 
-## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>Az NSG az előtér-alhálózat létrehozása
-Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv alapján, kövesse az alábbi lépéseket.
+## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>Hogyan toocreate hello hello előtér alhálózat NSG
+az NSG nevű toocreate nevű **NSG-előtérbeli** kövesse a fenti hello forgatókönyv alapján, hello alábbi lépéseket.
 
-1. Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.
-2. Futtassa a  **`azure config mode`**  parancs futtatásával váltson klasszikus módban, a lent látható módon.
+1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
+2. Futtassa a hello  **`azure config mode`**  tooswitch tooclassic üzemmód, alább látható módon.
    
         azure config mode asm
    
     Várt kimenet:
    
         info:    New mode is asm
-3. Futtassa a  **`azure network nsg create`**  parancs futtatásával hozzon létre egy NSG.
+3. Futtassa a hello  **`azure network nsg create`**  parancs toocreate egy NSG.
    
         azure network nsg create -l uswest -n NSG-FrontEnd
    
@@ -53,7 +53,7 @@ Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv al
    
         info:    Executing command network nsg create
         info:    Creating a network security group "NSG-FrontEnd"
-        info:    Looking up the network security group "NSG-FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
         data:    Name                            : NSG-FrontEnd
         data:    Location                        : West US
         data:    Security group rules:
@@ -77,18 +77,18 @@ Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv al
    
     Paraméterek:
    
-   * **-l (vagy --location)**. Azure-régió, ahol létrejön az új NSG. A mi esetünkben *westus*.
-   * **-n (vagy --name)**. Az új NSG neve. A mi esetünkben *NSG-előtérbeli*.
-4. Futtassa a  **`azure network nsg rule create`**  parancs futtatásával hozzon létre egy szabályt, amely engedélyezi a hozzáférést a 3389-es (RDP) az internetről.
+   * **-l (vagy --location)**. Azure-régió, ahol hello új NSG létrejön. A mi esetünkben *westus*.
+   * **-n (vagy --name)**. Hello nevét új NSG. A mi esetünkben *NSG-előtérbeli*.
+4. Futtassa a hello  **`azure network nsg rule create`**  parancs toocreate egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 3389-es (RDP) a hello Internet.
    
         azure network nsg rule create -a NSG-FrontEnd -n rdp-rule -c Allow -p Tcp -r Inbound -y 100 -f Internet -o * -e * -u 3389
    
     Várt kimenet:
    
         info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
         info:    Creating a network security rule "rdp-rule"
-        info:    Looking up the network security group "NSG-FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
         data:    Name                            : rdp-rule
         data:    Source address prefix           : INTERNET
         data:    Source Port                     : *
@@ -102,26 +102,26 @@ Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv al
    
     Paraméterek:
    
-   * **-a (vagy--nsg-név)**. Az ebben a szabály jön létre NSG neve. A mi esetünkben *NSG-előtérbeli*.
-   * **-n (vagy --name)**. Az új szabály nevét. A mi esetünkben *rdp-szabály*.
-   * **-c (vagy--művelet)**. Hozzáférési szint a szabály (Megtagadás vagy engedélyezés).
-   * **-p (vagy--protokoll)**. Protocol (Tcp, Udp vagy *) a szabályhoz.
+   * **-a (vagy--nsg-név)**. Mely hello szabály létrehozza hello NSG neve. A mi esetünkben *NSG-előtérbeli*.
+   * **-n (vagy --name)**. Hello új szabály nevét. A mi esetünkben *rdp-szabály*.
+   * **-c (vagy--művelet)**. Hozzáférési szint hello szabály (Megtagadás vagy engedélyezés).
+   * **-p (vagy--protokoll)**. Protocol (Tcp, Udp vagy *) hello szabályhoz.
    * **-r (vagy--típus)**. Irányát (bejövő vagy kimenő) kapcsolat.
-   * **-y (vagy--prioritás)**. A szabály prioritását.
+   * **-y (vagy--prioritás)**. Hello szabály prioritását.
    * **-f (vagy--forráscímelőtag)**. Forráscímelőtag CIDR vagy az alapértelmezett címkéket használ.
    * **-o (vagy--Forrásporttartomány)**. Forrásport, vagy porttartomány.
    * **-e (vagy--cél címelőtag)**. Célcím-előtag CIDR vagy az alapértelmezett címkéket használ.
    * **-u (vagy--Célporttartomány)**. Célport vagy porttartomány.
-5. Futtassa a  **`azure network nsg rule create`**  parancs futtatásával hozzon létre egy szabályt, amely engedélyezi a hozzáférést a port a 80-as (HTTP) az internetről.
+5. Futtassa a hello  **`azure network nsg rule create`**  parancs toocreate egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 80-as (HTTP) az hello Internet.
    
         azure network nsg rule create -a NSG-FrontEnd -n web-rule -c Allow -p Tcp -r Inbound -y 200 -f Internet -o * -e * -u 80
    
     Várt putput:
    
         info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
         info:    Creating a network security rule "web-rule"
-        info:    Looking up the network security group "NSG-FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
         data:    Name                            : web-rule
         data:    Source address prefix           : INTERNET
         data:    Source Port                     : *
@@ -132,23 +132,23 @@ Hozzon létre egy NSG nevű nevű **NSG-előtérbeli** a fenti forgatókönyv al
         data:    Action                          : Allow
         data:    Priority                        : 200
         info:    network nsg rule create command OK
-6. Futtassa a  **`azure network nsg subnet add`**  parancs az NSG csatolása az előtér-alhálózat.
+6. Futtassa a hello  **`azure network nsg subnet add`**  parancs toolink hello NSG toohello előtérben lévő alhálózat alhálózat.
    
         azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd
    
     Várt kimenet:
    
         info:    Executing command network nsg subnet add
-        info:    Looking up the network security group "NSG-FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
+        info:    Looking up hello network security group "NSG-FrontEnd"
+        info:    Looking up hello subnet "FrontEnd"
         info:    Looking up network configuration
         info:    Creating a network security group "NSG-FrontEnd"
         info:    network nsg subnet add command OK
 
-## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>Az NSG a háttérbeli alhálózat létrehozása
-Hozzon létre egy NSG nevű nevű *NSG-háttérrendszer* a fenti forgatókönyv alapján, kövesse az alábbi lépéseket.
+## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>Hogyan toocreate hello NSG hello vissza a záró alhálózat
+az NSG nevű toocreate nevű *NSG-háttérrendszer* kövesse a fenti hello forgatókönyv alapján, hello alábbi lépéseket.
 
-1. Futtassa a  **`azure network nsg create`**  parancs futtatásával hozzon létre egy NSG.
+1. Futtassa a hello  **`azure network nsg create`**  parancs toocreate egy NSG.
    
         azure network nsg create -l uswest -n NSG-BackEnd
    
@@ -156,7 +156,7 @@ Hozzon létre egy NSG nevű nevű *NSG-háttérrendszer* a fenti forgatókönyv 
    
         info:    Executing command network nsg create
         info:    Creating a network security group "NSG-BackEnd"
-        info:    Looking up the network security group "NSG-BackEnd"
+        info:    Looking up hello network security group "NSG-BackEnd"
         data:    Name                            : NSG-BackEnd
         data:    Location                        : West US
         data:    Security group rules:
@@ -180,18 +180,18 @@ Hozzon létre egy NSG nevű nevű *NSG-háttérrendszer* a fenti forgatókönyv 
    
     Paraméterek:
    
-   * **-l (vagy --location)**. Azure-régió, ahol létrejön az új NSG. A mi esetünkben *westus*.
-   * **-n (vagy --name)**. Az új NSG neve. A mi esetünkben *NSG-előtérbeli*.
-2. Futtassa a  **`azure network nsg rule create`**  parancs futtatásával hozzon létre egy szabályt, amely engedélyezi a hozzáférést a port a 1433-as port (SQL) az előtér-alhálózatból.
+   * **-l (vagy --location)**. Azure-régió, ahol hello új NSG létrejön. A mi esetünkben *westus*.
+   * **-n (vagy --name)**. Hello nevét új NSG. A mi esetünkben *NSG-előtérbeli*.
+2. Futtassa a hello  **`azure network nsg rule create`**  parancs toocreate egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 1433-as port (SQL) hello előtér alhálózatból.
    
         azure network nsg rule create -a NSG-BackEnd -n sql-rule -c Allow -p Tcp -r Inbound -y 100 -f 192.168.1.0/24 -o * -e * -u 1433
    
     Várt kimenet:
    
         info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-BackEnd"
+        info:    Looking up hello network security group "NSG-BackEnd"
         info:    Creating a network security rule "sql-rule"
-        info:    Looking up the network security group "NSG-BackEnd"
+        info:    Looking up hello network security group "NSG-BackEnd"
         data:    Name                            : sql-rule
         data:    Source address prefix           : 192.168.1.0/24
         data:    Source Port                     : *
@@ -202,16 +202,16 @@ Hozzon létre egy NSG nevű nevű *NSG-háttérrendszer* a fenti forgatókönyv 
         data:    Action                          : Allow
         data:    Priority                        : 100
         info:    network nsg rule create command OK
-3. Futtassa a  **`azure network nsg rule create`**  parancs futtatásával hozzon létre egy szabályt, amely megtagadja a hozzáférést az internethez.
+3. Futtassa a hello  **`azure network nsg rule create`**  parancs toocreate egy szabályt, amely megtagadja a hozzáférést toohello Internet.
    
         azure network nsg rule create -a NSG-BackEnd -n web-rule -c Deny -p Tcp -r Outbound -y 200 -f * -o * -e Internet -u 80
    
     Várt putput:
    
         info:    Executing command network nsg rule create
-        info:    Looking up the network security group "NSG-BackEnd"
+        info:    Looking up hello network security group "NSG-BackEnd"
         info:    Creating a network security rule "web-rule"
-        info:    Looking up the network security group "NSG-BackEnd"
+        info:    Looking up hello network security group "NSG-BackEnd"
         data:    Name                            : web-rule
         data:    Source address prefix           : *
         data:    Source Port                     : *
@@ -222,15 +222,15 @@ Hozzon létre egy NSG nevű nevű *NSG-háttérrendszer* a fenti forgatókönyv 
         data:    Action                          : Deny
         data:    Priority                        : 200
         info:    network nsg rule create command OK
-4. Futtassa a  **`azure network nsg subnet add`**  csatolja az NSG a háttérbeli alhálózati parancsot.
+4. Futtassa a hello  **`azure network nsg subnet add`**  toolink hello NSG toohello vissza end alhálózati parancsot.
    
         azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd
    
     Várt kimenet:
    
         info:    Executing command network nsg subnet add
-        info:    Looking up the network security group "NSG-BackEndX"
-        info:    Looking up the subnet "BackEnd"
+        info:    Looking up hello network security group "NSG-BackEndX"
+        info:    Looking up hello subnet "BackEnd"
         info:    Looking up network configuration
         info:    Creating a network security group "NSG-BackEndX"
         info:    network nsg subnet add command OK

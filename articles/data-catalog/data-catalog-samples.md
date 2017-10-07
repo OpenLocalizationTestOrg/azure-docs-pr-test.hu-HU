@@ -1,6 +1,6 @@
 ---
-title: "Katalógus fejlesztői adatminták |} Microsoft Docs"
-description: "Ez a cikk a rendelkezésre álló fejlesztői minták áttekintést nyújt a Data Catalog REST API számára."
+title: "aaaData katalógus fejlesztői minták |} Microsoft Docs"
+description: "Ez a cikk hello elérhető fejlesztői minták áttekintést nyújt a Data Catalog REST API hello."
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/05/2017
 ms.author: spelluru
-ms.openlocfilehash: 6ba88885805f1a206f01015f7eec5236da517403
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11d87d15ee500c1b08e9d507db25626e40c1b98d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-catalog-developer-samples"></a>Katalógus fejlesztői minták
-Ismerkedés a Data Catalog REST API használatával a Data Catalog alkalmazásfejlesztés. A Data Catalog REST API egy REST-alapú API, amely programozott hozzáférést nyújt a Data Catalog erőforrásokhoz regisztrálásához, megjegyzésekkel és adategységek keresése programozott módon.
+Első lépések hello Data Catalog REST API használatával a Data Catalog alkalmazásfejlesztés. hello Data Catalog REST API egy REST-alapú API-t, amely programozott hozzáférést tooData katalógus erőforrások tooregister, megjegyzésekkel, és adategységeket programozott módon keresni.
 
-Az alábbiakban a minták a Githubon van:
+Az alábbiakban hello minták a Githubon van:
 
 * [Ismerkedés az Azure Data Catalog szolgáltatással](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-get-started/)
   
-  Egy minta, amely bemutatja, hogyan regisztrálja, keresése és egy adategységet, a Data Catalog REST API használatával törli az Azure AD szolgáltatással való hitelesítésre.
+  Egy példa, amely azt mutatja, hogyan tooauthenticate az Azure AD tooRegister keresni, és egy adategységet hello Data Catalog REST API használatával törli.
 * [Tömeges regisztrálásával és megjegyzésekkel](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-excel-register-data-assets/)
   
-  Ez a minta bemutatja, hogyan tömeges regisztrálása adategységeket használatával a Data Catalog REST API és az Open XML Excel-munkafüzetből.
+  Ez a minta bemutatja, hogyan regisztrálja az toobulk a használatával a Data Catalog REST API és az Open XML Excel-munkafüzetből adategységeket.
 * [Import/Export eszköz](https://azure.microsoft.com/resources/samples/data-catalog-dotnet-import-export/)
   
-  A példa bemutatja, hogyan használható a Data Catalog REST API eszközök beolvasni az Azure Data Catalog és szerializálni azokat egy fájlba. Azt is bemutatja, hogyan kell tenni egy JSON-ként szerializált eszközök készletét, és küldje le őket a katalógusba. Támogatja a katalógus keresési lekérdezéssel részhalmazának exportálása.
+  Ez a minta bemutatja, hogyan toouse hello Data Catalog REST API toofetch eszközök az Azure Data Catalog hello és szerializálni azokat egy fájlba. Azt is bemutatja, hogyan tootake eszközök JSON-ként szerializált és hello katalógusba küldje le őket. Keresési lekérdezés hello katalógust részhalmazának exportálása támogatja.
 
 * [Tömeges importálási szószedetben](https://azure.microsoft.com/resources/samples/data-catalog-bulk-import-glossary/)
 
-    Ez a példa bemutatja, hogyan szószedetben importálása CSV-fájlok LÉPETT szószedet.
+    Ez a minta bemutatja, hogyan tooimport szószedet a CSV-fájlok tooADC szószedet feltételeket.
 

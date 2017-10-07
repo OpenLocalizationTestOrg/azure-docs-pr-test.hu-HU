@@ -1,5 +1,5 @@
 ---
-title: "Az Azure RemoteApp - hogyan hálózati sávszélességet és a minőségét tapasztalja munkahelyi együtt? | Microsoft Docs"
+title: "RemoteApp - aaaAzure hogyan hálózati sávszélességet és a minőségét tapasztalja munkahelyi együtt? | Microsoft Docs"
 description: "Ismerje meg, hogyan hálózati sávszélesség az Azure Remoteappban hatással lehet a felhasználó minőséget."
 services: remoteapp
 documentationcenter: 
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 74116902e973fba440b3c662fdf76202d052b4c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 62b0caadf63359eceb63d27fae6ad289b682ff63
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp---how-do-network-bandwidth-and-quality-of-experience-work-together"></a>Az Azure RemoteApp - hogyan hálózati sávszélességet és a minőségét tapasztalja munkahelyi együtt?
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Ha éppen megtekintett a [teljes hálózati sávszélességet](remoteapp-bandwidth.md) szükséges Azure RemoteApp, vegye figyelembe az alábbi tényezők – ezek hatással van a teljes felhasználói élmény dinamikus rendszer összes részét képezik. 
+Ha éppen megtekintett hello [teljes hálózati sávszélességet](remoteapp-bandwidth.md) szükséges Azure RemoteApp, tartsa szem előtt tartva hello tényezőket a következő – ezek, hogy hatások hello általános felhasználói élmény dinamikus rendszer összes részét képezik. 
 
-* **Rendelkezésre álló hálózati sávszélességet és az aktuális hálózati körülmények** -paraméterek (veszteségeit, késéseit, jitter) ugyanazon a hálózaton, egy adott időben kedvezőtlen hatással lehet az alkalmazás adatfolyam-kezelés, azaz egy süllyesztett általános felhasználói felület. A hálózaton elérhető sávszélességet feladata torlódás, a véletlen adatvesztést, a késés, mivel ezek a paraméterek hatással az torlódás-vezérlési mechanizmus, amely vezérlők az átviteli sebesség, így elkerülhetik az ütközéseket.  Például veszteséges hálózati vagy a nagy késleltetésű hálózati teszi a felhasználói felület rossz még akkor is, a hálózati sávszélességgel 1000 MB. A veszteséget és késéseket függ, amelyek ugyanazon a hálózaton, és ezek a felhasználók tevékenységeit (például videók, letöltése vagy nagy fájlok nyomtatása feltöltése figyeli) a felhasználók száma.
-* **Használati eset** -a felhasználói élmény, attól függ, a felhasználók tevékenységeit egyéni felhasználók számára és a csoport ugyanazon a hálózaton. Például egy diák olvasása van szükség a csak egy keretet frissíthető; Ha a felhasználó skims, és a szöveges dokumentum tartalmának keresztül görget, szükségük keretek frissítenie kell a másodpercenkénti száma. A kommunikáció oda-vissza ebben a forgatókönyvben a kiszolgáló végül fog használni, nagyobb hálózati sávszélességet. Is érdemes lehet egy rendkívüli példa: több felhasználó is figyeli a nagy felbontású videók (például a 4 KB-os megoldás), HD konferenciahívások okozó, 3D videó játékok vagy CAD-rendszereken működik. Mindegyik használhatatlan lehet akár egy valóban nagy sávszélességű hálózati gyakorlatilag.
-* **Képernyő-feloldási és számát** -további hálózati sávszélességre szükség, hogy teljes frissítés nagyobb képernyők, mint a kisebb képernyőkön. Az alapul szolgáló technológiát does kódolását, és csak a képernyőn megjelenő frissítve lett a régiók átvitele egy meglehetősen jó feladatot, de egyszer a egy while, a teljes képernyőt frissíteni kell. Amikor a felhasználó rendelkezik-e egy magasabb feloldási képernyő (például a 4 KB-os megoldás), a frissítéshez alacsonyabb felbontású (például 1024x768px) képernyő-nál nagyobb hálózati sávszélességet. Ugyanez a logika vonatkozik, az átirányítás egynél több képernyő használatakor. Sávszélesség kell képernyők számának növeléséhez.
-* **Vágólap és eszköz-átirányítás** - Ez egy nagyon nyilvánvaló probléma, de sok esetben ha a felhasználó tárolja az adatokat a vágólapra a nagy adattömb tart, amíg az adatokat a kiszolgáló a távoli asztali ügyfél átvitele bit. Az alsóbb rétegbeli élmény is negatív hatással lehet a vágólapra tartalom küldése előtt élménye. Ugyanez vonatkozik a eszközátirányítás -, ha egy olvasó vagy webkamera hozza létre a nagy mennyiségű adat, amely kell küldeni a kiszolgálónak felsőbb rétegbeli, vagy egy nyomtató kell fogadni a nagy dokumentum, vagy helyi tárhelyet kell lennie a nagy fájlok másolása a felhőben futó alkalmazások számára elérhető, felhasználók észrevette, hogy az eldobott keretek, vagy átmenetileg "zárolva" videó, mert a eszközátirányítás szükséges adatokat a hálózati sávszélesség egyre kell. 
+* **Rendelkezésre álló hálózati sávszélességet és az aktuális hálózati körülmények** -paraméterek (veszteségeit, késéseit, jitter) az adott időpontban azonos hálózati hello kedvezőtlen hatással lehet az adatfolyam-kezelés, azaz egy süllyesztett általános felhasználói felület hello alkalmazás. hello sávszélesség álljon rendelkezésre a hálózaton lévő feladata torlódás, a véletlen adatvesztést, a késés, mivel ezek a paraméterek hatással hello torlódás vezérlési mechanizmus, amely kapcsolja vezérlők hello átviteli sebesség tooavoid ütközések.  Például veszteséges hálózati vagy a nagy késleltetésű hálózati bizonyosodhatunk hello felhasználói felülettel rossz még akkor is, a hálózati sávszélességgel 1000 MB. hello veszteséget és késéseket függően változhat a felhasználók, akik a hello hello száma ugyanazon a hálózaton, és ezek a felhasználók tevékenységeit (például videók, letöltése vagy nagy fájlok nyomtatása feltöltése figyeli).
+* **Használati eset** -hello élmény, attól függ, a felhasználók milyen hello tűnik, hogy minden egyéni felhasználók számára és egy csoport hello azonos hálózati. Például egy diák olvasása igényel csak egyetlen keret toobe frissítése; Ha egy szöveges dokumentum hello tartalomban görget hello felhasználói skims, másodpercenként frissített keretek toobe nagyobb számú szükségük. hello kommunikációs vissza, és oda-toohello server ebben a forgatókönyvben végül igényel, nagyobb hálózati sávszélességet. Is érdemes lehet egy rendkívüli példa: több felhasználó is figyeli a nagy felbontású videók (például a 4 KB-os megoldás), HD konferenciahívások okozó, 3D videó játékok vagy CAD-rendszereken működik. Mindegyik használhatatlan lehet akár egy valóban nagy sávszélességű hálózati gyakorlatilag.
+* **Képernyő-feloldási és hello számát** -nagyobb hálózati sávszélesség szükséges toofull frissítés képernyők nagyobb, mint kisebb képernyőkön. hello alapul szolgáló technológiát does egy kódolást és helyre küldi hello képernyők frissített csak hello régiói meglehetősen jó feladatot, de a egyszer a egy while, hello teljes képernyőt toobe frissítése. Hello felhasználó rendelkezik-e egy magasabb feloldási képernyő (például a 4 KB-os megoldás), ez a frissítés megköveteli a képernyő alsó felbontású (például 1024x768px)-nál nagyobb hálózati sávszélességet. Ugyanez a logika vonatkozik, az átirányítás egynél több képernyő használatakor. Sávszélesség képernyők hello számú tooincrease kell.
+* **Vágólap és eszköz-átirányítás** - Ez egy nagyon nyilvánvaló probléma, de sok esetben ha egy felhasználó által tárolt adatok toohello vágólap, nagy adattömb tart, amíg az adott információk tootransfer hello távoli asztali ügyfél bit toohello kiszolgáló. hello alárendelt élmény is negatív hatással lehet hello élménye hello vágólapra tartalom küldése előtt. hello Ugyanez vonatkozik az eszköz átirányítás - Ha képolvasó vagy webkamera hozza létre a nagy mennyiségű adat, amelyet a küldött toobe toohello felsőbb rétegbeli kiszolgáló, nyomtató kell tooreceive nagy dokumentum vagy helyi tárolási igényei toobe elérhető tooan alkalmazás fusson az hello felhő toocopy egy nagy méretű fájlok felhasználók észrevette, hogy az eldobott keretek, vagy átmenetileg "zárolva" videó mert hello eszközátirányítás szükséges hello adatok egyre hello hálózati sávszélesség szükséges. 
 
-Amikor a hálózati sávszélesség szükségleteknek értékeli, győződjön meg arról, figyelembe kell venni az összes ezek a tényezők működik-e a rendszer.
+Amikor a hálózati sávszélesség szükségleteknek értékeli, győződjön meg arról, hogy tooconsider minden e tényezők működik-e a rendszer.
 
-Most, lépjen vissza a [fő hálózati sávszélesség cikk](remoteapp-bandwidth.md), vagy helyezze át tesztelés a [hálózati sávszélességet](remoteapp-bandwidthtests.md).
+Most, lépjen vissza toohello [fő hálózati sávszélesség cikk](remoteapp-bandwidth.md), vagy helyezze át az tootesting a [hálózati sávszélességet](remoteapp-bandwidthtests.md).
 
 ## <a name="learn-more"></a>Részletek
 * [Azure RemoteApp a sávszélesség-használat becslése](remoteapp-bandwidth.md)

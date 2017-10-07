@@ -1,12 +1,12 @@
 ---
-title: "Csatlakozás Azure IoT - lecke 1 málna Pi (csomópont): eszközök konfigurálása |} Microsoft Docs"
-description: Configure Raspberry Pi 3 for first-time use and install the Raspbian OS, a free operating system that is optimized for the Raspberry Pi hardware.
+title: "Csatlakozás málna Pi (csomópont) tooAzure IoT - lecke 1: eszközök konfigurálása |} Microsoft Docs"
+description: "Málna Pi 3 konfigurálása az első használatra, és telepítse a hello Raspbian OS, egy ingyenes operációs rendszer, amely hello málna Pi hardver van optimalizálva."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "telepítés raspbian, raspbian letöltése, telepítése raspbian, raspbian beállítás raspberry pi telepítési raspbian, raspberry pi telepítése operációs rendszer, raspberry pi sd-kártya telepítése, málna pi csatlakozásának, csatlakozni raspberry pi raspberry pi kapcsolat"
+keywords: "telepítés raspbian, raspbian letöltési tooinstall raspbian raspbian raspberry a telepítés pi telepítése raspbian raspberry pi telepítése operációs rendszer, raspberry pi sd kártya telepítés raspberry pi csatlakozásának, csatlakozás tooraspberry pi raspberry pi kapcsolat"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 43f7c2cf-f1a5-4dd5-93f0-7e546c6dc91e
@@ -17,105 +17,105 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b848c48157a2310f0eb1d6398f8b9aaa4395d47f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 504a4d2a3f29717f955530812442cce2a78a6448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-your-device"></a>Az eszköz konfigurálása
 ## <a name="what-you-will-do"></a>Mit fog
-Az első használatnál Pi konfigurálja, és a Raspbian operációs rendszer telepítése. Raspbian egy ingyenes operációs rendszer, amely a málna Pi hardver van optimalizálva. Ha bármilyen problémába ütközik, megoldások ugorhatnak a a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+Az első használatnál Pi konfigurálja, és hello Raspbian operációs rendszer telepítéséhez. Raspbian egy ingyenes operációs rendszer, amely hello málna Pi hardver van optimalizálva. Ha bármilyen problémába ütközik, ugorhatnak hello megoldások [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
 
-* Hogyan Raspbian Pi telepítése.
-* Hogyan lehet a Pi bekapcsolására, USB-kábelen keresztül.
-* Hogyan Pi csatlakozhat a hálózati kábel vagy vezeték nélküli hálózat használatával.
-* Hogyan LED hozzáadása a breadboard Pi csatlakoztassa.
+* Hogyan tooinstall a Pi Raspbian.
+* Hogyan toopower Pi mentése USB-kábelen keresztül.
+* Hogyan tooconnect Pi toohello hálózati kábel vagy vezeték nélküli hálózat használatával.
+* Hogyan tooadd egy LED toohello breadboard és tooPi csatlakoztassa.
 
 ## <a name="what-you-will-need"></a>Mit kell
-A művelet végrehajtásához a következő részek a málna Pi 3 Starter Kit kell:
+toocomplete Ez a művelet következő részek a málna Pi 3 Starter Kit hello szüksége:
 
-* A Pi 3 málna tábla
-* A 16 GB-os microSD-kártyán
-* Az 5-volt 2-amp tápegység a 6-mértékű kiszolgálóhasználat micro USB-kábellel
-* A breadboard
+* hello málna Pi 3 tábla
+* hello 16 GB-os microSD-kártyán
+* hello 5-volt 2-amp tápegység hello 6-mértékű kiszolgálóhasználat micro USB-kábellel
+* hello breadboard
 * Összekötő fenyegetéseknek
 * Egy 560 ohmos ellenállás
 * Egy szórt 10 mm LED
-* Az Ethernet-kábel
+* hello kábel
 
 ![Az Starter Kit dolgot](media/iot-hub-raspberry-pi-lessons/lesson1/starter_kit.jpg)
 
 Emellett a következőkre van szükség:
 
-* Vezetékes vagy vezeték nélküli kapcsolat pi való csatlakozáshoz.
-* USB-SD adapter vagy miniSD kártya írása a microSD-kártyán operációsrendszer-képet.
-* Windows, Mac vagy Linux rendszerű számítógép. A számítógép a microSD-kártyán Raspbian telepítéséhez használt.
-* Az internethez, a szükséges eszközöket és a szoftverek letöltéséhez.
+* A Pi tooconnect a vezetékes vagy vezeték nélküli kapcsolat.
+* Egy USB-SD adapter vagy miniSD kártya tooburn hello operációsrendszer-képet hello microSD-kártyán.
+* Windows, Mac vagy Linux rendszerű számítógép. hello számítógép használt tooinstall Raspbian hello microSD-kártyán.
+* Az Internet kapcsolat toodownload hello szükséges eszközök és szoftverek.
 
-## <a name="install-raspbian-on-the-microsd-card"></a>Telepítse a microSD-kártyán Raspbian
-Készítse elő a microSD-kártyán Raspbian kép telepítéséhez.
+## <a name="install-raspbian-on-hello-microsd-card"></a>Hello microSD-kártyán Raspbian telepítése
+Készítse elő a hello microSD-kártyán hello Raspbian lemezkép telepítéséhez.
 
 1. Töltse le a Raspbian.
-   1. [Töltse le](https://www.raspberrypi.org/downloads/raspbian/) Raspbian Jessie a Pixel a .zip fájlt.
-   2. Bontsa ki a Raspbian lemezképet a számítógép egyik mappájába.
-2. A microSD-kártyán Raspbian telepítése.
-   1. [Töltse le](https://www.etcher.io) és telepítse a Etcher SD-kártya író segédprogramot.
-   2. Futtassa a Etcher, és az 1. lépésben válassza ki a kibontott Raspbian kép.
-   3. Jelölje ki a microSD-kártyát meghajtót.
-      Vegye figyelembe, hogy Etcher előfordulhat, hogy már választott ki a megfelelő meghajtó.
-   4. Kattintson a **Flash** a microSD-kártyán Raspbian telepítése.
-   5. Eltávolítja a számítógépről a microSD-kártyán, ha a telepítés befejeződött.
-      Biztonságos a microSD-kártyán közvetlenül eltávolítani, mert Etcher automatikusan kiadása vagy leválasztja a microSD-kártyán befejezése után is.
-   6. A microSD-kártyán beszúrása Pi.
+   1. [Töltse le](https://www.raspberrypi.org/downloads/raspbian/) hello .zip-fájlt a Pixel Raspbian Jessie.
+   2. Bontsa ki a hello Raspbian kép tooa mappát a számítógépén.
+2. Telepítse a Raspbian toohello microSD-kártyán.
+   1. [Töltse le](https://www.etcher.io) és hello Etcher SD-kártya író segédprogram telepítéséhez.
+   2. Futtassa a Etcher és hello Raspbian kép kibontott válassza az 1. lépésben.
+   3. Válassza ki a hello microSD-kártyát meghajtó.
+      Vegye figyelembe, hogy Etcher előfordulhat, hogy már választott hello megfelelő meghajtót.
+   4. Kattintson a **Flash** tooinstall Raspbian toohello microSD-kártyán.
+   5. Ha a telepítés hello microSD-kártyán eltávolítása a számítógépről.
+      Ennek az oka biztonságos tooremove hello microSD-kártyán közvetlenül Etcher automatikusan kiadása vagy leválasztja hello microSD-kártyán befejezését követően.
+   6. A Pi hello microSD-kártyán beilleszteni.
 
-![Az SD-kártya beszúrása](media/iot-hub-raspberry-pi-lessons/lesson1/insert_sdcard.jpg)
+![Hello SD-kártya behelyezése](media/iot-hub-raspberry-pi-lessons/lesson1/insert_sdcard.jpg)
 
 ## <a name="turn-on-pi"></a>A Pi bekapcsolása
-Kapcsolja be a Pi a micro USB-kábelen és a tápegység.
+Kapcsolja be a Pi hello micro USB-kábelen és hello tápegység.
 
 ![Bekapcsolás](media/iot-hub-raspberry-pi-lessons/lesson1/micro_usb_power_on.jpg)
 
 > [!NOTE]
-> Fontos, hogy a tápegység használja a csomag, amely nem alacsonyabb 2A. Győződjön meg arról, hogy a málna rendelkezik-e elegendő power megfelelő működéséhez.
+> Fontos fontos toouse hello tápegység hello Kit legalább 2/a. toomake, hogy a málna megfelelően van-e elegendő power toowork.
 
 ## <a name="enable-ssh"></a>SSH engedélyezése
-A November 2016 kiadás Raspbian rendelkezik az SSH-kiszolgálót, alapértelmezés szerint le van tiltva. Engedélyezze manuálisan kell. Olvassa el a [hivatalos utasításokat](https://www.raspberrypi.org/documentation/remote-access/ssh/) vagy csatlakoztassa egy figyelő, és navigáljon **beállítások -> málna Pi konfigurációs** SSH engedélyezéséhez.
+Frissítésétől hello 2016. novemberi kiadásban Raspbian hello SSH-kiszolgálót alapértelmezés szerint engedélyezve van. Tooenable kell azt manuálisan. Olvassa el a toohello [hivatalos utasításokat](https://www.raspberrypi.org/documentation/remote-access/ssh/) vagy csatlakoztassa egy figyelő, és lépjen túl**beállítások -> málna Pi konfigurációs** tooenable SSH.
 
-## <a name="connect-raspberry-pi-3-to-the-network"></a>Málna Pi 3 csatlakoznak a hálózathoz
-A Pi kapcsolódhatnak egy vezetékes hálózathoz vagy vezeték nélküli hálózathoz. Győződjön meg arról, hogy a Pi és a számítógép ugyanahhoz a hálózathoz csatlakozik. Például Pi is csatlakozik ugyanahhoz a kapcsolóhoz, amely a számítógép csatlakozik.
+## <a name="connect-raspberry-pi-3-toohello-network"></a>Málna Pi 3 toohello hálózat
+Vezetékes vagy vezeték nélküli hálózaton tooa Pi tooa is elérheti. Győződjön meg arról, hogy Pi ugyanaz, mint a számítógép hálózati csatlakoztatott toohello. Például csatlakoztathatja a Pi toohello azonos váltani, hogy a számítógép csatlakoztatva van.
 
-### <a name="connect-to-a-wired-network"></a>Kapcsolódjon vezetékes hálózathoz
-Az Ethernet kábellel Pi a vezetékes hálózathoz való kapcsolódáshoz. A Pi két LED bekapcsolása, ha létrejött a kapcsolat.
+### <a name="connect-tooa-wired-network"></a>Csatlakozás tooa vezetékes hálózathoz
+Hello Ethernet kábel tooconnect vezetékes hálózathoz Pi tooyour használja. hello a Pi két LED bekapcsolása, ha hello kapcsolatot.
 
 ![Csatlakozás az Ethernet-kábel segítségével](media/iot-hub-raspberry-pi-lessons/lesson1/connect_ethernet.jpg)
 
-### <a name="connect-to-a-wireless-network"></a>A vezeték nélküli hálózat
-Kövesse a [utasításokat](https://www.raspberrypi.org/learning/software-guide/wifi/) a Pi a vezeték nélküli hálózathoz való kapcsolódáshoz málna Pi alapját. Ezek az utasítások igényli, hogy először csatlakoztassa a figyelő és a billentyűzet Pi.
+### <a name="connect-tooa-wireless-network"></a>Tooa vezeték nélküli hálózat
+Hajtsa végre a hello [utasításokat](https://www.raspberrypi.org/learning/software-guide/wifi/) hello málna Pi Foundation tooconnect Pi tooyour vezeték nélküli hálózathoz. Ezek az utasítások használatba toofirst csatlakozni a figyelő és a billentyűzet tooPi.
 
-## <a name="connect-the-led-to-pi"></a>Csatlakozás a LED Pi
-A feladat végrehajtásához használja a [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard), az összekötő fenyegetéseknek, a LED-jét, és a ellenállás. Csatlakoztassa őket, hogy a [általános célú bemeneti/kimeneti](https://www.raspberrypi.org/documentation/usage/gpio/) pi (GPIO) portok.
+## <a name="connect-hello-led-toopi"></a>Csatlakozás hello LED tooPi
+toocomplete ezt a feladatot, használjon hello [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard), hello összekötő fenyegetéseknek, hello LED és ellenállás hello. Csatlakoztassa őket toohello [általános célú bemeneti/kimeneti](https://www.raspberrypi.org/documentation/usage/gpio/) pi (GPIO) portok.
 
 ![Breadboard LED és ellenállás](media/iot-hub-raspberry-pi-lessons/lesson1/breadboard_led_resistor.jpg)
 
-1. Csatlakozás a LED rövidebb szakasza **GPIO GND (PIN-kód 6)**.
-2. Csatlakoztassa a LED hosszabb szakasza a ellenállás egy szakasza.
-3. Csatlakoztassa a többi szakasza a ellenállás **GPIO 4 (PIN-kód 7)**.
+1. Hello LED rövidebb szakasza hello túl csatlakozás**GPIO GND (PIN-kód 6)**.
+2. Csatlakozás hello hello LED tooone szakasza hello ellenállás hosszabb szakasza.
+3. Csatlakozás más hello ellenállás szakasza túl hello**GPIO 4 (PIN-kód 7)**.
 
-Ne feledje, hogy a LED polaritás fontos. Ez a beállítás polaritás aktív alacsony gyakran nevezik.
+Vegye figyelembe, hogy hello LED polaritás fontos. Ez a beállítás polaritás aktív alacsony gyakran nevezik.
 
 ![Átalakítókábelre](media/iot-hub-raspberry-pi-lessons/lesson1/pinout_breadboard.png)
 
 Gratulálunk! Sikeresen konfigurálta az Pi.
 
 ## <a name="summary"></a>Összefoglalás
-Ebben a cikkben megtanulta már Raspbian telepítésével, Pi csatlakoznak a hálózathoz, és LED kapcsolódás Pi Pi konfigurálása. Vegye figyelembe, hogy a LED nem még bonyolít le. A következő feladathoz a rendszer telepíti a szükséges eszközök és szoftverek mintaalkalmazás futó Pi előkészítésekor.
+A cikkben, hogy megismerte hogyan tooconfigure helyszerepköreinek Raspbian, kapcsolódó Pi tooa hálózati kapcsolódás egy LED tooPi Pi tartományban. Vegye figyelembe, hogy hello LED nem még bonyolít le. hello következő feladata tooinstall hello szükséges eszközök és szoftverek mintaalkalmazás futó Pi előkészítésekor.
 
 ![Készen áll a hardver](media/iot-hub-raspberry-pi-lessons/lesson1/hardware_ready.jpg)
 
 ## <a name="next-steps"></a>Következő lépések
-[Eszközök](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
+[Hello eszközök beszerzése](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
 

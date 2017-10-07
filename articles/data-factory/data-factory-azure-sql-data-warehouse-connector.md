@@ -1,6 +1,6 @@
 ---
-title: "Adatok másolása az Azure SQL Data Warehouse |} Microsoft Docs"
-description: "Útmutató: Azure SQL Data Warehouse Azure Data Factory használatával és a-adatok másolása"
+title: az Azure SQL Data Warehouse aaaCopy adatok |} Microsoft Docs
+description: "Megtudhatja, hogyan toocopy adatokat az Azure SQL Data Warehouse Azure Data Factory használatával"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: 8cba89e0947646b498af07aa484511bf07bf7b0e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 75bfcf3c99844fc1297ca500107da23cf875e41f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-to-and-from-azure-sql-data-warehouse-using-azure-data-factory"></a>Másolja az adatokat, és az Azure SQL Data Warehouse Azure Data Factory használatával
-Ez a cikk azt ismerteti, hogyan használható a másolási tevékenység során az Azure Data Factory adatok áthelyezése az Azure SQL Data Warehouse és a. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.  
+# <a name="copy-data-tooand-from-azure-sql-data-warehouse-using-azure-data-factory"></a>Adatok tooand másolása az Azure SQL Data Warehouse Azure Data Factory használatával
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toomove adatok Azure SQL Data Warehouse és a másolási tevékenység. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.  
 
 > [!TIP]
-> A legjobb teljesítmény érdekében az adatok betöltése az Azure SQL Data Warehouse polybase szolgáltatást akkor használja. A [használja a PolyBase az adatok betöltése az Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse) szakasz részleteket tartalmaz. A használati esetek bemutatóért lásd: [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md).
+> tooachieve a legjobb teljesítményt, az Azure SQL Data Warehouse PolyBase tooload adatok felhasználásával. Hello [használja a PolyBase tooload adatokat az Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse) szakasz részleteket tartalmaz. A használati esetek bemutatóért lásd: [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md).
 
 ## <a name="supported-scenarios"></a>Támogatott helyzetek
-Adatokat másolhat **az Azure SQL Data Warehouse** tárolja a következő adatokat:
+Adatokat másolhat **az Azure SQL Data Warehouse** toohello a következő adatokat tárolja:
 
 [!INCLUDE [data-factory-supported-sinks](../../includes/data-factory-supported-sinks.md)]
 
-Adatok másolása a következő adatokat tárolja **az Azure SQL Data Warehouse**:
+Adatok másolása a következő adatokat tárolja hello **tooAzure SQL Data Warehouse**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 > [!TIP]
-> Adat másolása az SQL Server vagy az Azure SQL Database az Azure SQL Data Warehouse, ha a tábla nem létezik a tárolási célhelye, amikor Data Factory automatikusan a tábla az SQL Data Warehouse segítségével létrehozható a tábla sémája a forrás-tárolóban. Lásd: [tábla létrehozásához automatikus](#auto-table-creation) részleteiről.
+> Ha az adatok másolása az SQL Server vagy az Azure SQL Database tooAzure SQL Data Warehouse, ha hello tábla nem létezik a hello céltár, adat-előállító automatikusan segítségével hozhat létre hello tábla az SQL Data Warehouse hello séma hello tábla hello forrás adattároló. Lásd: [tábla létrehozásához automatikus](#auto-table-creation) részleteiről.
 
 ## <a name="supported-authentication-type"></a>Támogatott hitelesítési típushoz
 Az Azure SQL Data Warehouse összekötő alapszintű hitelesítés támogatása.
@@ -44,63 +44,63 @@ Az Azure SQL Data Warehouse összekötő alapszintű hitelesítés támogatása.
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, amely helyezi át az adatokat az Azure SQL Data Warehouse és a különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-A legegyszerűbben úgy, hogy hozzon létre egy folyamatot, amely másolja az adatokat és a Azure SQL Data Warehouse-hoz adatok másolása varázsló használatával. Lásd: [oktatóanyag: adatok betöltése az SQL Data Warehouse Data Factory](../sql-data-warehouse/sql-data-warehouse-load-with-data-factory.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate egy folyamatot, amely másolja az adatokat az Azure SQL Data Warehouse és a rendszer toouse hello másolása varázsló. Lásd: [oktatóanyag: adatok betöltése az SQL Data Warehouse Data Factory](../sql-data-warehouse/sql-data-warehouse-load-with-data-factory.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját.
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára.
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban:
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello:
 
 1. Hozzon létre egy **adat-előállító**. Egy adat-előállító tartalmazhat egy vagy több folyamatok. 
-2. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory. Például ha a másolt adatok az az Azure blob storage egy Azure SQL data warehouse, hoz létre a Azure storage-fiók és az Azure SQL data warehouse összekapcsolása a data factory két társított szolgáltatások. Az Azure SQL Data Warehouse jellemző csatolt szolgáltatás tulajdonságait, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz. 
-3. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. A példában az előző lépésben említett hozzon létre egy adatkészlet adja meg a blob-tároló és a bemeneti adatokat tartalmazó mappát. És hoz létre, ha meg szeretné adni a tábla az Azure SQL data warehouse, amely tárolja az adatokat a blob-tároló átmásolja egy másik DataSet adatkészletben. Az Azure SQL Data Warehouse jellemző adatkészlet tulajdonságai, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
-4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett példában BlobSource forrás-és SqlDWSink akár használhatja a fogadó a másolási tevékenységhez. Ehhez hasonlóan az Azure Blob Storage másolása az Azure SQL Data Warehouse, használható SqlDWSource és BlobSink a másolási tevékenység. Az Azure SQL Data Warehouse adott tevékenység Tulajdonságok másolása, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További részletek a tárolóban használatáról a forrás vagy a fogadó a hivatkozásra a adattároló az előző szakaszban.
+2. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban. Adatok másolása az Azure blob storage tooan Azure SQL adatraktárban, akkor hozzon létre például két összekapcsolt szolgáltatások toolink az Azure storage-fiók és az Azure SQL data warehouse tooyour adat-előállítóban. Csatolt szolgáltatás tulajdonságait, amelyek adott tooAzure SQL Data Warehouse, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz. 
+3. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. Hello utolsó lépésében említett hello például létrehoz egy adatkészlet toospecify hello blobtárolót és hello bemeneti adatokat tartalmazó mappát. És egy másik dataset toospecify hello tábla hello Azure SQL data warehouse hello blob-tároló átmásolva hello adatokat tartalmazó hozzon létre. Adatkészlet tulajdonságai, amelyek adott tooAzure SQL Data Warehouse, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
+4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett hello példában BlobSource forrás-és SqlDWSink akár használhatja a fogadó hello másolási tevékenységhez. Hasonlóképpen a Blob Storage Azure SQL Data Warehouse tooAzure másolása, használható SqlDWSource és BlobSink hello másolási tevékenység. A másolási tevékenység tulajdonságait, amelyek adott tooAzure SQL Data Warehouse, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További információkért hogyan toouse egy adatok tárolót, mint a forrás- és a fogadó hivatkozásra hello az adattároló hello előző szakaszban.
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása az Azure SQL Data Warehouse használandó adat-előállító entitások JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-sql-data-warehouse) című szakaszát.
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek az Azure SQL Data Warehouse használt toocopy adatok JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-sql-data-warehouse) című szakaszát.
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory tartozó entitások az Azure SQL Data Warehouse JSON-tulajdonságok:
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott tooAzure SQL Data Warehouse részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat a JSON-elemek szerepelnek Azure SQL Data Warehouse kapcsolódó szolgáltatásra vonatkozó leírást.
+a következő táblázat hello biztosít JSON elemek adott tooAzure SQL Data Warehouse kapcsolódó szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **AzureSqlDW** |Igen |
-| connectionString |Adja meg a connectionString tulajdonság az Azure SQL Data Warehouse-példány való kapcsolódáshoz szükséges adatokat. Csak az alapszintű hitelesítést is támogatja. |Igen |
+| type |hello type tulajdonságot kell beállítani: **AzureSqlDW** |Igen |
+| connectionString |Adjon meg információt hello connectionString tulajdonság szükséges tooconnect toohello Azure SQL Data Warehouse-példányhoz. Csak az alapszintű hitelesítést is támogatja. |Igen |
 
 > [!IMPORTANT]
-> Konfigurálása [Azure SQL Database-tűzfal](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) és az adatbázis-kiszolgálót [a kiszolgálóhoz való hozzáféréshez Azure-szolgáltatások engedélyezése](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure). Ezenkívül az adatokat az Azure SQL Data Warehouse a külső Azure többek között a helyszíni adatforrásokból a data factory átjáróval másolása, az IP-címtartományt a gép, amely adatokat küld az Azure SQL Data Warehouse konfigurálni.
+> Konfigurálása [Azure SQL Database-tűzfal](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) és adatbázis-kiszolgáló túl hello[engedélyezése az Azure-szolgáltatások tooaccess hello server](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure). Ezenkívül az adatok tooAzure SQL Data Warehouse másolása a külső Azure többek között a helyszíni adatforrásokból a data factory átjáróval, az IP-címtartományt, amely az SQL Data Warehouse adatok tooAzure küld hello gép konfigurálni.
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
 
-A typeProperties szakasz más adatkészlet egyes típusai és információkat nyújt azokról az adattárban adatok helyét. A **typeProperties** szakasz az adatkészlet típusú **AzureSqlDWTable** tulajdonságai a következők:
+hello typeProperties szakasz más adatkészlet egyes típusai és hello adattár hello adatok hello helyét ismerteti. Hello **typeProperties** típusú hello adatkészlet szakasz **AzureSqlDWTable** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla vagy nézet, az Azure SQL Data Warehouse-adatbázis hivatkozik a társított szolgáltatás neve. |Igen |
+| tableName |Hello tábla vagy nézet hello Azure SQL Data Warehouse-adatbázis, amely a társított szolgáltatás hello nevére hivatkozik. |Igen |
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
 
 > [!NOTE]
-> A másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
+> hello másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
 
-Mivel a tevékenység typeProperties szakaszában elérhető tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Mivel a hello hello tevékenység részében typeProperties rendelkezésre álló tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
 ### <a name="sqldwsource"></a>SqlDWSource
-Ha a forrás típusa van **SqlDWSource**, a következő tulajdonságok érhetők el **typeProperties** szakasz:
+Ha a forrás típusa van **SqlDWSource**, hello a következő tulajdonságok érhetők el **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem |
-| sqlReaderStoredProcedureName |A tárolt eljárás, amely adatokat olvas a forrástábla neve. |A tárolt eljárás neve. Az utolsó SQL-utasítás a következő tárolt eljárást a SELECT utasítással kell lennie. |Nem |
-| storedProcedureParameters |A tárolt eljárás paramétereit. |A név/érték párok. Nevét és a kis-és a paraméterek meg kell egyeznie a nevek és a kis-és nagybetűhasználat a tárolt eljárás paramétereit. |Nem |
+| sqlReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem |
+| sqlReaderStoredProcedureName |Hello neve tárolt eljárást, amely hello forrástábla olvassa be az adatokat. |Hello neve tárolt eljárást. hello utolsó SQL-utasítás hello tárolt eljárás SELECT utasítással kell lennie. |Nem |
+| storedProcedureParameters |Hello paramétereinek tárolt eljárást. |A név/érték párok. Nevek és a kis-és paraméterek meg kell egyeznie hello nevét és a kis-és nagybetűhasználat hello tárolt eljárás paramétereit. |Nem |
 
-Ha a **sqlReaderQuery** van megadva a SqlDWSource, a másolási tevékenység fut ez a lekérdezés az adatok lekérdezése az Azure SQL Data Warehouse forrás.
+Ha hello **sqlReaderQuery** megadott hello SqlDWSource, hello másolási tevékenység fut ez a lekérdezés hello Azure SQL Data Warehouse forrásadatok tooget hello.
 
-Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el).
+Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el).
 
-Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet JSON struktúrában szakaszában meghatározott oszlopokat futtatni az Azure SQL Data Warehouse-lekérdezés összeállításához használt. Példa: `select column1, column2 from mytable`. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello adatkészlet JSON hello struktúra szakaszban meghatározott hello oszlopok használt toobuild egy lekérdezés toorun elleni hello Azure SQL Data Warehouse. Példa: `select column1, column2 from mytable`. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 
 #### <a name="sqldwsource-example"></a>SqlDWSource – példa
 
@@ -114,7 +114,7 @@ Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet 
     }
 }
 ```
-**A tárolt eljárás definíciója:**
+**hello tárolt eljárás definíciója:**
 
 ```SQL
 CREATE PROCEDURE CopyTestSrcStoredProcedureWithParameters
@@ -134,19 +134,19 @@ GO
 ```
 
 ### <a name="sqldwsink"></a>SqlDWSink
-**SqlDWSink** támogatja a következő tulajdonságokkal:
+**SqlDWSink** következő tulajdonságai hello támogatja:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. További információkért lásd: [ismételhetőség szakasz](#repeatability-during-copy). |A lekérdezési utasítást. |Nem |
-| allowPolyBase |Azt jelzi, hogy (ha alkalmazható), a PolyBase használata helyett BULKINSERT mechanizmus. <br/><br/> **Az ajánlott módszer az adatok betöltése az SQL Data Warehouse PolyBase a használata.** Lásd: [használja a PolyBase az adatok betöltése az Azure SQL Data Warehouse](#use-polybase-to-load-data-into-azure-sql-data-warehouse) szakaszban a korlátozások és részleteit. |True (Igaz) <br/>Hamis (alapértelmezés) |Nem |
-| kapcsolódó polyBaseSettings |Egy csoport, amely tulajdonságok megadott, amikor a **allowPolybase** tulajdonsága **igaz**. |&nbsp; |Nem |
-| rejectValue |Megadja a szám vagy is el kell utasítani, mielőtt a lekérdezés nem sikerült sorokat százalékát. <br/><br/>További információ a PolyBase utasítsa el a beállítások elemre a **argumentumok** szakasza [külső tábla létrehozása (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) témakör. |0 (alapértelmezés), 1, 2... |Nem |
-| rejectType |Határozza meg, hogy a rejectValue beállítás konstans értéket vagy százalékában van megadva. |Érték (alapértelmezett), százalékos aránya |Nem |
-| rejectSampleValue |Mielőtt a PolyBase újraszámítja a visszautasított sorok százalékát beolvasandó sorok számát határozza meg. |1, 2, … |Igen, ha **rejectType** van **százalékos aránya** |
-| useTypeDefault |Megadja, hogyan legyen kezelve tagolt szövegfájlok a hiányzó értékeket, amikor a PolyBase kér le adatokat a szövegfájlból.<br/><br/>Ezt a tulajdonságot, az argumentumok ismertető részben olvashat [létrehozása külső FÁJLFORMÁTUM (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |IGAZ, hamis (alapértelmezés) |Nem |
-| WriteBatchSize |Adatok beszúrása a SQL táblázatba, amikor a puffer mérete eléri writeBatchSize |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. További információkért lásd: [ismételhetőség szakasz](#repeatability-during-copy). |A lekérdezési utasítást. |Nem |
+| allowPolyBase |Azt jelzi, hogy (ha alkalmazható) PolyBase toouse BULKINSERT mechanizmus helyett. <br/><br/> **A PolyBase használata javasolt módja tooload adatokat az SQL Data Warehouse hello.** Lásd: [használja a PolyBase tooload adatokat az Azure SQL Data Warehouse](#use-polybase-to-load-data-into-azure-sql-data-warehouse) szakaszban a korlátozások és részleteit. |True (Igaz) <br/>Hamis (alapértelmezés) |Nem |
+| kapcsolódó polyBaseSettings |Egy csoport lehet megadni, ha hello tulajdonságok **allowPolybase** tulajdonsága túl**igaz**. |&nbsp; |Nem |
+| rejectValue |Megadja a hello számát vagy a sorok, amelyekre el lehet utasítani, mielőtt hello lekérdezés nem sikerült százalékát. <br/><br/>Bővebben a hello PolyBase elutasítása hello lehetőségeit további **argumentumok** szakasza [külső tábla létrehozása (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) témakör. |0 (alapértelmezés), 1, 2... |Nem |
+| rejectType |Meghatározza, hogy hello rejectValue beállítás konstans értéket vagy százalékában van megadva. |Érték (alapértelmezett), százalékos aránya |Nem |
+| rejectSampleValue |Határozza meg, hogy hello sorok tooretrieve előtt hello PolyBase újraszámítja a visszautasított sorok hello százalékát. |1, 2, … |Igen, ha **rejectType** van **százalékos aránya** |
+| useTypeDefault |Itt adhatja meg, hogyan értékek a hiányzó toohandle tagolt-e szövegfájlok amikor PolyBase hello szövegfájlból kér le adatokat.<br/><br/>Ezt a tulajdonságot hello argumentumok című szakaszában olvashat [létrehozása külső FÁJLFORMÁTUM (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx). |IGAZ, hamis (alapértelmezés) |Nem |
+| WriteBatchSize |Adatok beszúrása hello SQL táblázatba, amikor hello puffer mérete eléri writeBatchSize |Egész szám (sorok száma) |Nem (alapértelmezett: 10000) |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> Példa: "00: 30:00" (30 perc). |Nem |
 
 #### <a name="sqldwsink-example"></a>SqlDWSink – példa
 
@@ -157,13 +157,13 @@ GO
 }
 ```
 
-## <a name="use-polybase-to-load-data-into-azure-sql-data-warehouse"></a>Adatok betöltése az Azure SQL Data Warehouse PolyBase segítségével
-Használatával  **[PolyBase](https://docs.microsoft.com/sql/relational-databases/polybase/polybase-guide)**  egy hatékony módszer a nagy mennyiségű adatok betöltését az Azure SQL Data Warehouse nagy átviteli sebességgel. A teljesítmény a nagy nyereség helyett az alapértelmezett BULKINSERT mechanizmus a PolyBase használatával tekintheti meg. Lásd: [teljesítmény hivatkozási szám másolása](data-factory-copy-activity-performance.md#performance-reference) a részletes összehasonlítását. A használati esetek bemutatóért lásd: [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md).
+## <a name="use-polybase-tooload-data-into-azure-sql-data-warehouse"></a>Az Azure SQL Data Warehouse PolyBase tooload adatok használata
+Használatával  **[PolyBase](https://docs.microsoft.com/sql/relational-databases/polybase/polybase-guide)**  egy hatékony módszer a nagy mennyiségű adatok betöltését az Azure SQL Data Warehouse nagy átviteli sebességgel. A nagy nyereség hello átviteli sebességének hello alapértelmezett BULKINSERT mechanizmus helyett a PolyBase használatával tekintheti meg. Lásd: [teljesítmény hivatkozási szám másolása](data-factory-copy-activity-performance.md#performance-reference) a részletes összehasonlítását. A használati esetek bemutatóért lásd: [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md).
 
-* Ha a forrás adatok **Azure Blob vagy az Azure Data Lake Store**, és a formátuma nem kompatibilis a PolyBase, közvetlenül másolhatja az Azure SQL Data Warehouse PolyBase használatával. Lásd:  **[közvetlen másolása a PolyBase használatával](#direct-copy-using-polybase)**  adatokkal.
-* Ha a forrás-tárolót és formátum eredetileg nem támogatott a PolyBase által, használhatja a  **[előkészített másolása a PolyBase használatával](#staged-copy-using-polybase)**  inkább a beállítást. Is biztosít, nagyobb átviteli sebesség automatikusan adatok PolyBase-kompatibilis formátumra való konvertálása, és az adatok tárolása az Azure Blob Storage tárolóban. Majd betölti az SQL Data Warehouse-adatok.
+* Ha a forrás adatok **Azure Blob vagy az Azure Data Lake Store**, és hello formátum kompatibilis a PolyBase, tooAzure SQL Data Warehouse PolyBase segítségével közvetlenül másolhatja. Lásd:  **[közvetlen másolása a PolyBase használatával](#direct-copy-using-polybase)**  adatokkal.
+* Ha a forrás-tárolót és formátum eredetileg nem támogatott a PolyBase által, használhatja a hello  **[előkészített másolása a PolyBase használatával](#staged-copy-using-polybase)**  inkább a beállítást. Is biztosít, nagyobb átviteli sebesség automatikusan hello adatok PolyBase-kompatibilis formátumra konvertálása és hello adattárolás az Azure Blob Storage tárolóban. Majd betölti az SQL Data Warehouse-adatok.
 
-Állítsa be a `allowPolyBase` tulajdonságot **igaz** az Azure Data Factoryben az adatok másolása az Azure SQL Data Warehouse polybase szolgáltatást akkor használja a következő példában látható módon. AllowPolyBase értéke igaz, amikor a PolyBase konkrét tulajdonságok használatával megadhatja a `polyBaseSettings` tulajdonságcsoport. Tekintse meg a [SqlDWSink](#SqlDWSink) szakasz kapcsolódó polyBaseSettings használható tulajdonságokról vonatkozó további információért.
+Set hello `allowPolyBase` tulajdonság túl**igaz** a következő példa az Azure Data Factory toouse PolyBase toocopy adatokat az Azure SQL Data Warehouse hello látható módon. Ha úgy állítja be a allowPolyBase tootrue, PolyBase tulajdonságokat hello segítségével megadhatja `polyBaseSettings` tulajdonságcsoport. Lásd: hello [SqlDWSink](#SqlDWSink) szakasz kapcsolódó polyBaseSettings használható tulajdonságokról vonatkozó további információért.
 
 ```JSON
 "sink": {
@@ -180,19 +180,19 @@ Használatával  **[PolyBase](https://docs.microsoft.com/sql/relational-database
 ```
 
 ### <a name="direct-copy-using-polybase"></a>A PolyBase használatával közvetlen másolása
-SQL Data Warehouse PolyBase közvetlenül támogatja Azure-Blob és az Azure Data Lake Store (egyszerű szolgáltatásnév) forrásként, és az adott fájl formátum követelményeinek. Ha a forrásadatok megfelel a jelen szakaszban bemutatott, közvetlenül átmásolhatja forrás adattár az Azure SQL Data Warehouse PolyBase használatával. Ellenkező esetben használhatja [előkészített másolása a PolyBase használatával](#staged-copy-using-polybase).
+SQL Data Warehouse PolyBase közvetlenül támogatja Azure-Blob és az Azure Data Lake Store (egyszerű szolgáltatásnév) forrásként, és az adott fájl formátum követelményeinek. Ha a forrásadatok megfelel a jelen szakaszban ismertetett hello feltételeknek, közvetlenül átmásolhatja forrás adatokat tároló tooAzure SQL Data Warehouse PolyBase használatával. Ellenkező esetben használhatja [előkészített másolása a PolyBase használatával](#staged-copy-using-polybase).
 
 > [!TIP]
-> Adatok másolása Data Lake Store az SQL Data Warehouse hatékonyan, további információhoz [Azure Data Factory megkönnyíti még és kényelmes elvégzésével nyújt betekintést az adatokat, az SQL Data Warehouse szolgáltatással Data Lake Store használatakor](https://blogs.msdn.microsoft.com/azuredatalake/2017/04/08/azure-data-factory-makes-it-even-easier-and-convenient-to-uncover-insights-from-data-when-using-data-lake-store-with-sql-data-warehouse/).
+> Data Lake Store tooSQL adatraktár toocopy adatait hatékonyan, további információhoz [Azure Data Factory teszi egyszerűbbé és kényelmes toouncover információkat kaphat a adatok akkor is igaz, Data Lake Store használata az SQL Data Warehouse szolgáltatással](https://blogs.msdn.microsoft.com/azuredatalake/2017/04/08/azure-data-factory-makes-it-even-easier-and-convenient-to-uncover-insights-from-data-when-using-data-lake-store-with-sql-data-warehouse/).
 
-A feltételeknek nem felel meg, ha az Azure Data Factory ellenőrzi a beállításait, és automatikusan visszaáll az adatátvitelt jelölik a BULKINSERT mechanizmus.
+Hello feltételeknek nem felel meg, ha az Azure Data Factory hello beállítások ellenőrzi, és automatikusan visszaáll toohello BULKINSERT mechanizmus hello adatátvitelt jelölik.
 
 1. **Forrás társított szolgáltatás** típusa: **AzureStorage** vagy **szolgáltatás egyszerű hitelesítéssel AzureDataLakeStore**.  
-2. A **bemeneti adatkészlet** típusa: **AzureBlob** vagy **AzureDataLakeStore**, és írja be a format `type` tulajdonságai **OrcFormat**, vagy **szöveges** , a következő beállításokat:
+2. Hello **bemeneti adatkészlet** típusa: **AzureBlob** vagy **AzureDataLakeStore**, és a formátum típusa hello `type` tulajdonságai **OrcFormat** , vagy **szöveges** a következő konfigurációk hello:
 
    1. `rowDelimiter`kell  **\n** .
-   2. `nullValue`értéke **üres karakterlánc** (""), vagy `treatEmptyAsNull` értéke **igaz**.
-   3. `encodingName`értéke **utf-8**, amely **alapértelmezett** érték.
+   2. `nullValue`értéke túl**üres karakterlánc** (""), vagy `treatEmptyAsNull` értéke túl**igaz**.
+   3. `encodingName`értéke túl**utf-8**, amely **alapértelmezett** érték.
    4. `escapeChar`, `quoteChar`, `firstRowAsHeader`, és `skipLineCount` nincs megadva.
    5. `compression`lehet **tömörítés**, **GZip**, vagy **Deflate**.
 
@@ -213,23 +213,23 @@ A feltételeknek nem felel meg, ha az Azure Data Factory ellenőrzi a beállít�
     },
     ```
 
-3. Nincs nincs `skipHeaderLineCount` beállítás alatt **BlobSource** vagy **AzureDataLakeStore** a másolási tevékenységhez, a folyamat.
-4. Nincs nincs `sliceIdentifierColumnName` beállítás alatt **SqlDWSink** a másolási tevékenységhez, a folyamat. (A PolyBase garantálja, hogy minden adat frissül, vagy nem frissül, az egyszeri futtatás. Eléréséhez **ismételhetőség**, használhat `sqlWriterCleanupScript`).
-5. Nincs nincs `columnMapping` használatban lévő a kapcsolódó, a másolási tevékenység.
+3. Nincs nincs `skipHeaderLineCount` beállítás alatt **BlobSource** vagy **AzureDataLakeStore** hello másolási tevékenység hello-feldolgozási folyamat számára.
+4. Nincs nincs `sliceIdentifierColumnName` beállítás alatt **SqlDWSink** hello másolási tevékenység hello-feldolgozási folyamat számára. (A PolyBase garantálja, hogy minden adat frissül, vagy nem frissül, az egyszeri futtatás. tooachieve **ismételhetőség**, használhat `sqlWriterCleanupScript`).
+5. Nincs nincs `columnMapping` a másolási tevékenység társított hello használja.
 
 ### <a name="staged-copy-using-polybase"></a>A PolyBase használatával előkészített másolása
-A forrásadatok nem felel meg az előző szakaszban bemutatott, amikor az adatok másolását az átmeneti átmeneti Azure Blob Storage (nem lehet a prémium szintű Storage) keresztül is engedélyezheti. Ebben az esetben Azure Data Factory automatikusan végez átalakítások adatok formátuma elégíteni PolyBase, akkor az SQL Data Warehouse-, illetve utolsó karbantartás az adatok betöltése a PolyBase segítségével az adatok ideiglenes adatait a blobtárolóból. Lásd: [előkészített másolási](data-factory-copy-activity-performance.md#staged-copy) átmeneti Azure Blob keresztül az adatok másolásának működéséről, általában a részletekért.
+A forrásadatok hello előző szakaszban bemutatott hello feltételeknek nem felel meg, amikor az adatok másolását az átmeneti átmeneti Azure Blob Storage (nem lehet a prémium szintű Storage) keresztül is engedélyezheti. Ebben az esetben Azure Data Factory automatikusan átalakítások végez hello toomeet adatok formátuma vonatkozó követelmények a PolyBase, majd használja a PolyBase tooload adatokat az SQL Data Warehouse, és a legutóbbi karbantartás hello blobtárolóból ideiglenes adatait. Lásd: [előkészített másolási](data-factory-copy-activity-performance.md#staged-copy) átmeneti Azure Blob keresztül az adatok másolásának működéséről, általában a részletekért.
 
 > [!NOTE]
-> Ha az Azure SQL Data Warehouse PolyBase használatával tárolja az adatok másolását egy helyszíni adatokból, és átmeneti, ha az adatkezelési átjáró verziója nem éri el 2.4, JRE (Java Runtime Environment) szükséges az átjáró gépen, amely használatával a forrásadatok megfelelő formátumba. Javasoljuk, hogy az ilyen függőségi elkerülése érdekében az átjárót a legújabb verzióra frissít.
+> Ha az Azure SQL Data Warehouse PolyBase használatával tárolja az adatok másolását egy helyszíni adatokból, és átmeneti, ha az adatkezelési átjáró verziója nem éri el 2.4, JRE (Java Runtime Environment) megadása szükséges. az átjáró számítógépre, amely használt tootransform a forrásadatok van megfelelő formátumba. Javasoljuk, hogy az átjáró toohello legújabb tooavoid ilyen függőségi frissíti.
 >
 
-Ez a funkció használatához hozzon létre egy [Azure Storage társított szolgáltatásnak](data-factory-azure-blob-connector.md#azure-storage-linked-service) , amely hivatkozik, amely rendelkezik az átmeneti a blob storage Azure Storage-fiókot, majd adja meg a `enableStaging` és `stagingSettings` látható módon a másolási tevékenység tulajdonságai a következő kódot:
+toouse ezt a beállítást, hozzon létre egy [Azure Storage társított szolgáltatásnak](data-factory-azure-blob-connector.md#azure-storage-linked-service) toohello Azure Storage-fiókot, amely rendelkezik hello ideiglenes blob-tároló hivatkozik, amely, majd adja meg a hello `enableStaging` és `stagingSettings` hello másolási tevékenység tulajdonságai ahogy az a következő kód hello:
 
 ```json
 "activities":[  
 {
-    "name": "Sample copy activity from SQL Server to SQL Data Warehouse via PolyBase",
+    "name": "Sample copy activity from SQL Server tooSQL Data Warehouse via PolyBase",
     "type": "Copy",
     "inputs": [{ "name": "OnpremisesSQLServerInput" }],
     "outputs": [{ "name": "AzureSQLDWOutput" }],
@@ -251,21 +251,21 @@ Ez a funkció használatához hozzon létre egy [Azure Storage társított szolg
 ```
 
 ## <a name="best-practices-when-using-polybase"></a>A PolyBase használata esetén ajánlott eljárások
-Az alábbi szakaszokban további gyakorlati tanácsok a meglévők közül ismertetett [ajánlott eljárások az Azure SQL Data Warehouse](../sql-data-warehouse/sql-data-warehouse-best-practices.md).
+hello következő szakaszokban további ajánlott eljárások toohello azokat, a említett [ajánlott eljárások az Azure SQL Data Warehouse](../sql-data-warehouse/sql-data-warehouse-best-practices.md).
 
 ### <a name="required-database-permission"></a>Adatbázis szükséges engedéllyel
-PolyBase használatához igényel az adatok betöltése az SQL Data Warehouse használt felhasználó rendelkezik-e a ["Vezérlő" engedély](https://msdn.microsoft.com/library/ms191291.aspx) a célként megadott adatbázison. Egyik módja, hogy, hogy a felhasználó hozzáadása "db_owner" szerepkör tagjaként. Útmutató a következő ehhez [ebben a szakaszban](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md#authorization).
+toouse PolyBase, igényel hello felhasználó éppen használt tooload adatokat az SQL Data Warehouse rendelkezik hello ["Vezérlő" engedély](https://msdn.microsoft.com/library/ms191291.aspx) hello cél adatbázison. Egyirányú tooachieve, amely tooadd "db_owner" szerepkör tagjaként felhasználó. Megtudhatja, hogyan toodo, amelyek a következő [ebben a szakaszban](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md#authorization).
 
 ### <a name="row-size-and-data-type-limitation"></a>Írja be korlátozás sorméret és adatok
-A Polybase terhelések esetén egyre korlátozódik betöltése sort is kisebb, mint **1 MB** és VARCHR(MAX), NVARCHAR(MAX) vagy VARBINARY(MAX) nem tölthető be. Tekintse meg [Itt](../sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md#loads).
+A Polybase terhelések korlátozódnak tooloading sort is kisebb, mint **1 MB** és nem tölthető be a tooVARCHR(MAX), NVARCHAR(MAX) vagy VARBINARY(MAX). Tekintse meg a túl[Itt](../sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md#loads).
 
-Ha 1 MB-nál nagyobb méretű sorokat tartalmazó forrásadatok, érdemes lehet a forrástáblákból függőleges felosztása több kis megfelelően, ha azok legnagyobb sor mérete nem haladja meg a határértéket. A kisebb táblák majd lehet betölteni. a PolyBase használatával, és egyesíti az Azure SQL Data Warehouse.
+Ha 1 MB-nál nagyobb méretű sorokat tartalmazó forrásadatok, előfordulhat, hogy a kívánt toosplit hello forrástáblákból függőleges több kis állók közül. Ha hello legnagyobb sorainak méretéhez azok nem haladja meg a hello korlátot. hello kisebb táblák majd tölthetők be a PolyBase használatával, és egyesíti az Azure SQL Data Warehouse.
 
 ### <a name="sql-data-warehouse-resource-class"></a>Az SQL Data Warehouse erőforrás osztály
-Lehetséges legjobb teljesítmény elérése érdekében fontolja meg a felhasználói adatok betöltése az SQL Data Warehouse polybase használt nagyobb erőforrásosztály hozzárendelése. Útmutató a következő ehhez [módosíthatja a felhasználói erőforrás osztály példa](../sql-data-warehouse/sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example).
+tooachieve legjobb lehetséges átviteli, fontolja meg a tooassign nagyobb erőforrás osztály toohello felhasználó éppen használt tooload adatokat az SQL Data Warehouse polybase. Megtudhatja, hogyan toodo, amelyek a következő [módosíthatja a felhasználói erőforrás osztály példa](../sql-data-warehouse/sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example).
 
 ### <a name="tablename-in-azure-sql-data-warehouse"></a>az Azure SQL Data Warehouse táblanév
-A következő táblázat példákat tartalmaz a megadása a **tableName** tulajdonságot az adatkészlet JSON-séma-és táblanevet különböző kombinációjához.
+hello alábbi táblázat példákat hogyan toospecify hello **tableName** tulajdonságot az adatkészlet JSON-séma-és táblanevet különböző kombinációjához.
 
 | Megadott adatbázissémát | Tábla neve | tableName JSON tulajdonsága |
 | --- | --- | --- |
@@ -274,24 +274,24 @@ A következő táblázat példákat tartalmaz a megadása a **tableName** tulajd
 | dbo |My.Table |[My.Table] vagy [dbo]. [My.Table] |
 | dbo1 |My.Table |[dbo1]. [My.Table] |
 
-A következő hibát látja, ha problémát a tableName tulajdonsághoz megadott érték lehet. Lásd a megfelelő módon adhatja meg a tableName JSON tulajdonság értékei a táblázatban.  
+Ha megjelenik a következő hiba hello, problémát hello tableName tulajdonsága megadott hello érték lehet. Hello megfelelő módon toospecify hello tableName JSON tulajdonság értékei a hello táblázatban találja.  
 
 ```
 Type=System.Data.SqlClient.SqlException,Message=Invalid object name 'stg.Account_test'.,Source=.Net SqlClient Data Provider
 ```
 
 ### <a name="columns-with-default-values"></a>Az alapértelmezett értékekkel oszlopok
-A Data Factory PolyBase szolgáltatás jelenleg csak az azonos számú oszlopot, mint a céltábla fogad el. Tegyük fel például, négy oszlopokkal rendelkező táblát rendelkezik, és az egyik legyen alapértelmezett értékkel van definiálva. A bemeneti adatok továbbra is tartalmaznia kell a négy oszlopot. A 3-oszlop a bemeneti adatkészletet biztosító eredményezné az alábbihoz hasonló hiba:
+Jelenleg a PolyBase szolgáltatás adat-előállítóban csak fogad hello azonos számú oszlopot hello céltábla hasonlóan. Tegyük fel például, négy oszlopokkal rendelkező táblát rendelkezik, és az egyik legyen alapértelmezett értékkel van definiálva. hello bemeneti adatok továbbra is tartalmaznia kell a négy oszlopot. A 3-oszlop a bemeneti adatkészletet biztosító eredményezné egy hasonló toohello hiba, a következő üzenetet:
 
 ```
-All columns of the table must be specified in the INSERT BULK statement.
+All columns of hello table must be specified in hello INSERT BULK statement.
 ```
-NULL érték az alapértelmezett érték egy speciális formája, amely. Ha az oszlop nullázható, az adott oszlop a bemeneti adatokat (a blob) üres lehet (nem hiányzik a bemeneti adatkészlet). A PolyBase NULL számukra az Azure SQL Data Warehouse szúrja be.  
+NULL érték az alapértelmezett érték egy speciális formája, amely. Ha hello oszlop nullázható, hello bemeneti adatait (blob) az adott oszlop lehet üres (nem hiányzik hello bemeneti adatkészlet). A PolyBase számukra NULL hello Azure SQL Data Warehouse szúrja be.  
 
 ## <a name="auto-table-creation"></a>Automatikus tábla létrehozásához
-Ha másolása varázsló segítségével adatok másolása az SQL Server vagy az Azure SQL Database az Azure SQL Data warehouse-ba, és a táblázat, amely megfelel a következő forrástábla nem szerepel a rendeltetési tárolási, adat-előállító automatikusan létrehozásához a tábla az adatraktár u a forrás táblaséma folyamata.
+Ha az SQL Server adatainak másolása varázsló toocopy használ, vagy az Azure SQL Database tooAzure SQL Data Warehouse és hello tartozó tábla toohello forrástábla nem létezik a hello céltár, adat-előállító automatikusan létrehozhat hello tábla hello az adatraktár hello forrás táblaséma használatával.
 
-Adat-előállító hoz létre a tábla a céltár a tábla néven a forrás-tárolóban. Az adattípusok oszlopok a következő típusleképezéshez alapján választják ki. Ha szükséges, az azonosított inkompatibilitásokat javításához a forrás- és tárolók közötti típuskonverziók hajt végre. Ciklikus multiplexelés elosztása is használja.
+Adat-előállító hello céltár hello táblát hoz létre a hello ugyanaz a tábla neve hello forrás adattár. hello adattípusok oszlopok a következő típusleképezéshez hello alapján választják ki. Szükség esetén elvégez típus átalakítások toofix között a forrás és cél tárolja az azonosított inkompatibilitásokat. Ciklikus multiplexelés elosztása is használja.
 
 | Forrás SQL-adatbázis oszlop típusa | Cél SQL DW oszlop típusa (méretének korlátozása) |
 | --- | --- |
@@ -307,34 +307,34 @@ Adat-előállító hoz létre a tábla a céltár a tábla néven a forrás-tár
 | Real | Real |
 | Kis pénz típusú értéknél | Kis pénz típusú értéknél |
 | Bináris | Bináris |
-| varbinary | Varbinary (legfeljebb 8000) |
+| varbinary | Varbinary (felfelé too8000) |
 | Dátum | Dátum |
 | Dátum és idő | Dátum és idő |
 | DateTime2 | DateTime2 |
 | Time | Time |
 | DateTimeOffset | DateTimeOffset |
 | SmallDateTime | SmallDateTime |
-| Szöveg | Varchar (legfeljebb 8000) |
-| NText | NVarChar (legfeljebb 4000) |
-| Kép | VarBinary (legfeljebb 8000) |
+| Szöveg | Varchar (felfelé too8000) |
+| NText | NVarChar (felfelé too4000) |
+| Kép | VarBinary (felfelé too8000) |
 | Egyedi azonosító | Egyedi azonosító |
 | Karakter | Karakter |
 | NChar | NChar |
-| VarChar | VarChar (legfeljebb 8000) |
-| NVarChar | NVarChar (legfeljebb 4000) |
-| XML | Varchar (legfeljebb 8000) |
+| VarChar | VarChar (felfelé too8000) |
+| NVarChar | NVarChar (felfelé too4000) |
+| XML | Varchar (felfelé too8000) |
 
 [!INCLUDE [data-factory-type-repeatability-for-sql-sources](../../includes/data-factory-type-repeatability-for-sql-sources.md)]
 
 ## <a name="type-mapping-for-azure-sql-data-warehouse"></a>Írja be az Azure SQL Data Warehouse leképezése
-Ahogyan az a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, a másolási tevékenység eseményforrás-típusnak gyűjtése típusa a következő 2. lépés – a módszert használja az automatikus típuskonverziók hajtja végre:
+A hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység hajt végre automatikus típuskonverziók származó típusok toosink típusait a 2. lépés – a módszert követve hello:
 
-1. A natív eseményforrás-típusnak átalakítása .NET-típusa
-2. .NET-típus konvertálása natív a fogadó típusa
+1. Natív típusok too.NET forrástípus konvertálása
+2. .NET típusú toonative a fogadó típusa konvertálása
 
-Ha adatok áthelyezése az Azure SQL Data Warehouse &, a következő megfeleltetéseket használ az SQL-típus a .NET-típus, és ez fordítva is igaz.
+Ha túl & Azure SQL Data Warehouse az adatok áthelyezése, hello következő megfeleltetéseket használ SQL too.NET típusának, és ez fordítva is igaz.
 
-Leképezése nem ugyanaz, mint a [SQL Server adattípus-hozzárendelése az ADO.NET](https://msdn.microsoft.com/library/cc716729.aspx).
+hello leképezési legyen, mint hello [SQL Server adattípus-hozzárendelése az ADO.NET](https://msdn.microsoft.com/library/cc716729.aspx).
 
 | SQL Server adatbázismotor típusa | .NET-keretrendszer típusa |
 | --- | --- |
@@ -371,13 +371,13 @@ Leképezése nem ugyanaz, mint a [SQL Server adattípus-hozzárendelése az ADO.
 | varchar |Karakterlánc, Char] |
 | xml |XML |
 
-A másolási tevékenység definíciójának fogadó adatkészletből oszlopok forrás adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+Forrás adatkészlet toocolumns hello másolási tevékenységdefinícióban fogadó adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
-## <a name="json-examples-for-copying-data-to-and-from-sql-data-warehouse"></a>Adatok másolása és az SQL Data Warehouse JSON példák
-Az alábbi példák megadják minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Adatok másolása az Azure SQL Data warehouse-bA és az Azure Blob Storage mutatnak. Azonban az adatok átmásolhatók **közvetlenül** a forrásokban, sem a megadott nyelő [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.
+## <a name="json-examples-for-copying-data-tooand-from-sql-data-warehouse"></a>Az adatok tooand másolását az SQL Data Warehouse JSON példák
+hello alábbi példák megadják minta JSON-definíciók használható toocreate folyamat használatával [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azok hogyan toocopy adatok tooand az Azure SQL Data Warehouse és az Azure Blob Storage tárolóban. Azonban az adatok átmásolhatók **közvetlenül** bármelyik megadott hello nyelő források tooany [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.
 
-### <a name="example-copy-data-from-azure-sql-data-warehouse-to-azure-blob"></a>Példa: Adatok másolása az Azure SQL Data Warehouse az Azure-Blobba
-A minta a következő adat-előállító entitások határozza meg:
+### <a name="example-copy-data-from-azure-sql-data-warehouse-tooazure-blob"></a>Példa: Adatok másolása az Azure SQL Data Warehouse tooAzure Blob
+hello minta meghatározza, hogy a következő adat-előállító entitások hello:
 
 1. A társított szolgáltatás típusa [AzureSqlDW](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -385,7 +385,7 @@ A minta a következő adat-előállító entitások határozza meg:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [SqlDWSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-A minta idősorozat (óránkénti, napi stb) adatainak másolása az Azure SQL Data Warehouse-adatbázis egy táblából egy blobba óránként. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta idősorozat (óránkénti, napi stb) adatainak másolása az Azure SQL Data Warehouse adatbázis tooa blob egy táblázatban minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
 **A társított szolgáltatásnak Azure SQL Data Warehouse:**
 
@@ -415,9 +415,9 @@ A minta idősorozat (óránkénti, napi stb) adatainak másolása az Azure SQL D
 ```
 **Az SQL Data Warehouse bemeneti adatkészletet:**
 
-A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" az Azure SQL Data Warehouse és egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
+hello minta azt feltételezi, hogy létrehozott egy tábla "MyTable" az Azure SQL Data Warehouse és egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
 
-"External" beállítása: "true" arról tájékoztatja a Data Factory szolgáltatásnak, hogy az adatkészlet külső data factoryval való és adat-előállító tevékenység nem hozzák.
+"External" beállítása: "true" tájékoztatja hello Data Factory szolgáltatásnak, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -445,7 +445,7 @@ A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" az Azure SQL Da
 ```
 **Az Azure Blob kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB a szelet által feldolgozott kezdési ideje alapján dinamikusan történik. A mappa elérési útját használja, év, hónap, nap és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útja hello kezdési ideje év, hónap, nap és óra részét használja.
 
 ```JSON
 {
@@ -505,7 +505,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 **Másolási tevékenység során a folyamat SqlDWSource és BlobSink:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **SqlDWSource** és **fogadó** típusúra **BlobSink**. A megadott SQL-lekérdezést a **SqlReaderQuery** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**SqlDWSource** és **fogadó** típusuk értéke túl**BlobSink**. hello SQL-lekérdezésben megadott hello **SqlReaderQuery** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```JSON
 {  
@@ -554,16 +554,16 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 > [!NOTE]
-> A példában **sqlReaderQuery** a SqlDWSource van megadva. A másolási tevékenység fut ez a lekérdezés az adatok lekérdezése az Azure SQL Data Warehouse forrás.
+> Hello példában **sqlReaderQuery** hello SqlDWSource van megadva. hello másolási tevékenység fut ez a lekérdezés hello Azure SQL Data Warehouse forrásadatok tooget hello.
 >
-> Másik lehetőségként megadhat tárolt eljárás megadásával a **sqlReaderStoredProcedureName** és **storedProcedureParameters** (Ha a tárolt eljárás paraméterek fogadja el).
+> Másik lehetőségként megadhat tárolt eljárás hello megadásával **sqlReaderStoredProcedureName** és **storedProcedureParameters** (ha hello tárolt eljárás paraméterek fogadja el).
 >
-> Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, az adatkészlet JSON struktúrában szakaszában meghatározott oszlopokat segítségével (válassza Oszlop1, column2 from tábla)-lekérdezés összeállításához az Azure SQL Data Warehouse futtatásához. Az adatkészlet-definícióban nem rendelkezik a struktúra, ha minden kiválasztott oszlop. a táblából.
+> Ha nem ad meg sqlReaderQuery vagy sqlReaderStoredProcedureName, hello adatkészlet JSON hello struktúra szakaszban meghatározott hello oszlopok-e a használt toobuild (válassza Oszlop1, column2 from tábla) lekérdezés toorun hello Azure SQL Data Warehouse ellen. Hello adatkészlet definíciója nem rendelkezik hello struktúra, ha minden kiválasztott oszlop. a hello táblából.
 >
 >
 
-### <a name="example-copy-data-from-azure-blob-to-azure-sql-data-warehouse"></a>Példa: Adatok másolása az Azure Blob az Azure SQL Data Warehouse
-A minta a következő adat-előállító entitások határozza meg:
+### <a name="example-copy-data-from-azure-blob-tooazure-sql-data-warehouse"></a>Példa: Adatok másolása az Azure Blob tooAzure SQL Data Warehouse
+hello minta meghatározza, hogy a következő adat-előállító entitások hello:
 
 1. A társított szolgáltatás típusa [AzureSqlDW](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -571,7 +571,7 @@ A minta a következő adat-előállító entitások határozza meg:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureSqlDWTable](#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) és [SqlDWSink](#copy-activity-properties).
 
-A minta másolatok idősorozat adatok (óránként, naponta, stb.) az Azure blob-egy táblához, az Azure SQL Data Warehouse-adatbázis használati ideje minden órában. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta idősorozat adatainak másolása (óránként, naponta, stb.) az Azure SQL Data Warehouse-adatbázis az Azure blob tooa táblából óránként. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
 **A társított szolgáltatásnak Azure SQL Data Warehouse:**
 
@@ -601,7 +601,7 @@ A minta másolatok idősorozat adatok (óránként, naponta, stb.) az Azure blob
 ```
 **Az Azure Blob bemeneti adatkészletet:**
 
-Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját és nevét a BLOB dinamikusan értékeli ki a kezdési időt a szelet által feldolgozott alapján. A mappa elérési útját használja év, hónap és nap részét kezdési idejét, valamint fájl nevét a kezdő időpontja óra részét. "external": "true" beállítás arról értesíti az, hogy ezt a táblázatot az adat-előállítóban külső, és egy tevékenység adat-előállító nem hozzák a Data Factory szolgáltatásnak.
+Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útját és nevét hello blob dinamikusan értékeli ki a rendszer által feldolgozott hello szelet hello kezdési ideje alapján. hello mappa elérési útját használja év, hónap és nap részét hello kezdési ideje, valamint fájlnév hello kezdő időpontja óra részét hello. "external": "true" beállítás arról értesíti az, hogy ez a táblázat külső toohello adat-előállító és hello adat-előállítóban tevékenység nem hozzák hello Data Factory szolgáltatásnak.
 
 ```JSON
 {
@@ -669,7 +669,7 @@ Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz
 ```
 **Az SQL Data Warehouse kimeneti adatkészlet:**
 
-A minta másolja az adatokat az Azure SQL Data Warehouse "MyTable" nevű tábla. A tábla létrehozása az Azure SQL Data Warehouse az azonos számú oszlopot tartalmaz a Blob CSV-fájl várt. Új sorok hozzáadásakor a tábla minden órában.
+hello minta másolja át az Azure SQL Data Warehouse "MyTable" nevű tooa adattábla. Hello tábla létrehozása az Azure SQL Data Warehouse azonos számú oszlopot hello hello Blob CSV-fájl toocontain várt. Új sorok hozzáadásakor toohello tábla óránként.
 
 ```JSON
 {
@@ -689,7 +689,7 @@ A minta másolja az adatokat az Azure SQL Data Warehouse "MyTable" nevű tábla.
 ```
 **Másolási tevékenység során a folyamat BlobSource és SqlDWSink:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **BlobSource** és **fogadó** típusúra **SqlDWSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**BlobSource** és **fogadó** típusuk értéke túl**SqlDWSink**.
 
 ```JSON
 {  
@@ -738,7 +738,7 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
    }
 }
 ```
-Útmutatást megtalálja az [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md) és [adatok betöltése az Azure Data Factory](../sql-data-warehouse/sql-data-warehouse-get-started-load-with-azure-data-factory.md) cikk az Azure SQL Data Warehouse-dokumentációban.
+Útmutatást lásd: lásd: hello [1 TB-os betöltése az Azure SQL Data Warehouse a 15 perc Azure Data Factory](data-factory-load-sql-data-warehouse.md) és [adatok betöltése az Azure Data Factory](../sql-data-warehouse/sql-data-warehouse-get-started-load-with-azure-data-factory.md) hello Azure SQL Data Warehouse cikk dokumentációját.
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.

@@ -1,6 +1,6 @@
 ---
-title: "Felhasználó hozzáadása a Linux virtuális gépek Azure-on |} Microsoft Docs"
-description: "Felhasználó hozzáadása az Azure-on Linux virtuális gép."
+title: "egy felhasználó tooa Azure Linux virtuális gép aaaAdd |} Microsoft Docs"
+description: "Adjon hozzá egy felhasználói tooa Linux virtuális gép az Azure-on."
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: v-livech
-ms.openlocfilehash: a95157f57c0cbd1f2a9ed68a0fe83140d7c9ec40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eed050154adf0cbed2c168e7aa675bd3ded85fcd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-user-to-an-azure-vm"></a>Felhasználó hozzáadása az Azure virtuális gép
-Az első feladatok számára bármely új Linux virtuális gép egyik hozzon létre egy új felhasználót.  Ez a cikk azt végezze el a sudo felhasználói fiók létrehozásakor a jelszó beállítása SSH nyilvános kulcsok hozzáadása, és végül használja `visudo` sudo jelszó nélkül engedélyezi.
+# <a name="add-a-user-tooan-azure-vm"></a>Egy felhasználó tooan Azure virtuális gép hozzáadása
+Első feladatai hello bármely új Linux virtuális gép egyik toocreate egy új felhasználót.  Ez a cikk azt végezze el a sudo felhasználói fiók, jelszó beállítása hello, létrehozása SSH nyilvános kulcsok hozzáadása, és végül használja `visudo` tooallow sudo jelszó nélkül.
 
-Előfeltételek: [az Azure-fiók](https://azure.microsoft.com/pricing/free-trial/), [SSH nyilvános és titkos kulcsok](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), egy Azure-erőforráscsoportot, és az Azure parancssori felület telepítve, és át lett váltva Azure Resource Manager módban a `azure config mode arm`.
+Előfeltételek: [az Azure-fiók](https://azure.microsoft.com/pricing/free-trial/), [SSH nyilvános és titkos kulcsok](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), egy Azure-erőforráscsoportot és hello Azure parancssori felület telepítve, és tooAzure erőforrás-kezelő módban a kapcsolt `azure config mode arm`.
 
 ## <a name="quick-commands"></a>Gyors parancsok
 ```bash
@@ -40,30 +40,30 @@ Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
 
-# Copy the SSH Public Key to the new user
+# Copy hello SSH Public Key toohello new user
 ssh-copy-id -i ~/.ssh/id_rsa exampleuser@exampleserver
 
-# Change sudoers to allow no password
-# Execute visudo as root to edit the /etc/sudoers file
+# Change sudoers tooallow no password
+# Execute visudo as root tooedit hello /etc/sudoers file
 visudo
 
 # On RedHat family distros uncomment this line:
 ## Same thing without a password
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 
-# to this
+# toothis
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 
 # On Debian family distros change this line:
-# Allow members of group sudo to execute any command
+# Allow members of group sudo tooexecute any command
 %sudo   ALL=(ALL:ALL) ALL
 
-# to this
+# toothis
 %sudo   ALL=(ALL) NOPASSWD:ALL
 
 # Verify everything
-# Verify the SSH keys & User account
+# Verify hello SSH keys & User account
 bill@slackware$ ssh -i ~/.ssh/id_rsa exampleuser@exampleserver
 
 # Verify sudo access
@@ -72,23 +72,23 @@ sudo top
 
 ## <a name="detailed-walkthrough"></a>Részletes bemutató
 ### <a name="introduction"></a>Bevezetés
-A első és a leggyakoribb feladat, az új kiszolgáló egyik adhat hozzá felhasználói fiókot.  Legfelső szintű bejelentkezések le kell tiltani, és a legfelső szintű fiókon nem használható a Linux-kiszolgálóval, csak a sudo.  Jogosultságot ad a felhasználó legfelső szintű kiterjesztés jogosultságokkal sudo használatával azt a megfelelő módon felügyelheti, és használja a Linux.
+Az új kiszolgáló első és a leggyakoribb feladat hello egyik tooadd egy felhasználói fiókot.  Legfelső szintű bejelentkezések le kell tiltani, és hello root fiókjának magát a Linux-kiszolgálóval, csak a sudo nem használható.  Jogosultságot ad a felhasználói legfelső szintű kiterjesztés sudo hello megfelelő módon tooadminister, és használja a Linux használatával jogosultságokkal.
 
-A paranccsal `useradd` azt ad hozzá felhasználói fiókokat a Linux virtuális Gépet.  Futó `useradd` módosítja `/etc/passwd`, `/etc/shadow`, `/etc/group`, és `/etc/gshadow`.  Azt ad hozzá egy parancssori jelzőjét, hogy a `useradd` parancs futtatásával is adja hozzá az új felhasználó a megfelelő sudo csoport Linux rendszeren.  Akkor is Te `useradd` bejegyzést hoz létre a `/etc/passwd` az nem engedi meg az új felhasználói fiókhoz jelszót.  Az új felhasználó használja az egyszerű egy kezdeti jelszó létrehozzuk `passwd` parancsot.  Az utolsó lépése, hogy engedélyezi, hogy a felhasználó sudo jogosultságokkal rendelkező parancsok végrehajtása ne kelljen minden parancsot írja be a jelszót a sudo szabályok módosítása.  A titkos kulcsot, a felhasználói fiók jelenleg vélhetően adatokkal van bejelentkezve ezeken a biztonságos és sudo hozzáférést jelszó nélkül is.  
+Hello paranccsal `useradd` azt ad hozzá felhasználói fiókokat toohello Linux virtuális gép.  Futó `useradd` módosítja `/etc/passwd`, `/etc/shadow`, `/etc/group`, és `/etc/gshadow`.  Azt ad hozzá egy parancssori jelző toohello `useradd` tooalso hello új felhasználói toohello megfelelő sudo csoport hozzáadása Linux parancs.  Akkor is Te `useradd` bejegyzést hoz létre a `/etc/passwd` az nem engedi hello új felhasználói fiókhoz jelszót.  Egy kezdeti hello hello egyszerű használatával új felhasználói jelszavát létrehozzuk `passwd` parancsot.  hello utolsó lépése toomodify hello sudo szabályok tooallow sudo jogosultságokkal rendelkező adott felhasználói tooexecute parancsok tooenter minden parancs jelszó nélkül.  Hello titkos kulcsot, a felhasználói fiók jelenleg vélhetően adatokkal van bejelentkezve ezeken a biztonságos és tooallow sudo hozzáférés jelszó nélkül is.  
 
-### <a name="adding-a-single-sudo-user-to-an-azure-vm"></a>Egyetlen sudo felhasználók hozzáadása az Azure virtuális gép
-Jelentkezzen be az SSH-kulcsokat használó Azure virtuális Géphez.  Ha még nem telepítő SSH nyilvános hozzáférés a kulcshoz, végezze el az ebben a cikkben először [nyilvános kulcs Authentication használata az Azure-ral](http://link.to/article).  
+### <a name="adding-a-single-sudo-user-tooan-azure-vm"></a>A sudo egyetlen felhasználó tooan Azure virtuális gép hozzáadása
+Jelentkezzen be toohello SSH-kulcsokat használó Azure virtuális gép.  Ha még nem telepítő SSH nyilvános hozzáférés a kulcshoz, végezze el az ebben a cikkben először [nyilvános kulcs Authentication használata az Azure-ral](http://link.to/article).  
 
-A `useradd` parancs az alábbi feladatokat hajtja végre:
+Hello `useradd` parancs végrehajtása után a következő feladatok hello:
 
 * új felhasználói fiók létrehozása
-* Hozzon létre egy új felhasználói csoportot ugyanazzal a névvel
-* az üres bejegyzés hozzáadása`/etc/passwd`
-* az üres bejegyzés hozzáadása`/etc/gpasswd`
+* Hozzon létre egy új felhasználói csoportot hello ugyanazzal a névvel
+* üres bejegyzés túl hozzáadása`/etc/passwd`
+* üres bejegyzés túl hozzáadása`/etc/gpasswd`
 
-A `-G` parancssori jelző hozzáadja az új felhasználói fiók a megfelelő Linux csoporthoz jogosultságot ad az új felhasználói fiók legfelső szintű kiterjesztés jogosultságokkal.
+Hello `-G` parancssori jelző hello új felhasználói fiók toohello megfelelő Linux csoport hozzáadása jogosultságot ad az új felhasználói fiók hello legfelső szintű kiterjesztés jogosultságokkal.
 
-#### <a name="add-the-user"></a>A felhasználó hozzáadása
+#### <a name="add-hello-user"></a>Hello felhasználó hozzáadása
 ```bash
 # On RedHat family distros
 sudo useradd -G wheel exampleUser
@@ -98,7 +98,7 @@ sudo useradd -G sudo exampleUser
 ```
 
 #### <a name="set-a-password"></a>Jelszó beállítása
-A `useradd` parancs létrehozza a felhasználó, és mindkét bejegyzés hozzáadása `/etc/passwd` és `/etc/gpasswd` , de nem állítja be a jelszót.  A jelszó hozzá lett adva a bejegyzés a `passwd` parancsot.
+Hello `useradd` parancs hello felhasználó hoz létre, és hozzáad egy bejegyzés tooboth `/etc/passwd` és `/etc/gpasswd` , de valójában a hello jelszó nincs beállítva.  hello jelszó kerül hello segítségével toohello bejegyzés `passwd` parancsot.
 
 ```bash
 sudo passwd exampleUser
@@ -107,43 +107,43 @@ Retype new UNIX password:
 passwd: password updated successfully
 ```
 
-Most már tudunk sudo jogosultsággal a kiszolgálón.
+Most már tudunk sudo jogosultsággal hello kiszolgálón.
 
-### <a name="add-your-ssh-public-key-to-the-new-user-account"></a>Az SSH nyilvános kulcs hozzáadása az új felhasználói fiók
-A számítógépről, használja a `ssh-copy-id` parancsot az új jelszót.
+### <a name="add-your-ssh-public-key-toohello-new-user-account"></a>Az SSH nyilvános kulcs toohello új felhasználói fiók hozzáadása
+A számítógépről, használja a hello `ssh-copy-id` hello új jelszó parancsot.
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa exampleuser@exampleserver
 ```
 
-### <a name="using-visudo-to-allow-sudo-usage-without-a-password"></a>Visudo segítségével jelszó nélküli sudo használatának engedélyezése
-Használatával `visudo` szerkesztése a `/etc/sudoers` fájlt ad hozzá néhány rétegének védelmet biztosít a fontos fájl helytelen módosítása.  Végrehajtása után `visudo`, a `/etc/sudoers` fájl zárolva van, annak érdekében, hogy más felhasználó nem módosíthatja azt aktívan szerkesztése közben.  A `/etc/sudoers` fájl is be van jelölve a hibák által `visudo` amikor megpróbál menti vagy kilép, hibás sudoers fájl nem menthető.
+### <a name="using-visudo-tooallow-sudo-usage-without-a-password"></a>Használatával visudo tooallow sudo használati jelszó nélkül
+Használatával `visudo` tooedit hello `/etc/sudoers` fájlt ad hozzá néhány rétegének védelmet biztosít a fontos fájl helytelen módosítása.  Végrehajtása után `visudo`, hello `/etc/sudoers` fájl zárolt tooensure más felhasználó nem módosíthatja azt aktívan szerkesztése közben.  Hello `/etc/sudoers` fájl is be van jelölve a hibák által `visudo` toosave kísérletet, vagy amikor a lépni a hibás sudoers fájl nem menthető.
 
-Már van felhasználók a megfelelő alapértelmezett csoport a sudo hozzáféréshez.  Most fogjuk ezeket a csoportokat a jelszó nélküli sudo használandó engedélyezése.
+Már van felhasználó hello megfelelő alapértelmezett csoport sudo hozzáférés.  Most fogjuk tooenable ezen csoportok toouse sudo jelszó nélküli.
 
 ```bash
-# Execute visudo as root to edit the /etc/sudoers file
+# Execute visudo as root tooedit hello /etc/sudoers file
 visudo
 
 # On RedHat family distros uncomment this line:
 ## Same thing without a password
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 
-# to this
+# toothis
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 
 # On Debian family distros change this line:
-# Allow members of group sudo to execute any command
+# Allow members of group sudo tooexecute any command
 %sudo   ALL=(ALL:ALL) ALL
 
-# to this
+# toothis
 %sudo   ALL=(ALL) NOPASSWD:ALL
 ```
 
-### <a name="verify-the-user-ssh-keys-and-sudo"></a>Ellenőrizze a felhasználó ssh kulcsok és a sudo
+### <a name="verify-hello-user-ssh-keys-and-sudo"></a>Győződjön meg arról hello felhasználói ssh kulcsok és a sudo
 ```bash
-# Verify the SSH keys & User account
+# Verify hello SSH keys & User account
 ssh -i ~/.ssh/id_rsa exampleuser@exampleserver
 
 # Verify sudo access

@@ -1,6 +1,6 @@
 ---
-title: "Állítsa vissza az Azure adatraktár - a helyi és georedundáns |} Microsoft Docs"
-description: "Az Azure SQL Data Warehouse adatbázis helyreállítása adatbázis visszaállítási lehetőségek áttekintése."
+title: "az Azure adatraktár - a helyi és georedundáns aaaRestore |} Microsoft Docs"
+description: "Áttekintés a hello adatbázis visszaállítási lehetőségek az Azure SQL Data Warehouse adatbázis helyreállítása."
 services: sql-data-warehouse
 documentationcenter: NA
 author: Lakshmi1812
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: ea42b7135d0695b66d569095e70bb3d9f8b9594b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a96b898372b29d420e1416ca93a172ff8af47fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-restore"></a>Az SQL Data Warehouse visszaállítása
 > [!div class="op_single_selector"]
@@ -30,10 +30,10 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Az SQL Data Warehouse a helyi és földrajzi visszaállítások részeként a data warehouse vész helyreállítási lehetőségeket nyújt. Az adatok adatraktár biztonsági használatával állítsa vissza az adatraktár egy visszaállítási pontot az elsődleges régióban, vagy georedundáns biztonsági mentések használatával állítsa vissza egy másik földrajzi régióban. Ez a cikk ismerteti a mintaadatokról egy adatraktár a visszaállításakor.
+Az SQL Data Warehouse a helyi és földrajzi visszaállítások részeként a data warehouse vész helyreállítási lehetőségeket nyújt. Használja a data warehouse biztonsági mentések toorestore a data warehouse tooa visszaállítási pont hello elsődleges régióban, vagy georedundáns biztonsági mentések toorestore tooa különböző földrajzi régiót kell használnia. Ez a cikk ismerteti a hello mintaadatokról egy adatraktár a visszaállításakor.
 
 ## <a name="what-is-a-data-warehouse-restore"></a>Mi az a data warehouse visszaállítás?
-A data warehouse visszaállítás egy új adatraktárat egy meglévő biztonsági másolatából létrehozott vagy törölt adatraktár. A visszaállított adatok adatraktár újra létrehozza a biztonsági másolat adatraktár adott időpontban. Mivel az SQL Data Warehouse egy elosztott rendszert, a data warehouse visszaállítás számos biztonsági mentés fájljaiból, az Azure-blobokat tárolt jön létre. 
+A data warehouse visszaállítás egy új adatraktárat egy meglévő biztonsági másolatából létrehozott vagy törölt adatraktár. hello visszaállított adatraktár újra létrehozza a biztonsági másolat adatraktár hello adott időpontban. Mivel az SQL Data Warehouse egy elosztott rendszert, a data warehouse visszaállítás számos biztonsági mentés fájljaiból, az Azure-blobokat tárolt jön létre. 
 
 Adatbázis visszaállítása nem minden üzleti folytonossági és vészhelyreállítási helyreállítási stratégia nagyon fontos részét képezik, mert az adatok véletlen sérülés vagy törlése után újból létrehozza.
 
@@ -43,41 +43,41 @@ További információkért lásd:
 * [Üzleti folytonosság – áttekintés](../sql-database/sql-database-business-continuity.md)
 
 ## <a name="data-warehouse-restore-points"></a>Data warehouse visszaállítási pontok
-Prémium szintű Azure Storage használatának előnye, mint az SQL Data Warehouse használatával Azure Storage-Blobba pillanatképek biztonsági mentését az elsődleges adatraktár. Minden pillanatképet egy visszaállítási pontot a pillanatkép elindításakor jelölő rendelkezik. Adatraktár visszaállításához válasszon visszaállítási pontot, és adja ki a restore parancsot.  
+Prémium szintű Azure Storage használatának előnye, mint az SQL Data Warehouse Azure Storage-Blobba pillanatképek toobackup hello elsődleges adatraktár használja. Minden egyes pillanatkép van egy olyan visszaállítási hello időt jelölő hello pillanatkép elindult. adatraktár toorestore, visszaállítási pont választja, és adja ki a restore parancsot.  
 
-Az SQL Data Warehouse mindig visszaállítja a biztonsági mentés új adatraktárat. A visszaállított adatok adatraktár és az aktuális hagyja, vagy törölje az egyik legyen. Ha szeretné a jelenlegi adatraktárban cserélje le a visszaállított adatok adatraktár, átnevezheti azt.
+Az SQL Data Warehouse mindig hello biztonsági mentési tooa új adatraktárat állítja vissza. Akkor tartsa hello visszaállított adatraktár, és az aktuális hello, vagy törölje az egyik legyen. Ha szeretné tooreplace hello aktuális data warehouse hello vissza data warehouse-ba, hogy át lehessen nevezni.
 
-Ha a visszaállítandó törölt vagy szüneteltetett adatraktár, akkor [támogatási jegy létrehozása](sql-data-warehouse-get-started-create-support-ticket.md). 
+Ha egy törölt vagy szüneteltetett adatraktár toorestore van szüksége, akkor [támogatási jegy létrehozása](sql-data-warehouse-get-started-create-support-ticket.md). 
 
 <!-- 
 ### Can I restore a deleted data warehouse?
 
-Yes, you can restore the last available restore point.
+Yes, you can restore hello last available restore point.
 
-Yes, for the next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps the data warehouse and its snapshots for seven days just in case you need the data. After seven days, you won't be able to restore to any of the restore points. -->
+Yes, for hello next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps hello data warehouse and its snapshots for seven days just in case you need hello data. After seven days, you won't be able toorestore tooany of hello restore points. -->
 
 ## <a name="geo-redundant-restore"></a>Georedundáns helyreállítás
-Visszaállíthatja az adatraktár minden régióban támogató Azure SQL Data Warehouse, a kiválasztott teljesítményszint szükséges. Vegye figyelembe, hogy 9000 és 18000 DWU nem támogatottak minden régióban az előzetes.
+Az adatraktár tooany adatterület támogató Azure SQL Data Warehouse a kiválasztott teljesítmény szinten állíthatja vissza. Vegye figyelembe, hogy 9000 és 18000 DWU nem támogatottak minden régióban hello előzetes.
 
 > [!NOTE]
-> Georedundáns visszaállításhoz kell nem visszavonta igényét ezt a szolgáltatást.
+> a georedundáns tooperform visszaállítási kell nem visszavonta igényét ezt a szolgáltatást.
 > 
 > 
 
 ## <a name="restore-timeline"></a>Az idősor visszaállítása
-Visszaállíthatja egy adatbázis bármely elérhető visszaállítási pont az utóbbi hét napban. A pillanatképek négy és nyolc óránként start és hét napja. Ha pillanatkép régebbi, mint hét nap, jár le, és a helyreállítási pont már nem érhető el.
+Visszaállíthatja egy adatbázis tooany elérhető visszaállítási pont belül hello elmúlt hét napban. A pillanatképek tooeight négy óránként start és hét napja. Ha pillanatkép régebbi, mint hét nap, jár le, és a helyreállítási pont már nem érhető el.
 
 ## <a name="restore-costs"></a>Állítsa vissza a költségek
-A tárolási költség a visszaállított adatraktár számlázása a prémium szintű Azure Storage ütemben történik. 
+hello tárolási kell fizetni hello visszaállított adatraktár hello prémium szintű Azure Storage díj számlázása történik. 
 
-A visszaállított adatok adatraktár szünetelteti, ha van szó, a prémium szintű Azure Storage díj tárolására. Felfüggesztés előnye nem kell fizetnie a DWU számítási erőforrások.
+Ha egy visszaállított adatraktár felfüggesztéséhez van szó, a tárolási hello prémium szintű Azure Storage díj. hello felfüggesztéséhez előnye, nem kell fizetnie hello DWU számítási erőforrások.
 
 További információ az SQL Data Warehouse díjszabása: [SQL Data Warehouse díjszabása](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).
 
 ## <a name="uses-for-restore"></a>A visszaállítási használ
-Az elsődleges a data warehouse visszaállítási használata adatok véletlen adatvesztést vagy -sérülés utáni helyreállításhoz.
+hello elsődleges funkciója a data warehouse visszaállítási toorecover adatok véletlen adatvesztés vagy adatsérülés utánra esik.
 
-Data warehouse visszaállítási használatával több mint hét napja a biztonsági másolatok megőrzése. A biztonsági mentés helyreáll, amennyiben az adatraktár online rendelkezik, és akár szüneteltetheti is, hogy határozatlan ideig számítási költségek csökkentése érdekében. A felfüggesztett adatbázis terhel tárolási a prémium szintű Azure Storage díj. 
+Használhatja a data warehouse visszaállítási tooretain biztonsági több mint hét nap. Miután visszaállította hello biztonsági mentés, hello adatraktár online rendelkezik, és akár szüneteltetheti is, hogy határozatlan ideig toosave számítási költségek. hello szüneteltetett adatbázis terhel tárolási hello prémium szintű Azure Storage díj. 
 
 ## <a name="related-topics"></a>Kapcsolódó témakörök
 ### <a name="scenarios"></a>Forgatókönyvek
@@ -85,11 +85,11 @@ Data warehouse visszaállítási használatával több mint hét napja a biztons
 
 <!-- ### Tasks -->
 
-A data warehouse visszaállításhoz, visszaállítás segítségével:
+adatraktár tooperform helyreállítása, visszaállítás segítségével:
 
-* Az Azure portál, lásd: [visszaállítása egy adatraktár, az Azure portál használatával](sql-data-warehouse-restore-database-portal.md)
+* Az Azure portál, lásd: [hello Azure-portál használatával adatraktár visszaállítása](sql-data-warehouse-restore-database-portal.md)
 * PowerShell-parancsmagok [visszaállítani az PowerShell-parancsmagok használatával adatraktár](sql-data-warehouse-restore-database-powershell.md)
-* REST-API-k, lásd: [a REST API-k használatával adatraktár visszaállítása](sql-data-warehouse-restore-database-rest-api.md)
+* REST-API-k, lásd: [hello REST API-k használatával adatraktár visszaállítása](sql-data-warehouse-restore-database-rest-api.md)
 
 <!-- ### Tutorials -->
 

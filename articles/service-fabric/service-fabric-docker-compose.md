@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric Docker Compose előzetes verzió"
-description: "Az Azure Service Fabric a Docker Compose formátum használatával könnyebben lehet levezényelni a Service Fabric használatával meglévő tárolók fogad el. Ez a támogatás jelenleg előzetes verzió."
+title: Service Fabric Docker Compose Preview aaaAzure
+description: "Az Azure Service Fabric elfogadja a Docker Compose formátum toomake azt könnyebb tooorchestrate meglévő tárolók Service Fabric használatával. Ez a támogatás jelenleg előzetes verzió."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: e05d1a3d6111e3bbc34008226bcd1fdf35935450
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a60d1321fd6ef07b241a98c5ab2b8dfe5d441b53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="docker-compose-application-support-in-azure-service-fabric-preview"></a>Docker Compose alkalmazások támogatása az Azure Service Fabric (előzetes verzió)
 
-Docker használja a [docker-compose.yml](https://docs.docker.com/compose) fájl több tároló alkalmazások meghatározásához. Megkönnyítheti a felhasználók ismernie kell levezényelni a meglévő tárolóhoz alkalmazások az Azure Service Fabric Docker, vannak megadva Docker Compose preview támogatása natív módon a platform. A Service Fabric fogadhat 3 és az újabb `docker-compose.yml` fájlokat. 
+Docker használ hello [docker-compose.yml](https://docs.docker.com/compose) fájl több tároló alkalmazások meghatározásához. toomake az ügyfelek könnyen térhetnek ismeri a Docker tooorchestrate meglévő tároló alkalmazások az Azure Service Fabric, vannak megadva Docker Compose preview támogatása natív módon hello platform. A Service Fabric fogadhat 3 és az újabb `docker-compose.yml` fájlokat. 
 
 Ez a támogatás jelenleg előzetes verzióban érhető, mert a Compose irányelvek csak egy részhalmazát esetén támogatott. Például alkalmazás frissítések nem támogatottak. Azonban mindig távolítsa el és telepíthet központilag alkalmazásokat helyett őket.
 
-Ez az előzetes kiadás használatához hozzon létre a fürt verziójával 5.7-es vagy nagyobb a Service Fabric-futtatókörnyezet, valamint a megfelelő SDK az Azure portálon keresztül. 
+toouse ez megtekintéséhez a fürt létrehozása verziójával 5.7-es vagy nagyobb a Service Fabric-futtatókörnyezet hello hello hello megfelelő SDK és Azure-portálon keresztül. 
 
 > [!NOTE]
 > Ez a funkció jelenleg előzetes verzióban érhető és éles környezetben nem támogatott.
 
 ## <a name="deploy-a-docker-compose-file-on-service-fabric"></a>A Service Fabric a Docker Compose fájl központi telepítése
 
-Az alábbi parancsokat a Service Fabric-alkalmazás létrehozása (nevű `fabric:/TestContainerApp` az előző példában), amelyet figyelése és kezelése, mint bármely más Service Fabric-alkalmazás. A megadott alkalmazásnév állapotlekérdezések is használhatja.
+hello következő parancsokat a Service Fabric-alkalmazás létrehozása (nevű `fabric:/TestContainerApp` a fenti példa hello), amelyet figyelése és kezelése, mint bármely más Service Fabric-alkalmazás. Használhatja a megadott alkalmazásnév hello állapotlekérdezések száma.
 
 ### <a name="use-powershell"></a>A PowerShell használata
 
-Egy docker-compose.yml fájlt a Service Fabric Compose-alkalmazás létrehozása a PowerShell a következő parancs futtatásával:
+Egy docker-compose.yml fájlt a Service Fabric Compose-alkalmazás létrehozása a következő parancsot a PowerShell hello futtatásával:
 
 ```powershell
 New-ServiceFabricComposeApplication -ApplicationName fabric:/TestContainerApp -Compose docker-compose.yml [-RegistryUserName <>] [-RegistryPassword <>] [-PasswordEncrypted]
 ```
 
-`RegistryUserName`és `RegistryPassword` tekintse meg a tároló beállításjegyzék felhasználónevet és jelszót. Miután megadta az alkalmazást, annak állapotát a következő paranccsal ellenőrizheti:
+`RegistryUserName`és `RegistryPassword` tekintse meg a toohello tároló beállításjegyzék felhasználónevet és jelszót. Hello alkalmazás befejezése után ellenőrizheti annak állapotát hello a következő parancs használatával:
 
 ```powershell
 Get-ServiceFabricComposeApplicationStatus -ApplicationName fabric:/TestContainerApp -GetAllPages
 ```
 
-A PowerShell segítségével az új alkalmazás törléséhez használja a következő parancsot:
+toodelete hello Compose alkalmazást PowerShell, a következő parancs használata hello keresztül:
 
 ```powershell
 Remove-ServiceFabricComposeApplication  -ApplicationName fabric:/TestContainerApp
@@ -57,19 +57,19 @@ Remove-ServiceFabricComposeApplication  -ApplicationName fabric:/TestContainerAp
 
 ### <a name="use-azure-service-fabric-cli-sfctl"></a>Azure Service Fabric CLI (sfctl) használata
 
-Másik lehetőségként használhatja a következő Service Fabric CLI parancsot:
+Service Fabric CLI parancs a következő hello is használhatja:
 
 ```azurecli
 sfctl compose create --application-id fabric:/TestContainerApp --compose-file docker-compose.yml [ [ --repo-user --repo-pass --encrypted ] | [ --repo-user ] ] [ --timeout ]
 ```
 
-Miután létrehozta az alkalmazást, annak állapotát a következő paranccsal ellenőrizheti:
+Hello alkalmazás létrehozása után hello a következő parancs használatával ellenőrizheti az állapotát:
 
 ```azurecli
 sfctl compose status --application-id TestContainerApp [ --timeout ]
 ```
 
-Az új alkalmazás törléséhez használja a következő parancsot:
+toodelete hello új alkalmazást, a következő parancs hello használata:
 
 ```azurecli
 sfctl compose remove  --application-id TestContainerApp [ --timeout ]
@@ -77,7 +77,7 @@ sfctl compose remove  --application-id TestContainerApp [ --timeout ]
 
 ## <a name="supported-compose-directives"></a>Támogatott Compose irányelvek
 
-Ez az előzetes kiadás egy részét a konfigurációs beállítások formátumból a Compose 3-as verzió, beleértve a következő primitívek támogatja:
+Ez az előzetes kiadás egy részhalmazát hello konfigurációs beállítások formátumból hello Compose 3-as verzió, beleértve a következő primitívek hello támogatja:
 
 * Szolgáltatások > telepítése > replikák
 * Szolgáltatások > telepítése > elhelyezési > megkötések
@@ -94,26 +94,26 @@ Ez az előzetes kiadás egy részét a konfigurációs beállítások formátumb
 * Szolgáltatások > Naplózás > illesztőprogram > Beállítások
 * Kötet & telepítése > kötet
 
-A felelősek az erőforrás-korlátok, a fürt beállítása [Service Fabric erőforrás irányítás](service-fabric-resource-governance.md). Minden más Docker Compose irányelvek nem támogatottak az előzetes verzió.
+Hello fürt erőforrás-korlátok, felelősek beállítása, a [Service Fabric erőforrás irányítás](service-fabric-resource-governance.md). Minden más Docker Compose irányelvek nem támogatottak az előzetes verzió.
 
 ## <a name="servicednsname-computation"></a>ServiceDnsName számítási
 
-Ha a szolgáltatás neve meg egy új fájlt a teljes tartománynév (Ez azt jelenti, hogy pontot tartalmaz [.]), a DNS-nevet a Service Fabric által regisztrált `<ServiceName>` (beleértve a pont). Ha nem, akkor minden elérésiút-szegmens az alkalmazás nevét a tartomány címkét a szolgáltatás DNS-név, az első elérésiút-szegmens, a legfelső szintű tartomány címke váljon a válik.
+Ha hello szolgáltatás neve meg egy új fájlt a teljes tartománynév (Ez azt jelenti, hogy pontot tartalmaz [.]), a Service Fabric által regisztrált hello DNS-név `<ServiceName>` (beleértve a hello pont). Ha nem, akkor minden elérésiút-szegmens az hello alkalmazásnév hello szolgáltatás DNS-név, hello első elérésiút-szegmens hello felső szintű tartomány címke váljon a tartomány címke válik.
 
-Ha a megadott alkalmazás neve például `fabric:/SampleApp/MyComposeApp`, `<ServiceName>.MyComposeApp.SampleApp` lenne regisztrált DNS-nevét.
+Például ha hello megadott alkalmazásnév nem `fabric:/SampleApp/MyComposeApp`, `<ServiceName>.MyComposeApp.SampleApp` hello regisztrált DNS-neve lesz.
 
 ## <a name="differences-between-compose-instance-definition-and-service-fabric-application-model-type-definition"></a>Új (példány-definíció) és a Service Fabric-alkalmazás modell (típusdefinícióban) közötti különbségek
 
 Egy docker-compose.yml fájlt a tárolók, beleértve azok tulajdonságait és konfigurációk telepíthető együttesét írja le.
-Például a fájl tartalmazhat környezeti változókat és a portok. Is üzembe helyezéshez megadott paraméterek, például egy elhelyezési korlátozás, erőforrás-korlátozások és DNS-nevek, megadhatja a docker-compose.yml fájlt.
+Például hello fájl tartalmazhat környezeti változókat és a portok. Telepítési paraméterek, például egy elhelyezési korlátozás, erőforrás-korlátozások és DNS-nevek, a hello docker-compose.yml fájlt is megadható.
 
-A [Service Fabric-alkalmazás modell](service-fabric-application-model.md) használ szolgáltatás és alkalmazás típusainak, ahol nincs sok alkalmazáspéldányok ugyanabba a típusba tartozik. Lehet például egy ügyfél egy alkalmazáspéldányt. Ez a típus-alapú modell regisztrálva van a futtatókörnyezet az alkalmazás ugyanolyan több verzióit támogatja.
+Hello [Service Fabric-alkalmazás modell](service-fabric-application-model.md) használ szolgáltatás és alkalmazás típusainak, sok alkalmazás példány esetében hello ugyanarra a típusra. Lehet például egy ügyfél egy alkalmazáspéldányt. Ez a típus-alapú modell hello több verzióit támogatja ugyanazt az alkalmazástípus hello futásidejű regisztrált.
 
-Például A felhasználói lehet egy példányként létrehozott típussal 1.0 AppTypeA rendelkező alkalmazást, és B ügyfél rendelkezhet azonos típusú és verzió példányként létrehozott egy másik alkalmazás. Alkalmazástípusok az alkalmazásjegyzékeknek határozhat meg, és az alkalmazás létrehozásakor adja meg az alkalmazás nevét és a központi telepítési paramétereit.
+Például az ügyfél A rendelkezhet példányként létrehozott AppTypeA 1.0 típusú kérelmet, és B ügyfél rendelkezhet a hello példányként létrehozott egy másik alkalmazás azonos típusú és verziót. Hello alkalmazástípusok hello alkalmazásjegyzékeknek határozhat meg, és hello alkalmazás nevét és a telepítési paraméterek megadva hello alkalmazás létrehozásakor.
 
-Bár ez a modell rugalmasságot nyújt, azt is tervezi, hogy hol típusok tartoznak, amely implicit a jegyzékfájl egyszerűbb, a példány-alapú telepítési modell támogatja. Ebben a modellben minden alkalmazás saját független jegyzékfájl lekérdezi. Ebből a törekvésből támogatásának hozzáadásával a docker-compose.yml, ez az egy példány-alapú üzembe helyezési formátum jelenleg előzetes.
+Bár ez a modell rugalmasságot nyújt, azt is tervezi, ahol típusok tartoznak, amely implicit hello jegyzékfájl egyszerűbb, a példány-alapú telepítési modell toosupport. Ebben a modellben minden alkalmazás saját független jegyzékfájl lekérdezi. Ebből a törekvésből támogatásának hozzáadásával a docker-compose.yml, ez az egy példány-alapú üzembe helyezési formátum jelenleg előzetes.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Olvassa a a [Service Fabric alkalmazásmodellt.](service-fabric-application-model.md)
+* Olvassa a hello [Service Fabric alkalmazásmodellt.](service-fabric-application-model.md)
 * [A Service Fabric parancssori felület használatának első lépései](service-fabric-cli.md)

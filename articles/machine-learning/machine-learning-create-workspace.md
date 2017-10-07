@@ -1,6 +1,6 @@
 ---
-title: "A Machine Learning-munkaterület létrehozása |} Microsoft Docs"
-description: "Egy munkaterület létrehozása az Azure Machine Learning Studióban"
+title: "a Machine Learning-munkaterület aaaCreate |} Microsoft Docs"
+description: "Hogyan toocreate az Azure Machine Learning Studio munkaterület"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/27/2017
 ms.author: garye;bradsev;ahgyger
-ms.openlocfilehash: 182a34822e71d63f4d7229548ae3f59d9f195337
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 178293af222365993fade666124f34269d892325
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-share-an-azure-machine-learning-workspace"></a>Azure Machine Learning-munkaterület létrehozása és megosztása
-Ez a menüben a témakörök, amelyek bemutatják, hogyan állíthatja be a különböző adatok tudományos környezetekben a Cortana Analytics folyamat (nagybetűs) által használt mutató hivatkozásokat tartalmaz.
+Ebben a menüben be hello tooset különböző adatok tudományos környezetekben általi felhasználásáról hello Cortana Analytics folyamat (CAP-ok) leíró tootopics hivatkozásokat tartalmaz.
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-Azure Machine Learning Studio használatához meg kell rendelkeznie a Machine Learning munkaterülettel. A munkaterület létrehozására, kezelésére és kísérletek közzétételéhez szükséges eszközöket tartalmazza.
+Azure Machine Learning Studio toouse, toohave Machine Learning-munkaterület szükséges. A munkaterület toocreate kell hello eszközöket tartalmazza, kezelése és kísérletek közzététele.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-### <a name="to-create-a-workspace"></a>Munkaterület létrehozása
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com/)
+### <a name="toocreate-a-workspace"></a>a munkaterület toocreate
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/)
 
     > [!NOTE]
-    > Jelentkezzen be, és hozzon létre egy munkaterület, kell lennie az Azure-előfizetési rendszergazda. 
+    > a toosign és munkaterület létrehozása, az Azure-előfizetési rendszergazda toobe van szüksége. 
     >
     > 
 
@@ -43,18 +43,18 @@ Azure Machine Learning Studio használatához meg kell rendelkeznie a Machine Le
 
 4. Adja meg a munkaterület adatokat
 
-    - A *munkaterületnevet* nem adható meg a befejezési legfeljebb 260 karakter lehet. A neve nem tartalmazhatja a következő karaktereket:`< > * % & : \ ? + /`
-    - A *web service-csomag* akkor válasszon (vagy hozzon létre), valamint a társított *tarifacsomag* válassza ki, akkor használatos, ha a munkaterület webszolgáltatások telepítése.
+    - Hello *munkaterületnevet* too260 karakterből állhat, nem adhatja végződése fel lehet. hello neve nem tartalmazhatja a következő karaktereket:`< > * % & : \ ? + /`
+    - Hello *web service-csomag* akkor válasszon (vagy hozzon létre), és társított hello *tarifacsomag* válassza ki, akkor használatos, ha a munkaterület webszolgáltatások telepítése.
 
     ![Új munkaterület létrehozása](media/machine-learning-create-workspace/create-new-workspace.png)
 
 5. Kattintson a **Create** (Létrehozás) gombra
 
-Ha a munkaterületet van telepítve, a Machine Learning Studióban indíthatja el.
+Miután hello munkaterület van telepítve, a Machine Learning Studióban indíthatja el.
 
-1. Tallózás a Machine Learning Studióba [https://studio.azureml.net/](https://studio.azureml.net/).
+1. Keresse meg a tooMachine Learning Studio: [https://studio.azureml.net/](https://studio.azureml.net/).
 
-2. A munkaterület kiválasztása a felső – jobb sarkában található.
+2. Válassza ki a munkaterület hello felső – jobb sarkában található.
 
     ![Munkaterület kiválasztása](media/machine-learning-create-workspace/open-workspace.png)
 
@@ -63,42 +63,42 @@ Ha a munkaterületet van telepítve, a Machine Learning Studióban indíthatja e
     ![Nyissa meg benne](media/machine-learning-create-workspace/my-experiments.png)
 
 A munkaterület kezelésével kapcsolatos információkért lásd: [kezelése az Azure Machine Learning-munkaterület](machine-learning-manage-workspace.md).
-Ha a munkaterület létrehozását probléma adódik, tekintse meg [hibaelhárítási útmutatója: hozzon létre, és kapcsolódjon a Machine Learning-munkaterület](machine-learning-troubleshooting-creating-ml-workspace.md).
+Ha a munkaterület létrehozását probléma adódik, tekintse meg [hibaelhárítási útmutatója: hozzon létre, és csatlakozzon a Machine Learning-munkaterület tooa](machine-learning-troubleshooting-creating-ml-workspace.md).
 
 
 ## <a name="sharing-an-azure-machine-learning-workspace"></a>Egy Azure Machine Learning munkaterülettel megosztása
-Egyszer a Machine Learning munkaterület jön létre, felajánlhatja a felhasználóknak a munkaterülethez való fájlmegosztás elérését a munkaterület és minden a kísérletek adatkészletek, jegyzetfüzeteket, stb. Hozzáadhat felhasználókat két szerepkör egyikében:
+A Machine Learning-munkaterület létrehozása után felajánlhatja a felhasználóknak tooyour munkaterület tooshare hozzáférés tooyour munkaterület és minden a kísérletek, adathalmazokat, notebookok stb. Hozzáadhat felhasználókat két szerepkör egyikében:
 
-* **Felhasználói** -munkaterület felhasználó létrehozása, megnyithat, módosíthatja, és kísérleteket, adatkészleteket, stb. a munkaterület törlése.
-* **Tulajdonos** - kérhetnek fel egy olyan tulajdonost, és távolítsa el a munkaterületen milyen felhasználói mellett végezhető műveletek.
+* **Felhasználói** -munkaterület felhasználó is létrehozása, nyissa meg a, módosítása és törlése kísérleteket, adatkészleteket, hello munkaterületen stb.
+* **Tulajdonos** - tulajdonos kérhetnek és eltávolíthasson felhasználókat hello munkaterületén, a felhasználó hozzáadása toowhat teheti meg.
 
 > [!NOTE]
-> A rendszergazdai fiók, amely létrehozza a munkaterület tulajdonos munkaterületként automatikusan hozzáadódik a munkaterületen. Azonban más rendszergazdák vagy a felhasználók az adott előfizetés nem automatikusan hozzáférést kapnak a munkaterület - kell explicit módon hívhat meg.
+> hello rendszergazdai fiók hello munkaterület létrehozó tulajdonos munkaterületként automatikusan kerül toohello munkaterület. Azonban más rendszergazdák vagy a felhasználók, előfizetés nem automatikusan hozzáféréssel toohello munkaterület - tooinvite kell azokat explicit módon.
 > 
 > 
 
-### <a name="to-share-a-workspace"></a>A munkaterület megosztása
+### <a name="tooshare-a-workspace"></a>a munkaterület tooshare
 
-1. Jelentkezzen be a Machine Learning Studióba [https://studio.azureml.net/Home](https://studio.azureml.net/Home)
+1. Jelentkezzen be tooMachine Learning Studióba [https://studio.azureml.net/Home](https://studio.azureml.net/Home)
 
-2. A bal oldali panelen kattintson a **beállítások**
+2. A hello bal oldali panelen kattintson a **beállítások**
 
-3. Kattintson a **felhasználók** lap
+3. Kattintson a hello **felhasználók** lap
 
-4. Kattintson a **több felhasználók MEGHÍVÁSA** a lap alján
+4. Kattintson a **több felhasználók MEGHÍVÁSA** hello lap hello aljához
 
     ![Studio beállításai](media/machine-learning-create-workspace/settings.png)
 
-5. Adjon meg egy vagy több e-mail címet. A felhasználók egy érvényes Microsoft-fiókkal vagy (az Azure Active Directory) szervezeti fiók szükséges.
+5. Adjon meg egy vagy több e-mail címet. hello felhasználók kell egy érvényes Microsoft-fiókkal vagy szervezeti fiókkal (az Azure Active Directory).
 
-6. Válassza ki, hogy a felhasználók hozzáadása a tulajdonos vagy a felhasználó.
+6. Válassza ki, hogy tooadd hello felhasználók tulajdonosa vagy a felhasználó.
 
-7. Kattintson a **OK** pipa gombra.
+7. Kattintson a hello **OK** pipa gombra.
 
-Minden felhasználóhoz hozzá jelentkezzen be a megosztott munkaterület kapcsolatos utasításokat tartalmazó e-mailt fog kapni.
+Minden felhasználóhoz hozzá lépéseit hogyan toosign toohello a megosztott munkaterület e-mailt fog kapni.
 
 > [!NOTE]
-> A felhasználók tudnak telepíteni, vagy a munkaterület webszolgáltatások kezelése fel kell egy közreműködő vagy az Azure-előfizetés rendszergazdája. 
+> A felhasználók toobe képes toodeploy vagy a munkaterület webszolgáltatások kezelése, a közreműködői vagy hello Azure-előfizetés rendszergazdája kell lenniük. 
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure számlázás vállalati API - időszakok számlázási |} Microsoft Docs"
-description: "További tudnivalók a Reporting API-k, amelyek lehetővé teszik a vállalati Azure ügyfelek való lekérésére programozott módon fogyasztási adatokhoz."
+title: "Számlázási vállalati API - időszakok számlázási aaaAzure |} Microsoft Docs"
+description: "További információk a hello Reporting API-k, amelyek lehetővé teszik a vállalati Azure ügyfelek toopull adatokkal programozott módon."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: c6880b79189e0683387a7aafbd6fa4805b3b42ef
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4e17f25b22729a7f213306fb019ee0dbeca87ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---billing-periods"></a>A vállalati ügyfelek - számlázási időszakok jelentéskészítési API-k
 
-A számlázási időszak API adatokkal a megadott beléptetési fordított időrendben elszámolási időszakok listáját adja vissza. Minden időszak mutat az API útvonalat az adat - BalanceSummary, UsageDetails, Marktplace díjakat és árlista négy csoportjai tulajdonságot tartalmaz. Ha az időszakban nem rendelkezik adatokat, a megfelelő tulajdonság értéke null. 
+hello számlázási időszakok API adja vissza a hello adatokkal rendelkező időszakok számlázási listája beléptetési meg fordított időrendi sorrendben. Minden időszak toohello API útvonalat az adat - BalanceSummary, UsageDetails, Marktplace díjakat és árlista hello négy csoportjai mutató tulajdonságot tartalmaz. Hello időszak nincs adatokat, ha hello megfelelő tulajdonsága null értékű. 
 
 
 ##<a name="request"></a>Kérés 
-Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterprise-api.md). 
+Közös fejléc tulajdonságok hozzáadott toobe igénylő megadott [Itt](billing-enterprise-api.md). 
 
 |Módszer | Kérelem URI-azonosítója|
 |-|-|
 |GET| {enrollmentNumber} https://consumption.Azure.com/v2/enrollments/ / billingperiods|
 
 > [!Note]
-> API előzetes verzióját használja, a fenti URL-címben v1 v2 cserélje.
+> toouse hello előzetes verzióját API, v2 v1 a fenti URL-cím hello cserélje le.
 >
 
 ## <a name="response"></a>Válasz
@@ -59,13 +59,13 @@ Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterp
 
 |Tulajdonság neve| Típus| Leírás
 |-|-|-|
-|billingPeriodId| Karakterlánc| Egy adott számlázási időszak jelölő egyedi azonosítója|
-|billingStart| Dátum és idő| ISO 8601 karakterlánc, amely az időszak kezdő dátuma|
-|billingEnd| Dátum és idő| ISO 8601 karakterlánc, amely a záró dátuma|
-|balanceSummary| Karakterlánc| Az URL-címe, amely továbbítja az egyenleg összegző adatokat az ebben az időszakban|
-|usageDetails| Karakterlánc| Az URL-címet, amely a használat részleteiről adatoknak az ebben az időszakban|
-|marketplaceCharges| Karakterlánc| Az URL-címe, amely továbbítja a piactér díjtételekre vonatkozó adatot az ebben az időszakban|
-|Árlista| Karakterlánc| Az URL-címet, amely a árlista adatoknak az ebben az időszakban|
+|billingPeriodId| Karakterlánc| hello egy adott számlázási időszak jelölő egyedi azonosítója|
+|billingStart| Dátum és idő| ISO 8601 karakterlánc, amely hello időszak kezdő dátuma|
+|billingEnd| Dátum és idő| ISO 8601 karakterlánc, amely hello záró dátuma|
+|balanceSummary| Karakterlánc| hello URL-címet, amely toohello egyenleg összegző adatokat az ebben az időszakban|
+|usageDetails| Karakterlánc| hello URL-címet, amely az adott időszakra vonatkozó toohello használati adatainak|
+|marketplaceCharges| Karakterlánc| hello URL-címet, amely az adott időszakra vonatkozó toohello piactér díjtételekre vonatkozó adatot|
+|Árlista| Karakterlánc| hello URL-címet, amely az adott időszakra vonatkozó toohello árlista adatok|
 
 <br/>
 ## <a name="see-also"></a>Lásd még:

@@ -1,5 +1,5 @@
 ---
-title: "Örökölt Azure virtuális hálózati átjáró termékváltozatok |} Microsoft Docs"
+title: "aaaLegacy Azure virtuális hálózati átjáró termékváltozatok |} Microsoft Docs"
 description: "A régi virtuális hálózati átjáró-termékváltozat."
 services: vpn-gateway
 documentationcenter: na
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/01/2017
 ms.author: cherylmc
-ms.openlocfilehash: 3b2126b1ecd1613950bbf311ae08fafd4af0d51f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 710417581423d2fbc62827cab7949f2e137c5996
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-virtual-network-gateway-skus-legacy-skus"></a>Virtuális hálózati átjáró termékváltozatok (örökölt SKU) használata
 
-Ez a cikk az örökölt (régi) virtuális hálózati átjáró termékváltozatok információkat tartalmaz. Az örökölt termékváltozatok továbbra is működni a két üzembe helyezési modell, amely már létre van hozva VPN-átjárók. Hagyományos VPN-átjárók továbbra is a hagyományos termékváltozatok meglévő átjáró, valamint az új átjáró. Új erőforrás-kezelő VPN átjáró létrehozása esetén az új átjáró termékváltozatok használatához. Az új termékváltozatok kapcsolatos információkért lásd: [VPN-átjáró](vpn-gateway-about-vpngateways.md).
+Ez a cikk hello örökölt (régi) virtuális hálózati átjáró termékváltozatok információkat tartalmaz. hello örökölt termékváltozatok továbbra is működni a két üzembe helyezési modell, amely már létre van hozva VPN-átjárók. Hagyományos VPN-átjárók toouse továbbra is a hagyományos SKU, meglévő átjáró, valamint az új átjáró hello. Új erőforrás-kezelő VPN átjáró létrehozása esetén hello új átjáró termékváltozatok használatára. Hello információ új termékváltozatok: [VPN-átjáró](vpn-gateway-about-vpngateways.md).
 
 ## <a name="gwsku"></a>Átjáró-termékváltozatok
 
@@ -39,29 +39,29 @@ Ez a cikk az örökölt (régi) virtuális hálózati átjáró termékváltozat
 
 ## <a name="resize"></a>Automatikus oszlopszélesség egy átjáró (egy átjáró SKU módosítása)
 
-Egy átjáró SKU belül az azonos SKU-család is átméretezhetők. Például ha egy Standard Termékváltozat, átméretezheti a HighPerformance másikra. A VPN-átjárók között a régi termékváltozatok és a új SKU-családja nem méretezhető át. Például nem folytatható a szabványos Termékváltozatáról egy VpnGw2 Termékváltozat. 
+Egy átjárót SKU hello átméretezheti azonos SKU-család. Például ha egy Standard Termékváltozat, átméretezheti tooa HighPerformance Termékváltozat. Nem lehet átméretezni a VPN-átjárók közötti hello régi termékváltozatok és új SKU-családok hello. Például a egy Standard Termékváltozat tooa VpnGw2 Termékváltozat nem léphet. 
 
-A klasszikus üzembe helyezési modell átjáró SKU átméretezéséhez használja a következő parancsot:
+egy átjáró SKU hello klasszikus telepítési modell a következő parancs használata hello tooresize:
 
 ```powershell
 Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 ```
 
-A Resource Manager üzembe helyezési modellel átjárót SKU átméretezéséhez használja a következő parancsot:
+átjáró SKU a Resource Manager üzembe helyezési modelljével hello tooresize hello a következő parancsot használja:
 
 ```powershell
 $gw = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
 Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
 ```
 
-## <a name="migrate"></a>Telepítse át az új átjáró termékváltozatok
+## <a name="migrate"></a>Új átjáró toohello termékváltozatok áttelepítése
 
-Dolgozunk a Resource Manager üzembe helyezési modellel, ha az új átjáróra Termékváltozatok áttelepítheti. Dolgozunk a klasszikus üzembe helyezési modellel, ha az új SKU nem telepíthető át, és helyette továbbra is a hagyományos SKU.
+Hello Resource Manager üzembe helyezési modellben dolgozik, toohello új átjáró Termékváltozatok áttelepíthető. Dolgozunk a hello klasszikus üzembe helyezési modellel, ha toohello nem telepíthető át új termékváltozatok és helyette továbbra is a toouse örökölt termékváltozatok hello.
 
 [!INCLUDE [Migrate SKU](../../includes/vpn-gateway-migrate-legacy-sku-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az új átjáró-termékváltozat kapcsolatos további információkért lásd: [Gateway SKU-n](vpn-gateway-about-vpngateways.md#gwsku).
+További információ a hello új Gateway SKU-n, lásd: [Gateway SKU-n](vpn-gateway-about-vpngateways.md#gwsku).
 
 Konfigurációs beállításaival kapcsolatos további információkért lásd: [VPN-átjáró konfigurációs beállítások](vpn-gateway-about-vpn-gateway-settings.md).

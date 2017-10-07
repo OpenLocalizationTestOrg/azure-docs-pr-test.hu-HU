@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy egyéni mintavétel - Azure Application Gateway - klasszikus PowerShell |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy egyéni mintavétel az Alkalmazásátjáró a klasszikus üzembe helyezési modellel PowerShell használatával"
+title: "egyéni tesztműveleti - Azure Application Gateway - PowerShell klasszikus aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egyéni mintavételi az Alkalmazásátjáró hello klasszikus üzembe helyezési modellel PowerShell használatával"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: gwallace
-ms.openlocfilehash: bf190741b10c10e885d927ad21a9f2b25107943f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68332367c99328bd6456b0c339923765637be986
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-probe-for-azure-application-gateway-classic-by-using-powershell"></a>Hozzon létre egy egyéni mintavétel az Azure Application Gateway (klasszikus) PowerShell használatával
 
@@ -28,49 +28,49 @@ ms.lasthandoff: 07/11/2017
 > * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 > * [Klasszikus Azure PowerShell](application-gateway-create-probe-classic-ps.md)
 
-Ebben a cikkben ad hozzá egy egyéni mintavételt meglévő Alkalmazásátjáró a PowerShell használatával. Egyéni mintavételt az alkalmazásokat, amelyek egy adott állapotának ellenőrzése lapon vagy az alapértelmezett webes alkalmazás a sikeres válasz nem biztosító alkalmazások hasznosak.
+Ebben a cikkben egy egyéni mintavételi tooan meglévő Alkalmazásátjáró a PowerShell használatával adja hozzá. Egyéni mintavételt hasznosak, az alkalmazásokat, amelyek egy adott állapotának ellenőrzése lapon vagy az alkalmazásokat, amelyek nem a sikeres válasz hello alapértelmezett webalkalmazáshoz.
 
 > [!IMPORTANT]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Ismerje meg, [hogyan hajthatja végre ezeket a lépéseket a Resource Manager-modell használatával](application-gateway-create-probe-ps.md).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Ismerje meg, hogyan túl[hello Resource Manager modellt használja a következő lépésekkel](application-gateway-create-probe-ps.md).
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
 ## <a name="create-an-application-gateway"></a>Application Gateway létrehozása
 
-Application Gateway létrehozásához tegye a következőket:
+Alkalmazásátjáró toocreate:
 
 1. Egy Application Gateway erőforrás létrehozása.
 2. Hozzon létre egy konfigurációs XML-fájlt vagy konfigurációs objektumot.
-3. Véglegesítse az újonnan létrehozott Application Gateway erőforrás konfigurációját.
+3. Az újonnan létrehozott alkalmazás átjáró erőforrás hello konfigurációs toohello véglegesítése.
 
 ### <a name="create-an-application-gateway-resource-with-a-custom-probe"></a>Egy egyéni mintavételi alkalmazás átjáró erőforrás létrehozása
 
-Az átjáró létrehozásához használja a `New-AzureApplicationGateway` parancsmagot, és cserélje le az értékeket a saját értékeire. Az átjáró használati díjának felszámolása ekkor még nem kezdődik el. A használati díj felszámolása egy későbbi lépésnél kezdődik, amikor az átjáró sikeresen elindul.
+toocreate hello átjáró használata hello `New-AzureApplicationGateway` hello értékeket cserélje le a saját, a parancsmag. Számlázási hello átjáró nem indul el ezen a ponton. Számlázási egy későbbi lépésben, akkor kezdődik, amikor hello átjáró sikeresen elindult.
 
-Az alábbi példa egy új Application Gateway-t hoz létre egy „testvnet1” nevű virtuális hálózat és egy „subnet-1” nevű alhálózat használatával.
+hello alábbi példa használatával hozza létre az Alkalmazásátjáró nevű, "testvnet1" és "alhálózat-1" nevű alhálózat virtuális hálózat.
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-Az átjáró létrehozásának ellenőrzéséhez használhatja a `Get-AzureApplicationGateway` parancsmagot.
+amely átjáró hello toovalidate lett létrehozva, használhatja a hello `Get-AzureApplicationGateway` parancsmag.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
 ```
 
 > [!NOTE]
-> Az *InstanceCount* alapértelmezett értéke 2, a maximális értéke pedig 10. A *GatewaySize* alapértelmezett értéke Közepes. Kis, közepes és nagy közül választhat.
+> az alapértelmezett érték hello *InstanceCount* 2, maximális értéke 10. az alapértelmezett érték hello *GatewaySize* közepes. Kis, közepes és nagy közül választhat.
 > 
 > 
 
-A *VirtualIPs* és a *DnsName* paraméterek azért üresek, mert az átjáró még nem indult el. Ezek az értékek jönnek létre, ha az átjáró már szerepel a futó állapotot.
+*Virtualip értékek* és *DnsName* jelennek meg az üres mert hello átjáró még nem kezdődött meg. Ezeket az értékeket jönnek létre, ha hello átjáró hello futó állapotban van.
 
 ### <a name="configure-an-application-gateway-by-using-xml"></a>Alkalmazásátjáró konfigurálása XML használatával
 
-Az alábbi példában egy XML-fájllal konfigurálja az Application Gateway beállításait, és véglegesíti őket az Application Gateway-erőforráshoz.  
+A következő példa hello egy XML-fájl tooconfigure összes alkalmazás átjáró beállításait használja, és véglegesítse azokat toohello alkalmazás átjáró-erőforráshoz.  
 
-Másolja az alábbi szöveget a Jegyzettömbbe.
+A következő szöveg tooNotepad hello másolja.
 
 ```xml
 <ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
@@ -136,39 +136,39 @@ Másolja az alábbi szöveget a Jegyzettömbbe.
 </ApplicationGatewayConfiguration>
 ```
 
-Szerkessze a zárójelek közötti értékeket a konfigurációs elemeknek megfelelően. Mentse a fájlt .xml kiterjesztéssel.
+Módosíthatja a hello konfigurációs elemek hello zárójelek között hello értékeket. Bővítmény .xml hello fájl mentése.
 
-A következő példa bemutatja, hogyan egy konfigurációs fájl használatával állítsa be a nyilvános port 80-as HTTP-forgalom és a hálózati forgalom elküldése a háttér-két IP-címre egy egyéni mintavételt a 80-as port az Alkalmazásátjáró.
+hello következő példa bemutatja, hogyan toouse egy konfigurációs fájl tooset hello alkalmazás átjáró tooload be HTTP-forgalom 80-as nyilvános portjához egyensúlyba és a hálózati forgalom elküldése a 80-as port tooback-a befejezési egy egyéni mintavételt használatával két IP-címre.
 
 > [!IMPORTANT]
-> A Http és Https protokollelem különbséget tesz a kis- és a nagybetűk között.
+> hello protokoll Http vagy Https elem kis-és nagybetűket.
 
-Egy új konfigurációelemet \<mintavételi\> konfigurálása egyéni mintavételt kerül.
+Egy új konfigurációelemet \<mintavételi\> tooconfigure egyéni mintavételt kerül.
 
-A konfigurációs paraméterek a következők:
+hello konfigurációs paraméterek a következők:
 
 |Paraméter|Leírás|
 |---|---|
 |**Name (Név)** |Egyéni mintavétel hivatkozás neve. |
 * **Protokoll** | Használt protokoll (a lehetséges értékek: HTTP vagy HTTPS).|
-| **Állomás** és **elérési útja** | Fejezze be az URL-címet, amelyet az Alkalmazásátjáró példány állapotának meghatározására. Például ha egy webhely http://contoso.com/, majd az egyéni vizsgálat is konfigurálható "http://contoso.com/path/custompath.htm" mintavételi ellenőrzi, hogy rendelkezik a sikeres HTTP-válasz.|
-| **Időköz** | Konfigurálja a mintavételi intervallum ellenőrzések másodpercben.|
-| **Időtúllépés** | Egy HTTP-válasz ellenőrzése mintavételi időtúllépésének meghatározása.|
-| **UnhealthyThreshold** | A szükséges jelzőt a háttér-példányához, a sikertelen HTTP-válaszok száma *sérült*.|
+| **Állomás** és **elérési útja** | Végezze el, amelyet hello alkalmazás átjáró toodetermine hello állapotának hello példány URL-címe. Például ha egy webhely http://contoso.com/ majd hello egyéni mintavételi konfigurálhatja a "http://contoso.com/path/custompath.htm" mintavétel toohave sikeres HTTP-válasz ellenőrzi.|
+| **Időköz** | Konfigurálja a hello mintavételi időköze ellenőrzések másodpercben.|
+| **Időtúllépés** | Határozza meg egy HTTP-válasz ellenőrzést hello mintavételi időkorlátját.|
+| **UnhealthyThreshold** | tooflag hello háttér-példány szükséges a sikertelen HTTP-válaszok száma hello *sérült*.|
 
-A mintavétel nevének hivatkozik a \<BackendHttpSettings\> konfigurációját, és rendeljen mely háttér címkészletet egyéni tesztműveleti beállításokat használja.
+hello mintavétel nevének hivatkozik hello \<BackendHttpSettings\> konfigurációs tooassign egyéni tesztműveleti beállításokat használja, mely háttér-készlet.
 
-## <a name="add-a-custom-probe-to-an-existing-application-gateway"></a>Egyéni tesztműveleti hozzáadása egy meglévő Alkalmazásátjáró
+## <a name="add-a-custom-probe-tooan-existing-application-gateway"></a>Egyéni tesztműveleti tooan meglévő Alkalmazásátjáró hozzáadása
 
-Az Alkalmazásátjáró a jelenlegi konfiguráció módosításához szükséges három lépés: az aktuális XML konfigurációs fájl beolvasása módosítani szeretné, hogy egy egyéni mintavételt és az új XML-beállítások konfigurálása az Alkalmazásátjáró.
+Változó hello aktuális konfigurációja Alkalmazásátjáró három lépésből áll: hello aktuális XML konfigurációs fájl beolvasása módosítani egy egyéni mintavételt toohave és hello Alkalmazásátjáró hello új XML-beállításainak konfigurálása.
 
-1. Az XML-fájl segítségével könnyebben nyerhet `Get-AzureApplicationGatewayConfig`. Ez a parancsmag exportálja a konfigurációs XML-kód módosítani kell hozzáadni a mintavételi beállítást.
+1. Hello XML-fájl segítségével könnyebben nyerhet `Get-AzureApplicationGatewayConfig`. Ez a parancsmag kivitel hello konfigurációs XML toobe módosítani tooadd mintavételi beállítást.
 
   ```powershell
-  Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
+  Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path toofile>"
   ```
 
-1. Nyissa meg az XML-fájlt egy szövegszerkesztőben. Adja hozzá a `<probe>` után szakasz `<frontendport>`.
+1. Nyissa meg a hello XML-fájlt egy szövegszerkesztőben. Adja hozzá a `<probe>` után szakasz `<frontendport>`.
 
   ```xml
 <Probes>
@@ -184,7 +184,7 @@ Az Alkalmazásátjáró a jelenlegi konfiguráció módosításához szükséges
 </Probes>
   ```
 
-  Az XML a backendhttpsettings beállítások területen adja hozzá a mintavétel nevének a következő példában látható módon:
+  Hello XML hello backendhttpsettings beállítások területen hozzáadása hello mintavétel nevének, ahogy az alábbi példa hello:
 
   ```xml
     <BackendHttpSettings>
@@ -197,17 +197,17 @@ Az Alkalmazásátjáró a jelenlegi konfiguráció módosításához szükséges
     </BackendHttpSettings>
   ```
 
-  Mentse az XML-fájlt.
+  Hello XML-fájl mentése.
 
-1. Frissítse az alkalmazás átjáró konfigurációját az új XML-fájl használatával `Set-AzureApplicationGatewayConfig`. Ez a parancsmag az Alkalmazásátjáró frissítése az új konfigurációt.
+1. Frissítés hello alkalmazás átjáró konfigurációját hello új XML-fájl használatával `Set-AzureApplicationGatewayConfig`. Ez a parancsmag frissíti az Alkalmazásátjáró hello új konfigurációval.
 
 ```powershell
-Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
+Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path toofile>"
 ```
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha a Secure Sockets Layer (SSL) kiszervezési konfigurálni szeretné, lásd: [konfigurálása az SSL-kiszervezés Alkalmazásátjáró](application-gateway-ssl.md).
+Ha azt szeretné, hogy Secure Sockets Layer (SSL)-kiszervezés tooconfigure, [konfigurálása az SSL-kiszervezés Alkalmazásátjáró](application-gateway-ssl.md).
 
-Ha konfigurálni szeretne egy ILB-vel használni kívánt Application Gateway-t: [Application Gateway létrehozása belső terheléselosztóval (ILB)](application-gateway-ilb.md).
+Ha azt szeretné, hogy egy alkalmazás átjáró toouse belső terheléselosztással tooconfigure, [hozzon létre egy alkalmazást egy belső terheléselosztón (ILB)](application-gateway-ilb.md).
 

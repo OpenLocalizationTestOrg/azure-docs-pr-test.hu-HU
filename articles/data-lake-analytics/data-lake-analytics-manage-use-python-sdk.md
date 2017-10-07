@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake Analytics használatának Python kezelése |} Microsoft Docs"
-description: "Ebből a cikkből megtudhatja, hogyan használhatja a Pythont Data Lake Store-fiók létrehozásához és feladatok elküldéséhez. "
+title: "Azure Data Lake Analytics aaaManage pythonos környezetekben |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Python toocreate egy Data Lake tárolásához fiók, valamint feladatok elküldéséhez. "
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 31326a32f8748e6cfb8bfe24cda46c511ab59352
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3c0fff155db7c4fd4e84c2562816995eb156be16
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-python"></a>Azure Data Lake Analytics használatának Python kezelése
 
 ## <a name="python-versions"></a>Python-verziók
 
 * A Python egy 64 bites verzióját használja.
-* Használhatja a Python elosztási a következő címen található standard  **[Python.org letölti](https://www.python.org/downloads/)**. 
-* Sok fejlesztők találhatja használja a  **[Anaconda Python elosztási](https://www.continuum.io/downloads)**.  
-* Ez a cikk írásának szabványos Python elosztási 3.6 verzió pythonos környezetekben
+* Használhatja a hello a következő címen található standard Python elosztási  **[Python.org letölti](https://www.python.org/downloads/)**. 
+* Sok fejlesztők megkeresi azt kényelmes toouse hello  **[Anaconda Python elosztási](https://www.continuum.io/downloads)**.  
+* Ez a cikk írásának hello szabványos Python terjesztési 3.6 verzió pythonos környezetekben
 
 ## <a name="install-azure-python-sdk"></a>Az Azure Python SDK telepítése
 
-A következő modulok telepítése:
+Telepítse a következő modulok hello:
 
-* A **azure-mgmt-erőforrás** modul más Azure modult tartalmaz az Active Directory stb.
-* A **azure-mgmt-datalake-tároló** modul tartalmazza az Azure Data Lake Store fiókkezelési műveletekhez.
-* A **azure-datalake-tároló** modul tartalmazza az Azure Data Lake Store fájlrendszer-műveletekhez. 
-* A **azure-datalake-analytics** modul tartalmazza az Azure Data Lake Analytics műveleteket. 
+* Hello **azure-mgmt-erőforrás** modul más Azure modult tartalmaz az Active Directory stb.
+* Hello **azure-mgmt-datalake-tároló** modul tartalmaz hello Azure Data Lake Store fiókkezelési műveletekhez.
+* Hello **azure-datalake-tároló** modul hello Azure Data Lake Store fájlrendszer-műveleteket tartalmaz. 
+* Hello **azure-datalake-analytics** modul hello Azure Data Lake Analytics műveleteket tartalmaz. 
 
-Először ellenőrizze, hogy a legújabb `pip` a következő parancs futtatásával:
+Először is győződjön meg arról hogy hello legújabb `pip` hello a következő parancs futtatásával:
 
 ```
 python -m pip install --upgrade pip
@@ -46,7 +46,7 @@ python -m pip install --upgrade pip
 
 Ez a dokumentum használatával készült `pip version 9.0.1`.
 
-Használja a következő `pip` parancsok a modulok telepítése a parancssor:
+Hello következő `pip` tooinstall hello modulok hello commandline parancsokat:
 
 ```
 pip install azure-mgmt-resource
@@ -57,7 +57,7 @@ pip install azure-mgmt-datalake-analytics
 
 ## <a name="create-a-new-python-script"></a>Hozzon létre egy új Python-parancsfájl
 
-Illessze be az alábbi kódot a parancsfájlba:
+Illessze be a kódját hello parancsfájlba a következő hello:
 
 ```python
 ## Use this only for Azure AD service-to-service authentication
@@ -92,7 +92,7 @@ from azure.mgmt.datalake.analytics.catalog import DataLakeAnalyticsCatalogManage
 import logging, getpass, pprint, uuid, time
 ```
 
-Győződjön meg arról, hogy a modulok importálása a parancsfájl futtatásához.
+Futtassa a parancsfájl tooverify adott hello modulok importálása.
 
 ## <a name="authentication"></a>Authentication
 
@@ -103,7 +103,7 @@ Ez a metódus nem támogatott.
 ### <a name="interactive-user-authentication-with-a-device-code"></a>Interaktív felhasználói hitelesítéssel rendelkező eszköz
 
 ```python
-user = input('Enter the user to authenticate with that has permission to subscription: ')
+user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
 password = getpass.getpass()
 credentials = UserPassCredentials(user, password)
 ```
@@ -120,7 +120,7 @@ Ez a metódus nem támogatott.
 
 ## <a name="common-script-variables"></a>Általános parancsfájl-változókat
 
-Ezek a változók a mintában használt.
+Ezek a változók hello mintákat használjuk.
 
 ```python
 subid= '<Azure Subscription ID>'
@@ -130,7 +130,7 @@ adls = '<Azure Data Lake Store Account Name>'
 adla = '<Azure Data Lake Analytics Account Name>'
 ```
 
-## <a name="create-the-clients"></a>Az ügyfelek létrehozása
+## <a name="create-hello-clients"></a>Hello ügyfelek létrehozása
 
 ```python
 resourceClient = ResourceManagementClient(credentials, subid)
@@ -185,7 +185,7 @@ script = """
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 """
 
@@ -201,7 +201,7 @@ jobResult = adlaJobClient.job.create(
 )
 ```
 
-## <a name="wait-for-a-job-to-end"></a>Várjon, amíg a feladat befejezéséhez
+## <a name="wait-for-a-job-tooend"></a>Várjon, amíg a feladat tooend
 
 ```python
 jobResult = adlaJobClient.job.get(adla, jobId)
@@ -228,11 +228,11 @@ for r in recurrences:
 
 ## <a name="manage-compute-policies"></a>Számítási házirendjeinek kezelése
 
-A DataLakeAnalyticsAccountManagementClient objektum a számítási házirendek előnyeit a Data Lake Analytics-fiók kezelésére szolgáló módszert biztosít.
+hello DataLakeAnalyticsAccountManagementClient objektum biztosít hello kezelésére szolgáló módszerek számítási házirendek a Data Lake Analytics-fiók.
 
 ### <a name="list-compute-policies"></a>Számítási házirendek felsorolása
 
-A következő kód lekéri a Data Lake Analytics-fiók számítási házirendek listáját.
+hello a következő kód lekéri a Data Lake Analytics-fiók számítási házirendek listáját.
 
 ```python
 policies = adlaAccountClient.computePolicies.listByAccount(rg, adla)
@@ -242,7 +242,7 @@ for p in policies:
 
 ### <a name="create-a-new-compute-policy"></a>Hozzon létre egy új számítási házirendet
 
-Az alábbi kód létrehoz egy új számítási házirendet Data Lake Analytics-fiók esetén a rendelkezésre álló maximális ausztráliai beállítása a megadott felhasználó 50 és 250 minimális feladat prioritása.
+a következő kód hello létrehoz egy új számítási házirendet a Data Lake Analytics-fiók, beállítás hello maximális ausztráliai elérhető toohello megadott felhasználói too50, és hello minimális feladat prioritása too250.
 
 ```python
 userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde"
@@ -252,7 +252,7 @@ adlaAccountClient.computePolicies.createOrUpdate(rg, adla, "GaryMcDaniel", newPo
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Ha ugyanezt az oktatóanyagot más eszközök használatával szeretné megtekinteni, kattintson az oldal tetején található lapválasztókra.
-- A U-SQL nyelv megismerése: [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md) (Ismerkedés az Azure Data Lake Analytics U-SQL nyelvével).
+- toosee hello ugyanaz az oktatóanyagot más eszközök használatával hello szeretné a hello hello lap tetején kattintson.
+- toolearn U-SQL, lásd: [Ismerkedés az Azure Data Lake Analytics U-SQL nyelv](data-lake-analytics-u-sql-get-started.md).
 - Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).
 

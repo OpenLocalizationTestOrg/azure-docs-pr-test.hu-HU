@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Security Center által támogatott platformok |} Microsoft Docs"
+title: aaaSupported platformon az Azure Security Centerben |} Microsoft Docs
 description: "Ez a dokumentum az Azure Security Centerben támogatott Windows és Linux-operatings rendszerek listáját jeleníti meg."
 services: security-center
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: c33e132037d95fa92fd59a8243a9a8a351ae0224
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f73e04970749271fc9d75836f4f468b0a4953f9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-platforms-in-azure-security-center"></a>Az Azure Security Centerben a támogatott platformok
-Biztonsági állapotának megfigyelése és javaslatok érhetők el a klasszikus és Resource Manager üzembe helyezési modell használatával létrehozott virtuális gépek (VM).
+Biztonsági állapotának megfigyelése és javaslatok hello klasszikus és Resource Manager üzembe helyezési modell használatával létrehozott virtuális gépek (VM) érhetők el.
 
 > [!NOTE]
-> További információ a [klasszikus és Resource Manager üzembe helyezési modell](../azure-classic-rm.md) az Azure-erőforrások.
+> További tudnivalók hello [klasszikus és Resource Manager üzembe helyezési modell](../azure-classic-rm.md) az Azure-erőforrások.
 >
 >
 
@@ -60,11 +60,11 @@ Támogatott Linux operációs rendszerek:
 >
 
 ## <a name="vms-and-cloud-services"></a>Virtuális gépek és Felhőszolgáltatások
-Felhőszolgáltatásban futó virtuális gépeket is támogatottak. Csak felhőalapú szolgáltatások üzembe helyezési ponti figyelt éles környezetben futó webes és feldolgozói szerepköröket. A felhőalapú szolgáltatás kapcsolatos további információkért lásd: [felhőalapú szolgáltatások – áttekintés](../cloud-services/cloud-services-choose-me.md).
+Felhőszolgáltatásban futó virtuális gépeket is támogatottak. Csak felhőalapú szolgáltatások üzembe helyezési ponti figyelt éles környezetben futó webes és feldolgozói szerepköröket. További információ a felhőalapú szolgáltatás, toolearn lásd [felhőalapú szolgáltatások – áttekintés](../cloud-services/cloud-services-choose-me.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Azure Security Center tervezéséhez és az üzemeltetési útmutatóban](security-center-planning-and-operations-guide.md) – megtudhatja, hogyan tervezhető meg és hogy bevezessék az Azure Security Center tervezéséhez kapcsolódó szempontokat ismertetése
+- [Azure Security Center tervezéséhez és az üzemeltetési útmutatóban](security-center-planning-and-operations-guide.md) – további hogyan tooplan és hello kialakítási szempontok tooadopt az Azure Security Center ismertetése
 - [Biztonsági riasztások az Azure Security Centerben típusonként](https://docs.microsoft.com/en-us/azure/security-center/security-center-alerts-type.md#virtual-machine-behavioral-analysis) – további információk a virtuális gép viselkedéselemzése és összeomlás-memóriakép memória elemzése a Security Center
-- [Azure Security Center FAQ](security-center-faq.md) (Azure Security Center – gyakran ismételt kérdések) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
+- [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban
 - [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – blogbejegyzések az Azure biztonsági és megfelelőségi

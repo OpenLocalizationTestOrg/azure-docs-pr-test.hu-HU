@@ -1,5 +1,5 @@
 ---
-title: "Teljesítményteszt pontszámok Windows virtuális gépek számítási |} Microsoft Docs"
+title: "Windows virtuális gépek pontszámaihoz aaaCompute referenciaalap |} Microsoft Docs"
 description: "Windows Server rendszert futtató Azure virtuális gépek SPECint számítási teljesítményteszt pontszámok összehasonlítása"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: dc715a9bf4e5366e1719de7c649feb06b0c4bee7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3037d69790cb193161122b902e85fb838285cf81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Teljesítményteszt pontszámok Windows virtuális gépek számítási
-A következő SPECInt teljesítményteszt eredmények megjelenítése Azure nagy teljesítményű virtuális gép következőhöz Windows Server rendszert futtató számítási teljesítményt. Számítási teljesítményteszt pontszámok is elérhető [Linux virtuális gépek](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+a következő SPECInt teljesítményteszt pontszámok megjelenítése hello számítási a Windows Server rendszert futtató Azure nagy teljesítményű virtuális gép következőhöz teljesítménye. Számítási teljesítményteszt pontszámok is elérhető [Linux virtuális gépek](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>A-sorozatú-számítási igényű
 | Méret | Vcpu | NUMA-csomópontok | CPU | Fut. | Átlagos alap arány | Szórás |
@@ -65,7 +65,7 @@ A következő SPECInt teljesítményteszt eredmények megjelenítése Azure nagy
 | Standard h16mr méretű |16 |2 |Intel Xeon E5-2667 v3 3,2 GHz-es @ |7 |569.6 |2.8 |
 
 ## <a name="about-specint"></a>SPECint kapcsolatos
-Windows számok futtatásával volt számított [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) Windows Server rendszeren. SPECint volt futtatva az Alap (SPECint_rate2006) beállítás használata core egy példányt. SPECint áll 12 külön teszteket, minden egyes háromszor fut le, minden tesztből középértékét véve és súlyozási őket egy összetett pontszám kialakításához. Ezek a tesztek között az átlagos pontszámok jelenik meg több virtuális gép is futtatja.
+Windows számok futtatásával volt számított [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) Windows Server rendszeren. SPECint futtatták (SPECint_rate2006) beállítás alapszintű hello használata core egy példányt. SPECint 12 külön teszteket, minden egyes háromszor fut le, minden tesztből hello középérték véve és súlyozási őket tooform áll egy összetett pontszámot. Ezek a tesztek majd volt futtatása több virtuális gépek tooprovide hello átlagos pontszámok látható.
 
 ## <a name="next-steps"></a>Következő lépések
 * Tárolási kapacitás, a lemez adatai és Virtuálisgép-méretek között további szempontokról, lásd: [virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

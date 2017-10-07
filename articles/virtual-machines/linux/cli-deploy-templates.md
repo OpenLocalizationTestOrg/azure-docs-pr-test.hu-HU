@@ -1,6 +1,6 @@
 ---
-title: "Linux virtuális gépek telepítése az Azure-sablonok |} Microsoft Docs"
-description: "Telepítése és kezelése az Azure virtuális gépek Resource Manager-sablonok és az Azure parancssori felület használatával leggyakoribb beállításokat."
+title: "aaaDeploy Linux virtuális gépek Azure-sablonok |} Microsoft Docs"
+description: "Telepítése és kezelése az Azure virtual machines Resource Manager-sablonok és az Azure parancssori felület használatával leggyakoribb konfigurációi hello."
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 415be559a8e0d1940a6a3da4f44ebd26b750fab0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 087b21504adc7e5f462530a748d26f0c1a1c99a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-the-azure-cli"></a>Központi telepítése és virtuális gépek kezelése az Azure Resource Manager-sablonok és az Azure parancssori felület használatával
-Ez a cikk bemutatja, hogyan használja az Azure Resource Manager-sablonok és az Azure parancssori felület telepítése és kezelése az Azure virtuális gépek a következő általános feladatok. További felhasználható sablonokat az [Azure-gyorssablonok](https://azure.microsoft.com/documentation/templates/) és a [Sablonokat használó alkalmazás-keretrendszerek](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) között talál.
+# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-hello-azure-cli"></a>Központi telepítése és virtuális gépek kezelése az Azure Resource Manager-sablonok és hello Azure parancssori felület használatával
+Ez a cikk bemutatja, hogyan toouse Azure Resource Manager sablonok és hello Azure CLI toodo hello telepítése és kezelése az Azure virtuális gépek kapcsolódó gyakori feladatok a következő. További felhasználható sablonokat az [Azure-gyorssablonok](https://azure.microsoft.com/documentation/templates/) és a [Sablonokat használó alkalmazás-keretrendszerek](app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) között talál.
 
 [!INCLUDE [virtual-machines-common-cli-deploy-templates](../../../includes/virtual-machines-common-cli-deploy-templates.md)]
 

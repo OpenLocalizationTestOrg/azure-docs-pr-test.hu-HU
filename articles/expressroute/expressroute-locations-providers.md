@@ -1,6 +1,6 @@
 ---
 title: "Helyek és kapcsolatszolgáltatók: Azure ExpressRoute | Microsoft Docs"
-description: "A cikk részletes áttekintést nyújt a szolgáltatási helyekről és az Azure-régiókhoz való csatlakozásról. Hely alapján rendezve."
+description: "Ez a cikk részletes áttekintést nyújt a helyek és azokat a szolgáltatásokat kínálják hogyan tooconnect tooAzure régiók. Hely alapján rendezve."
 services: expressroute
 documentationcenter: na
 author: cherylmc
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2017
 ms.author: kaanan
-ms.openlocfilehash: a10986ac0b36a3f2065f02533f9e321c755d4cc8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 838d52701d177aa7f13e845b7bde66d07b5efed6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute-partnerek és társviszony-létesítési helyszínek.
 
@@ -27,17 +27,17 @@ ms.lasthandoff: 08/29/2017
 > * [Szolgáltatók hely alapján](expressroute-locations-providers.md)
 
 
-A cikkben található táblázatok információkat nyújtanak az ExpressRoute-kapcsolatszolgáltatókkal, az ExpressRoute földrajzi lefedettségével, az ExpressRoute-on támogatott Microsoft-felhőszolgáltatásokkal és az ExpressRoute-rendszerintegrátorokkal (SI) kapcsolatban.
+Ebben a cikkben hello táblák ExpressRoute kapcsolat szolgáltatók, melyek ExpressRoute, ExpressRoute és ExpressRoute rendszerintegrátorok (SIs) keresztül támogatja a Microsoft más felhőszolgáltatásaival tájékoztatást nyújt.
 
 ## <a name="partners"></a>ExpressRoute-kapcsolatszolgáltatók
-Az ExpressRoute az összes Azure-régióban és -helyen támogatott. A következő térkép az Azure-régiók és ExpressRoute-helyek listáját tartalmazza. Az ExpressRoute-helyek azokra a helyekre utalnak, ahol a Microsoft több szolgáltatóval is társul.
+Az ExpressRoute az összes Azure-régióban és -helyen támogatott. a következő térkép hello Azure-régiók és a helyek ExpressRoute listáját tartalmazza. Helyek ExpressRoute toothose, ahol a Microsoft több szolgáltatókkal állomásokhoz hivatkozik.
 
 ![Helyek térképe][0]
 
-Ha legalább egy ExpressRoute-helyhez csatlakozott egy geopolitikai régióban, az adott geopolitikai régióban lévő összes régióban hozzáférhet az Azure-szolgáltatásokhoz. 
+Között geopolitikai régión belül minden egyes tooAzure szolgáltatást lesz, ha létrejött a kapcsolat tooat legalább egy ExpressRoute hely hello geopolitikai régión belül. 
 
-### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>Az egyes geopolitikai régiókban lévő Azure-régiók és ExpressRoute-helyek
-A következő tábla az egyes geopolitikai régiókban lévő Azure-régiók és ExpressRoute-helyek térképét mutatja.
+### <a name="azure-regions-tooexpressroute-locations-within-a-geopolitical-region"></a>Azure-régiók tooExpressRoute helyek geopolitikai régión belül
+a következő táblázat hello biztosít Azure-régiók térképe tooExpressRoute helyek geopolitikai régión belül.
 
 | **Geopolitikai régió** | **Azure-régiók** | **ExpressRoute-helyek** |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ A következő tábla az egyes geopolitikai régiókban lévő Azure-régiók és
 | **Dél-Korea** |Korea középső régiója, Korea déli régiója |Busan, Szöul |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>A régiók és az országos felhők geopolitikai határai
-Az alábbi tábla a régiók és az országos felhők geopolitikai határainak információit tartalmazza.
+hello az alábbi táblázat bemutatja, régiók és geopolitikai határok nemzeti felhők.
 
 | **Geopolitikai régió** | **Azure-régiók** | **ExpressRoute-helyek** |
 | --- | --- | --- |
@@ -59,11 +59,11 @@ Az alábbi tábla a régiók és az országos felhők geopolitikai határainak i
 | **Kína** |Észak-Kína, Kelet-Kína |Peking, Sanghaj |
 | **Németország** |Közép-Németország, Kelet-Németország |Berlin, Frankfurt |
 
-A geopolitikai régiókon átívelő kapcsolódás nem támogatott a standard ExpressRoute-termékváltozatokban. A globális kapcsolatok támogatásához engedélyeznie kell az ExpressRoute prémium bővítményt. Az országos felhőkörnyezetekhez való kapcsolódás nem támogatott. Igény esetén tájékozódjon kapcsolatszolgáltatójánál a lehetőségekről.
+Geopolitikai régiók közötti kapcsolat hello standard ExpressRoute SKU nem támogatott. Szüksége lesz tooenable hello ExpressRoute prémium bővítmény toosupport globális kapcsolatot. Kapcsolat toonational felhőalapú környezetben nem támogatott. Igény esetén tájékozódjon kapcsolatszolgáltatójánál a lehetőségekről.
 
 ## <a name="locations"></a>Kapcsolatszolgáltatói helyek
 
-Az alábbi táblázatban a kapcsolati helyek és az egyes helyekhez tartozó szolgáltatók láthatók. A szolgáltatók és a szolgáltatási helyek megtekintéséhez lásd: [Helyek szolgáltatók szerint](expressroute-locations.md#locations). 
+hello következő táblázatban kapcsolat legyen, és hello szolgáltatók mindegyik helyen. Ha azt szeretné, tooview szolgáltatók és hello helyek, amelynek szolgáltatás is biztosítanak, lásd: [szolgáltató helyek](expressroute-locations.md#locations). 
 
 
 ### <a name="production-azure"></a>Termelési Azure
@@ -121,7 +121,7 @@ Az alábbi táblázatban a kapcsolati helyek és az egyes helyekhez tartozó szo
 | **Peking** |China Telecom |
 | **Sanghaj** |China Telecom |
 
-További tudnivalókért lásd: [Az ExpressRoute Kínában](http://www.windowsazure.cn/home/features/expressroute/).
+több, lásd: toolearn [ExpressRoute Kínában](http://www.windowsazure.cn/home/features/expressroute/)
 
 ### <a name="germany"></a>Németország
 | **Hely** | **Szolgáltatók** |
@@ -132,7 +132,7 @@ További tudnivalókért lásd: [Az ExpressRoute Kínában](http://www.windowsaz
 ## <a name="c1partners"></a>Kapcsolódás adatcsere-szolgáltatókon keresztül
 Ha a kapcsolatszolgáltató nincs felsorolva az előző szakaszokban, akkor is létesíthet kapcsolatot.
 
-* Ellenőrizze a kapcsolatszolgáltatójánál, hogy kapcsolódik-e a fenti táblában felsorolt adatcsere-szolgáltatások bármelyikéhez. A következő hivatkozásokon további információkat találhat az adatcsere-szolgáltatók által kínált szolgáltatásokkal kapcsolatban. Több kapcsolatszolgáltató már eleve kapcsolódik Ethernet-adatcserélőkhöz.
+* Kérje meg a kapcsolat szolgáltató toosee, ha azok a fenti hello tábla hello cseréjét csatlakoztatott tooany. Ellenőrizheti a hello következő hivatkozásait toogather exchange szolgáltatók által kínált szolgáltatások további információt. Több kapcsolat szolgáltatók a következők: már csatlakoztatott tooEthernet cseréjét.
   * [Cologix](http://www.cologix.com/)
   * [Console](https://www.consoleconnect.com/partners/cloudsaas/)
   * [CoreSite](http://www.coresite.com/)
@@ -141,10 +141,10 @@ Ha a kapcsolatszolgáltató nincs felsorolva az előző szakaszokban, akkor is l
   * [NextDC](http://www.nextdc.com/)
   * [Megaport](https://www.megaport.com/services/microsoft-expressroute/)
   * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
-* Kérje meg a kapcsolatszolgáltatót, hogy terjessze ki a hálózatot a választott társviszony-létesítési helyszínre.
+* A kapcsolat szolgáltatójánál, a hálózati toohello társviszony-létesítési helye választott kiterjesztése rendelkezik.
   * Győződjön meg róla, hogy a kapcsolatszolgáltató magas rendelkezésre állással terjesztette ki a kapcsolatot, tehát nincsenek kritikus hibapontok a rendszeren belül.
-* Rendeljen meg egy ExpressRoute-kapcsolatcsoportot, ahol az adatcserélő a Microsofthoz kapcsolódó kapcsolatszolgáltató.
-  * Kövesse az [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-classic.md) című témakör lépéseit a kapcsolat beállításához.
+* Rendelés az hello exchange ExpressRoute-kapcsolatcsoportot, a kapcsolat szolgáltatójánál tooconnect tooMicrosoft.
+  * Kövesse lépéseket [ExpressRoute-kapcsolatcsoportot létrehozni](expressroute-howto-circuit-classic.md) tooset fel a kapcsolatot.
 
 ## <a name="c1partners"></a>Kapcsolódás további szolgáltatókon keresztül
 | **Hely** | **Exchange** | **Kapcsolatszolgáltatók** |
@@ -169,7 +169,7 @@ Ha a kapcsolatszolgáltató nincs felsorolva az előző szakaszokban, akkor is l
 | **Washington, D.C.** |Equinix | Altice Business, Gtt Communications Inc, Epsilon, Lightower, Masergy, Windstream |
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute-rendszerintegrátorok
-A privát kapcsolatok igény szerinti beállítása nehéz feladat lehet, a hálózat méretétől függően. A következő táblában felsorolt rendszerintegrátorok bármelyike segítségére lehet az ExpressRoute üzembe helyezésében.
+A hálózat méretezését hello alapján igényeinek kihívást jelenthet magánhálózati kapcsolat toofit engedélyezése esetén. Dolgozhat sem szerepel a következő tábla tooassist hello hello rendszerintegrátorok meg bevezetési tooExpressRoute.
 
 | **Kontinens** | **Rendszerintegrátorok** |
 | --- | --- |
@@ -179,7 +179,7 @@ A privát kapcsolatok igény szerinti beállítása nehéz feladat lehet, a hál
 | **Észak-Amerika** |Avanade Inc., Equinix Professional Services, FlexManage, Perficient, Presidio |
 | **Dél-Amerika** |Avanade Inc. |
 ## <a name="next-steps"></a>Következő lépések
-* További információ az ExpressRoute-tal kapcsolatban: [ExpressRoute – Gyakori kérdések](expressroute-faqs.md).
+* ExpressRoute kapcsolatos további információkért lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md).
 * Ellenőrizze, hogy minden előfeltétel teljesül-e. Lásd: [ExpressRoute-előfeltételek](expressroute-prerequisites.md).
 
 <!--Image References-->

@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure várólista-tároló és a Visual Studio kapcsolódó szolgáltatások (ASP.NET) |} Microsoft Docs"
-description: "Ismerkedés az Azure üzenetsorának tárhelyet használ egy ASP.NET-projekt, a Visual Studio egy tárfiókot, a Visual Studio kapcsolódó szolgáltatások használatával történő kapcsolódás után"
+title: "az Azure várólista-tároló és a Visual Studio kapcsolódó szolgáltatások (ASP.NET) lépései aaaGet |} Microsoft Docs"
+description: "Hogyan tooget használatának az Azure várólista-tároló egy ASP.NET-projekt, a Visual Studio használó Visual Studio kapcsolódó szolgáltatások tooa tárfiókot kapcsolódás után"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/23/2016
 ms.author: tarcher
-ms.openlocfilehash: 76b0d5e270e16a317ce8a7b424c06c867b537a8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a9d6ecb1e8d61d75f59658d0ea3fa63d26fd7354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a>Ismerkedés az Azure várólista-tároló és a Visual Studio kapcsolódó szolgáltatások (ASP.NET)
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Áttekintés
 
-Az Azure várólista-tároló alkalmazás-összetevők közötti üzenetküldési felhő biztosít. A méretezhető alkalmazások tervezésekor az alkalmazás összetevői gyakran le vannak választva, hogy egymástól függetlenül lehessen őket méretezni. A Queue Storage aszinkron üzenetkezelést biztosít az alkalmazások összetevői közötti kommunikációhoz, függetlenül attól, hogy az összetevők a felhőben, asztali gépen, egy helyszíni kiszolgálón vagy egy mobileszközön futnak. A Queue Storage támogatja az aszinkron feladatok kezelését és a feldolgozási munkafolyamatok kialakítását is.
+Az Azure várólista-tároló alkalmazás-összetevők közötti üzenetküldési felhő biztosít. A méretezhető alkalmazások tervezésekor az alkalmazás összetevői gyakran le vannak választva, hogy egymástól függetlenül lehessen őket méretezni. A Queue storage biztosítja, hogy az alkalmazás-összetevők közötti kommunikáció aszinkron üzenetkezelési e hello felhőben, hello asztalon, egy helyszíni kiszolgálón vagy egy mobileszközön futnak. A Queue Storage támogatja az aszinkron feladatok kezelését és a feldolgozási munkafolyamatok kialakítását is.
 
-Ez az oktatóanyag bemutatja, hogyan írhat kódot ASP.NET olyan gyakori forgatókönyveket tartalmaz Azure üzenetsor-kezelési tárolási entitások használata. Ilyen például a gyakori feladatokat, mint egy Azure-üzenetsorba, létrehozása és hozzáadása, módosítása, olvasása, és eltávolítása a üzenetsor-üzeneteket.
+Ez az oktatóanyag bemutatja, hogyan toowrite ASP.NET olyan gyakori forgatókönyveket tartalmaz Azure üzenetsor-kezelési tárolási entitások használata helykódja. Ilyen például a gyakori feladatokat, mint egy Azure-üzenetsorba, létrehozása és hozzáadása, módosítása, olvasása, és eltávolítása a üzenetsor-üzeneteket.
 
 ##<a name="prerequisites"></a>Előfeltételek
 
@@ -42,19 +42,19 @@ Ez az oktatóanyag bemutatja, hogyan írhat kódot ASP.NET olyan gyakori forgat�
 
 ### <a name="create-an-mvc-controller"></a>Hozzon létre az MVC-vezérlő 
 
-1. A a **Megoldáskezelőben**, kattintson a jobb gombbal **tartományvezérlők**, és a helyi menüből válassza ki a **Hozzáadás -> tartományvezérlő**.
+1. A hello **Megoldáskezelőben**, kattintson a jobb gombbal **tartományvezérlők**, és hello helyi menüből válassza ki a **Hozzáadás -> tartományvezérlő**.
 
-    ![Vezérlő hozzáadása az ASP.NET MVC alkalmazások számára](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
+    ![A vezérlő tooan ASP.NET MVC alkalmazás hozzáadása](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
 
-1. A a **hozzáadása Scaffold** párbeszédablakban válassza **MVC 5 vezérlő - üres**, és válassza ki **Hozzáadás**.
+1. A hello **hozzáadása Scaffold** párbeszédablakban válassza **MVC 5 vezérlő - üres**, és válassza ki **Hozzáadás**.
 
     ![Adja meg az MVC-vezérlő típusa](./media/vs-storage-aspnet-getting-started-queues/add-controller.png)
 
-1. Az a **vezérlő hozzáadása** párbeszédpanelen, a tartományvezérlő nevét *QueuesController*, és válassza ki **Hozzáadás**.
+1. A hello **vezérlő hozzáadása** párbeszédpanelen neve hello vezérlő *QueuesController*, és válassza ki **Hozzáadás**.
 
-    ![Neve az MVC-vezérlő](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
+    ![Hello MVC-vezérlő neve](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
 
-1. Adja hozzá a következő *használatával* irányelvek a `QueuesController.cs` fájlt:
+1. Adja hozzá a következő hello *használatával* irányelvek toohello `QueuesController.cs` fájlt:
 
     ```csharp
     using Microsoft.Azure;
@@ -64,26 +64,26 @@ Ez az oktatóanyag bemutatja, hogyan írhat kódot ASP.NET olyan gyakori forgat�
     ```
 ## <a name="create-a-queue"></a>Üzenetsor létrehozása
 
-A következő lépések bemutatják, hogyan várólista létrehozása:
+hello következő lépések bemutatják, hogyan toocreate várólista:
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt. 
+1. Nyissa meg hello `QueuesController.cs` fájlt. 
 
 1. Adja hozzá a hívott metódus **CreateQueue** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult CreateQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. Belül a **CreateQueue** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **CreateQueue** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -95,29 +95,29 @@ A következő lépések bemutatják, hogyan várólista létrehozása:
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
-1. Első egy **CloudQueue** hivatkozni kell a kívánt sor nevét képviselő objektum. A **CloudQueueClient.GetQueueReference** metódus nem tesz egy kérelmet a queue storage. A referencia-e a várólista létezik adja vissza. 
+1. Első egy **CloudQueue** egy toohello kívánt sor hivatkozásnév képviselő objektum. Hello **CloudQueueClient.GetQueueReference** metódus nem tesz egy kérelmet a queue storage. hello hivatkozás hello várólista létezik-e adja vissza. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hívja a **CloudQueue.CreateIfNotExists** módszer a várólista létrehozására, ha még nem létezik. A **CloudQueue.CreateIfNotExists** metódus beolvasása **igaz** , ha a várólista nem létezik, és sikeresen létrejött. Ellenkező esetben **hamis** adja vissza.    
+1. Hello hívás **CloudQueue.CreateIfNotExists** metódus toocreate hello várólista, ha még nem létezik. Hello **CloudQueue.CreateIfNotExists** metódus beolvasása **igaz** Ha hello várólista nem létezik, és sikeresen létrejött. Ellenkező esetben **hamis** adja vissza.    
 
     ```csharp
     ViewBag.Success = queue.CreateIfNotExists();
     ```
 
-1. Frissítés a **ViewBag** a várólista nevét.
+1. Frissítés hello **ViewBag** hello nevű hello várólista.
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
 
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **CreateQueue** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **CreateQueue** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `CreateQueue.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `CreateQueue.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -129,42 +129,42 @@ A következő lépések bemutatják, hogyan várólista létrehozása:
     Creation of @ViewBag.QueueName @(ViewBag.Success == true ? "succeeded" : "failed")
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Create queue", "CreateQueue", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **létrehozás várólista** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **létrehozás várólista** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Várólista létrehozása](./media/vs-storage-aspnet-getting-started-queues/create-queue-results.png)
 
-    Ahogy korábban említettük a **CloudQueue.CreateIfNotExists** metódus beolvasása **igaz** csak a várólista nem létezik és jön létre. Ezért amikor a várólista létezik-e, futtassa az alkalmazást, ha a metódus visszaadja **hamis**. Az alkalmazás többször is lefuthat, az alkalmazás ismételt futtatása előtt kell törölnie a várólistát. A sor törlése megteheti a **CloudQueue.Delete** metódust. A várólista használatával is törölheti a [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040) vagy a [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).  
+    Ahogy korábban említettük hello **CloudQueue.CreateIfNotExists** metódus beolvasása **igaz** csak hello várólista nem létezik és jön létre. Ezért, ha futtatja a hello app hello várólista létezik, hello metódus visszaadja **hamis**. toorun hello alkalmazás többször, törölnie kell hello várólista hello app ismételt futtatása előtt. Törlése hello várólista megteheti a hello **CloudQueue.Delete** metódust. Hello sorból hello törölheti is [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040) vagy hello [Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md).  
 
-## <a name="add-a-message-to-a-queue"></a>A várólista üzenet hozzáadása
+## <a name="add-a-message-tooa-queue"></a>Egy üzenetsor tooa hozzáadása
 
-Miután megismerte [egy sor](#create-a-queue), erre a várólistára üzenetet is hozzáadhat. Ez a szakasz bemutatja, hogyan üzenet ad hozzá egy várólista *teszt-várólista*. 
+Miután megismerte [egy sor](#create-a-queue), üzenetek toothat várólista is hozzáadhat. Ez a szakasz bemutatja, hogyan hozzáadása egy üzenetsor tooa *teszt-várólista*. 
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt.
+1. Nyissa meg hello `QueuesController.cs` fájlt.
 
 1. Adja hozzá a hívott metódus **AddMessage** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult AddMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. Belül a **AddMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **AddMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -177,36 +177,36 @@ Miután megismerte [egy sor](#create-a-queue), erre a várólistára üzenetet i
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. Első egy **CloudQueueContainer** hivatkozni kell a várólista képviselő objektum. 
+1. Első egy **CloudQueueContainer** objektum, amely egy hivatkozás toohello várólistájára vonatkozik. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hozzon létre a **CloudQueueMessage** az üzenetet a várólistában hozzá szeretné képviselő objektum. A **CloudQueueMessage** objektum vagy egy karakterláncból (UTF-8 formátumban), vagy egy bájttömböt hozható létre.
+1. Hozzon létre hello **CloudQueueMessage** tooadd toohello várólista kívánt üdvözlőüzenetére képviselő objektum. A **CloudQueueMessage** objektum vagy egy karakterláncból (UTF-8 formátumban), vagy egy bájttömböt hozható létre.
 
     ```csharp
     CloudQueueMessage message = new CloudQueueMessage("Hello, Azure Queue Storage");
     ```
 
-1. Hívja a **CloudQueue.AddMessage** a várakozási sorba a messaged adható hozzá.
+1. Hello hívás **CloudQueue.AddMessage** metódus tooadd hello messaged toohello várólista.
 
     ```csharp
     queue.AddMessage(message);
     ```
 
-1. Néhány létrehozásáról és **ViewBag** a Nézet tulajdonságai.
+1. Néhány létrehozásáról és **ViewBag** hello nézet tulajdonságai.
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
 
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **AddMessage** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **AddMessage** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `AddMessage.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `AddMessage.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -215,45 +215,45 @@ Miután megismerte [egy sor](#create-a-queue), erre a várólistára üzenetet i
     
     <h2>Add Message results</h2>
     
-    The message '@ViewBag.Message' was added to the queue '@ViewBag.QueueName'.
+    hello message '@ViewBag.Message' was added toohello queue '@ViewBag.QueueName'.
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Add message", "AddMessage", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **Hozzáadás üzenet** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **Hozzáadás üzenet** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Üzenet hozzáadása](./media/vs-storage-aspnet-getting-started-queues/add-message-results.png)
 
-A két szakasz - [üzenet olvasása az üzenetsorból eltávolítása nélkül](#read-a-message-from-a-queue-without-removing-it) és [olvasási és eltávolítása egy üzenetet az üzenetsorból](#read-and-remove-a-message-from-a-queue) -bemutatják, hogyan lehet üzenetek olvasása az üzenetsorból.    
+két szakasz - hello [üzenet olvasása az üzenetsorból eltávolítása nélkül](#read-a-message-from-a-queue-without-removing-it) és [olvasási és eltávolítása egy üzenetet az üzenetsorból](#read-and-remove-a-message-from-a-queue) -bemutatják, hogyan tooread üzenetek várólistából való várólistából.  
 
 ## <a name="read-a-message-from-a-queue-without-removing-it"></a>Egy üzenet olvasása az üzenetsorból eltávolítása nélkül
 
-Ez a szakasz bemutatja, hogyan való aszinkron üzenet (az első üzenet olvasása eltávolítása nélkül).  
+Ez a szakasz bemutatja, hogyan toopeek, egy sorban álló üzenet (olvasási hello első eltávolítása nélkül).  
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt.
+1. Nyissa meg hello `QueuesController.cs` fájlt.
 
 1. Adja hozzá a hívott metódus **PeekMessage** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult PeekMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. Belül a **PeekMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **PeekMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -266,30 +266,30 @@ Ez a szakasz bemutatja, hogyan való aszinkron üzenet (az első üzenet olvasá
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. Első egy **CloudQueueContainer** hivatkozni kell a várólista képviselő objektum. 
+1. Első egy **CloudQueueContainer** objektum, amely egy hivatkozás toohello várólistájára vonatkozik. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hívja a **CloudQueue.PeekMessage** módszer a várólista első üzenetébe olvasni a eltávolítása nélkül. 
+1. Hello hívás **CloudQueue.PeekMessage** metódus tooread hello várólista első üzenetébe hello hello várólistából eltávolítása nélkül. 
 
     ```csharp
     CloudQueueMessage message = queue.PeekMessage();
     ```
 
-1. Frissítés a **ViewBag** két értékekkel: a várólista nevét és az üzenetet, amely lett beolvasva. A **CloudQueueMessage** vezérlőnek két tulajdonságait az objektum értékének lekérését: **CloudQueueMessage.AsBytes** és **CloudQueueMessage.AsString**. **AsString** (ebben a példában használt) egy karakterláncot ad vissza, miközben **AsBytes** adja vissza egy bájttömböt.
+1. Frissítés hello **ViewBag** két értékekkel: hello várólistacímke és hello üzenet, amely lett beolvasva. Hello **CloudQueueMessage** vezérlőnek két tulajdonságainak hello objektum értékének lekérését: **CloudQueueMessage.AsBytes** és **CloudQueueMessage.AsString**. **AsString** (ebben a példában használt) egy karakterláncot ad vissza, miközben **AsBytes** adja vissza egy bájttömböt.
 
     ```csharp
     ViewBag.QueueName = queue.Name; 
     ViewBag.Message = (message != null ? message.AsString : "");
     ```
 
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **PeekMessage** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **PeekMessage** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `PeekMessage.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `PeekMessage.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -304,40 +304,40 @@ Ez a szakasz bemutatja, hogyan való aszinkron üzenet (az első üzenet olvasá
     </table>    
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Peek message", "PeekMessage", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **betekintés üzenet** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **betekintés üzenet** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Üzenet megtekintése](./media/vs-storage-aspnet-getting-started-queues/peek-message-results.png)
 
 ## <a name="read-and-remove-a-message-from-a-queue"></a>Olvassa el, és távolítsa el az üzenetet az üzenetsorból
 
-Ebben a szakaszban megismerheti, hogyan kiolvasni, és távolítsa el az üzenetet az üzenetsorból.   
+Ebben a szakaszban megismerheti, hogyan tooread, és távolítsa el az üzenetet az üzenetsorból.   
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt.
+1. Nyissa meg hello `QueuesController.cs` fájlt.
 
 1. Adja hozzá a hívott metódus **ReadMessage** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult ReadMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. Belül a **ReadMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **ReadMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -350,37 +350,37 @@ Ebben a szakaszban megismerheti, hogyan kiolvasni, és távolítsa el az üzenet
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. Első egy **CloudQueueContainer** hivatkozni kell a várólista képviselő objektum. 
+1. Első egy **CloudQueueContainer** objektum, amely egy hivatkozás toohello várólistájára vonatkozik. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hívja a **CloudQueue.GetMessage** metódus olvasni a várólista első üzenetébe. A **CloudQueue.GetMessage** módszer lehetővé teszi az üzenet nem látható üzeneteket olvasó, így nincs más kód módosíthatja vagy törölheti az üzenet feldolgozásakor a program a azt többi kód számára (alapértelmezés) 30 másodpercig. Az üzenet nem látható idő megváltoztatásához módosítsa a **visibilityTimeout** átadott paraméter a **CloudQueue.GetMessage** metódust.
+1. Hello hívás **CloudQueue.GetMessage** metódus tooread hello várólista első üzenetébe hello. Hello **CloudQueue.GetMessage** módszer teszi hello üzenet láthatatlan 30 másodperc (alapértelmezés) tooany az, hogy nincs más kód módosíthatja vagy törölheti köszönőüzenetei során a feldolgozás üzeneteket olvasó többi kód. toochange hello idő üdvözlőüzenetére mérete nem látható, előbb módosítsa a hello **visibilityTimeout** toohello a beadott paraméter **CloudQueue.GetMessage** metódust.
 
     ```csharp
-    // This message will be invisible to other code for 30 seconds.
+    // This message will be invisible tooother code for 30 seconds.
     CloudQueueMessage message = queue.GetMessage();     
     ```
 
-1. Hívja a **CloudQueueMessage.Delete** metódus az üzenet törlése az üzenetsorból.
+1. Hello hívás **CloudQueueMessage.Delete** metódus toodelete üdvözlőüzenetére hello üzenetsorból.
 
     ```csharp
     queue.DeleteMessage(message);
     ```
 
-1. Frissítés a **ViewBag** törli az üzenetet, és a várólista nevét.
+1. Frissítés hello **ViewBag** hello üzenet törölve, és hello hello várólista neve.
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
  
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **ReadMessage** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **ReadMessage** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `ReadMessage.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `ReadMessage.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -395,40 +395,40 @@ Ebben a szakaszban megismerheti, hogyan kiolvasni, és távolítsa el az üzenet
     </table>
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Read/Delete message", "ReadMessage", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **olvasás/törlés üzenet** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **olvasás/törlés üzenet** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Olvasási és törlési üzenet](./media/vs-storage-aspnet-getting-started-queues/read-message-results.png)
 
-## <a name="get-the-queue-length"></a>Az üzenetsor hosszának lekérése
+## <a name="get-hello-queue-length"></a>Első hello várólistájának hossza
 
-Ez a szakasz bemutatja az beszerzése a várólista hossza (üzenetek száma). 
+Ez a szakasz bemutatja, hogyan tooget hello várólista hossza (üzenetek száma). 
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt.
+1. Nyissa meg hello `QueuesController.cs` fájlt.
 
 1. Adja hozzá a hívott metódus **GetQueueLength** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult GetQueueLength()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. Belül a **ReadMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **ReadMessage** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -441,36 +441,36 @@ Ez a szakasz bemutatja az beszerzése a várólista hossza (üzenetek száma).
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. Első egy **CloudQueueContainer** hivatkozni kell a várólista képviselő objektum. 
+1. Első egy **CloudQueueContainer** objektum, amely egy hivatkozás toohello várólistájára vonatkozik. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hívja a **CloudQueue.FetchAttributes** metódusának segítéségével lekérheti a várólista attribútumok (beleértve a hossza). 
+1. Hello hívás **CloudQueue.FetchAttributes** metódus tooretrieve hello várólista attribútumok (beleértve a hossza). 
 
     ```csharp
     queue.FetchAttributes();
     ```
 
-6. Hozzáférés a **CloudQueue.ApproximateMessageCount** tulajdonság használatával beolvassa a várólista hossza.
+6. Hozzáférés hello **CloudQueue.ApproximateMessageCount** tulajdonság tooget hello várólistájának hossza.
  
     ```csharp
     int? nMessages = queue.ApproximateMessageCount;
     ```
 
-1. Frissítés a **ViewBag** a nevét, valamint a várólista hossza.
+1. Frissítés hello **ViewBag** hello nevű hello várólista, és a hossza.
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Length = nMessages;
     ```
  
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **GetQueueLength** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **GetQueueLength** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `GetQueueLengthMessage.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `GetQueueLengthMessage.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -479,43 +479,43 @@ Ez a szakasz bemutatja az beszerzése a várólista hossza (üzenetek száma).
     
     <h2>Get Queue Length results</h2>
     
-    The queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
+    hello queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Get queue length", "GetQueueLength", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **várólista hosszának lekérése** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **várólista hosszának lekérése** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Get-várólista hossza](./media/vs-storage-aspnet-getting-started-queues/get-queue-length-results.png)
 
 
 ## <a name="delete-a-queue"></a>Üzenetsor törlése
-Ez a szakasz bemutatja, hogyan várólista törlése. 
+Ez a szakasz bemutatja, hogyan toodelete várólistát. 
 
 > [!NOTE]
 > 
-> Ez a szakasz azt feltételezi, hogy végrehajtotta a [beállította a fejlesztőkörnyezetet](#set-up-the-development-environment). 
+> Ez a szakasz azt feltételezi, hogy végrehajtotta hello [hello fejlesztési környezet beállítása](#set-up-the-development-environment). 
 
-1. Nyissa meg az `QueuesController.cs` fájlt.
+1. Nyissa meg hello `QueuesController.cs` fájlt.
 
 1. Adja hozzá a hívott metódus **DeleteQueue** , amely visszaadja az **ActionResult**.
 
     ```csharp
     public ActionResult DeleteQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. Belül a **DeleteQueue** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A tárolási kapcsolati karakterlánc és tárfiókadatok beolvasása az Azure szolgáltatás konfigurációs az alábbi kód használatával: (módosítása  *&lt;tárfióknév >* elérni az Azure storage-fiók nevére.)
+1. Hello belül **DeleteQueue** módszer, lekérni egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. Használjon hello következő kódot tooget hello tárfiók kapcsolati karakterláncot és a tároló adatait hello Azure szolgáltatáskonfiguráció: (módosítása  *&lt;-tárfióknév >* hello az Azure storage toohello neve -fiók éri el.)
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
@@ -528,29 +528,29 @@ Ez a szakasz bemutatja, hogyan várólista törlése.
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. Első egy **CloudQueueContainer** hivatkozni kell a várólista képviselő objektum. 
+1. Első egy **CloudQueueContainer** objektum, amely egy hivatkozás toohello várólistájára vonatkozik. 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. Hívja a **CloudQueue.Delete** metódus által képviselt a várólista törlése a **CloudQueue** objektum.
+1. Hello hívás **CloudQueue.Delete** metódus toodelete hello várólista hello által képviselt **CloudQueue** objektum.
 
     ```csharp
     queue.Delete();
     ```
 
-1. Frissítés a **ViewBag** a nevét, valamint a várólista hossza.
+1. Frissítés hello **ViewBag** hello nevű hello várólista, és a hossza.
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
  
-1. A a **Solution Explorer**, bontsa ki a **nézetek** mappát, kattintson a jobb gombbal **várólisták**, és válassza a helyi menüben a **Hozzáadás -> nézet**.
+1. A hello **Solution Explorer**, bontsa ki a hello **nézetek** mappát, kattintson a jobb gombbal **várólisták**, hello helyi menüből válassza ki a **Hozzáadás -> nézet**.
 
-1. Az a **nézet hozzáadása** párbeszédpanelen adja meg **DeleteQueue** a nézet nevét, majd válassza a **Hozzáadás**.
+1. A hello **nézet hozzáadása** párbeszédpanelen adja meg **DeleteQueue** hello nézet nevét, és válassza ki a **Hozzáadás**.
 
-1. Nyissa meg `DeleteQueue.cshtml`, és módosítsa úgy, hogy például a következő kódrészletet:
+1. Nyissa meg `DeleteQueue.cshtml`, és módosítsa azt, hogy a következő kódrészletet hello hasonlítson:
 
     ```csharp
     @{
@@ -562,20 +562,20 @@ Ez a szakasz bemutatja, hogyan várólista törlése.
     @ViewBag.QueueName deleted.
     ```
 
-1. Az a **Megoldáskezelőben**, bontsa ki a **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
+1. A hello **Megoldáskezelőben**, bontsa ki a hello **Nézet -> megosztott** mappát, majd nyissa meg `_Layout.cshtml`.
 
-1. Után utolsó **Html.ActionLink**, adja hozzá a következő **Html.ActionLink**:
+1. Hello után utolsó **Html.ActionLink**, adja hozzá a következő hello **Html.ActionLink**:
 
     ```html
     <li>@Html.ActionLink("Delete queue", "DeleteQueue", "Queues")</li>
     ```
 
-1. Futtassa az alkalmazást, és válassza ki **várólista hosszának lekérése** az alábbi képernyőfelvételhez hasonló eredmények megtekintése érdekében:
+1. Hello alkalmazás futtatásához, és válassza ki **várólista hosszának lekérése** toosee eredménye a következő képernyőfelvétel hasonló toohello:
   
     ![Várólista törlése](./media/vs-storage-aspnet-getting-started-queues/delete-queue-results.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure-ban való adattárolás további lehetőségeiről tekintse meg a többi szolgáltatás-útmutatót.
+Azure-ban való adattárolás további lehetőségeiről további szolgáltatás útmutatók toolearn megtekintése.
 
   * [Ismerkedés az Azure blob storage és a Visual Studio kapcsolódó szolgáltatások (ASP.NET)](./vs-storage-aspnet-getting-started-blobs.md)
   * [Ismerkedés az Azure table storage és a Visual Studio kapcsolódó szolgáltatások (ASP.NET)](./vs-storage-aspnet-getting-started-tables.md)

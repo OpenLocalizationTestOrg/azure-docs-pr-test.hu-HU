@@ -1,6 +1,6 @@
 ---
-title: "A StorSimple 8000 series telepítési problémák elhárításához |} Microsoft Docs"
-description: "Ismerteti, hogyan diagnosztizálhatja és javíthatja ki a StorSimple első telepítésekor előforduló hibákat."
+title: "aaaTroubleshoot a StorSimple 8000 series telepítésekkel kapcsolatos problémákhoz |} Microsoft Docs"
+description: "Ismerteti, hogyan toodiagnose és javítsa ki a hibákat, fordulhat elő, amikor először telepíti a StorSimple."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,198 +14,198 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: d6642231bf9d012b0015902c82d2bfde3b86285c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a55a4b277c8afe25f1d5a43ab8d7a90436123410
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-storsimple-device-deployment-issues"></a>A StorSimple eszköz telepítési problémák elhárításához
 ## <a name="overview"></a>Áttekintés
-Ez a cikk hasznos elhárításához nyújt útmutatást a Microsoft Azure StorSimple üzembe helyezésére. Kapcsolatos gyakori hibák, lehetséges okok, és a StorSimple konfigurálásakor az esetleg előforduló problémák megoldását segítő javasolt lépéseket ismerteti. 
+Ez a cikk hasznos elhárításához nyújt útmutatást a Microsoft Azure StorSimple üzembe helyezésére. Ismerteti a gyakori problémákat, a lehetséges okok és a javasolt lépéseket toohelp StorSimple konfigurálásakor az esetleg előforduló problémák megoldása. 
 
-Ezek az információk a StorSimple 8000 series fizikai eszköz és a StorSimple felhő készülék is vonatkoznak.
+Ezek az információk tooboth hello StorSimple 8000 series fizikai eszköz és a StorSimple felhő készülék hello vonatkoznak.
 
 > [!NOTE]
-> Eszköz konfigurációs kapcsolatos problémák, előfordulhat, hogy szembesülhetnek akkor fordulhat elő, amikor az eszköz üzembe helyezése, először, vagy azok akkor fordulhat elő, később, amikor az eszköz nem működik. Ez a cikk foglalkozik az első központi telepítési problémák elhárításához. Az operatív eszköz hibáinak elhárítása, keresse fel [a diagnosztikai eszköz segítségével az üzemeltetési eszköz hibáinak elhárítása](storsimple-8000-diagnostics.md).
+> Eszköz konfigurációs kapcsolatos problémák, előfordulhat, hogy szembesülhetnek akkor fordulhat elő, amikor hello hello az eszközön első alkalommal telepíteni, vagy később, akkor fordulhat működési hello eszköz esetén. Ez a cikk foglalkozik az első központi telepítési problémák elhárításához. túl nyissa meg az operatív eszköz tootroubleshoot[használata hello diagnosztikai eszköz tootroubleshoot egy operatív eszköz](storsimple-8000-diagnostics.md).
 
-Ez a cikk is ismerteti a StorSimple központi telepítések hibaelhárítási eszközök, és a részletes hibaelhárítási példa.
+Ez a cikk is ismerteti a StorSimple központi telepítések hibaelhárítási hello eszközök, és a részletes hibaelhárítási példa.
 
 ## <a name="first-time-deployment-issues"></a>Első telepítésekkel kapcsolatos problémákhoz
-Ha futtatja a problémát az eszköz az első alkalommal való telepítésekor, vegye figyelembe a következőket:
+Ha futtatja a hibát először az eszközhöz tartozó hello telepítésekor, vegye figyelembe a hello következőket:
 
-* Ha egy fizikai eszköz hibaelhárítást, ellenőrizze, hogy a hardver telepítve és leírtak szerint konfigurálta [a StorSimple 8100 eszköz telepítése](storsimple-8100-hardware-installation.md) vagy [a StorSimple 8600 eszköz telepítése](storsimple-8600-hardware-installation.md).
-* Ellenőrizze a telepítés előfeltételeit. Győződjön meg arról, hogy rendelkezik-e leírt adatokat a [üzembehelyezési konfigurációs ellenőrzőlista](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist).
-* Tekintse át a StorSimple kibocsátási megjegyzéseket talál, ha a probléma leírását. A kibocsátási megjegyzések a lehetséges megoldások a ismert telepítési problémákat. 
+* Ha egy fizikai eszköz hibaelhárítást, ellenőrizze, hogy hello hardver telepítve és leírtak szerint konfigurálta [a StorSimple 8100 eszköz telepítése](storsimple-8100-hardware-installation.md) vagy [a StorSimple 8600 eszköztelepítése](storsimple-8600-hardware-installation.md).
+* Ellenőrizze a telepítés előfeltételeit. Győződjön meg arról, hogy rendelkezik-e hello leírt összes hello adatokat [üzembehelyezési konfigurációs ellenőrzőlista](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist).
+* Tekintse át a hello StorSimple Release Notes toosee, ha hello a problémát. hello kibocsátási megjegyzések a lehetséges megoldások a ismert telepítési problémákat. 
 
-Eszköz telepítése során a leggyakoribb problémák felhasználók által tapasztalt fordulhat elő, a telepítő varázsló futtatásakor, és ha azok az eszközt regisztrálni kell a Windows PowerShell segítségével a StorSimple. (Használható Windows PowerShell-lel regisztrálásához és konfigurálhatja a StorSimple eszközt. Az eszközregisztráció további információkért lásd: [3. lépés: konfigurálása és a Windows PowerShell segítségével az eszköz regisztrálása a StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)).
+Eszköz telepítése során a leggyakoribb hello arcfelismerési fordulhat elő, hogy a felhasználók problémákat a hello beállítása varázsló futtatásakor, és amikor regisztrálják az hello eszköz Windows PowerShell segítségével a StorSimple. (Használjon Windows PowerShell StorSimple tooregister, és konfigurálhatja a StorSimple eszközt. Az eszközregisztráció további információkért lásd: [3. lépés: konfigurálása és a Windows PowerShell segítségével az eszköz regisztrálása a StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)).
 
-Az alábbi szakaszok segítséget nyújtanak az első alkalommal a StorSimple eszköz konfigurálásakor előforduló problémák megoldásához.
+a következő szakaszok hello az első alkalommal hello hello StorSimple eszköz konfigurálásakor előforduló problémák megoldásához nyújt segítséget.
 
 ## <a name="first-time-setup-wizard-process"></a>Először a telepítő varázsló folyamat
-A következő lépésekkel foglalható össze a telepítő varázsló. A telepítő részletes információkért lásd: [a helyszíni StorSimple eszköz üzembe helyezése](storsimple-8000-deployment-walkthrough-u2.md).
+a lépéseket követve hello hello beállítása varázsló folyamat foglalják össze. A telepítő részletes információkért lásd: [a helyszíni StorSimple eszköz üzembe helyezése](storsimple-8000-deployment-walkthrough-u2.md).
 
-1. Futtassa a [Invoke-HcsSetupWizard](https://technet.microsoft.com/library/dn688135.aspx) parancsmag segítségével indítsa el a telepítővarázslót, amely végigvezeti Önt a fennmaradó lépéseit. 
-2. A hálózat konfigurálása: a telepítő varázsló lehetővé teszi a DATA 0 hálózati adapter hálózati beállításainak konfigurálása a StorSimple eszköz. Ezek a beállítások a következők:
-   * Virtuális IP-cím (VIP), alhálózati maszk és átjáró – a [Set-HcsNetInterface](https://technet.microsoft.com/library/dn688161.aspx) parancsmag végrehajtása a háttérben. A StorSimple eszköz azt konfigurálja az IP-cím, alhálózati maszk és átjáró a DATA 0 hálózati adapterén.
-   * Elsődleges DNS-kiszolgáló – a [Set-HcsDnsClientServerAddress](https://technet.microsoft.com/library/dn688172.aspx) parancsmag végrehajtása a háttérben. Beállítja a StorSimple megoldásban a DNS-beállításait.
-   * NTP-kiszolgáló – a [Set-HcsNtpClientServerAddress](https://technet.microsoft.com/library/dn688138.aspx) parancsmag végrehajtása a háttérben. A StorSimple megoldásban NTP-kiszolgáló beállításait konfigurálja azt.
-   * Nem kötelező web-proxy – a [Set-HcsWebProxy](https://technet.microsoft.com/library/dn688154.aspx) parancsmag végrehajtása a háttérben. Beállítja, és lehetővé teszi, hogy a webproxy konfigurálása a StorSimple megoldásban.
-3. Állítsa be a jelszavát: a következő lépés az, hogy az eszköz rendszergazdai jelszavának beállítása.
-   Az eszköz rendszergazdai jelszava segítségével jelentkezzen be az eszközt. Az eszköz alapértelmezett jelszava: **Password1**.
+1. Futtassa a hello [Invoke-HcsSetupWizard](https://technet.microsoft.com/library/dn688135.aspx) parancsmag toostart hello beállítása varázsló, amely végigvezeti Önt hello hátralévő lépéseket. 
+2. Hálózati hello konfigurálása: hello telepítő varázsló lehetővé teszi a StorSimple eszköz hello DATA 0 hálózati adapterén hálózati beállításainak konfigurálása. Ezek a beállítások hello következőket tartalmazzák:
+   * Virtuális IP-cím (VIP), alhálózati maszk és átjáró – hello [Set-HcsNetInterface](https://technet.microsoft.com/library/dn688161.aspx) parancsmag végrehajtása hello háttérben. A StorSimple eszköz beállítja hello IP-cím, alhálózati maszk és átjáró hello DATA 0 hálózati adapterén.
+   * Elsődleges DNS-kiszolgáló – hello [Set-HcsDnsClientServerAddress](https://technet.microsoft.com/library/dn688172.aspx) parancsmag végrehajtása hello háttérben. Beállítja a StorSimple megoldásban hello DNS-beállításait.
+   * NTP-kiszolgáló – hello [Set-HcsNtpClientServerAddress](https://technet.microsoft.com/library/dn688138.aspx) parancsmag végrehajtása hello háttérben. Beállítja hello NTP-kiszolgáló beállításai a StorSimple megoldásban.
+   * Nem kötelező webalkalmazás-proxy – hello [Set-HcsWebProxy](https://technet.microsoft.com/library/dn688154.aspx) parancsmag végrehajtása hello háttérben. Beállítja, és lehetővé teszi, hogy a hello webproxy konfigurálása a StorSimple megoldásban.
+3. Hello jelszó beállítása: hello következő lépésre tooset mentése hello eszköz rendszergazdai jelszava.
+   hello eszköz rendszergazdai jelszava használt toolog tooyour eszközön. hello eszköz alapértelmezett jelszava: **jelszó1**.
         
      > [!IMPORTANT]
-     > Jelszavak bejegyzése előtt gyűjtött, de csak a sikeresen megtörtént az eszköz regisztrációját követően alkalmazza. Ha hiba történik a jelszót, újra adni a jelszót, amíg a szükséges jelszavakat (bonyolultsági megfeleljen) gyűjtött bekéri.
+     > Jelszavak bejegyzése előtt gyűjtött, de csak a sikeresen hello eszköz regisztrálása után alkalmazza. Ha a hiba tooapply a jelszó, fogja felszólító toosupply hello jelszó újra hello kötelező, a rendszer a jelszavak (hello összetettségi követelményeknek) gyűjti.
      
-4. Az eszköz regisztrálása: a végső lépés az, hogy az eszközt regisztrálni kell a Microsoft Azure-beli StorSimple Device Manager szolgáltatásban. A regisztráció megköveteli, hogy [Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-manage-service.md#get-the-service-registration-key) Azure-portálról, és adja meg a varázslóban. **Miután az eszköz regisztrálása sikeres volt, a szolgáltatásadat-titkosítási kulcs Önnek valósul meg. Mindenképpen tartsa biztonságos helyen a titkosítási kulcsot, mert lesz szükség az összes későbbi eszközök regisztrálása a szolgáltatásban.**
+4. Hello-eszköz regisztrálása: hello utolsó lépés egy tooregister hello eszköz a Microsoft Azure-beli hello StorSimple Device Manager szolgáltatással. hello regisztrációs túl szükséges[hello Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-manage-service.md#get-the-service-registration-key) a hello Azure-portálon, és hello beállítása varázslóban adja meg. **Miután hello eszköz regisztrálása sikeres volt, akkor a szolgáltatásadat-titkosítási kulcs tooyou valósul meg. Győződjön meg arról, hogy a titkosítási kulcs egy biztonságos helyre, mert lesz tookeep szükséges tooregister hello szolgáltatást minden ezt követő eszközt.**
 
 ## <a name="common-errors-during-device-deployment"></a>Eszköz telepítése során előforduló hibákat
-Az alábbi táblázatok tartalmazzák a közös észlelt hibák, hogy előfordulhat, hogy mikor meg:
+hello táblák listáját hello közös észlelt hibák, hogy előfordulhat, hogy mikor követően, hogy:
 
-* Konfigurálja a szükséges hálózati beállításait.
-* Nem kötelező web proxy beállításainak konfigurálása.
-* Állítsa be az eszköz rendszergazdai jelszava.
-* Az eszköz regisztrációját.
+* Hello szükséges hálózati beállításainak konfigurálása.
+* Hello választható webes proxy beállításainak konfigurálása.
+* Hello eszköz rendszergazdai jelszavának beállítása.
+* Hello eszközt regisztrálni kell.
 
-## <a name="errors-during-the-required-network-settings"></a>A szükséges hálózati beállításokat hibák
+## <a name="errors-during-hello-required-network-settings"></a>Hibák hello során szükséges hálózati beállításai
 | Nem. | Hibaüzenet | Lehetséges okok | Javasolt művelet |
 | --- | --- | --- | --- |
-| 1 |Invoke-HcsSetupWizard: Ez a parancs csak futtatható az aktív vezérlőhöz. |A passzív vezérlő konfigurációs végrehajtása. |Futtassa a parancsot az aktív vezérlőhöz. További információkért lásd: [azonosíthatja az aktív vezérlőhöz az eszközön](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
-| 2 |Invoke-HcsSetupWizard: Az eszköz nem üzemkész. |Nincsenek a DATA 0 hálózati kapcsolat problémái. |Ellenőrizze a fizikai hálózati kapcsolatot, a DATA 0. |
-| 3 |Invoke-HcsSetupWizard: Nincs más rendszerrel, a hálózat IP-címütközést (kivétel HRESULT: 0x80070263). |Az adott DATA 0 IP-cím már egy másik rendszer használatban volt. |Adjon meg egy új IP-cím nincs használatban. |
-| 4 |Invoke-HcsSetupWizard: A fürterőforrás nem sikerült. (Kivétel HRESULT: 0x800713AE). |Ismétlődő VIP. Az a megadott IP-cím már használatban van. |Adjon meg egy új IP-cím nincs használatban. |
-| 5 |Invoke-HcsSetupWizard: Érvénytelen IPv4-címet. |Az IP-cím formátuma nem megfelelő valósul meg. |Ellenőrizze a formátumát, és adja meg újra az IP-címe. További információkért lásd: [Ipv4-címzési][1]. |
-| 6 |Invoke-HcsSetupWizard: Érvénytelen IPv6-címet. |Az IP-cím formátuma nem megfelelő valósul meg. |Ellenőrizze a formátumát, és adja meg újra az IP-címe. További információkért lásd: [IPv6-címzés][2]. |
-| 7 |Invoke-HcsSetupWizard: Érhetők el további végpontok végpont. (Kivétel HRESULT: 0x800706D9) |A fürt nem működőképes. |[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. |
+| 1 |Invoke-HcsSetupWizard: Ez a parancs csak futtatható hello aktív vezérlő. |Konfigurációs hello passzív vezérlő végrehajtása. |Futtassa a parancsot hello aktív vezérlő. További információkért lásd: [azonosíthatja az aktív vezérlőhöz az eszközön](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
+| 2 |Invoke-HcsSetupWizard: Az eszköz nem üzemkész. |A DATA 0 hello hálózati kapcsolattal rendelkező problémák vannak. |Ellenőrizze a DATA 0 hello fizikai hálózati kapcsolatot. |
+| 3 |Invoke-HcsSetupWizard: Nincs más rendszerrel hello hálózat IP-címütközést (kivétel HRESULT: 0x80070263). |DATA 0 megadott hello IP már egy másik rendszer használatban volt. |Adjon meg egy új IP-cím nincs használatban. |
+| 4 |Invoke-HcsSetupWizard: A fürterőforrás nem sikerült. (Kivétel HRESULT: 0x800713AE). |Ismétlődő VIP. a megadott hello IP már használatban van. |Adjon meg egy új IP-cím nincs használatban. |
+| 5 |Invoke-HcsSetupWizard: Érvénytelen IPv4-címet. |hello IP-cím formátuma nem megfelelő valósul meg. |Ellenőrizze a hello formátumú, és adja meg újra az IP-címe. További információkért lásd: [Ipv4-címzési][1]. |
+| 6 |Invoke-HcsSetupWizard: Érvénytelen IPv6-címet. |hello IP-cím formátuma nem megfelelő valósul meg. |Ellenőrizze a hello formátumú, és adja meg újra az IP-címe. További információkért lásd: [IPv6-címzés][2]. |
+| 7 |Invoke-HcsSetupWizard: Hello végpontleképező rendelkezésre állnak olyan további végpontok. (Kivétel HRESULT: 0x800706D9) |hello fürt nem működőképes. |[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. |
 
-## <a name="errors-during-the-optional-web-proxy-settings"></a>A választható webproxy beállításai során hibák
+## <a name="errors-during-hello-optional-web-proxy-settings"></a>Hibák során hello választható webproxy beállításai
 | Nem. | Hibaüzenet | Lehetséges okok | Javasolt művelet |
 | --- | --- | --- | --- |
-| 1 |Invoke-HcsSetupWizard: Érvénytelen paraméter (kivétel HRESULT: 0x80070057) |A proxybeállítások megadott paraméterek egyike érvénytelen. |Az URI azonosító nincs megadva, a megfelelő formátumban. Használja a következő formátumot: http://*<IP address or FQDN of the web proxy server>*:*<TCP port number>* |
-| 2 |Invoke-HcsSetupWizard: RPC-kiszolgáló nem érhető el (kivétel HRESULT: 0x800706BA jelű) |Okozza-e a következők egyikét:<ol><li>A fürt nincs legfeljebb.</li><li>A passzív tartományvezérlő nem tud kommunikálni az aktív vezérlővel, és a parancs futtatása a passzív vezérlőről.</li></ol> |Attól függően, hogy az alapvető ok:<ol><li>[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) győződjön meg arról, hogy a fürt működik-e.</li><li>Futtassa a parancsot az aktív vezérlőhöz. Ha azt szeretné, a parancs futtatásához a passzív vezérlőből, akkor győződjön meg arról, hogy a passzív vezérlő kommunikál az aktív vezérlőhöz. Szüksége lesz a [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) Ha a kapcsolat megszakad.</li></ol> |
-| 3 |Invoke-HcsSetupWizard: RPC-hívása sikertelen volt (kivétel HRESULT: 0x800706be) |Fürt nem működik. |[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) győződjön meg arról, hogy a fürt működik-e. |
-| 4 |Invoke-HcsSetupWizard: Fürt erőforrás nem található (kivétel HRESULT: 0x8007138f) |A fürt erőforrás nem található. Ez akkor fordulhat elő, amikor a telepítés nem volt megfelelő. |Szükség lehet visszaállítani az eszközt a gyári alapértelmezett beállításokra. [Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) fürt erőforrás létrehozása. |
+| 1 |Invoke-HcsSetupWizard: Érvénytelen paraméter (kivétel HRESULT: 0x80070057) |Hello proxybeállítások megadott hello paraméterek egyike nem érvényes. |hello URI azonosítója nincs megadva hello megfelelő formátumban. A következő formátumot használja hello: http://*<IP address or FQDN of hello web proxy server>*:*<TCP port number>* |
+| 2 |Invoke-HcsSetupWizard: RPC-kiszolgáló nem érhető el (kivétel HRESULT: 0x800706BA jelű) |hello okozza-e hello a következők egyikét:<ol><li>hello fürt nem működik-e.</li><li>hello passzív vezérlő hello aktív vezérlő nem tud kommunikálni, és hello parancsot futtatja a passzív vezérlőről.</li></ol> |Attól függően, hogy hello alapvető ok:<ol><li>[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) toomake meg arról, hogy hello fürt működik-e.</li><li>Hello parancsot a hello aktív vezérlő. Ha azt szeretné, hogy toorun hello parancs hello passzív vezérlőből, szüksége lesz a tooensure adott hello passzív vezérlő kommunikálhatnak hello aktív vezérlő. Szüksége lesz túl[forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) Ha a kapcsolat megszakad.</li></ol> |
+| 3 |Invoke-HcsSetupWizard: RPC-hívása sikertelen volt (kivétel HRESULT: 0x800706be) |Fürt nem működik. |[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) toomake meg arról, hogy hello fürt működik-e. |
+| 4 |Invoke-HcsSetupWizard: Fürt erőforrás nem található (kivétel HRESULT: 0x8007138f) |hello fürt erőforrás nem található. Ez akkor fordulhat elő, amikor hello telepítés nem volt megfelelő. |Szükség lehet tooreset hello eszköz toohello gyári beállításait. [Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) toocreate fürt erőforrás. |
 | 5 |Invoke-HcsSetupWizard: Fürt erőforrás nincs online állapotban (kivétel HRESULT: 0x8007138c) |Fürt erőforrás nincs online állapotban. |[Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. |
 
-## <a name="errors-related-to-device-administrator-password"></a>Az eszköz rendszergazdai jelszava kapcsolatos hibák
-Az alapértelmezett eszköz rendszergazdai jelszava van **jelszó1**. A jelszó lejárati után az első bejelentkezés; ezért szüksége lesz a telepítővarázsló segítségével módosíthatja. Az eszköz regisztrálásakor, először meg kell adnia egy új eszköz rendszergazdai jelszava. 
+## <a name="errors-related-toodevice-administrator-password"></a>Hibák kapcsolódó toodevice rendszergazdai jelszó
+hello alapértelmezett eszköz rendszergazdai jelszava van **jelszó1**. A jelszó lejárati követő hello első bejelentkezéskor; ezért toouse hello beállítása varázsló toochange kell azt. Amikor regisztrálja a hello hello az eszközön első alkalommal meg kell adnia egy új eszköz rendszergazdai jelszava. 
 
-Győződjön meg arról, hogy a jelszavak az alábbi követelményeknek:
+Győződjön meg arról, hogy a jelszavak megfelelnek-e a követelményeknek hello:
 
 * Az eszköz rendszergazdai jelszavának 8 – 15 karakter között kell lennie.
-* Jelszavak 3 az alábbi típusú 4 karaktert kell tartalmaznia:, kisbetű, nagybetű, numerikus és speciális. 
-* A jelszó nem lehet ugyanaz, mint a legutóbbi 24 jelszó.
+* Jelszavak tartalmaznia kell a 3. a következő 4 karaktertípusokat hello:, kisbetű, nagybetű, numerikus és speciális. 
+* A jelszó azonos a legutóbbi 24 jelszó hello nem hello.
 
-Továbbá ne feledje, hogy a jelszavak évente lejár, és csak a sikeresen az eszköz regisztrálása után módosíthatja. A regisztráció bármilyen okból nem sikerül, a jelszó nem módosítható.
+Továbbá ne feledje, hogy a jelszavak lejárnak évente, és csak a sikeresen hello eszköz regisztrálása után módosíthatja. Hello regisztráció bármilyen okból nem sikerül, ha hello jelszavakat nem lehet módosítani.
 
-További információt az eszköz rendszergazdai jelszava, [a StorSimple jelszó megváltoztatása a StorSimple Device Manager szolgáltatás használata](storsimple-8000-change-passwords.md).
+További információ az eszköz rendszergazdai jelszava: túl[használata hello StorSimple Device Manager szolgáltatás toochange a StorSimple jelszó](storsimple-8000-change-passwords.md).
 
-Hibák a következők közül az eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavak beállítása során fordulhatnak elő.
+Egy vagy több hello hello eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavak beállítása során a következő hibák fordulhatnak elő.
 
 | Nem. | Hibaüzenet | Javasolt művelet |
 | --- | --- | --- |
-| 1 |A jelszó hosszabb a megengedettnél. |Az eszköz rendszergazdai jelszavának 8 – 15 karakter között kell lennie. |
-| 2 |A jelszó nem felel meg a szükséges hossza. |Az eszköz rendszergazdai jelszavának 8 – 15 karakter között kell lennie.|
-| 3 |A jelszónak kisbetűs karaktert kell tartalmaznia. |Jelszavak 3 az alábbi típusú 4 karakter kell tartalmaznia:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
-| 4 |A jelszónak számokat kell. |Jelszavak 3 az alábbi típusú 4 karakter kell tartalmaznia:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
-| 5 |A jelszónak különleges karaktereket kell tartalmaznia. |Jelszavak 3 az alábbi típusú 4 karakter kell tartalmaznia:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
-| 6 |A jelszónak tartalmaznia kell a következő 4 karakter típusú 3: nagybetűk, a kis, a numerikus és a speciális. |A jelszó nem tartalmaz karaktert szükséges típusú. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
+| 1 |hello jelszó hossza meghaladja a hello maximális hosszát. |Az eszköz rendszergazdai jelszavának 8 – 15 karakter között kell lennie. |
+| 2 |hello jelszó nem felel meg a szükséges hello hossza. |Az eszköz rendszergazdai jelszavának 8 – 15 karakter között kell lennie.|
+| 3 |hello jelszó kisbetűs karaktert kell tartalmaznia. |Jelszavak tartalmaznia kell a 3. a következő 4 karaktertípusokat hello:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
+| 4 |hello jelszónak számokat kell tartalmaznia. |Jelszavak tartalmaznia kell a 3. a következő 4 karaktertípusokat hello:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
+| 5 |hello jelszó különleges karaktereket tartalmazhat. |Jelszavak tartalmaznia kell a 3. a következő 4 karaktertípusokat hello:, kisbetű, nagybetű, numerikus és speciális. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
+| 6 |hello jelszónak tartalmaznia kell 4 karakter típus a következő hello 3: nagybetűk, a kis, a numerikus és a speciális. |A jelszó nem tartalmaz karaktert szükséges hello típusú. Győződjön meg arról, hogy a jelszó megfelel-e ezek a követelmények. |
 | 7 |A paraméter nem felel meg a megerősítő. |Győződjön meg arról, hogy a jelszó megfelel-e az összes követelményeknek, és hogy helyesen írta be. |
-| 8 |A jelszó nem egyezhet meg az alapértelmezett. |Az alapértelmezett jelszó *jelszó1*. Módosítsa ezt a jelszót, az első alkalommal való bejelentkezés után kell. |
-| 9 |A megadott jelszó nem egyezik meg a jelszót. Írja be újra a jelszót. |Ellenőrizze a jelszót, és írja be újra. |
+| 8 |A jelszó nem egyezhet meg a hello alapértelmezett. |hello alapértelmezett jelszó *jelszó1*. Szüksége toochange ezt a jelszót a bejelentkezés után a hello első alkalommal. |
+| 9 |hello a megadott jelszó nem egyezik meg a hello eszköz jelszavát. Írja be újra hello jelszót. |Ellenőrizze hello jelszavát, és írja be újra. |
 
-Jelszavak, mielőtt az eszköz regisztrálva van, de csak a sikeres regisztrációt követően alkalmazza a rendszer gyűjti. A jelszó-helyreállítási munkafolyamat használatához az eszközt regisztrálni kell.
+Jelszavak összegyűjtése előtt hello eszköz regisztrálva van, de csak a sikeres regisztrációt követően lesznek alkalmazva. hello jelszó helyreállítási munkafolyamat hello eszköz toobe regisztrálva van szükség.
 
 > [!IMPORTANT]
-> Általában egy jelszó alkalmazása sikertelen lesz, ha a szoftver ismételten megpróbálja a gyűjtése a jelszót, amíg az sikeres nem lesz. Ritka esetekben a jelszó nem lehet alkalmazni. Ebben a helyzetben az eszköz regisztrációját, és továbblép, azonban a jelszavak nem fognak megváltozni. Az eszköz rendszergazdai jelszava az Azure-portálon a regisztrálás után módosíthatja.
+> Általánosságban elmondható Ha egy kísérlet tooapply jelszó sikertelen lesz, majd hello szoftver ismételten megkísérli toocollect hello jelszó, amíg az sikeres nem. Ritka esetekben hello jelszó nem lehet alkalmazni. Ebben a helyzetben hello eszköz regisztrációját, és a folytatáshoz azonban hello jelszavak nem fognak megváltozni. Hello eszköz rendszergazdai jelszava hello hello Azure-portált regisztrációt követően módosíthatja.
 
 
-Visszaállíthatja a jelszót az Azure portálon, a StorSimple eszköz kezelő szolgáltatásával. További információkért látogasson el [módosíthatja az eszköz rendszergazdai jelszava](storsimple-8000-change-passwords.md#change-the-device-administrator-password).
+Alaphelyzetbe állíthatja a hello jelszót hello Azure-portálon hello StorSimple Device Manager szolgáltatáson keresztül. További információ: túl[módosítás hello eszköz rendszergazdai jelszava](storsimple-8000-change-passwords.md#change-the-device-administrator-password).
 
 ## <a name="errors-during-device-registration"></a>Eszközök regisztrációja során hibák
-A Microsoft Azure-beli StorSimple Device Manager szolgáltatás segítségével regisztrálja az eszközt. Eszközök regisztrációja során legalább egy, az alábbi problémákat sikerült tapasztal.
+Hello StorSimple Device Manager szolgáltatás fut a Microsoft Azure tooregister hello eszközt használja. Egy vagy több problémák eszközök regisztrációja során a következő hello sikerült tapasztal.
 
 | Nem. | Hibaüzenet | Lehetséges okok | Javasolt művelet |
 | --- | --- | --- | --- |
-| 1 |350027. hiba: Nem sikerült regisztrálni az eszközt a StorSimple eszköz-kezelő használatával. | |Várjon néhány percet, és próbálkozzon újra a művelettel. Ha a probléma továbbra is fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). |
-| 2 |350013. hiba: Hiba történt az eszköz regisztrálásához. A hiba lehetséges oka Szolgáltatásregisztrációs kulcs helytelen. | |Regisztrálja újra az eszközt a helyes regisztrációs kulccsal. További információkért lásd: [Szolgáltatásregisztrációs kulcs lekérése.](storsimple-8000-manage-service.md#get-the-service-registration-key) |
-| 3 |350063. hiba: Hitelesítési átadott StorSimple Device Manager szolgáltatást, de a regisztráció sikertelen. Próbálkozzon újra a művelettel valamivel később. |Ez a hiba azt jelzi, hogy a rendszer megfelelt a hitelesítés és az ACS, de a szolgáltatáshoz a register-hívás sikertelen. Ennek oka lehet egy szórványos hálózati működési hiba eredménye. |Ha a probléma továbbra is fennáll, ellenőrizze [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). |
-| 4 |350049. hiba: A szolgáltatás nem érhető el regisztrálás során. |Ha a kérés érkezett a szolgáltatás, egy webes kivétel érkezett. Néhány esetben ez lehetséges, hogy első által meghatározott megpróbálná megismételni a műveletet később. |Ellenőrizze az IP-cím és DNS-nevét, és próbálkozzon újra a művelettel. Ha a probléma továbbra is fennáll, [forduljon a Microsoft Support.](storsimple-8000-contact-microsoft-support.md) |
-| 5 |350031. hiba: Az eszköz már regisztrálva van. | |Nincs szükség műveletre. |
-| 6 |350016. hiba: Nem sikerült regisztrálni. | |Győződjön meg arról, hogy a regisztrációs kulcs helyességéről. |
-| 7 |Invoke-HcsSetupWizard: Hiba történt az eszköz; regisztrálása során Ezt okozhatja hibás IP-címe vagy DNS-nevét. A hálózati beállításokat, és próbálkozzon újra. Ha a probléma továbbra is fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). (350050 hiba) |Győződjön meg arról, hogy az eszköz pingelhető-e a külső hálózattal. Ha nem rendelkezik külső hálózati kapcsolat, a regisztráció sikertelen lehet a hibával. Ez a hiba lehet kombinációját az alábbiak közül:<ul><li>Helytelen IP</li><li>Helytelen alhálózati</li><li>Helytelen átjáró</li><li>Helytelen DNS-beállítások</li></ul> |A lépések a [részletes hibaelhárítási példa](#step-by-step-storsimple-troubleshooting-example). |
-| 8 |Invoke-HcsSetupWizard: Az aktuális művelet [0x1FBE2] belső szolgáltatási hiba miatt sikertelen volt. Várjon egy kis ideig, majd ismételje meg a műveletet. Ha a probléma továbbra is fennáll, forduljon a Microsoft Support. |Ez egy általános hiba lépett fel az összes felhasználó nem látható hiba a szolgáltatás vagy az ügynök. Ennek leggyakoribb oka lehet, hogy az ACS-hitelesítés sikertelen volt. A lehetséges a hiba oka, hogy az NTP-kiszolgáló konfigurációs problémák és idő alapján az eszköz nem megfelelően van beállítva. |Javítsa ki a idő (Ha problémák vannak), és ismételje meg a regisztrációs műveletet. Ha a Set-HcsSystem - időzóna paranccsal módosítsa az időzónát, szókezdő időzónája (például "csendes-óceáni téli idő").  Ha a probléma tartósan fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. |
-| 9 |Figyelmeztetés: Az eszköz nem aktiválható. Az eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavát nem módosult. |A regisztráció sikertelen lesz, ha az eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavát nem változnak. | |
+| 1 |350027. hiba: Nem sikerült tooregister hello eszköz StorSimple Device Manager hello. | |Várjon néhány percet, és próbálkozzon újra a művelettel hello. Ha hello a probléma továbbra is fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). |
+| 2 |350013. hiba: Hiba történt a hello eszköz regisztrálása. Ennek oka lehet tooincorrect Szolgáltatásregisztrációs kulcs. | |Regisztrálja hello eszköz újra hello megfelelő szolgáltatás regisztrációs kulcsával. További információkért lásd: [hello Szolgáltatásregisztrációs kulcs lekérése.](storsimple-8000-manage-service.md#get-the-service-registration-key) |
+| 3 |350063. hiba: Hitelesítési tooStorSimple Eszközkezelő szolgáltatás kapott, de nem sikerült regisztrálni. Hello műveletet egy kis idő múlva próbálkozzon újra. |Ez a hiba jelzi, hogy a hitelesítést az ACS használatával a rendszer megfelelt, de hello register híváshoz toohello szolgáltatásnak nem sikerült. Ennek oka lehet egy szórványos hálózati működési hiba eredménye. |Ha hello a probléma továbbra is fennáll, adjon [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). |
+| 4 |350049. hiba: hello szolgáltatás nem érhető el regisztrálás során. |Toohello szolgáltatás hello telefonhívást indít, amikor egy webes kivétel érkezett. Néhány esetben ez lehetséges, hogy első által meghatározott hello művelet később. |Ellenőrizze az IP-cím és DNS-nevét, majd próbálkozzon újra a hello műveletet. Ha hello a probléma továbbra is fennáll, [forduljon a Microsoft Support.](storsimple-8000-contact-microsoft-support.md) |
+| 5 |350031. hiba: hello eszköz már regisztrálva van. | |Nincs szükség műveletre. |
+| 6 |350016. hiba: Nem sikerült regisztrálni. | |Ellenőrizze, hogy hello regisztrációs kulcs helyességéről. |
+| 7 |Invoke-HcsSetupWizard: Hiba történt az eszköz; regisztrálása során Ennek oka lehet tooincorrect IP-címe vagy DNS-nevét. A hálózati beállításokat, és próbálkozzon újra. Ha hello a probléma továbbra is fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md). (350050 hiba) |Győződjön meg arról, hogy az eszköz pingelése hello hálózaton kívülről. Ha nincs kapcsolat toooutside hálózati, a hello regisztráció sikertelen lehet, és ezt a hibát. Ez a hiba legalább egy hello következő kombinációja lehet:<ul><li>Helytelen IP</li><li>Helytelen alhálózati</li><li>Helytelen átjáró</li><li>Helytelen DNS-beállítások</li></ul> |Tekintse meg a szükséges lépések hello hello [részletes hibaelhárítási példa](#step-by-step-storsimple-troubleshooting-example). |
+| 8 |Invoke-HcsSetupWizard: hello aktuális művelet tooan belső szolgáltatási hiba [0x1FBE2] miatt nem sikerült. Hello művelet némi várakozás után próbálkozzon újra. Ha hello a probléma továbbra is fennáll, forduljon a Microsoft Support. |Ez egy általános hiba lépett fel az összes felhasználó nem látható hiba a szolgáltatás vagy az ügynök. hello Ennek leggyakoribb oka lehet, hogy az ACS hello a hitelesítés sikertelen volt. A lehetséges hello hiba oka, hogy hello NTP-kiszolgáló konfigurációs problémák és hello eszköz ideje nem megfelelően van beállítva. |Javítsa ki a hello idő (Ha problémák vannak), majd próbálkozzon újra a hello regisztrációs műveletet. Hello Set-HcsSystem - időzóna parancs tooadjust hello időzóna használatakor szókezdő hello időzónában (például "csendes-óceáni téli idő").  Ha a probléma tartósan fennáll, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. |
+| 9 |Figyelmeztetés: Nem sikerült hello eszköz aktiválásához. Az eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavát nem módosult. |Hello regisztrálása meghiúsul, ha a hello eszköz-rendszergazdai és a StorSimple Snapshot Manager jelszavát a, nem módosulnak. | |
 
 ## <a name="tools-for-troubleshooting-storsimple-deployments"></a>StorSimple központi telepítések hibaelhárítási eszközök
-StorSimple hibaelhárítása a StorSimple megoldás használatával több eszközt biztosít. Ezek a következők:
+StorSimple használható tootroubleshoot a StorSimple megoldásban több eszközt tartalmaz. Ezek a következők:
 
 * Csomagok és eszköznaplók támogatja.
 * A parancsmagok kifejezetten a hibaelhárításhoz.
 
 ## <a name="support-packages-and-device-logs-available-for-troubleshooting"></a>Csomagok és a rendelkezésre álló eszköznaplók hibaelhárítás támogatása
-Egy támogatási csomag tartalmazza a megfelelő naplókat, amely segíthet az eszközök kapcsolatos problémák elhárítása a Microsoft Support csoport. A Windows PowerShell-lel segítségével egy titkosított támogatási csomagot, majd megosztása a technikai tanácsadási csoporthoz.
+Egy támogatási csomag tartalmazza, melyek segíthetik a hibaelhárításban eszközökkel kapcsolatos problémákat a hello Microsoft Support csoport összes hello megfelelő napló. A Windows PowerShell használható StorSimple toogenerate egy titkosított támogatási csomagot, majd megosztása a technikai tanácsadási csoporthoz.
 
-### <a name="to-view-the-logs-or-the-contents-of-the-support-package"></a>A naplók és a támogatási csomag tartalmának megtekintése
-1. Egy támogatási csomag létrehozása a Windows PowerShell-lel segítségével [létrehozása és kezelése egy támogatási csomag](storsimple-8000-create-manage-support-package.md).
-2. Töltse le a [visszafejtési parancsfájl](https://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) helyileg az ügyfélszámítógépen.
-3. Ezzel [lépésről lépésre](storsimple-8000-create-manage-support-package.md#edit-a-support-package) megnyitásához, és a támogatási csomag visszafejtéséhez.
-4. A visszafejtett támogatási csomag naplófájlok etw/etvx formátumban vannak. Ezek a fájlok megtekintéséhez a Windows Eseménynapló a következőket végezheti el:
+### <a name="tooview-hello-logs-or-hello-contents-of-hello-support-package"></a>tooview hello naplók vagy hello hello tartalmát támogatási csomag
+1. Windows PowerShell használata a StorSimple toogenerate egy támogatási csomag leírtak [létrehozása és kezelése egy támogatási csomag](storsimple-8000-create-manage-support-package.md).
+2. Töltse le a hello [visszafejtési parancsfájl](https://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) helyileg az ügyfélszámítógépen.
+3. Ezzel [lépésről lépésre](storsimple-8000-create-manage-support-package.md#edit-a-support-package) tooopen és visszafejtése hello támogatási csomag.
+4. hello támogatási csomag etw/etvx formátumban vannak naplók visszafejtése. A Windows eseménynaplójában a következő lépéseket tooview hello ezeket a fájlokat hajthatja végre:
    
-   1. Futtassa a **eventvwr** parancsot a Windows-ügyfeleken. Ekkor elindul az Eseménynapló használatával.
-   2. Az a **műveletek** ablaktáblán kattintson a **naplófájl megnyitása** és a naplófájlok etvx/etw-formátumban (a támogatási csomag) mutasson. Most már megtekintheti a fájlt. A fájl megnyitása után kattintson a jobb gombbal, és mentse a fájlt szöveg.
+   1. Futtassa a hello **eventvwr** parancsot a Windows-ügyfeleken. Ekkor elindul az Eseménynapló hello.
+   2. A hello **műveletek** ablaktáblán kattintson a **naplófájl megnyitása** és naplófájlok pont toohello etvx/etw-formátumban (hello támogatási csomag). Most már megtekintheti a hello fájlt. Hello fájl megnyitása után kattintson a jobb gombbal, és hello fájl mentése szövegként.
       
       > [!IMPORTANT]
-      > Használhatja a **Get-WinEvent** nyissa meg ezeket a fájlokat a Windows PowerShell-parancsmagot. További információkért lásd: [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx) a a Windows PowerShell-parancsmag ismertető dokumentációjában.
+      > Is használhatja a hello **Get-WinEvent** parancsmag tooopen ezeket a fájlokat, a Windows PowerShellben. További információkért lásd: [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx) a hello Windows PowerShell parancsmag ismertető dokumentációjában.
      
-5. Ha a naplók nyissa meg az eseménynaplóban, keresse meg a következő naplók kapcsolódnak, amely tartalmazza az eszköz konfigurációjával kapcsolatos problémák:
+5. Megnyitásakor hello naplók az eseménynaplóban, keresse meg a következő problémák kapcsolódó toohello eszközök konfigurációját tartalmazó naplófájlok hello:
    
    * hcs_pfconfig/műveleti napló
    * hcs_pfconfig/Config
-6. A naplófájlok keresse meg a parancsmagok, a telepítővarázsló által meghívott kapcsolódó karakterláncok. Lásd: [először a telepítő varázsló folyamat](#first-time-setup-wizard-process) ezek a parancsmagok listáját.
-7. Ha nem tudunk kideríthesse, mi okozta a problémát, akkor [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Az alábbi témakörben található lépésekkel [hozzon létre egy támogatási kérést](storsimple-8000-contact-microsoft-support.md#create-a-support-request) amikor Microsoft Support szolgálatához segítségért.
+6. A hello naplófájlokat keresse meg a karakterláncok hello beállítása varázsló által meghívott kapcsolódó toohello parancsmagok. Lásd: [először a telepítő varázsló folyamat](#first-time-setup-wizard-process) ezek a parancsmagok listáját.
+7. Ha nem tudja toofigure hello probléma okát hello ki, akkor [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Használjon hello szükséges lépések [hozzon létre egy támogatási kérést](storsimple-8000-contact-microsoft-support.md#create-a-support-request) amikor Microsoft Support szolgálatához segítségért.
 
 ## <a name="cmdlets-available-for-troubleshooting"></a>A hibaelhárításhoz elérhető parancsmagok
-A következő Windows PowerShell-parancsmagok használatával észleli a kapcsolódási hibákat.
+A következő Windows PowerShell parancsmagok toodetect csatlakozási hibák hello használata.
 
-* `Get-NetAdapter`: Ez a parancsmag észleléséhez használni a hálózati adapterek állapotát.
-* `Test-Connection`: Ez a parancsmag használata a hálózaton kívül és belül a hálózati kapcsolat ellenőrzése.
-* `Test-HcsmConnection`: A parancsmag segítségével ellenőrizze a kapcsolatot a sikeresen regisztrált egy eszközt.
-* `Sync-HcsTime`: Ez a parancsmag megjelenítéséhez eszköz és használja az NTP-kiszolgáló az időszinkronizálást.
-* `Enable-HcsPing`és `Disable-HcsPing`: ezek a parancsmagok segítségével lehetővé kell Pingelje meg a hálózati adapterek a StorSimple eszköz. Alapértelmezés szerint a StorSimple hálózati illesztők válaszol a ping-kérelmekre.
-* `Trace-HcsRoute`: Ez a parancsmag használata olyan útvonal eszköz. A végső rendeltetési módja az egyes útválasztók egy meghatározott időtartamra vonatkozóan csomagokat küld, és majd kiszámítja az egyes csomagok eredmény. Mivel `Trace-HcsRoute` fokának csomagvesztés bármely adott útválasztó vagy a hivatkozás, jeleníti meg, mely útválasztók tudja, vagy előfordulhat, hogy a hivatkozások hálózati problémát okoz.
-* `Get-HcsRoutingTable`: Ezt a parancsmagot használja a helyi IP-útválasztási táblázat megjelenítéséhez.
+* `Get-NetAdapter`: Ez a parancsmag toodetect hello állapotát, a hálózati adapterek használata.
+* `Test-Connection`: Ez a parancsmag toocheck hello hálózati kapcsolat hello hálózati kívül és belül használja.
+* `Test-HcsmConnection`: Ez a parancsmag toocheck hello kapcsolatát sikeresen regisztrált egy eszközt használja.
+* `Sync-HcsTime`: Ez a parancsmag toodisplay eszköz alkalommal használniuk, és időszinkronizálást hello NTP-kiszolgálóval.
+* `Enable-HcsPing`és `Disable-HcsPing`: a StorSimple eszköz ezen parancsmagok tooallow hello állomások tooping hello hálózati illesztőket használhat. Alapértelmezés szerint hello StorSimple hálózati adapterek nem válaszolnak tooping kérelmeket.
+* `Trace-HcsRoute`: Ez a parancsmag használata olyan útvonal eszköz. Hello módon tooa végső rendeltetési tooeach útválasztó csomagokat küld egy meghatározott időtartamra vonatkozóan, és majd kiszámítja a hello csomagok egyes ugrások által visszaadott eredmény. Mivel `Trace-HcsRoute` hello csomagvesztés bármely adott útválasztó vagy a hivatkozás, bizonyos fokú jeleníti meg, mely útválasztók tudja, vagy előfordulhat, hogy a hivatkozások hálózati problémát okoz.
+* `Get-HcsRoutingTable`: Ez a parancsmag toodisplay hello helyi IP-útválasztási táblázat használja.
 
-## <a name="troubleshoot-with-the-get-netadapter-cmdlet"></a>A Get-NetAdapter parancsmaggal hibaelhárításához
-Hálózati illesztők első eszköz üzembe helyezés konfigurálásakor hardver állapota nem érhető el a StorSimple Device Manager szolgáltatás felhasználói felületi, mert az eszköz még nincs regisztrálva a szolgáltatásban. Emellett a **hardver állapotának** panel előfordulhat, hogy nem mindig tükrözi megfelelően az eszköz állapotának különösen akkor, ha a szinkronizálási szolgáltatást érintő problémák vannak. Ezekben a helyzetekben használhatja a `Get-NetAdapter` parancsmag használatával határozza meg a hálózati adapterek állapotát.
+## <a name="troubleshoot-with-hello-get-netadapter-cmdlet"></a>Hello Get-NetAdapter parancsmaggal hibaelhárításához
+Hálózati adaptert használjon a központi telepítés először eszköz konfigurálásakor hello hardverállapot nem áll rendelkezésre a StorSimple eszköz Manager szolgáltatás felhasználói felületi hello mivel hello eszköz még nincs regisztrálva a hello szolgáltatást. Emellett hello **hardver állapotának** panel előfordulhat, hogy nem mindig tükrözi megfelelően hello állapotának hello eszköz, különösen akkor, ha a szinkronizálási szolgáltatást érintő problémák vannak. Ezekben a helyzetekben használhatja hello `Get-NetAdapter` parancsmag toodetermine hello a hálózati adapterek állapotát.
 
-### <a name="to-see-a-list-of-all-the-network-adapters-on-your-device"></a>A hálózati adapterek listájának megtekintéséhez az eszközön
+### <a name="toosee-a-list-of-all-hello-network-adapters-on-your-device"></a>az eszköz összes hello hálózati adapterek listájának toosee
 1. Indítsa el a Windows PowerShell a StorSimple, és írja be `Get-NetAdapter`. 
-2. Használja a kimenetét a `Get-NetAdapter` parancsmag és a következő irányelveket tudni, hogy a hálózati illesztő állapotát.
+2. Hello kimenete hello használata `Get-NetAdapter` parancsmag és a következő irányelveket toounderstand hello hello az a hálózati illesztő állapotát.
    
-   * Ha a kapcsolat kifogástalan, és engedélyezve van, a **ifIndex** állapot jelenik meg **be**.
-   * Ha a kapcsolat állapota kifogástalan, de nem fizikailag kapcsolódás (hálózati kábel), a **ifIndex** jelenik meg, mint **letiltott**.
-   * Ha a kapcsolat megfelelő, de nincs engedélyezve, a **ifIndex** állapot jelenik meg **NotPresent**.
-   * Ha a kapcsolat nem létezik, nem jelenik meg ebben a listában. A StorSimple Device Manager szolgáltatás felhasználói felületi továbbra is jelennek meg az illesztő hibás állapotban.
+   * Ha hello kapcsolat kifogástalan, és engedélyezve van, hello **ifIndex** állapot jelenik meg **be**.
+   * Ha hello felület működik megfelelően, de nem fizikailag kapcsolódás (hálózati kábel), hello **ifIndex** jelenik meg, mint **letiltott**.
+   * Ha hello illesztő működik megfelelően, de nincs engedélyezve, hello **ifIndex** állapot jelenik meg **NotPresent**.
+   * Ha hello felület nem létezik, nem jelenik meg ebben a listában. StorSimple Device Manager szolgáltatás felhasználói felületi hello továbbra is megjelenik ez az interfész hibás állapotban.
 
-E parancsmag használatáról további információkért látogasson el [GetNetAdapter](https://technet.microsoft.com/library/jj130867.aspx) a Windows PowerShell parancsmag-referencia a.
+További információt a toouse Ez a parancsmag lépjen túl[GetNetAdapter](https://technet.microsoft.com/library/jj130867.aspx) hello Windows PowerShell parancsmag-referencia a.
 
-A következő szakaszok bemutatják minták kimenetét a `Get-NetAdapter` parancsmag.
+hello következő szakaszok bemutatják hello kimenetét minták `Get-NetAdapter` parancsmag.
 
- Ezeket a mintákat vezérlő 0 a passzív vezérlő lett, és a következőképpen volt konfigurálva:
+ Ezeket a mintákat vezérlő 0 hello passzív vezérlő lett, és a következőképpen volt konfigurálva:
 
-* DATA 0, az adatok 1, a DATA 2 és a DATA 3 hálózati adapterek már létezett az eszközön.
-* ADATOK 4 és az adatok 5 hálózati kártyák nem volt jelen; ezért nem szerepelnek a kimenetben.
+* DATA 0, az adatok 1, a DATA 2 és a DATA 3 hálózati adapterek már létezett a hello eszközön.
+* ADATOK 4 és az adatok 5 hálózati kártyák nem volt jelen; ezért nem szerepelnek hello kimenet.
 * DATA 0 volt engedélyezve.
 
-1. vezérlő aktív vezérlőjén volt, és a következőképpen volt konfigurálva:
+1. vezérlő hello aktív vezérlő volt, és a következőképpen volt konfigurálva:
 
-* DATA 0, adatok 1, 2 adatok, a DATA 3, adatok 4 és a DATA 5 hálózati adapterek már létezett az eszközön.
+* DATA 0, adatok 1, 2 adatok, a DATA 3, adatok 4 és a DATA 5 hálózati adapterek már létezett a hello eszközön.
 * DATA 0 volt engedélyezve.
 
 **Példa a kimenetre – vezérlő 0**
 
-A vezérlő 0 (a passzív vezérlő) kimenete a következő: ADATOK 1, a DATA 2 és a DATA 3 nincs csatlakoztatva. ADATOK 4 és az adatok 5 nem tartalmazzák, mivel nincsenek jelen az eszközön.
+hello az alábbiakban az hello kimenetét a vezérlő 0 (hello passzív tartományvezérlő). ADATOK 1, a DATA 2 és a DATA 3 nincs csatlakoztatva. ADATOK 4 és az adatok 5 nem tartalmazzák, mivel nincsenek hello eszközön jelenlévő.
 
      Controller0>Get-NetAdapter
      Name                 InterfaceDescription                        ifIndex  Status
@@ -219,7 +219,7 @@ A vezérlő 0 (a passzív vezérlő) kimenete a következő: ADATOK 1, a DATA 2 
 
 **Példa a kimenetre – 1. vezérlő**
 
-A vezérlő 1 (az aktív vezérlővel) kimenete a következő: Csak a DATA 0 hálózati csatoló az eszköz konfigurálása és működik.
+hello hello kimeneti vezérlőből (aktív vezérlő hello) 1 látható. Csak hello DATA 0 hálózati csatoló hello eszközön van konfigurálva, és működik.
 
      Controller1>Get-NetAdapter
      Name                 InterfaceDescription                        ifIndex  Status
@@ -233,19 +233,19 @@ A vezérlő 1 (az aktív vezérlővel) kimenete a következő: Csak a DATA 0 há
      DATA4                Intel(R) Gigabit ET Dual Port Serv...#2     17       NotPresent
 
 
-## <a name="troubleshoot-with-the-test-connection-cmdlet"></a>A Test-Connection parancsmaggal hibaelhárításához
-Használhatja a `Test-Connection` parancsmag használatával határozza meg, hogy a StorSimple eszköz kapcsolódhatnak a külső hálózathoz. Ha a hálózati paramétereket, beleértve a DNS, a telepítővarázsló megfelelően vannak konfigurálva, használhatja a `Test-Connection` parancsmag a hálózaton, például az Outlook.com-on kívüli egy ismert cím pingelését.
+## <a name="troubleshoot-with-hello-test-connection-cmdlet"></a>Hello Test-Connection parancsmaggal hibaelhárításához
+Használhatja a hello `Test-Connection` parancsmag toodetermine e a StorSimple eszköz csatlakozni tud-toohello hálózaton kívülről. Ha minden hello hálózati paramétert, beleértve a DNS, hello hello telepítővarázsló megfelelően vannak konfigurálva, használhatja a hello `Test-Connection` parancsmag tooping hello hálózaton, például az Outlook.com-on kívüli ismert címnek.
 
-Engedélyeznie kell a ping csatlakozási hibák léptek fel ezzel a parancsmaggal hibaelhárításához, ha ping le van tiltva.
+Ping tootroubleshoot csatlakozási hibák léptek fel ezt a parancsmagot akkor engedélyezze, ha ping le van tiltva.
 
-Tekintse meg a következő minták kimenetét a `Test-Connection` parancsmag.
+Lásd: a minta kimenet követően – hello hello `Test-Connection` parancsmag.
 
 > [!NOTE]
-> Az első mintában az eszköz egy helytelen DNS van beállítva. A második példában a DNS helyességéről.
+> Hello első minta hello eszköz egy helytelen DNS van beállítva. Hello második példában hello DNS helyességéről.
 
 **Példa a kimenetre – helytelen DNS**
 
-A következő példában nincs nincs kimenet az IPV4 és IPv6 típusú címek, amely azt jelzi, hogy a DNS nincs feloldva. Ez azt jelenti, hogy nincs kapcsolat a külső hálózathoz, és a megfelelő DNS meg kell adni.
+A következő minta hello nincs nincs kimenet hello IPV4 és IPv6 típusú címek, amely azt jelzi, hogy nincs feloldva a DNS hello. Ez azt jelenti, hogy nincs kapcsolat toohello hálózaton kívül van, a megfelelő DNS megadott toobe.
 
      Source        Destination     IPV4Address      IPV6Address
      ------        -----------     -----------      -----------
@@ -256,7 +256,7 @@ A következő példában nincs nincs kimenet az IPV4 és IPv6 típusú címek, a
 
 **Példa a kimenetre – megfelelő DNS**
 
-A következő példában a DNS adja vissza az IPv4-cím, jelezve, hogy a DNS megfelelően van-e. Ez megerősíti, hogy nincs-e a külső hálózathoz csatlakoznak.
+A következő minta hello hello DNS értéket ad vissza hello IPv4-cím, jelezve, hogy hello DNS megfelelően van konfigurálva. Ez megerősíti, hogy van-e kapcsolat toohello hálózaton kívülről.
 
      Source        Destination     IPV4Address      IPV6Address
      ------        -----------     -----------      -----------
@@ -265,46 +265,46 @@ A következő példában a DNS adja vissza az IPv4-cím, jelezve, hogy a DNS meg
      HCSNODE0      outlook.com     132.245.92.194
      HCSNODE0      outlook.com     132.245.92.194
 
-## <a name="troubleshoot-with-the-test-hcsmconnection-cmdlet"></a>A Test-HcsmConnection parancsmag elhárítása
-Használja a `Test-HcsmConnection` parancsmag már csatlakoztatva van és a StorSimple Device Manager szolgáltatásban regisztrált eszközökhöz. Ez a parancsmag segítségével a regisztrált eszközhöz és a megfelelő StorSimple Device Manager szolgáltatás közötti kapcsolat ellenőrzése. Ez a parancs a StorSimple futtathatja a Windows PowerShell.
+## <a name="troubleshoot-with-hello-test-hcsmconnection-cmdlet"></a>Hibaelhárítás a hello Test-HcsmConnection parancsmag
+Használjon hello `Test-HcsmConnection` parancsmag egy eszköz már csatlakoztatva tooand regisztrálni a StorSimple Device Manager szolgáltatással. Ez a parancsmag segítségével ellenőrizze hello kapcsolatot egy regisztrált eszközre és hello megfelelő StorSimple Device Manager szolgáltatás között. Ez a parancs a StorSimple futtathatja a Windows PowerShell.
 
-### <a name="to-run-the-test-hcsmconnection-cmdlet"></a>A Test-HcsmConnection parancsmag futtatásához
-1. Győződjön meg arról, hogy az eszköz regisztrálva van-e.
-2. Az eszköz állapotának ellenőrzéséhez. Ha az eszközt az Inaktiválás karbantartási módban, vagy offline módban vannak, megjelenhet hibák a következők egyikét:
+### <a name="toorun-hello-test-hcsmconnection-cmdlet"></a>toorun hello Test-HcsmConnection parancsmag
+1. Győződjön meg arról, hogy hello eszköz regisztrálva van.
+2. Ellenőrizze a hello eszköz állapotát. Hello eszközt az Inaktiválás karbantartási módban, vagy offline módban vannak, nem látható a következő hibák hello egyikét:
    
-   * ErrorCode.CiSDeviceDecommissioned – Ez azt jelzi, hogy az eszközt az Inaktiválás.
-   * ErrorCode.DeviceNotReady – Ez azt jelzi, hogy az eszköz karbantartási módban van.
-   * ErrorCode.DeviceNotReady – Ez azt jelzi, hogy az eszköz nem online.
-3. Győződjön meg arról, hogy a StorSimple Device Manager szolgáltatás fut. (használja a [Get-ClusterResource](https://technet.microsoft.com/library/ee461004.aspx) parancsmag). A szolgáltatás nem fut, nem látható a következő hibákat:
+   * ErrorCode.CiSDeviceDecommissioned – Ez azt jelzi, hogy hello eszközt az Inaktiválás.
+   * ErrorCode.DeviceNotReady – Ez azt jelzi, hogy hello eszköz karbantartási módban van.
+   * ErrorCode.DeviceNotReady – az azt jelenti, hogy hello eszköz nem online.
+3. Győződjön meg arról, hogy hello StorSimple Device Manager szolgáltatás fut. (hello használata [Get-ClusterResource](https://technet.microsoft.com/library/ee461004.aspx) parancsmag). Ha hello szolgáltatás nem fut, a következő hibák hello merülhetnek fel:
    
    * ErrorCode.CiSApplianceAgentNotOnline
    * ErrorCode.CisPowershellScriptHcsError – Ez azt jelzi, hogy kivételt Get-ClusterResource futtatásakor.
-4. Ellenőrizze a Access Control Service (ACS) jogkivonatot. Ha azt a webes kivételt okoz, lehet, egy átjáró probléma, egy hiányzó proxyhitelesítés, egy helytelen DNS vagy hitelesítési hiba eredménye. Előfordulhat, hogy tekintse meg a következő hibákat:
+4. Ellenőrizze a hello Access Control Service (ACS) jogkivonatot. Ha azt a webes kivételt okoz, lehet, hello átjáró probléma, egy hiányzó proxyhitelesítés, egy helytelen DNS vagy hitelesítési hiba eredménye. A következő hibák hello tapasztalhatja:
    
-   * ErrorCode.CiSApplianceGateway – Ez jelzi a HttpStatusCode.BadGateway kivétel: a feloldó szolgáltatás nem sikerült feloldani a gazdagép nevét.
-   * ErrorCode.CiSApplianceProxy – Ez jelzi a HttpStatusCode.ProxyAuthenticationRequired kivételt (HTTP-állapotkód 407): az ügyfél nem tudta hitelesíteni a proxyn.
-   * ErrorCode.CiSApplianceDNSError – Ez jelzi a WebExceptionStatus.NameResolutionFailure kivétel: a feloldó szolgáltatás nem sikerült feloldani a gazdagép nevét.
-   * ErrorCode.CiSApplianceACSError – Ez azt jelzi, hogy a szolgáltatás hitelesítési hibát adott vissza, de nincs kapcsolat.
+   * ErrorCode.CiSApplianceGateway – Ez jelzi a HttpStatusCode.BadGateway kivétel: hello feloldó szolgáltatás nem tudta feloldani a hello állomásnevet.
+   * ErrorCode.CiSApplianceProxy – Ez jelzi (HTTP-állapotkód 407) HttpStatusCode.ProxyAuthenticationRequired kivétel: hello ügyfél nem tudta hitelesíteni a hello proxykiszolgálót.
+   * ErrorCode.CiSApplianceDNSError – Ez jelzi a WebExceptionStatus.NameResolutionFailure kivétel: hello feloldó szolgáltatás nem tudta feloldani a hello állomásnevet.
+   * ErrorCode.CiSApplianceACSError – Ez azt jelzi, hogy hello szolgáltatás hitelesítési hibát adott vissza, de nincs kapcsolat.
      
-     Ha azt nem lépett egy webes kivétel, ellenőrizze, hogy ErrorCode.CiSApplianceFailure. Ez azt jelzi, hogy a készülék.
-5. Ellenőrizze a felhőalapú szolgáltatás kapcsolatot. Ha a szolgáltatás webes kivételt okoz, láthatja a következő hibákat:
+     Ha azt nem lépett egy webes kivétel, ellenőrizze, hogy ErrorCode.CiSApplianceFailure. Ez azt jelzi, hogy hello készülék nem sikerült.
+5. Ellenőrizze a hello felhőalapú szolgáltatás kapcsolatot. Ha hello szolgáltatás webes kivételt okoz, a következő hibák hello merülhetnek fel:
    
-   * ErrorCode.CiSApplianceGateway – Ez jelzi a HttpStatusCode.BadGateway kivétel: egy köztes proxykiszolgáló hibás kérelmet kapott a másik proxy vagy az eredeti kiszolgálón.
-   * ErrorCode.CiSApplianceProxy – Ez jelzi a HttpStatusCode.ProxyAuthenticationRequired kivételt (HTTP-állapotkód 407): az ügyfél nem tudta hitelesíteni a proxyn.
-   * ErrorCode.CiSApplianceDNSError – Ez jelzi a WebExceptionStatus.NameResolutionFailure kivétel: a feloldó szolgáltatás nem sikerült feloldani a gazdagép nevét.
-   * ErrorCode.CiSApplianceACSError – Ez azt jelzi, hogy a szolgáltatás hitelesítési hibát adott vissza, de nincs kapcsolat.
+   * ErrorCode.CiSApplianceGateway – Ez jelzi a HttpStatusCode.BadGateway kivétel: közbenső proxykiszolgálók hibás kérelmet kapott a másik proxy vagy hello eredeti kiszolgálóról.
+   * ErrorCode.CiSApplianceProxy – Ez jelzi (HTTP-állapotkód 407) HttpStatusCode.ProxyAuthenticationRequired kivétel: hello ügyfél nem tudta hitelesíteni a hello proxykiszolgálót.
+   * ErrorCode.CiSApplianceDNSError – Ez jelzi a WebExceptionStatus.NameResolutionFailure kivétel: hello feloldó szolgáltatás nem tudta feloldani a hello állomásnevet.
+   * ErrorCode.CiSApplianceACSError – Ez azt jelzi, hogy hello szolgáltatás hitelesítési hibát adott vissza, de nincs kapcsolat.
      
-     Ha azt nem lépett egy webes kivétel, ellenőrizze, hogy ErrorCode.CiSApplianceSaasServiceError. Ez a StorSimple Device Manager szolgáltatással kapcsolatos problémát jelez.
-6. Ellenőrizze az Azure Service Bus-kapcsolatot. ErrorCode.CiSApplianceServiceBusError azt jelzi, hogy az eszköz nem tudja-e csatlakozni a Service Bus.
+     Ha azt nem lépett egy webes kivétel, ellenőrizze, hogy ErrorCode.CiSApplianceSaasServiceError. Ez a StorSimple eszköz Manager szolgáltatás hello hibáját jelzi.
+6. Ellenőrizze az Azure Service Bus-kapcsolatot. ErrorCode.CiSApplianceServiceBusError azt jelzi, hogy adott hello eszközről nem lehet kapcsolódni a Service Bus toohello.
 
-A naplófájlok CiSCommandletLog0Curr.errlog pedig a CiSAgentsvc0Curr.errlog további információkat, például a kivétel részletei.
+naplófájlok CiSCommandletLog0Curr.errlog hello pedig a CiSAgentsvc0Curr.errlog további információkat, például a kivétel részletei.
 
-A parancsmag használatával kapcsolatos további információkért látogasson el [Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx) a Windows PowerShell dokumentáció.
+Hogyan toouse hello parancsmaggal kapcsolatos további információkért lépjen túl[Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx) a Windows PowerShell hello dokumentáció.
 
 > [!IMPORTANT]
-> Ez a parancsmag az aktív és passzív vezérlő is futtathatja.
+> Ez a parancsmag hello aktív és passzív vezérlő hello is futtathatja.
 
-Tekintse meg a következő minták kimenetét a `Test-HcsmConnection` parancsmag.
+Lásd: a minta kimenet követően – hello hello `Test-HcsmConnection` parancsmag.
 
 **Minta kimenet – StorSimple Update 3 fut sikeresen regisztrált eszközre**
 
@@ -327,42 +327,42 @@ Tekintse meg a következő minták kimenetét a `Test-HcsmConnection` parancsmag
       Checking device authentication  ... This will take a few minutes.
       Checking device authentication  ... Success
 
-      Checking connectivity from device to service  ... This will take a few minutes.
+      Checking connectivity from device tooservice  ... This will take a few minutes.
 
-      Checking connectivity from device to service  ... Success
+      Checking connectivity from device tooservice  ... Success
 
-      Checking connectivity from service to device  ... Success
+      Checking connectivity from service toodevice  ... Success
 
-      Checking connectivity to Microsoft Update servers  ... Success
+      Checking connectivity tooMicrosoft Update servers  ... Success
       Controller1>
 
 **Példa a kimenetre – offline eszköz** 
 
-Ez a minta egy eszközről, amely állapota van **Offline** az Azure portálon.
+Ez a minta egy eszközről, amely állapota van **Offline** a hello Azure-portálon.
 
      Checking device registrationstate: Success
      Device is registered successfully
-     Checking connectivity from device to SaaS.. Failure
+     Checking connectivity from device tooSaaS.. Failure
 
-Az eszköz nem sikerült csatlakozni az aktuális webproxy-konfigurációja. Ennek oka lehet a webproxy-konfigurációja vagy a hálózati csatlakozási probléma kapcsolatos problémát. Ebben az esetben meg kell győződnie arról, hogy a webes proxykiszolgáló beállításainak helyességét és a webproxy-kiszolgálók online és elérhető-e.
+hello eszközt nem sikerült csatlakozni hello aktuális webproxy-konfigurációja. Ennek oka lehet a webproxy-konfigurációja hello problémát vagy a hálózati csatlakozási probléma. Ebben az esetben meg kell győződnie arról, hogy a webes proxykiszolgáló beállításainak helyességét és a webproxy-kiszolgálók online és elérhető-e.
 
-## <a name="troubleshoot-with-the-sync-hcstime-cmdlet"></a>A Sync-HcsTime parancsmaggal hibaelhárításához
-Ez a parancsmag segítségével az eszköz időpontjának megjelenítéséhez. Ha az eszköz egy eltolva, az NTP-kiszolgáló még, majd segítségével ennek a parancsmagnak kényszerített – az idő szinkronizálása a NTP-kiszolgáló.
-- Ha az eszköz és az NTP-kiszolgáló között az eltolás nagyobb, mint 5 perc, megjelenik egy figyelmeztetés. 
-- Az eltolás meghaladja a 15 perc, ha az eszköz offline kerül. Ez a parancsmag segítségével továbbra is időszinkronizálást. 
-- Azonban ha az eltolás meghaladja a 15 óra, majd csak akkor tudja kényszerített szinkronizálási idő, és egy hibaüzenet jelenik meg.
+## <a name="troubleshoot-with-hello-sync-hcstime-cmdlet"></a>Hello Sync-HcsTime parancsmaggal hibaelhárításához
+Ez a parancsmag toodisplay hello eszköz idő használata. Ha hello eszköz idő eltolással hello NTP-kiszolgálóval rendelkezik, használhatja a parancsmag tooforce-hello idő szinkronizálása a NTP-kiszolgáló.
+- Hello eltolás hello eszköz és az NTP-kiszolgáló közötti érték nagyobb, mint 5 perc, ha megjelenik egy figyelmeztetés. 
+- Ha hello eltolás meghaladja a 15 perc, hello eszköz kapcsolat nélküli kerül. Ez a parancsmag tooforce egy időszinkronizálást továbbra is használhatja. 
+- Azonban ha hello eltolás meghaladja a 15 óra, akkor nem lesz képes tooforce-szinkronizálás hello ideje, és jelenik meg hibaüzenet.
 
 **Minta kimenet – segítségével a Sync-HcsTime kényszerített az idő szinkronizálása**
 
      Controller0>Sync-HcsTime
-     The current device time is 4/24/2015 4:05:40 PM UTC.
+     hello current device time is 4/24/2015 4:05:40 PM UTC.
 
-     Time difference between NTP server and appliance is 00.0824069 seconds. Do you want to resync time with NTP server?
+     Time difference between NTP server and appliance is 00.0824069 seconds. Do you want tooresync time with NTP server?
      [Y] Yes [N] No (Default is "Y"): Y
      Controller0>
 
-## <a name="troubleshoot-with-the-enable-hcsping-and-disable-hcsping-cmdlets"></a>Az Enable-HcsPing és a Disable-HcsPing parancsmagok elhárítása
-Ezek a parancsmagok használatával győződjön meg arról, hogy az eszköz a hálózati adapterek ICMP ping kérésekre válaszol. Alapértelmezés szerint a StorSimple hálózati illesztők válaszol a ping-kérelmekre. Ez a parancsmag használata a legegyszerűbben úgy tudja, hogy ha az eszköz online és elérhető-e.
+## <a name="troubleshoot-with-hello-enable-hcsping-and-disable-hcsping-cmdlets"></a>A hello Enable-HcsPing és a Disable-HcsPing parancsmaggal hibaelhárításához
+Ezen parancsmagok tooensure, hogy az eszköz hálózati csatolóinak hello válaszol-e tooICMP ping kérelem használja. Alapértelmezés szerint hello StorSimple hálózati adapterek nem válaszolnak tooping kérelmeket. Hello legegyszerűbb módja tooknow ennek a parancsmagnak a használata, ha az eszköz online és elérhető-e.
 
 **Minta kimenet – Enable-HcsPing és a Disable-HcsPing**
 
@@ -375,20 +375,20 @@ Ezek a parancsmagok használatával győződjön meg arról, hogy az eszköz a h
      Successfully disabled ping.
      Controller0>
 
-## <a name="troubleshoot-with-the-trace-hcsroute-cmdlet"></a>A nyomkövetés-HcsRoute parancsmaggal hibaelhárításához
-Ez a parancsmag olyan útvonal eszköz használható. A végső rendeltetési módja az egyes útválasztók egy meghatározott időtartamra vonatkozóan csomagokat küld, és majd kiszámítja az egyes csomagok eredmény. A parancsmag fokának csomagvesztés bármely adott útválasztó vagy hivatkozás jeleníti meg, mert mely útválasztók tudja, vagy előfordulhat, hogy a hivatkozások hálózati problémát okoz.
+## <a name="troubleshoot-with-hello-trace-hcsroute-cmdlet"></a>Hello nyomkövetési-HcsRoute parancsmaggal hibaelhárításához
+Ez a parancsmag olyan útvonal eszköz használható. Hello módon tooa végső rendeltetési tooeach útválasztó csomagokat küld egy meghatározott időtartamra vonatkozóan, és majd kiszámítja a hello csomagok egyes ugrások által visszaadott eredmény. Hello parancsmag adott útválasztóról vagy hivatkozás csomagvesztés hello bizonyos fokú jeleníti meg, mert mely útválasztók tudja, vagy előfordulhat, hogy a hivatkozások hálózati problémát okoz.
 
-**Bemutatja, hogyan nyomkövetési-HcsRoute csomagot útvonalának követése minta kimenet**
+**Minta kimenet látható, hogyan tootrace hello nyomkövetési-HcsRoute csomagot útvonala**
 
      Controller0>Trace-HcsRoute -Target 10.126.174.25
 
-     Tracing route to contoso.com [10.126.174.25]
+     Tracing route toocontoso.com [10.126.174.25]
      over a maximum of 30 hops:
        0  HCSNode0 [10.126.173.90]
        1  contoso.com [10.126.174.25]
 
      Computing statistics for 25 seconds...
-                 Source to Here   This Node/Link
+                 Source tooHere   This Node/Link
      Hop  RTT    Lost/Sent = Pct  Lost/Sent = Pct  Address
        0                                           HCSNode0 [10.126.173.90]
                                      0/ 100 =  0%   |
@@ -397,16 +397,16 @@ Ez a parancsmag olyan útvonal eszköz használható. A végső rendeltetési m�
 
      Trace complete.
 
-## <a name="troubleshoot-with-the-get-hcsroutingtable-cmdlet"></a>A Get-HcsRoutingTable parancsmaggal hibaelhárításához
-Ez a parancsmag segítségével megtekintheti az útválasztási táblában a StorSimple eszközt. Útválasztási táblázat olyan szabályok, amelyek segíthetnek meghatározni, ha az Internet Protocol (IP) hálózaton keresztül továbbított adatok csomagokat a rendszer kéri.
+## <a name="troubleshoot-with-hello-get-hcsroutingtable-cmdlet"></a>Hello Get-HcsRoutingTable parancsmaggal hibaelhárításához
+Ez a parancsmag tooview hello útvonaltábla használata a StorSimple eszközt. Útválasztási táblázat olyan szabályok, amelyek segíthetnek meghatározni, ha az Internet Protocol (IP) hálózaton keresztül továbbított adatok csomagokat a rendszer kéri.
 
-Az útválasztási táblázat a felületek és az átjáró, amely továbbítja az adatokat a megadott hálózatokat. A útválasztási mérték, amely az adott cél eléréséhez szükséges elérési utat a döntéshozó is biztosít. Az alsó útválasztási metrika, annál magasabb prioritást.
+hello útválasztási táblázat hello felületek és hello átjáró, hogy útvonalak hello adatok toohello megadott hálózatok. Hello útválasztási metrika, amely hello döntéshozó a hello útvonalán tooreach egy adott célra is biztosít. hello alacsonyabb hello útválasztási metrika, hello magasabb hello prioritása.
 
-Például ha 2 hálózati illesztőt, DATA 2 és a DATA 3 csatlakozik az internethez. Ha a DATA 2 és a DATA 3 útválasztási metrikáját 15 és 261 rendre, kisebb útválasztási metrikájú DATA 2 az előnyben részesített interface, az Internet eléréséhez használt.
+Például, ha 2 hálózati adapter áll rendelkezésükre, DATA 2 és a DATA 3, a csatlakoztatott toohello Internet rendelkezik. Ha DATA 2 és a DATA 3 útválasztási metrikáját hello 15 és 261 rendre, majd DATA 2 hello alacsonyabb útválasztási metrikájú a hello előnyben részesített felület használt tooreach hello Internet.
 
-Ha a StorSimple eszköz frissítése 1 futtatja, akkor a DATA 0 hálózati adapterén a legmagasabb beállítása a felhőalapú forgalom van. Ez azt jelenti, hogy akkor is, ha nincsenek más felhőalapú felülettel, a felhőalapú forgalom lesz átirányítva a DATA 0.
+Ha a StorSimple eszköz frissítése 1 futtatja, a DATA 0 hálózati adapterén rendelkezik hello felhőforgalom hello legmagasabb beállításait. Ez azt jelenti, hogy akkor is, ha nincsenek más felhőalapú felülettel, hello felhőalapú forgalom lesz átirányítva a DATA 0.
 
-Ha futtatja a `Get-HcsRoutingTable` parancsmag (ahogy az alábbi példa mutatja) paraméterek megadása nélkül a parancsmag kimeneteként IPv4 és IPv6-útválasztási táblázataiba. Másik lehetőségként megadhat `Get-HcsRoutingTable -IPv4` vagy `Get-HcsRoutingTable -IPv6` beolvasni a megfelelő útválasztási táblázatban.
+Ha futtatja a hello `Get-HcsRoutingTable` paramétereket (a példa azt mutatja meg a következő hello), a parancsmag hello megadása nélkül parancsmag kimeneteként IPv4 és IPv6-útválasztási táblázataiba. Másik lehetőségként megadhat `Get-HcsRoutingTable -IPv4` vagy `Get-HcsRoutingTable -IPv6` tooget a megfelelő útválasztási táblázatban.
 
       Controller0>
       Controller0>Get-HcsRoutingTable
@@ -473,15 +473,15 @@ Ha futtatja a `Get-HcsRoutingTable` parancsmag (ahogy az alábbi példa mutatja)
       Controller0>
 
 ## <a name="step-by-step-storsimple-troubleshooting-example"></a>StorSimple részletes hibaelhárítási példa
-A következő példa bemutatja a StorSimple központi telepítés részletes hibaelhárítási. A példaforgatókönyvben eszközök regisztrációja sikertelen, és egy hiba üzenet arról, hogy a hálózati beállításokat, vagy a DNS-név érvénytelen.
+hello következő példa bemutatja a StorSimple központi telepítés részletes hibaelhárítási. Hello a példaforgatókönyvben eszközök regisztrációja sikertelen, és egy hiba üzent arról, hogy hello DNS-név vagy hello hálózati beállítások helytelen.
 
-A következő hibaüzenet jelenik a következő:
+hello hibaüzenet jelenik a következő:
 
-     Invoke-HcsSetupWizard: An error has occurred while registering the device. This could be due to incorrect IP address or DNS name. Please check your network settings and try again. If the problems persist, contact Microsoft Support.
+     Invoke-HcsSetupWizard: An error has occurred while registering hello device. This could be due tooincorrect IP address or DNS name. Please check your network settings and try again. If hello problems persist, contact Microsoft Support.
      +CategoryInfo: Not specified
      +FullyQualifiedErrorID: CiSClientCommunicationErros, Microsoft.HCS.Management.PowerShell.Cmdlets.InvokeHcsSetupWizardCommand
 
-A hiba oka lehet az alábbiak valamelyikét:
+hello következő hello hiba lehetséges okok:
 
 * Helytelen hardver telepítése
 * Hibás hálózati adaptert
@@ -489,44 +489,44 @@ A hiba oka lehet az alábbiak valamelyikét:
 * Nem megfelelő regisztrációs kulcs
 * Helytelen tűzfal beállításai
 
-### <a name="to-locate-and-fix-the-device-registration-problem"></a>Keresse meg és hárítsa el az eszköz regisztrációs probléma
-1. Ellenőrizze az eszköz konfigurációját: az aktív vezérlővel, futtassa `Invoke-HcsSetupWizard`.
+### <a name="toolocate-and-fix-hello-device-registration-problem"></a>toolocate és javítás hello eszköz regisztrációs probléma
+1. Ellenőrizze az eszköz konfigurációját: hello aktív vezérlő, futtassa `Invoke-HcsSetupWizard`.
    
    > [!NOTE]
-   > A telepítő varázsló aktív vezérlőjén kell futtatni. Annak ellenőrzéséhez, hogy csatlakozik az aktív vezérlővel, tekintse meg a szalagcím a soros konzol állnak rendelkezésre. A szalagcím azt jelzi, 0 vagy 1 vezérlőjéhez kapcsolat, és hogy a vezérlő aktív vagy passzív-e. További információkért látogasson el [azonosíthatja az aktív vezérlőhöz az eszközön](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device).
+   > hello beállítása varázsló hello aktív tartományvezérlőn kell futtatni. csatlakoztatott toohello aktív vezérlő, nézze meg hello soros konzolon megjelenített hello szalagcím képező tooverify. hello szalagcím azt jelzi, hogy csatlakoztatott toocontroller 0 vagy 1. vezérlő, és hogy hello vezérlő aktív vagy passzív-e. További információ: túl[azonosíthatja az aktív vezérlőhöz az eszközön](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device).
    
-2. Győződjön meg arról, hogy az eszköz megfelelően van-e csatlakoztatva: Ellenőrizze a hálózati kábelek vissza vezérlősík az eszközön. A kábelezést csak a eszközmodell az. További információkért látogasson el [a StorSimple 8100 eszköz telepítése](storsimple-8100-hardware-installation.md) vagy [a StorSimple 8600 eszköz telepítése](storsimple-8600-hardware-installation.md).
+2. Győződjön meg arról, hogy megfelelően van-e csatlakoztatva hello eszköz: hello eszközön vissza vezérlősík kábelek hello hálózati ellenőrzése. adott toohello eszközmodell hello kábelek. További információ: túl[a StorSimple 8100 eszköz telepítése](storsimple-8100-hardware-installation.md) vagy [a StorSimple 8600 eszköz telepítése](storsimple-8600-hardware-installation.md).
    
    > [!NOTE]
-   > Ha 10 GbE hálózati portokat használ, akkor a megadott QSFP-SFP adapterek és kábelek SFP. További információkért lásd: a [kábelek, kapcsolók és a 10 GbE-portokhoz ajánlott adó listája](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
+   > Ha 10 GbE hálózati portokat használ, szüksége lesz a megadott QSFP-SFP és SFP toouse hello. További információkért lásd: hello [kábelek, kapcsolók és adó-vevők ajánlott hello 10 GbE portok listája](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
   
-3. A hálózati adapter állapotának ellenőrzése:
+3. Hello hálózati illesztő hello állapotának ellenőrzése:
    
-   * A Get-NetAdapter parancsmag használatával a DATA 0 a hálózati adapterek állapotának észleléséhez. 
-   * Ha a kapcsolat nem működik, a **ifindex** állapotát jelzi, hogy a kapcsolat le van-e. Szüksége lesz majd, hogy ellenőrizze a hálózati kapcsolatot, a készülék, és a kapcsolón a port. Szüksége lesz is, a rossz kábelek kizárása. 
-   * Ha azt gyanítja, hogy a DATA 0 aktív vezérlőjén port sikertelen volt, akkor ezt úgy ellenőrizheti az adatokhoz való kapcsolódásról 1. vezérlő 0 portjához. Ellenőrizheti, hogy megszakítja a kapcsolatot a hálózati kábel hátoldalán található az eszköz a vezérlőről 0, 1-vezérlőhöz csatlakoztassa a kábelt, és futtassa újból a a Get-NetAdapter parancsmag.
-     Ha a DATA 0 portszámot, egy tartományvezérlő sikertelen lesz, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Előfordulhat, hogy szükség a tartományvezérlő a rendszeren.
-4. Ellenőrizze a kapcsolatot a kapcsolóhoz:
+   * Hello Get-NetAdapter parancsmag toodetect hello állapotfigyelő hello hálózati adapterek használata a DATA 0. 
+   * Hello kapcsolat nem működik, ha hello **ifindex** állapotát jelzi, hogy hello illesztő nem működik. Szüksége lesz majd toocheck hello hálózati kapcsolat hello port toohello készülék és toohello kapcsoló. Kimenő hibás kábelek toorule is szüksége lesz. 
+   * Amennyiben azt gyanítja, hogy hello sikertelen volt a port hello aktív vezérlő DATA 0, akkor ezt úgy ellenőrizheti csatlakozás toohello DATA 0 vezérlő 1 portot. tooconfirm, válassza le hello hálózati kábel hello hátsó hello eszköz vezérlő 0, csatlakozzon hello kábel toocontroller 1, és futtassa újból a Get-NetAdapter hello parancsmag.
+     Ha a DATA 0 port tartományvezérlőn sikertelen lesz, hello [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Tooreplace hello vezérlő akkor lehet szükség a rendszeren.
+4. Ellenőrizze a hello kapcsolat toohello kapcsoló:
    
-   * Győződjön meg arról, hogy a vezérlő 0 és 1. az elsődleges szolgáltatással vezérlő DATA 0 hálózati illesztők ugyanazon az alhálózaton. 
-   * Ellenőrizze a központ vagy az útválasztó. Általában mindkét tartományvezérlők csatlakoznia kell a központi vagy a útválasztó. 
-   * Győződjön meg arról, a kapcsolók, használhatja a kapcsolatot a DATA 0 mindkét az ugyanazon VLAN-vezérlők.
+   * Győződjön meg arról, hogy a vezérlő 0 és 1. az elsődleges szolgáltatással vezérlő DATA 0 hálózati adapterek vannak a hello ugyanazon az alhálózaton. 
+   * Ellenőrizze a hello központ vagy az útválasztó. Általában csatlakoznia mindkét tartományvezérlők toohello azonos hub vagy útválasztó. 
+   * Győződjön meg arról, használhatja a hello kapcsolat hello kapcsolók DATA 0 mindkét hello tartományvezérlőinek az ugyanazon vLAN.
 5. Bármely felhasználó hibák kiküszöbölése:
    
-   * Indítsa újra a telepítővarázslót (Futtatás **Invoke-HcsSetupWizard**), és írja be újra az értékeket győződjön meg arról, hogy nincsenek-e hibák. 
-   * Ellenőrizze a regisztrációs kulcs. Az azonos regisztrációs kulcs segítségével több eszközök csatlakoznak a StorSimple eszköz Manager szolgáltatást. Az eljárás a [Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-manage-service.md#get-the-service-registration-key) annak érdekében, hogy a megfelelő kulcsot használ.
+   * Futtassa újra a hello beállítása varázsló (futtatása **Invoke-HcsSetupWizard**), és írja be hello értékek újra toomake meg arról, hogy nincsenek-e hibák. 
+   * Hello regisztráció-ellenőrzés használt kulcs. azonos regisztrációs kulcs hello lehet használt tooconnect több eszközök tooa StorSimple Device Manager szolgáltatást. A hello eljárással [hello Szolgáltatásregisztrációs kulcs lekérése](storsimple-8000-manage-service.md#get-the-service-registration-key) tooensure, Ön által használt hello megfelelő regisztrációs kulcsot.
      
      > [!IMPORTANT]
-     > Ha több szolgáltatás fut, akkor ellenőrizze, hogy használja-e a megfelelő szolgáltatáshoz a regisztrációs kulccsal kell regisztrálni az eszközt. Ha a nem megfelelő a StorSimple eszköz Manager szolgáltatásban regisztrált egy eszközt, akkor [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Előfordulhat, hogy végezzen el (amely adatvesztést eredményezhet) az eszköz gyári beállításainak visszaállítását, majd csatlakoztassa a tervezett szolgáltatás.
+     > Ha több szolgáltatás fut, akkor tooensure hello regisztrációs kulcs hello megfelelő service érték használt tooregister hello eszköz. Ha egy eszköz regisztrált szervezettípustól hello megfelelő StorSimple Device Manager szolgáltatást, akkor túl[forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) további lépéseket. Előfordulhat, hogy tooperform (amely adatvesztést eredményezhet) hello eszköz gyári beállításainak visszaállítását toothen csatlakoztassa szánt toohello szolgáltatás.
      > 
      > 
-6. A Test-Connection parancsmag segítségével ellenőrizze, hogy rendelkezik-e a külső hálózathoz csatlakoznak. További információkért látogasson el [kapcsolatos problémák elhárítása a Test-Connection parancsmaggal](#troubleshoot-with-the-test-connection-cmdlet).
-7. Ellenőrizze, hogy a tűzfal zavaró tényező. Ha ellenőrizte, hogy a virtuális IP-cím (VIP), az alhálózati, az átjárót és a DNS-beállítások helyességét, és problémák továbbra is megjelenik, majd lehetséges, hogy a tűzfal blokkolja az eszköz és a külső hálózat közötti kommunikáció. Győződjön meg arról, hogy elérhetők-e 80-as és 443-as port kimenő kommunikációra a StorSimple-eszköz szükség. További információkért lásd: [a StorSimple eszköz hálózatkezelési követelményei](storsimple-8000-system-requirements.md#networking-requirements-for-your-storsimple-device).
-8. Tekintse meg a naplókat. Ugrás a [támogatja a csomagok és a rendelkezésre álló eszköznaplók hibaelhárítási](#support-packages-and-device-logs-available-for-troubleshooting).
-9. Ha az előző lépések nem oldja meg a problémát, [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) segítségért.
+6. Használja a kapcsolat tesztelése hello parancsmag tooverify, hogy rendelkezik-e kapcsolat toohello hálózaton kívülről. További információ: túl[hello Test-Connection parancsmaggal kapcsolatos problémák elhárítása](#troubleshoot-with-the-test-connection-cmdlet).
+7. Ellenőrizze, hogy a tűzfal zavaró tényező. Ha ellenőrizte, hogy hello virtuális IP-cím (VIP), az alhálózati, az átjáró és a DNS-beállítások helyességét, és problémák továbbra is megjelenik, majd lehetséges, hogy a tűzfal blokkolja az eszközön, és a hálózaton kívül hello közötti kommunikáció. Meg kell, hogy elérhetők-e 80-as és 443-as port kimenő kommunikációra a StorSimple eszköz tooensure. További információkért lásd: [a StorSimple eszköz hálózatkezelési követelményei](storsimple-8000-system-requirements.md#networking-requirements-for-your-storsimple-device).
+8. Tekintse meg hello naplókat. Nyissa meg túl[támogatja a csomagok és a rendelkezésre álló eszköznaplók hibaelhárítási](#support-packages-and-device-logs-available-for-troubleshooting).
+9. Ha hello előző lépések nem oldja meg hello probléma [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) segítségért.
 
 ## <a name="next-steps"></a>Következő lépések
-[A diagnosztikai eszköz használata a StorSimple eszköz hibaelhárításához](storsimple-8000-diagnostics.md).
+[Ismerje meg, hogyan toouse hello diagnosztikai eszköz tootroubleshoot a StorSimple eszköz](storsimple-8000-diagnostics.md).
 
 <!--Link references-->
 

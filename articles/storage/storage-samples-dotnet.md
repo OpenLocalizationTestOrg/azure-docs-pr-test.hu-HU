@@ -1,6 +1,6 @@
 ---
-title: "Azure Storage-minták .NET használatával |} Microsoft Docs"
-description: "Megtekintése, töltse le és futtassa a mintakódot és az alkalmazások az Azure Storage. Felderíteni a bevezetés minták BLOB, üzenetsorok, táblák és fájlok, a .NET-storage ügyfélkódtáraival használatával."
+title: "aaaAzure tárolási minták .NET használatával |} Microsoft Docs"
+description: "Megtekintése, töltse le és futtassa a mintakódot és az alkalmazások az Azure Storage. Fedezze fel hello .NET storage ügyfélkódtáraival használó kódmintát BLOB, üzenetsorok, táblák és fájlok, az első lépések."
 services: storage
 documentationcenter: na
 author: seguler
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: d2b6b3d9483f230ad25ae47255a4f28c1a67e064
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a7055645b0f0658b850f024b8b19ab19840330e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-samples-using-net"></a>Azure Storage-minták .NET használatával
 
 ## <a name="net-sample-index"></a>.NET minta index
 
-A következő táblázat a minták tárház és minden egyes minta az ismertetett forgatókönyvek áttekintése. Kattintson a hivatkozásra kattintva a megfelelő mintakód a Githubon.
+hello alábbi táblázat áttekintést nyújt az általunk biztosított mintákat tárház és hello forgatókönyvben szereplő minden egyes minta. Kattintson a hello hivatkozások tooview hello megfelelő mintakód a Githubon.
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">Végpont</th><th style="font-size:110%">Forgatókönyv</th><th style="font-size:110%">Mintakód</th></tr></thead><tbody> 
 <tr> 
@@ -197,13 +197,13 @@ A következő táblázat a minták tárház és minden egyes minta az ismertetet
 
 ## <a name="azure-code-samples-library"></a>Az Azure mintakódok könyvtár
 
-A teljes minta könyvtár megtekintéséhez keresse fel a [Azure mintakódok](https://azure.microsoft.com/resources/samples/?service=storage) könyvtárban, és azt az Azure Storage töltse le és futtassa helyileg minták tartalmazza. A kód a minta könyvtár .zip formátumban példakódot tartalmaz. Azt is megteheti keresse meg és a GitHub-tárházban, minden egyes minta klónozását.
+tooview hello teljes mintát könyvtár, nyissa meg toohello [Azure mintakódok](https://azure.microsoft.com/resources/samples/?service=storage) könyvtárban, és azt az Azure Storage töltse le és futtassa helyileg minták tartalmazza. hello kód a minta könyvtár .zip formátumban példakódot tartalmaz. Azt is megteheti keresse meg, és minden egyes minta hello GitHub tárház klónozása.
 
 [!INCLUDE [storage-dotnet-samples-include](../../includes/storage-dotnet-samples-include.md)]
 
 ## <a name="getting-started-guides"></a>Első lépéseket ismertető útmutatók
 
-Tekintse meg az alábbi útmutatókban, ha a telepítését, és ismerkedjen meg az Azure Storage Ügyfélkódtáraival útmutatást.
+Tekintse meg a következő útmutatók, ha olyan eszközökre vonatkozóan törlésének hello tooinstall és Ismerkedés az Azure Storage Ügyfélkódtáraival hello.
 
 * [Ismerkedés az Azure Blob szolgáltatás a .NET](storage-dotnet-how-to-use-blobs.md)
 * [Ismerkedés az Azure Queue szolgáltatás a .NET](storage-dotnet-how-to-use-queues.md)

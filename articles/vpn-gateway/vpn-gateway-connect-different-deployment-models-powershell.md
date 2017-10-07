@@ -1,6 +1,6 @@
 ---
-title: "Klasszikus virtuális hálózatok csatlakoztatása Azure Resource Manager Vnetek: PowerShell |} Microsoft Docs"
-description: "Útmutató klasszikus virtuális hálózatokat és erőforrás-kezelő Vnetek VPN-átjáró és a PowerShell használatával közötti VPN-kapcsolat létrehozása"
+title: "Csatlakoztassa a klasszikus virtuális hálózatok tooAzure erőforrás-kezelő Vnetek: PowerShell |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate klasszikus virtuális hálózatokat és erőforrás-kezelő Vnetek VPN-átjáró és a PowerShell használatával közötti VPN-kapcsolat"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/21/2017
 ms.author: cherylmc
-ms.openlocfilehash: 842a32e5304977af92706cdda464286983122247
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b1cf6ae4becf1829fa99961c5dd09a422fcc1fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connect-virtual-networks-from-different-deployment-models-using-powershell"></a>Különböző üzemi modellekből származó virtuális hálózatok összekapcsolása a PowerShell-lel
 
 
 
-Ez a cikk bemutatja, hogyan csatlakozzon a hagyományos Vneteket erőforrás-kezelő Vnetek engedélyezi a különálló üzembe helyezési modellel egymással kommunikálni található erőforrásokhoz. A cikkben található lépéseket használhatja a PowerShell, de ez a konfiguráció a listáról a cikk kiválasztásával az Azure portál használatával is létrehozhat.
+Ez a cikk bemutatja, hogyan tooconnect hagyományos Vneteket tooResource Manager Vnetek tooallow hello hello külön telepítési modellek toocommunicate egymás mellett található erőforrásokhoz. hello cikkben leírt lépéseket a PowerShell segítségével, de ez a konfiguráció hello cikk jelöl ki a listában hello Azure-portál használatával is létrehozhat.
 
 > [!div class="op_single_selector"]
-> * [Portal](vpn-gateway-connect-different-deployment-models-portal.md)
+> * [Portál](vpn-gateway-connect-different-deployment-models-portal.md)
 > * [PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
 > 
 > 
 
-A klasszikus virtuális hálózat csatlakozik egy erőforrás-kezelő virtuális hálózat hasonlít egy Vnetet csatlakozik egy helyszíni hely. Mindkét kapcsolattípus egy VPN-átjárót használ a biztonságos alagút IPsec/IKE használatával való kialakításához. Létrehozhat, amelyek különböző előfizetésekhez és különböző régiókban Vnetek közötti kapcsolat. A helyszíni hálózatokhoz való csatlakozás már rendelkező Vnetek mindaddig, amíg az átjáró, amely a konfigurálva a dinamikus- vagy útválasztó-alapú is csatlakoztathatja. A virtuális hálózatok közötti kapcsolatokról további információt a cikk végén, a [Virtuális hálózatok közötti kapcsolat – gyakori kérdések](#faq) című részben talál. 
+Csatlakozás egy klasszikus virtuális hálózat tooa erőforrás-kezelő virtuális hálózat hasonló tooconnecting egy VNet tooan helyszíni hely. Mindkét csatlakozási típusok használja a VPN-átjáró tooprovide IPsec/IKE használatával biztonságos alagutat. Létrehozhat, amelyek különböző előfizetésekhez és különböző régiókban Vnetek közötti kapcsolat. Kapcsolatok tooon helyszíni hálózatokban, már rendelkező Vnetek mindaddig, amíg hello átjáró, amely a konfigurálva a dinamikus- vagy útválasztó-alapú is csatlakoztathatja. VNet – VNet kapcsolatokhoz kapcsolatos további információkért lásd: hello [VNet – VNet – gyakori kérdések](#faq) hello Ez a cikk végén. 
 
-Ha a Vnetek ugyanabban a régióban, érdemes lehet helyette megfontolandó csatlakoztatja őket a Vnetben társviszony-létesítés használatával. A virtuális hálózatok közötti társviszony nem használ VPN-átjárót. További információ: [Társviszony létesítése virtuális hálózatok között](../virtual-network/virtual-network-peering-overview.md). 
+Ha a Vnetek hello ugyanabban a régióban, érdemes lehet tooinstead vegye figyelembe, hogy csatlakoztatja őket a Vnetben társviszony-létesítés használatával. A virtuális hálózatok közötti társviszony nem használ VPN-átjárót. További információ: [Társviszony létesítése virtuális hálózatok között](../virtual-network/virtual-network-peering-overview.md). 
 
 ## <a name="before-beginning"></a>Mielőtt hozzálát
 
-A következő lépések végigvezetik a dinamikus- vagy útválasztó-alapú átjárók konfigurálása az egyes virtuális hálózat és az átjárók közötti VPN-kapcsolat létrehozásához szükséges beállításokat. Ez a konfiguráció nem támogatja a statikus vagy csoportházirend-alapú átjárók.
+hello következő lépések végigvezetik Önt hello beállítások szükséges tooconfigure dinamikus- vagy útválasztó-alapú átjáró minden vnet és hello átjárók közötti VPN-kapcsolatot. Ez a konfiguráció nem támogatja a statikus vagy csoportházirend-alapú átjárók.
 
 ### <a name="prerequisites"></a>Előfeltételek
 
 * Mindkét Vnetek létre lett hozva.
-* A Vnetek címtartományát nem átfedésben vannak egymással, vagy átfedésben vannak a tartományt az átjárók csatlakoztathatók más kapcsolatok esetében.
-* A legújabb PowerShell-parancsmagok telepítése. Lásd: [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) további információt. Győződjön meg arról, hogy a Service Management (SM) és az erőforrás-kezelő (RM) parancsmagok telepítenie. 
+* hello címtartományát hello Vnetek nem lehetnek átfedésben vannak egymással, vagy átfedésben vannak egyetlen hello tartományok hello átjárók csatlakoztathatók más kapcsolatok esetében.
+* Hello legújabb PowerShell-parancsmagok telepítése. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) további információt. Ellenőrizze, hogy hello szolgáltatás-felügyeleti (SM) és erőforrás-kezelő (RM) parancsmagok hello telepítenie. 
 
 ### <a name="exampleref"></a>Példabeállítások
 
-Ezekkel az értékekkel létrehozhat egy tesztkörnyezetet, vagy a segítségükkel értelmezheti a cikkben szereplő példákat.
+Ezen értékek toocreate egy tesztkörnyezetben használhatja, vagy tekintse meg a toothem toobetter hello jelen cikk példái a megismeréséhez.
 
 **Klasszikus virtuális hálózat beállításai**
 
@@ -74,22 +74,22 @@ Helyi hálózati átjáró = ClassicVNetLocal <br>
 A virtuális hálózati átjáró neve = RMGateway <br>
 Átjáró IP-címzési beállításokat = gwipconfig
 
-## <a name="createsmgw"></a>1. szakasz - a klasszikus virtuális hálózat konfigurálása
+## <a name="createsmgw"></a>1. szakasz - konfigurálása hello klasszikus virtuális hálózaton
 ### <a name="part-1---download-your-network-configuration-file"></a>1. rész – a hálózati konfigurációs fájl letöltése
-1. Jelentkezzen be az Azure-fiókjával a PowerShell-konzolban, emelt szintű jogosultságokkal. A következő parancsmag kéri a bejelentkezési hitelesítő adatok az Azure-fiók. A bejelentkezés után letölti a fiók beállításait, hogy elérhetők legyenek az Azure PowerShell számára. A Service Manager PowerShell-parancsmagok segítségével végezze el ezt a konfiguráció részét.
+1. Jelentkezzen be tooyour Azure-fiók hello PowerShell-konzolban emelt szintű jogosultságokkal. hello következő parancsmag kéri hello bejelentkezési hitelesítő adatokat az Azure-fiók. A bejelentkezés után az tölti le a fiókbeállításoknál, hogy-e elérhető tooAzure PowerShell. Service Manager PowerShell-parancsmagok toocomplete hello hello konfigurációs ezen része használja.
 
   ```powershell
   Add-AzureAccount
   ```
-2. Az Azure-hálózat konfigurációs fájl exportálása a következő parancs futtatásával. Módosíthatja a fájlt egy másik helyre, szükség esetén helyét.
+2. Az Azure-hálózat konfigurációs fájl exportálása hello a következő parancs futtatásával. Hello helyét hello fájl tooexport tooa máshová szükség esetén módosíthatja.
 
   ```powershell
   Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
   ```
-3. Nyissa meg az .xml fájlt a szerkesztéshez letöltött. A hálózati konfigurációs fájl példa: a [hálózati konfigurációs séma](https://msdn.microsoft.com/library/jj157100.aspx).
+3. Nyitott hello tartalmazó .xml-fájlt, hogy a tooedit le azt. Hello hálózati konfigurációs fájl példa, lásd: hello [hálózati konfigurációs séma](https://msdn.microsoft.com/library/jj157100.aspx).
 
-### <a name="part-2--verify-the-gateway-subnet"></a>Rész 2 – az átjáró alhálózatának ellenőrzése
-Az a **VirtualNetworkSites** elemet, adja hozzá egy átjáró-alhálózatot a virtuális hálózat, ha egy nem már létezik. A hálózati konfigurációs fájl használata, ha az átjáró alhálózatának névvel kell ellátni "GatewaySubnet" vagy az Azure nem ismeri fel és nem használható egy átjáró-alhálózatot.
+### <a name="part-2--verify-hello-gateway-subnet"></a>Rész 2 - hello átjáróalhálózatot ellenőrzése
+A hello **VirtualNetworkSites** elemet, adja hozzá egy átjáró alhálózati tooyour VNet, ha nem már létrehozták. Az hello hálózati konfigurációs fájl használatakor hello átjáróalhálózatot névvel kell ellátni "GatewaySubnet" vagy az Azure nem ismeri fel és nem használható egy átjáró-alhálózatot.
 
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
@@ -111,8 +111,8 @@ Az a **VirtualNetworkSites** elemet, adja hozzá egy átjáró-alhálózatot a v
       </VirtualNetworkSite>
     </VirtualNetworkSites>
 
-### <a name="part-3---add-the-local-network-site"></a>3. rész – a helyi hálózati hely hozzáadása
-A helyi hálózati telephely hozzáadhat jelenti. az erőforrás-kezelő virtuális hálózatot, amelyhez csatlakozni szeretne. Adja hozzá a **LocalNetworkSites** elemben, amely a fájl, ha egy már nem létezik. Ezen a ponton a konfigurációban az a vpngatewayaddress elemmel lehet egy másik érvényes nyilvános IP-címet, mert azt még nem hozta létre az átjáró a Resource Manager vnet. Az átjáró létrehozhatunk, ha azt cserélje le a helyőrző IP-cím megfelelő nyilvános IP-cím van hozzárendelve az erőforrás-kezelő átjáró.
+### <a name="part-3---add-hello-local-network-site"></a>3. rész – hello helyi hálózati hely hozzáadása
+hozzáadhat hello helyi hálózati telephely hello tooconnect kívánt erőforrás-kezelő virtuális hálózat toowhich jelöli. Adja hozzá a **LocalNetworkSites** elem toohello fájlt, ha egy már nem létezik. Ezen a ponton hello a konfigurációban az hello VPNGatewayAddress lehet egy másik érvényes nyilvános IP-címet, mert azt még nem hozta létre az erőforrás-kezelő virtuális hálózat hello hello átjáró. Miután létrehozhatunk hello átjáró, azt cserélje le a helyőrző IP-cím hello megfelelő nyilvános IP-címet, amelyet toohello RM átjáró rendelt.
 
     <LocalNetworkSites>
       <LocalNetworkSite name="RMVNetLocal">
@@ -123,8 +123,8 @@ A helyi hálózati telephely hozzáadhat jelenti. az erőforrás-kezelő virtuá
       </LocalNetworkSite>
     </LocalNetworkSites>
 
-### <a name="part-4---associate-the-vnet-with-the-local-network-site"></a>Rész 4 – a virtuális hálózat társítani a helyi hálózati telephely
-Ebben a szakaszban a Vnetet a csatlakozáshoz használni kívánt helyi hálózati telephely adtuk meg. Ebben az esetben a korábban hivatkozott erőforrás-kezelő virtuális hálózat. Győződjön meg arról, hogy az megfelel-e. Ez a lépés nem hoz létre egy átjáró. Azt adja meg a helyi hálózaton, amelyhez az átjáró csatlakozni fognak.
+### <a name="part-4---associate-hello-vnet-with-hello-local-network-site"></a>Rész 4 – hello hálózatok társítása hello helyi hálózati telephely
+Ebben a szakaszban adtuk meg, hogy szeretné-e tooconnect hello helyi hálózati telephely hello VNet. Ebben az esetben is, amely korábban hivatkozott erőforrás-kezelő VNet hello. Győződjön meg arról, hogy hello nevének felel meg. Ez a lépés nem hoz létre egy átjáró. Meghatározza az hello helyi hálózati átjáró hello fog csatlakozni.
 
         <Gateway>
           <ConnectionsToLocalNetwork>
@@ -134,36 +134,36 @@ Ebben a szakaszban a Vnetet a csatlakozáshoz használni kívánt helyi hálóza
           </ConnectionsToLocalNetwork>
         </Gateway>
 
-### <a name="part-5---save-the-file-and-upload"></a>5. rész - mentse a fájlt, és töltse fel
-Mentse a fájlt, majd importálja az Azure-bA a következő parancs futtatásával. Győződjön meg arról, hogy a fájl elérési útját a környezet szükség szerint módosíthatja.
+### <a name="part-5---save-hello-file-and-upload"></a>5 - rész mentés hello fájl- és feltöltése
+Hello fájl mentéséhez, majd importálja azt hello a következő parancs futtatásával tooAzure. Ellenőrizze, hogy módosítja a környezetben a megfelelő hello fájl elérési útját.
 
 ```powershell
 Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
 ```
 
-Látni fogja, hogy sikerült-e az importálás megjelenítő hasonló eredményt.
+Látni fogja, hogy sikerült-e hello importálás megjelenítő hasonló eredményt.
 
         OperationDescription        OperationId                      OperationStatus                                                
         --------------------        -----------                      ---------------                                                
         Set-AzureVNetConfig        e0ee6e66-9167-cfa7-a746-7casb9    Succeeded 
 
-### <a name="part-6---create-the-gateway"></a>6. rész – az átjáró létrehozása
+### <a name="part-6---create-hello-gateway"></a>6. rész – hello átjáró létrehozása
 
-Mielőtt futtatná az ebben a példában, tekintse meg a hálózati konfigurációs fájljának letöltött Azure vár, hogy pontos neveit. A hálózati konfigurációs fájlt a klasszikus virtuális hálózatok értékeket tartalmazza. Egyes esetekben a hagyományos Vneteket neve módosult a hálózati konfigurációs fájlban klasszikus VNet beállításait az Azure-portálon az üzembe helyezési modellekről eltérései miatt létrehozásakor. Például ha a klasszikus virtuális hálózat neve "Klasszikus VNet", és létrehozta a "ClassicRG" nevű erőforráscsoport létrehozásához használt Azure-portálon, a neve, amely a hálózati konfigurációs fájlban lévő alakítja át "Csoport ClassicRG klasszikus virtuális hálózat". A szóközöket tartalmazó VNet neve megadásakor idézőjelekbe értékét.
+Mielőtt futtatná az ebben a példában, tekintse meg a toohello hálózati konfigurációs fájl a pontos hello nevét, hogy Azure letöltött toosee vár. hello hálózati konfigurációs fájlt a klasszikus virtuális hálózatok hello értéket tartalmaz. Egyes esetekben Vnetek hello hálózati konfigurációs fájlban, módosulnak, a klasszikus virtuális hálózat beállítások létrehozásakor klasszikus hello neveit hello Azure-portálon hello üzembe helyezési modellel toohello eltérései miatt. Például egy klasszikus virtuális hálózat "Klasszikus virtuális hálózat" nevű és "ClassicRG" nevű erőforráscsoportban létrehozta az Azure portál toocreate hello használva hello neve hello hálózati konfigurációs fájlban lévő akkor konvertált too'Group ClassicRG klasszikus virtuális hálózat ". A szóközöket tartalmazó VNet neve hello megadásakor idézőjelekbe hello érték.
 
 
-Az alábbi példát követve hozzon létre egy dinamikus útválasztási:
+A következő példa toocreate dinamikus útválasztó átjáró hello használata:
 
 ```powershell
 New-AzureVNetGateway -VNetName ClassicVNet -GatewayType DynamicRouting
 ```
 
-Az átjáró állapotának használatával ellenőrizheti a **Get-AzureVNetGateway** parancsmag.
+Hello segítségével ellenőrizheti a hello átjáró hello állapotának **Get-AzureVNetGateway** parancsmag.
 
-## <a name="creatermgw"></a>2. szakasz: Az erőforrás-kezelő hálózatok átjáró konfigurálása
-Az erőforrás-kezelő vnet VPN-átjáró létrehozásához kövesse az alábbi utasításokat. Ne indítsa el a lépéseket, amíg a nyilvános IP-címet a klasszikus virtuális hálózat átjáróként beolvasása után. 
+## <a name="creatermgw"></a>2. rész: Hello RM hálózatok átjáró konfigurálása
+toocreate hello erőforrás-kezelő virtuális hálózat, a VPN-átjáró kövesse az utasításokat követve hello. Hello klasszikus virtuális hálózat átjáró hello nyilvános IP-cím beolvasása után hello lépéseket addig ne indítsa el. 
 
-1. Jelentkezzen be az Azure-fiókjával a PowerShell-konzolban. A következő parancsmag kéri a bejelentkezési hitelesítő adatok az Azure-fiók. A bejelentkezés után a fiók beállításait, hogy elérhetők az Azure PowerShell letöltése.
+1. Jelentkezzen be tooyour Azure-fiók hello PowerShell-konzolban. hello következő parancsmag kéri hello bejelentkezési hitelesítő adatokat az Azure-fiók. A bejelentkezés után a fiók beállításait, hogy-e elérhető tooAzure PowerShell lesznek letöltve.
 
   ```powershell
   Login-AzureRmAccount
@@ -175,23 +175,23 @@ Az erőforrás-kezelő vnet VPN-átjáró létrehozásához kövesse az alábbi 
   Get-AzureRmSubscription
   ```
    
-  Válassza ki a használni kívánt előfizetést.
+  Adja meg, hogy szeretné-e toouse hello előfizetés.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName "Name of subscription"
   ```
-2. A helyi hálózati átjáró létrehozása. Virtuális hálózatokban a helyi hálózati átjáró általában a helyszínt jelenti. A helyi hálózati átjáró ebben az esetben a klasszikus virtuális hálózat hivatkozik. Adjon neki egy nevet, amellyel Azure is hivatkozik rá, és is adja meg a címelőtag terület. Az Azure a megadott IP-címelőtagot a helyszíni helyre küldendő adatforgalom azonosítására használja. Ha az adatok itt később, úgy, hogy az átjáró létrehozása előtt kell módosítsa az értékeket, és futtassa újból a minta.
+2. A helyi hálózati átjáró létrehozása. Egy virtuális hálózatban hello helyi hálózati átjáró általában tooyour helyszíni helyre hivatkozik. Ebben az esetben a hello helyi hálózati átjáró tooyour klasszikus virtuális hálózatot jelenti. Adjon neki egy nevet, amellyel Azure is jelenti tooit és hello terület címelőtag is megadhatja. Azure hello IP-cím előtagján megadhatja, mely forgalom toosend tooyour helyszíni hely tooidentify használja. Ha tájékoztatásra van szüksége tooadjust hello itt később, az átjáró létrehozása előtt módosíthatja hello értékek és a futási hello minta újra.
    
-   **-Név** utal, hogy a helyi hálózati átjáró hozzárendelni kívánt név.<br>
-   **-AddressPrefix** a klasszikus virtuális hálózat a címtér van.<br>
-   **-GatewayIpAddress** a klasszikus virtuális hálózatot átjáró nyilvános IP-címét. Ne feledje módosítani a következő példával, hogy tükrözze a megfelelő IP-címet.<br>
+   **-Név** tooassign toorefer toohello helyi hálózati átjáró kívánt hello neve.<br>
+   **-AddressPrefix** hello a klasszikus virtuális hálózat-tartomány.<br>
+   **-GatewayIpAddress** hello klasszikus virtuális hálózat átjáró hello nyilvános IP-címe. Győződjön meg arról, hogy toochange hello következő minta tooreflect hello megfelelő IP-címet.<br>
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name ClassicVNetLocal `
   -Location "West US" -AddressPrefix "10.0.0.0/24" `
   -GatewayIpAddress "n.n.n.n" -ResourceGroupName RG1
   ```
-3. Egy nyilvános IP-címet a virtuális hálózati átjáró számára engedélyezett az erőforrás-kezelő vnet kérelmet. A használni kívánt IP-címet nem adhatja meg. Az IP-címet a virtuális hálózati átjáró dinamikusan történik. Ez azonban nem jelenti azt, hogy az IP-cím változik. A csak a virtuális hálózati átjáró IP-cím módosításai, amikor az átjáró törölni, majd újból. Az átméretezés, alaphelyzetbe állítása vagy más belső karbantartás vagy frissítés az átjáró nem változik.
+3. Egy nyilvános IP-cím toobe lefoglalt toohello virtuális hálózati átjáró hello erőforrás-kezelő virtuális hálózat a kérelmet. Nem adható meg, hogy szeretné-e toouse hello IP-címet. hello IP-cím dinamikusan lefoglalt toohello virtuális hálózati átjáró. Azonban ez nem jelenti hello IP-címet érintő módosításait. hello egyetlen alkalom hello virtuális hálózati átjáró IP-cím módosításainak mikor van hello átjáró törlődik, és újra létrehozza. Átméretezése, alaphelyzetbe állítása vagy más belső karbantartás vagy frissítés hello átjáró nem módosítja.
 
   Ebben a lépésben is hivatott egy változó, amely egy későbbi lépésben lesz szükség.
 
@@ -201,27 +201,27 @@ Az erőforrás-kezelő vnet VPN-átjáró létrehozásához kövesse az alábbi 
   -AllocationMethod Dynamic
   ```
 
-4. Ellenőrizze, hogy a virtuális hálózati átjáró-alhálózatot. Ha nincs átjáró-alhálózat létezik-e, vegyen fel egyet. Győződjön meg arról, hogy az átjáró alhálózatának elnevezése *GatewaySubnet*.
-5. Az alhálózat, a következő parancs futtatásával az átjáróként használt beolvasása. Ebben a lépésben azt is állítsa be a következő lépésben használandó változó.
+4. Ellenőrizze, hogy a virtuális hálózati átjáró-alhálózatot. Ha nincs átjáró-alhálózat létezik-e, vegyen fel egyet. Ellenőrizze, hogy hello átjáró alhálózatának elnevezése *GatewaySubnet*.
+5. Hello a következő parancs futtatásával hello átjáróként használt hello alhálózat beolvasása. Ebben a lépésben azt is beállíthatja a egy változó toobe hello következő lépésben szükség.
    
-   **-Név** az erőforrás-kezelő virtuális hálózat neve.<br>
-   **-ResourceGroupName** az erőforráscsoport, amelyhez a virtuális hálózat társítva van. Az átjáró-alhálózatot a virtuális hálózat már léteznie kell, és névvel kell ellátni *GatewaySubnet* megfelelően működjön.<br>
+   **-Név** hello az erőforrás-kezelő virtuális hálózat neve.<br>
+   **-ResourceGroupName** hello erőforráscsoportban van, hogy hello virtuális hálózat társítva van. hello átjáró-alhálózatot a virtuális hálózat már léteznie kell, és névvel kell ellátni *GatewaySubnet* toowork megfelelően.<br>
 
   ```powershell
   $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet `
   -VirtualNetwork (Get-AzureRmVirtualNetwork -Name RMVNet -ResourceGroupName RG1)
   ``` 
 
-6. Hozzon létre átjáró IP-címzési konfigurációját. Az átjáró konfigurációja meghatározza az alhálózatot és a használandó nyilvános IP-címet. A következő minta használatával hozza létre az átjáró konfigurációját.
+6. Hello átjáró IP-konfiguráció címzési létrehozása. hello átjáró konfigurációs hello alhálózatot és a hello nyilvános IP-cím toouse határoz meg. A következő minta toocreate hello használata az átjáró konfigurációját.
 
-  Ebben a lépésben a **- SubnetId** és **- PublicIpAddressId** paramétereket kell átadni azonosítóját megadó tulajdonságot az alhálózatot és IP-cím objektumok, illetve. Nem használhat egy egyszerű karakterlánc. Ezek a változók van beállítva a lépésben a kérelem egy nyilvános IP-cím és a lépés az alhálózat beolvasása.
+  Ebben a lépésben hello **- SubnetId** és **- PublicIpAddressId** paramétereket kell átadni hello azonosítóját megadó tulajdonságot hello alhálózatot és IP-cím objektumok, illetve. Nem használhat egy egyszerű karakterlánc. Ezek a változók a hello lépés toorequest egy nyilvános IP-cím és lépés tooretrieve hello alhálózati hello.
 
   ```powershell
   $gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig `
   -Name gwipconfig -SubnetId $subnet.id `
   -PublicIpAddressId $ipaddress.id
   ```
-7. Az erőforrás-kezelő virtuális hálózati átjáró létrehozása a következő parancs futtatásával. A `-VpnType` kell *RouteBased*. Vagy akár többet az átjáró létrehozása 45 percig is tarthat.
+7. Hello erőforrás-kezelő virtuális hálózati átjáró létrehozása hello a következő parancs futtatásával. Hello `-VpnType` kell *RouteBased*. Vagy akár többet hello átjáró toocreate 45 percet is igénybe vehet.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName RG1 `
@@ -229,51 +229,51 @@ Az erőforrás-kezelő vnet VPN-átjáró létrehozásához kövesse az alábbi 
   -IpConfigurations $gwipconfig `
   -EnableBgp $false -VpnType RouteBased
   ```
-8. Másolja át a nyilvános IP-cím, a VPN-átjáró létrehozása után. Használja a klasszikus virtuális hálózat helyi hálózati beállításainak konfigurálásakor. A következő parancsmag használatával a nyilvános IP-cím beolvasása. A nyilvános IP-cím szerepel, a visszatérési *IP-cím*.
+8. Hello VPN-átjáró létrehozása után, másolja a hello nyilvános IP-cím. Használja a klasszikus virtuális hálózat hello helyi hálózati beállításainak konfigurálásakor. A következő parancsmag tooretrieve hello nyilvános IP-cím hello is használhatja. hello nyilvános IP-cím szerepel, visszatérési hello *IP-cím*.
 
   ```powershell
   Get-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName RG1
   ```
 
-## <a name="section-3-modify-the-classic-vnet-local-site-settings"></a>3. szakasz: A klasszikus virtuális hálózat helyi webhely beállításainak módosítása
+## <a name="section-3-modify-hello-classic-vnet-local-site-settings"></a>3. rész: Hello klasszikus virtuális hálózat helyi webhely beállításainak módosítása
 
-Ebben a szakaszban dolgozik a klasszikus virtuális hálózaton. Lecseréli a helyőrző IP-címet, amely a helyi beállításokat telepíthet, amelyek a Resource Manager virtuális hálózat átjárón megadásakor használatos. 
+Ez a szakasz használata hello klasszikus virtuális hálózatot. Lecseréli a hello helyőrző IP-címet, amely lesz használt tooconnect toohello erőforrás-kezelő hálózatok átjáró hello helyi helybeállításokat megadásakor használt. 
 
-1. A hálózati konfigurációs fájl exportálása.
+1. Hello hálózati konfigurációs fájl exportálása.
 
   ```powershell
   Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
   ```
-2. Az érték egy szövegszerkesztővel, módosíthatók vpngatewayaddress elemmel. Cserélje le a helyőrző IP-címet az erőforrás-kezelő átjáró nyilvános IP-címét, és mentse a módosításokat.
+2. Egy szövegszerkesztővel, módosíthatók hello érték vpngatewayaddress elemmel. Cserélje le hello helyőrző IP-cím erőforrás-kezelő átjáró hello hello nyilvános IP-címét, és mentse a hello módosításokat.
 
   ```
   <VPNGatewayAddress>13.68.210.16</VPNGatewayAddress>
   ```
-3. Importálja a módosított hálózati konfigurációs fájlt az Azure-bA.
+3. Importálás hello módosítani a hálózati konfigurációs fájl tooAzure.
 
   ```powershell
   Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
   ```
 
-## <a name="connect"></a>4. szakasz: Az átjárók közötti kapcsolat létrehozása
-Az átjárók közötti kapcsolat létrehozása a PowerShell szükséges. Szükség lehet a PowerShell-parancsmagok klasszikus verzióját használja az Azure-fiók hozzáadása. Ehhez használja **Add-AzureAccount**.
+## <a name="connect"></a>4. szakasz: Hello átjárók közötti kapcsolat létrehozása
+PowerShell hello átjárók közötti kapcsolat létrehozásához szükséges. Szükség lehet tooadd az Azure-fiók toouse hello klasszikus verziója hello PowerShell-parancsmagokkal. Igen, használjon toodo **Add-AzureAccount**.
 
-1. A PowerShell-konzolban a megosztott kulcs beállítása. Az parancsmagok futtatása előtt tekintse meg a hálózati konfigurációs fájljának letöltött Azure vár, hogy pontos neveit. A szóközöket tartalmazó VNet neve megadásakor idézőjelekbe egyetlen érték.<br><br>A következő példában **- VNetName** neve a klasszikus virtuális hálózaton, és **- LocalNetworkSiteName** a helyi hálózati telephelyhez megadott neve. A **- SharedKey** érték, amely Ön hozza létre, és adja meg. A példában használtuk "abc123", de Ön hozza létre és összetettebb használja. Figyeljen arra, hogy az itt megadott érték ugyanazt az értéket a következő lépés a kapcsolat létrehozásakor meg kell lennie. Meg kell jelennie a visszatérési **állapota: sikeres**.
+1. Hello PowerShell-konzolban a megosztott kulcs beállítása. Hello parancsmagok futtatása előtt tekintse meg a toohello hálózati konfigurációs fájl a pontos hello nevét, hogy Azure letöltött toosee vár. A szóközöket tartalmazó VNet neve hello megadásakor idézőjelekbe egyetlen hello érték.<br><br>A következő példában **- VNetName** hello hello neve klasszikus virtuális hálózatot és **- LocalNetworkSiteName** hello helyi hálózati telephelyhez megadott hello neve. Hello **- SharedKey** érték, amely Ön hozza létre, és adja meg. Hello példában használtuk "abc123", de Ön hozza létre és összetettebb használja. fontos dolog, hogy az itt megadott hello érték hello hello azonos értéket adjon meg a következő lépésben hello a kapcsolat létrehozásakor kell lennie. megjelennek az visszatérési hello **állapota: sikeres**.
 
   ```powershell
   Set-AzureVNetGatewayKey -VNetName ClassicVNet `
   -LocalNetworkSiteName RMVNetLocal -SharedKey abc123
   ```
-2. A VPN-kapcsolat létrehozása a következő parancsok futtatásával:
+2. Hello VPN-kapcsolat létrehozása hello a következő parancsok futtatásával:
    
-  Állítsa be a változókat.
+  Hello változók megadása.
 
   ```powershell
   $vnet01gateway = Get-AzureRMLocalNetworkGateway -Name ClassicVNetLocal -ResourceGroupName RG1
   $vnet02gateway = Get-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName RG1
   ```
    
-  Hozza létre a kapcsolatot. Figyelje meg, hogy a **- ConnectionType** IPsec, nem Vnet2Vnet van.
+  Hello kapcsolat létrehozása. Figyelje meg, hogy hello **- ConnectionType** IPsec, nem Vnet2Vnet van.
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name RM-Classic -ResourceGroupName RG1 `
@@ -284,7 +284,7 @@ Az átjárók közötti kapcsolat létrehozása a PowerShell szükséges. Szüks
 
 ## <a name="section-5-verify-your-connections"></a>Szakasz 5: Ellenőrizze a kapcsolatokat.
 
-### <a name="to-verify-the-connection-from-your-classic-vnet-to-your-resource-manager-vnet"></a>A kapcsolat a klasszikus virtuális hálózat és az erőforrás-kezelő virtuális hálózat ellenőrzése
+### <a name="tooverify-hello-connection-from-your-classic-vnet-tooyour-resource-manager-vnet"></a>a klasszikus virtuális hálózat tooyour erőforrás-kezelő virtuális hálózat tooverify hello kapcsolat
 
 #### <a name="powershell"></a>PowerShell
 
@@ -295,7 +295,7 @@ Az átjárók közötti kapcsolat létrehozása a PowerShell szükséges. Szüks
 [!INCLUDE [vpn-gateway-verify-connection-azureportal-classic](../../includes/vpn-gateway-verify-connection-azureportal-classic-include.md)]
 
 
-### <a name="to-verify-the-connection-from-your-resource-manager-vnet-to-your-classic-vnet"></a>A kapcsolat az erőforrás-kezelő virtuális hálózat és a klasszikus virtuális hálózat ellenőrzése
+### <a name="tooverify-hello-connection-from-your-resource-manager-vnet-tooyour-classic-vnet"></a>az erőforrás-kezelő virtuális hálózat tooyour tooverify hello kapcsolatot klasszikus virtuális hálózaton
 
 #### <a name="powershell"></a>PowerShell
 

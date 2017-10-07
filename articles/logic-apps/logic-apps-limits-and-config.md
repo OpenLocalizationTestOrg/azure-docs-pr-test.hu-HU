@@ -1,6 +1,6 @@
 ---
-title: "Logic App korlátozásai és konfigurációja |} Microsoft Docs"
-description: "A szolgáltatásra vonatkozó korlátozások és a Logic Apps rendelkezésre álló konfigurációs értékek áttekintése."
+title: "Alkalmazás aaaLogic korlátozásai és konfigurációja |} Microsoft Docs"
+description: "Hello szolgáltatásra vonatkozó korlátozások és a Logic Apps rendelkezésre álló konfigurációs értékek áttekintése."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: da23bd9fe71a0c41bc236b55bc9f56e123a9d77a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 739509afe5c9a7b7e946ba3571951264127e5297
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-app-limits-and-configuration"></a>Logikai alkalmazások korlátai és beállítása
 
-Az alábbiakban az Azure Logic Apps vonatkozó a jelenlegi korlátozások és konfigurációs információt.
+Az alábbiakban az Azure Logic Apps vonatkozó hello aktuális korlátozások és konfigurációs információt.
 
 ## <a name="limits"></a>Korlátok
 
@@ -47,22 +47,22 @@ Az alábbiakban az egyetlen HTTP kérelem és/vagy az összekötő-hívással ha
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
-|Újrapróbálkozási kísérletek|10| Alapértelmezett érték 4. Konfigurálhatja a [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
-|Maximális késleltetése|1 óra|Konfigurálhatja a [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
-|Ismételje meg a minimális késleltetési|5 másodperc|Konfigurálhatja a [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Újrapróbálkozási kísérletek|10| Alapértelmezett érték 4. Hello konfigurálható [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Maximális késleltetése|1 óra|Hello konfigurálható [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Ismételje meg a minimális késleltetési|5 másodperc|Hello konfigurálható [ismételje meg a házirend-paraméter](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
 
 ### <a name="run-duration-and-retention"></a>Futtatási tartamára és fenntartására
 
-Az alábbiakban futtassa egy logikai alkalmazások korlátok.
+Az alábbiakban hello korlátok egy logikai alkalmazások futtatása.
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
 |Futtassa a időtartama|90 nap||
-|Tároló megőrzési|90 nap|A Futtatás kezdő időpontja kiindulva|
+|Tároló megőrzési|90 nap|Futtatás kezdő időpontja hello kiindulva|
 |Min ismétlési időköz|1 másodperc|| az App Service-csomag logic apps 15 másodpercre
 |Maximális ismétlési időköz|500 (nap)||
 
-Ha hosszabb legyen, mint a futtatási időtartama vagy tárolási megőrzési korlátok normál feldolgozása folyamatában, [, lépjen velünk kapcsolatba](mailto://logicappsemail@microsoft.com) , hogy a követelményeinek, és segítünk.
+Ha normál feldolgozási folyamat időtartama vagy tárolási megőrzési korlátok futtatni tooexceed [, lépjen velünk kapcsolatba](mailto://logicappsemail@microsoft.com) , hogy a követelményeinek, és segítünk.
 
 
 ### <a name="looping-and-debatching-limits"></a>Hurok- és debatching korlátok
@@ -71,10 +71,10 @@ Az alábbiakban korlátok egy logikai alkalmazások futtatása.
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
-|ForEach-elemek|100,000|Használhatja a [lekérdezési művelet](../connectors/connectors-native-query.md) nagyobb tömbök igény szerint szűrése|
+|ForEach-elemek|100,000|Használhatja a hello [lekérdezési művelet](../connectors/connectors-native-query.md) toofilter nagyobb tömbök igény szerint|
 |Amíg az ismétlés|5,000||
 |SplitOn elemek|100,000||
-|ForEach párhuzamossági|50| Alapértelmezett érték 20. Adja hozzá a szekvenciális foreach állíthat be `"operationOptions": "Sequential"` számára a `foreach` művelet vagy adott szintű párhuzamosság használatával`runtimeConfiguration`|
+|ForEach párhuzamossági|50| Alapértelmezett érték 20. Beállíthat tooa szekvenciális foreach hozzáadásával `"operationOptions": "Sequential"` toohello `foreach` művelet vagy adott szintű párhuzamosság használatával`runtimeConfiguration`|
 
 
 ### <a name="throughput-limits"></a>Átviteli sebességének korlátai
@@ -84,12 +84,12 @@ Az alábbiakban egy logikai alkalmazás példányra vonatkozó korlátok.
 |Név|Korlát|Megjegyzések|
 |----|----|----|
 |Műveletek végrehajtások / 5 perc |100,000|Is elosztják a munkaterhelést több alkalmazás igény szerint|
-|Műveletek párhuzamos kimenő hívások |~2,500|Csökkentse az egyidejű kérelmek száma, vagy szükség szerint időtartamának csökkentése érdekében|
-|Futásidejű végpont párhuzamos bejövő hívások |~1,000|Csökkentse az egyidejű kérelmek száma, vagy szükség szerint időtartamának csökkentése érdekében|
+|Műveletek párhuzamos kimenő hívások |~2,500|Csökkentse az egyidejű kérelmek száma, vagy csökkentse a hello időtartama, igény szerint|
+|Futásidejű végpont párhuzamos bejövő hívások |~1,000|Csökkentse az egyidejű kérelmek száma, vagy csökkentse a hello időtartama, igény szerint|
 |Futásidejű végpont olvasási hívásszám 5 perc |60,000|Is elosztják a munkaterhelést több alkalmazás igény szerint|
 |Futásidejű végpont meghívása hívásszám 5 perc |45,000|Is elosztják a munkaterhelést több alkalmazás igény szerint|
 
-Ha túllépi ezt a határt, a normál feldolgozása vagy betöltése tesztelése, előfordulhat, hogy túllépi ezt a határt, egy ideig, lefuttatja [, lépjen velünk kapcsolatba](mailto://logicappsemail@microsoft.com) , hogy a követelményeinek, és segítünk.
+Ha ezt a határt, a normál feldolgozása vagy kíván toorun terhelés tesztelése, előfordulhat, hogy túllépi ezt a határt, egy adott időn belül, a várt tooexceed [, lépjen velünk kapcsolatba](mailto://logicappsemail@microsoft.com) , hogy a követelményeinek, és segítünk.
 
 ### <a name="definition-limits"></a>Definition korlátok
 
@@ -97,8 +97,8 @@ Az alábbiakban egy logikai alkalmazás definícióját korlátok.
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
-|Műveletek munkafolyamat száma|500|Beágyazott munkafolyamatok bevonásával bővítheti ezt a határt, igény szerint adhat hozzá|
-|A beágyazás mélységére művelet engedélyezett|8|Beágyazott munkafolyamatok bevonásával bővítheti ezt a határt, igény szerint adhat hozzá|
+|Műveletek munkafolyamat száma|500|Beágyazott munkafolyamatok tooextend ezt a határt, igény szerint is hozzáadhat|
+|A beágyazás mélységére művelet engedélyezett|8|Beágyazott munkafolyamatok tooextend ezt a határt, igény szerint is hozzáadhat|
 |Régiónként munkafolyamatok|1000||
 |Eseményindítók munkafolyamat száma|10||
 |Kapcsoló hatókör esetekben korlátot|25||
@@ -112,26 +112,26 @@ Az alábbiakban egy logikai alkalmazás definícióját korlátok.
 
 ### <a name="integration-account-limits"></a>Integráció korlátairól
 
-Az alábbiakban integrációs fiók hozzá összetevők korlátairól
+Az alábbiakban korlátok az összetevők toointegration fiók hozzáadva
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
-|Séma|8 MB|Használhat [blob URI](logic-apps-enterprise-integration-schemas.md) 2 MB-nál nagyobb fájlok feltöltéséhez |
+|Séma|8 MB|Használhat [blob URI](logic-apps-enterprise-integration-schemas.md) tooupload 2 MB-nál nagyobb fájlokat. |
 |Térkép (XSLT-fájl)|2 MB KÖZÖTT| |
 |Futásidejű végpont olvasási hívásszám 5 perc |60,000|Is elosztják a munkaterhelést szükség szerint több fiók|
 |Futásidejű végpont meghívása hívásszám 5 perc |45,000|Is elosztják a munkaterhelést szükség szerint több fiók|
 |Futásidejű végpont 5 perc hívásszám nyomon követése |45,000|Is elosztják a munkaterhelést szükség szerint több fiók|
-|Futásidejű végpont blokkolja az egyidejű hívások |~1,000|Csökkentse az egyidejű kérelmek száma, vagy szükség szerint időtartamának csökkentése érdekében|
+|Futásidejű végpont blokkolja az egyidejű hívások |~1,000|Csökkentse az egyidejű kérelmek száma, vagy csökkentse a hello időtartama, igény szerint|
 
 ### <a name="b2b-protocols-as2-x12-edifact-message-size"></a>B2B protokollok (AS2, X12, EDIFACT) üzenet mérete
 
-Az alábbiakban a B2B protokollok korlátai
+Az alábbiakban B2B protokollok hello korlátairól
 
 |Név|Korlát|Megjegyzések|
 |----|----|----|
-|AS2|50 MB|Dekódolás és kódolása|
-|X12|50 MB|Dekódolás és kódolása|
-|EDIFACT|50 MB|Dekódolás és kódolása|
+|AS2|50 MB|Megfelelő toodecode és kódolása|
+|X12|50 MB|Megfelelő toodecode és kódolása|
+|EDIFACT|50 MB|Megfelelő toodecode és kódolása|
 
 ## <a name="configuration"></a>Konfiguráció
 
@@ -139,7 +139,7 @@ Az alábbiakban a B2B protokollok korlátai
 
 #### <a name="logic-app-service"></a>Logic App Service
 
-Közvetlenül a logikai alkalmazás felé indított hívások (Ez azt jelenti, hogy keresztül [HTTP](../connectors/connectors-native-http.md) vagy [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) vagy más HTTP-kérelmekre a következő listában megadott IP-címről származnak:
+Közvetlenül a logikai alkalmazás felé indított hívások (Ez azt jelenti, hogy keresztül [HTTP](../connectors/connectors-native-http.md) vagy [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) vagy más HTTP-kérelmek származhat hello hello a következő lista a megadott IP-cím:
 
 |Logic App régió|Kimenő IP|
 |-----|----|
@@ -168,7 +168,7 @@ Közvetlenül a logikai alkalmazás felé indított hívások (Ez azt jelenti, h
 
 #### <a name="connectors"></a>Összekötők
 
-Hívásoknak egy [összekötő](../connectors/apis-list.md) az IP-cím a következő listában megadott származhat:
+Hívásoknak egy [összekötő](../connectors/apis-list.md) származhat hello hello a következő lista a megadott IP-cím:
 
 |Logic App régió|Kimenő IP|
 |-----|----|
@@ -198,7 +198,7 @@ Hívásoknak egy [összekötő](../connectors/apis-list.md) az IP-cím a követk
 
 ## <a name="next-steps"></a>Következő lépések  
 
-- Első lépésként a Logic Apps, kövesse a [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) oktatóanyag.  
+- Logic Apps használatába tooget kövesse hello [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) oktatóanyag.  
 - [Gyakori példák és felhasználási helyzetek megtekintése](../logic-apps/logic-apps-examples-and-scenarios.md)
 - [Üzleti folyamatok automatizálása a Logic Apps segítségével](http://channel9.msdn.com/Events/Build/2016/T694) 
-- [A Logic Apps segítségével történő rendszerintegráció módjainak megismerése](http://channel9.msdn.com/Events/Build/2016/P462)
+- [Megtudhatja, hogyan tooIntegrate a rendszer a Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)

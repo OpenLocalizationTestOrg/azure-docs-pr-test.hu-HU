@@ -1,6 +1,6 @@
 ---
-title: "A HBase - Azure valós idejű Twitter sentiment elemzése |} Microsoft Docs"
-description: "További információt a HBase egy HDInsight (Hadoop) fürt segítségével Twitter big Data típusú adatok elemzésének valós idejű céggel kapcsolatos véleményeket."
+title: "valós idejű Twitter sentiment aaaAnalyze a HBase - Azure |} Microsoft Docs"
+description: "Megtudhatja, hogyan big Data típusú adatok a HBase egy HDInsight (Hadoop) fürt segítségével Twitter elemzésének toodo valós idejű céggel kapcsolatos véleményeket."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jgao
-ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 87e5c0c0a90d222a3f0bc3c3f3fce1e938320480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a>A HBase a hdinsight eszközben valós idejű Twitter sentiment elemzése
-További információt a valós idejű [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big data Twitter a hdinsight HBase-fürtöt használatával.
+Megtudhatja, hogyan valós idejű toodo [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big data Twitter a hdinsight HBase-fürtöt használatával.
 
-Közösségi webhelyek egyik fő növeli a big Data típusú adatok alkalmazására vonatkozóan. Nyilvános API-k, például a Twitter helyek által biztosított az hasznos adatforrást ismertetése népszerű trendeket és elemzésére. Ebben az oktatóanyagban a konzol szolgáltatásalkalmazás, és hajtsa végre a következő egy ASP.NET-webalkalmazás fejlesztése:
+Közösségi webhelyek rendszer egyik hello fő vezetői kényszeríti a big Data típusú adatok alkalmazására vonatkozóan. Nyilvános API-k, például a Twitter helyek által biztosított az hasznos adatforrást ismertetése népszerű trendeket és elemzésére. Ebben az oktatóanyagban egy szolgáltatási alkalmazás és egy ASP.NET web application tooperform hello következő konzol fejlesztése:
 
 ![HDInsight HBase elemzése Twitter véleményeket][img-app-arch]
 
-* Az adatfolyam-továbbítási alkalmazást
+* adatfolyam-alkalmazás hello
 
-  * földrajzi címkézett Twitter-üzeneteket beolvasni valós időben a Twitter streaming API használatával
-  * értékelje ki a céggel kapcsolatos véleményeket, a Twitter-üzenetek
-  * HBase-ban tárolja a céggel kapcsolatos véleményeket adatokat a Microsoft HBase SDK használatával
-* Az Azure Websitesra alkalmazás
+  * első Twitter földrajzi címkézett-üzenetek valós időben Twitterről hello segítségével streamelési API
+  * értékelje ki, a Twitter-üzeneteket hello céggel kapcsolatos véleményeket
+  * információk a HBase segítségével hello Microsoft HBase SDK hello véleményeket tárolásához
+* hello Azure Websitesra alkalmazás
 
-  * a Bing maps valós idejű statisztikai eredmények ábrázolhatók ASP.NET webes alkalmazás használatával. Az alábbi képernyőfelvételen a Twitter-üzeneteket a képi megjelenítés hasonlít:
+  * a Bing maps statisztikai eredmények valós idejű hello megrajzolásához ASP.NET webes alkalmazás használatával. Hello Twitter-üzeneteket a képi megjelenítés a következő képernyőkép hasonló toohello:
 
     ![hdinsight.hbase.Twitter.sentiment.Bing.Map][img-bing-map]
 
-    Megtörténik az egyes Kulcsszavak egyfajta eléréséhez, ha a Twitter-üzeneteket a kifejezett véleményével pozitív, a negatív vagy a semleges lekérdezés Twitter-üzeneteket.
+    Biztos képes tooquery Twitter-üzenetek az egyes Kulcsszavak tooget egyfajta hello Twitter-üzeneteket a kifejezett hello véleményével pozitív, a negatív vagy a semleges esetén.
 
 Egy Visual Studio megoldás teljes mintát a Githubon található: [valós idejű közösségimédia véleményeket elemzés app](https://github.com/maxluk/tweet-sentiment).
 
 ### <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * **A HDInsight HBase-fürtöt**. Fürtök létrehozására vonatkozó utasításokért lásd: [HBase a Hadoop HDInsight használatának megkezdésében][hbase-get-started]. 
 
 * **A munkaállomás** a Visual Studio 2013 vagy 2015/2017 telepítve. Útmutatásért lásd: [Visual Studio telepítése](http://msdn.microsoft.com/library/e2h7fzkw.aspx).
 
 ## <a name="create-a-twitter-application-id-and-secrets"></a>Egy alkalmazás Twitter-Azonosítót és titkos kulcsok létrehozása
-A streamelési API-k használata Twitter [OAuth](http://oauth.net/) kérések engedélyezésére. Az első lépés lehetővé teszi az OAuth, hogy hozzon létre egy új alkalmazást a Twitter fejlesztői helyen.
+hello streamelési API-k használata Twitter [OAuth](http://oauth.net/) tooauthorize kérelmeket. hello első lépés toouse OAuth toocreate egy új alkalmazást hello Twitter fejlesztői helyen.
 
-**Twitter-Alkalmazásazonosító és titkos kulcsok létrehozása**
+**Twitter-Alkalmazásazonosító toocreate és a titkos kulcsok**
 
-1. Jelentkezzen be [alkalmazások Twitter](https://apps.twitter.com/). Kattintson a **feliratkozás most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.
+1. Jelentkezzen be a túl[Twitter alkalmazások](https://apps.twitter.com/). Kattintson a hello **feliratkozás most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.
 2. Kattintson a **új alkalmazás létrehozása**.
-3. Adjon meg egy **neve**, **leírás**, és **webhely**. A Twitter-alkalmazás neve lehet egy egyedi nevet. A webhely nem valóban mezővel. Nem kell lennie egy érvényes URL-címet.
+3. Adjon meg egy **neve**, **leírás**, és **webhely**. hello Twitter alkalmazásnév egy egyedi nevet kell lennie. hello Website mezője valóban nem használatos. Nincs beállítva a toobe egy érvényes URL-címet.
 4. Ellenőrizze **Igen, elfogadom**, és kattintson a **az Twitter-alkalmazás létrehozása**.
-5. Kattintson a **engedélyek** fülre, majd **csak olvasható**. A csak olvasási jogosultságot is elegendő ehhez az oktatóanyaghoz.
-6. Kattintson a **kulcsok és a hozzáférési jogkivonatok** fülre.
-7. Kattintson a **a hozzáférési jogkivonat létrehozása** az oldal alján.
-9. Másolás a **(API-kulcs) kulcsa**, **felhasználói titok (API titkos)**, **hozzáférési jogkivonat**, és **Access token titkos** értékeket. Az oktatóanyag későbbi részében szüksége ezeket az értékeket.
+5. Kattintson a hello **engedélyek** fülre, majd **csak olvasható**. hello csak olvasási jogosultságot is elegendő ehhez az oktatóanyaghoz.
+6. Kattintson a hello **kulcsok és a hozzáférési jogkivonatok** fülre.
+7. Kattintson a **a hozzáférési jogkivonat létrehozása** a hello hello lap alján.
+9. Másolás hello **(API-kulcs) kulcsa**, **felhasználói titok (API titkos)**, **hozzáférési jogkivonat**, és **Access token titkos** értékeket. Ezek az értékek hello oktatóanyag későbbi részében szüksége.
 
-    > ! [MEGJEGYZÉS] A teszt OAuth gomb többé nem működik.
+    > ! [Megjegyzés] hello teszt OAuth gomb többé nem működik.
 
 ## <a name="create-twitter-streaming-service"></a>Twitter-adatfolyam-szolgáltatás létrehozása
-Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet véleményeket pontszám kiszámításához, és a feldolgozott tweetet szavak küldeni a HBase.
+Egy alkalmazás tooget Twitter-üzeneteket, toocreate kell tweetet véleményeket pontszám kiszámításához, és a feldolgozott hello tweetet szavak tooHBase küldése.
 
-**Az adatfolyam-továbbítási alkalmazások létrehozásához**
+**adatfolyam-alkalmazás toocreate hello**
 
 1. Nyissa meg **Visual Studio**, és hozzon létre egy Visual C# konzolalkalmazást nevű **TweetSentimentStreaming**.
-2. A **Csomagkezelő konzol**, a következő parancsokat:
+2. A **Csomagkezelő konzol**- ben futtassa hello következő parancsokat:
 
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
 
-    Ezek a parancsok telepítése a [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely a HBase fürt eléréséhez az ügyféloldali kódtár, és a [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) csomagot, amely a Twitter API eléréséhez használt.
+    Ezek a parancsok telepítése hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely hello ügyfél könyvtár tooaccess hello HBase-fürtöt, és hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) csomag, amely használt tooaccess hello Twitter API.
 
    > [!NOTE]
-   > A minta a cikk ezt használja a fentiekben megadott verzióval tesztelték.  Eltávolíthatja a - verzió kapcsoló telepítse a legújabb verziót.
+   > a cikk ezt használja hello minta tesztelték fent megadott hello verziójával.  Eltávolíthatja hello - verzióját switch tooinstall hello legújabb verzióra.
    >
    >
-3. A **Megoldáskezelőben**, adja hozzá **System.Configuration** a hivatkozásával.
-4. Egy új osztályt fájl hozzáadása a projekthez nevű **HBaseWriter.cs**, majd cserélje le a kódot a következőre:
+3. A **Megoldáskezelőben**, adja hozzá **System.Configuration** toohello hivatkozás.
+4. Adja hozzá az új osztály fájl toohello projekt nevű **HBaseWriter.cs**, majd cserélje le a következőre hello hello kódot:
 
         using System;
         using System.Collections.Generic;
@@ -103,8 +103,8 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
             {
                 // HDinsight HBase cluster and HBase table information
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
-                const string HADOOPUSERNAME = "admin"; //the default name is "admin"
-                const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+                const string HADOOPUSERNAME = "admin"; //hello default name is "admin"
+                const string HADOOPUSERPASSWORD = "<Enter hello Hadoop User Password>";
 
                 const string HBASETABLENAME = "tweets_by_words";
                 const string COUNT_ROW_KEY = "~ROWCOUNT";
@@ -112,13 +112,13 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
 
                 long rowCount = 0;
 
-                // Sentiment dictionary file and the punctuation characters
+                // Sentiment dictionary file and hello punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
             ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
 
-                // For writting to HBase
+                // For writting tooHBase
                 HBaseClient client;
 
                 // a sentiment dictionary for estimate sentiment. It is loaded from a physical file.
@@ -129,13 +129,13 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                 Queue<ITweet> queue = new Queue<ITweet>();
                 bool threadRunning = true;
 
-                // This function connects to HBase, loads the sentiment dictionary, and starts the thread for writting.
+                // This function connects tooHBase, loads hello sentiment dictionary, and starts hello thread for writting.
                 public HBaseWriter()
                 {
                     ClusterCredentials credentials = new ClusterCredentials(new Uri(CLUSTERNAME), HADOOPUSERNAME, HADOOPUSERPASSWORD);
                     client = new HBaseClient(credentials);
 
-                    // create the HBase table if it doesn't exist
+                    // create hello HBase table if it doesn't exist
                     if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
@@ -151,7 +151,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                     // Load sentiment dictionary from a file
                     LoadDictionary();
 
-                    // Start a thread for writting to HBase
+                    // Start a thread for writting tooHBase
                     writerThread = new Thread(new ThreadStart(WriterThreadFunction));
                     writerThread.Start();
                 }
@@ -179,7 +179,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                     }
                     catch(Exception ex)
                     {
-                        if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+                        if (ex.InnerException.Message.Equals("hello remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
                         {
                             return 0;
                         }
@@ -193,7 +193,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                     return 0;
                 }
 
-                // Enqueue the Tweets received
+                // Enqueue hello Tweets received
                 public void WriteTweet(ITweet tweet)
                 {
                     lock (queue)
@@ -260,19 +260,19 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                     }
                 }
 
-                // Popular a CellSet object to be written into HBase
+                // Popular a CellSet object toobe written into HBase
                 private void CreateTweetByWordsCells(CellSet set, ITweet tweet)
                 {
-                    // Split the Tweet into words
+                    // Split hello Tweet into words
                     string[] words = tweet.Text.ToLower().Split(_punctuationChars);
 
-                    // Calculate sentiment score base on the words
+                    // Calculate sentiment score base on hello words
                     int sentimentScore = CalcSentimentScore(words);
                     var word_pairs = words.Take(words.Length - 1)
                                         .Select((word, idx) => string.Format("{0} {1}", word, words[idx + 1]));
                     var all_words = words.Concat(word_pairs).ToList();
 
-                    // For each word in the Tweet add a row to the HBase table
+                    // For each word in hello Tweet add a row toohello HBase table
                     foreach (string word in all_words)
                     {
                         string time_index = (ulong.MaxValue - (ulong)tweet.CreatedAt.ToBinary()).ToString().PadLeft(20) + tweet.IdStr;
@@ -281,7 +281,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                         // Create a row
                         var row = new CellSet.Row { key = Encoding.UTF8.GetBytes(key) };
 
-                        // Add columns to the row, including Tweet identifier, language, coordinator(if available), and sentiment
+                        // Add columns toohello row, including Tweet identifier, language, coordinator(if available), and sentiment
                         var value = new Cell { column = Encoding.UTF8.GetBytes("d:id_str"), data = Encoding.UTF8.GetBytes(tweet.IdStr) };
                         row.values.Add(value);
 
@@ -302,7 +302,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                     }
                 }
 
-                // Write a Tweet (CellSet) to HBase
+                // Write a Tweet (CellSet) tooHBase
                 public void WriterThreadFunction()
                 {
                     try
@@ -321,7 +321,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                                     } while (queue.Count > 0);
                                 }
 
-                                // Write the Tweet by words cell set to the HBase table
+                                // Write hello Tweet by words cell set toohello HBase table
                                 client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
@@ -344,8 +344,8 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                 public string Polarity { get; set; }
             }
         }
-5. Az előző kód állandók beállított beleértve **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, és DICTIONARYFILENAME. A DICTIONARYFILENAME, a fájlnév és a direction.tsv helyét.  A fájl letölthető **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**. A HBase tábla nevét módosítani szeretné, ha a táblázat nevét, a webes alkalmazás ennek megfelelően kell módosítania.
-6. Nyissa meg **Program.cs**, és cserélje ki a kódot a következőre:
+5. Hello állandók beállított hello előző kóddal, beleértve a **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, és DICTIONARYFILENAME. hello DICTIONARYFILENAME hello fájlnév és hello direction.tsv hello helyét.  hello fájl tölthető le: **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**. Ha azt szeretné, hogy toochange hello HBase tábla nevét, ennek megfelelően meg kell változtatnia hello táblanév hello webalkalmazásban.
+6. Nyissa meg **Program.cs**, és cserélje le a hello kód a következő hello:
 
         using System;
         using System.Diagnostics;
@@ -386,7 +386,7 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
                                 tweetCount++;
                                 var tweet = args.Tweet;
 
-                                // Write Tweets to HBase
+                                // Write Tweets tooHBase
                                 hbase.WriteTweet(tweet);
 
                                 if (timer.ElapsedMilliseconds > 1000)
@@ -416,22 +416,22 @@ Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet vélem�
 
             }
         }
-7. Állítsa be az állandókat, beleértve a **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** és **TWITTERAPPAPISECRET**.
+7. Állítsa be a hello állandók, beleértve a **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** és **TWITTERAPPAPISECRET**.
 
-Az adatfolyam-továbbítási szolgáltatás futtatásához nyomja le az **F5**. Az alábbiakban látható egy Képernyőkép a konzolalkalmazást a:
+adatfolyam-szolgáltatás, nyomja meg az toorun hello **F5**. hello az alábbiakban látható egy Képernyőkép a Konzolalkalmazás hello:
 
 ![hdinsight.hbase.Twitter.sentiment.Streaming.Service][img-streaming-service]
 
-Tartsa meg az adatfolyam-továbbítási konzol alkalmazást, amikor a webalkalmazás fejlesztése, így további adatokat. Vizsgálja meg a táblába beszúrt adatokat, a HBase rendszerhéj is használhat. Lásd: [Ismerkedés a HBase a hdinsight eszközben](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).
+Hello adatfolyam-Konzolalkalmazás, miközben a most kialakított hello webalkalmazás, így további adatok toouse kell tartani. hello táblába tooexamine hello adatok a HBase rendszerhéj használhatja. Lásd: [Ismerkedés a HBase a hdinsight eszközben](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).
 
 ## <a name="visualize-real-time-sentiment"></a>Valós idejű véleményeket megjelenítése
-Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és az adatokat a Bing maps megrajzolásához ASP.NET MVC webalkalmazás létrehozásához.
+Ebben a szakaszban hoz létre egy ASP.NET MVC webes alkalmazás tooread hello valós idejű véleményeket adatok a HBase és rajzot hello adatokat a Bing térképekhez.
 
-**ASP.NET MVC webes alkalmazás létrehozása**
+**az ASP.NET MVC webalkalmazás toocreate**
 
 1. Nyissa meg a Visual Studiót.
 2. Kattintson a **fájl**, kattintson a **új**, és kattintson a **projekt**.
-3. Adja meg a következő információkat:
+3. Adja meg a következő információ hello:
 
    * Sablon kategória: **Visual C# / webalkalmazás**
    * Sablon: **ASP.NET-webalkalmazás**
@@ -441,25 +441,25 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
 5. A **válasszon olyan sablont,**, kattintson a **MVC**.
 6. A **Microsoft Azure**, kattintson a **előfizetések kezelése oldalt**.
 7. A **kezelése a Microsoft Azure-előfizetések**, kattintson a **bejelentkezés**.
-8. Adja meg Azure hitelesítő adatait. Azure-előfizetés adatainak jelenik meg a **fiókok** fülre.
-9. Kattintson a **bezárása** bezárásához a **kezelése a Microsoft Azure-előfizetések** ablak.
+8. Adja meg Azure hitelesítő adatait. Az Azure-előfizetés információk jelennek meg a hello **fiókok** fülre.
+9. Kattintson a **Bezárás** tooclose hello **kezelése a Microsoft Azure-előfizetések** ablak.
 10. A **új ASP.NET projekt - TweetSentimentWeb**, kattintson a **OK**.
-11. A **konfigurálása a Microsoft Azure webhely beállításai**, jelölje be a **régió** Ez az Önhöz legközelebbi. Adja meg az adatbázis-kiszolgálót nem kell.
+11. A **konfigurálása a Microsoft Azure webhely beállításai**, jelölje be hello **régió** , amely a legközelebbi tooyou. Nincs szükség a toospecify adatbázis-kiszolgálót.
 12. Kattintson az **OK** gombra.
 
-**NuGet-csomagok**
+**tooinstall NuGet-csomagok**
 
-1. Az a **eszközök** menüben kattintson a **Nuget-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**. A lap alján a konzol panel nyílik meg.
-2. A következő paranccsal telepítse a [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely az ügyféloldali kódtár HBase fürt eléréséhez:
+1. A hello **eszközök** menüben kattintson a **Nuget-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**. hello konzol panel alján hello hello van megnyitva.
+2. Használjon hello következő parancsot a tooinstall hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely hello ügyfél könyvtár tooaccess HBase-fürtöt:
 
         Install-Package Microsoft.HBase.Client
 
-**HBaseReader osztály hozzáadása**
+**tooadd HBaseReader osztály**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentiment**.
 2. Kattintson a jobb gombbal **modellek**, kattintson a **Hozzáadás**, és kattintson a **osztály**.
-3. Az a **neve** mezőbe írja be **HBaseReader.cs**, és kattintson a **Hozzáadás**.
-4. Cserélje le a kód a következő:
+3. A hello **neve** mezőbe írja be **HBaseReader.cs**, és kattintson a **Hozzáadás**.
+4. Cserélje le a hello kód hello alábbira:
 
         using System;
         using System.Collections.Generic;
@@ -485,7 +485,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 const string HADOOPUSERPASSWORD = "<HBaseCluserUserPassword>";
                 const string HBASETABLENAME = "tweets_by_words";
 
-                // The constructor
+                // hello constructor
                 public HBaseReader()
                 {
                     ClusterCredentials creds = new ClusterCredentials(
@@ -495,12 +495,12 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                     client = new HBaseClient(creds);
                 }
 
-                // Query Tweets sentiment data from the HBase table asynchronously
+                // Query Tweets sentiment data from hello HBase table asynchronously
                 public async Task<IEnumerable<Tweet>> QueryTweetsByKeywordAsync(string keyword)
                 {
                     List<Tweet> list = new List<Tweet>();
 
-                    // Demonstrate Filtering the data from the past 6 hours the row key
+                    // Demonstrate Filtering hello data from hello past 6 hours hello row key
                     string timeIndex = (ulong.MaxValue -
                         (ulong)DateTime.UtcNow.Subtract(new TimeSpan(6, 0, 0)).ToBinary()).ToString().PadLeft(20);
                     string startRow = keyword + "_" + timeIndex;
@@ -522,7 +522,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                     {
                         foreach (CellSet.Row row in next.rows)
                         {
-                            // find the cell with string pattern "d:coor"
+                            // find hello cell with string pattern "d:coor"
                             var coordinates =
                                 row.values.Find(c => Encoding.UTF8.GetString(c.column) == "d:coor");
 
@@ -567,23 +567,23 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 public int Sentiment { get; set; }
             }
         }
-5. Belül a **HBaseReader** osztályt, majd az állandó értékek az alábbiak szerint:
+5. Belső hello **HBaseReader** osztályt, majd hello állandó értékek az alábbiak szerint:
 
-   * **CLUSTERNAME**: A HBase fürt nevét, például *https://<HBaseClusterName>.azurehdinsight.net/*.
-   * **HADOOPUSERNAME**: A HBase fürt Hadoop felhasználói felhasználónevet. Az alapértelmezett név az *admin*.
-   * **HADOOPUSERPASSWORD**: A HBase fürt Hadoop felhasználói jelszavát.
+   * **CLUSTERNAME**: hello HBase fürt nevét, például *https://<HBaseClusterName>.azurehdinsight.net/*.
+   * **HADOOPUSERNAME**: hello HBase fürt Hadoop felhasználói felhasználónevet. hello alapértelmezés szerint ez *admin*.
+   * **HADOOPUSERPASSWORD**: hello HBase fürt Hadoop felhasználói jelszavát.
    * **HBASETABLENAME** = "tweets_by_words";
 
-     A HBase tábla neve **"tweets_by_words";**. Az értékeknek meg kell felelniük az értékeket, az adatfolyam-továbbítási szolgáltatás küldte, hogy a webes alkalmazás a adatokat olvas ugyanabban a HBase táblában.
+     hello HBase tábla neve **"tweets_by_words";**. hello az értékeknek egyezniük kell a akkor küldi hello adatfolyam-szolgáltatás, így hello webalkalmazás hello adatokat olvas hello hello értékek ugyanabban a HBase táblában.
 
-**TweetsController vezérlő hozzáadása**
+**tooadd TweetsController vezérlő**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.
 2. Kattintson a jobb gombbal **tartományvezérlők**, kattintson a **Hozzáadás**, és kattintson a **vezérlő**.
 3. Kattintson a **Web API 2 vezérlő - üres**, és kattintson a **Hozzáadás**.
-4. Az a **vezérlőnév** mezőbe írja be **TweetsController**, és kattintson a **Hozzáadás**.
-5. A **Megoldáskezelőben**, kattintson duplán a TweetsController.cs megnyitni a fájlt.
-6. Módosítsa a fájl, ezért úgy tűnik a következő:
+4. A hello **vezérlőnév** mezőbe írja be **TweetsController**, és kattintson a **Hozzáadás**.
+5. A **Megoldáskezelőben**, kattintson duplán a TweetsController.cs tooopen hello fájlt.
+6. Módosítsa hello fájlt, így azt a következőhöz hasonló hello:
 
         using System;
         using System.Collections.Generic;
@@ -608,12 +608,12 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
             }
         }
 
-**Heatmap.js hozzáadása**
+**tooadd heatmap.js**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.
 2. Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.
-3. Az a **elem neve** mezőbe írja be **heatmap.js**.
-4. Illessze be a következő kódot a fájlba. A kód Alastair Aitchison kiírt. További információkért lásd: [Bing Maps AJAX v7 HeatMap könyvtár](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).
+3. A hello **elem neve** mezőbe írja be **heatmap.js**.
+4. Illessze be a kódot hello fájlba a következő hello. hello kód Alastair Aitchison kiírt. További információkért lásd: [Bing Maps AJAX v7 HeatMap könyvtár](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).
 
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -621,22 +621,22 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
         * Date: 15th April 2011
         *
         * Description:
-        * This JavaScript file provides an algorithm that can be used to add a heatmap
-        * overlay on a Bing Maps v7 control. The intensity and temperature palette
-        * of the heatmap are designed to be easily customisable.
+        * This JavaScript file provides an algorithm that can be used tooadd a heatmap
+        * overlay on a Bing Maps v7 control. hello intensity and temperature palette
+        * of hello heatmap are designed toobe easily customisable.
         *
         * Requirements:
-        * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
+        * hello heatmap layer itself is created dynamically on hello client-side using
+        * hello HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
-        * not, I'd love to hear from you!
+        * not, I'd love toohear from you!
         *
         * Usage:
-        * The HeatMapLayer constructor requires:
-        * - A reference to a map object
+        * hello HeatMapLayer constructor requires:
+        * - A reference tooa map object
         * - An array or Microsoft.Maps.Location items
-        * - Optional parameters to customise the appearance of the layer
+        * - Optional parameters toocustomise hello appearance of hello layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
         */
 
@@ -652,16 +652,16 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
 
             // Set default options
             var _options = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 1000,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'meters',
 
-                // Colour temperature gradient of the map
+                // Colour temperature gradient of hello map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
                     "0.25": 'rgba(0,0,255,40)',    // Blue
@@ -670,7 +670,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
 
-                // Callback function to be fired after heatmap layer has been redrawn
+                // Callback function toobe fired after heatmap layer has been redrawn
                 callback: null
             };
 
@@ -679,7 +679,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 var _mapDiv = _map.getRootElement();
 
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
-                    // Create the canvas element
+                    // Create hello canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
 
@@ -691,16 +691,16 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
 
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
 
-                    // Override defaults with any options passed in the constructor
+                    // Override defaults with any options passed in hello constructor
                     _setOptions(options);
 
                     // Load array of location data
                     _setPoints(locations);
 
-                    // Create a colour gradient from the suppied colourstops
+                    // Create a colour gradient from hello suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
 
-                    // Wire up the event handler to redraw heatmap canvas
+                    // Wire up hello event handler tooredraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
 
@@ -712,7 +712,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 }
             }
 
-            // Resets the heat map
+            // Resets hello heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -730,19 +730,19 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
 
-            // Applies a colour gradient to the intensity map
+            // Applies a colour gradient toohello intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 var dat = ctx.getImageData(0, 0, _canvas.width, _canvas.height);
                 var pix = dat.data; // pix is a CanvasPixelArray containing height x width x 4 bytes of data (RGBA)
                 for (var p = 0, len = pix.length; p < len;) {
-                    var a = pix[p + 3] * 4; // get the alpha of this pixel
-                    if (a != 0) { // If there is any data to plot
-                        pix[p] = _temperaturemap[a]; // set the red value of the gradient that corresponds to this alpha
-                        pix[p + 1] = _temperaturemap[a + 1]; //set the green value based on alpha
-                        pix[p + 2] = _temperaturemap[a + 2]; //set the blue value based on alpha
+                    var a = pix[p + 3] * 4; // get hello alpha of this pixel
+                    if (a != 0) { // If there is any data tooplot
+                        pix[p] = _temperaturemap[a]; // set hello red value of hello gradient that corresponds toothis alpha
+                        pix[p + 1] = _temperaturemap[a + 1]; //set hello green value based on alpha
+                        pix[p + 2] = _temperaturemap[a + 2]; //set hello blue value based on alpha
                     }
-                    p += 4; // Move on to the next pixel
+                    p += 4; // Move on toohello next pixel
                 }
                 ctx.putImageData(dat, 0, 0);
             }
@@ -754,22 +754,22 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 }
             }
 
-            // Sets the heatmap points from an array of Microsoft.Maps.Locations  
+            // Sets hello heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
 
-            // Main method to draw the heatmap
+            // Main method toodraw hello heatmap
             function _createHeatMap() {
-                // Ensure the canvas matches the current dimensions of the map
-                // This also has the effect of resetting the canvas
+                // Ensure hello canvas matches hello current dimensions of hello map
+                // This also has hello effect of resetting hello canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
 
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
 
-                // Calculate the pixel radius of each heatpoint at the current map zoom
+                // Calculate hello pixel radius of each heatpoint at hello current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
@@ -778,12 +778,12 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
 
                 var ctx = _canvas.getContext("2d");
 
-                // Convert lat/long to pixel location
+                // Convert lat/long toopixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
 
-                // Create the Intensity Map by looping through each location
+                // Create hello Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
@@ -797,15 +797,15 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
 
-                    // Draw the heatpoint onto the canvas
+                    // Draw hello heatpoint onto hello canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
 
-                // Apply the specified colour gradient to the intensity map
+                // Apply hello specified colour gradient toohello intensity map
                 _colouriseHeatMap();
 
-                // Call the callback function, if specified
+                // Call hello callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
@@ -830,17 +830,17 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 _setOptions(options);
             }
 
-            // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
+            // Sets an array of Microsoft.Maps.Locations from which hello heatmap is created
             this.SetPoints = function (locations) {
-                // Reset the existing heatmap layer
+                // Reset hello existing heatmap layer
                 _clearHeatMap();
-                // Pass in the new set of locations
+                // Pass in hello new set of locations
                 _setPoints(locations);
-                // Recreate the layer
+                // Recreate hello layer
                 _createHeatMap();
             }
 
-            // Removes the heatmap layer from the DOM
+            // Removes hello heatmap layer from hello DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
 
@@ -855,19 +855,19 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 _viewchangeendhandler = null;
             }
 
-            // Call the initialisation routine
+            // Call hello initialisation routine
             _init();
         };
 
-        // Call the Module Loaded method
+        // Call hello Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
-**TwitterStream.js hozzáadása**
+**tooadd twitterStream.js**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.
 2. Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.
-3. Az a **elem neve** mezőbe írja be**twitterStream.js**.
-4. Másolja és illessze be a fájlt a következő kódot:
+3. A hello **elem neve** mezőbe írja be**twitterStream.js**.
+4. Másolja és illessze be a kódot hello fájlba a következő hello:
 
         var liveTweetsPos = [];
         var liveTweets = [];
@@ -878,7 +878,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
         var heatmapPos;
 
         function initialize() {
-            // Initialize the map
+            // Initialize hello map
             var options = {
                 credentials: "AvFJTZPZv8l3gF8VC3Y7BPBd0r7LKo8dqKG02EAlqg9WAi0M7la6zSIT-HwkMQbx",
                 center: new Microsoft.Maps.Location(23.0, 8.0),
@@ -891,24 +891,24 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
             // Heatmap options for positive, neutral and negative layers
 
             var heatmapOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels'
             };
 
             var heatmapPosOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -926,13 +926,13 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
             };
 
             var heatmapNegOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -949,7 +949,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
                 }
             };
 
-            // Register and load the Client Side HeatMap Module
+            // Register and load hello Client Side HeatMap Module
             Microsoft.Maps.registerModule("HeatMapModule", "scripts/heatmap.js");
             Microsoft.Maps.loadModule("HeatMapModule", {
                 callback: function () {
@@ -993,7 +993,7 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
         }
 
         function addTweet(item) {
-            //Add tweet to the heat map arrays.
+            //Add tweet toohello heat map arrays.
             var tweetLocation = new Microsoft.Maps.Location(item.Latitude, item.Longtitude);
             if (item.Sentiment > 0) {
                 liveTweetsPos.push(tweetLocation);
@@ -1063,10 +1063,10 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
             }
         }
 
-**A layout.cshtml módosítása**
+**toomodify hello layout.cshtml**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **megosztott**, és kattintson duplán az _**Layout.cshtml**.
-2. Cserélje le a tartalmat a következő:
+2. Cserélje le a hello tartalom hello alábbira:
 
         <!DOCTYPE html>
         <html>
@@ -1126,10 +1126,10 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
         </body>
         </html>
 
-**A Index.cshtml módosítása**
+**toomodify hello Index.cshtml**
 
 1. A **Solution Explorer**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **Home**, majd kattintson duplán **Index.cshtml**.
-2. Cserélje le a tartalmat a következő:
+2. Cserélje le a hello tartalom hello alábbira:
 
         @{
             ViewBag.Title = "Tweet Sentiment";
@@ -1139,10 +1139,10 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
             <div id="map_canvas"/>
         </div>
 
-**A site.css fájl módosításához:**
+**toomodify hello site.css fájl**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **tartalom**, majd kattintson duplán **Site.css**.
-2. Az alábbi kód hozzáfűzése a fájlhoz:
+2. Hozzáfűzés a következő kód toohello fájl hello:
 
         /* make container, and thus map, 100% width */
         .map_container {
@@ -1162,33 +1162,33 @@ Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és a
           font-size: 30px;
         }
 
-**A global.asax fájl módosításához:**
+**toomodify hello global.asax fájl**
 
 1. A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, majd kattintson duplán **Global.asax**.
-2. Adja hozzá a következő **használatával** utasítást:
+2. Adja hozzá a következő hello **használatával** utasítást:
 
         using System.Web.Http;
-3. Adja hozzá a következő sorokat belül a **Application_Start()** függvény:
+3. Adja hozzá az alábbi belül hello hello **Application_Start()** függvény:
 
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
 
-    Módosítsa a regisztrációját, az API útvonalakat, tegye a Web API az MVC alkalmazáson belüli működik.
+    Hello regisztrációs hello API útvonalak toomake hello Web API vezérlő munka hello MVC alkalmazás belül módosíthatja.
 
-**A webalkalmazás futtatásához**
+**toorun hello webalkalmazás**
 
-1. Ellenőrizze, hogy az adatfolyam-továbbítási szolgáltatás Konzolalkalmazás továbbra is fut-e, így láthatja, hogy a valós idejű módosításokat.
-2. Nyomja le az **F5** a webalkalmazás futtatásához:
+1. Győződjön meg arról, hogy hello szolgáltatás Konzolalkalmazás streaming még mindig fut, így hello valós idejű módosítások látható.
+2. Nyomja le az **F5** toorun hello webalkalmazás:
 
     ![hdinsight.hbase.Twitter.sentiment.Bing.Map][img-bing-map]
-3. A mezőbe írjon be egy kulcsszót, és kattintson **Ugrás**.  Attól függően, hogy az adatok a HBase táblában lévő gyűjtött a néhány kulcsszavak nem található. Próbálja meg néhány gyakori kulcsszavak, például egy "kedvelt", "xbox" és "playstation."
-4. Közötti váltás **pozitív**, **semleges**, és **negatív** összehasonlítandó szóló véleményeket.
-5. Lehetővé teszik az adatfolyam-továbbítási szolgáltatás egy órán át, futtassa a azonos kulcsszavak, és hasonlítsa össze az eredményt.
+3. Hello szövegmezőben, írjon be egy kulcsszót, és kattintson **Ugrás**.  Attól függően, hogy hello adatgyűjtés hello HBase tábla a néhány kulcsszavak nem található. Próbálja meg néhány gyakori kulcsszavak, például egy "kedvelt", "xbox" és "playstation."
+4. Közötti váltás **pozitív**, **semleges**, és **negatív** hello témában toocompare céggel kapcsolatos véleményeket.
+5. Lehetővé teszik a adatfolyam-továbbítási szolgáltatás futtatásához egy másik óráig hello és majd keresési hello azonos kulcsszavak, és hasonlítsa össze a hello eredmények.
 
-Szükség esetén telepítheti az alkalmazást az Azure Websitesra is. Útmutatásért lásd: [Ismerkedés az Azure Websites és ASP.NET][website-get-started].
+Szükség esetén telepítheti hello alkalmazás tooAzure webhelyeket. Útmutatásért lásd: [Ismerkedés az Azure Websites és ASP.NET][website-get-started].
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóprogramban megtanulhatta Twitter-üzeneteket beolvasni, a Twitter-üzeneteket a céggel kapcsolatos véleményeket elemzése, a HBase a céggel kapcsolatos véleményeket adatok mentése és a valós idejű Twitter véleményeket adatokat a Bing Maps. További tudnivalókért lásd:
+Ebben az oktatóanyagban megtanulta, hogyan tooget Twitter-üzeneteket, a Twitter-üzeneteket, mentse hello véleményeket adatok tooHBase, és a jelen hello valós idejű Twitter véleményeket tooBing leképezések hello céggel kapcsolatos véleményeket elemzése. toolearn több, lásd:
 
 * [Első lépései a hdinsight eszközzel][hdinsight-get-started]
 * [HBase-replikálás konfigurálása a HDInsightban](hdinsight-hbase-replication.md)

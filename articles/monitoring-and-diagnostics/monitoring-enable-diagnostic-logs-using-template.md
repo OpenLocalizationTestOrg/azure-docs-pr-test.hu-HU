@@ -1,6 +1,6 @@
 ---
-title: "Automatikus engedélyezés a Resource Manager-sablon használatával diagnosztikai beállítások |} Microsoft Docs"
-description: "Útmutató Resource Manager sablon használata, amely lehetővé teszi, hogy adatfolyamként küldje el az Event hubs diagnosztikai naplók, vagy olyan tárfiókban tárolja őket a diagnosztikai beállításokat szeretne létrehozni."
+title: "aaaAutomatically engedélyezze a diagnosztikát a Resource Manager-sablonnal |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse a Resource Manager sablon toocreate diagnosztikai beállítások, amely lehetővé teszi a toostream a diagnosztikai naplók tooEvent hubok, vagy olyan tárfiókban tárolja őket."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/14/2017
 ms.author: johnkem
-ms.openlocfilehash: dde2435e976bbd14ca35cccc714ea21dcc5817b7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8f38731107029928029c6d940da7bd076fea5d49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automatically-enable-diagnostic-settings-at-resource-creation-using-a-resource-manager-template"></a>Automatikus engedélyezés a Resource Manager-sablon használatával erőforrás létrehozásakor diagnosztikai beállítások
-Ebben a cikkben megmutatjuk, hogyan használható egy [Azure Resource Manager sablon](../azure-resource-manager/resource-group-authoring-templates.md) létrehozásakor erőforrás diagnosztikai beállításainak konfigurálására. Ez lehetővé teszi, hogy automatikusan elindítja a diagnosztikai naplók és a mérni kívánt Event Hubs tárfiókokban archiválás őket, vagy Naplóelemzési elküldi őket egy erőforrás létrehozásakor.
+Ebben a cikkben megmutatjuk, hogyan használható egy [Azure Resource Manager sablon](../azure-resource-manager/resource-group-authoring-templates.md) tooconfigure diagnosztikai beállítások létrehozásakor erőforráson. Ez lehetővé teszi a diagnosztikai naplók és a metrikák tooEvent hubok, tárfiókokban archiválás őket, vagy elküldené tooLog Analytics erőforrás létrehozásakor streamelési tooautomatically start.
 
-A módszer a Resource Manager-sablon használatával diagnosztikai naplók engedélyezése az erőforrástípushoz függ.
+a Resource Manager-sablon használatával diagnosztikai naplók engedélyezése hello metódus hello erőforrástípus függ.
 
 * **Nem-számítási** erőforrások (például a hálózati biztonsági csoportok, a Logic Apps Automation) [cikkben leírt diagnosztikai beállítások](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings).
-* **Számítási** (ÜVEGVATTA/LAD-alapú) erőforrások használják a [ÜVEGVATTA/LAD konfigurációs fájl ebben a cikkben leírt](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md).
+* **Számítási** (ÜVEGVATTA/LAD-alapú) erőforrások használják hello [ÜVEGVATTA/LAD konfigurációs fájl ebben a cikkben leírt](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md).
 
-Ebben a cikkben azt konfigurálását ismertetik diagnosztika módszerek használatával.
+Ez a cikk azt ismerteti hogyan tooconfigure diagnosztika módszerek használatával.
 
-Az alapvető lépések a következők:
+hello alapvető lépések a következők:
 
-1. Hozzon létre egy sablont, amely leírja a erőforrás létrehozása és engedélyezése a diagnosztika JSON-fájlként.
-2. [A sablon bármely olyan telepítési módszerrel telepítéséhez](../azure-resource-manager/resource-group-template-deploy.md).
+1. Hozzon létre egy sablont, amely leírja, hogyan toocreate hello erőforrás, és engedélyezze a diagnosztika JSON-fájlként.
+2. [Bármely olyan telepítési módszerrel hello sablon üzembe helyezése](../azure-resource-manager/resource-group-template-deploy.md).
 
-Az alábbiakban egy példa a sablon JSON-fájl generálása nem számítási és számítási erőforrásokat kell felállításához.
+Az alábbiakban felállításához hello sablon JSON-fájl nem számítási és számítási erőforrásokat kell toogenerate példát.
 
 ## <a name="non-compute-resource-template"></a>Nem-számítási erőforrás sablon
-Nem számítási erőforrásokat akkor két műveletet kell végrehajtania:
+Nem számítási erőforrásokat toodo két dolgot kell:
 
-1. Paraméterek hozzáadása a paraméterek blob a tárfiók neve, a service bus Szabályazonosító, illetve a OMS Naplóelemzési munkaterület azonosítója (tárfiókokban, adatfolyamként való küldése a Event Hubs-naplókat, és/vagy naplók küldése Naplóelemzési archiválási diagnosztikai naplók engedélyezése).
+1. Adjon hozzá paramétereket toohello paraméterek blob hello tárfiók neve, a service bus Szabályazonosító és/vagy a OMS Naplóelemzési munkaterület azonosítója (tárfiókokban, adatfolyamként való küldése a naplók tooEvent hubok, és/vagy küld naplókat tooLog Analytics archiválási diagnosztikai naplók engedélyezése).
    
     ```json
     "storageAccountName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the Storage Account in which Diagnostic Logs should be saved."
+        "description": "Name of hello Storage Account in which Diagnostic Logs should be saved."
       }
     },
     "serviceBusRuleId": {
       "type": "string",
       "metadata": {
-        "description": "Service Bus Rule Id for the Service Bus Namespace in which the Event Hub should be created or streamed to."
+        "description": "Service Bus Rule Id for hello Service Bus Namespace in which hello Event Hub should be created or streamed to."
       }
     },
     "workspaceId":{
       "type": "string",
       "metadata": {
-        "description": "Log Analytics workspace ID for the Log Analytics workspace to which logs will be sent."
+        "description": "Log Analytics workspace ID for hello Log Analytics workspace toowhich logs will be sent."
       }
     }
     ```
-2. Az erőforrás legyen diagnosztikai naplók engedélyezése erőforrások tömbben típusú erőforrás hozzáadása `[resource namespace]/providers/diagnosticSettings`.
+2. Hello erőforrások tömb hello erőforrás legyen tooenable diagnosztikai naplók, típusú erőforrás hozzáadása `[resource namespace]/providers/diagnosticSettings`.
    
     ```json
     "resources": [
@@ -102,9 +102,9 @@ Nem számítási erőforrásokat akkor két műveletet kell végrehajtania:
     ]
     ```
 
-A Tulajdonságok blob a diagnosztikai beállítások a következő [a jelen cikkben ismertetett formátum](https://msdn.microsoft.com/library/azure/dn931931.aspx). Hozzáadás a `metrics` tulajdonság lehetővé teszi, hogy ezek azonos kimenetek, feltéve, hogy erőforrás metrikáit is küldhet [az erőforrás támogatja az Azure-figyelő metrikák](monitoring-supported-metrics.md).
+hello hello diagnosztikai beállításának tulajdonságai blob a következő [cikkben leírt hello formátum](https://msdn.microsoft.com/library/azure/dn931931.aspx). Hozzáadását hello `metrics` tulajdonság lehetővé teszi a tooalso küldési erőforrás metrikáit toothese azonos kimenete, feltéve, hogy [hello erőforrás támogatja az Azure-figyelő metrikák](monitoring-supported-metrics.md).
 
-Ez egy teljes példa, amely hoz létre egy logikai alkalmazást, és bekapcsolja a streaming az Eseményközpontokhoz és a tárolási tárfiókokban.
+Ez egy teljes példa, amely létrehoz egy logikai alkalmazást, és bekapcsolja a streaming tooEvent Hubs és a tárolás egy tárfiókot.
 
 ```json
 
@@ -115,7 +115,7 @@ Ez egy teljes példa, amely hoz létre egy logikai alkalmazást, és bekapcsolja
     "logicAppName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the Logic App that will be created."
+        "description": "Name of hello Logic App that will be created."
       }
     },
     "testUri": {
@@ -125,19 +125,19 @@ Ez egy teljes példa, amely hoz létre egy logikai alkalmazást, és bekapcsolja
     "storageAccountName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the Storage Account in which Diagnostic Logs should be saved."
+        "description": "Name of hello Storage Account in which Diagnostic Logs should be saved."
       }
     },
     "serviceBusRuleId": {
       "type": "string",
       "metadata": {
-        "description": "Service Bus Rule Id for the Service Bus Namespace in which the Event Hub should be created or streamed to."
+        "description": "Service Bus Rule Id for hello Service Bus Namespace in which hello Event Hub should be created or streamed to."
       }
     },
     "workspaceId": {
       "type": "string",
       "metadata": {
-        "description": "Log Analytics workspace ID for the Log Analytics workspace to which logs will be sent."
+        "description": "Log Analytics workspace ID for hello Log Analytics workspace toowhich logs will be sent."
       }
     }
   },
@@ -224,20 +224,20 @@ Ez egy teljes példa, amely hoz létre egy logikai alkalmazást, és bekapcsolja
 ```
 
 ## <a name="compute-resource-template"></a>Számítási erőforrás sablon
-Ahhoz, hogy a számítási erőforrás diagnosztikai, például egy virtuális gép vagy a Service Fabric-fürt, akkor kell:
+tooenable diagnosztika számítási erőforrás, például egy virtuális gép vagy a Service Fabric-fürt, a következőket kell tennie:
 
-1. Az Azure Diagnostics-bővítmény hozzáadása a virtuális gép erőforrás-definícióban.
+1. Adja hozzá a hello Azure Diagnostics bővítmény toohello VM erőforrás-definícióban.
 2. Adja meg a tárolási fiók és/vagy az event hub paraméterként.
-3. Adja hozzá a WADCfg XML-fájl tartalmát a XMLCfg tulajdonság, a megfelelő escape-karaktersorozat összes XML-karakter.
+3. Adja hozzá a WADCfg XML-fájl tartalmának hello hello XMLCfg tulajdonság, megfelelő escape-karaktersorozat összes XML-karakter.
 
 > [!WARNING]
-> Ezen utolsó lépésében megszerezni a helyes megkapni. [Ebben a cikkben találhat](../virtual-machines/windows/extensions-diagnostics-template.md#diagnostics-configuration-variables) , amely felosztja a diagnosztika konfigurációs séma escape-karakterrel megjelölve, és megfelelő formátumú változók példát.
+> Ezen utolsó lépésében megadja a legbonyolultabb tooget jobbra lehet. [Ebben a cikkben találhat](../virtual-machines/windows/extensions-diagnostics-template.md#diagnostics-configuration-variables) , hogy elágazást diagnosztika konfigurációs séma hello escape-karakterrel megjelölve, és megfelelő formátumú változók be példát.
 > 
 > 
 
-A teljes folyamat minták leírt [ebben a dokumentumban](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+hello teljes, többek között a minták eljárást [ebben a dokumentumban](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-steps"></a>Következő lépések
 * [További tudnivalók az Azure diagnosztikai naplók](monitoring-overview-of-diagnostic-logs.md)
-* [Event hubs az Azure diagnosztikai naplók adatfolyam](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Az adatfolyam Azure diagnosztikai naplók tooEvent hubok](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 

@@ -1,6 +1,6 @@
 ---
 title: "Készítése és a pont-pont tanúsítványok exportálása: PowerShell: Azure |} Microsoft Docs"
-description: "A cikkben található lépéseket hozzon létre egy önaláírt legfelső szintű tanúsítványt, a nyilvános kulcs exportálásának és a PowerShell-lel Windows 10 ügyféltanúsítványok előállításához."
+description: "A cikkben lépéseket toocreate önaláírt legfelső szintű tanúsítvány hello nyilvános kulcsának exportálásához és a PowerShell-lel Windows 10 ügyféltanúsítványok előállításához."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/09/2017
 ms.author: cherylmc
-ms.openlocfilehash: f96b9b212b9322d0677e49ff95184d0feccca2df
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11dda015368cda5ce9799fcc4f01d7c542b84fe8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="generate-and-export-certificates-for-point-to-site-connections-using-powershell-on-windows-10"></a>Létrehozása és exportálása a tanúsítványok a PowerShell-lel Windows 10 pont – hely kapcsolatok
 
-Pont – hely kapcsolatok tanúsítványok segítségével hitelesíti. Ez a cikk bemutatja, hogyan hozzon létre egy önaláírt legfelső szintű tanúsítványt, és a PowerShell-lel Windows 10 ügyféltanúsítványok előállításához. Ha a keresett pont-hely konfigurációs lépések, például a legfelső szintű tanúsítványok feltöltéséről válassza az "konfigurálása pont-pont" cikkekben az alábbi listából:
+Pont – hely kapcsolatok tanúsítványok tooauthenticate használja. Ez a cikk azt ismerteti, hogyan toocreate önaláírt a legfelső szintű tanúsítványt, és a PowerShell-lel Windows 10 ügyféltanúsítványok előállításához. Ha a pont-hely konfigurációs lépések, például hogyan tooupload legfelső szintű tanúsítványok, a következő hello hello "konfigurálása pont-pont" cikkek válasszon ki egy listából:
 
 > [!div class="op_single_selector"]
 > * [Hozzon létre önaláírt tanúsítványokat - PowerShell](vpn-gateway-certificates-point-to-site.md)
@@ -35,16 +35,16 @@ Pont – hely kapcsolatok tanúsítványok segítségével hitelesíti. Ez a cik
 > 
 
 
-Ez a cikk a Windows 10 rendszerű számítógépre kell hajtsa végre a lépéseket. A PowerShell-parancsmagok, amelyekkel lehet tanúsítványokat létrehozni a Windows 10 operációs rendszer része, és a Windows más verziói nem működnek. A Windows 10 rendszerű számítógépeket csak akkor tanúsítványainak előállításához szükséges. Ha a tanúsítványok jönnek létre, feltöltheti ezeket, vagy telepítse őket a támogatott ügyfél operációs rendszereken. 
+Ebben a cikkben a Windows 10 rendszerű számítógépre hello lépéseket kell végrehajtania. hello PowerShell-parancsmagok használata toogenerate tanúsítványok hello Windows 10 operációs rendszer része, és a Windows más verziói nem működnek. Windows 10 hello számítógép csak a szükséges toogenerate hello tanúsítványok. Hello tanúsítványok jönnek létre, ha feltöltheti ezeket, vagy telepítse őket a támogatott ügyfél operációs rendszereken. 
 
-Ha nincs hozzáférése a Windows 10 rendszerű számítógépeket, [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) tanúsítványainak létrehozásához. A tanúsítványok, létrehozhat módszerek használatával is telepíthető [támogatott](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq) ügyfél operációs rendszerét.
+Ha Ön nem rendelkezik hozzáféréssel a Windows 10 tooa számítógép, [MakeCert](vpn-gateway-certificates-point-to-site-makecert.md) toogenerate tanúsítványokat. hello tanúsítványok módszerek használatával generáló telepíthetők bármely [támogatott](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq) ügyfél operációs rendszerét.
 
 ## <a name="rootcert"></a>Hozzon létre egy önaláírt legfelső szintű tanúsítványt
 
-A New-SelfSignedCertificate parancsmag segítségével hozzon létre egy önaláírt legfelső szintű tanúsítványt. További információkért lásd: [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
+Hello New-SelfSignedCertificate parancsmag toocreate önaláírt legfelső szintű tanúsítvány használatára. További információkért lásd: [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
 
 1. Windows 10 rendszerű számítógépeken nyisson meg egy Windows PowerShell-konzolt emelt szintű jogosultságokkal.
-2. Az alábbi példát követve létrehozni az önaláírt legfelső szintű tanúsítványt. Az alábbi példa létrehoz egy önaláírt legfelső szintű tanúsítványt, "P2SRootCert", amely automatikusan telepíti a "Tanúsítványok-aktuális User\Personal\Certificates" nevű. A tanúsítvány megtekintéséhez nyissa meg *certmgr.msc*, vagy *kezelheti a felhasználói tanúsítványok*.
+2. A következő példa toocreate hello önaláírt legfelső szintű tanúsítvány hello használata. hello alábbi példa létrehoz egy önaláírt legfelső szintű tanúsítványt "P2SRootCert", amely automatikusan telepíti a "Tanúsítványok-aktuális User\Personal\Certificates" nevű. Hello tanúsítvány megtekintéséhez nyissa meg *certmgr.msc*, vagy *kezelheti a felhasználói tanúsítványok*.
 
   ```powershell
   $cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -53,29 +53,29 @@ A New-SelfSignedCertificate parancsmag segítségével hozzon létre egy önalá
   -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign
   ```
 
-### <a name="cer"></a>Exportálja a nyilvános kulcsot (.cer)
+### <a name="cer"></a>Exportálás hello nyilvános kulcsát (.cer)
 
 [!INCLUDE [Export public key](../../includes/vpn-gateway-certificates-export-public-key-include.md)]
 
-A exported.cer fájlt fel kell tölteni, az Azure-bA. Útmutatásért lásd: [egy pont – hely kapcsolat beállítása](vpn-gateway-howto-point-to-site-rm-ps.md#upload). Egy további megbízható legfelső szintű tanúsítvány hozzáadása [ebben a szakaszban](vpn-gateway-howto-point-to-site-rm-ps.md#addremovecert) a cikk.
+hello exported.cer fájl feltöltött tooAzure kell lennie. Útmutatásért lásd: [egy pont – hely kapcsolat beállítása](vpn-gateway-howto-point-to-site-rm-ps.md#upload). egy további megbízható legfelső szintű tanúsítvány tooadd [ebben a szakaszban](vpn-gateway-howto-point-to-site-rm-ps.md#addremovecert) hello cikk.
 
-### <a name="export-the-self-signed-root-certificate-and-public-key-to-store-it-optional"></a>Exportálhatja az önaláírt legfelső szintű tanúsítvány és nyilvános kulcs tárolja (nem kötelező)
+### <a name="export-hello-self-signed-root-certificate-and-public-key-toostore-it-optional"></a>Hello önaláírt legfelső szintű tanúsítvány és nyilvános kulcs toostore exportálja azt (nem kötelező)
 
-Érdemes lehet önaláírt legfelső szintű tanúsítványának exportálása és tárolja biztonságos helyen. Ha kell, később egy másik számítógépre telepítse, és további ügyféltanúsítványok előállításához vagy egy másik .cer-fájl exportálását. Az önaláírt legfelső szintű tanúsítvány exportálása a .pfx fájlhoz, válassza ki a legfelső szintű tanúsítványt, és használja ugyanazokat a lépéseket, a [ügyféltanúsítvány exportálása](#clientexport).
+Érdemes lehet tooexport hello önaláírt a legfelső szintű tanúsítványt, és tárolja biztonságos helyen. Ha kell, később egy másik számítógépre telepítse, és további ügyféltanúsítványok előállításához vagy egy másik .cer-fájl exportálását. tooexport hello önaláírt legfelső szintű tanúsítvány, egy .pfx, jelölje be hello legfelső szintű tanúsítvány és használata hello ugyanazokat a lépéseket a [ügyféltanúsítvány exportálása](#clientexport).
 
 ## <a name="clientcert"></a>Ügyfél-tanúsítvány létrehozása
 
-Minden, a virtuális hálózathoz pont–hely kapcsolattal csatlakozó ügyfélszámítógépnek rendelkeznie kell telepített ügyféltanúsítvánnyal. Hozzon létre egy ügyféltanúsítványt a önaláírt legfelső szintű tanúsítvány és exportálni, és telepíti az ügyféltanúsítványt. Ha az ügyféltanúsítvány nincs telepítve, a hitelesítés meghiúsul. 
+Minden ügyfélszámítógép, amely a tooa VNet pont-pont használatával telepített ügyféltanúsítvánnyal kell rendelkeznie. Hozzon létre egy ügyféltanúsítványt hello önaláírt legfelső szintű tanúsítványt, és exportálni, és hello telepítéséhez. Ha hello ügyféltanúsítvány nincs telepítve, a hitelesítés meghiúsul. 
 
-A következő lépések végigvezetik történő tanúsítványgenerálás során egy ügyfél egy önaláírt legfelső szintű tanúsítványt. Előfordulhat, hogy több ügyféltanúsítványt generálása ugyanazon főtanúsítványhoz. Az alábbi lépéseket követve ügyféltanúsítványok létrehozásakor az ügyféltanúsítvány automatikusan települ azon a számítógépen, amelyet a tanúsítvány létrehozásához használt. Ha egy ügyfél-tanúsítványt egy másik ügyfélszámítógépen telepíteni szeretné, exportálhatja a tanúsítványt.
+hello következő lépések végigvezetik történő tanúsítványgenerálás során egy ügyfél egy önaláírt legfelső szintű tanúsítványt. Előfordulhat, hogy több ügyféltanúsítványt generálása hello ugyanazon főtanúsítványhoz. Ügyféltanúsítványok alábbi hello lépéseket használhatja generálásakor hello ügyféltanúsítvány automatikusan számítógépen hello toogenerate hello tanúsítvány használatát. Ha azt szeretné, hogy egy másik ügyfélszámítógépen ügyféltanúsítványt tooinstall, exportálhatja hello tanúsítványt.
 
-A példák a New-SelfSignedCertificate parancsmaggal hozza létre az ügyfél, amely egy év lejár. További információkat, például a különböző lejárati érték megadásakor az ügyféltanúsítványt, lásd: [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
+a példákban hello hello New-SelfSignedCertificate parancsmag toogenerate egy ügyféltanúsítványt, amely egy év lejár. További információkat, például a különböző lejárati érték hello ügyféltanúsítványt, lásd: [New-SelfSignedCertificate](https://technet.microsoft.com/itpro/powershell/windows/pkiclient/new-selfsignedcertificate).
 
 ### <a name="example-1"></a>1. példa
 
-A példa a deklarált "$cert" változót előző szakaszából. Ha a gyökér önaláírt tanúsítvány létrehozása után a PowerShell-konzolon zárva, vagy egy új PowerShell-konzol munkamenetet további ügyfél tanúsítványok készíti, lépésekkel [2. példa](#ex2).
+A példa az előző szakasz hello "$cert" változó deklarált hello. Ha korábban bezárta hello PowerShell konzol létrehozása önaláírt legfelső szintű tanúsítvány hello, vagy egy új PowerShell-konzol munkamenetet további ügyfél tanúsítványok készíti után, hajtsa végre a hello lépéseket [2. példa](#ex2).
 
-Módosítsa, majd futtassa a példa egy ügyfél-tanúsítvány előállításához. Ha az alábbi példa azt a módosítása nélkül futtatja, eredménye "P2SChildCert" nevű ügyfél-tanúsítványt.  Ha szeretné a gyermek tanúsítvány elnevezése valami mást, módosítsa a CN-érték. Ne módosítsa a TextExtension ebben a példában futtatásakor. Az ügyfél tanúsítványát, létrehozhat "Tanúsítványok - aktuális User\Personal\Certificates" automatikusan telepíti a számítógépre.
+Módosíthatja, és futtassa a hello példa toogenerate ügyféltanúsítványt. Ha az alábbi példa azt a módosítása nélkül hello futtatja, hello eredménye "P2SChildCert" nevű ügyfél-tanúsítványt.  Ha azt szeretné, hogy tooname hello a tanúsítványt valami mást, módosítsa a hello CN-értéket. Ne változtassa hello TextExtension ebben a példában futtatásakor. Létrehozhat hello ügyféltanúsítvány "Tanúsítványok - aktuális User\Personal\Certificates" automatikusan települ a számítógépre.
 
 ```powershell
 New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -87,14 +87,14 @@ New-SelfSignedCertificate -Type Custom -KeySpec Signature `
 
 ### <a name="ex2"></a>2. példa
 
-Ha további ügyféltanúsítványok létrehozni, vagy nem használja az ugyanazon a önaláírt legfelső szintű tanúsítvány létrehozásához használt PowerShell-munkamenetet, tegye a következőket:
+Ha Ön által létrehozott további ügyfél tanúsítványokat, és vannak nem használ hello azonos PowerShell-munkamenetet, amellyel toocreate a önaláírt főtanúsítványt, használja hello a következő lépéseket:
 
-1. Azonosítsa a önaláírt legfelső szintű tanúsítvány, amely telepítve van a számítógépen. Ez a parancsmag a számítógépen telepített tanúsítványok listáját adja vissza.
+1. Azonosítsa a hello önaláírt főtanúsítványt hello számítógépen telepítve van. Ez a parancsmag a számítógépen telepített tanúsítványok listáját adja vissza.
 
   ```powershell
   Get-ChildItem -Path “Cert:\CurrentUser\My”
   ```
-2. Keresse meg a tulajdonos nevét, a visszaadott listából, majd másolja le az ujjlenyomatot, amely egy szövegfájlba mellette található. A következő példában két tanúsítványokat is. A CN-név esetén a önaláírt legfelső szintű tanúsítvány, amelyből gyermek tanúsítványt létrehozni kívánja. Ebben az esetben "P2SRootCert".
+2. Keresse meg a hello tulajdonos nevét a listában, majd a Másolás hello ujjlenyomat, amely található következő tooit tooa szöveg visszaadott hello fájlt. A következő példa hello két tanúsítványokat is. hello CN-név, amelyből el kívánja toogenerate gyermek tanúsítvány hello önaláírt legfelső szintű tanúsítvány hello neve. Ebben az esetben "P2SRootCert".
 
   ```
   Thumbprint                                Subject
@@ -102,18 +102,18 @@ Ha további ügyféltanúsítványok létrehozni, vagy nem használja az ugyanaz
   AED812AD883826FF76B4D1D5A77B3C08EFA79F3F  CN=P2SChildCert4
   7181AA8C1B4D34EEDB2F3D3BEC5839F3FE52D655  CN=P2SRootCert
   ```
-3. A legfelső szintű tanúsítvány ujjlenyomata az előző lépésben segítségével változó deklarálható. Cserélje le, amelyből el kívánja létrehozni a tanúsítványt a főtanúsítvány ujjlenyomatának UJJLENYOMATA.
+3. Hello legfelső szintű tanúsítvány hello ujjlenyomata hello előző lépésben változó deklarálható. Cserélje le UJJLENYOMATÁT hello hello főtanúsítványt, amelyből el kívánja toogenerate gyermek tanúsítvány ujjlenyomata.
 
   ```powershell
   $cert = Get-ChildItem -Path "Cert:\CurrentUser\My\THUMBPRINT"
   ```
 
-  Például az ujjlenyomat P2SRootCert használja az előző lépésben, a változó néz ki:
+  Például P2SRootCert hello előző lépésben hello ujjlenyomat alkalmaz, hello változó néz ki:
 
   ```powershell
   $cert = Get-ChildItem -Path "Cert:\CurrentUser\My\7181AA8C1B4D34EEDB2F3D3BEC5839F3FE52D655"
   ```
-4.  Módosítsa, majd futtassa a példa egy ügyfél-tanúsítvány előállításához. Ha az alábbi példa azt a módosítása nélkül futtatja, eredménye "P2SChildCert" nevű ügyfél-tanúsítványt. Ha szeretné a gyermek tanúsítvány elnevezése valami mást, módosítsa a CN-érték. Ne módosítsa a TextExtension ebben a példában futtatásakor. Az ügyfél tanúsítványát, létrehozhat "Tanúsítványok - aktuális User\Personal\Certificates" automatikusan telepíti a számítógépre.
+4.  Módosíthatja, és futtassa a hello példa toogenerate ügyféltanúsítványt. Ha az alábbi példa azt a módosítása nélkül hello futtatja, hello eredménye "P2SChildCert" nevű ügyfél-tanúsítványt. Ha azt szeretné, hogy tooname hello a tanúsítványt valami mást, módosítsa a hello CN-értéket. Ne változtassa hello TextExtension ebben a példában futtatásakor. Létrehozhat hello ügyféltanúsítvány "Tanúsítványok - aktuális User\Personal\Certificates" automatikusan települ a számítógépre.
 
   ```powershell
   New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -135,5 +135,5 @@ Ha további ügyféltanúsítványok létrehozni, vagy nem használja az ugyanaz
 
 A pont-hely konfigurációs folytatásához. 
 
-* A **erőforrás-kezelő** telepítési modell lépéseket lásd: [egy Vnetet egy pont – hely kapcsolat beállítása](vpn-gateway-howto-point-to-site-resource-manager-portal.md). 
-* A **klasszikus** telepítési modell lépéseket lásd: [egy virtuális hálózat (klasszikus) pont – hely típusú VPN-kapcsolat konfigurálva](vpn-gateway-howto-point-to-site-classic-azure-portal.md).
+* A **erőforrás-kezelő** telepítési modell lépéseket lásd: [konfigurálása egy pont – hely kapcsolat tooa VNet](vpn-gateway-howto-point-to-site-resource-manager-portal.md). 
+* A **klasszikus** telepítési modell lépéseket lásd: [konfigurálása egy pont – hely típusú VPN-kapcsolat tooa hálózatok (klasszikus)](vpn-gateway-howto-point-to-site-classic-azure-portal.md).

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure IoT Suite csatlakoztatott gyári – gyakori kérdések |} Microsoft Docs"
+title: "az IoT Suite aaaAzure csatlakoztatott gyári – gyakori kérdések |} Microsoft Docs"
 description: "Az IoT Suite csatlakoztatott factory gyakran ismételt kérdések"
 services: 
 suite: iot-suite
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: corywink
-ms.openlocfilehash: 35cf824210a14410d7ea2aedddde0040309901f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4ae9beb0daf1b0578850cd652eaca7635b0d039d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-for-iot-suite-connected-factory-preconfigured-solution"></a>Gyakori kérdések az IoT Suite csatlakoztatott beépített, előre konfigurált megoldás
 
-Lásd még az általános [gyakran ismételt kérdések](iot-suite-faq.md) IoT Suite.
+További információ, általános hello [gyakran ismételt kérdések](iot-suite-faq.md) IoT Suite.
 
-### <a name="where-can-i-find-the-source-code-for-the-preconfigured-solution"></a>Hol található az előkonfigurált megoldás forráskódját?
+### <a name="where-can-i-find-hello-source-code-for-hello-preconfigured-solution"></a>Hol találok hello forráskód előre konfigurált hello megoldáshoz?
 
-A forráskód a következő GitHub-tárházban tárolja:
+a következő GitHub-tárházban hello hello forráskód tárolja:
 
 * [Előre konfigurált csatlakoztatott gyári megoldás](https://github.com/Azure/azure-iot-connected-factory)
 
 ### <a name="what-is-opc-ua"></a>Mi az a OPC EE?
 
-OPC egyesített architektúra révén, 2008, amely a szabványos platformfüggetlen, szolgáltatásorientált együttműködési. OPC EE különféle ipari rendszerek és egyéb eszközök például számítógépek iparági PLC vagy érzékelők használja. OPC EE OPC klasszikus specifikációit funkcióit integrálja a beépített biztonsági a egy bővíthető keretrendszer. Olyan szabvány, amelyek célja a OPC alapját. A [OPC Foundation](http://opcfoundation.org/) egy nem nonprofit szervezet több mint 440 tagjaival. A szervezet célja, hogy több szállító, többplatformos, biztonságos és megbízható együttműködést elősegítő OPC specifikációk használja:
+OPC egyesített architektúra révén, 2008, amely a szabványos platformfüggetlen, szolgáltatásorientált együttműködési. OPC EE különféle ipari rendszerek és egyéb eszközök például számítógépek iparági PLC vagy érzékelők használja. OPC EE egy bővíthető keretrendszer és a beépített biztonság hello OPC klasszikus specifikációk hello funkcióit integrálja. Olyan szabvány, amelyek célja a hello OPC Foundation. Hello [OPC Foundation](http://opcfoundation.org/) egy nem nonprofit szervezet több mint 440 tagjaival. hello hello szervezet célja toouse OPC specifikációk toofacilitate több szállító, többplatformos, biztonságos és megbízható együttműködési keresztül:
 
 * Infrastruktúra
 * Specifikációk
 * Technológia
 * Folyamatok
 
-### <a name="why-did-microsoft-choose-opc-ua-for-the-connected-factory-preconfigured-solution"></a>Miért Microsoft adta meg OPC EE a csatlakoztatott gyári előre konfigurált megoldáshoz?
+### <a name="why-did-microsoft-choose-opc-ua-for-hello-connected-factory-preconfigured-solution"></a>Miért adta meg a Microsoft hello a OPC EE csatlakoztatott előre konfigurált gyári megoldás?
 
-Microsoft OPC EE választotta, mert a nyitott, a nem tulajdonosi platform független, iparági ismeri fel és bevált szabványnak. Ez feltétele Industrie 4.0-s verzióját (RAMI4.0) referencia architektúra megoldások gyártási eljárások széles körét és berendezések együttműködésével biztosítása. Microsoft igény szerinti, ügyfeleink Industrie 4.0 megoldások látja. OPC EE támogatása segítségével csökkenthető az ügyfelek számára a kitűzött célokat a korlát, és azonnali üzleti értéket ad a őket.
+Microsoft OPC EE választotta, mert a nyitott, a nem tulajdonosi platform független, iparági ismeri fel és bevált szabványnak. Ez feltétele Industrie 4.0-s verzióját (RAMI4.0) referencia architektúra megoldások gyártási eljárások széles körét és berendezések együttműködésével biztosítása. Microsoft látja az ügyfelek toobuild Industrie 4.0 megoldásainkkal igény szerint. OPC EE támogatása segít az ügyfeleknek tooachieve alacsonyabb hello korlát a cél, és azonnali üzleti értéket toothem biztosít.
 
-### <a name="how-do-i-add-a-public-ip-address-to-the-simulation-vm"></a>Hogyan egy nyilvános IP-cím hozzáadása a virtuális gép szimuláció?
+### <a name="how-do-i-add-a-public-ip-address-toohello-simulation-vm"></a>Hogyan adja hozzá a nyilvános IP cím toohello szimuláció VM?
 
-Az IP-cím hozzáadása két lehetőség közül választhat:
+Két beállítások tooadd hello IP-címmel rendelkezik:
 
-* A PowerShell-parancsfájl `Simulation/Factory/Add-SimulationPublicIp.ps1` a a [tárház](https://github.com/Azure/azure-iot-connected-factory). A telepítés neve paraméterként adja át. Egy helyi központi telepítésének használata `<your username>ConnFactoryLocal`. A parancsfájl jelenít meg a virtuális gép IP-címét.
+* PowerShell-parancsfájl hello `Simulation/Factory/Add-SimulationPublicIp.ps1` a hello [tárház](https://github.com/Azure/azure-iot-connected-factory). A telepítés neve paraméterként adja át. Egy helyi központi telepítésének használata `<your username>ConnFactoryLocal`. hello parancsfájl kinyomtatja hello VM hello IP-címét.
 
-* Az Azure portálon keresse meg az erőforráscsoportot, a telepítés. A helyi központi telepítés, kivéve az erőforráscsoport rendelkezik, a megoldáshoz megadott vagy telepítés nevét. A build script használó helyi telepítés, az erőforráscsoport neve nem `<your username>ConnFactoryLocal`. Most adjon hozzá egy új **nyilvános IP-cím** erőforrás az erőforráscsoporthoz.
+* Hello Azure-portálon keresse meg a központi telepítés hello erőforráscsoport. Egy helyi központi telepítés, kivéve a hello erőforráscsoport rendelkezik hello megoldásként megadott vagy telepítés nevét. Egy helyi központi telepítésének hello build parancsfájllal hello erőforráscsoport hello neve nem `<your username>ConnFactoryLocal`. Most adjon hozzá egy új **nyilvános IP-cím** erőforrás toohello erőforráscsoport.
 
 > [!NOTE]
-> Mindkét esetben ellenőrizze a megjelenő utasításokat követve telepítse a legújabb javítások a [Ubuntu webhely](https://wiki.ubuntu.com/Security/Upgrades). A telepítés naprakészen tartása a mindaddig, amíg a virtuális Gépet egy nyilvános IP-cím keresztül érhető el.
+> Mindkét esetben ügyeljen arra, telepítse legújabb javítások hello hello hello utasításai szerint [Ubuntu webhely](https://wiki.ubuntu.com/Security/Upgrades). Vegye fel a toodate hello telepítési mindaddig, amíg a virtuális Gépet egy nyilvános IP-cím keresztül érhető el.
 
-### <a name="how-do-i-remove-the-public-ip-address-to-the-simulation-vm"></a>Hogyan távolítsa el a szimuláció VM a nyilvános IP-címet?
+### <a name="how-do-i-remove-hello-public-ip-address-toohello-simulation-vm"></a>Hogyan távolíthatom hello nyilvános IP cím toohello szimuláció VM?
 
-Az IP-cím eltávolítása két lehetőség közül választhat:
+Két beállítások tooremove hello IP-címmel rendelkezik:
 
-* A PowerShell-parancsfájlt a Simulation/Factory/Remove-SimulationPublicIp.ps1 használja a [tárház](https://github.com/Azure/azure-iot-connected-factory). A telepítés neve paraméterként adja át. Egy helyi központi telepítésének használata `<your username>ConnFactoryLocal`. A parancsfájl jelenít meg a virtuális gép IP-címét.
+* Hello PowerShell-parancsfájl a hello Simulation/Factory/Remove-SimulationPublicIp.ps1 [tárház](https://github.com/Azure/azure-iot-connected-factory). A telepítés neve paraméterként adja át. Egy helyi központi telepítésének használata `<your username>ConnFactoryLocal`. hello parancsfájl kinyomtatja hello VM hello IP-címét.
 
-* Az Azure portálon keresse meg az erőforráscsoportot, a telepítés. A helyi központi telepítés, kivéve az erőforráscsoport rendelkezik, a megoldáshoz megadott vagy telepítés nevét. A build script használó helyi telepítés, az erőforráscsoport neve nem `<your username>ConnFactoryLocal`. Most eltávolítja a **nyilvános IP-cím** az erőforráscsoportból erőforrás.
+* Hello Azure-portálon keresse meg a központi telepítés hello erőforráscsoport. Egy helyi központi telepítés, kivéve a hello erőforráscsoport rendelkezik hello megoldásként megadott vagy telepítés nevét. Egy helyi központi telepítésének hello build parancsfájllal hello erőforráscsoport hello neve nem `<your username>ConnFactoryLocal`. Most eltávolítja a hello **nyilvános IP-cím** hello erőforráscsoportból erőforrás.
 
-### <a name="how-do-i-sign-in-to-the-simulation-vm"></a>Hogyan be a szimuláció virtuális gép számára?
+### <a name="how-do-i-sign-in-toohello-simulation-vm"></a>Hogyan toohello szimuláció Virtuálisgép jelentkezni?
 
-A szimuláció VM bejelentkezés csak támogatott, ha a megoldás a PowerShell-parancsfájl használatával telepített `build.ps1` a a [tárház](https://github.com/Azure/azure-iot-connected-factory).
+Aláírási toohello szimuláció VM csak támogatott, ha a megoldás hello PowerShell-parancsfájl használatával telepített `build.ps1` a hello [tárház](https://github.com/Azure/azure-iot-connected-factory).
 
-Ha telepítette a www.azureiotsuite.com megoldást, nem tud bejelentkezni virtuális gép. Nem tud bejelentkezni, mert a jelszó véletlenszerűen történik, és nem állítható alaphelyzetbe.
+Ha www.azureiotsuite.com hello megoldást, toohello virtuális gép nem tud bejelentkezni. Nem tud bejelentkezni, mert hello jelszó véletlenszerűen történik, és nem állítható alaphelyzetbe.
 
-1. A nyilvános IP-cím hozzáadása a virtuális Gépet. Lásd: [hogyan adni a nyilvános IP-címnek a szimuláció VM?](#how-do-i-remove-the-public-ip-address-to-the-simulation-vm)
-1. A virtuális géphez az IP-címmel, a virtuális gép SSH-munkamenetet létrehozni.
-1. A felhasználónév használata: `docker`.
-1. A jelszó használata a központi telepítéséhez használt verziójától függ:
-    * A megoldások a build.ps1 parancsfájl használatával előtt 2017. június 1. telepítve, a jelszó nem: `Passw0rd`.
-    * A megoldások a build.ps1 parancsfájl használatával után 2017. június 1. telepítve, a jelszót a megtalálhatja a `<name of your deployment>.config.user` fájlt. A jelszó tárolódik a **VmAdminPassword** beállítást. A jelszó jön létre véletlenszerűen központi telepítéskor kivéve ha megadja azt a `build.ps1` parancsfájl-paraméter`-VmAdminPassword`
+1. Adjon hozzá egy nyilvános IP-cím toohello virtuális gép. Lásd: [hogyan adja hozzá a nyilvános IP cím toohello szimuláció VM?](#how-do-i-remove-the-public-ip-address-to-the-simulation-vm)
+1. Hozzon létre egy SSH-munkamenet tooyour VM hello VM hello IP-címét használja.
+1. hello felhasználónév toouse van: `docker`.
+1. hello jelszó toouse toodeploy használt hello verziójától függ:
+    * 2017. június 1. előtt hello build.ps1 parancsfájl használatával telepített megoldásainak hello jelszava: `Passw0rd`.
+    * Hello build.ps1 parancsfájl használatával után 2017. június 1. telepítve megoldásainak található hello jelszó hello `<name of your deployment>.config.user` fájlt. hello jelszó tárolódik hello **VmAdminPassword** beállítást. hello jelszó jön létre véletlenszerűen központi telepítéskor kivéve, ha megadja azt a hello segítségével `build.ps1` parancsfájl-paraméter`-VmAdminPassword`
 
-### <a name="how-do-i-stop-and-start-all-docker-processes-in-the-simulation-vm"></a>Hogyan állítsa le és indítsa el az összes docker-folyamat a szimuláció VM?
+### <a name="how-do-i-stop-and-start-all-docker-processes-in-hello-simulation-vm"></a>Hogyan állítsa le és indítsa el az összes docker folyamat hello szimuláció VM?
 
-1. Jelentkezzen be a szimuláció virtuális gép. Lásd: [hogyan be a szimuláció virtuális gép számára?](#how-do-i-sign-in-to-the-simulation-vm)
-1. Ellenőrizze, hogy mely tárolók aktívak, futtassa: `docker ps`.
-1. Futtassa az összes szimuláció tároló leállításához: `./stopsimulation`.
-1. Az összes szimuláció tároló indítása:
-    * Exportálja a nevű rendszerhéj változó **IOTHUB_CONNECTIONSTRING**. Az értéket a **IotHubOwnerConnectionString** beállítást azokban a `<name of your deployment>.config.user` fájlt. Példa:
+1. VM toohello szimulálása a bejelentkezés. Lásd: [hogyan jelentkezzen toohello szimuláció VM?](#how-do-i-sign-in-to-the-simulation-vm)
+1. Futtassa mely tárolók aktívak, toocheck: `docker ps`.
+1. toostop minden szimuláció tároló futtatása: `./stopsimulation`.
+1. toostart minden szimuláció tároló:
+    * Hello nevű rendszerhéj változó exportálása **IOTHUB_CONNECTIONSTRING**. Hello hello érték **IotHubOwnerConnectionString** hello beállítása `<name of your deployment>.config.user` fájlt. Példa:
 
         ```
         export IOTHUB_CONNECTIONSTRING="HostName={yourdeployment}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={your key}"
@@ -90,19 +90,19 @@ Ha telepítette a www.azureiotsuite.com megoldást, nem tud bejelentkezni virtu�
 
     * Futtassa az `./startsimulation` parancsot.
 
-### <a name="how-do-i-update-the-simulation-in-the-vm"></a>Hogyan frissíthetők a szimuláció, a virtuális gép?
+### <a name="how-do-i-update-hello-simulation-in-hello-vm"></a>Hogyan frissíthetők a hello szimulálása a virtuális gép hello?
 
-A szimuláció végzett módosításokat, ha használható a PowerShell parancsfájl `build.ps1` a a [tárház](https://github.com/Azure/azure-iot-connected-factory) használatával a `updatedimulation` parancsot. Ezt a parancsfájlt hoz létre a szimuláció összetevők, leállítja a virtuális gép a szimuláció, feltölti, telepíti, és elindítja azokat.
+Ha végrehajtott módosítások toohello szimuláció, hello PowerShell parancsfájlt használhatja `build.ps1` a hello [tárház](https://github.com/Azure/azure-iot-connected-factory) hello segítségével `updatedimulation` parancs. A parancsfájl hello szimuláció összetevők alkot, hello szimulálása a hello virtuális gép leáll, feltölti, telepíti és elindítja azokat.
 
-### <a name="how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution"></a>Hogyan állapítható meg a kapcsolati karakterlánc az IoT-központnak a megoldás által használt?
+### <a name="how-do-i-find-out-hello-connection-string-of-hello-iot-hub-used-by-my-solution"></a>Hogyan állapítható meg a megoldás által használt hello IoT hub hello kapcsolati karakterláncot?
 
-Ha telepítette a megoldást a `build.ps1` a parancsfájl a [tárház](https://github.com/Azure/azure-iot-connected-factory), a kapcsolati karakterlánc értékét: **IotHubOwnerConnectionString** a a `<name of your deployment>.config.user` fájlt.
+Ha telepítette a megoldást hello `build.ps1` hello parancsfájl [tárház](https://github.com/Azure/azure-iot-connected-factory), hello kapcsolati karakterlánc: hello értékének **IotHubOwnerConnectionString** a hello `<name of your deployment>.config.user` fájlt.
 
-A kapcsolati karakterláncot az Azure portál használatával is tájékozódhat. Az IoT-központ erőforrás erőforráscsoporthoz tartozik, a telepítés keresse meg a kapcsolódási karakterlánc beállításainak.
+Hello kapcsolati karakterláncot hello Azure-portálon is tájékozódhat. Hello IoT-központ erőforrás hello erőforráscsoporthoz tartozik, a telepítés keresse meg a hello kapcsolatikarakterlánc-beállításokat.
 
-### <a name="which-iot-hub-devices-does-the-connected-factory-simulation-use"></a>Mely IoT Hub eszközöket használ a csatlakoztatott gyári szimuláció?
+### <a name="which-iot-hub-devices-does-hello-connected-factory-simulation-use"></a>Mely IoT Hub-eszközöknek hello nem csatlakoztatott gyári szimuláció használata?
 
-A szimuláció önkiszolgáló regisztrál, a következő eszközöket:
+önkiszolgáló regisztrálja szimuláció hello hello következő eszközökön:
 
 * proxy.Beijing.Corp.contoso
 * proxy.capetown.Corp.contoso
@@ -117,23 +117,23 @@ A szimuláció önkiszolgáló regisztrál, a következő eszközöket:
 * Publisher.Rio.Corp.contoso
 * Publisher.Seattle.Corp.contoso
 
-Használja a [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) vagy [IOT hubbal-explorer](https://github.com/azure/iothub-explorer) eszköz, ellenőrizheti, hogy mely eszközök vannak regisztrálva az IoT-központ, a megoldás használ. Ezek az eszközök használatához szüksége a kapcsolati karakterlánc az IoT-központ a környezetben.
+Hello segítségével [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) vagy [IOT hubbal-explorer](https://github.com/azure/iothub-explorer) eszköz, ellenőrizheti, hogy mely eszközök vannak regisztrálva hello IoT-központ a megoldás használ. Ezek az eszközök toouse, szükség van hello kapcsolati karakterlánc hello IoT-központ a környezetben.
 
-### <a name="how-can-i-get-log-data-from-the-simulation-components"></a>Hogyan kaphatok naplóadatait a szimuláció összetevői?
+### <a name="how-can-i-get-log-data-from-hello-simulation-components"></a>Hogyan kaphatok naplóadatokat hello szimuláció összetevők?
 
-A szimuláció lévő valamennyi összetevőnél információk jelentkezzen be a naplófájlokba. Ezek a fájlok megtalálhatók a virtuális Gépet a mappában `home/docker/Logs`. A naplók lekéréséhez használja a PowerShell parancsfájl `Simulation/Factory/Get-SimulationLogs.ps1` a a [tárház](https://github.com/Azure/azure-iot-connected-factory).
+Hello szimuláció naplóadatok toolog fájlban lévő valamennyi összetevőnél. Ezek a fájlok megtalálhatók hello VM hello mappában `home/docker/Logs`. tooretrieve hello naplókat, hello PowerShell parancsfájlt használhatja `Simulation/Factory/Get-SimulationLogs.ps1` a hello [tárház](https://github.com/Azure/azure-iot-connected-factory).
 
-Ez a parancsfájl be kell jelentkeznie a virtuális géphez. Szükség lehet a a bejelentkezéshez adja meg a hitelesítő adatokat. Lásd: [hogyan be a virtuális gép szimuláció való?](#how-do-i-sign-in-to-the-simulation-vm) a hitelesítő adatok kereséséhez.
+Ezt a parancsfájlt a virtuális gép toohello toosign kell. A hello bejelentkezéshez szükség lehet tooprovide hitelesítő adatokat. Lásd: [hogyan jelentkezzen toohello szimuláció VM?](#how-do-i-sign-in-to-the-simulation-vm) toofind hello hitelesítő adatokat.
 
-A parancsfájl hozzáadása/eltávolítása egy nyilvános IP-címet a virtuális gépre, ha az még nincs ilyen, és eltávolítja azt. A parancsfájl az összes napló fájlokat archiválhatja, és letölti a az archiválás a fejlesztő munkaállomás.
+hello parancsfájl hozzáadása/eltávolítása egy nyilvános IP-cím toohello virtuális gép, ha az még nincs ilyen, és eltávolítja azt. hello parancsfájl az összes napló fájlokat archiválhatja, és letölti hello archív tooyour fejlesztői munkaállomáson.
 
-Másik megoldásként jelentkezzen be a virtuális gép SSH-kapcsolaton keresztül, és vizsgálja meg a naplófájlokat a futási időben.
+Azt is megteheti toohello SSH-kapcsolaton keresztül Virtuálisgép jelentkezni, és vizsgálja meg a naplófájlok hello futásidőben.
 
-### <a name="how-can-i-check-if-the-simulation-is-sending-data-to-the-cloud"></a>Hogyan ellenőrizheti meg, hogy ha a szimuláció adatokat küld a felhőbe-e?
+### <a name="how-can-i-check-if-hello-simulation-is-sending-data-toohello-cloud"></a>Hogyan ellenőrizheti meg, hogy ha hello szimuláció adatok toohello felhő küld-e?
 
-Az a [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) vagy a [IOT hubbal-explorer](https://github.com/azure/iothub-explorer) eszköz, vizsgálhatja az egyes eszközökről az IoT-központ küldött adatok. Ezek az eszközök használatához szüksége tudni, hogy a kapcsolati karakterláncot az IoT-központ a környezetben. Lásd: [hogyan állapíthatom meg a kapcsolati karakterlánc az IoT-központnak a megoldás által használt?](#how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution)
+A hello [DeviceExplorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) vagy hello [IOT hubbal-explorer](https://github.com/azure/iothub-explorer) eszköz, vizsgálhatja hello adatforgalom tooIoT Hub egyes eszközökről. Ezek az eszközök toouse, szükség van tooknow hello kapcsolati karakterlánc hello IoT-központ a környezetben. Lásd: [hogyan állapíthatom meg hello kapcsolati karakterlánca a megoldás által használt hello IoT-központot?](#how-do-i-find-out-the-connection-string-of-the-iot-hub-used-by-my-solution)
 
-Vizsgálja meg a kiadó eszközök egyike által küldött adatokat:
+Vizsgálja meg az egyik hello publisher eszköz által küldött hello adatokat:
 
 * Publisher.Beijing.Corp.contoso
 * Publisher.capetown.Corp.contoso
@@ -142,12 +142,12 @@ Vizsgálja meg a kiadó eszközök egyike által küldött adatokat:
 * Publisher.Rio.Corp.contoso
 * Publisher.Seattle.Corp.contoso
 
-Ha nem az IoT-központ küldött adatokat, majd nincs a szimuláció kapcsolatos problémát. Első lépésként elemzés elemezni kell a naplófájlok a szimuláció összetevőt. Lásd: [Hogyan juthatok naplóadatait a szimuláció összetevői?](#how-can-i-get-log-data-from-the-simulation-components) Ezt követően próbálja állítsa le és indítsa el a szimuláció, és még nincs adat küldése, ha frissíti a szimuláció teljesen. Lásd: [hogyan frissíthetők a szimuláció, a virtuális gép?](#how-do-i-update-the-simulation-in-the-vm)
+Ha nincs központi tooIoT küldött adatokat, majd nincs hello szimuláció kapcsolatos problémát. Első lépésként elemzés elemezni kell hello naplófájlok hello szimuláció összetevőt. Lásd: [Hogyan juthatok naplóadatokat hello a szimuláció összetevőket?](#how-can-i-get-log-data-from-the-simulation-components) A következő toostop próbálja, és indítsa el a szimuláció hello, és ha még nem küldött adatok, frissíteni hello szimuláció teljesen. Lásd: [hogyan frissíthetők a hello szimulálása a virtuális gép hello?](#how-do-i-update-the-simulation-in-the-vm)
 
 ### <a name="next-steps"></a>Következő lépések
 
-Megismerheti az IoT Suite előre konfigurált megoldásának egyéb szolgáltatásait és funkcióit is:
+Akkor is is felfedezheti hello más szolgáltatásokat és képességeket hello előre konfigurált IoT Suite megoldások:
 
 * [Előre konfigurált prediktív karbantartási megoldás áttekintése](iot-suite-predictive-overview.md)
 * [Előre konfigurált csatlakoztatott gyári megoldási áttekintés](iot-suite-connected-factory-overview.md)
-* [Az IoT biztonsági másolatot az alapoktól](securing-iot-ground-up.md)
+* [A hello IoT biztonsági szabad](securing-iot-ground-up.md)

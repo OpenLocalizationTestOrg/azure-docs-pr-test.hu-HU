@@ -1,5 +1,5 @@
 ---
-title: "Az Excel és SOA HPC Pack fürt |} Microsoft Docs"
+title: "az Excel és SOA fürt aaaHPC Pack |} Microsoft Docs"
 description: "Ismerkedés a nagyméretű Excel és a SOA munkaterhelések egy HPC Pack fürtben futó Azure-ban"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/01/2017
 ms.author: danlep
-ms.openlocfilehash: 63babd94fdab15217cfb0757e4cd6efe458a628d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55b4b2c25fe65d06b75025cc23c3c13b8b764238
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-running-excel-and-soa-workloads-on-an-hpc-pack-cluster-in-azure"></a>Ismerkedés az Excel és a SOA munkaterhelések egy HPC Pack fürtben futó Azure-ban
-Ez a cikk bemutatja, hogyan Azure virtuális gépeken futó Microsoft HPC Pack 2012 R2 fürt központi telepítése egy Azure gyors üzembe helyezés sablont, vagy opcionálisan egy Azure PowerShell telepítési parancsfájlt. A fürt úgy tervezték, hogy a Microsoft Excel alkalmazást vagy szolgáltatásorientált architektúra (SOA) munkaterhelések futtatása HPC Pack Azure piactér Virtuálisgép-rendszerképekről használja. A fürt használhatja a helyszíni ügyfél-számítógépről Excel HPC és SOA szolgáltatások futtatásához. Excel-munkafüzet kiürítéséhez és a felhasználó által definiált függvények Excel vagy a felhasználó által megadott függvények közé tartoznak az Excelhez készült HPC-szolgáltatások
+Ez a cikk bemutatja, hogyan toodeploy a Microsoft HPC Pack 2012 R2 fürt Azure virtuális gépeken futó Azure gyors üzembe helyezés sablonná és opcionálisan egy Azure PowerShell telepítési parancsfájlt. hello fürt HPC Pack használ az Azure piactér virtuális gép tervezett képek toorun Microsoft Excel vagy szolgáltatásorientált architektúra (SOA) munkaterhelések. Hello fürt toorun Excel HPC és SOA szolgáltatások egy helyszíni ügyfélszámítógépről is használhatja. hello Excel HPC-szolgáltatások közé tartoznak az Excel-munkafüzet kiürítéséhez és a felhasználó által definiált függvények Excel vagy a felhasználó által megadott függvények.
 
 > [!IMPORTANT] 
 > Ez a cikk a HPC Pack 2012 R2 alapul funkciók, sablonok és parancsfájlok. Ebben a forgatókönyvben jelenleg nem támogatott a HPC Pack 2016.
@@ -30,72 +30,72 @@ Ez a cikk bemutatja, hogyan Azure virtuális gépeken futó Microsoft HPC Pack 2
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Magas szinten a következő ábrán a HPC Pack fürtöt hoz létre.
+Magas szinten, hello alábbi ábrán látható hello HPC Pack fürtöt hoz létre.
 
 ![Excel munkaterheket futtatnak csomópontok HPC-fürt][scenario]
 
 ## <a name="prerequisites"></a>Előfeltételek
-* **Ügyfélszámítógép** -elküldeni az Excel és SOA mintafeladatok a fürthöz ügyfél Windows-alapú számítógépre van szüksége. Szükség (ha az adott központi telepítési módszer választása) az Azure PowerShell-fürt üzembe helyezési parancsfájl futtatásához egy Windows-számítógép.
+* **Ügyfélszámítógép** -ügyfél Windows-alapú számítógép toosubmit minta Excel és SOA feladatok toohello fürt van szüksége. A Windows számítógép toorun hello Azure PowerShell fürt telepítési parancsfájlt is (ha az adott központi telepítési módszer választása) kell.
 * **Azure-előfizetés** – Ha nem rendelkezik Azure-előfizetéssel, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/) néhány percig.
-* **Magok kvóta** -előfordulhat, hogy növelnie kell a beállított kvótát mag, különösen akkor, ha több fürtcsomóponton az multicore Virtuálisgép-méretek telepít. Egy Azure gyors üzembe helyezés sablont használ, ha a magok kvótája a Resource Manager egy Azure-régióban van. Ebben az esetben szükség lehet egy adott régióban a kvóta növeléséhez. Lásd: [Azure-előfizetésre vonatkozó korlátok, kvóták és megkötések](../../azure-subscription-service-limits.md). A kvóta növeléséhez [nyissa meg az online támogatás ügyfélkérés](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) díjmentesen.
-* **A Microsoft Office-licencet** – Ha a számítási csomópontok piactér HPC Pack 2012 R2 Virtuálisgép-lemezkép használatával a Microsoft Excel, a 30 napos próbaverzióját Microsoft Excel Professional Plus 2013 telepítve van. A próbaidőszak után meg kell adnia a Microsoft Office Excel továbbra is alkalmazásokat és szolgáltatásokat futtathatnak aktiválásához érvényes licenc. Lásd: [Excel-aktiválási](#excel-activation) című cikkben. 
+* **Magok kvóta** -szükség lehet tooincrease hello beállított kvótát mag, különösen akkor, ha több fürtcsomóponton multicore Virtuálisgép-méretek és telepít. Egy Azure gyors üzembe helyezés sablont használ, ha hello magok kvóta az erőforrás-kezelőben / Azure-régióban van. Ebben az esetben szükség lehet egy adott régióban tooincrease hello kvótát. Lásd: [Azure-előfizetésre vonatkozó korlátok, kvóták és megkötések](../../azure-subscription-service-limits.md). a kvóta tooincrease [nyissa meg az online támogatás ügyfélkérés](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) díjmentesen.
+* **A Microsoft Office-licencet** – Ha a számítási csomópontok piactér HPC Pack 2012 R2 Virtuálisgép-lemezkép használatával a Microsoft Excel, a 30 napos próbaverzióját Microsoft Excel Professional Plus 2013 telepítve van. Hello próbaidőszak után munkaterheléseknek tooprovide egy érvényes Microsoft Office licenc tooactivate Excel toocontinue toorun. Lásd: [Excel-aktiválási](#excel-activation) című cikkben. 
 
 ## <a name="step-1-set-up-an-hpc-pack-cluster-in-azure"></a>1. lépés Az Azure-ban egy HPC Pack fürt beállítása
-Megmutatjuk, két lehetőség közül választhat a HPC Pack 2012 R2-fürt beállításához: első, egy Azure gyors üzembe helyezés sablont és az Azure-portálon; és a második, az Azure PowerShell telepítési parancsfájlt használ.
+Hello HPC Pack 2012 R2-fürt két beállítások tooset megmutatjuk: első, egy sablon Azure gyors üzembe helyezés és hello Azure-portálon; és a második, az Azure PowerShell telepítési parancsfájlt használ.
 
 ### <a name="option-1-use-a-quickstart-template"></a>1. lehetőség. A következő gyorsindítási sablonon használata
-Egy Azure gyors üzembe helyezés sablon használatával gyorsan HPC Pack-fürt üzembe helyezése az Azure portálon. A sablon a portálon megnyitásakor egy egyszerű felhasználói felület, ahol a beállítások megadása a fürt kap. A lépések a következők. 
+Használja az Azure gyors üzembe helyezés sablon tooquickly HPC Pack-fürt üzembe helyezése a hello Azure-portálon. Hello sablon hello portál megnyitásakor egy egyszerű felhasználói felület, ahol hello-beállítások megadása a fürt kap. Az alábbiakban hello lépéseket. 
 
 > [!TIP]
-> Ha azt szeretné, egy [Azure piactér sablon](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn) , amely kifejezetten a Excel munkaterhelések hasonló fürt hoz létre. A lépések némileg eltér a következő.
+> Ha azt szeretné, egy [Azure piactér sablon](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn) , amely kifejezetten a Excel munkaterhelések hasonló fürt hoz létre. hello lépések némileg eltérő hello következő.
 > 
 > 
 
-1. Látogasson el a [sablonlap HPC-fürt létrehozása a Githubon](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster). Ha azt szeretné, tekintse át a sablon és a forráskódot.
-2. Kattintson a **az Azure telepítéséhez** a központi telepítés elindítása a sablon az Azure portálon.
+1. A Microsoft hello [sablonlap HPC-fürt létrehozása a Githubon](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster). Ha azt szeretné, tekintse át a hello sablon és hello forráskód adatait.
+2. Kattintson a **tooAzure telepítése** toostart a központi telepítés sablonnal hello hello Azure-portálon.
    
-   ![Az Azure-sablon üzembe helyezése][github]
-3. A portál lépések végrehajtásával adja meg a paramétereket a HPC-fürt sablon.
+   ![Sablon tooAzure telepítése][github]
+3. Hello portálon hajtsa végre az ezen lépések tooenter hello paraméterek hello HPC-fürt sablon.
    
-   a. Az a **paraméterek** lapon adja meg, vagy módosítsa a sablon paraméter értékét. (Kattintson a beállítások mellett lévő ikonra súgójában talál.) A következő képernyő mintaértékek láthatók. Ez a példa egy nevű fürtöt hoz létre *hpc01* a a *hpc.local* tartomány egy átjárócsomóponttal és 2 álló számítási csomópontokat. A számítási csomópontok HPC Pack VM-lemezkép, amely tartalmazza a Microsoft Excel készített.
+   a. A hello **paraméterek** lapon adja meg, vagy módosítsa hello sablon paraméter értékét. (Kattintson a hello ikon következő tooeach beállítás súgójában talál.) A következő képernyő hello mintaértékek láthatók. Ez a példa egy nevű fürtöt hoz létre *hpc01* a hello *hpc.local* tartomány egy átjárócsomóponttal és 2 álló számítási csomópontokat. hello számítási csomópontok HPC Pack VM-lemezkép, amely tartalmazza a Microsoft Excel készített.
    
    ![Adja meg a paraméterek][parameters-new-portal]
    
    > [!NOTE]
-   > A virtuális gép alapján automatikusan létrehozott átjárócsomópont a [legújabb Piactéri lemezképhez](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) HPC Pack 2012 R2 Windows Server 2012 R2 rendszeren. Jelenleg a kép HPC Pack 2012 R2 Update 3 alapul.
+   > virtuális gép automatikusan létrejön a hello hello átjárócsomópont [legújabb Piactéri lemezképhez](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) HPC Pack 2012 R2 Windows Server 2012 R2 rendszeren. Jelenleg hello kép HPC Pack 2012 R2 Update 3 alapul.
    > 
-   > A kijelölt számítási csomópont termékcsalád a legújabb lemezképből számítási csomópont virtuális gépek jönnek létre. Válassza ki a **ComputeNodeWithExcel** beállítás megadása a legújabb HPC Pack számítási csomópont kép, amely tartalmazza a Microsoft Excel Professional Plus 2013 próbaverzióját. Általános SOA munkamenetek vagy Excel UDF kiszervezésével fürt központi telepítése, válassza ki a **Átjárócsomópontján** (nélkül telepített Excel) lehetőséget.
+   > A számítási csomópont virtuális gépek jönnek létre a kiválasztott hello számítási csomópont termékcsalád hello legújabb lemezképről. Jelölje be hello **ComputeNodeWithExcel** hello legújabb HPC Pack számítási csomópont-kép próbaverziójáról a Microsoft Excel Professional Plus 2013 beállítást. az általános SOA munkamenetekhez, illetve az Excel UDF-ben történő kiszervezésével a toodeploy válasszon hello **Átjárócsomópontján** (nélkül telepített Excel) lehetőséget.
    > 
    > 
    
-   b. Válassza ki az előfizetést.
+   b. Válasszon hello előfizetést.
    
-   c. Hozzon létre például egy erőforráscsoportot a fürt *hpc01RG*.
+   c. Például a hello fürt erőforráscsoport létrehozása *hpc01RG*.
    
-   d. Válassza ki az erőforráscsoportot, például az USA középső RÉGIÓJA helyét.
+   d. Válasszon egy helyet hello erőforráscsoport, például az USA középső RÉGIÓJA.
    
-   e. Az a **jogi feltételeket** lapon, olvassa el a feltételeket. Ha elfogadja, kattintson a **beszerzési**. Ha elkészült, a beállítás a sablon értéke, kattintson a **létrehozása**.
-4. A telepítés befejezésekor (általában tart körülbelül 30 percig), a fürt tanúsítványfájl exportálása a fürt átjárócsomópontjából. Egy későbbi lépésben importálni a nyilvános tanúsítvány biztonságos HTTP-kötés a kiszolgálóoldali hitelesítése az ügyfélszámítógépen.
+   e. A hello **jogi feltételeket** lapján tekintse át a hello feltételeket. Ha elfogadja, kattintson a **beszerzési**. Ha elkészült, hello sablon hello beállításértékek, kattintson a **létrehozása**.
+4. Hello telepítési befejeződésekor (általában tart körülbelül 30 percig), hello fürt tanúsítványfájl exportálása hello fürt átjárócsomópontjából. Egy későbbi lépésben importálja ezt a nyilvános tanúsítványt hello tooprovide hello kiszolgálóoldali ügyfélszámítógépeket biztonságos HTTP-kötés.
    
-   a. Az Azure portálon, nyissa meg az irányítópultot, válassza ki az átjárócsomóponthoz, és kattintson a **Connect** csatlakozni a távoli asztal segítségével a lap tetején.
+   a. Nyissa meg toohello irányítópultot, válassza hello átjárócsomópont hello Azure-portálon, és **Connect** hello lap tooconnect távoli asztali kapcsolattal hello tetején.
    
-    <!-- ![Connect to the head node][connect] -->
+    <!-- ![Connect toohello head node][connect] -->
    
-   b. Standard eljárások segítségével a Tanúsítványkezelő az átjárócsomópont (az található a Cert: \LocalMachine\My) a titkos kulcs nélküli tanúsítvány exportálása. Ebben a példában exportálása *CN = hpc01.eastus.cloudapp.azure.com*.
+   b. Eljárásokkal szabványos Tanúsítványkezelő tooexport hello átjárócsomópont tanúsítványban (az található a Cert: \LocalMachine\My) hello titkos kulcs nélkül. Ebben a példában exportálása *CN = hpc01.eastus.cloudapp.azure.com*.
    
-   ![A tanúsítvány exportálása][cert]
+   ![Hello tanúsítvány exportálása][cert]
 
-### <a name="option-2-use-the-hpc-pack-iaas-deployment-script"></a>2. lehetőség. A HPC Pack IaaS telepítési parancsfájl használata
-A HPC Pack IaaS telepítési parancsfájl segítségével egy másik sokoldalú HPC Pack-fürt üzembe helyezése. A fürt létrehoz a klasszikus üzembe helyezési modellel, mivel a sablon az Azure Resource Manager telepítési modellt használ. A parancsfájl is kompatibilis Azure globális vagy Azure Kína szolgáltatásban előfizetés.
+### <a name="option-2-use-hello-hpc-pack-iaas-deployment-script"></a>2. lehetőség. Hello HPC Pack IaaS telepítési parancsfájl használata
+HPC Pack IaaS telepítési parancsfájl hello biztosít egy másik sokoldalú módon toodeploy egy HPC Pack fürthöz. A fürt létrehoz hello klasszikus üzembe helyezési modellel, mivel hello a sablon által hello Azure Resource Manager üzembe helyezési modellben. Hello parancsfájlt is kompatibilis Azure globális hello vagy Azure Kína szolgáltatás előfizetés.
 
 **További Előfeltételek**
 
 * **Az Azure PowerShell** - [telepítse és konfigurálja az Azure Powershellt](/powershell/azure/overview) (0.8.10 verzió vagy újabb) az ügyfélszámítógépen.
-* **HPC Pack IaaS telepítési parancsfájl** - töltse le és csomagolja ki a parancsfájlt a legújabb verzióját a [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). A verziószám a parancsfájl futtatásával `New-HPCIaaSCluster.ps1 –Version`. Ez a cikk verzió 4.5.0 vagy később, a parancsfájl alapján.
+* **HPC Pack IaaS telepítési parancsfájl** - töltse le és csomagolja ki a legújabb verziójának hello hello hello parancsfájlt [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). Verzióellenőrzés hello hello parancsfájl futtatásával `New-HPCIaaSCluster.ps1 –Version`. Ez a cikk verzióján 4.5.0 vagy későbbi hello parancsfájl alapul.
 
-**A konfigurációs fájl létrehozása**
+**Hello konfigurációs fájl létrehozása**
 
- A HPC Pack IaaS telepítési parancsfájl egy konfigurációs XML-fájl, amely az infrastruktúra a HPC-fürt bemenetként használja. Egy átjárócsomóponttal és 18 számítási csomópontokat, amely tartalmazza a Microsoft Excel számítási csomópont lemezkép alapján létre álló fürt központi telepítése, helyettesítse be az értékek környezetnek az alábbi minta konfigurációs fájlba. A konfigurációs fájl kapcsolatos további információkért tekintse meg a Manual.rtf a parancsfájl mappában és [HPC-fürt létrehozása a HPC Pack IaaS telepítési parancsfájl](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+ hello HPC Pack IaaS telepítési parancsfájl egy konfigurációs XML-fájl hello infrastruktúra hello HPC-fürt bemenetként használja. a fürt egy átjárócsomóponttal és 18 álló számítási csomópontjain hello számítási csomópont lemezkép, amely tartalmazza a Microsoft Excel alapján létre toodeploy értékek környezetnek a következő minta konfigurációs fájl hello helyettesítse. Hello konfigurációs fájllal kapcsolatos további információkért lásd: hello Manual.rtf fájlban hello parancsfájl és [HPC-fürt létrehozása hello HPC Pack IaaS telepítési parancsfájl](classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -139,23 +139,23 @@ A HPC Pack IaaS telepítési parancsfájl segítségével egy másik sokoldalú 
 </IaaSClusterConfig>
 ```
 
-**A konfigurációs fájl kapcsolatos megjegyzések**
+**Hello konfigurációs fájllal kapcsolatos megjegyzések**
 
-* A **VMName** , az átjárócsomópont **kell** lehet azonos a **szolgáltatásnév**, vagy SOA-feladatok nem indulnak el.
-* Győződjön meg arról, hogy a megadott **EnableWebPortal** így átjárócsomópontjához tanúsítvány jön létre, és exportálja.
-* A fájl egy konfigurációt követő PowerShell-parancsfájlt a központi csomóponton futó PostConfig.ps1 határozza meg. Az alábbi mintaparancsfájl konfigurálása az Azure storage kapcsolati karakterlánc, a számítási csomópont szerepkör eltávolítása az átjárócsomóponthoz, és az összes csomópont online elérését, amikor központilag telepítették őket. 
+* Hello **VMName** hello központi csomópont **kell** kell hello ugyanaz, mint a hello **szolgáltatásnév**, vagy SOA-feladatok sikertelenek toorun.
+* Győződjön meg arról, hogy a megadott **EnableWebPortal** , hogy hello átjárócsomópont tanúsítvány jön létre, és exportálja.
+* hello fájl konfiguráció utáni PowerShell-parancsfájl hello átjárócsomópont futó PostConfig.ps1 határozza meg. a következő mintaparancsfájl hello hello Azure tárolási kapcsolati karakterlánc konfigurálása, hello számítási csomópont szerepkör eltávolítása hello átjárócsomópont és összes csomópont online elérését, amikor központilag telepítették őket. 
 
 ```
-    # add the HPC Pack powershell cmdlets
+    # add hello HPC Pack powershell cmdlets
         Add-PSSnapin Microsoft.HPC
 
-    # set the Azure storage connection string for the cluster
+    # set hello Azure storage connection string for hello cluster
         Set-HpcClusterProperty -AzureStorageConnectionString 'DefaultEndpointsProtocol=https;AccountName=<yourstorageaccountname>;AccountKey=<yourstorageaccountkey>'
 
-    # remove the compute node role for head node to make sure the Excel workbook won’t run on head node
+    # remove hello compute node role for head node toomake sure hello Excel workbook won’t run on head node
         Get-HpcNode -GroupName HeadNodes | Set-HpcNodeState -State offline | Set-HpcNode -Role BrokerNode
 
-    # total number of nodes in the deployment including the head node and compute nodes, which should match the number specified in the XML configuration file
+    # total number of nodes in hello deployment including hello head node and compute nodes, which should match hello number specified in hello XML configuration file
         $TotalNumOfNodes = 19
 
         $ErrorActionPreference = 'SilentlyContinue'
@@ -173,48 +173,48 @@ A HPC Pack IaaS telepítési parancsfájl segítségével egy másik sokoldalú 
         }
 ```
 
-**A parancsfájl futtatása**
+**Hello parancsfájl futtatása**
 
-1. Nyissa meg rendszergazdaként a PowerShell-konzolon, az ügyfélszámítógépen.
-2. Módosítsa a könyvtárat a parancsfájl mappába (E:\IaaSClusterScript ebben a példában).
+1. Nyissa meg rendszergazdaként egy PowerShell-konzolban hello hello ügyfélszámítógépen.
+2. Directory toohello parancsfájl mappa módosítása (E:\IaaSClusterScript ebben a példában).
    
    ```
    cd E:\IaaSClusterScript
    ```
-3. A következő parancsot a HPC Pack fürt telepítéséhez. Ez a példa feltételezi, hogy a konfigurációs fájlban található E:\HPCDemoConfig.xml.
+3. toodeploy hello HPC Pack fürthöz, futtassa a következő parancs hello. Ez a példa feltételezi, hogy hello a konfigurációs fájl E:\HPCDemoConfig.xml található.
    
    ```
    .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
    ```
 
-A HPC Pack telepítési parancsfájlt futtatja egy kis ideig. A parancsprogram egyetlen művelet exportálni, és töltse le a fürt tanúsítványt, és mentse az ügyfélszámítógépen az aktuális felhasználó Dokumentumok mappájának-hoz. A parancsfájl egy a következőhöz hasonló üzenetet hoz létre. Egy következő lépésben importálja a tanúsítványt a megfelelő tanúsítványtárolójában.    
+hello HPC Pack telepítési parancsfájlt futtatja egy kis ideig. Egy dolog hello parancsprogram tooexport és hello fürt tanúsítvány letöltése és mentheti hello ügyfélszámítógépen hello aktuális felhasználó Dokumentumok mappájának. hello parancsfájl állít elő, egy üzenet hasonló toohello következő. A következő lépésben hello tanúsítványt hello megfelelő tanúsítványtárolójában kell importálnia.    
 
-    You have enabled REST API or web portal on HPC Pack head node. Please import the following certificate in the Trusted Root Certification Authorities certificate store on the computer where you are submitting job or accessing the HPC web portal:
+    You have enabled REST API or web portal on HPC Pack head node. Please import hello following certificate in hello Trusted Root Certification Authorities certificate store on hello computer where you are submitting job or accessing hello HPC web portal:
     C:\Users\hpcuser\Documents\HPCWebComponent_HPCExcelHN004_20150707162011.cer
 
 ## <a name="step-2-offload-excel-workbooks-and-run-udfs-from-an-on-premises-client"></a>2. lépés Excel-munkafüzetek kiszervezése és a felhasználó által megadott függvények futtatása egy helyszíni ügyfélről
 ### <a name="excel-activation"></a>Excel-aktiválás
-A termelési számítási feladatokhoz a ComputeNodeWithExcel Virtuálisgép-lemezkép használatakor meg kell adnia egy érvényes Microsoft Office licenckulcs aktiválásához Excel a számítási csomóponton. Ellenkező esetben Excel próbaverzióját 30 nap múlva lejár, és a COMException (0x800AC472) Excel-munkafüzetek futtatása meghiúsul. 
+A termelési számítási feladatokhoz hello ComputeNodeWithExcel Virtuálisgép-lemezkép használatakor szüksége tooprovide egy érvényes Microsoft Office licenc kulcs tooactivate Excel hello számítási csomóponton. Ellenkező esetben Excel hello próbaverzióját 30 nap múlva lejár, és hello COMException (0x800AC472) Excel-munkafüzetek futtatása meghiúsul. 
 
-Az értékelés időpontjához további 30 napra is állíthatnak alaphelyzetbe Excel: Jelentkezzen be az átjárócsomópont és clusrun `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe` összes Excel a számítási csomópontok HPC Cluster Manager keresztül. Legfeljebb kétszer is újra. Ezt követően meg kell adnia egy érvényes Office licenckulcs.
+Az értékelés időpontjához további 30 napra is állíthatnak alaphelyzetbe Excel: toohello átjárócsomópont és clusrun bejelentkezés `%ProgramFiles(x86)%\Microsoft Office\Office15\OSPPREARM.exe` összes Excel a számítási csomópontok HPC Cluster Manager keresztül. Legfeljebb kétszer is újra. Ezt követően meg kell adnia egy érvényes Office licenckulcs.
 
-Az Office Professional Plus 2013 a Virtuálisgép-lemezkép telepítve az általános mennyiségi licenc kulcsot (GVLK) mennyiségi kiadását. Kulcskezelő szolgáltatás (KMS) keresztül is aktiválhatja vagy Active Directory-alapú aktiválás (AD-BA), vagy a többször használható aktiválási kulcs (MAK). 
+hello Office Professional Plus 2013 telepítve van a Virtuálisgép-lemezkép hello mennyiségi kiadását az általános mennyiségi licenc kulcsot (GVLK). Kulcskezelő szolgáltatás (KMS) keresztül is aktiválhatja vagy Active Directory-alapú aktiválás (AD-BA), vagy a többször használható aktiválási kulcs (MAK). 
 
-    * Használja a KMS/AD-BA, meglévő KMS-kiszolgáló használata, vagy állítson be egy új Microsoft Office 2013 mennyiségi licenc csomag használatával. (Ha kívánja, a kiszolgáló beállítása a head csomóponton.) Ezután aktiválja a KMS-állomás kulcsát az interneten vagy telefonon keresztül. Majd clusrun `ospp.vbs` a KMS-kiszolgáló és a port és az összes Office aktiválása az Excel számítási csomópontjain. 
+    * toouse KMS/AD-BA, a meglévő KMS-kiszolgáló használata, vagy állítson be egy új hello Microsoft Office 2013 mennyiségi licenc csomag használatával. (Ha kívánja, hello kiszolgáló beállítása hello központi csomóponton.) Ezután aktiválja hello KMS-állomás kulcsát hello interneten keresztül vagy telefonon keresztül. Majd clusrun `ospp.vbs` tooset hello KMS-kiszolgáló és a portot, és Office aktiválja az összes hello Excel számítási csomóponton. 
 
-    * MAK-ot, első clusrun használandó `ospp.vbs` adja meg a kulcs, és az összes majd aktiválja az Excel számítási csomópontok az interneten vagy telefonon keresztül. 
+    * MAK-ot, első clusrun toouse `ospp.vbs` tooinput hello kulcs, és majd aktiválása az összes hello Excel számítási csomópontok hello interneten vagy telefonon keresztül. 
 
 > [!NOTE]
-> Ez a Virtuálisgép-lemezkép nem használható Office Professional Plus 2013 kereskedelmi termékkulcsokat. Ha van érvényes kulcsok és a telepítési adathordozó Office vagy az Excel kiadás kivételével az Office Professional Plus 2013 mennyiségi kiadását, használhatja őket helyette. Először távolítsa el a mennyiségi kiadását, és telepítse a verziót, hogy rendelkezik. Az újratelepített Excel számítási csomópont virtuális gép testreszabott egy telepítéseihez léptékű képként rögzíthetők.
+> Ez a Virtuálisgép-lemezkép nem használható Office Professional Plus 2013 kereskedelmi termékkulcsokat. Ha van érvényes kulcsok és a telepítési adathordozó Office vagy az Excel kiadás kivételével az Office Professional Plus 2013 mennyiségi kiadását, használhatja őket helyette. Először távolítsa el a mennyiségi kiadását, és telepítse, hogy rendelkezik hello verziót. hello Excel számítási csomópont rögzíthető, a testre szabott VM kép toouse léptékű központi telepítés újratelepítése.
 > 
 > 
 
 ### <a name="offload-excel-workbooks"></a>Excel-munkafüzetek kiszervezése
-Kövesse az alábbi lépéseket, hogy az Azure-ban a HPC Pack fürtön fut egy Excel-munkafüzet-kiszervezés. Ehhez az szükséges, az Excel 2010 vagy 2013 már telepítve van az ügyfélszámítógép kell rendelkeznie.
+Kövesse ezeket a lépéseket toooffload egy Excel-munkafüzet futtatása az Azure-ban hello HPC Pack fürtön. toodo, rendelkeznie kell az Excel 2010 vagy 2013 hello ügyfélszámítógépen már telepítve van.
 
-1. Használja az 1. lépésben lehetőségek HPC Pack-fürt üzembe helyezése a Excel számítási csomópont kép. Szerezze be a fürt tanúsítványfájlt (.cer) és a fürt felhasználónevet és jelszót.
-2. Az ügyfélszámítógépen a fürt tanúsítványt a Cert: \CurrentUser\Root importálni.
-3. Győződjön meg arról, hogy telepítve van a Excel. Hozzon létre egy Excel.exe.config fájlt az ügyfélszámítógépen Excel.exe megegyező mappában található a következő tartalommal. Ez a lépés biztosítja, hogy a HPC Pack 2012 R2 Excel COM beépülő modul sikeresen betöltődik.
+1. Használja az 1. lépés toodeploy egy HPC Pack fürt hello Excel hello-beállítások számítási csomópont kép. Szerezze be a hello fürt tanúsítványfájlt (.cer) és a fürt felhasználónevet és jelszót.
+2. Hello ügyfélszámítógépen hello fürt tanúsítványt a Cert: \CurrentUser\Root importálni.
+3. Győződjön meg arról, hogy telepítve van a Excel. Hozzon létre egy Excel.exe.config fájlt hello hello tartalmát a következő mappában, amelyben Excel.exe hello ügyfélszámítógépen. Ez a lépés biztosítja, hogy hello HPC Pack 2012 R2 Excel COM beépülő modul sikeresen betöltődik.
    
     ```
     <?xml version="1.0"?>
@@ -224,13 +224,13 @@ Kövesse az alábbi lépéseket, hogy az Azure-ban a HPC Pack fürtön fut egy E
         </startup>
     </configuration>
     ```
-4. Állítsa be az ügyfél a HPC Pack fürthöz feladatok küldéséhez. Egy elem letölteni a teljes [HPC Pack 2012 R2 Update 3 telepítési](http://www.microsoft.com/download/details.aspx?id=49922) és a HPC Pack ügyfél telepítéséhez. Azt is megteheti, töltse le és telepítse a [HPC Pack 2012 R2 Update 3 ügyfél segédprogramok](https://www.microsoft.com/download/details.aspx?id=49923) és a megfelelő Visual C++ 2010 terjeszthető változatának a számítógép ([x64](http://www.microsoft.com/download/details.aspx?id=14632), [x86](https://www.microsoft.com/download/details.aspx?id=5555) ).
+4. Hello ügyfél toosubmit feladatok toohello HPC Pack fürt beállítása. Egy elem toodownload hello teljes [HPC Pack 2012 R2 Update 3 telepítési](http://www.microsoft.com/download/details.aspx?id=49922) és hello HPC Pack ügyfél telepítéséhez. Azt is megteheti, töltse le és telepítse a hello [HPC Pack 2012 R2 Update 3 ügyfél segédprogramok](https://www.microsoft.com/download/details.aspx?id=49923) és a megfelelő Visual C++ 2010 újraterjeszthető csomag a számítógép hello ([x64](http://www.microsoft.com/download/details.aspx?id=14632), [x86](https://www.microsoft.com/download/details.aspx?id=5555)).
 5. A jelen példában használjuk ConvertiblePricing_Complete.xlsb nevű minta Excel-munkafüzet. Letöltheti a [Itt](https://www.microsoft.com/en-us/download/details.aspx?id=2939).
-6. A munkamappa D:\Excel\Run például az Excel-munkafüzet másolja.
-7. Nyissa meg az Excel-munkafüzet. A a **Develop** menüszalag, kattintson a **COM-bővítmények** és ellenőrizze, hogy a HPC Pack Excel COM-bővítmény sikeresen megtörtént.
+6. Hello Excel munkafüzet tooa munkamappa D:\Excel\Run például másolja.
+7. Nyissa meg a hello Excel-munkafüzet. A hello **Develop** menüszalag, kattintson a **COM-bővítmények** , és győződjön meg arról, hogy hello HPC Pack Excel COM-bővítmény sikeresen be van töltve.
    
    ![Excel-bővítmény HPC Pack][addin]
-8. A VBA makró Excel HPCControlMacros szerkesztése a megjegyzésként sorok módosításával, ahogy az az alábbi parancsfájlt. Helyettesítse be a környezetének megfelelő értékeket.
+8. Szerkesztés hello VBA makró Excel HPCControlMacros hello módosításával sorok megjegyzésként, ahogy az a következő parancsfájl hello. Helyettesítse be a környezetének megfelelő értékeket.
    
    ![HPC Pack Excel makró][macro]
    
@@ -250,43 +250,43 @@ Kövesse az alábbi lépéseket, hogy az Azure-ban a HPC Pack fürtön fut egy E
    'HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath
    HPCExcelClient.OpenSession headNode:=HPC_ClusterScheduler, remoteWorkbookPath:=HPCWorkbookPath, UserName:="hpc\azureuser", Password:="<YourPassword>"
    ```
-9. Másolja az Excel-munkafüzet egy feltöltési címtár, például D:\Excel\Upload. Ez a könyvtár a HPC_DependsFiles állandó a VBA makróban van megadva.
-10. A munkafüzet futtatásához a fürtön, az Azure-ban kattintson a **fürt** gomb a munkalapon.
+9. Hello Excel munkafüzet tooan feltöltés címtár D:\Excel\Upload például másolja. Ez a könyvtár hello HPC_DependsFiles állandó hello VBA makró van megadva.
+10. toorun hello munkafüzet hello fürtön, az Azure-ban kattintson hello **fürt** hello munkalapon gombra.
 
 ### <a name="run-excel-udfs"></a>Excel univerzális Lemezformátumokat futtatása
-Excel univerzális Lemezformátumokat futtatásához kövesse az előző lépések 1 – 3 állíthatja be az ügyfélszámítógépen. Excel univerzális Lemezformátumokat nincs szükség van a számítási csomópontok telepítve Excel-alkalmazás. Ezért amikor a fürt létrehozása számítási csomópontokat, megadhatja, normál számítási csomópont kép helyett a számítási csomópont rendszerképének Excel.
+Excel univerzális Lemezformátumokat toorun hajtsa végre az előző lépésekben hello 1 – 3 tooset hello ügyfélszámítógépet. Excel univerzális Lemezformátumokat toohave hello Excel alkalmazás telepítve van a számítási csomópontok nincs szükség. Amikor a fürt létrehozása számítási csomópontot, válassza a normál számítási csomópont lemezkép helyett hello számítási csomópont rendszerképének Excel.
 
 > [!NOTE]
-> Létrejön egy 34 karakteres korlátot, az Excel 2010 és 2013 fürt összekötő párbeszédpanel. Ez a párbeszédpanel segítségével adja meg a fürtöt, amely a felhasználó által megadott függvények futtatja. Ha a teljes fürt neve hosszabb (például hpcexcelhn01.southeastasia.cloudapp.azure.com), nem fér el a párbeszédpanel bezárásához. A megoldás is, hogy a gépre kiterjedő változó például *CCP_IAASHN* a hosszú fürtnév értékét. Ezután írja be a *CCP_IAASHN %* neveként a fürt átjárócsomópontjához párbeszédpanel. 
+> Létrejön egy 34 karakteres korlátot, az Excel 2010 hello és 2013 fürt összekötő párbeszédpanel megnyitásához. A párbeszédpanel bezárásához toospecify hello futtató fürtöt hello felhasználó által megadott függvények használhatja. Ha hosszabb hello teljes fürt neve (például hpcexcelhn01.southeastasia.cloudapp.azure.com), nem fér el hello párbeszédpanel. hello megoldás, tooset például gépre kiterjedő változó *CCP_IAASHN* hello hosszú fürtnév hello értékű. Ezután írja be a *CCP_IAASHN %* hello párbeszédpanelen hello fürt átjárócsomópontjához neveként. 
 > 
 > 
 
-A fürt sikeres telepítése után folytassa a következő lépéseket egy beépített minta futtatásához Excel UDF. A testre szabott Excel univerzális Lemezformátumokat tapasztalja [erőforrások](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) a XLL-EK építsenek, és telepítheti őket az IaaS-fürtön.
+Hello fürt sikeres telepítése után folytassa a következő lépéseket toorun hello minta beépített Excel UDF. A testre szabott Excel univerzális Lemezformátumokat tapasztalja [erőforrások](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) toobuild hello XLL-EK, és telepítheti azokat a hello IaaS-fürtön.
 
-1. Nyisson meg egy új Excel-munkafüzet. Az a **Develop** menüszalag, kattintson a **bővítmények**. Majd kattintson a párbeszédpanelen **Tallózás**, keresse meg a %CCP_HOME%Bin\XLL32 mappát, és válassza ki a minta ClusterUDF32.xll. Ha a ClusterUDF32 nem létezik az ügyfélszámítógépen, másolja az átjárócsomópont %CCP_HOME%Bin\XLL32 mappájából.
+1. Nyisson meg egy új Excel-munkafüzet. A hello **Develop** menüszalag, kattintson a **bővítmények**. A hello párbeszédpanelen kattintson **Tallózás**toohello %CCP_HOME%Bin\XLL32 mappa keresse meg és válassza ki a hello minta ClusterUDF32.xll. Ha hello ClusterUDF32 nem létezik hello ügyfélszámítógépen, másolásához hello átjárócsomópont hello %CCP_HOME%Bin\XLL32 mappából.
    
-   ![Válassza ki az UDF-ben][udf]
-2. Kattintson a **fájl** > **beállítások** > **speciális**. A **képletek**, ellenőrizze **engedélyezése a felhasználó által definiált XLL függvények futtatásához a számítási fürt**. Kattintson a **beállítások** és adja meg a teljes fürt nevét a **fürt átjárócsomópontjához neve**. (Részben ismertetett beállításértékeket korábban a beviteli mezőbe korlátozódik 34 karakter hosszúságú lehet, ezért előfordulhat, hogy nem felelnek meg egy hosszú neve. Használhatja a gépre kiterjedő változó nevét egy hosszú fürtnév.)
+   ![Válassza ki a hello UDF-ben][udf]
+2. Kattintson a **fájl** > **beállítások** > **speciális**. A **képletek**, ellenőrizze **engedélyezése a felhasználó által definiált XLL funkciók toorun a számítási fürt**. Kattintson a **beállítások** , és írja be a teljes fürt neve hello a **fürt átjárócsomópontjához neve**. (Részben ismertetett beállításértékeket korábban a beviteli mezőbe az korlátozott too34 karakterből állhat, így előfordulhat, hogy nem felelnek meg egy hosszú neve. Használhatja a gépre kiterjedő változó nevét egy hosszú fürtnév.)
    
-   ![Az UDF konfigurálása][options]
-3. Az UDF számítási futtatása a fürtön, kattintson a cellára, amelynek értéke =XllGetComputerNameC(), és nyomja le az ENTER billentyűt. A függvény egyszerűen lekéri a számítási csomópont, amelyen fut az UDF nevét. Az első alkalommal történő futtatásakor a hitelesítő adatok párbeszédpanel megadását kéri a felhasználónevet és jelszót csatlakozni az IaaS-fürthöz.
+   ![Az UDF hello konfigurálása][options]
+3. toorun hello UDF számítási fürtön hello, hello cellába, amelynek értéke =XllGetComputerNameC() kattintson, és nyomja le az ENTER billentyűt. hello függvény egyszerűen hello számítási csomópont, mely hello UDF fut. hello nevét kéri le. A hello először futtatja a hitelesítő adatok párbeszédpanel hello felhasználónév és jelszó tooconnect toohello IaaS fürt megadását kéri.
    
    ![Futtassa az UDF-ben][run]
    
-   Ha sok cellát kiszámításához, nyomja le az Alt-Shift-Ctrl + F9 a számítás futniuk valamennyi cellájában.
+   Ha sok cellát toocalculate, nyomja le az Alt-Shift-Ctrl + F9 toorun hello számítás összes cellákon.
 
 ## <a name="step-3-run-a-soa-workload-from-an-on-premises-client"></a>3. lépés A SOA munkaterhelések futtatásához egy helyszíni ügyfélről
-Általános SOA-alkalmazások futtatása a HPC Pack IaaS fürtön, először a módszerek valamelyikével 1. lépésben a fürt telepítéséhez. Adja meg, általános számítási csomópont kép ebben az esetben, mert az Excel nem szükséges a számítási csomópontok. Ezután kövesse az alábbi lépéseket.
+általános SOA alkalmazások toorun hello HPC Pack IaaS fürtön, először hello módszerek valamelyikével 1. lépés toodeploy hello fürtben. Adjon meg általános számítási csomópont lemezképet ebben az esetben, mert Excel hello számítási csomóponton nem szükséges. Ezután kövesse az alábbi lépéseket.
 
-1. A fürt tanúsítvány beolvasása, után importálja a Cert: \CurrentUser\Root az ügyfélszámítógépen.
-2. Telepítse a [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) és [HPC Pack 2012 R2 Update 3 ügyfél segédprogramok](https://www.microsoft.com/download/details.aspx?id=49923). Ezek az eszközök lehetővé teszik fejlesztéséhez és SOA ügyfélalkalmazások futtatását.
-3. Töltse le a HelloWorldR2 [példakód](https://www.microsoft.com/download/details.aspx?id=41633). Nyissa meg a HelloWorldR2.sln a Visual Studio 2010 vagy a 2012. (Ez a minta nincs jelenleg kompatibilis a Visual Studio legújabb verziói.)
-4. Először hozza létre a EchoService projekt. Ugyanúgy telepít a helyi fürthöz, majd telepítse a szolgáltatást az IaaS-fürt. Részletes útmutató: a HelloWordR2 Readme.doc. Módosítsa, majd létre a HellWorldR2 és más projektek a következő szakaszban leírtak a SOA ügyfél Azure IaaS fürtökön futó alkalmazások létrehozásához.
+1. Hello fürt tanúsítvány beolvasása, után importálja a Cert: \CurrentUser\Root hello ügyfélszámítógépen.
+2. Telepítse a hello [HPC Pack 2012 R2 Update 3 SDK](http://www.microsoft.com/download/details.aspx?id=49921) és [HPC Pack 2012 R2 Update 3 ügyfél segédprogramok](https://www.microsoft.com/download/details.aspx?id=49923). Ezek az eszközök lehetővé teszik a toodevelop és SOA ügyfélalkalmazások futtatását.
+3. Töltse le a hello HelloWorldR2 [példakód](https://www.microsoft.com/download/details.aspx?id=41633). Nyissa meg a Visual Studio 2010 HelloWorldR2.sln hello vagy 2012. (Ez a minta nincs jelenleg kompatibilis a Visual Studio legújabb verziói.)
+4. Először a hello EchoService projekt felépítéséhez. Ezt követően a hello szolgáltatás toohello IaaS-fürt központi telepítése a hello ugyanúgy telepítheti tooan a helyi fürthöz. Részletes útmutató: a HelloWordR2 Readme.doc hello. Módosíthatja, és hello HellWorldR2 és más projektek hozhat létre a következő szakasz toogenerate hello SOA ügyfélalkalmazások Azure IaaS fürtökön futó hello leírtak szerint.
 
 ### <a name="use-http-binding-with-azure-storage-queue"></a>Http-kötés használata az Azure storage üzenetsorába
-Egy Azure storage üzenetsorába használandó Http-kötés, módosításokat néhány példakód.
+egy Azure storage üzenetsorába toouse Http kötés módosításokat néhány toohello mintakód.
 
-* Frissítse a fürt nevét.
+* Frissítse a hello fürt nevét.
   
     ```
   // Before
@@ -296,13 +296,13 @@ Egy Azure storage üzenetsorába használandó Http-kötés, módosításokat n�
   or
   const string headnode = "hpc01.cloudapp.net";
   ```
-* Szükség esetén használja az alapértelmezett TransportScheme SessionStartInfo, vagy explicit módon állítsa be azt a Http.
+* Másik lehetőségként SessionStartInfo hello alapértelmezett TransportScheme használja, vagy explicit módon állítsa be tooHttp.
 
 ```
     info.TransportScheme = TransportScheme.Http;
 ```
 
-* A BrokerClient alapértelmezett kötés használja.
+* Hello BrokerClient alapértelmezett kötés használja.
   
     ```
   // Before
@@ -311,35 +311,35 @@ Egy Azure storage üzenetsorába használandó Http-kötés, módosításokat n�
   using (BrokerClient<IService1> client = new BrokerClient<IService1>(session))
   ```
   
-    Vagy állítsa be explicit módon használja a basicHttpBinding.
+    Vagy állítsa be explicit módon használja a hello basicHttpBinding.
   
     ```
   BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.TransportWithMessageCredential);
   binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
   ```
-* Beállíthatja a UseAzureQueue jelző SessionStartInfo igaz értékű. Ha nincs megadva, akkor úgy lesz beállítva, amikor a fürt neve van Azure-tartomány utótag, és a TransportScheme Http alapértelmezés szerint true.
+* Beállíthatja hello UseAzureQueue jelző tootrue is SessionStartInfo. Ha nincs beállítva, lesz beállítva tootrue alapértelmezés szerint amikor hello fürtnév Azure tartományutótagok és hello TransportScheme Http.
   
     ```
     info.UseAzureQueue = true;
   ```
 
 ### <a name="use-http-binding-without-azure-storage-queue"></a>Http-kötés nélkül az Azure storage-várólista használata
-Explicit módon használja a Http-kötés nélkül az Azure storage üzenetsorába UseAzureQueue jelzőt a SessionStartInfo a FALSE értékre kell beállítani.
+toouse Http-kötés egy Azure storage várólista, explicit módon beállítva hello UseAzureQueue jelző toofalse a hello SessionStartInfo nélkül.
 
 ```
     info.UseAzureQueue = false;
 ```
 
 ### <a name="use-nettcp-binding"></a>NetTcp kötés használata
-NetTcp kötés használatához a konfigurációs hasonlít a csatlakozás a helyi fürthöz. Nyissa meg az átjárócsomóponthoz VM néhány végpontja van szüksége. Ha a HPC Pack IaaS telepítési parancsfájlt a fürt létrehozásához használt, például a végpontok Azure-portálon az alábbiak szerint állíthatja.
+toouse NetTcp hello konfigurálása még kötés, hasonló tooconnecting tooan a helyi fürthöz. Tooopen kell néhány hello átjárócsomópont virtuális gép végpontja. Ha hello HPC Pack IaaS telepítési parancsfájl toocreate hello fürt használt, például set hello végpontok hello Azure-portálon az alábbiak szerint.
 
-1. Állítsa le a virtuális Gépet.
-2. Adja hozzá a TCP-portok 9090, 9087, 9091, a munkamenet 9094 Replikaszervező, munkavégző és adatszolgáltatások, illetve Replikaszervező
+1. Állítsa le a virtuális gép hello.
+2. Adja hozzá a hello TCP-portok 9090, 9087, 9091, a munkamenet, hello 9094 Replikaszervező, munkavégző és adatszolgáltatások, illetve Replikaszervező
    
     ![Végpontok konfigurálása][endpoint-new-portal]
-3. Indítsa el a virtuális Gépet.
+3. Indítsa el a virtuális gép hello.
 
-A SOA ügyfélalkalmazás nem kell módosítani a módosítása a központi nevét az IaaS-fürt teljes név kivételével.
+hello SOA ügyfélalkalmazás nem kell módosítani a módosítása hello központi toohello IaaS fürt teljes név kivételével.
 
 ## <a name="next-steps"></a>Következő lépések
 * Lásd: [ezeket az erőforrásokat](http://social.technet.microsoft.com/wiki/contents/articles/1198.windows-hpc-and-microsoft-excel-resources-for-building-cluster-ready-workbooks.aspx) HPC Pack Excel munkaterhelések futtatásával kapcsolatos további információt.

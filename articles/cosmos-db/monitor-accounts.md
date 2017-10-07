@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB kérések és a tárolási figyelése |} Microsoft Docs"
-description: "Útmutató a teljesítménymutatók, például a kérelmek és a kiszolgáló hibát, és a szoftverhasználati mérési adatok, például a tároló fogyasztása Azure Cosmos DB fiókja."
+title: "Azure Cosmos DB aaaMonitor kérések és a tárolási |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomonitor az Azure Cosmos DB fiókot a teljesítménymutatók, például a kérelmek és a kiszolgáló hibát, és a szoftverhasználati mérési adatok, például a tároló fogyasztása."
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -14,113 +14,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: mimig
-ms.openlocfilehash: 0ca652d31d6c50124f87916b4486d8279075f106
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aea029d10717236a573a080dab9d06d87f97f318
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-azure-cosmos-db-requests-usage-and-storage"></a>Azure Cosmos DB kérelmek, a használat és a tárolási figyelése
-A Azure Cosmos DB-fiókok a figyelheti a [Azure-portálon](https://portal.azure.com/). Minden Azure Cosmos DB fiók mindkét teljesítménymutatók, például a kérelmek és kiszolgáló hibákat, és a szoftverhasználati mérési adatok, például a tárhelyhasználatot, érhetők el.
+Figyelheti a hello Azure Cosmos DB fiókjának [Azure-portálon](https://portal.azure.com/). Minden Azure Cosmos DB fiók mindkét teljesítménymutatók, például a kérelmek és kiszolgáló hibákat, és a szoftverhasználati mérési adatok, például a tárhelyhasználatot, érhetők el.
 
-Beépített fiók paneljén az új mérőszámok panelen, vagy az Azure-figyelő felül kell vizsgálni.
+Metrikák hello-fiók panelen hello új mérőszámok panelen, vagy az Azure-figyelő tekinthető meg.
 
-## <a name="view-performance-metrics-on-the-metrics-blade"></a>A metrikák panelen nézet metrikák
-1. Az a [Azure-portálon](https://portal.azure.com/), kattintson a **több szolgáltatások**, görgessen **adatbázisok**, kattintson a **Azure Cosmos DB**, és kattintson a nevére, az Azure-beli Cosmos DB-fiók, amelynek szeretné teljesítménymutatók megtekintése.
-2. Az erőforrás menüjében a **figyelés**, kattintson a **metrikák**.
+## <a name="view-performance-metrics-on-hello-metrics-blade"></a>Nézet teljesítménymutatók hello metrikák panelen
+1. A hello [Azure-portálon](https://portal.azure.com/), kattintson **több szolgáltatások**, görgessen túl**adatbázisok**, kattintson a **Azure Cosmos DB**, és kattintson a hello hello neve Azure Cosmos DB-fiók, amelynek szeretné tooview teljesítménymutatók.
+2. Hello erőforrás menü alatti **figyelés**, kattintson a **metrikák**.
 
-Ekkor megnyílik a metrikák panel, és kiválaszthatja a gyűjteményt, amelyben át. Tekintse át a rendelkezésre állási, a kérelmeket, az átviteli sebesség és a tárterület metrikákat, és hasonlítsa össze az Azure Cosmos DB SLA-k.
+hello metrikák panel nyílik meg, és kijelölhet hello gyűjtemény tooreview. Tekintse át a rendelkezésre állási, a kérelmeket, az átviteli sebesség és a tárterület metrikákat, és hasonlítsa össze azokat toohello Azure Cosmos DB SLA-k.
 
 ## <a name="view-performance-metrics-by-using-azure-monitoring"></a>Nézet teljesítménymutatók figyelése Azure használatával
-1. Az a [Azure-portálon](https://portal.azure.com/), kattintson a **figyelő** az Ugrósávon a.
-2. Az erőforrás menüjében kattintson **metrikák**.
-3. Az a **figyelő - metrikák** ablakban, a a **esource csoport** legördülő menüben válassza ki az erőforráscsoportot, hogy a figyelni kívánt Azure Cosmos DB fiókhoz tartozó. 
-4. Az a **erőforrás** legördülő menüben válassza az adatbázis fiókját a figyelheti.
-5. A közül **elérhető**, kiválaszthatja a megjelenítendő metrikákat. Használja a CTRL gombra, jelölje ki. 
+1. A hello [Azure-portálon](https://portal.azure.com/), kattintson a **figyelő** a hello Ugrósávon.
+2. A hello erőforrás kattintson **metrikák**.
+3. A hello **figyelő - metrikák** ablak hello **esource csoport** legördülő menüben válassza hello erőforráscsoportot, hogy szeretné-e toomonitor hello Azure Cosmos DB fiókhoz társított. 
+4. A hello **erőforrás** legördülő menüben válassza hello adatbázis fiók toomonitor.
+5. Hello listájában **elérhető**, válassza ki a hello metrikák toodisplay. Hello CTRL gomb toomulti választás használata. 
 
-    A metrikák jelennek meg a **tőzsdei** ablak. 
+    A metrikák jelennek meg a hello **tőzsdei** ablak. 
 
-## <a name="view-performance-metrics-on-the-account-blade"></a>A fiók panelen nézet metrikák
-1. Az a [Azure-portálon](https://portal.azure.com/), kattintson a **több szolgáltatások**, görgessen **adatbázisok**, kattintson a **Azure Cosmos DB**, és kattintson a nevére, az Azure-beli Cosmos DB-fiók, amelynek szeretné teljesítménymutatók megtekintése.
-2. A **figyelés** fókuszban alapértelmezés szerint megjeleníti a következő csempék találhatók:
+## <a name="view-performance-metrics-on-hello-account-blade"></a>Nézet teljesítménymutatók hello fiók panelen
+1. A hello [Azure-portálon](https://portal.azure.com/), kattintson **több szolgáltatások**, görgessen túl**adatbázisok**, kattintson a **Azure Cosmos DB**, és kattintson a hello hello neve Azure Cosmos DB-fiók, amelynek szeretné tooview teljesítménymutatók.
+2. Hello **figyelés** fókuszban csempék alapértelmezés szerint a következő hello jeleníti meg:
    
-   * Az aktuális napra kérelmek teljes száma.
+   * Az aktuális nap hello kérelmek teljes száma.
    * A tárolási használt.
    
-   Ha a táblázat **nem érhetők el adatok** , és feltételezi, hogy az adatbázis nincs adat, tekintse meg a [hibaelhárítás](#troubleshooting) szakasz.
+   Ha a táblázat **nem érhetők el adatok** , és feltételezi, hogy az adatbázis nincs adat, lásd: hello [hibaelhárítás](#troubleshooting) szakasz.
    
-   ![A figyelés fókuszt, amely megjeleníti azokat a kérelmeket, és a tárhelyhasználatot képernyőfelvétele](./media/monitor-accounts/documentdb-total-requests-and-usage.png)
-3. Kattintson a a **kérelmek** vagy **memóriahasználati kvóta** csempe megnyílik egy részletes **metrika** panelen.
-4. A **metrika** panel részleteit jeleníti meg, akkor a kiválasztott metrikákat.  A panel tetején egy diagramon ábrázolt óránkénti kérelmek, továbbá alatti táblázat összesítő értékeket a szabályozottan halmozott és teljes kéréseket mutatja be.  A metrika panel is megjelennek a riasztások, amelyhez definiálva van, az aktuális metrika panelen megjelenő metrikáinak szűrt (ezzel a módszerrel több riasztást, ha csak akkor látható itt jelenik meg a megfelelő megfelelően).   
+   ![Képernyőfelvétel a hello figyelés fókuszban megjelenítheti az hello kérelmek és hello tárhely kihasználtsága](./media/monitor-accounts/documentdb-total-requests-and-usage.png)
+3. Kattintson a hello **kérelmek** vagy **memóriahasználati kvóta** csempe megnyílik egy részletes **metrika** panelen.
+4. Hello **metrika** panel részleteit jeleníti meg, hogy kijelölt hello metrikák.  Hello hello panel tetején egy grafikonon kérelmek ábrázolt óránként, és alatti táblázat mutatja be a szabályozottan halmozott és teljes kérelmek összesítő értékeket.  hello metrika panel is listáját jeleníti meg hello riasztásokat, amelyek hello aktuális metrika panelen megjelenő definiált, szűrt toohello metrikák (ezzel a módszerrel több riasztást, ha csak akkor látható hello itt jelenik meg a megfelelő megfelelően).   
    
-   ![Képernyőkép a metrika panelt, amely tartalmazza a szabályozott kérelmek](./media/monitor-accounts/documentdb-metric-blade.png)
+   ![Képernyőfelvétel a hello metrika panel, amely tartalmazza a szabályozott kérelmek](./media/monitor-accounts/documentdb-metric-blade.png)
 
-## <a name="customize-performance-metric-views-in-the-portal"></a>Metrika teljesítménynézetet a portál testreszabása
-1. Az adott diagramon megjelenő metrikák testre szabásához kattintson a nyissa meg a diagramot a **metrika** panelt, és kattintson **diagram szerkesztése**.  
-   ![Képernyőfelvétel a metrika panel vezérlőelemek, a kijelölt diagram szerkesztése](./media/monitor-accounts/madocdb3.png)
-2. Az a **diagram szerkesztése lehetőséget** panelen megjelenítő diagram, valamint az időtartományt a mérőszámok módosításához lehetőség áll rendelkezésre.  
-   ![A diagram szerkesztése lehetőséget panel képernyőfelvétele](./media/monitor-accounts/madocdb4.png)
-3. Megjelenik a részében a mérőszámok módosításához egyszerűen válassza vagy törölje a elérhetővé teljesítménymutatók, és kattintson **OK** a panel alján.  
-4. Az időtartományt módosításához válasszon egy másik tartományt (például **egyéni**), és kattintson a **OK** a panel alján.  
+## <a name="customize-performance-metric-views-in-hello-portal"></a>Metrika teljesítménynézetet hello portál testreszabása
+1. Megjeleníti egy adott diagramban toocustomize hello metrikák kattintson hello diagram tooopen legyen hello **metrika** panelt, és kattintson **diagram szerkesztése**.  
+   ![Képernyőfelvétel a hello metrika panel vezérlők, a kijelölt diagram szerkesztése](./media/monitor-accounts/madocdb3.png)
+2. A hello **diagram szerkesztése lehetőséget** panelen nincsenek beállítások toomodify hello metrikák megjelenítő hello diagram, valamint az időtartományt.  
+   ![Képernyőfelvétel a hello diagram szerkesztése lehetőséget panel](./media/monitor-accounts/madocdb4.png)
+3. toochange hello metrikák megjelenik hello részében egyszerűen válassza vagy törölje a hello elérhetővé teljesítménymutatók, és kattintson **OK** hello hello panel alsó részén.  
+4. toochange hello időtartománynak, válasszon egy másik tartományt (például **egyéni**), és kattintson a **OK** hello hello panel alsó részén.  
    
-   ![A diagram szerkesztése lehetőséget panel egy egyéni időtartományt bevitele időtartomány részét képernyőfelvétele](./media/monitor-accounts/madocdb5.png)
+   ![Képernyőfelvétel a hello időtartomány részét hello diagram szerkesztése lehetőséget panel ábrázoló hogyan tooenter egyéni időtartomány](./media/monitor-accounts/madocdb5.png)
 
-## <a name="create-side-by-side-charts-in-the-portal"></a>Egymás melletti diagramok létrehozása a portálon
-Az Azure portálon hozhat létre metrika diagramok egymás mellett.  
+## <a name="create-side-by-side-charts-in-hello-portal"></a>Egymás melletti diagramokat hello portálon
+hello Azure portál lehetővé teszi a toocreate párhuzamos metrika diagramokat.  
 
-1. Első lépésként kattintson a jobb gombbal a diagramon, másolja, majd válassza ki a kívánt **Testreszabás**.
+1. Először, kattintson a jobb gombbal a hello diagramon toocopy és jelöljük ki **Testreszabás**.
    
-   ![Képernyőfelvétel a kérelmek teljes száma a diagram a Testreszabás lehetőséggel kiemelve](./media/monitor-accounts/madocdb6.png)
-2. Kattintson a **Klónozás** másolja a része, és kattintson a menü **végzett Testreszabás**.
+   ![Képernyőfelvétel a hello kérelmek teljes száma a diagram hello testreszabás lehetőséggel kiemelve](./media/monitor-accounts/madocdb6.png)
+2. Kattintson a **Klónozás** a hello menü toocopy hello része, és kattintson a **végzett Testreszabás**.
    
-   ![A kérelmek teljes száma a diagramot a klón létrehozása, és testre szabása beállítások a kijelölt történik képernyő](./media/monitor-accounts/madocdb7.png)  
+   ![Képernyő hello kérelmek teljes száma a diagramot hello Klónozás létrehozása, és testre szabása beállítások a kijelölt történik](./media/monitor-accounts/madocdb7.png)  
 
-Előfordulhat, hogy most kezeljük Ez a kijelző más metrika részét képező, a metrikák és a kívánt időtartományt, megjelenik a részében testreszabása.  Ezzel egy időben tekintheti meg két különböző metrikák diagram-mellé.  
-    ![Képernyőfelvétel a kérelmek teljes száma a diagram és az új összes kérelmet az elmúlt órában diagram](./media/monitor-accounts/madocdb8.png)  
+Előfordulhat, hogy most kezeljük Ez a kijelző más metrika részét képező, hello hello részében megjelenő metrikák és a kívánt időtartományt testreszabása.  Ezzel az eljárással megtekintheti két különböző metrikák diagram-mellé, hello ugyanannyi időt vesz igénybe.  
+    ![Képernyőfelvétel a hello kérelmek teljes száma a diagram és az új kérelmek teljes száma a diagram óránként túlra hello](./media/monitor-accounts/madocdb8.png)  
 
-## <a name="set-up-alerts-in-the-portal"></a>A portál értesítések beállítása
-1. Az a [Azure-portálon](https://portal.azure.com/), kattintson a **több szolgáltatások**, kattintson a **Azure Cosmos DB**, és kattintson a nevére, amelynek szeretné telepítő teljesítmény Azure Cosmos DB fiók metrika riasztásokat.
-2. Az erőforrás menüjében kattintson **riasztási szabályok** riasztási szabályok panel megnyitásához.  
-   ![Képernyőfelvétel a riasztás szabályok kijelölve](./media/monitor-accounts/madocdb10.5.png)
-3. Az a **riasztási szabályok** panelen kattintson a **riasztás hozzáadása**.  
-   ![Képernyőfelvétel a riasztási szabályok panelről, a riasztás hozzáadása gomb](./media/monitor-accounts/madocdb11.png)
-4. Az a **riasztási szabály felvétele** panelen adja meg:
+## <a name="set-up-alerts-in-hello-portal"></a>Hello portálon riasztások beállítása
+1. A hello [Azure-portálon](https://portal.azure.com/), kattintson a **több szolgáltatások**, kattintson **Azure Cosmos DB**, és kattintson a hello Azure Cosmos DB fiók, amelynek szeretné toosetup hello neve metrika teljesítményriasztások.
+2. A hello erőforrás kattintson **riasztási szabályok** tooopen hello riasztási szabályok panelen.  
+   ![Képernyőfelvétel a hello riasztás szabályok kijelölve](./media/monitor-accounts/madocdb10.5.png)
+3. A hello **riasztási szabályok** panelen kattintson a **riasztás hozzáadása**.  
+   ![Képernyőfelvétel a hello riasztási szabályok panelről, hello riasztási hozzáadása gomb](./media/monitor-accounts/madocdb11.png)
+4. A hello **riasztási szabály felvétele** panelen adja meg:
    
-   * A riasztási szabályt hoz létre a neve.
-   * Az Új riasztási szabály leírását.
-   * A riasztási szabály a metrikát.
-   * A feltétel küszöbérték és időszak, amelyek meghatározzák, ha a riasztás akkor aktiválódik. Például egy kiszolgáló hibák száma nagyobb, mint 5 az elmúlt 15 perc.
-   * Hogy a szolgáltatás-rendszergazda és coadministrators rendszer e-mailben a riasztás aktiválódásakor.
+   * hello neve hello riasztási szabályt hoz létre.
+   * Hello Új riasztási szabály leírását.
+   * riasztási szabály hello hello metrikát.
+   * hello feltétel küszöbérték és időszak, amelyek meghatározzák, amikor a hello riasztás akkor aktiválódik. Például a kiszolgáló hibája száma nagyobb, mint 5 hello elmúlt 15 perc alatt.
+   * E hello szolgáltatás-rendszergazda és coadministrators rendszer e-mailben hello riasztás aktiválódásakor.
    * További e-mail címeket a riasztási értesítésekhez.  
-     ![Képernyőfelvétel a hozzáadása egy riasztási szabály panel](./media/monitor-accounts/madocdb12.png)
+     ![Képernyőfelvétel a hello hozzáadása egy riasztási szabály panel](./media/monitor-accounts/madocdb12.png)
 
 ## <a name="monitor-azure-cosmos-db-programatically"></a>Azure Cosmos DB programozottan figyelése
-A fiók szintű metrikák elérhető a portálon, például a fiók tárolási használati és a végösszeg kérelmeket, a DocumentDB API-k segítségével nem érhetők el. Használati adatok, a gyűjtemény szintjén azonban kérheti le a DocumentDB API-k használatával. Gyűjtemény szolgáltatásiszint-adatok beolvasása, tegye a következőket:
+hello fiók szintű metrikák hello portálon elérhető, például a fiók tárolási használati és a kérelmek teljes száma, nem hello DocumentDB API-k keresztül érhető el. Használati adatok hello gyűjtemény szintjén azonban hello DocumentDB API-k használatával kérheti le. tooretrieve szintű gyűjteményadatokat, hello a következő:
 
-* A REST API-t használandó [végezze el a gyűjtemény egy GET](https://msdn.microsoft.com/library/mt489073.aspx). A kvóta- és használati adatokat a gyűjtemény eredmény abban az esetben az x-ms-erőforráskvótát és az x-ms-erőforrás-használat fejlécek, a válaszban.
-* A .NET SDK használatához a [DocumentClient.ReadDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.readdocumentcollectionasync.aspx) metódus, amely adja vissza egy [ResourceResponse](https://msdn.microsoft.com/library/dn799209.aspx) például tartalmazó használati tulajdonság  **CollectionSizeUsage**, **DatabaseUsage**, **DocumentUsage**, stb.
+* toouse hello REST API-t [hajtsa végre egy GET hello gyűjtemény](https://msdn.microsoft.com/library/mt489073.aspx). hello kvóta és használati információ hello gyűjtemény hello x-ms-erőforráskvótát és az x-ms-erőforrás-használat fejlécek hello válaszul vissza.
+* toouse hello .NET SDK használata hello [DocumentClient.ReadDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.readdocumentcollectionasync.aspx) metódus, amely adja vissza egy [ResourceResponse](https://msdn.microsoft.com/library/dn799209.aspx) például tartalmazó használati tulajdonság  **CollectionSizeUsage**, **DatabaseUsage**, **DocumentUsage**, stb.
 
-További metrikák elérésére, a [Azure figyelő SDK](https://www.nuget.org/packages/Microsoft.Azure.Insights). Elérhető metrikai meghatározásainak hívásával kérhető:
+További metrikák tooaccess, használja a hello [Azure figyelő SDK](https://www.nuget.org/packages/Microsoft.Azure.Insights). Elérhető metrikai meghatározásainak hívásával kérhető:
 
     https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metricDefinitions?api-version=2015-04-08
 
-Egyéni metrikák beolvasása lekérdezések használja a következő formátumot:
+Lekérdezések tooretrieve egyedi mérőszámok használatát hello a következő formátumban:
 
     https://management.azure.com/subscriptions/{SubecriptionId}/resourceGroups/{ResourceGroup}/providers/Microsoft.DocumentDb/databaseAccounts/{DocumentDBAccountName}/metrics?api-version=2015-04-08&$filter=%28name.value%20eq%20%27Total%20Requests%27%29%20and%20timeGrain%20eq%20duration%27PT5M%27%20and%20startTime%20eq%202016-06-03T03%3A26%3A00.0000000Z%20and%20endTime%20eq%202016-06-10T03%3A26%3A00.0000000Z
 
-További információkért lásd: [erőforrás metrikák beolvasása az Azure figyelő REST API-n keresztül](https://blogs.msdn.microsoft.com/cloud_solution_architect/2016/02/23/retrieving-resource-metrics-via-the-azure-insights-api/). Vegye figyelembe, hogy a "Azure Inights" névre lett átnevezve "Azure figyelés".  Ezt a blogbejegyzést régebbi nevére hivatkozik.
+További információkért lásd: [erőforrás metrikák beolvasása hello Azure figyelő REST API-n keresztül](https://blogs.msdn.microsoft.com/cloud_solution_architect/2016/02/23/retrieving-resource-metrics-via-the-azure-insights-api/). Vegye figyelembe, hogy a "Azure Inights" névre lett átnevezve "Azure figyelés".  Ezt a blogbejegyzést toohello régebbi nevét jelenti.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha a figyelést tartalmazó csempék éppen megjelenített a **nem érhetők el adatok** üzenetet, és nemrég kérelmek vagy adatok bekerül az adatbázisba, szerkesztheti a csempe a legutóbbi használati megfelelően.
+Ha a figyelést tartalmazó csempék éppen megjelenített hello **nem érhetők el adatok** üzenetet, és nemrég kérelmek vagy adatok toohello adatbázis hozzá, szerkesztheti a hello csempe tooreflect hello legutóbbi használati.
 
-### <a name="edit-a-tile-to-refresh-current-data"></a>Egy csempe frissítése az aktuális adatok szerkesztése
-1. A metrikák egy adott részében megjelenő testre szabásához kattintson a diagram megnyitása a **metrika** panelt, és kattintson **diagram szerkesztése lehetőséget**.  
-   ![Képernyőfelvétel a metrika panel vezérlőelemek, a kijelölt diagram szerkesztése](./media/monitor-accounts/madocdb3.png)
-2. A a **diagram szerkesztése lehetőséget** panelen, a a **időtartomány** kattintson **óránként túlra**, és kattintson a **OK**.  
-   ![Képernyőfelvétel a diagram szerkesztése lehetőséget panelről az elmúlt egy órában kiválasztva](./media/monitor-accounts/documentdb-no-available-data-past-hour.png)
+### <a name="edit-a-tile-toorefresh-current-data"></a>A csempék toorefresh aktuális adatainak szerkesztése
+1. Megjeleníti egy adott részében toocustomize hello metrikák kattintson hello diagram tooopen hello **metrika** panelt, és kattintson **diagram szerkesztése lehetőséget**.  
+   ![Képernyőfelvétel a hello metrika panel vezérlők, a kijelölt diagram szerkesztése](./media/monitor-accounts/madocdb3.png)
+2. A hello **diagram szerkesztése lehetőséget** paneljén, hello **időtartomány** területén kattintson **óránként túlra**, és kattintson a **OK**.  
+   ![Képernyőfelvétel a hello diagram szerkesztése lehetőséget kiválasztva elmúlt egy órában panelről](./media/monitor-accounts/documentdb-no-available-data-past-hour.png)
 3. A csempe megjeleníti az aktuális adatok és a használati most frissítse.  
-   ![Képernyőfelvétel a frissített az elmúlt órában csempe kérelmek teljes száma](./media/monitor-accounts/documentdb-no-available-data-fixed.png)
+   ![Képernyőfelvétel a hello frissítése elmúlt órában csempe kérelmek teljes száma](./media/monitor-accounts/documentdb-no-available-data-fixed.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Azure Cosmos DB kapacitás tervezésével kapcsolatos további tudnivalókért tekintse meg a [Azure Cosmos DB kapacitás planner Számológép](https://www.documentdb.com/capacityplanner).
+További információ az Azure Cosmos DB kapacitástervezés toolearn lásd: hello [Azure Cosmos DB kapacitás planner Számológép](https://www.documentdb.com/capacityplanner).
 

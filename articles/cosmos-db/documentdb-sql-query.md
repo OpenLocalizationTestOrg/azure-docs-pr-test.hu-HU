@@ -1,5 +1,5 @@
 ---
-title: "Az SQL-lekérdezések Azure Cosmos DB DocumentDB API-hoz |} Microsoft Docs"
+title: "Azure Cosmos DB DocumentDB API aaaSQL lekérdezések |} Microsoft Docs"
 description: "A Azure Cosmos DB SQL-szintaxis, adatbázis fogalmait és az SQL-lekérdezések megismerése. SQL Azure Cosmos adatbázis a JSON lekérdezésnyelvet is használja."
 keywords: "SQL-szintaxis, sql-lekérdezést, az sql-lekérdezések, json lekérdezési nyelv, adatbázis fogalmait és az sql-lekérdezések, összesítő függvények"
 services: cosmos-db
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: arramac
-ms.openlocfilehash: 9b2b5668ef0552485a86f63a120b57c4623bfe35
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f4db95b87f5796c4e4299aaf016435cb6301bbfe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-queries-for-azure-cosmos-db-documentdb-api"></a>Az SQL-lekérdezések Azure Cosmos DB DocumentDB API-hoz.
-A Microsoft Azure Cosmos DB támogatja a JSON lekérdezésnyelvet SQL (Structured Query Language) használatával dokumentumok lekérdezését. A cosmos DB valóban sémamentes. A JSON-adatmodell, közvetlenül az adatbázis motorján belül az elkötelezettségének, címtár biztosít automatikus indexeléshez JSON-dokumentumok explicit séma vagy a másodlagos indexek létrehozása nélkül. 
+A Microsoft Azure Cosmos DB támogatja a JSON lekérdezésnyelvet SQL (Structured Query Language) használatával dokumentumok lekérdezését. A cosmos DB valóban sémamentes. A kötelezettségvállalás toohello JSON adatmodell közvetlenül hello adatbázismotor belül, címtár biztosít automatikus indexeléshez JSON-dokumentumok explicit séma vagy a másodlagos indexek létrehozása nélkül. 
 
-A lekérdezési nyelv a Cosmos DB tervezésekor két célok szem előtt tartásával volt:
+A Cosmos DB hello lekérdezési nyelv tervezésekor két célok szem előtt tartásával volt:
 
-* Helyett egy új JSON lekérdező nyelv inventing, akartunk támogatja az SQL. Az SQL ismerős és a népszerű lekérdezés nyelveinek. Cosmos DB SQL formális programozási modellt biztosít a részletes lekérdezéseket JSON-dokumentumok keresztül.
-* JSON-adatbázisként dokumentum is lehet futtatni az adatbázismotor közvetlenül a JavaScript azt kapcsolniuk a használni kívánt JavaScript programozási modell építkezve a lekérdezési nyelvhez. A DocumentDB API SQL JavaScript típusrendszernek, kifejezés kiértékelése és függvényhívások feltörték. Ez szolgálna természetes programozási modellt biztosít a leképezések relációs, hierarchikus navigációs JSON-dokumentumokat, automatikus illesztések, térbeli lekérdezéseket és teljesen egyéb funkciók között a JavaScript nyelven írt felhasználói függvény (UDF) meghívását. 
+* Helyett egy új JSON lekérdező nyelv inventing, akartunk toosupport SQL. SQL hello ismerős és a népszerű lekérdezési nyelv egyike. Cosmos DB SQL formális programozási modellt biztosít a részletes lekérdezéseket JSON-dokumentumok keresztül.
+* JSON-adatbázisként dokumentum, amelyek képesek JavaScript közvetlenül a hello adatbázismotor akartunk toouse JavaScript programozási modell hello foundation, a lekérdezési nyelvhez. a JavaScript típusrendszernek, kifejezés kiértékelése és függvényhívások feltörték hello DocumentDB API SQL. Ez szolgálna természetes programozási modellt biztosít a leképezések relációs, hierarchikus navigációs JSON-dokumentumokat, automatikus illesztések, térbeli lekérdezéseket és teljesen egyéb funkciók között a JavaScript nyelven írt felhasználói függvény (UDF) meghívását. 
 
-Biztosak vagyunk abban, hogy ezek a képességek csökkenti az alkalmazás és az adatbázis közötti súrlódás billentyűt, és fontosságúak a fejlesztést tesz lehetővé.
+Biztosak vagyunk abban, hogy ezeket a képességeket kulcs tooreducing hello súrlódás hello alkalmazás- és hello adatbázis közötti és fontosságúak a fejlesztést tesz lehetővé.
 
-Azt javasoljuk, kezdeti lépések, amelyet figyeli az alábbi videót, ahol Aravind Ramachandran jeleníti meg, Cosmos DB tartozó lekérdezési képességeket, és látogasson el a [Tesztlekérdezéseket](http://www.documentdb.com/sql/demo), ahol Cosmos DB kipróbálásához és SQL-lekérdezések futtatása az adatkészletet.
+Azt javasoljuk, első lépések a következő videót, amely Aravind Ramachandran mutatja Cosmos DB lekérdező képességek, hello figyeli, és látogasson el a [Tesztlekérdezéseket](http://www.documentdb.com/sql/demo), ahol Cosmos DB kipróbálásához és SQL lekérdezések futtatása az adathalmaz.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Data-Exposed/DataExposedQueryingDocumentDB/player]
 > 
 > 
 
-Ezt követően térjen vissza a cikkhez, ha először egy SQL-lekérdezés oktatóanyag, amely bemutatja, hogyan néhány egyszerű JSON-dokumentumokat és az SQL-parancsokat.
+Ezt követően térjen vissza toothis cikk, ha először egy SQL-lekérdezés oktatóanyag, amely bemutatja, hogyan néhány egyszerű JSON-dokumentumokat és az SQL-parancsokat.
 
 ## <a id="GettingStarted"></a>Ismerkedés az SQL-parancsokat az Cosmos-Adatbázisba
-Munkahelyi Cosmos DB SQL megtekintéséhez lehetővé néhány egyszerű JSON-dokumentumok kezdődnie, és néhány egyszerű lekérdezéseket bízná. Fontolja meg e két JSON-dokumentumok két családok kapcsolatban. A Cosmos DB azt nem kell minden sémákat, illetve másodlagos indexek explicit módon létrehozásához. Egyszerűen kell beszúrni a JSON-dokumentumok Cosmos DB gyűjteménybe, és ezt követően lekérdezi. Itt egy egyszerű JSON tudunk dokumentum az Andersen családhoz, a szülők, gyermekek (és azok kedvtelésből), a címet, és a regisztrációs adatait. A dokumentum rendelkezik karakterláncok, számok, a logikai, tömbök és beágyazott tulajdonságait. 
+toosee Cosmos DB SQL: működnek, most kezdődnie néhány egyszerű JSON-dokumentumok és bízná néhány egyszerű lekérdezéseket. Fontolja meg e két JSON-dokumentumok két családok kapcsolatban. A Cosmos DB azt nem kell toocreate bármely sémák vagy másodlagos indexek explicit módon. A Microsoft egyszerűen kell tooinsert hello JSON-dokumentumok tooa Cosmos DB gyűjteményben, és ezt követően lekérdezése. Itt egy egyszerű JSON tudunk dokumentum hello Andersen családhoz, hello szülők, gyermekek (és azok kedvtelésből), címe és regisztrációs adatait. hello dokumentumnak karakterláncok, számok, a logikai, tömbök és beágyazott tulajdonságait. 
 
 **A dokumentum**  
 
@@ -99,7 +99,7 @@ Ez az egyetlen különbség – a második dokumentum `givenName` és `familyNam
 }
 ```
 
-Most próbáljon néhány lekérdezések írásában, ezeket az adatokat a kulcsfontosságú elemeit annak DocumentDB API SQL megismerését. Például a következő lekérdezés visszaad a Ha az azonosítót tartalmazó mezőt megegyezik `AndersenFamily`. Mivel ez egy `SELECT *`, a lekérdezés eredménye a teljes JSON-dokumentum:
+Most próbáljon néhány lekérdezést az adatok toounderstand elleni néhány hello kulcs DocumentDB API SQL aspektusait. Például a hello alábbi lekérdezés a beolvasása hello dokumentumok Ha hello id mezője megegyezik `AndersenFamily`. Mivel ez egy `SELECT *`, hello hello lekérdezés eredménye hello teljes JSON-dokumentum:
 
 **Lekérdezés**
 
@@ -128,7 +128,7 @@ Most próbáljon néhány lekérdezések írásában, ezeket az adatokat a kulcs
     }]
 
 
-Most pedig nézzük meg az esetben, ha igazolnia kell formáznia egy másik alakzat JSON-kimenetét. Ez a lekérdezés egy új JSON-objektum nevét és a város, két kijelölt mezővel projektek, ha a cím város azonos nevű állapotként. Ebben az esetben a "NY, NY" megegyezik.
+Most pedig nézzük meg hello esetben, ha igazolnia kell tooreformat hello egy másik alakzat JSON-kimenetét. Ez a lekérdezés egy új JSON projektek objektum két kijelölt mezővel, nevét és a város, ha hello cím város azonos nevet hello hello állapot. Ebben az esetben a "NY, NY" megegyezik.
 
 **Lekérdezés**    
 
@@ -146,7 +146,7 @@ Most pedig nézzük meg az esetben, ha igazolnia kell formáznia egy másik alak
     }]
 
 
-A következő lekérdezés gyermekek minden megadott nevét adja vissza a termékcsalád, amelynek azonosítója megegyezik `WakefieldFamily` a város tartózkodási helye alapján rendezve.
+hello tovább lekérdezés visszaadja az összes hello nevet kapnak gyermekek hello termékcsalád, amelynek azonosítója megegyezik `WakefieldFamily` hello város tartózkodási helye alapján rendezve.
 
 **Lekérdezés**
 
@@ -164,30 +164,30 @@ A következő lekérdezés gyermekek minden megadott nevét adja vissza a termé
     ]
 
 
-Szeretnénk felhívja a figyelmet a Cosmos DB lekérdezési nyelv eddig is láttuk példákból néhány fontos aspektusait:  
+Szeretnénk toodraw figyelmet tooa hello Cosmos DB néhány fontos aspektusainak lekérdezési nyelv eddig is láttuk hello példákból:  
 
-* Mivel a DocumentDB API SQL JSON értékek működéséről, alakú sorok és oszlopok helyett entitások fa foglalkozik. Ezért a nyelv lehetővé teszi, hogy tekintse meg a fa bármilyen tetszőleges mélységben csomópontok például `Node1.Node2.Node3…..Nodem`, akárcsak a két rész hivatkozását hivatkozó relációs SQL `<table>.<column>`.   
-* A strukturált lekérdezésinyelv séma nélküli adatokkal dolgozik. Ezért a típusrendszernek hozzá dinamikusan kell kötni. Ugyanabban a kifejezésben sikerült yield különböző típusaihoz különböző dokumentumokat. A lekérdezés eredménye egy érvényes JSON-érték, de nem biztos, hogy a rögzített sémájába lehet.  
-* Cosmos DB csak szigorú JSON-dokumentumokat támogat. Ez azt jelenti, hogy a rendszert és a kifejezések csak JSON típusok kezelésére korlátozódnak. Tekintse meg a [JSON-specifikáció](http://www.json.org/) további részleteket.  
-* A Cosmos DB gyűjtemény egy olyan sémamentes tároló JSON-dokumentumot. Tartalmazási, és nem a primary key és idegen kulcs kapcsolatokat a rendszer implicit módon rögzíti a kapcsolatokat, az adatok entitások belül, és egy gyűjtemény dokumentumok között. Ez egy fontos eleme érdemes a jelen cikkben ismertetett intra-dokumentum illesztések alapján mutat.
+* Mivel a DocumentDB API SQL JSON értékek működéséről, alakú sorok és oszlopok helyett entitások fa foglalkozik. Ezért hello nyelv lehetővé teszi, hogy tekintse meg a hello fa bármilyen tetszőleges mélységben toonodes például `Node1.Node2.Node3…..Nodem`, hasonló toorelational SQL hivatkozó toohello két rész hivatkozását `<table>.<column>`.   
+* hello strukturált lekérdezési nyelv works séma nélküli adatokkal. Ezért hello dinamikusan típus rendszer igényeinek toobe kötött. hello ugyanabban a kifejezésben sikerült yield különböző típusaihoz különböző dokumentumokat. a lekérdezések eredménye hello egy érvényes JSON-érték, de nem garantált toobe rögzített séma.  
+* Cosmos DB csak szigorú JSON-dokumentumokat támogat. Ez azt jelenti, hello típusrendszernek és kifejezések korlátozott toodeal csak a JSON típusával. Tekintse meg a toohello [JSON-specifikáció](http://www.json.org/) további részleteket.  
+* A Cosmos DB gyűjtemény egy olyan sémamentes tároló JSON-dokumentumot. tartalmazási, és nem a primary key és idegen kulcs kapcsolatokat a rendszer implicit módon rögzíti hello kapcsolatokat az entitások belül, és egy gyűjtemény dokumentumok között. Ez egy fontos eleme érdemes alapján hello intra-dokumentum illesztések ebben a cikkben korábban tárgyalt mutat.
 
 ## <a id="Indexing"></a>A cosmos DB indexelő
-Ahhoz, hogy feltölti a DocumentDB API SQL-szintaxis, az indexelési kialakítást a Cosmos DB felfedezése érdemes. 
+Hello DocumentDB API SQL-szintaxis feltölti azt, mielőtt Cosmos DB tervéhez indexelő hello felfedezése érdemes. 
 
-Adatbázis indexek célja a különböző űrlapok és alakzatok lekérdezések kiszolgálására minimális erőforrás-felhasználás (például CPU és a bemeneti/kimeneti) ugyanakkor biztosítható a jó teljesítmény és kis késleltetése. Adatbázis lekérdezése a megfelelő index a választott gyakran, mennyi tervezést és kísérletezés igényel. Ezt a módszert használja az adatbázisok séma nélküli, ahol az adatok nem felelnek meg a szigorú séma, és gyorsan fejlődésének kihívást jelent. 
+hello adatbázisa indexei célja a különböző űrlapok és minimális erőforrás-használat (például CPU és a bemeneti/kimeneti) tartalmazó alakzatok tooserve lekérdezések ugyanakkor biztosítható a jó teljesítmény és kis késleltetése. Hello megfelelő index lekérdezése az adatbázis hello választott gyakran, sok tervezést és kísérletezés igényel. Ezt a módszert használja az adatbázisok séma nélküli, ahol hello adatok nem felelnek meg a tooa szigorú séma, és gyorsan fejlődésének kihívást jelent. 
 
-Ezért a Cosmos DB indexelési alrendszer tervezésekor be van állítva a következő célok:
+Ezért hello Cosmos DB indexelési alrendszer tervezésekor be van állítva a következő célok hello:
 
-* Indexeljük a dokumentumokat anélkül, hogy a séma: az indexelő alrendszer nem kér a sémaadatok és bármely séma feltételezéseket a dokumentumok győződjön. 
-* Hatékony és gazdag hierarchikus és relációs lekérdezések támogatása: az index támogatja a Cosmos DB lekérdezési nyelv hatékonyan, beleértve a hierarchikus és relációs leképezések támogatását.
-* Egységes lekérdezések in face of írások tartós kötet támogatása: nagy írási átviteli munkaterhelések egységes lekérdezések esetén az index frissítése Növekményesen, hatékony és online állásuk tartós mennyiségű írási műveleteket. A konzisztens index frissítése különösen fontos a lekérdezések végrehajtása az konzisztencia szintjén, amelyben a felhasználó konfigurálta a dokumentum szolgáltatást.
-* Több vállalat kiszolgálása támogatása: a foglalásalapú modellben megadott erőforrás irányításhoz bérlők között, index frissítései a keret rendszererőforrást (Processzor, memória és i/o műveletek száma másodpercenként) replika felosztott belül. 
-* Tároló-hatékonyságot biztosít: költséghatékonyság, a lemezen terheléssel jár az index nem kötött és előre jelezhető. Ez elengedhetetlen, mert Cosmos DB lehetővé teszi, hogy a fejlesztő költség-alapú mellékhatásokkal index terhelés alapján a lekérdezési teljesítmény közötti győződjön.  
+* Indexeljük a dokumentumokat anélkül, hogy a séma: hello alrendszer indexelő bármely sémaadatok kér és nem bármely séma feltételezéseket hello dokumentumok ellenőrizze. 
+* Hatékony és gazdag hierarchikus és relációs lekérdezések támogatása: hello index támogatja hello Cosmos DB lekérdezési nyelv hatékonyan, beleértve a hierarchikus és relációs leképezések támogatását.
+* Egységes lekérdezések in face of írások tartós kötet támogatása: nagy írási átviteli munkaterhelések egységes lekérdezések esetén hello index frissítése Növekményesen, hatékony és online az írások tartós kötet hello felületét. hello konzisztens index frissítése kritikus fontosságú tooserve hello lekérdezések mely hello beállított felhasználó hello dokumentum szolgáltatásban hello konzisztencia szinten.
+* Több vállalat kiszolgálása támogatása: hello foglalásalapú modell megadott erőforrás irányításhoz bérlők között, index frissítései hello költségvetési rendszererőforrást (Processzor, memória és i/o műveletek száma másodpercenként) replika felosztott belül. 
+* Tároló-hatékonyságot biztosít: A költséghatékonyság, hello lemezen tárhelyre terhet hello index a kötött és előre jelezhető. Ez különösen fontos, mivel Cosmos DB hello fejlesztői toomake költség-alapú mellékhatásokkal közötti kapcsolat toohello a lekérdezések teljesítményét index terhelést.  
 
-Tekintse meg a [Azure Cosmos DB samples](https://github.com/Azure/azure-documentdb-net) MSDN minták bemutatja, hogyan konfigurálja az indexelési házirendet egy gyűjtemény. Most folytassuk az Azure Cosmos adatbázis SQL-szintaxis részleteinek.
+Tekintse meg a toohello [Azure Cosmos DB samples](https://github.com/Azure/azure-documentdb-net) MSDN minták jelenít meg, hogyan tooconfigure hello indexelési házirendet egy gyűjtemény. Most folytassuk hello részleteinek hello Azure Cosmos adatbázis SQL-szintaxis.
 
 ## <a id="Basics"></a>Az Azure Cosmos adatbázis SQL-lekérdezést alapjai
-Minden egyes lekérdezés SELECT záradékában és választható FROM áll és a WHERE záradék / ANSI SQL szabványoknak. Általában minden lekérdezéshez a FROM záradékban lévő adatforrás megjelenik a listán. Ezután a WHERE záradékban a szűrő alkalmazása a forrás JSON-dokumentumok részhalmazának beolvasása. Végezetül a SELECT záradékban szolgál a kért JSON értékeit a kiválasztási listán.
+Minden egyes lekérdezés SELECT záradékában és választható FROM áll és a WHERE záradék / ANSI SQL szabványoknak. Általában minden lekérdezéshez hello forrás hello FROM záradékban számbavétele megtörtént. Hello szűréssel hello WHERE záradék hello forrás tooretrieve érvényesíti a JSON-dokumentumok egy részét. Végezetül hello SELECT záradékban használt tooproject hello kért hello értékek JSON válassza ki a listát.
 
     SELECT <select_list> 
     [FROM <from_specification>] 
@@ -196,16 +196,16 @@ Minden egyes lekérdezés SELECT záradékában és választható FROM áll és 
 
 
 ## <a id="FromClause"></a>FROM záradékban
-A `FROM <from_specification>` záradék használata nem kötelező, kivéve, ha a forrás szűrt vagy projekció a lekérdezésben később. Ehhez a záradékhoz célja, adja meg az adatforrás, amelyre a lekérdezés működnie kell. Az egész gyűjteményre általában a forrás, de ehelyett egy adhat meg a gyűjtemény egy részét. 
+Hello `FROM <from_specification>` záradék használata nem kötelező, kivéve, ha hello forrás szűrt vagy tervezett később hello lekérdezésben. hello ehhez a záradékhoz célja toospecify hello adatforrás esetén mely hello lekérdezés működnie kell. Hello egész gyűjteményre gyakran hello forrás, de ehelyett egy adhat meg a hello gyűjtemény egy részét. 
 
-A lekérdezés, például `SELECT * FROM Families` azt jelzi, hogy a teljes családok gyűjteményt a forrás, amelyben enumerálása. Egy legfelső szintű speciális azonosítója segítségével határoz meg a gyűjtemény neve helyett a gyűjteményben. Az alábbi lista tartalmazza a szabályokat, amelyek lekérdezésenként lépnek érvénybe:
+A lekérdezés, például `SELECT * FROM Families` azt jelzi, hogy hello teljes családok gyűjteményt hello forrás mely tooenumerate keresztül. Egy különös azonosító legfelső szintű lehet használt toorepresent hello gyűjtemény hello gyűjteménynév használata helyett. hello alábbi lista a kényszerített lekérdezésenként hello szabályok.
 
-* A gyűjtemény akkor jelölhető meg aliasként, például a `SELECT f.id FROM Families AS f` vagy egyszerűen `SELECT f.id FROM Families f`. Itt `f` megegyezik a `Families`. `AS`egy nem kötelező kulcsszót alias azonosító érték.
-* Egyszer aliasnevet, az eredeti adatforrás nem köthető. Például `SELECT Families.id FROM Families f` szintaktikailag hibás, mert "Családokat" azonosítóját már nem lehet feloldani.
-* Lehet, hogy teljesen minősített mutató hivatkozás fog igénylő összes tulajdonság. Szigorú séma való hiányában ez kényszerítése egyetlen nem egyértelmű kötést elkerülése érdekében. Ezért `SELECT id FROM Families f` szintaktikailag óta a tulajdonság nem `id` nincs kötve.
+* hello gyűjtemény akkor jelölhető meg aliasként, például a `SELECT f.id FROM Families AS f` vagy egyszerűen `SELECT f.id FROM Families f`. Itt `f` hello megfelelője az `Families`. `AS`nem kötelező kulcsszó tooalias hello azonosító, amely.
+* Egyszer aliasnevet hello eredeti adatforrás nem köthető. Például `SELECT Families.id FROM Families f` szintaktikailag hibás, mert hello azonosítója "Családok" többé nem lehet feloldani.
+* Lehet, hogy a hivatkozott toobe igénylő összes tulajdonság teljesen minősített. A szigorú séma való hello hiányában ez a kényszerített tooavoid egyetlen nem egyértelmű kötést. Ezért `SELECT id FROM Families f` óta hello tulajdonság szintaktikailag nem `id` nincs kötve.
 
 ### <a name="subdocuments"></a>Aldokumentumok
-A forrás kisebb részhalmazát is lehet korlátozni. Például számbavétele minden a dokumentumban csak egy részfája, hogy a subroot majd válhat a forráskiszolgálón, a következő példában látható módon:
+hello forrás csökkentett tooa kisebb részhalmazát is lehet. Például tooenumerating minden a dokumentumban csak egy részfája, hello subroot majd válhat hello forrás, ahogy az alábbi példa hello:
 
 **Lekérdezés**
 
@@ -243,7 +243,7 @@ A forrás kisebb részhalmazát is lehet korlátozni. Például számbavétele m
       ]
     ]
 
-A fenti példa egy tömb forrásaként használható, amíg az objektum is lehet alkalmazni a forrásaként, amely az alábbi példában is látható: a lekérdezés eredménye, hogy minden érvényes JSON-érték (nem nincs definiálva), amelyek megtalálhatók a forrás tekinthető. Ha egyes termékcsaládok nem rendelkezik egy `address.state` érték, a lekérdezés eredményében ki vannak zárva.
+Amíg a fenti példa hello tömb hello forrásaként, az objektum is felhasználhatók hello forrásaként, amely a következő példa hello látható: hello eredménye, hogy minden érvényes JSON-érték (nem nincs definiálva), amely itt található: hello forrás tekinthető hello lekérdezés. Ha egyes termékcsaládok nem rendelkezik egy `address.state` érték, a lekérdezés eredményében hello ki vannak zárva.
 
 **Lekérdezés**
 
@@ -259,9 +259,9 @@ A fenti példa egy tömb forrásaként használható, amíg az objektum is lehet
 
 
 ## <a id="WhereClause"></a>A WHERE záradék
-A WHERE záradékban (**`WHERE <filter_condition>`**) megadása nem kötelező. Azt adja meg a feltételeket, amelyek a forrás által biztosított a JSON-dokumentumok meg kell felelnie ahhoz, hogy a tartalmazzák a eredménye. Bármely JSON-dokumentum ki kell értékelnie, hogy a megadott feltételeknek, a "true", az eredmény figyelembe kell venni. A WHERE záradékban a index réteg használják annak meghatározására, a forrás azt jelzi, hogy az eredmény része lehet abszolút legkisebb részhalmaza. 
+a WHERE záradék hello (**`WHERE <filter_condition>`**) megadása nem kötelező. Meghatározza, hogy hello eredmény részét képező rendelés toobe meg kell felelnie a hello JSON-dokumentumok hello forrás által biztosított hello feltételeket. Ki kell értékelnie minden bármely JSON-dokumentum hello megadott feltételek túl "true" toobe hello eredmény figyelembe venni. hello záradék helyének hello index réteg rendelés toodetermine hello abszolút legkisebb részhalmazban forrás azt jelzi, hogy hello eredmény része lehet. 
 
-A következő lekérdezés kéri a name tulajdonság, amelynek értéke tartalmazó dokumentumok `AndersenFamily`. Bármely más dokumentum, amely nem rendelkezik name tulajdonsággal, vagy ha az érték nem egyezik `AndersenFamily` ki van zárva. 
+hello következő lekérdezés kéri a name tulajdonság, amelynek értéke tartalmazó dokumentumok `AndersenFamily`. Bármely más dokumentum, amely nem rendelkezik name tulajdonsággal, vagy ha hello értéke nem egyezik `AndersenFamily` ki van zárva. 
 
 **Lekérdezés**
 
@@ -280,9 +280,9 @@ A következő lekérdezés kéri a name tulajdonság, amelynek értéke tartalma
     }]
 
 
-Az előző példából kiderült, egy egyszerű egyenlőség lekérdezést. A DocumentDB API SQL számos skaláris kifejezést. A leggyakrabban használt olyan bináris és egyoperandusú kifejezés. A forrás JSON-objektumból tulajdonsághivatkozást egyaránt érvényes kifejezések. 
+hello előző példából kiderült, egy egyszerű egyenlőség lekérdezést. A DocumentDB API SQL számos skaláris kifejezést. leggyakrabban használt hello bináris és egyoperandusú kifejezés. Hello forrás JSON-objektumból tulajdonsághivatkozást egyaránt érvényes kifejezések. 
 
-A következő bináris operátor jelenleg támogatott, és a következő példákban látható módon a lekérdezésekben használt:  
+a következő bináris operátor hello jelenleg támogatott, és a lekérdezések, ahogy az alábbi példák hello használható:  
 
 <table>
 <tr>
@@ -323,7 +323,7 @@ Vessen egy pillantást néhány lekérdezést a bináris operátorok használat�
     WHERE c.grade >= 5     -- matching grades == 5
 
 
-Az egyoperandusú operátorokat +,-, ~ és nem is támogatottak, és használhatók lekérdezéseken belül a következő példában látható módon:
+Az egyoperandusú operátorral hello +,-, ~, és nem is támogatottak, és is használhatók lekérdezéseken belül, ahogy az alábbi példa hello:
 
     SELECT *
     FROM Families.children[0] c
@@ -335,10 +335,10 @@ Az egyoperandusú operátorokat +,-, ~ és nem is támogatottak, és használhat
 
 
 
-Bináris és egyoperandusú operátorok mellett tulajdonsághivatkozást is használhatók. Például `SELECT * FROM Families f WHERE f.isRegistered` adja vissza a tulajdonságot tartalmazó JSON-dokumentum `isRegistered` ahol a tulajdonság értéke megegyezik a JSON `true` érték. Egyéb értékek (false, null, nem definiált, `<number>`, `<string>`, `<object>`, `<array>`stb) kivételével az eredményből forrásdokumentum vezet. 
+Ezenkívül toobinary és az egyoperandusú operátorokat tulajdonság vonatkozó hivatkozások használata is engedélyezett. Például `SELECT * FROM Families f WHERE f.isRegistered` értéket ad vissza hello hello tulajdonságot tartalmazó JSON-dokumentum `isRegistered` ahol a hello tulajdonság érték egyenlő toohello JSON `true` érték. Egyéb értékek (false, null, nem definiált, `<number>`, `<string>`, `<object>`, `<array>`stb) részletes útmutatást az hello eredményből kivételével toohello forrásdokumentum. 
 
 ### <a name="equality-and-comparison-operators"></a>Egyenlőség és összehasonlító operátorok
-A következő táblázat egyenlőségi összehasonlítás eredménye a DocumentDB SQL-API bármely két JSON-típusok között.
+hello következő táblázatban egyenlőségi összehasonlítás eredménye hello DocumentDB API SQL bármely két JSON-típusok között.
 
 <table style = "width:300px">
    <tbody>
@@ -510,33 +510,33 @@ Nincs definiálva </td>
    </tbody>
 </table>
 
-Más összehasonlító operátorok többek között a >, > =,! =, < és < =, az alábbi szabályok vonatkoznak:   
+Más összehasonlító operátorok többek között a >, > =,! =, < és < =, hello következő szabályok lépnek érvénybe:   
 
 * Összehasonlítás típusok között meghatározatlan eredményez.
 * Két objektum vagy két összehasonlítása tömbállandó meghatározatlan eredményez.   
 
-Ha a szűrő skaláris kifejezés eredménye nincs definiálva, a megfelelő dokumentum nem szerepel az eredmény, mert meghatározatlan logikailag nem egyenlő a "true"értékre.
+Ha hello hello szűrő hello skaláris kifejezés eredménye nem definiált, hello megfelelő dokumentum nem szerepel hello eredményt, mert meghatározatlan logikailag túl "igaz" nem egyenlő.
 
 ### <a name="between-keyword"></a>Kulcsszó között
-A BETWEEN kulcsszó használatával express tartományok értékek például ANSI SQL-lekérdezéseket is. KÖZÖTTI használható karakterlánc vagy szám ellen.
+Hello BETWEEN kulcsszó tooexpress lekérdezések értékek, például a tartományok ANSI SQL is használhatja. KÖZÖTTI használható karakterlánc vagy szám ellen.
 
-Például a lekérdezés által visszaadott összes családba tartozó dokumentumok, amelyben az első gyermek osztályú 1-5 (mind a két szélsőértéket beleértve) közé esik. 
+Például a lekérdezés által visszaadott összes családba tartozó dokumentumok, mely hello az első gyermek osztályú (mind a két szélsőértéket beleértve) 1-5 között van. 
 
     SELECT *
     FROM Families.children[0] c
     WHERE c.grade BETWEEN 1 AND 5
 
-Eltérően ANSI-SQL, használhatja a BETWEEN záradék a következő példában például a FROM záradékban.
+Eltérően az ANSI-SQL-ben is használhatja hello BETWEEN záradék hello FROM záradékában például a következő példa hello.
 
     SELECT (c.grade BETWEEN 0 AND 10)
     FROM Families.children[0] c
 
-A lekérdezés végrehajtása gyorsabb ne felejtse el elleni bármely numerikus tulajdonságok/elérési utakat a BETWEEN záradék a szűrt index Tartománytípus használó indexelési házirend létrehozása. 
+A lekérdezés végrehajtása gyorsabb ne felejtse el az indexelési házirendet elleni bármely numerikus tulajdonságok/elérési utakat hello BETWEEN záradék a szűrt index Tartománytípus használó toocreate. 
 
-A fő különbség a DocumentDB API és ANSI SQL BETWEEN használata között, hogy akkor is express vegyes típusú tulajdonságokhoz lekérdezések – például lehetséges, hogy "osztály" [5] szám lehet bizonyos dokumentumok és mások számára ("grade4") tartalmazó karakterlánc. Ezekben az esetekben például a JavaScript, a "nem definiált" két különböző típusú eredményt, és a dokumentum összehasonlítása a rendszer kihagyja.
+hello fő különbség a DocumentDB API és az ANSI SQL BETWEEN használatával, hogy akkor is express vegyes típusú tulajdonságokhoz lekérdezések – például lehetséges, hogy "osztály" [5] szám lehet bizonyos dokumentumok és mások számára ("grade4") tartalmazó karakterlánc. Ezekben az esetekben például a JavaScript, a "nem definiált" két különböző típusú eredményt, és hello dokumentum összehasonlítása a rendszer kihagyja.
 
 ### <a name="logical-and-or-and-not-operators"></a>Logikai (AND, OR, és nem) operátorok
-Logikai operátorok működhet a logikai értékek. Ezen operátorok logikai igazság táblázatokban az alábbi táblázatban láthatók.
+Logikai operátorok működhet a logikai értékek. a következő táblák hello ezen operátorok hello logikai igazság táblák láthatók.
 
 | VAGY | True (Igaz) | False (Hamis) | Nincs definiálva |
 | --- | --- | --- | --- |
@@ -557,40 +557,40 @@ Logikai operátorok működhet a logikai értékek. Ezen operátorok logikai iga
 | Nincs definiálva |Nincs definiálva |
 
 ### <a name="in-keyword"></a>A kulcsszó
-Az IN kulcsszó segítségével ellenőrizze, hogy a megadott érték megegyezik-e a lista bármely értéke. Például a lekérdezés által visszaadott összes családba tartozó dokumentumok ahol az azonosító: "WakefieldFamily" vagy "AndersenFamily". 
+hello IN kulcsszó használt toocheck lehet, hogy a megadott érték megegyezik-e a listában. Például a lekérdezés által visszaadott összes családba tartozó dokumentumok ahol hello azonosító: "WakefieldFamily" vagy "AndersenFamily". 
 
     SELECT *
     FROM Families 
     WHERE Families.id IN ('AndersenFamily', 'WakefieldFamily')
 
-Ez a példa visszaadja az összes dokumentumot ahol állapota valamely megadott értékét.
+Ez a példa visszaadja az összes dokumentumot ahol hello állapota bármelyik hello megadott értékeket.
 
     SELECT *
     FROM Families 
     WHERE Families.address.state IN ("NY", "WA", "CA", "PA", "OH", "OR", "MI", "WI", "MN", "FL")
 
 ### <a name="ternary--and-coalesce--operators"></a>Ternáris (?) és a Coalesce (?) operátorok
-A háromkomponensű és Coalesce műveleteivel végrehajtható feltételes kifejezéseket, például a C# és JavaScript népszerű programozási nyelvek hasonló létrehozásához. 
+hello Ternáris és Coalesce operátorok használt toobuild feltételes kifejezéseket, például a C# és JavaScript programnyelvek hasonló toopopular lehet. 
 
-A háromkomponensű (?) operátor akkor lehet hasznos, ha hozhat létre az új JSON-tulajdonságok menet közben. Például most is lekérdezéseket írhat az osztály szintek például kezdő/köztes/speciális alább látható módon emberi olvasható formába besorolását.
+hello Ternáris (?) operátor akkor lehet hasznos, ha hello összeállításával új JSON tulajdonságok keresnie. Például most írhat lekérdezések tooclassify hello osztály szintek emberi olvasható űrlapot például kezdő/köztes/speciális alább látható módon.
 
      SELECT (c.grade < 5)? "elementary": "other" AS gradeLevel 
      FROM Families.children[0] c
 
-Az operátor például az alábbi lekérdezést a hívások is ágyazhatja.
+Is ágyazhatja hello hívások toohello operátor például az alábbi hello lekérdezésben.
 
     SELECT (c.grade < 5)? "elementary": ((c.grade < 9)? "junior": "high")  AS gradeLevel 
     FROM Families.children[0] c
 
-Más lekérdezési operátorok, ha a feltételes kifejezésben hivatkozott tulajdonságok dokumentumtípus hiányzik, vagy ha a összehasonlított típusok eltérőek, majd ezeket a dokumentumokat nem tartoznak a lekérdezés eredményében.
+Más lekérdezési operátorok, ha hello hello feltételes kifejezésben hivatkozott tulajdonságai hiányoznak minden a dokumentumban, vagy ha összehasonlított hello típusok eltérőek, majd ezeket a dokumentumokat nem tartoznak a hello lekérdezés eredményei között.
 
-A Coalesce (?) operátor segítségével hatékonyan ellenőrizze a tulajdonság (más néven van meghatározva) dokumentumban. Ez akkor hasznos, ha félig strukturált lekérdezését vagy vegyes típusú adatokat. Például a lekérdezés visszaadja a "Vezetéknév" Ha jelen van, vagy a "Vezetéknév" Ha nem, akkor a jelen.
+hello Coalesce (?) operátor lehet (más néven tulajdonság hello jelenléte használt tooefficiently ellenőrzése van meghatározva) dokumentumban. Ez akkor hasznos, ha félig strukturált lekérdezését vagy vegyes típusú adatokat. Például, ez a lekérdezés visszaadja hello "Vezetéknév" Ha jelen van, vagy hello "Vezetéknév" Ha nem, akkor a jelen.
 
     SELECT f.lastName ?? f.surname AS familyName
     FROM Families f
 
 ### <a id="EscapingReservedKeywords"></a>Idézőjelek közé zárt tulajdonságelérő
-Emellett az idézőjelek közé zárt tulajdonság operátorral tulajdonságok `[]`. Például `SELECT c.grade` és `SELECT c["grade"]` egyenértékű. Ez a szintaxis akkor hasznos, ha kell megadnia egy tulajdonság szóközöket, különleges karaktereket tartalmaz, vagy történik a neve megegyezik egy SQL kulcsszó vagy fenntartott szó.
+Emellett hello idézőjelek közé zárt tulajdonság operátorral tulajdonságok `[]`. Például `SELECT c.grade` és `SELECT c["grade"]` egyenértékű. Ez a szintaxis akkor hasznos, ha egy tulajdonság szóközöket, különleges karaktereket tartalmaz, vagy azonos nevet SQL kulcsszó vagy fenntartott szó tooshare hello történik tooescape van szüksége.
 
     SELECT f["lastName"]
     FROM Families f
@@ -598,9 +598,9 @@ Emellett az idézőjelek közé zárt tulajdonság operátorral tulajdonságok `
 
 
 ## <a id="SelectClause"></a>SELECT záradékban
-A SELECT záradékban (**`SELECT <select_list>`**) megadása kötelező, és határozza meg, milyen értékeket a rendszer beolvassa az a lekérdezés fentiekhez hasonló ANSI-SQL-ben. A részhalmazán, amelyben a forrás dokumentumok felett van szűrve a leképezés fázis, amikor a rendszer beolvassa a megadott JSON-értékeket, és egy új JSON-objektum minden egyes azt az alakzatot átadott bemeneti helyezik át lettek adva. 
+hello SELECT záradékban (**`SELECT <select_list>`**) megadása kötelező, és határozza meg, milyen értékeket lekért hello lekérdezés fentiekhez hasonló ANSI-SQL-ben. hello részhalmazán, amely fölött hello forrás dokumentumok van szűrve átadott alakzatot hello leképezése fázisban, amelyben hello megadott JSON-értékek olvassa és egy új JSON-objektum összeállított, minden egyes azt az alakzatot átadott bemenet. 
 
-A következő példa bemutatja egy tipikus SELECT lekérdezés. 
+a következő példa hello tipikus választó jeleníti meg. 
 
 **Lekérdezés**
 
@@ -620,7 +620,7 @@ A következő példa bemutatja egy tipikus SELECT lekérdezés.
 
 
 ### <a name="nested-properties"></a>Beágyazott tulajdonságai
-A következő példában két beágyazott tulajdonságok azt kivetítéséről `f.address.state` és `f.address.city`.
+A következő példa hello, a két beágyazott tulajdonságok kiálló azt `f.address.state` és `f.address.city`.
 
 **Lekérdezés**
 
@@ -636,7 +636,7 @@ A következő példában két beágyazott tulajdonságok azt kivetítéséről `
     }]
 
 
-Leképezési JSON kifejezések is támogatja, a következő példában látható módon:
+Leképezési JSON kifejezések is támogatja, ahogy az alábbi példa hello:
 
 **Lekérdezés**
 
@@ -655,7 +655,7 @@ Leképezési JSON kifejezések is támogatja, a következő példában látható
     }]
 
 
-Nézzük szerepe `$1` itt. A `SELECT` záradék létre kell hoznia egy JSON-objektum, és nem kulcsra azért van, mert implicit argumentum változónevek kezdve használjuk `$1`. Például a lekérdezés által visszaadott implicit argumentum két változót, címkével `$1` és `$2`.
+Nézzük hello szerepe `$1` itt. Hello `SELECT` záradékban kell toocreate egy JSON-objektum, és nem kulcsra azért van, mert implicit argumentum változónevek kezdve használjuk `$1`. Például a lekérdezés által visszaadott implicit argumentum két változót, címkével `$1` és `$2`.
 
 **Lekérdezés**
 
@@ -678,9 +678,9 @@ Nézzük szerepe `$1` itt. A `SELECT` záradék létre kell hoznia egy JSON-obje
 
 
 ### <a name="aliasing"></a>Aliasképző
-Most tegyük kiterjesztése a fenti példában az explicit aliasképző értékek. Ez a kulcsszó használt aliassal való ellátását. Nem kötelező, a második érték kivetítéséről közben látható `NameInfo`. 
+Most tegyük kiterjesztése hello fenti példában az explicit aliasképző értékek. Ez hello kulcsszó használt aliassal való ellátását. Nem kötelező kiálló hello második értékével megegyező közben látható `NameInfo`. 
 
-Abban az esetben, ha a lekérdezés két tulajdonság azonos névvel rendelkezik, használt aliassal való ellátását, nevezze át a tulajdonságok közül, hogy azok a tervezett eredmény vannak használatát.
+Abban az esetben, ha a lekérdezés tartozik hello két tulajdonság azonos nevű aliassal való ellátását egyik vagy mindkét hello tulajdonságait, hogy azok rendszer használatát a tervezett hello használt toorename kell lennie eredménye.
 
 **Lekérdezés**
 
@@ -704,7 +704,7 @@ Abban az esetben, ha a lekérdezés két tulajdonság azonos névvel rendelkezik
 
 
 ### <a name="scalar-expressions"></a>Skaláris kifejezések
-Mellett tulajdonsághivatkozást a SELECT záradék is támogatja a skaláris kifejezések állandók, aritmetikai kifejezésekben, logikai kifejezéseket és stb. Például ez egy egyszerű "Hello, World" lekérdezést.
+Ezenkívül tooproperty hivatkozik, a SELECT záradékban hello is támogatja a skaláris kifejezések állandók, aritmetikai kifejezésekben, logikai kifejezéseket és stb. Például ez egy egyszerű "Hello, World" lekérdezést.
 
 **Lekérdezés**
 
@@ -730,7 +730,7 @@ Ez egy összetett példa, amely a skaláris kifejezést használ.
     }]
 
 
-A következő példában a skaláris kifejezés eredménye egy logikai érték.
+A következő példa hello hello hello skaláris kifejezés eredménye egy logikai érték.
 
 **Lekérdezés**
 
@@ -750,7 +750,7 @@ A következő példában a skaláris kifejezés eredménye egy logikai érték.
 
 
 ### <a name="object-and-array-creation"></a>Az objektum és tömb létrehozása
-A DocumentDB API SQL egy másik alapfunkciója tömb vagy objektum-létrehozás. Az előző példában vegye figyelembe, hogy létrehoztunk egy új JSON-objektum. Hasonlóképpen egy is végezhet tömbök a következő példákban látható módon:
+A DocumentDB API SQL egy másik alapfunkciója tömb vagy objektum-létrehozás. Az előző példában hello vegye figyelembe, hogy létrehoztunk egy új JSON-objektum. Ehhez hasonlóan egy is végezhet tömbök látható hello példák a következő módon:
 
 **Lekérdezés**
 
@@ -775,7 +775,7 @@ A DocumentDB API SQL egy másik alapfunkciója tömb vagy objektum-létrehozás.
     ]
 
 ### <a id="ValueKeyword"></a>ÉRTÉK kulcsszó
-A **érték** kulcsszó vissza JSON-érték lehetőséget kínál. Például az alábbi lekérdezés visszaadja a skaláris `"Hello World"` helyett `{$1: "Hello World"}`.
+Hello **érték** kulcsszó tartalmaz egy módja tooreturn JSON-érték. Például a lent látható módon adja vissza hello skaláris hello lekérdezés `"Hello World"` helyett `{$1: "Hello World"}`.
 
 **Lekérdezés**
 
@@ -788,7 +788,7 @@ A **érték** kulcsszó vissza JSON-érték lehetőséget kínál. Például az 
     ]
 
 
-A következő lekérdezés visszaadja a JSON-érték nélkül a `"address"` címke az eredmények között.
+hello következő lekérdezés visszaadja hello JSON-érték nélkül hello `"address"` hello eredmények címkéje.
 
 **Lekérdezés**
 
@@ -810,7 +810,7 @@ A következő lekérdezés visszaadja a JSON-érték nélkül a `"address"` cím
       }
     ]
 
-Az alábbi példa bővíti a bemutatják, hogyan adhat vissza JSON egyszerű értékeket (a levélszintű a JSON-fa). 
+hello alábbi példa bővíti a tooshow hogyan tooreturn JSON primitív értékek (hello levélszintű hello JSON-fa). 
 
 **Lekérdezés**
 
@@ -826,7 +826,7 @@ Az alábbi példa bővíti a bemutatják, hogyan adhat vissza JSON egyszerű ér
 
 
 ### <a name="-operator"></a>* Operátor
-A speciális operátort (*) a rendszer támogatja a dokumentumot a projekt-van. Használatakor az egyetlen tervezett mező kell lennie. Például a lekérdezés során `SELECT * FROM Families f` érvényes, `SELECT VALUE * FROM Families f ` és `SELECT *, f.id FROM Families f ` érvénytelen.
+hello különleges operátort (*) támogatott tooproject hello dokumentumot-van. Használatakor a hello csak tervezett mező kell legyen. Például a lekérdezés során `SELECT * FROM Families f` érvényes, `SELECT VALUE * FROM Families f ` és `SELECT *, f.id FROM Families f ` érvénytelen.
 
 **Lekérdezés**
 
@@ -855,7 +855,7 @@ A speciális operátort (*) a rendszer támogatja a dokumentumot a projekt-van. 
     }]
 
 ### <a id="TopKeyword"></a>TOP operátor
-A felső kulcsszó is használható egy lekérdezés által értékek számának korlátozása. FELSŐ együtt az ORDER BY záradék használata esetén az eredménykészlet korlátozódik rendezett értékek; az első N száma Ellenkező esetben azt számát adja vissza az első N eredmények nem definiált sorrendben. Ajánlott eljárásként a SELECT utasítással, mindig használja az ORDER BY záradék a TOP záradék. Ez az az egyetlen lehetőség kiszámítható módon tudja TOP által érintett sorok jelöléséhez. 
+hello felső kulcsszó lehet használt toolimit hello számú értéket a lekérdezésből. FELSŐ együtt hello ORDER BY záradék használata esetén hello eredménykészlet-e a korlátozott toohello első N rendezett értékek száma; Ellenkező esetben az eredmény hello első N eredmények száma nem definiált sorrendje. Ajánlott eljárásként a SELECT utasítással, mindig használja az ORDER BY záradék hello TOP záradék. Ez az hello csak úgy toopredictably jelző felső által érintett sorok. 
 
 **Lekérdezés**
 
@@ -885,7 +885,7 @@ A felső kulcsszó is használható egy lekérdezés által értékek számának
 FELSŐ egy állandó értékkel (ahogy fent), vagy a paraméteres lekérdezés változó érték használható. További részletekért lásd a paraméteres lekérdezés az alábbi.
 
 ### <a id="Aggregates"></a>Aggregátumfüggvények
-Az összesítéseket is elvégezheti a `SELECT` záradékban. Az aggregátumfüggvények egy értékhalmazt a számítás elvégzése, és egyetlen érték visszaadása. Például a következő lekérdezés a gyűjteményen belül családba tartozó dokumentumok számát adja meg.
+Összesítéseket hajtsa végre a hello `SELECT` záradékban. Az aggregátumfüggvények egy értékhalmazt a számítás elvégzése, és egyetlen érték visszaadása. Például hello következő lekérdezés visszaadja hello száma családba tartozó dokumentumok hello gyűjteményen belül.
 
 **Lekérdezés**
 
@@ -898,7 +898,7 @@ Az összesítéseket is elvégezheti a `SELECT` záradékban. Az aggregátumfüg
         "$1": 2
     }]
 
-Az összesítés skaláris érték használatával is visszatérhet a `VALUE` kulcsszó. Például a következő lekérdezés egyetlen számként értékek számát adja vissza:
+Is visszatérhet hello skaláris értékét hello összesített hello segítségével `VALUE` kulcsszó. Például hello következő lekérdezés visszaadja hello száma értékek egyetlen számként:
 
 **Lekérdezés**
 
@@ -909,7 +909,7 @@ Az összesítés skaláris érték használatával is visszatérhet a `VALUE` ku
 
     [ 2 ]
 
-A szűrők együtt is elvégezheti összesíti. Például a következő lekérdezés a Washington állam címével a dokumentumok számát küldi vissza.
+A szűrők együtt is elvégezheti összesíti. Például hello következő lekérdezés adja vissza hello címmel dokumentumok száma hello Washington állam hello.
 
 **Lekérdezés**
 
@@ -921,28 +921,28 @@ A szűrők együtt is elvégezheti összesíti. Például a következő lekérde
 
     [ 1 ]
 
-A következő táblázat a DocumentDB API támogatott összesítő függvények listáját tartalmazza. `SUM`és `AVG` numerikus érték, keresztül hajtja végre, mivel `COUNT`, `MIN`, és `MAX` karakterláncok, a logikai és nullák keresztül hajtható végre. 
+hello következő táblázatban hello támogatott összesítő függvények listáját a DocumentDB az API-ban. `SUM`és `AVG` numerikus érték, keresztül hajtja végre, mivel `COUNT`, `MIN`, és `MAX` karakterláncok, a logikai és nullák keresztül hajtható végre. 
 
 | Használat | Leírás |
 |-------|-------------|
-| SZÁMA | A kifejezés a számú elemet ad vissza. |
-| SUM   | A kifejezés értékek összegét adja vissza. |
-| PERC   | A kifejezés minimumértékét adja vissza. |
-| MAXIMÁLIS SZÁMA   | A kifejezés maximumértékét adja vissza. |
-| ÁTLAGOS   | Az értékek átlagát adja vissza. a kifejezést. |
+| SZÁMA | Beolvasása hello hello kifejezésben szereplő elemek száma. |
+| SUM   | Beolvasása hello hello kifejezés összes hello értékének összege. |
+| PERC   | Beolvasása hello hello kifejezés minimális értéket. |
+| MAXIMÁLIS SZÁMA   | Beolvasása hello hello kifejezésben maximális értéket. |
+| ÁTLAGOS   | Beolvasása hello hello kifejezésben hello értékek átlaga. |
 
-Összesíti egy tömb iteráció eredményeit keresztül is elvégezhető. További információkért lásd: [tömb iterációs lekérdezésekben](#Iteration).
+Összesíti egy tömb iteráció hello eredményeit keresztül is elvégezhető. További információkért lásd: [tömb iterációs lekérdezésekben](#Iteration).
 
 > [!NOTE]
-> Az Azure-portálon Query Explorer használata esetén vegye figyelembe, hogy összesítési lekérdezések a részlegesen összesített eredmények adhat vissza a lekérdezés lap. Az SDK-k egyetlen értéket összesítő összes oldalán hoz létre. 
+> Ha az Azure portál Query Explorer használatával hello, vegye figyelembe, hogy összesítési lekérdezések adhat vissza hello részben összesített eredmények a lekérdezés lap. SDK-k hello egyetlen értéket összesítő összes oldalán hoz létre. 
 > 
-> Kód használatával összesítési lekérdezések végrehajtásához szükséges .NET SDK 1.12.0, a .NET Core SDK 1.1.0-ás vagy a Java SDK 1.9.5 vagy újabb.    
+> A sorrendben tooperform összesítési a lekérdezések kód használatával kell .NET SDK 1.12.0, a .NET Core SDK 1.1.0-ás vagy a Java SDK 1.9.5 vagy újabb.    
 >
 
 ## <a id="OrderByClause"></a>ORDER BY záradék
-Például az ANSI-SQL-ben megadhat egy választható Order By záradék lekérdezése során. A záradékot tartalmazhat választható növekvő/CSÖKKENŐ argumentumaként adja meg a sorrendet, amelyben eredményeket kell beolvasni.
+Például az ANSI-SQL-ben megadhat egy választható Order By záradék lekérdezése során. hello záradékot tartalmazhat egy választható ASC vagy DESC argumentum toospecify hello sorrendet, amelyben eredményeket kell beolvasni.
 
-Például ez kártevőcsaládok a rezidens városnév sorrendjét, amely.
+Például ez kártevőcsaládok hello rezidens város neve sorrendjét, amely.
 
 **Lekérdezés**
 
@@ -963,7 +963,7 @@ Például ez kártevőcsaládok a rezidens városnév sorrendjét, amely.
       }
     ]
 
-És az alábbiakban kártevőcsaládok létrehozásának dátuma, amely egy számot jelölő, kor alapidőpontjának korábban sorrendjét, amely idő, azaz 1970. január 1. a óta eltelt idő másodpercben.
+És családok sorrendben létrehozásának dátuma, amely egy szám, amely hello epoch idő, azaz, eltelt idő óta 1970 jan. 1 másodperc van tárolva, amely itt található.
 
 **Lekérdezés**
 
@@ -987,7 +987,7 @@ Például ez kártevőcsaládok a rezidens városnév sorrendjét, amely.
 ## <a id="Advanced"></a>Speciális adatbázis fogalmait és az SQL-lekérdezések
 
 ### <a id="Iteration"></a>Ismétlés
-Egy új szerkezet művelettel lett hozzáadva a **IN** DocumentDB API SQL támogatást nyújt a JSON-tömbök keresztül léptetés kulcsszót. A FROM forrás iterációs támogatja. Kezdjük az alábbi példa:
+Egy új szerkezet hello művelettel lett hozzáadva **IN** DocumentDB API SQL tooprovide támogatása a JSON-tömbök keresztül léptetés kulcsszót. hello FROM forrás iterációs támogatja. Kezdjük a következő példa hello:
 
 **Lekérdezés**
 
@@ -1021,7 +1021,7 @@ Egy új szerkezet művelettel lett hozzáadva a **IN** DocumentDB API SQL támog
       ]
     ]
 
-Most már egy másik lekérdezés keresztül a gyűjtemény gyermekek iterációs végző vizsgáljuk meg. Vegye figyelembe a különbség a kimeneti tömbben. Ez a példa felosztja a `children` és az eredmények simítja egyetlen tömbbe.  
+Most már egy másik lekérdezés keresztül hello gyűjtemény gyermekek iterációs végző vizsgáljuk meg. Vegye figyelembe a hello kimeneti tömbben hello különbség. Ez a példa felosztja a `children` és hello eredmények simítja egyetlen tömbbe.  
 
 **Lekérdezés**
 
@@ -1051,7 +1051,7 @@ Most már egy másik lekérdezés keresztül a gyűjtemény gyermekek iteráció
       }
     ]
 
-Ez további használható szűrést végezni a tömb minden egyes bejegyzés, a következő példában látható módon:
+Ez további meg minden egyes belépési hello tömb, ahogy az alábbi példa hello használt toofilter lehet:
 
 **Lekérdezés**
 
@@ -1065,7 +1065,7 @@ Ez további használható szűrést végezni a tömb minden egyes bejegyzés, a 
       "givenName": "Lisa"
     }]
 
-Összesítési tömb iterációs eredményét keresztül is elvégezheti. Például a következő lekérdezés gyermekei közötti összes családok megszámlálása.
+Összesítési tömb iterációs hello eredményét keresztül is elvégezheti. Például hello következő lekérdezés számolja hello gyermekek összes családok között.
 
 **Lekérdezés**
 
@@ -1081,11 +1081,11 @@ Ez további használható szűrést végezni a tömb minden egyes bejegyzés, a 
     ]
 
 ### <a id="Joins"></a>Illesztése
-Táblák között csatlakoztatni kell egy relációs adatbázisban, fontos. A logikai corollary az normalizált sémák. Ezzel szemben a DocumentDB API a nem normalizált adatok modell sémamentes dokumentumok foglalkozik. Ez megfelel a logikai a "önillesztés".
+Hello kell toojoin táblák között egy relációs adatbázisban, fontos. Az hello normalizált logikai corollary toodesigning sémák. Ellenkező toothis, a DocumentDB API hello nem normalizált adatok modell sémamentes dokumentumok foglalkozik. Ez az hello logikai megfelelője a "önillesztés".
 
-A nyelvi támogató szintaxisa < from_source1 > Csatlakozás < from_source2 > ILLESZTÉSI... CSATLAKOZTASSA az < from_sourceN >. A teljes, ezt adja vissza, amely **N**- rekordokat (a rekord **N** értékek). A táblakonstruktor minden rekordjának összes gyűjtemény alias léptetés alatt az megfelelő készletek által visszaadott érték tartozik. Más szóval ez az egy teljes a a illesztésben részt vevő készlet keresztszorzatát.
+hello hello nyelvi támogató szintaxisa < from_source1 > Csatlakozás < from_source2 > ILLESZTÉSI... CSATLAKOZTASSA az < from_sourceN >. A teljes, ezt adja vissza, amely **N**- rekordokat (a rekord **N** értékek). A táblakonstruktor minden rekordjának összes gyűjtemény alias léptetés alatt az megfelelő készletek által visszaadott érték tartozik. Más szóval ez az egy teljes hello illesztési részt hello-készlet keresztszorzatát.
 
-Az alábbi példák bemutatják, hogyan működik a JOIN záradékban. A következő példa eredménye nem üres, a forrás minden dokumentumát keresztszorzatát óta és üres üres.
+hello következő példák azt szemléltetik, hogyan működik a hello JOIN záradékban. A következő példa hello hello eredménye üres mivel hello forrás- és üres minden dokumentumát keresztszorzatát üres.
 
 **Lekérdezés**
 
@@ -1099,7 +1099,7 @@ Az alábbi példák bemutatják, hogyan működik a JOIN záradékban. A követk
     }]
 
 
-A következő példában az illesztés a dokumentumgyökér között van, és a `children` subroot. Egy eltérő termék két JSON-objektumok között. Arra, hogy gyermeke tömb nincs hatékony az ILLESZTÉS mivel azt a egyetlen legfelső szintű a gyermekek tömb nem foglalkoznak. Ezért az eredmény tartalmazza csak két eredményt, mivel minden dokumentumot a tömbbel rendelkező keresztszorzatát pontosan csak egy dokumentum adja eredményül.
+A következő példa hello, hello illesztési hello dokumentumgyökér és hello közé esik `children` subroot. Egy eltérő termék két JSON-objektumok között. hello arra, hogy gyermeke tömb nincs hello ILLESZTÉSI hatékonyan, mivel azt a egyetlen legfelső szintű hello gyermekek tömb nem foglalkoznak. Ezért hello eredmény tartalmazza csak két eredményt, mivel hello hello tömbbel rendelkező minden egyes dokumentum keresztszorzatát adja eredményül pontosan csak egy dokumentum.
 
 **Lekérdezés**
 
@@ -1119,7 +1119,7 @@ A következő példában az illesztés a dokumentumgyökér között van, és a 
     ]
 
 
-A következő példa bemutatja a több hagyományos csatlakozzon:
+a következő példa hello több hagyományos illesztés jeleníti meg:
 
 **Lekérdezés**
 
@@ -1143,15 +1143,15 @@ A következő példa bemutatja a több hagyományos csatlakozzon:
 
 
 
-A legfontosabb, ami arról értesít, hogy a `from_source` , a **csatlakozás** záradék egy iterátor. Igen a folyamat ebben az esetben a következőképpen történik:  
+hello először thing toonote, hogy hello `from_source` a hello **csatlakozás** záradék egy iterátor. Igen hello folyamata ebben az esetben a következőképpen történik:  
 
-* Bontsa ki az egyes gyermekelem **c** a tömbben.
-* A dokumentum gyökerébe határokon termék alkalmazása **f** minden gyermekelemmel rendelkező **c** , amely lett egybesimított-e az első lépésben.
-* Végezetül projektre a legfelső szintű objektum **f** névtulajdonság önmagában. 
+* Bontsa ki az egyes gyermekelem **c** hello tömbben.
+* Hello a dokumentum gyökerének hello határokon termék alkalmazása **f** minden gyermekelemmel rendelkező **c** , amely lett egybesimított hello első lépésben.
+* Végezetül projekt hello gyökérszintű objektum **f** névtulajdonság önmagában. 
 
-Az első dokumentum (`AndersenFamily`) csak egy gyermekelemet tartalmaz, ezért az eredménykészlet csak ez a dokumentum megfelelő egyetlen objektumot tartalmaz. A második dokumentum (`WakefieldFamily`) két gyermekeket tartalmaz. Igen a határokon termék minden gyermek, ezáltal két objektum, egy minden gyermek, ez a dokumentum megfelelő eredményezve egy külön objektumot hoz létre. A legfelső szintű mezők mindkét ezekben a dokumentumokban ugyanazok, mint egy határokon termékben teheti meg.
+hello első dokumentum (`AndersenFamily`) csak egy gyermekelemet tartalmaz, ezért a hello eredménykészlet csak egyetlen objektumhoz megfelelő toothis dokumentumot tartalmaz. hello második dokumentum (`WakefieldFamily`) két gyermekeket tartalmaz. Igen hello határokon termék hoz létre egy külön objektum minden gyermek, ezáltal két objektum, egy gyermek megfelelő toothis dokumentumok eredményez. mindkét ezeket a dokumentumokat a mezők kitöltése hello legfelső szintű hello ugyanaz, mint egy határokon termékben teheti meg.
 
-A valós segédprogram csatlakozási űrlap rekordokat származik, amely egyébként nehezen projekt alakzat a kereszt-termék. Ezenkívül az alábbi példában látható módon szűrést az, hogy megadható, hogy a felhasználó döntött, hogy a rekordokat a teljes feltételfüggvényt feltétel rekordot kombinációja.
+hello valós segédprogram a hello ILLESZTÉS tooform rekordokat hello kereszt-terméket, amely nem egy alakzat nehéz tooproject. Továbbá, a hello az alábbi példában látható, szűrést, a rekordot hello kombinációja lehetővé tévő hello felhasználó teljes feltételfüggvényt hello rekordokat feltételt választotta.
 
 **Lekérdezés**
 
@@ -1186,7 +1186,7 @@ A valós segédprogram csatlakozási űrlap rekordokat származik, amely egyébk
 
 
 
-Ebben a példában a fenti példában természetes bővítménye, és végrehajtja a dupla való csatlakozást. A határokon termék tehát tekintheti meg a következő látszólagosan kódot:
+Ebben a példában az előző példa hello természetes bővítménye, és végrehajtja a dupla való csatlakozást. Igen hello határokon termék tekintheti meg a következő látszólagosan kód hello:
 
     for-each(Family f in Families)
     {    
@@ -1202,9 +1202,9 @@ Ebben a példában a fenti példában természetes bővítménye, és végrehajt
         }
     }
 
-`AndersenFamily`egy gyermek, aki rendelkezik egy háziállat rendelkezik. Igen, a határokon termék eredményez több sorban is (1\*1\*1) a család. WakefieldFamily, azonban a két gyermekelemek tartoznak, de csak egy "Jesse" gyermeket kedvtelésből. Jesse két kedvtelésből, ha rendelkezik. Ezért a határokon termék eredményez 1\*1\*2 = 2 család a sort.
+`AndersenFamily`egy gyermek, aki rendelkezik egy háziállat rendelkezik. Igen, hello határokon termék eredményez több olyan sort (1\*1\*1) a család. WakefieldFamily, azonban a két gyermekelemek tartoznak, de csak egy "Jesse" gyermeket kedvtelésből. Jesse két kedvtelésből, ha rendelkezik. Ezért hello határokon termék eredményez 1\*1\*2 = 2 család a sort.
 
-A következő példában nincs egy kiegészítő szűrőt `pet`. Ez nem tartalmazza az összes rekordokat, ahol a háziállatának neve nincs "Árnyékmásolat". Figyelje meg, hogy azt képesek tömbök, az a rekord elemek szűrő származó rekordokat létrehozni, és az elemek kombinációja projektre. 
+Hello a következő példában, nincs egy kiegészítő szűrőt `pet`. Ez nem tartalmazza az összes, ahol hello háziállatának neve nincs "Árnyékmásolat" hello rekordokat. Figyelje meg, hogy azt tudja toobuild rekordokat a tömböket, szűrő bármely hello elemek hello rekord, és projekt hello elemek kombinációja. 
 
 **Lekérdezés**
 
@@ -1230,17 +1230,17 @@ A következő példában nincs egy kiegészítő szűrőt `pet`. Ez nem tartalma
 
 
 ## <a id="JavaScriptIntegration"></a>JavaScript-integráció
-Azure Cosmos DB programozási modellt biztosít a feldolgozás alatt álló alapú JavaScript-alkalmazáslogika közvetlenül a gyűjtemények, tárolt eljárások és eseményindítók tekintetében. Ez lehetővé teszi, hogy mindkét:
+Azure Cosmos DB programozási modellt biztosít a feldolgozás alatt álló alapú JavaScript-alkalmazáslogika közvetlenül hello gyűjtemények, tárolt eljárások és eseményindítók tekintetében. Ez lehetővé teszi, hogy mindkét:
 
-* Lehetővé teszi nagy teljesítményű tranzakciós CRUD műveletek és a JavaScript futásidejű közvetlenül az adatbázis motorján belül szoros integrációja alapján egy gyűjtemény-dokumentumokon végzett lekérdezések. 
-* Természetes modellezési folyamatábrán, változó hatókörének, és a hozzárendelés és az adatbázis-tranzakciókhoz a primitívek kivételkezelő integrálását. A JavaScript-integráció Azure Cosmos DB-támogatással kapcsolatos további információkért tekintse meg a JavaScript kiszolgálóoldali programozhatóság dokumentációját.
+* Képes toodo nagy teljesítményű tranzakciós CRUD műveletek és egy gyűjtemény alapján hello szoros integrációja a JavaScript futásidejű közvetlenül belül hello adatbázismotor-dokumentumokon végzett lekérdezések. 
+* Természetes modellezési folyamatábrán, változó hatókörének, és a hozzárendelés és az adatbázis-tranzakciókhoz a primitívek kivételkezelő integrálását. A JavaScript-integráció Azure Cosmos DB-támogatással kapcsolatos további információkért tekintse meg az toohello JavaScript kiszolgálóoldali programozhatóság dokumentációját.
 
 ### <a id="UserDefinedFunctions"></a>Felhasználói függvény (UDF)
-A típusok már definiálva van ebben a cikkben, valamint a DocumentDB API SQL támogatja az a felhasználó definiált függvény (UDF). Skaláris felhasználó által megadott függvények támogatottak, ahol a fejlesztők nulla vagy több argumentumot adjon át és vissza egyetlen argumentuma eredményt vissza. Minden egyes argumentum ellenőrzése alatt álló engedélyezett JSON-érték.  
+Hello típusok már definiálva van ebben a cikkben, valamint a DocumentDB API SQL támogatja az a felhasználó definiált függvény (UDF). Skaláris felhasználó által megadott függvények támogatottak, ahol hello fejlesztők nulla vagy több argumentumot adjon át és vissza egyetlen argumentuma vissza eredményt. Minden egyes argumentum ellenőrzése alatt álló engedélyezett JSON-érték.  
 
-A DocumentDB API SQL-szintaxis használatával az ezen felhasználó által definiált függvényeket egyéni alkalmazáslogika támogatása az időtartam. Felhasználó által megadott függvények regisztrálhatók a DocumentDB API, és ezután lehet hivatkozni az SQL-lekérdezés részeként. Valójában a felhasználó által megadott függvények exquisitely tervezték, hogy a lekérdezések hívható. Ezt a döntést maradhassanak felhasználó által megadott függvények nincs hozzáférése a context objektumot, a más JavaScript típusok (tárolt eljárások és eseményindítók) rendelkező. Lekérdezések csak olvashatóként hajtható végre, mert futtathatják az elsődleges vagy másodlagos replikákon. Ezért felhasználó által megadott függvények való más JavaScript típusától eltérően a másodlagos replikákon futtatásra tervezték.
+a DocumentDB API SQL-szintaxis hello ki van bővítve toosupport egyéni alkalmazáslogika ezen felhasználó által definiált függvényeket használatával. Felhasználó által megadott függvények regisztrálhatók a DocumentDB API, és ezután lehet hivatkozni az SQL-lekérdezés részeként. Felhasználó által megadott függvények vannak exquisitely hello valójában lekérdezések által meghívott toobe tervezték. Corollary toothis lehetőség, felhasználó által megadott függvények nem rendelkeznek hozzáféréssel toohello környezeti objektumot amely hello más JavaScript típusoknak (tárolt eljárások és eseményindítók) lehet. Lekérdezések csak olvashatóként hajtható végre, mert futtathatják az elsődleges vagy másodlagos replikákon. Felhasználó által megadott függvények, ezért a másodlagos replikákon más JavaScript típusától eltérően tervezett toorun.
 
-Alább példája egy UDF hogyan lehet regisztrálni, a Cosmos DB adatbázist, kifejezetten egy dokumentumgyűjteményt.
+Alább példája egy UDF hogyan lehet regisztrálni: hello Cosmos DB adatbázist, kifejezetten egy dokumentumgyűjteményt.
 
        UserDefinedFunction regexMatchUdf = new UserDefinedFunction
        {
@@ -1254,12 +1254,12 @@ Alább példája egy UDF hogyan lehet regisztrálni, a Cosmos DB adatbázist, ki
            UriFactory.CreateDocumentCollectionUri("testdb", "families"), 
            regexMatchUdf).Result;  
 
-Az előző példa létrehoz egy UDF, amelynek a neve `REGEX_MATCH`. Elfogadja a JSON két karakterlánc-értékek `input` és `pattern` és ellenőrzést, ha az első megfelel a mintának megadott második JavaScript string.match() függvény használatával.
+hello előző példa létrehoz egy UDF, amelynek a neve `REGEX_MATCH`. Elfogadja a JSON két karakterlánc-értékek `input` és `pattern` és hello első egyező hello mintát megadott hello második ellenőrzi a JavaScript string.match() függvény használatával.
 
-A Microsoft most már használhatja a UDF leképezés lekérdezést. Felhasználó által megadott függvények kell minősíteni, a kis-és nagybetűket előtaggal "udf." Amikor meghívhatók lekérdezések. 
+A Microsoft most már használhatja a UDF leképezés lekérdezést. Felhasználó által megadott függvények kell minősíteni hello kis-és nagybetűket előtaggal "udf." Amikor meghívhatók lekérdezések. 
 
 > [!NOTE]
-> 3/17/2015, mielőtt Cosmos DB támogatott UDF hívások nélkül az "udf." Válasszon REGEX_MATCH() például előtag. A hívó mintát elavult.  
+> Előzetes too3 17 2015 / /, Cosmos DB támogatott UDF hívások nélkül hello "udf." Válasszon REGEX_MATCH() például előtag. A hívó mintát elavult.  
 > 
 > 
 
@@ -1279,7 +1279,7 @@ A Microsoft most már használhatja a UDF leképezés lekérdezést. Felhasznál
       }
     ]
 
-Az UDF is használható egy szűrő belül ahogy az alábbi példában is tartománynévvel együtt az "udf." előtagja:
+hello UDF is használható egy szűrő belül hello példa az alábbi, is minősíti hello "udf." előtagja:
 
 **Lekérdezés**
 
@@ -1297,7 +1297,7 @@ Az UDF is használható egy szűrő belül ahogy az alábbi példában is tartom
 
 Felhasználó által megadott függvények lényegében érvényes skaláris kifejezések, és leképezések és szűrőket is használhat. 
 
-Bontsa ki a felhasználó által megadott függvények hatványa, vizsgáljuk meg egy másik példa feltételes logikával:
+tooexpand hello működik a felhasználó által megadott függvények, vizsgáljuk meg egy másik példa feltételes logikával:
 
        UserDefinedFunction seaLevelUdf = new UserDefinedFunction()
        {
@@ -1320,7 +1320,7 @@ Bontsa ki a felhasználó által megadott függvények hatványa, vizsgáljuk me
                 seaLevelUdf);
 
 
-Az alábbiakban látható egy példa, gyakorolja az UDF-ben.
+Az alábbiakban látható egy példa, hogy a gyakorlatokban hello UDF.
 
 **Lekérdezés**
 
@@ -1341,21 +1341,21 @@ Az alábbiakban látható egy példa, gyakorolja az UDF-ben.
     ]
 
 
-A fenti példákban megjelenítve, mert felhasználó által megadott függvények JavaScript nyelv power a DocumentDB API SQL komplex eljárási, feltételes logikai beépített JavaScript futás közbeni képességek segítségével. Ehhez egy gazdag programozható felületet integrálhatja.
+Mivel az előző példák showcase hello, felhasználó által megadott függvények integrálása hello power JavaScript nyelv hello DocumentDB API SQL tooprovide egy gazdag programozható felület toodo eljárási, feltételes összetettek beépített a JavaScript futásidejű hello segítségével képességek.
 
-A DocumentDB API SQL biztosít az argumentumok a felhasználó által megadott függvények nyilvántartott egyes dokumentumok a forráshelyen szakaszában az aktuális (a WHERE záradékban vagy a SELECT záradékban) UDF feldolgozása. Az eredmény zökkenőmentesen beépített általános végrehajtás folyamatban. Ha a Tulajdonságok által az UDF paraméterek nem találhatók a JSON-érték, akkor a paraméter nincs definiálva, és ezért a rendszer teljesen kihagyja UDF meghívását. Hasonló módon az UDF eredménye nem definiált, ha az nem szerepel az eredményben. 
+A DocumentDB API SQL biztosít hello argumentumok toohello felhasználó által megadott függvények nyilvántartott egyes dokumentumok hello forrás szakaszában hello aktuális (a WHERE záradékban vagy a SELECT záradékban) feldolgozási hello UDF. hello eredmény van beépítve zökkenőmentesen hello teljes végrehajtási folyamatban. Ha hello tulajdonságok hivatkozott tooby hello UDF paraméterek nem találhatók hello JSON-érték hello tekint a paraméter nincs definiálva, és ezért hello UDF meghívása teljesen kimarad. Hasonlóképpen ha hello UDF hello eredménye nem definiált, azt nem szerepel hello eredménye. 
 
-Összefoglalva felhasználó által megadott függvények olyan nagy eszközöket tegye a bonyolult üzleti logikát a lekérdezés részeként.
+Összefoglalva a felhasználó által megadott függvények kiváló eszközök toodo bonyolult üzleti logikát hello lekérdezés részeként.
 
 ### <a name="operator-evaluation"></a>A kiértékelési operátor
-Cosmos DB, egy JSON-adatbázis, amely nem rendelkezik megrajzolja fekvő JavaScript operátorok és az értékelés szemantikáját. Miközben Cosmos DB megpróbálja megőrizheti a JavaScript szemantikáját JSON támogatása szempontjából, a művelet kiértékelése százalékkal, bizonyos esetekben.
+Cosmos DB, hello alapján, hogy az egy JSON-adatbázis megrajzolja fekvő JavaScript operátorok és az értékelés szemantikáját. Amíg Cosmos DB megpróbál toopreserve JavaScript szemantikáját JSON támogatási tekintetében, hello művelet kiértékelése százalékkal, bizonyos esetekben.
 
-A DocumentDB API SQL, ellentétben a hagyományos SQL típusú értékeket gyakran nem ismert mindaddig, amíg a rendszer beolvassa az értékeket az adatbázis. Ahhoz, hogy hatékonyan hajtsa végre a lekérdezéseket, a kezelők többsége a szigorú szemben támasztott követelményeit. 
+A DocumentDB API SQL, ellentétben a hagyományos SQL hello típusú értékeket gyakran nem ismert hello értékek adatbázisból lekéréséig. A sorrend tooefficiently hajtsa végre a lekérdezéseket, hello operátorok a többsége a szigorú szemben támasztott követelményeit. 
 
-A DocumentDB API SQL nem hajtható végre implicit konverzió JavaScript eltérően. Például egy lekérdezést, például `SELECT * FROM Person p WHERE p.Age = 21` megegyezik egy kora tulajdonságot, amelynek értéke 21 tartalmazó dokumentumokat. Bármely más, amelynek kora tulajdonsága egyezést mutat a karakterlánc a "21", vagy más valószínűleg végtelen változata dokumentum, például "021", "21,0", "0021", "00021", nem fog egyeztetni stb. Ez a számára a JavaScript-számok implicit módon casted a karakterlánc-értékek esetén ezzel szemben az (pl. operátor szerinti szűrése, alapján: ==). Ez a beállítás nem megfelelő DocumentDB API SQL hatékony index számára elengedhetetlen. 
+A DocumentDB API SQL nem hajtható végre implicit konverzió JavaScript eltérően. Például egy lekérdezést, például `SELECT * FROM Person p WHERE p.Age = 21` megegyezik egy kora tulajdonságot, amelynek értéke 21 tartalmazó dokumentumokat. Bármely más, amelynek kora tulajdonsága egyezést mutat a karakterlánc a "21", vagy más valószínűleg végtelen változata dokumentum, például "021", "21,0", "0021", "00021", nem fog egyeztetni stb. Ez ezzel szemben az implicit módon casted toonumbers hello karakterlánc-értékek esetén JavaScript toohello (pl. operátor szerinti szűrése, alapján: ==). Ez a beállítás nem megfelelő DocumentDB API SQL hatékony index számára elengedhetetlen. 
 
 ## <a name="parameterized-sql-queries"></a>A paraméteres SQL-lekérdezések
-Cosmos DB lekérdezéseket támogat, a @ notation az ismerős kifejezett paraméterekkel. A paraméteres SQL hatékony kezelése és escape-karaktersorozat felhasználói bevitelt, megakadályozza az SQL-injektálás az adatok véletlen kitettség biztosít. 
+Cosmos DB lekérdezéseket támogat, a megszokott @ notation hello kifejezett paraméterekkel. A paraméteres SQL hatékony kezelése és escape-karaktersorozat felhasználói bevitelt, megakadályozza az SQL-injektálás az adatok véletlen kitettség biztosít. 
 
 Például, hogy a Vezetéknév és címállapot fogad paraméterként, és hajthat végre különböző értékek vezetékneve és a felhasználói bevitel alapján cím állapotát.
 
@@ -1363,7 +1363,7 @@ Például, hogy a Vezetéknév és címállapot fogad paraméterként, és hajth
     FROM Families f
     WHERE f.lastName = @lastName AND f.address.state = @addressState
 
-A kérelem majd küldhető Cosmos DB JSON paraméteres például lekérdezésként alább látható.
+A kérelem küldheti például a paraméteres JSON lekérdezésként DB tooCosmos alább látható.
 
     {      
         "query": "SELECT * FROM Families f WHERE f.lastName = @lastName AND f.address.state = @addressState",     
@@ -1373,7 +1373,7 @@ A kérelem majd küldhető Cosmos DB JSON paraméteres például lekérdezéské
         ] 
     }
 
-ELSŐ argumentumának állíthat be például a paraméteres lekérdezés alább látható.
+hello argumentum tooTOP állíthat be például a paraméteres lekérdezés alább látható.
 
     {      
         "query": "SELECT TOP @n * FROM Families",     
@@ -1395,39 +1395,39 @@ Cosmos DB számos beépített funkciót is támogatja a közös műveleteket, p�
 | A tömb funkciók         | ARRAY_CONCAT, ARRAY_CONTAINS, ARRAY_LENGTH és ARRAY_SLICE                                                                                         |
 | Térbeli funkciók       | ST_DISTANCE, ST_WITHIN, ST_INTERSECTS, ST_ISVALID és ST_ISVALIDDETAILED                                                                           | 
 
-Jelenleg használ egy felhasználói függvény (UDF), amelynek beépített függvény mostantól, ha kell használnia a megfelelő beépített funkciót, akkor lesz futtatásához gyorsabb és hatékonyabb. 
+Jelenleg használata egy felhasználói függvény (UDF), amelynek beépített függvény már elérhető, használjon hello megfelelő beépített függvény, toobe gyorsabb toorun és egyéb lesz hatékony. 
 
 ### <a name="mathematical-functions"></a>Matematikai funkciók
-A matematikai funkciók végezhet a számítást, a bemeneti értékek, amelyek argumentumként szolgálnak, és a visszaadandó numerikus érték alapján. Itt található a támogatott beépített matematikai függvények táblázatát.
+hello matematikai funkciók minden végezhet a számítást, a bemeneti értékek, amelyek argumentumként szolgálnak, és a visszaadandó numerikus érték alapján. Itt található a támogatott beépített matematikai függvények táblázatát.
 
 
 | Használat | Leírás |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [[ABS (num_expr)](#bk_abs) | A megadott numerikus kifejezés (pozitív) abszolút értékét adja vissza. |
-| [Felső határ (num_expr)](#bk_ceiling) | A legkisebb egész értéket ad vissza, nagyobb vagy egyenlő a megadott numerikus kifejezés. |
-| [EMELET (num_expr)](#bk_floor) | A legnagyobb egész számot ad vissza kisebb vagy egyenlő, mint a megadott numerikus kifejezés. |
-| [EXP (num_expr)](#bk_exp) | A megadott numerikus kifejezés hatványát adja vissza. |
-| [NAPLÓ (num_expr [, Alap])](#bk_log) | A megadott numerikus kifejezés, vagy használja a megadott alapban logaritmusát a természetes alapú logaritmusát adja vissza |
-| [LOG10 (num_expr)](#bk_log10) | A 10-es logaritmikus a megadott numerikus kifejezés értékét adja vissza. |
-| [KEREK (num_expr)](#bk_round) | Egy numerikus érték, a legközelebbi egész értéket kerekítve adja vissza. |
-| [CSONK (num_expr)](#bk_trunc) | Egy numerikus érték, csak az a legközelebbi egész értéket ad vissza. |
-| [SQRT (num_expr)](#bk_sqrt) | A megadott numerikus kifejezés négyzetgyökét adja vissza. |
-| [NÉGYZETES (num_expr)](#bk_square) | Kiszámítja a megadott numerikus kifejezés. |
-| [ENERGIAGAZDÁLKODÁSI (num_expr, num_expr)](#bk_power) | A megadott numerikus kifejezés power visszatér a megadott érték. |
-| [BEJELENTKEZÉSI (num_expr)](#bk_sign) | A megadott numerikus kifejezés bejelentkezési értékét (-1, 0, 1) adja vissza. |
-| [ARCCOS (num_expr)](#bk_acos) | A szöget adja vissza, az radiánban megadott szög, amelynek koszinusza a megadott numerikus kifejezés; más néven koszinuszát. |
-| [ARCSIN (num_expr)](#bk_asin) | A szög radiánban megadott szög, amelynek szinusza a megadott numerikus kifejezést ad vissza. Ez rövidítése szinuszát. |
-| [ATAN (num_expr)](#bk_atan) | A szög radiánban megadott szög, amelynek tangense a megadott numerikus kifejezést ad vissza. Ezt arkusz is nevezik. |
-| [ATN2 (num_expr)](#bk_atn2) | A szöget adja vissza, az x tengely pozitív és a pont (y, x), a forrásból a ray közötti radiánban ahol x és y az érték a két megadott lebegőpontos kifejezés. |
-| [COS (num_expr)](#bk_cos) | Koszinuszát trigonometric a megadott szög radiánban, a megadott kifejezésben. |
-| [TŰZ (num_expr)](#bk_cot) | A megadott szög trigonometric kotangensét adja meg a megadott numerikus kifejezés radiánban. |
-| [Fokban megadva (num_expr)](#bk_degrees) | A megfelelő szöget adja vissza, az a radiánban megadott szög fokban megadva. |
-| [PI)](#bk_pi) | A konstans PI értékét adja vissza. |
+| [[ABS (num_expr)](#bk_abs) | Értéket ad vissza hello abszolút (pozitív) hello a megadott numerikus kifejezés. |
+| [Felső határ (num_expr)](#bk_ceiling) | Beolvasása hello legkisebb egész szám nagyobb értékre, vagy egyenlő, hello megadott numerikus kifejezés. |
+| [EMELET (num_expr)](#bk_floor) | Visszaadja hello legnagyobb egész szám kisebb vagy egyenlő, mint a toohello megadott numerikus kifejezés. |
+| [EXP (num_expr)](#bk_exp) | A megadott numerikus kifejezés hello hello hatványát adja vissza. |
+| [NAPLÓ (num_expr [, Alap])](#bk_log) | Beolvasása hello természetes alapú logaritmusát hello megadva numerikus kifejezés, vagy hello segítségével hello logaritmus alapja |
+| [LOG10 (num_expr)](#bk_log10) | A megadott értéket ad vissza hello 10-es logaritmikus érték hello a numerikus kifejezés. |
+| [KEREK (num_expr)](#bk_round) | Egy numerikus érték, kerekített toohello legközelebbi egész értéket ad vissza. |
+| [CSONK (num_expr)](#bk_trunc) | Egy numerikus érték, csonkolt toohello legközelebbi egész értéket ad vissza. |
+| [SQRT (num_expr)](#bk_sqrt) | Hello négyzetgyökét adja vissza a hello megadott numerikus kifejezés. |
+| [NÉGYZETES (num_expr)](#bk_square) | Beolvasása hello négyzetes hello a megadott numerikus kifejezés. |
+| [ENERGIAGAZDÁLKODÁSI (num_expr, num_expr)](#bk_power) | A megadott értéket ad vissza hello hatványa hello numerikus kifejezés toohello érték van megadva. |
+| [BEJELENTKEZÉSI (num_expr)](#bk_sign) | Beolvasása hello bejelentkezési értéket (-1, 0, 1) hello adott numerikus kifejezés. |
+| [ARCCOS (num_expr)](#bk_acos) | Hello szög értéket ad vissza, az radiánban megadott szög, amelynek koszinusza hello megadott numerikus kifejezés; más néven koszinuszát. |
+| [ARCSIN (num_expr)](#bk_asin) | Hello szög értéket ad vissza, az radiánban megadott szög, amelynek szinusza hello megadott numerikus kifejezés. Ez rövidítése szinuszát. |
+| [ATAN (num_expr)](#bk_atan) | Hello szög értéket ad vissza, az radiánban megadott szög, amelynek tangense a hello megadott numerikus kifejezés. Ezt arkusz is nevezik. |
+| [ATN2 (num_expr)](#bk_atn2) | Beolvasása hello szög radiánban közötti hello pozitív x tengely és hello ray pontról hello származási toohello (y, x), ahol x és y értékei hello hello a két megadott lebegőpontos kifejezés. |
+| [COS (num_expr)](#bk_cos) | Beolvasása hello trigonometric koszinusza hello radiánban megadott szög, hello a megadott kifejezés. |
+| [TŰZ (num_expr)](#bk_cot) | Beolvasása hello trigonometric kotangensét hello radiánban megadott szög, a hello megadva a numerikus kifejezés. |
+| [Fokban megadva (num_expr)](#bk_degrees) | Értéket ad vissza megfelelő szög (fokban megadva) az radiánban megadott szög hello. |
+| [PI)](#bk_pi) | Beolvasása hello pi konstans érték. |
 | [RADIÁNBAN (num_expr)](#bk_radians) | Vissza a radiánban megadott szög, ha egy numerikus kifejezés fokban, is meg kell adni. |
-| [EG (num_expr)](#bk_sin) | Szinuszát trigonometric a megadott szög radiánban, a megadott kifejezésben. |
-| [TAN (num_expr)](#bk_tan) | A bemeneti kifejezést tangensét adja vissza a megadott kifejezésben. |
+| [EG (num_expr)](#bk_sin) | Beolvasása hello trigonometric szinusza hello radiánban megadott szög, hello a megadott kifejezés. |
+| [TAN (num_expr)](#bk_tan) | A megadott kifejezés hello bemeneti kifejezést a hello hello tangensét adja vissza. |
 
-Például most lekérdezéseket is futtathat a következőhöz hasonló:
+Most futtathatja például hello következő lekérdezéseket:
 
 **Lekérdezés**
 
@@ -1437,10 +1437,10 @@ Például most lekérdezéseket is futtathat a következőhöz hasonló:
 
     [4]
 
-A Cosmos DB funkciók ANSI SQL képest közötti fő különbség a, hogy úgy vannak kialakítva, hogy működnek jól séma nélküli és vegyes séma adatokat. Például ha egy dokumentum, ahol a Size tulajdonság hiányzik, vagy rendelkezik-e nem numerikus érték, például "Ismeretlen", majd a dokumentum keresztül, a rendszer kihagyja helyett hibát ad vissza.
+hello fő közötti Cosmos DB képest funkciók tooANSI SQL különbség, hogy tervezett toowork séma nélküli és vegyes séma adatokkal is. Például ha egy dokumentum, ahol hello Size tulajdonság hiányzik, vagy rendelkezik-e nem numerikus érték, például "Ismeretlen", majd hello dokumentum keresztül, a rendszer kihagyja helyett hibát ad vissza.
 
 ### <a name="type-checking-functions"></a>Írja be az ellenőrzési funkciók
-A típus ellenőrzési funkciók lehetővé teszik az SQL-lekérdezések lévő kifejezés típusa. Típus ellenőrzési funkciók segítségével határozható meg, hogy a dokumentumokat tulajdonságokat típusú változó vagy ismeretlen. Ez a táblázat beépített típusa támogatott funkciók ellenőrzése.
+hello típus ellenőrzési funkciók lehetővé teszik az SQL-lekérdezések lévő kifejezés toocheck hello típusú. Ellenőrzési funkciók lehet típusú változó vagy ismeretlen esetén használt toodetermine hello típusú tulajdonságok dokumentumok belül hello menet közben. Ez a táblázat beépített típusa támogatott funkciók ellenőrzése.
 
 <table>
 <tr>
@@ -1449,40 +1449,40 @@ A típus ellenőrzési funkciók lehetővé teszik az SQL-lekérdezések lévő 
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_array">IS_ARRAY (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa tömb logikai érték beolvasása.</td>
+  <td>Azt jelzi, hogy ha hello érték hello típusú tömb logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_bool">IS_BOOL (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa olyan logikai érték logikai érték beolvasása.</td>
+  <td>Azt jelzi, hogy ha hello típusú hello érték logikai érték logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_null">IS_NULL (kifejezés)</a></td>
-  <td>Olyan logikai érték, amely azt jelzi, ha az érték típusa null beolvasása.</td>
+  <td>Olyan logikai érték, amely azt jelzi, ha hello típusú hello érték null beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_number">IS_NUMBER (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa több logikai érték beolvasása.</td>
+  <td>Azt jelzi, hogy ha hello típusú hello érték egy szám logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_object">IS_OBJECT (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa egy JSON-objektum logikai érték beolvasása.</td>
+  <td>Azt jelzi, hogy ha hello típusú hello érték egy JSON-objektum logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_string">IS_STRING (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa karakterlánc logikai érték beolvasása.</td>
+  <td>Ha hello típusú hello érték: karakterlánc jelző logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_defined">IS_DEFINED (kifejezés)</a></td>
-  <td>Jelzi, ha a tulajdonság van rendelve egy érték logikai érték beolvasása.</td>
+  <td>Jelzi, ha hello tulajdonság van rendelve egy érték logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td><a href="https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_is_primitive">IS_PRIMITIVE (kifejezés)</a></td>
-  <td>Azt jelzi, hogy ha az érték típusa karakterlánc, szám, logikai érték vagy null logikai érték beolvasása.</td>
+  <td>Azt jelzi, hogy ha hello típusú hello érték karakterlánc, szám, logikai érték vagy null logikai érték beolvasása.</td>
 </tr>
 
 </table>
 
-Ezeket a funkciókat használ, most lekérdezéseket is futtathat a következőhöz hasonló:
+Ezeket a funkciókat használ, most lekérdezéseket is futtathat hasonló hello:
 
 **Lekérdezés**
 
@@ -1493,28 +1493,28 @@ Ezeket a funkciókat használ, most lekérdezéseket is futtathat a következőh
     [true]
 
 ### <a name="string-functions"></a>Karakterlánc
-A következő skaláris függvények végrehajtania egy műveletet a bemeneti karakterlánc-értékkel, és a karakterlánc, a numerikus és logikai értéket adja vissza. Itt a következő táblázat a beépített karakterlánc:
+hello következő skaláris függvények végrehajtania egy műveletet a bemeneti karakterlánc-érték és a karakterlánc, a numerikus és logikai értéket adja vissza. Itt a következő táblázat a beépített karakterlánc:
 
 | Használat | Leírás |
 | --- | --- |
-| [A hossz (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_length) |A megadott karakterlánc-kifejezés karakterek számát adja vissza |
-| [CONCAT (str_expr, str_expr [, str_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_concat) |Karakterlánc, amely legalább két karakterlánc-értékek hozzáfűzésével eredményét adja vissza. |
+| [A hossz (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_length) |Hello karakterét hello számát adja vissza a megadott karakterlánc-kifejezés |
+| [CONCAT (str_expr, str_expr [, str_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_concat) |Egy karakterlánc, amely legalább két karakterlánc-értékek hozzáfűzésével hello eredményét adja vissza. |
 | [SUBSTRING (str_expr, num_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_substring) |Egy karakterlánc-kifejezés részét adja vissza. |
-| [(Str_expr, str_expr) startswith ELEMNEK](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_startswith) |Adja vissza egy logikai, amely jelzi, hogy az első karakterlánc-kifejezés a második végződik |
-| [Megadott módon VÉGZŐDŐ (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_endswith) |Adja vissza egy logikai, amely jelzi, hogy az első karakterlánc-kifejezés a második végződik |
-| [CONTAINS (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_contains) |Visszaadja egy logikai, amely jelzi, hogy az első karakterlánc-kifejezés tartalmazza a második. |
-| [INDEX_OF (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_index_of) |A második első előfordulásának kezdőpozícióját adja vissza karakterlánc-kifejezés az első megadott karakterlánc-kifejezés vagy -1, ha a karakterlánc nem található. |
-| [LEFT (str_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_left) |A megadott számú karakterből álló karakterlánc bal oldali részét adja vissza. |
-| [JOBB (str_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_right) |A megadott számú karakterből álló karakterlánc jobb oldali részét adja vissza. |
+| [(Str_expr, str_expr) startswith ELEMNEK](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_startswith) |E hello első karaktersorozat végződik hello második jelző logikai érték beolvasása |
+| [Megadott módon VÉGZŐDŐ (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_endswith) |E hello első karaktersorozat végződik hello második jelző logikai érték beolvasása |
+| [CONTAINS (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_contains) |Hogy hello első karakterlánc-kifejezés második tartalmaz-e hello jelző logikai érték beolvasása. |
+| [INDEX_OF (str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_index_of) |Hello hello második karakterlánc-kifejezés hello első megadott karakterlánc-kifejezés vagy-1 érték első előfordulásának pozícióját a indítása, ha hello karakterlánc nem található hello adja vissza. |
+| [LEFT (str_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_left) |Értéket ad vissza egy karakterlánc bal oldalának hello megadott hello a karakterek száma. |
+| [JOBB (str_expr, num_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_right) |A hello jobb része egy karakterlánc beolvasása hello megadott karakterek száma. |
 | [LTRIM (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_ltrim) |Egy karakterlánc-kifejezés adja vissza, után eltávolítja a kezdő üres. |
 | [RTRIM (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_rtrim) |Egy karakterlánc-kifejezés az összes záró szóközöket csonkítása után adja vissza. |
-| [ALSÓ (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_lower) |Egy karakterlánc-kifejezés után nagybetűt adatok kisbetűssé alakításával adja vissza. |
-| [FELSŐ (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_upper) |Egy karakterlánc-kifejezés után kisbetűt adatok nagybetűssé alakításával adja vissza. |
+| [ALSÓ (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_lower) |Egy karakterlánc-kifejezés nagybetűt adatok toolowercase átalakítása után adja vissza. |
+| [FELSŐ (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_upper) |Egy karakterlánc-kifejezés kisbetűt adatok toouppercase átalakítása után adja vissza. |
 | [Cserélje le a (str_expr, str_expr, str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_replace) |Megadott karakterlánc-érték összes előfordulását lecseréli egy másik karakterlánc. |
 | [REPLIKÁLÁS (str_expr, num_expr)](https://docs.microsoft.com/azure/cosmos-db/documentdb-sql-query-reference#bk_replicate) |A megadott számú alkalommal megismétel egy karakterlánc-érték. |
-| [NÉVKERESÉSI (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_reverse) |A Fordított sorrend egy karakterlánc értékét adja vissza. |
+| [NÉVKERESÉSI (str_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_reverse) |Hello fordított sorrendben egy karakterlánc értékét adja vissza. |
 
-Ezeket a funkciókat használ, most lekérdezéseket is futtathat a következőhöz hasonló. Például lépjen vissza a családnevet nagybetűs az alábbiak szerint:
+Ezeket a funkciókat használ, most lekérdezéseket is futtathat hello hasonló. Például visszatérhet hello családnév nagybetűs az alábbiak szerint:
 
 **Lekérdezés**
 
@@ -1547,7 +1547,7 @@ Vagy ebben a példában például karakterlánc összefűzésére:
     }]
 
 
-Karakterlánc is használható a WHERE záradékban szűrése eredményeket, például a következő példa:
+Karakterlánc funkciók is használható hello záradék toofilter eredményeket, hova hello a következő példa:
 
 **Lekérdezés**
 
@@ -1563,16 +1563,16 @@ Karakterlánc is használható a WHERE záradékban szűrése eredményeket, pé
     }]
 
 ### <a name="array-functions"></a>A tömb funkciók
-A következő skaláris függvények végrehajtania egy műveletet a egy tömb bemeneti érték és a numerikus visszatérési, a logikai érték vagy tömb érték. Beépített tömb függvények táblázatát itt található:
+a következő skaláris függvények hello végrehajtania egy műveletet a egy tömb bemeneti érték és a numerikus visszatérési, a logikai érték vagy tömb érték. Beépített tömb függvények táblázatát itt található:
 
 | Használat | Leírás |
 | --- | --- |
-| [ARRAY_LENGTH (arr_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_length) |A megadott tömb kifejezés elemek számát adja vissza. |
-| [ARRAY_CONCAT (arr_expr, arr_expr [, arr_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_concat) |Olyan tömb, amely két vagy több tömb értékek hozzáfűzésével eredményét adja vissza. |
-| [ARRAY_CONTAINS (arr_expr, kifejezés [, bool_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_contains) |Jelzi, hogy a tömb tartalmaz-e a megadott érték logikai érték beolvasása. Ha az egyezés-e a teljes vagy részleges adhat meg. |
+| [ARRAY_LENGTH (arr_expr)](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_length) |Hello elemeinek hello számát adja vissza a megadott tömb kifejezés. |
+| [ARRAY_CONCAT (arr_expr, arr_expr [, arr_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_concat) |Egy tömb, amely két vagy több tömb értékek hozzáfűzésével hello eredményét adja vissza. |
+| [ARRAY_CONTAINS (arr_expr, kifejezés [, bool_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_contains) |Vissza logikai érték, amely azt jelzi, hogy tartalmaz-e hello hello tömb a megadott érték. Ha hello egyezés-e a teljes vagy részleges adhat meg. |
 | [ARRAY_SLICE (arr_expr, num_expr [, num_expr])](https://msdn.microsoft.com/library/azure/dn782250.aspx#bk_array_slice) |Egy tömböt megadó kifejezést részét adja vissza. |
 
-Tömb funkciók segítségével kezelheti a tömbök JSON belül. Például itt található összes dokumentum visszaadó, ahol a szülők egyik "Multiplexelés Wakefield". 
+Tömb funkciók JSON belül használt toomanipulate tömb lehet. Például az ide a lekérdezés, amely visszaadja az összes dokumentumot ahol hello szülők egyik "Multiplexelés Wakefield". 
 
 **Lekérdezés**
 
@@ -1586,7 +1586,7 @@ Tömb funkciók segítségével kezelheti a tömbök JSON belül. Például itt 
       "id": "WakefieldFamily"
     }]
 
-Megadhatja az egyező elemek a tömbön belüli részleges töredéket. A következő lekérdezés megkeresi az összes szülők a `givenName` a `Robin`.
+Megadhat részleges töredékkel hello tömbön belüli egyező elemek esetében. hello következő lekérdezés megkeresi a hello minden szülő `givenName` a `Robin`.
 
 **Lekérdezés**
 
@@ -1601,7 +1601,7 @@ Megadhatja az egyező elemek a tömbön belüli részleges töredéket. A követ
     }]
 
 
-Ez például akkor ARRAY_LENGTH használatával gyermekek termékcsalád másodpercenkénti számát.
+Íme egy másik példa a által használt ARRAY_LENGTH tooget hello gyermekek termékcsalád másodpercenkénti száma.
 
 **Lekérdezés**
 
@@ -1620,7 +1620,7 @@ Ez például akkor ARRAY_LENGTH használatával gyermekek termékcsalád másodp
     }]
 
 ### <a name="spatial-functions"></a>Térbeli funkciók
-Cosmos DB földrajzi lekérdezése a következő nyissa meg a földrajzi konzorcium (OGC) beépített funkciókat támogatja. 
+Cosmos DB nyissa meg a földrajzi konzorcium (OGC) beépített funkciók földrajzi lekérdezése a következő hello támogatja. 
 
 <table>
 <tr>
@@ -1629,27 +1629,27 @@ Cosmos DB földrajzi lekérdezése a következő nyissa meg a földrajzi konzorc
 </tr>
 <tr>
   <td>ST_DISTANCE (point_expr, point_expr)</td>
-  <td>Csoport távolságát adja vissza a két GeoJSON-pont, sokszög vagy LineString kifejezések között.</td>
+  <td>A két hello GeoJSON-pont, sokszög vagy LineString kifejezések hello távolság visszaadása.</td>
 </tr>
 <tr>
   <td>ST_WITHIN (point_expr, polygon_expr)</td>
-  <td>Egy logikai kifejezés jelző az első GeoJSON-objektum (pont, sokszög vagy LineString) objektumban a második GeoJSON (pont, sokszög vagy LineString) adja vissza.</td>
+  <td>Egy logikai kifejezés, amely azt jelzi, hogy hello első GeoJSON objektum (pont, Polygon, vagy LineString) hello második GeoJSON objektumon belül (pont, sokszög vagy LineString) adja vissza.</td>
 </tr>
 <tr>
   <td>ST_INTERSECTS (spatial_expr, spatial_expr)</td>
-  <td>Egy logikai kifejezés, amely azt jelzi, hogy a két megadott GeoJSON objektumokat (pont, Polygon, vagy LineString) intersect adja vissza.</td>
+  <td>Egy logikai kifejezés, amely azt jelzi, hogy az intersect hello két megadott GeoJSON objektumokat (pont, Polygon, vagy LineString) adja vissza.</td>
 </tr>
 <tr>
   <td>ST_ISVALID</td>
-  <td>Azt jelzi, hogy, hogy a megadott GeoJSON-pont, sokszög vagy LineString kifejezés érvényes logikai érték beolvasása.</td>
+  <td>Jelzi, hogy hello megadott GeoJSON-pont, sokszög vagy LineString kifejezés érvényes logikai érték beolvasása.</td>
 </tr>
 <tr>
   <td>ST_ISVALIDDETAILED</td>
-  <td>Egy olyan logikai érték tartalmazó JSON-érték. Ha a megadott GeoJSON-pont, sokszög vagy LineString kifejezés érvényes, és ha érvénytelen értéket adja vissza, továbbá karakterláncként okát.</td>
+  <td>Értéket ad eredményül, ha hello megadott GeoJSON-pont, sokszög vagy LineString kifejezés logikai értéket tartalmazó JSON-érték érvényes, és ha érvénytelen, továbbá hello OK karakterláncként.</td>
 </tr>
 </table>
 
-Térbeli funkciók térbeli adatok közelségi kapcsolat lekérdezések végrehajtásához használható. Például ez visszaadó 30 km-ST_DISTANCE beépített funkcióval a megadott helyen belüli összes termékcsalád dokumentumot. 
+Térbeli funkciók lehet használt tooperform közelségi kapcsolat lekérdezések térbeli adatok alapján. Például az itt a lekérdezés, amely visszaadja az összes termékcsalád dokumentumokat, hogy vannak 30 km-hello belül megadott helyen hello ST_DISTANCE beépített függvény használatával. 
 
 **Lekérdezés**
 
@@ -1663,17 +1663,17 @@ Térbeli funkciók térbeli adatok közelségi kapcsolat lekérdezések végreha
       "id": "WakefieldFamily"
     }]
 
-A földrajzi támogatásáról Cosmos DB további részletekért lásd: [földrajzi adatok az Azure Cosmos DB](geospatial.md). Amely foglalja össze a térbeli függvények, és az SQL-szintaxis, a Cosmos DB. Most vessen egy pillantást, hogyan működik, és hogy milyen hatással a használatával lekérdezése LINQ is láttuk eddig.
+A földrajzi támogatásáról Cosmos DB további részletekért lásd: [földrajzi adatok az Azure Cosmos DB](geospatial.md). Amely foglalja össze a térbeli funkciók és hello SQL-szintaxis, a Cosmos DB. Most vessen egy pillantást, hogyan működik, és milyen hatással van az hello szintaxis lekérdezése LINQ is láttuk eddig.
 
-## <a id="Linq"></a>A DocumentDB API SQL LINQ
-LINQ .NET programozási modell, amely szerint az objektumok adatfolyamok lekérdezései számítási kifejezze. Cosmos DB egy ügyféloldali szalagtár LINQ illesztőfelület biztosít a JSON és a .NET-objektumok és a leképezés egy LINQ-lekérdezések részét csak akkor Cosmos DB lekérdezések közötti konverzió megkönnyítésével. 
+## <a id="Linq"></a>LINQ tooDocumentDB API SQL
+LINQ .NET programozási modell, amely szerint az objektumok adatfolyamok lekérdezései számítási kifejezze. Cosmos DB biztosít egy ügyféloldali könyvtár toointerface LINQ a JSON és a .NET objektumok közötti konverzió megkönnyítésével, és egy részhalmazát LINQ-leképezés lekérdezések tooCosmos DB lekérdezések. 
 
-Az alábbi képen a LINQ-lekérdezések Cosmos DB használatával architektúráját mutatja be.  A Cosmos DB-ügyfélprogram segítségével a fejlesztők hozhat létre egy **IQueryable** objektum, amely közvetlenül a Cosmos DB lekérdezés szolgáltatót, majd a LINQ lekérdezés fordítja le egy Cosmos-adatbázis-lekérdezés. A lekérdezés majd kerülnek a Cosmos DB kiszolgálót egy halmazát, az eredmények JSON formátumban. A keresés eredményeit azokat az ügyféloldali .NET objektumok adatfolyam vannak deszerializálni.
+az alábbi képen hello a LINQ-lekérdezések Cosmos DB segítségével támogathatja hello architektúráját mutatja be.  Hello Cosmos DB-ügyfélprogram segítségével a fejlesztők hozhat létre egy **IQueryable** objektumot, hogy közvetlenül a lekérdezések hello Cosmos DB lekérdezésszolgáltató, amely ezután fordítja le hello a LINQ lekérdezés egy Cosmos-adatbázis-lekérdezés. hello lekérdezés majd lett átadva a toohello Cosmos DB server tooretrieve eredményt a JSON formátumban. hello visszaadott eredménye egy adatfolyamba való mentésre .NET objektumok hello ügyféloldalon deszerializált.
 
 ![A LINQ-lekérdezések használata a DocumentDB API - SQL-szintaxis, JSON lekérdező nyelv, adatbázis fogalmait és az SQL-lekérdezések architektúrája][1]
 
 ### <a name="net-and-json-mapping"></a>.NET és a JSON-leképezés
-A .NET-objektumokat és a JSON-dokumentumok közötti leképezéseket természetes – minden tag adatmező van rendelve egy JSON-objektum, ahol a mező neve az objektum "kulcsot" része van leképezve, és a "érték" része rekurzív módon leképezve az objektum érték részét. Vegye figyelembe az alábbi példa: A család objektum létrehozása a JSON-dokumentumhoz van rendelve, alább látható módon. És ez fordítva is igaz, a JSON-dokumentumhoz van rendelve vissza egy .NET-objektum.
+.NET-objektumokat és a JSON-dokumentumok közötti hello hozzárendelést természetes – minden tag adatmező le van képezve tooa JSON-objektumból, ahol hello mezőnév az hello objektum részének toohello "key", illetve az hello "érték" rész rekurzív módon csatlakoztatott toohello érték hello objektum része. Vegye figyelembe a következő példa hello: hello termékcsalád létrehozott célja csatlakoztatott toohello JSON-dokumentum alább látható módon. És ez fordítva is igaz, hello JSON-dokumentum csatlakoztatott hátsó tooa .NET objektum.
 
 **C#-osztály**
 
@@ -1754,19 +1754,19 @@ A .NET-objektumokat és a JSON-dokumentumok közötti leképezéseket természet
 
 
 
-### <a name="linq-to-sql-translation"></a>"LINQ to SQL fordítási"
-A Cosmos DB lekérdezésszolgáltató hajt végre, egy Cosmos-adatbázis SQL-lekérdezést az elérhető legjobb leképezéseket a LINQ lekérdezés. A következő leírásában feltételezzük, hogy az olvasó rendelkezik a LINQ alapszintű ismeretét.
+### <a name="linq-toosql-translation"></a>LINQ tooSQL fordítás
+hello Cosmos DB lekérdezésszolgáltató hajt végre, egy Cosmos-adatbázis SQL-lekérdezést az elérhető legjobb leképezéseket a LINQ lekérdezés. A leírás a következő hello feltételezzük, hogy hello olvasó rendelkezik a LINQ alapszintű ismeretét.
 
-Először a típus rendszer esetében támogatott összes JSON egyszerű típusokhoz – numerikus típusok, logikai érték, karakterlánc vagy null. Ezek a JSON típusok támogatottak. A következő skaláris kifejezések használhatók.
+Először hello típus rendszer esetében támogatott összes JSON egyszerű típusokhoz – numerikus típusok, logikai érték, karakterlánc vagy null. Ezek a JSON típusok támogatottak. a következő skaláris kifejezések hello támogatott.
 
-* Állandó értékek – ezek közé tartozik az egyszerű adattípusok állandó értékek a lekérdezés kiértékelése időpontjában.
-* Tekintse meg a tulajdonság az objektum vagy tömb elem/tulajdonságtömb-index kifejezések – ezek a kifejezések.
+* Állandó értékek – ezek közé tartozik a primitív adattípusokat hello állandó értékek hello tartalmazó lekérdezés kiértékelése hello időpontban.
+* / Tulajdonságtömb-index kifejezések – ezek a kifejezések toohello tulajdonság az objektum vagy tömb elem hivatkozik.
   
      termékcsalád. Azonosító;    Family.children[0].familyName;    Family.children[0].grade;    Family.children[n].grade; n egy int változó
-* Aritmetikai kifejezésekben - ezek közé tartozik a numerikus és logikai értékek a közös aritmetikai kifejezésekben. A teljes listát lásd az SQL-specifikációnak.
+* Aritmetikai kifejezésekben - ezek közé tartozik a numerikus és logikai értékek a közös aritmetikai kifejezésekben. Hello teljes listájáért tekintse meg a toohello SQL megadását.
   
      2 * family.children[0].grade;    az x + y;
-* Karakterlánc-összehasonlítási kifejezés - ezek közé tartozik egy karakterláncértéket néhány állandó karakterlánc összehasonlítása.  
+* Karakterlánc-összehasonlítási kifejezés - ilyenek összehasonlításával karakterlánc érték toosome állandó karakterlánc-érték.  
   
      mother.familyName == "Smith";    child.givenName == s; egy karakterlánc-változóvá-je
 * Objektum vagy tömb létrehozása kifejezés - ezek a kifejezések visszatérési összetett érték vagy névtelen típusú objektum vagy egy ilyen objektumokból álló tömb. Ezek az értékek egymásba ágyazható.
@@ -1775,27 +1775,27 @@ Először a típus rendszer esetében támogatott összes JSON egyszerű típuso
      új int [] {3, child.grade, 5};
 
 ### <a id="SupportedLinqOperators"></a>Támogatott LINQ operátorok listája
-A LINQ szolgáltatónál tartalmazza a DocumentDB .NET SDK-val támogatott LINQ operátorokat listája itt található.
+Ez egy lista támogatott LINQ üzemeltetők a DocumentDB .NET SDK hello mellékelt hello LINQ szolgáltatónál.
 
-* **Válassza ki**: leképezések lefordítani az SQL, válassza ki például objektumkonstrukciók
-* **Ha**: szűrők lefordítani az SQL WHERE, és támogatja a közötti címfordítás & &, || és! az SQL-operátorok
-* **A selectmany metódus**: lehetővé teszi a tömbök számára az SQL JOIN záradékban visszagörgetésének. Lánc/nest tömbelemek szűrési kifejezésekben használható
-* **OrderBy és OrderByDescending**: az eszköz ORDER BY növekvő/csökkenő
+* **Válassza ki**: leképezések fordítása SQL SELECT objektumkonstrukciók beleértve toohello
+* **Ha**: szűrők, amelyek SQL WHERE toohello, és támogatja a közötti címfordítás & &, || és! toohello SQL operátorok
+* **A selectmany metódus**: lehetővé teszi a tömbök toohello SQL JOIN záradékban visszagörgetésének. A tömb elemeinek használt toochain/nest kifejezések toofilter lehet
+* **OrderBy és OrderByDescending**: az eszköz tooORDER BY növekvő/csökkenő
 * **Count**, **Sum**, **Min**, **maximális**, és **átlagos** összesítő és a megfelelő aszinkron operátorok **CountAsync**, **SumAsync**, **MinAsync**, **MaxAsync**, és **AverageAsync**.
-* **CompareTo**: tartomány módon történő összehasonlítása az eszköz. Gyakran használt karakterláncok óta fontosságúak nem hasonlítható össze az .NET
-* **Igénybe**: az eszköz egy lekérdezés eredményeként előálló korlátozó SQL felső
-* **Matematikai függvények**: támogatja a fordítás. NET tartozó Abs, ARCCOS, ARCSIN, Atan Cos felső határa, Exp, emelet, napló, Log10, Pow, ciklikus, bejelentkezési, EG, Sqrt, Tan, a megfelelő SQL beépített funkciók Truncate.
-* **Karakterlánc**: támogatja a fordítás. NET tartozó Concat, Contains, megadott módon végződő, IndexOf, Count, ToLower, TrimStart, csere, névkeresési, TrimEnd, megadott módon kezdődő, SubString, a megfelelő SQL beépített funkciók ToUpper.
-* **A tömb funkciók**: támogatja a fordítás. NET tartozó Concat Contains és számát, hogy a megfelelő SQL beépített funkciók.
-* **A földrajzi Kiterjesztésfüggvények**: támogatja a megfelelő SQL beépített funkciók helyettes módszerek távolság IsValid és IsValidDetailed belül a fordítás.
-* **Felhasználó által definiált függvény kiterjesztésfüggvény**: támogatja a megfelelő felhasználó által definiált függvény a csonkmetódus UserDefinedFunctionProvider.Invoke a fordítás.
-* **Vegyes**: támogatja a coalesce és feltételes operátort fordítását. Lefordíthatja karakterláncot tartalmaz, ARRAY_CONTAINS vagy az SQL-IN attól függően, hogy a környezet tartalmaz.
+* **CompareTo**: az eszköz toorange összehasonlítást. Gyakran használt karakterláncok óta fontosságúak nem hasonlítható össze az .NET
+* **Igénybe**: toohello SQL felső lefordítja a lekérdezés eredményeinek korlátozása
+* **Matematikai függvények**: támogatja a fordítás. NET tartozó Abs, ARCCOS, ARCSIN, Atan Cos felső határa, Exp, emelet, napló, Log10, Pow, ciklikus, bejelentkezési, EG, Sqrt, Tan, Truncate toohello egyenértékű SQL beépített funkciók.
+* **Karakterlánc**: támogatja a fordítás. NET tartozó Concat, Contains, megadott módon végződő, IndexOf, Count, ToLower, TrimStart, csere, névkeresési, TrimEnd, megadott módon kezdődő, SubString, ToUpper toohello egyenértékű SQL beépített funkciók.
+* **A tömb funkciók**: támogatja a fordítás. NET tartozó Concat, tartalmazza, és a Count toohello egyenértékű SQL beépített függvény.
+* **A földrajzi Kiterjesztésfüggvények**: támogatja a helyettes módszerek távolság belül IsValid, a fordítás és IsValidDetailed toohello egyenértékű SQL beépített funkciók.
+* **Felhasználó által definiált függvény kiterjesztésfüggvény**: támogatja a fordítás a hello helyettes metódus UserDefinedFunctionProvider.Invoke toohello megfelelő felhasználó által definiált függvény.
+* **Vegyes**: hello fordítása coalesce támogatja, és a feltételes operátort. Contains tooString lefordíthatja tartalmazza, ARRAY_CONTAINS vagy hello SQL IN attól függően, hogy a környezetben.
 
 ### <a name="sql-query-operators"></a>SQL-lekérdezési operátorok
-Íme néhány példa, amelyek bemutatják, hogyan átszámítani egyes szabványos LINQ lekérdezés operátorok az Cosmos DB lekérdezések le.
+Íme néhány példa, amelyek bemutatják, hogyan lefordítani néhány hello szabványos LINQ lekérdezési operátorok az tooCosmos DB lekérdezéseket.
 
 #### <a name="select-operator"></a>Válasszon operátort
-A szintaxis a következő `input.Select(x => f(x))`, ahol `f` egy skaláris kifejezés.
+hello szintaxisa `input.Select(x => f(x))`, ahol `f` egy skaláris kifejezés.
 
 **LINQ lambda kifejezés**
 
@@ -1838,7 +1838,7 @@ A szintaxis a következő `input.Select(x => f(x))`, ahol `f` egy skaláris kife
 
 
 #### <a name="selectmany-operator"></a>A selectmany metódus operátor
-A szintaxis a következő `input.SelectMany(x => f(x))`, ahol `f` egy skaláris kifejezés, amely a gyűjteménytípus adja vissza.
+hello szintaxisa `input.SelectMany(x => f(x))`, ahol `f` egy skaláris kifejezés, amely a gyűjteménytípus adja vissza.
 
 **LINQ lambda kifejezés**
 
@@ -1852,7 +1852,7 @@ A szintaxis a következő `input.SelectMany(x => f(x))`, ahol `f` egy skaláris 
 
 
 #### <a name="where-operator"></a>Ha operátor
-A szintaxis a következő `input.Where(x => f(x))`, ahol `f` van egy skaláris kifejezés, amely egy logikai értéket ad vissza.
+hello szintaxisa `input.Where(x => f(x))`, ahol `f` van egy skaláris kifejezés, amely egy logikai értéket ad vissza.
 
 **LINQ lambda kifejezés**
 
@@ -1881,10 +1881,10 @@ A szintaxis a következő `input.Where(x => f(x))`, ahol `f` van egy skaláris k
 
 
 ### <a name="composite-sql-queries"></a>Összetett SQL-lekérdezések
-A fenti operátorok kell összeállítani, nagyobb teljesítményű lekérdezések kialakításához. Mivel Cosmos DB beágyazott gyűjtemények támogatja, az adott összeállításban kell összefűzendő, vagy beágyazott.
+operátorok fent hello lehet össze tooform nagyobb teljesítményű lekérdezések. Mivel Cosmos DB támogatja a beágyazott gyűjtemények, hello összeállítás kell összefűzendő vagy beágyazott.
 
 #### <a name="concatenation"></a>Összefűzése
-A szintaxis a következő `input(.|.SelectMany())(.Select()|.Where())*`. Olyan összefűzött lekérdezés elindíthatja és egy opcionális `SelectMany` lekérdezés követ több `Select` vagy `Where` operátorok.
+hello szintaxisa `input(.|.SelectMany())(.Select()|.Where())*`. Olyan összefűzött lekérdezés elindíthatja és egy opcionális `SelectMany` lekérdezés követ több `Select` vagy `Where` operátorok.
 
 **LINQ lambda kifejezés**
 
@@ -1939,9 +1939,9 @@ A szintaxis a következő `input(.|.SelectMany())(.Select()|.Where())*`. Olyan �
 
 
 #### <a name="nesting"></a>A beágyazási
-A szintaxis a következő `input.SelectMany(x=>x.Q())` Q esetén egy `Select`, `SelectMany`, vagy `Where` operátor.
+hello szintaxisa `input.SelectMany(x=>x.Q())` Q esetén egy `Select`, `SelectMany`, vagy `Where` operátor.
 
-Egy beágyazott lekérdezésen a belső lekérdezés alkalmazzák a külső gyűjtemény minden eleme. Egyik fontos szolgáltatása, hogy a belső lekérdezés jelentheti a mezőket, például a külső gyűjtemény elemeinek Önillesztések.
+Egy beágyazott lekérdezésen hello belső lekérdezés hello külső gyűjtemény alkalmazott tooeach eleme. Egyik fontos szolgáltatása hello belső lekérdezés hivatkozhat toohello mezők hello külső gyűjtemény például hello elemszámának Önillesztések.
 
 **LINQ lambda kifejezés**
 
@@ -1983,16 +1983,16 @@ Egy beágyazott lekérdezésen a belső lekérdezés alkalmazzák a külső gyű
 
 
 ## <a id="ExecutingSqlQueries"></a>SQL-lekérdezések végrehajtása
-A cosmos DB keresztül tesz elérhetővé erőforrásokat egy REST API-t, amely képes a HTTP/HTTPS-kérést bármely olyan nyelvvel hívható. Ezenfelül a Cosmos DB programozási kódtárakat, például a .NET, Node.js, JavaScript és Python számos népszerű nyelvhez biztosít. A REST API-t és a különböző könyvtárak támogatja keresztül SQL lekérdezése. A .NET SDK LINQ lekérdezése SQL mellett támogatja.
+A cosmos DB keresztül tesz elérhetővé erőforrásokat egy REST API-t, amely képes a HTTP/HTTPS-kérést bármely olyan nyelvvel hívható. Ezenfelül a Cosmos DB programozási kódtárakat, például a .NET, Node.js, JavaScript és Python számos népszerű nyelvhez biztosít. hello REST API-t és hello különböző szalagtárak összes támogatja az SQL keresztül lekérdezése. hello .NET SDK lekérdezése továbbá tooSQL LINQ támogatja.
 
-A következő példák bemutatják, hogyan hozzon létre egy lekérdezést, és küldje el egy Cosmos-adatbázis adatbázis-fiók.
+a következő példák szemléltetik hogyan hello toocreate egy lekérdezést, és küldje el egy Cosmos-adatbázis adatbázis-fiók.
 
 ### <a id="RestAPI"></a>REST API-N
-Cosmos DB egy megnyitott RESTful programozási modellt biztosít a HTTP Protokollon keresztül. Adatbázis-fiókok egy Azure-előfizetés használatával telepíthető. A Cosmos DB erőforrás-modellje egy adatbázis-fiók, amelyek egy-címezhető logikai és állandó URI-k használata alatt lévő erőforrások készlete áll. Erőforráscsoport ebben a dokumentumban adatcsatornára nevezzük. Az adatbázisfiók áll az adatbázisok, mindegyike több gyűjteményt, mely szolgálna mindegyikének tartalmazza a dokumentumok, a felhasználó által megadott függvények és a más típusú erőforrások.
+Cosmos DB egy megnyitott RESTful programozási modellt biztosít a HTTP Protokollon keresztül. Adatbázis-fiókok egy Azure-előfizetés használatával telepíthető. hello Cosmos DB erőforrás-modellje egy adatbázis-fiók, amelyek egy-címezhető logikai és állandó URI-k használata alatt lévő erőforrások készlete áll. Erőforráscsoport adatcsatornára ebben a dokumentumban említett tooas. Az adatbázisfiók áll az adatbázisok, mindegyike több gyűjteményt, mely szolgálna mindegyikének tartalmazza a dokumentumok, a felhasználó által megadott függvények és a más típusú erőforrások.
 
-Az alapvető interakció modell ezekkel az erőforrásokkal keresztül történik a HTTP-műveletek GET, PUT, POST és DELETE a szabványos tolmácsolási szolgáltatással. A POST műveletet egy új erőforrást, egy tárolt eljárás végrehajtása vagy egy Cosmos-adatbázis-lekérdezés kiadására szolgál. Lekérdezéseket a rendszer mindig csak olvasható műveletekhez, nincs mellékhatásokkal.
+Ezekkel az erőforrásokkal hello alapvető interakció modell keresztül hello HTTP-műveletek GET, PUT, POST és DELETE a szabványos tolmácsolási szolgáltatással. hello POST művelet egy új erőforrást, egy tárolt eljárás végrehajtása vagy egy Cosmos-adatbázis-lekérdezés kiadására szolgál. Lekérdezéseket a rendszer mindig csak olvasható műveletekhez, nincs mellékhatásokkal.
 
-Az alábbi példák bemutatják a FELADÁS egy vagy több, amennyiben azt már áttekintette a két minta dokumentumok tartalmazó gyűjtemény ellen DocumentDB API lekérdezéshez. A lekérdezés egy egyszerű szűrési a JSON-name tulajdonsággal rendelkezik. Vegye figyelembe a használatát a `x-ms-documentdb-isquery` és a Content-Type: `application/query+json` fejlécek, hogy-e a művelet egy lekérdezést jelöléséhez.
+hello következő példák azt szemléltetik, amennyiben azt már áttekintette felé irányuló hello két minta dokumentumok tartalmazó gyűjtemény DocumentDB API lekérdezés POST. hello lekérdezés egy egyszerű szűrési hello JSON name tulajdonsággal rendelkezik. Vegye figyelembe a hello hello használata `x-ms-documentdb-isquery` és a Content-Type: `application/query+json` fejlécek toodenote, amely hello a művelethez az a lekérdezés.
 
 **Kérés**
 
@@ -2060,7 +2060,7 @@ Az alábbi példák bemutatják a FELADÁS egy vagy több, amennyiben azt már �
     }
 
 
-A második példában egy összetettebb lekérdezés, amely több eredményt ad vissza a való csatlakozást.
+hello második példáját mutatja egy összetettebb lekérdezés, amely több eredményt ad vissza hello illesztési.
 
 **Kérés**
 
@@ -2114,16 +2114,16 @@ A második példában egy összetettebb lekérdezés, amely több eredményt ad 
     }
 
 
-Ha a lekérdezés eredményei nem férnek el az eredmények egyoldalas belül, akkor a REST API-t adja vissza a folytatási kód keresztül a `x-ms-continuation-token` válaszfejlécet. Az ügyfelek által a további eredmények együtt is megjelenítheti az eredményeket. Laponként eredmények száma is szabályozható a `x-ms-max-item-count` számú fejléc. Ha a megadott lekérdezés tartalmaz egy összesítő függvényt, például `COUNT`, akkor a lekérdezés lap egy részben összesített értéket adhat vissza a lap az eredmények. Az ügyfelek végre kell hajtania a második szintű összesítő ezekkel az eredményekkel, a végső eredményeket, például, a számát, az eredmény abban az egyes lapok a számuk keresztül összeg keresztül.
+Ha a lekérdezés eredményei nem férnek el az eredmények egyoldalas belül, akkor hello REST API-t adja vissza a folytatási kód keresztül hello `x-ms-continuation-token` válaszfejlécet. Ügyfelek későbbi eredmények hello fejléc-ot is megjelenítheti az eredményeket. hello száma laponként eredmények is szabályozható hello `x-ms-max-item-count` számú fejléc. Ha hello a megadott lekérdezés tartalmaz egy összesítő függvényt, például `COUNT`, majd hello lekérdezés lap hello oldalra, egy részben összesített értéket adhat vissza. hello ügyfelek kell az eredmények tooproduce hello végső eredményeket, például egy második szintű összesítő képes, összeg keresztül hello számok hello oldalakra tooreturn hello teljes számot adja vissza.
 
-A lekérdezések adatok konzisztencia házirend kezeléséhez használja a `x-ms-consistency-level` például minden REST API-kérés fejlécének. A munkamenet-konzisztencia esetén szükséges a legutóbbi is echo `x-ms-session-token` Cookie-fejlécének a lekérdezési kérelemben. A lekérdezett gyűjtemény indexelési házirendet is befolyásolhatják a lekérdezési eredmények konzisztencia. Az alapértelmezett házirend-beállítások indexelő, gyűjtemények a indexe mindig naprakész lesz a dokumentum tartalmát és lekérdezési eredmények felel meg a kiválasztott adatok konzisztencia. Ha az indexelési házirendet Lusta van enyhíteni, majd lekérdezések visszaadhatják a elavult eredmények. További információkért lásd: [Azure Cosmos DB Konzisztenciaszintek][consistency-levels].
+toomanage hello adatok konzisztencia házirend lekérdezések esetén használjon hello `x-ms-consistency-level` például minden REST API-kérés fejlécének. A munkamenet-konzisztencia esetén szükséges tooalso echo hello legújabb `x-ms-session-token` Cookie-fejlécének hello lekérdezési kérelemben. hello lekérdezett gyűjtemény indexelési házirendet is befolyásolhatják a lekérdezés eredményeinek hello konzisztencia. Hello alapértelmezett házirend-beállítások indexelő, gyűjtemények hello az index az mindig naprakész lesz hello dokumentum tartalma és a lekérdezési eredmények felel meg az adatok választott hello konzisztencia. Ha indexelés házirend hello laza tooLazy, lekérdezések elavult eredmények adhat vissza. További információkért lásd: [Azure Cosmos DB Konzisztenciaszintek][consistency-levels].
 
-Ha a konfigurált indexelési házirendet a gyűjtemény nem támogatja a megadott lekérdezés, az Azure Cosmos adatbázis-kiszolgálót 400 "hibás kérelem" adja vissza. A kivonatoló (egyenlő) keresések, és kifejezetten kizárja indexelő elérési út beállítva elérési utak tartomány lekérdezések esetében adja vissza. A `x-ms-documentdb-query-enable-scan` fejléc adható meg a lekérdezést, hogy vizsgálatot végezzen, ha nem érhető el index engedélyezéséhez.
+Ha indexelési házirendet konfigurált hello hello gyűjteményen hello megadott lekérdezés nem támogatja, a hello Azure Cosmos adatbázis-kiszolgálót 400 "hibás kérelem" adja vissza. A kivonatoló (egyenlő) keresések, és kifejezetten kizárja indexelő elérési út beállítva elérési utak tartomány lekérdezések esetében adja vissza. Hello `x-ms-documentdb-query-enable-scan` fejléc lehet a megadott tooallow hello lekérdezés tooperform a vizsgálat nem érhető el index.
 
-Úgy, hogy a lekérdezés-végrehajtás részletes metrikák is ki `x-ms-documentdb-populatequerymetrics` fejlécének `True`. További információkért lásd: [Azure Cosmos DB DocumentDB API SQL-lekérdezés metrikáját](documentdb-sql-query-metrics.md).
+Úgy, hogy a lekérdezés-végrehajtás részletes metrikák is ki `x-ms-documentdb-populatequerymetrics` fejléc túl`True`. További információkért lásd: [Azure Cosmos DB DocumentDB API SQL-lekérdezés metrikáját](documentdb-sql-query-metrics.md).
 
 ### <a id="DotNetSdk"></a>C# (.NET) SDK
-A .NET SDK támogatja a LINQ és az SQL lekérdezése. A következő példa bemutatja, hogyan hajthat végre a rendszerben jelent meg a jelen dokumentum korábbi egyszerű szűrő lekérdezés.
+hello .NET SDK támogatja a LINQ és az SQL lekérdezése. hello következő példa bemutatja, hogyan tooperform hello egyszerű szűrő lekérdezés rendszerben jelent meg a jelen dokumentum korábbi.
 
     foreach (var family in client.CreateDocumentQuery(collectionLink, 
         "SELECT * FROM Families f WHERE f.id = \"AndersenFamily\""))
@@ -2183,7 +2183,7 @@ Ez a minta összehasonlítja két tulajdonságainak egyenlőség minden a dokume
     }
 
 
-A következő példa bemutatja illesztések, LINQ selectmany metódus használatával.
+hello a következő példa bemutatja illesztések, LINQ selectmany metódus használatával.
 
     foreach (var pet in client.CreateDocumentQuery(collectionLink,
           @"SELECT p
@@ -2207,16 +2207,16 @@ A következő példa bemutatja illesztések, LINQ selectmany metódus használat
 
 
 
-A .NET-ügyfél automatikusan a lekérdezés eredményének a fentiek szerint foreach blokkok oldalain telepítéseket. A REST API szakaszában bemutatott lekérdezési lehetőségek is elérhetők a .NET SDK használatával a `FeedOptions` és `FeedResponse` osztályok CreateDocumentQuery metódus. A lapok száma vezérelhető a `MaxItemCount` beállítást. 
+hello .NET ügyfél automatikusan a lekérdezési eredmények hello foreach blokkokban a fentiek szerint minden hello oldal telepítéseket. hello lekérdezés hello REST API-t a szakaszban bemutatott beállításokat is rendelkezésre állnak a .NET SDK használatával hello hello `FeedOptions` és `FeedResponse` hello CreateDocumentQuery metódus az osztályokat. lapok száma hello vezérelhető hello `MaxItemCount` beállítást. 
 
-Lapozófájl létrehozásával közvetlenül is szabályozhatja `IDocumentQueryable` használatával a `IQueryable` objektumot, majd ehhez beolvassa a` ResponseContinuationToken` gépet értékeket, és átadja őket `RequestContinuationToken` a `FeedOptions`. `EnableScanInQuery`vizsgálatok engedélyezésére, amikor a lekérdezés nem támogatja a konfigurált indexelési házirend állítható be. A particionált gyűjtemények használhatják `PartitionKey` futtatásához a lekérdezés egyetlen partícióazonosító (bár a Cosmos DB is automatikusan kinyerése Ez a lekérdezés szövegének), és `EnableCrossPartitionQuery` esetleg több partíciót kell futtatni a lekérdezések futtatásához. 
+Lapozófájl létrehozásával közvetlenül is szabályozhatja `IDocumentQueryable` hello segítségével `IQueryable` objektumot, majd ehhez beolvassa a` ResponseContinuationToken` gépet értékeket, és átadja őket `RequestContinuationToken` a `FeedOptions`. `EnableScanInQuery`set tooenable vizsgálatok akkor is, ha hello lekérdezés konfigurált hello indexelési házirend által nem támogatott. A particionált gyűjtemények használhatják `PartitionKey` toorun hello lekérdezése egyetlen partícióazonosító (bár a Cosmos DB automatikusan nyerhet ki ez a lekérdezés szövegének hello), és `EnableCrossPartitionQuery` esetleg toobe toorun lekérdezéseket futtathat több partíciót. 
 
-Tekintse meg [Azure Cosmos DB .NET minták](https://github.com/Azure/azure-documentdb-net) további mintákat tartalmazó lekérdezések. 
+Tekintse meg a túl[Azure Cosmos DB .NET minták](https://github.com/Azure/azure-documentdb-net) további mintákat tartalmazó lekérdezések. 
 
 ### <a id="JavaScriptServerSideApi"></a>JavaScript kiszolgálóoldali API
-A cosmos DB programozási modellt biztosít a feldolgozás alatt álló alapú JavaScript-alkalmazáslogika közvetlenül a gyűjtemények, tárolt eljárások és eseményindítók. A JavaScript-logika regisztrálva, a gyűjtemény szintjén majd adhat ki az adott gyűjteményben lévő dokumentumokon működésének Helyadatbázis-műveletekhez. Ezek a műveletek a környezeti ACID-tranzakciókat van burkolva.
+A cosmos DB hajthatók végre alapú JavaScript-alkalmazáslogikát tárolt eljárások és eseményindítók hello gyűjtemények közvetlenül a programozási modellt biztosít. hello JavaScript-logika regisztrálva, a gyűjtemény szintjén majd adhatnak ki a megadott gyűjtemény hello hello hello dokumentumok műveleteket a Helyadatbázis-műveletekhez. Ezek a műveletek a környezeti ACID-tranzakciókat van burkolva.
 
-A következő példa bemutatja, hogyan lehet a JavaScript-kiszolgáló API a queryDocuments segítségével ellenőrizze a lekérdezések belső tárolt eljárások és eseményindítók.
+hello következő példa bemutatja, hogyan toouse hello queryDocuments a JavaScript-kiszolgáló API hello toomake lekérdezi a vállalaton belüli tárolt eljárások és eseményindítók.
 
     function businessLogic(name, author) {
         var context = getContext();
@@ -2237,10 +2237,10 @@ A következő példa bemutatja, hogyan lehet a JavaScript-kiszolgáló API a que
                         if (err) throw new Error(err.message);
     context.getResponse().setBody(matchingDocuments.length);
 
-                        // Replace the author name for all documents that satisfied the query.
+                        // Replace hello author name for all documents that satisfied hello query.
                         for (var i = 0; i < matchingDocuments.length; i++) {
                             matchingDocuments[i].author = "George R. R. Martin";
-                            // we don't need to execute a callback because they are in parallel
+                            // we don't need tooexecute a callback because they are in parallel
                             collectionManager.replaceDocument(matchingDocuments[i]._self,
                                 matchingDocuments[i]);
                         }
@@ -2249,7 +2249,7 @@ A következő példa bemutatja, hogyan lehet a JavaScript-kiszolgáló API a que
     }
 
 ## <a id="References"></a>Hivatkozások
-1. [Bevezetés az Azure Cosmos DB][introduction]
+1. [Bevezetés tooAzure Cosmos DB][introduction]
 2. [Az Azure Cosmos adatbázis SQL-specifikációja](http://go.microsoft.com/fwlink/p/?LinkID=510612)
 3. [Azure Cosmos DB .NET-minták](https://github.com/Azure/azure-documentdb-net)
 4. [Az Azure Cosmos DB Konzisztenciaszintek][consistency-levels]
@@ -2261,7 +2261,7 @@ A következő példa bemutatja, hogyan lehet a JavaScript-kiszolgáló API a que
 10. A lekérdezés feldolgozás alatt álló párhuzamos relációs adatbázis-rendszerek, IEEE számítógép társadalom nyomja le az 1994.
 11. Lu, Ooi, Tan, feldolgozás alatt álló párhuzamos relációs adatbázis-rendszerek, IEEE számítógép társadalom nyomja le az 1994 lekérdezés.
 12. Christopher Olston, Benjamin Reed, Utkarsh Srivastava, Ravi Kumar, Andrew Tomkins: a Pig Latin: egy nem, külső nyelvi SIGMOD 2008 az adatok feldolgozásához.
-13. G. Graefe. Optimalizálás kaszkádokban keretében. IEEE adatok Eng. BULL., 18(3): 1995.
+13. G. Graefe. optimalizálás hello kaszkádokban kerete. IEEE adatok Eng. BULL., 18(3): 1995.
 
 [1]: ./media/documentdb-sql-query/sql-query1.png
 [introduction]: introduction.md

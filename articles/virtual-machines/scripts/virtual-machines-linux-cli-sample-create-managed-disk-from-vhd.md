@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl |} Microsoft Docs"
-description: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl"
+title: "aaaAzure CLI parancsfájl minta - hozhat létre egy felügyelt lemezt egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez |} Microsoft Docs"
+description: "Az Azure CLI-parancsfájlt minta - hozhat létre egy felügyelt lemezt egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 448636e87db126defc804a613bb61ff19a086ad9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6cfb3c54a7692b0f3999c585861340c1a6b4d348
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-the-same-subscription-with-cli"></a>Hozhat létre egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a parancssori felület a VHD-fájl
+# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-hello-same-subscription-with-cli"></a>Felügyelt lemezes tárfiókokban hello a VHD-fájl létrehozása a parancssori felület ugyanahhoz az előfizetéshez
 
-Ez a parancsfájl egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshez a VHD-fájl hoz létre. Ezen parancsfájl segítségével importálja a speciális (nem általánosított/Sysprep használatával előkészített) felügyelt operációsrendszer-lemez VHD-egy virtuális gép létrehozásához. Másik lehetőségként az adatimportálás egy virtuális merevlemez felügyelt adatok lemezre. 
+Ezt a parancsfájlt hoz létre egy felügyelt lemezes egy VHD-fájlt a hello tárfiókokban ugyanahhoz az előfizetéshez. A parancsfájl tooimport egy speciális (nem általánosított/Sysprep használatával előkészített) VHD toomanaged OS lemez toocreate egy virtuális gép használja. Másik lehetőségként azt tooimport VHD toomanaged adatlemezt. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,21 +32,21 @@ Ez a parancsfájl egy felügyelt lemezt a tárfiók ugyanahhoz az előfizetéshe
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli[fő](../../../cli_scripts/virtual-machine/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "létrehozás felügyelt lemezes virtuális merevlemezből")]
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "Create managed disk from VHD")]
 
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsok hozhat létre egy felügyelt lemezt egy virtuális Merevlemezt. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate felügyelt lemezes olyan virtuális merevlemezről. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az lemez létrehozása](https://docs.microsoft.com/cli/azure/disk#create) | A virtuális merevlemez URI használatát a tárfiók ugyanahhoz az előfizetéshez felügyelt lemezt hozott létre |
+| [az lemez létrehozása](https://docs.microsoft.com/cli/azure/disk#create) | Létrehoz egy virtuális merevlemez URI használatát a tárfiókokat hello felügyelt lemezes ugyanahhoz az előfizetéshez |
 
 ## <a name="next-steps"></a>Következő lépések
 
 [Virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával](./virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További virtuális gép és a felügyelt lemezek CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További virtuális gép és a felügyelt lemezek CLI parancsfájl minták található hello [Azure Linux virtuális dokumentációját](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

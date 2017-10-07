@@ -1,6 +1,6 @@
 ---
-title: "Adatok előkészítése az Azure Import/Export importálási feladatnak merevlemezek minta munkafolyamat |} Microsoft Docs"
-description: "Lásd: a forgatókönyv a teljes folyamat meghajtók előkészítése az Azure Import/Export szolgáltatás egy importálási feladat."
+title: "aaaSample munkafolyamat tooprep merevlemez-meghajtók az Azure Import/Export importálási feladat |} Microsoft Docs"
+description: "Tekintse meg a teljes folyamat hello meghajtók előkészítése az importálási feladat hello Azure Import/Export szolgáltatás egy bemutató."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: muralikk
-ms.openlocfilehash: 78d7ce3bbd3205fd995ba331af08d830097c8156
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 560220b7dc9f87416f1fec1ff30fa5cd65812ce5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a>Munkafolyamat-minta a merevlemezek importálási feladatokhoz való előkészítésére
+# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a>Minta munkafolyamat tooprepare merevlemezeit, az importálási feladat
 
-Ez a cikk végigvezeti a teljes folyamat meghajtók előkészítése az importálási feladat.
+Ez a cikk bemutatja, hogyan hello teljes folyamata meghajtók előkészítése az importálási feladat.
 
 ## <a name="sample-data"></a>Mintaadatok
 
-Ebben a példában a következő adatokat importálja az Azure-tárfiók nevű `mystorageaccount`:
+Ez a példa importál adatokat az Azure-tárfiók neve a következő hello `mystorageaccount`:
 
 |Hely|Leírás|Adatok mérete|
 |--------------|-----------------|-----|
@@ -37,7 +37,7 @@ Ebben a példában a következő adatokat importálja az Azure-tárfiók nevű `
 
 ## <a name="storage-account-destinations"></a>Tárolási fiók célok
 
-Az importálási feladat az adatok importálása a storage-fiókot a következő célhoz:
+hello importálási feladat hello adatok importálása a következő célhoz hello tárfiók hello:
 
 |Forrás|Cél virtuális könyvtárat vagy blob|
 |------------|-------------------------------------------|
@@ -46,25 +46,25 @@ Az importálási feladat az adatok importálása a storage-fiókot a következő
 |K:\Temp\FavoriteMovie.ISO|favorite/FavoriteMovies.ISO|
 |\\\bigshare\john\music\ |Zene|
 
-A hozzárendelést, a fájl a `H:\Video\Drama\GreatMovie.mov` importálhatja, hogy a blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.
+Ez a leképezés a hello fájl `H:\Video\Drama\GreatMovie.mov` importált toohello blob lesz `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.
 
 ## <a name="determine-hard-drive-requirements"></a>Merevlemez-meghajtóról követelmények meghatározása
 
-Ezt követően annak megállapításához, hogy hány merevlemezek szükségesek, számítási az adatok mérete:
+Ezt követően toodetermine hány merevlemezek szükségesek, számítási hello hello adatok mérete:
 
 `12TB + 30GB + 25GB + 10GB = 12TB + 65GB`
 
-Az ebben a példában két 8 TB-os merevlemezeket elegendőnek kell lennie. Mivel azonban a forráskönyvtár `H:\Video` 12TB adatot, és az egyetlen merevlemez-területtel csak 8TB, adja meg a következő módon a ez lesz a **driveset.csv** fájlt:
+Az ebben a példában két 8 TB-os merevlemezeket elegendőnek kell lennie. Hello forráskönyvtár mivel azonban `H:\Video` 12TB adatot, és az egyetlen merevlemez-területtel csak 8TB, fogja tudni toospecify ezt a következő módon hello hello **driveset.csv** fájlt:
 
 ```
 DriveLetter,FormatOption,SilentOrPromptOnFormat,Encryption,ExistingBitLockerKey
 X,Format,SilentMode,Encrypt,
 Y,Format,SilentMode,Encrypt,
 ```
-Az eszköz fogja el az adatokat két merevlemez-meghajtók optimalizált módon.
+hello eszköz lesz el az adatokat két merevlemez-meghajtók optimalizált módon.
 
-## <a name="attach-drives-and-configure-the-job"></a>Meghajtók csatolja, és a feladat konfigurálása
-Ön mindkét lemez csatolása a géphez, és hozzon létre köteteket. Majd szerzői **dataset.csv** fájlt:
+## <a name="attach-drives-and-configure-hello-job"></a>Meghajtó csatlakoztatása és hello feladat konfigurálása
+A rendszer Csatlakoztassa mindkét lemezek toohello gép, és hozzon létre köteteket. Majd szerzői **dataset.csv** fájlt:
 ```
 BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 H:\Video\,video/,BlockBlob,rename,None,H:\mydirectory\properties.xml
@@ -73,13 +73,13 @@ K:\Temp\FavoriteVideo.ISO,favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\my
 \\myshare\john\music\,music/,BlockBlob,rename,None,H:\mydirectory\properties.xml
 ```
 
-Ezenkívül a következő metaadatokat az összes fájl állíthatja be:
+Ezenkívül a következő összes fájlok metaadatait hello állíthatja be:
 
 * **UploadMethod:** Windows Azure Import/Export szolgáltatás
 * **DataSetName:** SampleData
 * **CreationDate:** 10/1/2013
 
-Ha szeretné beállítani az importált fájlok metaadatait, hozzon létre egy szövegfájlt, `c:\WAImportExport\SampleMetadata.txt`, a következő tartalommal:
+importált hello fájlok metaadatait tooset hozzon létre egy szövegfájlt, `c:\WAImportExport\SampleMetadata.txt`, a tartalom a következő hello:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -90,13 +90,13 @@ Ha szeretné beállítani az importált fájlok metaadatait, hozzon létre egy s
 </Metadata>
 ```
 
-Bizonyos tulajdonságait is beállíthat a `FavoriteMovie.ISO` blob:
+Hello bizonyos tulajdonságait is beállíthat `FavoriteMovie.ISO` blob:
 
 * **Content-Type:** application/octet-stream
 * **Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ ==
 * **A Cache-Control:** no-cache
 
-A tulajdonságok beállításáról, hozzon létre egy szövegfájlt `c:\WAImportExport\SampleProperties.txt`:
+tooset ezeket a tulajdonságokat, hozzon létre egy szövegfájlt `c:\WAImportExport\SampleProperties.txt`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -107,25 +107,25 @@ A tulajdonságok beállításáról, hozzon létre egy szövegfájlt `c:\WAImpor
 </Properties>
 ```
 
-## <a name="run-the-azure-importexport-tool-waimportexportexe"></a>Futtassa az Azure Import/Export eszköz (WAImportExport.exe)
+## <a name="run-hello-azure-importexport-tool-waimportexportexe"></a>Futtatási hello Azure Import/Export eszköz (WAImportExport.exe)
 
-Most már készen áll a két merevlemez-meghajtók előkészítése az Azure Import/Export eszköz futtatásához.
+Most már készen áll a toorun hello Azure Import/Export eszköz tooprepare hello két merevlemez-meghajtók áll.
 
-**Az első munkamenet:**
+**Az első munkamenet hello:**
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:************* /InitialDriveSet:driveset-1.csv /DataSet:dataset-1.csv /logdir:F:\logs
 ```
 
-További adatokat hozzá kell adni, ha hozzon létre egy másik dataset fájlt (Initialdataset megegyező formátumban).
+Ha több adat hozzáadott toobe, hozzon létre egy másik dataset fájlt (Initialdataset megegyező formátumban).
 
-**A második munkamenethez:**
+**A második munkamenet hello:**
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset-2.csv
 ```
 
-Miután végzett a másolat munkamenetek, a két meghajtók leválasztása a másolási számítógépről, és küldje el azokat a megfelelő Azure adatközpontba. A két Adatbázisnapló-fájlok feltöltése lesz `<FirstDriveSerialNumber>.xml` és `<SecondDriveSerialNumber>.xml`, az importálási feladat létrehozásakor az Azure portálon.
+Hello másolási munkamenetek befejezése után hello két meghajtók leválasztása hello másolási számítógépről, és toohello megfelelő Azure-adatközpont küldje el. Hello két Adatbázisnapló-fájlok feltöltése lesz `<FirstDriveSerialNumber>.xml` és `<SecondDriveSerialNumber>.xml`, hello Azure-portálon hello importálási feladat létrehozásakor.
 
 ## <a name="next-steps"></a>Következő lépések
 

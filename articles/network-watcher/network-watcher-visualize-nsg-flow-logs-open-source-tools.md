@@ -1,6 +1,6 @@
 ---
-title: "Azure hálózati figyelő NSG folyamata naplók nyílt forráskódú eszközökkel megjelenítése |} Microsoft Docs"
-description: "Ezen a lapon NSG folyamata naplók megjelenítése nyílt forráskódú eszközök használatával ismerteti."
+title: "Azure hálózati figyelő NSG folyamat aaaVisualize naplózza, nyílt forráskódú eszközökkel |} Microsoft Docs"
+description: "Ez a lap ismerteti, hogyan toouse forrás eszközök toovisualize NSG folyamata naplófájlok megnyitása."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 20f60ccd9108a7473705c2368f28d3152d0dd614
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 47cb529d4a1e00e8c4c0fa6885cbf72aed3e74c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="visualize-azure-network-watcher-nsg-flow-logs-using-open-source-tools"></a>Azure hálózati figyelő NSG folyamata naplók nyílt forráskódú eszközökkel megjelenítése
 
-Hálózati biztonsági csoport folyamata naplók információkkal használható IP-bemenő és kimenő forgalmat a hálózati biztonsági csoportok ismertetése. A folyamat naplók kimenő és bejövő forgalom megjelenítése / szabály alapján, a hálózati adapter a folyamat vonatkozik, a folyamat (forrás vagy a cél IP, forrás vagy a cél Port Protocol), információ 5 rekordos és ha a forgalom lett engedélyez vagy tilt.
+Hálózati biztonsági csoport folyamata naplók információkkal használható IP-bemenő és kimenő forgalmat a hálózati biztonsági csoportok ismertetése. A folyamat naplók megjelenítése kimenő és bejövő adatfolyamok / szabály alapján, hello NIC hello folyamata vonatkozik, hello folyamata (forrás vagy a cél IP, forrás vagy a cél Port Protocol), és ha hello forgalom lett engedélyezett vagy megtagadott 5 rekordos információt.
 
-A folyamat naplók manuális elemzése és a dcu nehéz lehet. Vannak azonban számos nyílt forráskódú eszköz, amelynek segítségével jelenítheti meg ezeket az adatokat. Ez a cikk ad meg, ezek a naplók a rugalmas készlet, amely lehetővé teszi a gyors index, és jelenítheti meg a folyamat használatával megjelenítheti az adott megoldás Kibana irányítópult bejelentkezik.
+A folyamat naplók nehéz toomanually elemzési kell, és a dcu. Vannak azonban számos nyílt forráskódú eszköz, amelynek segítségével jelenítheti meg ezeket az adatokat. Ez a cikk nyújt a megoldás toovisualize a naplók hello rugalmas készlet használatával, amely lehetővé teszi tooquickly index és a folyamat a naplók Kibana irányítópult megjelenítése.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-Ebben a cikkben egy megoldást, amely lehetővé teszi a hálózati biztonsági csoport folyamata naplók a rugalmas készlet használatával megjelenítheti üzembe helyezünk.  Egy Logstash bemeneti beépülő modul beszerzi a folyamat naplók közvetlenül a tárolási blob, a folyamat naplókat tartalmazó konfigurálva. Ezt követően a rugalmas készlet használatával, a folyamat naplókat fog kell indexelt és Kibana irányítópulton jelenítheti meg az információkat létrehozásához használt.
+Ebben a cikkben egy megoldást, amely lehetővé teszi a toovisualize hálózati biztonsági csoport folyamat használatával a naplókat, a rugalmas készlet hello üzembe helyezünk.  Egy Logstash bemeneti beépülő modul beszerzi hello folyamata naplók közvetlenül hello tárolási blob hello folyamata naplókat tartalmazó konfigurálva. Ezt követően hello rugalmas készlet használatával, hello folyamata naplók lesz indexelve és toocreate egy Kibana irányítópult toovisualize hello információkat használja.
 
 ![forgatókönyv][scenario]
 
 ## <a name="steps"></a>Lépések
 
 ### <a name="enable-network-security-group-flow-logging"></a>Engedélyezze a hálózati biztonsági csoport folyamata naplózás
-Ebben az esetben rendelkeznie kell hálózati biztonsági csoport Flow naplózás legalább egy hálózati biztonsági csoport a fiók engedélyezve. A hálózati biztonsági folyamata naplók engedélyezése útmutatásért tekintse meg a következő cikk [folyamata naplózási a hálózati biztonsági csoportok bemutatása](network-watcher-nsg-flow-logging-overview.md).
+Ebben az esetben rendelkeznie kell hálózati biztonsági csoport Flow naplózás legalább egy hálózati biztonsági csoport a fiók engedélyezve. A hálózati biztonsági Flow naplók engedélyezése útmutatásért tekintse meg a következő cikket toohello [bemutatása tooflow naplózási a hálózati biztonsági csoportok](network-watcher-nsg-flow-logging-overview.md).
 
 
-### <a name="set-up-the-elastic-stack"></a>A rugalmas készlet beállítása
-A rugalmas készlet NSG folyamata naplók összekötésével létrehozhatjuk Kibana irányítópult mi kiválaszthatjuk, hogy a keresés, diagramot, elemzése és elemzések származik a naplókat.
+### <a name="set-up-hello-elastic-stack"></a>A rugalmas készlet hello beállítása
+NSG csatlakozzon a naplók és a rugalmas készlet hello flow, jelenleg milyen kiválaszthatjuk toosearch Kibana irányítópult létrehozása, diagramot, elemzése és elemzések származik a naplókat.
 
 #### <a name="install-elasticsearch"></a>Elasticsearch telepítése
 
-1. A rugalmas készlet 5.0-s verziójáról és a fent Java 8 igényel. Futtassa a parancsot `java -version` a verziójának. Ha nem kell telepíteni, a részletek a dokumentációban találhatók java [Oracle-webhely](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
-1. Töltse le a megfelelő bináris csomagot a rendszer:
+1. hello rugalmas verem 5.0-s verziójáról és a fent Java 8 igényel. Hello paranccsal `java -version` toocheck adott verziójában. Ha nem kell telepíteni, tekintse meg a toodocumentation a java [Oracle-webhely](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
+1. Töltse le a hello helyes bináris csomagot a rendszer:
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb
@@ -54,13 +54,13 @@ A rugalmas készlet NSG folyamata naplók összekötésével létrehozhatjuk Kib
 
     Egyéb módszerek található [Elasticsearch telepítése](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)
 
-1. Győződjön meg arról, hogy Elasticsearch fut-e a parancsot:
+1. Győződjön meg arról, hogy fut-e Elasticsearch hello paranccsal:
 
     ```
     curl http://127.0.0.1:9200
     ```
 
-    Ez hasonló választ kell megjelennie:
+    A válasz hasonló toothis kell megjelennie:
 
     ```
     {
@@ -77,23 +77,23 @@ A rugalmas készlet NSG folyamata naplók összekötésével létrehozhatjuk Kib
     }
     ```
 
-Rugalmas keresési telepítése további útmutatásra van szüksége, tekintse meg a lap [telepítése](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)
+Rugalmas keresési telepítése további útmutatásra van szüksége, tekintse meg a toohello lap [telepítése](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)
 
 ### <a name="install-logstash"></a>Logstash telepítése
 
-1. A következő parancsokat Logstash telepítése:
+1. tooinstall Logstash hello a következő parancsok futtatásával:
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. Ezután azt kell Logstash eléréséhez, és a folyamat naplók elemzése. Hozzon létre egy logstash.conf fájl használatával:
+1. Ezután azt kell tooconfigure Logstash tooaccess, és hello folyamata naplók elemzése. Hozzon létre egy logstash.conf fájl használatával:
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
     ```
 
-1. Vegye fel a következő tartalmat a fájlba:
+1. Adja hozzá a következő tartalom toohello fájl hello:
 
   ```
     input {
@@ -151,94 +151,94 @@ Rugalmas keresési telepítése további útmutatásra van szüksége, tekintse 
 
   ```
 
-További telepítésével kapcsolatos utasításokat Logstash, tekintse meg a [dokumentációs](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
+További telepítésével kapcsolatos utasításokat Logstash, tekintse meg a toohello [dokumentációs](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
 
-### <a name="install-the-logstash-input-plugin-for-azure-blob-storage"></a>A Logstash bemeneti beépülő modul az Azure blob Storage telepítése
+### <a name="install-hello-logstash-input-plugin-for-azure-blob-storage"></a>Hello Logstash bemeneti beépülő modul az Azure blob Storage telepítése
 
-A Logstash beépülő modul lehetővé teszi a kijelölt tárfiókkal közvetlenül elérje a folyamat naplók. A beépülő modul telepítéséhez az alapértelmezett Logstash telepítési könyvtárában (Ez esetben /usr/share/logstash/bin) futtassa a parancsot:
+A Logstash beépülő modul lehetővé teszi a toodirectly belépési hello folyamata naplók a kijelölt tárfiókból. tooinstall a beépülő modul hello alapértelmezett Logstash telepítési könyvtárában (az az eset /usr/share/logstash/bin) parancsot hello:
 
 ```
 logstash-plugin install logstash-input-azureblob
 ```
 
-Logstash elindításához futtassa a parancsot:
+toostart Logstash hello paranccsal:
 
 ```
 sudo /etc/init.d/logstash start
 ```
 
-A beépülő modul kapcsolatos további információkért tekintse meg a dokumentációját [Itt](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob)
+A beépülő modul kapcsolatos további információkért tekintse meg a toodocumentation [Itt](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob)
 
 ### <a name="install-kibana"></a>Kibana telepítése
 
-1. A következő parancsokat Kibana telepítéséhez:
+1. Futtassa a következő parancsok tooinstall Kibana hello:
 
   ```
   curl -L -O https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz
   tar xzvf kibana-5.2.0-linux-x86_64.tar.gz
   ```
 
-1. Kibana használja parancsok futtatásához:
+1. toorun Kibana hello parancsokat használja:
 
   ```
   cd kibana-5.2.0-linux-x86_64/
   ./bin/kibana
   ```
 
-1. Lépjen a Kibana webes felület megtekintéséhez`http://localhost:5601`
-1. Ebben a forgatókönyvben az index a folyamat használható a mintája "nsg-adatfolyam-logs". Változtassa meg az index minta a logstash.conf fájl a "kimeneti" szakaszában.
+1. tooview a Kibana webes felület, keresse meg a túl`http://localhost:5601`
+1. Ebben a forgatókönyvben hello index hello folyamat használható a mintája "nsg-adatfolyam-logs". Módosíthatja a hello index mintát a logstash.conf fájl hello "kimeneti" szakaszában.
 
-1. Ha távolról Kibana irányítópultjának megjelenítése, hozzon létre egy bejövő NSG szabályt, amely engedélyezi webtartalmak elérését **port 5601**.
+1. Ha távolról tooview hello Kibana irányítópult, hozzon létre NSG bejövő szabály hozzáférést túl**port 5601**.
 
 ### <a name="create-a-kibana-dashboard"></a>Kibana irányítópult létrehozása
 
-Ebben a cikkben adtunk egy minta-irányítópult ahhoz, hogy a riasztásokat a trendek és a részletek megtekintéséhez.
+Ez a cikk adtunk meg tooview trendek egy minta-irányítópult és a riasztások részletes adatait.
 
 ![1. ábra][1]
 
-1. Az irányítópult-fájl letöltésére [Itt](https://aka.ms/networkwatchernsgflowlogdashboard), a képi megjelenítés fájl [Itt](https://aka.ms/networkwatchernsgflowlogvisualizations), és a mentett keresés fájl [Itt](https://aka.ms/networkwatchernsgflowlogsearch).
+1. Hello irányítópult-fájl letöltésére [Itt](https://aka.ms/networkwatchernsgflowlogdashboard), hello képi megjelenítés fájl [Itt](https://aka.ms/networkwatchernsgflowlogvisualizations), és hello mentett keresési fájl [Itt](https://aka.ms/networkwatchernsgflowlogsearch).
 
-1. A a **felügyeleti** lapon lépjen a Kibana, **objektumok mentése** mindhárom fájlt importálja. Ezután az a **irányítópult** lap megnyitásához, és a minta-irányítópult betöltése.
+1. A hello **felügyeleti** lapon a Kibana, lépjen túl**mentett objektumok** mindhárom fájlt importálja. Ezután a hello **irányítópult** megnyithatja lapon és a minta-irányítópult hello.
 
 A saját képi megjelenítések és saját egyik fontos metrikák felé szabott irányítópultok is létrehozhat. További információk Kibana képi megjelenítés létrehozása Kibana tartozó [dokumentációs](https://www.elastic.co/guide/en/kibana/current/visualize.html).
 
 ### <a name="visualize-nsg-flow-logs"></a>NSG folyamata naplók megjelenítése
 
-A minta-irányítópult a folyamat naplók több képi megjelenítések biztosítja:
+hello minta-irányítópult biztosít több képi megjelenítések hello folyamata naplói:
 
-1. Döntési és irányok keresztül időpontjára - adatfolyamok a azokról az az idő alatt adatfolyamok idő adatsorozat diagramjait. Időegység, és mindkét alábbi képi megjelenítést span szerkesztheti. Döntési által adatfolyamok arányát jeleníti meg, engedélyezése vagy megtagadása döntések, amíg a forgalom iránya által a bejövő és kimenő forgalom arányát jeleníti meg. Ezek a látványelemek vizsgálja meg a forgalmi adott idő alatt, és bármely igényeiben jelentkező vagy szokatlan mintákat keressen.
+1. Döntési és irányok keresztül időpontjára - adatfolyamok a idő adatsorozat diagramjait adatfolyamok száma hello trendjét ábrázoló hello időszakra vonatkozóan. Hello egysége, és mindkét alábbi képi megjelenítést span szerkesztheti. Adatfolyamok döntési látható hello aránya engedélyezése vagy megtagadása döntések során forgalom irányát mutatja hello aránya bejövő és kimenő forgalom. Ezek a látványelemek vizsgálja meg a forgalmi adott idő alatt, és bármely igényeiben jelentkező vagy szokatlan mintákat keressen.
 
   ![2. ábra][2]
 
-1. Cél/forrásport – által adatfolyamok a tortadiagramok megjelenítő bontásban tartalmazza a megfelelő portokhoz forgalom. Az ebben a nézetben láthatja a leggyakrabban használt portok. Ha egy adott portot a kördiagram belül kattint, a többi irányítópult le, hogy a port adatfolyamok szűrheti.
+1. Cél/forrásport – által adatfolyamok a tortadiagramok megjelenítő hello lebontása flow tootheir megfelelő portok. Az ebben a nézetben láthatja a leggyakrabban használt portok. Ha egy adott portot hello kördiagram belül kattint, hello irányítópult hello részeinek szűrheti, hogy a port tooflows le.
 
   ![figure3][3]
 
-1. Több adatfolyamok és legkorábbi napló időben – adatfolyamok rögzített száma és a legkorábbi naplóban rögzített dátumának megjelenítése.
+1. Több adatfolyamok és legkorábbi napló időben – hello száma adatfolyamok rögzített, és hello dátum hello legkorábbi napló rögzített jeleníti meg.
 
   ![4. ábra][4]
 
-1. Adatfolyamok NSG-t és a szabály – egy oszlopdiagramot belül minden NSG forgalom eloszlását, valamint belüli egyes NSG-szabályok eloszlását jeleníti meg. Itt láthatja, melyik NSG-t és a szabályok jönnek létre a legtöbb forgalmat.
+1. Adatfolyamok NSG-t és a szabály – egy oszlopdiagramot hello terjesztési belül minden NSG forgalom, valamint hello terjesztése belüli egyes NSG-szabályok láthatók. Itt láthatja, melyik NSG-t, és a létrehozott szabályok hello legtöbb forgalmat.
 
   ![figure5][5]
 
-1. Felső 10 forrás vagy a cél IP-címek – sávdiagramok első 10 forrás és cél IP-címek. Beállíthatja, hogy több vagy kevesebb felső IP-cím megjelenítése a diagramokat. Itt láthatja a leggyakrabban előforduló IP-címek, valamint a forgalom döntési (engedélyezése vagy megtagadása) végrehajtott minden IP felé.
+1. Első 10 forrás vagy a cél IP-címek – hello első 10 forrás és cél IP-címek megjelenítő sávdiagramok. Módosíthatja a diagramok tooshow több vagy kevesebb felső IP-címek. Itt meg is tekintse meg a leggyakrabban előforduló az IP-címek hello, valamint a forgalom döntési hello (engedélyezése vagy megtagadása) végrehajtott minden IP felé.
 
   ![figure6][6]
 
-1. Folyamat rekordokat – ezt a táblázatot jeleníti meg az adatokat belül minden folyamat rekordot, valamint a megfelelő NGS és szabály található.
+1. Attribútumfolyam rekordokat – Ez a táblázat bemutatja, hello belül minden folyamat rekordot, valamint a megfelelő NGS és szabály található információt.
 
   ![figure7][7]
 
-A lekérdezés sáv segítségével az irányítópult tetején, szűrheti az adatfolyamok, például az előfizetés-azonosító, erőforráscsoport-sablonok, szabály vagy bármely más változó érdeklő bármely paramétere alapján irányítópult le. További információ a Kibana a lekérdezések és a szűrők, tekintse meg a [dokumentációs](https://www.elastic.co/guide/en/beats/packetbeat/current/kibana-queries-filters.html)
+Hello lekérdezés sáv segítségével hello irányítópult hello tetején, végezhet a hello adatfolyamok, például az előfizetés-azonosító, erőforráscsoport-sablonok, szabály vagy bármely más változó érdeklő bármely paraméter alapján hello irányítópult le. További információ a Kibana a lekérdezések és a szűrők, tekintse meg a toohello [dokumentációs](https://www.elastic.co/guide/en/beats/packetbeat/current/kibana-queries-filters.html)
 
 ## <a name="conclusion"></a>Összegzés
 
-A hálózati biztonsági csoport folyamata naplók és a rugalmas készlet együttes, azt kell elérni jelenítheti meg a hálózati forgalom hatékony és testre szabható módszert. Ezek az irányítópultok engedélyezi, hogy gyorsan kapnak, és a hálózati forgalom, valamint a szűrő észrevételeket oszthatnak meg, és vizsgálja meg az összes esetleges rendellenességeket. Kibana használ, ezek az irányítópultok testre szabni, és adott képi megjelenítéseket készíthet, a biztonsági, naplózási és megfelelőségi igényeinek.
+A rugalmas készlet hello hello hálózati biztonsági csoport folyamata naplók kombinálásával azt rendelkezik kapja meg hatékony és testre szabható módon toovisualize a hálózati forgalom. Ezek az irányítópultok tooquickly nyereség érdekében lehetővé teszi a hálózati forgalom, valamint a szűrő észrevételeket oszthatnak meg, és vizsgálja meg az összes esetleges rendellenességeket. Kibana használ, ezek az irányítópultok testre szabni, és hozzon létre adott képi megjelenítések toomeet bármilyen biztonsági, naplózási és megfelelőségi megfelelően.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan jelenítheti meg az NSG folyamata naplók a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Ismerje meg, hogyan toovisualize az NSG-folyamat naplózza a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
 
 <!--Image references-->

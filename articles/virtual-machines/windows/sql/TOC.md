@@ -4,9 +4,9 @@
 ## [Gyakori kérdések](virtual-machines-windows-sql-server-iaas-faq.md)
  
 # Első lépések
-## [Virtuális gép létrehozása az Azure Portalon](virtual-machines-windows-portal-sql-server-provision.md)
+## [Hello Azure-portálon a virtuális gép kiépítése](virtual-machines-windows-portal-sql-server-provision.md)
 ## [Virtuális gép létrehozása az Azure PowerShell használatával](virtual-machines-windows-ps-sql-create.md)
-## [Kapcsolódás virtuális géphez](virtual-machines-windows-sql-connect.md)
+## [Csatlakozás a virtuális gép tooa](virtual-machines-windows-sql-connect.md)
 ## [Microsoft SQL Server-adatbázis áttelepítése](virtual-machines-windows-migrate-sql.md)
 
 # Útmutató
@@ -23,7 +23,7 @@
 #### [Konfigurálás](virtual-machines-windows-portal-sql-create-failover-cluster.md)
 
 ## Kezelés
-### [Microsoft SQL Server IaaS-ügynök bővítmény használata](virtual-machines-windows-sql-server-agent-extension.md)
+### [SQL Server infrastruktúra-szolgáltatási ügynök bővítmény hello használata](virtual-machines-windows-sql-server-agent-extension.md)
 ### [Automatikus javítás](virtual-machines-windows-sql-automated-patching.md)
 ### [Azure Key Vault-integráció konfigurálása](virtual-machines-windows-ps-sql-keyvault.md)
 ### [Biztonsági szempontok](virtual-machines-windows-sql-security.md)

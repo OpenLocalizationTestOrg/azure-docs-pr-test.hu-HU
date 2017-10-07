@@ -1,6 +1,6 @@
 ---
-title: "Útválasztási és a virtuális készülékek használata az Azure CLI 2.0 szabályozása |} Microsoft Docs"
-description: "Megtudhatja, hogyan szabályozhatja az Azure CLI 2.0 használatával útválasztási és a virtuális készülékek."
+title: "aaaControl útválasztási és a virtuális készülékek használata Azure CLI 2.0 hello |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocontrol útválasztási és a virtuális készülékek használata hello Azure CLI 2.0."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/12/2017
 ms.author: jdial
-ms.openlocfilehash: e5d9519998346619093f443b740c8904283f76e8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 79b908848932a4365dab1b7497b6a0dbf44bbaf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-the-azure-cli-20"></a>Hozzon létre felhasználói útvonalakat (UDR) az Azure CLI 2.0 használatával
+# <a name="create-user-defined-routes-udr-using-hello-azure-cli-20"></a>Hozzon létre felhasználói útvonalakat (UDR) hello Azure CLI 2.0 használatával
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell (Classic deployment)](virtual-network-create-udr-classic-ps.md)
 > * [CLI (Classic deployment)](virtual-network-create-udr-classic-cli.md)
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók 
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat 
 
-A következő CLI-verziók egyikével elvégezheti a feladatot: 
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre: 
 
-- [Azure CLI 1.0](virtual-network-create-udr-arm-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez 
-- [Az Azure CLI 2.0](#Create-the-UDR-for-the-front-end-subnet) -erőforrás felügyeleti telepítési modell (Ez a cikk) a következő generációs parancssori felület
+- [Az Azure CLI 1.0](virtual-network-create-udr-arm-cli-nodejs.md) – hello klasszikus és resource management üzembe helyezési modellek számára a parancssori felület 
+- [Az Azure CLI 2.0](#Create-the-UDR-for-the-front-end-subnet) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell (Ez a cikk)
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
@@ -45,13 +45,13 @@ A következő CLI-verziók egyikével elvégezheti a feladatot:
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-Az alábbi minta Azure parancssori felület parancsait már a fenti forgatókönyv alapján létre egy egyszerű környezetben várható. Ha szeretné a parancsokat a jelen dokumentum megjelenített, először összeállítása a tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), kattintson a **az Azure telepítéséhez**, cserélje le az alapértelmezett paraméterértékek, ha szükséges, és kövesse az utasításokat a portálon.
+minta hello Azure CLI-t az alábbi parancsok már a fenti hello forgatókönyv alapján létre egy egyszerű környezetben várható. Ha toorun hello parancsok ebben a dokumentumban megjelenített, először létre hello tesztkörnyezetben üzembe helyezésével [sablon](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek Ha szükséges, és kövesse az utasításokat hello a hello portálon.
 
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Az előtér-alhálózat UDR létrehozása
-Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókönyv alapján szükséges útvonal létrehozásához kövesse az alábbi lépéseket.
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>Hello UDR hello előtér-alhálózat létrehozása
+toocreate hello útválasztási táblázatot és hello előtérben lévő alhálózat alhálózat alapján hello forgatókönyv fenti, a szükséges útvonal kövesse a hello lépéseket.
 
-1. Hozzon létre egy útválasztási táblázatot előtér-alhálózat a [az hálózati útvonal-táblázat létrehozása](/cli/azure/network/route-table#create) parancs:
+1. Hozzon létre egy útválasztási táblázatot hello előtér-alhálózat hello [az hálózati útvonal-táblázat létrehozása](/cli/azure/network/route-table#create) parancs:
 
     ```azurecli
     az network route-table create \
@@ -77,7 +77,7 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
     }
     ```
 
-2. Egy olyan útvonalat, amelyet az összes adatforgalmat küld a háttér-alhálózathoz (192.168.2.0/24) hozhat létre a **FW1** (192.168.0.4) virtuális gép használata a [az hálózati útvonaltábla útvonal létrehozása](/cli/azure/network/route-table/route#create) parancs:
+2. Hozzon létre egy olyan útvonalat, amelyet az összes adatforgalmat toohello háttér-alhálózat (192.168.2.0/24) toohello küld **FW1** használó virtuális gépek (192.168.0.4) hello [az hálózati útvonaltábla útvonal létrehozása](/cli/azure/network/route-table/route#create) parancs:
 
     ```azurecli 
     az network route-table route create \
@@ -105,12 +105,12 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
     ```
     Paraméterek:
 
-    * **--útvonal-részes-táblanév**. Az útvonaltábla, ahova a rendszer hozzáadja az útvonal neve. A mi esetünkben *UDR-előtérbeli*.
-    * **--address-prefix**. Az alhálózat, ahol a csomagok irányuló forgalomnál címelőtagot. A mi esetünkben *192.168.2.0/24*.
+    * **--útvonal-részes-táblanév**. Amennyiben adható hozzá hello útvonal hello útvonaltábla neve. A mi esetünkben *UDR-előtérbeli*.
+    * **--address-prefix**. Ha a csomagok irányuló forgalomnál hello alhálózat címelőtagot. A mi esetünkben *192.168.2.0/24*.
     * **--következő ugrás-típusú**. Típusú objektum forgalom kapnak. A lehetséges értékek: *VirtualAppliance*, *pedig*, *VNETLocal*, *Internet*, vagy *nincs*.
     * **--next-hop-ip-cím**. Következő ugrás IP-címet. A mi esetünkben *192.168.0.4*.
 
-3. Futtassa a [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) parancs az előbb létrehozott útvonaltábla hozzárendelni a **előtér** alhálózati:
+3. Futtassa a hello [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) hello az előbb létrehozott parancs tooassociate hello útvonaltábla **előtér** alhálózati:
 
     ```azurecli
     az network vnet subnet update \
@@ -150,13 +150,13 @@ Az útválasztási táblázatot és az előtér-alhálózat, a fenti forgatókö
 
     Paraméterek:
     
-    * **--vnet-name**. A VNet neve, ahol az alhálózatban. A mi esetünkben *TestVNet*.
+    * **--vnet-name**. Hello ahol hello alhálózat VNet neve. A mi esetünkben *TestVNet*.
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>A háttér-alhálózat UDR létrehozása
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>Hello UDR hello háttér-alhálózat létrehozása
 
-Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján szükséges útvonal létrehozásához kövesse az alábbi lépéseket:
+toocreate hello útvonaltábla és útvonal-hello háttér-alhálózat a fenti lépések teljes hello hello forgatókönyv alapján szükséges:
 
-1. A következő parancsot egy útválasztási táblázatot a háttér-alhálózat létrehozásához:
+1. Futtassa a következő parancs toocreate hello hello háttér-alhálózat egy útválasztási táblázatot:
 
     ```azurecli
     az network route-table create \
@@ -165,7 +165,7 @@ Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján sz
     --location centralus
     ```
 
-2. A következő parancsot egy útvonal létrehozása az útválasztási táblázatban az előtér-alhálózat (192.168.1.0/24) irányuló összes forgalom küldése a a **FW1** virtuális gép (192.168.0.4):
+2. Futtassa a következő parancs toocreate hello útvonal tábla toosend adott útvonal hello összes adatforgalmat toohello előtér-alhálózat (192.168.1.0/24) toohello **FW1** virtuális gép (192.168.0.4):
 
     ```azurecli
     az network route-table route create \
@@ -177,7 +177,7 @@ Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján sz
     --next-hop-ip-address 192.168.0.4
     ```
 
-3. A következő parancsot az útvonaltáblában a társítja a **háttér** alhálózati:
+3. Futtatási hello parancs tooassociate hello útvonaltáblában hello a következő **háttér** alhálózati:
 
     ```azurecli
     az network vnet subnet update \
@@ -189,9 +189,9 @@ Az útvonaltábla és a háttér-alhálózat, a fenti forgatókönyv alapján sz
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>IP-továbbítás a FW1 engedélyezése
 
-A hálózati adapter által használt IP-továbbítás engedélyezése **FW1**, kövesse az alábbi lépéseket:
+a hálózati adapter által használt hello tooenable IP-továbbítás **FW1**, teljes hello a következő lépéseket:
 
-1. Futtassa a [az hálózati nic megjelenítése](/cli/azure/network/nic#show) JMESPATH szűrő megjelenítése az aktuális parancsot **enable-ip-továbbítás** értékének **engedélyezése IP-továbbítás**. Beállításaként pedig *hamis*.
+1. Hello futtatása [az hálózati nic megjelenítése](/cli/azure/network/nic#show) parancsot egy JMESPATH szűrő toodisplay hello aktuális **enable-ip-továbbítás** értékének **engedélyezése IP-továbbítás**. Kell lennie állítva, akkor túl*hamis*.
 
     ```azurecli
     az network nic show \
@@ -204,7 +204,7 @@ A hálózati adapter által használt IP-továbbítás engedélyezése **FW1**, 
 
         false
 
-2. A következő paranccsal IP-továbbítás engedélyezése:
+2. Futtassa a következő parancs tooenable IP-továbbítás hello:
 
     ```azurecli
     az network nic update \
@@ -213,7 +213,7 @@ A hálózati adapter által használt IP-továbbítás engedélyezése **FW1**, 
     --ip-forwarding true
     ```
 
-    Vizsgálja meg a folyamatos átviteli a konzol kimeneti, vagy az adott csak ellenőrzése hosszadalmas **enableIpForwarding** érték:
+    Vizsgálja meg a hello kimeneti adatfolyamként továbbított toohello konzol, vagy az adott hello csak ellenőrzése hosszadalmas **enableIpForwarding** érték:
 
     ```azurecli
     az network nic show -g testrg -n nicfw1 --query 'enableIpForwarding' -o tsv

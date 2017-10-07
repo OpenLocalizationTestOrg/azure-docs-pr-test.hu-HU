@@ -1,5 +1,5 @@
 ---
-title: "A SELECT INTO Azure Stream Analytics lekérdezések Debug |} Microsoft Docs"
+title: "Azure Stream Analytics aaaDebug lekérdezi a SELECT INTO használatával |} Microsoft Docs"
 description: "Adatok közepes mintalekérdezés Stream Analytics a SELECT INTO utasítások használatával"
 keywords: 
 services: stream-analytics
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: b05222c6d6f4fc2c5b847dd75ff7e29352cd538c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 27e41af1a6ea06b4509d07a3a67087490d0ec1fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-queries-by-using-select-into-statements"></a>A SELECT INTO utasítás használatával lekérdezések hibakeresése
 
-A valós idejű adatfeldolgozással az adatok néz közepén a lekérdezés ismerete hasznos lehet. Bemeneti adatok vagy a lépéseket az Azure Stream Analytics-feladat több alkalommal olvashatók, mert külön SELECT INTO utasítások is írhat. Ezzel a közbülső adatok kiírja a tárolóba, és lehetővé teszi, hogy ellenőrizze a helyességét az adatokat, ugyanúgy, mint *változók bemutató* tegye amikor hibakeresése a program.
+A valós idejű adatfeldolgozással ismerik, mely hello adatok tűnik hello hello közepén lekérdezés hasznos lehet. Bemeneti adatok vagy a lépéseket az Azure Stream Analytics-feladat több alkalommal olvashatók, mert külön SELECT INTO utasítások is írhat. Ezzel köztes adatok kiírja a tárolóba, és lehetővé teszi, hogy vizsgálja meg a hello helyességét hello adatok, ahogy *változók bemutató* tegye amikor hibakeresése a program.
 
-## <a name="use-select-into-to-check-the-data-stream"></a>A SELECT INTO használatával ellenőrizze az adatfolyam
+## <a name="use-select-into-toocheck-hello-data-stream"></a>A SELECT INTO toocheck hello az adatfolyam használata
 
-Egy Azure Stream Analytics-feladat a következő példa lekérdezést egy adatfolyam-bemenet, a két hivatkozás adatok bemeneti és a Azure Table Storage kimenettel rendelkezik. A lekérdezés az event hubs és a két hivatkozás blobok a nevét és kategóriáját adatainak megszerzése adatokból csatlakozik:
+hello egy Azure Stream Analytics-feladat a következő példalekérdezés van egy adatfolyam-bemenet, két hivatkozás adatok bemeneti és egy kimeneti tooAzure Table Storage. hello lekérdezés adatokat hello eseményközpont és két blobok tooget hello nevét és kategóriáját referenciaadatai csatlakozik:
 
 ![Példa a SELECT INTO lekérdezést](./media/stream-analytics-select-into/stream-analytics-select-into-query1.png)
 
-Vegye figyelembe, hogy a feladat fut, de nincsenek események a kimenetben alatt előállítása. A a **figyelés** csempe látható itt, láthatja, hogy a bemeneti van olyan adatokat, de nem tudja, melyik lépésében a **csatlakozás** elvet összes esemény miatt.
+Vegye figyelembe, hogy hello feladat fut, de nincsenek események előállítása hello kimenet alatt. A hello **figyelés** csempe látható itt, láthatja, hogy hello bemeneti van olyan adatokat, de nem tudja, melyik hello lépését **csatlakozás** összes hello eldobott események toobe okozta.
 
-![A figyelés csempe](./media/stream-analytics-select-into/stream-analytics-select-into-monitor.png)
+![hello figyelés csempe](./media/stream-analytics-select-into/stream-analytics-select-into-monitor.png)
  
-Ez a helyzet néhány további SELECT INTO utasítások a "" a köztes ILLESZTÉS eredményei és bemenetről beolvasott adatok adhat hozzá.
+Ebben az esetben is hozzáadhat, néhány további SELECT INTO utasítások túl "naplófájl" hello köztes ILLESZTÉS eredményei és hello hello bemeneti olvasható adatok.
 
 Ebben a példában fel lett véve a két új "ideiglenes kimenetek." A fogadó tetszés el. Azure Storage itt példaként használjuk:
 
 ![Extra SELECT INTO utasítások hozzáadása](./media/stream-analytics-select-into/stream-analytics-select-into-outputs.png)
 
-Majd módosíthatja a lekérdezés ehhez hasonló:
+Ehhez hasonló hello lekérdezés majd módosíthatja:
 
 ![Egy átírt SELECT INTO lekérdezést](./media/stream-analytics-select-into/stream-analytics-select-into-query2.png)
 
-Most indítsa el újra a feladatot, és azt a Futtatás néhány percig. Majd lekérdezés temp1 és a Visual Studio Cloud Explorer létrehozásához az alábbi táblázatok temp2:
+Most indítsa újra a hello feladat, és hagyja, hogy néhány percig futtassa. Ezután lekérdezés temp1, és a Visual Studio Cloud Explorer tooproduce hello a következő táblák temp2:
 
 **temp1 tábla**
 ![SELECT INTO temp1 tábla](./media/stream-analytics-select-into/stream-analytics-select-into-temp-table-1.png)
@@ -53,21 +53,21 @@ Most indítsa el újra a feladatot, és azt a Futtatás néhány percig. Majd le
 **temp2 tábla**
 ![SELECT INTO temp2 tábla](./media/stream-analytics-select-into/stream-analytics-select-into-temp-table-2.png)
 
-Ahogy látja, temp1 és temp2 mindkét és adatokat, és a Név oszlopban nem üres megfelelően temp2. Azonban mivel a még nincsenek adatok kimenet, valami probléma:
+Ahogy látja, temp1 és temp2 mindkét és adatokat, és hello névoszlopa megfelelően van-e feltöltve temp2. Azonban mivel a még nincsenek adatok kimenet, valami probléma:
 
 ![A SELECT INTO output1 tábla adatot nem tartalmazó](./media/stream-analytics-select-into/stream-analytics-select-into-out-table-1.png)
 
-Az adatok mintavétele, biztos lehet majdnem biztos, hogy a probléma van a második való CSATLAKOZÁST. A referenciaadatok letöltését a blob, és tekintse meg:
+Hello az adatok mintavétele biztos lehet szinte bizonyos jelenti, hogy hello probléma hello ILLESZTÉSI második. Hello blob hello referenciaadatok letöltését, és tekintse meg:
 
 ![A SELECT INTO ref tábla](./media/stream-analytics-select-into/stream-analytics-select-into-ref-table-1.png)
 
-Ahogy látja, a referenciaadatok a GUID formátuma formátuma eltér az [a] oszlopában temp2. Ezért az adatok nem érkeznek output1 a várt módon.
+Ahogy látja, a referenciaadatok a GUID hello hello formátuma eltér [a] oszlopában temp2 hello hello formátuma. Ezért hello adatok nem érkeznek output1 a várt módon.
 
-Hárítsa el a adatformátum, töltse fel az blob hivatkoznak, és próbálkozzon újra:
+Javítsa ki a hello adatformátum, tooreference blob feltöltése, és próbálkozzon újra:
 
 ![A SELECT INTO ideiglenes tábla](./media/stream-analytics-select-into/stream-analytics-select-into-ref-table-2.png)
 
-Most, az adatok a kimenetben formázott és feltölti a várt módon.
+Megadott idő hello adatok hello kimenet formázásakor és feltölti a várt módon.
 
 ![A SELECT INTO végső tábla](./media/stream-analytics-select-into/stream-analytics-select-into-final-table.png)
 
@@ -78,7 +78,7 @@ Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytic
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Az Azure Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [A Stream Analytics bemutatása tooAzure](stream-analytics-introduction.md)
 * [Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)
 * [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)
 * [Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Referencia az Azure Stream Analytics lekérdezési nyelvhez)

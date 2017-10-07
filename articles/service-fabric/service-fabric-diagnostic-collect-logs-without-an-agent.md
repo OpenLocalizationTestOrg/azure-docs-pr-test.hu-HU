@@ -1,6 +1,6 @@
 ---
-title: "Gyűjteni a közvetlenül az Azure Service Fabric-szolgáltatás folyamatai |} A Microsoft Azure"
-description: "A Service Fabric alkalmazások naplók küldésével közvetlenül egy központi helyen, például az Azure Application Insights vagy Elasticsearch, anélkül, hogy az Azure diagnosztikai ügynök ismerteti."
+title: "aaaCollect naplók közvetlenül az Azure Service Fabric a szolgáltatás folyamatának |} A Microsoft Azure"
+description: "A Service Fabric alkalmazások elküldheti a naplófájlokat, közvetlen tooa központi helyen, például Azure Application Insights vagy Elasticsearch, anélkül, hogy az Azure diagnosztikai ügynök ismerteti."
 services: service-fabric
 documentationcenter: .net
 author: karolz-ms
@@ -15,63 +15,63 @@ ms.workload: NA
 ms.date: 01/18/2017
 ms.author: karolz
 redirect_url: /azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow
-ms.openlocfilehash: b7d2541928f4248750417a77d99033c8b4354dcc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0681a2a6aaa76028d7cb469c31c006f24bbe954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-directly-from-an-azure-service-fabric-service-process"></a>Gyűjteni a közvetlenül az Azure Service Fabric-szolgáltatás folyamata
 ## <a name="in-process-log-collection"></a>A folyamaton belüli naplógyűjtést
-Naplófájljainak gyűjtése a alkalmazás használatával [Azure Diagnostics bővítmény](service-fabric-diagnostics-how-to-setup-wad.md) jó megoldás az **Azure Service Fabric** szolgáltatások kicsi, napló források és célok esetén nem változik gyakran, és nincs a forrás- és a célhelyek között egyértelmű leképezés. Ha nem, a szolgáltatásokat, a naplófájlok elküldése közvetlenül a központi hely helyett. Ezt a folyamatot nevezik **folyamat naplógyűjtést** és lehetséges több előnye is van:
+Naplófájljainak gyűjtése a alkalmazás használatával [Azure Diagnostics bővítmény](service-fabric-diagnostics-how-to-setup-wad.md) jó megoldás az **Azure Service Fabric** szolgáltatások kicsi, napló források és célok hello beállítása esetén nem változik gyakran, és nincs egy egyszerű leképezése hello források és a célhelyek között van. Ha nem, a másik lehetőség az toohave szolgáltatások naplófájljainak elküldése e-azok közvetlenül tooa központi helyen. Ezt a folyamatot nevezik **folyamat naplógyűjtést** és lehetséges több előnye is van:
 
 * *Egyszerű konfiguráció és a központi telepítés*
 
-    * Diagnosztikai adatok gyűjtésének konfigurálása most nem része a szolgáltatás konfigurációját. Akkor is könnyen mindig biztosítható, hogy "szinkronizálva" a többi alkalmazáshoz.
+    * diagnosztikai adatok gyűjtésének hello konfigurálása most nem részei hello szolgáltatás konfigurációját. Egyszerű tooalways megőrzése "szinkronizálva" hello, rest-hello alkalmazás is.
     * Alkalmazás vagy a szolgáltatás konfigurációja, könnyen elérhető.
-        * Ügynök-alapú naplógyűjtést általában igényel egy külön a telepítését és konfigurálását a diagnosztikai ügynök, amely extra felügyeleti feladatot, és a hibák lehetséges forrását. Gyakran van az ügynök engedélyezett-e a virtuális gép (csomópont) csak egy példánya, és az ügynök konfigurációját minden futó alkalmazások és szolgáltatások ezen a csomóponton osztozik. 
+        * Ügynök-alapú naplógyűjtést általában külön központi telepítési és konfigurációs hello diagnosztikai ügynök, amely extra felügyeleti feladatot, és lehetséges forrását hibák szükséges. Gyakran csak egy példánya engedélyezett-e a virtuális gép (csomópont) hello ügynök és a hello gazdagépügynök-konfigurálási osztozik az összes futó alkalmazások és szolgáltatások ezen a csomóponton. 
 
 * *Rugalmasság*
    
-    * Az alkalmazás is küldheti az adatokat, ahol nyissa meg kell, mindaddig, amíg egy ügyfél könyvtár, amely támogatja a célként megadott tárolási rendszereket. Új célokat felveheti igény szerint.
+    * hello alkalmazás adatküldés hello bárhol toogo, kell, amíg nincs egy ügyféloldali kódtár megcélzott hello adatok tárolórendszer támogató. Új célokat felveheti igény szerint.
     * Összetett rögzítési, szűrési és adatösszesítés szabályok kétféleképpen valósítható meg.
-    * Ügynök-alapú naplógyűjtést gyakran korlátozott általi az adatokat, amely támogatja a az ügynök. Néhány ügynökök olyan bővíthető.
+    * Ügynök-alapú naplógyűjtést gyakran korlátozott általi hello adatok, amelyek hello ügynök támogatja. Néhány ügynökök olyan bővíthető.
 
-* *Belső alkalmazás adatokhoz és a környezetben*
+* *Hozzáférés toointernal alkalmazásadatok és a környezetben*
    
-    * A diagnosztikai alrendszer, az alkalmazás/kiszolgáló folyamat-keretrendszeren belül fut. könnyen is kiegészítheti a nyomkövetési adatokat környezetfüggő adatokkal.
-    * Az ügynök-alapú naplógyűjtést az adatok az ügynök bizonyos folyamatok közti kommunikációs mechanizmus, például a Windows esemény-nyomkövetése keresztül kell küldeni. Ez az eljárás további sikerült korlátozható.
+    * hello diagnosztikai alrendszer hello alkalmazás/kiszolgáló folyamat belül futó könnyen is kiegészítheti hello nyomkövetések környezetfüggő adatokkal.
+    * Az ügynök-alapú naplógyűjtést hello adatokat kell elküldeni tooan ügynök keresztül bizonyos folyamatok közti kommunikációs mechanizmus, például a Windows esemény-nyomkövetése. Ez az eljárás további sikerült korlátozható.
 
-Kombinálhatja, és igénybe vehesse a gyűjtemény közül egyik módszer az lehetőség. Ezenkívül előfordulhat, hogy a legjobb megoldás az számos alkalmazás. Ügynök-alapú gyűjtemény egy olyan természetes megoldás az egész fürt és az egyedi fürtcsomópontokat kapcsolatos naplók gyűjtésére szolgáló. Sokkal több megbízható módot, a folyamat naplógyűjtést, mint szolgáltatás indítási problémák diagnosztizálásához és összeomlik. Is számos szolgáltatásokkal, a Service Fabric-fürt belül futó, minden egyes szolgáltatás ennek során a saját folyamaton belüli naplógyűjtést eredményezi számos kimenő kapcsolatok a fürtből. Kimenő kapcsolatok nagy számú adóztatásától van, a hálózati alrendszer, valamint az a naplócél. Például egy ügynök [ **Azure Diagnostics** ](../cloud-services/cloud-services-dotnet-diagnostics.md) adatokat gyűjtsön a több szolgáltatás és átviteli javítása néhány kapcsolatokon keresztül minden adat küldése. 
+Ez nem lehetséges toocombine és a gyűjtemény közül egyik módszer hasznos. Ezenkívül előfordulhat, hogy számos alkalmazás hello legjobb megoldást. Ügynök-alapú gyűjtemény egy olyan természetes megoldás naplók kapcsolódó toohello teljes fürtön és az egyedi fürtcsomópontokat gyűjtéséhez. Az módja a sokkal megbízhatóbb, mint a folyamaton belüli naplógyűjtést, toodiagnose szolgáltatás indításával kapcsolatos hibák és összeomlások. Is számos szolgáltatásokkal, a Service Fabric-fürt belül futó, ennek során a saját folyamaton belüli naplógyűjtést minden egyes szolgáltatás eredményezi számos kimenő kapcsolatok hello fürtből. Kimenő kapcsolatok nagy számú hello hálózati alrendszer, valamint az hello naplócél van adóztatásától. Például egy ügynök [ **Azure Diagnostics** ](../cloud-services/cloud-services-dotnet-diagnostics.md) adatokat gyűjtsön a több szolgáltatás és átviteli javítása néhány kapcsolatokon keresztül minden adat küldése. 
 
-Ebben a cikkben megmutatjuk, hogyan állíthat be egy folyamaton belüli napló gyűjtemény használja [ **EventFlow nyílt forráskódú könyvtár**](https://github.com/Azure/diagnostics-eventflow). Más könyvtárak használhatók például az ugyanerre a célra, de EventFlow rendelkezik az előnye, hogy tervezték, kifejezetten a folyamaton belüli naplógyűjtést és a Service Fabric-szolgáltatásokat támogatja. Használjuk [ **Azure Application Insights** ](https://azure.microsoft.com/services/application-insights/) napló céljaként. Más helyekre, például [ **Event Hubs** ](https://azure.microsoft.com/services/event-hubs/) vagy [ **Elasticsearch** ](https://www.elastic.co/products/elasticsearch) is támogatottak. Csak a megfelelő NuGet-csomag telepítését és konfigurálását a cél a EventFlow konfigurációs fájl kérdése. Az Application Insights eltérő napló célok további információkért lásd: [EventFlow dokumentáció](https://github.com/Azure/diagnostics-eventflow).
+Ebben a cikkben megmutatjuk, hogyan jelentkezzen be egy folyamaton belüli tooset gyűjtemény használja [ **EventFlow nyílt forráskódú könyvtár**](https://github.com/Azure/diagnostics-eventflow). Más könyvtárak használhatók hello azonos céllal, de EventFlow rendelkezik hello előnye, hogy tervezték, kifejezetten a folyamaton belüli napló gyűjtemény és toosupport Service Fabric-szolgáltatás. Használjuk [ **Azure Application Insights** ](https://azure.microsoft.com/services/application-insights/) hello napló célként. Más helyekre, például [ **Event Hubs** ](https://azure.microsoft.com/services/event-hubs/) vagy [ **Elasticsearch** ](https://www.elastic.co/products/elasticsearch) is támogatottak. Csak a megfelelő NuGet-csomag telepítése és konfigurálása a hello cél hello EventFlow konfigurációs fájlban kérdése. Az Application Insights eltérő napló célok további információkért lásd: [EventFlow dokumentáció](https://github.com/Azure/diagnostics-eventflow).
 
-## <a name="adding-eventflow-library-to-a-service-fabric-service-project"></a>A Service Fabric-szolgáltatás projektbe EventFlow könyvtár hozzáadása
-EventFlow bináris NuGet-csomagok készletként érhetők el. Service Fabric-szolgáltatás projektbe EventFlow hozzáadásához kattintson a jobb gombbal a projektre a Megoldáskezelőben, és válassza a "Manage NuGet packages". Váltson át a "Tallózás" fülre, és keresse meg "`Diagnostics.EventFlow`":
+## <a name="adding-eventflow-library-tooa-service-fabric-service-project"></a>EventFlow könyvtár tooa Service Fabric projekt hozzáadása
+EventFlow bináris NuGet-csomagok készletként érhetők el. tooadd EventFlow tooa Service Fabric-projekt hello projektre a Solution Explorer hello gombbal, és válassza a "Manage NuGet packages". Váltás toohello "Tallózás" fülre, és keressen a "`Diagnostics.EventFlow`":
 
 ![A Visual Studio NuGet-Csomagkezelő felhasználói felület EventFlow NuGet-csomagok][1]
 
-A szolgáltatásüzemeltetési EventFlow attól függően, hogy a forrás- és az alkalmazásnaplókat a megfelelő csomagokat kell tartalmaznia. Adja hozzá a következő csomagokhoz: 
+hello szolgáltatást üzemeltető EventFlow attól függően, hogy hello forrása és célja hello alkalmazásnaplók megfelelő csomagokat kell tartalmaznia. Adja hozzá a következő csomagok hello: 
 
 * `Microsoft.Diagnostics.EventFlow.Inputs.EventSource` 
-    * (a szolgáltatás az EventSource osztályból származik, és a szabványos EventSources adatok rögzítéséhez *Microsoft-ServiceFabric-szolgáltatások* és *Microsoft-ServiceFabric-szereplője*)
+    * (toocapture adatok hello szolgáltatást az EventSource osztályból származik, illetve a szabványos EventSources például *Microsoft-ServiceFabric-szolgáltatások* és *Microsoft-ServiceFabric-szereplője*)
 * `Microsoft.Diagnostics.EventFlow.Outputs.ApplicationInsights` 
-    * (fogjuk küldeni a naplókat az Azure Application Insights-erőforrás)  
+    * (fogjuk toosend hello naplók tooan Azure Application Insights-erőforrás)  
 * `Microsoft.Diagnostics.EventFlow.ServiceFabric` 
-    * (lehetővé teszi, hogy a Service Fabric szolgáltatáskonfiguráció EventFlow folyamat inicializálása és jelentéseket, a Service Fabric állapotjelentések diagnosztikai adatok küldésének problémákat)
+    * (lehetővé teszi, hogy a Service Fabric szolgáltatáskonfiguráció hello EventFlow folyamat inicializálása és jelentéseket, a Service Fabric állapotjelentések diagnosztikai adatok küldésének problémákat)
 
 > [!NOTE]
-> `Microsoft.Diagnostics.EventFlow.Inputs.EventSource`csomag igényli-e a projekt, amelyekre a .NET-keretrendszer 4.6-os vagy újabb. Ellenőrizze, hogy beállította a megfelelő célkeretrendszer a projekt tulajdonságait a csomag telepítése előtt. 
+> `Microsoft.Diagnostics.EventFlow.Inputs.EventSource`csomag igényli-e hello szolgáltatás projekt tootarget .NET keretrendszer 4.6-os vagy újabb. Ellenőrizze, hogy beállította hello megfelelő célkeretrendszer a projekt tulajdonságait a csomag telepítése előtt. 
 
-A csomagok telepítése után a következő lépés, hogy konfigurálja és EventFlow engedélyezése a szolgáltatásban.
+Ha minden hello csomagok telepítve van, a hello a következő lépés tooconfigure és EventFlow engedélyezése hello szolgáltatásban.
 
 ## <a name="configuring-and-enabling-log-collection"></a>Napló gyűjtésének engedélyezése és konfigurálása
-A konfigurációs fájlban tárolt specifikáció EventFlow sorban, a naplók elküldéséért készült. `Microsoft.Diagnostics.EventFlow.ServiceFabric`a csomag telepíti a kiindulási EventFlow konfigurációs fájl `PackageRoot\Config` mappát. A Fájlnév `eventFlowConfig.json`. A konfigurációs fájlnak kell módosítani kell az alapértelmezett szolgáltatás adatait `EventSource` osztályhoz, és adatokat küldeni a Application Insights szolgáltatással.
+A konfigurációs fájlban tárolt specifikáció EventFlow sorban, hello naplók elküldéséért készült. `Microsoft.Diagnostics.EventFlow.ServiceFabric`a csomag telepíti a kiindulási EventFlow konfigurációs fájl `PackageRoot\Config` mappát. hello Fájlnév `eventFlowConfig.json`. A konfigurációs fájlnak kell hello alapértelmezett szolgáltatás adatait módosított toobe toocapture `EventSource` osztályhoz, és küldjön adatokat tooApplication Insights szolgáltatás.
 
 > [!NOTE]
-> Azt feltételezik, hogy ismeri a **Azure Application Insights** szolgáltatás, és hogy van-e az Application Insights-erőforrást, amely a Service Fabric-szolgáltatás figyelése használatát tervezi. Ha további tájékoztatásra van szüksége, tekintse át [Application Insights-erőforrás létrehozása](../application-insights/app-insights-create-new-resource.md).
+> Azt feltételezik, hogy ismeri a **Azure Application Insights** szolgáltatás, és hogy van-e az Application Insights-erőforrás megtervezni toouse toomonitor a Service Fabric-szolgáltatás. Ha további tájékoztatásra van szüksége, tekintse át [Application Insights-erőforrás létrehozása](../application-insights/app-insights-create-new-resource.md).
 
-Nyissa meg a `eventFlowConfig.json` a szerkesztőben fájlt, és annak tartalma módosítható, mert a lent látható módon. Feltétlenül cserélje le a ServiceEventSource nevét és az Application Insights instrumentation kulcs megjegyzések megfelelően. 
+Nyissa meg hello `eventFlowConfig.json` hello szerkesztő fájlt, és annak tartalma módosítható, mert a lent látható módon. Győződjön meg arról, hogy tooreplace hello ServiceEventSource nevét és az Application Insights instrumentation kulcs toocomments alapján történik. 
 
 ```json
 {
@@ -81,7 +81,7 @@ Nyissa meg a `eventFlowConfig.json` a szerkesztőben fájlt, és annak tartalma 
       "sources": [
         { "providerName": "Microsoft-ServiceFabric-Services" },
         { "providerName": "Microsoft-ServiceFabric-Actors" },
-        // (replace the following value with your service's ServiceEventSource name)
+        // (replace hello following value with your service's ServiceEventSource name)
         { "providerName": "your-service-EventSource-name" }
       ]
     }
@@ -95,7 +95,7 @@ Nyissa meg a `eventFlowConfig.json` a szerkesztőben fájlt, és annak tartalma 
   "outputs": [
     {
       "type": "ApplicationInsights",
-      // (replace the following value with your AI resource's instrumentation key)
+      // (replace hello following value with your AI resource's instrumentation key)
       "instrumentationKey": "00000000-0000-0000-0000-000000000000"
     }
   ],
@@ -104,7 +104,7 @@ Nyissa meg a `eventFlowConfig.json` a szerkesztőben fájlt, és annak tartalma 
 ```
 
 > [!NOTE]
-> Szolgáltatás ServiceEventSource neve nem a név tulajdonságának értéke a `EventSourceAttribute` ServiceEventSource osztály. Az összes megadott a `ServiceEventSource.cs` fájl, amely a szolgáltatáskód hibáit része. Például a következő kódrészletet a neve, a ServiceEventSource: *értéket-Alkalmaz1-Stateless1*:
+> szolgáltatás ServiceEventSource hello neve nem hello hello név tulajdonságának értéke hello `EventSourceAttribute` toohello ServiceEventSource osztály alkalmazza. Az összes megadott hello `ServiceEventSource.cs` fájlt, amely hello szolgáltatást kód része. Például a hello hello ServiceEventSource következő kód részlet hello neve nem *értéket-Alkalmaz1-Stateless1*:
 > ```csharp
 > [EventSource(Name = "MyCompany-Application1-Stateless1")]
 > internal sealed class ServiceEventSource : EventSource
@@ -113,9 +113,9 @@ Nyissa meg a `eventFlowConfig.json` a szerkesztőben fájlt, és annak tartalma 
 >} 
 > ```
 
-Vegye figyelembe, hogy `eventFlowConfig.json` fájl szolgáltatás konfigurációs csomag része. A fájl módosításait a szolgáltatás a Service Fabric frissítési állapot-ellenőrzési eredményeire és automatikus visszaállítási, ha a frissítés nem sikerülne teljes vagy konfiguráció-csak frissítés tartalmazhat. További információkért lásd: [Service Fabric az alkalmazásfrissítés](service-fabric-application-upgrade.md).
+Vegye figyelembe, hogy `eventFlowConfig.json` fájl szolgáltatás konfigurációs csomag része. Módosítások toothis fájl tartalmazhat hello szolgáltatás teljes vagy konfiguráció-csak frissítések, tulajdonos tooService háló frissítési állapot-ellenőrzési eredményeire és automatikus visszaállítási sikertelen frissítése esetén. További információkért lásd: [Service Fabric az alkalmazásfrissítés](service-fabric-application-upgrade.md).
 
-Az utolsó lépés, hogy a szolgáltatás indítási kódban található EventFlow csővezeték példányosítható `Program.cs` fájlt. A következő példa kiegészítéseket EventFlow kapcsolatos megjegyzések kezdődően lesznek megjelölve `****`:
+hello utolsó lépés a szolgáltatás indítási kódban található tooinstantiate EventFlow csővezeték `Program.cs` fájlt. Hello az alábbi példa EventFlow kapcsolatos kiegészítésekkel megjegyzések kezdődően lesznek megjelölve `****`:
 
 ```csharp
 using System;
@@ -132,7 +132,7 @@ namespace Stateless1
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        /// This is hello entry point of hello service host process.
         /// </summary>
         private static void Main()
         {
@@ -161,10 +161,10 @@ namespace Stateless1
 }
 ```
 
-Nevét paraméterként, a `CreatePipeline` metódusában a `ServiceFabricDiagnosticsPipelineFactory` neve a *állapotfigyelő entitás* képviselő a EventFlow napló adatgyűjtési folyamatot. Ezt a nevet használja, ha a EventFlow észlel, és hiba és jelenti a a Service Fabric állapotfigyelő alrendszer keresztül.
+a hello hello paraméterként átadott hello neve `CreatePipeline` hello metódusában `ServiceFabricDiagnosticsPipelineFactory` hello hello neve *állapotfigyelő entitás* képviselő hello EventFlow napló adatgyűjtési folyamat. Ezt a nevet használja, ha a EventFlow észlel, és hiba és jelenti a Service Fabric állapotfigyelő alrendszer hello keresztül.
 
 ## <a name="verification"></a>Ellenőrzés
-Indítsa el a szolgáltatást, és tekintse meg a hibakeresési Visual Studio kimeneti ablakában. A szolgáltatás az elindítása után jelenítse meg, hogy a szolgáltatás "Application Insights Telemetria" rekordot küld bizonyító adatok. Nyisson meg egy webböngészőt, és keresse meg a nyissa meg az Application Insights-erőforrást. Nyissa meg a "Search" lapon (az alapértelmezett "Overview" panelen elején). Rövid késleltetés után jelenítse meg a nyomkövetések az Application Insights-portálon:
+Indítsa el a szolgáltatást, és tekintse meg a hibakeresési hello Visual Studio kimeneti ablakában. Hello szolgáltatást az elindítása után jelenítse meg, hogy a szolgáltatás "Application Insights Telemetria" rekordot küld bizonyító adatok. Nyisson meg egy webböngészőt, és keresse meg a lépjen tooyour Application Insights-erőforrást. Nyissa meg a "Search" lapját (tetején hello hello alapértelmezett "Overview" panelen). Rövid késleltetés után jelenítse meg a clusterconfig.JSON fájlban hello Application Insights portál:
 
 ![Application Insights portálon találja meg a Service Fabric-alkalmazás naplók megjelenítése][2]
 

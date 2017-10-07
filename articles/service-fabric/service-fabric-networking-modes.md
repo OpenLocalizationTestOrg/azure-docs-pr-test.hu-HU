@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric tárolószolgáltatások hálózati módok konfigurálása |} Microsoft Docs"
-description: "Útmutató a hálózati mód, amely támogatja az Azure Service Fabric beállítása."
+title: "Azure Service Fabric tárolószolgáltatások módjainak hálózati aaaConfigure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toosetup hello hálózati mód választható, hogy Azure Service Fabric támogatja."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f792f9604a5d6e62551ed92c1049d6e2b4216417
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5c5dd4c590c7698a947503cbe8ef66ff7d6b503a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-container-networking-modes"></a>A Service Fabric tároló hálózati módok
 
-A hálózati módban érhető el a Service Fabric-fürt tárolószolgáltatások az alapértelmezett érték a `nat` hálózati mód. Az a `nat` hálózati mód, hogy az azonos port eredményeket a központi telepítési hibái figyel egynél több tároló szolgáltatás. Rendszert futtató több szolgáltatási adott figyelési ugyanazt a portot, a Service Fabric támogatja a `open` hálózati mód (5.7-es vagy újabb verzió). Az a `open` hálózati mód, minden tárolószolgáltatás beolvasása dinamikusan hozzárendelt IP-címnek belső így több szolgáltatás ugyanazt a portot figyeli.   
+hello alapértelmezett hálózati módban érhető el hello Service Fabric fürt tárolószolgáltatások hello `nat` hálózati mód. A hello `nat` mód, egynél több tárolók szolgáltatás figyelő toohello rendelkező hálózat azonos port telepítési hibákat eredményez. Számos szolgáltatás ugyanazt a portot, a Service Fabric támogatja hello figyelő futtatásához hello `open` hálózati mód (5.7-es vagy újabb verzió). A hello `open` hálózati mód, minden tárolószolgáltatás beolvasása dinamikusan hozzárendelt IP-címnek belső így több szolgáltatások toolisten toohello ugyanazt a portot.   
 
-Így egyetlen szolgáltatástípus egy statikus végponttal, a szolgáltatás jegyzékben meghatározott, az új szolgáltatások előfordulhat, hogy hozható létre és használatával, a telepítési hibák nélkül törli a `open` hálózati mód. Hasonlóképpen, egy használhatja ugyanazt `docker-compose.yml` több szolgáltatások létrehozásának statikus fájlt.
+Így egyetlen szolgáltatástípus egy statikus végponttal hello szolgáltatás jegyzékben meghatározott, az új szolgáltatások előfordulhat, hogy hozható létre és hello felmerülő telepítési hibákat nélkül törli `open` hálózati mód. Ehhez hasonlóan egy használható hello azonos `docker-compose.yml` több szolgáltatások létrehozásának statikus fájlt.
 
-A dinamikusan kiosztott IP-használatával felderítéséhez a szolgáltatások esetén nem javasolt óta az IP-címet érintő módosításait a szolgáltatás újraindul, vagy egy másik csomópontjára helyezi át. Csak a **Service Fabric-szolgáltatás** vagy a **DNS-szolgáltatás** a szolgáltatás felderítése. 
+Dinamikusan kiosztott IP toodiscover szolgáltatások hello használata esetén nem ajánlott óta hello IP-cím módosításainak hello szolgáltatás újraindítja vagy áthelyezi tooanother csomópont. Csak a hello használata **Service Fabric-szolgáltatás** vagy hello **DNS-szolgáltatás** a szolgáltatás felderítése. 
 
 
 > [!WARNING]
-> Az Azure virtuális hálózat csak 4096 IP-címek összesen használható. Ebből kifolyólag a csomópontok száma és a tároló szolgáltatás példányainak száma összege (a `open` hálózati) legfeljebb 4096 történik egy Vneten belül. Ilyen nagy sűrűségű forgatókönyvek esetén a `nat` hálózati mód használata ajánlott.
+> Az Azure virtuális hálózat csak 4096 IP-címek összesen használható. Ebből kifolyólag hello összege hello csomópontok száma és a tároló szolgáltatáspéldány hello száma (a `open` hálózati) legfeljebb 4096 történik egy Vneten belül. Ilyen nagy sűrűségű forgatókönyvek hello `nat` hálózati mód használata ajánlott.
 >
 
 ## <a name="setting-up-open-networking-mode"></a>Nyissa meg a hálózati mód beállítása
 
-1. DNS-szolgáltatás és az IP-szolgáltató a engedélyezésével az Azure Resource Manager-sablon beállítása `fabricSettings`. 
+1. Hello Azure Resource Manager-sablon beállítása a DNS-szolgáltatás engedélyezésével és az IP-szolgáltató hello `fabricSettings`. 
 
     ```json
     "fabricSettings": [
@@ -78,7 +78,7 @@ A dinamikusan kiosztott IP-használatával felderítéséhez a szolgáltatások 
             ],
     ```
 
-2. A hálózati profil szakasz beállítása lehetővé teszi több IP-címmel kell konfigurálni a fürt mindegyik csomópontján. Az alábbi példa beállítja az öt IP-címek csomópontonként (így a minden egyes csomóponton portot öt szolgáltatáspéldány rendelkezhet) Windows Service Fabric-fürt.
+2. Állítson be hello hálózati profil szakasz tooallow több IP-címek toobe hello fürt mindegyik csomópontján konfigurálva. hello alábbi példa beállítja az egyes csomópontok öt IP-címek (így a figyelést toohello port minden csomóponton öt szolgáltatáspéldány lehet) a Windows Service Fabric-fürt számára.
 
     ```json
     "variables": {
@@ -175,7 +175,7 @@ A dinamikusan kiosztott IP-használatával felderítéséhez a szolgáltatások 
               }
     ```
 
-    Linux-fürtök esetén a további nyilvános IP-konfigurációt bekerül a kimenő kapcsolatok engedélyezése. Az alábbi kódrészletben állít be egy Linux-fürt csomópontonként öt IP-címek:
+    Linux-fürtök esetén további nyilvános IP-konfigurációt tooallow kimenő kapcsolat hozzá. hello következő kódrészlettel állít be egy Linux-fürt csomópontonként öt IP-címek:
 
     ```json
     "networkProfile": {
@@ -292,14 +292,14 @@ A dinamikusan kiosztott IP-használatával felderítéséhez a szolgáltatások 
               }
     ```
 
-3. Csak Windows-fürtök esetén beállítása egy NSG-szabály az alábbi értékeket a vnet UDP/53-as port megnyitására:
+3. A fürtök csak, állítsa be az NSG Windows hello vnet UDP/53-as port nyitása a következő értékek hello szabály:
 
    | Prioritás |    Név    |    Forrás      |  Cél   |   Szolgáltatás    | Műveletek |
    |:--------:|:----------:|:--------------:|:--------------:|:------------:|:------:|
    |     2000 | Custom_Dns | VirtualNetwork | VirtualNetwork | DNS (UDP/53) | Engedélyezés  |
 
 
-4. Adja meg a hálózati mód az alkalmazásjegyzéket az egyes szolgáltatásokhoz `<NetworkConfig NetworkType="open">`.  A mód `open` eredményezi, a szolgáltatás egy dedikált IP-cím beolvasása. Ha egy mód nincs megadva, a basic alapértelmezett `nat` mód. Így az alábbi jegyzék `NodeContainerServicePackage1` és `NodeContainerServicePackage2` is ugyanazt a portot minden figyelése (mindkét szolgáltatás által figyelt `Endpoint1`).
+4. Adja meg, az alkalmazás-jegyzékfájl hello minden egyes szolgáltatás hello hálózati módban `<NetworkConfig NetworkType="open">`.  hello mód `open` hello szolgáltatás egy dedikált IP-cím beolvasása eredményez. Ha egy mód nincs megadva, alapértelmezés szerint alapvető toohello `nat` mód. Ebből kifolyólag a jegyzék a példában a következő hello `NodeContainerServicePackage1` és `NodeContainerServicePackage2` minden figyelési toohello is ugyanazt a portot (mindkét szolgáltatás által figyelt `Endpoint1`).
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -329,7 +329,7 @@ A dinamikusan kiosztott IP-használatával felderítéséhez a szolgáltatások 
       </ServiceManifestImport>
     </ApplicationManifest>
     ```
-Ön szabadon kombinálhatók hálózati mód szolgáltatásban egy Windows-fürt számára az alkalmazáson belül. Ebből kifolyólag lehet néhány szolgáltatás `open` mód és az egyes `nat` hálózati mód. Ha a szolgáltatás beállítása a `nat`, a port a figyeléshez egyedinek kell lennie. Különböző szolgáltatások hálózati módjainak keverése nem támogatott Linux fürtökön. 
+Ön szabadon kombinálhatók hálózati mód szolgáltatásban egy Windows-fürt számára az alkalmazáson belül. Ebből kifolyólag lehet néhány szolgáltatás `open` mód és az egyes `nat` hálózati mód. Ha a szolgáltatás beállítása a `nat`, hello port figyelő toomust egyedinek lennie. Különböző szolgáltatások hálózati módjainak keverése nem támogatott Linux fürtökön. 
 
 
 ## <a name="next-steps"></a>Következő lépések
@@ -337,5 +337,5 @@ Ebben a cikkben megtanulta, a Service Fabric által kínált módok hálózati.
 
 * [A Service Fabric alkalmazásmodellt.](service-fabric-application-model.md)
 * [A Service Fabric service manifest erőforrások](service-fabric-application-model.md)
-* [A Service Fabric Windows Server 2016 egy Windows-tároló telepítése](service-fabric-get-started-containers.md)
-* [Telepítse a Service Fabric Linux egy Docker-tároló](service-fabric-get-started-containers-linux.md)
+* [Egy Windows-tároló tooService Windows Server 2016 háló telepítése](service-fabric-get-started-containers.md)
+* [Egy Docker-tároló tooService Linux háló telepítése](service-fabric-get-started-containers-linux.md)

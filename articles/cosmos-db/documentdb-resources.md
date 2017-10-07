@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Cosmos DB erőforrás-modellje és fogalmai |} Microsoft Docs"
-description: "További információk a hierarchikus modell Azure Cosmos DB adatbázisok, gyűjtemények, felhasználó által definiált függvény (UDF), dokumentumok, erőforrások és még sok más kezeléséhez szükséges jogokat kapjon."
+title: "aaaAzure Cosmos DB erőforrás-modellje és fogalmai |} Microsoft Docs"
+description: "További információk a adatbázisok, gyűjtemények, felhasználó által definiált függvény (UDF), dokumentumok, engedélyek toomanage erőforrások és további Azure Cosmos DB hierarchikus modelljét."
 keywords: Hierarchikus modell cosmosdb, az azure, a Microsoft azure
 services: cosmos-db
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8051742c7c368d1ed84bcd90ab75b20f62105e2f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fc3642232b86cc27901ebd97456c386829324632
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-hierarchical-resource-model-and-core-concepts"></a>Az Azure Cosmos DB hierarchikus erőforrás-modellje és alapfogalmai
-Az Azure Cosmos DB kezelő adatbázis entitásokat nevezzük **erőforrások**. Az egyes erőforrások egyedileg azonosít egy logikai URI-t. Az erőforrások szabványos HTTP-műveletek, a kérelem/válasz fejlécek és a állapotkódokat alállapotkódok használatával kommunikálhat. 
+hello Azure Cosmos DB kezelő adatbázis entitások legyenek hivatkozott tooas **erőforrások**. Az egyes erőforrások egyedileg azonosít egy logikai URI-t. Hello erőforrások szabványos HTTP-műveletek, a kérelem/válasz fejlécek és a állapotkódokat alállapotkódok használatával kommunikálhat. 
 
-Ez a cikk olvasásával képes lesz a következő kérdések megválaszolásához:
+A cikk elolvasása lesz képes tooanswer hello a következő kérdéseket:
 
 * Mi az erőforrás-modellje Cosmos DB?
-* Mik azok a rendszer meghatározott erőforrások felhasználó által definiált erőforrások figyelésekor?
+* Mik azok a rendszer meghatározott erőforrások definiált megakadályozását toouser erőforrásként?
 * Hogyan kezelje a egy erőforrást?
 * Hogyan működik a gyűjteményekkel?
 * Hogyan működik a tárolt eljárások, eseményindítók és felhasználó által megadott funkciókat (UDF)?
 
 ## <a name="hierarchical-resource-model"></a>Hierarchikus erőforrás-modellje
-Az az alábbi ábrán látható módon, a hierarchikus Cosmos DB **erőforrás-modellje** áll egy adatbázis-fiók, logikai és állandó URI segítségével minden egyes megcímezhető alatt lévő erőforrások csoportja. Több erőforrást fog hivatkozni a **hírcsatorna** ebben a cikkben. 
+Az hello alábbi ábrán látható módon, hello Cosmos DB hierarchikus **erőforrás-modellje** áll egy adatbázis-fiók, logikai és állandó URI segítségével minden egyes megcímezhető alatt lévő erőforrások csoportja. Erőforráscsoport lesz hivatkozott tooas egy **hírcsatorna** ebben a cikkben. 
 
 > [!NOTE]
-> Azure Cosmos DB kínál a rendkívül hatékony TCP protokoll, amely egyben a RESTful a kommunikációt a modellben elérhető a [DocumentDB .NET ügyfél API-ja](documentdb-sdk-dotnet.md).
+> Azure Cosmos DB kínál a rendkívül hatékony TCP protokoll, amely egyben a RESTful a kommunikációt a modellben hello keresztül elérhető [DocumentDB .NET ügyfél API-ja](documentdb-sdk-dotnet.md).
 > 
 > 
 
 ![Az Azure Cosmos DB hierarchikus erőforrás-modellje][1]  
 **Hierarchikus erőforrás-modellje**   
 
-Erőforrások munkakezdéshez kell [adatbázisfiók létrehozása](create-documentdb-dotnet.md) használata az Azure-előfizetéshez. Az adatbázisfiók állhat egy **adatbázisok**, több tartalmazó **gyűjtemények**, minden egyes, viszont tartalmazó **tárolt eljárások, eseményindítók, felhasználó által megadott függvények, dokumentumok**és kapcsolódó **mellékletek**. Egy adatbázis is vannak társítva **felhasználók**, egyes számú **engedélyek** gyűjtemények, tárolt eljárások, eseményindítók, felhasználó által megadott függvények, dokumentumok és mellékletek eléréséhez. Míg adatbázisok, felhasználókat és gyűjtemények rendszer által meghatározott erőforrások jól ismert sémákkal rendelkező, dokumentumok és mellékletek tartalmaznak tetszőleges, felhasználó által megadott JSON-tartalmak.  
+az erőforrásokkal működik toostart kell [adatbázisfiók létrehozása](create-documentdb-dotnet.md) használata az Azure-előfizetéshez. Az adatbázisfiók állhat egy **adatbázisok**, több tartalmazó **gyűjtemények**, minden egyes, viszont tartalmazó **tárolt eljárások, eseményindítók, felhasználó által megadott függvények, dokumentumok**és kapcsolódó **mellékletek**. Egy adatbázisban is van társítva **felhasználók**, minden egyes számú **engedélyek** tooaccess gyűjtemények, tárolt eljárások, eseményindítók, felhasználó által megadott függvények, dokumentumok vagy a mellékletekben. Míg adatbázisok, felhasználókat és gyűjtemények rendszer által meghatározott erőforrások jól ismert sémákkal rendelkező, dokumentumok és mellékletek tartalmaznak tetszőleges, felhasználó által megadott JSON-tartalmak.  
 
 | Erőforrás | Leírás |
 | --- | --- |
 | Adatbázis-fiók |Az adatbázisfiók adatbázisok és a rögzített méretű mellékletek blob-tároló állítja be hozzá rendelve. Létrehozhat egy vagy több adatbázis fiókot az Azure-előfizetését használja. További tudnivalókért keresse fel a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/). |
 | Adatbázis |Egy adatbázis a dokumentumtároló gyűjtemények között particionált logikai tárolója. Akkor is a felhasználók tárolójába kerülnek. |
-| Felhasználó |Az engedélyek hatókörének logikai névtere. |
-| Engedély |Egy adott erőforráshoz való hozzáférés egy felhasználó társított engedélyezési jogkivonatot. |
-| Gyűjtemény |A gyűjtemény egy JSON-dokumentumokat és a kapcsolódó JavaScript-alkalmazáslogikát tartalmazó tároló. Egy gyűjtemény egy számlázható entitás, ahol a [költség](performance-levels.md) a gyűjteményhez társított teljesítményszint határozza meg. A gyűjtemények egy vagy több partícióra/kiszolgálóra is kiterjedhetnek, valamint gyakorlatilag korlátlan mennyiségű tárterület vagy átviteli sebesség kezelésére méretezhetők. |
-| Tárolt eljárás |Egy gyűjtemény regisztrált és tranzakciós úton futtatásuk az adatbázismotor JavaScript nyelven írt alkalmazás logikáját. |
+| Felhasználó |hello logikai névterét hatókörének engedélyeket. |
+| Engedély |Egy engedélyezési jogkivonatot egy felhasználó hozzáférési tooa adott erőforrás társított. |
+| Gyűjtemény |A gyűjtemény egy JSON-dokumentumokat tároló, hello kapcsolódó JavaScript-alkalmazáslogika. A gyűjtemény egy számlázható entitás, akkor, ha hello [költség](performance-levels.md) hello hello gyűjteményhez társított teljesítményszint határozza meg. Gyűjtemények egy vagy több partícióra/kiszolgálóra is kiterjedhetnek, és méretezhető toohandle gyakorlatilag korlátlan mennyiségű tárterület vagy átviteli sebesség. |
+| Tárolt eljárás |Egy gyűjtemény regisztrált és tranzakciós úton futtatásuk hello adatbázismotor JavaScript nyelven írt alkalmazás logikáját. |
 | Eseményindító |Az alkalmazáslogikát végrehajtása előtt vagy után vagy egy INSERT utasítás, JavaScript nyelven írt cseréje vagy törlési művelet. |
-| AZ UDF |JavaScript nyelven írt alkalmazás logikáját. Felhasználó által megadott függvények lehetővé teszik egy egyéni lekérdezés operátor modell, és ezáltal a DocumentDB API lekérdezési nyelv alapvető kiterjesztése. |
-| A dokumentum |Felhasználó által definiált (tetszőleges) JSON-tartalmak. Alapértelmezés szerint nem tartozik séma kell definiálni, sem másodlagos indexek kell adni a gyűjteménybe felvett összes dokumentumot. |
-| Melléklet |Egy mellékletet tartalmazó hivatkozásokat és a külső blob/médiához kapcsolódó metaadatok különleges dokumentumot. A fejlesztői választhat Cosmos DB kezeli a blob rendelkezik, vagy tárolja el azt egy külső blob-szolgáltatónál, például a onedrive-on, Dropbox, stb. |
+| AZ UDF |JavaScript nyelven írt alkalmazás logikáját. Felhasználó által megadott függvények engedélyezi egy egyéni lekérdezés operátor toomodel, és ezáltal a hello core DocumentDB API lekérdezési nyelv kiterjesztése. |
+| A dokumentum |Felhasználó által definiált (tetszőleges) JSON-tartalmak. Alapértelmezés szerint nincs a sémában definiált toobe kell, és másodlagos indexek igényelnek toobe megadott összes hello dokumentumok tooa gyűjteményhez adni. |
+| Melléklet |Egy mellékletet tartalmazó hivatkozásokat és a külső blob/médiához kapcsolódó metaadatok különleges dokumentumot. hello fejlesztői választhat, toohave hello blob Cosmos DB felügyeli, vagy tárolja el azt egy külső blob-szolgáltatónál, például a onedrive-on, Dropbox, stb. |
 
 ## <a name="system-vs-user-defined-resources"></a>A rendszer és a felhasználó által definiált erőforrások
-Erőforrások, például adatbázis-fiókokat, adatbázisok, gyűjtemények, felhasználók, engedélyek, tárolt eljárások, eseményindítók és felhasználó által megadott függvények - rögzített sémájába rendelkeznek, és rendszererőforrásokat nevezzük. Ezzel szemben erőforrások, például a dokumentumok és mellékletek nincs korlátozás a séma rendelkezik, és példák felhasználó által definiált erőforrások. A Cosmos DB, rendszer és a felhasználó definiált erőforrások képviselt és standard-kompatibilis JSON-ként kezeli. Minden erőforrás, a rendszer vagy felhasználó által definiált, a következő közös jellemzőkkel rendelkezik.
+Erőforrások, például adatbázis-fiókokat, adatbázisok, gyűjtemények, felhasználók, engedélyek, tárolt eljárások, eseményindítók és felhasználó által megadott függvények - rögzített sémájába rendelkeznek, és rendszererőforrásokat nevezzük. Ezzel szemben erőforrások, például a dokumentumok és mellékletek egyáltalán nem korlátozza a hello séma, és a felhasználó által definiált erőforrások példák. A Cosmos DB, rendszer és a felhasználó definiált erőforrások képviselt és standard-kompatibilis JSON-ként kezeli. Minden erőforrás, a rendszer vagy felhasználó által definiált, hello alábbi közös tulajdonságokkal rendelkezik.
 
 > [!NOTE]
 > Vegye figyelembe, hogy az összes rendszer az erőforrás tulajdonságai létre fűzve előtagként a saját JSON-megjelenítés aláhúzással (_).
@@ -77,63 +77,63 @@ Erőforrások, például adatbázis-fiókokat, adatbázisok, gyűjtemények, fel
         <tr>
             <td valign="top"><p>_rid</p></td>
             <td valign="top"><p>Rendszer által létrehozott</p></td>
-            <td valign="top"><p>Rendszer által létrehozott, az erőforrás hierarchikus és egyedi azonosítója</p></td>
+            <td valign="top"><p>Rendszer által létrehozott, egyedi és a hierarchikus hello erőforrás-azonosítója</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_etag</p></td>
             <td valign="top"><p>Rendszer által létrehozott</p></td>
-            <td valign="top"><p>az egyidejű hozzáférések optimista vezérlését a szükséges erőforrás ETag</p></td>
+            <td valign="top"><p>az egyidejű hozzáférések optimista vezérlését szükséges hello erőforrás ETag</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_ts</p></td>
             <td valign="top"><p>Rendszer által létrehozott</p></td>
-            <td valign="top"><p>Az erőforrás utolsó frissített időbélyegzője</p></td>
+            <td valign="top"><p>Hello erőforrás utolsó frissített időbélyegzője</p></td>
         </tr>
         <tr>
             <td valign="top"><p>_self</p></td>
             <td valign="top"><p>Rendszer által létrehozott</p></td>
-            <td valign="top"><p>Az erőforrás egyedi címmel rendelkező URI-azonosító</p></td>
+            <td valign="top"><p>Egyedi megcímezhető URI hello erőforrás</p></td>
         </tr>
         <tr>
             <td valign="top"><p>id</p></td>
             <td valign="top"><p>Rendszer által létrehozott</p></td>
-            <td valign="top"><p>Felhasználó által definiált egyedi nevet az erőforrás (az azonos partíciós kulcs értéke). Ha a felhasználó nem adja meg az azonosítót, egy azonosítót kell-e a rendszer által létrehozott</p></td>
+            <td valign="top"><p>Felhasználó által definiált hello erőforrás egyedi nevét (a hello ugyanaz a partícióazonosító kulcsérték). Hello felhasználói azonosító nem határoz meg, ha egy azonosítót kell-e a rendszer által létrehozott</p></td>
         </tr>
     </tbody>
 </table>
 
 ### <a name="wire-representation-of-resources"></a>Átviteli megjelenítésűre erőforrások
-Cosmos DB határozza meg, hogy saját fejlesztésű kiterjesztések számára a JSON standard vagy különleges kódolások; standard megfelelő JSON-dokumentumok együttműködik.  
+Cosmos DB nem határozza meg, a saját bővítmények toohello JSON standard vagy különleges kódolások; standard megfelelő JSON-dokumentumok együttműködik.  
 
 ### <a name="addressing-a-resource"></a>Egy erőforrás címzés
-Minden erőforrás URI-címmel rendelkező. Értékét a **_self** erőforrás tulajdonság adja meg az erőforrás relatív URI. Az URI formátuma áll a /\<hírcsatorna\>/ {_rid} szegmenst:  
+Minden erőforrás URI-címmel rendelkező. hello értékének hello **_self** tulajdonság egy erőforrás jelöli hello hello erőforrás relatív URI. hello hello URI formátuma áll hello /\<hírcsatorna\>/ {_rid} szegmenst:  
 
-| A _self értéke | Leírás |
+| Hello _self értéke | Leírás |
 | --- | --- |
 | /dbs |Adatcsatorna adatbázisok egy adatbázis-fiókkal |
-| /dbs/ {%{dbname/} |{%{Dbname/} értékével egyező azonosítójú adatbázis |
+| /dbs/ {%{dbname/} |Megfelelő hello érték {%{dbname/} azonosítójú adatbázis |
 | {%{dbname/} /dbs/ /colls/ |A gyűjtemények az adatbázis adatcsatorna |
-| {%{dbname/} /dbs/ /colls/ {collName} |{CollName} értékével egyező azonosítójú gyűjtemény |
+| {%{dbname/} /dbs/ /colls/ {collName} |Egy megfelelő hello érték {collName} azonosítójú gyűjtemény |
 | {%{dbname/} /dbs/ /colls/ {collName} / docs |A gyűjtemény dokumentumok adatcsatorna |
-| {%{dbname/} /dbs/ /colls/ {collName} /docs/ {dokumentumazonosító} |{Doc} értékével egyező azonosítójú dokumentálása |
+| {%{dbname/} /dbs/ /colls/ {collName} /docs/ {dokumentumazonosító} |Hello érték {doc} egyező azonosítójú dokumentálása |
 | {%{dbname/} /dbs/ /felhasználók/ |A felhasználók egy adatbázist a hírcsatorna |
-| {%{dbname/} /dbs/ /felhasználók/ {userId} |{Felhasználó} értékével egyező azonosítójú felhasználó |
+| {%{dbname/} /dbs/ /felhasználók/ {userId} |Megfelelő hello érték {felhasználói} azonosítóval rendelkező felhasználó |
 | {%{dbname/} /dbs/ /felhasználók/ {userId} / engedélyek |Adatcsatorna egy felhasználói engedélyek |
-| {%{dbname/} /dbs/ /felhasználók/ {userId} /permissions/ {permissionId} |{Engedély} értékével egyező azonosítójú engedély |
+| {%{dbname/} /dbs/ /felhasználók/ {userId} /permissions/ {permissionId} |Egy megfelelő hello érték {engedély} azonosítójú engedély |
 
-Minden erőforrás azonosítója tulajdonságon keresztül elérhetővé tett egyedi felhasználó által megadott névvel rendelkezik. Megjegyzés: a dokumentumok, ha a felhasználó nem adja meg az azonosító, a támogatott SDK-k automatikusan létrehoz egy egyedi azonosítót a dokumentum. Felhasználó által megadott karakterláncot, legfeljebb 256 karakter, amely egy adott szülő erőforrás keretén belül egyedi kell az azonosítót. 
+Az egyes erőforrások hello azonosítóját megadó tulajdonságot keresztül elérhetővé tett egyedi felhasználó által megadott névvel rendelkezik. Megjegyzés: a dokumentumok, hello felhasználó nem adja meg az azonosító, ha a támogatott SDK-k automatikusan létrehoz egy egyedi azonosítóra hello dokumentum. hello azonosítója nem egy felhasználó által megadott karakterláncot too256 karakter, amely egy adott szülő erőforrás hello környezeten belül egyedi másolatot. 
 
-Az egyes erőforrások is rendelkeznek, a rendszer által létrehozott hierarchikus erőforrás-azonosítója (más néven a relatív AZONOSÍTÓK), _rid tulajdonságon keresztül elérhető. A relatív AZONOSÍTÓK kódolja a teljes hierarchia egy adott erőforrás és a hivatkozási integritás elosztott módon használt kényelmes belső megjelenítése. A relatív AZONOSÍTÓK egyedi belül egy adatbázis-fiókot, és belső használható Cosmos DB anélkül, hogy több partíció keresések hatékony útválasztást. A _self és _rid tulajdonságainak értékei erőforrás mind a másodlagos, és a kanonikus ábrázolásai. 
+Az egyes erőforrások is rendelkezik a rendszer által létrehozott hierarchikus erőforrás-azonosítója (is hivatkozott tooas egy relatív azonosító), elérhető hello _rid tulajdonsága révén. hello RID kódolja a teljes hierarchia hello egy adott erőforrás és a megfelelő belső megjelenítése egy elosztott módon tooenforce hivatkozási integritási használt. a relatív AZONOSÍTÓK hello egyedi belül egy adatbázis-fiók, és belső használható Cosmos DB anélkül, hogy több partíció keresések hatékony útválasztást. hello hello _self és hello _rid tulajdonságainak értékei erőforrás mind a másodlagos, és a kanonikus ábrázolásai. 
 
-A REST API-k erőforrások címzést és útválasztást kérelem az azonosítója és a _rid tulajdonságok is támogatja.
+hello REST API-k támogatása az erőforrások címzést és útválasztást kérelmek hello azonosítója és hello _rid tulajdonságok is.
 
 ## <a name="database-accounts"></a>Adatbázis-fiókok
 Megadhat egy vagy több Cosmos DB adatbázis fiókot az Azure-előfizetését használja.
 
-Létrehozhat és az Azure portálon: Cosmos DB adatbázis fiókok kezelése [http://portal.azure.com/](https://portal.azure.com/). Létrehozását és kezelését egy adatbázis-fiók rendszergazdai hozzáférésre van szüksége, és csak az Azure-előfizetéshez tartozó hajtható végre. 
+Hozhat létre és kezelheti a Cosmos DB adatbázis fiókokat hello Azure portálon keresztül, [http://portal.azure.com/](https://portal.azure.com/). Létrehozását és kezelését egy adatbázis-fiók rendszergazdai hozzáférésre van szüksége, és csak az Azure-előfizetéshez tartozó hajtható végre. 
 
 ### <a name="database-account-properties"></a>Adatbázis-fiók tulajdonságai
-Kiépítése és kezelése az adatbázisfiók részeként konfigurálja, és olvassa el a következő tulajdonságokkal:  
+Kiépítése és kezelése az adatbázisfiók részeként konfigurálja, és olvassa el a következő tulajdonságai hello:  
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -143,19 +143,19 @@ Kiépítése és kezelése az adatbázisfiók részeként konfigurálja, és olv
         </tr>
         <tr>
             <td valign="top"><p>Konzisztencia-házirend</p></td>
-            <td valign="top"><p>Állítsa ezt a tulajdonságot, konfigurálhatja az adatbázis-fiókjában a gyűjtemények alapértelmezett konzisztencia szintjét. Felülírhatja a konzisztenciaszint használatával [x-ms-konzisztencia-szint] kérelemfejléc egy kérelem alapon. <p><p>Vegye figyelembe, hogy ez a tulajdonság csak vonatkozik a <i>felhasználó által definiált erőforrások</i>. Meghatározott források támogatására vannak konfigurálva az összes rendszer olvasás/lekérdezések erős konzisztencia.</p></td>
+            <td valign="top"><p>A tulajdonság tooconfigure hello alapértelmezett konzisztencia a szintjének beállítása az adatbázis-fiókjában összes hello gyűjteményt. Ha szeretné felülbírálni az hello konzisztenciaszint használatával [x-ms-konzisztencia-szint] hello fejléc / kérés alapon. <p><p>Vegye figyelembe, hogy ez a tulajdonság csak érvényes toohello <i>felhasználó által definiált erőforrások</i>. Minden rendszer által definiált erőforrás olvasási konfigurált toosupport lekérdezések erős konzisztencia.</p></td>
         </tr>
         <tr>
             <td valign="top"><p>Engedélyezési kulcsok</p></td>
-            <td valign="top"><p>Ezek azok az elsődleges és másodlagos fő- és a csak olvasható kulcsok, amelyek az erőforrásokat az adatbázis-fiókjában rendszergazdai hozzáférést biztosítanak.</p></td>
+            <td valign="top"><p>Ezek a hello elsődleges, és a másodlagos fő- és a csak olvasható kulcsok biztosító felügyeleti hozzáférési tooall hello erőforrások hello adatbázisfiók alapján.</p></td>
         </tr>
     </tbody>
 </table>
 
-Vegye figyelembe, hogy mellett kiépítés, konfigurálása és kezelése a adatbázisfiókot az Azure portálon is szoftveresen is létrehozásakor és kezelésekor Cosmos DB adatbázis fiókok használatával a [Azure Cosmos DB REST API-k](/rest/api/documentdb/) , valamint [ügyfél SDK-k](documentdb-sdk-dotnet.md).  
+Vegye figyelembe, hogy a hozzáadása tooprovisioning, konfigurálása és kezelése az adatbázisfiók hello Azure portál, az akkor is szoftveresen is fiókok létrehozásakor és kezelésekor Cosmos DB adatbázis hello segítségével [Azure Cosmos DB REST API-k](/rest/api/documentdb/) , jól [ügyfél SDK-k](documentdb-sdk-dotnet.md).  
 
 ## <a name="databases"></a>Adatbázisok
-Egy Cosmos DB adatbázisa egy logikai tároló egy vagy több gyűjtemények és a felhasználók, az alábbi ábrán látható módon. Tetszőleges számú adatbázishoz egy Cosmos DB adatbázis fiókkal ajánlat korlátai hozhat létre.  
+Egy Cosmos DB adatbázisban egy olyan logikai tároló egy vagy több gyűjteményt és a felhasználók, ahogy az ábra a következő hello. Tetszőleges számú adatbázishoz alatt egy Cosmos DB adatbázis fiók tulajdonosának toooffer korlátok hozhat létre.  
 
 ![Fiók és a gyűjtemények hierarchikus adatbázismodell][2]  
 **Egy adatbázis egy olyan logikai tároló, a felhasználók és gyűjtemények**
@@ -163,64 +163,64 @@ Egy Cosmos DB adatbázisa egy logikai tároló egy vagy több gyűjtemények és
 Egy adatbázis gyakorlatilag korlátlan dokumentumtároló gyűjtemények belül particionált tartalmazhat.
 
 ### <a name="elastic-scale-of-a-cosmos-db-database"></a>Rugalmasan méretezhető Cosmos DB-adatbázis
-A Cosmos DB adatbázisa alapértelmezés – petabájt dokumentumtároló biztonsági SSD és a létesített átviteli sebesség és a néhány GB közötti rugalmas. 
+A Cosmos DB adatbázisa rugalmas alapértelmezés – kezdve a néhány GB toopetabytes dokumentumtároló biztonsági SSD és a létesített átviteli sebesség. 
 
-Ellentétben a hagyományos RDBMS adatbázis Cosmos-adatbázis egy adatbázis nem egyetlen gép hatókörét. A Cosmos DB az alkalmazás skálázási igények nő, létrehozhat több gyűjteményt, adatbázisok vagy mindkettőt. Valóban különböző első felek alkalmazásainak a Microsofton belül használt Cosmos DB egy fogyasztói léptékű által a dokumentumtároló terabájt az egyes gyűjtemények tartalmazó ezer rendkívül nagy Cosmos DB adatbázisok létrehozásához. Növekedhet, és egy adatbázis zsugorítása hozzáadásával vagy eltávolításával a gyűjtemények az alkalmazás méretezési követelmények teljesítéséhez. 
+Ellentétben a hagyományos RDBMS egy adatbázist egy Cosmos DB adatbázisa nem hatókörön belüli tooa egyetlen számítógépen. A Cosmos DB az alkalmazás skálázási igények toogrow, létrehozhat több gyűjteményt, adatbázisok vagy mindkettőt. Valóban különböző első felek alkalmazásainak a Microsofton belül használt Cosmos DB egy fogyasztói léptékű által a dokumentumtároló terabájt az egyes gyűjtemények tartalmazó ezer rendkívül nagy Cosmos DB adatbázisok létrehozásához. Növekedhet, és egy adatbázis zsugorítása hozzáadásával vagy eltávolításával gyűjtemények toomeet az alkalmazás méretkövetelményekhez. 
 
-Az ajánlat függvényében adatbázisban lévő gyűjtemények tetszőleges számú hozhat létre. Minden gyűjtemény rendelkezik, a biztonsági SSD-tárolóba, a kiválasztott teljesítményszint függvényében meg kiosztott átviteli sebesség.
+Tetszőleges számú belül egy adatbázis-tulajdonos toohello ajánlat gyűjteményeket hozhat létre. Minden gyűjtemény rendelkezik, a biztonsági SSD-tárolóba, attól függően, hogy a kijelölt teljesítményszinttel hello meg kiosztott átviteli sebesség.
 
-A Cosmos DB adatbázis is egy olyan tároló, a felhasználók. Egy felhasználó, szolgálna, az engedélyek egy készletét, amely minden részletre kiterjedő engedélyezési és a gyűjtemények, dokumentumok és mellékletek eléréséhez logikai névterét.  
+A Cosmos DB adatbázis is egy olyan tároló, a felhasználók. Egy felhasználó, szolgálna, az engedélyek egy készletét, minden részletre kiterjedő engedélyezési és hozzáférés toocollections, dokumentumok és mellékletek védelmét biztosító logikai névterét.  
 
-Egyéb erőforrásokat a Cosmos DB erőforrás-modellje, adatbázisokat hozhatja létre, cserélni, törlése, olvasása, illetve a segítségével könnyen számba a [REST API-k](/rest/api/documentdb/) vagy annak bármelyik a [ügyfél SDK-k](documentdb-sdk-dotnet.md). Cosmos DB vagy kérdez le a metaadatokat egy adatbázis-erőforrást az erős konzisztencia biztosítja. Egy adatbázis törlése automatikusan biztosítja, hogy nem tud hozzáférni a gyűjtemények vagy az abban szereplő felhasználók.   
+Hello Cosmos DB erőforrás-modellje más erőforrásokat, adatbázisok hozható létre, cserélni, törlése, olvasása vagy számba könnyen használatával vagy hello [REST API-k](/rest/api/documentdb/) vagy bármelyik hello [ügyfél SDK-k](documentdb-sdk-dotnet.md). Cosmos DB vagy hello metaadatok adatbázis erőforrás lekérdezése az erős konzisztencia biztosítja. Egy adatbázis törlése automatikusan biztosítja, hogy nem tud hozzáférni az hello gyűjtemények vagy az abban szereplő felhasználók.   
 
 ## <a name="collections"></a>Gyűjtemények
 A Cosmos DB gyűjtemény egy olyan tároló, a JSON-dokumentumok. 
 
 ### <a name="elastic-ssd-backed-document-storage"></a>Rugalmas biztonsági SSD-dokumentumtároló
-Egy gyűjtemény belsőleg rugalmas – automatikusan növekszik, és vegye fel vagy távolítsa el a dokumentumok mértékben változik. Gyűjtemények logikai erőforrások, egy vagy több fizikai partíciók, sem kiszolgálók is kiterjedhetnek. A gyűjteményen belül partíciók száma Cosmos DB a tárhely méretét és a létesített átviteli sebesség a gyűjtemény alapján határozza meg. Minden partíció Cosmos DB SSD-biztonsági tárolási társítva a rögzített méretű rendelkezik, és a magas rendelkezésre állású replikálódik. Partíció felügyeleti teljes mértékben felügyelt Azure Cosmos DB, és komplex kódot írnia, vagy a partíciók kezelésére nem rendelkeznek. A cosmos DB gyűjtemények **gyakorlatilag korlátlan** tárolási és átviteli tekintetében. 
+Egy gyűjtemény belsőleg rugalmas – automatikusan növekszik, és vegye fel vagy távolítsa el a dokumentumok mértékben változik. Gyűjtemények logikai erőforrások, egy vagy több fizikai partíciók, sem kiszolgálók is kiterjedhetnek. a gyűjteményen belül partíciók száma hello Cosmos DB hello tároló méretét és a gyűjtemény hello kiosztott átviteli sebesség alapján határozza meg. Minden partíció Cosmos DB SSD-biztonsági tárolási társítva a rögzített méretű rendelkezik, és a magas rendelkezésre állású replikálódik. Partíció felügyeleti teljes mértékben felügyelt Azure Cosmos DB, és nem rendelkezik toowrite komplex kódot, vagy a partíciók kezeléséhez. A cosmos DB gyűjtemények **gyakorlatilag korlátlan** tárolási és átviteli tekintetében. 
 
 ### <a name="automatic-indexing-of-collections"></a>Az automatikus indexeléshez gyűjtemények
-Cosmos DB egy valódi sémamentes adatbázisrendszer. Az feltételez vagy igényel semmilyen sémát a JSON-dokumentumok. Egy gyűjteményhez való hozzáadása során dokumentumok, Cosmos DB automatikusan elvégzi a őket, és elérhetők lekérdezését. Automatikus indexelés dokumentumok anélkül, hogy a séma vagy a másodlagos indexek Cosmos-adatbázis kulcs képesség és írási optimalizált, a zárolás szabad és a naplószerkezetű karbantartási eljárások szerint engedélyezve van. Cosmos DB konzisztens lekérdezések szolgálatban nagyon gyorsan írások tartós kötet támogatja. A dokumentum és a index tárolási rendszer kiszámítja a minden gyűjtemény által felhasznált tárterület. A tárterületi és teljesítménybeli kompromisszumot társított indexelő az indexelési házirendet egy gyűjtemény konfigurálásával szabályozhatja. 
+Cosmos DB egy valódi sémamentes adatbázisrendszer. Az feltételez vagy igényel semmilyen sémát hello JSON-dokumentumok. Dokumentumok tooa gyűjteményhez való hozzáadása, Cosmos DB automatikusan elvégzi a őket, és hogy tooquery elérhetők. Automatikus indexelés dokumentumok anélkül, hogy a séma vagy a másodlagos indexek Cosmos-adatbázis kulcs képesség és írási optimalizált, a zárolás szabad és a naplószerkezetű karbantartási eljárások szerint engedélyezve van. Cosmos DB konzisztens lekérdezések szolgálatban nagyon gyorsan írások tartós kötet támogatja. A dokumentum és a index tárolása minden gyűjtemény által felhasznált toocalculate hello tárterületet használja. Hello tárterületi és teljesítménybeli kompromisszumot társított indexelő hello indexelési házirendet egy gyűjtemény konfigurálásával szabályozhatja. 
 
-### <a name="configuring-the-indexing-policy-of-a-collection"></a>Az indexelési házirendet gyűjtemény konfigurálása
-Az indexelési házirendet az egyes gyűjtemények lehetővé teszi, hogy a teljesítmény- és tárolási kompromisszumot indexelő társított. Az alábbi beállítások érhetők el Önnek az indexelő konfiguráció részeként:  
+### <a name="configuring-hello-indexing-policy-of-a-collection"></a>A gyűjtemény-hello indexelési házirend konfigurálása
+házirend egyes gyűjtemények indexelő hello lehetővé teszi toomake teljesítmény- és tárolási kompromisszumot indexelő társított. hello következő lehetőségek állnak rendelkezésre tooyou indexelési konfiguráció részeként:  
 
-* Válassza ki, hogy a gyűjtemény automatikusan elvégzi a valamennyi dokumentumot vagy sem. Alapértelmezés szerint automatikusan indexeli ugyan összes dokumentumot. Ha szeretné, kapcsolja ki az automatikus indexeléshez, és csak bizonyos dokumentumokhoz szelektív felvétele az index. Ezzel szemben dönthet úgy, szelektív módon kizárása csak bizonyos dokumentumokhoz. Ez érhet el, az automatikus tulajdonság igaz vagy hamis, a gyűjtemény indexingPolicy beállítása és használata [x-ms-indexingdirective] kérelemfejléc beszúrni, cseréje vagy dokumentum törlése közben.  
-* Válasszon, hogy vagy egyedi elérési utak vagy dokumentumok minták kizárja az indexből. Érhet el ez a beállítás includedPaths és a gyűjtemény indexingPolicy excludedPaths rendre. A tárterületi és teljesítménybeli kompromisszumot ideális tartomány- és kivonatoló a megadott elérési út minták is konfigurálhatja. 
-* Itt választhat szinkron (konzisztens) és aszinkron (lazy) index frissítéseket. Alapértelmezés szerint az index frissítése szinkron módon minden insert, replace vagy egy dokumentumot – így a gyűjtemény törlése. Ez lehetővé teszi, hogy a lekérdezések tiszteletben konzisztencia szintjét, a dokumentum olvasása. Cosmos DB írási optimalizálva, és támogatja a tartós kötetek dokumentum írások szinkron index karbantartási és egységes lekérdezések szolgáltató együtt, konfigurálhatja az egyes gyűjtemények indexét lazily frissítése. A lusta indexelési a hanghatások írási további, és tömeges adatfeldolgozást forgatókönyvek elsősorban az olvasási műveleteket gyűjtemények ideális.
+* Válassza ki, hogy hello gyűjtemény automatikusan elvégzi a hello dokumentumokat vagy sem. Alapértelmezés szerint automatikusan indexeli ugyan összes dokumentumot. Válassza ki az automatikus indexeléshez tooturn, és csak bizonyos dokumentumokhoz toohello index szelektív hozzáadása. Ezzel szemben dönthet úgy, szelektív módon tooexclude csak bizonyos dokumentumokhoz. Ez érhet el, IGAZ vagy hamis beállítása hello automatikus tulajdonság toobe hello indexingPolicy gyűjtemény, hello [x-ms-indexingdirective] fejléc segítségével beszúrni, cseréje vagy dokumentum törlése közben.  
+* Válassza ki, hogy tooinclude vagy kizárási egyedi elérési utak vagy a dokumentumokat a minták hello index. Érhető el ez beállítás includedPaths és a gyűjtemény hello indexingPolicy excludedPaths kulcsattribútumokkal. Is hello tárterületi és teljesítménybeli kompromisszumot tartomány konfigurálása és a megadott elérési út mintára lekérdezések kivonat. 
+* Itt választhat szinkron (konzisztens) és aszinkron (lazy) index frissítéseket. Alapértelmezés szerint hello index frissítése szinkron módon minden insert, replace vagy dokumentum toohello gyűjtemény törlése. Ez lehetővé teszi, hogy a hello lekérdezések toohonor hello konzisztencia szinttel azonos hello dokumentum olvasások. Cosmos DB írási optimalizálva, és támogatja a tartós kötetek dokumentum írások szinkron index karbantartási és egységes lekérdezések szolgáltató együtt, konfigurálhat bizonyos gyűjtemények tooupdate indexét lazily. A lusta indexelési növekedhet további hello írási teljesítmény és tömeges adatfeldolgozást forgatókönyvek elsősorban az olvasási műveleteket gyűjtemények ideális.
 
-Az indexelési házirendet a gyűjteményen hajtja végre a PUT módosítható. Ez lehet érhető el, vagy a [ügyfél SDK](documentdb-sdk-dotnet.md), a [Azure Portal](https://portal.azure.com) vagy a [REST API-k](/rest/api/documentdb/).
+házirend indexelő hello feldolgozás alatt álló PUT hello gyűjtemény módosíthatja. Ez lehet hello keresztül elért [ügyfél SDK](documentdb-sdk-dotnet.md), hello [Azure Portal](https://portal.azure.com) vagy hello [REST API-k](/rest/api/documentdb/).
 
 ### <a name="querying-a-collection"></a>A gyűjtemény lekérdezése
-A dokumentumok a gyűjteményen belül lehet tetszőleges sémák és lekérdezheti a dokumentumok egy gyűjteményen belül anélkül, hogy semmilyen sémát, illetve másodlagos indexek előzetes megfizetése esetén. A gyűjtemény segítségével lekérheti a [Azure Cosmos DB DocumentDB API: SQL-szintaxis hivatkozás](https://msdn.microsoft.com/library/azure/dn782250.aspx), pedig a gazdag hierarchikus, relációs és térbeli operátorokat és bővíthetőséget JavaScript-alapú felhasználó által megadott függvények biztosítja. A JSON-szintaxis lehetővé teszi, hogy a fa csomópontjai címkék JSON-dokumentumok fákként modellezési. Ez lehet kihasználni a egyaránt DocumentDB API automatikus indexelési technikái, valamint a DocumentDB API SQL dialektusa szerint. A DocumetDB API lekérdezési nyelv három fő szempontjait foglalja magában:   
+a gyűjteményen belül hello dokumentumok lehet tetszőleges sémák és kérdezheti le egy gyűjteményen belül dokumentumok anélkül, hogy semmilyen sémát, illetve másodlagos indexek előzetes megfizetése esetén. Hello gyűjtemény hello segítségével lekérheti [Azure Cosmos DB DocumentDB API: SQL-szintaxis hivatkozás](https://msdn.microsoft.com/library/azure/dn782250.aspx), amely biztosítja a gazdag hierarchikus, relációs és térbeli operátorokat és bővíthetőséget JavaScript-alapú felhasználó által megadott függvények. A JSON-szintaxis lehetővé teszi a JSON-dokumentumok fákként hello fa csomópontként címkékkel modellezési. Ez lehet kihasználni a egyaránt DocumentDB API automatikus indexelési technikái, valamint a DocumentDB API SQL dialektusa szerint. hello DocumetDB API lekérdezési nyelv három fő szempontjait foglalja magában:   
 
-1. A lekérdezési műveletek, amelyek kapcsolódnak a faszerkezetben, beleértve a hierarchikus lekérdezések és leképezések természetes egy kis készletét. 
+1. A lekérdezési műveletek, amelyek kapcsolódnak természetes toohello faszerkezetben, beleértve a hierarchikus lekérdezések és leképezések egy kis készletét. 
 2. Egy relációs műveleteket, köztük a összeállításban, szűrő, leképezések, összesítések és automatikus illesztések részét. 
 3. Tiszta JavaScript-alapú, amelyek használhatók a felhasználó által megadott függvények (1) és (2).  
 
-A Cosmos DB lekérdezési modelljét megkísérli egyensúlyt biztosítanak a funkciót, hatékonyságát és egyszerűség között. A Cosmos-adatbázis adatbázis-kezelő natív módon lefordítja a, és az SQL lekérdezési utasítás végrehajtása. A gyűjtemény segítségével lekérheti a [REST API-k](/rest/api/documentdb/) vagy annak bármelyik a [ügyfél SDK-k](documentdb-sdk-dotnet.md). A .NET SDK tartalmaz egy LINQ szolgáltatónál.
+hello Cosmos DB lekérdezési modelljét kísérel meg toostrike funkciót, a hatékonyság és az egyszerűség egyensúlyára. hello Cosmos-adatbázis adatbázis-kezelő alapértelmezés szerint lefordítja a és hello SQL lekérdezési utasítás végrehajtása. Egy gyűjtemény hello segítségével lekérheti [REST API-k](/rest/api/documentdb/) vagy bármelyik hello [ügyfél SDK-k](documentdb-sdk-dotnet.md). a LINQ szolgáltatónál hello .NET SDK-val rendelkezik.
 
 > [!TIP]
-> Próbálja ki a DocumentDB API-t, és az adatkészletet az SQL-lekérdezések futtatásához a [Tesztlekérdezéseket](https://www.documentdb.com/sql/demo).
+> Próbálja ki hello DocumentDB API, és SQL-lekérdezések futtatása az adatkészletet a hello [Tesztlekérdezéseket](https://www.documentdb.com/sql/demo).
 > 
 > 
 
 ## <a name="multi-document-transactions"></a>Többdokumentumos tranzakció
-Adatbázis-tranzakció biztonságos és megbízható programozási modellt biztosít a való egyidejű adatokban bekövetkező változásokat. RDBMS, az üzleti logika írását a hagyományos módon, hogy írási **tárolt eljárások** és/vagy **eseményindítók** töltse az adatbázis-kiszolgáló tranzakciós végrehajtásához. A RDBMS az alkalmazás-programozó két különböző programnyelveken kezeléséhez szükséges: 
+Adatbázis-tranzakció biztonságos és megbízható programozási modellt biztosít a egyidejű változtatások toohello adatok kezelésével. RDBMS, a hello hagyományos módon toowrite üzleti logikát a toowrite **tárolt eljárások** és/vagy **eseményindítók** , és küldje el az adatbázis-kiszolgáló toohello tranzakciós végrehajtásához. RDBMS hello alkalmazás-programozó szükség toodeal két különböző programozási nyelvek: 
 
-* A (nem tranzakciós) alkalmazás programozási nyelv (pl. JavaScript, Python, C#, Java, stb.)
-* T-SQL, a tranzakciós programozási nyelv, amely natív módon futtatja az adatbázis
+* (nem tranzakciós) hello alkalmazás programozási nyelv (pl. JavaScript, Python, C#, Java, stb.)
+* T-SQL, hello tranzakciós programozási nyelv hello adatbázis natív módon futtatja
 
-Alapján a mély elkötelezettségének JavaScript és JSON közvetlenül az adatbázis motorján belül, Cosmos DB egy intuitív programozási modellt biztosít feldolgozás alatt álló alapú JavaScript-alkalmazáslogika közvetlenül a gyűjtemények, tárolt eljárások és eseményindítók tekintetében. Ez lehetővé teszi, hogy mind a következők:
+Részletes kötelezettségvállalás tooJavaScript és JSON közvetlenül hello adatbázismotor belül, a Cosmos DB egy intuitív programozási modellt biztosít, végrehajtás alatt álló JavaScript-alapú úgy az alkalmazáslogikát közvetlenül a tárolt eljárások szempontjából hello gyűjtemények és eseményindítók. Ez lehetővé teszi, hogy mindkét hello következő:
 
-* Párhuzamossági hatékony végrehajtásának szabályozásához helyreállítási, automatikus a JSON objektumgrafikonok közvetlenül a az adatbázismotor indexelése
-* Természetesen kifejező folyamatábrán, változó hatókörének, hozzárendelése és kivételkezelő primitívek az adatbázis tranzakcióihoz közvetlenül tekintetében a JavaScript programozási nyelv integrációja
+* Párhuzamossági hatékony végrehajtásának szabályozásához helyreállítási automatikus hello JSON objektumgrafikonok közvetlenül a hello adatbázismotor indexelése
+* Természetesen kifejező folyamatábrán, a változó hatókörének, a hozzárendelés és a kivételkezelő primitívek az adatbázis tranzakcióihoz közvetlenül tekintetében hello JavaScript programozási nyelv integrációja
 
-A JavaScript-logika regisztrálva, a gyűjtemény szintjén majd adhat ki az adott gyűjtemény a dokumentumok a Helyadatbázis-műveletek. A cosmos DB implicit módon becsomagolja a JavaScript-alapú tárolt eljárások és eseményindítók belül egy környezeti ACID-tranzakciókat pillanatkép-elkülönítéssel egy gyűjteményen belül dokumentumok között. Ha a futtatása során a JavaScript kivételt jelez, a teljes tranzakció megszakad. Az eredményül kapott programozási modell egy nagyon egyszerű még hatékony. JavaScript fejlesztők "tartós" programozási modellt kap a szalagtár primitívek, valamint a megszokott nyelvi szerkezetek továbbra is használatakor.   
+hello JavaScript-logika regisztrálva, a gyűjtemény szintjén majd kiadhatnak hello gyűjteményben megadott Helyadatbázis-műveletek hello dokumentumokat. Cosmos DB implicit módon JavaScript-alapú tárolt eljárások és eseményindítók belül pillanatkép-elkülönítéssel között egy környezeti ACID-tranzakciókat becsomagolja hello dokumentumok egy gyűjteményen belül. A végrehajtása során hello Ha hello JavaScript kivételt jelez, majd hello teljes tranzakció megszakad. hello eredményül kapott programozási modell egy nagyon egyszerű még hatékony. JavaScript fejlesztők "tartós" programozási modellt kap a szalagtár primitívek, valamint a megszokott nyelvi szerkezetek továbbra is használatakor.   
 
-JavaScript végrehajtása közvetlenül az adatbázismotor ugyanazt a címtartományt, a pufferkészlet belül teszi lehetővé teszi, hogy performant és adatbázis-művelet a dokumentumokon végzett gyűjtemény tranzakciós végrehajtását. Cosmos-adatbázis adatbázis-kezelő lehetővé teszi a JSON mély kötelezettségvállalás továbbá JavaScript megszünteti az a típus rendszerek alkalmazás és az adatbázis bármely impedancia eltérő.   
+hello képességét tooexecute JavaScript közvetlenül belül hello adatbázis-motort hello azonos címterének, hello pufferkészlet lehetővé teszi, hogy performant és adatbázis-művelet hello dokumentumokon végzett gyűjtemény tranzakciós végrehajtását. Ezenkívül Cosmos-adatbázis adatbázis-kezelő lehetővé teszi a mély kötelezettségvállalás toohello JSON, és a JavaScript kiküszöböli bármely alkalmazás hello típus rendszerek és hello adatbázis impedancia eltérést.   
 
-Gyűjtemény létrehozása után is regisztrált tárolt eljárások, eseményindítók és felhasználó által megadott függvények egy gyűjtemény használja a [REST API-k](/rest/api/documentdb/) vagy annak bármelyik a [ügyfél SDK-k](documentdb-sdk-dotnet.md). A regisztrációt követően hivatkoznak, és azokat hajtható végre. Vegye figyelembe a következő tárolt eljárás teljesen JavaScript nyelven írt, az alábbi kódot két argumentummal (könyv nevét és Szerző neve) és új dokumentum létrehozása, lekérdezi egy dokumentumot, és frissíti azt – összes egy implicit ACID-tranzakción belül. A végrehajtás során bármikor Ha a JavaScript kivételt vált ki, a teljes tranzakció megszakítása.
+Gyűjtemény létrehozása után regisztrálhatja tárolt eljárások, eseményindítók és felhasználó által megadott függvények használatával hello gyűjtemény [REST API-k](/rest/api/documentdb/) vagy bármelyik hello [ügyfél SDK-k](documentdb-sdk-dotnet.md). A regisztrációt követően hivatkoznak, és azokat hajtható végre. Vegye figyelembe a hello következő tárolt eljárás írt teljes egészében a JavaScript-kódot hello két argumentummal (könyv nevét és Szerző neve) és új dokumentum létrehozása, lekérdezi egy dokumentumot, és frissíti azt – összes egy implicit ACID-tranzakción belül. Hello végrehajtása során bármikor Ha a JavaScript kivételt vált ki, hello teljes tranzakció megszakítása.
 
     function businessLogic(name, author) {
         var context = getContext();
@@ -242,10 +242,10 @@ Gyűjtemény létrehozása után is regisztrált tárolt eljárások, eseményin
 
                         context.getResponse().setBody(matchingDocuments.length);
 
-                        // Replace the author name for all documents that satisfied the query.
+                        // Replace hello author name for all documents that satisfied hello query.
                         for (var i = 0; i < matchingDocuments.length; i++) {
                             matchingDocuments[i].author = "George R. R. Martin";
-                            // we don’t need to execute a callback because they are in parallel
+                            // we don’t need tooexecute a callback because they are in parallel
                             collectionManager.replaceDocument(matchingDocuments[i]._self,
                                 matchingDocuments[i]);   
                         }
@@ -253,7 +253,7 @@ Gyűjtemény létrehozása után is regisztrált tárolt eljárások, eseményin
             })
     };
 
-Az ügyfél "elküldhet a" via HTTP POST tranzakciós végrehajtásához az adatbázishoz a fenti JavaScript-logika. HTTP-metódus használatával kapcsolatos további információkért lásd: [Azure Cosmos DB erőforrások RESTful interakció](https://msdn.microsoft.com/library/azure/mt622086.aspx). 
+hello ügyfél "elküldhet a" hello fent JavaScript logika toohello adatbázis via HTTP POST tranzakciós végrehajtásához. HTTP-metódus használatával kapcsolatos további információkért lásd: [Azure Cosmos DB erőforrások RESTful interakció](https://msdn.microsoft.com/library/azure/mt622086.aspx). 
 
     client.createStoredProcedureAsync(collection._self, {id: "CRUDProc", body: businessLogic})
        .then(function(createdStoredProcedure) {
@@ -269,14 +269,14 @@ Az ügyfél "elküldhet a" via HTTP POST tranzakciós végrehajtásához az adat
         });
 
 
-Figyelje meg, hogy az adatbázis natív módon együttműködik a JSON és a JavaScript, mert nincs nincs rendszer eltérés, "OR leképezés" vagy kód generálása magic szükséges.   
+Figyelje meg, hogy hello adatbázis natív módon együttműködik a JSON és a JavaScript, mert nincs nincs rendszer Típuseltérés, nincs "OR leképezési" vagy a kód generálása magic szükséges.   
 
-Tárolt eljárások és eseményindítók kommunikálni egy gyűjtemény és a dokumentumok egy gyűjtemény egy jól meghatározott hálózatiobjektum-modellje, amely az aktuális gyűjtemény környezetben keresztül.  
+Tárolt eljárások és eseményindítók kommunikálni egy adatgyűjtési és -hello dokumentumok egy jól meghatározott hálózatiobjektum-modellje, amely felfedi a hello kontextusban gyűjtemény segítségével egy gyűjteményen belül.  
 
-A DocumentDB API lehet gyűjteményeket létrehozni, törölt, olvasási vagy felsorolt segítségével egyszerűen a [REST API-k](/rest/api/documentdb/) vagy annak bármelyik a [ügyfél SDK-k](documentdb-sdk-dotnet.md). A DocumentDB API mindig vagy a metaadat-gyűjtemény lekérdezése az erős konzisztencia biztosítja. A gyűjtemény törlése automatikusan biztosítja, hogy a dokumentumok, a mellékleteket, a tárolt eljárások, eseményindítók sem tudja már használni, és az abban szereplő felhasználó által megadott függvények.   
+A DocumentDB API is létrehozható, törlése, hello gyűjtemények olvasására vagy könnyen használatával vagy hello számba [REST API-k](/rest/api/documentdb/) vagy bármelyik hello [ügyfél SDK-k](documentdb-sdk-dotnet.md). hello DocumentDB API mindig vagy hello metaadat-gyűjtemény lekérdezése az erős konzisztencia biztosítja. Egy gyűjtemény automatikus törlése biztosítja, hogy nem fér hozzá egyik hello dokumentumok, a mellékleteket, a tárolt eljárások, eseményindítók, és az abban szereplő felhasználó által megadott függvények.   
 
 ## <a name="stored-procedures-triggers-and-user-defined-functions-udf"></a>Tárolt eljárások, eseményindítók és felhasználó definiált függvény (UDF)
-Az előző szakaszban leírtak írhat az alkalmazáslogikát, hogy közvetlenül az adatbázis motorján belül tranzakción belül futtatni. Az alkalmazáslogika teljes egészében a JavaScript írhatók, és a tárolt eljárás, eseményindító vagy egy UDF modellezhető. A tárolt eljárás vagy eseményindító JavaScript-kód beszúrása, cserélje le, törlése, olvasása vagy a lekérdezés dokumentumok egy gyűjteményen belül. Másrészről, egy UDF belül a JavaScript nem lehet beszúrni, cserélje le, vagy törölhetnek dokumentumokat. Felhasználó által megadott függvények számba venni a lekérdezés eredményhalmazából dokumentumok, és előállít egy másik eredményhalmaz. A több-bérlős Cosmos DB egy szigorú foglalás alapú erőforrás irányítás érvénybe lépteti. Minden egyes tárolt eljárást, eseményindító vagy egy UDF lekérdezi a rögzített quantum az operációs rendszer-erőforrás a munkájuk elvégzéséhez. Továbbá a tárolt eljárások, eseményindítók vagy felhasználó által megadott függvények külső JavaScript szalagtárak szemben nem lehet csatolni, és is feketelistára teszi a számukra kiosztott erőforrás költségvetések túllépése esetén. Regisztrálja, a tárolt eljárások, eseményindítók vagy felhasználó által megadott függvények gyűjtemény regisztrációját a REST API-k használatával.  Regisztráláskor tárolt eljárás, eseményindító vagy egy UDF, előre összeállított és a rendszer, bájt kód, amely később hajtsa végre. A következő szakasz bemutatják, hogyan használhatja a Cosmos DB JavaScript SDK regisztrálásához, hajtható végre, és a tárolt eljárás, eseményindító és egy UDF. A JavaScript SDK egy egyszerű burkoló felett. a [REST API-k](/rest/api/documentdb/). 
+Hello előző szakaszban leírtak írhat alkalmazás logika toorun közvetlenül belül hello adatbázismotor tranzakción belül. hello alkalmazáslogika teljes egészében a JavaScript írhatók, és a tárolt eljárás, eseményindító vagy egy UDF modellezhető. hello tárolt eljárás vagy eseményindító JavaScript-kód beszúrása, cserélje le, törlése, olvasása vagy a lekérdezés dokumentumok egy gyűjteményen belül. A hello ugyanakkor, hello JavaScript egy UDF belül nem lehet beszúrni, cseréje vagy törölhetnek dokumentumokat. Felhasználó által megadott függvények hello dokumentumok, a lekérdezés eredményhalmazából enumerálása, és előállít egy másik eredményhalmaz. A több-bérlős Cosmos DB egy szigorú foglalás alapú erőforrás irányítás érvénybe lépteti. Minden egyes tárolt eljárást, eseményindító vagy egy UDF lekérdezi az operációs rendszer erőforrások toodo rögzített quantum teendőit. Továbbá a tárolt eljárások, eseményindítók vagy felhasználó által megadott függvények külső JavaScript szalagtárak szemben nem lehet csatolni, és is feketelistára teszi hello erőforrás költségvetések toothem lefoglalt túllépése esetén. Akkor regisztrálása, unregister tárolt eljárások, eseményindítók vagy felhasználó által megadott függvények használatával gyűjtemény hello REST API-k.  Regisztráláskor tárolt eljárás, eseményindító vagy egy UDF, előre összeállított és a rendszer, bájt kód, amely később hajtsa végre. a következő szakasz hello bemutatják, hogyan használja a hello Cosmos DB JavaScript SDK tooregister, végrehajtási és regisztrációjának törlése a tárolt eljárás, eseményindító és egy UDF. hello JavaScript SDK értéke egy egyszerű burkoló feletti hello [REST API-k](/rest/api/documentdb/). 
 
 ### <a name="registering-a-stored-procedure"></a>A tárolt eljárás regisztrálása
 Regisztrációs tárolt eljárás egy új tárolt eljárás erőforrás egy gyűjtemény HTTP POST használatával hoz létre.  
@@ -305,7 +305,7 @@ Regisztrációs tárolt eljárás egy új tárolt eljárás erőforrás egy gyű
         });
 
 ### <a name="executing-a-stored-procedure"></a>A tárolt eljárás végrehajtása
-A következő tárolt eljárás végrehajtása egy HTTP POST meglévő tárolt eljárás erőforrás ellen úgy, hogy a kérelem törzsében szereplő eljárás paraméterek kiállításával történik.
+A tárolt eljárás végrehajtása végezhető el egy HTTP POST elleni meglévő tárolt eljárás erőforrás kiállító úgy, hogy a paraméterek toohello eljárás hello kérés törzsében.
 
     var inputDocument = {id : "document1", author: "G. G. Marquez"};
     client.executeStoredProcedureAsync(createdStoredProcedure.resource._self, inputDocument)
@@ -327,7 +327,7 @@ Beállításjegyzékből való törlésekor a tárolt eljárás egy HTTP DELETE 
 
 
 ### <a name="registering-a-pre-trigger"></a>Regisztrálás előtti eseményindító
-Új eseményindító erőforrás létrehozása egy gyűjteményen keresztül HTTP POST regisztrációs eseményindító végezhető el. Megadhatja, ha az eseményindító nem előre, vagy a feladás egy vagy több eseményindító és a műveletnek a típusát (pl. létrehozása, Replace, Delete vagy az összes) társított lehet.   
+Új eseményindító erőforrás létrehozása egy gyűjteményen keresztül HTTP POST regisztrációs eseményindító végezhető el. Ha hello eseményindító előre, vagy a feladás egy vagy több eseményindító és hello típusú műveletet lehet társítva (pl. létrehozása, Replace, Delete vagy az összes) is megadhat.   
 
     var preTrigger = {
         id: "upperCaseId",
@@ -348,9 +348,9 @@ Beállításjegyzékből való törlésekor a tárolt eljárás egy HTTP DELETE 
         });
 
 ### <a name="executing-a-pre-trigger"></a>Egy előtti eseményindító végrehajtása
-Egy eseményindító végrehajtása egy meglévő eseményindító nevét megadó a FELADÁS egy vagy több/PUT vagy DELETE kérelmet egy dokumentum erőforrás a kérelem fejléce időpontjában történik.  
+Egy eseményindító végrehajtása egy meglévő eseményindító nevét hello hello helyreállításkor hello POST/PUT vagy DELETE kérelmet hello kérelem fejléce dokumentum erőforrás megadásával történik.  
 
-    client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in the Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
+    client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in hello Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
         .then(function(createdDocument) {
             assert.equal(createdDocument.resource.id, "DOC1");
         }, function(error) {
@@ -383,8 +383,8 @@ Egy UDF-regisztráció UDF új erőforrás létrehozása egy gyűjteményen kere
             console.log("Error");
         });
 
-### <a name="executing-a-udf-as-part-of-the-query"></a>A lekérdezés részeként egy UDF végrehajtása
-Egy UDF adható meg az SQL-lekérdezés részeként pedig a rendszer a core kiterjeszteni úgy [API-hoz. a DocumentDB SQL lekérdező nyelve](https://msdn.microsoft.com/library/azure/dn782250.aspx).
+### <a name="executing-a-udf-as-part-of-hello-query"></a>Egy UDF hello lekérdezés részeként végrehajtása
+Egy UDF hello SQL-lekérdezés részeként adható meg, és úgy tooextend hello alapszintű használt [SQL lekérdező nyelve a DocumentDB API hello](https://msdn.microsoft.com/library/azure/dn782250.aspx).
 
     var filterQuery = "SELECT udf.mathSqrt(r.Age) AS sqrtAge FROM root r WHERE r.FirstName='John'";
     client.queryDocuments(collection._self, filterQuery).toArrayAsync();
@@ -404,56 +404,56 @@ Beállításjegyzékből való törlésekor a UDF egy HTTP DELETE elleni meglév
             console.log("Error");
         });
 
-Bár a fenti kódtöredékek bemutatta a regisztrációs (POST), a regisztrációjának (PUT), az olvasás/lista (GET) és a végrehajtási (POST) keresztül a [JavaScript SDK](https://github.com/Azure/azure-documentdb-js), használhatja a [REST API-k](/rest/api/documentdb/) vagy más [ ügyfél SDK-k](documentdb-sdk-dotnet.md). 
+Bár a fenti hello kódtöredékek bemutatta hello regisztrációs (POST), a regisztrációjának (PUT), a olvasás/list (GET) és a végrehajtási (POST) keresztül hello [JavaScript SDK](https://github.com/Azure/azure-documentdb-js), használhatja a hello [REST API-k](/rest/api/documentdb/) vagy más [ügyfél SDK-k](documentdb-sdk-dotnet.md). 
 
 ## <a name="documents"></a>Dokumentumok
-Insert, cserélje le, törlése, olvashatja, számbavétele és lekérdezni egy gyűjtemény tetszőleges JSON-dokumentumokat. Cosmos DB határozza meg, hogy semmilyen sémát, és nem igényel másodlagos indexek támogatása érdekében egy gyűjtemény dokumentumok lekérdezését. A dokumentum maximális mérete 2 MB.   
+Insert, cserélje le, törlése, olvashatja, számbavétele és lekérdezni egy gyűjtemény tetszőleges JSON-dokumentumokat. Cosmos DB határozza meg, hogy semmilyen sémát, és nem igényel másodlagos indexek sorrendje toosupport egy gyűjtemény dokumentumok lekérdezését. hello maximális dokumentum mérete 2 MB.   
 
-Folyamatban egy valóban megnyitott adatbázis-szolgáltatás, Cosmos DB nem készlet semmilyen speciális adattípusok (pl. dátum idő) vagy adott kódolások JSON-dokumentumok. Vegye figyelembe, hogy Cosmos DB nincs szükség semmilyen különleges JSON egyezmények kodifikálni a különböző dokumentumok; közötti kapcsolatok a Cosmos-adatbázis SQL-szintaxis szolgáló lekérdezés és a projekt dokumentumok különleges jegyzeteket vagy dokumentumok közötti kapcsolatok kodifikálni kell nélkül megkülönböztető tulajdonságok nagyon hatékony hierarchikus és relációs lekérdezés biztosít.  
+Folyamatban egy valóban megnyitott adatbázis-szolgáltatás, Cosmos DB nem készlet semmilyen speciális adattípusok (pl. dátum idő) vagy adott kódolások JSON-dokumentumok. Vegye figyelembe, hogy Cosmos DB nincs szükség semmilyen különleges JSON egyezmények toocodify hello közötti kapcsolatok különböző dokumentumok; hello Cosmos-adatbázis SQL-szintaxis biztosít nagyon hatékony hierarchikus és relációs lekérdezési operátorok tooquery és a projekt dokumentumok különleges jegyzeteket vagy dokumentumok megkülönböztető tulajdonságai között szükség toocodify kapcsolatok nélkül.  
 
-Mint minden más erőforrásnál dokumentumok hozhatók létre, cseréje esetén törlése, olvasása, számba, és könnyen használatával a REST API-k vagy annak bármelyik lekérdezése a [ügyfél SDK-k](documentdb-sdk-dotnet.md). Dokumentum törlése azonnal területet szabadít fel a megfelelő összes beágyazott melléklet kvótát. A dokumentumok olvasási konzisztenciát mértékét az adatbázis-fiókot a konzisztencia-házirend következik. Ez a házirend attól függően, hogy az adatok konzisztenciájának követelményeinek, az alkalmazás kérelem alapon felülbírálható. Dokumentumok lekérdezésekor az olvasási konzisztenciával követi a indexelési mód beállítása a gyűjteményben. A "konzisztens" Ez a következő a fiók konzisztencia házirend. 
+Mint minden más erőforrásnál dokumentumok hozhatók létre, helyett törölni, olvassa el, számba és lekérdezett egyszerűen a REST API-k vagy bármelyik hello segítségével [ügyfél SDK-k](documentdb-sdk-dotnet.md). Dokumentum törlése azonnal területet szabadít fel hello kvóta megfelelő tooall beágyazott hello mellékletek. hello olvassa el a dokumentumok konzisztenciaszint hello adatbázisfiók hello konzisztencia házirend következik. Ez a házirend attól függően, hogy az adatok konzisztenciájának követelményeinek, az alkalmazás kérelem alapon felülbírálható. Dokumentumok lekérdezésekor hello olvasási módban a hello gyűjteményen indexelő konzisztencia követi hello. A "konzisztens" Ez a következő hello fiók konzisztencia házirend. 
 
 ## <a name="attachments-and-media"></a>Mellékletek és az adathordozó
-Cosmos DB tárolását teszi bináris blobok/media vagy Cosmos DB (legfeljebb 2 GB fiókonként) vagy a saját távoli médiatárbeli. Lehetővé teszi egy adathordozó melléklet nevű különleges dokumentum tekintetében a metaadatokat képviseli. A Cosmos DB mellékletet egy különleges (JSON) dokumentumot, amely a media/blob máshol tárolt hivatkozik. Csatolmány egyszerűen egy különleges dokumentumot, amely a metaadatokat (például hely, Szerző stb.) egy olyan távoli media storage-ban tárolt adathordozó rögzíti. 
+Cosmos DB toostore bináris blobok/media Cosmos DB (legfeljebb 2 GB fiókonként) vagy saját távoli médiatárbeli tooyour lehetővé teszi. Azt is lehetővé teszi egy media nevű melléklet különleges dokumentum tekintetében toorepresent hello metaadatait. A Cosmos DB mellékletet hivatkozások hello media/blob máshol tárolt különleges (JSON) dokumentum. Csatolmány egyszerűen egy különleges dokumentumot, amely hello metaadatok (például hely, Szerző stb.) egy olyan távoli media storage-ban tárolt adathordozó rögzíti. 
 
-Fontolja meg egy közösségi olvasási alkalmazást, amely Cosmos-adatbázis segítségével tárolja a szabadkézi széljegyzeteket, és megjegyzéseket, beleértve a metaadatok kiemeli, könyvjelzők, minősítések, kedveli/dislikes egy adott felhasználó e-könyv társított stb.   
+Fontolja meg egy közösségi olvasási alkalmazást, amely Cosmos DB toostore szabadkézi jegyzetek használ, és megjegyzéseket, beleértve a metaadatok kiemeli, könyvjelzők, minősítések, stb. tartozó, egy adott felhasználó e-könyv kedveli/dislikes.   
 
-* A könyv maga a tartalom vagy tárolódik a média-tároló vagy egy távoli médiatárbeli Cosmos DB adatbázisfiók részeként érhető el. 
+* hello hello könyv maga tartalmát tárolja hello media tároló vagy egy távoli médiatárbeli vagy Cosmos DB adatbázisfiók részeként elérhető. 
 * Az alkalmazás minden felhasználó tárolhatjuk egy különálló dokumentumként – pl. /colls/joe/docs/book1 által hivatkozott dokumentum Füzet1 Joe metaadatait tárolja. 
-* Egy felhasználó egy adott könyv tartalom lapok mutató melléklet tárolási alatt az megfelelő dokumentum pl. /colls/joe/docs/book1/chapter1 /colls/joe/docs/book1/chapter2 stb. 
+* Egy felhasználó egy adott könyv toohello tartalom lapjain mutató mellékletek hello megfelelő dokumentum pl. /colls/joe/docs/book1/chapter1 tárolt /colls/joe/docs/book1/chapter2 stb. 
 
-Vegye figyelembe, hogy a fenti példák segítségével rövid azonosítók átadja az erőforrás-hierarchiában. Erőforrások keresztül egyedi erőforrás-azonosítókat megtalálhatja a REST API-kon keresztül érhetők el. 
+Vegye figyelembe, hogy a fent felsorolt hello példák rövid azonosítók tooconvey hello erőforrás hierarchia használatát. Erőforrások hello REST API-kon keresztül egyedi erőforrás-azonosítók keresztül érhetők el. 
 
-A melléklet _media tulajdonságának a médiához Cosmos DB által kezelt, az adathordozó által az URI hivatkozik. A cosmos DB biztosíthatja, hogy az adathordozó a szemétgyűjtési gyűjtése, ha az összes fennmaradó hivatkozást a rendszer eldobja. Cosmos DB automatikusan hoz létre a mellékletet, ha az új adathordozó feltöltött tölti fel a _media úgy, hogy az újonnan hozzáadott adathordozó mutasson. Ha az adathordozó tárolása egy távoli blob-tároló felügyeli azt (például a OneDrive, az Azure Storage DropBox stb.) választja, való hivatkozáshoz az adathordozó továbbra is használhatja a mellékleteket. Ebben az esetben fog létrehozni a mellékletet, és feltölti a _media tulajdonsága.   
+Hello adathordozó Cosmos DB által felügyelt hello _media tulajdonság hello mellékletek hello media az URI hivatkozik. Cosmos DB toogarbage gyűjtése hello media biztosítja, ha az összes fennmaradó hivatkozást hello eldobott. Cosmos DB automatikusan hozza létre hello melléklet hello új adathordozó feltöltésekor és hello _media toopoint toohello újonnan hozzáadott media tölti fel. Ha a távoli blob-tárolóban (például a OneDrive, az Azure Storage DropBox stb.) által felügyelt toostore hello media, mellékletek tooreference hello media továbbra is használhatja. Ebben az esetben létrehoz hello melléklet saját magának, és feltölti a _media tulajdonsága.   
 
-Csakúgy, mint minden más erőforrásnál mellékletek hozhatók létre, cserélni, törlése, olvassa el vagy számba egyszerűen a REST API-k vagy bármely, az ügyfél SDK-k használatával. Csakúgy, mint a dokumentumok, az olvasási konzisztenciával szintű mellékletek következik a konzisztencia-házirend az adatbázis-fiókot. Ez a házirend attól függően, hogy az adatok konzisztenciájának követelményeinek, az alkalmazás kérelem alapon felülbírálható. Mellékletek lekérdezésekor az olvasási konzisztenciával követi az indexelési mód beállítása a gyűjtemény. A "konzisztens" Ez a következő a fiók konzisztencia házirend. 
+Csakúgy, mint minden más erőforrásnál mellékletek hozhatók létre, cserélni, törlése, olvassa el vagy számba egyszerűen a REST API-k vagy bármelyik hello ügyfél SDK-k használatával. A dokumentumok, hello olvasás konzisztenciaszint mellékletek következik hello konzisztencia házirend hello adatbázis-fiók. Ez a házirend attól függően, hogy az adatok konzisztenciájának követelményeinek, az alkalmazás kérelem alapon felülbírálható. Mellékletek lekérdezésekor hello olvasási módban a hello gyűjteményen indexelő konzisztencia követi hello. A "konzisztens" Ez a következő hello fiók konzisztencia házirend. 
  
 
 ## <a name="users"></a>Felhasználók
-A Cosmos DB felhasználói engedélyek csoportosítása logikai névterének jelöli. A felhasználó egy Cosmos DB felhasználói az identity management rendszer vagy egy előre megadott alkalmazás-szerepkör lehet rendelve. Cosmos DB a felhasználó egyszerűen jelenti absztrakciós engedélyekkel az adatbázis csoportba.   
+A Cosmos DB felhasználói engedélyek csoportosítása logikai névterének jelöli. Egy Cosmos DB felhasználói tooa felhasználó is megfelel az identity management rendszer vagy egy előre megadott alkalmazás-szerepkör. A Cosmos DB a felhasználó egyszerűen egy absztrakciós toogroup engedélyekkel az adatbázis jelöli.   
 
-Több vállalat kiszolgálása megvalósítása az alkalmazásban, a felhasználók létrehozhat az Cosmos DB, amely megfelel a tényleges felhasználók vagy a bérlők számára az alkalmazás. Ezután létrehozhat egy adott felhasználó engedélyeit, hogy a hozzáférés-vezérlés keresztül különböző gyűjtemények, dokumentumok, a mellékletek, stb.   
+Több-bérlős megvalósítása az alkalmazásban, a felhasználók az Cosmos Adatbázisba, amely megfelel a tooyour tényleges felhasználók vagy az alkalmazás hello bérlők is létrehozhat. Ezután létrehozhat egy adott felhasználó engedélyeit, amelyek megfelelnek a hozzáférés-vezérlés toohello keresztül különböző gyűjtemények, dokumentumok, a mellékletek, stb.   
 
-Az alkalmazások a felhasználó növekedési méretezést van, az adatok különböző módokon shard is elfogadja. A felhasználók az alábbiak szerint is modell:   
+Az alkalmazások a felhasználó növekedési rendelkező tooscale van, az adatok különböző módokon tooshard is elfogadja. A felhasználók az alábbiak szerint is modell:   
 
-* Minden felhasználói adatbázis van leképezve.
-* Minden felhasználó egy gyűjtemény van leképezve. 
-* Több felhasználó dokumentumokat nyissa meg a kijelölt gyűjteményhez. 
-* Több felhasználó dokumentumokat olyan készletek Ugrás.   
+* Minden felhasználó maps tooa adatbázis.
+* Minden felhasználó maps tooa gyűjtemény. 
+* Megfelelő toomultiple felhasználók dokumentumok nyissa meg dedikált tooa gyűjtemény. 
+* Megfelelő toomultiple felhasználók dokumentumok lépjen a gyűjtemények tooa készletét.   
 
-A megadott horizontális skálázási stratégia függetlenül választja, a tényleges felhasználók modell Cosmos DB adatbázisban felhasználóként, és az egyes felhasználók részletes engedélyeket társítani.  
+Hello megadott horizontális skálázási stratégia mellett dönt, függetlenül a tényleges felhasználók modell Cosmos DB adatbázisban felhasználóként, és a finom nyomtatott engedélyek tooeach felhasználót hozzárendelheti.  
 
 ![Felhasználói gyűjtemények][3]  
 **Horizontális azokat a stratégiákat és modellezési felhasználók**
 
-Más erőforrások, például felhasználói Cosmos DB hozhatók létre, helyett, törlése, olvasása vagy számba egyszerűen a REST API-k vagy bármely, az ügyfél SDK-k használatával. Cosmos DB mindig vagy egy felhasználói erőforrás metaadatait lekérdezése az erős konzisztencia biztosítja. Válassza, hogy nem tud hozzáférni az abban szereplő engedélyeit biztosítja, hogy automatikusan törli a felhasználó érdemes. Annak ellenére, hogy a Cosmos DB úgy szabadít fel a engedélyeit a kvóta a törölt felhasználói a háttérben részeként, a törölt engedélyek érhető el azonnal újra lesz szükség.  
+Más erőforrások, például felhasználói Cosmos DB hozhatók létre, helyett, törlése, olvasása vagy számba egyszerűen a REST API-k vagy bármelyik hello ügyfél SDK-k használatával. Cosmos DB mindig vagy egy felhasználói erőforrás hello metaadatok lekérdezése az erős konzisztencia biztosítja. Válassza, hogy nem férhet hozzá az abban szereplő hello engedélyek biztosítja, hogy automatikusan törli a felhasználó érdemes. Annak ellenére, hogy hello Cosmos DB úgy szabadít fel a hello kvóta hello engedélyek hello törölt felhasználói hello háttérben részeként, törölt hello engedélyek érhető el azonnal újra az Ön toouse.  
 
 ## <a name="permissions"></a>Engedélyek
-Access control szempontból, erőforrások, például adatbázis-fiókokat, adatbázisok, felhasználók és engedéllyel minősülnek *felügyeleti* erőforrásokat, mivel ezek a rendszergazdai engedélyek szükségesek. Másrészről, erőforrások, például a gyűjtemények, dokumentumok, a mellékleteket, tárolt eljárások, eseményindítók, és a felhasználó által megadott függvények alapján egy adott adatbázisnak hatókörű, és figyelembe veendő *alkalmazás-erőforrásokat*. A két típusú erőforrások és a szerepköröket, amelyek elérhet (azaz a rendszergazdai és felhasználói) megfelelő, a használt engedélyezési modellt meghatározása kétféle *hívóbetűk*: *főkulcs* és  *Az erőforráskulcs*. A főkulcs a következő adatbázisfiókot része, és a rendszer átadja a fejlesztői (vagy a rendszergazda) ki van kiépítés az adatbázis-fiókot. A főkulcs szemantikájú rendszergazda, abban, hogy a felügyeleti és a alkalmazás erőforrásokhoz való hozzáférés engedélyezésére használható. Ezzel szemben egy erőforrás kulcsa a részletes elérési kulcsot, amely lehetővé teszi a hozzáférést egy *adott* alkalmazás erőforrás. Ebből kifolyólag rögzíti a felhasználó az adatbázis és az engedélyek a felhasználó rendelkezik-e egy adott erőforráshoz (pl. gyűjteményt, a dokumentum, melléklet, tárolt eljárás, eseményindító vagy UDF) közötti kapcsolat.   
+Access control szempontból, erőforrások, például adatbázis-fiókokat, adatbázisok, felhasználók és engedéllyel minősülnek *felügyeleti* erőforrásokat, mivel ezek a rendszergazdai engedélyek szükségesek. A hello ugyanakkor, beleértve hello gyűjtemények, dokumentumok, mellékletek, tárolt eljárások, eseményindítók, erőforrások és felhasználó által megadott függvények alapján egy adott adatbázisnak hatókörű, és figyelembe veendő *alkalmazás-erőforrásokat*. Megfelelő toohello kétféle típusú erőforrások és a hozzáférésüket (azaz hello rendszergazdai és felhasználói) hello szerepkörtől, hello engedélyezési modell meghatározása kétféle *hívóbetűk*: *főkulcs* és *erőforráskulcs*. hello főkulcs hello adatbázisfiók része, és biztosított toohello developer (vagy a rendszergazda) ki van kiépítés hello adatbázis-fiók. A főkulcs szemantikájú rendszergazda, abban, hogy azok használt tooauthorize hozzáférés tooboth felügyeleti és alkalmazás-erőforrásokat. Ezzel szemben egy erőforrás kulcsa a részletes elérési kulcsot, amely lehetővé teszi a hozzáférést tooa *adott* alkalmazás erőforrás. Emiatt hello kapcsolatát hello felhasználói adatbázis rögzíti, és hello engedélyek hello felhasználó rendelkezik-e egy adott erőforráshoz (pl. gyűjtemény, a dokumentum, melléklet, tárolt eljárás, eseményindító vagy UDF-ben).   
 
-A csak egy erőforrás-kulcs beszerzése, egy adott felhasználói engedélyt erőforrás létrehozása. Vegye figyelembe, hogy létrehozásához vagy engedély beolvasni, főkulcs biztosítani kell a hitelesítési fejléc. Engedély erőforrás kötelékek az erőforrás, a hozzáférés és a felhasználó. A felhasználó engedélye erőforrás létrehozása után csak kell a társított erőforráskulcs ahhoz, hogy a megfelelő erőforrás eléréséhez jelenthet. Egy erőforrás-kulcsot, ezért a logikai és kompakt megjelenítése az engedély erőforrás tekinthetők.  
+hello csak úgy tooobtain egy erőforrás kulcsa által egy adott felhasználói engedélyt erőforrás létrehozása. Vegye figyelembe, hogy a rendelés toocreate engedély beolvasása, vagy a főkulcs biztosítani kell a hello authorization fejlécet. Engedély erőforrás ties hello erőforrás, hozzáférési és hello felhasználó. Engedély erőforrás létrehozása után hello felhasználónak csak toopresent hello társított erőforráskulcs rendelés toogain hozzáférés toohello megfelelő erőforrás a van szüksége. Emiatt egy erőforráskulcs tekinthető hello engedély erőforrás a logikai és kompakt megjelenítése.  
 
-Összes többi erőforrása, Cosmos DB tartozó engedélyek hozhatók létre, helyett, törlése, olvasása vagy számba egyszerűen a REST API-k vagy bármely, az ügyfél SDK-k segítségével. Cosmos DB mindig vagy kérdez le a metaadatokat az engedély az erős konzisztencia biztosítja. 
+Csakúgy, mint minden más erőforrásnál Cosmos DB engedélyek hozhatók létre, cserélni, törlése, olvassa el vagy számba egyszerűen a REST API-k vagy bármelyik hello ügyfél SDK-k használatával. Cosmos DB mindig vagy az engedély hello metaadatok lekérdezése az erős konzisztencia biztosítja. 
 
 ## <a name="next-steps"></a>Következő lépések
 További tudnivalókat a HTTP-parancsokat kell használnia, erőforrásokkal [Cosmos DB erőforrások RESTful interakció](https://msdn.microsoft.com/library/azure/mt622086.aspx).

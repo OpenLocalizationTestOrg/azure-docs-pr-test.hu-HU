@@ -1,5 +1,5 @@
 ---
-title: "Windows-alapú virtuális gépek Azure-ban frissítéseinek és karbantartás |} Microsoft Docs"
+title: "aaaMaintenance és frissítések Windows virtuális gépek Azure-ban |} Microsoft Docs"
 description: "Az Azure-ban futó Windows virtuális gépek frissítéseinek és karbantartási áttekintése."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: cynthn
-ms.openlocfilehash: 7f293a102412960686ca5f0619ca88e9a3704127
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2f628d378ebb8b8eeae1c5b5cbfd27e93834e051
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="planned-maintenance-for-windows-virtual-machines-in-azure"></a>Windows Azure virtuális gépek tervezett karbantartása
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="next-steps"></a>Következő lépések
 
-A [Azure metaadat-szolgáltatás](instance-metadata-service.md) lehetővé teszi a virtuális gép az Azure-ban tárolt információk felderítéséhez. 
+Hello [Azure metaadat-szolgáltatás](instance-metadata-service.md) lehetővé teszi a virtuális gép Azure-ban üzemeltetett toodiscover adatait. 
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure aszinkron műveletek |} Microsoft Docs"
-description: "Nyomon követheti az Azure-ban aszinkron műveleteket ismerteti."
+title: "az aszinkron műveletek aaaAzure |} Microsoft Docs"
+description: "Ismerteti, hogyan tootrack aszinkron műveletek az Azure-ban."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/11/2017
 ms.author: tomfitz
-ms.openlocfilehash: 9fe3d98cd345aae45722295b6c1b7fc3e9036e95
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b81254196013adf87998eff11a50993efa52d40d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="track-asynchronous-azure-operations"></a>Az Azure aszinkron műveletek nyomon követése
-Néhány Azure REST művelet aszinkron módon futtatható, mert a művelet nem fejezhető be gyorsan. Ez a témakör ismerteti a válaszban visszaadott értékek keresztül aszinkron műveletek állapotának nyomon követését.  
+Néhány Azure REST művelet aszinkron módon futtatható, mert hello művelet nem fejezhető be gyorsan. Ez a témakör ismerteti, hogyan hello válaszul vissza tootrack hello állapotát, a értékek aszinkron műveletek.  
 
 ## <a name="status-codes-for-asynchronous-operations"></a>Az aszinkron műveletek állapotkódjai
 Egy aszinkron művelet kezdetben adja vissza egy HTTP-állapotkód: a következők:
@@ -29,23 +29,23 @@ Egy aszinkron művelet kezdetben adja vissza egy HTTP-állapotkód: a következ�
 * 201-es (létrehozva)
 * 202 (elfogadható) 
 
-Ha a művelet sikeresen befejeződött, adja vissza, vagy:
+Amikor hello művelet sikeresen befejeződött, adja vissza, vagy:
 
 * 200-AS (OK)
 * 204 (üres) 
 
-Tekintse meg a [REST API-dokumentáció](/rest/api/) tekintheti meg a műveletet, amelyek végrehajtása a válaszokat. 
+Tekintse meg a toohello [REST API-dokumentáció](/rest/api/) toosee hello válaszok állnak végrehajtás alatt hello a művelethez. 
 
 ## <a name="monitor-status-of-operation"></a>Művelet állapotának figyelése
-Az aszinkron REST műveleteinek térjen vissza a fejléc értékei, amelyek segítségével állapítja meg, a művelet állapotát. Nincsenek potenciálisan három térközkaraktert vizsgálata:
+hello aszinkron REST műveletek visszatérési fejléc értékei, amely toodetermine hello állapotának hello a művelethez. Három fejléc értékek tooexamine potenciálisan vannak:
 
-* `Azure-AsyncOperation`-A művelet folyamatban lévő állapotának ellenőrzése a következő URL-címe A művelet ezt az értéket adja vissza, ha mindig segítségével (hely) helyett a művelet állapotának nyomon követését.
+* `Azure-AsyncOperation`-Hello folyamatban lévő hello művelet állapotának ellenőrzése a következő URL-címe A művelet ezt az értéket adja vissza, ha mindig használjon (helyett helye) informatikai tootrack hello hello művelet állapotát.
 * `Location`-URL-cím meghatározásához, ha egy művelet befejeződött. Használja ezt az értéket csak akkor, ha Azure-aszinkron műveletek nem ad vissza.
-* `Retry-After`-Hány másodpercig várjon az aszinkron művelet állapotának ellenőrzésekor.
+* `Retry-After`-hello másodperc toowait száma hello aszinkron művelet hello állapotának ellenőrzése előtt.
 
-Nem minden aszinkron művelethez azonban ezeket az értékeket adja vissza. Például szükség lehet az Azure-aszinkron műveletek Fejlécérték egy művelet, és a hely fejléc értékének egy másik művelet. 
+Nem minden aszinkron művelethez azonban ezeket az értékeket adja vissza. Például szükség lehet tooevaluate hello Azure-aszinkron műveletek Fejlécérték egy műveletet, és hello hely állomásfejléc-érték egy másik művelet. 
 
-A fejléc értékei Ön olvashatók be, mert a szeretné beolvasni a bármely állomásfejléc-érték, egy kérelemre vonatkozóan. Például a C#, visszaállíthatja a Fejlécérték egy `HttpWebResponse` nevű objektum `response` az alábbi kódra:
+Hello térközkaraktert Ön olvashatók be, mert a szeretné beolvasni a bármely állomásfejléc-érték, egy kérelem. Például a C#, visszaállíthatja az hello Fejlécérték egy `HttpWebResponse` nevű objektum `response` a hello a következő kódot:
 
 ```cs
 response.Headers.GetValues("Azure-AsyncOperation").GetValue(0)
@@ -53,9 +53,9 @@ response.Headers.GetValues("Azure-AsyncOperation").GetValue(0)
 
 ## <a name="azure-asyncoperation-request-and-response"></a>Azure-aszinkron műveletek kérelem-válasz
 
-Ahhoz, hogy az aszinkron művelet állapotát, GET kérés küldése az Azure-aszinkron műveletek állomásfejléc-érték az URL-címet.
+hello aszinkron művelet, tooget hello állapotát GET kérelem toohello URL-cím küldése az Azure-aszinkron műveletek állomásfejléc-érték.
 
-Ez a művelet kapott válasz törzsében működésével kapcsolatos adatokat. A következő példa bemutatja a művelet által visszaadott a lehetséges értékek:
+hello művelet hello válasz törzsében hello műveletekre vonatkozó információk. hello alábbi példa bemutatja hello hello művelet által visszaadott a lehetséges értékek:
 
 ```json
 {
@@ -75,7 +75,7 @@ Ez a művelet kapott válasz törzsében működésével kapcsolatos adatokat. A
 }
 ```
 
-Csak `status` az összes választ ad vissza. A hiba objektum ad vissza, ha az állapot sikertelen vagy megszakítva. Minden más értékek a következők kötelező megadni. ezért a választ kap láthatótól tűnhet.
+Csak `status` az összes választ ad vissza. hello hiba objektum ad vissza, ha hello állapota sikertelen vagy megszakítva. Minden más értékek a következők kötelező megadni. ezért hello választ kap megjelenése eltérő lehet mint hello példa.
 
 ## <a name="provisioningstate-values"></a>provisioningState értékek
 
@@ -85,32 +85,32 @@ Műveletek létrehozása, frissítése vagy törlése (PUT, javítás, Törlés)
 * Nem sikerült
 * Törölve
 
-Minden egyéb értékek azt jelzik, hogy még mindig fut, a műveletet. Az erőforrás-szolgáltató az állapotát jelző testreszabott értéket adhat vissza. Például jelenhet meg **elfogadott** fogadott és megfelelően fut a kérelem esetén.
+Minden más értékek azt jelzik, hogy továbbra is fut hello művelet. hello erőforrás-szolgáltató az állapotát jelző testreszabott értéket adhat vissza. Például jelenhet meg **elfogadott** fogadott és futó hello kérelem esetén.
 
 ## <a name="example-requests-and-responses"></a>Példa kérések és válaszok
 
 ### <a name="start-virtual-machine-202-with-azure-asyncoperation"></a>Indítsa el a virtuális gép (az Azure-aszinkron műveletek 202)
-Ez a példa bemutatja, hogyan állapotának megállapítása **start** műveletet a virtuális gépek. A kezdeti kérelme, mert a következő formátumban:
+Ez a példa bemutatja, hogyan toodetermine hello állapotának **start** műveletet a virtuális gépek. hello kezdeti kérés hello a következő formátumban kell megadni:
 
 ```HTTP
 POST 
 https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Compute/virtualMachines/{vm-name}/start?api-version=2016-03-30
 ```
 
-Állapotkód: 202 adja vissza. A fejléc értékei között jelenik meg:
+Állapotkód: 202 adja vissza. Hello fejléc értékei, közötti jelenik meg:
 
 ```HTTP
 Azure-AsyncOperation : https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Compute/locations/{region}/operations/{operation-id}?api-version=2016-03-30
 ```
 
-Az aszinkron művelet, egy másik kérelem küldése adott URL-cím állapotának ellenőrzéséhez.
+hello aszinkron művelet, egy másik kérelem toothat URL-cím küldésekor toocheck hello állapotát.
 
 ```HTTP
 GET 
 https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Compute/locations/{region}/operations/{operation-id}?api-version=2016-03-30
 ```
 
-Az adott válasz törzsének tartalmaz a művelet állapotát:
+hello adott válasz törzsének hello művelet hello állapotának tartalmazza:
 
 ```json
 {
@@ -122,39 +122,39 @@ Az adott válasz törzsének tartalmaz a művelet állapotát:
 
 ### <a name="deploy-resources-201-with-azure-asyncoperation"></a>Erőforrások (az Azure-aszinkron műveletek 201) telepítése
 
-Ez a példa bemutatja, hogyan állapotának megállapítása **központi telepítések** művelet erőforrásokat üzembe helyezi az Azure-bA. A kezdeti kérelme, mert a következő formátumban:
+Ez a példa bemutatja, hogyan toodetermine hello állapotának **központi telepítések** művelet erőforrások tooAzure telepítéséhez. hello kezdeti kérés hello a következő formátumban kell megadni:
 
 ```HTTP
 PUT
 https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group}/providers/microsoft.resources/deployments/{deployment-name}?api-version=2016-09-01
 ```
 
-201-es állapotkód adja vissza. A választörzs tartalmazza:
+201-es állapotkód adja vissza. hello adott válasz törzsének hello tartalmazza:
 
 ```json
 "provisioningState":"Accepted",
 ```
 
-A fejléc értékei között jelenik meg:
+Hello fejléc értékei, közötti jelenik meg:
 
 ```HTTP
 Azure-AsyncOperation: https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group}/providers/Microsoft.Resources/deployments/{deployment-name}/operationStatuses/{operation-id}?api-version=2016-09-01
 ```
 
-Az aszinkron művelet, egy másik kérelem küldése adott URL-cím állapotának ellenőrzéséhez.
+hello aszinkron művelet, egy másik kérelem toothat URL-cím küldésekor toocheck hello állapotát.
 
 ```HTTP
 GET 
 https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group}/providers/Microsoft.Resources/deployments/{deployment-name}/operationStatuses/{operation-id}?api-version=2016-09-01
 ```
 
-Az adott válasz törzsének tartalmaz a művelet állapotát:
+hello adott válasz törzsének hello művelet hello állapotának tartalmazza:
 
 ```json
 {"status":"Running"}
 ```
 
-Ha a telepítés befejeződött, a válasz tartalmazza:
+Ha hello telepítés befejeződött, hello válasz tartalmazza:
 
 ```json
 {"status":"Succeeded"}
@@ -162,37 +162,37 @@ Ha a telepítés befejeződött, a válasz tartalmazza:
 
 ### <a name="create-storage-account-202-with-location-and-retry-after"></a>(A hely és újrapróbálkozási után 202) storage-fiók létrehozása
 
-Ez a példa bemutatja, hogyan állapotának megállapítása a **létrehozása** storage-fiókok műveletet. A kezdeti kérelme, mert a következő formátumban:
+Ez a példa bemutatja, hogyan toodetermine hello hello állapotának **létrehozása** storage-fiókok műveletet. hello kezdeti kérés hello a következő formátumban kell megadni:
 
 ```HTTP
 PUT
 https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Storage/storageAccounts/{storage-name}?api-version=2016-01-01
 ```
 
-És a kérés törzsében tartalmazza a tárfiók tulajdonságai:
+És hello kérelemtörzset hello tárfiók tulajdonságait tartalmazza:
 
 ```json
 { "location": "South Central US", "properties": {}, "sku": { "name": "Standard_LRS" }, "kind": "Storage" }
 ```
 
-Állapotkód: 202 adja vissza. A fejléc értékei között a következő két érték jelenik meg:
+Állapotkód: 202 adja vissza. Között hello fejléc értékei tekintse meg a következő két érték hello:
 
 ```HTTP
 Location: https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Storage/operations/{operation-id}?monitor=true&api-version=2016-01-01
 Retry-After: 17
 ```
 
-Miután Várakozás száma a másodpercben megadott újrapróbálkozási után ellenőrizze az aszinkron művelet állapotát úgy, hogy küld egy másik kérelem URL-címet.
+Száma várakozás után másodpercben megadott újrapróbálkozási után, állapotának hello hello aszinkron művelet úgy, hogy küld egy másik kérelem toothat URL-CÍMÉT.
 
 ```HTTP
 GET 
 https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Storage/operations/{operation-id}?monitor=true&api-version=2016-01-01
 ```
 
-Ha a kérés továbbra is fut, a állapotkód: 202 jelenik meg. Ha a kérelem befejeződött, a 200-as állapotkód kap, és a választörzs a tárfiók már létrehozott tulajdonságait tartalmazza.
+Ha hello kérés továbbra is fut, a állapotkód: 202 jelenik meg. Ha hello kérelem befejezése után a 200-as állapotkód kap, és hello hello válasz törzsében hello tulajdonságok hello tárfiók lett létrehozva.
 
 ## <a name="next-steps"></a>Következő lépések
 
 * Az egyes REST műveletekre vonatkozó dokumentációjáért lásd: [REST API-dokumentáció](/rest/api/).
-* A Resource Manager REST API-n keresztül erőforrások kezelésével kapcsolatos információkért lásd: [a Resource Manager REST API használatával](resource-manager-rest-api.md).
-* a Resource Manager REST API-n keresztül sablonok telepítésével kapcsolatos információkért lásd: [központi telepítése a Resource Manager-sablonok és a Resource Manager REST API erőforrások](resource-group-template-deploy-rest.md).
+* Erőforrások hello Resource Manager REST API-n keresztül kezelésével kapcsolatos információkért lásd: [Resource Manager REST API használatával hello](resource-manager-rest-api.md).
+* hello Resource Manager REST API-n keresztül sablonok telepítésével kapcsolatos információkért lásd: [központi telepítése a Resource Manager-sablonok és a Resource Manager REST API erőforrások](resource-group-template-deploy-rest.md).

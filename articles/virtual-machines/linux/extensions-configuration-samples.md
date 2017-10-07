@@ -1,5 +1,5 @@
 ---
-title: "Linux Virtuálisgép-bővítmények mintakonfiguráció |} Microsoft Docs"
+title: "a Linux rendszerű Virtuálisgép-bővítmények aaaSample konfigurációs |} Microsoft Docs"
 description: "Mintakonfiguráció kiterjesztésű sablonok készítése a Linux virtuális gépekhez"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/13/2016
 ms.author: kundanap
-ms.openlocfilehash: 7bdc28328f29005ae48cc281a05fce7067c96556
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bc19b8d7d6fdb1783be99ec7fdd5cde5e1f8ca80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="linux-vm-extension-configuration-samples"></a>Linuxos virtuálisgép-bővítmények konfigurációs mintái
 > [!div class="op_single_selector"]
@@ -32,14 +32,14 @@ ms.lasthandoff: 07/11/2017
 
 Ez a cikk ismerteti a mintakonfiguráció Azure Virtuálisgép-bővítmények konfigurálása a Linux virtuális gépekhez.
 
-További információ ezekről a bővítményekről kattintson ide további: [Azure Virtuálisgép-bővítmények áttekintése.](../windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+További információ ezekről a bővítményekről ide toolearn: [Azure Virtuálisgép-bővítmények áttekintése.](../windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-További információk a létrehozásról bővítmény sablonok ide: [bővítmény sablonok készítése.](../windows/extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+További információk a bővítmény sablonok készítése kattintson ide toolearn: [bővítmény sablonok készítése.](../windows/extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-Ez a cikk a Linux-bővítések egy része az elvárt konfiguráció értékeit tartalmazza.
+Ez a cikk egyes hello Linux bővítmények esetében elvárt konfiguráció értékeit tartalmazza.
 
 ## <a name="sample-template-snippet-for-vm-extensions"></a>Minta sablon részlet Virtuálisgép-bővítmények.
-A sablon részlet üzembe helyezéséhez bővítmények keresi a következőként:
+hello sablon részlet üzembe helyezéséhez bővítmények keresi a következőként:
 
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -80,9 +80,9 @@ A sablon részlet üzembe helyezéséhez bővítmények keresi a következőkén
                   }
                 }
 
-A bővítmény telepítése előtt ellenőrizze a bővítmény legújabb, és cserélje le a "typeHandlerVersion" az aktuális legújabb verzióját.
+Hello bővítmény telepítése előtt ellenőrizze a hello bővítmény legújabb, és cserélje le a hello "typeHandlerVersion" hello aktuális legújabb verziójával.
 
-A cikk többi részében Linux Virtuálisgép-bővítmények minta konfigurációi biztosít.
+Hello cikk többi Linux Virtuálisgép-bővítmények minta konfigurációi biztosít.
 
 ### <a name="cloudlink-securevm-agent"></a>CloudLink SecureVM ügynök
           {
@@ -90,7 +90,7 @@ A cikk többi részében Linux Virtuálisgép-bővítmények minta konfiguráci�
             "type": "CloudLinkSecureVMLinuxAgent",
             "typeHandlerVersion": "4.0",
             "settings": {
-              "CloudLinkCenter" : "specify valid IP/FQDN to CloudLinkCenter"
+              "CloudLinkCenter" : "specify valid IP/FQDN tooCloudLinkCenter"
             }
           }
 
@@ -132,23 +132,23 @@ A cikk többi részében Linux Virtuálisgép-bővítmények minta konfiguráci�
         }
 
 ### <a name="vm-access-extension-password-reset"></a>Hozzáférés-alapú Virtuálisgép-bővítmény (a jelszó alaphelyzetbe állítása)
-Frissített séma tekintse meg a [VMAccessForLinux dokumentáció](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)
+A frissített séma meg toohello [VMAccessForLinux dokumentáció](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)
 
         {
           "publisher": "Microsoft.OSTCExtensions",
           "type": "VMAccessForLinux",
           "typeHandlerVersion": "1.2",
           "protectedSettings": {
-            "username": "(required, string) the name of the user",
-            "password": "(optional, string) the password of the user",
-            "reset_ssh": "(optional, boolean) whether or not reset the ssh",
-            "ssh_key": "(optional, string) the public key of the user, base64 encoded pem",
-            "remove_user": "(optional, string) the user name to remove"
+            "username": "(required, string) hello name of hello user",
+            "password": "(optional, string) hello password of hello user",
+            "reset_ssh": "(optional, boolean) whether or not reset hello ssh",
+            "ssh_key": "(optional, string) hello public key of hello user, base64 encoded pem",
+            "remove_user": "(optional, string) hello user name tooremove"
           }
         }
 
 ### <a name="os-patching"></a>Az operációs rendszer javítását
-Frissített séma tekintse meg a [OSPatching dokumentáció](https://github.com/Azure/azure-linux-extensions/tree/master/OSPatching)
+A frissített séma meg toohello [OSPatching dokumentáció](https://github.com/Azure/azure-linux-extensions/tree/master/OSPatching)
 
         {
         "publisher": "Microsoft.OSTCExtensions",
@@ -173,7 +173,7 @@ Frissített séma tekintse meg a [OSPatching dokumentáció](https://github.com/
         }
 
 ### <a name="docker-extension"></a>Docker-bővítmény
-Frissített séma tekintse meg a [Docker bővítmény dokumentációja](https://github.com/Azure/azure-docker-extension/blob/master/README.md#1-configuration-schema)
+A frissített séma meg toohello [Docker bővítmény dokumentációja](https://github.com/Azure/azure-docker-extension/blob/master/README.md#1-configuration-schema)
 
         {
           "publisher": "Microsoft.Azure.Extensions ",
@@ -199,8 +199,8 @@ Frissített séma tekintse meg a [Docker bővítmény dokumentációja](https://
 
         ### Linux Diagnostics Extension
         {
-        "storageAccountName": "storage account to receive data",
-        "storageAccountKey": "key of the account",
+        "storageAccountName": "storage account tooreceive data",
+        "storageAccountKey": "key of hello account",
         "perfCfg": [
         {
             "query": "SELECT PercentAvailableMemory, AvailableMemory, UsedMemory ,PercentUsedSwap FROM SCX_MemoryStatisticalInformation",
@@ -215,7 +215,7 @@ Frissített séma tekintse meg a [Docker bővítmény dokumentációja](https://
         ]
         }
 
-A fenti példákban cserélje le a verziószámot a legújabb verziószámot.
+Hello példában cserélje le hello verziószám hello legújabb verziószámot.
 
 Íme egy teljes körű Virtuálisgép-sablon kiterjesztéssel együtt, a Linux virtuális gépek létrehozásához:
 

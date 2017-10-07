@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Web Apps Maven beépülő modul használata Azure tároló beállításjegyzék rugó rendszerindító alkalmazás telepítése az Azure App Service"
-description: "Ez az oktatóanyag részletesen ismerteti, ha egy Azure-tároló beállításjegyzék rugó rendszerindító alkalmazás telepítési Azure az Azure App Service egy Maven beépülő modul használatával."
+title: "a rugó rendszerindító alkalmazások az Azure-tároló beállításjegyzék tooAzure App Service Azure Web Apps toodeploy aaaHow toouse hello Maven beépülő modul"
+description: "Ez az oktatóanyag részletesen ismerteti, ha hello lépéseket toodeploy egy rugó rendszerindító alkalmazás az Azure-tároló beállításjegyzék tooAzure tooAzure App Service egy Maven beépülő modul használatával."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,29 +14,29 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robmcm;kevinzha
-ms.openlocfilehash: f47ee59d72ea49d62be2cb435ebaf8bc841e4198
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 55b95e310c9ee186a6d77d941c5a620c2e259d8a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-maven-plugin-for-azure-web-apps-to-deploy-a-spring-boot-app-in-azure-container-registry-to-azure-app-service"></a>Az Azure Web Apps Maven beépülő modul használata Azure tároló beállításjegyzék rugó rendszerindító alkalmazás telepítése az Azure App Service
+# <a name="how-toouse-hello-maven-plugin-for-azure-web-apps-toodeploy-a-spring-boot-app-in-azure-container-registry-tooazure-app-service"></a>Hogyan toouse hello Maven beépülő modul Azure Web Apps toodeploy egy rugó rendszerindító alkalmazást az Azure-tároló beállításjegyzék tooAzure App Service
 
-A  **[rugó keretrendszer]**  egy népszerű nyílt forráskódú keretrendszer, amely a fejlesztőket Java webes, mobil és API-alkalmazások létrehozása. Ez az oktatóanyag használja egy mintaalkalmazást használatával létrehozott [rugó rendszerindító], rugó használatával történő gyors használatbavétel a egyezmény adatvezérelt megközelítést.
+Hello  **[rugó keretrendszer]**  egy népszerű nyílt forráskódú keretrendszer, amely a fejlesztőket Java webes, mobil és API-alkalmazások létrehozása. Ez az oktatóanyag használja egy mintaalkalmazást használatával létrehozott [rugó rendszerindító], egy egyezmény adatvezérelt megközelítés rugó tooget használatával gyorsan lépéseket.
 
-Ez a cikk bemutatja, hogyan Azure tároló beállításjegyzék rugó rendszerindító mintaalkalmazás telepítése, és az Azure Web Apps Maven beépülő modul segítségével az Azure App Service alkalmazás telepítése.
+Ez a cikk bemutatja, hogyan toodeploy egy minta rugó rendszerindító alkalmazás tooAzure tároló beállításjegyzék, majd használja hello Maven beépülő modul Azure Web Apps toodeploy az alkalmazás tooAzure App Service.
 
 > [!NOTE]
 >
-> Az Azure Web Apps Maven beépülő modul jelenleg tartozik által megtekinthető villámnézetként. Egyelőre csak az FTP-közzététel támogatott, bár a jövőben további funkciók tervbe van véve.
+> hello Azure Web Apps Maven beépülő modul jelenleg tartozik által megtekinthető villámnézetként. Egyelőre csak az FTP-közzététel támogatott, bár a további szolgáltatások későbbi hello tervbe van véve.
 >
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyagban szereplő lépések végrehajtásához kell rendelkeznie a következő előfeltételek teljesülését:
+A sorrend toocomplete hello lépések ebben az oktatóanyagban kell toohave hello a következő előfeltételek:
 
 * Azure-előfizetés; Ha még nem rendelkezik Azure-előfizetéssel, aktiválhatja a [MSDN-előfizetői előnyeit] vagy regisztráljon egy [ingyenes Azure-fiókot].
-* A [Azure parancssori felület (CLI)].
+* Hello [Azure parancssori felület (CLI)].
 * Egy naprakész [Java fejlesztői készlet (JDK)], 1.7 vagy újabb verziója.
 * Apache tartozó [Maven] eszköz (3-as verziójához) létrehozása.
 * A [Git] ügyfél.
@@ -44,14 +44,14 @@ Az oktatóanyagban szereplő lépések végrehajtásához kell rendelkeznie a k�
 
 > [!NOTE]
 >
-> Ez az oktatóanyag virtualizálási követelményeinek, mert; virtuális gépen nem kövesse a cikkben leírt lépéseket a fizikai számítógép engedélyezett virtualizációs szolgáltatások kell használnia.
+> Ez az oktatóanyag toohello virtualizálási követelményeinek miatt nem lépések hello ebben a cikkben; virtuális gépen a fizikai számítógép engedélyezett virtualizációs szolgáltatások kell használnia.
 >
 
-## <a name="clone-the-sample-spring-boot-on-docker-web-app"></a>A minta rugó rendszerindító Docker webalkalmazásban klónozása
+## <a name="clone-hello-sample-spring-boot-on-docker-web-app"></a>Klónozás hello minta rugó rendszerindító Docker-webalkalmazás
 
 Ebben a szakaszban egy indexelése rugó rendszerindító alkalmazás klónozása, és helyben tesztelheti.
 
-1. Nyisson meg egy parancssort vagy terminálablakot, és hozzon létre egy helyi könyvtárat a rugó rendszerindító alkalmazás tárolására, és módosítsa a könyvtárhoz; Példa:
+1. Nyisson meg egy parancssort vagy terminálablakot, és hozzon létre egy helyi könyvtár toohold, a rugó rendszerindító alkalmazás, és a Könyvtárváltás toothat; Példa:
    ```shell
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -62,54 +62,54 @@ Ebben a szakaszban egy indexelése rugó rendszerindító alkalmazás klónozás
    cd /users/robert/SpringBoot
    ```
 
-1. Klónozott a [rugó rendszerindító a Docker bevezetés] mintaprojektet a könyvtárba, amely létrehozta; például:
+1. Klónozás hello [rugó rendszerindító a Docker bevezetés] mintaprojektet könyvtárba, amely hello létrehozott; például:
    ```shell
    git clone -b private-registry https://github.com/Microsoft/gs-spring-boot-docker
    ```
 
-1. Módosítsa a könyvtárat a befejezett projekthez; Példa:
+1. Directory befejeződött toohello projekt; módosítása Példa:
    ```shell
    cd gs-spring-boot-docker/complete
    ```
 
-1. Build Maven; használatával JAR-fájlra Példa:
+1. Build Maven; használatával hello JAR-fájlra Példa:
    ```shell
    mvn clean package
    ```
 
-1. Ha a webalkalmazás létrejött, indítsa el a webalkalmazást, Maven; használatával Példa:
+1. Hello webalkalmazás létrehozásakor Maven; használatával hello webalkalmazás elindítása Példa:
    ```shell
    mvn spring-boot:run
    ```
 
-1. A webes alkalmazás tesztelése a azt helyileg a webböngésző segítségével. Használhatja például a következő parancsot, ha a curl érhető el:
+1. Hello webes alkalmazás tesztelése a helyileg a webböngésző segítségével tooit megkeresésével. Például a következő parancsot, ha van elérhető curl hello használata:
    ```shell
    curl http://localhost:8080
    ```
 
-1. A következő üzenet jelenik meg: **Hello Docker World**
+1. A következő üzenet jelenik meg hello kell megjelennie: **Hello Docker World**
 
    ![Keresse meg a helyi mintaalkalmazás][SB01]
 
 ## <a name="create-an-azure-service-principal"></a>Hozzon létre egy Azure szolgáltatás egyszerű
 
-Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő modult használó Azure a tárolót telepítésekor.
+Ez a szakasz hozzon létre egy Azure hello Maven beépülő modul által használt, a tároló tooAzure telepítésekor egyszerű szolgáltatást.
 
 1. Nyisson meg egy parancssort.
 
-1. Jelentkezzen be az Azure-fiókot az Azure parancssori felület használatával:
+1. Jelentkezzen be az Azure-fiók használatával hello Azure parancssori felület:
    ```azurecli
    az login
    ```
-   Kövesse az utasításokat a bejelentkezési folyamat befejezéséhez.
+   Hajtsa végre a hello utasításokat toocomplete hello bejelentkezési folyamat.
 
 1. Hozzon létre egy Azure-szolgáltatás egyszerű:
    ```azurecli
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   Ha `uuuuuuuu` a felhasználónév és `pppppppp` pedig a jelszót a szolgáltatás rendszerbiztonsági tag.
+   Ha `uuuuuuuu` hello felhasználónév és `pppppppp` hello szolgáltatás egyszerű hello-jelszó.
 
-1. Azure JSON válaszol, a következőhöz hasonló: a következő példa:
+1. Azure válaszol, a következő példa hello levő JSON:
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -122,32 +122,32 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
 
    > [!NOTE]
    >
-   > Ez a JSON-válasz értékeinek fogja használni, a Maven beépülő modul a tároló üzembe az Azure-ba való konfigurálásakor. A `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, és `tttttttt` helyőrző értékek, ebben a példában használt könnyebben ezeket az értékeket leképezi a megfelelő elemeket a Maven konfigurálásakor `settings.xml` fájl a következő szakaszban.
+   > A JSON-válasz hello értékeket fogja használni, a tároló tooAzure hello Maven beépülő modul toodeploy konfigurálásakor. Hello `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, és `tttttttt` helyőrző értékeket, amelyek vannak használatban a példa toomake azt könnyebb toomap ezen értékek tootheir megfelelő elemek a Maven konfigurálásakor `settings.xml` hello a következő fájl a szakasz.
    >
    >
 
-## <a name="create-an-azure-container-registry-using-the-azure-cli"></a>Hozzon létre egy Azure-tároló beállításjegyzék, az Azure parancssori felület használatával
+## <a name="create-an-azure-container-registry-using-hello-azure-cli"></a>Hozzon létre egy Azure tároló beállításjegyzék hello Azure parancssori felület használatával
 
 1. Nyisson meg egy parancssort.
 
-1. Jelentkezzen be az Azure-fiókjával:
+1. Jelentkezzen be tooyour Azure-fiók:
    ```azurecli
    az login
    ```
 
-1. Ez a cikk hozzon létre egy erőforráscsoportot az Azure-erőforrások fogja használni:
+1. Hozzon létre egy erőforráscsoportot hello Azure-erőforrások fogja használni a cikkben:
    ```azurecli
    az group create --name=wingtiptoysresources --location=westus
    ```
    Cserélje le `wingtiptoysresources` ebben a példában az erőforráscsoport számára egyedi névvel.
 
-1. Hozzon létre egy saját Azure-tárolót beállításjegyzék az erőforráscsoport rugó rendszerindító alkalmazás: 
+1. Hozzon létre egy saját Azure-tárolót beállításjegyzék hello erőforráscsoport rugó rendszerindító alkalmazás: 
    ```azurecli
    az acr create --admin-enabled --resource-group wingtiptoysresources --location westus --name wingtiptoysregistry --sku Basic
    ```
    Cserélje le `wingtiptoysregistry` ebben a példában a tároló beállításjegyzék egyedi nevére.
 
-1. Lekéri a tároló beállításjegyzék jelszavát:
+1. Lekéri a tároló beállításjegyzék hello jelszavát:
    ```azurecli
    az acr credential show --name wingtiptoysregistry --query passwords[0]
    ```
@@ -159,14 +159,14 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
    }
    ```
 
-## <a name="add-your-azure-container-registry-and-azure-service-principal-to-your-maven-settings"></a>Adja hozzá az Azure-tárolót beállításjegyzék és Azure egyszerű szolgáltatásnév a Maven-beállítások
+## <a name="add-your-azure-container-registry-and-azure-service-principal-tooyour-maven-settings"></a>Adja hozzá az Azure-tárolót beállításjegyzék és az Azure szolgáltatás egyszerű tooyour Maven beállításai
 
-1. Nyissa meg a Maven `settings.xml` fájlt egy szövegszerkesztőben; lehet, hogy a fájl olyan elérési útja, például az alábbi példákat:
+1. Nyissa meg a Maven `settings.xml` fájlt egy szövegszerkesztőben; lehet, hogy a fájl olyan elérési útja, például a következő példák hello:
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. Az ebben a cikkben előző szakaszából a Azure tároló beállításjegyzék-hozzáférési beállítások hozzáadása a `<servers>` gyűjtemény a *settings.xml* fájl; például:
+1. Az Azure-tároló beállításjegyzék-hozzáférési beállítások hozzáadása az előző szakaszából hello Ez a cikk toohello `<servers>` hello gyűjtemény *settings.xml* fájl; például:
 
    ```xml
    <servers>
@@ -180,11 +180,11 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
    Az elemek magyarázata:
    Elem | Leírás
    ---|---|---
-   `<id>` | A saját Azure-tárolót beállításjegyzék nevét tartalmazza.
-   `<username>` | A saját Azure-tárolót beállításjegyzék nevét tartalmazza.
-   `<password>` | A jelszót, ez a cikk az előző szakaszban lekért tartalmaz.
+   `<id>` | A saját Azure-tárolót beállításjegyzék hello nevét tartalmazza.
+   `<username>` | A saját Azure-tárolót beállításjegyzék hello nevét tartalmazza.
+   `<password>` | Ez a cikk korábbi részében hello lekért hello jelszót tartalmaz.
 
-1. Ebben a cikkben egy korábbi szakaszában az Azure szolgáltatás egyszerű beállítás hozzáadása a `<servers>` gyűjtemény a *settings.xml* fájl; például:
+1. Ez a cikk toohello egy korábbi szakaszában az Azure-szolgáltatás egyszerű beállítás hozzáadása `<servers>` hello gyűjtemény *settings.xml* fájl; például:
 
    ```xml
    <servers>
@@ -202,19 +202,19 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
    Az elemek magyarázata:
    Elem | Leírás
    ---|---|---
-   `<id>` | Adja meg egy egyedi nevet, amely Maven használja a webalkalmazás az Azure-ba való telepítésekor a biztonsági beállítások kereséséhez.
-   `<client>` | Tartalmazza a `appId` a szolgáltatás egyszerű közötti értéket.
-   `<tenant>` | Tartalmazza a `tenant` a szolgáltatás egyszerű közötti értéket.
-   `<key>` | Tartalmazza a `password` a szolgáltatás egyszerű közötti értéket.
-   `<environment>` | Határozza meg a cél Azure felhőalapú környezet, amely `AZURE` ebben a példában. (A környezetek teljes listája megtalálható a [Maven beépülő modul Azure Web Apps] dokumentációja)
+   `<id>` | Adja meg egy egyedi nevet, amely Maven toolook a biztonsági beállításokat használja, a webes alkalmazás tooAzure központi telepítésekor.
+   `<client>` | Hello tartalmaz `appId` a szolgáltatás egyszerű közötti értéket.
+   `<tenant>` | Hello tartalmaz `tenant` a szolgáltatás egyszerű közötti értéket.
+   `<key>` | Hello tartalmaz `password` a szolgáltatás egyszerű közötti értéket.
+   `<environment>` | Hello Azure felhőben célkörnyezet, amely definiálja `AZURE` ebben a példában. (Környezetek teljes listája megtalálható hello [Maven beépülő modul Azure Web Apps] dokumentációja)
 
-1. Mentse és zárja be a *settings.xml* fájlt.
+1. Mentse és zárja be a hello *settings.xml* fájlt.
 
-## <a name="build-your-docker-container-image-and-push-it-to-your-azure-container-registry"></a>A Docker-tároló lemezképet létre, és hogy az Azure-tárolót beállításjegyzék
+## <a name="build-your-docker-container-image-and-push-it-tooyour-azure-container-registry"></a>A Docker-tároló lemezképet létre, és leküldeni tooyour Azure tároló beállításjegyzék
 
-1. Keresse meg a befejezett projekt könyvtárát a rugó rendszerindító alkalmazás (pl. "*C:\SpringBoot\gs-spring-boot-docker\complete*"vagy"*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), és nyissa meg a *pom.xml* szöveggel fájl szerkesztő.
+1. Keresse meg a rugó rendszerindító alkalmazás befejeződött toohello projekt könyvtárában (pl. "*C:\SpringBoot\gs-spring-boot-docker\complete*"vagy"*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), és nyissa meg hello *pom.xml* fájlt egy szövegszerkesztőben.
 
-1. Frissítés a `<properties>` gyűjtemény a *pom.xml* Ez az oktatóanyag előző szakaszából a Azure tároló beállításjegyzék bejelentkezési kiszolgáló értékű fájlt például:
+1. Frissítés hello `<properties>` hello gyűjtemény *pom.xml* hello bejelentkezési kiszolgáló értéke az hello Ez az oktatóanyag előző szakaszából a Azure tároló rendszerleíró fájlt például:
 
    ```xml
    <properties>
@@ -227,10 +227,10 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
    Az elemek magyarázata:
    Elem | Leírás
    ---|---|---
-   `<azure.containerRegistry>` | Megadja a saját Azure-tárolót beállításjegyzék nevét.
-   `<docker.image.prefix>` | Meghatározza a URL-címet a saját Azure-tárolót beállításjegyzékről, hozzáfűzésével származtatott ". azurecr.io" a személyes tárolót beállításjegyzék nevét.
+   `<azure.containerRegistry>` | A saját Azure-tárolót beállításjegyzék hello nevét adja meg.
+   `<docker.image.prefix>` | Adja meg a saját Azure-tárolót a rendszerleíró adatbázis hozzáfűzésével származtatott hello URL-címe ". azurecr.io" a személyes tárolót beállításjegyzék toohello nevét.
 
-1. Ellenőrizze, hogy `<plugin>` a Docker beépülő modul a *pom.xml* fájl ebben az oktatóanyagban a bejelentkezési cím és a beállításjegyzék kiszolgálónév az előző lépésben megfelelő tulajdonságait tartalmazza. Példa:
+1. Ellenőrizze, hogy `<plugin>` hello Docker beépülő modul a számára a *pom.xml* fájl hello bejelentkezési cím és a beállításjegyzék kiszolgálónév hello előző lépésben hello megfelelő tulajdonságait tartalmazza az oktatóanyag. Példa:
 
    ```xml
    <plugin>
@@ -255,22 +255,22 @@ Ez a szakasz hozzon létre egy Azure szolgáltatás egyszerű a Maven beépülő
    Az elemek magyarázata:
    Elem | Leírás
    ---|---|---
-   `<serverId>` | Adja meg azt a tulajdonságot, mely tartalmazza a saját Azure-tárolót beállításjegyzék nevét.
-   `<registryUrl>` | Megadja azt a tulajdonságot, amely tartalmazza a saját Azure-tárolót beállításjegyzék URL-CÍMÉT.
+   `<serverId>` | Adja meg azt a hello tulajdonságot, mely tartalmazza a saját Azure-tárolót beállításjegyzék nevét.
+   `<registryUrl>` | Adja meg a saját Azure-tárolót beállításjegyzék hello URL-CÍMÉT tartalmazó hello tulajdonság.
 
-1. Keresse meg a befejezett projekt könyvtárát rugó rendszerindító alkalmazás, és építse újra az alkalmazást, és küldje le a tároló az Azure-tárolót beállításjegyzék a következő parancsot:
+1. A rugó rendszerindító alkalmazás befejeződött toohello projekt könyvtárában nyissa meg és futtassa a következő parancs toorebuild hello alkalmazás hello és hello tároló tooyour Azure tároló beállításjegyzék leküldéses:
 
    ```
    mvn package docker:build -DpushImage 
    ```
 
-1. Választható lehetőség: Keresse meg a [Azure-portálon] , és ellenőrizze, hogy van-e Docker-tároló kép nevű **gs-rugó-rendszerindítás – docker** a tároló beállításjegyzékben.
+1. Választható lehetőség: Tallózás toohello [Azure-portálon] , és ellenőrizze, hogy van-e Docker-tároló kép nevű **gs-rugó-rendszerindítás – docker** a tároló beállításjegyzékben.
 
    ![Ellenőrizze a tároló az Azure-portálon][CR01]
 
-## <a name="customize-your-pomxml-then-build-and-deploy-your-container-to-azure"></a>Testre szabhatja a pom.xml majd build és a tároló üzembe az Azure-bA
+## <a name="customize-your-pomxml-then-build-and-deploy-your-container-tooazure"></a>Testre szabhatja a pom.xml, majd és üzembe helyezheti a tároló tooAzure
 
-Nyissa meg a `pom.xml` fájlt egy szövegszerkesztőben rugó rendszerindító alkalmazás, és keresse meg a `<plugin>` elem `azure-webapp-maven-plugin`. Ez az elem az alábbihoz kell hasonlítania:
+Nyissa meg hello `pom.xml` fájlt egy szövegszerkesztőben rugó rendszerindító alkalmazás, és keresse a hello `<plugin>` elem `azure-webapp-maven-plugin`. Ez az elem a következő példa hello kell hasonlítania:
 
    ```xml
    <plugin>
@@ -299,41 +299,41 @@ Nyissa meg a `pom.xml` fájlt egy szövegszerkesztőben rugó rendszerindító a
    </plugin>
    ```
 
-Több érték, amely a Maven beépülő modul módosíthatja, és az ilyen elemek részletes leírását is elérhető a [Maven beépülő modul Azure Web Apps] dokumentációját. Amely éppen említett, több érték, amelyek érdemes ebben a cikkben kiemelve:
+Több érték, amely hello Maven beépülő modul módosíthatja, és az ilyen elemek részletes leírását érhető el hello [Maven beépülő modul Azure Web Apps] dokumentációját. Amely éppen említett, több érték, amelyek érdemes ebben a cikkben kiemelve:
 
 Elem | Leírás
 ---|---|---
-`<version>` | Verzióját adja meg a [Maven beépülő modul Azure Web Apps]. A felsorolt verzió ellenőrizni kell a [Maven központi tárház](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) annak érdekében, hogy a legújabb verzióját használja.
-`<authentication>` | Megadja a hitelesítő adatok az Azure-hoz, amely ebben a példában tartalmaz egy `<serverId>` elem, amely tartalmazza `azure-auth`; Maven használja ezt az értéket kereséséhez az Azure szolgáltatás egyszerű értékek a a Mavenben *settings.xml* fájl, ez a cikk korábbi részében megadott.
-`<resourceGroup>` | Adja meg a célként megadott erőforráscsoportja, amely `wingtiptoysresources` ebben a példában. Az erőforráscsoport üzembe helyezése során létrejön, ha még nem létezik.
-`<appName>` | A cél neve a webalkalmazás. Ebben a példában a cél neve: `maven-linux-app-${maven.build.timestamp}`, ahol a `${maven.build.timestamp}` utótagot fűz hozzá a ütközés elkerülése érdekében ebben a példában. (Az időbélyeg nem kötelező, megadhatja, hogy minden egyedi karakterláncot az alkalmazás nevére.)
-`<region>` | Megadja a cél régió nevét, amely ebben a példában `westus`. (Teljes listája megtalálható a [Maven beépülő modul Azure Web Apps] dokumentációját.)
-`<containerSettings>` | A tulajdonságokat tartalmazó nevét és a tároló URL-CÍMÉT adja meg.
-`<appSettings>` | Meghatározza a webalkalmazás telepítése az Azure-bA használandó Maven bármely egyedi beállításait. Ebben a példában egy `<property>` elem tartalmazza-e a név-érték pár, amelyek adja meg a portot, az alkalmazás a.
+`<version>` | Adja meg a hello hello verziója [Maven beépülő modul Azure Web Apps]. Ellenőrizni kell a felsorolt hello hello verzió [Maven központi tárház](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) tooensure, Ön által használt hello legújabb verziójára.
+`<authentication>` | Adja meg a hello hitelesítési adatokat az Azure-hoz, amely ebben a példában tartalmaz egy `<serverId>` elem, amely tartalmazza `azure-auth`; Maven adott érték toolook hello Azure szolgáltatás egyszerű értékeket használja a Maven *settings.xml* fájl, ez a cikk korábbi részében megadott.
+`<resourceGroup>` | Adja meg a hello célként megadott erőforráscsoportja, amely `wingtiptoysresources` ebben a példában. hello erőforráscsoport üzembe helyezése során létrejön, ha még nem létezik.
+`<appName>` | A webalkalmazás hello cél nevét határozza meg. Ebben a példában hello cél neve van `maven-linux-app-${maven.build.timestamp}`, ahol hello `${maven.build.timestamp}` utótagot fűz hozzá a példa tooavoid ütközik. (hello időbélyeg választható; akkor is megadhat bármilyen hello alkalmazásnév egyedi karakterláncot.)
+`<region>` | Adja meg a cél hello régió, amely ebben a példában `westus`. (Teljes listája megtalálható a hello [Maven beépülő modul Azure Web Apps] dokumentációját.)
+`<containerSettings>` | Hello tulajdonságokat tartalmazó hello nevét és a tároló URL-CÍMÉT adja meg.
+`<appSettings>` | Meghatározza a Maven toouse bármely egyedi beállításait, a webes alkalmazás tooAzure telepítésekor. Ebben a példában egy `<property>` elem név-érték párból, amelyek adja meg az alkalmazás hello portot tartalmaz.
 
 > [!NOTE]
 >
-> Módosítsa a portszámot, ebben a példában a beállítások csak akkor szükség, ha a port módosítani az alapértelmezett.
+> hello beállítások toochange hello portszám ebben a példában csak akkor szükség, ha hello port hello alapértelmezett módosítani.
 >
 
-1. A parancssort vagy terminálablakot korábban használt, építse újra a Maven használatával, ha a módosítás JAR-fájlra a *pom.xml* fájl; például:
+1. Hello parancssort vagy terminálablakot korábban használt, építse újra a Maven használatával, ha bármely módosítások toohello hello JAR-fájlra *pom.xml* fájl; például:
    ```shell
    mvn clean package
    ```
 
-1. A webalkalmazás telepítése az Azure használatával Maven; Példa:
+1. A webes alkalmazás tooAzure telepíteni a Maven; Példa:
    ```shell
    mvn azure-webapp:deploy
    ```
 
-Maven telepíti a webalkalmazás Azure; Ha a webalkalmazás már nem létezik, a rendszer létrehozza.
+Maven telepíti a webes alkalmazás tooAzure; Ha hello webalkalmazás már nem létezik, a rendszer létrehozza.
 
 > [!NOTE]
 >
-> Ha a régiót, amelyet meg a `<region>` eleme a *pom.xml* fájl nem rendelkezik elegendő kiszolgáló érhető el, ha a telepítés megkezdése, láthatja az alábbi példához hasonló hiba:
+> Ha hello régió hello megadható `<region>` eleme a *pom.xml* fájl nem rendelkezik elegendő kiszolgáló érhető el, ha a telepítés megkezdése, egy hasonló toohello hiba, a következő példában láthatja:
 >
 > ```
-> [INFO] Start deploying to Web App maven-linux-app-20170804...
+> [INFO] Start deploying tooWeb App maven-linux-app-20170804...
 > [INFO] ------------------------------------------------------------------------
 > [INFO] BUILD FAILURE
 > [INFO] ------------------------------------------------------------------------
@@ -341,30 +341,30 @@ Maven telepíti a webalkalmazás Azure; Ha a webalkalmazás már nem létezik, a
 > [INFO] Finished at: 2017-08-04T12:15:47-07:00
 > [INFO] Final Memory: 51M/279M
 > [INFO] ------------------------------------------------------------------------
-> [ERROR] Failed to execute goal com.microsoft.azure:azure-webapp-maven-plugin:0.1.3:deploy (default-cli) on project gs-spring-boot-docker: null: MojoExecutionException: CloudException: OnError while emitting onNext value: retrofit2.Response.class
+> [ERROR] Failed tooexecute goal com.microsoft.azure:azure-webapp-maven-plugin:0.1.3:deploy (default-cli) on project gs-spring-boot-docker: null: MojoExecutionException: CloudException: OnError while emitting onNext value: retrofit2.Response.class
 > ```
 >
-> Ha ez történik, adjon meg egy másik régióban, és futtassa újra a Maven-parancsot az alkalmazás közzétételéhez.
+> Ha ez történik, adjon meg egy másik régióban, és futtassa újra a hello Maven parancs toodeploy az alkalmazás.
 >
 >
 
-Ha a webes van telepítve, akkor fog tudni segítségével kezeli a [Azure-portálon].
+A webes telepítésekor fogja tudni toomanage azt hello segítségével [Azure-portálon].
 
 * A webalkalmazás megjelenik **alkalmazásszolgáltatások**:
 
    ![A webes alkalmazás szerepel az Azure-portálon App Service szolgáltatások][AP01]
 
-* A webalkalmazás URL-címe megjelenik, és a **áttekintése** webalkalmazáshoz:
+* Hello URL-címet a hello megjelenik a webalkalmazás és **áttekintése** webalkalmazáshoz:
 
-   ![A webalkalmazás URL-Címének meghatározása][AP02]
+   ![A webalkalmazás URL-címe hello meghatározása][AP02]
 
 ## <a name="next-steps"></a>Következő lépések
 
-A cikkben említett különböző technológiákkal kapcsolatos további információkért tekintse meg a következő cikkeket:
+Ebben a cikkben ismertetett különböző technológiákkal hello további információ: a következő cikkek hello:
 
 * [Maven beépülő modul Azure Web Apps]
 
-* [Jelentkezzen be az Azure az az Azure parancssori felület](/azure/xplat-cli-connect)
+* [Jelentkezzen be az Azure CLI hello tooAzure](/azure/xplat-cli-connect)
 
 * [Hozzon létre egy Azure szolgáltatás egyszerű Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli)
 
@@ -379,7 +379,7 @@ A cikkben említett különböző technológiákkal kapcsolatos további inform�
 [Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
 [Azure-portálon]: https://portal.azure.com/
 [Maven beépülő modul Azure Web Apps]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
-[Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
+[Create a private Docker container registry using hello Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
 [Docker]: https://www.docker.com/
 [Docker Maven beépülő modul]: https://github.com/spotify/docker-maven-plugin

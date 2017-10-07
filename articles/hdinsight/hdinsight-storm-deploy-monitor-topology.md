@@ -1,6 +1,6 @@
 ---
-title: "Központi telepítése és kezelése a HDInsight alatt futó Apache Storm-topológiák |} Microsoft Docs"
-description: "Ismerje meg, hogyan telepítheti, figyelheti és kezelheti a Storm irányítópultjának használata a HDInsight alatt futó Apache Storm-topológiák. Visual Studio Hadoop-eszközök használata."
+title: "aaaDeploy és kezelése a HDInsight alatt futó Apache Storm-topológiák |} Microsoft Docs"
+description: "Ismerje meg, hogyan toodeploy, figyelheti és kezelheti a Storm irányítópultja hello használata a HDInsight alatt futó Apache Storm-topológiák. Visual Studio Hadoop-eszközök használata."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,20 +16,20 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 34072574f83b51280e60e2f8766c6c5d5a33c307
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 05f05fe8dd519fe99fb771d36bfc3d28168ca85f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-manage-apache-storm-topologies-on-windows-based-hdinsight"></a>Központi telepítése és kezelése a Windows-alapú HDInsight alatt futó Apache Storm-topológiák
 
-A Storm irányítópultjának segítségével egyszerűen regisztrálhat és futtathat Apache Storm-topológiák a HDInsight-fürthöz, a webböngésző használatával. Az Irányítópult segítségével figyelheti és kezelheti a futó topológiákat. Visual Studio használata esetén a HDInsight Tools for Visual Studio adja meg a Visual Studio hasonló szolgáltatásokat.
+a Storm irányítópultja hello lehetővé teszi a tooeasily telepítésére és alatt futó Apache Storm topológiák tooyour HDInsight-fürt futtatására a webböngésző használatával. Is hello irányítópult toomonitor használja, és kezelheti a futó topológiákat. Visual Studio használata, ha a hello a HDInsight Tools for Visual Studio tartalmaz a Visual Studio hasonló funkciókat.
 
-A Storm irányítópultjának és a HDInsight Tools Storm funkciók segítségével hozza létre a sajátját figyelés alatt futó Storm REST API és kezelési megoldásai támaszkodnak.
+a Storm irányítópultja hello és hello Storm szolgáltatások hello a HDInsight Tools támaszkodjon hello Storm REST API, amely lehet használt toocreate saját figyelése és felügyeleti megoldásokat.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy Storm on HDInsight-fürt által használt Windows operációs rendszer szükséges. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy Storm on HDInsight-fürt által használt Windows hello operációs rendszert igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
 > Telepítésével és a HDInsight-fürtök által használt Linux Storm-topológiák kezelésével kapcsolatos információkért lásd: [központi telepítése és kezelése a Linux-alapú HDInsight alatt futó Apache Storm-topológiák](hdinsight-storm-deploy-monitor-topology-linux.md)
 
@@ -37,11 +37,11 @@ A Storm irányítópultjának és a HDInsight Tools Storm funkciók segítségé
 
 * **A HDInsight alatt futó Apache Storm** -lásd [első lépései a HDInsight alatt futó Apache Storm](hdinsight-apache-storm-tutorial-get-started.md) fürt létrehozásának lépései.
 
-* Az a **a Storm irányítópultja**: HTML5-támogatással rendelkező modern webböngésző.
+* A hello **a Storm irányítópultja**: HTML5-támogatással rendelkező modern webböngésző.
 
-* A **Visual Studio** -2.5.1-es verzióval készült Azure SDK újabb vagy és a HDInsight Tools for Visual Studio. Lásd: [első lépései a HDInsight Tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md) telepítése és konfigurálása a HDInsight tools for Visual Studio.
+* A **Visual Studio** -2.5.1-es verzióval készült Azure SDK újabb vagy és a HDInsight Tools for Visual Studio hello. Lásd: [első lépései a HDInsight Tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md) tooinstall és hello a HDInsight tools for Visual Studio konfigurálása.
 
-    A Visual Studio következő verzióinak valamelyike:
+    A következő Visual Studio verziójának hello egyikét:
 
   * A Visual Studio 2012 Update 4
 
@@ -53,140 +53,140 @@ A Storm irányítópultjának és a HDInsight Tools Storm funkciók segítségé
 
 ## <a name="storm-dashboard"></a>A Storm irányítópultja
 
-A Storm irányítópultja a Storm-fürt elérhető weblapon. Az URL-címe **https://&lt;clustername >.azurehdinsight.net/**, ahol **clustername** a Storm on HDInsight-fürt neve.
+a Storm irányítópultja hello kerül, a Storm-fürt érhető el. hello URL-cím **https://&lt;clustername >.azurehdinsight.net/**, ahol **clustername** hello a Storm on HDInsight-fürt neve.
 
-Válassza ki a Storm irányítópultjának felső részén **nyújt topológia**. A lapon, a minta topológia futtatásához vagy feltölteni, majd futtassa a topológia létrehozott kövesse az utasításokat.
+Válassza ki a Storm irányítópultja hello hello felső részén **nyújt topológia**. Kövesse az utasításokat hello hello lap toorun egy minta topológia vagy tooupload, és futtassa a topológia létrehozott.
 
-![a Küldés topológia lapon][storm-dashboard-submit]
+![hello küldje el a topológia lapon][storm-dashboard-submit]
 
 ### <a name="storm-ui"></a>A Storm felhasználói felülete
 
-A Storm irányítópultjának, válassza ki a **Storm felhasználói felülete** hivatkozásra. Ez a fürt bármely futó topológiákat mellett információit jeleníti meg.
+A Storm irányítópultja hello, válassza ki hello **Storm felhasználói felülete** hivatkozásra. A futó topológiákkal hozzáadása tooany hello fürt, információkat jelenít meg.
 
-![a storm felhasználói felülete][storm-dashboard-ui]
+![hello storm felhasználói felülete][storm-dashboard-ui]
 
 > [!NOTE]
-> Az Internet Explorer egyes verziói azt tapasztalhatja, hogy a Storm felhasználói felülete nem frissíti először ellátogatott után. Például akkor lehet, hogy jelenjen meg az új topológiák meg, vagy azt előfordulhat, hogy a topológia aktívnak amikor korábban inaktív. Microsoft ismeri a problémát, és a megoldás működik.
+> Internet Explorer egyes verziói azt tapasztalhatja, hogy hello Storm felhasználói felülete követően először ellátogatott nem frissül. Például akkor lehet, hogy megjelenni hello új topológiák meg, vagy azt előfordulhat, hogy a topológia aktívnak amikor korábban inaktív. Microsoft ismeri a problémát, és a megoldás működik.
 
 #### <a name="main-page"></a>Főoldala
 
-A Storm felhasználói felület a fő lapján az alábbi információkat tartalmazza:
+hello fő lapján hello Storm felhasználói felülete hello a következő információkat biztosítja:
 
-* **A fürt összefoglaló**: a Storm-fürt alapvető adatait.
+* **A fürt összefoglaló**: hello Storm-fürt alapvető adatait.
 
-* **Összegző topológia**: futó topológiákat. Ebben a szakaszban a hivatkozások segítségével további információkat szeretne az adott topológiákat.
+* **Összegző topológia**: futó topológiákat. Ez a szakasz tooview a hello hivatkozások használata az további információt adott topológiák kapcsolatos.
 
-* **Összegző felügyelő**: a Storm felügyelő kapcsolatos információkat.
+* **Felügyelő összefoglaló**: hello Storm felügyelő kapcsolatos információkat.
 
-* **Nimbus konfigurációs**: Nimbus konfigurációját a fürtben.
+* **Nimbus konfigurációs**: hello fürt Nimbus konfigurációjában.
 
 #### <a name="topology-summary"></a>Topológia összegzése
 
-A hivatkozás kiválasztása a **topológia összegzése** csoportban megjelennek a topológia a következő információkat:
+Egy hivatkozási kiválasztása a hello **topológia összegzése** szakasz hello topológiára vonatkozó adatokat a következő hello jeleníti meg:
 
-* **Összegző topológia**: a topológia alapvető adatait.
+* **Összegző topológia**: hello topológia alapvető adatait.
 
-* **Topológia műveletek**: kezelési műveleteket hajthat végre a topológia.
+* **Topológia műveletek**: hello topológia végrehajtható felügyeleti műveleteket.
 
   * **Aktiválása**: folytatása inaktivált topológia feldolgozását.
 
   * **Inaktiválása**: megszakítja a futó topológiát.
 
-  * **Visszaegyensúlyozás**: Beállítja a topológia párhuzamosságát. A fürtben található csomópontok számának megváltoztatását követően újra ki kell egyensúlyozni a futó topológiákat. Ez lehetővé teszi a topológia párhuzamosságának kiegyensúlyozása érdekében a növelő vagy csökkentő a fürtben található csomópontok számát.
+  * **Visszaegyensúlyozás**: hello topológia párhuzamosságát hello módosíthatja. Futó topológiákat kell egyensúlyba, miután módosította hello fürtben található csomópontok számának hello. Ez lehetővé teszi, hogy hello topológia tooadjust párhuzamossági toocompensate hello növelhető vagy csökkenthető, hello fürtben található csomópontok számát.
 
-      További információkért lásd: [ismertetése a Storm-topológia (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) párhuzamosságát](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html).
+      További információkért lásd: [ismertetése a Storm-topológia (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) hello párhuzamosságát](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html).
 
-  * **Kill**: a Storm-topológia leállítása bizonyos időtúllépést követően.
+  * **Kill**: a Storm-topológia leállítása után hello megadott időkorlát.
 
-* **Topológiastatisztikák**: a topológia statisztikája. A hivatkozások a **ablak** oszlop időkeretének megadására a többieknek beállításához a lap.
+* **Topológiastatisztikák**: hello topológia statisztikája. Hello hello hivatkozásokkal **ablak** oszlop tooset hello időkeretre hello fennmaradó bejegyzések hello oldalon.
 
-* **Spoutok**: A spoutokkal kapcsolatban, használja a topológiát. Ebben a szakaszban a hivatkozások segítségével megtekintheti az adott spoutokkal kapcsolatban további információt.
+* **Spoutok**: hello hello topológia által használt spoutokkal kapcsolatban. Ez a szakasz tooview a hello hivatkozások használata az adott spoutokkal kapcsolatban további információt.
 
-* **Boltok**: A boltokhoz a topológia használják. Ebben a szakaszban található hivatkozások segítségével további információkat szeretne az adott boltokhoz.
+* **Boltok**: hello boltokhoz hello topológia használják. Ez a szakasz tooview a hello hivatkozások használata az adott boltokhoz további információt.
 
-* **Topológiakonfiguráció**: a kiválasztott topológia beállításától.
+* **Topológiakonfiguráció**: hello hello kiválasztott topológia beállításától.
 
 #### <a name="spout-and-bolt-summary"></a>Spout és Bolt összegzése
 
-Az egy spout kiválasztása a **Spoutok** vagy **boltok** szakaszok megjeleníti a kijelölt elem a következő információkat:
+Egy spout kijelölésével hello **Spoutok** vagy **boltok** szakaszok hello kijelölt elemre vonatkozó információkat a következő hello jeleníti meg:
 
-* **Az összetevő összegzés**: a spout vagy bolt alapvető adatait.
+* **Az összetevő összegzés**: hello spout vagy bolt alapvető adatait.
 
-* **Spout vagy Bolt statisztikák**: a spout vagy bolt statisztikája. A hivatkozások a **ablak** oszlop időkeretének megadására a többieknek beállításához a lap.
+* **Spout vagy Bolt statisztikák**: hello statisztikája spout vagy boltok esetében. Hello hello hivatkozásokkal **ablak** oszlop tooset hello időkeretre hello fennmaradó bejegyzések hello oldalon.
 
-* **Beviteli statisztikák** (csak boltok esetében): a bemeneti adatfolyamot tartalmaz a bolt által felhasznált információk.
+* **Beviteli statisztikák** (csak boltok esetében): hello információ bemenetét hello bolt által használt.
 
-* **Kimeneti statisztikák**: az adatfolyamokat, ez által kibocsátott információ spout vagy boltok esetében.
+* **Kimeneti statisztikák**: hello adatfolyamok által kibocsátott információ spout vagy boltok esetében.
 
-* **Végrehajtója**: a spout vagy bolt példányaira vonatkozó információkat. Válassza ki a **Port** egy adott végrehajtó diagnosztikai adatok megtekintését, a bejegyzés erre a példányra.
+* **Végrehajtója**: hello spout vagy bolt hello példányaira vonatkozó információkat. Jelölje be hello **Port** egy adott végrehajtó tooview bejegyzést a diagnosztikai adatokat tartalmazó naplófájlt előállított erre a példányra.
 
 * **Hibák**: bármilyen hiba adatokat a spout vagy boltok esetében.
 
 ## <a name="hdinsight-tools-for-visual-studio"></a>HDInsight Tools for Visual Studio
 
-A HDInsight Tools elküldeni a C# vagy hibrid topológiák a Storm fürthöz használható. Az alábbi lépéseket a mintaalkalmazás használja. A HDInsight Tools használatával saját topológiák létrehozásával kapcsolatos további információkért lásd: [fejlesztésére C#-topológiák a HDInsight Tools for Visual Studio használatával](hdinsight-storm-develop-csharp-visual-studio-topology.md).
+a HDInsight Tools hello lehet használt toosubmit C# vagy hibrid topológiák tooyour Storm-fürt. a lépéseket követve hello mintaalkalmazás használja. A saját topológiák hello a HDInsight Tools használatával létrehozásával kapcsolatos további információkért lásd: [fejlesztésére C#-topológiák hello HDInsight Tools for Visual Studio használatával](hdinsight-storm-develop-csharp-visual-studio-topology.md).
 
-Az alábbi lépések segítségével telepít egy alatt futó Storm on HDInsight-fürt, akkor megtekintheti, és a topológia kezelése.
+Hello követő lépéseket toodeploy egy minta tooyour Storm on HDInsight-fürt használatára, majd megtekintheti, és hello topológia kezelése.
 
-1. Ha még nem telepítette a legújabb verzióját a HDInsight Tools for Visual Studio, lásd: [első lépései a HDInsight Tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md).
+1. Ha még nem telepítette a HDInsight Tools hello hello legújabb verzióját a Visual Studio, lásd: [első lépései a HDInsight Tools for Visual Studio használatával](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
 2. Nyissa meg a Visual Studio, válassza ki **fájl** > **új** > **projekt**.
 
-3. Az a **új projekt** párbeszédpanelen bontsa ki **telepített** > **sablonok**, majd válassza ki **HDInsight**. Válassza ki a listáról a sablonok **Storm minta**. A párbeszédpanel alján írja be az alkalmazás nevét.
+3. A hello **új projekt** párbeszédpanelen bontsa ki **telepített** > **sablonok**, majd válassza ki **HDInsight**. Válassza ki a sablonok hello listáról **Storm minta**. Hello hello párbeszédpanel alsó részén írja be a hello alkalmazás nevét.
 
     ![Kép](./media/hdinsight-storm-deploy-monitor-topology/sample.png)
 
-4. A **Megoldáskezelőben**, kattintson jobb gombbal a projektre, és válassza ki **Submit a HDInsight alatt futó Storm**.
+4. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello projektet, és válassza ki **elküldeni a HDInsight tooStorm**.
 
    > [!NOTE]
-   > Ha a rendszer kéri, adja meg a bejelentkezési hitelesítő adatok az Azure-előfizetéshez. Ha egynél több előfizetéssel rendelkezik, jelentkezzen be, amely tartalmazza a Storm on HDInsight-fürt.
+   > Ha a rendszer kéri, adja meg hello bejelentkezési hitelesítő adatait az Azure-előfizetéshez. Ha egynél több előfizetéssel rendelkezik, jelentkezzen be a Storm on HDInsight-fürt tartalmazó toohello.
 
-5. Válassza ki a Storm on HDInsight-fürt a a **Storm-fürt** legördülő listából válassza ki, és válassza **Submit**. -E a küldése sikeres használatával figyelheti a **kimeneti** ablak.
+5. Válassza ki a Storm on HDInsight-fürt hello **Storm-fürt** legördülő listából válassza ki, és válassza **Submit**. Figyelheti, hogy hello elküldése sikeres hello segítségével **kimeneti** ablak.
 
-6. Ha a topológia küldése sikeres volt, a **Storm-topológiák** megjelenjen-e a fürt számára. Válassza ki a topológiát a futó topológiát vonatkozó információk megtekintése a listából.
+6. Amikor hello topológia sikeresen elküldte, hello **Storm-topológiák** a hello fürt megjelenjen-e. Válassza ki a hello topológiát hello lista tooview információt a futtató topológia hello.
 
     ![a Visual studio-figyelő](./media/hdinsight-storm-deploy-monitor-topology/vsmonitor.png)
 
    > [!NOTE]
    > Megtekintheti továbbá **Storm-topológiák** a **Server Explorer** kibontásával **Azure** > **HDInsight**, és, majd kattintson a jobb gombbal a Storm on HDInsight-fürt, majd válassza **nézet Storm-topológiák**.
 
-    Válassza ki az alakzat a spoutokkal kapcsolatban, vagy a boltokhoz ezeket az összetevőket vonatkozó információk megtekintése. Minden elem kijelölve egy új ablakban nyílik meg.
+    Válassza ki hello alakzat hello spoutok vagy boltok tooview információ ezeket az összetevőket. Minden elem kijelölve egy új ablakban nyílik meg.
 
    > [!NOTE]
-   > A topológia neve nem az osztály nevét a topológia (ebben az esetben `HelloWord`,) az időbélyegzőnek lesz hozzáfűzve.
+   > hello topológia hello neve nem hello topológia hello osztály neve (ebben az esetben `HelloWord`,) az időbélyegzőnek lesz hozzáfűzve.
 
-7. Az a **topológia összegzése** nézetben jelölje ki **Kill** a topológia leállítása.
+7. A hello **topológia összegzése** nézetben jelölje ki **Kill** toostop hello topológia.
 
    > [!NOTE]
-   > Storm-topológiák továbbra is fut le vannak állítva, vagy a fürt törlésekor.
+   > Storm-topológiák továbbra is fut le vannak állítva, vagy hello fürt törlésekor.
 
 
 ## <a name="rest-api"></a>REST API
 
-A Storm felhasználói felülete a REST API-t épül, ezért hasonló felügyeleti és figyelési funkcióit, a REST API használatával végezheti el. A REST API-t hozhat létre egyéni eszközök felügyelheti és figyelheti a Storm-topológiák.
+hello Storm felhasználói felülete hello REST API-t épül, ezért hasonló felügyeleti és figyelési funkcióit, hello REST API használatával végezheti el. Felügyelheti és figyelheti a Storm-topológiák hello REST API toocreate egyéni eszközöket is használhatja.
 
-További információkért lásd: [Storm UI REST API](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md). Az alábbi információk csak a HDInsight alatt futó Apache Storm a REST API használatával az elő.
+További információkért lásd: [Storm UI REST API](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md). hello következő információkat az adott toousing hello REST API-t a HDInsight alatt futó Apache Storm.
 
 ### <a name="base-uri"></a>Alap URI
 
-Az alap URI a HDInsight-fürtök REST API **https://&lt;clustername >.azurehdinsight.net/stormui/api/v1/**, ahol **clustername** a Storm on HDInsight-fürt neve.
+a HDInsight-fürtök REST API hello alap URI hello **https://&lt;clustername >.azurehdinsight.net/stormui/api/v1/**, ahol **clustername** hello alatt futó Storm-neve megtalálható HDInsight-fürthöz.
 
 ### <a name="authentication"></a>Authentication
 
-A REST API-kérésnek kell használnia **az egyszerű hitelesítés**, így a HDInsight fürt rendszergazdája nevet és jelszót használják.
+REST API-t kell használnia kérelmek toohello **az egyszerű hitelesítés**, így a hello HDInsight fürt rendszergazdája nevét és jelszavát használja.
 
 > [!NOTE]
-> Egyszerű hitelesítést a rendszer a tiszta szöveges küldi el, mert akkor **mindig** HTTPS protokoll használatával biztonságos kommunikáció a fürtöt.
+> Egyszerű hitelesítést a rendszer a tiszta szöveges küldi el, mert akkor **mindig** hello fürt toosecure HTTPS-kommunikációhoz használni.
 
 ### <a name="return-values"></a>Visszatérési érték
 
-Információ a REST API visszaadott csak lehet a fürt vagy a virtuális gépek azonos Azure virtuális hálózaton a fürt belül használható. Például a teljesen minősített tartománynevét (FQDN) adott vissza a rendszer a Zookeeper kiszolgálók nem lehet elérhető az internetről.
+REST API-t csak lehet hello fürtön belül használható, vagy a virtuális gépek azonos Azure Virtual Network hello fürtként hello hello visszaadott adatokat. Például hello teljesen minősített tartománynevét (FQDN) érkezett Zookeeper kiszolgálók a rendszer nem érhető el hello Internet.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy megismerte segítségével telepítheti és figyelheti a topológia a Storm irányítópultjának használatával megtudhatja, hogyan lehet:
+Most, hogy megismerte a hogyan toodeploy és a figyelő topológiák használatával hello a Storm irányítópultja, megtudhatja, hogyan:
 
-* [Fejlesztésére C#-topológiák a HDInsight Tools for Visual Studio használatával](hdinsight-storm-develop-csharp-visual-studio-topology.md)
+* [Fejlesztésére C#-topológiák hello HDInsight Tools for Visual Studio használatával](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 
 * [Maven használatával Java-alapú topológiák fejlesztése](hdinsight-storm-develop-java-topology.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure hálózati illesztő IP-címek konfigurálása |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzáadása, módosítása és eltávolítása a privát és nyilvános IP-címek a hálózati illesztő."
+title: "egy Azure hálózati illesztő IP-címek aaaConfigure |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooadd, módosítsa, majd távolítsa el a privát és nyilvános IP-címek a hálózati illesztő."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/24/2017
 ms.author: jdial
-ms.openlocfilehash: 17ddb30c87d757176ce9428264135252c02bf713
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1e5ea6c65d93be9b1fda5d807500a0823c94c89c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-change-or-remove-ip-addresses-for-an-azure-network-interface"></a>Módosítsa, vagy távolítsa el az Azure hálózati illesztő IP-címek
 
-Megtudhatja, hogyan hozzáadása, módosítása és eltávolítása a nyilvános és magánhálózati IP-címek a hálózati illesztő. Egy adott hálózati csatoló rendelt privát IP-címek engedélyezése egy virtuális gép más Azure virtuális hálózat és a hálózatokhoz csatlakozó erőforrásokkal folytatott kommunikációhoz. A magánhálózati IP-cím is lehetővé teszi, hogy a kimenő kommunikációt az internethez, előre nem látható IP-cím használatával. A [nyilvános IP-cím](virtual-network-public-ip-address.md) hozzárendelt hálózati illesztő lehetővé teszi bejövő kommunikációs egy virtuális géphez az internetről. A cím azt is lehetővé teszi, hogy a kimenő kommunikáció a virtuális gépről egy előre jelezhető IP-címet használja az internethez. További információkért lásd: [ismertetése az Azure-ban kimenő kapcsolatok](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
+Ismerje meg, hogyan tooadd, módosítsa, majd távolítsa el a nyilvános és magánhálózati IP-címek a hálózati illesztő. Magán IP-címek hozzárendelve tooa hálózati illesztő a virtuális gép toocommunicate más erőforrásokat egy Azure virtuális hálózatra és csatlakoztatott hálózatok engedélyezése. Magánhálózati IP-címnek azt is lehetővé teszi, hogy a kimenő kommunikáció toohello internetkapcsolat, és előre nem látható IP-címet a. A [nyilvános IP-cím](virtual-network-public-ip-address.md) tooa hozzárendelt hálózati illesztő lehetővé teszi a bejövő kommunikáció tooa a virtuális gép hello Internet. hello cím is lehetővé teszi, hogy a kimenő kommunikációt hello virtuális gép toohello Internet egy előre jelezhető IP-címet használja. További információkért lásd: [ismertetése az Azure-ban kimenő kapcsolatok](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
 
-Ha meg kell létrehozni, módosítsa vagy törölje a hálózati adaptert, olvassa el a [kezelheti egy adott hálózati csatoló](virtual-network-network-interface.md) cikk. Ha szeretné a hálózati adapterek hozzáadása vagy eltávolítása a hálózati adapterek virtuális gépről, olvassa el a [hozzáadása vagy eltávolítása a hálózati adapterek](virtual-network-network-interface-vm.md) cikk. 
+Ha toocreate van szüksége, módosítsa vagy törölje a hálózati adaptert, olvassa el a hello [kezelheti egy adott hálózati csatoló](virtual-network-network-interface.md) cikk. Ha tooadd hálózati adapterek tooor eltávolítása hálózati adapterek virtuális gépről, olvassa el a hello [hozzáadása vagy eltávolítása a hálózati adapterek](virtual-network-network-interface-vm.md) cikk. 
 
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Esetlegesen szakasz ebben a cikkben szereplő lépésekkel befejezése előtt hajtsa végre a következő feladatokat:
+Teljes hello feladatok bármelyik befejezése előtt a következő szakasz ebben a cikkben ismertetett visszaállítási lépésekkel:
 
-- Tekintse át a [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikkben tájékozódhat az korlátozhatja a nyilvános és magánhálózati IP-címeket.
-- Jelentkezzen be a Azure [portal](https://portal.azure.com), az Azure parancssori felület (CLI), vagy az Azure PowerShell használata az Azure-fiók. Ha még nem rendelkezik Azure-fiókja, regisztráljon egy [ingyenes próbafiók](https://azure.microsoft.com/free).
-- Ha a feladat-ebben a cikkben a PowerShell-parancsokkal [Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json). Ellenőrizze, hogy a legfrissebb telepítve az Azure PowerShell-parancsmagjaival. Ha segítséget szeretne kérni a PowerShell-parancsaihoz, valamint példákkal, írja be a `get-help <command> -full`.
-- Ha ebben a cikkben a feladatokat az Azure parancssori felület (CLI) parancsokkal [telepítése és konfigurálása az Azure parancssori felület](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json). Ellenőrizze, hogy a telepített Azure CLI legújabb verziója. Segítség kérése parancssori felület parancsait, írja be a következőt `az <command> --help`. Ahelyett, hogy a parancssori felület és a szükséges előfeltételek telepítése, az Azure-felhő rendszerhéj is használhatja. Az Azure Cloud Shell olyan ingyenes Bash-felület, amelyet közvetlenül futtathat az Azure Portalon. A fiókjával való használat érdekében az Azure CLI már előre telepítve és konfigurálva van rajta. A felhő rendszerhéj használatához kattintson a felhő rendszerhéj **> _** gomb tetején a [portal](https://portal.azure.com).
+- Felülvizsgálati hello [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk toolearn kapcsolatos korlátozásokat a nyilvános és magánhálózati IP-címeket.
+- Jelentkezzen be toohello Azure [portal](https://portal.azure.com), az Azure parancssori felület (CLI), vagy az Azure PowerShell használata az Azure-fiók. Ha még nem rendelkezik Azure-fiókja, regisztráljon egy [ingyenes próbafiók](https://azure.microsoft.com/free).
+- Ha a PowerShell használatával parancsok toocomplete feladatok ebben a cikkben [Azure PowerShell telepítése és konfigurálása](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json). Ellenőrizze, hogy hello hello Azure PowerShell parancsmagjait telepített legújabb verziója. Írja be a PowerShell-parancsok, példákkal tooget súgóját `get-help <command> -full`.
+- Ha az Azure parancssori felület (CLI) használatával parancsok toocomplete feladatok ebben a cikkben [telepítése és konfigurálása az Azure parancssori felület hello](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json). Ellenőrizze, hogy a legújabb verziójának hello hello Azure parancssori felület telepítve. Írja be a parancssori felület parancsait tooget súgóját `az <command> --help`. Ahelyett, hogy a parancssori felület telepítése hello és a szükséges előfeltételek hello Azure Cloud rendszerhéj is használhatja. hello Azure Cloud rendszerhéj a szabad rendszerhéjakba futtatható közvetlenül hello Azure-portálon belül. Hello Azure CLI előtelepített és konfigurált toouse-fiókjához van. toouse hello felhő rendszerhéj, kattintson a felhő rendszerhéj hello **> _** hello hello tetején gomb [portal](https://portal.azure.com).
 
 ## <a name="add-ip-addresses"></a>IP-címek hozzáadása
 
-Annyi adhat hozzá [titkos](#private) és [nyilvános](#public) [IPv4](#ipv4) szünteti meg, hogy egy adott hálózati csatoló felsorolt keretein belül a [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk. A portál használatával nem IPv6-cím hozzáadása egy meglévő hálózati illesztő (bár a portál segítségével saját IPv6-cím hozzáadása a hálózati illesztő hálózati kapcsolat létrehozásakor). Saját IPv6-cím hozzáadása egy használhatja PowerShell vagy a CLI [másodlagos IP-konfiguráció](#secondary) (feltéve, nincsenek nincs meglévő másodlagos IP-konfigurációk) egy meglévő hálózati adapter, amely nem csatlakozik egy virtuális gépet. Minden eszköz egy nyilvános IPv6-cím hozzáadása a hálózati illesztő nem használható. Lásd: [IPv6](#ipv6) IPv6-címek használatával. 
+Hozzáadhat annyi [titkos](#private) és [nyilvános](#public) [IPv4](#ipv4) címek szükséges tooa hálózati adapterként, hello határokon belül megjelennek a hello [Azure korlátozását ](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk. Nem használhat hello portál tooadd IPv6 cím tooan meglévő hálózati illesztő (bár a hello portál tooadd egy titkos IPv6 cím tooa hálózati adapter használható hello hálózati kapcsolat létrehozásakor). Használhatja a PowerShell vagy parancssori felület tooadd titkos IPv6 cím tooone hello [másodlagos IP-konfiguráció](#secondary) (feltéve, nincsenek nincs meglévő másodlagos IP-konfigurációk) meglévő hálózat nem csatlakoztatott virtuális tooa gép. Minden eszköz tooadd egy nyilvános IPv6 cím tooa hálózati adapter nem használható. Lásd: [IPv6](#ipv6) IPv6-címek használatával. 
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a hálózat közreműködő szerepkört az előfizetés (minimum) hozzárendelt engedélyeit. Olvassa el a [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk tudhat meg többet a szerepköröket és engedélyeket hozzárendelése a fiókokhoz.
-2. A mezőbe a szöveget tartalmazó *keresési erőforrások* az Azure portál felső részén írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a keresési eredmények között kattintson rá.
-3. Az a **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hálózati illesztő hozzá szeretné adni egy IPv4-cím.
-4. Kattintson a **IP-konfigurációk** a a **beállítások** részében találhatja a kiválasztott hálózati adapter.
-5. Kattintson a **+ Hozzáadás** , amely megnyitja a panelen az IP-konfigurációhoz.
-6. Adja meg a következő beállításokat, majd kattintson a **OK** bezárásához a **hozzáadása IP-konfiguráció** panel:
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hozzárendelt (minimum) engedélyeinek hello hálózat közreműködő szerepkört az előfizetés. Olvasási hello [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk toolearn további szerepköröket és engedélyeket tooaccounts rendelése.
+2. Hello mezőben hello szöveget tartalmazó *keresési erőforrások* tetején hello hello Azure-portálon, írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a hello találatok, kattintson rá.
+3. A hello **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hello hálózati kapcsolat tooadd egy IPv4-címe.
+4. Kattintson a **IP-konfigurációk** a hello **beállítások** hello panelen kiválasztott hello hálózati illesztő szakasza.
+5. Kattintson a **+ Hozzáadás** hello panelen, amely megnyitja az IP-konfigurációhoz.
+6. Adja meg a következő hello beállításokat, majd kattintson a **OK** tooclose hello **hozzáadása IP-konfiguráció** panel:
 
-    |Beállítás|Kötelező megadni?|Részletek|
+    |Beállítás|Kötelező?|Részletek|
     |---|---|---|
-    |Név|Igen|A hálózati illesztő egyedinek kell lennie|
-    |Típus|Igen|Mivel a meglévő hálózati illesztő IP-konfigurációt adunk, és mindegyik hálózati interfész rendelkeznie kell egy [elsődleges](#primary) IP-konfiguráció egyetlen választása marad: **másodlagos**.|
-    |Privát IP-cím hozzárendelési módszert|Igen|[**Dinamikus** ](#dynamic) címet használva módosítható, ha a virtuális gép leállított (felszabadított) állapotában elvégzése után újraindul. Azure egy címet a hálózati illesztő csatlakozik-e az alhálózat címtér rendeli hozzá. [**Statikus** ](#static) címek nem kiadott, amíg nem törli a hálózati illesztőt. Adja meg a címtartományából alhálózati területet, amely jelenleg nem használja egy másik IP-konfigurációja IP-címet.|
-    |Nyilvános IP-cím|Nem|**Letiltva:** nincs nyilvános IP-cím erőforrás IP-konfigurációja jelenleg társítva. **Engedélyezve:** válasszon ki egy meglévő IPv4 nyilvános IP-címet, vagy hozzon létre egy újat. A nyilvános IP-cím létrehozása, olvassa el a [nyilvános IP-címek](virtual-network-public-ip-address.md#create-a-public-ip-address) cikk.|
-7. Manuálisan adja hozzá másodlagos magánhálózati IP-címek a virtuális gép operációs rendszerének; Ehhez hajtsa végre a utasításait a [több IP-címek hozzárendelése a virtuális gép operációs rendszerek](virtual-network-multiple-ip-addresses-portal.md#os-config) cikk. Lásd: [titkos](#private) IP-címek előtt manuálisan IP-címek hozzáadása a virtuális gép operációs rendszerének különleges szempontjait. Ne vegyen fel nyilvános IP-címek a virtuális gép operációs rendszerének.
+    |Név|Igen|Hello hálózati illesztő egyedinek kell lennie|
+    |Típus|Igen|Mivel adja hozzá egy IP-konfiguráció tooan meglévő hálózati kapcsolat, és mindegyik hálózati interfész rendelkeznie kell egy [elsődleges](#primary) IP-konfiguráció egyetlen választása marad: **másodlagos**.|
+    |Privát IP-cím hozzárendelési módszert|Igen|[**Dinamikus** ](#dynamic) címet használva módosítható, ha hello virtuális gép újraindítása után a hello lett leállítva (felszabadított) állapotát. Azure rendel egy címet a hello címterület hello alhálózati hello hálózati adapter csatlakozik. [**Statikus** ](#static) címek nem kiadott, amíg nem hello hálózati illesztőt. Adja meg a hello terület címtartománya, amely jelenleg nem használja egy másik IP-konfigurációja IP-címeit.|
+    |Nyilvános IP-cím|Nem|**Letiltva:** nincs nyilvános IP-cím erőforrás jelenleg társított toohello IP-konfigurációt. **Engedélyezve:** válasszon ki egy meglévő IPv4 nyilvános IP-címet, vagy hozzon létre egy újat. Hogyan toocreate egy nyilvános IP-címet, olvassa el toolearn hello [nyilvános IP-címek](virtual-network-public-ip-address.md#create-a-public-ip-address) cikk.|
+7. Manuálisan adja hozzá a másodlagos privát IP-címek toohello virtuális gép operációs rendszere hello hello utasításait elvégzésével [több IP-cím hozzárendelése toovirtual gép operációs rendszerek](virtual-network-multiple-ip-addresses-portal.md#os-config) cikk. Lásd: [titkos](#private) IP-címek IP-címek tooa virtuális gép operációs rendszere manuális hozzáadása előtt különleges szempontjait. Bármely nyilvános IP-címek toohello virtuális gép operációs rendszere nem adja hozzá.
 
 **Parancsok**
 
@@ -65,17 +65,17 @@ Annyi adhat hozzá [titkos](#private) és [nyilvános](#public) [IPv4](#ipv4) sz
 
 ## <a name="change-ip-address-settings"></a>IP-cím beállításainak módosítása
 
-Akkor lehet, hogy kell az IPv4-cím, a hozzárendelés módszerének módosítása módosíthatja statikus IPv4-címet, vagy a nyilvános IP-cím, egy adott hálózati csatoló rendelt. Ha módosítja a privát IPv4-cím, egy másodlagos IP-konfiguráció, a másodlagos hálózati adaptert egy virtuális gép társított (További információ [elsődleges és másodlagos hálózati adapterek](virtual-network-network-interface-vm.md#about)), helyezze a virtuális gépet a leállított (felszabadított) állapot előtt kövesse az alábbi lépéseket: 
+Toochange hello hozzárendelési módszer egy IPv4-címet, a módosítás hello statikus IPv4-cím, szükség lehet, illetve módosítása hello nyilvános IP-cím hozzárendelése tooa hálózati illesztőt. Ha épp módosított hello privát IPv4-cím, egy másodlagos IP-konfiguráció, a másodlagos hálózati adaptert egy virtuális gép társított (További információ [elsődleges és másodlagos hálózati adapterek](virtual-network-network-interface-vm.md#about)), virtuális hely hello hello a gép leállított (felszabadított) állapotához hello lépések végrehajtása előtt: 
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a hálózat közreműködő szerepkört az előfizetés (minimum) hozzárendelt engedélyeit. Olvassa el a [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk tudhat meg többet a szerepköröket és engedélyeket hozzárendelése a fiókokhoz.
-2. A mezőbe a szöveget tartalmazó *keresési erőforrások* az Azure portál felső részén írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a keresési eredmények között kattintson rá.
-3. Az a **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hálózati illesztő szeretné megtekinteni vagy módosítani az IP-címbeállítások.
-4. Kattintson a **IP-konfigurációk** a a **beállítások** részében találhatja a kiválasztott hálózati adapter.
-5. Kattintson a listából, amely megnyitja a panel az IP-konfiguráció a módosítani kívánt IP-konfigurációja.
-6. Módosítsa a beállításokat, szükség szerint, a beállításaival kapcsolatos információk segítségével a 6. lépésében a [adja hozzá egy IP-konfiguráció](#create-ip-config) című szakaszát. Kattintson a **mentése** a módosított IP-konfiguráció panel bezárásához.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hozzárendelt (minimum) engedélyeinek hello hálózat közreműködő szerepkört az előfizetés. Olvasási hello [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk toolearn további szerepköröket és engedélyeket tooaccounts rendelése.
+2. Hello mezőben hello szöveget tartalmazó *keresési erőforrások* tetején hello hello Azure-portálon, írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a hello találatok, kattintson rá.
+3. A hello **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hello hálózati illesztő szeretné, hogy tooview vagy IP-cím beállításainak módosítása.
+4. Kattintson a **IP-konfigurációk** a hello **beállítások** hello panelen kiválasztott hello hálózati illesztő szakasza.
+5. Kattintson a kívánt hello panel, amely megnyitja az IP-konfiguráció hello listájából toomodify hello IP-konfigurációja.
+6. Hello beállításait, a kívánt módon működjenek, hello információk segítségével hello beállításaival kapcsolatos hello 6. lépésben módosítsa [adja hozzá egy IP-konfiguráció](#create-ip-config) című szakaszát. Kattintson a **mentése** tooclose hello panel hello IP-konfiguráció módosította.
 
 >[!NOTE]
->Ha az elsődleges hálózati adapter több IP-konfigurációk és módosíthatja az elsődleges IP-konfiguráció magánhálózati IP-címe, akkor manuálisan kell újra hozzárendelnie az elsődleges és másodlagos IP-címek a hálózati illesztő a Windows (Linux nem kötelező) . Ha manuálisan IP-címek kiosztása a hálózati adaptert, az operációs rendszerben, olvassa el a [több IP-címek hozzárendelése a virtuális gépek](virtual-network-multiple-ip-addresses-portal.md#os-config) cikk. Lásd: [titkos](#private) IP-címek előtt manuálisan IP-címek hozzáadása a virtuális gép operációs rendszerének különleges szempontjait. Ne vegyen fel nyilvános IP-címek a virtuális gép operációs rendszerének.
+>Ha hello elsődleges hálózati adapter több IP-konfigurációk és magánhálózati IP-címe hello hello elsődleges IP-konfigurációja megváltoztatja, akkor manuálisan kell újra hozzárendelnie hello elsődleges és másodlagos IP-címek toohello hálózati kapcsolat a Windows (nem szükséges Linux). toomanually rendelje hozzá az IP-címek tooa hálózati kapcsolat az operációs rendszerben, olvassa el a hello [több IP-cím hozzárendelése toovirtual gépek](virtual-network-multiple-ip-addresses-portal.md#os-config) cikk. Lásd: [titkos](#private) IP-címek IP-címek tooa virtuális gép operációs rendszere manuális hozzáadása előtt különleges szempontjait. Bármely nyilvános IP-címek toohello virtuális gép operációs rendszere nem adja hozzá.
 
 **Parancsok**
 
@@ -86,14 +86,14 @@ Akkor lehet, hogy kell az IPv4-cím, a hozzárendelés módszerének módosítá
 
 ## <a name="remove-ip-addresses"></a>Távolítsa el az IP-címek
 
-Eltávolíthatja [titkos](#private) és [nyilvános](#public) hálózati illesztő IP-címet, de egy adott hálózati csatoló mindig rendelkeznie kell legalább egy privát IPv4-cím hozzárendelve.
+Eltávolíthatja [titkos](#private) és [nyilvános](#public) hálózati illesztő IP-címet, de egy adott hálózati csatoló mindig rendelkeznie kell legalább egy privát IPv4 cím tooit.
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a hálózat közreműködő szerepkört az előfizetés (minimum) hozzárendelt engedélyeit. Olvassa el a [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk tudhat meg többet a szerepköröket és engedélyeket hozzárendelése a fiókokhoz.
-2. A mezőbe a szöveget tartalmazó *keresési erőforrások* az Azure portál felső részén írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a keresési eredmények között kattintson rá.
-3. Az a **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hálózati illesztő el szeretné távolítani az IP-címek a.
-4. Kattintson a **IP-konfigurációk** a a **beállítások** részében találhatja a kiválasztott hálózati adapter.
-5. Kattintson a jobb gombbal egy [másodlagos](#secondary) IP-konfiguráció (nem lehet törölni a [elsődleges](#primary) konfigurációs) szeretne törölni, kattintson a **törlése**, majd kattintson a **Igen** gombra a törlés jóváhagyásához. Ha a konfigurációban a hozzá tartozó nyilvános IP-cím erőforrás szerepel, az erőforrás van elválasztja az IP-konfiguráció, de az erőforrás nem törlődik.
-6. Zárja be a **IP-konfigurációk** panelen.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hozzárendelt (minimum) engedélyeinek hello hálózat közreműködő szerepkört az előfizetés. Olvasási hello [Azure szerepköralapú hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) cikk toolearn további szerepköröket és engedélyeket tooaccounts rendelése.
+2. Hello mezőben hello szöveget tartalmazó *keresési erőforrások* tetején hello hello Azure-portálon, írja be a *hálózati illesztőt*. Ha **hálózati illesztőt** jelenik meg a hello találatok, kattintson rá.
+3. A hello **hálózati illesztőt** panel, amelyen megjelenik, kattintson a hello hálózati kapcsolat tooremove IP-címek.
+4. Kattintson a **IP-konfigurációk** a hello **beállítások** hello panelen kiválasztott hello hálózati illesztő szakasza.
+5. Kattintson a jobb gombbal egy [másodlagos](#secondary) IP-konfiguráció (hello nem törölhető [elsődleges](#primary) konfigurációs) toodelete szeretné, kattintson a **törlése**, majd kattintson a **Igen**  tooconfirm hello törlését. Ha hello-konfigurációban szerepelt egy nyilvános IP-cím erőforrás társított tooit, hello erőforrás van elválasztja hello IP-konfiguráció, de hello erőforrás nem törlődik.
+6. Bezárás hello **IP-konfigurációk** panelen.
 
 **Parancsok**
 
@@ -104,76 +104,76 @@ Eltávolíthatja [titkos](#private) és [nyilvános](#public) hálózati illeszt
 
 ## <a name="ip-configurations"></a>IP-konfigurációk
 
-[Személyes](#private) és (opcionálisan) [nyilvános](#public) IP-címek vannak rendelve egy vagy több hozzárendelt hálózati illesztő IP-konfigurációk. Az IP-konfigurációjának két típusa van:
+[Személyes](#private) és (opcionálisan) [nyilvános](#public) IP-címek hozzárendelésének tooone vagy több IP-konfiguráció hozzárendelése tooa hálózati illesztőt. Az IP-konfigurációjának két típusa van:
 
 ### <a name="primary"></a>Elsődleges
 
 Mindegyik hálózati interfész hozzá van rendelve egy elsődleges IP-konfigurációval. Egy elsődleges IP-konfiguráció:
 
-- Rendelkezik egy [titkos](#private) [IPv4](#ipv4) cím. Nem rendelhet hozzá egy olyan magánhálózat [IPv6](#ipv6) cím egy elsődleges IP-konfigurációra.
-- Is egy [nyilvános](#public) IPv4-cím hozzárendelve. Nem rendelhet egy nyilvános IPv6-cím egy elsődleges vagy másodlagos IP-konfigurációt. Ugyanakkor a nyilvános IPv6-cím hozzárendelése az Azure terheléselosztó, amely be tudják tölteni oszthatja el a forgalmat a virtuális gép saját IPv6-címére. További információkért lásd: [részleteit és az IPv6 korlátozások](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#details-and-limitations).
+- Rendelkezik egy [titkos](#private) [IPv4](#ipv4) cím tooit. Nem rendelhet hozzá egy olyan magánhálózat [IPv6](#ipv6) cím tooa elsődleges IP-konfigurációja.
+- Is egy [nyilvános](#public) IPv4-cím tooit. Nem rendelhető hozzá egy nyilvános IPv6 tooa elsődleges vagy másodlagos IP-címkonfigurációt. De a saját, rendelje hozzá egy nyilvános IPv6 cím tooan Azure terheléselosztó, amely be tudják tölteni egyenleg forgalom tooa virtuális gép saját IPv6-cím. További információkért lásd: [részleteit és az IPv6 korlátozások](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#details-and-limitations).
 
 ### <a name="secondary"></a>Másodlagos
 
-Egy elsődleges IP-konfiguráció mellett egy adott hálózati csatoló lehet nulla vagy több másodlagos IP-konfigurációk rendelve. Egy másodlagos IP-konfiguráció:
+Továbbá tooa elsődleges IP-konfiguráció, egy adott hálózati csatoló lehet nulla vagy több másodlagos IP-konfigurációk tooit rendelve. Egy másodlagos IP-konfiguráció:
 
-- Kell egy privát IPv4 vagy IPv6-címet rendelte hozzá. Ha a cím IPv6, a hálózati illesztő csak van egy másodlagos IP-konfigurációval. Ha a cím IPv4, a hálózati adapter rendelkezhet több másodlagos IP-konfigurációk rendelve. Hány privát és nyilvános IPv4-címek rendelhetők hozzá egy adott hálózati csatoló kapcsolatos további tudnivalókért tekintse meg a [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk.  
-- Előfordulhat, hogy is egy nyilvános IPv4-cím hozzá rendelt, ha a magánhálózati IP-cím IPv4-alapú. Ha a magánhálózati IP-cím IPv6-alapú, az IP-konfiguráció nem rendelhet egy nyilvános IPv4- vagy IPv6-címet. Több IP-cím hozzárendelése egy adott hálózati csatoló a következő esetekben hasznos, mint:
+- A privát IPv4 vagy IPv6-cím tooit kell rendelkeznie. Ha hello cím IPv6-alapú, hello hálózati illesztő csak van egy másodlagos IP-konfigurációval. Ha hello cím IPv4, hello hálózati adapter rendelkezhet hozzárendelt tooit több másodlagos IP-konfigurációk. toolearn hány privát és nyilvános IPv4-címek rendelhetők tooa hálózati kapcsolat kapcsolatos további információkért lásd: hello [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk.  
+- Előfordulhat, hogy is egy nyilvános IPv4-cím tooit, ha hello magánhálózati IP-cím IPv4-alapú. Ha IPv6-alapú hello magánhálózati IP-cím, egy nyilvános IPv4- vagy IPv6 cím toohello IP-konfiguráció nem rendelhető hozzá. Hozzárendelése több IP-címek tooa hálózati kapcsolat a következő esetekben hasznos, mint:
     - Több webhely vagy szolgáltatás üzemeltetése különböző IP-címekkel és SSL-tanúsítványokkal egyetlen kiszolgálón.
     - Egy virtuális gépet, a hálózati virtuális készülék, például egy tűzfal vagy terheléselosztó szolgál.
-    - A titkos IPv4-címek bármely, a hálózati adapterek hozzáadása egy Azure Load Balancer háttér címkészletet lehetősége. Korábban csak az elsődleges IPv4-cím elsődleges hálózati adapterének sikerült felvenni egy háttér címkészletet. További információt a terhelés elosztása érdekében több IPv4-konfiguráció, lásd: a [terheléselosztás több IP-konfigurációk](../load-balancer/load-balancer-multiple-ip.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk. 
-    - Képes betölteni egy IPv6-cím, egy adott hálózati csatoló rendelt elosztása. Saját IPv6-címére terheléselosztásáról kapcsolatos további tudnivalókért tekintse meg a [IPv6-címek terheléselosztásához](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk.
+    - hello képességét tooadd bármelyik hello privát IPv4-címek bármely hello hálózati illesztők tooan Azure Load Balancer háttér-készlet. Az elmúlt hello csak hello elsődleges IPv4-cím hello elsődleges hálózati illesztő sikerült hozzáadni tooa háttér-készlet. toolearn hogyan tooload elosztása több IPv4-alapú konfiguráció kapcsolatos további információkért lásd: hello [terheléselosztás több IP-konfigurációk](../load-balancer/load-balancer-multiple-ip.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk. 
+    - hello képességét tooload egyenleg egy IPv6 cím hozzárendelt tooa hálózati adapter. toolearn hogyan tooload egyenleg tooa saját IPv6-címet, kapcsolatos további információkért lásd: hello [IPv6-címek terheléselosztásához](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk.
 
 
 ## <a name="address-types"></a>Cím típusa
 
-A következő típusú IP-címek rendelhet egy [IP-konfiguráció](#ip-configurations):
+A következő IP-címek tooan típusú hello rendelhet [IP-konfiguráció](#ip-configurations):
 
 ### <a name="private"></a>Saját
 
-Személyes [IPv4](#ipv4) címek engedélyezése egy virtuális gép virtuális hálózat vagy más hálózatokhoz csatlakozó egyéb erőforrások folytatott kommunikációhoz. Egy virtuális gépet nem lehetett továbbítani a bejövő, sem a virtuális gép kommunikálhatnak egy olyan magánhálózat a kimenő [IPv6](#ipv6) cím, egy kivétellel. Egy virtuális gépet az Azure load balancer egy IPv6-cím használatával kommunikálhatnak. További információkért lásd: [részleteit és az IPv6 korlátozások](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#details-and-limitations). 
+Személyes [IPv4](#ipv4) címek engedélyezése egy virtuális gép toocommunicate virtuális hálózat vagy más hálózatokhoz csatlakozó más erőforrásokat. Egy virtuális gépet nem lehetett továbbítani a bejövő, és nem hello virtuális gépek kommunikálhatnak egy olyan magánhálózat a kimenő [IPv6](#ipv6) cím, egy kivétellel. A virtuális gépek kommunikálhatnak hello Azure terheléselosztó IPv6-cím használatával. További információkért lásd: [részleteit és az IPv6 korlátozások](../load-balancer/load-balancer-ipv6-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#details-and-limitations). 
 
-Alapértelmezés szerint az Azure DHCP-kiszolgálók a privát IPv4-cím hozzárendelése a [elsődleges IP-konfiguráció](#primary) a hálózati illesztő a virtuális gép operációs rendszerben a hálózati illesztőhöz. Ha szükséges, akkor kell soha nem manuális módon állítsa be a virtuális gép operációs rendszerében a hálózati illesztő IP-címét. 
+Alapértelmezés szerint hello Azure DHCP-kiszolgálók hozzárendelése hello privát IPv4-cím hello [elsődleges IP-konfiguráció](#primary) hello hálózati illesztő toohello hálózati adapter hello virtuális gép operációs rendszerében. Ha szükséges, soha nem manuálisan állítsa be hello hello virtuális gép operációs rendszerében a hálózati illesztő IP-címét. 
 
 > [!WARNING]
-> Ha az elsődleges IP-címét a hálózati adaptert egy virtuális gép operációs rendszerből állítja be az IPv4-cím legalább egyszer eltér a privát IPv4-cím, az elsődleges IP-konfigurációja az elsődleges hálózati adapter rendelt csatolva van egy virtuális gépet az Azure akkor megszakad a kapcsolat a virtuális géphez.
+> Ha hello IPv4-címet beállítani a hálózati adaptert egy virtuális gép operációs rendszerében hello elsődleges IP-címe eltér legalább egyszer hello privát IPv4-cím hozzárendelése toohello elsődleges IP-konfiguráció hello elsődleges hálózati adapter csatlakoztatva tooa virtuális gép Azure-ban, elvesznek a kapcsolat toohello virtuális gépet.
 
-Nincsenek forgatókönyvekben, ahol beállítani a virtuális gép operációs rendszerében a hálózati illesztő IP-címét. Például manuálisan be kell az elsődleges és másodlagos IP-címek, a Windows operációs rendszer amikor több IP-címet ad hozzá egy Azure virtuális gépen. A Linux virtuális gép csak szükség lehet a másodlagos IP-címek kézi beállítására. Lásd: [hozzáadása IP-címek egy virtuális gép operációs rendszerre](virtual-network-multiple-ip-addresses-portal.md#os-config) részleteiről. Manuálisan állítsa be az IP-cím, az operációs rendszerből, esetén ajánlott, hogy mindig rendel a címek a hálózati illesztő a statikus (helyett dinamikus)-hozzárendelési módszert használja az IP-konfiguráció. Rendelje hozzá a statikus metódussal címet biztosítja, hogy a cím nem változtatja meg Azure-ban. Ha valaha is módosítani szeretné az IP-konfigurációt rendelt cím, javasoljuk, hogy:
+Nincsenek forgatókönyvekben, ahol azt szükséges toomanually hello IP-cím beállítása a hálózati adapter hello virtuális gép operációs rendszerében. Például meg kell adni manuálisan hello elsődleges és másodlagos IP-címeket a Windows operációs rendszer több IP-címek tooan Azure virtuális géphez való hozzáadásakor. A Linux virtuális gép is elegendő lehet toomanually set hello másodlagos IP-címeket. Lásd: [hozzáadása IP-címek tooa virtuális gép operációs rendszer](virtual-network-multiple-ip-addresses-portal.md#os-config) részleteiről. Ha manuálisan hello IP-cím hello operációs rendszerben, ajánlott mindig használjon hello címek toohello IP-konfigurációja egy adott hálózati csatoló hello statikus (helyett dinamikus)-hozzárendelési módszert használja. Rendelje hozzá hello statikus metódussal hello címet biztosítja, hogy hello cím nem változtatja meg az Azure. Ha valaha is kell toochange hello cím tooan IP-konfiguráció, javasoljuk, hogy:
 
-1. Győződjön meg arról, a virtuális gépet az Azure DHCP-kiszolgálók egy címet fogad, állítsa vissza az IP-cím hozzárendelése DHCP operációs rendszerből, és indítsa újra a virtuális gépet.
-2. Állítsa le (felszabadítása) a virtuális gép.
-3. Az IP-konfiguráció Azure-ban az IP-címének módosítása.
-4. Virtuális gép elindítása.
-5. [Manuálisan konfigurálnia a](virtual-network-multiple-ip-addresses-portal.md#os-config) az operációs rendszer (és belül is a Windows az elsődleges IP-cím) megfelelően beállítani az Azure másodlagos IP-címét.
+1. tooensure hello virtuális gép egy címet fogad hello Azure DHCP-kiszolgálók, hello IP cím hátsó tooDHCP belül hello operációsrendszer- és újraindítási hello virtuális gép hello hozzárendelésének módosítása.
+2. Állítsa le (felszabadítása) hello virtuális gépet.
+3. Hello IP-konfiguráció Azure-ban hello IP-címének módosítása.
+4. Hello virtuális gép elindításához.
+5. [Manuálisan konfigurálnia a](virtual-network-multiple-ip-addresses-portal.md#os-config) hello másodlagos IP-címek hello operációs rendszer (és a Windows hello elsődleges IP-cím) belül toomatch be Azure-ban.
  
-Az előző lépések, a magánhálózati IP-címet hozzárendelni az Azure-ban, és a virtuális gép operációs rendszerben, a hálózati adapter által változatlanok maradnak. Nyomon követéséhez belül az előfizetés, amely a manuálisan beállított IP-címek az operációs rendszerben a virtuális gépek, fontolja meg az Azure [címke](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#tags) virtuális gépekhez. Használhatja a "IP-cím hozzárendelése: statikus", például. Ezzel a módszerrel könnyedén megtalálhatja a virtuális gépek, amelyek manuálisan beállította az operációs rendszerben az IP-cím az előfizetésen belül.
+Hello előző lépéseket követve hello privát IP-cím hozzárendelése toohello hálózati összeköttetés Azure és a virtuális gép operációs rendszerének belül, továbbra is hello azonos. tookeep nyomon követése, amelyek az előfizetés, amely a manuálisan beállított IP-címeit, az operációs rendszer virtuális gépeit vegyen fel egy Azure [címke](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#tags) toohello virtuális gépek. Használhatja a "IP-cím hozzárendelése: statikus", például. Ezzel a módszerrel könnyedén megtalálhatja a hello virtuális gépeken belül az előfizetés, amely a manuálisan beállított hello IP-címet hello operációs rendszerben.
 
-Egy virtuális gép más erőforrások, az azonos, vagy csatlakoztatott virtuális hálózatokon belül kommunikálni engedélyezniük, egy magánhálózati IP-cím is lehetővé teszi, hogy való kommunikációhoz az internethez kimenő virtuális gép. Kifelé irányuló kapcsolatok olyan forrás hálózati címe lefordítani az Azure előre nem látható nyilvános IP-címet. Az Azure kimenő internetkapcsolattal kapcsolatos további tudnivalókért olvassa el a [Azure kimenő internetkapcsolat](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk. Nem lehet kommunikálni a bejövő egy virtuális gép privát IP-címre az interneten.
+Egy virtuális gép toocommunicate egyéb erőforrásokkal belül azonos, vagy csatlakoztatott virtuális hálózatok, egy magánhálózati IP-címe is cím hello tooenabling továbbá lehetővé teszi, hogy a virtuális gép toocommunicate kimenő toohello Internet. Kifelé irányuló kapcsolatok olyan Azure tooan előre nem látható nyilvános IP-cím szerinti fordítással hálózati forráscím. További információk az Azure kimenő internetkapcsolattal, olvassa el a hello toolearn [Azure kimenő internetkapcsolat](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json) cikk. Bejövő tooa virtuális gépek magánhálózati IP-címet a hello Internet nem tud kommunikálni.
 
 ### <a name="public"></a>Nyilvános
 
-Nyilvános IP-címek az internetről bejövő kapcsolat engedélyezése egy virtuális géphez. Kimenő kapcsolatok az interneten egy előre jelezhető IP-címet használja. Lásd: [ismertetése az Azure-ban kimenő kapcsolatok](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json) részleteiről. Előfordulhat, hogy a nyilvános IP-címet rendel egy IP-konfiguráció, de nem szükséges. Ha egy virtuális géphez nem rendel hozzá egy nyilvános IP-címet, képes továbbra is kommunikálni a kimenő az internetre privát IP-címére. Nyilvános IP-címek kapcsolatos további tudnivalókért olvassa el a [nyilvános IP-cím](virtual-network-public-ip-address.md) cikk.
+Nyilvános IP-címek engedélyezése a bejövő kapcsolatot tooa a virtuális gép hello Internet. Kimenő kapcsolatok toohello Internet egy előre jelezhető IP-címet használja. Lásd: [ismertetése az Azure-ban kimenő kapcsolatok](../load-balancer/load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json) részleteiről. Előfordulhat, hogy rendelje hozzá egy nyilvános IP-címének tooan IP konfigurációja, de nem szükséges. Ha nem rendel hozzá egy nyilvános IP cím tooa virtuális gépet, továbbra is képes kommunikálni a kimenő toohello Internet privát IP-címére. További információ a nyilvános IP-címek, olvassa el a hello toolearn [nyilvános IP-cím](virtual-network-public-ip-address.md) cikk.
 
-Nincsenek korlátozások rendelhet egy adott hálózati csatoló privát és nyilvános IP-címek számát. További információkért olvassa el a [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk.
+Számos korlátok toohello titkos és nyilvános IP-címeket az hozzárendelheti tooa hálózati adapter. További információkért olvassa el a hello [Azure korlátozza](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits) cikk.
 
 > [!NOTE]
-> Azure fordítja le a virtuális gépek magánhálózati IP-cím egy nyilvános IP-cím. Ennek eredményeképpen a operációs rendszer nem észleli a nyilvános IP-címek hozzárendelve, így nincs szükség minden eddiginél rendelheti hozzá kézzel a nyilvános IP-cím, az operációs rendszerben.
+> Azure fordítja le a virtuális gép magánhálózati IP cím tooa nyilvános IP-cím. Így nincs szükség tooever nincs manuálisan adjon meg egy nyilvános IP-cím hello operációs rendszerben, emiatt hello operációs rendszer nem észleli a nyilvános IP-címek hozzárendelve tooit.
 
 ## <a name="assignment-methods"></a>Hozzárendelési módszert
 
-Nyilvános és magánhálózati IP-címek hozzá a következő hozzárendelési módszert használja:
+Nyilvános és magánhálózati IP-címek hozzá a következő hozzárendelési módszert hello használata:
 
 ### <a name="dynamic"></a>Dinamikus
 
-Dinamikus privát IPv4 és IPv6-alapú (opcionális) címek alapértelmezés szerint vannak hozzárendelve. Dinamikus címet használva módosítható, ha a virtuális gép leállított (felszabadított) állapotba helyezni, majd elindítani. Ha nem szeretné módosítani a virtuális gép élettartama IPv4-címeket, rendelje hozzá a statikus metódussal címek. Csak egy titkos IPv6-címet, dinamikus hozzárendelése módszerrel rendelhet hozzá. Nem rendelhet egy nyilvános IPv6-címet vagy metódussal IP-konfigurációt.
+Dinamikus privát IPv4 és IPv6-alapú (opcionális) címek alapértelmezés szerint vannak hozzárendelve. Dinamikus címet használva módosítható, ha hello helyezni, hello virtuális gép leállított (felszabadított) állapotához, majd elindítani. Ha IPv4-címek toochange hello során hello virtuális gép nem szeretné, rendelje hozzá a hello címek hello statikus metódus használatával. Csak egy titkos IPv6-címet, dinamikus hozzárendelése metódussal hello rendelhet hozzá. Nem rendelhető hozzá egy nyilvános IPv6 tooan IP-címkonfigurációt módszerek használatával.
 
 ### <a name="static"></a>Statikus
 
-A statikus metódussal címtartományból nem megváltoztatni, amíg meg nem törölték a virtuális gépet. Manuális módszerrel rendel egy statikus privát IPv4 cím az IP-konfigurációt az alhálózatot a hálózati illesztő a címtartomány a van. IP-konfigurációt rendelhet a saját vagy nyilvános statikus IPv4-cím (nem kötelező). Nem rendelhető hozzá egy statikus nyilvános vagy privát IPv6-címet az IP-konfigurációt. Hogyan Azure rendel statikus nyilvános IPv4-címek kapcsolatos további tudnivalókért tekintse meg a [nyilvános IP-cím](virtual-network-public-ip-address.md) cikk.
+Hello statikus metódus használata hozzárendelt címek ne változtassa meg addig, amíg a virtuális gép törlődik. Manuálisan hozzá nem rendeli egy statikus privát IPv4 cím tooan IP-konfigurációt a hello címterület a hello alhálózati hello hálózati adaptert. (Opcionális) rendelhet hozzá a saját vagy nyilvános statikus IPv4 cím tooan IP-konfigurációt. Nem rendelhető hozzá egy statikus nyilvános vagy privát IPv6 tooan IP-címkonfigurációt. toolearn hogyan Azure rendel statikus nyilvános IPv4-címet, kapcsolatos további információkért lásd: hello [nyilvános IP-cím](virtual-network-public-ip-address.md) cikk.
 
 ## <a name="ip-address-versions"></a>IP-cím verziók
 
-A következő verziók cím hozzárendelésekor adhatja meg:
+Cím hozzárendelésekor a következő verziók hello adhatja meg:
 
 ### <a name="ipv4"></a>IPv4-alapú
 
@@ -181,15 +181,15 @@ Mindegyik hálózati interfész rendelkeznie kell egy [elsődleges](#primary) eg
 
 ### <a name="ipv6"></a>IPv6
 
-Nulla vagy egy személyes rendelhet [IPv6](#ipv6) címét, hogy egy hálózati adapter egy másodlagos IP-konfigurációval. A hálózati adapter nem rendelkezhet minden meglévő másodlagos IP-konfigurációt. Nem adható hozzá egy IP-konfiguráció a portál használatával IPv6-címmel. Használja a Powershellt vagy a parancssori felület egy IP-konfiguráció magánhálózati IPv6-cím hozzáadása a meglévő hálózati illesztő. A hálózati adapter nem lehet csatolni, egy meglévő virtuális gépre.
+Nulla vagy egy személyes rendelhet [IPv6](#ipv6) cím tooone másodlagos IP-konfigurációja, a hálózati adaptert. hello hálózati adapter nem rendelkezhet minden meglévő másodlagos IP-konfigurációt. Nem adható hozzá egy IP-konfiguráció hello portál használata IPv6-címmel. Használja a Powershellt vagy hello CLI tooadd a személyes IPv6 cím tooan meglévő hálózati illesztő IP-konfigurációt. hello hálózati illesztő nem lehet a meglévő virtuális gép csatlakoztatott tooan.
 
 > [!NOTE]
-> Bár létrehozhat egy adott hálózati csatoló a portál használatával IPv6-címmel, nem adhat egy meglévő hálózati illesztő egy új vagy meglévő virtuális gépen, a portál használatával. PowerShell vagy az Azure CLI 2.0 használatával hozzon létre egy adott hálózati csatoló magán IPv6-címet, majd a hálózati adapter csatlakoztatása egy virtuális gép létrehozásakor. Egy meglévő virtuális géphez rendelt titkos IPv6-címmel rendelkező hálózati illesztő nem lehet csatolni. Bármely olyan eszközöket (portál, parancssori felületen vagy a PowerShell) segítségével virtuális géphez csatlakozik hálózati illesztő IP-konfigurációt a saját IPv6-cím nem lehet hozzáadni.
+> Bár létrehozhat egy adott hálózati csatoló hello portál használata IPv6-címmel, nem adhat hozzá egy meglévő hálózati illesztő tooa új vagy meglévő virtuális gépet, hello portál használatával. PowerShell vagy Azure CLI 2.0 toocreate egy adott hálózati csatoló hello használata egy saját IPv6-címet, majd hello hálózati adapter csatlakoztatása egy virtuális gép létrehozásakor. Hozzárendelt tooit tooan meglévő virtuális gép saját IPv6-címmel rendelkező hálózati illesztő nem lehet csatolni. Nem adható hozzá a titkos IPv6 cím tooan IP-konfiguráció bármely hálózati kapcsolatát tooa virtuális géphez olyan eszközöket (portál, CLI vagy PowerShell) segítségével.
 
-Nem rendelhet egy nyilvános IPv6-cím egy elsődleges vagy másodlagos IP-konfigurációt.
+Nem rendelhető hozzá egy nyilvános IPv6 tooa elsődleges vagy másodlagos IP-címkonfigurációt.
 
 ## <a name="next-steps"></a>Következő lépések
-Virtuális gép létrehozása a különböző IP-konfigurációk, olvassa el a következő cikkeket:
+egy virtuális gépet a különböző IP-konfigurációk, olvassa el a következő cikkek hello toocreate:
 
 |Tevékenység|Eszköz|
 |---|---|

@@ -1,5 +1,5 @@
 ---
-title: "A Machine Learning kötegelt végrehajtási szolgáltatás feladatok kapacitás dedikált |} Microsoft Docs"
+title: "a Machine Learning kötegelt végrehajtási szolgáltatás feladatok kapacitás aaaDedicated |} Microsoft Docs"
 description: "A gépi tanulási feladatok Azure Batch-szolgáltatások áttekintése."
 services: machine-learning
 documentationcenter: 
@@ -13,44 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3879eb3d0c6fa9d74fff01b07f5c07d3991dfbbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bba7970bb31c50e5b0b9d5f4ff4f0d2dacf942e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-service-for-machine-learning-jobs"></a>A gépi tanulási feladatok az Azure Batch szolgáltatás
 
-Gépi tanulás Batch-készlet feldolgozása ügyfél által felügyelt méretezési biztosít az Azure Machine Learning kötegelt végrehajtási szolgáltatás. Klasszikus kötegelt feldolgozása gépi tanulás kerül sor, több-bérlős környezetben, amely korlátozza az egyidejűleg futó feladatainak számát akkor is elküldhetik, és a feladatok várólistára első-first out alapon. Ez a bizonytalanság azt jelenti, hogy Ön nem pontosan előre jelezni mikor fog futni a feladat.
+Gépi tanulás Batch-készlet feldolgozása ügyfél által felügyelt méretezési biztosít hello Azure Machine Learning kötegelt végrehajtási szolgáltatás. A machine Learning szolgáltatáshoz klasszikus kötegfeldolgozási egy több-bérlős környezet, mely korlátok hello száma egyidejűleg futó feladatainak is elküldhetik, és feladatok várólistára első-first out alapon történik. Ez a bizonytalanság azt jelenti, hogy Ön nem pontosan előre jelezni mikor fog futni a feladat.
 
-Készlet kötegfeldolgozási hozhat létre készleteket, amelyre elküldheti a kötegelt feladatok. Szabályozhatja a készlet méretét, és mely készletbe a feladat elküldése megtörtént. A BES feladat fut, a saját feldolgozási terület előre jelezhető feldolgozás és képes létrehozni a feldolgozási terhelés elküldött megfelelő erőforráskészletek biztosítása.
+Kötegfeldolgozási készlet lehetővé teszi toocreate készletek, amelyre elküldheti a kötegelt feladatok. Hello készlet mérete hello szabályozhatja, és toowhich készlet hello feladat küldése. A BES feladat fut, a saját területet biztosít feldolgozása előre jelezhető feldolgozás és hello képességét toocreate-erőforráskészleteket, amelyekben felel meg az elküldött toohello feldolgozási terhelés.
 
-## <a name="how-to-use-batch-pool-processing"></a>Batch-készlet feldolgozási használata
+## <a name="how-toouse-batch-pool-processing"></a>Hogyan toouse Batch-készlet feldolgozása
 
-A Batch-készlet feldolgozási konfigurációs már nem érhető el az Azure portálon keresztül. Batch-készlet feldolgozási használatához az alábbiak szükségesek:
+A Batch-készlet feldolgozási konfigurációs már nem érhető el hello Azure-portálon keresztül. Batch-készlet toouse feldolgozása, meg kell:
 
--   Készlet Batch-fiók létrehozása, és szerezze be a készlet szolgáltatás URL-címe és engedélykulcs CSS hívása
+-   Meghívja a CSS toocreate készlet Batch-fiók, és szerezze be a készlet szolgáltatás URL-címe és engedélykulcs
 -   Hozzon létre egy új erőforrás-kezelő alapú webszolgáltatás és a számlázási csomag
 
-A fiók létrehozásához, hívja a Microsoft ügyfélszolgálata és a támogatási szolgálathoz (CSS), és adja meg az előfizetés-azonosító. CSS Önnel együttműködve helyzetnek megfelelő kapacitásának meghatározásához. CSS ezután konfigurálja a fiókot hozhat létre készleteket maximális számát és a virtuális gépek (VM) elhelyezheti mindegyik készlet maximális számát. A fiók van konfigurálva, ha rendelkezésre állnak a készlet szolgáltatás URL-címe és engedélykulcs.
+toocreate a fiókjához, hívja a Microsoft ügyfélszolgálata és a támogatási szolgálathoz (CSS), és adja meg, az előfizetés-azonosító. CSS kapacitással rendelkező átjáróeszközt, toodetermine hello megfelelő helyzetnek fog működni. CSS ezután konfigurálja a fiók hello készleteket hozhat létre és virtuális gépek (VM) elhelyezheti mindegyik készlet maximális száma hello maximális számát. A fiók van konfigurálva, ha rendelkezésre állnak a készlet szolgáltatás URL-címe és engedélykulcs.
 
-A fiók létrehozását követően a készlet szolgáltatás URL-címe és a hitelesítési kulcs használatával készlet felügyeleti műveleteket a Batch-készlet.
+Miután a fiókja létrejött, az hello készlet szolgáltatás URL-címe és a hitelesítési kulcs tooperform készlet a felügyeleti műveleteihez a Batch-készlet.
 
 ![Kötegelt készlet szolgáltatás architektúrája.](media/machine-learning-dedicated-capacity-for-bes-jobs/pool-architecture.png)
 
-A készlet szolgáltatás URL-címe, amely az Ön számára biztosított CSS-készlet létrehozása művelet hívása készletek létrehozásához. Készletet hoz létre, amikor adja meg, hány virtuális gépek és a swagger.json egy új Resource Manager URL-Machine Learning webszolgáltatáshoz. Ennek a webszolgáltatásnak a számlázási társítás létrehozásához valósul meg. A Batch-készlet szolgáltatás a swagger.json használ a tárolókészlet társítsa egy számlázási csomagot. Futtathatja a BES webszolgáltatás, mindkét alapú új erőforrás-kezelő és a klasszikus, a készlet.
+Hello készlet létrehozása művelet hello készlet szolgáltatás URL-CÍMÉT, hogy a megadott CSS tooyou meghívásával készletek hoz létre. Készletet hoz létre, amikor adja meg, virtuális gépek és hello URL-CÍMÉT egy új Resource Manager hello swagger.json hello száma Machine Learning webszolgáltatáshoz. Ez a webszolgáltatás tooestablish hello számlázási társítás valósul meg. hello Batch-készlet szolgáltatás hello swagger.json tooassociate hello készletet használ egy számlázási csomagot. Futtathatja a BES webszolgáltatás, mindkét alapú új erőforrás-kezelő és a klasszikus, hello készletében.
 
-Bármely új Resource Manager-alapú webszolgáltatás, de vegye figyelembe, hogy a feladatokhoz tartozó számlázási terhére-e a szolgáltatáshoz tartozó számlázási csomagot. Érdemes lehet egy webszolgáltatás és az új számlázási csomag kifejezetten a futó feladatok Batch-készlet létrehozásához.
+Bármely új Resource Manager-alapú webszolgáltatás, de vegye figyelembe, hogy hello számlázási hello feladatok elleni hello szolgáltatáshoz tartozó számlázási csomag van-e szó. Érdemes lehet egy webszolgáltatás és az új számlázási megtervezése toocreate kifejezetten a futó feladatok Batch-készlet.
 
 Webszolgáltatások létrehozásával kapcsolatos további információkért lásd: [központi telepítése az Azure Machine Learning webszolgáltatás](machine-learning-publish-a-machine-learning-web-service.md).
 
-Miután létrehozta a készletben, a a kötegelt kérelem URL-cím segítségével a webszolgáltatás BES feladat elküldése. Dönthet úgy, hogy küldje el a készlethez, vagy a klasszikus kötegfeldolgozási. A Batch-készlet feldolgozása a feladat elküldése, a következő paraméter a feladat elküldése kérelemtörzset hozzáadhat:
+Miután létrehozta a készletben, elküldését hello BES hello webszolgáltatás feladat használ hello kötegelt kérelmek URL-CÍMÉT. Kiválaszthatja a toosubmit azt tooa készletet vagy tooclassic kötegfeldolgozási. egy feladat tooBatch készlet feldolgozása toosubmit, hozzáadása a következő paraméter toohello feladat elküldése kérelemtörzset hello:
 
 "AzureBatchPoolId": "&lt;azonosító tárolókészlet&gt;"
 
-Ha nem adja hozzá a paramétert, a feladat a klasszikus kötegelt folyamat-környezetében futtatható. A készlet elegendő erőforrás áll rendelkezésre, ha a a feladat futtatása azonnal elindul. A készlet nem rendelkezik szabad erőforrást, ha a feladat várólistára van állítva, amíg egy erőforrás áll rendelkezésre.
+Ha nem adja hozzá hello paramétert, hello feladat hello klasszikus kötegelt folyamat környezetében futtatható. Hello készlet elegendő erőforrás áll rendelkezésre, ha a hello feladat azonnal futásának indításakor. Hello készlet nem rendelkezik szabad erőforrást, ha a feladat várólistára van állítva, amíg egy erőforrás áll rendelkezésre.
 
-Ha talál meg, hogy rendszeresen eléri a készletek kapacitását, és nagyobb kapacitást van szüksége, CSS hívja, és növelje a kvóták képviselője dolgozni.
+Ha talál meg, hogy rendszeresen eléri a készletek hello kapacitását, és nagyobb kapacitást van szüksége, CSS hívja, és a kvóták egy reprezentatív tooincrease dolgozni.
 
 Példa egy kérelem:
 
@@ -97,7 +97,7 @@ https://ussouthcentral.Services.azureml.NET/Subscriptions/80c77c7674ba4c8c82294c
 
 ## <a name="considerations-when-using-batch-pool-processing"></a>Batch-készlet feldolgozási használatának szempontjai
 
-Batch-készlet feldolgozásakor – a számlázható szolgáltatás pedig, amelyhez Ön társítandó Resource Manageren alapul számlázási csomagot. A készlet fut; számítási órák számát csak számlázása függetlenül a feladatok futnak a készlethez tartozó idő során. Készletet hoz létre, ha kell fizetni az egyes virtuális gépek a készlet számítási órában a készlet nem törlik, még akkor is, ha nincsenek kötegelt feladatok futnak a készletben. A virtuális gépek számlázási akkor kezdődik, amikor a kiépítés után, és leáll, amikor törölve lettek. Használhatja a sémák megtalálható-e a [Machine Learning díjszabás lap](https://azure.microsoft.com/pricing/details/machine-learning/).
+Batch-készlet feldolgozásakor – a számlázható szolgáltatás pedig, amely szükséges az erőforrás-kezelő szerint számlázási csomag tooassociate. Csak számlázása hello számú hello készlet fut; számítási óra függetlenül attól, feladatok futtatása során idő készlethez hello száma. Készletet hoz létre, ha díját is felszámítjuk hello számítási órán át az egyes virtuális gépek hello készletben hello készlet nem törlik, még akkor is, ha nincsenek kötegelt feladatok futnak hello készletben. Számlázási hello virtuális gépek akkor kezdődik, amikor a kiépítés után, és leáll, amikor törölve lettek. Bármelyik hello csomagok hello használható [Machine Learning díjszabás lap](https://azure.microsoft.com/pricing/details/machine-learning/).
 
 Számlázási. példa:
 
@@ -105,9 +105,9 @@ Ha a Batch-készlet létrehozása 2 virtuális gépekkel és 24 óra múlva tör
 
 Ha a Batch-készlet létrehozása 4 virtuális gépekkel és 12 óra elteltével törölje, a számlázási csomag is számítási terhelést 48 óra.
 
-Azt javasoljuk, hogy a feladatok teljes meghatározásához a feladatállapot lekérdezésére. Ha a feladatok futása befejeződött, hívja meg a készlet átméretezése műveletet a virtuális gépek számának beállítása a tárolókészlet nulla. Ha rövid készlet erőforrások és kell létrehoznia egy új készletet, például egy másik számlázási csomag elleni számlázási törölheti a készlet helyette ha összes feladat futása befejeződött.
+Azt javasoljuk, hogy hello feladat állapota toodetermine lekérdezésére feladat befejeződése után. Ha a feladatok futása befejeződött, hello készlet toozero hívás hello átméretezési készlet művelet tooset hello virtuális gépek száma. Ha rövid készlet erőforrások és toocreate egy új készletet, például egy másik számlázási csomag elleni toobill kell törölheti hello készlet helyette ha összes feladat futása befejeződött.
 
 
 | **Használja a kötegelt mikor feldolgozása**    | **Használja a klasszikus kötegfeldolgozási végezhető, ha**  |
 |---|---|
-|Nagyszámú feladatok futtatásához szükséges<br>Vagy<br/>A feladatok azonnal elindul tudnia kell<br/>Vagy<br/>Garantált átviteli van szüksége. Például szeretné egy adott időszakon feladatok száma futnak, és szeretné, hogy a számítási erőforrásokat, az igényeknek horizontális.    | Néhány feladatot futtat<br/>És<br/> Nem szükséges azonnal futtatni a feladatot |
+|Feladatok nagy számú toorun van szüksége<br>Vagy<br/>A feladatok által futtatott azonnal tooknow van szüksége<br/>Vagy<br/>Garantált átviteli van szüksége. Például meg kell toorun egy adott időszakon feladatok száma, és szeretné, hogy tooscale a számítási erőforrások toomeet ki az igényeinek.    | Néhány feladatot futtat<br/>És<br/> A felesleges hello feladatok toorun azonnal |

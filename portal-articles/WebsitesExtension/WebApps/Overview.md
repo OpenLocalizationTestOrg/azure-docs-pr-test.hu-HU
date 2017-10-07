@@ -1,5 +1,5 @@
 ---
-title: "A webalkalmazások áttekintése | Microsoft Docs"
+title: "aaaWeb áttekintése |} Microsoft Docs"
 description: "Súgó tartalma Web Apps áttekintése Azure portálon"
 services: app-service
 author: sewatson
@@ -8,19 +8,19 @@ ms.service: app-service
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: e48c591b94d7f132c49d4cda805bcf4cbd2e7d98
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 57d194a3013c7ad14a75691f3e6a366c218e8367
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-apps-documentation"></a>Web Apps-dokumentáció
 
-Az Azure Web Apps segítségével egy tetszőleges programozási nyelven hozhat létre és üzemeltethet webalkalmazásokat infrastruktúrakezelés nélkül. Automatikus méretezést és magas rendelkezésre állást kínál, támogatja a Windows és a Linux rendszert is, valamint lehetővé teszi az automatikus telepítéseket a GitHub, Visual Studio Team Services vagy bármely egyéb Git-adattárból. Ismerje meg, hogyan használhatja az Azure Web Apps szolgáltatást a gyors útmutatóink, oktatóanyagaink és példáink segítségével.
+Az Azure Web Apps programozási nyelv a kiválasztott infrastruktúra kezelése nélkül hello toobuild és a gazdagép webalkalmazások lehetővé teszi. Automatikus méretezést és magas rendelkezésre állást kínál, támogatja a Windows és a Linux rendszert is, valamint lehetővé teszi az automatikus telepítéseket a GitHub, Visual Studio Team Services vagy bármely egyéb Git-adattárból. Megtudhatja, hogyan toouse Azure Web Apps a quickstarts, oktatóanyagok és minták.
 
 ## <a name="5-minute-quickstarts"></a>5 perces gyors útmutatók
 
-Megtudhatja, hogyan helyezheti üzembe első alkalmazását a felhőben a Web Apps segítségével:
+Megtudhatja, hogyan toodeploy az első alkalmazás toohello felhőalapú Web Apps használatával:
 
 - [.NET](/azure/app-service-web/app-service-web-get-started-dotnet)
 - [Node.js](/azure/app-service-web/app-service-web-get-started-nodejs)
@@ -31,11 +31,11 @@ Megtudhatja, hogyan helyezheti üzembe első alkalmazását a felhőben a Web Ap
 
 ## <a name="step-by-step-tutorials"></a>Részletes útmutatók
 
-Megtudhatja, hogyan telepítheti, kezelése és biztonságos webalkalmazások Azure figyelheti.
+Ismerje meg, hogyan toodeploy, kezelése és figyelése biztonságos webes alkalmazásokat az Azure-on.
 
 - Hozzon létre egy alkalmazást a [.NET és az Azure SQL Database](/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase) vagy a [Node.js és a MongoDB](/azure/app-service-web/app-service-web-tutorial-nodejs-mongodb-app) használatával
-- [Az alkalmazás egy meglévő egyéni tartomány leképezése](/azure/app-service-web/app-service-web-tutorial-custom-domain)
-- [Meglévő SSL-tanúsítvány kötése az alkalmazáshoz](/azure/app-service-web/app-service-web-tutorial-custom-SSL)
+- [Térkép meglévő egyéni tartomány tooyour alkalmazás](/azure/app-service-web/app-service-web-tutorial-custom-domain)
+- [Egy létező SSL-tanúsítvány tooyour alkalmazás kötése](/azure/app-service-web/app-service-web-tutorial-custom-SSL)
 
 ## <a name="free-pluralsight-video-training"></a>Ingyenes Pluralsight videós képzés
 
@@ -44,12 +44,12 @@ Megtudhatja, hogyan telepítheti, kezelése és biztonságos webalkalmazások Az
 
 ## <a name="samples"></a>Példák
 
-Szkriptek keresése a gyakori feladatok kezeléséhez.
+Található parancsfájlok toomanage gyakori feladatokat.
 
 - [Azure CLI](/azure/app-service-web/app-service-cli-sample)
 - [Azure PowerShell](/azure/app-service-web/app-service-powershell-samples)
 
 ## <a name="more"></a>Több,
 
-- [Látogasson el a további dokumentáció](/azure/app-service-web/index)
+- [Látogasson el a további dokumentáció toolearn](/azure/app-service-web/index)
 - [További tudnivalók az összes Azure-szolgáltatások](https://aka.ms/j3wr7y)

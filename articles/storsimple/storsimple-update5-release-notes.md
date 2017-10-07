@@ -1,6 +1,6 @@
 ---
-title: "A StorSimple 8000 Series Update 5 kibocsátási megjegyzései |} Microsoft Docs"
-description: "Az új funkciók, problémák és megoldások ismerteti a StorSimple 8000 Series Update 5."
+title: "aaaStorSimple 8000 Series Update 5 kibocsátási megjegyzései |} Microsoft Docs"
+description: "Hello új funkciókat, problémák és megoldások ismerteti a StorSimple 8000 Series Update 5."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/23/2017
 ms.author: alkohli
-ms.openlocfilehash: e68dce72d648171faab930bbb4af9fd61816b19b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9eb8ffb97b41ce3d4f1ffdf2975f904d0a2958e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-8000-series-update-5-release-notes"></a>A StorSimple 8000 Series Update 5 kibocsátási megjegyzései
 
 ## <a name="overview"></a>Áttekintés
 
-Az alábbi kibocsátási megjegyzések új szolgáltatásait ismerteti, és a StorSimple 8000 Series Update 5 a kritikus megnyitott problémák azonosításához. Ebben a kiadásban szereplő StorSimple szoftverfrissítések listáját is tartalmaznak.
+hello alábbi kibocsátási megjegyzések leírják hello új szolgáltatásokat és a StorSimple 8000 Series Update 5 hello kritikus megnyitott problémák azonosításához. Ebben a kiadásban szereplő hello StorSimple szoftverfrissítések listáját is tartalmaznak.
 
-5. frissítésétől bármely 0,1 Update futtatása – Update 4 StorSimple eszközre alkalmazhatók. Az eszköz 5. frissítésétől társított verziója 6.3.9600.17845.
+5. frissítésétől alkalmazott tooany StorSimple eszköz 0,1 Update futtatása – Update 4 lehet. 5. frissítésétől társított hello eszköz verziója 6.3.9600.17845.
 
-Tekintse át a kibocsátási megjegyzések a StorSimple megoldásban a frissítés telepítése előtt található információkat.
+Tekintse át a hello kibocsátási megjegyzések hello központi telepítése előtt frissítse a StorSimple megoldásban lévő hello információt.
 
 > [!IMPORTANT]
-> * 5. frissítésétől eszközhöz, lemez belső vezérlőprogramok, operációs rendszer biztonsági és más operációs rendszer frissítése érdekében van. Ez a frissítés körülbelül 4 órát vesz igénybe. Vezérlőprogram-frissítés zavaró frissítésről, és az eszköz egy leállásának eredményez. Azt javasoljuk, hogy a frissítés 5 és az eszköz naprakész állapotban tarthatja alkalmazásra.
-> * Új kiadásokban nem láthatók frissítések azonnal, mert a frissítések fázisokra bontva történő bevezetéséhez végezzük. Néhány napot várni, majd újra ezeket a frissítéseket a frissítések keresése hamarosan elérhető lesz.
+> * 5. frissítésétől eszközhöz, lemez belső vezérlőprogramok, operációs rendszer biztonsági és más operációs rendszer frissítése érdekében van. Megközelítőleg 4 óra tooinstall veszi ezt a frissítést. Vezérlőprogram-frissítés zavaró frissítésről, és az eszköz egy leállásának eredményez. Azt javasoljuk, hogy alkalmaz frissítési 5 tookeep az eszköz naprakész.
+> * Új kiadásokban nem láthatók frissítések azonnal, mert a hello frissítések fázisokra bontva történő bevezetéséhez végezzük. Néhány napot várni, majd újra ezeket a frissítéseket a frissítések keresése hamarosan elérhető lesz.
 
 ## <a name="whats-new-in-update-5"></a>5. frissítésétől újdonságai
 
-A következő fontos fejlesztést tartalmaz, és hibajavítások frissítés 5 végzett.
+hello következő fontos fejlesztést tartalmaz, és hibajavítások végzett frissítés 5.
 
-* **Használja az Azure Active Directory (AAD) a StorSimple eszköz Manager szolgáltatásban való hitelesítéshez szükséges** – az 5. frissítésétől kezdve, az Azure Active Directory segítségével hitelesíti a StorSimple eszköz Manager szolgáltatásban. A régi hitelesítési mechanizmus December 2017 elavulttá válik. A felhasználók tartalmaznia kell az új hitelesítési URL-címek be a tűzfalszabályok között. További információkért látogasson el [hitelesítési a StorSimple eszköz hálózatkezelési követelményei felsorolt URL-címek](storsimple-8000-system-requirements.md#url-patterns-for-azure-portal).
+* **Használja az Azure Active Directory (AAD) tooauthenticate StorSimple Device Manager szolgáltatással** – az 5. frissítésétől kezdve, az Azure Active Directory használt tooauthenticate hello StorSimple Device Manager szolgáltatással. hello régi hitelesítési mechanizmus December 2017 elavulttá válik. Hello minden felhasználó be a tűzfalszabályok hello új hitelesítési URL-címének tartalmaznia kell. További információ: túl[hitelesítési URL-címek, hálózati követelményei a StorSimple eszköz hello felsorolt](storsimple-8000-system-requirements.md#url-patterns-for-azure-portal).
 
-    A hitelesítés URL-címe nem szerepel a tűzfalszabályok, a felhasználók látják a kritikus riasztás, amely a StorSimple-eszköz nem tudta hitelesíteni a szolgáltatással. Ha a felhasználók ezt a figyelmeztetést, az új hitelesítési URL-cím szükséges. További információkért látogasson el [riasztások hálózati StorSimple](storsimple-8000-manage-alerts.md#networking-alerts).
+    Hello hitelesítés URL-címe nem szerepel a hello tűzfalszabályok, ha a hello felhasználók látni fogják a kritikus riasztás, amely a StorSimple eszköz hello szolgáltatás nem tudta hitelesíteni. Hello látnak a felhasználók ezt a figyelmeztetést, ha szükségük tooinclude hello új hitelesítési URL-címet. További információ: túl[riasztások hálózati StorSimple](storsimple-8000-manage-alerts.md#networking-alerts).
 
-* **Új verziót a StorSimple Snapshot Manager** -alkalmazás Update 5 megjelenik a StorSimple Snapshot Manager új verziója. Azt javasoljuk, hogy erre a verzióra frissíteni. Ezen verziója kompatibilis frissítés 3 futtató összes StorSimple eszköz vagy újabb verzió van. További információkért látogasson el [központi telepítése a StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
+* **Új verziót a StorSimple Snapshot Manager** -alkalmazás Update 5 megjelenik a StorSimple Snapshot Manager új verziója. Azt javasoljuk, hogy a toothis verzióra frissíteni. Ezen verziója kompatibilis frissítés 3 futtató összes hello StorSimple eszközökhöz vagy újabb verzió van. További információ: túl[központi telepítése a StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md).
 
 
 ## <a name="issues-fixed-in-update-5"></a>A frissítés 5 megoldott problémák
 
-A következő táblázat összefoglalja a problémákat, amelyek a frissítés 5 javítva lett.
+hello következő táblázat az összefoglalást tartalmazza a problémákat, amelyek a frissítés 5 javítva lett.
 
-| Nem | Szolgáltatás | Probléma | Fizikai eszköz vonatkozik | Virtuális eszköz vonatkozik |
+| Nem | Szolgáltatás | Probléma | Érvényes toophysical eszköz | Érvényes toovirtual eszköz |
 | --- | --- | --- | --- | --- |
-| 1 |Windows PowerShell-távelérés |A korábbi változatban egy jelenít meg a felhasználót hiba történt egy távoli kapcsolatot létesíteni a Windows PowerShell segítségével a StorSimple felhő készülék tett kísérlet során. Ez a probléma volt legfelső szintű okozott, és ebben a kiadásban rögzített. |Nem |Igen |
-| 2 |Sávszélesség-sablonok |Korábbi verzióban következne be, amelyek alacsony sávszélességű, mint mi az eszköz konfigurálása a sávszélesség-sablonok. Ebben a kiadásban a probléma megoldásához. |Igen |Igen |
-| 3 |Feladatátvétel |Előző kiadásban Ha egy kötet nagy mennyiségű eszköz keresztül, egy másik futtató eszközre, az Update 4 sikertelen a folyamat sikertelen lesz a hozzáférés-vezérlési rekordokat alkalmazásának megkísérlésekor. Ez a probléma fennáll ebben a kiadásban. |Igen |Igen |
+| 1 |Windows PowerShell-távelérés |Hello a korábbi verzióban egy jelenít meg a felhasználót hiba tooestablish közben egy távoli kapcsolat toohello StorSimple felhő készülék Windows PowerShell segítségével. Ez a probléma volt legfelső szintű okozott, és ebben a kiadásban rögzített. |Nem |Igen |
+| 2 |Sávszélesség-sablonok |A korábbi kiadás következne sávszélesség-sablonok, amelyek alacsony sávszélességű, mint a milyen hello eszköz konfigurálása. Ebben a kiadásban a probléma megoldásához. |Igen |Igen |
+| 3 |Feladatátvétel |Előző kiadásban Ha egy kötet nagy mennyiségű eszköz keresztül Update 4 futtató tooanother eszköz volt sikertelen hello folyamat sikertelen lesz tooapply hello hozzáférés-vezérlési rekordokat tett kísérlet során. Ez a probléma fennáll ebben a kiadásban. |Igen |Igen |
 
 
 
 ## <a name="known-issues-in-update-5-from-previous-releases"></a>A korábbi kiadásokból származó 5. frissítésétől kapcsolatos ismert problémák
 
-Nincsenek új ismert problémák a frissítési 5. A korábbi verzióiról való frissítés 5 átvitt kapcsolatos problémák listáját itt [Update 3 kibocsátási megjegyzések](storsimple-update3-release-notes.md#known-issues-in-update-3).
+Nincsenek új ismert problémák a frissítési 5. A korábbi kiadásokból származó 5 tooUpdate átvitt problémák listáját, a go túl[Update 3 kibocsátási megjegyzések](storsimple-update3-release-notes.md#known-issues-in-update-3).
 
 ## <a name="serial-attached-scsi-sas-controller-and-firmware-updates-in-update-5"></a>Soros csatlakozású SCSI (SAS) vezérlő és a belső vezérlőprogram frissítések frissítés 5
 
-Ebben a kiadásban a vezérlő és LSI illesztőprogram és a belső vezérlőprogram frissítések rendelkezik. Ezek a frissítések telepítéséről további információkért lásd: [frissítés 5 telepítése](storsimple-8000-install-update-5.md) a StorSimple eszköz.
+Ebben a kiadásban a vezérlő és LSI illesztőprogram és a belső vezérlőprogram frissítések rendelkezik. További információ a hogyan tooinstall ezeket a frissítéseket: [frissítés 5 telepítése](storsimple-8000-install-update-5.md) a StorSimple eszköz.
 
 ## <a name="storsimple-cloud-appliance-updates-in-update-5"></a>A frissítés 5 StorSimple felhő készülék frissítések
 
-A frissítés nem alkalmazható a StorSimple felhő készülék (más néven a virtuális eszköz). Új felhőalapú készülékek kell létrehozni a frissítés 5-lemezkép használata. A StorSimple felhő készülék létrehozásával kapcsolatos információért, [központi telepítése és kezelése a StorSimple felhő készülék](storsimple-8000-cloud-appliance-u2.md).
+A frissítés alkalmazott toohello StorSimple felhő készülék (más néven hello virtuális eszköz) nem lehet. Új felhőalapú készülékek hello frissítés 5-lemezkép használatával létrehozott toobe kell. Kapcsolatos információk túl nyissa meg a StorSimple felhő készülék toocreate[központi telepítése és kezelése a StorSimple felhő készülék](storsimple-8000-cloud-appliance-u2.md).
 
 ## <a name="next-step"></a>Következő lépés
 
-Megtudhatja, hogyan [frissítés 5 telepítése](storsimple-8000-install-update-5.md) a StorSimple eszköz.
+Ismerje meg, hogyan túl[frissítés 5 telepítése](storsimple-8000-install-update-5.md) a StorSimple eszköz.
 

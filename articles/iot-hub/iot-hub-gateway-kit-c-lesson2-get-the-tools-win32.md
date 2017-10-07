@@ -1,6 +1,6 @@
 ---
 title: "SensorTag eszköz & Azure IoT átjáró - rész 2: Get tools (Windows) |} Microsoft Docs"
-description: "Az eszközök és a szoftvert telepíteni a a Windows rendszert futtató számítógépen, létrehoz egy IoT-központot, és regisztrálja az eszközt az IoT-központ az."
+description: "Hello eszközeinek és hello szoftver telepítése a Windows rendszert futtató állomáson, létrehoz egy IoT-központot, és az eszközt regisztrálni kell az IoT-központ hello."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 0d8ba03df63d0b8657a9e275fc636e806c66b683
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b30b60a0115413394992061a88dde4cd442ac19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-windows-7-and-later"></a>Szerezze be az eszközöket (Windows 7 és újabb verziók)
+# <a name="get-hello-tools-windows-7-and-later"></a>Első hello eszközök (Windows 7 és újabb verziók)
 > [!div class="op_single_selector"]
 > * [Windows 7 vagy újabb](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
 > * [Ubuntu 16.04](iot-hub-gateway-kit-c-lesson2-get-the-tools-ubuntu.md)
@@ -32,97 +32,97 @@ ms.lasthandoff: 07/11/2017
 ## <a name="what-you-will-do"></a>Mit fog
 
 - Telepítse a Git, Node.js, Gulp, Python.
-- Telepítse az Azure parancssori felület (CLI). 
+- Hello Azure parancssori felület (CLI) telepítése. 
 
-Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-gateway-kit-c-troubleshooting.md).
+Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-gateway-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 
 Ez a lecke témák köre:
 
-- Telepítése [Git](https://git-scm.com/) és [Node.js](https://nodejs.org/en/).
-  - Git egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a lecke a mintaalkalmazás Git tárolja.
+- Hogyan tooinstall [Git](https://git-scm.com/) és [Node.js](https://nodejs.org/en/).
+  - Git egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a lecke hello-mintaalkalmazás Git tárolja.
   - NODE.js a JavaScript futásidejű és gazdag csomag-ökoszisztéma.
-- Használata [NPM](https://www.npmjs.com/) Node.js fejlesztői eszközök telepítése.
-  - A Node.js minimálisan szükséges verziója a 4.5-ös LTS.
-  - NPM egyike a Node.js csomag feletteseit.
-- Hogyan kell telepíteni a Visual Studio Code.
+- Hogyan toouse [NPM](https://www.npmjs.com/) tooinstall Node.js fejlesztői eszközök.
+  - hello minimálisan szükséges verziója Node.js 4.5-ös LTS.
+  - NPM hello csomag kezelők a Node.js egyike.
+- Hogyan tooinstall Visual Studio Code.
   - A Visual Studio Code egy többplatformos, a Windows, Linux és macOS egyszerűsített, de hatékony forráskód szerkesztőjében. Nagyszerű hibakeresés, beágyazott Git-vezérlő, szintaxis kiemelését, intelligens kód befejezési, kódtöredékek, és támogatása kód újrabontása is rendelkezik.
-- Hogyan kell telepíteni a Python.
+- Hogyan tooinstall Python.
   - Python széles körben használt magas szintű, általános célú, értelmezett és dinamikus programozási nyelv.
-- Tudnivalók az Azure parancssori felület telepítése.
-  - Az Azure parancssori felület olyan többplatformos parancssori környezetet biztosít az Azure. Közvetlenül a parancssorból kiépítését működik, és kezelheti az erőforrásokat.
-- Hogyan lehet az Azure CLI segítségével létrehoz egy IoT-központot.
+- Hogyan tooinstall hello Azure parancssori felület.
+  - hello Azure CLI olyan többplatformos parancssori környezetet biztosít az Azure. Közvetlenül egy parancssor tooprovision dolgozhassanak és kezelheti az erőforrásokat.
+- Hogyan toouse hello Azure CLI toocreate egy IoT-központot.
 
 ## <a name="what-you-need"></a>Mi szükséges
 
-- Az eszközök és szoftverek letöltése az internethez.
+- Az Internet kapcsolat toodownload hello eszközök és szoftverek.
 - A Windows rendszerű számítógépeken.
 
 ## <a name="install-git-and-nodejs"></a>Telepítse a Git szoftver, Node.js
 
-Kattintson az alábbi hivatkozásokra kattintva töltse le és telepítse a Git szoftver, a Windows Node.js LTS.
+A következő hivatkozások toodownload hello kattintson, és telepítse a Git és a Node.js-es lts verzió Windows.
 
 - [Git letöltése a Windows rendszerhez](https://git-scm.com/download/win/)
 - [Node.js-es lts verzió letöltése a Windows rendszerhez](https://nodejs.org/en/)
 
 ## <a name="install-nodejs-development-tools"></a>Node.js fejlesztői eszközök telepítése
 
-Használhat [gulp.js](http://gulpjs.com/) automatikus központi telepítési és a parancsprogramok végrehajtását.
+Használhat [gulp.js](http://gulpjs.com/) tooautomate üzembe helyezési és parancsprogramok végrehajtását.
 
-Nyomja le az ENTER `Windows + R`, típus `cmd` nyomja le az ENTER `Enter` nyisson meg egy parancssori ablakot, és futtassa a következő parancsot:
+Nyomja le az ENTER `Windows + R`, típus `cmd` nyomja le az ENTER `Enter` tooopen egy parancssori ablakot, és majd a futtatási hello a következő parancsot:
 
 ```cmd
 npm install -g gulp
 ```
 
-Ha a telepítési problémákat tapasztal, tekintse meg a [hibaelhárítási útmutatója](iot-hub-gateway-kit-c-troubleshooting.md) gyakori problémák megoldásainak.
+Hello telepítési problémákat tapasztal, tekintse meg a hello [hibaelhárítási útmutatója](iot-hub-gateway-kit-c-troubleshooting.md) a megoldások toocommon problémákat.
 
 > [!Note]
-> Csomópont, NPM és Gulp Node.js létre automatizálási parancsfájlokat futtatásához szükséges.
+> Csomópont, NPM és Gulp a node.js fejlesztett szükséges toorun automatizálási parancsfájlokat.
 
 ## <a name="install-python"></a>Python telepítése
 
-Python 2.7, 3.4-es vagy 3.5-ös közül választhat. Ebben az oktatóanyagban a Python 2.7 használjuk. Ha már telepítette a python, folytassa a következő szakasszal.
+Python 2.7, 3.4-es vagy 3.5-ös közül választhat. Ebben az oktatóanyagban a Python 2.7 használjuk. Ha már telepítette a python, nyissa meg a következő szakasz toohello.
 
 [Python letöltése a Windows rendszerhez](https://www.python.org/downloads/)
 
-Ahol Python.exe és pip.exe vannak telepítve a rendszer a mappák elérési útját adja hozzá kell `PATH` környezeti változó. Alapértelmezés szerint a python.exe telepítve van a `C:\Python27` és pip.exe telepítve van-e `C:\Python27\Scripts`.
+Szükség tooadd hello elérési útját, amelyben Python.exe és pip.exe is telepített toohello rendszer hello mappák `PATH` környezeti változó. Alapértelmezés szerint a python.exe telepítve van a `C:\Python27` és pip.exe telepítve van-e `C:\Python27\Scripts`.
 
-## <a name="install-the-azure-cli"></a>Telepítse az Azure CLI-t
+## <a name="install-hello-azure-cli"></a>Hello Azure parancssori felület telepítése
 
-Az Azure parancssori felület telepítéséhez kövesse az alábbi lépéseket:
+tooinstall hello Azure CLI használata esetén kövesse az alábbi lépéseket:
 
 1. Nyisson meg egy parancssori ablakot rendszergazdaként.
 
-2. Az Azure parancssori felület telepítése a következő parancsok futtatásával:
+2. Hello Azure parancssori felület telepítése hello a következő parancsok futtatásával:
 
    ```cmd
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
 
-   A telepítés 5 percig is eltarthat.
+   hello telepítési 5 percig is eltarthat.
 
-3. Ellenőrizze a telepítést a következő parancs futtatásával:
+3. Ellenőrizze a hello telepítést hello a következő parancs futtatásával:
 
    ```cmd
    az iot -h
    ```
 
-   Ha a telepítés sikerült a következő kimenetet kell megjelennie.
+   Meg kell jelennie a hello parancskimenet sikeres hello telepítés esetén.
 
    ![Az Azure parancssori felület telepítésének ellenőrzése](media/iot-hub-gateway-kit-lessons/lesson2/az_iot_help_win.png)
 
 ## <a name="install-visual-studio-code"></a>Visual Studio Code telepítése
 
-Visual Studio Code az oktatóanyag későbbi részében, konfigurációs fájlok szerkesztésére használhatja.
+Visual Studio Code később használható hello oktatóanyag tooedit konfigurációs fájlok.
 
 [Töltse le](https://code.visualstudio.com/docs/setup/windows) és a Visual Studio Code telepítése.
 
 ## <a name="summary"></a>Összefoglalás
 
-Telepítette a szükséges eszközök és a szoftver a számítógépen. A következő feladathoz az Azure parancssori felület használatával létrehoz egy IoT-központot, és regisztrálja az eszközt az IoT hub.
+A gazdaszámítógépen telepített összes hello szükséges eszközök és szoftverek. A következő feladathoz toouse hello Azure CLI toocreate egy IoT-központot, és regisztrálja az eszközt az IoT hub.
 
 ## <a name="next-steps"></a>Következő lépések
 [IoT Hub létrehozása és az eszköz regisztrálása](iot-hub-gateway-kit-c-lesson2-register-device.md)

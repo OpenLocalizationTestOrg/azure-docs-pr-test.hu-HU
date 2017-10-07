@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Power BI Embedded jelentések menthetők |} Microsoft Docs"
-description: "Tudnivalók a Power BI embedded belül jelentések menthetők. Ehhez szükséges, hogy megfelelő engedélyekkel ahhoz, hogy sikeresen működjön."
+title: "az Azure Power BI Embedded aaaSave jelentések |} Microsoft Docs"
+description: "Ismerje meg, hogyan toosave jelentések belül a Power BI embedded. Sikeresen ehhez rendelés toowork a megfelelő engedélyekkel."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: ad895004cc2972f2ded81566186325a16d401151
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 984537ce1ce1afc787d6c6c9f61ae8d6226d1171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="save-reports-in-power-bi-embedded"></a>A Power BI Embedded jelentések menthetők
 
-Tudnivalók a Power BI embedded belül jelentések menthetők. Ehhez szükséges, hogy megfelelő engedélyekkel ahhoz, hogy sikeresen működjön.
+Ismerje meg, hogyan toosave jelentések belül a Power BI embedded. Sikeresen ehhez rendelés toowork a megfelelő engedélyekkel.
 
-Power BI Embedded belül szerkesztheti a meglévő jelentéseket, és mentse őket. Is új jelentés létrehozása és mentése új jelentésként kattintva létrehozhat egyet.
+Power BI Embedded belül szerkesztheti a meglévő jelentéseket, és mentse őket. Új jelentés létrehozása is, és elmentse egy új jelentés toocreate egyet.
 
-Ahhoz, hogy a jelentés mentése először kell a megfelelő hatókörként az adott jelentés jogkivonat létrehozásához:
+A sorrend toosave jelentés először kell toocreate jogkivonat hello adott jelentés hello jobb hatókörök:
 
-* Engedélyezi a Mentés Report.ReadWrite hatókörben szükség
-* Ha engedélyezi a Mentés másként, Report.Read és Workspace.Report.Copy hatókörben szükség
-* Engedélyezi a Mentés másként, Report.ReadWrite Workspace.Report.Copy és szolgáltatás
+* Mentés Report.ReadWrite hatókör tooenable szükség
+* Mentés másként tooenable, Report.Read és Workspace.Report.Copy hatókörben szükség
+* tooenable mentése, valamint Mentés másként, Report.ReadWrite és Workspace.Report.Copy szolgáltatás
 
-Illetve ahhoz, hogy a jobb oldali gombok fájl menü meg kell adnia a beágyazási konfigurációjában a megfelelő engedélye a jelentés beágyazása a save/mentés:
+Illetve rendelés tooenable hello jobb save/mentése a gombok fájl menü, mivel kell tooprovide hello jobb gombbal hello beágyazási konfigurációs engedélyt amikor Ön beágyazási hello jelentés:
 
 * modellek. Permissions.ReadWrite
 * modellek. Permissions.Copy
 * modellek. Permissions.All
 
 > [!NOTE]
-> A hozzáférési token is kell a megfelelő hatókörök. További információkért lásd: [hatókörök](power-bi-embedded-app-token-flow.md#scopes).
+> A hozzáférési token kell hello megfelelő hatókörök. További információkért lásd: [hatókörök](power-bi-embedded-app-token-flow.md#scopes).
 
 ## <a name="embed-report-in-edit-mode"></a>Jelentés beágyazása a szerkesztési módban
 
-Tegyük fel, jelentés beágyazása szerkesztési módban az alkalmazásban, csak adja át a megfelelő tulajdonságok beágyazási konfigurációban, és hívja meg powerbi.embed() belül kívánja. Engedélyek és a viewMode láthatók a mentési szüksége lesz, és menteni, ha a gomb szerkesztési módban. További információkért lásd: [konfigurációs részletek beágyazása](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
+Most mondja ki meg tooEmbed szerkesztési módban a jelentés az alkalmazás belül, toodo csak hello engedély tulajdonságai beágyazási konfigurációs adjon át, és hívja meg powerbi.embed(). Szüksége lesz toosupply engedélyek és a sorrend toosee hello mentés a viewMode gombként szerkesztési módban. További információkért lásd: [konfigurációs részletek beágyazása](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
 
 Ha például a JavaScript:
 
@@ -54,7 +54,7 @@ Ha például a JavaScript:
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,10 +71,10 @@ Ha például a JavaScript:
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
@@ -82,10 +82,10 @@ Most egy jelentés rendszer beágyazza az alkalmazás szerkesztési módban.
 
 ## <a name="save-report"></a>Jelentés mentése
 
-Embbeding után a a jelentést a szerkesztési módban a jobb oldali token és mentheti a jelentést, a Fájl menüből, vagy JavaScript engedélyeket:
+Miután Embbeding hello jelentést a szerkesztési módban hello jobb token és engedélyeket hello jelentés mentheti, hello fájl menüből, vagy JavaScript:
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
 
  // Save report
@@ -95,7 +95,7 @@ Embbeding után a a jelentést a szerkesztési módban a jobb oldali token és m
 ## <a name="save-as"></a>Mentés másként
 
 ```
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -107,9 +107,9 @@ Embbeding után a a jelentést a szerkesztési módban a jobb oldali token és m
 ```
 
 > [!IMPORTANT]
-> Csak azután *Mentés másként* egy új jelentés létrehozása. A mentés után a vászon továbbra is azt a régi jelentés szerkesztési módban, és nem az új jelentést. Szüksége lesz a létrehozott új jelentés beágyazása. Ehhez egy új hozzáférési jogkivonat-jelentés létrehozásához szükségesek.
+> Csak azután *Mentés másként* egy új jelentés létrehozása. Hello menteni, miután vásznon a hello továbbra is látható hello régi jelentés a szerkesztési módot, és nem hello új jelentés. Szüksége lesz tooembed hello új jelentés létrehozása. Ehhez egy új hozzáférési jogkivonat-jelentés létrehozásához szükségesek.
 
-Majd szüksége lesz a betöltése után az új jelentést a *Mentés másként*. Ez hasonlít bármely jelentés beágyazása.
+Tooload hello új jelentés után kell egy *Mentés másként*. Ez hasonló tooembedding jelentései van.
 
 ```
 <div id="reportContainer"></div>
@@ -120,7 +120,7 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
@@ -135,5 +135,5 @@ var embedConfiguration = {
 [Hitelesítés és engedélyezés a Power BI Embedded használatával](power-bi-embedded-app-token-flow.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript beágyazási minta](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-További kérdései vannak? [Tegye próbára a Power BI közösségét](http://community.powerbi.com/)
+További kérdései vannak? [Próbálja meg a Power BI-Közösség hello](http://community.powerbi.com/)
 

@@ -1,5 +1,5 @@
 ---
-title: "A virtuálisgép-méretezési csoportban lévő virtuális gépek kezeléséhez |} Microsoft Docs"
+title: "a virtuálisgép-méretezési csoportban lévő virtuális gépek aaaManage |} Microsoft Docs"
 description: "A virtuálisgép-méretezési beállítása az Azure PowerShell használatával a virtuális gépek kezeléséhez."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: d09a020b903e5f43afe03b86c675bcc1eb536cbc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d848729c0fc708bd596b61feb528cf4bf4bafd4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>A virtuálisgép-méretezési csoportban lévő virtuális gépek kezelése
-A virtuálisgép-méretezési csoportban lévő virtuális gépek kezeléséhez használja a cikkben a feladatokat.
+Ez a cikk toomanage virtuális gépek a virtuálisgép-méretezési csoportban lévő hello feladatok használja.
 
-A virtuálisgép-méretezési csoportban lévő kezelése a feladatokról a legtöbb szükséges, hogy ismeri-e a Példányazonosító a kezelni kívánt számítógép. Használhat [Azure erőforrás-kezelő](https://resources.azure.com) méretezési csoportban lévő virtuális gép Példányazonosítója kereséséhez. Az erőforrás-kezelő által végzett feladatok állapotának ellenőrzéséhez is használni.
+Hello feladatokról a virtuálisgép-méretezési csoportban lévő kezelése a legtöbb szükséges, hogy ismeri a hello azonosítója, amelyet az toomanage hello gép. Használhat [Azure erőforrás-kezelő](https://resources.azure.com) egy virtuálisgép-méretezési csoportban lévő toofind hello Példányazonosítója. Az erőforrás-kezelő tooverify hello befejezése hello feladatok állapotának is használja.
 
-Az Azure PowerShell legfrissebb verziójának telepítésével, a kívánt előfizetés kiválasztásával és a fiókjába való bejelentkezéssel kapcsolatos információkért lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
+Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) hello Azure PowerShell legújabb verziójának telepítése, az előfizetés kiválasztásával és tooyour fiók bejelentkezés kapcsolatos információkat.
 
 ## <a name="display-information-about-a-scale-set"></a>A méretezési kapcsolatos információk megjelenítése
-A méretezési csoport, amely a példányait tartalmazó nézetet is nevezzük kapcsolatos általános információkat kaphat. Másik lehetőségként kaphat konkrétabb információkat, például a méretezési csoportban lévő erőforrások adatait.
+A méretezési csoport, amely egyben hivatkozott tooas hello példányait tartalmazó nézetet kapcsolatos általános információkat kaphat. Másik lehetőségként kaphat konkrétabb információkat, például hello méretezési csoportban lévő hello erőforrások adatait.
 
-Az ajánlatban szereplő értékek cserélje le a nevét vagy az erőforráscsoport és állítsa be, és futtassa a parancsot:
+Cserélje le a hello hello nevét vagy az erőforráscsoportot és a skála állítsa be, és futtassa a hello parancs értékeket idézőjelek között:
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
@@ -91,7 +91,7 @@ Ehhez hasonló adja vissza:
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
 
-Az ajánlatban szereplő értékek cserélje le a erőforrás csoport és a méretezési készlet nevét. Cserélje le  *#*  a virtuális gép, amelyet szeretne információ jelenik meg, és futtassa a példány azonosítója:
+Cserélje le a hello hello nevet, a csoport és a skála erőforráskészlethez értékeket idézőjelek között. Cserélje le  *#*  hello virtuális gép tooget tájékoztatást szeretne kapni, és futtassa azt hello példány azonosítója:
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
@@ -145,11 +145,11 @@ Ez a példa hasonlót adja vissza:
       ProvisioningState           : Succeeded
 
 ## <a name="start-a-virtual-machine-in-a-scale-set"></a>Indítsa el a virtuálisgép-méretezési csoportban lévő
-Az ajánlatban szereplő értékek cserélje le a erőforrás csoport és a méretezési készlet nevét. Cserélje le  *#*  a virtuális gép, amelyet szeretne elindítani, és futtassa az azonosítóval:
+Cserélje le a hello hello nevet, a csoport és a skála erőforráskészlethez értékeket idézőjelek között. Cserélje le  *#*  hello virtuális gép kívánt toostart, és futtassa a hello azonosítóval:
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-Az erőforrás-kezelőben, láthatja, hogy a példány állapota **futtató**:
+Az erőforrás-kezelőben, láthatja, hogy hello hello példány állapota **futtató**:
 
     "statuses": [
       {
@@ -165,14 +165,14 @@ Az erőforrás-kezelőben, láthatja, hogy a példány állapota **futtató**:
       }
     ]
 
-A méretezési készletben - InstanceId paraméter nem használatával is elindítható a virtuális gépeket.
+Hello méretezési készletben hello - InstanceId paraméter nem segítségével is elindítható hello összes virtuális gépet.
 
 ## <a name="stop-a-virtual-machine-in-a-scale-set"></a>Méretezési csoportban lévő virtuális gép leállítása
-Az ajánlatban szereplő értékek cserélje le a erőforrás csoport és a méretezési készlet nevét. Cserélje le  *#*  a virtuális gép leállítása, és futtassa kívánt azonosítóval:
+Cserélje le a hello hello nevet, a csoport és a skála erőforráskészlethez értékeket idézőjelek között. Cserélje le  *#*  hello virtuális gép kívánt toostop, és futtassa a hello azonosítóval:
 
     Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-Az erőforrás-kezelőben, láthatja, hogy a példány állapota **felszabadítása**:
+Az erőforrás-kezelőben, láthatja, hogy hello hello példány állapota **felszabadítása**:
 
     "statuses": [
       {
@@ -188,28 +188,28 @@ Az erőforrás-kezelőben, láthatja, hogy a példány állapota **felszabadít�
       }
     ]
 
-Állítsa le a virtuális gépet, és nem felszabadítani, használja a - StayProvisioned paramétert. A készlet összes virtuális gépet a - InstanceId paraméter nem segítségével állíthatók le.
+a virtuális gépek toostop nem felszabadítani azt, használja a hello - StayProvisioned paramétert. Hello hello nem hello - InstanceId paraméter segítségével állítsa be az összes virtuális gép leállítása
 
 ## <a name="restart-a-virtual-machine-in-a-scale-set"></a>Indítsa újra a virtuálisgép-méretezési csoportban lévő
-Az ajánlatban szereplő értékek cserélje le az erőforráscsoport és a méretezési csoport nevét. Cserélje le  *#*  a virtuális gép, amelyet szeretne újraindítani, és futtassa az azonosítóval:
+Cserélje le a erőforrás csoport és hello méretezési hello nevű értékeket idézőjelek között hello. Cserélje le  *#*  hello virtuális gép kívánt toorestart, és futtassa a hello azonosítóval:
 
     Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-A készlet összes virtuális gépet a - InstanceId paraméter nem használatával indíthatja újra.
+Minden hello virtuális gépek a hello beállítása hello - InstanceId paraméter nem használatával indíthatja el.
 
 ## <a name="remove-a-virtual-machine-from-a-scale-set"></a>A virtuális gép eltávolítása egy méretezési csoport
-Az ajánlatban szereplő értékek cserélje le az erőforráscsoport és a méretezési csoport nevét. Cserélje le  *#*  a virtuális gép, amelyet szeretne eltávolítani, és futtassa az azonosítóval:  
+Cserélje le a erőforrás csoport és hello méretezési hello nevű értékeket idézőjelek között hello. Cserélje le  *#*  hello virtuális gép kívánt tooremove, és futtassa a hello azonosítóval:  
 
     Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
-A virtuális gép méretezési egyszerre is eltávolíthat, ha nem használja a - InstanceId paraméter.
+Hello virtuális gép méretezési egyszerre megszüntetheti a nem a hello - InstanceId paraméter használatával.
 
-## <a name="change-the-capacity-of-a-scale-set"></a>A kapacitás, a méretezési módosítása
-Adja hozzá, vagy távolítsa el a virtuális gépeket a készlet kapacitásának módosításával. A méretezési, kapacitás beállítása a kívánt műveleteket kell lennie, és ezután frissítse a méretezési készletben az új kapacitással rendelkező kívánt beolvasása. Ezek a parancsok cserélje le az ajánlatban szereplő értékeket az erőforráscsoport és a méretezési csoport nevét.
+## <a name="change-hello-capacity-of-a-scale-set"></a>A méretezési hello kapacitás módosítása
+Adja hozzá, vagy távolítsa el a virtuális gépeket hello kapacitás hello készlet módosításával. Toochange, set hello kapacitás toowhat toobe-érdemes, és frissítse hello méretezési hello új kapacitással rendelkező kívánt méretezési hello beolvasása. Ezek a parancsok cserélje le a erőforrás csoport és hello méretezési hello nevű értékeket idézőjelek között hello.
 
     $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
     $vmss.sku.capacity = 5
     Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
-Virtuális gépek a méretezési készlet távolítja el, ha a virtuális gépek legmagasabb azonosítókkal először törlődnek.
+Virtuális gépek hello méretezési készlet távolítja el, ha hello virtuális gépek hello legmagasabb azonosítók először törlődnek.
 

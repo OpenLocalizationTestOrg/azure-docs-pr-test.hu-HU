@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Site Recovery mátrix a replikálása Azure-bA |} Microsoft Docs"
-description: "A támogatott operációs rendszerek és összetevők összegzi az Azure Site Recovery"
+title: "aaaAzure Site Recovery támogatási mátrix tooAzure replikálásához |} Microsoft Docs"
+description: "Az Azure Site Recovery összegzi a hello támogatott operációs rendszerek és összetevők"
 services: site-recovery
 documentationcenter: 
 author: Rajani-Janaki-Ram
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/04/2017
 ms.author: rajanaki
-ms.openlocfilehash: a2ccc3d43a56a569897e1efe24f576eb92610ec3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: eae1db2ff1392d272f6b2eb0e3410da19d09da7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-site-recovery-support-matrix-for-replicating-from-on-premises-to-azure"></a>Az Azure Site Recovery mátrix a helyszíni replikálása Azure-bA
+# <a name="azure-site-recovery-support-matrix-for-replicating-from-on-premises-tooazure"></a>A helyszíni tooAzure replikálásához az Azure Site Recovery támogatási mátrix
 
 
-Ez a cikk az Azure Site Recovery replikálásához és helyreállítása Azure által támogatott konfigurációk és összetevőket foglalja össze. Az Azure Site Recovery követelményeiről kapcsolatban bővebben lásd: a [Előfeltételek](site-recovery-prereq.md).
+Ez a cikk az Azure Site Recovery replikálásához és helyreállítása tooAzure támogatott konfigurációk és összetevőket foglalja össze. Az Azure Site Recovery követelményeiről kapcsolatban bővebben lásd: hello [Előfeltételek](site-recovery-prereq.md).
 
 
 ## <a name="support-for-deployment-options"></a>Telepítési lehetőségek támogatása
 
 **Üzembe helyezés** | **VMware vagy fizikai kiszolgáló** | **A Hyper-V (a/nélkül a Virtual Machine Manager)** |
 --- | --- | ---
-**Azure Portal** | Helyszíni VMware virtuális gépek az Azure storage, Azure Resource Manager vagy a hagyományos tárolási és a hálózatok.<br/><br/> A Resource Manager-alapú vagy a klasszikus virtuális gépek feladatátvétele. | A helyszíni Hyper-V virtuális gépek Azure-tárolót, a Resource Manager és a hagyományos tárolási és a hálózatok.<br/><br/> A Resource Manager-alapú vagy a klasszikus virtuális gépek feladatátvétele.
+**Azure Portal** | Helyszíni VMware virtuális gépek tooAzure tárolás, az Azure Resource Manager vagy a hagyományos tárolási és a hálózatok.<br/><br/> Feladatátvételi tooResource Manager vagy a klasszikus virtuális gépeket. | A helyszíni Hyper-V virtuális gépek tooAzure tároló, a Resource Manager és a hagyományos tárolási és a hálózatok.<br/><br/> Feladatátvételi tooResource Manager vagy a klasszikus virtuális gépeket.
 **Klasszikus portál** | Karbantartási mód csak. Nem hozható létre új tárolók. | Karbantartási mód csak.
 **PowerShell** | Jelenleg nem támogatott. | Támogatott
 
@@ -56,53 +56,53 @@ Ez a cikk az Azure Site Recovery replikálásához és helyreállítása Azure �
 
 
   >[!Note]
-  >A Hyper-V helyet, amely a Windows Server 2016 és 2012 R2 rendszert futtató gazdagépeken keveri jelenleg nem támogatott. A Windows Server 2016 gazdagépen virtuális gépeket egy másik helyre történő helyreállítás jelenleg nem támogatott.
+  >A Hyper-V helyet, amely a Windows Server 2016 és 2012 R2 rendszert futtató gazdagépeken keveri jelenleg nem támogatott. Helyreállítási tooan másik helyre a virtuális gépek olyan Windows Server 2016 gazdagépen jelenleg nem támogatott.
 
 ## <a name="support-for-replicated-machine-os-versions"></a>A replikált gép operációsrendszer-verziók támogatása
 
-Meg kell felelnie a védett virtuális gépek [Azure-követelményeknek](#failed-over-azure-vm-requirements) az Azure-bA replikálása esetén.
-A következő táblázat összefoglalja a replikált operációs rendszer támogatásának különböző telepítési forgatókönyvek az Azure Site Recovery használata során. Ez a támogatás nem alkalmazható az említett operációs rendszer bármilyen számítási feladatot.
+Meg kell felelnie a védett virtuális gépek [Azure-követelményeknek](#failed-over-azure-vm-requirements) tooAzure replikálása esetén.
+a következő táblázat hello replikált operációs rendszer támogatásának különböző telepítési forgatókönyvek az Azure Site Recovery használata során foglalja össze. Ez a támogatás nem alkalmazható, az összes hello futó munkaterhelés említett operációs rendszer.
 
  **VMware vagy fizikai kiszolgáló** | **A Hyper-V (a/VMM nélkül)** |
 --- | --- |
-64 bites Windows Server 2012 R2, Windows Server 2012, Windows Server 2008 R2: legalább SP1<br/>*Windows Server 2016* – jelenleg a VMware virtuális gépek és fizikai kiszolgálókon nem támogatott. <br/><br/> Red Hat Enterprise Linux: 5.2 való 5.11, 6.1 való 6.8, 7.0 való 7.3 <br/><br/>Centos: 5.2 való 5.11, 6.1 való 6.8, 7.0 való 7.3 <br/><br/>Ubuntu 14.04 LTS server[ (támogatott kernel verziók)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Ubuntu 16.04 LTS server[ (támogatott kernel verziók)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Oracle Enterprise Linux 6.4, vagy a Red Hat kompatibilis kernel, vagy a szoros vállalati Kernel kiadás 3 (UEK3) 6.5 <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(A gépek replikálásához SLES 11 SP3 az SLES 11 SP4 frissítés nem támogatott. Ha a replikált gép SLES 11SP3 az SLES 11 SP4 frissítették, szüksége lesz tiltsa le a replikációt, és a post újra a frissítést a gép védelméhez.) | A vendég operációs rendszer [Azure által támogatott](https://technet.microsoft.com/library/cc794868.aspx)
+64 bites Windows Server 2012 R2, Windows Server 2012, Windows Server 2008 R2: legalább SP1<br/>*Windows Server 2016* – jelenleg a VMware virtuális gépek és fizikai kiszolgálókon nem támogatott. <br/><br/> Red Hat Enterprise Linux: 5.2-es too5.11, 6.1 too6.8, 7.0 too7.3 <br/><br/>Centos: 5.2-es too5.11, 6.1 too6.8, 7.0 too7.3 <br/><br/>Ubuntu 14.04 LTS server[ (támogatott kernel verziók)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Ubuntu 16.04 LTS server[ (támogatott kernel verziók)](#supported-ubuntu-kernel-versions-for-vmwarephysical-servers)<br/><br/>Oracle Enterprise Linux 6.4 hello Red Hat kompatibilis kernel vagy szoros vállalati Kernel Release 3 (UEK3) futtató 6.5 <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(A gépek replikálásához SLES 11 SP3 tooSLES 11 SP4 frissítés nem támogatott. Ha a replikált gép SLES 11SP3 tooSLES 11 SP4 frissítették, meg lesz toodisable replikációs kell és újra post hello frissítés hello gép védelméhez.) | A vendég operációs rendszer [Azure által támogatott](https://technet.microsoft.com/library/cc794868.aspx)
 
 
 >[!IMPORTANT]
->(VMware vagy fizikai kiszolgálók replikálása Azure-bA vonatkozik)
+>(Alkalmazható tooVMware/fizikai kiszolgálók replikálása tooAzure)
 >
-> Red Hat Enterprise Linux Server 7 + és CentOS 7 + kiszolgálókon kernel verzió 3.10.0-514 támogatott az Azure Site Recovery mobilitási szolgáltatás 9.8 verziójával kezdve.<br/><br/>
-> Az ügyfelek a 3.10.0-514 kernel a mobilitási szolgáltatás 9.8 verziónál korábbi verziójával is tiltsa le a replikációt. frissítse a mobilitási szolgáltatás verziója 9.8 verzióra, majd engedélyezze újra a replikációt.
+> Red Hat Enterprise Linux Server 7 + és CentOS 7 + kiszolgálókon, kernel verzió 3.10.0-514 verziójától kezdve alkalmazható hello Azure Site Recovery mobilitási szolgáltatás 9.8 verziójának.<br/><br/>
+> Ügyfelek hello 3.10.0-514 kernel verziójával készült hello mobilitásiszolgáltatás-verziót 9.8 kisebb a szükséges toodisable replikáció, a hello mobilitási szolgáltatás tooversion 9.8 frissítés hello verzióját, majd újra a replikáció engedélyezése.
 
 
 ### <a name="supported-ubuntu-kernel-versions-for-vmwarephysical-servers"></a>Ubuntu kernel támogatott verziók, VMware vagy fizikai kiszolgálók
 
 **Kiadás** | **Mobilitási szolgáltatás verziója** | **Kernel-verzió** |
 --- | --- | --- |
-14.04 LTS | 9.9 | a 3.13.0-117-generic, 3.13.0-24-Generic<br/>a 3.16.0-77-generic, 3.16.0-25-Generic<br/>a 3.19.0-80-generic, 3.19.0-18-Generic<br/>a 4.2.0-42-generic, 4.2.0-18-Generic<br/>a 4.4.0-75-generic 4.4.0-21-Generic |
-14.04 LTS | 9.10 | a 3.13.0-121-generic, 3.13.0-24-Generic<br/>a 3.16.0-77-generic, 3.16.0-25-Generic<br/>a 3.19.0-80-generic, 3.19.0-18-Generic<br/>a 4.2.0-42-generic, 4.2.0-18-Generic<br/>a 4.4.0-81-generic 4.4.0-21-Generic |
-16.04 LTS | 9.10 | a 4.4.0-81-generic, 4.4.0-21-Generic<br/>a 4.8.0-56-generic, 4.8.0-34-Generic<br/>a 4.10.0-24-generic 4.10.0-14-Generic |
+14.04 LTS | 9.9 | 3.13.0-24-Generic too3.13.0 117-általános,<br/>too3.16.0-77-általános 3.16.0-25-Generic<br/>3.19.0-18-Generic too3.19.0 80 – Általános,<br/>4.2.0-18-Generic too4.2.0 42-általános,<br/>4.4.0-21-Generic too4.4.0 75 – általános |
+14.04 LTS | 9.10 | 3.13.0-24-Generic too3.13.0 121-általános,<br/>too3.16.0-77-általános 3.16.0-25-Generic<br/>3.19.0-18-Generic too3.19.0 80 – Általános,<br/>4.2.0-18-Generic too4.2.0 42-általános,<br/>4.4.0-21-Generic too4.4.0 81-es – általános |
+16.04 LTS | 9.10 | 4.4.0-21-Generic too4.4.0 81-általános,<br/>4.8.0-34-Generic too4.8.0 56-általános,<br/>4.10.0-14-Generic too4.10.0 24 – általános |
 
 
 ## <a name="supported-file-systems-and-guest-storage-configurations-on-linux-vmwarephysical-servers"></a>Támogatott fájlrendszerek és a Vendég tárolási konfigurációk alakíthatók ki Linux (VMware vagy fizikai kiszolgálók)
 
-A következő fájl rendszerek és a tárolási konfiguráció szoftvereket támogatja a VMware vagy fizikai kiszolgálókon futó Linux-kiszolgálókon:
+hello következő fájl, rendszerek és a tárolási konfiguráció szoftvereket támogatja a VMware vagy fizikai kiszolgálókon futó Linux-kiszolgálókon:
 * Fájlrendszer: ext3, ext4, ReiserFS (Suse Linux Enterprise Server csak), XFS
 * Kötetkezelő: LVM2
 * A többutas szoftver: eszköz leképezője
 
 Paravirtualized tárolási eszközök (az exportált paravirtualized-illesztőprogramok) nem támogatottak.<br/>
 Több sor blokk IO eszközökön nem támogatottak.<br/>
-A HP CCISS tárolóvezérlő fizikai kiszolgálók nem támogatottak.<br/>
+Fizikai kiszolgálók hello HP CCISS tárolóvezérlő nem támogatottak.<br/>
 
 >[!Note]
-> A Linux-kiszolgálókon a következő könyvtárak (Ha külön partíciók /-fájlrendszerek beállított) kell lennie azon a lemezen (az operációs rendszer lemezének) a forráskiszolgálón: / (gyökér), / Boot, / usr, /usr/local, /var, etc<br/><br/>
-> A metaadatok ellenőrzőösszeg például XFS fájlrendszerek XFSv5 szolgáltatást támogat a mobilitási szolgáltatás 9.10 verziójával kezdve. Ha XFSv5 funkciókat használ, győződjön meg arról, 9.10 vagy későbbi Mobilitásiszolgáltatás-verziót futtat. A xfs_info segédprogram segítségével ellenőrizze a XFS superblock a partíció. Ha ftype értéke 1, majd XFSv5 szolgáltatások használatban van.
+> A következő könyvtárak Linux kiszolgálók hello (Ha külön partíciók /-fájlrendszerek beállított) kell lennie a hello azonos (lemez az operációs rendszer hello) hello forráskiszolgálón: / (gyökér), / Boot, / usr, /usr/local, /var, etc<br/><br/>
+> Például a metaadatok ellenőrzőösszeg XFS fájlrendszerek XFSv5 funkcióinak támogatottak, kezdve a mobilitási szolgáltatás hello 9.10 verzióját. Ha XFSv5 funkciókat használ, győződjön meg arról, 9.10 vagy későbbi Mobilitásiszolgáltatás-verziót futtat. Hello xfs_info segédprogram toocheck hello XFS superblock hello partíció esetében is használhatja. Ha ftype too1, majd XFSv5 szolgáltatások használatban van.
 >
 
 
 ## <a name="support-for-network-configuration"></a>Hálózati konfiguráció támogatása
-A következő táblázat összefoglalja a hálózati konfiguráció támogatása a különböző telepítési forgatókönyvek, amelyek az Azure Site Recovery segítségével replikálása Azure-bA.
+a következő táblák hello hálózati konfiguráció támogatja a különböző telepítési forgatókönyvek, amelyek használják az Azure Site Recovery tooreplicate tooAzure foglalják össze.
 
 ### <a name="host-network-configuration"></a>Gazdagép hálózati konfigurációja
 
@@ -121,7 +121,7 @@ A hálózati adapterek összevonása | Nem | Nem
 IPv4-alapú | Igen | Igen
 IPv6 | Nem | Nem
 Statikus IP-címet (Windows) | Igen | Igen
-Statikus IP-címet (Linux) | Igen <br/><br/>Virtuális gépek feladat-visszavétel DHCP használatára van konfigurálva.  | Nem
+Statikus IP-címet (Linux) | Igen <br/><br/>Virtuális gépek feladat-visszavétel a konfigurált toouse DHCP  | Nem
 Több hálózati Adapterrel | Igen | Igen
 
 ### <a name="failed-over-azure-vm-network-configuration"></a>Átvevő Azure Virtuálisgép-hálózati konfiguráció
@@ -139,7 +139,7 @@ Tartsa meg a forrás IP-címe | Igen | Igen
 
 
 ## <a name="support-for-storage"></a>Tároló támogatása
-A következő táblázat összefoglalja a tárolási konfiguráció támogatása a különböző telepítési forgatókönyvek, amelyek az Azure Site Recovery segítségével replikálása Azure-bA.
+a következő táblák hello tárolási konfiguráció támogatása a különböző telepítési forgatókönyvek, amelyek használják az Azure Site Recovery tooreplicate tooAzure foglalják össze.
 
 ### <a name="host-storage-configuration"></a>A gazdagép tároló konfigurálása
 
@@ -189,26 +189,26 @@ Import/export szolgáltatás | Nem | Nem
 --- | --- | --- 
 Rendelkezésre állási csoportok | Igen | Igen
 HUB | Igen | Igen  
-Felügyelt lemezek | Igen | Igen<br/><br/>Feladat-visszavétel a helyszínen felügyelt lemezzel rendelkező Azure virtuális gépről jelenleg nem támogatott.
+Felügyelt lemezek | Igen | Igen<br/><br/>Feladat-visszavétel tooon helyszíni Azure virtuális gépről az kezelt lemezek jelenleg nem támogatott.
 
 ## <a name="failed-over-azure-vm-requirements"></a>Átvevő Azure virtuális gép követelményei
 
-A Site Recovery szolgáltatást az Azure által támogatott bármely operációs rendszert futtató virtuális gép és fizikai kiszolgáló replikálásához üzembe helyezheti. Ez a Windows és a Linux legtöbb verzióját magában foglalja. A helyszíni replikálni kívánt virtuális gépeknek meg kell felelnie a következő Azure követelményekkel az Azure-bA replikálása során.
+A Site Recovery tooreplicate virtuális gépek és fizikai kiszolgálók Azure által támogatott operációs rendszert futtató is telepíthet. Ez a Windows és a Linux legtöbb verzióját magában foglalja. A helyszíni tooreplicate meg kell felelniük hello Azure-követelményeknek következő tooAzure replikálni kívánt virtuális gépeket.
 
 **Entitás** | **Követelmények** | **Részletek**
 --- | --- | ---
-**Vendég operációs rendszer** | Hyper-V Azure replikáció: a Site Recovery minden operációs rendszereket támogatja [használható az Azure-](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx). <br/><br/> VMware és fizikai kiszolgáló replikációs: Ellenőrizze a Windows és Linux [Előfeltételek](site-recovery-vmware-to-azure-classic.md) | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott.
+**Vendég operációs rendszer** | Hyper-V tooAzure replikáció: a Site Recovery minden operációs rendszereket támogatja [használható az Azure-](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx). <br/><br/> VMware és fizikai kiszolgáló replikációs: Ellenőrizze a hello Windows- és Linux [Előfeltételek](site-recovery-vmware-to-azure-classic.md) | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott.
 **Vendég operációs rendszer architektúrája** | 64 bites | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
-**Operációs rendszert tároló lemez mérete** | Ha replikál és 2048 GB **VMware virtuális gépek vagy fizikai kiszolgálók Azure-bA**.<br/><br/>Legfeljebb 2048 GB-ot **Hyper-V 1. generációs** virtuális gépeket.<br/><br/>Legfeljebb 300 GB-ot **Hyper-V 2. generációs virtuális gépek**.  | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
+**Operációs rendszert tároló lemez mérete** | Akár too2048 GB, ha replikál **VMware virtuális gépek vagy fizikai kiszolgálók tooAzure**.<br/><br/>Legfeljebb 2048 GB-ot **Hyper-V 1. generációs** virtuális gépeket.<br/><br/>Legfeljebb 300 GB-ot **Hyper-V 2. generációs virtuális gépek**.  | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
 **Operációs rendszer lemez száma** | 1 | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott.
-**Adatlemez** | 64 vagy kevesebb if replikál **VMware virtuális gépek Azure-bA**; 16 vagy kevesebb Ha replikál **Hyper-V virtuális gépek Azure-bA** | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
-**Adattároló lemez virtuális merevlemez mérete** | Legfeljebb 4095 GB | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
+**Adatlemez** | 64 vagy kevesebb if replikál **VMware virtuális gépek tooAzure**; 16 vagy kevesebb Ha replikál **Hyper-V virtuális gépek tooAzure** | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
+**Adattároló lemez virtuális merevlemez mérete** | Másolatot too4095 GB | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
 **Hálózati adapterek** | Több adapter támogatottak. |
 **Megosztott virtuális merevlemez** | Nem támogatott | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
 **FC-lemez** | Nem támogatott | Előfeltételek ellenőrzése sikertelen lesz, ha nem támogatott
-**Merevlemez formátuma** | VIRTUÁLIS MEREVLEMEZ <br/><br/> VHDX | Bár VHDX jelenleg nem támogatott az Azure-ban, a Site Recovery automatikusan átalakítja VHDX virtuális merevlemezre történő feladatátadást követően Azure-bA. Ha nem sikerül vissza a helyszíni virtuális gépek továbbra is a VHDX formátum.
+**Merevlemez formátuma** | VIRTUÁLIS MEREVLEMEZ <br/><br/> VHDX | Bár VHDX jelenleg nem támogatott az Azure-ban, a Site Recovery automatikusan átalakítja VHDX tooVHD, amikor a rendszer átadja a tooAzure. Ha Ön a feladat-visszavételt a tooon helyszíni hello virtuális gépeket leállítaná toouse hello VHDX formátumú.
 **A BitLocker** | Nem támogatott | A BitLocker a virtuális gépek védelme előtt le kell tiltani.
-**Virtuális gép neve** | 1 és 63 karakter közötti. Kizárólag betűket, számokat és kötőjeleket tartalmazhat. A virtuális gép nevét kell kezdődnie, és betűvel vagy számmal végződhet. | Frissítse az értéket a virtuális gép tulajdonságai, a Site Recovery szolgáltatásban.
+**Virtuális gép neve** | 1 és 63 karakter közötti. Korlátozott tooletters, számokat és kötőjeleket tartalmazhat. hello Virtuálisgép-nevet kell kezdődnie, és betűvel vagy számmal végződhet. | Frissítse a Site Recovery hello virtuálisgép-tulajdonságokat hello értéket.
 **Virtuálisgép-típussá** | 1. generációs<br/><br/> Windows – a 2. generációs | 2. generációs virtuális gépek egy basic (amely egy vagy két adatkötetek VHDX formátumú tartalmazza) lemez típusa és kisebb, mint 300 GB lemezterület támogatottak.<br></br>Linux generációs 2 virtuális gépek nem támogatottak. [További információ](https://azure.microsoft.com/blog/2015/04/28/disaster-recovery-to-azure-enhanced-and-were-listening/)|
 
 ## <a name="support-for-recovery-services-vault-actions"></a>Recovery Services-tároló műveletek támogatása
@@ -224,8 +224,8 @@ Tárolási, hálózati, Azure virtuális gépek között erőforráscsoportok á
 **Name (Név)** | **Leírás** | **Legújabb verzió** | **Részletek**
 --- | --- | --- | --- | ---
 **Az Azure Site Recovery Providert** | Koordinálja a helyszíni kiszolgálók és az Azure közötti kommunikáció <br/><br/> A helyi kiszolgálók, a Virtual Machine Manager vagy a Hyper-V kiszolgálók telepítve, ha nincs a Virtual Machine Manager-kiszolgáló | 5.1.19 ([elérhető portálról](http://aka.ms/downloaddra)) | [Legújabb funkcióit és javításokat](https://support.microsoft.com/kb/3155002)
-**Azure Site Recovery az egységes telepítő (az Azure-bA VMware)** | Koordinálja a helyszíni VMware-kiszolgálók és az Azure közötti kommunikáció <br/><br/> Helyszíni VMware-kiszolgálókon telepítve | 9.3.4246.1 (elérhető a portál) | [Legújabb funkcióit és javításokat](https://support.microsoft.com/kb/3155002)
-**Mobilitási szolgáltatás** | Koordinálja a helyszíni VMware-kiszolgáló/fizikai kiszolgálók és az Azure és a másodlagos hely közötti replikálás<br/><br/> VMware virtuális gép vagy fizikai kiszolgálók replikálni kívánt telepítve  | N/A (elérhető a portál) | N/A
+**Az Azure Site Recovery egységes telepítője (VMware tooAzure)** | Koordinálja a helyszíni VMware-kiszolgálók és az Azure közötti kommunikáció <br/><br/> Helyszíni VMware-kiszolgálókon telepítve | 9.3.4246.1 (elérhető a portál) | [Legújabb funkcióit és javításokat](https://support.microsoft.com/kb/3155002)
+**Mobilitási szolgáltatás** | Koordinálja a helyszíni VMware-kiszolgáló/fizikai kiszolgálók és az Azure és a másodlagos hely közötti replikálás<br/><br/> Szeretné telepíteni a VMware virtuális gép vagy fizikai kiszolgálók tooreplicate  | N/A (elérhető a portál) | N/A
 **A Microsoft Azure Recovery Services (MARS) ügynök** | Koordinálja a Hyper-V virtuális gépek és az Azure közötti replikáció<br/><br/> Telepített helyszíni Hyper-V kiszolgálón (függetlenül a Virtual Machine Manager-kiszolgáló) | Legújabb ügynököt ([elérhető portálról](http://aka.ms/latestmarsagent)) |
 
 

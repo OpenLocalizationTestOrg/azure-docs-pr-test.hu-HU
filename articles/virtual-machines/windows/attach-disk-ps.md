@@ -1,6 +1,6 @@
 ---
-title: "Adatlemez csatlakoztatása a Windows Azure-ban PowerShell használatával |} Microsoft Docs"
-description: "Új vagy meglévő adatlemez csatolása egy Windows-VM PowerShell használata a Resource Manager üzembe helyezési modellel hogyan."
+title: "aaaAttach egy adatok lemez tooa Windows Azure-ban PowerShell használatával |} Microsoft Docs"
+description: "Hogyan tooattach új vagy meglévő adatok lemezre tooa Windows VM PowerShell használatával hello Resource Manager üzembe helyezési modellben."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/07/2017
 ms.author: cynthn
-ms.openlocfilehash: 486e6a27fa28ec63001d824fe9f59c03a7aea5a7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 12ffdd4ced791ba0948047d3af24ad73e36c7ad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="attach-a-data-disk-to-a-windows-vm-using-powershell"></a>Adatlemez csatlakoztatása egy Windows-VM PowerShell-lel
+# <a name="attach-a-data-disk-tooa-windows-vm-using-powershell"></a>Csatlakoztassa a adatok lemez tooa Windows virtuális gép PowerShell használatával
 
-Ez a cikk bemutatja, hogyan új és meglévő lemez csatolása virtuális géphez Windows PowerShell használatával. Ha a virtuális Gépet felügyelt lemezt használ, csatolhat felügyelt adatlemeznek. Nem felügyelt adatlemezek is csatolhat egy virtuális gép által használt nem felügyelt lemezek tárfiókokban.
+Ez a cikk bemutatja, hogyan tooattach meglévő és új lemezek tooa Windows virtuális gépet a PowerShell használatával. Ha a virtuális Gépet felügyelt lemezt használ, csatolhat felügyelt adatlemeznek. Nem felügyelt adatok lemezek tooa tárfiókokban nem felügyelt lemezeket használó virtuális gép is csatolható.
 
 Mielőtt ezt megtehetné, tekintse át az alábbi tippek:
-* A virtuális gép mérete csatolhat hány adatlemezek szabályozza. További információkért lásd: [virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* A prémium szintű storage, szüksége lesz egy prémium szintű Storage engedélyezve van, például a DS-méretek és GS sorozatnak virtuális gép Virtuálisgép-méretet. Ezek a virtuális gépek lemezeit mind prémium és Standard storage-fiókok használatával. Prémium szintű storage bizonyos régiókban érhető el. További információkért lásd: [prémium szintű Storage: nagy teljesítményű tárolást Azure virtuális gépek terheléseihez](../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* hello mérete hello virtuális gép csatolhat hány adatlemezek határozza meg. További információkért lásd: [virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* prémium szintű storage toouse, szüksége lesz egy prémium szintű Storage engedélyezve van, mint a DS-méretek és GS sorozatnak virtuális gép hello Virtuálisgép-méretet. Ezek a virtuális gépek lemezeit mind prémium és Standard storage-fiókok használatával. Prémium szintű storage bizonyos régiókban érhető el. További információkért lásd: [prémium szintű Storage: nagy teljesítményű tárolást Azure virtuális gépek terheléseihez](../../storage/common/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="before-you-begin"></a>Előkészületek
-Ha a PowerShell segítségével, győződjön meg arról, hogy rendelkezik-e a legújabb verzióját a AzureRM.Compute PowerShell-modult. A következő parancsot a telepítéshez.
+Ha a PowerShell segítségével, győződjön meg arról, hogy rendelkezik-e hello hello AzureRM.Compute PowerShell modul legújabb verzióját. Futtatás hello parancs tooinstall követően.
 
 ```powershell
 Install-Module AzureRM.Compute -RequiredVersion 2.6.0
@@ -38,9 +38,9 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 További információkért lásd: [Azure PowerShell Versioning](/powershell/azure/overview).
 
 
-## <a name="add-an-empty-data-disk-to-a-virtual-machine"></a>Egy üres adatlemez hozzáadása a virtuális géphez
+## <a name="add-an-empty-data-disk-tooa-virtual-machine"></a>Az üres adatok lemez tooa virtuális gép hozzáadása
 
-Ez a példa bemutatja, hogyan egy üres adatlemez hozzáadása egy meglévő virtuális gépet.
+Ez a példa bemutatja, hogyan tooadd egy üres adatok lemezre tooan meglévő virtuális gépet.
 
 ### <a name="using-managed-disks"></a>Felügyelt lemezekkel
 
@@ -71,9 +71,9 @@ Update-AzureRmVM -VM $vm -ResourceGroupName $rgName
 ```
 
 
-### <a name="initialize-the-disk"></a>A lemez inicializálása
+### <a name="initialize-hello-disk"></a>Hello lemez inicializálása
 
-Üres lemez hozzáadása után kell inicializálnia. A lemez inicializálása, jelentkezzen be egy virtuális Gépet, és használja a Lemezkezelést. Vannak engedélyezve a Rendszerfelügyeleti webszolgáltatások és a tanúsítványt a virtuális gép létrehozása után, a távoli PowerShell használatával végezze el a lemez inicializálását. Egy egyéni parancsprogramok futtatására szolgáló bővítmény is használhatja: 
+Üres lemez hozzáadása után tooinitialize kell azt. tooinitialize hello lemez, bejelentkezhet tooa virtuális Gépet, és használja a Lemezkezelés eszközben. Ha engedélyezte a Rendszerfelügyeleti webszolgáltatások és a virtuális gép hello tanúsítvány létrehozása után, a távoli PowerShell tooinitialize hello lemez is használhatja. Egy egyéni parancsprogramok futtatására szolgáló bővítmény is használhatja: 
 
 ```powershell
     $location = "location-name"
@@ -82,7 +82,7 @@ Update-AzureRmVM -VM $vm -ResourceGroupName $rgName
     Set-AzureRmVMCustomScriptExtension -ResourceGroupName $rgName -Location $locName -VMName $vmName -Name $scriptName -TypeHandlerVersion "1.4" -StorageAccountName "mystore1" -StorageAccountKey "primary-key" -FileName $fileName -ContainerName "scripts"
 ```
         
-A parancsfájl tartalmazza a kódot, hogy a lemezek inicializálása hasonlót:
+hello parancsfájl tartalmazza a kód tooinitialize hello lemezek hasonlót:
 
 ```powershell
     $disks = Get-Disk | Where partitionstyle -eq 'raw' | sort number
@@ -102,9 +102,9 @@ A parancsfájl tartalmazza a kódot, hogy a lemezek inicializálása hasonlót:
 ```
 
 
-## <a name="attach-an-existing-data-disk-to-a-vm"></a>Adatok meglévő lemez csatolása a virtuális géphez
+## <a name="attach-an-existing-data-disk-tooa-vm"></a>Egy meglévő adatok lemez tooa VM csatolása
 
-Egy virtuális géphez, amely felügyelt adatok lemezként is csatolhat egy meglévő VHD-t. 
+Egy meglévő VHD-t is csatolhat a felügyelt adatok lemez tooa virtuális gépként. 
 
 ### <a name="using-managed-disks"></a>Felügyelt lemezekkel
 

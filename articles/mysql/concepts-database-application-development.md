@@ -1,6 +1,6 @@
 ---
-title: "Adatbázis alkalmazások fejlesztése MySQL az Azure-adatbázis – áttekintés |} Microsoft Docs"
-description: "Bemutatja, hogy a fejlesztő kell követnie, MySQL Azure adatbázishoz való kapcsolódáshoz alkalmazáskód írásakor kialakítási szempontok"
+title: "aaaDatabase alkalmazások fejlesztése MySQL az Azure-adatbázis – áttekintés |} Microsoft Docs"
+description: "Bemutatja, hogy a fejlesztő kell követnie, MySQL alkalmazás kód tooconnect tooAzure adatbázis írásakor kialakítási szempontok"
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -9,26 +9,26 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 350dd775e172120d806d1193877a34d94f4d3f6a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f08df605eba21b4ba4b43565c0a7ded95779a171
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-development-overview-for-azure-database-for-mysql"></a>Alkalmazások fejlesztése MySQL az Azure-adatbázis – áttekintés 
-Ez a cikk ismerteti, hogy a fejlesztő kell követnie, MySQL Azure adatbázishoz való kapcsolódáshoz alkalmazáskód írásakor kialakítási szempontok 
+Ez a cikk ismerteti, hogy a fejlesztő kell követnie, MySQL alkalmazás kód tooconnect tooAzure adatbázis írásakor kialakítási szempontok 
 
 > [!TIP]
-> Az oktatóanyag bemutatja, hogyan hozzon létre egy kiszolgálót, hozzon létre egy kiszolgáló-alapú tűzfal, kiszolgáló tulajdonságainak megtekintése, adatbázis létrehozása, csatlakozás és lekérdezés munkaterület és mysql.exe használatával, lásd: [tervezése az első Azure-beli MySQL database](tutorial-design-database-using-portal.md)
+> Egy oktatóanyag megjelenítő, hogyan toocreate egy kiszolgálót, hozzon létre egy kiszolgáló-alapú tűzfal kiszolgáló tulajdonságainak megtekintése, létrehozásakor adatbázis, kapcsolódás és lekérdezés munkaterület és mysql.exe használatával, lásd: [tervezése az első Azure-beli MySQL database](tutorial-design-database-using-portal.md)
 
 ## <a name="language-and-platform"></a>Nyelv és platform
-Különböző programozási nyelvekhez és platformokhoz érhetők el kódminták. A következő mintakódok hivatkozásait megtalálhatja: [MySQL Azure adatbázishoz való kapcsolódáshoz használt kapcsolódási függvénytárak](concepts-connection-libraries.md)
+Különböző programozási nyelvekhez és platformokhoz érhetők el kódminták. Hivatkozásait megtalálhatja toohello kód minták: [kapcsolat szalagtárak használt tooconnect tooAzure adatbázis MySQL](concepts-connection-libraries.md)
 
 ## <a name="tools"></a>Eszközök
-Azure MySQL-adatbázis MySQL közösségi verzióját használja, MySQL munkaterület vagy MySQL segédprogramok mysql.exe, mint például az általános kezelőeszközöket kompatibilis [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql), stb. Az Azure portál, az Azure CLI és a REST API-k használatával is kommunikálni az adatbázis-szolgáltatás.
+Azure MySQL-adatbázis hello MySQL közösségi telepített verzióját használja, MySQL munkaterület vagy MySQL segédprogramok mysql.exe, mint például az általános kezelőeszközöket kompatibilis [phpMyAdmin](https://www.phpmyadmin.net/), [Navicat](https://www.navicat.com/products/navicat-for-mysql), stb. Hello Azure-portálon, az Azure CLI és a REST API-k toointeract hello adatbázis szolgáltatással is használja.
 
 ## <a name="resource-limitations"></a>Erőforrás-korlátozások
-Azure-beli MySQL adatbázis két különböző mechanizmusok használatával egy kiszolgáló számára elérhető erőforrások kezelése: 
+Azure-beli MySQL adatbázis hello erőforrások elérhető tooa kiszolgálói kétféle különböző módon kezelő: 
 - Erőforrások irányítás 
 - A korlátozások érvényesítése.
 
@@ -39,12 +39,12 @@ Azure-beli MySQL adatbázis korlátozó hozzáférési, a védelmet nyújtó ada
 Azure-beli MySQL adatbázis támogatja a kiszolgáló hitelesítése a felhasználók és bejelentkezések.
 
 ## <a name="resiliency"></a>Resiliency
-Amikor egy átmeneti hiba akkor fordul elő, amikor kapcsolódni próbált MySQL-adatbázis, a kódot kell próbálja meg újra a hívást. Javasoljuk az újrapróbálkozási logika használata készítsen biztonsági logika, így azt nem ne terhelje tovább az SQL-adatbázis az újrapróbálkozás egyszerre több ügyfélnek.
+Amikor egy átmeneti hiba akkor fordul elő, tooMySQL adatbázis kapcsolódás közben, a kódot újra kell hello hívás. Hello újrapróbálkozási logika használata leállás logikát, azt javasoljuk, így azt nem ne terhelje tovább hello SQL-adatbázis az újrapróbálkozás egyszerre több ügyfélnek.
 
-- Kódminták: mintakódok, mely újrapróbálkozási logika, lásd: a következő nyelvű-példák: [MySQL Azure adatbázishoz való kapcsolódáshoz használt kapcsolódási függvénytárak](concepts-connection-libraries.md)
+- Kódminták: mintakódok, mely újrapróbálkozási logika, lásd: hello nyelvű-példák: [kapcsolat szalagtárak használt tooconnect tooAzure adatbázis MySQL](concepts-connection-libraries.md)
 
 ## <a name="managing-connections"></a>Kapcsolatok kezelése
-Adatbázis-kapcsolatok egy korlátozott erőforrás, a jobb teljesítmény érdekében a MySQL-adatbázis elérésekor kapcsolat ésszerű használata javasolt.
-- Kapcsolatkészletezést vagy állandó kapcsolat használatával érik el az adatbázist.
-- Rövid kapcsolat élettartamát használatával érik el az adatbázist. 
-- Újrapróbálkozási logika helyén a kapcsolódási kísérlet az alkalmazás használatához van szüksége a hiba oka, hogy az egyidejű kapcsolatok száma elérte a megengedett. Az újrapróbálkozási logika be egy rövid ideig eltart, majd várjon véletlenszerű ideje előtt a további csatlakozási kísérletek.
+Adatbázis-kapcsolatok egy korlátozott erőforrás, ezért azt javasoljuk kapcsolat ésszerű használata a MySQL-adatbázis elérésekor tooachieve jobb teljesítményt.
+- Hello adatbázist kapcsolatkészletezést vagy állandó kapcsolat használatával.
+- Hello adatbázist élettartamát rövid kapcsolat használatával. 
+- Használja újrapróbálkozási logika hello csatlakozási kísérlet, toocatch hibák miatt tooconcurrent kapcsolatok hello ponton az alkalmazás elérte a megengedett maximális hello. A hello újrapróbálkozási logika, rövid késleltetés beállítása és majd várjon, amíg egy véletlenszerű idő előtt hello további csatlakozási kísérletek.

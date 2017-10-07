@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület – beállítások"
-description: "A globális beállítások használata az Azure Mobile Engagement az alkalmazás kezelése"
+title: "aaaAzure Mobile Engagement felhasználói felület – beállítások"
+description: "Ismerje meg, hogyan toomanage hello segítségével az Azure Mobile Engagement az alkalmazás a globális beállítások"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: af5c81df2b9f288161b38625d3ac2adde8fb195d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02d4a36c591fc5e097410b7e931d1c9ce81d68d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-global-settings-of-your-application"></a>Az alkalmazás a globális beállítások kezelése
-A **beállítások** menüpontok egy alkalmazás vary, az alkalmazás és az engedélyek, az alkalmazás rendelkezik platformtól függően érhető el. A beállítások a következőket tartalmazzák: részletek, projektek, natív leküldés, leküldési sebességét, Tag (app-info) és a kereskedelmi nyomás. A beállítások szakasz Tag (app-info) menüpont kezelheti az alkalmazás (az SDK használatával) vagy a kiszolgáló (az eszköz API-val). 
+# <a name="how-toomanage-hello-global-settings-of-your-application"></a>Hogyan toomanage hello az alkalmazás globális beállítások
+Hello **beállítások** menü lehetőségeit egy alkalmazás vary, attól függően, hogy hello platform hello alkalmazás és a hello engedélyek hello alkalmazás rendelkezik. A beállítások hello következőket tartalmazzák: részletek, projektek, natív leküldés, leküldési sebességét, Tag (app-info) és a kereskedelmi nyomás. hello Tag (app-info) menüpont hello beállítások szakasz kezelheti az alkalmazás (hello SDK használatával) vagy a kiszolgáló (hello eszköz API használatával). 
 
 > [!NOTE]
-> Sok szakasza a **a Mobile Engagement** portál felhasználói felületének tartalmaz a **megjelenítése SÚGÓ** gombra. Nyomja le az erre a gombra kattintva szakasz környezetfüggő ismertetése.
+> Hello sok szakasza **a Mobile Engagement** portál felhasználói felületének tartalmazhat hello **megjelenítése SÚGÓ** gombra. Nyomja meg a gomb tooget szakasz környezetfüggő tájékozódhat.
 > 
 > 
 
 ## <a name="details"></a>Részletek
-Az alkalmazás és a szerepkörengedélyek a tulajdonos nevét és az alkalmazás leírását módosíthatja megtekintése. 
+Lehetővé teszi a toochange hello nevét és leírását, az alkalmazás, az alkalmazás és a szerepköri jogosultságok megtekintése hello tulajdonosa. 
 
-Elemzés konfiguráció lehetővé teszi a nap, hét indítsa el a és a nap és a megőrzési időtartam megtekintése és módosítása.
+Elemzés a konfiguráció lehetővé teszi a tooview, vagy módosítsa hello nap, hét indítsa el a és hello nap és a megőrzési időt.
 
   ![settings1][46]
 
 ## <a name="projects"></a>Projektek
-Az alkalmazás megjelenik az összes projekt kiválasztását teszi lehetővé. 
+Lehetővé teszi a tooselect összes projektet, melyekben a kívánt az alkalmazás tooappear. 
 
-Keresse meg a projekt is, és megtekintheti a nevét, leírását, tulajdonos és a szerepköri jogosultságok bármely része az alkalmazás projekt.
+A projekt és nézet hello név, a leírás, a tulajdonos is kereshet és a szerepkörengedélyek a projekt az alkalmazás része.
 
 További információkért lásd: [felhasználói felületének dokumentációja – kezdőlap][Link 13]
 
   ![settings3][48]
 
 ## <a name="native-push"></a>Natív leküldéssel
-Lehetővé teszi a natív leküldéses regisztrálni egy új tanúsítványt vagy a delete és a meglévő tanúsítványt. Natív leküldéses lehetővé teszi, hogy az Azure Mobile Engagement leküldéses az alkalmazáshoz, tetszőleges időpontban, még ha az nem futna. 
+Lehetővé teszi egy új tanúsítványt vagy törlése és a meglévő tanúsítvány használata a natív leküldéses tooregister. Natív leküldéses lehetővé teszi, hogy az Azure Mobile Engagement toopush tooyour alkalmazásból bármikor, még akkor is, ha az nem futna. 
 
-Miután megadta a hitelesítő adatokat vagy tanúsítványokat legalább egy natív leküldés szolgáltatáshoz, kiválaszthatja a "Minden alkalommal" a LEKÜLDÉSES API elérését a kampányok, és használja a "bejelentő" paraméter létrehozásakor.
+Miután megadta a hitelesítő adatokat vagy tanúsítványokat legalább egy natív leküldés szolgáltatáshoz, kiválaszthatja a "Minden alkalommal" hello LEKÜLDÉSES API elérését a kampányok, valamint használata hello "bejelentő" paraméter létrehozásakor.
 
 ### <a name="apple-push-notification-service-apns"></a>Apple Push Notification szolgáltatás (APNS)
-Az Apple Push Notification szolgáltatással natív leküldés engedélyezéséhez szüksége lesz a tanúsítvány regisztrálása. Akkor adja meg a tanúsítvány típusát (fejlesztés) fejlesztési vagy éles (termék). Majd kell feltölti a tanúsítványt, és a jelszót.
+tooenable natív leküldés hello Apple Push Notification szolgáltatás használata akkor tooregister a tanúsítványt. Szüksége lesz toospecify hello típusának megfelelő tanúsítványtároló fejlesztési (fejlesztés) vagy a termelési (termék). Majd kell feltölti a tanúsítvány és hello jelszavát.
 
-További információkért lásd:: [SDK-dokumentáció - (iOS) – az Apple leküldéses értesítések az alkalmazás előkészítése][Link 5]
+További információkért lásd: [SDK-dokumentáció - iOS - hogyan tooPrepare az alkalmazás az Apple leküldéses értesítések küldése][Link 5]
 
 ![settings4][49]
 
 ### <a name="windows-push-notification-service-wpns"></a>A Windows leküldéses értesítéseket kezelő szolgáltatása (WPNS)
-A Windows leküldéses értesítéseket kezelő szolgáltatással való natív leküldés engedélyezéséhez meg kell adnia az alkalmazás hitelesítő adatait. Szüksége lesz a csomag biztonsági azonosítóját (SID) és a titkos kulcsot.
+Natív leküldéses értesítéseket kezelő szolgáltatással Windows tooenable, meg kell adnia az alkalmazás hitelesítő adatait. Szüksége lesz a csomag biztonsági azonosítóját (SID) és a titkos kulcsot.
 
 ![settings5][50]
 
 ### <a name="google-cloud-messaging-for-android-gcm"></a>A Google Cloud Messaging (GCM) Android rendszerhez
-A GCM használatával natív leküldés engedélyezéséhez kövesse az utasításokat a Google kell. Ezután be kell illesztenie egy egyszerű kiszolgálói API-kulcsot, IP-korlátozások nélkül konfigurált. Szükséges integrációs az SDK-val Android v1.12.0 +.
+Natív leküldés GCM szolgáltatással, Google toofollow hello utasítást kell tooenable. Ezután be kell illesztenie egy egyszerű kiszolgálói API-kulcsot, IP-korlátozások nélkül konfigurált. Integráció a hello SDK igényel Android v1.12.0 +.
 
 További információkért lásd: 
 
-* [SDK-dokumentáció Android GCM integrálása][Link 5]
+* [SDK dokumentációjának Android hogyan tooIntegrate GCM][Link 5]
 * [Google fejlesztői GCM útmutató](http://developer.android.com/guide/google/gcm/gs.html)
 
 ### <a name="amazon-device-messaging-for-android-adm"></a>Amazon eszköz Messaging (ADM) Android rendszerhez
-ADM használatával natív leküldés engedélyezéséhez meg kell adnia Amazon <OAuth credentials> egy ügyfél-azonosító és a titkos Ügyfélkulcs (az SDK-val való integráció szükséges Android v2.1.0 +).
+tooenable natív leküldés ADM használ, meg kell adnia az Amazon <OAuth credentials> egy ügyfél-azonosító és a titkos Ügyfélkulcs (az SDK-val való integráció szükséges Android v2.1.0 +).
 
 További információkért lásd: 
 
-* [SDK-dokumentáció Android ADM integrálása][Link 5]
+* [SDK dokumentációjának Android hogyan tooIntegrate ADM][Link 5]
 * [Amazon fejlesztői ADM dokumentáció](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
 ## <a name="push-speed"></a>Leküldési sebesség
-Az alkalmazás aktuális leküldési sebességét jeleníti meg, és megadhatja az alkalmazás leküldési sebességét.
+Az alkalmazás hello aktuális leküldési sebességét jeleníti meg, és lehetővé teszi az alkalmazás toodefine hello leküldési sebességét.
 
   ![settings7][52]
 

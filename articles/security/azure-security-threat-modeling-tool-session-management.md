@@ -1,6 +1,6 @@
 ---
-title: "Munkamenet - Microsoft fenyegetés modellezési eszköz - kezelés Azure |} Microsoft Docs"
-description: "a fenyegetések modellezése eszköz felfedett fenyegetések megoldást"
+title: "-Microsoft fenyegetések modellezése eszköz - kezelés Azure aaaSession |} Microsoft Docs"
+description: "a fenyegetések modellezése eszköz hello felfedett fenyegetések megoldást"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 56471d8ef68eacacb3ecebad5056d7e7a9f3ca40
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 915ffae3f775ca6902fcfb93e7e1952ce85612f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-frame-session-management--articles"></a>Biztonsági keret: Munkamenet-kezelés |} Cikkek 
 | A termék vagy szolgáltatás | Cikk |
@@ -28,7 +28,7 @@ ms.lasthandoff: 08/29/2017
 | **Az Azure Document DB rendszerbe** | <ul><li>[A létrehozott erőforrás-jogkivonatokat minimális jogkivonat élettartamát használata](#resource-tokens)</li></ul> |
 | **ADFS** | <ul><li>[Alkalmazzon megfelelő kijelentkezési WsFederation módszerek használatát, ha az AD FS használatával](#wsfederation-logout)</li></ul> |
 | **Identity Serverben** | <ul><li>[Alkalmazzon megfelelő kijelentkezési Identitáskiszolgálók használatakor](#proper-logout)</li></ul> |
-| **Webalkalmazás** | <ul><li>[HTTPS-KAPCSOLATON keresztül elérhető alkalmazások biztonságos cookie-kat kell használni.](#https-secure-cookies)</li><li>[Az összes HTTP-alapú alkalmazások csak olyan cookie-k meghatározása http kell megadni](#cookie-definition)</li><li>[ASP.NET-weblapok többhelyes kérelem hamisítására (CSRF) támadások elleni](#csrf-asp)</li><li>[Állítsa be a munkamenet inaktivitás élettartama](#inactivity-lifetime)</li><li>[Az alkalmazás megfelelő kijelentkezési megvalósítása](#proper-app-logout)</li></ul> |
+| **Webalkalmazás** | <ul><li>[HTTPS-KAPCSOLATON keresztül elérhető alkalmazások biztonságos cookie-kat kell használni.](#https-secure-cookies)</li><li>[Az összes HTTP-alapú alkalmazások csak olyan cookie-k meghatározása http kell megadni](#cookie-definition)</li><li>[ASP.NET-weblapok többhelyes kérelem hamisítására (CSRF) támadások elleni](#csrf-asp)</li><li>[Állítsa be a munkamenet inaktivitás élettartama](#inactivity-lifetime)</li><li>[Alkalmazzon megfelelő kijelentkezési hello alkalmazásból](#proper-app-logout)</li></ul> |
 | **Webes API** | <ul><li>[ASP.NET webes API-k többhelyes kérelem hamisítására (CSRF) támadások elleni](#csrf-api)</li></ul> |
 
 ## <a id="logout-adal"></a>Alkalmazzon megfelelő kijelentkezési ADAL módszerek használatát, ha az Azure AD segítségével
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/29/2017
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Ha az alkalmazás az Azure AD által kiállított jogkivonat támaszkodik, meg kell hívnia a kijelentkezési eseménykezelő |
+| **Lépések** | Ha hello alkalmazás az Azure AD által kiállított jogkivonat támaszkodik, meg kell hívnia az hello kijelentkezési eseménykezelő |
 
 ### <a name="example"></a>Példa
 ```C#
@@ -75,7 +75,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | SaS-tokenje jön létre az Azure IoT Hub kell véges lejárati idővel rendelkeznek. A SaS-jogkivonat élettartamát nyomon legalább mennyi ideig visszajátszani abban az esetben, ha a jogkivonatok kerülnek veszélybe korlátozni.|
+| **Lépések** | Az IoT-központ tooAzure generált SaS-tokenje kell véges lejárati idővel rendelkeznek. Tartsa hello SaS tokent élettartama tooa minimális toolimit hello időn visszajátszani abban az esetben hello jogkivonatok kerülnek veszélybe.|
 
 ## <a id="resource-tokens"></a>A létrehozott erőforrás-jogkivonatokat minimális jogkivonat élettartamát használata
 
@@ -86,7 +86,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Csökkentse az erőforrás-jogkivonat timespan szükséges minimális értékre. Erőforrás alapértelmezett 1 órás érvényes timespan lehet.|
+| **Lépések** | Csökkentse a hello timespan erőforrás token tooa minimális érték szükséges. Erőforrás alapértelmezett 1 órás érvényes timespan lehet.|
 
 ## <a id="wsfederation-logout"></a>Alkalmazzon megfelelő kijelentkezési WsFederation módszerek használatát, ha az AD FS használatával
 
@@ -97,7 +97,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Ha az alkalmazás STS-jogkivonatot AD FS által kibocsátott, a kijelentkezési eseménykezelő kell metódushívás WSFederationAuthenticationModule.FederatedSignOut() jelentkezzen ki a felhasználó számára. Is az aktuális munkamenet meg kell semmisíteni, és a munkamenet biztonságijogkivonat legyen alaphelyzetbe állítása és hatálytalanítja.|
+| **Lépések** | Hello alkalmazás STS-jogkivonatot AD FS által kibocsátott támaszkodik, hello kijelentkezési eseménykezelő WSFederationAuthenticationModule.FederatedSignOut() metódus toolog hello felhasználói ki kell hívjuk. Is hello aktuális munkamenet meg kell semmisíteni, és hello munkamenet token legyen alaphelyzetbe állítása és hatálytalanítja.|
 
 ### <a name="example"></a>Példa
 ```C#
@@ -110,7 +110,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
                 return this.View("LogOff", null);
             }
 
-            // Removes the user profile.
+            // Removes hello user profile.
             this.Session.Clear();
             this.Session.Abandon();
             HttpContext.Current.Response.Cookies.Add(new System.Web.HttpCookie("ASP.NET_SessionId", string.Empty)
@@ -120,17 +120,17 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
                     HttpOnly = true
                 });
 
-            // Signs out at the specified security token service (STS) by using the WS-Federation protocol.
+            // Signs out at hello specified security token service (STS) by using hello WS-Federation protocol.
             Uri signOutUrl = new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Issuer);
             Uri replyUrl = new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Realm);
             if (!string.IsNullOrEmpty(redirectUrl))
             {
                 replyUrl = new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Realm + redirectUrl);
             }
-           //     Signs out of the current session and raises the appropriate events.
+           //     Signs out of hello current session and raises hello appropriate events.
             var authModule = FederatedAuthentication.WSFederationAuthenticationModule;
             authModule.SignOut(false);
-        //     Signs out at the specified security token service (STS) by using the WS-Federation
+        //     Signs out at hello specified security token service (STS) by using hello WS-Federation
         //     protocol.            
             WSFederationAuthenticationModule.FederatedSignOut(signOutUrl, replyUrl);
             return new RedirectResult(redirectUrl);
@@ -146,7 +146,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [IdentityServer3 összevont kijelentkezés](https://identityserver.github.io/Documentation/docsv2/advanced/federated-signout.html) |
-| **Lépések** | IdentityServer támogatja a külső Identitásszolgáltatók összevonni kívánt. Amikor egy felhasználó kijelentkezik a felsőbb rétegbeli identitásszolgáltató, a használt protokolltól függően esetleg is megkapja az értesítéseket, amikor a felhasználó kijelentkezik. Az, akkor a felhasználó is jelentkezzen ki az ügyfelek IdentityServer lehetővé teszi. A megvalósítás részletei hivatkozások részben dokumentációjában.|
+| **Lépések** | IdentityServer hello képességét toofederate a külső Identitásszolgáltatók támogatja. Amikor egy felhasználó kijelentkezik a felsőbb rétegbeli identitásszolgáltató, attól függően, hello protokoll által használt, előfordulhat, lehetséges tooreceive értesítést amikor hello felhasználó kijelentkezik. Lehetővé teszi az ügyfelek így is bejelentkezhetnek hello felhasználó IdentityServer toonotify. Hello dokumentációjában hello references szakaszában a hello megvalósítás részletei.|
 
 ## <a id="https-secure-cookies"></a>HTTPS-KAPCSOLATON keresztül elérhető alkalmazások biztonságos cookie-kat kell használni.
 
@@ -157,7 +157,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | EnvironmentType - a helyi üzemeltetésű |
 | **Hivatkozások**              | [Elem (ASP.NET beállítási séma) httpCookies](http://msdn.microsoft.com/library/ms228262(v=vs.100).aspx), [HttpCookie.Secure tulajdonság](http://msdn.microsoft.com/library/system.web.httpcookie.secure.aspx) |
-| **Lépések** | A cookie-k általában csak a tartományhoz, amelynek hatóköre volt elérhető. Definíciója: "tartományi" sajnos nem tartalmazza a protokollt úgy, hogy a cookie-k, amelyek létrejönnek a HTTPS-KAPCSOLATON keresztül elérhető HTTP Protokollon keresztül. A "biztonságos" attribútum azt jelöli, a böngészőnek, hogy a cookie-k csak elérhetővé kell tenni HTTPS-KAPCSOLATON keresztül. Győződjön meg arról, hogy az összes cookie beállítása HTTPS használata a **biztonságos** attribútum. A követelmény a requireSSL attribútum true értékre állításával kényszerítheti a web.config fájlban. Ennek az oka az előnyben részesített módszerrel kényszeríti ki azt a **biztonságos** attribútum jelenlegi és jövőbeli cookie-k nem kell további kód módosításokat.|
+| **Lépések** | A cookie-k általában csak elérhető toohello tartományt, amelynek hatóköre volt. Sajnos "tartományi" hello definíciója nem tartalmazza a hello protokoll úgy, hogy a cookie-k, amelyek létrejönnek a HTTPS-KAPCSOLATON keresztül elérhető HTTP Protokollon keresztül. hello "biztonságos" attribútum azt jelöli, toohello böngésző cookie-k hello csak elérhetővé kell tenni HTTPS-KAPCSOLATON keresztül. Győződjön meg arról, hogy az összes cookie-kat, állítsa be HTTPS-KAPCSOLATON keresztül hello **biztonságos** attribútum. hello követelmény hello requireSSL attribútum tootrue beállításával kényszerítheti hello web.config fájlban. Hello megközelítés előnyben részesített, mert azt kényszeríti ki a hello **biztonságos** jelenlegi és jövőbeli cookie-k nélkül hello kell toomake attribútum kód módosításokat.|
 
 ### <a name="example"></a>Példa
 ```C#
@@ -167,7 +167,7 @@ Akkor kell felhasználói munkamenet is megsemmisítése Session.Abandon() metó
   </system.web>
 </configuration>
 ```
-A beállítás akkor is, ha az alkalmazás eléréséhez használt HTTP lép életbe. Az alkalmazáshoz való hozzáférés HTTP használata esetén a beállítás az alkalmazás megszakítja, mert a cookie-kat a biztonságos attribútummal van beállítva, és a böngésző nem visszaküldi azokat az alkalmazás.
+hello beállítás akkor is, ha HTTP használt tooaccess hello alkalmazás lép életbe. Ha a HTTP protokoll tooaccess hello alkalmazás, hello hello alkalmazás mivel hello cookie-k hello biztonságos attribútum és hello böngészővel nem küld őket beállítás oldaltörések biztonsági toohello alkalmazás.
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -176,7 +176,7 @@ A beállítás akkor is, ha az alkalmazás eléréséhez használt HTTP lép él
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre, MVC5 |
 | **Attribútumok**              | EnvironmentType - a helyi üzemeltetésű |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | A webalkalmazás a függő entitáshoz, és az IdP ADFS-kiszolgáló, a FedAuth jogkivonat biztonságos attribútum konfigurálható úgy, hogy requireSSL TRUE a `system.identityModel.services` szakasz a Web.config fájl:|
+| **Lépések** | Amikor hello webalkalmazás hello függő fél részére, és hello IdP ADFS-kiszolgáló, hello FedAuth jogkivonat biztonságos attribútum konfigurálható requireSSL tooTrue beállítása a `system.identityModel.services` szakasz a Web.config fájl:|
 
 ### <a name="example"></a>Példa
 ```C#
@@ -198,10 +198,10 @@ A beállítás akkor is, ha az alkalmazás eléréséhez használt HTTP lép él
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Biztonságos Cookie-attribútum](https://en.wikipedia.org/wiki/HTTP_cookie#Secure_cookie) |
-| **Lépések** | Az információfelfedés kockázatának csökkentéséhez a többhelyes scripting (lehetővé) támadás a mérséklése érdekében új attribútum - httpOnly - cookie-k jelent, és az összes ismertebb böngésző támogatja. Az attribútum Megadja, hogy a cookie-k nem érhető el a parancsfájlon keresztül. Webalkalmazás HttpOnly cookie-k használata, csökkenti a lehetősége, hogy a cookie-ban tárolt bizalmas információ ellopják keresztül parancsfájl-e, és hogy egy támadó webhelynek küldött. |
+| **Lépések** | toomitigate hello információfelfedés kockázatának csökkentéséhez a többhelyes scripting (lehetővé) támadás rendelkező, új attribútum - httpOnly - bevezetett toocookies volt, és az összes ismertebb böngésző támogatja. hello attribútum Megadja, hogy a cookie-k nem érhető el a parancsfájlon keresztül. HttpOnly cookie-k használatával egy webalkalmazás hello lehetőségét, hogy az hello cookie-ban tárolt bizalmas információ keresztül parancsfájl ellopják és tooan támadó webhely küldött csökkenti. |
 
 ### <a name="example"></a>Példa
-Cookie-k használó összes HTTP-alapú alkalmazások kell HttpOnly a cookie-definíció adható meg, alkalmazásával segítse a web.config konfigurációs követően:
+Cookie-k használó összes HTTP-alapú alkalmazások kell HttpOnly hello cookie-definíció adható meg, alkalmazásával segítse a web.config konfigurációs követően:
 ```XML
 <system.web>
 .
@@ -219,10 +219,10 @@ Cookie-k használó összes HTTP-alapú alkalmazások kell HttpOnly a cookie-def
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [FormsAuthentication.RequireSSL tulajdonság](https://msdn.microsoft.com/library/system.web.security.formsauthentication.requiressl.aspx) |
-| **Lépések** | A RequireSSL tulajdonság értéke a konfigurációs fájlban, az ASP.NET-alkalmazás a konfigurációs elem requireSSL attribútumával. Megadhatja a Web.config fájlban az ASP.NET alkalmazás hogy SSL (Secure Sockets Layer) szükséges az űrlap-hitelesítési cookie-k visszatérhet a kiszolgáló úgy, hogy a requireSSL attribútum.|
+| **Lépések** | hello RequireSSL tulajdonság értéke attribútumával hello requireSSL hello konfigurációs elem értéke egy ASP.NET-alkalmazás hello konfigurációs fájlban. Megadhat hello Web.config fájl az ASP.NET alkalmazás hogy SSL (Secure Sockets Layer)-e a szükséges tooreturn hello űrlap-hitelesítési cookie-toohello kiszolgáló hello requireSSL attribútumának beállításakor.|
 
 ### <a name="example"></a>Példa 
-Az alábbi példakód beállítja a requireSSL attribútumot a Web.config fájlban.
+hello alábbi példakód beállítja hello requireSSL attribútum hello Web.config fájlban.
 ```XML
 <authentication mode="Forms">
   <forms loginUrl="member_login.aspx" cookieless="UseCookies" requireSSL="true"/>
@@ -236,10 +236,10 @@ Az alábbi példakód beállítja a requireSSL attribútumot a Web.config fájlb
 | **Alkalmazandó technológiák** | MVC5 |
 | **Attribútumok**              | EnvironmentType - a helyi üzemeltetésű |
 | **Hivatkozások**              | [A Windows Identity Foundation (WIF) konfigurációja – II. rész](https://blogs.msdn.microsoft.com/alikl/2011/02/01/windows-identity-foundation-wif-configuration-part-ii-cookiehandler-chunkedcookiehandler-customcookiehandler/) |
-| **Lépések** | A FedAuth cookie-k httpOnly attribútum beállítása, hideFromCsript attribútum értéke TRUE értéket kell megadni. |
+| **Lépések** | tooset httpOnly attribútuma FedAuth cookie-kat, hideFromCsript attribútum értékét meg kell tooTrue. |
 
 ### <a name="example"></a>Példa
-Következő konfigurációt a helyes konfiguráció látható:
+Következő konfigurációs hello helyes konfiguráció látható:
 ```XML
 <federatedAuthentication>
 <cookieHandler mode="Custom"
@@ -261,7 +261,7 @@ Következő konfigurációt a helyes konfiguráció látható:
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Webhelyközi kérések hamisítására (CSRF vagy XSRF), amelyben a támadó műveleteket végezhet el a biztonsági környezetében webhelyen egy másik felhasználói munkamenetet a támadás típusú. A célja módosítsa vagy törölje a tartalmat, ha a célként kijelölt webhely kizárólag a munkamenet-cookie-k hitelesítésére kérelem érkezett. A támadó a biztonsági rés olvasson be egy másik felhasználó böngésző betölteni egy parancs egy URL-címet egy sebezhető helyről, amikor a felhasználó már jelentkezett be. Számos módon egy támadó úgy teheti meg, amely, például egy erőforrás betölti a sebezhető kiszolgálóról egy másik webhely üzemeltetéséhez, vagy a felhasználó első hivatkozásra. Ha a kiszolgáló elküldi az ügyfélnek a további tokent, az ügyfél számára, hogy a jogkivonat szerepeljen minden jövőbeni kérelemhez szükséges, és ellenőrzi, hogy minden későbbi kérelmek tartalmaz egy jogkivonatot, amely vonatkozik az aktuális munkamenetről, például az ASP.NET használatával megelőzhető a támadás AntiForgeryToken vagy a megjelenítési állapot. |
+| **Lépések** | Webhelyközi kérések hamisítására (CSRF vagy XSRF), amelyben a támadó műveleteket végezhet el hello biztonsági környezetében webhelyen egy másik felhasználói munkamenetet a támadás típusú. hello cél toomodify, vagy törölje a tartalmat, ha hello célzott webhely kizárólag támaszkodik munkamenet cookie-k tooauthenticate kérelem érkezett. A támadó a biztonsági rés beolvas egy másik felhasználó böngésző tooload egy URL-címet egy parancs egy sebezhető helyhez, amelyen hello felhasználó van bejelentkezve. Egy támadó toodo, többek között helyez el egy másik webhely, amely betölti erőforrás hello sebezhető kiszolgálóról, vagy beolvasásakor hello felhasználói tooclick egy hivatkozást a számos módja van. hello támadás megelőzhető, ha hello kiszolgáló egy további token toohello ügyfél küldi hello ügyfél tooinclude adott lexikális elem szerepel az összes későbbi kérelmek, és ellenőrzi, hogy minden későbbi kérelmek tartalmaz egy jogkivonatot, amely számítógépfiókokhoz toohello aktuális munkamenetről, például által igényel ASP.NET AntiForgeryToken hello vagy ViewState használatával. |
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -270,7 +270,7 @@ Következő konfigurációt a helyes konfiguráció látható:
 | **Alkalmazandó technológiák** | MVC5, MVC6 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [ASP.NET MVC és weblapok XSRF/CSRF megelőzése](http://www.asp.net/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) |
-| **Lépések** | Kártevőirtó-CSRF és az ASP.NET MVC űrlapok - a `AntiForgeryToken` segédmetódust a nézetek; put egy `Html.AntiForgeryToken()` az űrlapon, például|
+| **Lépések** | Kártevőirtó-CSRF és az ASP.NET MVC űrlapok - használata hello `AntiForgeryToken` segédmetódust a nézetek; put egy `Html.AntiForgeryToken()` hello űrlapra, például|
 
 ### <a name="example"></a>Példa
 ```C#
@@ -289,7 +289,7 @@ Következő konfigurációt a helyes konfiguráció látható:
 ```
 
 ### <a name="example"></a>Példa
-Egy időben Html.AntiForgeryToken() __RequestVerificationToken, a fenti véletlenszerű rejtett érték azonos értékű nevű cookie lehetőséget ad a látogató adott területre. Ezután egy bejövő közzétett űrlapból ellenőrzéséhez adja hozzá a [ValidateAntiForgeryToken] szűrő a célmetódushoz való kötéskor művelet. Példa:
+Hello: ugyanaz, Html.AntiForgeryToken() által biztosított hello látogató adott területre a cookie-k hívása __RequestVerificationToken, az azonos érték értékként hello véletlenszerű rejtett fent látható hello eltöltött idő Egy bejövő közzétett űrlapból toovalidate ezután hello [ValidateAntiForgeryToken] szűrő toohello cél műveletmetódus adja hozzá. Példa:
 ```
 [ValidateAntiForgeryToken]
 public ViewResult SubmitUpdate()
@@ -298,12 +298,12 @@ public ViewResult SubmitUpdate()
 }
 ```
 Ellenőrzi, hogy a szűrő engedélyezési:
-* A bejövő kérelem rendelkezik egy cookie-k hívása __RequestVerificationToken
-* A bejövő kérelem egy `Request.Form` __RequestVerificationToken nevezett bejegyzés
-* A cookie-k és `Request.Form` jól értékek egyeznek, feltéve, hogy minden, a kérelem végighalad normál. De ha nem, majd üzenettel engedélyezési hiba "szükséges hamisításgátló jogkivonat nincs megadva vagy érvénytelen". 
+* hello bejövő kérelem rendelkezik egy cookie-k hívása __RequestVerificationToken
+* hello bejövő kérelem rendelkezik egy `Request.Form` __RequestVerificationToken nevezett bejegyzés
+* A cookie-k és `Request.Form` jól értékek egyeznek, feltéve, hogy az összes, hello kérelem végighalad normál. De ha nem, majd üzenettel engedélyezési hiba "szükséges hamisításgátló jogkivonat nincs megadva vagy érvénytelen". 
 
 ### <a name="example"></a>Példa
-Kártevőirtó-CSRF és AJAX: az űrlap token az AJAX-kérelmek problémát okozhat, mert AJAX-kérelmet el tudja küldeni a JSON-adatokat, nem a HTML-űrlapot adatok. Egy megoldás, a jogkivonatok küldeni egy egyéni HTTP-fejlécben. Az alábbi kód Razor szintaxist használja a jogkivonatok létrehozásához, és hozzáadja a tokenek egy AJAX-kérelemre. 
+Kártevőirtó-CSRF és AJAX: hello űrlap token az AJAX-kérelmek problémát okozhat, mert AJAX-kérelmet el tudja küldeni a JSON-adatokat, nem a HTML-űrlapot adatok. Egy megoldás, toosend hello jogkivonatok egyéni HTTP-fejlécben. hello alábbira Razor szintaxis toogenerate hello jogkivonatokat használ, és hozzáadja hello jogkivonatok tooan AJAX kérelem. 
 ```C#
 <script>
     @functions{
@@ -328,7 +328,7 @@ Kártevőirtó-CSRF és AJAX: az űrlap token az AJAX-kérelmek problémát okoz
 ```
 
 ### <a name="example"></a>Példa
-A kérelem feldolgozása során a jogkivonatok kinyerése a kérelem fejlécében. Majd hívja a következő érvényesítse az AntiForgery.Validate metódust. A Validate metódus kivételt jelez, ha a jogkivonatok nem érvényes.
+Hello kérelem dolgozza fel, amikor hello jogkivonatok kinyerése hello kérelemfejlécet. Majd metódushívás hello AntiForgery.Validate toovalidate hello jogkivonatokat. hello Validate metódusának hívása kivételt jelez, ha hello jogkivonatok nem érvényes.
 ```C#
 void ValidateRequestHeader(HttpRequestMessage request)
 {
@@ -355,11 +355,11 @@ void ValidateRequestHeader(HttpRequestMessage request)
 | **SDL fázis**               | Felépítés |  
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre |
 | **Attribútumok**              | N/A  |
-| **Hivatkozások**              | [Az ASP.NET beépített a támadások elleni védekezésben kivédése előnyeit](https://msdn.microsoft.com/library/ms972969.aspx#securitybarriers_topic2) |
-| **Lépések** | A webes alapú alkalmazásokban CSRF támadások mérsékelhető a ViewStateUserKey értékre állításával véletlenszerű karakterlánc, amely változtatja az egyes felhasználók - felhasználói Azonosítóját, vagy jobb még, munkamenet-azonosítót. Műszaki és közösségi okokból számos, a munkamenet-azonosító egy javulás méretezése azért, mert egy munkamenet-azonosító előre nem látható, túllépi az időkorlátot, és a felhasználónkénti alapon változik.|
+| **Hivatkozások**              | [Hajtsa végre a megfelelő előny az ASP.NET beépített szolgáltatásai tooFend ki webes támadások](https://msdn.microsoft.com/library/ms972969.aspx#securitybarriers_topic2) |
+| **Lépések** | A webes alapú alkalmazásokban CSRF támadások enyhíthetők ViewStateUserKey tooa véletlenszerű karakterlánc változó beállítása minden felhasználó – felhasználói Azonosítót, vagy jobban még, munkamenet-azonosító. Műszaki és közösségi okokból számos, a munkamenet-azonosító egy javulás méretezése azért, mert egy munkamenet-azonosító előre nem látható, túllépi az időkorlátot, és a felhasználónkénti alapon változik.|
 
 ### <a name="example"></a>Példa
-Az összes weblapot van szükség a kód itt látható:
+Az összes weblapot toohave szükséges hello kód itt található:
 ```C#
 void Page_Init (object sender, EventArgs e) {
    ViewStateUserKey = Session.SessionID;
@@ -376,7 +376,7 @@ void Page_Init (object sender, EventArgs e) {
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [HttpSessionState.Timeout tulajdonság](https://msdn.microsoft.com/library/system.web.sessionstate.httpsessionstate.timeout(v=vs.110).aspx) |
-| **Lépések** | Időtúllépés az esemény lépett fel, amikor a felhasználó nem bármely művelet elvégzésére webhelyen a időközben (a webkiszolgáló által megadott) jelöli. Az esemény, a kiszolgáló oldalán, módosítsa a felhasználói munkamenet állapota "érvénytelen" (például "nem használható többé"), és kérje meg a webkiszolgálón. szüntesse meg az (bele tárolt összes adat törlése). Az alábbi példakód állítja be a munkamenet időtúllépés attribútumot 15 perc a Web.config fájlban.|
+| **Lépések** | Munkamenet időkorlátja jelöli, amikor a felhasználó nem bármely művelet elvégzésére webhelyen (a webkiszolgáló által megadott) egy időszakban bekövetkező hello esemény. hello esemény, a kiszolgáló oldalán, hello felhasználói munkamenet too'invalid hello állapotának módosítása "(például" nem használható többé") és utasítsa hello web server toodestroy azt (bele tárolt összes adat törlése). hello alábbi példakód beállítja hello időtúllépés munkamenet attribútum too15 perc hello Web.config fájlban.|
 
 ### <a name="example"></a>Példa
 A(z) "XML-kódot <configuration> < system.web > <sessionState mode="InProc" cookieless="true" timeout="15" /> < /system.web ></configuration>
@@ -392,7 +392,7 @@ A(z) "XML-kódot <configuration> < system.web > <sessionState mode="InProc" cook
 | **Alkalmazandó technológiák** | Web Forms keretrendszerre |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [Elem űrlap-hitelesítés (ASP.NET beállítási séma)](https://msdn.microsoft.com/library/1d3t3c61(v=vs.100).aspx) |
-| **Lépések** | Az űrlapos hitelesítési jegyet cookie-k időkorlátja 15 percre beállítva|
+| **Lépések** | Állítsa be az űrlapos hitelesítési jegyet cookie-k időtúllépési too15 hello perc|
 
 ### <a name="example"></a>Példa
 A(z) "XML-kódot<forms  name=".ASPXAUTH" loginUrl="login.aspx"  defaultUrl="default.aspx" protection="All" timeout="15" path="/" requireSSL="true" slidingExpiration="true"/>
@@ -406,7 +406,7 @@ A(z) "XML-kódot<forms  name=".ASPXAUTH" loginUrl="login.aspx"  defaultUrl="defa
 | **Applicable Technologies** | Web Forms, MVC5 |
 | **Attributes**              | EnvironmentType - OnPrem |
 | **References**              | [asdeqa](https://skf.azurewebsites.net/Mitigations/Details/wefr) |
-| **Steps** | When the web application is Relying Party and ADFS is the STS, the lifetime of the authentication cookies - FedAuth tokens - can be set by the following configuration in web.config:|
+| **Steps** | When hello web application is Relying Party and ADFS is hello STS, hello lifetime of hello authentication cookies - FedAuth tokens - can be set by hello following configuration in web.config:|
 
 ### Example
 ```XML
@@ -417,7 +417,7 @@ A(z) "XML-kódot<forms  name=".ASPXAUTH" loginUrl="login.aspx"  defaultUrl="defa
       <!-- Set requireHttps=true; -->
       <wsFederation passiveRedirectEnabled="true" issuer="http://localhost:39529/" realm="https://localhost:44302/" reply="https://localhost:44302/" requireHttps="true"/>
       <!--
-      Use the code below to enable encryption-decryption of claims received from ADFS. Thumbprint value varies based on the certificate being used.
+      Use hello code below tooenable encryption-decryption of claims received from ADFS. Thumbprint value varies based on hello certificate being used.
       <serviceCertificate>
         <certificateReference findValue="4FBBBA33A1D11A9022A5BF3492FF83320007686A" storeLocation="LocalMachine" storeName="My" x509FindType="FindByThumbprint" />
       </serviceCertificate>
@@ -427,12 +427,12 @@ A(z) "XML-kódot<forms  name=".ASPXAUTH" loginUrl="login.aspx"  defaultUrl="defa
 ```
 
 ### <a name="example"></a>Példa
-Az AD FS SAML kiadott is jogcím-jogkivonat élettartamát meg 15 perc, a következő az ADFS-kiszolgálón a következő powershell-parancs futtatásával:
+Is SAML jogcímek jogkivonat élettartama kiadott AD FS beállításaként too15 hello perc, a következő powershell-parancs hello ADFS-kiszolgálón a következő hello futtatásával:
 ```C#
 Set-ADFSRelyingPartyTrust -TargetName “<RelyingPartyWebApp>” -ClaimsProviderName @(“Active Directory”) -TokenLifetime 15 -AlwaysRequireAuthentication $true
 ```
 
-## <a id="proper-app-logout"></a>Az alkalmazás megfelelő kijelentkezési megvalósítása
+## <a id="proper-app-logout"></a>Alkalmazzon megfelelő kijelentkezési hello alkalmazásból
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -441,7 +441,7 @@ Set-ADFSRelyingPartyTrust -TargetName “<RelyingPartyWebApp>” -ClaimsProvider
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Hajtsa végre megfelelő Kijelentkezés az alkalmazásból, amikor a felhasználó présgépet Kijelentkezés gombra. Követően jelentkezzen ki alkalmazás kell semmisítse meg a felhasználó munkamenetét, és is alaphelyzetbe állítása és érvényteleníti a munkamenet cookie-értéket alaphelyzetbe állítása és a hitelesítési cookie-értéket érvénytelenítését együtt. Is ha több munkamenetet egy felhasználói azonosítót vannak társítva, azok kell együttesen lezárni időkorlát, vagy jelentkezzen ki, a kiszolgáló oldalán. Végül győződjön meg arról, hogy kijelentkezési funkció minden oldalon érhető el. |
+| **Lépések** | Hajtsa végre megfelelő kijelentkezés hello alkalmazásból, amikor a felhasználó présgépet Kijelentkezés gombra. Követően jelentkezzen ki alkalmazás kell semmisítse meg a felhasználó munkamenetét, és is alaphelyzetbe állítása és érvényteleníti a munkamenet cookie-értéket alaphelyzetbe állítása és a hitelesítési cookie-értéket érvénytelenítését együtt. Is ha több munkamenetet a feltételekhez tooa egyetlen felhasználói identitást, azok kell együttesen lezárni hello kiszolgáló oldalán, időtúllépés vagy jelentkezzen ki. Végül győződjön meg arról, hogy kijelentkezési funkció minden oldalon érhető el. |
 
 ## <a id="csrf-api"></a>ASP.NET webes API-k többhelyes kérelem hamisítására (CSRF) támadások elleni
 
@@ -452,7 +452,7 @@ Set-ADFSRelyingPartyTrust -TargetName “<RelyingPartyWebApp>” -ClaimsProvider
 | **Alkalmazandó technológiák** | Általános |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | N/A  |
-| **Lépések** | Webhelyközi kérések hamisítására (CSRF vagy XSRF), amelyben a támadó műveleteket végezhet el a biztonsági környezetében webhelyen egy másik felhasználói munkamenetet a támadás típusú. A célja módosítsa vagy törölje a tartalmat, ha a célként kijelölt webhely kizárólag a munkamenet-cookie-k hitelesítésére kérelem érkezett. A támadó a biztonsági rés olvasson be egy másik felhasználó böngésző betölteni egy parancs egy URL-címet egy sebezhető helyről, amikor a felhasználó már jelentkezett be. Számos módon egy támadó úgy teheti meg, amely, például egy erőforrás betölti a sebezhető kiszolgálóról egy másik webhely üzemeltetéséhez, vagy a felhasználó első hivatkozásra. Ha a kiszolgáló elküldi az ügyfélnek a további tokent, az ügyfél számára, hogy a jogkivonat szerepeljen minden jövőbeni kérelemhez szükséges, és ellenőrzi, hogy minden későbbi kérelmek tartalmaz egy jogkivonatot, amely vonatkozik az aktuális munkamenetről, például az ASP.NET használatával megelőzhető a támadás AntiForgeryToken vagy a megjelenítési állapot. |
+| **Lépések** | Webhelyközi kérések hamisítására (CSRF vagy XSRF), amelyben a támadó műveleteket végezhet el hello biztonsági környezetében webhelyen egy másik felhasználói munkamenetet a támadás típusú. hello cél toomodify, vagy törölje a tartalmat, ha hello célzott webhely kizárólag támaszkodik munkamenet cookie-k tooauthenticate kérelem érkezett. A támadó a biztonsági rés beolvas egy másik felhasználó böngésző tooload egy URL-címet egy parancs egy sebezhető helyhez, amelyen hello felhasználó van bejelentkezve. Egy támadó toodo, többek között helyez el egy másik webhely, amely betölti erőforrás hello sebezhető kiszolgálóról, vagy beolvasásakor hello felhasználói tooclick egy hivatkozást a számos módja van. hello támadás megelőzhető, ha hello kiszolgáló egy további token toohello ügyfél küldi hello ügyfél tooinclude adott lexikális elem szerepel az összes későbbi kérelmek, és ellenőrzi, hogy minden későbbi kérelmek tartalmaz egy jogkivonatot, amely számítógépfiókokhoz toohello aktuális munkamenetről, például által igényel ASP.NET AntiForgeryToken hello vagy ViewState használatával. |
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -461,7 +461,7 @@ Set-ADFSRelyingPartyTrust -TargetName “<RelyingPartyWebApp>” -ClaimsProvider
 | **Alkalmazandó technológiák** | MVC5, MVC6 |
 | **Attribútumok**              | N/A  |
 | **Hivatkozások**              | [ASP.NET webes API-t a Webhelyközi kérések hamisítására (CSRF) támadások megelőzése](http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks) |
-| **Lépések** | Kártevőirtó-CSRF és AJAX: az űrlap token az AJAX-kérelmek problémát okozhat, mert AJAX-kérelmet el tudja küldeni a JSON-adatokat, nem a HTML-űrlapot adatok. Egy megoldás, a jogkivonatok küldeni egy egyéni HTTP-fejlécben. Az alábbi kód Razor szintaxist használja a jogkivonatok létrehozásához, és hozzáadja a tokenek egy AJAX-kérelemre. |
+| **Lépések** | Kártevőirtó-CSRF és AJAX: hello űrlap token az AJAX-kérelmek problémát okozhat, mert AJAX-kérelmet el tudja küldeni a JSON-adatokat, nem a HTML-űrlapot adatok. Egy megoldás, toosend hello jogkivonatok egyéni HTTP-fejlécben. hello alábbira Razor szintaxis toogenerate hello jogkivonatokat használ, és hozzáadja hello jogkivonatok tooan AJAX kérelem. |
 
 ### <a name="example"></a>Példa
 ```Javascript
@@ -487,7 +487,7 @@ Set-ADFSRelyingPartyTrust -TargetName “<RelyingPartyWebApp>” -ClaimsProvider
 ```
 
 ### <a name="example"></a>Példa
-A kérelem feldolgozása során a jogkivonatok kinyerése a kérelem fejlécében. Majd hívja a következő érvényesítse az AntiForgery.Validate metódust. A Validate metódus kivételt jelez, ha a jogkivonatok nem érvényes.
+Hello kérelem dolgozza fel, amikor hello jogkivonatok kinyerése hello kérelemfejlécet. Majd metódushívás hello AntiForgery.Validate toovalidate hello jogkivonatokat. hello Validate metódusának hívása kivételt jelez, ha hello jogkivonatok nem érvényes.
 ```C#
 void ValidateRequestHeader(HttpRequestMessage request)
 {
@@ -509,7 +509,7 @@ void ValidateRequestHeader(HttpRequestMessage request)
 ```
 
 ### <a name="example"></a>Példa
-Kártevőirtó-CSRF és űrlapok ASP.NET MVC - AntiForgeryToken segédmetódus használatát nézetek; például egy Html.AntiForgeryToken() üzembe a formátumban:
+Kártevőirtó-CSRF és ASP.NET MVC űrlapok - használata hello AntiForgeryToken segédmetódust a nézetet. például egy Html.AntiForgeryToken() üzembe hello képernyő
 ```C#
 @using (Html.BeginForm("UserProfile", "SubmitUpdate")) { 
     @Html.ValidationSummary(true) 
@@ -519,7 +519,7 @@ Kártevőirtó-CSRF és űrlapok ASP.NET MVC - AntiForgeryToken segédmetódus h
 ```
 
 ### <a name="example"></a>Példa
-A fenti példában a következő hasonlót fog kimeneti:
+a fenti hello példa fog kimeneti valami hasonló hello:
 ```C#
 <form action="/UserProfile/SubmitUpdate" method="post">
     <input name="__RequestVerificationToken" type="hidden" value="saTFWpkKN0BYazFtN6c4YbZAmsEwG0srqlUqqloi/fVgeV2ciIFVmelvzwRZpArs" />
@@ -528,7 +528,7 @@ A fenti példában a következő hasonlót fog kimeneti:
 ```
 
 ### <a name="example"></a>Példa
-Egy időben Html.AntiForgeryToken() __RequestVerificationToken, a fenti véletlenszerű rejtett érték azonos értékű nevű cookie lehetőséget ad a látogató adott területre. Ezután egy bejövő közzétett űrlapból ellenőrzéséhez adja hozzá a [ValidateAntiForgeryToken] szűrő a célmetódushoz való kötéskor művelet. Példa:
+Hello: ugyanaz, Html.AntiForgeryToken() által biztosított hello látogató adott területre a cookie-k hívása __RequestVerificationToken, az azonos érték értékként hello véletlenszerű rejtett fent látható hello eltöltött idő Egy bejövő közzétett űrlapból toovalidate ezután hello [ValidateAntiForgeryToken] szűrő toohello cél műveletmetódus adja hozzá. Példa:
 ```
 [ValidateAntiForgeryToken]
 public ViewResult SubmitUpdate()
@@ -537,9 +537,9 @@ public ViewResult SubmitUpdate()
 }
 ```
 Ellenőrzi, hogy a szűrő engedélyezési:
-* A bejövő kérelem rendelkezik egy cookie-k hívása __RequestVerificationToken
-* A bejövő kérelem egy `Request.Form` __RequestVerificationToken nevezett bejegyzés
-* A cookie-k és `Request.Form` jól értékek egyeznek, feltéve, hogy minden, a kérelem végighalad normál. De ha nem, majd üzenettel engedélyezési hiba "szükséges hamisításgátló jogkivonat nincs megadva vagy érvénytelen".
+* hello bejövő kérelem rendelkezik egy cookie-k hívása __RequestVerificationToken
+* hello bejövő kérelem rendelkezik egy `Request.Form` __RequestVerificationToken nevezett bejegyzés
+* A cookie-k és `Request.Form` jól értékek egyeznek, feltéve, hogy az összes, hello kérelem végighalad normál. De ha nem, majd üzenettel engedélyezési hiba "szükséges hamisításgátló jogkivonat nincs megadva vagy érvénytelen".
 
 | Cím                   | Részletek      |
 | ----------------------- | ------------ |
@@ -548,9 +548,9 @@ Ellenőrzi, hogy a szűrő engedélyezési:
 | **Alkalmazandó technológiák** | MVC5, MVC6 |
 | **Attribútumok**              | Identity Provider - ADFS, identitásszolgáltató - az Azure AD |
 | **Hivatkozások**              | [Egyes partnerek és az ASP.NET Web API 2.2 helyi bejelentkezési webes API biztonságossá tétele](http://www.asp.net/web-api/overview/security/individual-accounts-in-web-api) |
-| **Lépések** | Ha a webes API-t OAuth 2.0 használatával biztonságossá majd azt vár egy tulajdonosi jogkivonatot a hitelesítési kérelem fejlécében, és hozzáférést biztosít a kérelem csak akkor, ha a jogkivonat érvényes. Cookie-alapú hitelesítés, eltérően böngészők csatolja a tulajdonosi jogkivonatok kérelmeket. A kérelmező ügyfélnek kell explicit módon csatolja a tulajdonosi jogkivonattal, a kérelem fejlécében. Ezért az ASP.NET Web API-k OAuth 2.0 használatával védett, tulajdonosi jogkivonatok számít egy CSRF támadások elleni védelmet. Vegye figyelembe, hogy ha az alkalmazás MVC része az űrlapos hitelesítés (azaz használ cookie-k) használ, hamisítás lehet az MVC webes alkalmazás által használható. |
+| **Lépések** | Ha a webes API használatával lett biztonságossá téve OAuth 2.0-s, akkor azt hello egy tulajdonosi jogkivonatot csak akkor, ha hello jogkivonat érvényes engedélyezési kérelem fejléc és biztosít toohello kérést vár. Cookie-alapú hitelesítés, ellentétben a böngészők nem csatolható hello tulajdonosi jogkivonatok toorequests. hello tulajdonosi jogkivonattal, a kérelem fejlécében hello hello kérő ügyfél tooexplicitly kell csatolni. Ezért az ASP.NET Web API-k OAuth 2.0 használatával védett, tulajdonosi jogkivonatok számít egy CSRF támadások elleni védelmet. Adjon ne feledje, hogy ha hello alkalmazás hello MVC része az űrlapos hitelesítés (azaz használ cookie-k) használ, hamisítás jogkivonatok toobe hello MVC webalkalmazás használják. |
 
 ### <a name="example"></a>Példa
-A webes API-nak kell tájékoztatni csak a tulajdonosi jogkivonatok és nem a cookie-k használják. A következő konfigurációs végezhető `WebApiConfig.Register` metódus: "" C-éles kód config. SuppressDefaultHostAuthentication(); Config. Filters.Add (új HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+Webes API hello rendelkezik toobe toorely küldjenek csak tulajdonosi jogkivonatokat és nem a cookie-kat. A konfiguráció a következő hello úgy teheti `WebApiConfig.Register` metódus: "" C-éles kód config. SuppressDefaultHostAuthentication(); Config. Filters.Add (új HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 ```
-The SuppressDefaultHostAuthentication method tells Web API to ignore any authentication that happens before the request reaches the Web API pipeline, either by IIS or by OWIN middleware. That way, we can restrict Web API to authenticate only using bearer tokens.
+hello SuppressDefaultHostAuthentication method tells Web API tooignore any authentication that happens before hello request reaches hello Web API pipeline, either by IIS or by OWIN middleware. That way, we can restrict Web API tooauthenticate only using bearer tokens.

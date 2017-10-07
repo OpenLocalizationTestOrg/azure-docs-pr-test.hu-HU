@@ -1,5 +1,5 @@
 ---
-title: "Az Azure továbbítási API áttekintése |} Microsoft Docs"
+title: "aaaAzure továbbítási API áttekintése |} Microsoft Docs"
 description: "Elérhető Azure továbbítási API-k – áttekintés"
 services: event-hubs
 documentationcenter: na
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 8d93a0344adc3b0b7617f3a7d85124142d7a7555
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3c4d737d5fee9a8babce094fa6dfddb28910834b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="available-relay-apis"></a>Rendelkezésre álló továbbítási API-k
 
 ## <a name="runtime-apis"></a>Futásidejű API-k
 
-Az alábbi táblázatban minden jelenleg elérhető továbbítási futásidejű ügyfelek.
+hello következő táblázatban minden jelenleg elérhető továbbítási futásidejű ügyfelek.
 
-A [további információt](#additional-information) szakasz mindegyik futásidejű kódtár állapotával kapcsolatos további információkat tartalmaz.
+Hello [további információt](#additional-information) szakasz mindegyik futásidejű kódtár hello állapotával kapcsolatos további információkat tartalmaz.
 
 | Nyelvi/Platform | A szolgáltatás elérhető | Ügyfélcsomag | Tárház |
 | --- | --- | --- | --- |
@@ -37,9 +37,9 @@ A [további információt](#additional-information) szakasz mindegyik futásidej
 ### <a name="additional-information"></a>További információ
 
 #### <a name="net"></a>.NET
-A .NET-ökoszisztéma több futtatókörnyezetek rendelkezik, ezért van több .NET-kódtárakra az Event Hubs számára. A .NET-szabvány könyvtár a .NET Core vagy a .NET-keretrendszer használatával, amíg a .NET Framework könyvtár csak a .NET-keretrendszer környezetben futtatható futtatható. További információ a .NET-keretrendszer: [keretrendszer-verziók](/dotnet/articles/standard/frameworks#framework-versions).
+hello .NET ökoszisztéma több futtatókörnyezetek rendelkezik, ezért van több .NET-kódtárakra az Event Hubs számára. hello .NET szabványos függvénytár is futtatható, használja a .NET Core vagy a .NET-keretrendszer hello közben hello .NET Framework könyvtár csak a .NET-keretrendszer környezetben futtatható. További információ a .NET-keretrendszer: [keretrendszer-verziók](/dotnet/articles/standard/frameworks#framework-versions).
 
 ## <a name="next-steps"></a>Következő lépések
-Azure-továbbítási kapcsolatos további információkért látogasson el ezeket a hivatkozásokat:
+További információ az Azure továbbítási toolearn látogasson el ezeket a hivatkozásokat:
 * [Mi az az Azure Relay?](relay-what-is-it.md)
 * [Relay – gyakori kérdések](relay-faq.md)

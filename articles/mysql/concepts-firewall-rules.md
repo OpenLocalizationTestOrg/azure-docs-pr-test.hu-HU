@@ -1,5 +1,5 @@
 ---
-title: "Azure-adatbázis a MySQL-kiszolgáló tűzfalszabályainak |} Microsoft Docs"
+title: "a kiszolgáló tűzfalszabályainak MySQL adatbázis aaaAzure |} Microsoft Docs"
 description: "A témakör ismerteti a tűzfalszabályok a MySQL-kiszolgálóhoz tartozó Azure-adatbázis."
 services: mysql
 author: v-chenyh
@@ -9,50 +9,50 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 7456cef7a5da665ee3d70df64265b8186a79f9b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f85310385da947b6c492aa6aa21c1b885c2a97d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-database-for-mysql-server-firewall-rules"></a>Kiszolgáló tűzfalszabályainak MySQL Azure-adatbázis
-Tűzfalak tagadni a hozzáférést minden az adatbázis-kiszolgáló csak akkor adja meg, mely számítógépek rendelkeznek engedéllyel. A tűzfal engedélyezi a hozzáférést a kiszolgálóhoz, az egyes kérelmek az eredeti IP-címe alapján.
+Tűzfalak tooyour adatbázis-kiszolgáló minden hozzáférés tiltása, amíg megadhatja, hogy mely számítógépek rendelkeznek engedéllyel. hello tűzfal engedélyezi a hozzáférést toohello kiszolgáló IP-cím az egyes kérelmek származó hello alapján.
 
-A tűzfal konfigurálásakor olyan tűzfalszabályokat adhat meg, amelyek meghatározzák az elfogadható IP-címtartományokat. Tűzfal-szabályokat hozhat létre a kiszolgálói szinten.
+tooconfigure tűzfalszabályok elfogadható IP-címek tartományát adja meg a tűzfal létrehozása. Hello kiszolgálószintű tűzfal-szabályokat hozhat létre.
 
-**Tűzfal-szabályok:** ezek a szabályok hozzáférés engedélyezése ügyfelek számára a teljes Azure-adatbázis MySQL-kiszolgáló esetén ez azt jelenti, hogy összes adatbázis belül az azonos logikai kiszolgáló. Kiszolgálószintű tűzfal-szabályokat konfigurálhatja az Azure-portál használatával vagy az Azure parancssori felület parancsait. Kiszolgálószintű tűzfal-szabályok létrehozása, az előfizetés tulajdonosa vagy egy előfizetés közreműködői kell lennie.
+**Tűzfal-szabályok:** ezek a szabályok engedélyezése az ügyfelek tooaccess MySQL-kiszolgáló a teljes Azure-adatbázis, ez azt jelenti, hogy az összes hello adatbázis belül hello azonos logikai kiszolgáló. Kiszolgálószintű tűzfal-szabályokat hello Azure-portál használatával vagy az Azure parancssori felület parancsait konfigurálhatja. szabályok toocreate kiszolgálószintű tűzfal, hello előfizetés tulajdonosának vagy egy előfizetés közreműködőjének kell lennie.
 
 ## <a name="firewall-overview"></a>Tűzfal áttekintése
-Az adatbázis elérésére az Azure-adatbázis MySQL-kiszolgáló alapértelmezés szerint a tűzfal blokkolja. A kiszolgáló egy másik számítógépről használatának megkezdéséhez meg kell adnia egy vagy több kiszolgálószintű engedélyezésére szolgáló tűzfalszabályok a kiszolgáló elérését. Használja a tűzfalszabályok adja meg, melyik IP-címtartományok engedélyezi az internetről. A tűzfalszabályok nincs hatással a hozzáférést az Azure portál magát.
+Az összes adatbázis hozzáférés tooyour Azure adatbázis MySQL-kiszolgáló alapértelmezés szerint hello tűzfal blokkolja. toobegin a kiszolgálót egy másik számítógépre, a használatával kell toospecify egy vagy több kiszolgálószintű tűzfal szabályok tooenable tooyour kiszolgáló. Hello tűzfal szabályok toospecify mely IP-címtartományt a hello Internet tooallow használja. Hello tűzfalszabályok ne legyenek hatással Access toohello magát az Azure portál.
 
-Kapcsolódási kísérletek az internetről és az Azure először eltelik a tűzfalon keresztül azok képes elérni az Azure-adatbázis MySQL-adatbázis, az alábbi ábrán látható módon:
+A kapcsolódási kísérletek hello Internet, és Azure először haladnak keresztül hello tűzfal ahhoz, azok képes elérni az Azure-adatbázis MySQL-adatbázis, ahogy az ábra a következő hello:
 
-![A tűzfal működése áramló – példa](./media/concepts-firewall-rules/1-firewall-concept.png)
+![Példa áramló hello tűzfal működése](./media/concepts-firewall-rules/1-firewall-concept.png)
 
-## <a name="connecting-from-the-internet"></a>Csatlakozás az internetről
-Az Azure-adatbázishoz a MySQL-kiszolgálón lévő összes adatbázis kiszolgálószintű tűzfal-szabályokat alkalmazni.
+## <a name="connecting-from-hello-internet"></a>A hello Internet csatlakoztatása
+Kiszolgálószintű tűzfal-szabályokat alkalmazni tooall adatbázisok hello Azure adatbázis MySQL-kiszolgáló.
 
-Ha a kérés IP-címe a kiszolgálószintű tűzfalszabályokban megadott tartományok egyikében található, a tűzfal engedélyezi a csatlakozást.
+Ha hello IP-cím hello kérelem hello kiszolgálószintű tűzfal szabályokban megadott hello tartományok egyikébe esik, hello kapcsolat kapnak.
 
-Ha az IP-cím, a kérelem nem az adatbázis-szintjére, vagy a kiszolgálószintű tűzfalszabály megadott tartományok belül van, a kapcsolódási kérelem sikertelen lesz.
+Ha hello IP-cím hello kérelem nincs belül hello tartományok hello adatbázis szintű valamelyikében vagy megadott kiszolgálószintű tűzfal-szabályok, hello kapcsolódási kérelem sikertelen lesz.
 
 ## <a name="programmatically-managing-firewall-rules"></a>Tűzfalszabályok szoftveres kezelése
-Az Azure portálon kívül tűzfalszabályok programozott módon, Azure parancssori Felülettel kezelhetők. Lásd még: [hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok Azure parancssori felület használatával](./howto-manage-firewall-using-cli.md)
+Emellett Azure-portálon, a szabályok lehetnek tűzfal toohello felügyelt programozott módon az Azure parancssori felület használatával. Lásd még: [hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok Azure parancssori felület használatával](./howto-manage-firewall-using-cli.md)
 
-## <a name="troubleshooting-the-database-firewall"></a>Az adatbázistűzfal hibaelhárítása
-Amikor a Microsoft Azure-adatbázis eléréséhez a MySQL-kiszolgáló szolgáltatás nem a várt módon működnek várja, vegye figyelembe a következő szempontokat:
+## <a name="troubleshooting-hello-database-firewall"></a>Hello adatbázis tűzfal hibaelhárítása
+Vegye figyelembe a következő pontokat, amikor hozzáférési toohello Microsoft Azure-adatbázis MySQL-kiszolgáló szolgáltatás nem a várt módon működnek várt hello:
 
-* **Az engedélyezési listán módosításai nem lépnek érvénybe még:** lehet, mint amennyit egy 5 perces késleltetést használ az vált, az Azure-adatbázishoz a MySQL-kiszolgáló tűzfal konfigurációjának érvénybe léptetéséhez.
+* **Módosítások toohello engedélyezési lista rendelkezik még nincsenek érvényben:** lehet, mint amennyit egy 5 perces késleltetést használ az Azure-adatbázis toohello MySQL-kiszolgáló tűzfal konfigurációs tootake hatás módosítja.
 
-* **A bejelentkezés nem engedélyezett, vagy helytelen jelszót használt:** egy bejelentkezési azonosító nem rendelkezik engedélyekkel a MySQL-kiszolgálóhoz tartozó Azure-adatbázis, vagy a használt jelszó nem megfelelő, ha a kapcsolat a MySQL-kiszolgálóhoz tartozó Azure-adatbázis megtagadva. Egy tűzfalbeállítás létrehozása lehetővé teszi az ügyfelek számára a kiszolgálóhoz való csatlakozás megkísérlését, azonban minden egyes ügyfélnek meg kell adnia a szükséges biztonsági hitelesítő adatokat.
+* **hello bejelentkezési nincs engedélyezve, vagy helytelen jelszót használt:** egy bejelentkezési nincs engedélye az hello Azure Database-kiszolgáló vagy hello használt jelszó MySQL helytelen az, ha hello Azure-adatbázis kapcsolati toohello MySQL server megtagadva. Csak egy tűzfal-beállítás létrehozásához biztosít az ügyfelek számára egy lehetőség tooattempt tooyour server; kapcsolódás minden ügyfél hello szükséges biztonsági adatokat kell megadni.
 
-* **Dinamikus IP-cím**: Ha az internetkapcsolata dinamikus IP-címkezeléssel rendelkezik, és problémákat okoz a tűzfalon való átjutás, próbálja ki a következő megoldások valamelyikét:
+* **Dinamikus IP-cím:** Ha az internethez, a dinamikus IP-címzést és tapasztal hello tűzfalon keresztül történt, próbálkozzon a következő megoldások hello egyikét:
 
-* Az internetszolgáltató (ISP) kérjen a MySQL-kiszolgálóhoz tartozó Azure-adatbázis elérő ügyfélszámítógépeken rendelt IP-címtartományt, és adja hozzá az IP-címtartományt, egy tűzfalszabályt.
+* Kérje meg az internetszolgáltató (ISP) hello IP-címtartomány hozzárendelt tooyour ügyfélszámítógépek számára, hogy hozzáférési hello Azure adatbázis MySQL-kiszolgáló, és adja hozzá a hello IP-címtartomány tűzfal szabály.
 
-* Állítson be statikus IP-címeket az ügyfélszámítógépei számára, majd adja meg az IP-címeket tűzfalszabályokként.
+* Első statikus IP-címzés helyette az ügyfélszámítógépek számára, és adja hozzá a hello IP-címek, tűzfal-szabályokat.
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályokat az Azure portál használatával](./howto-manage-firewall-using-portal.md)
+[Hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok hello Azure-portál használatával](./howto-manage-firewall-using-portal.md)
 [hozzon létre és kezelheti az Azure-adatbázis MySQL tűzfalszabályok Azure parancssori felület használatával](./howto-manage-firewall-using-cli.md)

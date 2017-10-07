@@ -1,6 +1,6 @@
 ---
-title: "Azonos Office 365-élmény bármely Azure RemoteAppot használó eszközön | Microsoft Docs"
-description: "Ismerje meg, hogyan oszthatja meg bármelyik Office 365-alkalmazást a felhasználóival az Azure RemoteApp segítségével."
+title: "aaaGet hello azonos Office 365-élmény bármely Azure RemoteApp eszközön |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooshare bármilyen Office 365-alkalmazást a felhasználóival az Azure RemoteApp segítségével."
 services: remoteapp
 documentationcenter: 
 author: guscatalano
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 11/23/2016
 ms.author: guscatal;elizapo
-ms.openlocfilehash: 584c781c97097cda3c1455ade05cba8659f11073
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 140056c22c8c69b9ec605318e35a72b144da07eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-same-office-365-experience-on-any-device-with-azure-remoteapp"></a>Azonos Office 365-élmény bármely Azure RemoteApp szolgáltatást használó eszközön
+# <a name="get-hello-same-office-365-experience-on-any-device-with-azure-remoteapp"></a>Get hello azonos Office 365-élmény bármely Azure RemoteApp eszközön
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Ez a cikk ismerteti, hogy hogyan helyezheti üzembe az Office 365-alkalmazásokat a vállat bármelyik eszközén. A felhasználók ugyanolyan képességeket kaphatnak és ugyanolyan felhasználói élményben lehet részük Android-, Apple- és Windows-eszközökön.
+Ez a cikk hogyan toodeploy Office 365 a vállalat bármely eszközön. A felhasználók férhetnek hello ugyanazokat a képességeket, és Android-, Apple- és Windows felhasználói felület tapasztalattal.
 
 Ezt az Azure RemoteApp használatával érheti el az Office 365 méretezhető virtuális gépeken való üzemeltetésével az Azure-ban, amelyekhez a felhasználók csatlakozhatnak. A virtuális gépek ezen készletét „felhőalapú gyűjteménynek” nevezik.
 
 ## <a name="create-a-cloud-collection"></a>Felhőalapú gyűjtemény létrehozása
-Miután létrehozott egy Azure-fiókot, először navigáljon a **RemoteAppra** a bal oldalon található hivatkozásra kattintva.
-![Az Azure RemoteApp megjelenítése az Azure Portalon](./media/remoteapp-tutorial-o365anywhere/1-menu.png)
+Először az Azure-fiók létrehozását követően nyissa meg túl**RemoteApp** bal oldali hello hello hivatkozásra kattintva.
+![Azure RemoteApp ábrázoló hello Azure portál](./media/remoteapp-tutorial-o365anywhere/1-menu.png)
 
-Ezután alul kattintson a **new** (új) , majd a gyűjtemény „gyors létrehozása” elemre. Adjon meg egy nevet, a régiót, az előfizetését, a díjcsomagot és az általunk biztosított „Office Professional 2013” rendszerképet.
+Folytassa a kattintva **új** hello alsó és a "gyors létrehozása" gyűjteménye. Adjon meg nevet, hello régió, hello előfizetés, hello terv és hello kép "Office Professional 2013", amely a Microsoft biztosítja.
 ![Párbeszédpanel létrehozása](./media/remoteapp-tutorial-o365anywhere/2-quickcreate.png)
 
-Miután kitölti az űrlapot, elindul a gyűjtemény létrehozásának folyamata. Ez akár egy órát is igénybe vehet.
+Miután befejezte a hello űrlap hello gyűjtemény létrehozásának folyamata elindul. A is tarthat tooan órát.
 
 ![Várakozás](./media/remoteapp-tutorial-o365anywhere/3-waiting.png)
 
-Miután a folyamat befejeződik, a következőhöz hasonlóan fog kinézni. Ha a **Publishing** (Közzététel) elemre kattint, láthatja, hogy a legtöbb Office-alkalmazás már közzé van téve.
+Miután hello folyamat befejeződik, fog megjelenni ehhez hasonló. Ha a **Publishing** (Közzététel) elemre kattint, láthatja, hogy a legtöbb Office-alkalmazás már közzé van téve.
 ![Létrehozott gyűjtemény](./media/remoteapp-tutorial-o365anywhere/4-done.png)
 
 ![Közzétett alkalmazások](./media/remoteapp-tutorial-o365anywhere/5-publish.png)
 
-Ezen a ponton a **User Access** (Felhasználói hozzáférés) elemre kattintva felvehet több felhasználót, akik hozzáférhetnek a gyűjteményhez.
+Ezen a ponton is hozzáadhat további felhasználóknak, akik számára hozzáférést toothis gyűjtemény kattintva **felhasználói hozzáférés**.
 ![Felhasználói hozzáférés konfigurálása](./media/remoteapp-tutorial-o365anywhere/6-user.png)
 
-Most próbáljon meg csatlakozni az Office 365-höz.
+Most próbáljon meg csatlakozni tooOffice 365!
 
-## <a name="connect-to-office-365"></a>Csatlakozás az Office 365-höz
-Nyissa meg a [https://www.remoteapp.windowsazure.com/](https://www.remoteapp.windowsazure.com/) webhelyet, görgessen a lap aljára, és a **Download clients** (Ügyfelek letöltése) elemre kattintva telepítse az Azure RemoteApp-ügyfelet az épp használt eszközre. Az alábbi képernyőképek a Windowsra vonatkoznak.
+## <a name="connect-toooffice-365"></a>Csatlakozás tooOffice 365
+Azt fogja látogasson túl[https://www.remoteapp.windowsazure.com/](https://www.remoteapp.windowsazure.com/), görgessen lefelé, és kattintson a **le ügyfeleket** tooinstall hello Azure RemoteApp-ügyfelet a hello eszközön. hello az alábbi képernyőképek a Windowsra vonatkoznak.
 
-Miután elindul az alkalmazás, a rendszer felkéri, hogy jelentkezzen be Microsoft-fiókjával (korábban „Live ID”). Egyelőre használja ugyanazt, mint amit az Azure-fiókhoz használt. Amikor bejelentkezik, egy értesítés jelenik meg az új meghívókról, kattintson rá, ekkor az alábbihoz hasonló listának kell megjelennie. Kattintson arra a meghívóra, amelyben az Azure-fiók tulajdonosának e-mail-címe szerepel.
+Hello alkalmazás indítása után meg kell adnia toosign be a Microsoft-fiókjával (korábban "Live ID"), használjon most hello ugyanazt, mint amit az Azure-fiókjával. Amikor bejelentkezik, egy értesítés jelenik meg az új meghívókról, kattintson rá, ekkor az alábbihoz hasonló listának kell megjelennie. Fogadja el a hello meghívóra, amelyben az Azure-fiók tulajdonosának e-mail címe.
 
 ![Új meghívó](./media/remoteapp-tutorial-o365anywhere/7-araclient.png)
 
@@ -62,11 +62,11 @@ Miután elindul az alkalmazás, a rendszer felkéri, hogy jelentkezzen be Micros
 
 ![Egy alkalmazás elfogadása](./media/remoteapp-tutorial-o365anywhere/8-invitation.png)
 
-Miután elfogadja a meghívót, az összes Office-alkalmazás látható az Azure RemoteApp-ügyfélen.
+Hello meghívó elfogadása után megtekintheti az összes hello Office-alkalmazásokba hello Azure RemoteApp-ügyfelet.
 
 ![Alkalmazások listája](./media/remoteapp-tutorial-o365anywhere/9-work.png)
 
-Ha bármelyik alkalmazásra kattint, az alkalmazás elindul az Azure virtuális gépen, és készen áll a használatra. Jó munkát!
+Elemre bármelyik ezek hello alkalmazás elindul az hello Azure virtuális gép, és minden beállítás el! Jó munkát!
 
 ![indítás](./media/remoteapp-tutorial-o365anywhere/10-arastart.png)
 

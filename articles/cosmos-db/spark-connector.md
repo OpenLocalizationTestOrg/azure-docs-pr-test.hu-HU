@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás az Apache Spark on Azure Cosmos DB |} Microsoft Docs"
-description: "Ez az oktatóanyag segítségével további információkhoz az Azure Cosmos DB Spark-összekötő, amely lehetővé teszi a kapcsolódást az Apache Spark on Azure Cosmos DB elosztott összesítésekkel és adatokkal sciences végre a több-bérlős globálisan elosztott készült, a felhő Microsoft adatbázisrendszer."
+title: aaaConnecting Apache Spark tooAzure Cosmos DB |} Microsoft Docs
+description: "Használja az oktatóanyag toolearn, amely lehetővé teszi tooconnect Apache Spark tooAzure Cosmos DB elosztott tooperform összesítéseinek és a Microsoft hello több-bérlős globálisan elosztott adatbázis rendszeren adatok sciences hello Azure Cosmos DB Spark connector névjegye amely a hello felhő szolgál."
 keywords: az Apache Spark on
 services: cosmos-db
 documentationcenter: 
@@ -15,36 +15,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: denlee
-ms.openlocfilehash: 8ecbb478c81cde25bbd0d1c9ee07ae02b07f8cc7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 70b496fc5ca8f65675f0224e749637f5d533c346
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="accelerate-real-time-big-data-analytics-with-the-spark-to-azure-cosmos-db-connector"></a>A Spark a valós idejű big data elemzések érdekében, és Azure Cosmos DB-összekötő
+# <a name="accelerate-real-time-big-data-analytics-with-hello-spark-tooazure-cosmos-db-connector"></a>Hello Spark tooAzure Cosmos DB Connector valós idejű big data elemzések érdekében
 
-A Spark on Azure Cosmos DB összekötőre lehetővé teszi, hogy az Azure Cosmos DB egy bemeneti forrás vagy a kimeneti fogadóját Apache Spark-feladatok nevében járhasson el. Csatlakozás [Spark](http://spark.apache.org/) való [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) felgyorsítják arra, hogy a gyorsan változó adatok tudományos problémák megoldásához használható Azure Cosmos DB gyorsan és adatait. A Spark on Azure Cosmos DB összekötőre hatékonyan használja a natív Azure Cosmos DB felügyelt indexeket. Az indexek frissíthető oszlopok lehetővé teszik, amikor elemzés végrehajtása, és leküldéses-le nyilas predikátum szűrése fast-módosítása globális adatokat, amelyek az eszközök internetes hálózatát (IoT) között adatok tudományos és elemzés forgatókönyvekre.
+hello Spark tooAzure Cosmos DB összekötő lehetővé teszi, hogy a bemeneti forrás vagy kimeneti fogadóját feladatok az Apache Spark on Azure Cosmos DB tooact. Csatlakozás [Spark](http://spark.apache.org/) túl[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) felgyorsítják a képes toosolve gyorsan változó adattudomány használható Azure Cosmos DB tooquickly problémák továbbra is fennáll, és adatokat lekérdezni. hello Spark tooAzure Cosmos DB összekötő hatékonyan hello natív Azure Cosmos DB felügyelt indexek használja. hello indexek frissíthető oszlopok lehetővé teszik, amikor analytics elvégezhető, és leküldéses-le nyilas predikátum fast-módosítása globálisan szűrése adatait, amely az eszközök internetes hálózatát (IoT) toodata tudományos és elemzés forgatókönyvek között.
 
-Spark GraphX és a Gremlin graph API-kat az Azure Cosmos DB használata, lásd: [Spark és Apache TinkerPop Gremlin graph időben](spark-connector-graph.md).
+Spark GraphX és hello Gremlin graph API-kat az Azure Cosmos DB használata, lásd: [Spark és Apache TinkerPop Gremlin graph időben](spark-connector-graph.md).
 
 ## <a name="download"></a>Letöltés
 
-A kezdéshez töltse le a Spark on Azure Cosmos DB connector (előzetes verzió) az a [azure-cosmosdb-spark](https://github.com/Azure/azure-cosmosdb-spark/) GitHub tárházából.
+tooget elindult, hello Spark tooAzure Cosmos DB connector (előzetes verzió) letöltése hello [azure-cosmosdb-spark](https://github.com/Azure/azure-cosmosdb-spark/) GitHub tárházából.
 
 ## <a name="connector-components"></a>Összekötő-összetevők
 
-Az összekötő a következő összetevőket használja:
+hello összekötő hello a következő összetevőket használja:
 
-* [Az Azure Cosmos DB](http://documentdb.com) lehetővé teszi az ügyfelek kiépítéséhez és rugalmasan méretezhető átviteli sebesség és a tárolási tetszőleges számú földrajzi régiók között. A szolgáltatás nyújt:
+* [Az Azure Cosmos DB](http://documentdb.com) lehetővé teszi, hogy az ügyfelek tooprovision és rugalmasan méretezhető átviteli sebesség és a tárolási tetszőleges számú földrajzi régiók között. hello szolgáltatást kínál:
    * Kapcsolja be a kulcs [globális terjesztési](distribute-data-globally.md) és horizontális skálázhatóságot
-   * Egyetlen számjegy késések fordulnak elő az 99th aránya a garantált
+   * Garantált egyetlen számjegy késések hello 99th PERCENTILIS:
    * [Több jól meghatározott konzisztencia modellek](consistency-levels.md)
    * Magas rendelkezésre állású többhelyű képességekkel garantált
    * Minden szolgáltatás üzemelnek iparágvezető, átfogó [szolgáltatási szintek](https://azure.microsoft.com/support/legal/sla/cosmos-db) (SLA).
 
 * [Az Apache Spark on](http://spark.apache.org/) egy hatékony nyílt forráskódú feldolgozási motor, amely a sebesség, valamint a kifinomult analytics könnyű épül.
 
-* [Apache Spark on Azure Hdinsighttal](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md) , hogy a segítségével telepíthet a felhőbe a kritikus fontosságú központi telepítések elvégzéséhez az Apache Spark on [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).
+* [Apache Spark on Azure Hdinsighttal](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md) , hogy az Apache Spark on hello felhő kritikus telepítések segítségével telepíthet [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).
 
 Hivatalos támogatott verziók:
 
@@ -54,27 +54,27 @@ Hivatalos támogatott verziók:
 | Scala| 2.11|
 | Az Azure DocumentDB Java SDK | 1.10.0 |
 
-Ez a cikk segít néhány egyszerű példák futtatása Python (a pyDocumentDB) keresztül és a Scala-felületek használatával.
+Ez a cikk segítséget nyújt a futtatásával néhány egyszerű minták Python (a pyDocumentDB) keresztül, és hello Scala felületek.
 
-Apache Spark és Azure Cosmos DB kétféleképpen történhet:
-- PyDocumentDB keresztül használja a [Azure DocumentDB Python SDK](https://github.com/Azure/azure-documentdb-python).
-- Hozzon létre egy Java-alapú Spark on Azure Cosmos DB-összekötőhöz való használatával a [Azure DocumentDB Java SDK](https://github.com/Azure/azure-documentdb-java).
+Két megközelítés tooconnect Apache Spark és Azure Cosmos DB vannak:
+- Használja a pyDocumentDB keresztül hello [Azure DocumentDB Python SDK](https://github.com/Azure/azure-documentdb-python).
+- Hozzon létre egy Java-alapú Spark tooAzure Cosmos DB összekötőt hello felügyelniük [Azure DocumentDB Java SDK](https://github.com/Azure/azure-documentdb-java).
 
 ## <a name="pydocumentdb-implementation"></a>pyDocumentDB végrehajtása
-Az aktuális [pyDocumentDB SDK](https://github.com/Azure/azure-documentdb-python) lehetővé teszi a Spark on Azure Cosmos DB csatlakozni, az alábbi ábrán látható módon:
+aktuális hello [pyDocumentDB SDK](https://github.com/Azure/azure-documentdb-python) lehetővé teszi a tooconnect Spark tooAzure Cosmos DB a hello a következő ábrán látható módon:
 
-![Spark Azure Cosmos DB adatfolyamra pyDocumentDB DB keresztül](./media/spark-connector/spark-pydocumentdb.png)
+![Spark tooAzure Cosmos DB adatfolyam a pyDocumentDB DB keresztül](./media/spark-connector/spark-pydocumentdb.png)
 
 
-### <a name="data-flow-of-the-pydocumentdb-implementation"></a>A pyDocumentDB megvalósítási adatfolyama
+### <a name="data-flow-of-hello-pydocumentdb-implementation"></a>Hello pyDocumentDB megvalósítási adatfolyama
 
-Az adatfolyam a következőképpen történik:
+hello adatáramlás a következőképpen történik:
 
-1. A Spark főcsomópont az Azure Cosmos DB átjárócsomópont pyDocumentDB keresztül kapcsolódik. A felhasználó csak a Spark- és Azure Cosmos DB-kapcsolatok ad meg. A megfelelő fő és átjáró csomópontok való csatlakozás történik a felhasználó számára.
-2. Az átjárócsomópont teszi Azure Cosmos DB, ahol a lekérdezést később fut a gyűjtemény a partíciók az adatok csomópontok irányuló lekérdezés. A lekérdezések választ küld vissza az átjárócsomópontnak, és adott eredményhalmaz a Spark főcsomópont küld vissza.
-3. A Spark munkavégző csomópontokhoz későbbi lekérdezéseket (például egy Spark DataFrame) kerülnek feldolgozásra.
+1. hello Spark főcsomópont toohello Azure Cosmos DB átjáró csomópont pyDocumentDB keresztül kapcsolódik. A felhasználó csak hello Spark és Azure Cosmos DB-kapcsolatok ad meg. Kapcsolatok toohello megfelelő master és átjáró-csomópontok átlátszó toohello felhasználókként szerepelnek.
+2. hello átjárócsomópont teszi hello Azure Cosmos DB hello lekérdezés ezt követően futtató hello adatcsomópontokat hello gyűjtemény a partíciók ellen irányuló lekérdezés esetén. hello választ a lekérdezések akkor küldi vissza toohello átjárócsomópontnak, és adott eredménykészlet toohello Spark főcsomópont ad vissza.
+3. További lekérdezéseket (például egy Spark DataFrame) toohello Spark munkavégző csomópontokhoz feldolgozásra kerülnek.
 
-Spark és Azure Cosmos DB közötti kommunikáció a Spark főcsomópont és az Azure Cosmos DB átjárócsomópontok korlátozódik.  A lekérdezések lépjen a gyors lehetővé teszi, hogy a szállítási réteg a két csomópont között.
+Spark és Azure Cosmos DB közötti kommunikáció korlátozott toohello Spark főcsomópont és Azure Cosmos DB átjárócsomópontok.  hello lekérdezések gyors hello transport layer a két csomópont között lehetővé teszi, hogy nyissa meg.
 
 ### <a name="install-pydocumentdb"></a>Telepítse a pyDocumentDB
 Telepíthető pyDocumentDB az illesztőprogram-csomópont használatával **pip**, például:
@@ -84,10 +84,10 @@ pip install pyDocumentDB
 ```
 
 
-### <a name="connect-spark-to-azure-cosmos-db-via-pydocumentdb"></a>Csatlakozás az Azure Cosmos Adatbázishoz Spark pyDocumentDB
-A kommunikáció átviteli egyszerűsége hajt végre a lekérdezés végrehajtása a Spark on Azure Cosmos DB a pyDocumentDB viszonylag egyszerű.
+### <a name="connect-spark-tooazure-cosmos-db-via-pydocumentdb"></a>Csatlakozás a Spark tooAzure Cosmos DB pyDocumentDB keresztül
+hello kommunikációs átviteli hello jellemzője az egyszerűség viszonylag egyszerű pyDocumentDB használatával lehetővé teszi a Spark tooAzure Cosmos DB a lekérdezés végrehajtása.
 
-A következő kódrészletet a pyDocumentDB használata Spark környezetben jeleníti meg.
+a következő kódrészletben látható kód hogyan hello toouse pyDocumentDB Spark környezetben.
 
 ```
 # Import Necessary Libraries
@@ -96,33 +96,33 @@ from pydocumentdb import document_client
 from pydocumentdb import documents
 import datetime
 
-# Configuring the connection policy (allowing for endpoint discovery)
+# Configuring hello connection policy (allowing for endpoint discovery)
 connectionPolicy = documents.ConnectionPolicy()
 connectionPolicy.EnableEndpointDiscovery
 connectionPolicy.PreferredLocations = ["Central US", "East US 2", "Southeast Asia", "Western Europe","Canada Central"]
 
 
-# Set keys to connect to Azure Cosmos DB
+# Set keys tooconnect tooAzure Cosmos DB
 masterKey = 'le1n99i1w5l7uvokJs3RT5ZAH8dc3ql7lx2CG0h0kK4lVWPkQnwpRLyAN0nwS1z4Cyd1lJgvGUfMWR3v8vkXKA=='
 host = 'https://doctorwho.documents.azure.com:443/'
 client = document_client.DocumentClient(host, {'masterKey': masterKey}, connectionPolicy)
 ```
 
-A kódrészletet leírtaknak megfelelően:
+Hello kódrészletet leírtaknak megfelelően:
 
-* Az Azure Cosmos DB Python SDK (`pyDocumentDB`) tartalmazza az összes szükséges kapcsolati paraméter. Például az elsődleges helyek paraméter úgy dönt, a olvasható replika és a prioritási sorrendben.
-*  A szükséges kódtárak importálja és konfigurálja a **főkulcsos** és **állomás** létrehozása az Azure Cosmos DB *ügyfél* (**pydocumentdb.document_client**).
+* hello Azure Cosmos DB Python SDK-t (`pyDocumentDB`) hello tartalmazza az összes szükséges kapcsolódási paraméterek hello. Például hello elsődleges helyek paraméter úgy dönt, hogy hello olvassa el a replika és a prioritási sorrendben.
+*  Hello szükséges kódtárak importálja és konfigurálja a **főkulcsos** és **állomás** toocreate hello Azure Cosmos DB *ügyfél* (**pydocumentdb.document_ ügyfél**).
 
 
 ### <a name="execute-spark-queries-via-pydocumentdb"></a>A Spark-lekérdezéseket hajt végre a pyDocumentDB keresztül
-A következő példák az előző részlet megadott írásvédett kulcsok használatával létrehozott Azure Cosmos DB példányának használatára. A következő kódrészletet csatlakozik a **airports.codes** gyűjtemény a DoctorWho fiók, mint a korábban meghatározott, és a repülőtéri várost Washington államban kibontásához lekérdezés futtatása.
+a következő példák használata hello Azure Cosmos DB példány hello előző részlet hello segítségével létrehozott hello megadott írásvédett kulcsok. hello következő kódrészletet csatlakozik toohello **airports.codes** gyűjtemény hello DoctorWho fiók, mint a korábban meghatározott, és futtat egy lekérdezés tooextract hello repülőtéren városokat Washington államban.
 
 ```
 # Configure Database and Collections
 databaseId = 'airports'
 collectionId = 'codes'
 
-# Configurations the Azure Cosmos DB client will use to connect to the database and collection
+# Configurations hello Azure Cosmos DB client will use tooconnect toohello database and collection
 dbLink = 'dbs/' + databaseId
 collLink = dbLink + '/colls/' + collectionId
 
@@ -139,55 +139,55 @@ query = client.QueryDocuments(collLink, querystr, options=None, partition_key=No
 elements = list(query)
 ```
 
-A lekérdezés végrehajtása keresztül után **lekérdezés**, az eredmény egy **query_iterable. QueryIterable** , Python listájára alakítja át. Python listáját könnyen átalakítható a Spark DataFrame az alábbi kód használatával:
+Hello lekérdezés keresztül végrehajtása után **lekérdezés**, hello eredménye egy **query_iterable. QueryIterable** , amely a konvertált tooa Python listája. A Python lista lehet könnyen konvertált tooa Spark DataFrame hello kód a következő használatával:
 
 ```
 # Create `df` Spark DataFrame from `elements` Python list
 df = spark.createDataFrame(elements)
 ```
 
-### <a name="why-use-the-pydocumentdb-to-connect-spark-to-azure-cosmos-db"></a>Miért érdemes használni a pyDocumentDB Spark az Azure Cosmos Adatbázishoz csatlakozni?
-Spark pyDocumentDB segítségével az Azure Cosmos Adatbázishoz kapcsolódó forgatókönyvek általában van ahol:
+### <a name="why-use-hello-pydocumentdb-tooconnect-spark-tooazure-cosmos-db"></a>Hello pyDocumentDB tooconnect Spark tooAzure Cosmos DB miért érdemes használni?
+Csatlakozás Spark tooAzure Cosmos DB pyDocumentDB használatával általában forgatókönyvek esetén az adott:
 
-* Python használni kívánt.
-* A Spark az Azure Cosmos Adatbázisból viszonylag kis eredményhalmazt vannak ad vissza. Vegye figyelembe, hogy az Azure Cosmos Adatbázisba az alapul szolgáló dataset Igen tekintélyes lehet. Szűrők, ez azt jelenti, hogy az Azure Cosmos DB adatforrás predikátum szűrők futtatott alkalmazzák.  
+* Azt szeretné, hogy a toouse Python.
+* Az Azure Cosmos DB tooSpark viszonylag kis eredményhalmazt vannak ad vissza. Vegye figyelembe, hogy az Azure Cosmos Adatbázisba az alapul szolgáló dataset hello Igen tekintélyes lehet. Szűrők, ez azt jelenti, hogy az Azure Cosmos DB adatforrás predikátum szűrők futtatott alkalmazzák.  
 
-## <a name="spark-to-azure-cosmos-db-connector"></a>Spark és Azure Cosmos DB-összekötő
+## <a name="spark-tooazure-cosmos-db-connector"></a>Spark tooAzure Cosmos DB összekötő
 
-A Spark on Azure Cosmos DB összekötőre használja a [Azure DocumentDB Java SDK](https://github.com/Azure/azure-documentdb-java) és mozgatja az adatokat a Spark munkavégző csomópontokhoz és Azure Cosmos DB között, az alábbi ábrán látható módon:
+hello Spark tooAzure Cosmos DB összekötőt használja hello [Azure DocumentDB Java SDK](https://github.com/Azure/azure-documentdb-java) és mozgatja az adatokat hello Spark munkavégző csomópontokhoz és Azure Cosmos DB között, ahogy az ábra a következő hello:
 
-![A Spark az Azure Cosmos DB összekötő adatfolyama](./media/spark-connector/spark-connector.png)
+![Hello Spark tooAzure Cosmos DB Connector adatfolyama](./media/spark-connector/spark-connector.png)
 
-Az adatfolyam a következőképpen történik:
+hello adatáramlás a következőképpen történik:
 
-1. A Spark főcsomópont az beszerzése a partíciótérképen Azure Cosmos DB átjárócsomópont csatlakozik. A felhasználó csak a Spark- és Azure Cosmos DB-kapcsolatok ad meg. A megfelelő fő és átjáró csomópontok való csatlakozás történik a felhasználó számára.
-2. Ezt az információt a külső fő csomópont valósul meg.  Ezen a ponton adható meg, hogy a partíció és az Azure Cosmos Adatbázisba való hozzáférést igénylő helyükre értelmezni tudja.
-3. Ezek az információk átkerülnek a Spark munkavégző csomópontokhoz.
-4. A Spark munkavégző csomópontokhoz csatlakozni az Azure Cosmos DB partíciókat közvetlenül kinyeri az adatokat, és térjen vissza az adatokat a Spark a partíciók a Spark munkavégző csomópontokhoz.
+1. hello Spark főcsomópont toohello Azure Cosmos DB átjáró csomópont tooobtain hello partíciótérképen csatlakozik. A felhasználó csak hello Spark és Azure Cosmos DB-kapcsolatok ad meg. Kapcsolatok toohello megfelelő master és átjáró-csomópontok átlátszó toohello felhasználókként szerepelnek.
+2. Ez az információ hátsó toohello Spark főcsomópont valósul meg.  Ezen a ponton képes tooparse hello lekérdezési toodetermine hello partíciók és az Azure Cosmos-Adatbázisba, hogy kell-e tooaccess helyükre kell lennie.
+3. Ez az információ az átvitt toohello Spark munkavégző csomópontokhoz.
+4. hello Spark munkavégző csomópontok toohello Azure Cosmos DB partíciók csatlakoznak, közvetlen tooextract hello adatokat, és vissza hello adatok toohello Spark partíciók hello Spark munkavégző csomópontokhoz.
 
-Spark és Azure Cosmos DB közötti kommunikáció oka jelentősen gyorsabb az adatátvitelt jelölik a Spark munkavégző csomópontokhoz és az Azure Cosmos DB adatok csomópontok (partíciók) között.
+Spark és Azure Cosmos DB közötti kommunikáció oka jelentősen gyorsabb adatátvitelt jelölik a hello hello Spark munkavégző csomópontokhoz és hello Azure Cosmos DB adatok csomópontok (partíciók) között.
 
-### <a name="build-the-spark-to-azure-cosmos-db-connector"></a>A Spark és Azure Cosmos DB-összekötő létrehozása
-Az összekötő projekt jelenleg maven használja. Az összekötő függőségek nélkül létrehozásához futtathatja:
+### <a name="build-hello-spark-tooazure-cosmos-db-connector"></a>Hello Spark tooAzure Cosmos DB összekötő létrehozása
+Jelenleg a hello összekötő projektet maven használja. toobuild hello összekötő függőségek nélkül is futtathatja:
 ```
 mvn clean package
 ```
-Emellett letöltheti a legújabb verzióját a JAR a *kiadott* mappát.
+Hello hello JAR legújabb verzióját a hello is letölthető *kiadott* mappát.
 
-### <a name="include-the-azure-cosmos-db-spark-jar"></a>Az Azure Cosmos DB külső JAR tartalmazza
-A kód végrehajtása előtt meg kell adnia az Azure Cosmos DB külső JAR.  Használatakor a **spark-rendszerhéj**, majd a használatával megadhatja a JAR a **--JAR-fájlok kivételével** lehetőséget.  
+### <a name="include-hello-azure-cosmos-db-spark-jar"></a>Hello Azure Cosmos DB külső JAR tartalmazza
+Kód futtatása előtt kell tooinclude hello Azure Cosmos DB külső JAR.  Hello használata **spark-rendszerhéj**, majd hello segítségével megadhat hello JAR **--JAR-fájlok kivételével** lehetőséget.  
 
 ```
 spark-shell --master $master --jars /$location/azure-cosmosdb-spark-0.0.3-jar-with-dependencies.jar
 ```
 
-A JAR függőségek nélkül végrehajtani, használja a következő kódot:
+Tooexecute hello JAR függőségek nélkül, használja a következő kód hello:
 
 ```
 spark-shell --master $master --jars /$location/azure-cosmosdb-spark-0.0.3.jar,/$location/azure-documentdb-1.10.0.jar
 ```
 
-Ha a notebook szolgáltatással, például az Azure HDInsight Jupyter notebook szolgáltatást használ, akkor használhatja a **spark magic** parancsokat:
+A notebook szolgáltatással, például az Azure HDInsight Jupyter notebook szolgáltatás használatakor hello használhatja **spark magic** parancsokat:
 
 ```
 %%configure
@@ -198,12 +198,12 @@ Ha a notebook szolgáltatással, például az Azure HDInsight Jupyter notebook s
 }
 ```
 
-A **JAR-fájlok kivételével** parancs lehetővé teszi a két JAR-fájlok kivételével, a szükséges **azure-cosmosdb-spark** (önmagában, illetve az Azure DocumentDB Java SDK-t), és amelyeket **scala-tükrözze** , hogy ne zavarja a Livy hívások (Jupyter notebook > Livy > Spark).
+Hello **JAR-fájlok kivételével** parancs lehetővé teszi, hogy tooinclude hello két JARs, amelyek szükségesek a **azure-cosmosdb-spark** (saját magát és hello Azure DocumentDB Java SDK-t), és amelyeket **scala-megfelelően** , hogy ne zavarja Livy meghívja hello (Jupyter notebook > Livy > Spark).
 
-### <a name="connect-spark-to-azure-cosmos-db-using-the-connector"></a>Spark csatlakozzon az összekötővel Azure Cosmos Adatbázishoz.
-Bár a kommunikációs átviteli egy kicsit bonyolultabb, a lekérdezés végrehajtása a Spark on Azure Cosmos DB-összekötő segítségével is jelentősen gyorsabb.
+### <a name="connect-spark-tooazure-cosmos-db-using-hello-connector"></a>Csatlakozás a Spark tooAzure Cosmos DB használatával hello összekötő
+Bár hello kommunikációs átviteli egy kicsit bonyolultabb, a lekérdezés végrehajtása a Spark tooAzure Cosmos DB hello-összekötő használatával is jelentősen gyorsabb.
 
-A következő kódrészletet bemutatja, hogyan Spark környezetben az összekötő használatára.
+a következő kódrészletet hello bemutatja, hogyan toouse hello összekötő Spark környezetben.
 
 ```
 // Import Necessary Libraries
@@ -213,7 +213,7 @@ import com.microsoft.azure.cosmosdb.spark.schema._
 import com.microsoft.azure.cosmosdb.spark._
 import com.microsoft.azure.cosmosdb.spark.config.Config
 
-// Configure connection to your collection
+// Configure connection tooyour collection
 val readConfig2 = Config(Map("Endpoint" -> "https://doctorwho.documents.azure.com:443/",
 "Masterkey" -> "le1n99i1w5l7uvokJs3RT5ZAH8dc3ql7lx2CG0h0kK4lVWPkQnwpRLyAN0nwS1z4Cyd1lJgvGUfMWR3v8vkXKA==",
 "Database" -> "DepartureDelays",
@@ -226,14 +226,14 @@ val coll = spark.sqlContext.read.cosmosDB(readConfig2)
 coll.createOrReplaceTempView("c")
 ```
 
-A kódrészletet leírtaknak megfelelően:
+Hello kódrészletet leírtaknak megfelelően:
 
-- **Azure-cosmosdb-spark** az összes szükséges kapcsolat paramétereit tartalmazza, többek között az elsődleges helyek. Például kiválaszthatja a olvasható replika és a prioritási sorrendben.
-- Ebben az esetben a szükséges könyvtárak importálása, és a főkulcsos és az állomás hozhat létre az Azure Cosmos DB ügyfél.
+- **Azure-cosmosdb-spark** hello tartalmazza az összes szükséges kapcsolódási paraméterek, többek között hello elsődleges helyek hello. Kiválaszthatja például hello olvassa el a replika és a prioritási sorrendben.
+- Ebben az esetben hello szükséges könyvtárak importálása, és a főkulcsos és a gazdagép toocreate hello Azure Cosmos DB-ügyfél konfigurálása.
 
-### <a name="execute-spark-queries-via-the-connector"></a>Az összekötőn keresztül Spark-lekérdezéseket hajt végre
+### <a name="execute-spark-queries-via-hello-connector"></a>Hajtsa végre a Spark lekérdezéseket hello összekötőn keresztül
 
-Az alábbi példában az Azure Cosmos DB-példány az előző részlet jött létre a megadott írásvédett kulcsok használatával. A következő kódrészletet a DepartureDelays.flights_pcoll gyűjtemény (a korábban megadott DoctorWho fiókban) csatlakozik, és a felhőszolgáltató közötti átviteléhez késleltetés információkat, amelyek a budapesti vannak induló légijáratok lekérdezés futtatása.
+a következő példa használ hello Azure Cosmos DB példány hello előző részlet hello segítségével létrehozott hello megadott írásvédett kulcsok. hello következő kódrészletet toohello DepartureDelays.flights_pcoll gyűjtemény (a korábban megadott DoctorWho fiók hello) csatlakozik, és futtat egy lekérdezés tooextract hello repülési késési információkat, amelyek a budapesti vannak induló légijáratok.
 
 ```
 // Queries
@@ -247,30 +247,30 @@ df.count()
 df.show()
 ```
 
-### <a name="why-use-the-spark-to-azure-cosmos-db-connector-implementation"></a>A Spark on Azure Cosmos DB összekötő megvalósításához miért érdemes használni?
+### <a name="why-use-hello-spark-tooazure-cosmos-db-connector-implementation"></a>Hello Spark tooAzure Cosmos DB összekötő megvalósítási miért érdemes használni?
 
-Forgatókönyvek általában Spark csatlakozik Azure Cosmos DB-összekötővel van ahol:
+Csatlakozás Spark tooAzure Cosmos DB hello összekötővel általában forgatókönyvek van ahol:
 
-* Scala használja, és frissítse úgy, hogy tartalmazzák a Python-burkoló leírtaknak megfelelően [probléma 3: hozzáadása Python burkoló és példák](https://github.com/Azure/azure-cosmosdb-spark/issues/3).
-* Rendelkezik egy nagy mennyiségű adatot Apache Spark- és Azure Cosmos DB közötti átviteléhez.
+* Szeretné, hogy toouse Scala és tooinclude egy Python-burkoló leírtaknak megfelelően a frissítést [probléma 3: hozzáadása Python burkoló és példák](https://github.com/Azure/azure-cosmosdb-spark/issues/3).
+* Nagy mennyiségű adatok tootransfer között az Apache Spark on Azure Cosmos DB rendelkezik.
 
-Segítenek a lekérdezés teljesítménybeli különbség az, tekintse meg a [lekérdezés teszt futtatása wiki](https://github.com/Azure/azure-cosmosdb-spark/wiki/Query-Test-Runs).
+toogive egy meghatározni, hello lekérdezés teljesítménybeli különbség az, hogy látja hello [lekérdezés teszt futtatása wiki](https://github.com/Azure/azure-cosmosdb-spark/wiki/Query-Test-Runs).
 
 ## <a name="distributed-aggregation-example"></a>Elosztott összesítési – példa
-Ez a témakör néhány példa arra, hogyan lehet úgy teheti meg, elosztott összesítések és az elemzések Apache Spark- és Azure Cosmos DB együtt. Azure Cosmos-adatbázis már támogatja az összesítéseket, amely ismertet a [bolygónk méretezési összesíti az Azure Cosmos DB blog](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/). Ez hogyan-EK az Apache Spark a következő szintre.
+Ez a témakör néhány példa arra, hogyan lehet úgy teheti meg, elosztott összesítések és az elemzések Apache Spark- és Azure Cosmos DB együtt. Azure Cosmos-adatbázis már támogatja az összesítéseket, amely hello ismertet [bolygónk méretezési összesíti az Azure Cosmos DB blog](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/). Ez hogyan-EK toohello mellett az Apache Spark szint.
 
-Vegye figyelembe, hogy ezeket az összesítéseket reference, hogy a [Spark az Azure Cosmos DB összekötő notebook](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/notebooks/Spark-to-CosmosDB_Connector.ipynb).
+Vegye figyelembe, hogy ezeket az összesítéseket a hivatkozás toohello [Spark tooAzure Cosmos DB összekötő notebook](https://github.com/Azure/azure-cosmosdb-spark/blob/master/samples/notebooks/Spark-to-CosmosDB_Connector.ipynb).
 
-### <a name="connect-to-flights-sample-data"></a>Járatok minta adatokhoz
-Összesítési példákban elérni bizonyos repülési teljesítményadatokat tárolt a **DoctorWho** Azure Cosmos DB adatbázisban. A csatlakozáshoz, szüksége használatára a következő kódrészletet:
+### <a name="connect-tooflights-sample-data"></a>Csatlakozás tooflights mintaadatok
+Összesítési példákban elérni bizonyos repülési teljesítményadatokat tárolt a **DoctorWho** Azure Cosmos DB adatbázisban. tooconnect tooit kell tooutilize hello a következő kódrészletet:
 
 ```
-// Import Spark to Azure Cosmos DB connector
+// Import Spark tooAzure Cosmos DB connector
 import com.microsoft.azure.cosmosdb.spark.schema._
 import com.microsoft.azure.cosmosdb.spark._
 import com.microsoft.azure.cosmosdb.spark.config.Config
 
-// Connect to Azure Cosmos DB Database
+// Connect tooAzure Cosmos DB Database
 val readConfig2 = Config(Map("Endpoint" -> "https://doctorwho.documents.azure.com:443/",
 "Masterkey" -> "le1n99i1w5l7uvokJs3RT5ZAH8dc3ql7lx2CG0h0kK4lVWPkQnwpRLyAN0nwS1z4Cyd1lJgvGUfMWR3v8vkXKA==",
 "Database" -> "DepartureDelays",
@@ -283,7 +283,7 @@ val coll = spark.sqlContext.read.cosmosDB(readConfig2)
 coll.createOrReplaceTempView("c")
 ```
 
-Ezt a kódrészletet a is fogjuk továbbítani a szűrt adatkészletet az Azure Cosmos Adatbázisból Spark ahol ez utóbbi végezhet elosztott összesítések alap-lekérdezés futtatható. Ebben az esetben arra kérjük, hogy a budapesti (SZE) egymástól légijáratoknál.
+Ezt a kódrészletet a dolgozunk is folyamatos toorun, hogy az átvitel hello Azure Cosmos DB tooSpark származó adatok szűrt set alap lekérdezés ahol ez utóbbi hello végezhet elosztott összesítések. Ebben az esetben arra kérjük, hogy a budapesti (SZE) egymástól légijáratoknál.
 
 ```
 // Run, get row count, and time query
@@ -291,14 +291,14 @@ val originSEA = spark.sql("SELECT c.date, c.delay, c.distance, c.origin, c.desti
 originSEA.createOrReplaceTempView("originSEA")
 ```
 
-Az alábbi eredményeket a lekérdezések futtatása Jupyter notebook szolgáltatásból hoztak létre.  Ne feledje, hogy a kódrészleteket általános és nem meghatározott, bármely szolgáltatás.
+hello következő eredmények által előállított hello lekérdezések futtatása Jupyter notebook szolgáltatás hello.  Ne feledje, hogy minden hello kódtöredékek általános és nem adott tooany szolgáltatás.
 
 ### <a name="running-limit-and-count-queries"></a>Futó korlát és száma
-Fentiekhez hasonló által használt SQL/Spark SQL, kezdjük egy **korlát** lekérdezést:
+Csak Ön például használt tooin SQL/Spark SQL, most kezdetben a **korlát** lekérdezést:
 
 ![Spark korlát lekérdezés](./media/spark-connector/spark-sql-query.png)
 
-A következő lekérdezés az egyszerű és gyors **száma** lekérdezést:
+hello következő lekérdezésben van egy egyszerű és gyors **száma** lekérdezést:
 
 ![Spark COUNT lekérdezés](./media/spark-connector/spark-count-query.png)
 
@@ -319,8 +319,8 @@ Itt egy **DISTINCT, ORDER BY** lekérdezést:
 
 ![Spark GROUP BY lekérdezés diagramhoz](./media/spark-connector/order-by-query.png)
 
-### <a name="continue-the-flight-data-analysis"></a>Továbbra is az felé továbbított adatok elemzése
-A következő példa lekérdezések felé továbbított adatok elemzése a folytatáshoz használhatja:
+### <a name="continue-hello-flight-data-analysis"></a>Továbbra is hello felé továbbított adatok elemzése
+A következő példa lekérdezések toocontinue hello felé továbbított adatok elemzése hello használhatja:
 
 #### <a name="top-5-delayed-destinations-cities-departing-from-seattle"></a>Leggyakoribb 5 késleltetett célok (városokat) onnan induló Budapest
 ```
@@ -346,9 +346,9 @@ order by percentile_approx(delay, 0.5)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha még nem tette meg, töltse le a Spark on Azure Cosmos DB-összekötőt a [azure-cosmosdb-spark](https://github.com/Azure/azure-cosmosdb-spark) GitHub-tárházban és vizsgálja meg a tárházban további források:
+Ha még nem tette meg, le hello Spark tooAzure Cosmos DB összekötő hello [azure-cosmosdb-spark](https://github.com/Azure/azure-cosmosdb-spark) GitHub-tárházban és további források hello hello tárházban felfedezése:
 
 * [Elosztott összesítések példák](https://github.com/Azure/azure-cosmosdb-spark/wiki/Aggregations-Examples)
 * [Mintaparancsfájlok és notebookok](https://github.com/Azure/azure-cosmosdb-spark/tree/master/samples)
 
-Is érdemes áttekinteni a [Apache Spark SQL, DataFrames és adatkészletek útmutató](http://spark.apache.org/docs/latest/sql-programming-guide.html) és a [Apache Spark on Azure Hdinsighttal](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md) cikk.
+Érdemes lehet tooreview hello [Apache Spark SQL, DataFrames és adatkészletek útmutató](http://spark.apache.org/docs/latest/sql-programming-guide.html) és hello [Apache Spark on Azure Hdinsighttal](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md) cikk.

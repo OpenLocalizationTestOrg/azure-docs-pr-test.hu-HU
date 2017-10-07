@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric Reliable Service-szolgáltatás létrehozása C#-környezettel"
+title: "egy megbízható Azure Service Fabric-szolgáltatás, a C# aaaCreate"
 description: "Azure Service Fabric-alapú Reliable Services-alkalmazás létrehozása, üzembe helyezése és hibakeresése a Visual Studio használatával."
 services: service-fabric
 documentationcenter: .net
@@ -14,120 +14,120 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/28/2017
 ms.author: ryanwi
-ms.openlocfilehash: f93298e6483fd8c9dfda835964aeebd1a430af69
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 740c866da6e639219b529fe92ed63cbeaa702a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-c-service-fabric-stateful-reliable-services-application"></a>Az első Service Fabric Stateful Reliable Services-alkalmazás létrehozása C#-környezettel
 
-Megtudhatja, hogyan helyezheti üzembe mindössze néhány perc alatt első .NET-es Service Fabric-alkalmazását Windows rendszeren. Ha elkészült, rendelkezni fog egy Reliable Services-alkalmazással futó helyi fürttel.
+Megtudhatja, hogyan toodeploy az első Service Fabric-alkalmazás a .NET-hez a Windows néhány perc múlva. Ha elkészült, rendelkezni fog egy Reliable Services-alkalmazással futó helyi fürttel.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Mielőtt elkezdené, győződjön meg arról, hogy [beállította a fejlesztőkörnyezetet](service-fabric-get-started.md). Ebbe beletartozik a Service Fabric SDK és a Visual Studio 2017 vagy 2015 telepítése is.
+Mielőtt elkezdené, győződjön meg arról, hogy [beállította a fejlesztőkörnyezetet](service-fabric-get-started.md). Ez magában foglalja a Service Fabric SDK hello és a Visual Studio 2017 vagy 2015 telepítése.
 
-## <a name="create-the-application"></a>Az alkalmazás létrehozása
+## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
 
 Indítsa el a Visual Studiót **rendszergazdaként**.
 
 Projekt létrehozása `CTRL`+`SHIFT`+`N` használatával
 
-Az **Új projekt** párbeszédpanelen válassza a **Felhő > Service Fabric-alkalmazás** elemet.
+A hello **új projekt** párbeszédpanelen válasszon **felhő > Service Fabric-alkalmazás**.
 
-Adja a **MyApplication** nevet az alkalmazásnak, majd kattintson az **OK** gombra.
+Hello alkalmazás neve **MyApplication** nyomja le az ENTER **OK**.
 
    
 ![A Visual Studio Új projekt párbeszédpanelje][1]
 
-A következő párbeszédpanelen bármilyen típusú Service Fabric-alkalmazást létrehozhat. Ebben a rövid útmutatóban válassza az **Állapotalapú szolgáltatás** lehetőséget.
+Service Fabric-alkalmazás bármilyen típusú hello tovább párbeszédpanelről hozhat létre. Ebben a rövid útmutatóban válassza az **Állapotalapú szolgáltatás** lehetőséget.
 
-Adja a **MyStatefulService** nevet a szolgáltatásnak, majd kattintson az **OK** gombra.
+Hello szolgáltatás **MyStatefulService** nyomja le az ENTER **OK**.
 
 ![A Visual Studio Új szolgáltatás párbeszédpanelje][2]
 
 
-A Visual Studio létrehozza az alkalmazási projektet és az állapotalapú szolgáltatási projektet, és megjeleníti őket a Megoldáskezelőben.
+A Visual Studio létrehozza hello projektet és hello állapotalapú szolgáltatási projektet, és megjeleníti őket a Megoldáskezelőben.
 
 ![A Megoldáskezelő folytatja az alkalmazás létrehozását állapotalapú szolgáltatással][3]
 
-Az alkalmazásprojekt (**MyApplication**) nem tartalmaz közvetlenül semmilyen kódot. Helyette számos szolgáltatási projektre hivatkozik. Ezenfelül három egyéb típusú tartalmat is tartalmaz:
+hello projektet (**MyApplication**) nem tartalmaz közvetlenül semmilyen kódot. Helyette számos szolgáltatási projektre hivatkozik. Ezenfelül három egyéb típusú tartalmat is tartalmaz:
 
 * **Profilok közzététele**  
-Más környezetekben való üzembe helyezésre szolgáló profilok.
+Profilok üzembe helyezéséhez toodifferent környezetekben.
 
 * **Szkriptek**  
 Az alkalmazás üzembe helyezéséhez/frissítéséhez szükséges PowerShell-szkript.
 
 * **Alkalmazásdefiníció**  
-Tartalmazza az *ApplicationPackageRoot* területen található ApplicationManifest.xml fájlt, amely leírja az alkalmazás összeállítását. A társított alkalmazásparaméter-fájlok az *ApplicationParameters* területen találhatók, és a környezetspecifikus paraméterek megadására használhatók. A Visual Studio kiválaszt alkalmazásparaméter-fájlt, amelyet egy adott környezetben való üzembe helyezéskor adott meg a kapcsolódó közzétételi profilban.
+Hello ApplicationManifest.xml fájlt tartalmaz *ApplicationPackageRoot* amely ismerteti, hogy az alkalmazás az összeállításban. Kapcsolódó alkalmazásparaméter-fájlokat a rendszer *ApplicationParameters*, amely lehet használt toospecify környezet-specifikus paramétereket. Visual Studio választja ki, egy alkalmazás paraméterfájl hello megadott tartozó közzétételi profil központi telepítési tooa adott környezet során.
     
-A szolgáltatási projekt tartalmának áttekintéséhez lásd: [Bevezetés a Reliable Services használatába](service-fabric-reliable-services-quick-start.md).
+Hello hello szolgáltatási projekt tartalmának áttekintéséhez lásd: [Bevezetés a Reliable Services használatába](service-fabric-reliable-services-quick-start.md).
 
-## <a name="deploy-and-debug-the-application"></a>Az alkalmazás üzembe helyezése és hibakeresése
+## <a name="deploy-and-debug-hello-application"></a>Üzembe helyezése és hibakeresése hello alkalmazás
 
 Most, hogy már van egy alkalmazása, futtassa.
 
-Nyomja le az `F5` billentyűt a Visual Studióban, hogy üzembe helyezze az alkalmazást a hibakereséshez.
+A Visual Studio, nyomja le a `F5` toodeploy hello alkalmazást a hibakereséshez.
 
 >[!NOTE]
->Az alkalmazás első helyi történő üzembe helyezésekor a Visual Studio létrehoz egy helyi hibakeresési fürtöt. Ez eltarthat egy ideig. A fürt létrehozási állapota a Visual Studio kimeneti ablakában jelenik meg.
+>hello első alkalommal futtatja, és hello-alkalmazás központi telepítése helyileg, a Visual Studio hibakeresési egy helyi fürtöt hoz létre. Ez eltarthat egy ideig. hello fürt létrehozási állapota hello Visual Studio kimeneti ablakában jelenik meg.
 
-Amikor a fürt létrejött, értesítést kap a helyi fürt SDK-hoz tartozó rendszertálca-kezelő alkalmazásától.
+Amikor készen áll a fürt hello, hello helyi fürt rendszer manager alkalmazást hello SDK részét képező értesítést kap.
    
 ![A helyifürt-rendszertálca értesítése][4]
 
-Az alkalmazás elindításakor a Visual Studio automatikusan megjeleníti a **Diagnosztikai eseménynaplót**, ahol az Ön szolgáltatásainak nyomkövetési kimenetei tekinthetők meg.
+Egyszer hello alkalmazás elindul, a Visual Studio automatikusan megjeleníti hello **diagnosztikai eseménynapló**, ahol megtekintheti a nyomkövetési kimeneti a szolgáltatásokból.
    
 ![Diagnosztikai eseménynapló][5]
 
-Az általunk használt állapotalapúszolgáltatás-sablon esetében egyszerűen a **MyStatefulService.cs** `RunAsync` metódusához tartozó számláló növekvő értékei jelennek meg.
+hello használtuk állapotalapú Szolgáltatássablon egyszerűen jeleníti meg a számláló értéke növekvő a hello `RunAsync` metódusában **MyStatefulService.cs**.
 
-Bontsa ki az egyik eseményt, hogy további részleteket tekinthessen meg, beleértve azt a csomópontot is, amelyben a kód fut. Ebben az esetben ez a \_Node\_2, de az Ön számítógépén ez eltérő lehet.
+Bontsa ki az egyik hello események toosee további adatait, többek között a hello kódot futtató hello csomópont. Ebben az esetben ez a \_Node\_2, de az Ön számítógépén ez eltérő lehet.
    
 ![A diagnosztikai eseménynapló részletei][6]
 
-A helyi fürt egyetlen gépen üzemeltetett öt csomópontot tartalmaz. Éles környezetben minden egyes csomópont más fizikai vagy virtuális gépen üzemel. Állítsuk le a helyi fürt egyik csomópontját, hogy szimuláljuk egy gép elvesztését, és kipróbáljuk a Visual Studio hibakereső funkcióját.
+hello helyi fürt egyetlen számítógépen lévő öt csomópontot tartalmaz. Éles környezetben minden egyes csomópont más fizikai vagy virtuális gépen üzemel. ugyanaz a hello hibakereső toosimulate hello egy gép elvesztését, miközben gyakorló hello Visual Studio idő, vegyük le hello helyi fürtön lévő hello csomópontok egyikét.
 
-A **Megoldáskezelő** ablakában nyissa meg a **MyStatefulService.cs** fájlt. 
+A hello **Megoldáskezelőben** ablakban megnyitott **MyStatefulService.cs**. 
 
-Keresse meg a(z) `RunAsync` metódust, és az első sorában állítson be egy töréspontot.
+Hello található `RunAsync` metódus, és állítsa be töréspont hello hello metódus első sorában.
 
 ![Töréspont az állapotalapú szolgáltatás RunAsync metódusában][7]
 
-A **Service Fabric Explorer** eszköz elindításához kattintson a jobb gombbal a **Local Cluster Manager** rendszertálca-alkalmazásra, és válassza a **Helyi fürt kezelése** lehetőséget.
+Indítsa el a hello **Service Fabric Explorer** kattintson a jobb gombbal a hello eszköz **Local Cluster Manager** rendszer alkalmazást, és válassza a **helyi fürt kezelése**.
 
-![A Manage Local Cluster alkalmazásból indítsa el a Service Fabric Explorert.][systray-launch-sfx]
+![Service Fabric Explorer elindításához a Local Cluster Manager hello][systray-launch-sfx]
 
-A [**Service Fabric Explorer**](service-fabric-visualizing-your-cluster.md) vizuálisan is megjeleníti a fürtöket, beleértve a rajtuk üzembe helyezett alkalmazáskészletet és az őket felépítő fizikai csomópontokat is.
+A [**Service Fabric Explorer**](service-fabric-visualizing-your-cluster.md) vizuálisan is megjeleníti a fürtöket, Ez magában foglalja a központilag telepített alkalmazások tooit hello készlete és az azt alkotó fizikai csomópontok készletét hello.
 
-A bal oldali panelen bontsa ki a **Cluster > Nodes** (Fürt > Csomópontok) elemet, és keresse meg azt csomópont, amelyikben a kódja fut.
+Hello bal oldali ablaktáblán bontsa ki a **fürt > csomópontok** és a kódot futtató keresés hello csomópont.
 
-Kattintson az **Actions > Deactivate (Restart)** (Műveletek > Inaktiválás (Újraindítás)) elemre a számítógép-újraindítás szimulálásához.
+Kattintson a **műveletek > inaktiválás (újraindítás)** toosimulate a számítógép-újraindítás.
 
 ![Csomópont leállítása a Service Fabric Explorerben][sfx-stop-node]
 
-Pillanatnyilag a töréspont megjelenését tekintheti meg a Visual Studióban, mivel az egyik csomóponton korábban végzett számítása zökkenőmentesen átadja a feladatokat egy másiknak.
+Pillanatnyilag a töréspont megjelenését megjelennie elérte a Visual Studio, a hello korábban végzett számítása az egyik csomópont zökkenőmentesen átadja a feladatokat tooanother.
 
 
-Ezután térjen vissza a Diagnosztikai eseménynaplóhoz, és vizsgálja meg az üzeneteket. A számláló értéke továbbra is növekszik, annak ellenére, hogy az események valójában egy másik csomópontról érkeznek.
+Ezután térjen vissza a diagnosztikai eseménynaplóhoz toohello, és tekintse meg az üdvözlő üzenetek. hello számláló értéke továbbra is növekedett, annak ellenére, hogy hello események valójában egy másik csomópont származik.
 
 ![A diagnosztikai eseménynapló a feladatátvétel után][diagnostic-events-viewer-detail-post-failover]
 
-## <a name="cleaning-up-the-local-cluster-optional"></a>A helyi fürt törlése (nem kötelező)
+## <a name="cleaning-up-hello-local-cluster-optional"></a>Törölje a helyi fürt hello (nem kötelező)
 
-Ne feledje, hogy ez a helyi fürt valós. A hibakereső leállításával eltávolítja az adott alkalmazáspéldányt, és törli az alkalmazástípus regisztrációját. A fürt futtatása azonban tovább folytatódik a háttérben. Ha felkészült a helyi fürt leállítására, erre többféle lehetőség is rendelkezésre áll.
+Ne feledje, hogy ez a helyi fürt valós. Hello hibakereső leállítása eltávolítja az alkalmazáspéldány és hello alkalmazástípus regisztrációjának törlése. Azonban hello fürt toorun hello háttérben folytatódik. Amikor készen áll a toostop hello helyi fürthöz, van néhány lehetőség áll.
 
 ### <a name="keep-application-and-trace-data"></a>Alkalmazás- és nyomkövetési adatok megtartása
 
-A fürt leállításához kattintson a jobb gombbal a **Local Cluster Manager** rendszertálca-alkalmazásra, és válassza a **Helyi fürt leállítása** lehetőséget.
+Kattintson a jobb gombbal a hello hello fürt leállítása **Local Cluster Manager** rendszer alkalmazást majd **helyi fürt leállítása**.
 
-### <a name="delete-the-cluster-and-all-data"></a>A fürt és minden adat törlése
+### <a name="delete-hello-cluster-and-all-data"></a>Hello fürt és az összes adat törlése
 
-A fürt eltávolításához kattintson a jobb gombbal a **Local Cluster Manager** rendszertálca-alkalmazásra, és válassza a **Helyi fürt eltávolítása** lehetőséget. 
+Kattintson a jobb gombbal a hello hello fürt eltávolítása **Local Cluster Manager** rendszer alkalmazást majd **helyi fürt eltávolítása**. 
 
-Ha ezt a lehetőséget választja, a Visual Studio az alkalmazás legközelebbi futtatásakor ismét üzembe helyezi a fürtöt. Akkor válassza ezt a beállítást, ha egy ideig nem kívánja használni a helyi fürtöt, vagy ha erőforrásokat kíván felszabadítani.
+Ha ezt a lehetőséget választja, a Visual Studio fog telepíteni hello fürt hello a Futtatás hello alkalmazás következő indításakor. Válassza ezt a beállítást, ha egy kis ideig nem szándékozik a toouse hello helyi fürtöt, vagy ha tooreclaim erőforrásokat kell.
 
 ## <a name="next-steps"></a>Következő lépések
 További információk a [Reliable Services](service-fabric-reliable-services-introduction.md)-szolgáltatásokról.

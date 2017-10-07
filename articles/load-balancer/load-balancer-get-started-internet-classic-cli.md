@@ -1,6 +1,6 @@
 ---
-title: "Internetkapcsolattal rendelkező terheléselosztó létrehozása – klasszikus Azure CLI | Microsoft Docs"
-description: "Ismerje meg, hogyan hozható létre internetkapcsolattal rendelkező terheléselosztó klasszikus üzembehelyezési modellben az Azure parancssori felület használatával"
+title: "az internetre irányuló aaaCreate terheléselosztó - klasszikus Azure CLI |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy Internet felé néző terheléselosztót a klasszikus üzembe helyezési modell használatával hello Azure parancssori felület"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: da3a908f17ff5c6d3923549a884ecc0a13cb8e9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6070cbc574f74bca0cccb960ff192847d6511bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-cli"></a>Bevezetés az internetkapcsolattal rendelkező terheléselosztó (klasszikus) Azure parancssori felület használatával történő létrehozásába
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-cli"></a>Internet felé néző terheléselosztó (klasszikus) Azure CLI hello létrehozásához
 
 > [!div class="op_single_selector"]
 > * [klasszikus Azure portál](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
@@ -31,16 +31,16 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Az Azure-erőforrásokkal való munka megkezdése előtt fontos megérteni, hogy az Azure jelenleg két üzembe helyezési modellel rendelkezik, a Resource Managerrel és a klasszikussal. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-classic-rm.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. A különféle eszközök dokumentációit a cikk tetején található fülekre kattintva tekintheti meg. Ez a cikk a klasszikus üzembehelyezési modellt ismerteti. Emellett [azt is megismerheti, hogyan lehet internetkapcsolattal rendelkező terheléselosztót létrehozni az Azure Resource Manager használatával](load-balancer-get-started-internet-arm-ps.md).
+> Azure-erőforrások használata előtt-e, hogy Azure jelenleg két üzembe helyezési modellel rendelkezik fontos toounderstand: Azure Resource Manager és klasszikus. Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-classic-rm.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal. Ez a cikk hello tetején hello fülekre kattintva megtekintheti a különféle eszközök dokumentációit hello. Ez a cikk ismerteti a hello klasszikus üzembe helyezési modellben. Emellett [megtudhatja, hogyan toocreate egy internetre terheléselosztó Azure Resource Manager használatával](load-balancer-get-started-internet-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="step-by-step-creating-an-internet-facing-load-balancer-using-cli"></a>Internetkapcsolattal rendelkező terheléselosztó parancssori felület használatával történő létrehozásának lépései
 
-Ez az útmutató bemutatja, hogyan hozhat létre internetkapcsolattal rendelkező terheléselosztót a fenti forgatókönyv alapján.
+Ez az útmutató bemutatja, hogyan toocreate egy Internet terheléselosztó alapján a fenti forgatókönyvben hello.
 
-1. Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.
-2. Az **azure config mode** parancs futtatásával váltson a klasszikus módra, a lent látható módon.
+1. Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.
+2. Futtassa a hello **azure config mód** tooswitch tooclassic üzemmód, alább látható módon.
 
     ```azurecli
     azure config mode asm
@@ -52,12 +52,12 @@ Ez az útmutató bemutatja, hogyan hozhat létre internetkapcsolattal rendelkez�
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>Végpont és terheléselosztó készlet létrehozása
 
-A forgatókönyv feltételezi, hogy létrehozták a „web1” és „web2” virtuális gépet.
-Ez az útmutató létrehoz egy terheléselosztó készletet: a 80-as portot használja nyilvános portként, és a 80-as portot használja helyi portként. A mintavételi port szintén a 80-as porton van konfigurálva, és a terheléselosztó készlet „lbset” nevet kapta.
+hello forgatókönyv azt feltételezi, hogy a hello virtuális gépek "web1" és "web2" lettek létrehozva.
+Ez az útmutató létrehoz egy terheléselosztó készletet: a 80-as portot használja nyilvános portként, és a 80-as portot használja helyi portként. A mintavételi portot is konfigurálva van a 80-as porton, és a terheléselosztó elnevezett hello beállítása "lbset".
 
 ### <a name="step-1"></a>1. lépés
 
-Hozza létre az első végpontot és terheléselosztó készletet a következő használatával a „web1” virtuális géphez: `azure network vm endpoint create`.
+Hello első végpont létrehozásához és a terheléselosztó használatával be `azure network vm endpoint create` a "weben 1" virtuális gép.
 
 ```azurecli
 azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -65,7 +65,7 @@ azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-2"></a>2. lépés
 
-Adjon hozzá egy második virtuális gépet a terheléselosztó készlethez „web2” néven.
+Adjon hozzá egy másik virtuális gép "web2" toohello terhelés terheléselosztó készletben.
 
 ```azurecli
 azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -73,13 +73,13 @@ azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-3"></a>3. lépés
 
-Ellenőrizze a terheléselosztó konfigurációját a következő használatával: `azure vm show`.
+Ellenőrizze a hello terhelés terheléselosztó konfigurációs használatával `azure vm show` .
 
 ```azurecli
 azure vm show web1
 ```
 
-A kimenet a következő lesz:
+hello kimenet lesz:
 
     data:    DNSName "contoso.cloudapp.net"
     data:    Location "East US"
@@ -125,7 +125,7 @@ A kimenet a következő lesz:
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>Hozzon létre egy távoli asztali végpontot a virtuális géphez
 
-Létrehozhat egy távoli asztali végpontot a hálózati forgalom nyilvános portról helyi portra történő továbbításához egy adott virtuális géphez a `azure vm endpoint create` parancs használatával.
+Nyilvános port tooa helyi port, egy adott virtuális gép használata a távoli asztali végpont tooforward hálózati forgalom létrehozhat `azure vm endpoint create`.
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -133,16 +133,16 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>Virtuális gép eltávolítása a terheléselosztóból
 
-Törölnie kell a terheléselosztó készlethez társított végpontot a virtuális gépből. Miután megtörtént a végpont eltávolítása, a virtuális gép többé nem tartozik a terheléselosztó készlethez.
+Lehetősége van toodelete hello tartozó végpont toohello tartozó terheléselosztó készletének hello virtuális gépről. Hello végpont eltávolítást követően hello virtuális gép toohello elosztott terhelésű készlet már nem tartozik.
 
-A fenti példa használatával eltávolíthatja a „web1” virtuális géphez létrehozott végpontot az „lbset” terheléselosztóból a következő parancs használatával: `azure vm endpoint delete`.
+A fenti hello példáját eltávolíthatja a "weben 1" virtuális gép létrehozása hello végpont terheléselosztó "lbset" hello paranccsal `azure vm endpoint delete`.
 
 ```azurecli
 azure vm endpoint delete web1 tcp-80-80
 ```
 
 > [!NOTE]
-> A következő paranccsal további, a végpontok kezelésére szolgáló beállítást ismerhet meg: `azure vm endpoint --help`
+> Ismerje meg a további beállítások toomanage végpontok hello paranccsal`azure vm endpoint --help`
 
 ## <a name="next-steps"></a>Következő lépések
 

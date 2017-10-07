@@ -1,6 +1,6 @@
 ---
-title: "Azure-erőforrások telepítése Azure portál használatával |} Microsoft Docs"
-description: "Azure-portál és az Azure Resource Manager segítségével az erőforrások telepítése."
+title: "az Azure portál toodeploy aaaUse Azure-erőforrások |} Microsoft Docs"
+description: "Azure-portál és az Azure Resource Manager toodeploy az erőforrások használatára."
 services: azure-resource-manager,azure-portal
 documentationcenter: 
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
-ms.openlocfilehash: a4cac5834c667976b0a2d1f2748e4309a166d16a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5a5217f94c8dfc0c1ebd613903ea3dcbe1197bfc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-resources-with-resource-manager-templates-and-azure-portal"></a>Erőforrások üzembe helyezése Resource Manager-sablonokkal és az Azure Portallal
 > [!div class="op_single_selector"]
@@ -29,82 +29,82 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-Ez a témakör bemutatja, hogyan használja a [Azure-portálon](https://portal.azure.com) rendelkező [Azure Resource Manager](resource-group-overview.md) központi telepítése az Azure-erőforrások. Az erőforrások kezelésével kapcsolatos információkért lásd: [kezelése Azure-erőforrások portálon keresztül](resource-group-portal.md).
+Ez a témakör bemutatja, hogyan toouse hello [Azure-portálon](https://portal.azure.com) rendelkező [Azure Resource Manager](resource-group-overview.md) toodeploy az Azure-erőforrások. az erőforrások kezelése toolearn lásd [kezelése Azure-erőforrások portálon keresztül](resource-group-portal.md).
 
-Jelenleg nem minden szolgáltatás támogatja, a portál vagy az erőforrás-kezelő. Ezek a szolgáltatások kell használnia a [klasszikus portál](https://manage.windowsazure.com). Minden szolgáltatás állapotát, lásd: [az Azure portál elérhetőségi diagram](https://azure.microsoft.com/features/azure-portal/availability/).
+Nem minden szolgáltatás jelenleg hello portálon vagy az erőforrás-kezelő. Ezek a szolgáltatások toouse hello kell [klasszikus portál](https://manage.windowsazure.com). Minden szolgáltatás hello állapotát, lásd: [az Azure portál elérhetőségi diagram](https://azure.microsoft.com/features/azure-portal/availability/).
 
 ## <a name="create-resource-group"></a>Erőforráscsoport létrehozása
-1. Hozzon létre egy üres erőforráscsoportot, válassza ki **új** > **felügyeleti** > **erőforráscsoport**.
+1. egy üres erőforráscsoporthoz toocreate kiválasztása **új** > **felügyeleti** > **erőforráscsoport**.
    
     ![üres erőforráscsoport létrehozása](./media/resource-group-template-deploy-portal/create-empty-group.png)
-2. Adjon neki egy nevet és egy helyet, és szükség esetén válasszon egy előfizetést. Meg kell adnia az erőforrásnak a helyét, mert az erőforráscsoport erőforrásokra vonatkozó metaadatokat tárol. Megfelelőségi okokból érdemes lehet, hogy metaadatai tárolási helyének meghatározásához. Általában javasoljuk, hogy megadja a helyét, amelyben az erőforrások többségét tárolva lesz. Ugyanazon a helyen használatával egyszerűbbé teheti a sablont.
+2. Adjon neki egy nevet és egy helyet, és szükség esetén válasszon egy előfizetést. Egy hely tooprovide hello erőforráscsoport kell, mivel hello erőforráscsoport hello erőforrások metaadatokat tárol. Megfelelőségi okokból érdemes lehet, hogy a metaadatokat tároló toospecify. Általában javasoljuk, hogy megadja a helyét, amelyben az erőforrások többségét tárolva lesz. Hello segítségével azonos helyen egyszerűbbé teheti a sablont.
    
     ![csoport értékeket](./media/resource-group-template-deploy-portal/set-group-properties.png)
 
 ## <a name="deploy-resources-from-marketplace"></a>Erőforrások a piactér telepítése
-Miután létrehozott egy erőforráscsoport, a piactérről erőforrások telepítheti azt. A piactér előre definiált megoldást nyújt a gyakori forgatókönyvek.
+Miután létrehozott egy erőforráscsoport, a piactér hello erőforrások tooit telepítheti. hello piactér előre definiált megoldást nyújt a gyakori forgatókönyvek.
 
-1. A telepítés elindításához válassza ki a **új** és a telepíteni kívánt erőforrás típusát. Ezután keresse meg az adott verzióját szeretné telepíteni az erőforrás.
+1. a központi telepítés toostart válassza ki **új** és hello típus erőforrás toodeploy szeretné. Ezután keresse meg a hello erőforrás hello adott verziójához toodeploy szeretné.
    
     ![erőforrás telepítése](./media/resource-group-template-deploy-portal/deploy-resource.png)
-2. Ha nem látja az adott megoldás szeretne telepíteni, akkor is kereshet a piactér azt.
+2. Ha nem látja azt szeretné, hogy toodeploy hello adott megoldás, kereshet hello piactér azt.
    
     ![a piactéren](./media/resource-group-template-deploy-portal/search-resource.png)
-3. Attól függően, hogy a kiválasztott erőforrás típusát hogy egy központi telepítés előtt állítsa be a megfelelő tulajdonságok gyűjteménye. Ezek a lehetőségek nem itt látható, mivel azok erőforrástípus függően változhat. Az összes ki kell választania a célként megadott erőforráscsoport. A következő kép bemutatja, hogyan hozzon létre egy webalkalmazást, és telepítse azt a létrehozott erőforráscsoportot.
+3. Attól függően, hogy a kiválasztott erőforrás hello típusát központi telepítés előtt vonatkozó tulajdonságok tooset gyűjteménye van. Ezek a lehetőségek nem itt látható, mivel azok erőforrástípus függően változhat. Az összes ki kell választania a célként megadott erőforráscsoport. hello alábbi képen látható, hogyan toocreate egy webalkalmazást, és telepítse azt toohello létrehozott erőforráscsoportot.
    
     ![Erőforráscsoport létrehozása](./media/resource-group-template-deploy-portal/select-existing-group.png)
    
-    Azt is megteheti Ha dönt, hogy hozzon létre egy erőforráscsoportot az erőforrások telepítése során. Válassza ki **hozzon létre új** , és nevezze el az erőforráscsoportot.
+    Másik megoldásként megadhatja, hogy toocreate erőforráscsoport az erőforrások telepítése során. Válassza ki **hozzon létre új** , és nevezze el hello erőforráscsoportot.
    
     ![Új erőforráscsoport létrehozása](./media/resource-group-template-deploy-portal/select-new-group.png)
-4. A telepítés megkezdése. A központi telepítés eltarthat néhány percig. A telepítés befejezését, megjelenik egy értesítés.
+4. A telepítés megkezdése. hello telepítési eltarthat néhány percig. Amikor hello telepítés véget ért, megjelenik egy értesítés.
    
     ![értesítési nézet](./media/resource-group-template-deploy-portal/view-notification.png)
-5. Az erőforrások való telepítése után adhat hozzá további erőforrásokat az erőforráscsoport segítségével a **Hozzáadás** parancs az erőforráscsoport panel.
+5. Az erőforrások való telepítése után hello használatával adhat hozzá további erőforrásokat toohello erőforráscsoport **Hozzáadás** hello erőforráscsoport panel parancs.
    
     ![erőforrás hozzáadása](./media/resource-group-template-deploy-portal/add-resource.png)
 
 ## <a name="deploy-resources-from-custom-template"></a>Az egyéni sablont az erőforrások telepítése
-Ha szeretné a központi telepítés hajtható végre, de nem használja a sablonok a piactéren, létrehozhat egy egyéni sablont, amely meghatározza a megoldás infrastruktúráját. Sablonok létrehozásával kapcsolatos további tudnivalókért lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+Ha szeretné, hogy a központi telepítés tooexecute, de nem használható hello sablonok hello piactér, létrehozhat egy egyéni sablont, amely meghatározza a megoldás hello infrastruktúra. toolearn sablonok létrehozásával kapcsolatban lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
 
-1. Egy egyéni sablon a portálon keresztül történő üzembe helyezéséhez válassza **új**, és kezdeni a keresést a **sablon-üzembehelyezés** mindaddig, amíg a lehetőségek közül választhat.
+1. toodeploy hello portálon keresztül egyéni sablont válasszon **új**, és kezdeni a keresést a **sablon-üzembehelyezés** amíg hello lehetőségek közül választhat.
    
     ![keresési sablon-üzembehelyezés](./media/resource-group-template-deploy-portal/search-template.png)
-2. Válassza ki **sablon-üzembehelyezés** elérhető erőforrások.
+2. Válassza ki **sablon-üzembehelyezés** hello elérhető erőforrások.
    
     ![Válassza ki a sablon telepítése](./media/resource-group-template-deploy-portal/select-template.png)
-3. Miután elindította a sablon-üzembehelyezés, nyissa meg az üres sablon testreszabása érhetők el.
+3. Miután elindította hello sablon-üzembehelyezés, nyissa meg a hello üres sablont, amelyet a testreszabása.
    
     ![Sablon létrehozása](./media/resource-group-template-deploy-portal/show-custom-template.png)
    
-    A szerkesztő vegye fel a JSON-szintaxis, amely meghatározza a telepíteni kívánt erőforrásokat. Válassza ki **mentése** végzett. A JSON-szintaxis írásáról útmutatóért lásd: [Resource Manager sablonokhoz](resource-manager-template-walkthrough.md).
+    Hello szerkesztő adja hozzá a kívánt toodeploy hello erőforrások definiáló hello JSON szintaxis. Válassza ki **mentése** végzett. A JSON-szintaxis hello írása útmutatóért lásd: [Resource Manager sablonokhoz](resource-manager-template-walkthrough.md).
    
     ![sablon szerkesztése](./media/resource-group-template-deploy-portal/edit-template.png)
-4. Vagy választhat egy már meglévő sablon, a [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/documentation/templates/). Ezeket a sablonokat a Közösség által közzé. Számos gyakori helyzetek terjed ki, és valaki hozzáadta a sablont, amely hasonló mi próbál telepíteni. A sablonok található, amelyet a forgatókönyvének megfelelő kereshet.
+4. Vagy már meglévő sablon választhat hello [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/documentation/templates/). Ezek a sablonok hello Közösség közzé. Számos gyakori helyzetek terjed ki, és egy hasonló toowhat toodeploy próbált-sablont hozzá valaki. Kereshet hello sablonok toofind, amelyet a forgatókönyvének megfelelő.
    
     ![Válassza ki a következő gyorsindítási sablonon](./media/resource-group-template-deploy-portal/select-quickstart-template.png)
    
-    A kiválasztott sablont a szerkesztőben tekintheti meg.
-5. Miután megadta a többi érték, válassza ki a **létrehozása** a sablon telepítéséhez. 
+    Hello kijelölt sablon hello szerkesztőben tekintheti meg.
+5. Miután megadta az összes hello más értékek, válassza ki a **létrehozása** toodeploy hello sablont. 
    
     ![sablon üzembe helyezése](./media/resource-group-template-deploy-portal/create-custom-deploy.png)
 
-## <a name="deploy-resources-from-a-template-saved-to-your-account"></a>Egy sablonból fiókjába erőforrások telepítése
-A portál lehetővé teszi egy sablon mentése az Azure-fiókjával, és telepítse újra később. További információ ezen sablonok, mentett használata [Ismerkedés az Azure portálon magánsablonok](../marketplace-consumer/mytemplates-getstarted.md).
+## <a name="deploy-resources-from-a-template-saved-tooyour-account"></a>Mentett tooyour fiók sablonból erőforrások telepítése
+hello portál lehetővé teszi, hogy a sablon tooyour Azure-fiók toosave, és telepítse újra később. További információ ezen sablonok, mentett használata [Ismerkedés az Azure-portálon hello magánsablonok](../marketplace-consumer/mytemplates-getstarted.md).
 
-1. A mentett sablonok találhatók, válassza ki a **Tallózás** > **sablonok**.
+1. toofind a mentett sablonok kiválasztása **Tallózás** > **sablonok**.
    
     ![Keresse meg a sablonok](./media/resource-group-template-deploy-portal/browse-templates.png)
-2. Fiókjába sablonok listájának megtekintéséhez jelölje ki a használni kívánt egy.
+2. A sablonok tooyour fiók mentett hello listájából válassza ki egy kívánja toowork a hello.
    
     ![mentett sablonok](./media/resource-group-template-deploy-portal/saved-templates.png)
-3. Válassza ki **telepítés** újratelepíteni ezt a mentett sablont.
+3. Válassza ki **telepítés** tooredeploy ez mentette a sablont.
    
     ![mentett sablon üzembe helyezése](./media/resource-group-template-deploy-portal/deploy-saved-template.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* Naplók megtekintése: [naplózási műveletek a Resource Manager](resource-group-audit.md).
-* Telepítési hibák elhárításához lásd: [üzembe helyezési műveleteinek megtekintése](resource-manager-deployment-operations.md).
-* Egy központi telepítés vagy az erőforráscsoport a sablon lekéréséhez lásd: [Azure Resource Manager sablon exportálása létező erőforrásokból](resource-manager-export-template.md).
-* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
+* tooview naplókat, lásd: [naplózási műveletek a Resource Manager](resource-group-audit.md).
+* telepítési hibák tootroubleshoot, lásd: [üzembe helyezési műveleteinek megtekintése](resource-manager-deployment-operations.md).
+* tooretrieve egy sablon, egy központi telepítés vagy az erőforráscsoportot, lásd: [Azure Resource Manager sablon exportálása létező erőforrásokból](resource-manager-export-template.md).
+* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
 

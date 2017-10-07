@@ -1,5 +1,5 @@
 ---
-title: "SSH kulcspárok létrehozása Linux rendszerű virtuális gépekhez az Azure-on | Microsoft Docs"
+title: "aaaCreate SSH kulcs pár Linux virtuális gépek Azure-on |} Microsoft Docs"
 description: "Nyilvános és titkos SSH-kulcspárok biztonságos létrehozása Azure-beli Linux rendszerű virtuális gépekhez."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: rasquill
-ms.openlocfilehash: 19acd4efca7ef043f31b436b96f9129caee9591b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4c7cec77c9b48295f2a28c8179b30a4dc38a555
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ssh-public-and-private-key-pair-for-linux-vms"></a>SSH nyilvános és titkos kulcspárok létrehozása Linux rendszerű virtuális gépekhez
 
-Ez a cikk bemutatja, hogyan hozhat létre az SSH-protokoll 2. verziójára épülő nyilvános és titkosított RSA-kulcspárt a Linux rendszerű virtuális gépekhez.  Egy SSH-kulcspárral létrehozhat olyan virtuális gépeket az Azure-ban, amelyek SSH-kulcsokat használnak a hitelesítéshez, aminek köszönhetően nincs szükség jelszavakra a bejelentkezéshez.  A jelszavak kitalálhatók, és szüntelen találgatásos támadási kísérleteknek teszik ki a virtuális gépet a jelszó kiderítése céljából. Az Azure-sablonokkal vagy az `azure-cli` használatával létrehozott virtuális gépek az üzembe helyezés részeként tartalmazhatják a nyilvános SSH-kulcsot, így nincs szükség az SSH-hoz a jelszavas belépést letiltó, üzembe helyezés utáni konfigurálási lépésre.
+Ez a cikk bemutatja, hogyan toogenerate az SSH protokoll 2-es RSA nyilvános és titkos kulcs fájl pár toouse Linux virtuális gépek.  Egy SSH kulcspár akkor hozhat létre virtuális gépek Azure-alapértelmezett toousing SSH-kulcsok a hitelesítéshez, így nem kell a jelszavak toolog hello.  Jelszavak kitalál is lehet, és nyissa meg a virtuális gépek toorelentless találgatásos kísérletek tooguess be a jelszót. Virtuális gépek Azure-sablonok vagy hello `azure-cli` hello üzembe helyezés, a feladás egy vagy több központi telepítési konfigurációs lépés letiltása a jelszavas bejelentkezéseket az SSH eltávolítása a nyilvános SSH-kulcs tartalmazhatnak.
 
 ## <a name="quick-commands"></a>Gyors parancsok
 
-Futtassa a következő parancsokat egy rendszerhéjból, és a példákat helyettesítse be az Önnek megfelelő értékekkel.
+Futtassa a parancsokat követően a rendszerhéjakba, cseréje hello példák segítségével a saját választhat hello.
 
-Az SSH-ra épülő nyilvános kulcsfájl alapértelmezés szerint a következő helyen jön létre: `~/.ssh/id_rsa.pub`. Ha a rendszer a következő parancs használatakor kéri, hozzon létre egy „hozzáférési kódot” a titkos kulcs védelme érdekében. (A hozzáférési kód a titkos kulcs titkosításához használt jelszó.)
+Az SSH-ra épülő nyilvános kulcsfájl alapértelmezés szerint a következő helyen jön létre: `~/.ssh/id_rsa.pub`. Amikor a rendszer kéri, a következő parancs hello segítségével, a titkos kulcsot a "jelszó" toosecure kell létrehoznia. (hello jelszót a, a jelszót használt tooencrypt a titkos kulcsot.)
 
 ```bash
 ssh-keygen -t rsa -b 2048 
 ```
 
-Adja az újonnan létrehozott kulcsot a következőhöz: `ssh-agent`.
+Adja hozzá az újonnan létrehozott hello kulcs túl`ssh-agent`:
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
 > [!IMPORTANT] 
-> A fenti parancsok szinte a Linux operációs rendszer szinte minden disztribúcióján használhatók, de nem feltétlenül működnek a tárolókban, ugyanis ez a környezet jelentősen korlátozott lehet. 
+> hello fenti parancsok szinte minden terjesztéseket Linux operációs rendszeren, de nem feltétlenül működik-tárolókban, hello környezet így nagyon korlátozott módon. 
 
 ## <a name="detailed-walkthrough"></a>Részletes bemutató
 
-A nyilvános és titkos SSH-kulcsok használata biztosítja a legegyszerűbb módot a Linux-kiszolgálókra való bejelentkezéshez. A [nyíltkulcsú titkosítás](https://en.wikipedia.org/wiki/Public-key_cryptography) a jelszavak használatánál egy sokkal biztonságosabb módszert is lehetővé tesz a Linux vagy BSD virtuális gépekre való bejelentkezéshez az Azure-ban, hiszen a jelszavak sokkal könnyebben törhetők fel találgatásos módszeren alapuló támadással.
+Az SSH nyilvános és titkos kulcsok használata a hello legegyszerűbb módja toolog tooyour Linux-kiszolgálókon. [Nyilvános kulcsú](https://en.wikipedia.org/wiki/Public-key_cryptography) egy sokkal biztonságosabb módon toolog a tooyour Linux vagy BSD virtuális gép az Azure-ban biztosítja a jelszavak, amely lehet találgatásos módszeren alapuló sokkal könnyebben.
 
 > [!IMPORTANT]
-> A nyilvános kulcs bárkivel megosztható, azonban csak Ön (vagy a helyi biztonsági infrastruktúra) rendelkezik a titkos kulccsal.  A titkos SSH-kulcsnak [nagyon biztonságos jelszóval](https://www.xkcd.com/936/) kell rendelkeznie (forrás: [xkcd.com](https://xkcd.com)) a védelme érdekében.  Ez a jelszó csak a titkos SSH-kulcs elérésére szolgál, **nem** pedig a felhasználói fiók jelszava.  Amikor jelszót ad hozzá az SSH-kulcshoz, az a 128 bites AES segítségével titkosítja a titkos kulcsot, így a titkos kulcs használhatatlan az azt visszafejtő jelszó nélkül.  Ha egy támadó ellopná a titkos kulcsot, és azt nem védené jelszó, a támadó a titkos kulccsal bejelentkezhetne azon kiszolgálókra, amelyeken a megfelelő nyilvános kulcs lett telepítve.  Ha egy titkos kulcsot jelszó véd, a kulcsot nem használhatja a támadó, így ez további biztonsági réteget nyújt az Azure-beli infrastruktúra számára.
+> A nyilvános kulcs bárkivel megosztható, azonban csak Ön (vagy a helyi biztonsági infrastruktúra) rendelkezik a titkos kulccsal.  hello titkos SSH-kulcsot rendelkeznie kell egy [rendkívül biztonságos jelszó](https://www.xkcd.com/936/) (forrás:[xkcd.com](https://xkcd.com)) toosafeguard azt.  Ez a jelszó nem csak tooaccess hello titkos SSH-kulcs és **nem** hello felhasználói fiók jelszavát.  Ha hozzáad egy jelszó tooyour SSH-kulcs, hello 128 bites AES titkosítással, titkos kulcs, az titkosítja, úgy, hogy hello titkos kulcs nélkül hello jelszó toodecrypt használhatatlan azt.  Ha egy támadó ellopott a titkos kulcsot, és hogy a kulcs nem volt meg a jelszót, a lesznek képesek toouse, hogy titkos kulcs toolog hello megfelelő nyilvános kulccsal rendelkező tooany-kiszolgálókon.  Ha egy titkos kulcsot jelszó véd, a kulcsot nem használhatja a támadó, így ez további biztonsági réteget nyújt az Azure-beli infrastruktúra számára.
 
-Ez a cikk az SSH-protokoll 2. verziójára épülő nyilvános és titkosított RSA-kulcsfájl létrehozását ismerteti, amelyek használata a Resource Managerben üzemelő példányok esetén ajánlott.  Az *ssh-rsa* kulcsokra van szükség a [portálon](https://portal.azure.com) a klasszikus és a Resource Managerben üzemelő példányokhoz is.
+Ez a cikk hoz létre SSH protokoll verziója 2 RSA nyilvános és titkos kulcs, amelyek központi erőforrás-kezelő hello használata ajánlott.  *ssh-rsa* kulcsok szükségesek hello [portal](https://portal.azure.com) klasszikus és Resource Manager üzembe helyezések esetében.
 
 ## <a name="disable-ssh-passwords-by-using-ssh-keys"></a>SSH-jelszavak letiltása SSH-kulcsokkal
 
-Az Azure legalább 2048 bites ssh-rsa formátumú nyilvános és titkos kulcsokat követel meg. A kulcsok létrehozásához az `ssh-keygen` parancsot használja, amely kérdések sorát teszi fel, majd létrehoz egy titkos kulcsot és egy megfelelő nyilvános kulcsot. Egy Azure virtuális gép létrehozásakor a rendszer a `~/.ssh/authorized_keys` mappába másolja a nyilvános kulcsot.  A rendszer a `~/.ssh/authorized_keys` mappában lévő SSH-kulcsokat használja az ügyfél ellenőrzésére, hogy egyezik-e a megfelelő titkos kulcs egy SSH-bejelentkezési kapcsolat esetén.  Ha az Azure Linux VM létrehozása során SSH-kulcsokat használt a hitelesítéshez, az Azure úgy konfigurálja az SSHD-kiszolgálót, hogy ne engedélyezze a jelszavas bejelentkezéseket, csak az SSH-kulcsokat.  Így az Azure Linux VM-ek SSH-kulcsokkal való létrehozása által biztonságosan telepítheti a VM-et, és megkímélheti magát az általános, üzembe helyezés utáni konfigurációs lépéstől, amely letiltja a jelszavakat az sshd_config konfigurációs fájlban.
+Az Azure legalább 2048 bites ssh-rsa formátumú nyilvános és titkos kulcsokat követel meg. a kulcsok használata toocreate hello `ssh-keygen`, amely kérdések sorát, és ezután ír egy titkos kulcsot és egy megfelelő nyilvános kulcsot. Egy Azure virtuális gép létrehozásakor a hello nyilvános kulcs túl másolódik`~/.ssh/authorized_keys`.  Az SSH-kulcsok `~/.ssh/authorized_keys` használt toochallenge hello ügyfél toomatch hello megfelelő titkos kulcsnak SSH bejelentkezés kapcsolaton vannak.  Egy Azure Linux virtuális gép létrehozásakor SSH-kulcsok használata a hitelesítéshez, Azure konfigurálása hello SSHD server toonot engedélyezése a jelszavas bejelentkezéseket, csak az SSH-kulcsok.  Ezért az SSH-kulcsok Azure Linux virtuális gépek létrehozásával is segítségével biztonságos hello virtuális gép üzembe helyezéséhez és takarítson meg hello Tipikus telepítés utáni konfigurációs lépés letiltása jelszavak hello sshd_config konfigurációs fájlban.
 
 ## <a name="using-ssh-keygen"></a>Az ssh-keygen használata
 
-Ez a parancs jelszóval védett (titkosított) SSH-kulcspárt hoz létre 2048 bites RSA használatával, és az egyszerű azonosítás érdekében megjegyzéssel van ellátva.  
+Ezzel a paranccsal létrejön egy jelszóval védett (titkosított) SSH-kulcspárral 2048 bites RSA használatával, és azt megjegyzésként tooeasily képes azonosítani.  
 
-Az SSH-kulcsokat alapértelmezés szerint a `~/.ssh` könyvtár tárolja.  Ha Ön nem rendelkezik `~/.ssh` könyvtárral, akkor az `ssh-keygen` parancs létrehozza azt a megfelelő engedélyekkel.
+SSH kulcs van-e őrizni, hello alapértelmezés szerint `~/.ssh` könyvtár.  Ha nem rendelkezik egy `~/.ssh` könyvtár, hello `ssh-keygen` parancs létrehozza azt, hello a megfelelő engedélyekkel.
 
 ```bash
 ssh-keygen \
@@ -71,18 +71,18 @@ ssh-keygen \
 
 *A parancs ismertetése*
 
-`ssh-keygen` = a kulcsok létrehozásához használt program,
+`ssh-keygen`hello használt program toocreate hello kulcsok =
 
-`-t rsa` = a létrehozni kívánt kulcs típusa, amely az RSA formátum [wikipedia] (https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+`-t rsa`kulcs toocreate, amely hello RSA formátum típusú = [wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 
-`-b 2048` = a kulcs bitjeinek száma,
+`-b 2048`bits hello kulcs =
 
 
 ## <a name="classic-portal-and-x509-certs"></a>A klasszikus portál és az X.509-tanúsítványok
 
-Ha a [klasszikus Azure-portált](https://manage.windowsazure.com/) használja, az SSH-kulcsokhoz szükséges lesz az X.509-tanúsítványokra.  Más típusú nyilvános SSH-kulcsok nem engedélyezettek, az X.509-tanúsítványokat *kell* használnia.
+Ha használ hello Azure [klasszikus portál](https://manage.windowsazure.com/), X.509 Tanúsítványos igényel a hello SSH-kulcsok.  Más típusú nyilvános SSH-kulcsok nem engedélyezettek, az X.509-tanúsítványokat *kell* használnia.
 
-Következőképpen hozhat létre egy X.509-tanúsítványt a meglévő titkos SSH-RSA-kulcsból:
+egy X.509 tanúsítvány számára a meglévő titkos SSH-RSA-kulcsot a toocreate:
 
 ```bash
 openssl req -x509 \
@@ -95,9 +95,9 @@ openssl req -x509 \
 
 ## <a name="classic-deploy-using-asm"></a>Klasszikus üzembe helyezés az `asm` használatával
 
-Ha a klasszikus üzembe helyezési modellt használja (Azure service management CLI`asm`), használhatja a nyilvános SSH-RSA-kulcsot, vagy egy **pem-tárolóban** lévő RFC4716 formátumú kulcsot.  A nyilvános SSH-RSA-kulcsot a cikk során korábban hoztuk létre az `ssh-keygen` használatával.
+Hello klasszikus használata modell rendszerbe állítása (Azure szolgáltatásfelügyelet CLI `asm`), egy SSH-RSA nyilvános kulccsal, vagy egy RFC4716 formázott kulcsban egy **.pem** tároló.  hello SSH-RSA nyilvános kulcs, ez a cikk használja a korábban létrehozott elemek `ssh-keygen`.
 
-RFC4716 formátumú kulcs meglévő nyilvános SSH-kulcsból történő létrehozása:
+egy RFC4716 toocreate egy meglévő nyilvános SSH-kulccsal a kulcs formátuma:
 
 ```bash
 ssh-keygen \
@@ -111,14 +111,14 @@ ssh-keygen \
 ```bash
 ssh-keygen -t rsa -b 2048 -C "ahmet@myserver"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/ahmet/.ssh/id_rsa): 
+Enter file in which toosave hello key (/home/ahmet/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/ahmet/.ssh/id_rsa.
 Your public key has been saved in /home/ahmet/.ssh/id_rsa.pub.
-The key fingerprint is:
+hello key fingerprint is:
 14:a3:cb:3e:78:ad:25:cc:55:e9:0c:08:e5:d1:a9:08 ahmet@myserver
-The keys randomart image is:
+hello keys randomart image is:
 +--[ RSA 2048]----+
 |        o o. .   |
 |      E. = .o    |
@@ -134,11 +134,11 @@ The keys randomart image is:
 
 Mentett kulcsfájlok:
 
-`Enter file in which to save the key (/home/ahmet/.ssh/id_rsa): ~/.ssh/id_rsa`
+`Enter file in which toosave hello key (/home/ahmet/.ssh/id_rsa): ~/.ssh/id_rsa`
 
-A cikkben használt kulcspár neve.  Az **id_rsa** nevű kulcspár az alapértelmezett, és mivel egyes eszközök az **id_rsa** nevű titkos kulcsfájlt várhatják, célszerű ezt a nevet adni a kulcspárnak. A `~/.ssh/` könyvtár az SSH-kulcspárok és az SSH konfigurációs fájl alapértelmezett helye.  Ha nincs megadva a teljes elérési útvonal, az `ssh-keygen` az aktuális munkakönyvtárban hozza létre a kulcsokat és nem az alapértelmezett `~/.ssh` könyvtárban.
+Ez a cikk hello kulcspár neve.  Nevű kulcspár **id_rsa** hello alapértelmezett és az egyes eszközök várt hello **id_rsa** titkos kulcsfájl nevét, egy érdemes. hello directory `~/.ssh/` hello SSH-kulcspár és hello SSH konfigurációs fájl alapértelmezett helye.  Ha nincs megadva a teljes elérési úttal `ssh-keygen` lesz az aktuális munkakönyvtárban hello hello kulcsok létrehozása, nem az alapértelmezett hello `~/.ssh`.
 
-A `~/.ssh` könyvtár listázása.
+Hello listáját `~/.ssh` könyvtár.
 
 ```bash
 ls -al ~/.ssh
@@ -150,28 +150,28 @@ Kulcs jelszava:
 
 `Enter passphrase (empty for no passphrase):`
 
-`ssh-keygen` a titkos kulcsfájl titkosítására használt jelszóra „hozzáférési kódként” hivatkozik.  *Erősen* ajánlott hozzáférési kódot hozzáadni a kulcspárokhoz. A titkos kulcsot védő hozzáférési kód nélkül bárki bejelentkezhet a kulcsfájllal bármely olyan kiszolgálóra, amely rendelkezik a megfelelő nyilvános kulccsal. A jelszó hozzáadása sokkal nagyobb védelmet nyújt arra az esetre, ha valaki megszerezné a titkos kulcsot, mert így lesz ideje módosítani a hitelesítéséhez használt kulcsokat.
+`ssh-keygen`néven hivatkozik tooa használt jelszó tooencrypt hello titkos kulcs "egy hozzáférési kódot."  Az *erősen* tooadd jelszót tooyour kulcspárok ajánlott. A hozzáférési kód védelmet nyújtó hello titkos kulcs nélküli bárki, aki hello kulcsfájl használható toolog hello megfelelő nyilvános kulccsal rendelkező tooany kiszolgálónak. Hozzáadása egy hozzáférési kódot további védelmet nyújt, ha valaki képes toogain hozzáférés tooyour titkos kulcs fájlja, felkínálva idő toochange hello kulcsok használt tooauthenticate meg.
 
-## <a name="using-ssh-agent-to-store-your-private-key-password"></a>Az ssh-agent használata a titkos kulcs jelszavának tárolásához
+## <a name="using-ssh-agent-toostore-your-private-key-password"></a>Ssh-agent toostore a titkos kulcs jelszavának használata
 
-Ha nem szeretné beírni a titkos kulcsfájl jelszavát minden SSH-bejelentkezéskor, az `ssh-agent` segítségével gyorsítótárazhatja a titkos kulcsfájl jelszavát. Ha Mac gépet használ, az OSX Kulcskarika biztonságos módon menti a titkos kulcsok jelszavát az `ssh-agent` indításakor.
+Írja be a titkos kulcs tooavoid fájl jelszót minden SSH-bejelentkezéskor, használhatja a `ssh-agent` toocache a titkos kulcsfájl jelszavát. Ha egy Mac használ, az OSX Kulcskarikájához hello biztonságosan tárolja a hello titkos kulcsok jelszavát indításakor `ssh-agent`.
 
-Ellenőrizze és használja az `ssh-agent` és az `ssh-add` parancsot az SSH-rendszer kulcsfájlokról való informálásához, így nem kell a hozzáférési kódot interaktív módon használnia.
+Győződjön meg arról, és használjon `ssh-agent` és `ssh-add` tooinform hello SSH rendszer hello kulcs fájlokkal kapcsolatban, hogy hello jelszava nem lesz szükség a toobe interaktív módon használt.
 
 ```bash
 eval "$(ssh-agent -s)"
 ```
 
-Ezután adja hozzá a titkos kulcsot az `ssh-agent` ügynökhöz az `ssh-add` paranccsal.
+Adja hozzá a titkos kulcs hello túl`ssh-agent` hello paranccsal `ssh-add`.
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
-A titkos kulcs jelszava ekkor az `ssh-agent` ügynökben lesz tárolva.
+hello titkos kulcs jelszava most tárolódik `ssh-agent`.
 
-## <a name="using-ssh-copy-id-to-install-the-new-key"></a>Az új kulcs telepítése az `ssh-copy-id` használatával
-Ha már létrehozott egy virtuális gépet, a következő paranccsal telepítheti az új, SSH-ra épülő nyilvános kulcsot a Linux rendszerű virtuális gépére (a virtuális gép felhasználónevét és a kiszolgáló címét cserélje le a saját értékeire):
+## <a name="using-ssh-copy-id-tooinstall-hello-new-key"></a>Használatával `ssh-copy-id` tooinstall hello új kulcs
+Ha már létrehozott egy virtuális gép telepítése hello új SSH nyilvános kulcs tooyour Linux virtuális gép a hello a következő parancsot, hello VM felhasználónév és a hello kiszolgálócímet cseréje a saját értékeit:
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa.pub ahmet@myserver
@@ -179,17 +179,17 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub ahmet@myserver
 
 ## <a name="create-and-configure-an-ssh-config-file"></a>SSH konfigurációs fájl létrehozása és konfigurálása
 
-Érdemes létrehozni és konfigurálni egy `~/.ssh/config` fájlt a bejelentkezések felgyorsításához és az SSH-ügyfél működésének optimalizálásához.
+A bevált gyakorlat toocreate, és konfigurálja az `~/.ssh/config` fájl toospeed mentése bejelentkezések és az SSH-ügyfél módot optimalizálási.
 
-Az alábbi példában a szabványos konfiguráció látható.
+a következő példa hello a szabványos konfiguráció látható.
 
-### <a name="create-the-file"></a>A fájl létrehozása
+### <a name="create-hello-file"></a>Hello fájl létrehozása
 
 ```bash
 touch ~/.ssh/config
 ```
 
-### <a name="edit-the-file-to-add-the-new-ssh-configuration"></a>A fájl szerkesztése az új SSH-konfiguráció hozzáadásához:
+### <a name="edit-hello-file-tooadd-hello-new-ssh-configuration"></a>Hello fájl tooadd hello új SSH-konfiguráció szerkesztése:
 
 ```bash
 vim ~/.ssh/config
@@ -215,23 +215,23 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 ```
 
-Ez az SSH-konfiguráció szakaszokat ad hozzá mindegyik kiszolgálóhoz, hogy mindegyik saját dedikált kulcspárral rendelkezzen. Az alapértelmezett beállítások (`Host *`) a konfigurációs fájlban feljebb szereplő adott állomásoknak nem megfelelő állomásokra vonatkoznak.
+Ez SSH konfigurációs lehetőséget biztosít, részek az egyes kiszolgáló tooenable minden toohave saját dedikált kulcspárral. alapértelmezett beállítások hello (`Host *`) vannak, amelyek nem felelnek meg bármelyik hello adott gazdagép feljebb hello konfigurációs fájlban állomásokra.
 
 ### <a name="config-file-explained"></a>A konfigurációs fájl ismertetése
 
-`Host` = a terminálon hívott állomás neve.  `ssh fedora22` a `Host fedora22` címkéjű beállításblokkban található értékek használatára szólítja fel az `SSH`-t. MEGJEGYZÉS: Gazdagép bármilyen olyan címke lehet, amely logikus a használatra vonatkozóan, és egyetlen kiszolgáló tényleges állomásnevét sem képviseli.
+`Host`= hello hívott állomás hello terminál hello neve.  `ssh fedora22`közli `SSH` toouse hello értékek hello beállítások blokkban feliratú `Host fedora22` Megjegyzés: állomás, amely logikus a használatra, és nem felel meg a kiszolgáló tényleges állomásnevét hello bármilyen olyan címke lehet.
 
-`Hostname 102.160.203.241` = azon kiszolgáló IP-címe vagy DNS-neve, amelyhez hozzáfér.
+`Hostname 102.160.203.241`= hello IP-cím vagy hello server férnek hozzá a DNS-nevét.
 
-`User ahmet` = a használandó távoli felhasználói fiók a kiszolgálóra való bejelentkezéskor.
+`User ahmet`= hello távoli felhasználói fiók toouse toohello server bejelentkezéskor.
 
-`PubKeyAuthentication yes` = közli az SSH-val, hogy SSH-kulcsot kíván használni a bejelentkezéshez.
+`PubKeyAuthentication yes`= közli az SSH a kívánt toouse egy SSH-kulcs toolog.
 
-`IdentityFile /home/ahmet/.ssh/id_id_rsa` = a titkos SSH-kulcs és a hitelesítéshez használt megfelelő nyilvános kulcs.
+`IdentityFile /home/ahmet/.ssh/id_id_rsa`= hello titkos SSH-kulcsot és a megfelelő nyilvános kulcs toouse hitelesítéshez.
 
 ## <a name="ssh-into-linux-without-a-password"></a>SSH-ból Linuxba jelszó nélkül
 
-Most, hogy rendelkezik SSH-kulcspárral és konfigurált SSH konfigurációs fájllal, gyorsan és biztonságosan jelentkezhet be a Linux virtuális gépre. Amikor először jelentkezik be egy kiszolgálóra SSH-kulccsal, a parancs felszólítja a kulcs jelszavának megadására.
+Most, hogy az SSH-kulcspárral és konfigurált SSH konfigurációs fájl, a Linux virtuális gép tooyour képes toolog biztos gyorsan és biztonságosan. hello első alkalommal jelentkezik be egy SSH-kulcs hello parancssorok tooa-kiszolgáló, az adott kulcsfájl hello jelszavát.
 
 ```bash
 ssh fedora22
@@ -239,12 +239,12 @@ ssh fedora22
 
 ### <a name="command-explained"></a>A parancs ismertetése
 
-Az `ssh fedora22` futtatásakor az SSH először megkeresi és betölti a `Host fedora22` blokk beállításait, majd betölti az összes többi beállítást az utolsó `Host *` blokkból.
+Ha `ssh fedora22` végrehajtása SSH először megkeresi és betölti a beállításokat a hello `Host fedora22` letiltása, majd betölti az összes hello hello utolsó blokk beállításait fennmaradó `Host *`.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ezután létre kell hoznia az Azure Linux virtuális gépeket az új nyilvános SSH-kulcs használatával.  A bejelentkezéshez nyilvános SSH-kulccsal létrehozott Azure virtuális gépek biztonságosabbak, mint az alapértelmezett bejelentkezési módszer jelszavaival létrehozott virtuális gépek.  Az SSH-kulcsokkal létrehozott Azure virtuális gépek alapértelmezés szerint letiltott jelszavakkal vannak konfigurálva, ami megakadályozza a találgatásos támadásokat. Ha szüksége van további segítségre az SSH-kulcspár létrehozásához vagy további tanúsítványokra van szüksége, például a klasszikus portál használatához, tekintse meg az [SSH-kulcspárok és -tanúsítványok létrehozásának lépéseit](create-ssh-keys-detailed.md).
+Ezután mentése toocreate Azure Linux virtuális gépeket használ hello új nyilvános SSH-kulcs.  Nyilvános SSH-kulcs hello bejelentkezésként használatával létrehozott Azure virtuális gépek, amelyek jobban biztonságos, mint a virtuális gépek hello alapértelmezett bejelentkezési módszer, jelszavak létre.  Az SSH-kulcsokkal létrehozott Azure virtuális gépek alapértelmezés szerint letiltott jelszavakkal vannak konfigurálva, ami megakadályozza a találgatásos támadásokat. Ha az SSH-kulcspárral létrehozásához további segítségre van szüksége, vagy további tanúsítványt igényel, mint például használja a klasszikus portálon hello, lásd: [részletes lépéseket toocreate SSH-kulcspár és tanúsítványok](create-ssh-keys-detailed.md).
 
 * [Biztonságos Linux virtuális gép létrehozása Azure-sablon alapján](create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Biztonságos Linux virtuális gép létrehozása az Azure Portal használatával](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [Biztonságos Linux virtuális gép létrehozása az Azure parancssori felülettel](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Biztonságos Linux virtuális gép létrehozása hello Azure-portálon](quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [Biztonságos Linux virtuális gép létrehozása Azure CLI hello](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

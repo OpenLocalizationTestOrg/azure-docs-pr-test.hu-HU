@@ -1,6 +1,6 @@
 ---
 title: "Bővítmények alkalmazás – az Azure AD B2C |} Microsoft Docs"
-description: "A b2c-bővítmények-alkalmazás visszaállítása"
+description: "B2c-bővítmények-alkalmazás hello visszaállítása"
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/17/2017
 ms.author: parja
-ms.openlocfilehash: 17500b572a0e92c1c233c6967840a5b6d96e21cb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b36410c18314bd893dc669b49814fdcd77fae054
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-b2c-extensions-app"></a>Az Azure AD B2C: Bővítmények alkalmazás
 
-Az Azure AD B2C-címtárban jön létre, amikor egy alkalmazás nevű `b2c-extensions-app. Do not modify. Used by AADB2C for storing user data.` automatikusan létrejön az új könyvtárán belül. Az alkalmazáshoz, a továbbiakban a **b2c-bővítmények-alkalmazás**, látható *App regisztrációk*. Segítségével az Azure AD B2C szolgáltatás felhasználók és az egyéni attribútumok adatainak tárolására. Ha az alkalmazást törlik, az Azure AD B2C nem működik megfelelően, és az éles környezetben milyen hatással lesz.
+Az Azure AD B2C-címtárban jön létre, amikor egy alkalmazás nevű `b2c-extensions-app. Do not modify. Used by AADB2C for storing user data.` hello új könyvtárán belül automatikusan létrejön. Az alkalmazás, a hivatkozott tooas hello **b2c-bővítmények-alkalmazás**, látható *App regisztrációk*. Az Azure AD B2C szolgáltatás toostore szereplő felhasználók és az egyéni attribútumok hello használják. Ha hello alkalmazást törlik, az Azure AD B2C nem működik megfelelően, és az éles környezetben milyen hatással lesz.
 
 > [!IMPORTANT]
-> Ne törölje a b2c-bővítmények-alkalmazás, kivéve, ha azt tervezi, hogy a bérlő azonnal törli. Ha az alkalmazás több mint 30 napig törölt marad, felhasználói adatok végleg elvesznek.
+> Ne törölje hello b2c-bővítmények-alkalmazás, kivéve, ha azt tervezi, tooimmediately törlése a bérlő. Ha több mint 30 napig hello app marad törölt, felhasználói adatok végleg elvesznek.
 
-## <a name="verifying-that-the-extensions-app-is-present"></a>Ellenőrzi, hogy jelen-e a bővítmények alkalmazás
+## <a name="verifying-that-hello-extensions-app-is-present"></a>Jelen hello bővítmények alkalmazást ellenőrzése
 
-Annak ellenőrzéséhez, hogy a b2c-bővítmények-alkalmazás jelen:
+jelen, amely a b2c-bővítmények-alkalmazás hello tooverify:
 
-1. Az Azure AD B2C-bérlő belül kattintson a **további szolgáltatások** a bal oldali navigációs menü.
+1. Az Azure AD B2C-bérlő belül kattintson a **további szolgáltatások** hello bal oldali navigációs menü.
 1. Keresse meg, és nyissa meg a **App regisztrációk**.
 1. Keressen olyan alkalmazás, amelynek kezdődik **b2c-bővítmények-alkalmazás**
 
-## <a name="recover-the-extensions-app"></a>A bővítmények app helyreállítása
+## <a name="recover-hello-extensions-app"></a>Hello bővítmények app helyreállítása
 
-Ha véletlenül törli a b2c-bővítmények-alkalmazás, végezze el a helyreállítást 30 napja van. Visszaállíthatja az alkalmazást, a Graph API-val:
+Ha véletlenül törli a b2c-bővítmények-alkalmazás hello, hogy van-e 30 nap toorecover azt. Visszaállíthatja a hello alkalmazásokhoz hello Graph API használatával:
 
-1. Keresse meg a [https://graphexplorer.azurewebsites.net/](https://graphexplorer.azurewebsites.net/).
-1. Jelentkezzen be a webhely, amelyet szeretne visszaállítani a törölt alkalmazást az Azure AD B2C könyvtár globális rendszergazdaként.
-1. Az URL egy HTTP GET ki `https://graph.windows.net/{tenantName}.onmicrosoft.com/deletedApplications` az api-version 1.6-os =. Győződjön meg arról, hogy `{tenantName}` a bérlő névvel. Ez a művelet felsorolja összes alkalmazást, amely az elmúlt 30 napban törölve lett.
-1. Alkalmazás található a listában, ahol a karaktersorozattal kezdődő "b2c-bővítmény-alkalmazás", és másolja a `objectid` tulajdonság értéke.
-1. Az URL HTTP POST ki `https://graph.windows.net/myorganization/deletedApplications/{OBJECTID}/restore`. Cserélje le a `{OBJECTID}` URL-CÍMÉT a részét a `objectid` az előző lépésben. 
+1. Keresse meg a túl[https://graphexplorer.azurewebsites.net/](https://graphexplorer.azurewebsites.net/).
+1. Jelentkezzen be toohello hely hello Azure AD B2C-címtár globális rendszergazdája, amelyet toorestore törölt hello alkalmazás.
+1. Egy HTTP GET hello URL ki `https://graph.windows.net/{tenantName}.onmicrosoft.com/deletedApplications` az api-version 1.6-os =. Győződjön meg arról, hogy tooreplace `{tenantName}` a bérlő névvel. Ez a művelet felsorolja az összes törölt hello belül az elmúlt 30 napban hello alkalmazások.
+1. Hello alkalmazás található hello lista, amelyen hello karaktersorozattal kezdődő "b2c-bővítmény-alkalmazás", és másolja a `objectid` tulajdonság értéke.
+1. Hello URL HTTP POST ki `https://graph.windows.net/myorganization/deletedApplications/{OBJECTID}/restore`. Cserélje le a hello `{OBJECTID}` hello hello URL-cím része `objectid` hello előző lépésben. 
 
-Meg kell tudni [lásd: a visszaállított app](#verifying-that-the-extensions-app-is-present) az Azure portálon.
+Most tudnia kell túl[lásd: a visszaállított hello app](#verifying-that-the-extensions-app-is-present) a hello Azure-portálon.
 
 > [!NOTE]
-> Az alkalmazás csak akkor állítható vissza, ha törölve lett az utolsó 30 napban. Ha több mint 30 napig lett, adat végleg elvesznek. Ha további segítségre van szüksége a fájl egy támogatási jegy.
+> Az alkalmazás csak akkor állítható vissza, ha törölték belül hello utolsó 30 nap. Ha több mint 30 napig lett, adat végleg elvesznek. Ha további segítségre van szüksége a fájl egy támogatási jegy.

@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Data Warehouse – Első lépéseket ismertető oktatóanyag | Microsoft Docs"
-description: "Ez az oktatóanyag az Azure SQL Data Warehouse üzembe helyezését és adatokkal való feltöltését mutatja be. Emellett megismerkedhet a méretezés, a felfüggesztetés és a finomhangolás alapjaival is."
+title: "az SQL Data Warehouse - aaaAzure első lépések útmutató |} Microsoft Docs"
+description: "Ez az oktatóanyag útmutatást ad meg hogyan tooprovision és az adatok betöltése az Azure SQL Data Warehouse. Megismerheti a méretezés, szüneteltetése és hangolása hello alapjairól is."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,32 +15,32 @@ ms.workload: data-services
 ms.custom: quickstart
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 95e14824ba3b705bb909ec983652dd3305b98805
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: edd2a21b0fe49ca8e9792c7c512310339a822c55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-sql-data-warehouse"></a>Bevezetés az SQL Data Warehouse használatába
 
-Ez az oktatóanyag az Azure SQL Data Warehouse üzembe helyezését és adatokkal való feltöltését mutatja be. Emellett megismerkedhet a méretezés, a felfüggesztetés és a finomhangolás alapjaival is. Az oktatóanyag elvégzése után készen áll majd az adattárház lekérdezésére és vizsgálatára.
+Ez az oktatóanyag bemutatja, hogyan tooprovision és az adatok betöltése az Azure SQL Data Warehouse. Megismerheti a méretezés, szüneteltetése és hangolása hello alapjairól is. Amikor végzett, lesz, készen áll a tooquery lenniük, és megismerkedhet az adatraktár.
 
-**Az oktatóanyag áttekintésének becsült ideje:** Ez egy példakódot is tartalmazó átfogó oktatóanyag, amelynek az elvégzése kb. 30 percet vesz igénybe, ha az előfeltételeket már teljesítette. 
+**Becsült idő toocomplete:** egy végpont oktatóanyag, amely körülbelül 30 percet toocomplete után hello Előfeltételek megfelel példakód azt. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ez az oktatóanyag azt feltételezi, hogy már ismeri az SQL Data Warehouse-zal kapcsolatos alapvető fogalmakat. A bevezetésért lásd: [Mi az az SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md) 
+hello oktatóanyag feltételezi, hogy az SQL Data Warehouse alapvető fogalmak megismerése. A bevezetésért lásd: [Mi az az SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md) 
 
 ### <a name="sign-up-for-microsoft-azure"></a>Regisztráció a Microsoft Azure-ban
-Ha még nem rendelkezik Microsoft Azure-fiókkal, először regisztrálnia kell egyet a szolgáltatás használatához. Ha már rendelkezik fiókkal, ezt a lépést kihagyhatja. 
+Ha még nem rendelkezik egy Microsoft Azure-fiók, meg kell feliratkozott egy toouse toosign ezt a szolgáltatást. Ha már rendelkezik fiókkal, ezt a lépést kihagyhatja. 
 
-1. Nyissa meg a fiókoldalakat: [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)
+1. Keresse meg a fiók lapok toohello [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)
 2. Hozzon létre egy ingyenes Azure-fiókot, vagy vásároljon egy fiókot.
-3. Kövesse az utasításokat
+3. Hello utasítások
 
 ### <a name="install-appropriate-sql-client-drivers-and-tools"></a>A megfelelő SQL-ügyfélillesztők és -ügyféleszközök telepítése
 
-A legtöbb SQL-ügyféleszköz képes csatlakozni az SQL Data Warehouse-hoz a JDBC, az ODBC vagy az ADO.NET használatával. Az SQL Data Warehouse által támogatott T-SQL-szolgáltatások széles köre miatt lehetséges, hogy egyes ügyfélalkalmazások nem teljes mértékben kompatibilisek az SQL Data Warehouse-zal.
+A legtöbb SQL-ügyféleszközöket JDBC, ODBC vagy az ADO.NET használatával képes kapcsolódni tooSQL Data warehouse-bA. Lejáró toohello nagy mennyiségű, amely támogatja az SQL Data Warehouse T-SQL funkciókat néhány ügyfélalkalmazások nincsenek teljesen kompatibilis, az SQL Data Warehouse szolgáltatással.
 
 Ha Windows operációs rendszert használ, javasoljuk a [Visual Studio] vagy az [SQL Server Management Studio] használatát.
 
@@ -50,7 +50,7 @@ Ha Windows operációs rendszert használ, javasoljuk a [Visual Studio] vagy az 
 
 ## <a name="create-a-sql-data-warehouse"></a>SQL Data Warehouse létrehozása
 
-Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozáshoz kialakított speciális típusú adatbázis. Az adatbázis több csomópontra van elosztva, és párhuzamosan dolgozza fel a lekérdezéseket. Az összes csomópont tevékenységét az SQL Data Warehouse vezérlő csomópontja vezényli. Maguk a csomópontok SQL Database használatával kezelik az adatokat.  
+Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozáshoz kialakított speciális típusú adatbázis. hello adatbázis több csomópont között van elosztva, és feldolgozza a párhuzamos lekérdezések. Az SQL Data Warehouse van az összes hello csomópontjának hello tevékenységek vezénylő vezérlő csomópont. hello csomópontok magukat az adatokat SQL-adatbázis toomanage használni.  
 
 > [!NOTE]
 > Egy SQL Data Warehouse létrehozása egy új számlázható szolgáltatás létrejöttét eredményezheti.  További információ: [SQL Data Warehouse díjszabása](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).
@@ -58,14 +58,14 @@ Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozáshoz kialakíto
 
 ### <a name="create-a-data-warehouse"></a>Adattárház létrehozása
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+1. Jelentkezzen be a hello [Azure-portálon](https://portal.azure.com).
 2. Kattintson a **New** > **Databases** > **SQL Data Warehouse** (Új > Adatbázisok > SQL Data Warehouse) elemre.
 
-    ![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)
+    ![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png)![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)
 
 3. Adja meg az üzembe helyezés részleteit
 
-    **Database name** (Adatbázis neve): Tetszés szerint bármit megadhat. Ha több adattárházzal is rendelkezik, akkor javasoljuk, hogy a nevek tartalmazzák a régiót, a környezetet vagy hasonló részleteket (például: *mydw-westus-1-test*).
+    **Database name** (Adatbázis neve): Tetszés szerint bármit megadhat. Ha több adatraktárak, célszerű a nevek a következők részletekről, mint a hello régió, például a környezet *mydw-westus-1-teszt*.
 
     **Subscription** (Előfizetés): Az Ön Azure-előfizetése
 
@@ -75,61 +75,61 @@ Az SQL Data Warehouse egy nagymértékben párhuzamos feldolgozáshoz kialakíto
 
     **Forrás**: Üres adatbázis
 
-    **Kiszolgáló**: Válassza ki az [Előfeltételek] szakaszban létrehozott kiszolgálót.
+    **Kiszolgáló**: Select hello server létrehozott [Előfeltételek].
 
-    **Rendezés**: Hagyja meg az alapértelmezett SQL_Latin1_General_CP1_CI_AS beállítást.
+    **Rendezés**: hello alapértelmezett rendezést SQL_Latin1_General_CP1_CI_AS hagyja.
 
-    **Teljesítmény kiválasztása**: Azt javasoljuk, hogy kezdje a standard 400DWU beállítással.
+    **Válassza ki a teljesítmény**: hello szabványos 400DWU kezdődően ajánlott.
 
-4. Válassza a **Rögzítés az irányítópulton** ![Rögzítés az irányítópulton](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png) lehetőséget.
+4. Válasszon **PIN-kód toodashboard** ![PIN-kód tooDashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)
 
-5. Dőljön hátra, és várjon, amíg az adattárház üzembe helyezése megtörténik! Ez a folyamat szokványos esetben több percig is eltarthat. A portál értesíti, amint az adattárház használatra kész. 
+5. Elhelyezkedik vissza, és várja meg a data warehouse toodeploy! A folyamat tootake normális néhány percig. hello portál értesíti, ha az adatraktár készen toouse. 
 
-## <a name="connect-to-sql-data-warehouse"></a>Connect to SQL Data Warehouse
+## <a name="connect-toosql-data-warehouse"></a>Csatlakozás az adatraktár tooSQL
 
-Az oktatóanyagban az SQL Server Management Studio (SSMS) segítségével csatlakozunk az adattárházhoz. A következő támogatott összekötőkön keresztül is csatlakozhat az SQL Data Warehouse-hoz: ADO.NET, JDBC, ODBC és PHP. Ne feledje, hogy a Microsoft által nem támogatott eszközök esetében a funkcionalitás korlátozott lehet.
+Ez az oktatóanyag az SQL Server Management Studio (SSMS) tooconnect toohello adatraktár használja. A támogatott összekötők keresztül kapcsolódhatnak a Data Warehouse tooSQL: ADO.NET, JDBC, ODBC és a PHP. Ne feledje, hogy a Microsoft által nem támogatott eszközök esetében a funkcionalitás korlátozott lehet.
 
 
 ### <a name="get-connection-information"></a>Kapcsolatadatok lekérése
 
-Az adattárházhoz való kapcsolódáshoz az [Előfeltételek] szakaszban létrehozott logikai SQL-kiszolgálón keresztül kell csatlakoznia.
+tooconnect tooyour adatraktár kell hello logikai SQL-kiszolgálón keresztül létrehozott tooconnect [Előfeltételek].
 
-1. Válassza ki az adattárházat az irányítópulton vagy keresse meg az erőforrások között.
+1. Válassza ki az adatraktár hello irányítópult vagy keresse meg azt a erőforrásokban.
 
     ![SQL Data Warehouse irányítópult](./media/sql-data-warehouse-get-started-tutorial/sql-dw-dashboard.png)
 
-2. Keresse meg a logikai SQL-kiszolgáló teljes nevét.
+2. Található hello hello logikai SQL server teljes nevét.
 
     ![Kiszolgálónév kiválasztása](./media/sql-data-warehouse-get-started-tutorial/select-server.png)
 
-3. Nyissa meg az SSMS-t, és az Object Explorer használatával csatlakozzon ehhez a kiszolgálóhoz az [Előfeltételek] szakaszban létrehozott kiszolgálói rendszergazdai hitelesítő adatok használatával.
+3. Nyissa meg a szolgáltatáshoz az SSMS, object explorer tooconnect toothis kiszolgáló létrehozott hello server rendszergazdai hitelesítő adataival [Előfeltételek]
 
     ![Csatlakozás SSMS segítségével](./media/sql-data-warehouse-get-started-tutorial/ssms-connect.png)
 
-Ha minden jól megy, mostanra kapcsolódnia kell a logikai SQL-kiszolgálóhoz. Miután kiszolgálói rendszergazdaként jelentkezett be, a kiszolgáló által futtatott bármelyik adatbázishoz kapcsolódhat, beleértve a master adatbázist. 
+Ha minden megfelelően megfelelően, kell csatlakoztatott tooyour logikai SQL-kiszolgáló. Mivel Ön bejelentkezett, a kiszolgáló rendszergazdája hello, hello kiszolgáló, többek között a master adatbázis hello által üzemeltetett tooany adatbázis is elérheti. 
 
-Csak egyetlen kiszolgálói rendszergazdai fiók létezik, és az összes felhasználó közül ez rendelkezik a legtöbb jogosultsággal. Legyen óvatos, és csak kevesekkel tudassa a rendszergazdai jelszót a szervezetben. 
+Csak egy kiszolgáló-rendszergazdai fiókot, és minden olyan felhasználó, a legtöbb jogosultságával rendelkezik hello. Legyen óvatos nem tooallow a szervezet tooknow hello rendszergazdai jelszó túl sokan. 
 
-Emellett rendelkezhet egy Azure Active Directory-rendszergazdai fiókkal is. Ennek részleteit itt nem ismertetjük. Ha többet szeretne megtudni az Azure Active Directory-alapú hitelesítéssel kapcsolatban, lásd: [Azure AD-hitelesítés](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).
+Emellett rendelkezhet egy Azure Active Directory-rendszergazdai fiókkal is. A Microsoft hello részleteit itt nem ad meg. Ha azt szeretné, hogy Azure Active Directory-hitelesítés használatával kapcsolatos további toolearn, [az Azure AD-alapú hitelesítés](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).
 
 Ezután a további bejelentkezések és felhasználók létrehozásával ismerkedünk meg.
 
 
 ## <a name="create-a-database-user"></a>Adatbázis-felhasználó létrehozása
 
-Ebben a lépésben egy felhasználói fiókot hozhat létre az adattárház eléréséhez. Megmutatjuk azt is, hogyan engedélyezheti a felhasználó számára a nagy mennyiségű memória- és processzor-erőforrást igénylő lekérdezések futtatását.
+Ebben a lépésben létrehoz egy felhasználói fiók tooaccess az adatraktár. Azt is bemutatja, hogyan toogive adott felhasználó hello képességét toorun lekérdezi a nagy mennyiségű memória és CPU-erőforrást.
 
-### <a name="notes-about-resource-classes-for-allocating-resources-to-queries"></a>Az erőforrásosztályokkal kapcsolatos megjegyzések az erőforrások lekérdezésekhez való kiosztásához
+### <a name="notes-about-resource-classes-for-allocating-resources-tooqueries"></a>Erőforrás-osztályok a erőforrások tooqueries lefoglalásával kapcsolatos megjegyzések
 
-- Az adatok biztonsága érdekében a kiszolgálói rendszergazdát ne használja a lekérdezések éles adatbázisokon való futtatásához. Az összes közül ez a felhasználó rendelkezik a legtöbb jogosultsággal, így ha ezzel hajt végre műveleteket a felhasználói adatokon, veszélyeztetheti az adatokat. Továbbá, mivel a kiszolgálói rendszergazda felügyeleti tevékenységeket hivatott végezni, a működéséhez kis mennyiségű memória- és processzor-erőforrást használ csak. 
+- tookeep biztonságos, az adatok az éles adatbázist ne használjon hello server admin toorun lekérdezések. Hello minden olyan felhasználó, a legtöbb jogosultságával rendelkezik, és használja azt tooperform műveleteket a felhasználói adatok helyezi az adatok veszélyben. Is célja, hogy hello kiszolgálói rendszergazda tooperform kezelési műveletek, mert azt fut műveletek csak kis lefoglalása a memória és CPU-erőforrást. 
 
-- Az SQL Data Warehouse előre meghatározott adatbázis-szerepköröket, úgynevezett erőforrásosztályokat alkalmaz a különböző mennyiségű memória, processzor-erőforrás és egyidejű hely lefoglalásához az egyes felhasználók számára. Az egyes felhasználók kicsi, közepes, nagy vagy extra nagy erőforrásosztályokba tartozhatnak. Az adott falhasználó erőforrásosztálya határozza meg, hogy a felhasználó milyen erőforrásokkal rendelkezik a lekérdezések és betöltési műveletek futtatásához.
+- Az SQL Data Warehouse előre meghatározott adatbázis-szerepkörök, erőforrás-osztályok, a memória, Processzor-erőforrások és feldolgozási üzembe helyezési ponti toousers különböző mennyiségű tooallocate nevű használja. Minden felhasználó tooa kis, közepes, nagy méretű vagy extra nagy erőforrásosztály is tartozhatnak. hello felhasználó erőforrásosztály meghatározza, hogy hello erőforrások hello felhasználó rendelkezik-e toorun lekérdezések és műveletek betölteni.
 
-- Az optimális adattömörítéshez szükség lehet arra, hogy nagy vagy nagyon nagy erőforrást foglaljon le a felhasználó számára. További információkat az erőforrásosztályokról [itt](./sql-data-warehouse-develop-concurrency.md#resource-classes) talál.
+- Optimális adattömörítést hello felhasználói kell nagy tooload vagy extra nagy erőforrás-hozzárendelések. További információkat az erőforrásosztályokról [itt](./sql-data-warehouse-develop-concurrency.md#resource-classes) talál.
 
 ### <a name="create-an-account-that-can-control-a-database"></a>Az adatbázisok vezérlésére alkalmas fiók létrehozása
 
-Mivel jelenleg kiszolgálói rendszergazdaként van bejelentkezve, rendelkezik megfelelő jogosultsággal a bejelentkezések és a felhasználók létrehozásához.
+Mivel a kiszolgáló rendszergazdája hello naplózza, hogy engedélyeket toocreate bejelentkezéseket és a felhasználók.
 
 1. Az SSMS vagy más lekérdezésügyfél használatával nyisson egy új lekérdezést a **masteren**.
 
@@ -137,62 +137,62 @@ Mivel jelenleg kiszolgálói rendszergazdaként van bejelentkezve, rendelkezik m
 
     ![Új lekérdezés a Master1 adatbázison](./media/sql-data-warehouse-get-started-tutorial/query-on-master.png)
 
-2. Futtassa a következő T-SQL parancsot a lekérdezésablakban, és hozzon létre egy bejelentkezést MedRCLogin és egy felhasználót LoadingUser néven. Ez a bejelentkezés képes kapcsolódni a logikai SQL-kiszolgálóhoz.
+2. Hello lekérdezési ablakban futtassa a T-SQL-parancs toocreate MedRCLogin nevű bejelentkezési azonosítót és LoadingUser nevű felhasználót. Ehhez a bejelentkezéshez toohello logikai SQL server is elérheti.
 
     ```sql
     CREATE LOGIN MedRCLogin WITH PASSWORD = 'a123reallySTRONGpassword!';
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-3. Most az *SQL Data Warehouse-adatbázis* lekérdezéséhez hozzon létre egy adatbázis-felhasználót azon bejelentkezés alapján, amelyet az adatbázishoz való hozzáféréshez és az azon való tevékenységek elvégzéséhez hozott létre.
+3. Most lekérdezése hello *SQL Data Warehouse-adatbázis*, hozzon létre egy adatbázis-felhasználó alapú tooaccess létrehozott bejelentkezési hello és műveleteket hajtson végre a hello adatbázis.
 
     ```sql
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-4. Adjon az adatbázis-felhasználónak felügyeleti jogosultságot az NYT nevű adatbázishoz. 
+4. Adjon hello adatbázis felhasználói vezérlő engedélyek toohello adatbázisnak NYT nevezik. 
 
     ```sql
-    GRANT CONTROL ON DATABASE::[NYT] to LoadingUser;
+    GRANT CONTROL ON DATABASE::[NYT] tooLoadingUser;
     ```
     > [!NOTE]
-    > Ha az adatbázis nevében található kötőjel, mindenképp foglalja a nevet szögletes zárójelek közé. 
+    > Az adatbázisnév kötőjeleket rendelkezik, ha kell, hogy toowrap azt szögletes zárójelbe! 
     >
 
-### <a name="give-the-user-medium-resource-allocations"></a>Közepes erőforrás-mennyiség lefoglalása a felhasználó számára
+### <a name="give-hello-user-medium-resource-allocations"></a>Adjon hello felhasználói közepes erőforrás-hozzárendelések
 
-1. A következő T-SQL parancs futtatásával tegye a felhasználót a mediumrc nevű közepes erőforrásosztály tagjává. 
+1. Futtassa a T-SQL-parancs toomake nevezik mediumrc hello közepes erőforrás osztály tagja egy informatikai. 
 
     ```sql
     EXEC sp_addrolemember 'mediumrc', 'LoadingUser';
     ```
     > [!NOTE]
-    > Az egyidejűségre és az erőforrásosztályokra vonatkozó további információkért kattintson [ide](sql-data-warehouse-develop-concurrency.md#resource-classes). 
+    > Kattintson a [Itt](sql-data-warehouse-develop-concurrency.md#resource-classes) feldolgozási és erőforrás-osztályok kapcsolatos további toolearn! 
     >
 
-2. Csatlakozás a logikai kiszolgálóhoz az új hitelesítő adatokkal
+2. Csatlakoztassa a toohello logikai kiszolgálót hello új hitelesítő adatokkal
 
     ![Bejelentkezés az új bejelentkezési adatokkal](./media/sql-data-warehouse-get-started-tutorial/new-login.png)
 
 
 ## <a name="load-data-from-azure-blob-storage"></a>Adatok betöltése az Azure Blob Storage-ből
 
-Most már készen áll az adatok betöltésére az adattárházba. Ez a lépés bemutatja, hogyan töltheti be a New York-i taxik adatait egy nyilvános Azure tárolóblobból. 
+Most már áll készen tooload adatok az a data warehouse-bA. Ez a lépés bemutatja, hogyan tooload New York Város taxi cab adatait egy nyilvános Azure storage blob-e. 
 
-- Az adatok az SQL Data Warehouse-ba való betöltésének gyakori módja, ha először áthelyezi az adatokat az Azure Blob Storage-be, majd eztán tölti be azokat az adattárházba. Hogy könnyebben átlássa a betöltés folyamatát, a New York-i taxik adatait már eleve egy nyilvános Azure tárolóblobban tároljuk. 
+- Közös úgy tooload adatokat az SQL Data Warehouse toofirst hello adatok tooAzure blob-tároló áthelyezéséhez, és ezután töltse be az adatraktár. toomake azt könnyebb toounderstand hogyan tooload, tudunk Győr taxi cab adatok már található egy nyilvános Azure storage-blobba. 
 
-- Ha később szeretné megismerni az adatok Azure Blob Storage-be való áthelyezésének vagy a forrásból közvetlenül az SQL Data Warehouse-ba való betöltésének a módját, olvassa el a [betöltés áttekintését](sql-data-warehouse-overview-load.md).
+- Későbbi használatra toolearn hogyan tooget az adatok tooAzure blob-tároló vagy tooload azt közvetlenül a forráskiszolgálón az SQL Data Warehouse, lásd: hello [betöltést áttekintő](sql-data-warehouse-overview-load.md).
 
 
 ### <a name="define-external-data"></a>Külső adatok meghatározása
 
-1. Hozzon létre egy főkulcsot. Adatbázisonként csak egyszer kell főkulcsot létrehoznia. 
+1. Hozzon létre egy főkulcsot. Csak egyszer adatbázisonként főkulcs toocreate kell. 
 
     ```sql
     CREATE MASTER KEY;
     ```
 
-2. Határozza meg a helyet az Azure blobban, ahol a taxik adatai találhatók.  
+2. Adja meg a hello Azure blob hello taxi cab-adatokat tartalmazó hello helyét.  
 
     ```sql
     CREATE EXTERNAL DATA SOURCE NYTPublic
@@ -203,11 +203,11 @@ Most már készen áll az adatok betöltésére az adattárházba. Ez a lépés 
     );
     ```
 
-3. Határozza meg a külső fájlformátumokat.
+3. Adja meg a hello külső fájlformátum
 
-    A ```CREATE EXTERNAL FILE FORMAT``` parancs használatával adhatja meg a külső adatokat tartalmazó fájlok formátumát. Ezek egy vagy több karakter, az úgynevezett elválasztó karakterek használatával vannak elválasztva. Bemutatási célokból a taxik adatait itt tömörítetlen adatokként és GZIP formátumban tömörített adatokként is tároljuk.
+    Hello ```CREATE EXTERNAL FILE FORMAT``` parancs használt toospecify hello külső adatokat tartalmazó fájlok formátumban. Ezek egy vagy több karakter, az úgynevezett elválasztó karakterek használatával vannak elválasztva. Bemutatási célokra hello taxi cab-fájl tárolja tömörítetlen adatokhoz és gzip tömörített adatként történjen.
 
-    A következő T-SQL parancsok futtatásával határozhatja meg a két különböző, a tömörítetlen és a tömörített formátumot.
+    T-SQL parancsot futtatva toodefine két különböző formátumokban: tömörítetlenül és tömörített.
 
     ```sql
     CREATE EXTERNAL FILE FORMAT uncompressedcsv
@@ -238,7 +238,7 @@ Most már készen áll az adatok betöltésére az adattárházba. Ez a lépés 
     ```sql
     CREATE SCHEMA ext;
     ```
-5. Hozza létre a külső táblákat. Ezek a táblák az Azure Blob Storage-ben tárolt adatokra hivatkoznak. A következő T-SQL parancsok futtatásával hozzon létre több külső táblát, amelyek mind a külső adatforrásban korábban meghatározott Azure-blobra mutatnak.
+5. Hello külső táblák létrehozása. Ezek a táblák az Azure Blob Storage-ben tárolt adatokra hivatkoznak. Futtassa a következő T-SQL-parancsok toocreate hello több külső táblák, hogy minden pont toohello Azure blob meghatározott korábban a külső adatforrás.
 
 ```sql
     CREATE EXTERNAL TABLE [ext].[Date] 
@@ -415,11 +415,11 @@ Most már készen áll az adatok betöltésére az adattárházba. Ez a lépés 
     ;
 ```
 
-### <a name="import-the-data-from-azure-blob-storage"></a>Importálja az adatokat az Azure Blob Storage-ből.
+### <a name="import-hello-data-from-azure-blob-storage"></a>Hello adatok importálása az Azure blob storage.
 
-Az SQL Data Warehouse támogat egy CREATE TABLE AS SELECT (CTAS) nevű kulcsutasítást. Ez az utasítás létrehoz egy új táblát egy kiválasztási utasítás eredményei alapján. Az új tábla oszlopai és adattípusai megegyeznek a kiválasztási utasítás eredményeivel.  Ez egy elegáns módja az adatok betöltésének az Azure Blob Storage-ből az SQL Data Warehouse-ba.
+Az SQL Data Warehouse támogat egy CREATE TABLE AS SELECT (CTAS) nevű kulcsutasítást. A jelen nyilatkozat táblázatot hoz létre új hello eredmények select utasítás alapján. hello új táblának azonos oszlopok és adattípusok hello hello hello eredményeit válasszon ki az utasítást.  Ez az az Azure blob storage az SQL Data Warehouse egy elegáns módon tooimport adatokat.
 
-1. Az adatok importálásához futtassa ezt a szkriptet.
+1. Futtassa a parancsfájlt tooimport az adatok.
 
     ```sql
     CREATE TABLE [dbo].[Date]
@@ -496,7 +496,7 @@ Az SQL Data Warehouse támogat egy CREATE TABLE AS SELECT (CTAS) nevű kulcsutas
 
 2. A betöltés közben megtekintheti az adatokat.
 
-   Több GB-nyi adatot tölt be és tömörít nagy teljesítményű fürtözött oszlopcentrikus indexekbe. Futtassa az alábbi lekérdezést, amely dinamikus felügyeleti nézetekkel (DMV-k) jeleníti meg a töltés állapotát. A lekérdezés elindítása után igyon egy kávét, vagy szerezzen valami rágcsálnivalót, amíg az SQL Data Warehouse keményen dolgozik.
+   Több GB-nyi adatot tölt be és tömörít nagy teljesítményű fürtözött oszlopcentrikus indexekbe. Futtassa a következő lekérdezés hello használó hello terhelés a dinamikus felügyeleti nézetek (dinamikus felügyeleti nézetek) tooshow hello állapota. Hello lekérdezés indítás után adása a kávé és egy Rögbi SQL Data Warehouse azonban néhány gyakori emelő.
     
     ```sql
     SELECT
@@ -539,51 +539,51 @@ Az SQL Data Warehouse támogat egy CREATE TABLE AS SELECT (CTAS) nevű kulcsutas
 
 ## <a name="improve-query-performance"></a>Jobb lekérdezési teljesítmény
 
-Számos mód létezik a lekérdezési teljesítmény javítására és a kiemelkedően gyors teljesítmény elérésére, amelyre az SQL Data Warehouse-t tervezték.  
+Számos módon tooimprove lekérdezési teljesítményt, és tooachieve hello nagy sebességű teljesítményéről, amely az SQL Data warehouse tooprovide tervezték.  
 
-### <a name="see-the-effect-of-scaling-on-query-performance"></a>A lekérdezésiteljesítmény-méretezés hatásának megtekintése 
+### <a name="see-hello-effect-of-scaling-on-query-performance"></a>Tekintse meg a lekérdezési teljesítmény méretezésének hello hatása 
 
-Az egyik módja a lekérdezési teljesítmény javításának az, ha méretezi az erőforrásokat az adattárház DWU szolgáltatási szintjének módosításával. Minden szolgáltatási szintnek nagyobb a költsége, de bármikor visszaválthat vagy szüneteltetheti az erőforrásokat. 
+Egyirányú tooimprove lekérdezési teljesítmény tooscale erőforrások hello DWU szolgáltatási szint az adatraktár módosításával. Minden szolgáltatási szintnek nagyobb a költsége, de bármikor visszaválthat vagy szüneteltetheti az erőforrásokat. 
 
 Ebben a lépésben összehasonlítja a teljesítményt két különböző DWU-beállításnál.
 
-Először csökkentse le a DWU-k számát 100-ra, hogy láthassuk, hogyan teljesít egyetlen számítási csomópont önállóan.
+Első, vertikálisan skálázzunk hello méretezési DWU, azt is képet kapjon a egy számítási csomópont lehet végre önállóan too100 le.
 
-1. Lépjen a portálra, és válassza ki az SQL Data Warehouse-t.
+1. Nyissa meg toohello portálon, és válassza az SQL Data Warehouse.
 
-2. Válassza ki a méretet az SQL Data Warehouse panelen. 
+2. Válassza ki a skála hello SQL Data Warehouse panelre. 
 
     ![DW méretezése a portálról](./media/sql-data-warehouse-get-started-tutorial/scale-dw.png)
 
-3. Csökkentse a teljesítményt a sávon 100 DWU-ra, és nyomja le a Mentés gombot.
+3. Eszközterület-too100 DWU hello teljesítmény csökkentheti, és kattintson a mentés.
 
     ![Méretezés és mentés](./media/sql-data-warehouse-get-started-tutorial/scale-and-save.png)
 
-4. Várjon, amíg a méretezési művelet befejeződik.
+4. Várjon, amíg a méretezési művelet toofinish.
 
     > [!NOTE]
-    > A méretezés módosítása közben nem futhatnak lekérdezések. A méretezés az épp futó lekérdezéseket **megszakítja**. A művelet befejezése után újraindíthatja őket.
+    > Lekérdezések hello méretezési módosítása közben nem futtatható. A méretezés az épp futó lekérdezéseket **megszakítja**. Újraindításukra hello művelet befejezésekor.
     >
     
-5. Végezzen egy vizsgálati műveletet az utazási adatokon, és válassza az első egymillió bejegyzést minden oszlopban. Ha szeretne gyorsabban továbblépni, választhat kevesebb sort is. Jegyezze fel, hogy mennyi időbe telik ennek a műveletnek az elvégzése.
+5. Hajtsa végre a vizsgálati művelet hello út adatokon, felső millió bejegyzések hello összes hello oszlop kiválasztása. Ha a számítógép különösen toomove gyorsan, érzi, hogy szabad tooselect kevesebb sort. Jegyezze fel a hello időt toorun ezt a műveletet.
 
     ```sql
     SELECT TOP(1000000) * FROM dbo.[Trip]
     ```
-6. Méretezze az adattárházat vissza 400 DWU-ra. Ne feledje, hogy minden 100 DWU egy újabb számítási csomópontot ad az Azure SQL Data Warehouse-hoz.
+6. Az adatraktár méretezhető biztonsági too400 DWU. Ne feledje, hogy minden 100 DWU egy másik számítási csomópont tooyour Azure SQL Data Warehouse hozzáadásával.
 
-7. Futtassa újra a lekérdezést. Jelentős eltérést kell tapasztalnia. 
+7. Futtassa újra a hello lekérdezés! Jelentős eltérést kell tapasztalnia. 
 
     > [!NOTE]
-    > Mivel a lekérdezés számos adatot ad vissza, az SSMS-t futtató gép sávszélességének rendelkezésre állása teljesítménybeli szűk keresztmetszetet eredményezhet. Emiatt lehetséges, hogy semmilyen teljesítménybeli javulást nem fog tapasztalni.
+    > Hello lekérdezés nagy mennyiségű adatot ad vissza, mert a hello számítógépen, amelyen SSMS hello sávszélesség rendelkezésre állását a teljesítménybeli szűk keresztmetszetek lehet. Emiatt lehetséges, hogy semmilyen teljesítménybeli javulást nem fog tapasztalni.
 
 > [!NOTE]
-> Ennek az az oka, hogy az SQL Data Warehouse nagymértékben párhuzamos feldolgozást használ. Olyan lekérdezésekkel tapasztalható meg az Azure SQL Data Warehouse igazi ereje, amelyek több millió soron hajtanak végre elemzési funkciókat.
+> Ennek az az oka, hogy az SQL Data Warehouse nagymértékben párhuzamos feldolgozást használ. Ellenőrzési és analitikai funkciók végrehajtása több millió sort lekérdezések hello igaz hatványra emelésének Azure SQL Data Warehouse tapasztalhat.
 >
 
-### <a name="see-the-effect-of-statistics-on-query-performance"></a>A statisztika hatásának lekérdezések teljesítményére gyakorolt hatása
+### <a name="see-hello-effect-of-statistics-on-query-performance"></a>Statisztika hello hatásának tekintse meg a lekérdezési teljesítmény
 
-1. Futtasson egy lekérdezést, amely összekapcsolja a Date (Dátum) táblát a Trip (Utazás) táblával.
+1. Hogy illesztések hello hello út táblával dátumtáblázat-lekérdezés futtatható
 
     ```sql
     SELECT TOP (1000000) 
@@ -615,10 +615,10 @@ Először csökkentse le a DWU-k számát 100-ra, hogy láthassuk, hogyan teljes
         ON  tr.DateID = dt.DateID
     ```
 
-    Ez a lekérdezés eltart egy darabig, mert az SQL Data Warehouse-nak mozgatnia kell az adatokat az összekapcsolás végrehajtása előtt. Nem kell mozgatni az adatokat az összekapcsolásokhoz, ha úgy lettek megtervezve, hogy az elosztással megegyező módon kapcsolják össze az adatokat. Ez egy mélyebb téma. 
+    Ez a lekérdezés eltart egy ideig, mert az SQL Data Warehouse tooshuffle adatok előtt hello illesztési műveleteket hajthat végre. Illesztések ne legyen tooshuffle adatforrás, ha azok hello tervezett toojoin adatok ugyanúgy terjesztése történik. Ez egy mélyebb téma. 
 
 2. A statisztika sokat számít. 
-3. Ezt az utasítást futtatva létrehozhat statisztikát az összekapcsolási oszlopokhoz.
+3. Futtassa a utasítás toocreate statisztika hello illesztési oszlop.
 
     ```sql
     CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
@@ -628,16 +628,16 @@ Először csökkentse le a DWU-k számát 100-ra, hogy láthassuk, hogyan teljes
     > [!NOTE]
     > Az SQL DW nem kezeli automatikusan a statisztikákat Ön helyett. A statisztikák fontosak a lekérdezések teljesítménye szempontjából, ezért határozottan javasoljuk, hogy hozzon létre statisztikákat, és frissítse azokat.
     > 
-    > **A legnagyobb előnnyel az jár, ha az összekapcsolások részét képező, a WHERE záradékban használt és a GROUP BY elemben megtalálható oszlopok statisztikáit készíti el.**
+    > **Ettől kezdve hello legtöbb juttatás azzal, hogy a statisztika oszlopokon érintett illesztésekben, oszlopok használt hello a GROUP BY záradék és az oszlopok találhatók.**
     >
 
-3. Futtassa újra az Előfeltételek szakaszban szereplő lekérdezést, és figyelje meg a teljesítménybeli különbséget. Bár a lekérdezési teljesítmény változása nem olyan drámai, mint a felskálázás esetében, gyorsulás figyelhető meg. 
+3. Újra az Előfeltételek hello lekérdezés futtatása, és tekintse meg az összes teljesítmény különbséget. A lekérdezések teljesítményét hello különbségek nem lesz, mint a vertikális felskálázásával drasztikus, egy számlázhasson kell észlel. 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Készen áll a lekérdezésre és vizsgálódásra. Tekintse meg gyakorlati tanácsainkat és tippjeinket.
+Most már készen áll a tooquery, és részletesen. Tekintse meg gyakorlati tanácsainkat és tippjeinket.
 
-Ha a mai napra befejezte a vizsgálódást, szüneteltesse a példány működését. Üzemi környezetben hatalmas megtakarításokat érhet el, ha üzleti igényei szerint szünetelteti és méretezi a működést.
+Ha végzett feltárása hello nap, győződjön meg arról, hogy toopause példány! Éles, máris elkezdheti felfedezni hatalmas megtakarítások felfüggesztése és a méretezésről toomeet által az üzleti igényeknek megfelelően.
 
 ![Szünet](./media/sql-data-warehouse-get-started-tutorial/pause.png)
 
@@ -651,13 +651,13 @@ Ha a mai napra befejezte a vizsgálódást, szüneteltesse a példány működé
 
 [A 10 leghasznosabb ajánlott eljárás nagyméretű relációs adattárházak létrehozásához][]
 
-[Adatok áttelepítése az Azure SQL Data Warehouse-ba][]
+[Áttelepítési adatok tooAzure SQL Data Warehouse][]
 
 [Egyidejűség és a számítási feladatok kezelése]: sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example
 [Ajánlott eljárások az Azure SQL Data Warehouse-hoz]: sql-data-warehouse-best-practices.md#hash-distribute-large-tables
 [Lekérdezések figyelése]: sql-data-warehouse-manage-monitor.md
 [A 10 leghasznosabb ajánlott eljárás nagyméretű relációs adattárházak létrehozásához]: https://blogs.msdn.microsoft.com/sqlcat/2013/09/16/top-10-best-practices-for-building-a-large-scale-relational-data-warehouse/
-[Adatok áttelepítése az Azure SQL Data Warehouse-ba]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
+[Áttelepítési adatok tooAzure SQL Data Warehouse]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
 
 
 

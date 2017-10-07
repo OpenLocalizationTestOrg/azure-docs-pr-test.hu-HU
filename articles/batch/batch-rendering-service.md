@@ -1,5 +1,5 @@
 ---
-title: "Renderelés a felhőben az Azure Batch Rendering szolgáltatás használatával | Microsoft Docs"
+title: "aaaUse hello Azure Batch megjelenítése szolgáltatás toorender hello felhőben |} Microsoft Docs"
 description: "Renderelési feladatok végezhetők Azure-alapú virtuális gépeken, közvetlenül a Maya szoftverből és használatalapú fizetéssel."
 services: batch
 author: tamram
@@ -8,19 +8,19 @@ ms.service: batch
 ms.topic: hero-article
 ms.date: 07/31/2017
 ms.author: tamram
-ms.openlocfilehash: 4d22f92cafdbceee5213361d6d2b2f38904d12c6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3fb78d883311bbc3ab62743b7d1b111ffad177cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-batch-rendering-service"></a>Ismerkedés a Batch Rendering szolgáltatással
+# <a name="get-started-with-hello-batch-rendering-service"></a>Ismerkedés a hello szolgáltatás kötegelt megjelenítése
 
-Az Azure Batch Rendering szolgáltatás felhőméretű renderelési képességeket nyújt használatalapú fizetéssel. A Batch Rendering szolgáltatás elvégzi a feladatok ütemezését és sorba rendezését, a hibák és az újrapróbálkozások kezelését és a renderelési feladattal kapcsolatos automatikus skálázást. A Batch Rendering szolgáltatás támogatja az Autodesk Maya, 3ds Max és Arnold szoftver használatát, és a támogatott alkalmazások köre hamarosan tovább bővül. A Maya 2017-hez készült Batch beépülő modullal könnyedén elindíthat egy renderelési feladatot az Azure-on, rögtön a számítógépről. 
+hello Azure kötegben megjelenítést szolgáltatás használati fizetési alapon felhőméretű képességeit kínál. hello szolgáltatás kötegelt megjelenítése kezelje a feladatütemezés és várólistázást, kezelése hibák és az újrapróbálkozások és automatikus méretezése a leképezési feladat. hello szolgáltatás kötegelt megjelenítése Autodesk Maya, 3ds támogatja a Max és Arnold támogatása hamarosan elérhető más alkalmazások. hello Maya 2017 beépülő modul kötegelt teszi, hogy könnyen toostart egy megjelenítési feladat Azure jobb az asztalról. 
 
 ## <a name="supported-applications"></a>Támogatott alkalmazások köre
 
-A Batch Rendering szolgáltatás jelenleg a következő alkalmazások használatát támogatja:
+hello szolgáltatás kötegelt megjelenítése jelenleg a következő alkalmazások hello támogatja:
 
 - Autodesk Maya
 - Autodesk 3ds Max
@@ -28,94 +28,94 @@ A Batch Rendering szolgáltatás jelenleg a következő alkalmazások használat
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A Batch szolgáltatás használatához a következőkre van szükség:
+toouse hello kötegelt megjelenítése szolgáltatás, lesz szüksége:
 
 - Egy [Azure-fiók](https://azure.microsoft.com/free/). 
-- **Egy Azure Batch-fiók.** Egy Batch-fiók az Azure Portalon történő létrehozásával kapcsolatos útmutatásért lásd a [Batch-fiókok az Azure Portalon történő létrehozását](batch-account-create-portal.md) ismertető cikket.
-- **Egy Azure Storage-fiók.** A renderelési feladathoz használt adategységeket az Azure Storage tárolja. A Batch-fiók beállításakor automatikusan létrehozható egy tárfiók. Vagy használhat egy létező tárfiókot is. További információkat a Storage-tárfiókokról a [tárfiókok az Azure Portalon történő létrehozását, kezelését vagy törlését](https://docs.microsoft.com/azure/storage/storage-create-storage-account) ismertető cikkben talál.
+- **Egy Azure Batch-fiók.** A Batch-fiók létrehozása az Azure-portálon hello útmutatóért lásd: [Batch-fiók létrehozása az Azure-portálon hello](batch-account-create-portal.md).
+- **Egy Azure Storage-fiók.** a Megjelenítés feladathoz használt hello eszközeinek tárolására az Azure Storage. A Batch-fiók beállításakor automatikusan létrehozható egy tárfiók. Vagy használhat egy létező tárfiókot is. További információ a tárfiókok, toolearn lásd: [hogyan toocreate, kezelése vagy törlése az Azure-portálon hello](https://docs.microsoft.com/azure/storage/storage-create-storage-account).
 
-A Maya alkalmazáshoz készült Batch beépülő modul használatához a következőkre van szükség:
+Kötegelt toouse hello Maya beépülő modult, van szüksége:
 
 - **Maya 2017**
 - **Arnold for Maya**
 
-Az [Azure Portalon](https://portal.azure.com) létrehozhat olyan virtuálisgép-készleteket is, amelyek előre konfigurálva vannak a Maya, a 3ds Max és az Arnold használatára. A portálon a feladatok monitorozásához és a sikertelen feladatok diagnosztizálásához letölthet alkalmazásnaplókat, és távolról kapcsolódhat az egyes virtuális gépekhez az RDP vagy az SSH használatával.
+Is használhatja a hello [Azure-portálon](https://portal.azure.com) toocreate készletek, amelyek a Maya, 3ds előre konfigurált virtuális gépek maximális és Arnold. Hello portál toomonitor feladatok, és sikertelen feladatokhoz diagnosztizálása alkalmazásnaplók letöltésével és távolról csatlakozzon a tooindividual virtuális gépek RDP és az SSH használatával.
 
 ## <a name="basic-batch-concepts"></a>Alapszintű Batch-fogalmak
 
-Mielőtt elkezdené használni a Batch Rendering szolgáltatást, nem árt, ha tisztában van néhány Batch-fogalommal, mint például a számítási csomópontok, a készletek és a feladatok jelentésével. Az Azure Batch szolgáltatással kapcsolatos általános információkért lásd [a párhuzamos számítási feladatok Batch használatával történő futtatását](batch-technical-overview.md) ismertető cikket.
+Hello kötegelt megjelenítése szolgáltatás használata előtt hasznos toobe ismeri a kötegelt néhány fogalommal, beleértve a számítási csomópontokat, a készletek és a feladatok is. További információk az Azure Batch általában, lásd: toolearn [belsőleg párhuzamos alkalmazásokat és szolgáltatásokat futtathatnak kötegelt](batch-technical-overview.md).
 
 ### <a name="pools"></a>Készletek
 
 A Batch egy platformszolgáltatás nagy számítási igényű munkák, pl. renderelés egy **számítási csomópontokból** álló **készleten** történő futtatásához. Egy készleten belül minden számítási csomópont egy Azure-beli virtuális gép (VM), amely Linux vagy Windows rendszert futtat. 
 
-A Batch készleteivel és számítási csomópontjaival kapcsolatos további információkért lásd a [nagy léptékű párhuzamos számítási megoldások Batch segítségével történő fejlesztését](batch-api-basics.md) ismertető cikk [Készlet](batch-api-basics.md#pool) és [Számítási csomópont](batch-api-basics.md#compute-node) elnevezésű szakaszát.
+Kötegelt készletek és a számítási csomópontok kapcsolatos további információkért lásd: hello [készlet](batch-api-basics.md#pool) és [számítási csomópont](batch-api-basics.md#compute-node) szakaszában [Develop nagyméretű párhuzamos számítási solutions a kötegelt](batch-api-basics.md).
 
 ### <a name="jobs"></a>Feladatok
 
-A Batch-**feladatok** olyan tevékenységek gyűjteményei, amelyek egy készlet számítási csomópontjain futnak. Egy renderelési feladat elküldésekor a Batch tevékenységekre osztja a feladatot, és a futtatáshoz szétosztja a tevékenységeket a készlet számítási csomópontjai között.
+A kötegelt **feladat** hello futó feladatok egy gyűjteményének számítási csomópontjain a készletben. Megjelenítés feladat elküldése, amikor a kötegelt hello feladat osztja a feladatokat, és hello feladatok toohello számítási csomópontjai hello készlet toorun terjeszti.
 
-A Batch-feladatokkal kapcsolatos további információkért lásd a [nagy léptékű párhuzamos számítási megoldások Batch segítségével történő fejlesztését](batch-api-basics.md) ismertető cikk [Feladat](batch-api-basics.md#job) elnevezésű szakaszát.
+Kötegelt feladatok kapcsolatos további információkért lásd: hello [feladat](batch-api-basics.md#job) szakasz [Develop nagyméretű párhuzamos számítási solutions a kötegelt](batch-api-basics.md).
 
-## <a name="use-the-batch-plug-in-for-maya-to-submit-a-render-job"></a>Renderelési feladat elküldése a Maya alkalmazáshoz készült Batch beépülő modul használatával
+## <a name="use-hello-batch-plug-in-for-maya-toosubmit-a-render-job"></a>Hello kötegelt beépülő modul használata Maya toosubmit leképezési feladat
 
-A Maya alkalmazáshoz készült Batch beépülő modul használatával közvetlenül a Mayából küldhet feladatokat a Batch Rendering szolgáltatásnak. A következő szakaszok a feladatnak a beépülő modulból történő konfigurálását, majd elküldését ismertetik. 
+Hello kötegelt Maya beépülő modul egy feladat toohello kötegelt megjelenítése szolgáltatás közvetlenül a Maya elküldheti. hello a következő szakaszok ismertetik, hogyan tooconfigure hello beépülő modul hello feladatot, és küldje el. 
 
-### <a name="load-the-batch-plug-in-in-maya"></a>A Batch beépülő modul betöltése a Maya alkalmazásban
+### <a name="load-hello-batch-plug-in-in-maya"></a>Hello Maya beépülő modulja kötegelt betöltése
 
-A Batch beépülő modul elérhető a [GitHubon](https://github.com/Azure/azure-batch-maya/releases). Csomagolja ki a fájlt egy szabadon választott könyvtárba. A beépülő modul közvetlenül betölthető az *azure_batch_maya* könyvtárból.
+hello beépülő modul kötegelt érhető el a [GitHub](https://github.com/Azure/azure-batch-maya/releases). Bontsa ki a hello archív tooa könyvtár az Ön által választott. Közvetlenül a hello hello beépülő modul betöltése *azure_batch_maya* könyvtár.
 
-A beépülő modul betöltése a Maya alkalmazásban:
+tooload hello Maya beépülő modulja:
 
 1. Indítsa el a Maya alkalmazást.
 2. Nyissa meg a **Window** > **Settings/Preferences** > **Plug-in Manager** (Ablak/Beállítások/Beépülő modulok kezelése) elemet.
 3. Kattintson a **Browse** (Tallózás) gombra.
-4. Keresse meg, majd válassza ki az *azure_batch_maya/plug-in/AzureBatch.py* fájlt.
+4. Keresse meg a tooand válassza *azure_batch_maya/plug-in/AzureBatch.py*.
 
-### <a name="authenticate-access-to-your-batch-and-storage-accounts"></a>A Batch- és Storage-fiókok hozzáférésének engedélyezése
+### <a name="authenticate-access-tooyour-batch-and-storage-accounts"></a>Hozzáférés tooyour kötegelt és a Storage-fiókok hitelesítéséhez
 
-A beépülő modul használatához hitelesítést kell végeznie az Azure Batch- és Azure Storage-fiókja kulcsaival. A fiókkulcsok beszerzéséhez tegye a következőket:
+toouse hello beépülő modul, az Azure Batch és Azure tárfiókkulcsok tooauthenticate kell. tooretrieve a kulcsait:
 
-1. Jelenítse meg a beépülő modult a Mayában, és válassza a **Config** (Konfigurálás) lapot.
-2. Lépjen az [Azure Portalra](https://portal.azure.com).
-3. Válassza a bal oldali menüben a **Batch-fiókok** elemet. Ha szükséges, kattintson a **További szolgáltatások** elemre, majd állítsa be a _Batch_ szűrést.
-4. Keresse ki a listából a kívánt Batch-fiókot.
-5. Válassza a **Kulcsok** menüpontot a fiók neve, URL-címe és hozzáférési kulcsai megjelenítéséhez:
-    - Illessze be a Batch-fiók URL-címét a **Service** (Szolgáltatás) mezőbe a Batch beépülő modulban.
-    - Illessze be a fiók nevét a **Batch Account** (Batch-fiók) mezőbe.
-    - Illessze be az elsődleges fiókkulcsot a **Batch Key** (Batch-kulcs) mezőbe.
-7. Válassza a bal oldali menüben a Storage-fiókok lehetőséget. Ha szükséges, kattintson a **További szolgáltatások** elemre, majd állítsa be a _Storage_ szűrést.
-8. Keresse ki a listából a kívánt Storage-fiókot.
-9. Válassza a **Hozzáférési kulcsok** menüpontot a tárfiók neve és hozzáférési kulcsai megjelenítéséhez.
-    - Illessze be a Storage-fiók nevét a **Storage Account** (Storage-fiók) mezőbe a Batch beépülő modulban.
-    - Illessze be az elsődleges fiókkulcsot a **Storage Key** (Storage-kulcs) mezőbe.
-10. Kattintson az **Authenticate** (Hitelesítés) gombra, hogy a beépülő modul hozzáférjen mindkét fiókhoz.
+1. Megjelenítési hello Maya beépülő modulja, és jelölje be hello **Config** fülre.
+2. Keresse meg a toohello [Azure-portálon](https://portal.azure.com).
+3. Válassza ki **Batch-fiókok** hello bal oldali menüből. Ha szükséges, kattintson a **További szolgáltatások** elemre, majd állítsa be a _Batch_ szűrést.
+4. Keresse meg a Batch-fiók szükséges hello hello listában.
+5. Jelölje be hello **kulcsok** menüelem-toodisplay a fiók nevét, a fiók URL-címe és a hívóbetűk:
+    - Hello Batch-fiók URL-címe beillesztése hello **szolgáltatás** hello beépülő modul kötegelt mezőbe.
+    - Beillesztés hello fiók nevét hello **Batch-fiók** mező.
+    - Beillesztés hello elsődleges kulcsa a hello **kötegelt kulcs** mező.
+7. Válassza ki a Storage-fiókok hello bal oldali menüből. Ha szükséges, kattintson a **További szolgáltatások** elemre, majd állítsa be a _Storage_ szűrést.
+8. Keresse meg a szükséges hello tárfiók hello listában.
+9. Jelölje be hello **hívóbetűk** menüelem toodisplay hello tárolási fiók neve és a kulcsok.
+    - Beillesztés hello Tárfiók neve a hello **Tárfiók** hello beépülő modul kötegelt mezőbe.
+    - Beillesztés hello elsődleges kulcsa a hello **Biztonságitár-kulcs** mező.
+10. Kattintson a **hitelesítés** , hogy a beépülő modul hello tooensure fiókot is hozzáférhet.
 
-A sikeres hitelesítést követően a beépülő modul az állapotmezőben az **Authenticated** (Hitelesítve) állapotot jeleníti meg: 
+Miután sikeresen hitelesítette, hello beépülő modul készlet túl hello-e állapotmező**hitelesített**: 
 
 ![A Batch- és Storage-fiókok hitelesítése](./media/batch-rendering-service/authentication.png)
 
 ### <a name="configure-a-pool-for-a-render-job"></a>Egy készlet konfigurálása egy renderelési feladathoz
 
-A Batch- és Storage-fiókok hitelesítését követően állítson be egy készletet a renderelési feladathoz. A beépülő modul a munkamenetek között megjegyzi a választott beállításokat. Ha egyszer már beállította a kívánt konfigurációját, többször nem kell módosítania, hacsak meg nem változik.
+A Batch- és Storage-fiókok hitelesítését követően állítson be egy készletet a renderelési feladathoz. beépülő modul hello menti a beállításokat a munkamenetek között. Miután beállította a javasolt konfiguráció, akkor nem kell toomodify, kivéve, ha módosítja.
 
-A következő szakaszok végigvezetik a **Submit** (Küldés) lapon elérhető lehetőségeken:
+hello alábbiakban végigvezetik Önt hello elérhető lehetőségekről, a hello **Submit** lapon:
 
 #### <a name="specify-a-new-or-existing-pool"></a>Új vagy létező készlet megadása
 
-A renderelési feladathoz használni kívánt készlet megadásához válassza ki a **Submit** (Küldés) lapot. Ezen a lapon lehetősége van létrehozni egy új készletet, vagy kiválasztani egy meglévő készletet:
+a készlet mely toorun hello leképezési feladathoz, jelölje be hello toospecify **Submit** fülre. Ezen a lapon lehetősége van létrehozni egy új készletet, vagy kiválasztani egy meglévő készletet:
 
-- Automatikusan létrehozhat egy készletet a feladathoz: **auto provision a pool for this job** (ez az alapértelmezett beállítás). Ha ezt a lehetőséget választja, a Batch kizárólag a jelenlegi feladat számára hozza létre a készletet, amelyet automatikusan töröl is a renderelési feladat befejeztével. Ez a lehetőség a legjobb választás, ha egyetlen renderelési feladatot szeretne elvégezni.
-- Újrahasznosíthat egy meglévő állandó készletet: **reuse an existing persistent pool**. Ha van egy meglévő, tétlen készlete, akkor a legördülő menüben kiválaszthatja, hogy az a készlet futtassa a renderelési feladatot. Egy meglévő állandó készlet újbóli felhasználásával megtakaríthatja a készlet létrehozásához szükséges időt.  
-- Létrehozhat egy új állandó készletet: **create a new persistent pool**. Ha ezt a lehetőséget választja, a rendszer létrehoz egy új készletet a feladat futtatásához. A feladat befejeztével nem törli a készletet, így az a későbbiekben más feladatokhoz is újból használható lesz. Válassza ezt a lehetőséget, ha rendszeresen kell végeznie renderelési feladatokat. A későbbi feladatok során válassza a **reuse an existing persistent pool** beállítást, ha az első feladathoz létrehozott állandó készletet szeretné felhasználni.
+- Is **automatikus kiépítése a feladat készlet** (hello az alapértelmezett beállítás). Ha ezt a lehetőséget választja, a kötegelt kizárólag a tárolókészletben hello hello jelenlegi feladatot hoz létre, és automatikusan törli hello-készlet hello leképezési feladat befejeződött. Ez a beállítás akkor ajánlott, ha egy egyetlen leképezési feladat toocomplete rendelkezik.
+- **Újrahasznosíthat egy meglévő állandó készletet.** Ha egy meglévő készlet által üresjáratban, megadhatja, hogy a tárolókészletben futó hello leképezési feladat hello legördülő menüből való kiválasztása. Hello szükséges idő tooprovision hello készlet újból felhasználja a meglévő állandó készlet menti.  
+- **Létrehozhat egy új állandó készletet.** Ez a beállítás hoz létre egy új készletet hello feladat futtatásához. Azt nem hello-készlet törlése, ha hello feladat befejeződött, így a későbbi feladatokhoz is felhasználhatja. Válassza ezt a beállítást, ha a feladatok megjelenítési folyamatosan szükség toorun. A további feladat választhat **felhasználhatja egy létező állandó címkészlet** toouse hello állandó hello első feladathoz létrehozott alkalmazáskészletet.
 
 ![Készlet, operációsrendszer-kép, virtuálisgép-méret és licenc megadása](./media/batch-rendering-service/submit.png)
 
-Az Azure-beli virtuális gépekre vonatkozó díjszabásokkal kapcsolatos bővebb információért olvassa el a [linuxos díjszabásra](https://azure.microsoft.com/pricing/details/virtual-machines/linux/#faq) és a [windowsos díjszabásra](https://azure.microsoft.com/pricing/details/virtual-machines/windows/#faq) vonatkozó gyakori kérdéseket.
+Hogyan díjak keletkeznek Azure virtuális gépek további információkért lásd: hello [Linux árképzési GYIK](https://azure.microsoft.com/pricing/details/virtual-machines/linux/#faq) és [Windows árképzési GYIK](https://azure.microsoft.com/pricing/details/virtual-machines/windows/#faq).
 
-#### <a name="specify-the-os-image-to-provision"></a>A létrehozáshoz használandó operációsrendszer-kép megadása
+#### <a name="specify-hello-os-image-tooprovision"></a>Adja meg a hello az operációs rendszer lemezképének tooprovision
 
-Az **Env** (Környezet) lapon adhatja meg, hogy milyen típusú operációsrendszer-képet szeretne használni a készletben található számítási csomópontok létrehozásához. A Batch jelenleg a következő rendszerképek használatát támogatja a renderelési feladatokhoz:
+Hello hello készletet adhat meg az operációs rendszer lemezképének toouse tooprovision számítási csomópontok hello típusú **Env** (környezet) lapon. Kötegelt jelenleg a kép beállítások megjelenítése a feladat a következő hello támogatja:
 
 |Operációs rendszer  |Kép  |
 |---------|---------|
@@ -124,84 +124,84 @@ Az **Env** (Környezet) lapon adhatja meg, hogy milyen típusú operációsrends
 
 #### <a name="choose-a-vm-size"></a>Virtuális gép méretének kiválasztása
 
-A virtuális gép méretét az **Env** (Környezet) lapon adhatja meg. Az elérhető virtuálisgép-méretekkel kapcsolatos bővebb információkért olvassa el az [Azure-beli linuxos virtuális gépek méreteit](https://docs.microsoft.com/azure/virtual-machines/linux/sizes), illetve az [Azure-beli windowsos virtuális gépek méreteit](https://docs.microsoft.com/azure/virtual-machines/windows/sizes) ismertető cikket. 
+Megadhat hello Virtuálisgép-méretet hello **Env** fülre. Az elérhető virtuálisgép-méretekkel kapcsolatos bővebb információkért olvassa el az [Azure-beli linuxos virtuális gépek méreteit](https://docs.microsoft.com/azure/virtual-machines/linux/sizes), illetve az [Azure-beli windowsos virtuális gépek méreteit](https://docs.microsoft.com/azure/virtual-machines/windows/sizes) ismertető cikket. 
 
-![A virtuális gép operációsrendszer-képének és méretének megadása az Env (Környezet) lapon](./media/batch-rendering-service/environment.png)
+![Adja meg a virtuális gép operációsrendszer-lemezképek hello és mérete hello Env lapon](./media/batch-rendering-service/environment.png)
 
 #### <a name="specify-licensing-options"></a>Licencelési beállítások megadása
 
-A használni kívánt licenceket az **Env** (Környezet) lapon adhatja meg. A lehetőségek a következők:
+Megadhatja a hello toouse kívánja hello licencek **Env** fülre. A lehetőségek a következők:
 
 - **Maya** – ez a beállítás alapértelmezés szerint engedélyezve van.
-- **Arnold** – ez a beállítás akkor van engedélyezve, ha a rendszer észleli, hogy a Maya aktív renderelési motorja az Arnold.
+- **Arnold**, amelyen engedélyezve van, ha Arnold hello aktív leképezési motor Maya észleli.
 
- Ha a saját licencét használva kíván renderelést futtatni, konfigurálhatja a licencvégpontját úgy, hogy hozzáadja a táblázathoz a megfelelő környezeti változókat. Ebben az esetben ügyeljen arra, hogy az alapértelmezett licencelési beállítások jelölését törölje.
+ Ha a saját licenc használata toorender, konfigurálhatja a licenc végpont hello megfelelő környezeti változók toohello tábla hozzáadásával. Lehet, hogy toodeselect hello alapértelmezett licencelési lehetőségek erre.
 
 > [!IMPORTANT]
-> A számlázás a licenchasználat alapján történik, amíg a készletben a virtuális gépek futnak, függetlenül attól, hogy a VM-ek éppen renderelést végeznek-e. A többletköltségek elkerüléséhez lépjen a **Pools** (Készletek) lapra, és méretezze át a készletet 0 csomópontra, ha éppen nem szeretne egy újabb renderelési feladatot futtatni. 
+> Díját is felszámítjuk hello licencek használatra közben a virtuális gépek futnak a hello készletben, akkor is, ha a virtuális gépek hello nem éppen használatban vannak a megjelenítés. tooavoid felesleges költségek, keresse meg a toohello **készletek** lapra, és méretezze át hello készlet too0 csomópontok toorun készen áll egy másik leképezési feladat. 
 >
 >
 
 #### <a name="manage-persistent-pools"></a>Állandó készletek kezelése
 
-A meglévő állandó készletek a **Pools** (Készletek) lapon kezelhetők. Ha kiválaszt a listából egy készletet, megjelenik a készlet aktuális állapota.
+Kezelheti egy meglévő állandó készletet hello **készletek** fülre. Ha kijelöl egy alkalmazáskészlet hello listáról állapota hello aktuális hello készlet.
 
-A **Pools** (Készletek) lapon törölheti is a készleteket, vagy átméretezheti a készletben található virtuális gépek számát. Átméretezhet egy készletet 0 csomópontra, így elkerülheti a számítási feladatok között felmerülő költségeket.
+A hello **készletek** lapon is hello-készlet törlése és méretezze át a virtuális gépek hello készletben hello száma. Egy készlet too0 csomópontok tooavoid ezzel járó költségek Between munkaterhelések is átméretezhetők.
 
 ![Készletek megtekintése, átméretezése és törlése](./media/batch-rendering-service/pools.png)
 
 ### <a name="configure-a-render-job-for-submission"></a>Egy renderelési feladat konfigurálása küldéshez
 
-Miután megadta a renderelési feladatot futtató készlet paramétereit, konfigurálja magát a feladatot is. 
+Többször megadott hello paramétereinek hello készletet, majd hello leképezési feladat futtatása hello feladat magát. 
 
 #### <a name="specify-scene-parameters"></a>Jelenetparaméterek megadása
 
-A Batch beépülő modul felismeri a Mayában éppen használt renderelési motort, és az annak megfelelő renderelési beállításokat jeleníti meg a **Submit** (Küldés) lapon. E beállítások közé tartozik a képkocka kezdete, a képkocka vége, a kimeneti előtag és a képkockaváltás. A jelenetfájl renderelési beállításai felülbírálhatók a beépülő modul különböző beállításaival. A beépülő modul beállításaiban elvégzett módosítások nem módosítják a jelenetfájl renderelési beállításait, így a módosítások feladatonkénti alapon elvégezhetők anélkül, hogy a jelenetfájlt újra fel kellene tölteni.
+hello beépülő modul kötegelt melyik jelenleg a képmegjelenítő motor megkeresi Maya, és megjeleníti hello megfelelő megjelenítési beállítások hello **Submit** fülre. Ezek a beállítások tartalmazzák a hello start keretet, a záró keret, a kimeneti előtag és a keret lépés. Hello helyszín fájl megjelenítési beállítások hello beépülő modult ad meg a különböző beállításokat lehet felülbírálni. Változtatások toohello beépülő modul beállításai csak nem megőrzött hátsó toohello helyszín leképezési beállításai, így a módosításokat végezheti el a feladat-feladat alapon tooreupload hello helyszín fájl anélkül.
 
-A beépülő modul figyelmeztet arra, ha nem támogatja a Maya alkalmazásban kiválasztott renderelési motort.
+beépülő modul hello figyelmezteti, ha hello Maya kiválasztott motor leképezése nem támogatott.
 
-Ha betölt egy új jelenetet, miközben a beépülő modul meg van nyitva, kattintson a **Refresh** (Frissítés) gombra, hogy a beállítások biztosan frissüljenek.
+Ha egy új helyszín betölti beépülő modul hello meg van nyitva, kattintson a hello **frissítése** gomb toomake meg arról, hogy hello-beállítások frissítését.
 
 #### <a name="resolve-asset-paths"></a>Adategységek elérési útjainak feloldása
 
-A beépülő modul a betöltésekor megvizsgálja, hogy a jelenetfájl tartalmaz-e bármilyen külső fájlra mutató hivatkozást. Ezek a hivatkozások az **Assets** (Adategységek) lapon jelennek meg. Ha egy hivatkozott elérési utat nem lehet feloldani, a beépülő modul megkísérli megkeresni a fájlt néhány alapértelmezett helyen, beleértve a következőket is:
+Amikor hello beépülő modul betöltéséhez hello helyszín fájl bármely külső fájl hivatkozásainak vizsgálatokat végez. Ezek a hivatkozások jelennek meg hello **eszközök** fülre. A hivatkozott elérési útja nem oldható fel, ha a beépülő modul hello próbálkozások toolocate hello fájl néhány alapértelmezett helyen, beleértve:
 
-- a jelenetfájl helye; 
-- az aktuális projekt _sourceimages_ könyvtára;
-- az aktuális munkakönyvtár. 
+- hello hello helyszín fájl helye 
+- hello jelenlegi projekt _sourceimages_ könyvtár
+- hello aktuális munkakönyvtárban. 
 
-Ha az adategység ezután sem található, egy figyelmeztető ikon jelenik meg mellette a listában:
+Ha hello eszköz még nem található, akkor egy figyelmeztető ikon szerepel:
 
 ![A hiányzó adategységek mellett egy figyelmeztető ikon jelenik meg](./media/batch-rendering-service/missing_assets.png)
 
-Ha ismeri a feloldatlan fájlhivatkozás helyét, a figyelmeztető ikonra kattintva megadhatja a keresési útvonalat. A beépülő modul ekkor a keresési útvonalat használva megkísérli feloldani a hiányzó adategységeket. Tetszőleges számú további keresési útvonalat lehet megadni.
+Ha ismeri az feloldatlan fájlhivatkozás hello helyét, kattintson a figyelmeztető ikon toobe kéri tooadd a keresési elérési út hello. beépülő modul majd hello használja a keresési elérési út tooattempt tooresolve a hiányzó eszközöket. Tetszőleges számú további keresési útvonalat lehet megadni.
 
 Ha egy hivatkozást a rendszer feloldott, akkor egy zöld jelzőlámpa ikon jelenik meg mellette:
 
 ![A feloldott adategységek mellett egy zöld jelzőlámpa ikon látható](./media/batch-rendering-service/found_assets.png)
 
-Ha a jelenethez további fájlok is szükségesek, amelyeket a beépülő modul nem talált meg, akkor hozzáadhat további fájlokat és könyvtárakat. Használja az **Add Files** (Fájlok hozzáadása) és **Add Directory** (Könyvtár hozzáadása) gombot. Ha betölt egy új jelenetet, miközben a beépülő modul meg van nyitva, kattintson a **Refresh** (Frissítés) gombra, hogy a jelenet hivatkozásai biztosan frissüljenek.
+Ha a leképezni kívánt jelenetben szükséges egyéb fájlokat, hogy hello beépülő modul nem talált, hozzáadhat további fájlokat vagy könyvtárakat. Használjon hello **fájlok hozzáadása** és **könyvtár hozzáadása** gombokat. Ha egy új helyszín betölti beépülő modul hello meg van nyitva, lehet, hogy tooclick **frissítése** tooupdate hello helyszín hivatkozik.
 
-#### <a name="upload-assets-to-an-asset-project"></a>Adategységek feltöltése egy adategység-projektbe
+#### <a name="upload-assets-tooan-asset-project"></a>Eszközök tooan eszköz projekt feltöltése
 
-Egy renderelési feladat elküldésekor az **Assets** (Adategységek) lapon megjelenő hivatkozott fájlok automatikusan fel lesznek töltve az Azure Storage tárolóra egy adategység-projektként. Az adategység-fájlok a renderelési feladattól függetlenül is feltölthetők, az **Assets** (Adategységek) lap **Upload** (Feltöltés) gombjával. Az adategység-projekt nevét a **Project** (Projekt) mező adja meg. A projektek alapértelmezés szerint az aktuális Maya-projekt alapján kapnak nevet. Az adategység-fájlok feltöltésekor a helyi fájlszerkezetet a rendszer megőrzi. 
+Ha Ön leképezési feladat elküldése, hello hivatkozott hello megjelenő fájlok **eszközök** lapon automatikusan feltöltött tooAzure eszköz projektként tárolási. Is feltöltheti hello adategység-fájloknak a leképezési feladat függetlenül hello segítségével **feltöltése** hello gombjára **eszközök** külön-külön hello eszköz projekt neve van megadva az hello **projekt**mezőben, és alapértelmezés szerint hello aktuális Maya projekt neve. Ha az eszköz fájlok feltöltése után hello helyi fájlstruktúra megőrződik. 
 
-A feltöltött adategység-fájlokra bármennyi renderelési feladat hivatkozhat. Bármely feltöltött adategység elérhető bármely, az adategység-projektre hivatkozó feladat számára, függetlenül attól, hogy szerepelnek-e a jelenetben. Ha módosítania kell a következő feladat által hivatkozott adategység-projektet, módosítsa a projekt nevét az **Assets** (Adategységek) lap **Project** (Projekt) mezőjében. Ha vannak olyan hivatkozott fájlok, amelyeket ki szeretne hagyni a feltöltésből, a lista melletti zöld gombokkal törölje a jelölésüket.
+A feltöltött adategység-fájlokra bármennyi renderelési feladat hivatkozhat. Olyan rendelkezésre álló tooany feladat hello eszköz projekt, hivatkozó összes feltöltött eszközök hello helyszín szerepelnek-e. toochange hello eszköz projekt hivatkozik a következő feladat hello nevének módosítása a hello **projekt** hello mezőjét **eszközök** fülre. Ha nincsenek hivatkozott fájlokat töltsenek tooexclude kívánja, törölje azokat hello listaelem mellett zöld hello gomb használatával.
 
-#### <a name="submit-and-monitor-the-render-job"></a>A renderelési feladat küldése és monitorozása
+#### <a name="submit-and-monitor-hello-render-job"></a>Küldje el, és a figyelő hello leképezési feladat
 
-Miután a renderelési feladatot konfigurálta a beépülő modulban, kattintson a **Submit** (Küldés) lapon a **Submit Job** (Feladat küldése) gombra a feladat Batch felé küldéséhez:
+Beépülő modul hello hello leképezési feladat konfigurálása után kattintson a hello **feladat elküldése** hello gombjára **Submit** toosubmit hello feladat tooBatch lapon:
 
-![A renderelési feladat küldése](./media/batch-rendering-service/submit_job.png)
+![Hello leképezési feladat elküldése](./media/batch-rendering-service/submit_job.png)
 
-A folyamatban lévő feladatok a beépülő modul **Jobs** (Feladatok) lapján keresztül monitorozhatók. Válasszon a listából egy feladatot az aktuális állapota megjelenítéséhez. Ezen a lapon megszakíthatja és törölheti is a feladatokat, valamint letöltheti a kimeneteket és a renderelési naplókat. 
+Egy feladatot, amely a hello folyamatban van a figyelheti **feladatok** beépülő modul hello lapján. Jelölje ki a feladatot a hello lista toodisplay hello aktuális hello feladat állapota. Is ezen a lapon toocancel használja, és törölje a feladatok esetében, valamint a toodownload hello kimenetek és a naplók megjelenítése. 
 
-A kimenetek letöltéséhez az **Outputs** (Kimenetek) mező módosításával adja meg a kívánt célkönyvtárt. A fogaskerék ikonra kattintva elindíthat egy háttérfolyamatot, amely figyeli a feladatokat, és menet közben letölti a kimeneteket: 
+toodownload kimenetek módosítása hello **kimenete** mező tooset hello kívánt célkönyvtáron. Kattintson a hello fogaskerék ikonra toostart háttérfolyamatként, amely figyeli a hello feladat és kimenetek letölti a végrehajtás során: 
 
 ![Feladat állapotának megtekintése és kimenetek letöltése](./media/batch-rendering-service/jobs.png)
 
-A Maya alkalmazást bezárhatja, ez ugyanis nem zavarja meg a letöltési folyamatot.
+Bezárhatja a Maya hello letöltési folyamat megszakítása nélkül.
 
 ## <a name="next-steps"></a>Következő lépések
 
-A Batch szolgáltatással kapcsolatos további információkért lásd [a párhuzamos számítási feladatok Batch használatával történő futtatását](batch-technical-overview.md) ismertető cikket.
+toolearn kötegelt, kapcsolatos további információkért lásd: [belsőleg párhuzamos alkalmazásokat és szolgáltatásokat futtathatnak kötegelt](batch-technical-overview.md).

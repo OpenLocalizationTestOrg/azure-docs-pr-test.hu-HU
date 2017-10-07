@@ -1,6 +1,6 @@
 ---
-title: "FQDN létrehozni a Linux virtuális gépek az Azure portálon |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy teljesen minősített tartománynevét, vagy teljes tartománynév, az erőforrás-kezelő alapú virtuális gépet az Azure portálon."
+title: "hello Azure-portálon a Linux virtuális gép teljes Tartományneve aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy teljesen minősített tartománynév vagy a teljes tartománynév, az erőforrás-kezelő alapú virtuális gép hello Azure-portálon."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -16,22 +16,22 @@ ms.workload: infrastructure-services
 ms.date: 07/05/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 49bfec791fcca3feabc4eb280cefd7faada0ea31
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1494a0cb1caa62069c72096a739aee111ac8b383
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-fully-qualified-domain-name-in-the-azure-portal-for-a-linux-vm"></a>Hozzon létre egy teljesen minősített tartománynevét a Linux virtuális gépek Azure-portálon
+# <a name="create-a-fully-qualified-domain-name-in-hello-azure-portal-for-a-linux-vm"></a>Hozzon létre egy teljesen minősített tartománynevét hello Azure-portálon a Linux virtuális gép
 
-Amikor a virtuális gép (VM) hoz létre a [Azure-portálon](https://portal.azure.com), egy nyilvános IP-erőforrás a virtuális gép automatikusan létrejön. Az IP-cím segítségével érheti el távolról a virtuális Gépet. Bár a portál nem hoz létre egy [teljesen minősített tartománynevét](https://en.wikipedia.org/wiki/Fully_qualified_domain_name), vagy teljes Tartománynevét, adhat hozzá egy virtuális gép létrehozása után. Ez a cikk azt mutatja be, a DNS-nevét vagy teljes tartománynév létrehozásához szükséges lépéseket.
+Amikor egy virtuális gép (VM) hoz létre a hello [Azure-portálon](https://portal.azure.com), egy nyilvános IP-erőforrás hello virtuális gép automatikusan létrejön. Az IP cím tooremotely hozzáférés hello virtuális gép használja. Bár a hello portál nem hoz létre egy [teljesen minősített tartománynevét](https://en.wikipedia.org/wiki/Fully_qualified_domain_name), vagy teljesen minősített Tartományneve, felveheti egy hello virtuális gép létrehozása után. Ez a cikk bemutatja a hello lépéseket toocreate egy DNS-nevét vagy teljes Tartománynevét.
 
 ## <a name="create-a-fqdn"></a>Hozzon létre egy teljesen minősített Tartományneve
-Ez a cikk feltételezi, hogy már létrehozta a virtuális gépek. Ha szükséges, akkor [hozzon létre egy virtuális Gépet a portálon](quick-create-portal.md) vagy [az Azure parancssori felülettel](quick-create-cli.md). Miután a virtuális gép megfelelően működik, és kövesse az alábbi lépéseket:
+Ez a cikk feltételezi, hogy már létrehozta a virtuális gépek. Ha szükséges, akkor [hozzon létre egy virtuális gép hello portálon](quick-create-portal.md) vagy [hello Azure parancssori Felülettel rendelkező](quick-create-cli.md). Miután a virtuális gép megfelelően működik, és kövesse az alábbi lépéseket:
 
 [!INCLUDE [virtual-machines-common-portal-create-fqdn](../../../includes/virtual-machines-common-portal-create-fqdn.md)]
 
-Most csatlakozhat távolról a virtuális gép használata a DNS-név, többek között a `ssh azureuser@mydns.westus.cloudapp.azure.com`.
+Csatlakoztathatja távolról virtuális gép erre a DNS-nevével, mint toohello `ssh azureuser@mydns.westus.cloudapp.azure.com`.
 
 ## <a name="next-steps"></a>Következő lépések
 Most, hogy a virtuális gép nyilvános IP-cím és DNS névvel rendelkezik, akkor általános alkalmazás-keretrendszerbeli vagy szolgáltatásokat tudjanak telepíteni nginx, a MongoDB, a Docker, például stb.

@@ -1,5 +1,5 @@
 ---
-title: "Teljesítményteszt pontszámok Linux virtuális gépek számítási |} Microsoft Docs"
+title: "Linux virtuális gépek pontszámaihoz aaaCompute referenciaalap |} Microsoft Docs"
 description: "Hasonlítsa össze a CoreMark számítási teljesítményteszt pontszámok Linux operációs rendszert futtató Azure virtuális gépek"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 382c21343f1a41438277dc288dcdf136e4e1437e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2c1ca5fbd80cea030ac2cc22156c4e9444c6726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Teljesítményteszt pontszámok számítási Linux virtuális gépekhez
-A következő CoreMark teljesítményteszt eredmények megjelenítése Azure nagy teljesítményű virtuális gép következőhöz Ubuntu rendszert futtató számítási teljesítményt. Számítási teljesítményteszt pontszámok is elérhető [Windows virtuális gépek](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+a következő CoreMark teljesítményteszt pontszámok megjelenítése hello számítási teljesítmény az Azure nagy teljesítményű virtuális gép következőhöz Ubuntu rendszert futtató. Számítási teljesítményteszt pontszámok is elérhető [Windows virtuális gépek](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>A-sorozatú-számítási igényű
 | Méret | Vcpu | NUMA-csomópontok | CPU | Fut. | Az ismétlés/mp | Szórás |
@@ -84,9 +84,9 @@ A következő CoreMark teljesítményteszt eredmények megjelenítése Azure nag
 | Standard h16mr méretű |16 |2 |Intel Xeon E5-2667 v3 3,2 GHz-es @ |28 |274,523 |5,698 |
 
 ## <a name="about-coremark"></a>CoreMark kapcsolatos
-Linux-számok futtatásával volt számított [CoreMark](http://www.eembc.org/coremark/faq.php) az Ubuntu. CoreMark lett konfigurálva a virtuális processzorok számának beállítása szálak számát, és feldolgozási PThreads értékre. A cél az ismétlések száma alapján várt teljesítményét, és adja meg a legyen legalább 20 másodperc (általában sokkal hosszabb) futtatókörnyezettel lett igazítva. A végleges pontszám elosztja a másodpercig tartott a a teszt futtatása befejeződött ismétlések számát jelöli. Minden teszt virtuális gépek legalább hét alkalommal volt futtatva. Teszteli (kivéve a H – series_ minden nyilvános Azure-régiót több virtuális a 2015 október futtassa a virtuális gép támogatta a Futtatás időpontjától.
+Linux-számok futtatásával volt számított [CoreMark](http://www.eembc.org/coremark/faq.php) az Ubuntu. CoreMark szálak set toohello virtuális processzorok száma hello száma lett konfigurálva, és feldolgozási tooPThreads beállítása. hello célja az ismétlések száma alapján várt teljesítményét tooprovide legalább 20 másodperc (általában sokkal hosszabb) futtatókörnyezettel lett módosul. hello végleges pontszám hello az ismétlések száma befejeződött hello hány másodpercig tartott toorun hello teszt osztva jelöli. Minden teszt virtuális gépek legalább hét alkalommal volt futtatva. A teszt (kivéve a H – series_ minden virtuális gép futtatásához hello dátum támogatta a nyilvános Azure-régiót hello több virtuális a 2015 október futtassa.
 
 ## <a name="next-steps"></a>Következő lépések
 * Tárolási kapacitás, a lemez adatai és Virtuálisgép-méretek között további szempontokról, lásd: [virtuális gépek méretei](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* A CoreMark-parancsfájlok futtathatók a Linux virtuális gépek, le kell töltenie a [parancsfájl pack CoreMark](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
+* toorun hello CoreMark parancsfájlok Linux virtuális gépeken, töltse le a hello [parancsfájl pack CoreMark](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
 

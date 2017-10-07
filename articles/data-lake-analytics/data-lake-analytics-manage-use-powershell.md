@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake Analytics az Azure PowerShell kezelése |} Microsoft Docs"
-description: "Megtudhatja, hogyan kezelheti a Data Lake Analytics-fiókok, adatforrások, feladatok és a szolgáltatáskatalógusban található elemek. "
+title: Azure Data Lake Analytics az Azure PowerShell aaaManage |} Microsoft Docs
+description: "Ismerje meg, hogyan toomanage Data Lake Analytics-fiókok, adatforrások, feladatok, és a katalóguselemek. "
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/23/2017
 ms.author: mahi
-ms.openlocfilehash: 862e9551f1e129b7bba06651fbae94e337c92dcb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5954f0efb7d5a9778727edfccae83aec046343bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-powershell"></a>Az Azure Data Lake Analytics kezelése az Azure PowerShell-lel
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Útmutató: Azure Data Lake Analytics-fiókok, adatforrások, feladatok és Azure PowerShell használatával a szolgáltatáskatalógusban található elemek kezeléséhez. 
+Ismerje meg, hogyan toomanage Azure Data Lake Analytics-fiókok, adatforrások, feladatok, és az Azure PowerShell használatával a szolgáltatáskatalógusban található elemek. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Data Lake Analytics-fiók létrehozásakor meg kell tudnia:
+Data Lake Analytics-fiók létrehozásakor tooknow szüksége:
 
-* **Előfizetés-azonosító**: az Azure előfizetés-azonosító alapján, amely a Data Lake Analytics-fiók található.
-* **Erőforráscsoport**: az Azure erőforráscsoport, amely tartalmazza a Data Lake Analytics-fiók nevét.
-* **A Data Lake Analytics-fiók neve**: A fiók neve csak kisbetűket és számokat tartalmazhat.
-* **Alapértelmezett Data Lake Store-fiók:** minden Data Lake Analytics-fiókhoz tartozik egy alapértelmezett Data Lake Store-fiók. A fiókoknak azonos helyen kell lenniük.
-* **Hely**: Data Lake Analytics-fiókja, például az "USA keleti régiója 2", vagy más helyre támogatott helyeket. Támogatott helyek láthatóak a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/data-lake-analytics/).
+* **Előfizetés-azonosító**: hello Azure előfizetés-azonosító, amely alatt a Data Lake Analytics-fiók található.
+* **Erőforráscsoport**: hello a Data Lake Analytics-fiókot tartalmazó hello Azure erőforráscsoport nevét.
+* **A Data Lake Analytics-fiók neve**: hello fiók neve csak kisbetűket és számokat tartalmazhat.
+* **Alapértelmezett Data Lake Store-fiók:** minden Data Lake Analytics-fiókhoz tartozik egy alapértelmezett Data Lake Store-fiók. Ezek a fiókok hello kell lennie ugyanazon a helyen.
+* **Hely**: hello hely Data Lake Analytics-fiókja, például az "USA keleti régiója 2", vagy más támogatott helyeket. Támogatott helyek láthatóak a [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/data-lake-analytics/).
 
-A jelen oktatóanyagban szereplő PowerShell-kódrészletek ezeket a változókat használják adattárolásra
+Ebben az oktatóanyagban hello PowerShell kódtöredékek ezeket az információkat használja a változók toostore
 
 ```powershell
 $subId = "<SubscriptionId>"
@@ -59,7 +59,7 @@ Jelentkezzen be egy előfizetés nevét.
 Login-AzureRmAccount -SubscriptionName $subname 
 ```
 
-A `Login-AzureRmAccount` parancsmag mindig elkéri a hitelesítő adatokat. Meg kell adni a következő parancsmagok használatával elkerülheti a:
+Hello `Login-AzureRmAccount` parancsmag mindig elkéri a hitelesítő adatokat. Meg kell adni a következő parancsmagok hello használatával elkerülheti a:
 
 ```powershell
 # Save login session information
@@ -73,7 +73,7 @@ Select-AzureRmProfile -Path D:\profile.json
 
 ### <a name="create-a-data-lake-analytics-account"></a>Data Lake Analytics-fiók létrehozása
 
-Ha még nem rendelkezik egy [erőforráscsoport](../azure-resource-manager/resource-group-overview.md#resource-groups) használatához hozzon létre egyet. 
+Ha még nem rendelkezik egy [erőforráscsoport](../azure-resource-manager/resource-group-overview.md#resource-groups) toouse, hozzon létre egyet. 
 
 ```powershell
 New-AzureRmResourceGroup -Name  $rg -Location $location
@@ -99,13 +99,13 @@ Ezzel a fiókkal kapcsolatos adatokat.
 Get-AdlAnalyticsAccount -Name $adla
 ```
 
-Ellenőrizze, létezik-e egy adott Data Lake Analytics-fiókot. A parancsmag ad vissza, vagy `True` vagy `False`.
+Meghatározott Data Lake Analytics-fiók hello meglétének ellenőrzése. hello parancsmag ad vissza, vagy `True` vagy `False`.
 
 ```powershell
 Test-AdlAnalyticsAccount -Name $adla
 ```
 
-Ellenőrizze, létezik-e egy adott Data Lake Store-fiókot. A parancsmag ad vissza, vagy `True` vagy `False`.
+Egy adott Data Lake Store-fiók hello meglétének ellenőrzése. hello parancsmag ad vissza, vagy `True` vagy `False`.
 
 ```powershell
 Test-AdlStoreAccount -Name $adls
@@ -113,7 +113,7 @@ Test-AdlStoreAccount -Name $adls
 
 ### <a name="listing-accounts"></a>Fiókok listázása
 
-Lista Data Lake Analytics-fiókok az aktuális előfizetésben.
+Lista Data Lake Analytics-fiókok hello aktuális előfizetésen belül.
 
 ```powershell
 Get-AdlAnalyticsAccount
@@ -169,21 +169,21 @@ Set-AdlAnalyticsAccount -Name $adla -FirewallState Disabled
 ```
 
 ## <a name="managing-data-sources"></a>Az adatforrások kezelése
-Az Azure Data Lake Analytics jelenleg a következő adatforrásokat támogatja:
+Az Azure Data Lake Analytics jelenleg a következő adatforrások hello támogatja:
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
 * [Azure Storage](../storage/common/storage-introduction.md)
 
-Az Analytics-fiók létrehozásakor ki kell jelölnie egy Data Lake Store-fiókot az alapértelmezett adatforrás lehet. Az alapértelmezett Data Lake Store-fiók feladat metaadatok és a feladat a vizsgálati naplók tárolására szolgál. Data Lake Analytics-fiók létrehozása után hozzáadhat további Data Lake Store-fiókok és/vagy a Storage-fiókok. 
+Az Analytics-fiók létrehozásakor ki kell jelölnie egy Data Lake Store fiók toobe hello alapértelmezett adatforrás. hello alapértelmezett Data Lake Store-fiók használatos toostore feladat metaadatok és a feladat naplók. Data Lake Analytics-fiók létrehozása után hozzáadhat további Data Lake Store-fiókok és/vagy a Storage-fiókok. 
 
-### <a name="find-the-default-data-lake-store-account"></a>Az alapértelmezett Data Lake Store-fiók található
+### <a name="find-hello-default-data-lake-store-account"></a>Hello alapértelmezett Data Lake Store-fiók található
 
 ```powershell
 $adla_acct = Get-AdlAnalyticsAccount -Name $adla
 $dataLakeStoreName = $adla_acct.DefaultDataLakeAccount
 ```
 
-Az alapértelmezett Data Lake Store-fiók található adatforrások által listájának szűrése révén a `IsDefault` tulajdonság:
+Hello alapértelmezett Data Lake Store-fiók találhatja meg adatforrások listája hello hello szerinti szűrés `IsDefault` tulajdonság:
 
 ```powershell
 Get-AdlAnalyticsDataSource -Account $adla  | ? { $_.IsDefault } 
@@ -206,7 +206,7 @@ Add-AdlAnalyticsDataSource -Account $adla -DataLakeStore $AzureDataLakeStoreName
 ### <a name="list-data-sources"></a>Az adatforrások listája
 
 ```powershell
-# List all the data sources
+# List all hello data sources
 Get-AdlAnalyticsDataSource -Name $adla
 
 # List attached Data Lake Store accounts
@@ -229,7 +229,7 @@ $script = @"
             ("Woodgrove", 2700.0)
         ) AS D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 "@
 
@@ -250,9 +250,9 @@ Submit-AdlJob -AccountName $adla –ScriptPath $scriptpath -Name "Demo"
 
 ## <a name="list-jobs-in-an-account"></a>Egy fiók feladatok listája
 
-### <a name="list-all-the-jobs-in-the-account"></a>Sorolja fel a fiókban lévő összes feladatot. 
+### <a name="list-all-hello-jobs-in-hello-account"></a>Az összes hello feladat hello fiók felsorolása. 
 
-A kimenet tartalmazza az aktuálisan futó és a nemrégiben befejezett feladatokat is.
+hello kimenete hello jelenleg futó feladatok, és ezeket a feladatokat, amelyek nemrégiben fejeződtek be.
 
 ```powershell
 Get-AdlJob -Account $adla
@@ -261,16 +261,16 @@ Get-AdlJob -Account $adla
 
 ### <a name="list-a-specific-number-of-jobs"></a>Egy bizonyos számú feladatok listázása
 
-A feladatok van rendezve, az alapértelmezés szerint idő nyújt. Ezért a legutóbb elküldött feladatok elsőként jelennek meg. Alapértelmezés szerint a ADLA fiók feladatok emlékszik 180 napig tart, de a Ge-AdlJob parancsmag alapértelmezés szerint csak az első 500 adja vissza. Használja az - felső paraméter egy bizonyos számú feladatok listázásához.
+Alapértelmezés szerint a feladatok hello lista rendezett küldésre idő. Így a legutóbb elküldött hello feladatok első jelennek meg. Alapértelmezés szerint hello ADLA fiók feladatok emlékszik 180 napig tart, de csak a hello első 500 hello Ge-AdlJob parancsmag által alapértelmezett értéket ad vissza. Használja az - felső paraméter toolist adott számú feladatot.
 
 ```powershell
 $jobs = Get-AdlJob -Account $adla -Top 10
 ```
 
 
-### <a name="list-jobs-based-on-the-value-of-job-property"></a>Lista feladatok feladat tulajdonság értéke alapján
+### <a name="list-jobs-based-on-hello-value-of-job-property"></a>Lista feladatok hello feladat tulajdonság értéke alapján
 
-Használja a `-State` paraméter. Ezek bármelyike kombinálhatja:
+Hello segítségével `-State` paraméter. Ezek bármelyike kombinálhatja:
 
 * `Accepted`
 * `Compiling`
@@ -283,17 +283,17 @@ Használja a `-State` paraméter. Ezek bármelyike kombinálhatja:
 * `Start`
 
 ```powershell
-# List the running jobs
+# List hello running jobs
 Get-AdlJob -Account $adla -State Running
 
-# List the jobs that have completed
+# List hello jobs that have completed
 Get-AdlJob -Account $adla -State Ended
 
-# List the jobs that have not started yet
+# List hello jobs that have not started yet
 Get-AdlJob -Account $adla -State Accepted,Compiling,New,Paused,Scheduling,Start
 ```
 
-Használja a `-Result` paraméter észleli, hogy befejeződött a feladat sikeresen befejeződött-e. Ezekkel az értékekkel rendelkezik:
+Használjon hello `-Result` paraméter toodetect hogy befejeződött a feladat sikeresen befejeződött-e. Ezekkel az értékekkel rendelkezik:
 
 * Megszakítva
 * Nem sikerült
@@ -309,21 +309,21 @@ Get-AdlJob -Account $adla -State Ended -Result Failed
 ```
 
 
-A `-Submitter` paraméter segít azonosítani, ki egy feladat elküldése megtörtént.
+Hello `-Submitter` paraméter segít azonosítani, ki egy feladat elküldése megtörtént.
 
 ```powershell
 Get-AdlJob -Account $adla -Submitter "joe@contoso.com"
 ```
 
-A `-SubmittedAfter` hasznos egy időtartományt a szűrés.
+Hello `-SubmittedAfter` hasznos tooa időtartomány szűrést.
 
 
 ```powershell
-# List  jobs submitted in the last day.
+# List  jobs submitted in hello last day.
 $d = [DateTime]::Now.AddDays(-1)
 Get-AdlJob -Account $adla -SubmittedAfter $d
 
-# List  jobs submitted in the last seven day.
+# List  jobs submitted in hello last seven day.
 $d = [DateTime]::Now.AddDays(-7)
 Get-AdlJob -Account $adla -SubmittedAfter $d
 ```
@@ -332,11 +332,11 @@ Get-AdlJob -Account $adla -SubmittedAfter $d
 
 
 ```
-# List jobs submitted in the last five days and that successfully completed.
+# List jobs submitted in hello last five days and that successfully completed.
 $d = (Get-Date).AddDays(-5)
 Get-AdlJob -Account $adla -SubmittedAfter $d -State Ended -Result Succeeded
 
-# List all failed jobs submitted by "joe@contoso.com" within the past seven days.
+# List all failed jobs submitted by "joe@contoso.com" within hello past seven days.
 Get-AdlJob -Account $adla `
     -Submitter "joe@contoso.com" `
     -SubmittedAfter (Get-Date).AddDays(-7) `
@@ -345,9 +345,9 @@ Get-AdlJob -Account $adla `
 
 ## <a name="filtering-a-list-of-jobs"></a>A feladatok listájának szűrése
 
-Követően a feladatok listáját a jelenlegi PowerShell-munkamenetben. Normál PowerShell-parancsmagok segítségével a tulajdonságlista szűréséhez.
+Követően a feladatok listáját a jelenlegi PowerShell-munkamenetben. Használhatja a szokásos PowerShell parancsmagok toofilter hello listája.
 
-A feladatok az elmúlt 24 órában küldött feladatok listájának szűrése
+Szűrő feladatok toohello feladatokra hello utolsó 24 órában küldött
 
 ```
 $upperdate = Get-Date
@@ -355,7 +355,7 @@ $lowerdate = $upperdate.AddHours(-24)
 $jobs | Where-Object { $_.EndTime -ge $lowerdate }
 ```
 
-Feladatok az elmúlt 24 órában befejeződött feladatok listájának szűrése
+Véget ért hello az elmúlt 24 órában feladatok toohello feladatok listájának szűrése
 
 ```
 $upperdate = Get-Date
@@ -363,7 +363,7 @@ $lowerdate = $upperdate.AddHours(-24)
 $jobs | Where-Object { $_.SubmitTime -ge $lowerdate }
 ```
 
-Szűrheti a feladatok elindításának feladatok listáját. Egy feladat sikertelen lehet a fordítás során –, és ezért soha nem kezdődik. Vizsgáljuk meg a sikertelen feladatok ténylegesen elindításának, majd nem sikerült.
+Szűrheti a feladatok elindításának toohello feladatok listáját. Egy feladat sikertelen lehet a fordítás során –, és ezért soha nem kezdődik. Nézzük hello sikertelen feladatok ténylegesen elindításának, majd nem sikerült.
 
 ```powershell
 $jobs | Where-Object { $_.StartTime -ne $null }
@@ -371,22 +371,22 @@ $jobs | Where-Object { $_.StartTime -ne $null }
 
 ### <a name="analyzing-a-list-of-jobs"></a>Feladatokra elemzése
 
-Használja a `Group-Object` parancsmag feladatokra elemzéséhez.
+Használjon hello `Group-Object` parancsmag tooanalyze feladatokra.
 
 ```
-# Count the number of jobs by Submitter
+# Count hello number of jobs by Submitter
 $jobs | Group-Object Submitter | Select -Property Count,Name
 
-# Count the number of jobs by Result
+# Count hello number of jobs by Result
 $jobs | Group-Object Result | Select -Property Count,Name
 
-# Count the number of jobs by State
+# Count hello number of jobs by State
 $jobs | Group-Object State | Select -Property Count,Name
 
-#  Count the number of jobs by DegreeOfParallelism
+#  Count hello number of jobs by DegreeOfParallelism
 $jobs | Group-Object DegreeOfParallelism | Select -Property Count,Name
 ```
-Ha az elemzések végrehajtását, tulajdonságok hozzáadása a feladat objektumok egyszerűbbé teszik a szűrést és a csoportosítási hasznos lehet. Az alábbi kódrészletben láthatja ellátása megjegyzésekkel a Feladatinformáció számított tulajdonságokkal.
+Ha az elemzések végrehajtását, hasznos tooadd tulajdonságok toohello feladat objektumok toomake szűrést és a csoportosítási egyszerűbb lehet. a következő kódrészletet hello jeleníti meg, hogyan tooannotate a Feladatinformáció a számított tulajdonságokat.
 
 ```
 function annotate_job( $j )
@@ -411,7 +411,7 @@ $jobs = $jobs | %{ annotate_job( $_ ) }
 
 ## <a name="get-information-about-pipelines-and-recurrences"></a>Adatcsatornák és ismétlődések adatainak beolvasása
 
-Használja a `Get-AdlJobPipeline` csővezeték-információt parancsmag korábban küldött feladatok.
+Használjon hello `Get-AdlJobPipeline` parancsmag toosee hello csővezeték korábban információkat feladatok.
 
 ```powershell
 $pipelines = Get-AdlJobPipeline -Account $adla
@@ -419,7 +419,7 @@ $pipelines = Get-AdlJobPipeline -Account $adla
 $pipeline = Get-AdlJobPipeline -Account $adla -PipelineId "<pipeline ID>"
 ```
 
-Használja a `Get-AdlJobRecurrence` parancsmaggal olvassa ismétlődési korábban küldött feladatok.
+Használjon hello `Get-AdlJobRecurrence` parancsmag toosee hello ismétlődési információkat az előzőleg elküldött feladatok.
 
 ```powershell
 $recurrences = Get-AdlJobRecurrence -Account $adla
@@ -431,15 +431,15 @@ $recurrence = Get-AdlJobRecurrence -Account $adla -RecurrenceId "<recurrence ID>
 
 ### <a name="get-job-status"></a>Feladat állapotának beolvasása
 
-Kérje le egy adott feladat állapotát.
+Egy adott feladat hello állapotának beolvasása.
 
 ```powershell
 Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
-### <a name="examine-the-job-outputs"></a>Vizsgálja meg a feladat kimenetének létrehozása
+### <a name="examine-hello-job-outputs"></a>Vizsgálja meg a hello feladat kimenetének létrehozása
 
-Miután a feladat befejeződött, ellenőrizze, hogy léteznek-e a kimeneti fájl a mappában lévő fájlok listáját.
+Miután hello feladat befejeződött, ellenőrizze, hogy léteznek-e hello kimeneti fájl hello mappában lévő fájlok listáját.
 
 ```powershell
 Get-AdlStoreChildItem -Account $adls -Path "/"
@@ -453,9 +453,9 @@ Get-AdlStoreChildItem -Account $adls -Path "/"
 Stop-AdlJob -Account $adls -JobID $jobID
 ```
 
-### <a name="wait-for-a-job-to-finish"></a>Várjon, amíg a feladat befejeződésére
+### <a name="wait-for-a-job-toofinish"></a>Várjon, amíg a feladat toofinish
 
-Ismétlődő helyett `Get-AdlAnalyticsJob` amíg a feladat befejeződik, használhatja a `Wait-AdlJob` parancsmag használatával, vagy várja meg a feladat befejezéséhez.
+Ismétlődő helyett `Get-AdlAnalyticsJob` egy feladat befejezéséig hello használhatja `Wait-AdlJob` parancsmag toowait hello feladat tooend számára.
 
 ```powershell
 Wait-AdlJob -Account $adla -JobId $job.JobId
@@ -465,7 +465,7 @@ Wait-AdlJob -Account $adla -JobId $job.JobId
 
 ### <a name="list-existing-compute-policies"></a>A meglévő számítási házirendek felsorolása
 
-A `Get-AdlAnalyticsComputePolicy` parancsmag beolvassa a Data Lake Analytics-fiók számítási házirendekkel kapcsolatos információ.
+Hello `Get-AdlAnalyticsComputePolicy` parancsmag beolvassa a Data Lake Analytics-fiók számítási házirendekkel kapcsolatos információ.
 
 ```powershell
 $policies = Get-AdlAnalyticsComputePolicy -Account $adla
@@ -473,7 +473,7 @@ $policies = Get-AdlAnalyticsComputePolicy -Account $adla
 
 ### <a name="create-a-compute-policy"></a>Számítási házirend létrehozása
 
-A `New-AdlAnalyticsComputePolicy` parancsmag létrehoz egy új számítási házirendet a Data Lake Analytics-fiók. Ebben a példában a rendelkezésre álló maximális ausztráliai állítja be a megadott felhasználó 50 és 250 minimális feladat prioritása.
+Hello `New-AdlAnalyticsComputePolicy` parancsmag létrehoz egy új számítási házirendet a Data Lake Analytics-fiók. Ez a példa beállítása hello maximális ausztráliai elérhető toohello megadott felhasználói too50 és hello minimális feladat prioritása too250.
 
 ```powershell
 $userObjectId = (Get-AzureRmAdUser -SearchString "garymcdaniel@contoso.com").Id
@@ -481,7 +481,7 @@ $userObjectId = (Get-AzureRmAdUser -SearchString "garymcdaniel@contoso.com").Id
 New-AdlAnalyticsComputePolicy -Account $adla -Name "GaryMcDaniel" -ObjectId $objectId -ObjectType User -MaxDegreeOfParallelismPerJob 50 -MinPriorityPerJob 250
 ```
 
-## <a name="check-for-the-existence-of-a-file"></a>Ellenőrizze, hogy létezik-e a fájl.
+## <a name="check-for-hello-existence-of-a-file"></a>Ellenőrizze, hogy egy fájl hello megléte.
 
 ```powershell
 Test-AdlStoreItem -Account $adls -Path "/data.csv"
@@ -514,13 +514,13 @@ Export-AdlStoreItem -AccountName $adls -Path "/" -Destination "c:\myData\" -Recu
 ```
 
 > [!NOTE]
-> Ha a feltöltés és letöltés választható folyamat megszakad, esetleg az folytatásához újra a parancsmagot a ``-Resume`` jelzőt.
+> Ha hello feltöltése vagy letöltési folyamat megszakad, megkísérelheti tooresume hello folyamat futó hello parancsmag történő újra hello ``-Resume`` jelzőt.
 
 ## <a name="manage-catalog-items"></a>A szolgáltatáskatalógusban található elemek kezelése
 
-A U-SQL-katalógusról data és kód felépítését, így azok megoszthatók U-SQL-parancsfájlok szolgál. A katalógus lehetővé teszi, hogy a lehető legjobb teljesítmény szolgálja Azure Data Lake-adatokkal. További információk: [Use U-SQL catalog](data-lake-analytics-use-u-sql-catalog.md) (U-SQL-katalógus használata).
+hello U-SQL catalog használt toostructure adatok és a kód, így azok megoszthatók U-SQL-parancsfájlok. hello katalógus lehetővé teszi, hogy a lehető legjobb teljesítmény hello Azure Data Lake-adatokkal szolgálja. További információk: [Use U-SQL catalog](data-lake-analytics-use-u-sql-catalog.md) (U-SQL-katalógus használata).
 
-### <a name="list-items-in-the-u-sql-catalog"></a>A U-SQL catalog listaelemeit.
+### <a name="list-items-in-hello-u-sql-catalog"></a>Hello U-SQL catalog listaelemeit.
 
 ```powershell
 # List U-SQL databases
@@ -533,7 +533,7 @@ Get-AdlCatalogItem -Account $adla -ItemType Table -Path "database"
 Get-AdlCatalogItem -Account $adla -ItemType Table -Path "database.schema"
 ```
 
-A ADLA fiók összes adatbázisát a szerelvények listázása.
+Listázza az összes hello adatbázisának ADLA fiók összes hello szerelvényeket.
 
 ```powershell
 $dbs = Get-AdlCatalogItem -Account $adla -ItemType Database
@@ -562,7 +562,7 @@ Test-AdlCatalogItem  -Account $adla -ItemType Database -Path "master"
 
 ### <a name="create-credentials-in-a-catalog"></a>Hitelesítő adatok létrehozása a katalógusban
 
-U-SQL-adatbázis hozzon létre egy Azure-ban üzemeltetett adatbázis hitelesítő objektumot. U-SQL hitelesítő adatok jelenleg csak az ilyen típusú elemet, amely a PowerShell segítségével is létrehozhat.
+U-SQL-adatbázis hozzon létre egy Azure-ban üzemeltetett adatbázis hitelesítő objektumot. U-SQL hitelesítő adatok jelenleg hello csak ilyen típusú elemet, amely a PowerShell segítségével is létrehozhat.
 
 ```powershell
 $dbName = "master"
@@ -578,7 +578,7 @@ New-AdlCatalogCredential -AccountName $adla `
 
 ### <a name="get-basic-information-about-an-adla-account"></a>ADLA fiók alapszintű adatainak beolvasása
 
-Megadott fióknév, az alábbi kód megkeresi a fiókkal kapcsolatos alapvető információk
+A megadott fióknév a következő kód hello keresi a hello fiókkal kapcsolatos alapvető információk
 
 ```
 $adla_acct = Get-AdlAnalyticsAccount -Name "saveenrdemoadla"
@@ -674,7 +674,7 @@ foreach ($sub in $subs)
 
 ## <a name="create-a-data-lake-analytics-account-using-a-template"></a>Egy sablon használatával a Data Lake Analytics-fiók létrehozása
 
-Egy Azure erőforráscsoport-sablon a következő PowerShell-parancsfájl használatával is használhatja:
+Egy Azure erőforráscsoport-sablon használatával a következő PowerShell-parancsfájl hello is használhatja:
 
 ```powershell
 $subId = "<Your Azure Subscription ID>"
@@ -685,15 +685,15 @@ $adls = "<New Data Lake Store Account Name>"
 $adla = "<New Data Lake Analytics Account Name>"
 
 $deploymentName = "MyDataLakeAnalyticsDeployment"
-$armTemplateFile = "<LocalFolderPath>\azuredeploy.json"  # update the JSON template path 
+$armTemplateFile = "<LocalFolderPath>\azuredeploy.json"  # update hello JSON template path 
 
-# Log in to Azure
+# Log in tooAzure
 Login-AzureRmAccount -SubscriptionId $subId
 
-# Create the resource group
+# Create hello resource group
 New-AzureRmResourceGroup -Name $rg -Location $location
 
-# Create the Data Lake Analytics account with the default Data Lake Store account.
+# Create hello Data Lake Analytics account with hello default Data Lake Store account.
 $parameters = @{"adlAnalyticsName"=$adla; "adlStoreName"=$adls}
 New-AzureRmResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rg -TemplateFile $armTemplateFile -TemplateParameterObject $parameters 
 ```
@@ -702,7 +702,7 @@ További információkért lásd: [Azure Resource Manager-sablon az alkalmazás 
 
 **Példa sablon**
 
-Mentse a következő szöveget a `.json` fájlt, és az előző PowerShell-parancsfájl segítségével használhatja a sablont. 
+A következő szöveg hello menteni egy `.json` fájlt, és a PowerShell parancsfájl toouse hello sablon megelőző hello használja. 
 
 ```json
 {
@@ -712,13 +712,13 @@ Mentse a következő szöveget a `.json` fájlt, és az előző PowerShell-paran
     "adlAnalyticsName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the Data Lake Analytics account to create."
+        "description": "hello name of hello Data Lake Analytics account toocreate."
       }
     },
     "adlStoreName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the Data Lake Store account to create."
+        "description": "hello name of hello Data Lake Store account toocreate."
       }
     }
   },

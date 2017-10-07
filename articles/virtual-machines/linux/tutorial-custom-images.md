@@ -1,6 +1,6 @@
 ---
-title: "Egyéni Virtuálisgép-lemezképek létrehozása az Azure parancssori felülettel |} Microsoft Docs"
-description: "Útmutató – hozzon létre egy egyéni Virtuálisgép-lemezkép az Azure parancssori felület használatával."
+title: "egyéni VM képeket aaaCreate hello Azure parancssori Felülettel |} Microsoft Docs"
+description: "Útmutató – hozzon létre egy egyéni Virtuálisgép-lemezkép hello Azure parancssori felület használatával."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,78 +16,78 @@ ms.workload: infrastructure
 ms.date: 05/21/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d32980f05ad17a76793021d0a5355d597974a4e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 217a993c0c1d48939b74108ac6c5f7a1a619416c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-of-an-azure-vm-using-the-cli"></a>Hozzon létre egy egyéni rendszerképet az Azure virtuális gép a parancssori felület használatával
+# <a name="create-a-custom-image-of-an-azure-vm-using-hello-cli"></a>Hozzon létre egy Azure virtuális gép hello parancssori felület használatával egyéni képe
 
-Egyéni lemezképek piactéren elérhető rendszerkép hasonló, de Ön hozza létre őket. Egyéni lemezképek a rendszerindítási beállításokat, például alkalmazások, alkalmazás, és más operációs rendszer konfigurációjában kerüli használható. Ebben az oktatóanyagban létrehoz egy Azure virtuális gép saját egyéni rendszerképét. Az alábbiak végrehajtásának módját ismerheti meg:
+Egyéni lemezképek piactéren elérhető rendszerkép hasonló, de Ön hozza létre őket. Egyéni lemezképek lehet például az alkalmazások, alkalmazás, és más operációs rendszer konfigurációjában kerüli használt toobootstrap konfigurációkat. Ebben az oktatóanyagban létrehoz egy Azure virtuális gép saját egyéni rendszerképét. Az alábbiak végrehajtásának módját ismerheti meg:
 
 > [!div class="checklist"]
 > * Kiosztásának megszüntetése és virtuális gépek generalize
 > * Egyéni lemezkép létrehozása
 > * Virtuális gép létrehozása egy egyéni lemezképből
-> * Az előfizetésben a képek felsorolása
+> * Az előfizetésében szereplő összes hello lemezképek felsorolása
 > * Lemezkép törlése
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Telepítése és a parancssori felület helyileg használata mellett dönt, ha ez az oktatóanyag van szükség, hogy futnak-e az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ez az oktatóanyag van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Az alábbi lépéseket a meglévő virtuális igénybe vehet, és kapcsolja be, amelyek segítségével hozzon létre új Virtuálisgép-példányok újra felhasználható egyéni lemezképként adatok találhatók.
+hello lépéseket részletesen tootake egy meglévő virtuális Gépre, és azt újra felhasználható egyéni lemezképet, hogy kapcsolja használatát toocreate új Virtuálisgép-példányok.
 
-A példa az oktatóanyag elvégzéséhez rendelkeznie kell egy meglévő virtuális gépet. Ha szükséges, ez [parancsfájl minta](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md) hozhat létre egyet. Az oktatóanyag lépéseinek működő cseréje esetén a az erőforráscsoportot és a virtuális gép nevét, amennyiben szükséges.
+Ebben az oktatóanyagban toocomplete hello példában rendelkeznie kell egy meglévő virtuális gépet. Ha szükséges, ez [parancsfájl minta](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md) hozhat létre egyet. Ha feldolgozása révén hello oktatóanyag, a csere hello erőforráscsoport és a virtuális gép nevét, ha szükséges.
 
 ## <a name="create-a-custom-image"></a>Egyéni lemezkép létrehozása
 
-Hozzon létre egy virtuális gép lemezképét, meg kell készíteni a virtuális gép megszüntetés, felszabadítása, és majd a forrás virtuális Gépen, mivel általánosítva. Miután a virtuális gép előkészített, kép hozhatók létre.
+toocreate egy virtuális gép lemezképét, meg kell tooprepare hello VM megszüntetés, felszabadítása és hello forrás virtuális gép általánosítva van, majd jelölést. Egyszer hello a virtuális gép előkészített, hozhat létre kép.
 
-### <a name="deprovision-the-vm"></a>A virtuális gép kiosztásának megszüntetése 
+### <a name="deprovision-hello-vm"></a>Virtuális gép hello kiosztásának megszüntetése 
 
-Megszüntetés használatúvá a virtuális gép-specifikus adatok eltávolításával. Ez általánosítása lehetővé teszi egyetlen lemezképéről sok virtuális gép központi telepítéséhez. Megszüntetés, során az állomás neve lesz visszaállítva *localhost.localdomain*. SSH-állomások kulcsait, a névkiszolgáló-konfigurációk, a gyökér szintű jelszó és a gyorsítótárazott DHCP-bérletek is törlődnek.
+Megszüntetés használatúvá hello VM számítógép-specifikus adatok eltávolításával. Ez általánosítása révén lehetséges toodeploy sok virtuális gép egyetlen lemezképéről. Megszüntetés, során hello állomásnév alaphelyzetbe áll túl*localhost.localdomain*. SSH-állomások kulcsait, a névkiszolgáló-konfigurációk, a gyökér szintű jelszó és a gyorsítótárazott DHCP-bérletek is törlődnek.
 
-A virtuális gép kiosztásának megszüntetése, használja az Azure Virtuálisgép-ügynök (waagent). Az Azure Virtuálisgép-ügynök telepítve van a virtuális Gépre, és kezeli az üzembe helyezési és az Azure Fabric Controller való interakció. További információkért lásd: a [Azure Linux ügynök felhasználói útmutató](agent-user-guide.md).
+virtuális gép, toodeprovision hello hello Azure Virtuálisgép-ügynök (waagent) használja. hello Azure Virtuálisgép-ügynök hello virtuális gép telepítve van, és kezeli az üzembe helyezési és hello Azure Fabric Controller való interakció. További információkért lásd: hello [Azure Linux ügynök felhasználói útmutató](agent-user-guide.md).
 
-A virtuális gép SSH használatával csatlakozhat, és futtassa a parancsot a virtuális gép kiosztásának megszüntetése. Az a `+user` argumentum, a legutóbbi kiépített felhasználói fiók és minden egyéb vonatkozó adatok is törlődnek. A példa IP-cím cserélje le a virtuális gép nyilvános IP-címét.
+Csatlakozás a virtuális gép tooyour SSH és futtatási hello parancs toodeprovision hello VM használatával. A hello `+user` argumentum, hello utolsó kiépített felhasználói fiók és minden társított adatok is törlődnek. Hello példa IP-cím cserélje le a virtuális gép hello nyilvános IP-címe.
 
-SSH-kapcsolatot a virtuális Gépet.
+SSH toohello virtuális gép.
 ```bash
 ssh azureuser@52.174.34.95
 ```
-A virtuális gép kiosztásának megszüntetése.
+Deprovision hello virtuális gép.
 
 ```bash
 sudo waagent -deprovision+user -force
 ```
-Zárja be az SSH-munkamenetet.
+Zárja be a hello SSH-munkamenetet.
 
 ```bash
 exit
 ```
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a>Felszabadítani, és a virtuális gép megjelölése általánosítva
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a>Felszabadítani, és jelölje be a virtuális gép általánosítva, hello
 
-A képfájl létrehozásához a virtuális gép felszabadítása kell. A virtuális gép használatával felszabadítani [az virtuális gép felszabadítása](/cli//azure/vm#deallocate). 
+toocreate kép, hello virtuális gép felszabadítása toobe kell. Hello VM használatával felszabadítani [az virtuális gép felszabadítása](/cli//azure/vm#deallocate). 
    
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-Végezetül beállítani a virtuális gép állapotát a általánosítva [az vm generalize](/cli//azure/vm#generalize) , az Azure platformon tudja, hogy a virtuális gép már általánosítva lett. Kép csak létrehozhat egy általánosított virtuális Gépet.
+Végezetül beállítani hello VM állapotának hello rendelkező általánosított [az vm generalize](/cli//azure/vm#generalize) , hello Azure platformon tudja hello VM már általánosítva lett. Kép csak létrehozhat egy általánosított virtuális Gépet.
    
 ```azurecli-interactive 
 az vm generalize --resource-group myResourceGroup --name myVM
 ```
 
-### <a name="create-the-image"></a>A lemezkép létrehozása
+### <a name="create-hello-image"></a>Hello lemezkép létrehozása
 
-Most a virtuális gép lemezképét segítségével létrehozható [az lemezkép létrehozása](/cli//azure/image#create). Az alábbi példakód létrehozza nevű kép *myImage* nevű VM *myVM*.
+Most használatával hozhat létre virtuális gép hello képe [az lemezkép létrehozása](/cli//azure/image#create). hello alábbi példakód létrehozza nevű kép *myImage* nevű VM *myVM*.
    
 ```azurecli-interactive 
 az image create \
@@ -96,9 +96,9 @@ az image create \
     --source myVM
 ```
  
-## <a name="create-vms-from-the-image"></a>Virtuális gépek létrehozása lemezkép alapján
+## <a name="create-vms-from-hello-image"></a>Hozzon létre a virtuális gépek hello lemezképből
 
-Most, hogy egy lemezképet, létrehozhat egy vagy több új virtuális gépek a lemezkép használatával [az virtuális gép létrehozása](/cli/azure/vm#create). Az alábbi példakód létrehozza a virtuális gépek nevű *myVMfromImage* nevű lemezkép alapján *myImage*.
+Most, hogy egy lemezképet, létrehozhat egy vagy több új virtuális gépek hello lemezkép használatával [az virtuális gép létrehozása](/cli/azure/vm#create). hello alábbi példakód létrehozza a virtuális gépek nevű *myVMfromImage* nevű hello lemezképből *myImage*.
 
 ```azurecli-interactive 
 az vm create \
@@ -111,7 +111,7 @@ az vm create \
 
 ## <a name="image-management"></a>Lemezkép-kezelési 
 
-Az alábbiakban néhány olyan gyakori lemezkép-kezelési feladatok és, hogyan lehet elvégezni őket az Azure parancssori felület használatával.
+Az alábbiakban néhány olyan gyakori lemezkép-kezelési feladatok és hogyan toocomplete őket hello Azure parancssori felület használatával.
 
 Lista összes lemezkép nevű táblázatos formátumban.
 
@@ -120,7 +120,7 @@ az image list \
   --resource-group myResourceGroup
 ```
 
-Lemezkép törlése. Ebben a példában a nevű rendszerkép törlése *myOldImage* a a *myResourceGroup*.
+Lemezkép törlése. Ez a példa törlések hello nevű kép *myOldImage* a hello *myResourceGroup*.
 
 ```azurecli-interactive 
 az image delete \
@@ -130,16 +130,16 @@ az image delete \
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban létre egyéni Virtuálisgép-lemezképet. Megtudta, hogyan, hogy:
+Ebben az oktatóanyagban létre egyéni Virtuálisgép-lemezképet. Megismerte, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 > * Kiosztásának megszüntetése és virtuális gépek generalize
 > * Egyéni lemezkép létrehozása
 > * Virtuális gép létrehozása egy egyéni lemezképből
-> * Az előfizetésben a képek felsorolása
+> * Az előfizetésében szereplő összes hello lemezképek felsorolása
 > * Lemezkép törlése
 
-További információt a magas rendelkezésre állású virtuális gépek a következő oktatóanyag továbblépés.
+Előzetes toohello oktatóanyag következő toolearn kapcsolatos magas rendelkezésre állású virtuális gépeket.
 
 > [!div class="nextstepaction"]
 > [Hozzon létre magas rendelkezésre állású virtuális gépek](tutorial-availability-sets.md).

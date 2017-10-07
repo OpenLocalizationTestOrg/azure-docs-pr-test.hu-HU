@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre virtuális hálózatot - Azure PowerShell |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre virtuális hálózatot PowerShell használatával."
+title: "a virtuális hálózat – az Azure PowerShell aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy virtuális hálózathoz, PowerShell használatával."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,19 +16,19 @@ ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e7072ddf51570d46578111e2e392e3cbea53f2aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8d6e395a77f71de9f94b6304b05450e46b47544f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-network-using-powershell"></a>Hozzon létre egy virtuális hálózatot PowerShell használatával
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Az Azure két üzemi modellel rendelkezik, az Azure Resource Managerrel és a klasszikussal. A Microsoft azt javasolja, hogy az erőforrások létrehozásához használja a Resource Manager-alapú üzemi modellt. A két modell közti különbségekkel kapcsolatos további információkért olvassa el [Az Azure üzemi modelljeinek megismerése](../azure-resource-manager/resource-manager-deployment-model.md) című cikket.
+Az Azure két üzemi modellel rendelkezik, az Azure Resource Managerrel és a klasszikussal. A Microsoft azt javasolja, hello Resource Manager üzembe helyezési modellben erőforrásoknak létrehozása. hello arról toolearn hello hello két modellek közötti különbséget olvasási [megértéséhez Azure üzembe helyezési modellel](../azure-resource-manager/resource-manager-deployment-model.md) cikk.
  
-Ez a cikk azt ismerteti, hogyan hozhat létre egy Vnetet keresztül a Resource Manager üzembe helyezési modellel PowerShell használatával. Resource Manager-alapú VNetet létrehozhat egyéb eszközökkel is, illetve létrehozhat VNetet a klasszikus üzemi modellben is, ha az alábbi listából egy másik lehetőséget választ:
+Ez a cikk azt ismerteti, hogyan toocreate egy Vnetet hello erőforrás-kezelő központi modellhez tartozó PowerShell-lel. Hozzon létre egy Vnetet Resource Manageren keresztül más eszközök használatával vagy hello klasszikus telepítési modell használatával VNet létrehozása a következő lista hello egy másik lehetőség kiválasztásával is:
 
 > [!div class="op_single_selector"]
 > * [Portál](virtual-networks-create-vnet-arm-pportal.md)
@@ -43,9 +43,9 @@ Ez a cikk azt ismerteti, hogyan hozhat létre egy Vnetet keresztül a Resource M
 
 ## <a name="create-a-virtual-network"></a>Virtuális hálózat létrehozása
 
-PowerShell-lel virtuális hálózat létrehozásához kövesse az alábbi lépéseket:
+virtuális hálózat PowerShell, a következő teljes hello lépések toocreate:
 
-1. Telepítse és konfigurálja az Azure PowerShell, a lépések a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview) cikk.
+1. Telepítse és konfigurálja az Azure PowerShell hello hello utasításait követve [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) cikk.
 
 2. Szükség esetén hozzon létre egy új erőforráscsoportot a lent látható módon. Ebben a forgatókönyvben nevű erőforráscsoport létrehozása *TestRG*. További információ az erőforráscsoportokkal kapcsolatban: [Azure Resource Manager Overview](../azure-resource-manager/resource-group-overview.md) (Az Azure Resource Manager áttekintése).
 
@@ -84,7 +84,7 @@ PowerShell-lel virtuális hálózat létrehozásához kövesse az alábbi lépé
         DhcpOptions                : {}
         Subnets                    : []
         VirtualNetworkPeerings     : []
-4. A virtuális hálózat objektumot tárolható egy változóban:
+4. Hello virtuális hálózat objektumot tárolható egy változóban:
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
@@ -94,7 +94,7 @@ PowerShell-lel virtuális hálózat létrehozásához kövesse az alábbi lépé
    > 3. és 4 lépést kombinálhatja futtatásával `$vnet = New-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet -AddressPrefix 192.168.0.0/16 -Location centralus`.
    > 
 
-5. Adjon hozzá egy alhálózatot az új VNet változóhoz:
+5. Alhálózati toohello új virtuális hálózat változó hozzáadása:
 
     ```powershell
     Add-AzureRmVirtualNetworkSubnetConfig -Name FrontEnd `
@@ -124,14 +124,14 @@ PowerShell-lel virtuális hálózat létrehozásához kövesse az alábbi lépé
                                 ]
         VirtualNetworkPeerings     : []
 
-6. A fenti 5. lépést ismételje meg minden létrehozni kívánt alhálózat esetében. A következő parancs létrehozza a *háttér* alhálózati az esethez:
+6. A fenti 5. ismétlődő lépés az egyes alhálózatokon toocreate keresi. hello következő parancs létrehoz hello *háttér* alhálózati hello forgatókönyvhöz:
 
     ```powershell
     Add-AzureRmVirtualNetworkSubnetConfig -Name BackEnd `
     -VirtualNetwork $vnet -AddressPrefix 192.168.2.0/24
     ```
 
-7. Ugyan létrehoz alhálózatokat, azok jelenleg csak a VNet lekéréséhez a 4. lépésben használt helyi változóban léteznek. Menti a módosításokat az Azure-ba, a következő parancsot:
+7. Ugyan létrehoz alhálózatokat, azok jelenleg csak szerepel hello helyi változó használt tooretrieve hello virtuális hálózatot hoz létre a fenti 4. toosave hello módosítások tooAzure, futtassa a következő parancs hello:
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -176,8 +176,8 @@ PowerShell-lel virtuális hálózat létrehozásához kövesse az alábbi lépé
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerje meg, hogyan csatlakoztathat:
+Megtudhatja, hogyan tooconnect:
 
-- A virtuális gép (VM) virtuális hálózathoz olvasásával a [Windows virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-ps-create.md) cikk. Ha nem szeretne egy VNetet és alhálózatot létrehozni a cikkben ismertetett lépések szerint, használhat meglévő VNetet és alhálózatot, amelyekhez kapcsolódhat.
-- virtuális hálózatot más virtuális hálózatokhoz – olvassa el a [virtuális hálózatok csatlakoztatását](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) ismertető cikket.
-- virtuális hálózatot helyszíni hálózathoz helyek közti virtuális magánhálózat (VPN) vagy ExpressRoute-kapcsolatcsoport használatával. Az elsajátításához olvassa el a [Virtuális hálózat csatlakoztatása helyszíni hálózathoz helyek közti VPN használatával](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) és a [Virtuális hálózat csatlakoztatása ExpressRoute-kapcsolatcsoporthoz](../expressroute/expressroute-howto-linkvnet-arm.md) eljárásokat ismertető cikkeket.
+- A virtuális gép (VM) tooa virtuális hálózati hello olvasásával [Windows virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-ps-create.md) cikk. Egy VNet és alhálózat létrehozása hello cikkek hello lépésekben, helyett választhatja egy meglévő VNet és alhálózat tooconnect egy virtuális Gépet.
+- virtuális hálózat tooother virtuális hálózatok hello hello olvasásával [csatlakozás Vnetek](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) cikk.
+- hello virtuális hálózati tooan a helyi hálózati helyek virtuális magánhálózati (VPN) vagy ExpressRoute-kapcsolatcsoportot. Megtudhatja, hogyan hello olvasásával [VNet tooan a helyi hálózat a telephelyek közötti VPN](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) és [csatolni a virtuális hálózat tooan ExpressRoute-kapcsolatcsoportot](../expressroute/expressroute-howto-linkvnet-arm.md) cikkeket.

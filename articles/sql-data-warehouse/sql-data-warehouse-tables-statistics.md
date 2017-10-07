@@ -1,5 +1,5 @@
 ---
-title: "Az SQL Data Warehouse táblák statisztikák kezelése |} Microsoft Docs"
+title: "az SQL Data Warehouse táblák aaaManaging statisztikák |} Microsoft Docs"
 description: "Első lépések az Azure SQL Data Warehouse táblákon statisztika."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: 1d5ded69e394643ddfc3de0c6d30dbd30c8e848f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9521dc47891f68d124e77a53e2e15d03275caaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-statistics-on-tables-in-sql-data-warehouse"></a>Az SQL Data Warehouse táblák statisztikák kezelése
 > [!div class="op_single_selector"]
@@ -33,37 +33,37 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Minél több ismeri az SQL Data Warehouse az adatokat, minél gyorsabban hajtsa végre a lekérdezéseket az adatok alapján.  A úgy, hogy az SQL Data Warehouse szolgál az adatokról, kérje meg, hogy statisztikája az adatok gyűjtése.  Statisztika az adatokról, akkor az a legfontosabb dolog, a lekérdezések optimalizálását is van.  Statisztika SQL Data Warehouse a legoptimálisabb terv a lekérdezések létrehozása érdekében.  Ez azért, mert az SQL Data Warehouse lekérdezésoptimalizáló egy alapján optimalizáló.  Ez azt jelenti, hogy összehasonlítja a különböző lekérdezésterveket költségét, és majd úgy dönt, hogy a tervben a legalacsonyabb költséget, és a terv, amely végrehajtja a leggyorsabb kell.
+hello további SQL Data Warehouse ismer az adatok hello gyorsabban azt is lekérdezheti az adatokat.  Hello, amelyek biztosítják az SQL Data Warehouse szolgál az adatokról módja statisztikája az adatok gyűjtésével.  Statisztika az adatokról, akkor az egyik legfontosabb dolog hello teheti toooptimize a lekérdezéseket.  Statisztika SQL Data Warehouse hello legoptimálisabb terv a lekérdezések létrehozása érdekében.  Ennek az az oka optimalizáló költségekkel hello SQL Data Warehouse lekérdezés alapú optimalizáló.  Ez azt jelenti, hogy összehasonlítja a különböző lekérdezésterveket hello költségét, és majd úgy dönt, hello terv hello legalacsonyabb költség, amely hello terv, amely végrehajtja a leggyorsabb hello kell.
 
-Statisztika is létrehozható, csak egy oszlop, több oszlop vagy táblázat index.  Statisztika tárolódnak a hisztogram, amely a tartomány- és értékek kiválasztásánál rögzíti.  Ez az különösen fontos, amikor a optimalizáló kell kiértékelni illesztéseket, GROUP BY, HAVING és a WHERE záradék a lekérdezésben.  Például ha a optimalizáló becslése, hogy a jelenleg korlátozza a lekérdezés dátuma 1 sort ad vissza, dönthet úgy, nagyon eltérő megtervezése mint azt, hogy azok szerint megadott dátum, akkor becslése kijelölt lesz 1 millió sort adja vissza.  Míg rendkívül fontos a statisztikák létrehozása, is ugyanilyen fontos, hogy statisztika *pontosan* táblázat aktuális állapotát jeleníti meg.  Naprakész statisztika biztosítja, hogy egy jó terv a optimalizáló van-e kiválasztva.  Az előfizetések hozta létre a optimalizáló csak a következők megegyezik a statisztikai adatait.
+Statisztika is létrehozható, csak egy oszlop, több oszlop vagy táblázat index.  Statisztika, amely rögzíti a hello tartomány- és értékek kiválasztásánál hisztogram tárolódnak.  Ez akkor különösen fontos, ha hello optimalizáló kell tooevaluate illesztéseket, GROUP BY, HAVING és a WHERE záradék a lekérdezésben.  Például ha hello optimalizáló becslése, hogy jelenleg korlátozza a lekérdezés hello dátum 1 sort ad vissza, nagyon eltérő tervezze meg, mint ha az választhatják, azok dátum becslése kijelölt lesz 1 millió sort adja vissza.  Míg rendkívül fontos a statisztikák létrehozása, is ugyanilyen fontos, hogy statisztika *pontosan* hello tábla hello aktuális állapotát tükrözik.  Naprakész statisztika biztosítja, hogy egy jó terv hello optimalizáló van-e kiválasztva.  hello optimalizáló hello tervekhez csak olyan megegyezik az hello statisztikai adatait.
 
-A folyamat létrehozásának, és frissítse a statisztikai adatokat jelenleg egy kézi művelet, de ehhez nagyon egyszerű.  Ez nem az SQL Server, mely automatikusan létrehozza, és egyetlen oszlopok és indexek statisztikák frissíti.  Az alábbi információk segítségével nagy mértékben automatizálható a statisztikák felügyeleti az adatokon. 
+hello folyamat létrehozása, és frissítse a statisztikai adatokat egy kézi művelet jelenleg azonban nagyon egyszerű toodo.  Ez nem az SQL Server, mely automatikusan létrehozza, és egyetlen oszlopok és indexek statisztikák frissíti.  Az alábbi részleteket hello segítségével nagy mértékben automatizálható hello felügyeleti hello statisztikák az adatokon. 
 
 ## <a name="getting-started-with-statistics"></a>Ismerkedés a statisztikák
- Minden egyes oszlophoz a mintában szereplő statisztikák létrehozása egyszerű módja statisztika használatába.  Egyaránt fontos, hogy naprakész állapotban tarthatja az statisztika, mert a konzervatív megközelítés lehet frissíteni a statisztikákat a naponta, vagy minden egyes betöltés után. Mindig érdemes figyelembe venni, hogyan viszonyul egymáshoz a teljesítmény és a statisztikák létrehozásának és frissítésének költségei.  Ha úgy gondolja, hogy túl sokáig tart az összes statisztika karbantartása, lehet, hogy körültekintőbben kell kiválasztania, mely oszlopok rendelkezzenek statisztikákkal vagy melyek igényelnek gyakori frissítést.  Például előfordulhat, hogy szeretné frissíteni a dátumoszlopot, naponta, új értékeket vehetők helyett minden betöltés után. Ebben az esetben érheti el a legtöbb juttatás azzal, hogy a statisztika oszlopokon érintett illesztéseket, GROUP BY, HAVING és a WHERE záradék.  Ha nagy mennyiségű oszlopok a SELECT záradékban csak használt tábla, nem segíthetnek, ezen oszlopokon statisztika, és kissé költségeik további erőfeszítésekre azonosításához csak azokat az oszlopokat, ahol statisztika segít, csökkentheti az időt a statisztika karbantartása.
+ Mintavételi statisztikák létrehozása minden oszlop egy egyszerűen tooget parancsot statisztika.  Mivel ez egyaránt fontos tookeep statisztika naprakész, előfordulhat, hogy a konzervatív megközelítést kell tooupdate a statisztika naponta vagy minden egyes betöltés után. Mindig akadnak teljesítmény- és hello költség toocreate és frissítési statisztikái közötti kompromisszumot.  Ha tart túl hosszú toomaintain összes a statisztika, érdemes lehet több szelektív oszlopok statisztika rendelkezik és mely oszlopok tootry toobe kell gyakori frissítése.  Érdemes például tooupdate dátumoszlopának dátumtulajdonságai, naponta, új értékeket vehetők helyett minden betöltés után. Ebben az esetben érheti el hello legtöbb juttatás azzal, hogy a statisztika oszlopokon érintett illesztéseket, GROUP BY, HAVING és a WHERE záradék.  Ha sok tábla hello csak használt oszlopok záradék válassza ki, nem segíthetnek, ezen oszlopokon statisztika, és egy kis további elérhető tooidentify költségeik csak az adott statisztika segít, hello oszlopok csökkentheti hello idő toomaintain a statisztika .
 
 ## <a name="multi-column-statistics"></a>Több oszlop statisztikai adatainak
-Mellett statisztikák létrehozása egyetlen oszlopokon, előfordulhat, hogy a lekérdezések ki a előnyeit több oszlop statisztikai adatainak.  Több oszlop statisztikákat statisztikákat létrehozni az oszlopok listája.  A lista első oszlopa egy oszlop statisztikai tartoznak, valamint bizonyos kereszt-oszlop korrelációs adatokat nevű sűrűség.  Például ha egy táblázatot, amelyhez csatlakozik, a két oszlop között, előfordulhat, hogy az SQL Data Warehouse jobban is optimalizálhatja a terv, támogatja a két oszlop közötti kapcsolatot.   Több oszlop statisztikai adatainak javíthatja a lekérdezések teljesítményét az egyes műveletek, például összetett illesztések és a csoportosítás alapját.
+Ezenkívül toocreating statisztika egyetlen oszlopokon, előfordulhat, hogy a lekérdezések ki a előnyeit több oszlop statisztikai adatainak.  Több oszlop statisztikákat statisztikákat létrehozni az oszlopok listája.  Egyetlen oszlop statisztikai adatainak hello első oszlop hello listában tartalmaznak, valamint bizonyos kereszt-oszlop korrelációs adatokat nevű sűrűség.  Például ha egy táblázatot, amelyhez csatlakozik tooanother két oszlopokon, előfordulhat, hogy az SQL Data Warehouse jobban is optimalizálhatja hello terv, támogatja a hello kapcsolat két oszlop között.   Több oszlop statisztikai adatainak javíthatja a lekérdezések teljesítményét az egyes műveletek, például összetett illesztések és a csoportosítás alapját.
 
 ## <a name="updating-statistics"></a>Frissítse a statisztikai adatokat
-Frissítse a statisztikai adatokat az adatbázis-felügyeleti rutin fontos részét képezi.  Az adatbázis adatai eloszlását megváltozásakor statisztika frissítenie kell.  Elévült statisztikát optimális lekérdezési teljesítmény irányítja.
+Frissítse a statisztikai adatokat az adatbázis-felügyeleti rutin fontos részét képezi.  Hello terjesztési hello adatbázis adatok megváltozásakor statisztika kell toobe frissítése.  Elévült statisztikát toosub optimális lekérdezési teljesítmény irányítja.
 
-Egy ajánlott úgy nem frissíthető statisztika dátumoszlopának dátumtulajdonságai minden nap új dátumok hozzáadása.  Minden alkalommal új sorok be vannak töltve az adatraktárba, új betöltése vagy tranzakció kerülnek. Ezek az adatok terjesztési módosítsa, majd ellenőrizze a statisztika elavult. Ezzel szemben egy felhasználói tábla ország oszlop statisztikai előfordulhat, hogy soha nem frissítenie kell, a terjesztési értékek általában nem változik. Feltéve, hogy a terjesztés az ügyfelek közötti állandó, új sorok hozzáadásakor a tábla változat nem fog módosítása az adatok terjesztési. Azonban ha az adatraktár csak tartalmaz egy országon, és az adatok egy új országból kapcsolná, az adatok tárolását, több országokból származó majd mindenképpen szeretné az ország oszlop statisztikai adatainak frissítése.
+Egy ajánlott dátumoszlopának dátumtulajdonságai tooupdate statisztikák minden nap új dátumok hozzáadása.  Minden alkalommal új sorok töltődnek be a hello data warehouse-ba, új betöltése vagy tranzakció kerülnek. Ezek hello adatok terjesztési módosítsa, majd ellenőrizze hello statisztika elavult. Ezzel szemben ország oszlop egy felhasználói tábla statisztikai előfordulhat, hogy soha nem kell toobe frissítve, hello terjesztési értékek általában nem változik. Feltéve, hogy hello terjesztési állandó, az ügyfelek között, hozzáadása új sorok toohello tábla változat nem fog toochange hello adatok terjesztési. Azonban ha az adatraktár csak tartalmaz egy országon, és az adatok egy új országból kapcsolná, az adatok tárolását, több országokból származó akkor mindenképpen szüksége tooupdate statisztikák hello ország oszlop.
 
-Az első megválaszolandó kérdések esetén végzett hibaelhárításhoz a lekérdezés egyik, "Are naprakész statisztika?"
+Hello első kérdések tooask lekérdezés hibaelhárítás esetén egyik "naprakészek hello statisztika?"
 
-Ez a kérdés nem szerepel az adatok korát válaszoló. Lehet, hogy naprakész statisztika objektum nagyon régi, ha az alapul szolgáló adatokhoz nincs lényeges változás történt. Ha a sorok száma jelentősen módosult, vagy nincs az adott oszlop értékeinek eloszlását jelentős változás *majd* ideje statisztikai adatainak frissítése.  
+Ezt a kérdést egyike nem tud válaszolni hello kor hello adatok. Lehet, hogy nagyon régi, ha nincs jelentős változás toohello alapjául szolgáló adatok naprakészek toodate statisztika objektum. Ha a sorok számát hello jelentősen módosult, vagy nincs az adott oszlop értékeinek hello elosztása jelentős változás *majd* tooupdate statisztikája.  
 
 Referenciaként **SQL Server** (nem az SQL Data Warehouse) automatikusan frissíti a statisztikákat ilyen helyzetekben:
 
-* Ha egyetlen sor a tábla sorainak hozzáadásakor, fog kapni a statisztikák automatikus frissítés
-* Hozzáadásakor 500-nál több sort egy táblához legfeljebb 500 sorok kezdve (például a start rendelkezik 499, és hozzáadhatja 500 sorok 999 sorok összesen), az automatikus frissítés jelenik meg 
-* Ha már több mint 500 sorok meg kell adnia a 500 további sorokat + 20 %-át a tábla méretét a statisztikák a láthatja az automatikus frissítés előtt
+* Ha egyetlen sor hello táblázatban szereplő sorok hozzáadásakor, fog kapni a statisztikák automatikus frissítés
+* Sorok tooa 500-nál több tábla kezdődő, és kevesebb, mint 500 sorok hozzáadásakor (például a start rendelkezik 499, és adja meg az 500 sorok tooa összesen 999 sorok), az automatikus frissítés jelenik meg 
+* 500 sorok közben fog tooadd 500 további sorokat + 20 %-át hello tábla hello méretét a hello statisztikák láthatja az automatikus frissítés előtt
 
-Mivel nincs DMV annak meghatározásához, hogy a tábla adatainak módosult-e az utolsó idő statisztika frissítése, a statisztika korát tudatában adja meg a képen látható része.  A következő lekérdezés segítségével határozza meg a legutóbbi a statisztika ahol minden táblában frissített.  
+Mivel nincs nincs DMV toodetermine Ha hello táblázatban levő adatok hello utolsó idő statisztika frissítése óta megváltozott, a statisztika hello korát ismerete adja meg a hello kép része.  A következő lekérdezés toodetermine hello legutóbbi a statisztika hello is használhatja, ahol minden táblában frissített.  
 
 > [!NOTE]
-> Ne feledje, hogy az adott oszlop értékeinek eloszlását jelentős változás esetén frissítenie kell a statisztika függetlenül legutóbbi frissítése megtörtént.  
+> Ne feledje, hogy az adott oszlop értékeinek eloszlását hello jelentős változás esetén frissítse függetlenül hello statisztika legutóbbi frissítése megtörtént.  
 > 
 > 
 
@@ -94,35 +94,35 @@ WHERE
     st.[user_created] = 1;
 ```
 
-Egy adatraktár dátumoszlopának dátumtulajdonságai például általában kell gyakori statisztikai adatok frissítése. Minden alkalommal új sorok be vannak töltve az adatraktárba, új betöltése vagy tranzakció kerülnek. Ezek az adatok terjesztési módosítsa, majd ellenőrizze a statisztika elavult.  Ezzel ellentétben egy felhasználói tábla nemét oszlop statisztikai előfordulhat, hogy soha nem frissítenie kell. Feltéve, hogy a terjesztés az ügyfelek közötti állandó, új sorok hozzáadásakor a tábla változat nem fog módosítása az adatok terjesztési. Azonban ha az adatraktár csak tartalmaz egy nemét, és több genders egy új követelményt eredményezi majd mindenképpen szeretné a nemét oszlop statisztikai adatainak frissítése.
+Egy adatraktár dátumoszlopának dátumtulajdonságai például általában kell gyakori statisztikai adatok frissítése. Minden alkalommal új sorok töltődnek be a hello data warehouse-ba, új betöltése vagy tranzakció kerülnek. Ezek hello adatok terjesztési módosítsa, majd ellenőrizze hello statisztika elavult.  Ezzel szemben az ügyfél táblán nemét oszlop statisztikai előfordulhat, hogy soha nem kell toobe frissítése. Feltéve, hogy hello terjesztési állandó, az ügyfelek között, hozzáadása új sorok toohello tábla változat nem fog toochange hello adatok terjesztési. Azonban ha az adatraktár csak tartalmaz egy nemét, és több genders egy új követelményt eredményezi majd mindenképpen kell tooupdate statisztikák hello nemét oszlop.
 
 További ismertetése [statisztika] [ Statistics] az MSDN Webhelyén.
 
 ## <a name="implementing-statistics-management"></a>Végrehajtási statisztika kezelése
-Akkor érdemes gyakran az adatok betöltése a folyamat végrehajtásával biztosítható, hogy a terhelés végén frissíti statisztikáit kiterjeszteni. Az adatok betöltését akkor, ha a táblák leggyakrabban módosítása a méretük és/vagy a terjesztési értékek. Ezért ez a logikai hely valamelyik felügyeleti folyamat végrehajtásához.
+Gyakran egy jó ötlet tooextend az adatok betöltése a frissített statisztika folyamat tooensure hello hello terhelés végét. hello adatbetöltés akkor, ha a táblák leggyakrabban módosítása a méretük és/vagy a terjesztési értékek. Ezért ez az a logikai hely tooimplement egyes felügyeleti folyamatokat.
 
-Néhány alapelvek a statisztikák frissítése a betöltési folyamat során az alább:
+Néhány alapelvek alább a statisztika frissítési hello betöltése során:
 
-* Győződjön meg arról, hogy rendelkezik-e frissíteni kell legalább egy statisztika objektum minden egyes betöltött táblákon. Ezzel frissíti a táblák (sorok számát és oldalszám) információi a statisztikák frissítés részeként.
+* Győződjön meg arról, hogy rendelkezik-e frissíteni kell legalább egy statisztika objektum minden egyes betöltött táblákon. A frissítések hello táblák (sorok számát és oldalszám) információi hello statisztikák frissítés részeként.
 * Összpontosítson az ILLESZTÉS, GROUP BY, ORDER BY és DISTINCT záradékban részt vevő oszlopokat
-* Fontolja meg "kulcs növekvő" oszlopok például tranzakció dátumok gyakrabban, mivel ezek az értékek nem fog szerepelni a statisztika hisztogram.
+* Fontolja meg "kulcs növekvő" oszlopok például tranzakció dátumok gyakrabban, mivel ezek az értékek nem fog szerepelni hello statisztika hisztogram.
 * Érdemes lehet, statikus terjesztési oszlopok gyakran frissíteni.
 * Ne feledje, hogy minden statisztikai adat objektum sorozat frissül. Egyszerűen végrehajtási `UPDATE STATISTICS <TABLE_NAME>` nem mindig ideális megoldás – különösen a statisztika objektumok sok nagy táblák esetében.
 
 > [!NOTE]
-> [Növekvő kulcs] vonatkozó részletes információért tekintse meg az SQL Server 2014 számossága becslés modell tanulmány.
+> [Növekvő kulcs] vonatkozó részletes információért tekintse meg az SQL Server 2014 toohello számossága becslés modell tanulmány.
 > 
 > 
 
 További ismertetése [számossága becslés] [ Cardinality Estimation] az MSDN Webhelyén.
 
 ## <a name="examples-create-statistics"></a>Példák: Statisztikák létrehozása
-Ezek a példák használatát mutatják be különböző beállítások statisztikák létrehozásához. A beállítások, amelyekkel az egyes oszlopok az adatok és az oszlop a lekérdezésekben használt hogyan jellemzői függ.
+Ezek a példák azt szemléltetik, hogyan toouse statisztika létrehozásának különböző beállításait. használhatja az egyes oszlopok hello-beállítások az adatok jellemzői hello és hello oszlop a lekérdezésekben használt hogyan függ.
 
 ### <a name="a-create-single-column-statistics-with-default-options"></a>A. Egy oszlop statisztikák létrehozása az alapértelmezett beállításokkal
-Statisztikákat létrehozni egy olyan oszlop, adjon meg egy nevet a statisztika objektum és az oszlop neve.
+egy oszlop toocreate statisztikák egyszerűen adjon hello statisztika objektum nevét hello hello oszlop neve.
 
-Ez a szintaxis összes alapértelmezett beállítást használja. Alapértelmezés szerint az SQL Data Warehouse-minták 20 százalékát a tábla statisztikai létrehozásakor.
+Ez a szintaxis hello alapértelmezett beállításokat használja. Alapértelmezés szerint az SQL Data Warehouse hello tábla 20 százalékát minták, amikor létrehozza statisztika.
 
 ```sql
 CREATE STATISTICS [statistics_name] ON [schema_name].[table_name]([column_name]);
@@ -135,9 +135,9 @@ CREATE STATISTICS col1_stats ON dbo.table1 (col1);
 ```
 
 ### <a name="b-create-single-column-statistics-by-examining-every-row"></a>B. Minden sor megvizsgálásával egyoszlopos statisztikát létrehozása
-Az alapértelmezett mintavételi 20 százalékos aránya a legtöbb esetben elegendő. A mintavételi ráta azonban módosíthatja.
+hello alapértelmezett mintavételi 20 százalékos aránya a legtöbb esetben elegendő. Hello mintavételi ráta azonban módosíthatja.
 
-Példa a teljes táblázat, használja ezt a szintaxist:
+teljes toosample hello table, a következő szintaxist használja:
 
 ```sql
 CREATE STATISTICS [statistics_name] ON [schema_name].[table_name]([column_name]) WITH FULLSCAN;
@@ -149,56 +149,56 @@ Példa:
 CREATE STATISTICS col1_stats ON dbo.table1 (col1) WITH FULLSCAN;
 ```
 
-### <a name="c-create-single-column-statistics-by-specifying-the-sample-size"></a>C. Egy oszlop statisztikák létrehozása a mintaméret megadásával
-Azt is megteheti adhatja meg a minta mérete százalékban:
+### <a name="c-create-single-column-statistics-by-specifying-hello-sample-size"></a>C. Hozza létre a egyoszlopos statisztikát hello mintaméret megadásával
+Másik lehetőségként százalékban hello mintaméret adhat meg:
 
 ```sql
 CREATE STATISTICS col1_stats ON dbo.table1 (col1) WITH SAMPLE = 50 PERCENT;
 ```
 
-### <a name="d-create-single-column-statistics-on-only-some-of-the-rows"></a>D. Egyoszlopos statisztikát csak egy sor létrehozása
-Egy másik lehetőség, létrehozhat statisztika egy részét a sorokat a táblában. Ezt nevezik a szűrt statisztikai.
+### <a name="d-create-single-column-statistics-on-only-some-of-hello-rows"></a>D. Egyoszlopos statisztikát csak egyes hello sorok létrehozása
+Egy másik lehetőség, létrehozhat statisztika hello sorok része a táblában. Ezt nevezik a szűrt statisztikai.
 
-Használhat például szűrt statisztikákat, ha azt tervezi, hogy egy adott partícióra egy nagy particionált tábla lekérdezése. Csak a partíció értékek statisztika létrehozásával a statisztika pontossága fog javításához, illetve ezért javíthatja a lekérdezések teljesítményét.
+Használhat például szűrt statisztikákat egy adott partícióra egy nagy particionált tábla tooquery tervezése során. Létrehozásával statisztikák csak hello partíció értékek, hello statisztika hello pontossága fog javítása, és ezért javíthatja a lekérdezések teljesítményét.
 
-Ez a Példa statisztika értéktartománya hoz létre. Az értékeket egy partíció értékek megfelelő könnyen kell meghatározni.
+Ez a Példa statisztika értéktartománya hoz létre. hello értékek könnyen lehet meghatározott értékek tartományán toomatch hello partíció.
 
 ```sql
 CREATE STATISTICS stats_col1 ON table1(col1) WHERE col1 > '2000101' AND col1 < '20001231';
 ```
 
 > [!NOTE]
-> A lekérdezésoptimalizáló figyelembe kell venni a szűrt statisztikákat, ha az elosztott lekérdezés terv úgy dönt, akkor az a lekérdezés kell férnie a statisztika objektum definíciója. Az előző példában a lekérdezés ahol záradékban kell meghatároznia 2000101 és 20001231 közötti Oszlop1 értékek használatával.
+> Hello lekérdezés optimalizáló tooconsider szűrt statisztikákat használja, akkor azt úgy dönt, hogy hello elosztott lekérdezésterv, a hello lekérdezés hello hello statisztika objektum meghatározását kell férnie. Hello előző példában hello lekérdezés amikor záradékban kell toospecify Oszlop1 értékek között 2000101 és 20001231 használatával.
 > 
 > 
 
-### <a name="e-create-single-column-statistics-with-all-the-options"></a>E. Egy oszlop statisztikák létrehozása a beállításokkal
-Természetesen kombinálhatja a beállítások együtt. Az alábbi példában egy szűrt statisztikákat objektumot hoz létre egyéni mintájának méretét:
+### <a name="e-create-single-column-statistics-with-all-hello-options"></a>E. Hozzon létre egyoszlopos statisztikát összes hello-beállítások
+Természetesen kombinálhatja hello beállítások együtt. az alábbi példa hello egy szűrt statisztikákat objektum egyéni mintaméret hoz létre:
 
 ```sql
 CREATE STATISTICS stats_col1 ON table1 (col1) WHERE col1 > '2000101' AND col1 < '20001231' WITH SAMPLE = 50 PERCENT;
 ```
 
-A teljes referenciáért lásd: [CREATE statistics UTASÍTÁSHOZ] [ CREATE STATISTICS] az MSDN Webhelyén.
+Hello teljes referenciáért lásd: [CREATE statistics UTASÍTÁSHOZ] [ CREATE STATISTICS] az MSDN Webhelyén.
 
 ### <a name="f-create-multi-column-statistics"></a>F. Több oszlop statisztikai adatainak létrehozása
-Hozzon létre egy több oszlopot tartalmazó statisztika, egyszerűen használja az előző példák, de további oszlopok megadása.
+toocreate többoszlopos statisztika, egyszerűen hello előző példák használja, de további oszlopok megadása.
 
 > [!NOTE]
-> A hisztogram, amely használható a lekérdezés eredményében sorok számának becslése, az első oszlop szerepel a statisztika objektum definíciója csak érhető el.
+> hello hisztogram, amely csak akkor hello lekérdezési eredményhez, sorainak száma tooestimate hello hello statisztika Objektumdefiníció szereplő első oszlop.
 > 
 > 
 
-Ebben a példában a hisztogram van *termék\_kategória*. Kereszt-oszlop statisztikai adatainak kiszámítása *termék\_kategória* és *termék\_sub_c\ategory*:
+Ebben a példában hello hisztogram van *termék\_kategória*. Kereszt-oszlop statisztikai adatainak kiszámítása *termék\_kategória* és *termék\_sub_c\ategory*:
 
 ```sql
 CREATE STATISTICS stats_2cols ON table1 (product_category, product_sub_category) WHERE product_category > '2000101' AND product_category < '20001231' WITH SAMPLE = 50 PERCENT;
 ```
 
-Mivel közötti összefüggés *termék\_kategória* és *termék\_sub\_kategória*, a többoszlopos stat akkor lehet hasznos, ha ezekben az oszlopokban elért egy időben.
+Mivel közötti összefüggés *termék\_kategória* és *termék\_sub\_kategória*, a többoszlopos stat akkor lehet hasznos, ha ezekben az oszlopokban érhetők el a hello ugyanannyi időt vesz igénybe.
 
-### <a name="g-create-statistics-on-all-the-columns-in-a-table"></a>G. Egy táblázat összes oszlopa statisztikák létrehozása
-Statisztika létrehozásának egyik módja van problémáinak CREATE statistics UTASÍTÁSHOZ parancsok a következő tábla létrehozása után.
+### <a name="g-create-statistics-on-all-hello-columns-in-a-table"></a>G. Egy táblázat összes hello oszlopa statisztikák létrehozása
+Egyirányú toocreate statisztika tooissues CREATE statistics UTASÍTÁSHOZ parancsok hello tábla létrehozása után.
 
 ```sql
 CREATE TABLE dbo.table1
@@ -218,10 +218,10 @@ CREATE STATISTICS stats_col2 on dbo.table2 (col2);
 CREATE STATISTICS stats_col3 on dbo.table3 (col3);
 ```
 
-### <a name="h-use-a-stored-procedure-to-create-statistics-on-all-columns-in-a-database"></a>H. Statisztika létrehozásához minden oszlop egy adatbázisban tárolt eljárás használata
-Az SQL Data Warehouse az SQL Server nincs egyenértékű [sp_create_stats] [-] rendszerben tárolt eljárást. Ez a tárolt eljárás objektumot hoz létre egy oszlop statisztika minden oszlop, amely még nem rendelkezik statisztikai adatbázis.
+### <a name="h-use-a-stored-procedure-toocreate-statistics-on-all-columns-in-a-database"></a>H. A tárolt eljárás toocreate statisztika használatát egy adatbázis összes oszlopa
+Az SQL Data Warehouse nem rendelkezik túl a rendszer tárolt eljárás megfelelőjét az SQL Server [sp_create_stats] [-]. Ez a tárolt eljárás objektumot hoz létre egy oszlop statisztika hello adatbázis, amely még nem rendelkezik statisztikai minden oszlop alapján.
 
-Ez segítséget nyújt az adatbázis tervét az első lépései. Nyugodtan igazodjon igényeinek.
+Ez segítséget nyújt az adatbázis tervét az első lépései. Szabad tooadapt látja azt tooyour kell.
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_create_stats]
@@ -304,20 +304,20 @@ END
 DROP TABLE #stats_ddl;
 ```
 
-Ezt az eljárást a táblázat összes oszlopa statisztikák létrehozása, egyszerűen hívja meg az eljárást.
+Ezzel az eljárással hello táblázat összes oszlopa toocreate statisztikák egyszerűen hello eljárás hívása.
 
 ```sql
 prc_sqldw_create_stats;
 ```
 
 ## <a name="examples-update-statistics"></a>Példák: statisztika frissítése
-A statisztikák frissítése, a következőket teheti:
+tooupdate statisztika, a következőket teheti:
 
-1. Egy statisztikai objektum frissítése. Adja meg a frissíteni kívánt statisztika objektum neve.
-2. Egy tábla összes statisztika objektumok frissítése. Adja meg a táblázat helyett egy adott statisztika objektum nevét.
+1. Egy statisztikai objektum frissítése. Adja meg a statisztika objektum tooupdate kívánja hello hello nevét.
+2. Egy tábla összes statisztika objektumok frissítése. Adja meg egy adott statisztika objektum helyett hello tábla hello nevét.
 
 ### <a name="a-update-one-specific-statistics-object"></a>A. Egy adott statisztika objektum frissítése
-A következő szintaxissal egy adott statisztika objektum frissítése:
+A következő szintaxist tooupdate egy adott statisztika objektum hello használata:
 
 ```sql
 UPDATE STATISTICS [schema_name].[table_name]([stat_name]);
@@ -329,10 +329,10 @@ Példa:
 UPDATE STATISTICS [dbo].[table1] ([stats_col1]);
 ```
 
-Adott statisztika objektumok frissítése, minimalizálhatja az idő és a statisztika kezeléséhez szükséges erőforrások. Ehhez szükséges néhány gondolat, azonban a legjobb statisztika objektumokat frissíteni.
+Adott statisztika objektumok frissítésével hello időt és erőforrásokat szükséges toomanage statisztika minimalizálása érdekében. Ehhez az egyes-re, azonban toochoose hello legjobb statisztika objektumok tooupdate.
 
 ### <a name="b-update-all-statistics-on-a-table"></a>B. Egy tábla összes statisztika frissítése
-Ez azt jelenti, egy egyszerű módszer a táblán statisztika objektumok frissítése.
+Ez azt jelenti, egy egyszerű módszer egy tábla összes hello statisztika objektumok frissítése.
 
 ```sql
 UPDATE STATISTICS [schema_name].[table_name];
@@ -344,19 +344,19 @@ Példa:
 UPDATE STATISTICS dbo.table1;
 ```
 
-Jelen nyilatkozat is könnyen használható. Ne feledje azonban ez a táblázat összes statisztika frissíti, és ezért előfordulhat, hogy hajtsa végre a szükségesnél több munkát. Ha a teljesítmény darabolása nem okoz problémát, ez az egyértelműen a legegyszerűbb és leghatékonyabb módon statisztika naprakészek biztosításához.
+A jelen nyilatkozat könnyen toouse. Ne feledje azonban ez frissíti az összes statisztika hello táblán, és ezért előfordulhat, hogy hajtsa végre a szükségesnél több munkát. Ha hello teljesítmény darabolása nem okoz problémát, ez az egyértelműen hello legegyszerűbb és leghatékonyabb módon tooguarantee statisztika naprakészek legyenek.
 
 > [!NOTE]
-> Egy tábla összes statisztika frissítése, az SQL Data Warehouse minta a táblázat minden egyes statistics megvizsgálja hajtja végre. Ha a tábla túl nagy, sok oszlopot, és sok statisztika, előfordulhat, hogy hatékonyabb, ha egyéni igények alapján statisztika frissítése.
+> Egy tábla összes statisztika frissítése, az SQL Data Warehouse egy vizsgálat toosample hello tábla minden egyes statistics hajtja végre. Hello tábla túl nagy, ha sok oszlopot, és sok statisztika, előfordulhat, hogy hatékonyabb tooupdate egyedi statisztika igények alapján.
 > 
 > 
 
-Egy végrehajtásához egy `UPDATE STATISTICS` eljárás tekintse meg a [az ideiglenes táblák] [ Temporary] cikk. A végrehajtási módszer kis mértékben eltér, a a `CREATE STATISTICS` a fenti eljárás, de a végeredménynek megegyezik.
+Egy végrehajtásához egy `UPDATE STATISTICS` eljárást lásd: hello [az ideiglenes táblák] [ Temporary] cikk. hello megvalósítási módja kissé eltérő toohello `CREATE STATISTICS` fent leírt lépéseket, de hello végeredménynek van hello azonos.
 
-Tekintse meg a teljes szintaxissal [Update Statistics] [ Update Statistics] az MSDN Webhelyén.
+Hello teljes szintaxisát, lásd: [Update Statistics] [ Update Statistics] az MSDN Webhelyén.
 
 ## <a name="statistics-metadata"></a>Statisztika metaadatok
-Több rendszernézet és függvények, amelyek segítségével található információ a statisztikákat is van. Például láthatja, ha egy statisztika objektum elavult lehet a statisztikák-date függvény használatával statisztika volt utoljára létrehozásakor vagy frissítésekor.
+Több rendszernézet és, hogy használható-e toofind információkat statisztikai függvények is van. Például láthatja, ha egy statisztika objektum elavult lehet hello statisztikák-date függvény toosee használatával statisztika volt utoljára létrehozásakor vagy frissítésekor.
 
 ### <a name="catalog-views-for-statistics"></a>A statisztika katalógusnézetekre
 Ezek a rendszer nézetek statisztika ismertetik:
@@ -364,10 +364,10 @@ Ezek a rendszer nézetek statisztika ismertetik:
 | Katalógusnézet használatával derítheti ki | Leírás |
 |:--- |:--- |
 | [sys.Columns][sys.columns] |Egy sor minden egyes oszlophoz. |
-| [sys.Objects][sys.objects] |Egy sor minden objektum az adatbázisban. |
-| [sys.schemas][sys.schemas] |Egy sor minden séma az adatbázisban. |
+| [sys.Objects][sys.objects] |Egy sor minden objektum hello adatbázisban. |
+| [sys.schemas][sys.schemas] |Egy sor minden hello adatbázis-séma. |
 | [sys.stats][sys.stats] |Egy sor minden egyes statisztika objektumhoz. |
-| [sys.stats_columns][sys.stats_columns] |A statisztika objektum minden egyes oszlopának egy sort. Vissza a sys.columns mutató hivatkozásokat tartalmaz. |
+| [sys.stats_columns][sys.stats_columns] |Egy sor hello statisztika objektum minden egyes oszlophoz. Hivatkozások biztonsági toosys.columns. |
 | [sys.Tables][sys.tables] |Egy sor minden táblához (külső táblát tartalmazza). |
 | [sys.table_types][sys.table_types] |Egy sor egyes adattípusok esetében. |
 
@@ -376,11 +376,11 @@ A rendszer függvények hasznosak statisztika használata:
 
 | Rendszer-funkció | Leírás |
 |:--- |:--- |
-| [STATS_DATE][STATS_DATE] |A statisztika objektum utolsó módosításának dátuma. |
-| [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] |Értékek terjesztési összefoglaló szintű és részletes információkat biztosít a statisztika objektum azt értelmezni tudja módon. |
+| [STATS_DATE][STATS_DATE] |Utolsó frissítés dátuma hello statisztika objektum. |
+| [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] |Hello terjesztési értékek összefoglaló szintű és részletes információt nyújt hello statisztika objektum tudja értelmezni. |
 
 ### <a name="combine-statistics-columns-and-functions-into-one-view"></a>Statisztika oszlopok és funkciók egyesítése egy nézet
-Ez a nézet számos lehetőséget kínál a statisztika kapcsolódó oszlopok, és a [STATS_DATE()] [] függvény együtt annak az eredménye.
+Ez a nézet során az oszlopok ki az egymáshoz kapcsolódó toostatistics, és az eredmények hello [STATS_DATE()] [] függvényből együtt.
 
 ```sql
 CREATE VIEW dbo.vstats_columns
@@ -419,13 +419,13 @@ AND     st.[user_created] = 1
 ```
 
 ## <a name="dbcc-showstatistics-examples"></a>DBCC SHOW_STATISTICS() példák
-DBCC SHOW_STATISTICS() statisztika objektumon belül tárolt adatainak megjelenítése. Ezek az adatok származnak három részből áll.
+DBCC SHOW_STATISTICS() statisztika objektumon belül tárolt hello adatainak megjelenítése. Ezek az adatok származnak három részből áll.
 
 1. Fejléc
 2. Sűrűség vektoros
 3. Hisztogram
 
-A statisztika fejléc metaadatait. A hisztogram statisztika objektum első kulcsoszlop értékeinek eloszlását jeleníti meg. A sűrűség vektor kereszt-oszlop korrelációs méri. SQLDW kiszámítja a statisztika objektumban adatokat a számosság becsléseket.
+hello fejléc metaadatok hello statisztika. hello hisztogram hello terjesztési értékek hello első hello statisztika objektum kulcsoszlop jeleníti meg. hello sűrűség vektoros kereszt-oszlop korrelációs méri. SQLDW kiszámítja hello adatok hello statisztika objektum egyik számossága becslése.
 
 ### <a name="show-header-density-and-histogram"></a>Fejléc, sűrűség és hisztogram megjelenítése
 Az egyszerű példában statisztika objektum összes három részből.
@@ -441,7 +441,7 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1);
 ```
 
 ### <a name="show-one-or-more-parts-of-dbcc-showstatistics"></a>DBCC SHOW_STATISTICS(); egy vagy több részei megjelenítése
-Ha érdekli csak megtekintés részét, használja a `WITH` záradék, és adja meg a megjeleníteni kívánt részeket:
+Ha érdekli csak megtekintés részét, használja a hello `WITH` záradék, és adja meg, mely részeit toosee szeretné:
 
 ```sql
 DBCC SHOW_STATISTICS([<schema_name>.<table_name>],<stats_name>) WITH stat_header, histogram, density_vector
@@ -454,18 +454,18 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 ```
 
 ## <a name="dbcc-showstatistics-differences"></a>DBCC SHOW_STATISTICS() különbségek
-DBCC SHOW_STATISTICS() szigorúbban végrehajtani az SQL Data Warehouse az SQL Server képest.
+DBCC SHOW_STATISTICS() szigorúbban vezettek be az SQL Data Warehouse képest tooSQL kiszolgáló.
 
 1. Nem dokumentált funkciók nem támogatottak.
 2. Nem használható a Stats_stream
 3. Nem tudja csatlakoztatni meghatározott fájlcsoportokat statisztikai adatok eredményeit pl. (STAT_HEADER ILLESZTÉSI DENSITY_VECTOR)
 4. Üzenet tiltási NO_INFOMSGS nem állítható be
 5. Statisztika neveket burkoló szögletes zárójelek között nem használható.
-6. Nem használható oszlopnevek statisztika objektumok azonosítása
+6. Oszlop nevek tooidentify statisztika objektumok nem használható.
 7. Egyéni hiba 2767 nem támogatott
 
 ## <a name="next-steps"></a>Következő lépések
-További részletekért lásd: [DBCC SHOW_STATISTICS] [ DBCC SHOW_STATISTICS] az MSDN Webhelyén.  További tudnivalókért tekintse meg a cikkek [tábla áttekintése][Overview], [tábla adattípusok][Data Types], [terjesztése egy tábla][Distribute], [tábla indexelő][Index], [tábla particionáló] [ Partition] és [az ideiglenes táblák][Temporary].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].  
+További részletekért lásd: [DBCC SHOW_STATISTICS] [ DBCC SHOW_STATISTICS] az MSDN Webhelyén.  toolearn több, lásd: hello cikkeket a [tábla áttekintése][Overview], [tábla adattípusok][Data Types], [táblaterjesztése] [ Distribute], [Tábla indexelő][Index], [tábla particionáló] [ Partition] és [ Az ideiglenes táblák][Temporary].  Gyakorlati tanácsok kapcsolatban bővebben lásd: [SQL Data Warehouse gyakorlati tanácsok][SQL Data Warehouse Best Practices].  
 
 <!--Image references-->
 

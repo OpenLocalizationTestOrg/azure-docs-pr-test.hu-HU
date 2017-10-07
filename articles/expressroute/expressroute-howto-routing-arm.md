@@ -1,6 +1,6 @@
 ---
-title: "Útválasztási (társviszony-létesítés) a egy ExpressRoute-áramkör konfigurálása: erőforrás-kezelő: PowerShell: Azure |} Microsoft Docs"
-description: "A cikk az ExpressRoute-kapcsolatcsoportok privát, nyilvános és Microsoft társviszony-létesítéses létrehozásának és kiépítésének lépéseit ismerteti. A cikk azt is bemutatja, hogyan ellenőrizheti a kapcsolatcsoport társviszonyainak állapotát, illetve hogyan frissítheti vagy törölheti őket."
+title: "Hogyan tooconfigure útválasztás (társviszony) az ExpressRoute-kapcsolatcsoportot: erőforrás-kezelő: PowerShell: Azure |} Microsoft Docs"
+description: "Ez a cikk végigvezeti hello létrehozásához és a kiépítés hello saját, a nyilvános és a Microsoft társviszony-létesítést az ExpressRoute-kapcsolatcsoportot. Ez a cikk is bemutatja, hogyan toocheck hello állapotát, a frissítést, vagy a-kör társviszony törlése."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: af68955b78239832e413e1b59e033d7d3da8d599
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: eb3ddf5c05a086ac3e22c64417e51381ef465921
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-modify-peering-for-an-expressroute-circuit-using-powershell"></a>Létrehozása és módosítása a powershellel ExpressRoute-kör társviszony
 
-Ez a cikk segítséget nyújt a létrehozása és kezelése a PowerShell használatával Resource Manager üzembe helyezési modellel ExpressRoute-kapcsolatcsoportot útválasztási konfigurációja. Ellenőrizze az állapot, frissítési vagy törlési is, és az ExpressRoute-kör társviszony kiosztásának megszüntetése. Ha más módszert használja a kapcsolatcsoport dolgozni szeretne, válassza ki egy cikk az alábbi listából:
+Ez a cikk segítséget nyújt a létrehozása és kezelése a PowerShell használatával hello Resource Manager üzembe helyezési modellel ExpressRoute-kapcsolatcsoportot útválasztási konfigurációja. Is hello állapota, update vagy delete ellenőrizze és kiosztásának megszüntetése ExpressRoute-kör társviszony. Ha egy másik módszer toowork toouse a kapcsolatcsoport rendelkező, jelölje be a cikk a következő lista hello:
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](expressroute-howto-routing-portal-resource-manager.md)
@@ -37,69 +37,69 @@ Ez a cikk segítséget nyújt a létrehozása és kezelése a PowerShell haszná
 
 ## <a name="configuration-prerequisites"></a>Konfigurációs előfeltételek
 
-* Szüksége lesz az Azure Resource Manager PowerShell-parancsmagok legújabb verzióját. További információt [az Azure PowerShell telepítésével és konfigurálásával](/powershell/azure/overview) foglalkozó témakörben talál. 
-* A konfigurálás megkezdése előtt mindenképp tekintse át az [előfeltételek](expressroute-prerequisites.md), az [útválasztási követelmények](expressroute-routing.md) és a [munkafolyamatok](expressroute-workflows.md) lapot.
-* Egy aktív ExpressRoute-kapcsolatcsoportra lesz szüksége. Kövesse az [ExpressRoute-kapcsolatcsoport létrehozása](expressroute-howto-circuit-arm.md) részben foglalt lépéseket, és engedélyeztesse a kapcsolatcsoportot kapcsolatszolgáltatójával, mielőtt továbblépne. Az ExpressRoute-kapcsolatcsoport ahhoz, hogy ebben a cikkben a parancsmagok futtatásához kiépített és engedélyezett állapotban kell lennie.
+* Szüksége lesz Azure Resource Manager PowerShell-parancsmagok hello hello legújabb verzióját. További információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). 
+* Győződjön meg arról, hogy átolvasta hello [Előfeltételek](expressroute-prerequisites.md) lap hello [útválasztási követelmények](expressroute-routing.md) lap és hello [munkafolyamatok](expressroute-workflows.md) lapon konfigurálás elkezdése előtt.
+* Egy aktív ExpressRoute-kapcsolatcsoportra lesz szüksége. Útmutatás alapján hello túl[ExpressRoute-kapcsolatcsoportot létrehozni](expressroute-howto-circuit-arm.md) , és folytassa a kapcsolat szolgáltatójánál előtt által engedélyezett hello áramkör. hello ExpressRoute-kapcsolatcsoportot meg toobe képes toorun hello parancsmagok Ez a cikk a kiépített és engedélyezett állapotban kell lennie.
 
-Az utasítások csak 2. rétegbeli kapcsolatszolgáltatásokat kínáló szolgáltatóknál létrehozott kapcsolatcsoportokra vonatkoznak. A szolgáltató által kezelt használata réteg (általában egy IPVPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
+Ezek az utasítások csak a 2. rétegbeli kapcsolatot szolgáltatásokat nyújtó szolgáltatók létre toocircuits vonatkoznak. A szolgáltató által kezelt használata réteg (általában egy IPVPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
 
 > [!IMPORTANT]
-> A szolgáltatásfelügyeleti portálon jelenleg nem hirdetünk szolgáltatók által konfigurált társviszony-létesítéseket. Dolgozunk azon, hogy hamarosan bevezethessük ezt a képességet. A BGP társviszony konfigurálása előtt ellenőrizze a szolgáltató.
+> A Microsoft jelenleg hirdetményt hello felügyeleti portálon keresztül szolgáltatók által konfigurált esetében. Dolgozunk azon, hogy hamarosan bevezethessük ezt a képességet. A BGP társviszony konfigurálása előtt ellenőrizze a szolgáltató.
 > 
 > 
 
-Egy, két vagy akár mindhárom társviszony-létesítést (Azure privát, Azure nyilvános és Microsoft) is konfigurálhatja egy adott ExpressRoute-kapcsolatcsoportban. A társviszony-létesítéseket tetszőleges sorrendben konfigurálhatja. Az egyes társviszony-létesítéseket azonban mindenképp egyenként kell végrehajtania. 
+Egy, két vagy akár mindhárom társviszony-létesítést (Azure privát, Azure nyilvános és Microsoft) is konfigurálhatja egy adott ExpressRoute-kapcsolatcsoportban. A társviszony-létesítéseket tetszőleges sorrendben konfigurálhatja. Azonban kell győződjön meg arról, hogy elvégezte-e minden társviszony-létesítési egyszerre csak egy hello konfigurációját. 
 
 ## <a name="azure-private-peering"></a>Azure privát társviszony-létesítés
 
-Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és törölni az Azure magánhálózati társviszony-létesítési ExpressRoute-kapcsolatcsoportot.
+Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és törlése hello Azure privát társviszony-létesítési konfiguráció ExpressRoute-kapcsolatcsoportot.
 
-### <a name="to-create-azure-private-peering"></a>Azure privát társviszony-létesítés létrehozása
+### <a name="toocreate-azure-private-peering"></a>az Azure magánhálózati társviszony-létesítés toocreate
 
-1. Importálja az ExpressRoute PowerShell-modulját.
+1. ExpressRoute hello PowerShell modul importálása.
 
-  Telepítse a legújabb PowerShell-telepítőt a [PowerShell-galériából](http://www.powershellgallery.com/), és importálja az Azure Resource Manager-modulokat a PowerShell-munkamenetbe az ExpressRoute-parancsmagok használatának elkezdéséhez. A PowerShellt rendszergazdaként kell futtatnia.
+  Telepítenie kell a hello legújabb PowerShell installer [PowerShell-galériában](http://www.powershellgallery.com/) és hello Azure Resource Manager modulok importálása hello PowerShell-munkamenetet a rendelés toostart hello ExpressRoute-parancsmagok használatával. Rendszergazdaként kell toorun PowerShell.
 
   ```powershell
   Install-Module AzureRM
   Install-AzureRM
   ```
 
-  Importálja a AzureRM.* modulok ismert szemantikai verziója tartományon belül.
+  Importálja az összes hello AzureRM.* modulok hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-AzureRM
   ```
 
-  Az ismert szemantikai verziója tartományon belüli select modul csak is importálhatja.
+  Csak is importálhatja egy select modul hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-Module AzureRM.Network 
   ```
 
-  Jelentkezzen be a fiókjába.
+  Jelentkezzen be tooyour fiókjával.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  Válassza ki az előfizetést, ExpressRoute-kapcsolatcsoportot létrehozni kívánja.
+  Válassza ki a kívánt toocreate ExpressRoute-kapcsolatcsoportot hello előfizetést.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
   ```
 2. Hozzon létre egy ExpressRoute-kapcsolatcsoportot.
 
-  Kövesse az utasításokat az [ExpressRoute-kapcsolatcsoport](expressroute-howto-circuit-arm.md) létrehozásához, és kérje meg kapcsolatszolgáltatóját, hogy ossza ki azt.
+  Kövesse az utasításokat toocreate hello egy [ExpressRoute-kapcsolatcsoportot](expressroute-howto-circuit-arm.md) , illetve hozta-e hello kapcsolat szolgáltatóját.
 
-  Ha kapcsolatszolgáltatója felügyelt 3. rétegbeli szolgáltatásokat kínál, igényelheti tőle, hogy engedélyezze Önnek az Azure privát társviszony-létesítést. Ebben az esetben nem szükséges a következő szakaszokban foglalt lépéseket végrehajtania. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is a konfiguráció a következő lépéseket.
-3. Ellenőrizze, hogy üzembe helyezve, és is engedélyezve van az ExpressRoute-kapcsolatcsoportot. Használja a következő példát:
+  Ha a kapcsolat szolgáltatójánál 3. rétegbeli felügyelt szolgáltatásokat kínál, a kapcsolat szolgáltató tooenable magánhálózati társviszony-létesítést az Ön Azure kérhet. Ebben az esetben nincs szükség hello következő szakaszokban szereplő toofollow utasításokat. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is hello lépések a konfiguráció.
+3. Ellenőrizze a hello ExpressRoute körön toomake arról, hogy van üzembe helyezve és is engedélyezve van. A következő példa hello használata:
 
   ```powershell
   Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
   ```
 
-  A rendszer a választ az alábbi példához hasonló:
+  a rendszer a következő példa hasonló toohello hello választ:
 
   ```
   Name                             : ExpressRouteARMCircuit
@@ -124,15 +124,15 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   ServiceKey                       : **************************************
   Peerings                         : []
   ```
-4. Konfigurálja az Azure privát társviszony-létesítést a kapcsolatcsoport számára. Mielőtt folytatná a következő lépésekkel, ellenőrizze az alábbi elemek meglétét:
+4. Az Azure magánhálózati társviszony-létesítés hello kör megadása Győződjön meg arról, hogy rendelkezik-e hello hello lépések folytatása előtt a következő elemek:
 
-  * Egy /30 alhálózat az elsődleges kapcsolat számára. Az alhálózat nem virtuális hálózatok számára fenntartott címtartomány részének kell lennie.
-  * Egy /30 alhálózat a másodlagos kapcsolat számára. Az alhálózat nem virtuális hálózatok számára fenntartott címtartomány részének kell lennie.
-  * Egy érvényes VLAN-azonosító a tárviszony-létesítés létrehozásához. Győződjön meg róla, hogy a kapcsolatcsoporton egy másik társviszony-létesítés sem használja ugyanezt a VLAN-azonosítót.
+  * / 30-as alhálózat hello elsődleges kapcsolathoz. hello alhálózat nem virtuális hálózatok számára fenntartott címtartomány részének kell lennie.
+  * / 30-as alhálózat hello másodlagos kapcsolathoz. hello alhálózat nem virtuális hálózatok számára fenntartott címtartomány részének kell lennie.
+  * Egy érvényes VLAN-azonosító tooestablish a társviszony. Győződjön meg arról, hogy egyetlen másik társviszonya se a hello áramkör használ hello azonos VLAN-azonosítót.
   * Egy AS-szám a társviszony-létesítéshez. 2 és 4 bájtos AS-számokat is használhat. Ehhez a társviszony-létesítéshez használhat privát AS-számokat is. Ne használja a 65515 számot.
-  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egyetlen módszer alkalmazása.
+  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egy toouse.
 
-  Az alábbi példát követve Azure magánhálózati társviszony-létesítés a kapcsolat konfigurálása:
+  A következő példa tooconfigure magánhálózati társviszony-létesítés a kör Azure hello használata:
 
   ```powershell
   Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
@@ -140,7 +140,7 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-  Ha az MD5 kivonatoló használatát választja, használja a következő példát:
+  Ha úgy dönt, toouse az MD5 kivonatoló, használja a következő példa hello:
 
   ```powershell
   Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200  -SharedKey "A1B2C3D4"
@@ -151,9 +151,9 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   > 
   >
 
-### <a name="to-view-azure-private-peering-details"></a>Azure privát társviszony-létesítés részleteinek megtekintése
+### <a name="tooview-azure-private-peering-details"></a>tooview Azure magánhálózati társviszony-létesítés részletei
 
-Konfigurációs részletek kaphat az alábbi példa:
+Konfigurációs részletek kaphat a következő példa hello használata:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -161,9 +161,9 @@ $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGr
 Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt
 ```
 
-### <a name="to-update-azure-private-peering-configuration"></a>Azure privát társviszony-létesítés konfigurációjának frissítése
+### <a name="tooupdate-azure-private-peering-configuration"></a>tooupdate Azure magánhálózati társviszony-létesítési konfiguráció
 
-Frissítheti, az alábbi példa konfiguráció bármely részeként. Ebben a példában a VLAN-Azonosítót a áramkör frissül 100 500.
+Frissítheti, használja a következő példa hello hello konfiguráció bármely részeként. Ebben a példában a 100 too500 hello VLAN-Azonosítót a kapcsolatcsoport hello frissül.
 
 ```powershell
 Set-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
@@ -171,12 +171,12 @@ Set-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Express
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-### <a name="to-delete-azure-private-peering"></a>Azure privát társviszony-létesítés törlése
+### <a name="toodelete-azure-private-peering"></a>az Azure magánhálózati társviszony-létesítés toodelete
 
-Futtassa a következő példa a társviszony-létesítési konfiguráció eltávolítása:
+A társviszony-létesítési konfiguráció a következő példa hello futtatásával távolíthatja el:
 
 > [!WARNING]
-> Bizonyosodjon meg, hogy az összes virtuális hálózatot megszüntetni az ExpressRoute-kapcsolatcsoport az ebben a példában futtatása előtt. 
+> Bizonyosodjon meg, hogy az összes virtuális hálózatot az ExpressRoute-kapcsolatcsoportot hello megszüntetni ebben a példában futtatása előtt. 
 > 
 > 
 
@@ -188,13 +188,13 @@ Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 ## <a name="azure-public-peering"></a>Azure nyilvános társviszony-létesítés
 
-Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és törlése az Azure nyilvános társviszony-létesítési konfiguráció ExpressRoute-kör.
+Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és hello Azure nyilvános társviszony-létesítési konfiguráció ExpressRoute-kapcsolatcsoportot törli.
 
-### <a name="to-create-azure-public-peering"></a>Azure nyilvános társviszony-létesítés létrehozása
+### <a name="toocreate-azure-public-peering"></a>az Azure nyilvános társviszony toocreate
 
-1. Importálja az ExpressRoute PowerShell-modulját.
+1. ExpressRoute hello PowerShell modul importálása.
 
-  Telepítse a legújabb PowerShell-telepítőt a [PowerShell-galériából](http://www.powershellgallery.com/), és importálja az Azure Resource Manager-modulokat a PowerShell-munkamenetbe az ExpressRoute-parancsmagok használatának elkezdéséhez. A PowerShellt rendszergazdaként kell futtatnia.
+  Telepítenie kell a hello legújabb PowerShell installer [PowerShell-galériában](http://www.powershellgallery.com/) és hello Azure Resource Manager modulok importálása hello PowerShell-munkamenetet a rendelés toostart hello ExpressRoute-parancsmagok használatával. Rendszergazdaként kell toorun PowerShell.
 
   ```powershell
   Install-Module AzureRM
@@ -202,41 +202,41 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   Install-AzureRM
 ```
 
-  Importálja a AzureRM.* modulok ismert szemantikai verziója tartományon belül.
+  Importálja az összes hello AzureRM.* modulok hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-AzureRM
   ```
 
-  Az ismert szemantikai verziója tartományon belüli select modul csak is importálhatja.
+  Csak is importálhatja egy select modul hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-Module AzureRM.Network
 ```
 
-  Jelentkezzen be a fiókjába.
+  Jelentkezzen be tooyour fiókjával.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  Válassza ki az előfizetést, ExpressRoute-kapcsolatcsoportot létrehozni kívánja.
+  Válassza ki a kívánt toocreate ExpressRoute-kapcsolatcsoportot hello előfizetést.
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
   ```
 2. Hozzon létre egy ExpressRoute-kapcsolatcsoportot.
 
-  Kövesse az utasításokat az [ExpressRoute-kapcsolatcsoport](expressroute-howto-circuit-arm.md) létrehozásához, és kérje meg kapcsolatszolgáltatóját, hogy ossza ki azt.
+  Kövesse az utasításokat toocreate hello egy [ExpressRoute-kapcsolatcsoportot](expressroute-howto-circuit-arm.md) , illetve hozta-e hello kapcsolat szolgáltatóját.
 
-  Ha kapcsolatszolgáltatója felügyelt 3. rétegbeli szolgáltatásokat kínál, igényelheti tőle, hogy engedélyezze Önnek az Azure privát társviszony-létesítést. Ebben az esetben nem szükséges a következő szakaszokban foglalt lépéseket végrehajtania. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is a konfiguráció a következő lépéseket.
-3. Ellenőrizze a ExpressRoute-kapcsolatcsoportot annak érdekében van üzembe helyezve, és is engedélyezve van. Használja a következő példát:
+  Ha a kapcsolat szolgáltatójánál 3. rétegbeli felügyelt szolgáltatásokat kínál, a kapcsolat szolgáltató tooenable magánhálózati társviszony-létesítést az Ön Azure kérhet. Ebben az esetben nincs szükség hello következő szakaszokban szereplő toofollow utasításokat. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is hello lépések a konfiguráció.
+3. Ellenőrizze a hello ExpressRoute körön tooensure van üzembe helyezve, és is engedélyezve van. A következő példa hello használata:
 
   ```powershell
   Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
   ```
 
-  A rendszer a választ az alábbi példához hasonló:
+  a rendszer a következő példa hasonló toohello hello választ:
 
   ```
   Name                             : ExpressRouteARMCircuit
@@ -261,15 +261,15 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   ServiceKey                       : **************************************
   Peerings                         : []
   ```
-4. Konfigurálja az Azure nyilvános társviszony-létesítést a kapcsolatcsoporthoz. Győződjön meg arról, hogy rendelkezik a következő adatokat, mielőtt végrehajtásának folytatásához.
+4. Az Azure nyilvános társviszony-létesítés hello kör megadása Győződjön meg arról, hogy rendelkezik-e hello előtt végrehajtásának folytatásához a következő információkat.
 
-  * Egy /30 alhálózat az elsődleges kapcsolat számára. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie.
-  * Egy /30 alhálózat a másodlagos kapcsolat számára. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie.
-  * Egy érvényes VLAN-azonosító a tárviszony-létesítés létrehozásához. Győződjön meg róla, hogy a kapcsolatcsoporton egy másik társviszony-létesítés sem használja ugyanezt a VLAN-azonosítót.
+  * / 30-as alhálózat hello elsődleges kapcsolathoz. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie.
+  * / 30-as alhálózat hello másodlagos kapcsolathoz. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie.
+  * Egy érvényes VLAN-azonosító tooestablish a társviszony. Győződjön meg arról, hogy egyetlen másik társviszonya se a hello áramkör használ hello azonos VLAN-azonosítót.
   * Egy AS-szám a társviszony-létesítéshez. 2 és 4 bájtos AS-számokat is használhat.
-  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egyetlen módszer alkalmazása.
+  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egy toouse.
 
-  Futtassa az alábbi példa az Azure nyilvános társviszony-létesítés a kapcsolat konfigurálása
+  Futtassa a következő példa tooconfigure Azure nyilvános társviszony-létesítés a kör hello
 
   ```powershell
   Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100
@@ -277,7 +277,7 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-  Ha az MD5 kivonatoló használatát választja, használja a következő példát:
+  Ha úgy dönt, toouse az MD5 kivonatoló, használja a következő példa hello:
 
   ```powershell
   Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100  -SharedKey "A1B2C3D4"
@@ -290,9 +290,9 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   > 
   >
 
-### <a name="to-view-azure-public-peering-details"></a>Azure nyilvános társviszony-létesítés részleteinek megtekintése
+### <a name="tooview-azure-public-peering-details"></a>tooview Azure nyilvános társviszony-létesítés részletei
 
-Konfigurációs adatait az alábbi parancsmag segítségével szerezheti be:
+Konfigurációs részletek hello a következő parancsmag használatával kaphat:
 
 ```powershell
   $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -300,9 +300,9 @@ Konfigurációs adatait az alábbi parancsmag segítségével szerezheti be:
   Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -Circuit $ckt
   ```
 
-### <a name="to-update-azure-public-peering-configuration"></a>Azure nyilvános társviszony-létesítés konfigurációjának frissítése
+### <a name="tooupdate-azure-public-peering-configuration"></a>az Azure nyilvános társviszony-létesítési konfiguráció tooupdate
 
-Frissítheti, az alábbi példa konfiguráció bármely részeként. Ebben a példában a VLAN-Azonosítót a kapcsolatcsoport, frissül a 200-as 600 értékre.
+Frissítheti, használja a következő példa hello hello konfiguráció bármely részeként. Ebben a példában a 200 too600 hello VLAN-Azonosítót a kapcsolatcsoport hello frissül.
 
 ```powershell
 Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 600
@@ -310,9 +310,9 @@ Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "AzurePublicPeering" -Express
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-### <a name="to-delete-azure-public-peering"></a>Azure nyilvános társviszony-létesítés törlése
+### <a name="toodelete-azure-public-peering"></a>az Azure nyilvános társviszony toodelete
 
-Futtassa a következő példa a társviszony-létesítési konfiguráció eltávolítása:
+A társviszony-létesítési konfiguráció a következő példa hello futtatásával távolíthatja el:
 
 ```powershell
 Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt
@@ -321,18 +321,18 @@ Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 ## <a name="microsoft-peering"></a>Microsoft társviszony-létesítés
 
-Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és a Microsoft társviszony-létesítési konfiguráció az ExpressRoute-kapcsolatcsoportot törli.
+Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és törlése hello Microsoft társviszony-létesítési konfiguráció ExpressRoute-kör.
 
 > [!IMPORTANT]
-> A Microsoft társviszony-létesítést az ExpressRoute-Kapcsolatcsoportok 2017. augusztus 1. előtt konfigurált meghirdetett keresztül a Microsoft társviszony-létesítést, még akkor is, ha az útvonal-szűrők nem definiált összes szolgáltatás előtagok fog rendelkezni. A Microsoft társviszony-létesítést az ExpressRoute-Kapcsolatcsoportok vannak konfigurálva, vagy azt követően 2017. augusztus 1. nem rendelkezik a előtagokat amíg útvonal szűrő nem csatlakoztatja a kapcsolatcsoport hirdetve. További információkért lásd: [konfigurálása a Microsoft társviszony-létesítéshez útvonal szűrő](how-to-routefilter-powershell.md).
+> Előzetes tooAugust 1 Microsoft társviszony-létesítést az ExpressRoute-Kapcsolatcsoportok volt beállítva, akkor 2017 fog rendelkezni az összes szolgáltatás előtagok keresztül hello Microsoft társviszony-létesítést, meghirdetett, akkor is, ha nincsenek megadva útvonal szűrők. A Microsoft társviszony-létesítést az ExpressRoute-Kapcsolatcsoportok vannak konfigurálva, vagy azt követően 2017. augusztus 1. nem rendelkezik a előtagokat meghirdetett, amíg egy útvonal-szűrő nem csatlakoztatja toohello körön. További információkért lásd: [konfigurálása a Microsoft társviszony-létesítéshez útvonal szűrő](how-to-routefilter-powershell.md).
 > 
 > 
 
-### <a name="to-create-microsoft-peering"></a>Microsoft társviszony-létesítés létrehozása
+### <a name="toocreate-microsoft-peering"></a>toocreate Microsoft társviszony-létesítés
 
-1. Importálja az ExpressRoute PowerShell-modulját.
+1. ExpressRoute hello PowerShell modul importálása.
 
-  Telepítse a legújabb PowerShell-telepítőt a [PowerShell-galériából](http://www.powershellgallery.com/), és importálja az Azure Resource Manager-modulokat a PowerShell-munkamenetbe az ExpressRoute-parancsmagok használatának elkezdéséhez. A PowerShellt rendszergazdaként kell futtatnia.
+  Telepítenie kell a hello legújabb PowerShell installer [PowerShell-galériában](http://www.powershellgallery.com/) és hello Azure Resource Manager modulok importálása hello PowerShell-munkamenetet a rendelés toostart hello ExpressRoute-parancsmagok használatával. Rendszergazdaként kell toorun PowerShell.
 
   ```powershell
   Install-Module AzureRM
@@ -340,41 +340,41 @@ Ez a szakasz segítséget nyújt a létrehozása, beolvasása, frissítése és 
   Install-AzureRM
   ```
 
-  Importálja a AzureRM.* modulok ismert szemantikai verziója tartományon belül.
+  Importálja az összes hello AzureRM.* modulok hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-AzureRM
   ```
 
-  Az ismert szemantikai verziója tartományon belüli select modul csak is importálhatja.
+  Csak is importálhatja egy select modul hello ismert szemantikai verziója tartományon belül.
 
   ```powershell
   Import-Module AzureRM.Network
   ```
 
-  Jelentkezzen be a fiókjába.
+  Jelentkezzen be tooyour fiókjával.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  Válassza ki az előfizetést, ExpressRoute-kapcsolatcsoportot létrehozni kívánja.
+  Válassza ki a kívánt toocreate ExpressRoute-kapcsolatcsoportot hello előfizetést.
 
   ```powershell
 Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
   ```
 2. Hozzon létre egy ExpressRoute-kapcsolatcsoportot.
 
-  Kövesse az utasításokat az [ExpressRoute-kapcsolatcsoport](expressroute-howto-circuit-arm.md) létrehozásához, és kérje meg kapcsolatszolgáltatóját, hogy ossza ki azt.
+  Kövesse az utasításokat toocreate hello egy [ExpressRoute-kapcsolatcsoportot](expressroute-howto-circuit-arm.md) , illetve hozta-e hello kapcsolat szolgáltatóját.
 
-  Ha kapcsolatszolgáltatója felügyelt 3. rétegbeli szolgáltatásokat kínál, igényelheti tőle, hogy engedélyezze Önnek az Azure privát társviszony-létesítést. Ebben az esetben nem szükséges a következő szakaszokban foglalt lépéseket végrehajtania. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is a konfiguráció a következő lépéseket.
-3. Ellenőrizze, hogy üzembe helyezve, és is engedélyezve van az ExpressRoute-kapcsolatcsoportot. Használja a következő példát:
+  Ha a kapcsolat szolgáltatójánál 3. rétegbeli felügyelt szolgáltatásokat kínál, a kapcsolat szolgáltató tooenable magánhálózati társviszony-létesítést az Ön Azure kérhet. Ebben az esetben nincs szükség hello következő szakaszokban szereplő toofollow utasításokat. Azonban ha a kapcsolat szolgáltatójánál nem kezeli az útválasztást, a kapcsolat létrehozása után továbbra is hello lépések a konfiguráció.
+3. Ellenőrizze a hello ExpressRoute körön toomake arról, hogy van üzembe helyezve és is engedélyezve van. A következő példa hello használata:
 
   ```powershell
   Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
   ```
 
-  A rendszer a választ az alábbi példához hasonló:
+  a rendszer a következő példa hasonló toohello hello választ:
 
   ```
   Name                             : ExpressRouteARMCircuit
@@ -399,18 +399,18 @@ Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
   ServiceKey                       : **************************************
   Peerings                         : []
   ```
-4. Konfigurálja a Microsoft társviszony-létesítést a kapcsolatcsoporthoz. Mielőtt folytatná, ellenőrizze az alábbi információk meglétét.
+4. Konfigurálja a Microsoft hello-kör társviszony-létesítés. Győződjön meg arról, hogy rendelkezik-e folytatni a következő információk előtt hello.
 
-  * Egy /30 alhálózat az elsődleges kapcsolat számára. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie, amely az Ön tulajdonában van, és regisztrálva van egy RIR-/IRR-jegyzékben.
-  * Egy /30 alhálózat a másodlagos kapcsolat számára. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie, amely az Ön tulajdonában van, és regisztrálva van egy RIR-/IRR-jegyzékben.
-  * Egy érvényes VLAN-azonosító a tárviszony-létesítés létrehozásához. Győződjön meg róla, hogy a kapcsolatcsoporton egy másik társviszony-létesítés sem használja ugyanezt a VLAN-azonosítót.
+  * / 30-as alhálózat hello elsődleges kapcsolathoz. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie, amely az Ön tulajdonában van, és regisztrálva van egy RIR-/IRR-jegyzékben.
+  * / 30-as alhálózat hello másodlagos kapcsolathoz. Ennek egy érvényes nyilvános IPv4-előtagnak kell lennie, amely az Ön tulajdonában van, és regisztrálva van egy RIR-/IRR-jegyzékben.
+  * Egy érvényes VLAN-azonosító tooestablish a társviszony. Győződjön meg arról, hogy egyetlen másik társviszonya se a hello áramkör használ hello azonos VLAN-azonosítót.
   * Egy AS-szám a társviszony-létesítéshez. 2 és 4 bájtos AS-számokat is használhat.
-  * Meghirdetett előtagok: Meg kell adnia a BGP-munkamenetben meghirdetni kívánt összes előtag listáját. A rendszer kizárólag a nyilvános IP-cím-előtagokat fogadja el. Ha szeretne elküldhető a előtagokat, elküldheti egy vesszővel elválasztott listában. Az előtagoknak egy RIR/IRR jegyzékben regisztrálva kell lenniük az Ön neve alatt.
-  * **Választható -** ügyfél ASN: Ha nincs regisztrálva a társviszony-létesítés SZÁMOT hirdetési előtagok, megadhatja a AS számot, amelyhez regisztrálja azokat a rendszer.
-  * Útválasztási jegyzék neve: Megadhatja az RIR/IRR jegyzék nevét, amelyben az AS-szám és az előtagok regisztrálva vannak.
-  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egyetlen módszer alkalmazása.
+  * Meghirdetett előtagok: meg kell adnia a lista az összes előtagok hello BGP munkameneten keresztül tervezi tooadvertise. A rendszer kizárólag a nyilvános IP-cím-előtagokat fogadja el. Ha azt tervezi, toosend előtagok készlete, elküldheti a vesszővel tagolt listáját. Ezeket az előtagokat kell lenniük egy RIR-ben regisztrált tooyou vagy IRR-ben.
+  * **Választható -** ügyfél ASN: Ha hirdetési-előtagok nem regisztrált toohello társviszony-létesítés SZÁMOT, megadhatja hello számú toowhich regisztrálva vannak.
+  * Útválasztási beállításjegyzék-név: Hello RIR megadhat / BMR mely hello ellen, számát, és előtagok regisztrálva van.
+  * **Választható -** az MD5 kivonatoló, ha úgy dönt, hogy egy toouse.
 
-   Az alábbi példa használatával konfigurálja a kör társviszony Microsoft:
+   A következő példa tooconfigure Microsoft társviszony-létesítés a kör hello használata:
 
   ```powershell
   Add-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "123.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
@@ -418,9 +418,9 @@ Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
   Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-### <a name="to-get-microsoft-peering-details"></a>Microsoft társviszony-létesítés részleteinek lekérése
+### <a name="tooget-microsoft-peering-details"></a>tooget Microsoft társviszony-létesítési részletei
 
-Az alábbi példa konfigurációs részletek szerezheti be:
+Kaphat a konfigurációs adatait a következő példa hello használata:
 
 ```powershell
 $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
@@ -428,9 +428,9 @@ $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGr
 Get-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
 ```
 
-### <a name="to-update-microsoft-peering-configuration"></a>Microsoft társviszony-létesítés konfigurációjának frissítése
+### <a name="tooupdate-microsoft-peering-configuration"></a>a Microsoft társviszony-létesítési konfiguráció tooupdate
 
-Frissítheti, az alábbi példa konfiguráció bármely részeként:
+Frissítheti, használja a következő példa hello hello konfiguráció bármely részeként:
 
 ```powershell
 Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "124.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
@@ -438,9 +438,9 @@ Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRo
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ```
 
-### <a name="to-delete-microsoft-peering"></a>Microsoft társviszony-létesítés törlése
+### <a name="toodelete-microsoft-peering"></a>toodelete Microsoft társviszony-létesítés
 
-A társviszony-létesítési konfiguráció a következő parancsmag futtatásával távolíthatja el:
+A társviszony-létesítési konfiguráció hello a következő parancsmag futtatásával távolíthatja el:
 
 ```powershell
 Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
@@ -450,7 +450,7 @@ Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 ## <a name="next-steps"></a>Következő lépések
 
-A következő lépés egy [VNet csatlakoztatása egy ExpressRoute-kapcsolatcsoporthoz](expressroute-howto-linkvnet-arm.md).
+Következő lépés, [csatolni a virtuális hálózat tooan ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-arm.md).
 
 * Az ExpressRoute-munkafolyamatokkal kapcsolatos további információkért lásd: [ExpressRoute workflows](expressroute-workflows.md) (ExpressRoute-munkafolyamatok).
 * A kapcsolatcsoportok társviszony-létesítéseivel kapcsolatos további információkért lásd: [ExpressRoute circuits and routing domains](expressroute-circuit-peerings.md) (ExpressRoute-kapcsolatcsoportok és útválasztási tartományok).

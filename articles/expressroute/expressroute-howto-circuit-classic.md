@@ -1,6 +1,6 @@
 ---
 title: "Létrehozásához és módosításához ExpressRoute-kapcsolatcsoportot: PowerShell: klasszikus Azure portál |} Microsoft Docs"
-description: "Ez a cikk végigvezeti a létrehozásához, és a kiépítés ExpressRoute-kapcsolatcsoportot. Ez a cikk is bemutatja, hogyan ellenőrizze az állapot, update vagy delete, és a kapcsolatcsoport kiosztásának megszüntetése."
+description: "Ez a cikk végigvezeti hello létrehozásához és a kiépítés ExpressRoute-kapcsolatcsoportot. Ez a cikk is bemutatja, hogyan toocheck hello állapotát, frissítéséhez vagy törlése és a kapcsolatcsoport kiosztásának megszüntetése."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: 3b12bbb21ebf6a0160227c4a281c420cf192d6f7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9897c88776a2153ba22aa9ff328becb9f12b660b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-modify-an-expressroute-circuit-using-powershell-classic"></a>Létrehozása és módosítása a powershellel (klasszikus) ExpressRoute-kapcsolatcsoportot
 > [!div class="op_single_selector"]
@@ -30,70 +30,70 @@ ms.lasthandoff: 08/03/2017
 > * [PowerShell (klasszikus)](expressroute-howto-circuit-classic.md)
 >
 
-Ez a cikk végigvezeti az Azure ExpressRoute-kapcsolatcsoportot létrehozása a PowerShell-parancsmagok és a klasszikus telepítési modell használatával. Ez a cikk is bemutatja, hogyan ellenőrizze az állapot, frissítési vagy törlési és kiosztásának megszüntetése ExpressRoute-kapcsolatcsoportot.
+Ez a cikk bemutatja, hogyan hello lépéseket toocreate Azure ExpressRoute-kapcsolatcsoportot PowerShell-parancsmagok és hello klasszikus telepítési modell használatával. Ez a cikk is bemutatja, hogyan toocheck hello állapota, frissítéséhez vagy törlése és kiosztásának megszüntetése ExpressRoute-kapcsolatcsoportot.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
 
-**Tudnivalók az Azure üzembehelyezési modellekről**
+**Tudnivalók az Azure üzembe helyezési modelljeiről**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="before-you-begin"></a>Előkészületek
-### <a name="step-1-review-the-prerequisites-and-workflow-articles"></a>1. lépés Nézze át az Előfeltételek és a munkafolyamat cikkek
-Győződjön meg arról, hogy tekintse át a [Előfeltételek](expressroute-prerequisites.md) és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.  
+### <a name="step-1-review-hello-prerequisites-and-workflow-articles"></a>1. lépés Tekintse át a hello Előfeltételek és a munkafolyamat cikkek
+Győződjön meg arról, hogy átolvasta hello [Előfeltételek](expressroute-prerequisites.md) és [munkafolyamatok](expressroute-workflows.md) konfigurálás elkezdése előtt.  
 
-### <a name="step-2-install-the-latest-versions-of-the-azure-service-management-sm-powershell-modules"></a>2. lépés A legújabb verzióját az Azure Service Management (SM) PowerShell-modulok telepítése
-Kövesse az utasításokat a [Ismerkedés az Azure PowerShell-parancsmagok](/powershell/azure/overview) kapcsolatos részletes útmutatás az Azure PowerShell-modulok használata a számítógép konfigurálása.
+### <a name="step-2-install-hello-latest-versions-of-hello-azure-service-management-sm-powershell-modules"></a>2. lépés Hello legújabb verziói hello Azure Service Management (SM) PowerShell-modulok telepítése
+Hello utasításait követve [Ismerkedés az Azure PowerShell-parancsmagok](/powershell/azure/overview) kapcsolatos részletes útmutatás tooconfigure a számítógép toouse hello Azure PowerShell-modulok.
 
-### <a name="step-3-log-in-to-your-azure-account-and-select-a-subscription"></a>3. lépés Jelentkezzen be az Azure-fiókjával, és válasszon egy előfizetést
-1. Nyissa meg emelt szintű jogosultságokkal a PowerShell konzolt, és csatlakozzon a fiókjához. A következő példa segít a kapcsolódásban:
+### <a name="step-3-log-in-tooyour-azure-account-and-select-a-subscription"></a>3. lépés Jelentkezzen be Azure-fiók tooyour, és válasszon egy előfizetést
+1. Nyissa meg a PowerShell-konzolt emelt szintű jogosultságokkal, és csatlakozzon a tooyour fiók. A következő példa toohelp csatlakozás hello használata:
 
         Login-AzureRmAccount
 
-2. Keresse meg a fiókot az előfizetésekben.
+2. Hello előfizetések hello fiók ellenőrzése.
 
         Get-AzureRmSubscription
 
-3. Ha egynél több előfizetéssel rendelkezik, akkor válassza ki azt, amelyiket használni szeretné.
+3. Ha egynél több előfizetéssel rendelkezik, válassza ki a megjeleníteni kívánt toouse hello előfizetést.
 
         Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
 
-4. Ezután az alábbi parancsmaggal adja hozzá az Azure-előfizetéshez a PowerShell a a klasszikus üzembe helyezési modellben.
+4. Ezután használhatja a következő parancsmag tooadd hello az Azure-előfizetés tooPowerShell hello klasszikus telepítési modell.
 
         Add-AzureAccount
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>Hozzon létre, és helyezze üzembe az ExpressRoute-kapcsolatcsoportot
-### <a name="step-1-import-the-powershell-modules-for-expressroute"></a>1. lépés A PowerShell-modulok importálása az ExpressRoute
- Ha még nem tette meg, importálnia kell az Azure és az ExpressRoute modulok a PowerShell-munkamenetben megkezdéséhez az ExpressRoute-parancsmagok használatával. A modulok importálása a helyre, amely korábban telepítette őket a helyi számítógépen. A modulok telepítéséhez is használt módszernek a hely eltérhetnek az alábbi példában látható. Szükség esetén módosítsa a példa.  
+### <a name="step-1-import-hello-powershell-modules-for-expressroute"></a>1. lépés Az ExpressRoute hello PowerShell modul importálása
+ Ha még nem tette meg, importálnia kell hello Azure és az ExpressRoute modulok hello PowerShell-munkamenetet a rendelés toostart hello ExpressRoute-parancsmagok használatával. Hello modul importálása a hello helyre, amely voltak telepítve tooon helyi számítógépen. Hello módszertől függően tooinstall hello modulok használják, hello helye a következő példa azt mutatja meg hello eltérő lehet. Ha szükséges, módosítsa a hello példa.  
 
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
 
-### <a name="step-2-get-the-list-of-supported-providers-locations-and-bandwidths"></a>2. lépés A támogatott szolgáltatók, a helyek és a sávszélesség listájának lekérdezése
-ExpressRoute-kapcsolatcsoportot létrehozni, meg kell támogatott kapcsolat szolgáltatókat, a helyek és a sávszélesség-beállítások listája.
+### <a name="step-2-get-hello-list-of-supported-providers-locations-and-bandwidths"></a>2. lépés Támogatott szolgáltatók, a helyek és a sávszélesség hello listájának beolvasása
+ExpressRoute-kapcsolatcsoportot létrehozni, meg kell hello támogatott kapcsolat szolgáltatókat, a helyek és a sávszélesség-beállítások listája.
 
-A PowerShell-parancsmag `Get-AzureDedicatedCircuitServiceProvider` adja vissza ezt az információt fogja használni a későbbi lépésekben:
+PowerShell-parancsmag hello `Get-AzureDedicatedCircuitServiceProvider` adja vissza ezt az információt fogja használni a későbbi lépésekben:
 
     Get-AzureDedicatedCircuitServiceProvider
 
-Ellenőrizze, hogy ha a kapcsolat szolgáltatójánál nem szerepel-e. Jegyezze fel a következő adatokat, mert azt később szüksége expressroute-kapcsolatcsoporthoz létrehozásakor:
+Ellenőrizze a toosee, ha a kapcsolat szolgáltatójánál van szó. Jegyezze fel a következő információ, mert azt később szüksége expressroute-kapcsolatcsoporthoz létrehozásakor hello:
 
 * Név
 * PeeringLocations
 * BandwidthsOffered
 
-Most már készen áll az ExpressRoute-kapcsolatcsoportot létrehozni.         
+Most már készen áll a toocreate ExpressRoute-kapcsolatcsoportot.         
 
 ### <a name="step-3-create-an-expressroute-circuit"></a>3. lépés ExpressRoute-kapcsolatcsoport létrehozása
-A következő példa bemutatja, hogyan szilícium Valley egy 200 MB/s Equinix keresztül ExpressRoute-kapcsolatcsoportot létrehozni. Különböző szolgáltatók és más beállítások használata, amikor a kérést helyettesítse be ezt az információt.
+hello a következő példa bemutatja, hogyan toocreate egy 200 MB/s ExpressRoute áramkör a szilícium Valley Equinix keresztül. Különböző szolgáltatók és más beállítások használata, amikor a kérést helyettesítse be ezt az információt.
 
 > [!IMPORTANT]
-> Az ExpressRoute-kapcsolatcsoportot abban a pillanatban a szolgáltatási kulcs kiadott lesz terhelve. Győződjön meg arról, hogy a művelet végrehajtása, ha a kapcsolat szolgáltatójánál kiépíteni a kapcsolat készen áll-e.
+> Az ExpressRoute-kapcsolatcsoportot jelenik meg a szolgáltatási kulcs hello pillanattól lesz terhelve. Győződjön meg arról, hogy készen áll a tooprovision hello áramkör hello kapcsolat szolgáltatójánál esetén elvégzi ezt a műveletet.
 > 
 > 
 
-A következő egy példa egy kérelem egy új szolgáltatás kulcs:
+hello az alábbiakban látható egy példa egy kérelem egy új szolgáltatás kulcs:
 
     $Bandwidth = 200
     $CircuitName = "MyTestCircuit"
@@ -102,21 +102,21 @@ A következő egy példa egy kérelem egy új szolgáltatás kulcs:
 
     New-AzureDedicatedCircuit -CircuitName $CircuitName -ServiceProviderName $ServiceProvider -Bandwidth $Bandwidth -Location $Location -sku Standard -BillingType MeteredData
 
-Vagy, ha azt szeretné, a prémium szintű bővítmény ExpressRoute-kapcsolatcsoportot létrehozni, használja a következő példát. Tekintse meg a [ExpressRoute – gyakori kérdések](expressroute-faqs.md) a prémium szintű bővítmény kapcsolatos további részletekért.
+Vagy, ha azt szeretné, hogy toocreate hello prémium bővítmény ExpressRoute-kapcsolatcsoportot, hello használata a következő példa. Tekintse meg a toohello [ExpressRoute – gyakori kérdések](expressroute-faqs.md) hello prémium szintű bővítmény kapcsolatos további részletekért.
 
     New-AzureDedicatedCircuit -CircuitName $CircuitName -ServiceProviderName $ServiceProvider -Bandwidth $Bandwidth -Location $Location -sku Premium - BillingType MeteredData
 
 
-A válasz a szolgáltatás kulcsot fogja tartalmazni. Részletes leírását, a paraméterek kaphat a következő futtatásával:
+hello válasz hello szolgáltatás kulcsot fogja tartalmazni. Részletes leírását, az összes hello paraméterek kaphat hello következő futtatásával:
 
     get-help new-azurededicatedcircuit -detailed
 
-### <a name="step-4-list-all-the-expressroute-circuits"></a>4. lépés Az ExpressRoute-Kapcsolatcsoportok felsorolása
-Futtathatja a `Get-AzureDedicatedCircuit` parancs használatával beszerezheti az összes létrehozott ExpressRoute-Kapcsolatcsoportok listáját:
+### <a name="step-4-list-all-hello-expressroute-circuits"></a>4. lépés A lista összes hello ExpressRoute-Kapcsolatcsoportok
+Hello futtatása `Get-AzureDedicatedCircuit` tooget az összes létrehozott ExpressRoute-Kapcsolatcsoportok hello parancsot:
 
     Get-AzureDedicatedCircuit
 
-A válasz az alábbi példához hasonló lesz:
+hello válasz valami hasonló toohello, például a következő lesz:
 
     Bandwidth                        : 200
     CircuitName                      : MyTestCircuit
@@ -127,7 +127,7 @@ A válasz az alábbi példához hasonló lesz:
     Sku                              : Standard
     Status                           : Enabled
 
-Ezt az információt bármikor használatával kérheti le a `Get-AzureDedicatedCircuit` parancsmag. A következő hívással paraméterek nélkül a Kapcsolatcsoportok sorolja fel. A szolgáltatás kulcs megjelenik a *ServiceKey* mező.
+Ezt az információt bármikor hello használatával lekérhető `Get-AzureDedicatedCircuit` parancsmag. Összes hello áramkör paraméterek nélkül hívható hello így sorolja fel. A szolgáltatás kulcs megjelenik hello *ServiceKey* mező.
 
     Get-AzureDedicatedCircuit
 
@@ -140,32 +140,32 @@ Ezt az információt bármikor használatával kérheti le a `Get-AzureDedicated
     Sku                              : Standard
     Status                           : Enabled
 
-Részletes leírását, a paraméterek kaphat a következő futtatásával:
+Részletes leírását, az összes hello paraméterek kaphat hello következő futtatásával:
 
     get-help get-azurededicatedcircuit -detailed
 
-### <a name="step-5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5. lépés A szolgáltatás kulcs küldése a kapcsolat szolgáltatójánál történő üzembe helyezéséhez
-*ServiceProviderProvisioningState* információt nyújt a jelenlegi állapotában a szolgáltatói oldalon kiépítés. *Állapot* állapotát biztosít a Microsoft oldalon. Kiépítés állapotok áramkör kapcsolatos további információkért tekintse meg a [munkafolyamatok](expressroute-workflows.md#expressroute-circuit-provisioning-states) cikk.
+### <a name="step-5-send-hello-service-key-tooyour-connectivity-provider-for-provisioning"></a>5. lépés Kapcsolat kulcs tooyour hello szolgáltató küldése történő üzembe helyezéséhez
+*ServiceProviderProvisioningState* információt nyújt a hello aktuális állapotának kiépítés hello szolgáltatói oldalán. *Állapot* hello Microsoft ügyféloldali hello állapot biztosít. Kiépítés állapotok áramkör kapcsolatos további információkért lásd: hello [munkafolyamatok](expressroute-workflows.md#expressroute-circuit-provisioning-states) cikk.
 
-Amikor létrehoz egy új ExpressRoute-kapcsolatcsoportot, a kapcsolatcsoport lesz a következő állapotot okozta:
+Amikor létrehoz egy új ExpressRoute-kapcsolatcsoportot, hello áramkör hello állapota a következő lehet:
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-A kapcsolatcsoport halad át a következő állapotot, ha a kapcsolat szolgáltatójánál folyamatban van, lehetővé téve az Ön:
+hello áramkör kerül toohello állapotát követő hello folyamatán, amely lehetővé teszi a hello kapcsolat hitelesítésszolgáltató esetén:
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
-Egy ExpressRoute-kapcsolatcsoportot is használni tudja a következő állapotban kell lennie:
+ExpressRoute-kapcsolatcsoportot kell hogy toobe képes toouse állapota a következő hello azt:
 
     ServiceProviderProvisioningState : Provisioned
     Status                           : Enabled
 
 
-### <a name="step-6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6. lépés Ellenőrizze rendszeresen a kapcsolatcsoport kulcs állapotát és az állapot
-Ez lehetővé teszi, hogy amikor a szolgáltató a kapcsolatcsoport engedélyezve van. A kapcsolat konfigurálása után *ServiceProviderProvisioningState* állapottal jelenik meg *kiépítve* a következő példában látható módon:
+### <a name="step-6-periodically-check-hello-status-and-hello-state-of-hello-circuit-key"></a>6. lépés Rendszeres időközönként ellenőrizze a hello állapotát és hello áramkör kulcs hello állapota
+Ez lehetővé teszi, hogy amikor a szolgáltató a kapcsolatcsoport engedélyezve van. Hello áramkör konfigurálása után *ServiceProviderProvisioningState* állapottal jelenik meg *kiépítve* a hello a következő példában látható módon:
 
     Get-AzureDedicatedCircuit
 
@@ -179,18 +179,18 @@ Ez lehetővé teszi, hogy amikor a szolgáltató a kapcsolatcsoport engedélyezv
     Status                           : Enabled
 
 ### <a name="step-7-create-your-routing-configuration"></a>7. lépés Az útválasztó-konfiguráció létrehozása
-Tekintse meg a [ExpressRoute-áramkör útválasztási konfigurációja (létrehozásához és módosításához a kapcsolatcsoport esetében)](expressroute-howto-routing-classic.md) cikk lépéseit.
+Tekintse meg a toohello [ExpressRoute-áramkör útválasztási konfigurációja (létrehozásához és módosításához a kapcsolatcsoport esetében)](expressroute-howto-routing-classic.md) cikk lépéseit.
 
 > [!IMPORTANT]
-> Ezek az utasítások csak a szolgáltatók által biztosított réteg 2 internetkapcsolati szolgáltatás használatával létrehozott kapcsolatok vonatkoznak. A szolgáltató által kezelt használata réteg (általában az IP VPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
+> Ezek az utasítások csak a szolgáltatók által biztosított réteg 2 internetkapcsolati szolgáltatás használatával létrehozott toocircuits vonatkoznak. A szolgáltató által kezelt használata réteg (általában az IP VPN, például az MPLS) 3 szolgáltatások, a kapcsolat szolgáltatójánál konfigurálása és kezelése az Ön útválasztást.
 > 
 > 
 
-### <a name="step-8-link-a-virtual-network-to-an-expressroute-circuit"></a>8. lépés. Virtuális hálózat összekapcsolása egy ExpressRoute-kapcsolatcsoporttal
-A következő csatolja az ExpressRoute-kapcsolatcsoportot egy virtuális hálózatot. Tekintse meg [virtuális hálózatokhoz való csatolás ExpressRoute Kapcsolatcsoportok](expressroute-howto-linkvnet-classic.md) részletes útmutatásait. Ha egy virtuális hálózat létrehozása a klasszikus üzembe helyezési modellel az ExpressRoute című kell [hozzon létre egy virtuális hálózatot az ExpressRoute](expressroute-howto-vnet-portal-classic.md).
+### <a name="step-8-link-a-virtual-network-tooan-expressroute-circuit"></a>8. lépés. Hivatkozásra egy virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot
+A következő hivatkozás egy virtuális hálózati tooyour ExpressRoute-kapcsolatcsoportot. Tekintse meg a túl[Linking ExpressRoute áramkörök toovirtual hálózatok](expressroute-howto-linkvnet-classic.md) részletes útmutatásait. Ha az ExpressRoute hello klasszikus üzembe helyezési modellt használó virtuális hálózatot kell toocreate, lásd: [hozzon létre egy virtuális hálózatot az ExpressRoute](expressroute-howto-vnet-portal-classic.md).
 
-## <a name="getting-the-status-of-an-expressroute-circuit"></a>Egy ExpressRoute-kapcsolatcsoport állapotának beolvasása
-Ezt az információt bármikor használatával kérheti le a `Get-AzureCircuit` parancsmag. A következő hívással paraméterek nélkül a Kapcsolatcsoportok sorolja fel.
+## <a name="getting-hello-status-of-an-expressroute-circuit"></a>Egy ExpressRoute-kapcsolatcsoportot hello állapotának beolvasása
+Ezt az információt bármikor hello használatával lekérhető `Get-AzureCircuit` parancsmag. Összes hello áramkör paraméterek nélkül hívható hello így sorolja fel.
 
     Get-AzureDedicatedCircuit
 
@@ -212,7 +212,7 @@ Ezt az információt bármikor használatával kérheti le a `Get-AzureCircuit` 
     Sku                              : Standard
     Status                           : Enabled
 
-Egy adott ExpressRoute-kapcsolatcsoportot tájékoztatást kaphat úgy, hogy a szolgáltatás kulcs paraméterként a hívást.
+Egy adott ExpressRoute-kapcsolatcsoportot tájékoztatást kaphat paraméter toohello hívásként hello szolgáltatás kulcs átadásával.
 
     Get-AzureDedicatedCircuit -ServiceKey "*********************************"
 
@@ -226,24 +226,24 @@ Egy adott ExpressRoute-kapcsolatcsoportot tájékoztatást kaphat úgy, hogy a s
     Status                           : Enabled
 
 
-Futtassa az alábbi példa is ki lehet részletes leírását, a Paraméterek:
+Minden hello paraméterek részletes leírását a következő példa hello futtatásával kaphat:
 
     get-help get-azurededicatedcircuit -detailed
 
 ## <a name="modifying-an-expressroute-circuit"></a>Egy ExpressRoute-kapcsolatcsoportot módosítása
 ExpressRoute-kapcsolatcsoportot egyes tulajdonságait módosíthatja kapcsolat befolyásolása nélkül.
 
-Állásidő nélkül a következőket teheti:
+Mindent hello állásidő nélkül a következő:
 
 * Engedélyezi vagy letiltja az ExpressRoute-kapcsolatcsoportot prémium ExpressRoute bővítményt.
-* Növelje a ExpressRoute-kapcsolatcsoportot sávszélességét, feltéve, hogy kapacitás érhető el a port. Vegye figyelembe, hogy a alacsonyabb verziójúra változtatása a sávszélességet a kapcsolat nem támogatott. 
-* Díjköteles adatforgalom korlátlan adatokhoz a mérési terv módosítása Vegye figyelembe, hogy a mérési terv módosítása az korlátlan adatforgalom díjköteles adatok nem támogatott.
+* Az ExpressRoute-kapcsolatcsoportot növekedése hello sávszélesség megadott érhető el kapacitás hello porton. Vegye figyelembe, hogy a alacsonyabb verziójúra változtatása hello sávszélesség, a kapcsolat nem támogatott. 
+* Hello mérési adatok díjköteles tooUnlimited adatokat a terv módosítása Vegye figyelembe az adatok nem támogatott adatforgalmi tooMetered változó hello mérési terv.
 * Engedélyezheti és letilthatja *klasszikus műveletek engedélyezése*.
 
-Tekintse meg a [ExpressRoute – gyakori kérdések](expressroute-faqs.md) korlátai és korlátozásai olvashat.
+Tekintse meg a toohello [ExpressRoute – gyakori kérdések](expressroute-faqs.md) korlátai és korlátozásai olvashat.
 
-### <a name="to-enable-the-expressroute-premium-add-on"></a>A prémium szintű ExpressRoute-bővítmény engedélyezése
-A prémium szintű ExpressRoute-bővítmény a következő PowerShell-parancsmag segítségével engedélyezheti a meglévő kapcsolat:
+### <a name="tooenable-hello-expressroute-premium-add-on"></a>tooenable hello ExpressRoute prémium szintű bővítmény
+Hello ExpressRoute prémium szintű bővítmény hello a következő PowerShell-parancsmag segítségével engedélyezheti a meglévő kapcsolat:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey "*********************************" -Sku Premium
 
@@ -256,22 +256,22 @@ A prémium szintű ExpressRoute-bővítmény a következő PowerShell-parancsmag
     Sku                              : Premium
     Status                           : Enabled
 
-A kapcsolatcsoport most lesz engedélyezett ExpressRoute prémium bővítmény funkciók. Vegye figyelembe, hogy azt megkezdődik, amint sikeresen futtatta a parancsot számlázást, a prémium szintű bővítmény képességhez.
+A kapcsolatcsoport most kell hello ExpressRoute prémium bővítmény szolgáltatások engedélyezve van. Vegye figyelembe, hogy azt megkezdődik, amint hello parancs sikeresen lefutott számlázási meg hello prémium bővítmény képességhez.
 
-### <a name="to-disable-the-expressroute-premium-add-on"></a>A prémium szintű ExpressRoute-bővítmény letiltása
+### <a name="toodisable-hello-expressroute-premium-add-on"></a>toodisable hello ExpressRoute prémium szintű bővítmény
 > [!IMPORTANT]
-> A művelet sikertelen lesz, amely nagyobb, mint mi a szabványos kör megengedett erőforrások használata.
+> Ez a művelet sikertelen lehet erőforrásokat, amelyek nagyobbak, mint a megengedett hello szabványos kapcsolat használata.
 > 
 > 
 
 #### <a name="considerations"></a>Megfontolandó szempontok
 
-* Meg kell győződnie arról, hogy a kapcsolatcsoport kapcsolódó virtuális hálózatok száma kisebb, mint 10 szabvány prémiumról visszaminősítését előtt. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és lesz számlázva a prémium szintű sebességet.
-* Minden virtuális hálózat más geopolitikai régiókban kell választható. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és lesz számlázva a prémium szintű sebességet.
-* Az útvonaltábla a magánhálózati társviszony-létesítés kisebb, mint 4000 útvonalait kell lennie. Ha az útvonal tábla mérete nagyobb, mint 4000 útvonalakat, a BGP-munkamenetet eldobja, és nem fog újra engedélyezve, amíg a hirdetett számához nem 4000 éri el.
+* Meg kell győződnie arról, hogy virtuális hálózatok csatolt toohello áramkör hello száma kisebb, mint 10, a prémium szintű toostandard visszaminősítését előtt. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és számlázott hello díjait lesz.
+* Minden virtuális hálózat más geopolitikai régiókban kell választható. Ha nem így tesz, a frissítési kérelem sikertelen lesz, és számlázott hello díjait lesz.
+* Az útvonaltábla a magánhálózati társviszony-létesítés kisebb, mint 4000 útvonalait kell lennie. Ha az útvonal tábla mérete nagyobb, mint 4000 útvonalakat, hello BGP-munkamenetet eldobja, és nem fog újra engedélyezve, amíg a hirdetett hello számához nem 4000 éri el.
 
-#### <a name="disable-the-premium-add-on"></a>A prémium szintű bővítmény letiltása
-A prémium szintű ExpressRoute-bővítmény a következő PowerShell-parancsmag használatával kikapcsolhatja a meglévő expressroute:
+#### <a name="disable-hello-premium-add-on"></a>Prémium szintű hello-bővítmény letiltása
+A meglévő kör hello ExpressRoute prémium szintű bővítmény letilthatja hello a következő PowerShell-parancsmag segítségével:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey "*********************************" -Sku Standard
 
@@ -286,19 +286,19 @@ A prémium szintű ExpressRoute-bővítmény a következő PowerShell-parancsmag
 
 
 
-### <a name="to-update-the-expressroute-circuit-bandwidth"></a>Az ExpressRoute-kapcsolatcsoport sávszélessége frissítése
-Ellenőrizze a [ExpressRoute – gyakori kérdések](expressroute-faqs.md) támogatott sávszélesség-beállítások a szolgáltatóhoz. Bármely mérete nagyobb, mint a meglévő expressroute mérete, amíg a fizikai port (amely a kapcsolatcsoport létre van hozva) lehetővé teszi, hogy ki tudja választani.
+### <a name="tooupdate-hello-expressroute-circuit-bandwidth"></a>tooupdate hello ExpressRoute-kapcsolatcsoport sávszélessége
+Ellenőrizze a hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md) támogatott sávszélesség-beállítások a szolgáltatóhoz. Bármely mérete nagyobb, mint a meglévő expressroute hello mérete, amíg hello tartozó fizikai port (amely a kapcsolatcsoport létre van hozva) lehetővé teszi, hogy ki tudja választani.
 
 > [!IMPORTANT]
-> Előfordulhat, hogy újra létrehozni az ExpressRoute-kapcsolatcsoport, ha nincs elég kapacitás a meglévő porton. A kapcsolat nem frissíthető, ha nincsenek további kapacitást érhető el az adott helyhez.
+> Előfordulhat, hogy toorecreate hello ExpressRoute-kapcsolatcsoportot esetén nincs elég kapacitás hello meglévő porton. Hello kapcsolatcsoport nem frissíthető, ha nincsenek további kapacitást érhető el az adott helyhez.
 >
-> Nem csökkenti a sávszélesség az ExpressRoute-kapcsolatcsoportot megszakítása nélkül. Alacsonyabb verziójúra változtatása a sávszélesség szükséges, hogy az ExpressRoute-kapcsolatcsoport kiosztásának megszüntetése és majd építenie az új ExpressRoute-kapcsolatcsoportot.
+> Nem csökken a hello sávszélesség az ExpressRoute-kapcsolatcsoportot megszakítása nélkül. Alacsonyabb verziójúra változtatása sávszélesség toodeprovision hello ExpressRoute-kapcsolatcsoportot meg, és majd építenie az új ExpressRoute-kapcsolatcsoportot.
 > 
 > 
 
 #### <a name="resize-a-circuit"></a>Expressroute-kapcsolatcsoporthoz átméretezése
 
-Miután eldöntötte, hogy milyen méretű van szüksége, a következő paranccsal méretezze át a kapcsolatcsoport:
+Miután eldöntötte, hogy milyen méretű van szüksége, használhatja a kapcsolatcsoport a következő parancs tooresize hello:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey ********************************* -Bandwidth 1000
 
@@ -311,11 +311,11 @@ Miután eldöntötte, hogy milyen méretű van szüksége, a következő parancc
     Sku                              : Standard
     Status                           : Enabled
 
-A kapcsolatcsoport fog rendelkezik lett méretű a Microsoft oldalon. A kapcsolat szolgáltatójánál konfigurációit, a módosítás megfelelő a kiszolgálóoldali frissítéséhez forduljon. Vegye figyelembe, hogy azt megkezdődik az ettől a frissített sávszélesség beállítás számlázási meg.
+A kapcsolatcsoport fog rendelkezik lett méretű hello Microsoft oldalán. Vegye fel a kapcsolatot a kapcsolat szolgáltató tooupdate konfigurációit, az ügyféloldali toomatch ezt a módosítást. Vegye figyelembe, hogy azt indítása számlázást, a hello frissítve ettől a sávszélesség beállítást.
 
-Ha megjelenik a következő hiba, amikor a kapcsolatcsoport sávszélessége növelése, az azt jelenti nincs nincs elegendő sávszélesség a fizikai porton, a meglévő expressroute létrehozási helyének bal. Hogy a kapcsolatcsoport törlése, és hozzon létre egy új kapcsolat van szüksége a mérete. 
+Ha megjelenik a következő a hiba, ha hello kapcsolatcsoport sávszélessége növelése hello, az azt jelenti nincs nincs elegendő sávszélesség hello fizikai port a meglévő expressroute létrehozási helyének bal. Toodelete a kapcsolatcsoport rendelkezik, és hozzon létre egy új kapcsolat hello méretű van szüksége. 
 
-    Set-AzureDedicatedCircuitProperties : InvalidOperation : Insufficient bandwidth available to perform this circuit
+    Set-AzureDedicatedCircuitProperties : InvalidOperation : Insufficient bandwidth available tooperform this circuit
     update operation
     At line:1 char:1
     + Set-AzureDedicatedCircuitProperties -ServiceKey ********************* ...
@@ -328,21 +328,21 @@ Ha megjelenik a következő hiba, amikor a kapcsolatcsoport sávszélessége nö
 
 ### <a name="considerations"></a>Megfontolandó szempontok
 
-* Az ExpressRoute-kapcsolatcsoport esetében ez a művelet sikeres legyen az összes virtuális hálózatot kell választható. Ellenőrizze, hogy van-e bármely virtuális hálózatot, amely a kapcsolatcsoport van csatolva, ha ez a művelet sikertelen.
-* Ha az ExpressRoute-kapcsolatcsoport szolgáltatás szolgáltató üzembe helyezési állapota **kiépítési** vagy **kiépítve** kiosztásának megszüntetése a kapcsolatcsoport az oldalon, hogy a szolgáltató együttműködve. Folytatjuk erőforrásokat és kiszámlázni Önnek, amíg a szolgáltató befejeződött, a kapcsolat megszüntetés, és értesítést küld nekünk.
-* Ha a szolgáltató rendelkezik platformelőfizetés a kapcsolatcsoport (üzembe helyezési állapota szolgáltató értéke **nincs kiépítve**) a kapcsolatcsoport törölhet. Ez a kapcsolat számlázási leáll.
+* Ez a művelet toosucceed ExpressRoute-kapcsolatcsoportot hello minden virtuális hálózatokat kell választható. Ellenőrizze toosee, ha a virtuális hálózatok, amelyek kapcsolódó toohello áramkör, ha ez a művelet sikertelen.
+* Ha hello ExpressRoute körön szolgáltató üzembe helyezési állapota **kiépítési** vagy **kiépítve** együttműködve kell a service provider toodeprovision hello kapcsolatcsoport az oldalon. Rendszer továbbra is tooreserve erőforrások és kiszámlázni Önnek, amíg hello szolgáltató megszüntetési hello áramkör befejeződik, és értesíti a számunkra.
+* Ha hello szolgáltató rendelkezik platformelőfizetés hello áramkör (üzembe helyezési állapota hello szolgáltató értéke túl**nincs kiépítve**) hello áramkör törölhet. Ezzel leállítja a számlázási hello kör.
 
 #### <a name="delete-a-circuit"></a>A kapcsolat törlése
 
-Az ExpressRoute-kapcsolatcsoport törlése a következő parancs futtatásával:
+Az ExpressRoute-kapcsolatcsoport törlése hello a következő parancs futtatásával:
 
     Remove-AzureDedicatedCircuit -ServiceKey "*********************************"
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-Miután létrehozta a kapcsolatcsoport, győződjön meg arról, hogy akkor tegye a következőket:
+Miután létrehozta a kapcsolatcsoport, győződjön meg arról, hogy Ön hello a következő:
 
 * [Létrehozásához és módosításához az ExpressRoute-kapcsolatcsoport esetében routing](expressroute-howto-routing-classic.md)
-* [A virtuális hálózat csatolása az ExpressRoute-kapcsolatcsoportot](expressroute-howto-linkvnet-classic.md)
+* [A virtuális hálózati tooyour ExpressRoute-kapcsolatcsoportot hivatkozás](expressroute-howto-linkvnet-classic.md)
 

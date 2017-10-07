@@ -1,6 +1,6 @@
 ---
-title: "Másolja az adatokat, az Oracle Data Factory használatával |} Microsoft Docs"
-description: "Ismerje meg, és a Oracle adatbázis, amely a helyszíni Azure Data Factory használatával adatok másolása."
+title: "az Oracle Data Factory használatával aaaCopy adatok |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocopy való/Oracle-adatbázis adatait, amely a helyszíni Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: bb6af719fe6f1a30c5933ce4342a4c0c072f3ff4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: adb6d5fbe38e18791616ac77e8179970bbea37fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="copy-data-tofrom-on-premises-oracle-using-azure-data-factory"></a>Adatok másolása az Azure Data Factory használatával a helyszíni Oracle és a
-Ez a cikk ismerteti, hogyan a másolási tevékenység során az Azure Data Factory áthelyezni az adatokat és a helyszíni Oracle-adatbázishoz. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toomove adatok helyszíni Oracle-adatbázishoz és a másolási tevékenység. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.
 
 ## <a name="supported-scenarios"></a>Támogatott helyzetek
-Adatokat másolhat **az Oracle-adatbázishoz** tárolja a következő adatokat:
+Adatokat másolhat **az Oracle-adatbázishoz** toohello a következő adatokat tárolja:
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-Adatok másolása a következő adatokat tárolja **Oracle-adatbázishoz**:
+Adatok másolása a következő adatokat tárolja hello **tooan Oracle-adatbázishoz**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 ## <a name="prerequisites"></a>Előfeltételek
-Adat-előállító helyszíni Oracle-adatforrások az adatkezelési átjáró használatával történő csatlakozást támogatja. Lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md) cikkben tájékozódhat az adatkezelési átjáró és [tárolt adatok mozgatása felhőbe helyszíni](data-factory-move-data-between-onprem-and-cloud.md) cikk lépésenkénti állít be, az átjáró adatok folyamat adatok áthelyezése.
+Adat-előállító csatlakozó tooon helyszíni Oracle adatforrások az adatkezelési átjáró hello segítségével támogatja. Lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md) az adatkezelési átjáró kapcsolatos cikk toolearn és [tárolt adatok mozgatása a helyszíni toocloud](data-factory-move-data-between-onprem-and-cloud.md) cikk lépésenkénti adatok adatcsatorna hello átjáró beállítása toomove adatokat.
 
-Átjáróra szükség, akkor is, ha az Oracle egy Azure IaaS virtuális gép található. Telepítheti az átjáró adattárként ugyanazon infrastruktúra-szolgáltatási virtuális gép vagy egy másik virtuális gép mindaddig, amíg az átjáró képes kapcsolódni az adatbázishoz.
+Átjáróra szükség, akkor is, ha hello Oracle van tárolva az Azure infrastruktúra-szolgáltatási virtuális gép. Ugyanaz, infrastruktúra-szolgáltatási virtuális gép hello adatként tárolja, vagy egy másik virtuális gép mindaddig hello átjáró kapcsolódhatnak toohello adatbázis hello hello átjáró telepíthető.
 
 > [!NOTE]
 > Lásd: [átjáró elhárítása](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) kapcsolati/átjáró hibaelhárítási tippek a kapcsolódó problémákat.
@@ -43,7 +43,7 @@ Adat-előállító helyszíni Oracle-adatforrások az adatkezelési átjáró ha
 ## <a name="supported-versions-and-installation"></a>Támogatott verziók és telepítés
 Az Oracle-összekötő illesztőprogramok két verziója támogatja:
 
-- **Microsoft-illesztőprogram (ajánlott) Oracle**: az adatkezelési átjáró verziója 2.7, a Microsoft illesztőprogram az Oracle automatikusan telepítve van az átjárón, így nem kell továbbá kezelni annak érdekében, hogy az illesztőprogram-től kezdődő Oracle kapcsolatot létrehozni, és akkor is jelentkezhet jobb másolási teljesítményt az illesztőprogramot. Oracle verziói alatti adatbázisok támogatottak:
+- **Microsoft-illesztőprogram (ajánlott) Oracle**: kiindulva az adatkezelési átjáró verziója 2.7, a Microsoft illesztőprogram hello átjáró együtt automatikusan telepíti a Oracle, így nem kell tooadditionally leíró hello illesztőprogram sorrendben tooestablish kapcsolat tooOracle, és is tapasztalhat, az illesztőprogram jobb másolási teljesítményt. Oracle verziói alatti adatbázisok támogatottak:
     - Oracle 12c R1 (12.1)
     - Oracle 11g R1 vagy R2 (11.1, 11.2)
     - Oracle 10g R1 vagy R2 (10.1, 10,2)
@@ -51,44 +51,44 @@ Az Oracle-összekötő illesztőprogramok két verziója támogatja:
     - Oracle 8i R3 (8.1.7-es)
 
 > [!IMPORTANT]
-> Jelenleg Microsoft Oracle-illesztőprogram csak az adatok másolását a Oracle, de nincs írás Oracle támogatja. És jegyezze meg a teszt kapcsolat funkció adatok felügyeleti átjáró Diagnosztika lap nem támogatja az illesztőprogramot. A varázsló segítségével azt is megteheti, ellenőrizze a kapcsolatot.
+> Jelenleg Microsoft Oracle-illesztőprogram csak az adatok másolását a Oracle, de nincs írás tooOracle támogatja. És megjegyzés hello teszt kapcsolat funkció adatok felügyeleti átjáró Diagnosztika lap nem támogatja az illesztőprogramot. Másik lehetőségként hello másolása varázsló toovalidate hello kapcsolatot is használhatja.
 >
 
-- **.NET-keretrendszerhez készült Oracle-adatszolgáltatóban:** másolja az adatokat, Oracle vagy Oracle-adatszolgáltatóban segítségével is beállíthatja. Ez az összetevő megtalálható [Oracle Data Access Windows összetevők](http://www.oracle.com/technetwork/topics/dotnet/downloads/). Telepítse a megfelelő verzióját (32 vagy 64 bites) a számítógépen, amelyen az átjáró telepítve van. [Oracle-adatszolgáltatóban .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) férhetnek hozzá Oracle Database 10 g, 2 vagy újabb kiadás.
+- **.NET-keretrendszerhez készült Oracle-adatszolgáltatóban:** toouse Oracle-adatszolgáltatóban toocopy adatait is beállíthatja / tooOracle. Ez az összetevő megtalálható [Oracle Data Access Windows összetevők](http://www.oracle.com/technetwork/topics/dotnet/downloads/). Telepítse a hello megfelelő verziója (32 vagy 64 bit) hello hello átjárót futtató gépen. [Oracle-adatszolgáltatóban .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) tooOracle Database 10 g, 2 vagy újabb kiadás hozzáférhet.
 
-    Ha úgy dönt, hogy a "XCopy telepítés", kövesse a readme.htm. Azt javasoljuk, hogy úgy dönt, hogy a telepítő felhasználói felületen (nem-XCopy egy).
+    Ha úgy dönt, hogy a "XCopy telepítés", hajtsa végre a hello readme.htm. Azt javasoljuk, hogy úgy dönt, hogy hello telepítőjét a felhasználói felület (nem-XCopy egy).
 
-    A szolgáltató telepítése után **indítsa újra a** az adatkezelési átjáró gazdaszolgáltatás a gépen a szolgáltatások kisalkalmazásával (vagy) az adatkezelési átjáró konfigurációkezelőjének használatával.  
+    Hello szolgáltató telepítése után **indítsa újra a** hello az adatkezelési átjáró gazdaszolgáltatás a gépen a szolgáltatások kisalkalmazásával (vagy) az adatkezelési átjáró konfigurációkezelőjének használatával.  
 
-Ahhoz, hogy a másolási folyamat másolása varázslót használja, ha az illesztőprogram-típus lesz automatikusan határozza meg. Microsoft illesztőprogram által használható alapértelmezett, kivéve, ha az átjáró verziója alacsonyabb, mint 2.7, vagy ha úgy dönt, Oracle, a fogadó.
+Ha másolása varázsló tooauthor hello másolási folyamat használja, a hello illesztőprogram típus lesz automatikus határozza meg. Microsoft illesztőprogram által használható alapértelmezett, kivéve, ha az átjáró verziója alacsonyabb, mint 2.7, vagy ha úgy dönt, Oracle, a fogadó.
 
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, amely helyezi át az adatokat a helyszíni Oracle-adatbázishoz és a különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját.
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára.
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban:
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello:
 
 1. Hozzon létre egy **adat-előállító**. Egy adat-előállító tartalmazhat egy vagy több folyamatok. 
-2. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory. Adatok Oralce adatbázisból az Azure blob Storage másolása, akkor hozzon létre például az Oracle-adatbázishoz és az Azure storage-fiók összekapcsolása a data factory két társított szolgáltatások. Oracle jellemző csatolt szolgáltatás tulajdonságait, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz.
-3. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. A példa az előző lépésben említett Ha meg szeretné adni a tábla az Oracle-adatbázishoz a bemeneti adatokat tartalmazó adatkészlet hoz létre. Továbbá adja meg a blob-tároló és a mappa, amely tárolja az adatokat másolni az Oracle-adatbázisból egy másik dataset létrehozhat. Oracle adott adatkészlet tulajdonságai, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
-4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett példában OracleSource forrás-és BlobSink akár használhatja a fogadó a másolási tevékenységhez. Ehhez hasonlóan az Azure Blob Storage Oracle-adatbázishoz való másolása, használható BlobSource és OracleSink a másolási tevékenység. Oracle-adatbázishoz adott tevékenység Tulajdonságok másolása, lásd: [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További részletek a tárolóban használatáról a forrás vagy a fogadó a hivatkozásra a adattároló az előző szakaszban. 
+2. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban. Adatok másolása az egy Oralce adatbázis tooan Azure blob Storage tárolóban, akkor hozzon létre például két összekapcsolt szolgáltatások toolink az Oracle-adatbázishoz és az Azure storage tooyour adat-előállítóban. Csatolt szolgáltatás tulajdonságait, amelyek adott tooOracle, lásd: [szolgáltatástulajdonságok kapcsolódó](#linked-service-properties) szakasz.
+3. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. Hello utolsó lépésében említett hello példában az Oracle-adatbázis hello bemeneti adatokat tartalmazó hoz létre egy adatkészlet toospecify hello tábla. Egy másik dataset toospecify hello blob tároló létrehozása és a hello adatokat tartalmazó hello mappába másolta át hello Oracle-adatbázishoz. Adatkészlet tulajdonságai, amelyek adott tooOracle, lásd: [adatkészlet tulajdonságai](#dataset-properties) szakasz.
+4. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. A korábban említett hello példában OracleSource forrás-és BlobSink akár használhatja a fogadó hello másolási tevékenységhez. Ehhez hasonlóan az Azure Blob Storage tooOracle adatbázis másolása, használható BlobSource és OracleSink hello másolási tevékenység. Másolási tevékenység tulajdonságok adott tooOracle adatbázis esetében, tekintse meg a [tevékenység Tulajdonságok másolása](#copy-activity-properties) szakasz. További információkért hogyan toouse egy adatok tárolót, mint a forrás- és a fogadó hivatkozásra hello az adattároló hello előző szakaszban. 
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  JSON-definíciók, amely segítségével másolja az adatokat a helyszíni Oracle-adatbázishoz az adat-előállító entitások minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-oracle-database) című szakaszát.
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek az egy helyszíni Oracle-adatbázishoz használt toocopy adatok JSON-definíciók minták, lásd: [JSON példák](#json-examples-for-copying-data-to-and-from-oracle-database) című szakaszát.
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory entitások JSON-tulajdonságok:
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat a JSON-elemek szerepelnek Oracle kapcsolódó szolgáltatásra vonatkozó leírást.
+a következő táblázat hello biztosít JSON elemek adott tooOracle kapcsolódó szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **OnPremisesOracle** |Igen |
-| driverType | Adja meg, melyik illesztőprogram használatával másolja az adatokat, vagy Oracle-adatbázishoz. Két érték engedélyezett **Microsoft** vagy **ODP** (alapértelmezett). Lásd: [verziójától és a telepítés támogatott](#supported-versions-and-installation) illesztőprogram adatai szakaszban. | Nem |
-| connectionString | Adja meg az Oracle adatbázispéldányt a connectionString tulajdonság való kapcsolódáshoz szükséges adatokat. | Igen |
-| gatewayName | Azon átjáró neve, amely a helyszíni Oracle-kiszolgálóhoz való csatlakozáshoz használt |Igen |
+| type |hello type tulajdonságot kell beállítani: **OnPremisesOracle** |Igen |
+| driverType | Adja meg, mely illesztőprogram toouse toocopy adatait / tooOracle adatbázis. Két érték engedélyezett **Microsoft** vagy **ODP** (alapértelmezett). Lásd: [verziójától és a telepítés támogatott](#supported-versions-and-installation) illesztőprogram adatai szakaszban. | Nem |
+| connectionString | Adjon meg információt tooconnect toohello Oracle adatbázispéldány hello connectionString tulajdonság szükséges. | Igen |
+| gatewayName | Hello átjáró, amely használt tooconnect toohello helyszíni Oracle-kiszolgáló neve |Igen |
 
 **Példa: Microsoft-illesztőprogramot használ:**
 ```json
@@ -107,7 +107,7 @@ A következő táblázat a JSON-elemek szerepelnek Oracle kapcsolódó szolgált
 
 **Példa: ODP illesztőprogramot használja.**
 
-Tekintse meg [ezen a helyen](https://www.connectionstrings.com/oracle-data-provider-for-net-odp-net/) az engedélyezett formátumokat.
+Tekintse meg a túl[ezen a helyen](https://www.connectionstrings.com/oracle-data-provider-for-net-odp-net/) az engedélyezett formátumokat hello.
 
 ```json
 {
@@ -124,45 +124,45 @@ User Id=<username>;Password=<password>;",
 ```
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Oracle, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Oracle, az Azure blob, Azure-tábla, stb.).
 
-A typeProperties szakasz más adatkészlet egyes típusai és információkat nyújt azokról az adattárban adatok helyét. A typeProperties szakasz az adatkészlet OracleTable típusú tulajdonságai a következők:
+hello typeProperties szakasz más adatkészlet egyes típusai és hello adattár hello adatok hello helyét ismerteti. hello typeProperties szakasz hello adatkészlet OracleTable típus következő tulajdonságai hello rendelkezik:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla az Oracle-adatbázishoz, amely hivatkozik a társított szolgáltatás neve. |Nem (Ha **oracleReaderQuery** a **OracleSource** van megadva) |
+| tableName |Oracle-adatbázishoz kapcsolódó szolgáltatás hello hello hello tábla neve hivatkozik. |Nem (Ha **oracleReaderQuery** a **OracleSource** van megadva) |
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
 
 > [!NOTE]
-> A másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
+> hello másolási tevékenység során csak egy bemenettel rendelkezik, és csak egy kimenetet.
 
-Mivel a tevékenység typeProperties szakaszában elérhető tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Mivel a hello hello tevékenység részében typeProperties rendelkezésre álló tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
 ### <a name="oraclesource"></a>OracleSource
-A másolási tevékenység, ha az adatforrás típusú **OracleSource** a következő tulajdonságok érhetők el **typeProperties** szakasz:
+A másolási tevékenység, ha hello adatforrás típusú **OracleSource** hello a következő tulajdonságok érhetők el **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| oracleReaderQuery |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla <br/><br/>Ha nincs megadva, az SQL-utasítás végrehajtott: Válasszon * from tábla |Nem (Ha **tableName** a **dataset** van megadva) |
+| oracleReaderQuery |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla <br/><br/>Ha nincs megadva, az SQL-utasítás végrehajtása hello: Válasszon * from tábla |Nem (Ha **tableName** a **dataset** van megadva) |
 
 ### <a name="oraclesink"></a>OracleSink
-**OracleSink** támogatja a következő tulajdonságokkal:
+**OracleSink** következő tulajdonságai hello támogatja:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| writeBatchTimeout |Várakozási idő a kötegelt beszúrási művelet befejezését, mielőtt azt az időkorlátot. |A TimeSpan<br/><br/> . Példa: 00:30:00 (30 perc). |Nem |
-| WriteBatchSize |Szúr be az SQL-tábla adatokat, amikor a puffer mérete eléri writeBatchSize. |Egész szám (sorok száma) |Nem (alapértelmezett: 100) |
-| sqlWriterCleanupScript |Adja meg egy lekérdezést a másolási tevékenység végrehajtása úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
-| sliceIdentifierColumnName |Adja meg a másolási tevékenység során automatikusan létrejön szelet azonosító, amely segítségével távolítja el az adatokat egy adott szelet, amikor futtassa újra a töltse ki az oszlopnevet. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
+| writeBatchTimeout |Várnia kell az hello kötegelt beszúrási művelet toocomplete előtt azt az időkorlátot. |A TimeSpan<br/><br/> . Példa: 00:30:00 (30 perc). |Nem |
+| WriteBatchSize |Amikor hello puffer mérete eléri writeBatchSize adatok beillesztése hello SQL táblázat. |Egész szám (sorok száma) |Nem (alapértelmezett: 100) |
+| sqlWriterCleanupScript |Adja meg a másolási tevékenység tooexecute vonatkozó lekérdezést úgy, hogy egy adott szelet adatait. |A lekérdezési utasítást. |Nem |
+| sliceIdentifierColumnName |Adja meg, a másolási tevékenység toofill oszlopnév automatikusan létrejön szelet azonosítóval, amely adatokat egy adott szelet, amikor futtassa újra a használt tooclean. |Egy oszlop binary(32) adattípusú oszlop neve. |Nem |
 
-## <a name="json-examples-for-copying-data-to-and-from-oracle-database"></a>Adatok másolása, és az Oracle-adatbázisból JSON példák
-Az alábbi példa minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot biztosít [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Ezek szemléltetik adatok másolása az / / az Azure Blob Storage Oracle-adatbázishoz. Azonban adatok átmásolhatók a megadott mosdók bármelyikét [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.   
+## <a name="json-examples-for-copying-data-tooand-from-oracle-database"></a>JSON Példák adatok tooand másolását Oracle-adatbázishoz
+hello alábbi példa minta JSON definícióit tartalmazza használható toocreate folyamat használatával [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azok hogyan toocopy adatait / tooan Oracle adatbázis, az Azure Blob Storage tárolóban. Adatok azonban nem közölt hello nyelő másolt tooany [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.   
 
-## <a name="example-copy-data-from-oracle-to-azure-blob"></a>Példa: Adatok másolása az Oracle az Azure-Blobba
+## <a name="example-copy-data-from-oracle-tooazure-blob"></a>Példa: Adatok másolása az Oracle tooAzure Blob
 
-A minta a következő data factory entitások rendelkezik:
+hello minta a következő data factory entitások hello rendelkezik:
 
 1. A társított szolgáltatás típusa [OnPremisesOracle](data-factory-onprem-oracle-connector.md#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -170,7 +170,7 @@ A minta a következő data factory entitások rendelkezik:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [OracleSource](data-factory-onprem-oracle-connector.md#copy-activity-properties) forrásként és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) mint fogadó.
 
-A minta másol adatokat egy helyszíni Oracle adatbázis egyik táblája blob óránként. További információ a különböző, a mintában használt tulajdonságok a mintákat a következő szakaszok dokumentációjában olvasható.
+hello minta másol adatokat egy helyszíni Oracle adatbázis tooa blob táblához óránként. További információ a különböző hello minta használt tulajdonságok hello mintát a következő szakaszok dokumentációjában olvasható.
 
 **Oracle kapcsolódó szolgáltatás:**
 
@@ -204,9 +204,9 @@ A minta másol adatokat egy helyszíni Oracle adatbázis egyik táblája blob ó
 
 **Oracle bemeneti adatkészlet:**
 
-A példa azt feltételezi, hogy létrehozott egy tábla "MyTable" Oracle és egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
+hello példa azt feltételezi, hogy létrehozott egy tábla "MyTable" Oracle és egy "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz.
 
-"External" beállítása: "true" arról tájékoztatja a Data Factory szolgáltatásnak, hogy az adatkészlet külső data factoryval való és adat-előállító tevékenység nem hozzák.
+"External" beállítása: "true" tájékoztatja hello Data Factory szolgáltatásnak, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```json
 {
@@ -237,7 +237,7 @@ A példa azt feltételezi, hogy létrehozott egy tábla "MyTable" Oracle és egy
 
 **Az Azure Blob kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját és nevét a BLOB dinamikusan értékeli ki a kezdési időt a szelet által feldolgozott alapján. A mappa elérési útját használja, év, hónap, nap és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útját és nevét hello blob dinamikusan értékeli ki a rendszer által feldolgozott hello szelet hello kezdési ideje alapján. hello mappa elérési útja hello kezdési ideje év, hónap, nap és óra részét használja.
 
 ```json
 {
@@ -297,7 +297,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 **A másolási tevékenység során a következő feldolgozási sorban:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra van ütemezve. Az adatcsatorna JSON-definícióból a **forrás** típusúra **OracleSource** és **fogadó** típusúra **BlobSink**.  A megadott SQL-lekérdezés **oracleReaderQuery** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**OracleSource** és **fogadó** típusuk értéke túl**BlobSink**.  hello SQL-lekérdezésben megadott **oracleReaderQuery** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```json
 {  
@@ -346,10 +346,10 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 
-## <a name="example-copy-data-from-azure-blob-to-oracle"></a>Példa: Adatok másolása az Azure Blob az Oracle
-Ez a példa bemutatja az adatok másolása egy Azure Blob Storage-ból a helyszíni Oracle-adatbázishoz. Azonban az adatok átmásolhatók **közvetlenül** bármelyik megadott forrás [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.  
+## <a name="example-copy-data-from-azure-blob-toooracle"></a>Példa: Adatok másolása az Azure Blob tooOracle
+Ez a példa bemutatja, hogyan toocopy adatait az Azure Blob Storage tooan helyszíni Oracle-adatbázishoz. Azonban az adatok átmásolhatók **közvetlenül** bármelyik megadott hello források [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.  
 
-A minta a következő data factory entitások rendelkezik:
+hello minta a következő data factory entitások hello rendelkezik:
 
 1. A társított szolgáltatás típusa [OnPremisesOracle](data-factory-onprem-oracle-connector.md#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -357,7 +357,7 @@ A minta a következő data factory entitások rendelkezik:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [OracleTable](data-factory-onprem-oracle-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) forrásaként [OracleSink](data-factory-onprem-oracle-connector.md#copy-activity-properties) mint fogadó.
 
-A minta másol adatokat egy blobot egy helyszíni Oracle adatbázis egyik táblája óránként. További információ a különböző, a mintában használt tulajdonságok a mintákat a következő szakaszok dokumentációjában olvasható.
+hello minta másol adatokat a helyszíni Oracle-adatbázisban egy blob tooa tábla óránként. További információ a különböző hello minta használt tulajdonságok hello mintát a következő szakaszok dokumentációjában olvasható.
 
 **Oracle kapcsolódó szolgáltatás:**
 ```json
@@ -389,7 +389,7 @@ A minta másol adatokat egy blobot egy helyszíni Oracle adatbázis egyik tábl�
 
 **Az Azure Blob bemeneti adatkészlet**
 
-Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját és nevét a BLOB dinamikusan értékeli ki a kezdési időt a szelet által feldolgozott alapján. A mappa elérési útját használja év, hónap és nap részét kezdési idejét, valamint fájl nevét a kezdő időpontja óra részét. "external": "true" beállítás arról értesíti az, hogy ezt a táblázatot az adat-előállítóban külső, és egy tevékenység adat-előállító nem hozzák a Data Factory szolgáltatásnak.
+Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útját és nevét hello blob dinamikusan értékeli ki a rendszer által feldolgozott hello szelet hello kezdési ideje alapján. hello mappa elérési útját használja év, hónap és nap részét hello kezdési ideje, valamint fájlnév hello kezdő időpontja óra részét hello. "external": "true" beállítás arról értesíti az, hogy ez a táblázat külső toohello adat-előállító és hello adat-előállítóban tevékenység nem hozzák hello Data Factory szolgáltatásnak.
 
 ```json
 {
@@ -449,7 +449,7 @@ Adatok van felvett egy új blobból minden órában (gyakoriság: óra, időköz
 
 **Oracle kimeneti adatkészlet:**
 
-A példa feltételezi, hogy létrehozott egy "MyTable" táblát az Oracle. A tábla létrehozása az azonos számú oszlopot az Oracle a Blob CSV-fájl tartalmazza a várt módon. Új sorok hozzáadásakor a tábla minden órában.
+hello példa feltételezi, hogy létrehozott egy "MyTable" táblát az Oracle. Hello tábla létrehozása az Oracle azonos számú oszlopot hello hello Blob CSV-fájl toocontain várt. Új sorok hozzáadásakor toohello tábla óránként.
 
 ```json
 {
@@ -470,7 +470,7 @@ A példa feltételezi, hogy létrehozott egy "MyTable" táblát az Oracle. A tá
 
 **A másolási tevékenység során a következő feldolgozási sorban:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **BlobSource** és a **fogadó** típusúra **OracleSink**.  
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**BlobSource** és hello **fogadó** típusuk értéke túl**OracleSink**.  
 
 ```json
 {  
@@ -522,44 +522,44 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 ## <a name="troubleshooting-tips"></a>Hibaelhárítási tippek
 ### <a name="problem-1-net-framework-data-provider"></a>1. hiba: A .NET-keretrendszer adatszolgáltatója
 
-Lásd a következő **hibaüzenet**:
+Lásd a következő hello **hibaüzenet**:
 
-    Copy activity met invalid parameters: 'UnknownParameterName', Detailed message: Unable to find the requested .Net Framework Data Provider. It may not be installed”.  
+    Copy activity met invalid parameters: 'UnknownParameterName', Detailed message: Unable toofind hello requested .Net Framework Data Provider. It may not be installed”.  
 
 **Lehetséges okok:**
 
-1. A .NET Framework Data Provider – Oracle nem lett telepítve.
-2. A .NET Framework Data Provider – Oracle lett telepítve a .NET-keretrendszer 2.0, és nem található a .NET Framework 4.0 mappákban.
+1. .NET Framework Data Provider – Oracle hello nem lett telepítve.
+2. .NET Framework Data Provider – Oracle hello telepített too.NET keretrendszer 2.0-s volt, és nem található a .NET Framework 4.0 hello mappákban.
 
 **Megoldás vagy megoldás:**
 
-1. Ha még nem telepítette a .NET-szolgáltató az Oracle rendszerhez, [telepítse](http://www.oracle.com/technetwork/topics/dotnet/downloads/) , majd próbálja megismételni a forgatókönyvet.
-2. Ha a hiba jelenik meg a szolgáltató telepítése után is, tegye a következőket:
-   1. Nyissa meg a .NET 2.0 gép config a mappából: <system disk>: \Windows\Microsoft.NET\Framework64\v2.0.50727\CONFIG\machine.config.
-   2. Keresse meg **.NET-keretrendszerhez készült Oracle-adatszolgáltatóban**, és meg kell található bejegyzés a következő mintában látható módon **system.data** -> **DbProviderFactories**: "<add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description=".NET oracle-adatszolgáltatója" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />”
-3. Ez a bejegyzés másolja a machine.config fájlban a következő v4.0: <system disk>: \Windows\Microsoft.NET\Framework64\v4.0.30319\Config\machine.config, és módosítsa a 4.xxx.x.x verzióra.
-4. A globális szerelvény-gyorsítótárban (GAC) "< ODP.NET telepített elérési útja > \11.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll" futtatásával telepítse `gacutil /i [provider path]`. ## hibaelhárítási tippek
+1. Ha nem telepített .NET-szolgáltató az Oracle, hello [telepítse](http://www.oracle.com/technetwork/topics/dotnet/downloads/) , majd próbálja megismételni a hello forgatókönyv.
+2. Ha hibaüzenet hello hello szolgáltató telepítése után is, hello lépéseket követve:
+   1. Nyissa meg a .NET 2.0 gép config hello mappából: <system disk>: \Windows\Microsoft.NET\Framework64\v2.0.50727\CONFIG\machine.config.
+   2. Keresse meg **.NET-keretrendszerhez készült Oracle-adatszolgáltatóban**, és képes toofind bejegyzést kell lennie, ahogy az a következő minta alapján hello **system.data** -> **DbProviderFactories**: "<add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description=".NET oracle-adatszolgáltatója" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />”
+3. A bejegyzés toohello machine.config fájl másolása a következő v4.0 mappa hello: <system disk>: \Windows\Microsoft.NET\Framework64\v4.0.30319\Config\machine.config és módosítási hello verzió too4.xxx.x.x.
+4. "< ODP.NET telepített elérési útja > \11.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll" hello globális szerelvény-gyorsítótárban (GAC) futtatásával telepítse `gacutil /i [provider path]`. ## hibaelhárítási tippek
 
 ### <a name="problem-2-datetime-formatting"></a>2. hiba: dátum és idő formázása
 
-Lásd a következő **hibaüzenet**:
+Lásd a következő hello **hibaüzenet**:
 
-    Message=Operation failed in Oracle Database with the following error: 'ORA-01861: literal does not match format string'.,Source=,''Type=Oracle.DataAccess.Client.OracleException,Message=ORA-01861: literal does not match format string,Source=Oracle Data Provider for .NET,'.
+    Message=Operation failed in Oracle Database with hello following error: 'ORA-01861: literal does not match format string'.,Source=,''Type=Oracle.DataAccess.Client.OracleException,Message=ORA-01861: literal does not match format string,Source=Oracle Data Provider for .NET,'.
 
 **Megoldás vagy megoldás:**
 
-Szükség lehet úgy, hogy a lekérdezési karakterláncok a másolási tevékenység alapján dátumok hogyan vannak konfigurálva az Oracle-adatbázis (a to_date függvény használatával) a következő mintában látható módon:
+A másolási tevékenység alapján dátumok hogyan vannak konfigurálva az Oracle-adatbázishoz, ahogy az alábbi hello esetleg tooadjust hello lekérdezési karakterlánc minta (hello to_date függvény használatával):
 
     "oracleReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= to_date(\\'{0:MM-dd-yyyy HH:mm}\\',\\'MM/DD/YYYY HH24:MI\\')  AND timestampcolumn < to_date(\\'{1:MM-dd-yyyy HH:mm}\\',\\'MM/DD/YYYY HH24:MI\\') ', WindowStart, WindowEnd)"
 
 
 ## <a name="type-mapping-for-oracle"></a>Oracle típusú leképezése
-Ahogyan az a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység az eseményforrás-típusnak gyűjtése módszert használja a következő 2. lépés típusok automatikus típuskonverziók hajtja végre:
+A hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység az automatikus típuskonverziók származó típusok toosink típusait a 2. lépés – a módszert követve hello hajtja végre:
 
-1. A natív eseményforrás-típusnak átalakítása .NET-típusa
-2. .NET-típus konvertálása natív a fogadó típusa
+1. Natív típusok too.NET forrástípus konvertálása
+2. .NET típusú toonative a fogadó típusa konvertálása
 
-Ha az adatok áthelyezése az Oracle, a következő megfeleltetéseket használtak Oracle-adattípusra .NET-típus, és ez fordítva is igaz.
+Ha adatok áthelyezése az Oracle, leképezéseket a következő hello használ az Oracle típusú too.NET típusánál, és ez fordítva is igaz.
 
 | Oracle-adattípusra | .NET-keretrendszer adattípus |
 | --- | --- |
@@ -570,8 +570,8 @@ Ha az adatok áthelyezése az Oracle, a következő megfeleltetéseket használt
 | DÁTUM |Dátum és idő |
 | LEBEGŐPONTOS |Decimális, karakterlánc (Ha pontosság > 28) |
 | EGÉSZ SZÁM |Decimális, karakterlánc (Ha pontosság > 28) |
-| IDŐKÖZ HÓNAP ÉV |Int32 |
-| MÁSODIK INTERVALLUM NAPONTA |A TimeSpan |
+| IDŐKÖZ év tooMONTH |Int32 |
+| IDŐKÖZ nap tooSECOND |A TimeSpan |
 | HOSSZÚ |Karakterlánc |
 | HOSSZÚ NYERS |Byte] |
 | NCHAR |Karakterlánc |
@@ -588,13 +588,13 @@ Ha az adatok áthelyezése az Oracle, a következő megfeleltetéseket használt
 | XML |Karakterlánc |
 
 > [!NOTE]
-> Adattípus **IDŐKÖZ év TO hónap** és **IDŐKÖZ nap TO második** Microsoft illesztőprogram használata esetén nem támogatottak.
+> Adattípus **IDŐKÖZ év tooMONTH** és **IDŐKÖZ nap tooSECOND** Microsoft illesztőprogram használata esetén nem támogatottak.
 
-## <a name="map-source-to-sink-columns"></a>Térkép forrás oszlopok gyűjtése
-A forrás oszlop szerepel a fogadó dataset adatkészlet leképezési oszlopok, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>A forrásoszlopokat toosink leképezése
+toolearn leképezési oszlopok az forrás adatkészlet toocolumns fogadó adatkészletben, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>A relációs források ismételhető Olvasás
-Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha győződjön meg arról, hogy ugyanazokat az adatokat olvasható függetlenül attól, hogy a szelet futtatása hány alkalommal kell. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Amikor az adatok másolása relációs adattároló, tartsa ismételhetőség szem előtt tartva tooavoid nem kívánt eredmények. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha van szüksége arról, hogy ugyanazokat az adatokat hello toomake hogyan olvasható függetlenül attól, hogy hányszor a szelet futtatása. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.

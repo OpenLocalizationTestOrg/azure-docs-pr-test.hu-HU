@@ -1,6 +1,6 @@
 ---
-title: "MySQL az Azure-adatbázis adatkapcsolattárak |} Microsoft Docs"
-description: "Ez a cikk sorolja fel, minden könyvtár vagy illesztőprogram, ügyfélprogramok MySQL az Azure-adatbázishoz való csatlakozáshoz használhat."
+title: "MySQL adatbázis Azure-könyvtárakban aaaConnection |} Microsoft Docs"
+description: "Ez a cikk a minden használó ügyfélprogramok MySQL adatbázis tooAzure kapcsolódáskor könyvtár vagy illesztőprogram listája."
 services: mysql
 author: mswutao
 ms.author: wutao
@@ -9,14 +9,14 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/08/2017
-ms.openlocfilehash: e746f28829063f8437ad408c4681f90aec6c0e0a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ff439274ec5865d7713dec18d53e7e44f5886457
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-mysql"></a>Adatkapcsolattárak MySQL az Azure-adatbázis
-Ez a témakör minden könyvtár vagy illesztőprogram használó ügyfélprogramok MySQL az Azure-adatbázishoz való csatlakozáshoz.
+Ez a témakör minden könyvtár vagy illesztőprogram használó ügyfélprogramok MySQL adatbázis tooAzure kapcsolódáskor.
 
 ## <a name="client-interfaces"></a>Ügyfél felületek
 MySQL adatbázis standard illesztőprogram kapcsolódási MySQL ipari szabványok ODBC és JDBC kompatibilis eszközök és az alkalmazások használatára vonatkozó lehetőséget. A rendszer, amely ODBC vagy JDBC MySQL használhatja.

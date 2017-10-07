@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric működési csatorna |} Microsoft Docs"
-description: "A működési csatorna az Azure Service Fabric-fürtök létrehozott naplók átfogó listáját."
+title: "Service Fabric működési csatorna aaaAzure |} Microsoft Docs"
+description: "Hello működési csatorna az Azure Service Fabric-fürtök a létrehozott naplók átfogó listáját."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 934719868ab9968db352db2b440014d35dbc0274
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 358782420ed62b202d6a89fe0f200b5ef0384c9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operational-channel"></a>Működési csatorna 
 
-A műveleti csatornát naplók végzi el a Service Fabric a csomópontokon és a fürt magas szintű műveletekből áll. Ha "diagnosztika" fürt engedélyezve van, az Azure diagnosztikai ügynök telepítve van a fürt, és úgy konfigurálva, hogy olvassa a műveleti csatornát a naplók alapértelmezés szerint ki van. További információk konfigurálása a [Azure diagnosztikai ügynök](service-fabric-diagnostics-event-aggregation-wad.md) a fürt további naplóit vagy teljesítményszámlálóit átvételéhez diagnosztika konfigurációjának módosítása. 
+hello működési csatorna naplók végzi el a Service Fabric a csomópontokon és a fürt magas szintű műveletekből áll. Ha engedélyezve van a "diagnosztika" hello Azure diagnosztikai ügynök telepítve van a fürt, és alapértelmezés szerint a fürt konfigurált tooread naplók hello működési csatornán. További információk hello konfigurálása [Azure diagnosztikai ügynök](service-fabric-diagnostics-event-aggregation-wad.md) toomodify hello diagnosztika konfigurálása a fürt toopick fel további naplóit vagy teljesítményszámlálóit. 
 
 ## <a name="operational-channel-logs"></a>Működési csatorna naplók 
 
-A naplók a műveleti csatornát a Service Fabric által biztosított átfogó listája itt található. 
+A naplók hello működési csatorna a Service Fabric által biztosított átfogó listája itt található. 
 
 | Eseményazonosító | Név | Forrás (feladat) | Szint |
 | --- | --- | --- | --- |
@@ -56,6 +56,6 @@ A naplók a műveleti csatornát a Service Fabric által biztosított átfogó l
 
 ## <a name="next-steps"></a>Következő lépések
 
-* További általános információ [platform szintjén az eseménygenerálás](service-fabric-diagnostics-event-generation-infra.md) a Service Fabric
-* Módosítja a [Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) konfigurációját, és további naplófájlok összegyűjtése
-* [Az Application Insights beállítása](service-fabric-diagnostics-event-analysis-appinsights.md) a műveleti naplókat csatorna megjelenítéséhez
+* További általános információ [hello platform szintjén az eseménygenerálás](service-fabric-diagnostics-event-generation-infra.md) a Service Fabric
+* Módosítja a [Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) konfigurációs toocollect több naplózza.
+* [Az Application Insights beállítása](service-fabric-diagnostics-event-analysis-appinsights.md) toosee a működési csatorna naplói

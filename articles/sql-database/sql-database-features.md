@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL Database funkcióinak áttekintése | Microsoft Docs"
-description: "Ez az oldal áttekintést nyújt az Azure SQL Database logikai kiszolgálóiról és adatbázisairól, valamint funkciótámogatási mátrixot is tartalmaz, hivatkozásokkal az egyes felsorolt funkcióhoz."
+title: "aaaAzure SQL adatbázis szolgáltatások áttekintése |} Microsoft Docs"
+description: "Ezen a lapon hello Azure SQL Database logikai kiszolgálók és adatbázisok áttekintést nyújt, és magában foglalja a szolgáltatás-támogatási mátrixot hivatkozásokat az egyes felsorolt szolgáltatásokhoz."
 services: sql-database
 documentationcenter: na
 author: CarlRabeler
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 08/25/2017
 ms.author: carlrab
-ms.openlocfilehash: 4ef119d5218c844f3949bf4fc17fb320a7cbf7b4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 463c88edcd38eabbc768cfb701bc74461836aa36
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-features"></a>Az Azure SQL Database funkciói
 
-Az Azure SQL-adatbázis egy közös kódbázis osztja meg az SQL Server és az adatbázis szintjén támogatja a legtöbb a szolgáltatást. Azure SQL Database és SQL Server közötti fő funkció különbségek vannak a példány szintjén. 
+Az Azure SQL-adatbázis egy közös kódbázis osztja meg az SQL Server, és hello adatbázis szintjén támogatja a legtöbb olyan hello szolgáltatást. az Azure SQL Database és SQL Server közötti hello főbb szolgáltatások eltérései hello példány szintjén vannak. 
 
-Az Azure SQL Database funkcióinak körét folyamatosan bővítjük. Ezért javasoljuk, hogy látogassa meg az Azure Szolgáltatási hírek webhelyét, és használja a szűrőket:
+A Folytatás tooadd szolgáltatások tooAzure SQL-adatbázis. Így a szolgáltatás Ön toovisit javasoljuk weblap Azure, és frissítéseinek toouse a szűrők:
 
-* Szűrjön [SQL Database szolgáltatásra](https://azure.microsoft.com/updates/?service=sql-database).
-* Szűrjön az általános elérhetőséggel kapcsolatos [bejelentésekre](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) az SQL Database funkcióira vonatkozóan.
+* Szűrt toohello [SQL Database szolgáltatás](https://azure.microsoft.com/updates/?service=sql-database).
+* Szűrt tooGeneral rendelkezésre állási [(GA) közlemények](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) az SQL adatbázis-szolgáltatások.
 
 ## <a name="sql-server-and-sql-database-feature-support"></a>SQL Server és SQL-adatbázis által nyújtott szolgáltatások támogatásáról
 
-A következő táblázat az SQL Server főbb szolgáltatásokat sorolja fel, és minden adott szolgáltatással támogatja-e, és a szolgáltatásra vonatkozó további információkra mutató hivatkozás nyújt információt. A meglévő adatbázis-megoldások áttelepítése során figyelembe veendő Transact-SQL különbségekről lásd: [Transact-SQL különbségek feloldása az SQL Database-be végzett áttelepítések során](sql-database-transact-sql-information.md).
+hello következő táblázat hello fő szolgáltatásainak az SQL Server és és kapcsolatos információk minden adott szolgáltatással támogatja-e a hivatkozás toomore hello funkcióval kapcsolatban. Transact-SQL különbségek tooconsider egy meglévő adatbázis megoldás áttelepítésekor, lásd: [feloldása Transact-SQL különbségek során áttelepítési tooSQL adatbázis](sql-database-transact-sql-information.md).
 
 
 | **SQL Server szolgáltatás** | **Az Azure SQL-adatbázis támogatott** | 
@@ -127,5 +127,5 @@ A következő táblázat az SQL Server főbb szolgáltatásokat sorolja fel, és
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Az Azure SQL Database szolgáltatással kapcsolatos tudnivalók: [Mi az SQL Database?](sql-database-technical-overview.md)
-- A Transact-SQL támogatásával és eltéréseivel kapcsolatos tudnivalókat lásd: [Transact-SQL különbségek feloldása az SQL Database-be végzett áttelepítések során](sql-database-transact-sql-information.md).
+- További információ az Azure SQL Database szolgáltatás hello: [Mi az SQL Database?](sql-database-technical-overview.md)
+- További információ a Transact-SQL-támogatás és különbségek: [feloldása Transact-SQL különbségek során áttelepítési tooSQL adatbázis](sql-database-transact-sql-information.md).

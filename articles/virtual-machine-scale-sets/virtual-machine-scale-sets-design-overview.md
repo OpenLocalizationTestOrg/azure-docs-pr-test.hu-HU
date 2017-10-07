@@ -1,5 +1,5 @@
 ---
-title: "Kialakítási szempontok a Azure virtuálisgép-méretezési csoportok |} Microsoft Docs"
+title: "Azure virtuálisgép-méretezési csoportok szempontjai aaaDesign |} Microsoft Docs"
 description: "További tudnivalók az Azure virtuálisgép-méretezési csoportok kialakítási szempontjai"
 keywords: "Linux virtuális gép, virtuálisgép-méretezési beállítása"
 services: virtual-machine-scale-sets
@@ -16,64 +16,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: negat
-ms.openlocfilehash: 6dbd4f22e3e949e19565030f5a10f545b89a0a3c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f8644d36fe5903bd4b74df26dca5dc3211ee3516
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-considerations-for-scale-sets"></a>Méretezési csoportok kialakítási szempontjai
-Ebben a témakörben ismertetett tervezési megfontolások a virtuálisgép-méretezési készlet. Mik azok a virtuálisgép-méretezési csoportok kapcsolatos információkért tekintse meg [virtuális gépek méretezési készletek áttekintése](virtual-machine-scale-sets-overview.md).
+Ebben a témakörben ismertetett tervezési megfontolások a virtuálisgép-méretezési készlet. Mik azok a virtuálisgép-méretezési csoportok kapcsolatos információkért tekintse meg túl[virtuális gépek méretezési készletek áttekintése](virtual-machine-scale-sets-overview.md).
 
-## <a name="when-to-use-scale-sets-instead-of-virtual-machines"></a>Mikor érdemes használni a skála beállítja a virtuális gépek helyett?
-Általában méretezési csoportok hasznosak magas rendelkezésre állású infrastruktúra üzembe helyezéséhez ahol gépek halmaza hasonló konfigurációval rendelkezik. Azonban bizonyos funkciók találhatók csak méretezési csoportok míg egyéb szolgáltatásokat csak a virtuális gépek. Ahhoz, hogy jól informált döntést arról, hogy mikor melyik technológiát használja, azt kell vessen egy pillantást, néhány gyakran használt funkciója által biztosított méretezési csoportok, de nem a virtuális gépek:
+## <a name="when-toouse-scale-sets-instead-of-virtual-machines"></a>Ha toouse skálázási készletekben helyett virtuális gépek?
+Általában méretezési csoportok hasznosak magas rendelkezésre állású infrastruktúra üzembe helyezéséhez ahol gépek halmaza hasonló konfigurációval rendelkezik. Azonban bizonyos funkciók találhatók csak méretezési csoportok míg egyéb szolgáltatásokat csak a virtuális gépek. A rendezés toomake tájékozott döntést arról, hogy mikor toouse egyes technológiák azt kell először tekintse meg néhány méretezési csoportok, de nem a virtuális gépek rendelkezésre álló általánosan használt hello szolgáltatást:
 
 ### <a name="scale-set-specific-features"></a>Méretezési készlet-specifikus szolgáltatásai
 
-- A méretezési konfigurációs ad meg, ha egyszerűen frissítheti párhuzamosan további virtuális gépek telepítése a "kapacitás" tulajdonság. Ez egy sokkal egyszerűbb, mint a kell levezényelni a párhuzamos sok egyes virtuális gépek telepítését egy parancsfájl írásához.
-- Is [Azure automatikus skálázás segítségével automatikusan átméretezi a méretezési](./virtual-machine-scale-sets-autoscale-overview.md) , de nem az egyes virtuális gépek.
+- Hello méretezési készlet konfigurációja adja meg, ha egyszerűen frissíthető hello "kapacitása" tulajdonság toodeploy további virtuális gépek párhuzamosan. Ez egy sokkal egyszerűbb, mint a írása egy parancsfájl tooorchestrate párhuzamosan sok egyes virtuális gépek telepítése.
+- Is [használata Azure automatikus skálázás tooautomatically méretezése a méretezési](./virtual-machine-scale-sets-autoscale-overview.md) , de nem az egyes virtuális gépek.
 - Is [lemezkép-visszaállítási méretezési virtuális gépek](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-a-vm) , de [nem az egyes virtuális gépek](https://docs.microsoft.com/rest/api/compute/virtualmachines).
-- Is [szükségesnél több erőforrás](./virtual-machine-scale-sets-design-overview.md) méretezési virtuális gépek nagyobb megbízhatóságot és gyorsabb telepítési időpontokat. Nem ehhez az egyes virtuális gépeken kivéve ennek egyéni kód írását, akkor.
-- Megadhat egy [házirend frissítése](./virtual-machine-scale-sets-upgrade-scale-set.md) megkezdik frissítések virtuális gépek között a méretezési csoportban lévő megkönnyítése. Az egyes virtuális gépeken meg kell levezényelni a frissítéseket magát.
+- Is [szükségesnél több erőforrás](./virtual-machine-scale-sets-design-overview.md) méretezési virtuális gépek nagyobb megbízhatóságot és gyorsabb telepítési időpontokat. Nem ehhez az egyes virtuális gépek csak írt egyéni kód toodo ez.
+- Megadhat egy [házirend frissítése](./virtual-machine-scale-sets-upgrade-scale-set.md) toomake azt a méretezési csoportban lévő virtuális gépek között frissítésének könnyen tooroll. Az egyes virtuális gépeken meg kell levezényelni a frissítéseket magát.
 
 ### <a name="vm-specific-features"></a>VM-specifikus szolgáltatásai
 
-Másrészről, néhány funkció csak érhető el a virtuális gépek (legalább jelenleg):
+A hello ugyanakkor, néhány funkció csak a virtuális gépek érhető el (legalább a hello jelenleg):
 
-- Az adatlemezek csatolhat adott egyes virtuális gépeken, de csatolt adatlemezek méretezési csoportban lévő összes virtuális gépek vannak konfigurálva.
-- Nem üres adatlemez csatolása egyes virtuális gépeken, de nem méretezési csoportban lévő virtuális gépek.
+- Adatok lemezek toospecific csatolhat méretezési csoportban lévő összes virtuális gép egyes virtuális gépeken, de a mellékelt adatok lemezek vannak beállítva.
+- Csatolhat a szolgáltatáskéréshez nem üres adatok lemezek tooindividual virtuális gépeket, de nem méretezési csoportban lévő virtuális gépek.
 - Egy adott virtuális Gépre, de nem egy Virtuálisgép-méretezési csoportban lévő lehet pillanatkép.
 - Az egy adott virtuális Gépre, de nem egy Virtuálisgép-méretezési csoportban lévő lemezkép rögzítheti.
-- Telepíthet át egy adott virtuális Gépre natív lemezek felügyelt lemezekre, de nem ehhez a virtuális gépek méretezési csoportban lévő.
-- IPv6 nyilvános IP-címek rendelhet az egyes virtuális gép hálózati adapterek, de nem ehhez a virtuális gépek méretezési csoportban lévő. Vegye figyelembe, hogy IPv6 nyilvános IP-címek terheléselosztókhoz elé vagy egyedi virtuális gépeket rendelhet, vagy virtuális gépek méretezési csoportjának virtuális gépeket.
+- Natív lemezek toomanaged lemezek telepíthet át egy adott virtuális Gépre, de nem ehhez a virtuális gépek méretezési csoportban lévő.
+- Rendelhet hozzá az IPv6 nyilvános IP-címek tooindividual virtuális gép hálózati adapterek, de nem ehhez a virtuális gépek méretezési csoportban lévő. Vegye figyelembe, hogy rendelhet IPv6 nyilvános IP-címek tooload terheléselosztók elé vagy az egyes virtuális gépek vagy virtuális gépek méretezési csoportjának virtuális gépeket.
 
 ## <a name="storage"></a>Storage
 
 ### <a name="scale-sets-with-azure-managed-disks"></a>Az Azure Managed lemezek méretezési csoportok
-Méretezési csoportok hozhatók létre [Azure felügyelt lemezek](../virtual-machines/windows/managed-disks-overview.md) hagyományos Azure storage-fiókok helyett. Felügyelt lemezek előnyei a következők:
-- Nincs előzetes létrehozása az Azure storage-fiókokat, a méretezési virtuális gépek számára.
-- Megadhat [adatlemezt csatolni](virtual-machine-scale-sets-attached-disks.md) a virtuális gépeket, a méretezési beállítása.
-- Méretezési csoportok beállítható úgy, hogy [legfeljebb 1000 virtuális gépek támogatásához egy](virtual-machine-scale-sets-placement-groups.md). 
+Méretezési csoportok hozhatók létre [Azure felügyelt lemezek](../virtual-machines/windows/managed-disks-overview.md) hagyományos Azure storage-fiókok helyett. Felügyelt lemezek hello a következő előnyöket biztosítják:
+- Nem rendelkezik toopre-hello méretezési virtuális gépeket az Azure storage-fiókokat létrehozni.
+- Megadhat [adatlemezt csatolni](virtual-machine-scale-sets-attached-disks.md) hello virtuális gépek a méretezési beállítása.
+- Méretezési készlet túl konfigurálható[támogatja a too1, egy 000 virtuális gépek](virtual-machine-scale-sets-placement-groups.md). 
 
-Ha egy meglévő sablont, is [frissíteni a felügyelt lemezek használt sablon](virtual-machine-scale-sets-convert-template-to-md.md).
+Ha egy meglévő sablont, is [hello sablon toouse felügyelt lemezek frissítése](virtual-machine-scale-sets-convert-template-to-md.md).
 
 ### <a name="user-managed-storage"></a>Felhasználó által felügyelt tárolási
-Egy Azure felügyelt lemezzel nem definiált méretezési támaszkodik a felhasználó által létrehozott tárfiók tárolja a virtuális gépek operációs rendszer lemezén készletében. A tárfiók, vagy kevesebb mint 20 virtuális gép aránya ajánlott maximális IO eléréséhez, és kihasználhatják _elhelyezésétől_ (lásd alább). A tárfiókok neve elején karakterét elosztva az ábécé is ajánlott. Ennek segítségével terhelés elosztva különböző belső rendszerek során. 
+Egy Azure felügyelt lemezzel nem definiált méretezési felhasználó által létrehozott fiókok toostore hello OS tárolólemezek hello virtuális gépek hello készlet támaszkodik. Storage-fiókot, vagy kevesebb mint 20 virtuális gép arányú tooachieve maximális IO, és használja ki az ajánlott _elhelyezésétől_ (lásd alább). Ajánlott továbbá hello tárfiókok neve elején karakterét hello elosztva hello ábécé. Ennek segítségével terhelés elosztva különböző belső rendszerek során. 
 
 
 ## <a name="overprovisioning"></a>Elhelyezésétől
-Skálázási készletekben jelenleg az alapértelmezett "elhelyezésétől" virtuális gépeket. Elhelyezésétől-e kapcsolva, a méretezési ténylegesen fordulat további virtuális gépeinek mint kéri be, majd törli az extra virtuális Gépekért, miután sikeresen telepített virtuális gépek a kért számú. Elhelyezésétől növeli a kiépítési sikerességéről, és csökkenti a központi telepítés alkalmával. Nem kell fizetni az extra virtuális Gépekért, és ezek nem számítanak a kvótakorlát felé.
+Skálázási készletekben jelenleg alapértelmezett túl "elhelyezésétől" virtuális gépeket. Elhelyezésétől-e kapcsolva, hello méretezési ténylegesen fordulat további virtuális gépeinek mint kéri be, majd törli az extra virtuális Gépekért, miután hello irányuló kérés. a virtuális gépek számát sikeresen telepített hello. Elhelyezésétől növeli a kiépítési sikerességéről, és csökkenti a központi telepítés alkalmával. A hello extra virtuális Gépekért, és ezek nem számítanak a kvótakorlát felé nem kell fizetni.
 
-Amíg elhelyezésétől javítása létesítési sikerességéről, okozhat zavaró viselkedést az alkalmazás, amely nem jelenik meg, és ezután eltűnőként extra virtuális Gépekért kezelésére terveztek. Kapcsolja ki a elhelyezésétől, ellenőrizze, hogy a következő karakterláncot a sablonban: `"overprovision": "false"`. További részletek találhatók a [méretezési beállítása REST API-dokumentáció](/rest/api/virtualmachinescalesets/create-or-update-a-set).
+Amíg elhelyezésétől javításához létesítési sikerességéről okozhat zavaró viselkedést az alkalmazás, amely nem tervezett toohandle extra virtuális Gépekért jelenik meg, és ezután eltűnőként van. tooturn elhelyezésétől ki, ellenőrizze, hogy a sablonban lévő karakterlánc a következő hello: `"overprovision": "false"`. További részletek találhatók a hello [méretezési beállítása REST API-dokumentáció](/rest/api/virtualmachinescalesets/create-or-update-a-set).
 
-Ha a méretezési felhasználó által felügyelt tárolót használ, és elhelyezésétől kikapcsolja, több mint 20 gépek akkor is, de nem javasoljuk, hogy fent IO a teljesítményre vonatkozó megfontolásból 40 lépjen. 
+Ha a méretezési felhasználó által felügyelt tárolót használ, és elhelyezésétől kikapcsolja, rendelkezhet több mint 20 gépek, de nem ajánlott toogo fent 40 IO teljesítményének javítására szolgál. 
 
 ## <a name="limits"></a>Korlátok
-A méretezési a Piactéri rendszerkép (más néven platformlemezkép) alapul, és Azure felügyelt lemezek használatára konfigurált legfeljebb 1000 virtuális gépek kapacitású támogatja. Ha az támogatja a több mint 100 virtuális gépek méretezési konfigurál, nem minden esetben azonos (a példa terheléselosztás) működik. További információkért lásd: [nagy virtuálisgép-méretezési csoportok használata](virtual-machine-scale-sets-placement-groups.md). 
+A méretezési a Piactéri rendszerkép (más néven platformlemezkép) alapul, és Azure felügyelt lemezek támogatja too1, 000 virtuális gép mentése kapacitású toouse konfigurálva. A méretezési készlet toosupport 100-nál több virtuális gép konfigurálása, ha nem minden forgatókönyvek munkahelyi hello azonos (például terheléselosztás). További információkért lásd: [nagy virtuálisgép-méretezési csoportok használata](virtual-machine-scale-sets-placement-groups.md). 
 
-A méretezési készletben beállított felhasználó által felügyelt tárfiókokkal célja jelenleg csak 100 virtuális gépek (és a skála ajánlott 5 storage-fiókok).
+Egy méretezési készletben beállított felhasználó által felügyelt tárfiókokkal jelenleg korlátozott too100 virtuális gépek (és a skála ajánlott 5 storage-fiókok).
 
-Egy egyéni lemezkép (egy Ön által létrehozott) épülő méretezési legfeljebb 100 virtuális gépeket, amikor Azure felügyelt lemezzel konfigurált kapacitású lehet. A méretezési felhasználó által felügyelt tárfiókok van beállítva, ha az összes operációs rendszer lemez VHD-k egy tárfiókon belül kell létrehoznia. Ennek eredményeképpen a maximális ajánlott egyéni lemezkép épülő méretezési csoportban lévő virtuális gépek száma és felhasználó által felügyelt tárolási 20. Ha kikapcsolja elhelyezésétől, legfeljebb 40 lépjen.
+Egy egyéni lemezkép (egy Ön által létrehozott) épülő méretezési too100 virtuális gépeinek, amikor Azure felügyelt lemezzel konfigurált kapacitású lehet. Hello méretezési felhasználó által felügyelt tárfiókok van beállítva, ha az összes operációs rendszer lemez VHD-k egy tárfiókon belül kell létrehoznia. Ennek eredményeképpen hello maximális ajánlott egyéni lemezkép épülő méretezési csoportban lévő virtuális gépek száma és felhasználó által felügyelt tárolási 20. Ha kikapcsolja elhelyezésétől, lépjen be too40.
 
-További virtuális gépek esetén, mint a működés felső korlátjának engedélyezéséhez kell telepítenie a több méretezési csoportok, ahogy az [sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/301-custom-images-at-scale).
+További virtuális gépek esetén, mint a működés felső korlátjának engedélyezéséhez szüksége több skálázási készletekben, ahogy az toodeploy [sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/301-custom-images-at-scale).
 

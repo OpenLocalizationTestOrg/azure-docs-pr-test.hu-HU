@@ -1,6 +1,6 @@
 ---
-title: "A Net # Neurális hálózatokat nyelv útmutató |} Microsoft Docs"
-description: "A Net # Neurális szintaxisának hálózatok nyelv, és egy egyéni Neurális hálózat modell létrehozása a Microsoft Azure ML használatával Net # példák"
+title: "aaaGuide toohello Net # Neurális hálózatokat nyelv |} Microsoft Docs"
+description: "Hello Net # Neurális szintaxisának hálózatok nyelv, hogyan toocreate egy egyéni Neurális hálózat modell használatával Net # Microsoft Azure ml példákkal együtt"
 services: machine-learning
 documentationcenter: 
 author: jeannt
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeannt
-ms.openlocfilehash: 965c60ffde55041cc3864d06d81f5590c7ea1c11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3493247ecc39ca3a1382510ad520d7017159ff62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>Útmutató az Azure Machine Learning Net # Neurális hálózat nyelv
+# <a name="guide-toonet-neural-network-specification-language-for-azure-machine-learning"></a>Az útmutató tooNet # Neurális hálózat nyelv az Azure gépi tanulás
 ## <a name="overview"></a>Áttekintés
-NET #, amely a Neurális hálózat architektúrák azonosítására szolgál a Microsoft által kifejlesztett nyelvet. Használhatja a Net # a Microsoft Azure Machine Learning modulok Neurális hálózat.
+NET #, amely használt toodefine Neurális hálózat architektúrák a Microsoft által kifejlesztett nyelvet. Használhatja a Net # a Microsoft Azure Machine Learning modulok Neurális hálózat.
 
-<!-- This function doesn't currentlyappear in the MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
+<!-- This function doesn't currentlyappear in hello MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
 
-, or in the `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
+, or in hello `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
 
 -->
 
-Ebből a cikkből megtudhatja, egy egyéni Neurális hálózat fejlesztéséhez szükséges alapvető fogalmait: 
+Ebből a cikkből megtudhatja, főbb fogalmait és kifejezéseit toodevelop egy egyéni Neurális hálózat szükséges: 
 
-* Neurális hálózat követelményei és az elsődleges összetevők definiálása
-* A szintaxis és a Net # nyelv kulcsszavát
+* Neurális hálózat követelményeket, és hogyan toodefine hello elsődleges összetevői
+* hello szintaxisát és kulcsszavát hello Net # nyelvi specifikáció
 * Net # használatával létrehozott egyéni Neurális hálózatokat példák 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="neural-network-basics"></a>Neurális hálózat alapjai
-Neurális hálózat struktúra áll ***csomópontok*** , amely vannak rendszerezve ***rétegek***, és súlyozott ***kapcsolatok*** (vagy ***szélek***) között a csomópontok. A kapcsolatok irányt, és mindegyik kapcsolat egy ***forrás*** csomópont és a ***cél*** csomópont.  
+Neurális hálózat struktúra áll ***csomópontok*** , amely vannak rendszerezve ***rétegek***, és súlyozott ***kapcsolatok*** (vagy ***szélek***) között hello csomópontok. hello kapcsolatok irányt, és mindegyik kapcsolat egy ***forrás*** csomópont és a ***cél*** csomópont.  
 
-Minden egyes ***trainable réteg*** (egy rejtett vagy egy kimeneti réteg) rendelkezik egy vagy több ***kapcsolat kötegek***. Egy kapcsolat köteg egy forrás réteg és a forrás réteg közötti kapcsolatok meghatározása áll. Egy adott csomagban lévő összes kapcsolat megosztása azonos ***forrás réteg*** és azonos ***célfájl layer***. Net # kapcsolat csomag egyik gyermekszoftver tekinthető, hogy a csomag cél réteg tartoznak.  
+Minden egyes ***trainable réteg*** (egy rejtett vagy egy kimeneti réteg) rendelkezik egy vagy több ***kapcsolat kötegek***. Egy kapcsolat köteg áll forrás réteg és a forrás réteg hello kapcsolódásának leírását. Egy adott csomag megosztáson található összes hello kapcsolat hello azonos ***forrás réteg*** és azonos hello ***célfájl layer***. Net # a kapcsolat nyalábot tartozó toohello köteg célfájl layer tekintendő.  
 
-NET # támogatja a különféle típusú csomagok segítségével szabhatja testre a módon bemenetek vannak leképezve a Rejtett réteg és a kimenetek leképezve.   
+NET # számos használatát támogatja kapcsolat kötegek, amely lehetővé teszi testre szabhatja a hello módon bemenetek csatlakoztatott toohidden rétegek, és kiírja a csatlakoztatott toohello.   
 
-Az alapértelmezett vagy a standard csomagot egy **teljes csomag**, az a forrás-réteg minden csomópontja csatlakozó minden csomópont, a cél rétegben.  
+hello alapértelmezett vagy a standard csomagot egy **teljes csomag**, melyik minden egyes csomópontján hello a forrás réteg: hello célfájl layer csatlakoztatott tooevery csomópontja.  
 
-Emellett Net # használatát támogatja a következő négy speciális kapcsolat csomagokat:  
+Ezenkívül Net # támogatja a következő speciális kapcsolat kötegek négyféle hello:  
 
-* **Szűrt kötegek**. A felhasználó a réteg forráscsomópont és a réteg célcsomópont használatával adhatja meg a predikátum. Csomópontok kapcsolódnak, amikor a predikátum értéke igaz.
-* **Convolutional csomagok**. A felhasználó csomópontok kis környékeken definiálhat a forrás rétegben. A cél rétegben minden csomópont csatlakozik-e a csomópontok a forrás rétegben egy hálózatok.
-* **Csomagok készletezését** és **válasz normalizálási kötegek**. Ezek hasonlóak convolutional kötegek abban, hogy a felhasználó határozza meg a kis környékeken csomópontok, a forrás rétegben. A különbség, hogy a súlyok ezeket a csomagokat a széleinek nincsenek trainable. Ehelyett egy előre definiált függvény alkalmazzák a forrás csomópont értékek megadásával határozza meg a célként megadott értékét.  
+* **Szűrt kötegek**. hello felhasználói hello réteg forráscsomópont és hello réteg célcsomópont hello helyét használatával adhatja meg a predikátum. Csomópontok hello predikátum értéke igaz, amikor csatlakozik.
+* **Convolutional csomagok**. hello felhasználói adhatja meg a csomópontok kis környékeken hello forrás réteg. Minden csomópont hello célfájl layer csatlakoztatott tooone hálózatok hello forrás rétegben csomópontok.
+* **Csomagok készletezését** és **válasz normalizálási kötegek**. Ezek a hasonló tooconvolutional csomagok adott hello felhasználói hello forrás rétegben csomópontok kis környékeken határozza meg. hello különbség, hogy hello súlyozását hello szélek az ezek a csomagok nincsenek trainable. Ehelyett egy előre definiált függvény alkalmazott toohello forráscsomópont értékek toodetermine hello cél csomópont értéke.  
 
-Net # Neurális hálózat struktúra révén összetett struktúrák például mély Neurális hálózatokat vagy a tetszőleges dimenziók, vagyis a javításához kapcsolatos adatok, például a lemezkép, hang-, vagy videó convolutions definiálhat.  
+Net # toodefine hello struktúra Neurális hálózat révén lehetséges toodefine összetett struktúrák például mély Neurális hálózatokat vagy a tetszőleges dimenziók, vagyis a adatok, például a lemezkép, hang-, vagy videó tooimprove learning convolutions.  
 
 ## <a name="supported-customizations"></a>Támogatott testreszabások
-Az Azure Machine Learning létrehozott Neurális hálózat modellek architektúrájának nagymértékben testreszabható Net # használatával. A következőket teheti:  
+az Azure Machine Learning létrehozott Neurális hálózat modellek hello architektúrájának nagymértékben testreszabható Net # használatával. A következőket teheti:  
 
-* Rejtett rétegek készítését és minden egyes rétegben található csomópontok számának.
-* Adja meg, hogyan rétegek csatlakozniuk kell egymáshoz.
+* A Rejtett réteg és vezérlési csomópontok száma hello létrehozása minden egyes rétegben.
+* Adja meg, hogyan rétegek egyéb kapcsolódó toobe tooeach.
 * Adja meg a Speciális kapcsolat struktúrák, például convolutions és a súlyozást csomagok megosztása.
 * Adjon meg másik aktiválási funkciók.  
 
-További részletek a meghatározás nyelvi szintaxisa: [struktúra Specification](#Structure-specifications).  
+A hello specification nyelvi szintaxisát, lásd: [struktúra Specification](#Structure-specifications).  
 
-Néhány általános gépi tanulási a feladatok, simplex bonyolult, a Neurális hálózatokat meghatározásának tekintse meg a [példák](#Examples-of-Net#-usage).  
+Néhány általános gépi tanulási a feladatok az egyirányú (szimplex) toocomplex, a Neurális hálózatokat meghatározásának tekintse meg a [példák](#Examples-of-Net#-usage).  
 
 ## <a name="general-requirements"></a>Általános követelmények
 * Pontosan egy kimeneti réteg legalább egy bemeneti réteg és nulla vagy több rejtett rétegben kell. 
 * Minden egyes réteg csomópontok, tetszőleges dimenziók téglalap alakú tömbje fogalmilag rendezett rögzített számú rendelkezik. 
-* Bemeneti rétegek társított képzett paraméter nélküli, és ahol példányadatokat belép a hálózatot képviselő. 
-* Trainable rétegek (rejtett, és a kimeneti rétegek) társított súlyok és elfogultság ismert képzett paraméterek. 
-* A forrás és cél csomópontok külön rétegekben kell lennie. 
-* Kapcsolatok aciklikus; kell lennie. Ez azt jelenti nem lehet a kezdeti forráshelyen csomópont vezető kapcsolatok láncolata.
-* A kimeneti réteg nem lehet kapcsolat köteg forrás réteget.  
+* Bemeneti rétegek társított képzett paraméter nélküli, és ahol példányadatokat belép hello hálózati hello pontot jelöl. 
+* (Hello rejtett, és a kimeneti rétegek) trainable rétegek társított súlyok és elfogultság ismert képzett paraméterek. 
+* hello forrás és cél csomópontok külön rétegekben kell lennie. 
+* Kapcsolatok aciklikus; kell lennie. Ez azt jelenti nem lehet hátsó toohello kezdeti forráscsomópont vezető kapcsolatok láncolata.
+* hello kimeneti réteg nem lehet kapcsolat köteg forrás réteget.  
 
 ## <a name="structure-specifications"></a>Struktúra specifikációk
-Három szakaszból tevődik össze a Neurális hálózat struktúra specifikációval: a **konstans deklarációjában**, a **deklaráció réteg**, a **kapcsolat deklaráció**. Szerepel továbbá egy nem kötelező **fájlmegosztás a nyilatkozatot** szakasz. A szakaszok bármilyen sorrendben adható meg.  
+Három szakaszból tevődik össze a Neurális hálózat struktúra specifikációval: hello **konstans deklarációjában**, hello **deklaráció réteg**, hello **kapcsolat deklaráció**. Szerepel továbbá egy nem kötelező **fájlmegosztás a nyilatkozatot** szakasz. hello szakaszok bármilyen sorrendben adható meg.  
 
 ## <a name="constant-declaration"></a>Konstans deklarációjában
-Egy konstans deklarációjában nem kötelező megadni. Ez lehetővé teszi a Neurális hálózat definíciójának máshol használt értékek megadhatók. A nyilatkozat utasítás áll egy egyenlőségjellel és egy érték kifejezést azonosítója.   
+Egy konstans deklarációjában nem kötelező megadni. A azt jelenti, hogy toodefine hello Neurális hálózat definíciójának máshol használt értékek biztosít. hello deklaráció utasítás áll egy egyenlőségjellel és egy érték kifejezést azonosítója.   
 
-Például a következő utasítás definiál egy állandó **x**:  
+Például a következő utasítás hello meghatározása állandó **x**:  
 
     Const X = 28;  
 
-Egyidejűleg két vagy több állandók megadásához tegye a típusú azonosító neveket és értékeket kell használni, és pontosvesszővel válassza el egymástól elválasztani őket. Példa:  
+toodefine két vagy több állandók egyidejűleg, tegye hello típusú azonosító neveket és értékeket kell használni, és pontosvesszővel válassza el egymástól elválasztani őket. Példa:  
 
     Const { X = 28; Y = 4; }  
 
-Minden egyes hozzárendelési kifejezés jobb oldalán lehet egy egész számot, egy valós szám, egy logikai érték (IGAZ vagy hamis) vagy egy kifejezésnek. Példa:  
+minden egyes hozzárendelés kifejezés jobb oldalán hello lehet egy egész számot, egy valós szám, egy logikai érték (IGAZ vagy hamis) vagy egy kifejezésnek. Példa:  
 
     Const { X = 17 * 2; Y = true; }  
 
 ## <a name="layer-declaration"></a>Réteg nyilatkozat
-A réteg szükség esetén. Azt határozza meg, méretének és a réteg, beleértve a kapcsolat kötegek és attribútumok forrását. A nyilatkozat utasítás kezdődik-e a neve, a réteg (bemeneti, rejtett vagy kimeneti), a dimenziók a réteg (egy pozitív egész számok rekord) követ. Példa:  
+hello réteg deklaráció szükség. Meghatározza a hello méretét és hello réteg, beleértve a kapcsolat kötegek és attribútumok forrását. hello hello réteg (bemeneti, rejtett vagy kimeneti) hello neve deklaráció utasítás kezdődik, hello dimenziók hello réteg (egy pozitív egész számok rekord) követ. Példa:  
 
     input Data auto;
     hidden Hidden[5,20] from Data all;
     output Result[2] from Hidden all;  
 
-* A termék dimenzió a rétegben található csomópontok számának. Ebben a példában a rendszer két dimenzió [5,20], ami azt jelenti, hogy a réteg 100 csomópontok szerepelnek.
-* A rétegek deklarálható bármilyen sorrendben, egy kivétellel: Ha egynél több bemeneti réteg van definiálva, deklarálva van a sorrend meg kell egyeznie a szolgáltatások a bemeneti adatok sorrendjét.  
+* hello termék hello dimenziók hello rétegben található csomópontok számának hello. Ebben a példában a rendszer két dimenzió [5,20], ami azt jelenti, hogy 100 csomópontok hello rétegben.
+* hello rétegek deklarálható bármilyen sorrendben, egy kivétellel: Ha egynél több bemeneti réteg van definiálva, hello rendelés deklarálva van egyeznie kell az hello szolgáltatások hello bemeneti adatok sorrendjét.  
 
-Adja meg, hogy egy rétegben található csomópontok számának automatikusan meghatározni a **automatikus** kulcsszó. A **automatikus** kulcsszó különböző hatások, attól függően, hogy a réteg van:  
+toospecify, amelyek egy rétegben található csomópontok számának hello automatikusan határozza meg, használjon hello **automatikus** kulcsszó. Hello **automatikus** kulcsszó különböző hatások, attól függően, hogy hello réteg van:  
 
-* A bemeneti réteg nyilatkozat, a csomópontok száma a szolgáltatások a bemeneti adatok száma.
-* A Rejtett réteg nyilatkozatot, a csomópontok száma az a szám, a paraméter értéke meg **rejtett csomópontok száma**. 
-* A kimeneti réteg nyilatkozat, a csomópontok számát: a két osztályú osztályozási, a regresszióra és a multiclass besorolási kimeneti csomópontok száma egyenlő 1 2.   
+* A bemeneti réteg nyilatkozat, a csomópontok száma hello néhány hello szolgáltatás hello bemeneti adatok.
+* A Rejtett réteg deklarációjában csomópontok száma hello hello szám hello paraméter értéke által meghatározott **rejtett csomópontok száma**. 
+* A kimeneti réteg nyilatkozat, a csomópontok száma hello két osztályú osztályozási, a regresszióra és multiclass besorolási kimeneti csomópontok száma egyenlő toohello 1 2.   
 
-A következő hálózatdefiníció például lehetővé teszi, hogy az automatikusan meghatározott összes réteg mérete:  
+Például hello következő hálózatdefiníció lehetővé teszi, hogy automatikusan határozza meg az összes rétegek toobe hello mérete:  
 
     input Data auto;
     hidden Hidden auto from Data all;
     output Result auto from Hidden all;  
 
 
-Egy olyan trainable réteghez (rejtett vagy kimeneti rétegek) réteg nyilatkozatot is választhatóan a kimeneti függvény (más néven az aktiválási függvény), amely alapértelmezés szerint az **sigmoid** a besorolási modell, és  **lineáris** regressziós modell. (Még akkor is, ha használja az alapértelmezett, akkor is explicit módon állapot aktiválás függvény jobb érthetőség kedvéért bizonyos igény.)
+Egy olyan réteghez, trainable réteg nyilatkozatot (hello rejtett vagy kimeneti rétegek) hello kimeneti függvény (más néven az aktiválási függvény), amely alapértelmezés szerint használt érték túl választhatóan is**sigmoid** besorolási modell és **lineáris** regressziós modell. (Még akkor is, ha hello alapértelmezett használatához is explicit módon azt hello aktiválási függvény, jobb érthetőség kedvéért bizonyos igény.)
 
-A következő kimeneti-funkciók támogatottak:  
+hello következő kimeneti-funkciók támogatottak:  
 
 * sigmoid
 * lineáris
@@ -132,69 +132,69 @@ A következő kimeneti-funkciók támogatottak:
 * TANH 
 * brlinear  
 
-Például a következő nyilatkozatot használ a **softmax** függvény:  
+Például a következő nyilatkozatot hello használ hello **softmax** függvény:  
 
     output Result [100] softmax from Hidden all;  
 
 ## <a name="connection-declaration"></a>Kapcsolat nyilatkozat
-Határozza meg a trainable réteg, után azonnal meghatározta a rétegek közötti kapcsolatok kell deklarálnia. A kapcsolat köteg deklaráció kezdődik-e a kulcsszó **a**, utána pedig a nevét a csomag forrás réteg és milyen típusú kapcsolat csomag létrehozásához.   
+Hello trainable réteg meghatározása, után azonnal definiált hello rétegek közötti kapcsolatok kell deklarálnia. hello kapcsolat köteg deklaráció hello kulcsszóval kezdődik **a**, hello köteg forrás réteg és hello típusú kapcsolat köteg toocreate hello neve követ.   
 
 Jelenleg kapcsolat csomagok öt típusú támogatottak:  
 
-* **Teljes** csomagokat, a kulcsszó által jelzett **összes**
-* **Szűrt** csomagokat, a kulcsszó által jelzett **ahol**, utána pedig a predikátum kifejezés
-* **Convolutional** csomagokat, a kulcsszó által jelzett **convolve**, utána pedig a konvolúció attribútumok
-* **Készletezését** csomagokat, a kulcsszavak által jelzett **készlet maximális** vagy **készlet témakörök**
-* **Válasz normalizálási** csomagokat, a kulcsszó által jelzett **válasz alapértelmezetté**      
+* **Teljes** kötegek hello kulcsszó által jelzett **összes**
+* **Szűrt** kötegek hello kulcsszó által jelzett **ahol**, utána pedig a predikátum kifejezés
+* **Convolutional** kötegek hello kulcsszó által jelzett **convolve**, utána pedig hello konvolúció attribútumok
+* **Készletezését** kötegek hello kulcsszavak által jelzett **készlet maximális** vagy **készlet témakörök**
+* **Válasz normalizálási** kötegek hello kulcsszó által jelzett **válasz alapértelmezetté**      
 
 ## <a name="full-bundles"></a>Teljes kötegek
-Egy teljes kapcsolat csomag minden csomópontjáról kapcsolatot tartalmaz, mindegyik csomópontra a cél rétegben a forrás rétegben. Ez az az alapértelmezett hálózati kapcsolat típusa.  
+A teljes kapcsolat nyalábot hello réteg tooeach forráscsomópont hello cél rétegben minden csomópontjáról kapcsolatot tartalmazza. Ez a hello alapértelmezett hálózati kapcsolat típusa.  
 
 ## <a name="filtered-bundles"></a>Szűrt kötegek
-Köteg végrehajtása szűrt kapcsolaton keresztül specifikáció tartalmazza a predikátum, szintaktikailag, kifejezett jelentős, például a C# lambda kifejezésben. Az alábbi példa meghatározza, hogy két szűrt csomagokat:  
+Köteg végrehajtása szűrt kapcsolaton keresztül specifikáció tartalmazza a predikátum, szintaktikailag, kifejezett jelentős, például a C# lambda kifejezésben. hello alábbi példa meghatározza, hogy két szűrt csomagokat:  
 
     input Pixels [10, 20];
     hidden ByRow[10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol[5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;  
 
-* A predikátum a *ByRow*, **s** képviselő index a bemeneti réteg csomópontok a téglalap alakú tömbbe paraméter *képpont*, és **d** indexet a Rejtett réteg csomópontok a tömbbe jelölő paraméter *ByRow*. Mindkét típusú **s** és **d** hosszúságú két számokból álló rekordot van. Fogalmilag **s** keresztül az egész számok minden pár címtartományok *0 < = [0] s < 10* és *0 < = s[1] < 20*, és **d**  az egész számok, minden pár keresztül címtartományok *0 < = [0] d < 10* és *0 < = d[1] < 12*. 
-* A jobb oldalon a predikátum kifejezés nincs egy feltételt. Ebben a példában minden egyes értékéhez **s** és **d** úgy, hogy a feltétel igaz, nincs-e a réteg forráscsomópont él a célcsomópontra réteg. Ebből kifolyólag a szűrőkifejezés azt jelzi, hogy, hogy a csomag tartalmaz-e a kapcsolat által meghatározott csomópontról **s** a csomópont által meghatározott **d** az összes olyan esetekben, amikor s [0] [0] d egyenlőnek.  
+* A predikátum hello *ByRow*, **s** indexet jelölő csomópontok hello bemeneti réteg, hello téglalap alakú tömbbe paraméter *képpont*, és **d**  indexet jelölő csomópontok hello rejtett réteg, hello tömbbe paraméter *ByRow*. mindkét típusú hello **s** és **d** hosszúságú két számokból álló rekordot van. Fogalmilag **s** keresztül az egész számok minden pár címtartományok *0 < = [0] s < 10* és *0 < = s[1] < 20*, és **d**  az egész számok, minden pár keresztül címtartományok *0 < = [0] d < 10* és *0 < = d[1] < 12*. 
+* Hello hello predikátum kifejezés jobb oldali egy feltétel van. Ebben a példában minden egyes értékéhez **s** és **d** hello feltétel értéke igaz, hogy nincs-e a hello réteg csomópont toohello cél réteg forráscsomópont él. Ebből kifolyólag a szűrőkifejezés azt jelzi, hogy adott hello csomag tartalmaz egy kapcsolat által meghatározott hello csomópontról **s** toohello csomópont által meghatározott **d** minden olyan esetben, ahol a [0] s az egyenlő tood [0].  
 
-Másik lehetőségként a szűrt köteg súlyok készlete is megadhat. Az érték a **súlyok** attribútumnak kell lennie egy rekordot a pontértékek határozzák meg a csomag kapcsolatok számának megfelelő hosszúságú lebegőpontos. Alapértelmezés szerint a súlyok véletlenszerűen generált.  
+Másik lehetőségként a szűrt köteg súlyok készlete is megadhat. hello értéke hello **súlyok** attribútumnak kell lennie egy rekordot a pontértékek hello köteg által definiált kapcsolatok hello számának megfelelő hosszúságú lebegőpontos. Alapértelmezés szerint a súlyok véletlenszerűen generált.  
 
-Súlyozási értékeket a cél csomópont indexe szerint vannak csoportosítva. Ez azt jelenti, ha az első célcsomópont csatlakozik K forrás csomópontok, az első *K* elemei a **súlyok** rekordot a súlyok a első célcsomópont index forrássorendben. Ugyanez vonatkozik, a fennmaradó cél csomópontok.  
+Súlyértékeket hello cél csomópont indexe szerint vannak csoportosítva. Ez azt jelenti, hogy ha hello első célcsomópont csatlakozik tartott forrás csomópontok, először hello *K* hello elemeinek **súlyok** rekordot hello súlyok hello első cél csomópontján, index forrássorendben. Ugyanez vonatkozik, a fennmaradó cél csomópontok hello hello.  
 
-Akkor adja meg a súlyok közvetlenül konstans érték lehet. Például ha korábban már megismerte a súlyok, megadhatja azokat állandók ezen szintaxis használatával:
+Lehetséges toospecify súlyok közvetlenül, állandó értékek is. Például ha hello súlyok korábban megtanulta, megadhatja azokat ezen szintakszist használó állandóként:
 
     const Weights_1 = [0.0188045055, 0.130500451, ...]
 
 
 ## <a name="convolutional-bundles"></a>Convolutional kötegek
-Ha a betanítási adatok struktúrája a homogén, convolutional kapcsolatok gyakran használják az adatok magas szintű funkciók további. Például kép, hang- vagy videó, térbeli vagy időbeli granularitása lehet az adatokat viszonylag egységes.  
+Amikor hello betanítási adatok struktúrája a homogén, a convolutional kapcsolatok olyan gyakran használt toolearn magas szintű funkciók hello adatok. Például kép, hang- vagy videó, térbeli vagy időbeli granularitása lehet az adatokat viszonylag egységes.  
 
-Convolutional kötegek alkalmaz téglalap alakú **kernelek** , amely a dimenziók keresztül van ütközik. Tulajdonképpen minden kernel néven a helyi környékeken, alkalmazza a súlyok készletét **kernel-alkalmazásokra**. A forrás rétegben, amely hivatkozunk a csomópont minden kernel alkalmazás megfelel-e a **központi csomópont**. A kernel súlyozását sok kapcsolatok között vannak megosztva. Convolutional a köteg minden egyes kernel téglalap alakú pedig minden kernel-alkalmazásokra méretének.  
+Convolutional kötegek alkalmaz téglalap alakú **kernelek** , amely keresztül hello dimenziók vannak ütközik. Tulajdonképpen minden kernel a helyi környékeken, hivatkozott tooas alkalmazza a súlyok készletét **kernel-alkalmazásokra**. Minden egyes kernel alkalmazás megfelel tooa csomópont hello forrás rétegben hivatkozott tooas hello **központi csomópont**. a kernel hello súlyozását sok kapcsolatok között vannak megosztva. Convolutional a köteg, minden egyes kernel téglalap alakú, és minden kernel-alkalmazásokra hello azonos méretét.  
 
-Convolutional csomagokat támogatja a következő attribútumokat:
+Convolutional csomagok a következő attribútumok hello támogatja:
 
-**InputShape** határozza meg a forrás réteg dimenzióinak a convolutional köteg céljából. Az értéknek pozitív egész számok rekordot kell lennie. Az egész számok szorzatát a forrás rétegben található csomópontok számának egyenlőnek kell lennie, de egyéb, nem kell a forrás réteg deklarált dimenzióinak kereséséhez. Ez a rekord hossza válik a **aritása** értékét a convolutional csomagot. (Általában aritása hivatkozik a számú argumentum vagy operandusok használata történt, amely egy olyan függvényt is igénybe vehet.)  
+**InputShape** hello granularitása hello forrás réteg hello alkalmazásában ezen convolutional csomag határozza meg. hello értéknek pozitív egész számok rekordot kell lennie. hello egész számok szorzatát hello hello forrás rétegben található csomópontok számának hello egyenlőnek kell lennie, de egyébként nem kell toomatch hello granularitása hello forrás réteg deklarált. a rekord hossza hello válik hello **aritása** hello convolutional köteg értékét. (Általában aritása egységfigyelőt toohello számú argumentum vagy a operandusok használata történt, amely egy olyan függvényt is igénybe vehet.)  
 
-Az alakzat és helyét. a kernelek megadásához használja az attribútumok **KernelShape**, **Stride**, **kitöltési**, **LowerPad**, és  **UpperPad**:   
+toodefine hello alakzat és hello mag, a helyek hello attribútumok használata **KernelShape**, **Stride**, **kitöltési**, **LowerPad**, és **UpperPad**:   
 
-* **KernelShape**: (kötelező) meghatározza a convolutional köteg minden kernel dimenzióinak. Az értéknek kell lennie, amely a kötegben szereplő argumentumszámmal egyenlő hosszal pozitív egész számok rekordot. Lehet, hogy minden összetevő a rekord nem lehet nagyobb a megfelelő összetevője **InputShape**. 
-* **STRIDE**: (opcionális) határozza meg, amely a központi csomópontok közötti távolság szerint (minden dimenzió egy lépésköz mérete), konvolúció mozgó lépés mérete. Az értéknek kell lennie, amely a csomag az aritása hosszal pozitív egész számok rekordot. Lehet, hogy minden összetevő a rekord nem lehet nagyobb a megfelelő összetevője **KernelShape**. Az alapértelmezett értéke egynek összes összetevőkkel rekordot. 
-* **Megosztás**: (nem kötelező) határozza meg a minden egyes dimenziójának a konvolúció megosztásának súlyt. Az érték lehet egy logikai érték vagy egy logikai érték, amely a csomag az aritása hosszúságú rekord. Egyetlen logikai értéket az időtartam csak a megadott értéknél összes összetevőkkel megfelelő hosszúságú rekord lehet. Az alapértelmezett érték: egy rekord, amely az összes IGAZ érték áll. 
-* **MapCount**: a convolutional köteg maps szolgáltatás számát (nem kötelező) meghatározza. Az érték egy pozitív egész szám vagy egy pozitív egész számok az aritása a kötegben hosszúságú rekord lehet. Csak egyetlen egész értéket az időtartam csak az első a megadott értéknél összetevőkkel megfelelő hosszúságú rekord lehet, és a fennmaradó összetevők egy egyenlő. Az alapértelmezett érték: egyet. Teljes száma a szolgáltatás a maps a termék a rekord összetevőt. A összetevői között és az összes faktoring meghatározza, hogy a szolgáltatás térkép értékek csoportosításának a cél csomópontok. 
-* **Súlyozás**: (opcionális) határozza meg a csomag kezdeti súlyok. Az érték lebegőpontos pontértékek, amely kernelek hányszor hosszal súlyok száma / kernel, a cikk későbbi részében meghatározott rekordot kell lennie. Az alapértelmezett súlyozás véletlenszerűen jönnek létre.  
+* **KernelShape**: (kötelező) meghatározza hello dimenzióinak, minden egyes kernel a hello convolutional köteg. hello értékének pozitív egész számok hello aritása hello köteg egyenlő hosszúságú rekordot kell lennie. Minden egyes összetevő a rekord nem nagyobbnak kell lennie megfelelő összetevője hello **InputShape**. 
+* **STRIDE**: (opcionális) meghatározza hello méretű lépés, amely hello hello központi csomópontok közötti távolság szerint hello konvolúció (minden dimenzió egy lépésköz mérete), a késleltetett. hello értéknek pozitív egész számok hello köteg hello aritása hosszúságú rekordot kell lennie. Minden egyes összetevő a rekord nem nagyobbnak kell lennie megfelelő összetevője hello **KernelShape**. hello alapértelmezett értéke az összes összetevő egyenlő tooone rekordot. 
+* **Megosztás**: (nem kötelező), minden egyes dimenziójának hello konvolúció megosztásának meghatározza hello súly. egyetlen logikai érték vagy egy logikai értékek hello köteg hello aritása hosszúságú rekord hello érték lehet. Egyetlen logikai érték kiterjesztett toobe hello megfelelő hosszúságú az összes összetevő rekordot egyenlő toohello megadott érték. hello alapértelmezett érték egy rekord, amely az összes IGAZ érték áll. 
+* **MapCount**: (opcionális) meghatározza hello száma a szolgáltatás a hello convolutional köteg képezi le. hello érték egy pozitív egész szám vagy egy pozitív egész számok hello köteg hello aritása hosszúságú rekord lehet. Csak egyetlen egész értéket ki van bővítve toobe hello megfelelő hosszúságú a hello első összetevők egyenlő toohello egy rekord megadott érték és az összes többi összetevő egyenlő tooone hello. hello alapértelmezett érték: egyet. hello teljes száma a szolgáltatás maps hello termék hello összetevők hello rekord. hello összetevői között és az összes faktoring hello határozza meg, hogyan hello cél csomópontok hello szolgáltatás térkép értékek vannak csoportosítva. 
+* **Súlyozás**: (opcionális) meghatározza hello kezdeti súlyok a hello köteg. hello értéknek kell lennie egy rekordot a pontértékek, amely hello számát kernelek alkalommal hello súlyok / kernel, a cikk későbbi részében meghatározott hosszúságú lebegőpontos. hello alapértelmezett súlyozás véletlenszerűen jönnek létre.  
 
-Kitöltési,-folyamatban, egymást kölcsönösen kizáró tulajdonságok szabályozó tulajdonságok két csoportjára van:
+Kitöltési,-folyamatban, egymást kölcsönösen kizáró hello tulajdonságok szabályozó tulajdonságok két csoportjára van:
 
-* **Kitöltési**: (opcionális) megállapítja e bemeneti használatával kell lenniük egy **alapértelmezett kitöltő séma**. Az érték lehet egy logikai érték, vagy egy logikai érték, amely a csomag az aritása hosszúságú rekord lehet. Egyetlen logikai értéket az időtartam csak a megadott értéknél összes összetevőkkel megfelelő hosszúságú rekord lehet. Egy dimenzió értéke igaz, ha a forrás lesz logikailag kiegészítve az adott dimenzióban kiegészítő rendszermag alkalmazásokhoz, nulla értékű cellákkal úgy, hogy az adott dimenzióban első és utolsó kernelek központi csomópontjai legyenek a első és utolsó csomópontokat, amelyek a forrás rétegben dimenzió. Így minden dimenzió "típusú" csomópontok száma határozza meg automatikusan, pontosan megfelelően *(InputShape [d.] - 1) / Stride [d.] + 1* kernelek a tömöttnek forrás rétegbe. Egy dimenzió értéke HAMIS, ha a kernelek határozzák meg, hogy mindkét oldalon kimenő fennmaradó csomópontok száma (legfeljebb 1 különbségek) megegyezik. Ez az attribútum alapértelmezett értéke egy rekord összes összetevőkkel értéke FALSE.
-* **UpperPad** és **LowerPad**: (nem kötelező) adja meg nagyobb mértékben vezérelheti a használandó szövegtávolság mértéke. **Fontos:** lehet, hogy ezek az attribútumok meghatározott if és csak akkor, ha a **kitöltési** fenti tulajdonság ***nem*** definiálva. Az értékeket, amelyek a kötegben szereplő argumentumszámmal hosszúságú egész rekordokat kell lennie. Ha ezek az attribútumok meg van adva, "típusú" csomópontokat ad hozzá a bemeneti réteg minden dimenzió az alsó és felső végén. Minden dimenzió az alsó és felső végződik hozzáadandó csomópontok száma határozza meg **LowerPad**[i] és **UpperPad**[i] osztályban. Biztosítsa, hogy kernelek csak "tényleges" és "típusú" csomópont nem az, hogy a következő feltételeknek kell teljesülniük:
+* **Kitöltési**: (opcionális) megállapítja, hogy hello bemeneti kell hosszúságra használatával egy **alapértelmezett kitöltő séma**. hello érték lehet egy logikai érték, vagy egy rekord logikai értékek hello köteg hello aritása hosszúságú lehet. Egyetlen logikai érték kiterjesztett toobe hello megfelelő hosszúságú az összes összetevő rekordot egyenlő toohello megadott érték. Hello dimenzió értéke igaz, ha hello forrás lesz logikailag kiegészítve az adott dimenzióban nulla értékű cellákat toosupport kiegészítő rendszermag alkalmazásokkal, úgy, hogy központi csomópontja hello hello első és utolsó kernelek az adott dimenzióban hello első és utolsó csomópontja az adott dimenzióban hello forrás rétegben. Minden dimenzió "típusú" csomópontok száma hello van így, automatikusan határozza meg, toofit pontosan *(InputShape [d.] - 1) / Stride [d.] + 1* kernelek hosszúságra hello forrás rétegbe. Hello dimenzió értéke HAMIS, ha kernelek határozzák meg, hogy mindkét oldalon kimenő fennmaradó csomópontok száma hello hello hello azonos (felfelé tooa különbség az 1). hello alapértelmezett Ez az attribútum értéke az összes összetevő egyenlő tooFalse rekordot.
+* **UpperPad** és **LowerPad**: (nem kötelező) adja meg nagyobb mértékben vezérelheti a kitöltési toouse hello mennyiségét. **Fontos:** ezek az attribútumok adható meg, ha, és csak akkor, ha hello **kitöltési** fenti tulajdonság ***nem*** definiálva. hello értékének egész rekordokat, amelyek hello aritása hello köteg hosszúságú kell lennie. Ha ezek az attribútumok meg van adva, "típusú" csomópontokat ad hozzá toohello alsó és felső végén minden egyes dimenziójának hello bemeneti réteg. hello csomópontok száma hozzáadott toohello alsó és felső végződik minden dimenzió határozza meg **LowerPad**[i] és **UpperPad**[i] osztályban. tooensure, hogy kernelek megfelelnek túl csak "tényleges" csomópont, és nem túl "típusú" csomópontok hello a következő feltételeknek kell teljesülniük:
   * Az egyes összetevők **LowerPad** KernelShape [d.] szigorúan kisebbnek kell lennie 2. 
   * Az egyes összetevők **UpperPad** nem nagyobbnak kell lennie [d.] KernelShape / 2. 
-  * Ezek az attribútumok alapértelmezett értéke egy rekord összes összetevőkkel, mint 0. 
+  * hello alapértelmezett attribútum értéke az összes összetevő egyenlő too0 rekordot. 
 
-A beállítás **kitöltési** = true lehetővé teszi, hogy a legtöbb kitöltési tartani "" a kernel belső "valós" bemeneti szükséges. A kimeneti méretének kiszámításához kicsit matematikai értékre változik. Általában a kimeneti méretének *D* számítja ki, hogy *D = (I - K) / S + 1*, ahol *I* bemeneti mérete *K* kernel mérete *S*  van a stride és  */*  szám (szám nullához) van. Ha UpperPad = [1, 1], a bemeneti mérete *I* tulajdonképpen 29, és így *D = (29-5) / 2 + 1 = 13*. Azonban, amikor **kitöltési** lényegében = true, *I* által kap bumped *K - 1*; ezért *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. Az értékek megadásával **UpperPad** és **LowerPad** elérhetővé, mint ha csupán be a térközt több ellenőrzést **kitöltési** = true.
+hello beállítás **kitöltési** = true lehetővé teszi, hogy mekkora térközt, tookeep hello "valós" bemeneti hello belül hello kernel "center" igény szerint. Egy kicsit hello kimeneti méretének kiszámításához hello matematikai értékre változik. Általában hello kimeneti mérete *D* számítja ki, hogy *D = (I - K) / S + 1*, ahol *I* hello bemeneti mérete *K* hello kernel mérete *S* van hello stride és  */*  szám (szám nullához) van. Ha UpperPad = [1, 1], hello bemenet mérete *I* tulajdonképpen 29, és így *D = (29-5) / 2 + 1 = 13*. Azonban, amikor **kitöltési** lényegében = true, *I* által kap bumped *K - 1*; ezért *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. Az értékek megadásával **UpperPad** és **LowerPad** kitöltési mint Ön imént beállított hello több ellenőrzést le **kitöltési** = true.
 
 Convolutional hálózatok és az alkalmazásokkal kapcsolatos további információkért lásd: ezek a cikkek:  
 
@@ -203,11 +203,11 @@ Convolutional hálózatok és az alkalmazásokkal kapcsolatos további informác
 * [http://People.csail.Mit.edu/jvb/Papers/cnn_tutorial.PDF](http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf)  
 
 ## <a name="pooling-bundles"></a>Csomagok készletezése
-A **köteg készletezését** vonatkozik geometriai hasonló convolutional kapcsolatot, de forrás csomópont értékek előre meghatározott funkciókat használ kapcsolattípusokból a cél a csomópont-érték. Emiatt készletezésével kötegek rendelkezik (súlyok vagy elfogultság) trainable állapot nélküli. Egyesítési csomagokat támogatja kivételével minden convolutional attribútumot **megosztás**, **MapCount**, és **súlyok**.  
+A **köteg készletezését** vonatkozik geometriai hasonló tooconvolutional kapcsolatot, de előre definiált függvények toosource csomópont értékek tooderive hello cél csomópont értéket használ. Emiatt készletezésével kötegek rendelkezik (súlyok vagy elfogultság) trainable állapot nélküli. Összes kivéve convolutional attribútumok hello csomagok támogatási készletezését **megosztás**, **MapCount**, és **súlyok**.  
 
-Általában a szomszédos készletezésével egységek összesített kernelek nem lehetnek átfedésben. Ha Stride [d] [d] KernelShape minden dimenzió, a kapott réteg a hagyományos helyi készletezésével szintje, amely általában alkalmazottja convolutional Neurális hálózatokat. Minden célcsomópont kiszámítja a maximális vagy a forrás rétegben a kernel tevékenységeit középértéke.  
+Általában nem lehetnek átfedők hello kernelek szomszédos készletezésével egységek foglalja össze. Minden dimenzió egyenlő tooKernelShape [d.] [d] Stride esetén kapott hello réteg hello hagyományos helyi készletezésével szintje, amely általában alkalmazottja convolutional Neurális hálózatokat. Minden egyes célcsomópont kiszámítja a maximális hello vagy a kernel hello forrás rétegben hello tevékenységeit hello közepét.  
 
-Az alábbi példában látható készletezésével csomagot: 
+a következő példa hello készletezésével köteg mutatja be: 
 
     hidden P1 [5, 12, 12]
       from C1 max pool {
@@ -216,10 +216,10 @@ Az alábbi példában látható készletezésével csomagot:
         Stride      = [ 1,  2,  2];
       }  
 
-* A csomag az aritása a következő: 3 (a rekordokat hosszát **InputShape**, **KernelShape**, és **Stride**). 
-* A forrás rétegben csomópontok száma *5 * 24 * 24 = 2880*. 
+* hello köteg hello aritása a következő: 3 (hello rekordokat hosszát hello **InputShape**, **KernelShape**, és **Stride**). 
+* hello forrás rétegben csomópontok száma hello *5 * 24 * 24 = 2880*. 
 * Ennek oka egy hagyományos helyi készletezésével réteg **KernelShape** és **Stride** egyenlő. 
-* A cél rétegben csomópontok száma *5 * 12 * 12 = 1440*.  
+* hello cél rétegben csomópontok száma hello *5 * 12 * 12 = 1440*.  
 
 Egyesítési rétegek kapcsolatos további információkért lásd: ezek a cikkek:  
 
@@ -228,26 +228,26 @@ Egyesítési rétegek kapcsolatos további információkért lásd: ezek a cikke
 * [http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.PDF](http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf)
 
 ## <a name="response-normalization-bundles"></a>Válasz normalizálási kötegek
-**Válasz normalizálási** egy helyi normalizálási rendszer Geoffrey Hinton, először bevezetett és mások, a dokumentum [ImageNet Classiﬁcation Convolutional Neurális hálózatokat a](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf). Válasz normalizálási Neurális hálók általánosítása elősegítésére szolgál. Amikor egy idegsejt aktiválási nagyon magas szintű folyamatban van, egy helyi válasz normalizálási réteg mellőzi a környező idegsejtek csoportjának viselkedését aktiválási szintjét. Ehhez három paraméterekkel (***α***, ***β***, és ***k***) és egy convolutional struktúra (vagy hálózatok alakzat). A cél rétegben minden idegsejt ***y*** idegsejt megfelel ***x*** a forrás rétegben. Az aktiválási szintű ***y*** képlettel a következő, ahol ***f*** idegsejt, az aktiválási szintje és ***Nx*** a kernel (vagy a készlet, amely tartalmazza a idegsejtek csoportjának viselkedését a a a helyek ***x***), a következő convolutional struktúra által meghatározott módon:  
+**Válasz normalizálási** egy helyi normalizálási rendszer Geoffrey Hinton, először bevezetett és mások hello dokumentum [ImageNet Classiﬁcation Convolutional Neurális hálózatokat a](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf). Válasz normalizálási használt tooaid általánosítása Neurális hálók. Amikor egy idegsejt folyamatban van az aktiválás nagyon magas szintű, egy helyi válasz normalizálási réteg mellőzi hello aktiválási szintű hello körülvevő idegsejtek csoportjának viselkedését. Ehhez három paraméterekkel (***α***, ***β***, és ***k***) és egy convolutional struktúra (vagy hálózatok alakzat). Minden idegsejt hello cél rétegben ***y*** felel meg a tooa idegsejt ***x*** hello forrás rétegben. aktiválási szintű hello ***y*** adja meg a következő képlet, hello ahol ***f*** hello aktiválási szint idegsejt, és ***Nx*** hello kernel (vagy hello tartalmazó hello beállítása a hello ablakban a idegsejtek csoportjának viselkedését ***x***), a következő convolutional struktúra hello által definiált:  
 
 ![][1]  
 
-Válasz normalizálási kötegek támogatja a convolutional attribútumok kivéve **megosztás**, **MapCount**, és **súlyok**.  
+Válasz normalizálási csomagokat támogatja az összes hello convolutional attribútumokat kivételével **megosztás**, **MapCount**, és **súlyok**.  
 
-* Ha a kernel tartalmazza-e, azonos leképezés idegsejtek csoportjának viselkedését ***x***, a rendszer séma nevezzük **normalizálási képezi le azonos**. Azonos térkép normalizálási, az első koordináta meghatározásához **InputShape** 1 értéket kell megadni.
-* Ha a kernel tartalmazza-e az azonos térbeli helyzetben idegsejtek csoportjának viselkedését ***x***, de a idegsejtek csoportjának viselkedését a maps-más, a rendszer séma neve **keresztben leképezi a normalizálási**. Az ilyen típusú válasz normalizálási egy formája, amelyet a típus van a valós idegsejtek csoportjának viselkedését, többek között a különböző térképeken számított idegsejt kimenetek nagy aktiválási szintjeinek verseny létrehozása inspirálta oldalirányú gátló valósítja meg. Meghatározásához maps normalizálási között, az első koordináta nagyobb, mint egy és a maps száma nem lehet nagyobb egész számnak kell lennie, és a koordináták a többi 1 értéket kell megadni.  
+* Ha hello kernel tartalmaz idegsejtek csoportjának viselkedését a hello azonos leképezni ***x***, hello normalizálási séma hivatkozott tooas **normalizálási képezi le azonos**. toodefine azonos leképezése hello első koordináta a rendszer **InputShape** 1 hello értékűnek kell lennie.
+* Ha hello kernel tartalmaz idegsejtek csoportjának viselkedését a hello azonos térbeli helyzetben ***x***, de hello idegsejtek csoportjának viselkedését más maps, a hello normalizálási séma neve **keresztben leképezi a normalizálási**. Az ilyen típusú válasz normalizálási egy formája, amelyet oldalirányú gátló inspirálta hello típus van a valós idegsejtek csoportjának viselkedését, többek között a különböző térképeken számított idegsejt kimenetek nagy aktiválási szintjeinek verseny létrehozása valósítják meg. toodefine közötti leképezések normalizálási, hello első koordinátájának nagyobb, mint egy és maps hello száma nem lehet nagyobb egész számnak kell lennie, és hello rest hello koordinátának kell rendelkeznie a hello érték 1.  
 
-Válasz normalizálási csomagok forrás csomópont értékek megadásával határozza meg a cél csomópont érték előre definiált függvényt alkalmazni, mert nincs trainable állapot (súlyok vagy elfogultság) rendelkeznek.   
+Válasz normalizálási csomagok egy előre definiált függvény toosource csomópont értékek toodetermine hello cél csomópont érték alkalmazni, mert nincs trainable állapot (súlyok vagy elfogultság) rendelkeznek.   
 
-**Riasztási**: A csomópontok a cél rétegben idegsejtek csoportjának viselkedését, amelyek a kernelek központi csomópont felel meg. Például, ha a [d] KernelShape páratlan, majd *KernelShape [d.] / 2* felel meg a központi kernel csomópont. Ha *KernelShape [d.]* az még akkor is, a központi csomópont *KernelShape [d.] / 2-1*. Ezért ha **kitöltési**[d.] értéke HAMIS, az első és az utolsó *KernelShape [d.] / 2* csomópontok nem rendelkeznek megfelelő csomópontokat a cél rétegben. Ez a helyzet elkerülése érdekében adja meg a **kitöltési** mint [értéke true, true,..., igaz].  
+**Riasztási**: hello csomópontok hello cél rétegben, amelyek központi csomópontja hello hello kernelek tooneurons felel meg. Például, ha a [d] KernelShape páratlan, majd *KernelShape [d.] / 2* toohello központi kernel csomópont felel meg. Ha *KernelShape [d.]* az még akkor is, hello központi csomópont *KernelShape [d.] / 2-1*. Ezért ha **kitöltési**[d.] értéke HAMIS, hello első és utolsó hello *KernelShape [d.] / 2* csomópontok nem rendelkeznek megfelelő csomópontokat hello cél rétegben. tooavoid ebben az esetben adja meg **kitöltési** mint [értéke true, true,..., igaz].  
 
-A korábban ismertetett négy attribútumok mellett válasz normalizálási csomagok is támogatja a következő attribútumok:  
+Ezenkívül toohello négy attribútumok a korábban ismertetett válasz normalizálási csomagokat is a következő attribútumok támogatási hello:  
 
-* **Alpha**: (kötelező) adja meg egy lebegőpontos érték, amely megfelelne a ***α*** a korábbi képletben. 
-* **Beta**: (kötelező) adja meg egy lebegőpontos érték, amely megfelelne a ***β*** a korábbi képletben. 
-* **Eltolás**: (nem kötelező) adja meg egy lebegőpontos érték, amely megfelelne a ***k*** a korábbi képletben. Alapértelmezés szerint az 1.  
+* **Alpha**: (kötelező) adja meg egy lebegőpontos érték túl megfelelő***α*** hello előző képletben. 
+* **Beta**: (kötelező) adja meg egy lebegőpontos érték túl megfelelő***β*** hello előző képletben. 
+* **Eltolás**: (nem kötelező) adja meg egy lebegőpontos érték túl megfelelő***k*** hello előző képletben. Alapértelmezés szerint too1.  
 
-A következő példa egy válasz normalizálási köteg ezek az attribútumok használatával határozza meg:  
+hello alábbi példa meghatározza, hogy a válasz normalizálási nyalábot, ezek az attribútumok használata:  
 
     hidden RN1 [5, 10, 10]
       from P1 response norm {
@@ -257,12 +257,12 @@ A következő példa egy válasz normalizálási köteg ezek az attribútumok ha
         Beta = 0.75;
       }  
 
-* A forrás réteg öt 12 x 12 1440 csomópontok összesítés aof léptékű maps tartalmazza. 
-* Értékének **KernelShape** jelzi, hogy ez egy azonos normalizálási térképréteg, ahol a pontos 3 x 3 téglalap az. 
-* Az alapértelmezett érték **kitöltési** értéke HAMIS, a célfájl layer csak 10 csomópontok be van minden dimenzió. Egy csomópont a cél rétegben, amely megfelel a forrás-réteg minden csomópontja egészítse kitöltési = [true, true, true]; és RN1 méretének módosítása [5, 12, 12].  
+* hello forrás réteg öt 12 x 12 1440 csomópontok összesítés aof léptékű maps tartalmazza. 
+* hello értékének **KernelShape** jelzi, hogy ez egy azonos normalizálási térképréteg, 3 x 3 téglalap hello hálózatok esetén. 
+* alapértelmezett értékének hello **kitöltési** értéke HAMIS, így hello célfájl layer tartoznak minden dimenzió csak 10 csomópontok. egy csomópont tooinclude hello cél rétegben, amely megfelel a tooevery csomópont hello forrás rétegben, vegye fel a kitöltési = [true, true, true]; és túl RN1 hello méretének módosítása [5, 12, 12].  
 
 ## <a name="share-declaration"></a>Fájlmegosztás a nyilatkozatot
-NET # opcionálisan is támogatja a megosztott súlyozással több csomagokat. A súlyok bármely két kötegek megoszthatók, ha azok struktúrák azonos. A következő szintaxist a megosztott súlyozással rendelkező csomagok határozza meg:  
+NET # opcionálisan is támogatja a megosztott súlyozással több csomagokat. bármely két kötegek hello súlyok is lehet megosztani, ha azok struktúrák vannak hello azonos. szintaxis a következő hello meghatározza, hogy a megosztott súlyozással rendelkező csomagok:  
 
     share-declaration:
         share    {    layer-list    }
@@ -290,7 +290,7 @@ NET # opcionálisan is támogatja a megosztott súlyozással több csomagokat. A
     layer-name:
         identifier  
 
-Például a következő megosztás-adja meg a réteg nevek, amely azt jelzi, hogy a súlyok és a elfogultság megosztott:  
+Például hello következő megosztás-adja meg hello réteg nevét, amely azt jelzi, hogy a súlyok és a elfogultság megosztott:  
 
     Const {
       InputSize = 37;
@@ -310,9 +310,9 @@ Például a következő megosztás-adja meg a réteg nevek, amely azt jelzi, hog
     }
     share { H1, H2 } // share both weights and biases  
 
-* A bemeneti szolgáltatások particionáltak két egyenlő méretű bemeneti rétegben. 
-* A Rejtett réteg majd számítási a két bemeneti rétegek magasabb szintű funkciók. 
-* A megosztás-deklaráció azt jelenti, hogy *H1* és *H2* a a megfelelő bemenetei ugyanúgy kell számolni.  
+* hello bemeneti szolgáltatások particionáltak két egyenlő méretű bemeneti rétegben. 
+* rejtett hello rétegek majd számítási hello két bemeneti rétegek magasabb szintű funkciók. 
+* hello megosztás-deklaráció azt jelenti, hogy *H1* és *H2* a hello ki kell számítani a a megfelelő bemenetei azonos módon.  
 
 Azt is megteheti ez sikerült lehet megadni két külön megosztás-deklarációk az alábbiak szerint:  
 
@@ -322,59 +322,59 @@ Azt is megteheti ez sikerült lehet megadni két külön megosztás-deklaráció
 
     share { 1 => H1, 1 => H2 } // share biases  
 
-A rövid alak: / is használhatja, csak ha a rétegek csomagban szerepel. Megosztás általában lehetséges csak akkor, ha a megfelelő struktúra megegyezik, ami azt jelenti, hogy rendelkeznek a azonos méretűnek, azonos convolutional geometriai és így tovább.  
+Hello rövid alak: / is használhatja, csak ha hello rétegek csomagban szerepel. Megosztás általában lehetséges csak azonos, ami azt jelenti, hogy rendelkezik-e azonos mérete, azonos convolutional geometriai, és így tovább hello hello vonatkozó struktúra esetén.  
 
 ## <a name="examples-of-net-usage"></a>Net # használati példák
-Ez a témakör néhány példa arra, hogyan használhatja a Net # rejtett réteg hozzáadásához meghatározhatja, hogy a Rejtett réteg más rétegeiből kommunikál, és állítsa be convolutional hálózatok.   
+Ez a témakör néhány példa arra, hogyan használhatja a Net # rejtett tooadd rétegek hello úgy, hogy a Rejtett réteg más rétegeiből kommunikál, és convolutional hálózatok felépítéséhez határozza meg.   
 
 ### <a name="define-a-simple-custom-neural-network-hello-world-example"></a>Adja meg egy egyszerű egyéni Neurális hálózat: "Hello, World" – példa
-Ez egyszerű példa bemutatja, hogyan, amely rendelkezik egy rejtett rétegben Neurális hálózat modell létrehozásához.  
+Ez egyszerű példa bemutatja, hogyan toocreate a Neurális hálózat modell, amely rendelkezik egy rejtett rétegben.  
 
     input Data auto;
     hidden H [200] from Data all;
     output Out [10] sigmoid from H all;  
 
-A példa bemutatja, néhány alapvető parancsok az alábbiak szerint:  
+hello példában látható módon néhány alapvető parancsok az alábbiak szerint:  
 
-* Az első sor meghatározza a bemeneti réteg (nevű *adatok*). Ha a **automatikus** kulcsszóval, a Neurális hálózat automatikusan felveszi a szolgáltatás az összes oszlop a bemeneti példák. 
-* A második sor hoz létre a rejtett rétegben. A név *H* a rejtett rétegben, amely 200 csomópont van rendelve. Ez a réteg teljesen csatlakozni a bemeneti réteg.
-* A harmadik sorban határozza meg a kimeneti réteg (nevű *O*), 10 kimeneti csomópontok, amely tartalmazza. Neurális hálózat besorolást használják, ha van egy kimeneti csomópont / osztály. A kulcsszó **sigmoid** azt jelzi, hogy a kimeneti függvénynek a kimeneti réteg van hozzárendelve.   
+* hello első sor meghatározása hello bemeneti réteg (nevű *adatok*). Amikor az hello **automatikus** kulcsszóval, hello Neurális hálózat hello bemeneti példák automatikusan összes szolgáltatás-oszlopa tartalmazza. 
+* hello második sor hello rejtett réteg hoz létre. hello neve *H* toohello rejtett rétegben, amely 200 csomópont van hozzárendelve. Ez a réteg teljesen csatlakoztatott toohello bemeneti réteg.
+* hello harmadik sor hello kimeneti réteg határozza meg (nevű *O*), 10 kimeneti csomópontok, amely tartalmazza. Hello Neurális hálózat besorolást használják, ha van egy kimeneti csomópont / osztály. hello kulcsszó **sigmoid** azt jelzi, hogy hello kimeneti függvény alkalmazott toohello kimeneti réteg.   
 
 ### <a name="define-multiple-hidden-layers-computer-vision-example"></a>Adja meg a több rejtett réteg: számítógép átfogóan bemutató példa
-A következő példa bemutatja, hogyan adhat meg egy kicsit bonyolultabb Neurális hálózat, a több egyéni rejtett réteg.  
+hello következő példa bemutatja, hogyan toodefine egy kicsit bonyolultabb Neurális hálózat, a több egyéni rejtett réteg.  
 
-    // Define the input layers 
+    // Define hello input layers 
     input Pixels [10, 20];
     input MetaData [7];
 
-    // Define the first two hidden layers, using data only from the Pixels input
+    // Define hello first two hidden layers, using data only from hello Pixels input
     hidden ByRow [10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol [5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;
 
-    // Define the third hidden layer, which uses as source the hidden layers ByRow and ByCol
+    // Define hello third hidden layer, which uses as source hello hidden layers ByRow and ByCol
     hidden Gather [100] 
     {
       from ByRow all;
       from ByCol all;
     }
 
-    // Define the output layer and its sources
+    // Define hello output layer and its sources
     output Result [10]  
     {
       from Gather all;
       from MetaData all;
     }  
 
-Ebben a példában a Neurális hálózatokat nyelv több funkcióit mutatja be:  
+Ez a példa több hello Neurális hálózatokat specification nyelvnek olyan szolgáltatását mutatja be:  
 
-* A struktúrának van két bemeneti réteg *képpont* és *metaadatok*.
-* A *képpont* réteg rétegeket célfájl, két kapcsolat csomagokat, a forrás-rétege *ByRow* és *ByCol*.
-* A rétegek *összegyűjtése* és *eredmény* cél rétegek több kapcsolat csomagokat a rendszer.
-* A kimeneti réteg *eredmény*, a cél réteg két kapcsolat kötegek; egyet a második szintű rejtett (összefog) cél rétegként, és egy másik cél rétegként a bemeneti réteggel (MetaData).
-* A Rejtett réteg *ByRow* és *ByCol*, adja meg a szűrt kapcsolat predikátum kifejezések használatával. Pontosabban, a csomópont *ByRow* : [x, y] csatlakozik-e a csomópontok *képpont* , hogy rendelkezik az első index koordinálja a csomópont egyenlőnek csomagazonosítóját az első összehangolják x. Hasonlóképpen, a csomópont *ByCol: [x, y] _Pixels csomópontja csatlakozik* második koordinálja, y, hogy rendelkezik a második index koordinálja a csomópont egyik végpontjára.  
+* hello struktúrának van két bemeneti réteg *képpont* és *metaadatok*.
+* Hello *képpont* réteg rétegeket célfájl, két kapcsolat csomagokat, a forrás-rétege *ByRow* és *ByCol*.
+* rétegek hello *összegyűjtése* és *eredmény* cél rétegek több kapcsolat csomagokat a rendszer.
+* hello kimeneti réteg, *eredmény*, a cél réteg két kapcsolat kötegek; egyet hello második szint cél rétegként rejtett (összefog), és a cél rétegként hello más hello bemeneti réteg (MetaData).
+* a Rejtett réteg hello *ByRow* és *ByCol*, adja meg a szűrt kapcsolat predikátum kifejezések használatával. Pontosabban, hello csomópontja *ByRow* : [x, y] csatlakoztatott toohello csomópontjának van *képpont* , amelyek hello első index koordináta egyenlő toohello csomópont első összehangolják x. Ehhez hasonlóan hello csomópontja *ByCol: [x, y] _Pixels csatlakoztatott toohello csomópontjának van* hello második index koordináta egy második koordináta hello csomópont, amelyeken y.  
 
 ### <a name="define-a-convolutional-network-for-multiclass-classification-digit-recognition-example"></a>Adja meg a multiclass besorolási convolutional hálózati: számjegy felismerés – példa
-A következő hálózati meghatározását arra tervezték, hogy ismeri fel azt a számot, és azt szemlélteti, hogy néhány speciális technikák Neurális hálózat testreszabásához.  
+a következő hálózati hello hello definíciója tervezett toorecognize számok, és azt szemlélteti, hogy néhány speciális technikák Neurális hálózat testreszabásához.  
 
     input Image [29, 29];
     hidden Conv1 [5, 13, 13] from Image convolve 
@@ -397,21 +397,21 @@ A következő hálózati meghatározását arra tervezték, hogy ismeri fel azt 
     output Digit [10] from Hid3 all;  
 
 
-* A struktúrának van egy bemeneti rétegben *kép*.
-* A kulcsszó **convolve** azt jelzi, hogy a rétegek nevű *Conv1* és *Conv2* convolutional rétegek vannak. Minden, a réteg nyilatkozatok követi a konvolúció attribútumok listáját.
-* A háló harmadik rejtett réteg, *Hid3*, amely teljes mértékben csatlakozik-e a második rejtett réteg *Conv2*.
-* A kimeneti réteg *számjegy*, csak a harmadik rejtett réteg csatlakozik *Hid3*. A kulcsszó **összes** azt jelzi, hogy a kimeneti réteg teljesen csatlakozik *Hid3*.
-* Az aritása a konvolúció három (a rekordokat hosszát **InputShape**, **KernelShape**, **Stride**, és **megosztás**). 
-* A súlyok / kernel száma *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape** \[ 2] = 1 + 1 * 5 * 5 = 26. Vagy 26 * 50 = 1300*.
-* Kiszámolhatja, minden egyes rejtett rétegben található csomópontok az alábbiak szerint:
+* hello struktúrának van egy bemeneti rétegben *kép*.
+* hello kulcsszó **convolve** azt jelzi, hogy hello rétegek nevű *Conv1* és *Conv2* convolutional rétegek vannak. A réteg nyilatkozatok mindegyikének hello konvolúció attribútumok listája követi.
+* nettó hello harmadik rejtett réteg, *Hid3*, amely teljes mértékben kapcsolódó toohello második rejtett rétegben, *Conv2*.
+* hello kimeneti réteg, *számjegy*, csatlakoztatott csak toohello harmadik rejtett réteg, *Hid3*. hello kulcsszó **összes** jelzi, hogy hello kimeneti réteg teljesen kapcsolódik túl*Hid3*.
+* hello hello konvolúció aritása három (hello rekordokat hosszát hello **InputShape**, **KernelShape**, **Stride**, és **megosztás**). 
+* kernel / súlyok hello száma *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape** \[2] = 1 + 1 * 5 * 5 = 26. Vagy 26 * 50 = 1300*.
+* Kiszámolhatja, minden egyes rejtett rétegben hello csomópontok az alábbiak szerint:
   * **NodeCount**\[0] = (5 - 1) vagy 1 + 1 = 5.
   * **NodeCount**\[1] = (13-5) / 2 + 1 = 5. 
   * **NodeCount**\[2] (13-5) = / 2 + 1 = 5. 
-* A csomópontok száma kerülhet sor, a réteg deklarált dimenzióinak használatával [50, 5, 5], az alábbiak szerint:  ***MapCount** * **NodeCount**\[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
-* Mivel **megosztás**[d.] értéke hamis csak *d == 0*, kernelek száma  ***MapCount** * **NodeCount** \[0] = 10 * 5 = 50*. 
+* hello csomópontok száma kerülhet sor dimenzióinak, hello deklarált hello segítségével réteg, [50, 5, 5], az alábbiak szerint:  ***MapCount** * **NodeCount** \[ 0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
+* Mivel **megosztás**[d.] értéke hamis csak *d == 0*, kernelek hello száma  ***MapCount** * **NodeCount** \[0] = 10 * 5 = 50*. 
 
 ## <a name="acknowledgements"></a>A nyugtázás
-A Net # nyelv Neurális hálózatokat architektúrájának testreszabásához fejlesztette ki Microsoft Shon Katzenberger (felelős mérnök, gépi tanulás) és ALEKSZEJ Kamenev (szoftver visszafejtés, a Microsoft Research). Ez belső használatra készült a gépi tanulási projektek és alkalmazások szövegelemzések kép észlelési kezdve. További információkért lásd: [Neurális háló Azure ml - Net # bemutatása](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
+hello Net # nyelv Neurális hálózatokat hello architektúrájának testreszabásához fejlesztette ki Microsoft Shon Katzenberger (felelős mérnök, gépi tanulás) és ALEKSZEJ Kamenev (szoftver visszafejtés, a Microsoft Research). Ez belső használatra készült a gépi tanulási projektek és az alkalmazások közötti kép észlelési tootext elemzés. További információkért lásd: [Azure ml - bevezető tooNet # Neurális háló](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
 
 [1]:./media/machine-learning-azure-ml-netsharp-reference-guide/formula_large.gif
 

@@ -1,5 +1,5 @@
 ---
-title: "PostgreSQL-adatbázisban az Azure korlátozásai |} Microsoft Docs"
+title: "Azure adatbázisban a következő PostgreSQL aaaLimitations |} Microsoft Docs"
 description: "Azure-adatbázis korlátozásai PostgreSQL ismerteti."
 services: postgresql
 author: kamathsun
@@ -10,19 +10,19 @@ ms.service: postgresql
 ms.custom: mvc
 ms.topic: article
 ms.date: 06/01/2017
-ms.openlocfilehash: 38988fc5c0dc05331ea078534cd1a05e9eca2493
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f53dd240e55e0633bc1dfb8ad25e1818fa8ae18c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-in-azure-database-for-postgresql"></a>Az Azure-adatbázis PostgreSQL korlátozásai
-Az Azure-adatbázis PostgreSQL szolgáltatás nyilvános előzetes verzió van. A következő szakaszok ismertetik a kapacitás és az adatbázis szolgáltatásban működik korlátok.
+hello Azure adatbázis PostgreSQL szolgáltatás nyilvános előzetes verziójában van. hello következő részek a kapacitás és működési korlátai hello adatbázis szolgáltatásban.
 
 ## <a name="service-tier-maximums"></a>Szolgáltatási szint méretkorlát
 Azure PostgreSQL-adatbázishoz a kiszolgáló létrehozása választhat több szolgáltatásszinttel rendelkezik. További információkért lásd: [az egyes szolgáltatásszinteken elérhető](concepts-service-tiers.md).  
 
-Nincs kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltatásszintek tartalmának maximális száma a szolgáltatás előzetes az alábbiak szerint: 
+Hiba egy maximális száma érték a kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltatásszinteken hello szolgáltatás előzetes, az alábbiak szerint: 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -40,7 +40,7 @@ Nincs kapcsolatok, a számítási egység és a tárolás, az egyes szolgáltat�
 | Alapszintű szolgáltatásszint         | 1 TB              |
 | Standard szolgáltatásszint      | 1 TB              |
 
-Túl sok a kapcsolat elérésekor a következő hibaüzenet jelenhet meg:
+Túl sok a kapcsolat elérésekor hello a következő hiba jelenhet meg:
 > Súlyos hiba: sajnos már túl sok ügyfél
 
 ## <a name="preview-functional-limitations"></a>Előzetes verzió működési korlátozásai
@@ -56,10 +56,10 @@ Túl sok a kapcsolat elérésekor a következő hibaüzenet jelenhet meg:
 - Dinamikusan áthelyezése előfizetés és az erőforráscsoport előre létrehozott kiszolgálók jelenleg nem támogatott.
 
 ### <a name="point-in-time-restore"></a>Időponthoz kötött visszaállítás
-1.  Különböző szolgáltatási rétegben és/vagy számítási egység és a tárhely mérete visszaállítása nem engedélyezett.
+1.  Toodifferent szolgáltatásréteg és/vagy számítási egység és a tárhely mérete visszaállítása nem engedélyezett.
 2.  Az eldobott kiszolgáló visszaállítása nem támogatott.
 
 ## <a name="next-steps"></a>Következő lépések
 - Megértéséhez [egyes tarifacsomagok elérhető](concepts-service-tiers.md)
 - Megértéséhez [támogatott PostgreSQL-adatbázis verziója](concepts-supported-versions.md)
-- Felülvizsgálati [készítsen biztonsági másolatot, és a kiszolgáló Azure-adatbázis visszaállítása az Azure portál használatával PostgreSQL](howto-restore-server-portal.md)
+- Felülvizsgálati [hogyan tooBack mentése és visszaállítása egy Azure-adatbázis kiszolgáló PostgreSQL használatára vonatkozó hello Azure-portálon](howto-restore-server-portal.md)

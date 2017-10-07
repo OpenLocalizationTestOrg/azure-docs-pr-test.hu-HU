@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Snapshot Manager biztonsági mentési házirendek |} Microsoft Docs"
-description: "Ismerteti a StorSimple Snapshot Manager MMC beépülő modul használatával hozzon létre, és a biztonsági mentési házirend ütemezett biztonsági mentést vezérlő kezeléséhez."
+title: "aaaStorSimple Snapshot Manager biztonsági mentési házirendek |} Microsoft Docs"
+description: "Útmutatás a toouse StorSimple Snapshot Manager MMC beépülő modul toocreate hello és hello biztonsági mentési házirend ütemezett biztonsági mentések szabályozó kezeléséhez."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: 218c89e403673c16c72da95aa2c1d685bbed5a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2ae75a8d0568090add6018da18de73eb56e6590
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-snapshot-manager-to-create-and-manage-backup-policies"></a>StorSimple Snapshot Manager segítségével biztonsági szabályzatok létrehozása és kezelése
+# <a name="use-storsimple-snapshot-manager-toocreate-and-manage-backup-policies"></a>StorSimple Snapshot Manager toocreate használatát és kezelését a biztonsági mentési házirendek
 ## <a name="overview"></a>Áttekintés
-A biztonsági mentési házirend hoz létre egy ütemezést az adatok biztonsági mentése kötet helyileg vagy a felhőben. A biztonsági mentési házirend létrehozásakor adja meg egy megőrzési házirend. (Legfeljebb 64 pillanatképek őrizheti). További információ a biztonsági mentési házirendek: [biztonsági mentési típusok](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies) a [StorSimple 8000 series: hibrid felhőalapú megoldás](storsimple-overview.md).
+A biztonsági mentési házirend hoz létre egy ütemezést az adatok biztonsági mentése kötet helyileg vagy hello felhőben. A biztonsági mentési házirend létrehozásakor adja meg egy megőrzési házirend. (Legfeljebb 64 pillanatképek őrizheti). További információ a biztonsági mentési házirendek: [biztonsági mentési típusok](storsimple-what-is-snapshot-manager.md#backup-types-and-backup-policies) a [StorSimple 8000 series: hibrid felhőalapú megoldás](storsimple-overview.md).
 
 Ez az oktatóanyag azt ismerteti, hogyan:
 
@@ -31,65 +31,65 @@ Ez az oktatóanyag azt ismerteti, hogyan:
 * A biztonsági mentési házirend törlése
 
 ## <a name="create-a-backup-policy"></a>A biztonsági mentési házirend létrehozása
-A következő eljárással hozhat létre egy új biztonsági mentési házirend.
+A következő eljárás toocreate egy új biztonsági mentési házirend hello használata.
 
-#### <a name="to-create-a-backup-policy"></a>A biztonsági mentési házirend létrehozása
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager.
-2. Az a **hatókör** ablaktáblán kattintson a jobb gombbal **biztonsági mentési házirendek**, és kattintson a **biztonsági mentési házirend létrehozása**.
+#### <a name="toocreate-a-backup-policy"></a>a biztonsági mentési házirend toocreate
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager.
+2. A hello **hatókör** ablaktáblán kattintson a jobb gombbal **biztonsági mentési házirendek**, és kattintson a **biztonsági mentési házirend létrehozása**.
 
     ![A biztonsági mentési házirend létrehozása](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_BU_policy.png)
 
-    A **házirend létrehozása** párbeszédpanel jelenik meg.
+    Hello **házirend létrehozása** párbeszédpanel jelenik meg.
 
     ![Hozzon létre egy házirend – Általános lap](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_general.png)
-3. Az a **általános** lapra, adja meg a következő adatokat:
+3. A hello **általános** lap, a következő információ teljes hello:
 
-   1. Az a **neve** szövegmezőbe írja be a házirend nevét.
-   2. Az a **kötet csoport** mezőbe, írja be a kötet csoport nevét a házirendhez társított.
+   1. A hello **neve** szövegmezőbe írja be a hello házirend nevét.
+   2. A hello **kötet csoport** szövegmezőben, hello kötet csoport hello házirendhez társított hello nevét.
    3. Válassza ki vagy **helyi pillanatfelvétel** vagy **felhőalapú pillanatfelvétel**.
-   4. Válassza ki a megőrizni kívánt pillanatképek számát. Ha **minden**, 64 pillanatképek lesz (a maximális) maradnak.
-4. Kattintson a **ütemezés** fülre.
+   4. Válassza ki a pillanatképek tooretain hello számát. Ha **összes**, 64 pillanatfelvételek megmaradnak (hello maximális).
+4. Kattintson a hello **ütemezés** fülre.
 
     ![Hozzon létre egy házirend - ütemezés lapon](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_schedule.png)
-5. Az a **ütemezés** lapra, adja meg a következő adatokat:
+5. A hello **ütemezés** lap, a következő információ teljes hello:
 
-   1. Kattintson a **engedélyezése** melletti jelölőnégyzetet, hogy a következő biztonsági mentés ütemezése.
+   1. Kattintson a hello **engedélyezése** jelölőnégyzetet tooschedule hello következő biztonsági mentés.
    2. A **beállítások**, jelölje be **egyszer**, **napi**, **heti**, vagy **havi**.
-   3. Az a **Start** szövegmezőben kattintson a naptár ikonra, és válassza ki a kezdési dátum.
+   3. A hello **Start** szövegmezőben kattintson hello naptár ikonra, és válassza ki a kezdési dátum.
    4. A **speciális beállítások**, beállíthatja a választható ismétlődő ütemezés és a befejező dátumát.
    5. Kattintson az **OK** gombra.
 
-Miután létrehozta a biztonsági mentési házirend, az alábbi információk megjelennek a **eredmények** panelen:
+Miután létrehozta a biztonsági mentési házirend, a következő információk hello megjelenik hello **eredmények** panelen:
 
-* **Név** – a biztonsági mentési házirend nevét.
+* **Név** – hello biztonsági mentési házirend nevét.
 * **Típus** – helyi pillanatfelvétel és felhőbeli pillanatfelvétel.
-* **Kötet csoport** – a kötet csoport, a házirendhez társított.
-* **Megőrzési** – számú pillanatkép maradnak; a maximális 64.
-* **Létrehozott** – Ez a házirend létrehozásának dátumát.
-* **Engedélyezett** – hogy a házirend van érvényben: **igaz** azt mutatja, hogy érvényes; **Hamis** azt mutatja, hogy nem érvényes.
+* **Kötet csoport** – hello hello házirendhez társított kötet csoport.
+* **Megőrzési** – hello pillanatképek számát maradnak; hello maximális 64.
+* **Létrehozott** – Ez a házirend létrehozásának hello dátuma.
+* **Engedélyezett** – hogy hello házirend van érvényben: **igaz** azt mutatja, hogy érvényes; **Hamis** azt mutatja, hogy nem érvényes.
 
 ## <a name="edit-a-backup-policy"></a>A biztonsági mentési házirend szerkesztése
-A következő eljárással szerkesztheti a meglévő biztonsági mentési házirend.
+A következő eljárás tooedit egy meglévő biztonsági mentési házirend hello használata.
 
-#### <a name="to-edit-a-backup-policy"></a>A biztonsági mentési házirend szerkesztése
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager.
-2. Az a **hatókör** ablaktáblán kattintson a **biztonsági mentési házirendek** csomópont. A biztonsági mentési házirendek megjelennek a **eredmények** ablaktáblán.
-3. Kattintson a jobb gombbal a házirend szerkesztése, és kattintson a kívánt **szerkesztése**.
+#### <a name="tooedit-a-backup-policy"></a>a biztonsági mentési házirend tooedit
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager.
+2. A hello **hatókör** ablaktáblán kattintson a hello **biztonsági mentési házirendek** csomópont. Minden hello biztonsági mentési házirendek jelennek-e hello **eredmények** ablaktáblán.
+3. Kattintson a jobb gombbal a kívánt tooedit, és kattintson hello házirend **szerkesztése**.
 
     ![A biztonsági mentési házirend szerkesztése](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Edit_BU_policy.png)
-4. Ha a **házirend létrehozása** ablak megjelenik, írja be a módosításokat, és kattintson **OK**.
+4. Ha hello **házirend létrehozása** ablak megjelenik, írja be a módosításokat, és kattintson **OK**.
 
 ## <a name="delete-a-backup-policy"></a>A biztonsági mentési házirend törlése
-Az alábbi eljárás segítségével törölheti a biztonsági mentési házirend.
+A következő eljárás toodelete a biztonsági mentési házirend hello használata.
 
-#### <a name="to-delete-a-backup-policy"></a>A biztonsági mentési házirend törlése
-1. Kattintson az asztal ikonra kattintva indítsa el a StorSimple Snapshot Manager.
-2. Az a **hatókör** ablaktáblán kattintson a **biztonsági mentési házirendek** csomópont. A biztonsági mentési házirendek megjelennek a **eredmények** ablaktáblán.
-3. Kattintson a jobb gombbal a biztonsági mentési házirend, törlése, és kattintson a kívánt **törlése**.
-4. A jóváhagyást kérő üzenet megjelenésekor kattintson **Igen**.
+#### <a name="toodelete-a-backup-policy"></a>a biztonsági mentési házirend toodelete
+1. Kattintson a hello asztali ikon toostart StorSimple Snapshot Manager.
+2. A hello **hatókör** ablaktáblán kattintson a hello **biztonsági mentési házirendek** csomópont. Minden hello biztonsági mentési házirendek jelennek-e hello **eredmények** ablaktáblán.
+3. Kattintson a jobb gombbal a biztonsági mentési házirend hello toodelete szeretne, és kattintson **törlése**.
+4. Hello jóváhagyást kérő üzenet megjelenésekor kattintson **Igen**.
 
     ![A biztonsági mentési házirend megerősítés törlése](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Delete_BU_policy.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [StorSimple Snapshot Manager segítségével felügyelheti a StorSimple megoldásban](storsimple-snapshot-manager-admin.md).
-* Megtudhatja, hogyan [StorSimple Snapshot Manager segítségével megtekintheti és kezelheti a biztonsági mentési feladatok](storsimple-snapshot-manager-manage-backup-jobs.md).
+* Ismerje meg, hogyan túl[használja a StorSimple Snapshot Manager tooadminister a StorSimple megoldásban](storsimple-snapshot-manager-admin.md).
+* Ismerje meg, hogyan túl[StorSimple Snapshot Manager tooview használatát és kezelését a biztonsági mentési feladatok](storsimple-snapshot-manager-manage-backup-jobs.md).

@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure DevTest Labs egyéni lemezképet létrehozni egy virtuális |} Microsoft Docs"
-description: "Útmutató egyéni lemezkép létrehozása a Azure DevTest Labs szolgáltatásban az Azure portál használatával kiépített VM"
+title: "egy virtuális Gépet az Azure DevTest Labs egyéni lemezképének aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egyéni lemezképként az Azure DevTest Labs segítségével kiosztott virtuális gép hello Azure-portálon"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9d2dcf7164985508d691e8a0c123efaf3b8aa19a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7dccb79d3db4aae676c7bd2f6b800301210491e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-from-a-vm"></a>Egy egyéni lemezképet létrehozni egy virtuális
 
@@ -26,29 +26,29 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="step-by-step-instructions"></a>Lépésenkénti utasítások
 
-Létrehozhat egyéni rendszerképeket kiosztott virtuális gépről, és ezt követően a egyéni lemezkép használatával hozzon létre azonos virtuális gépek. A következő lépések bemutatják, hogyan lehet egy egyéni lemezképet létrehozni egy virtuális:
+Létrehozhat egyéni rendszerképeket kiosztott virtuális gépről, és ezt követően használja az adott egyéni lemezkép toocreate azonos virtuális gépeket. hello lépések bemutatják, hogyan toocreate egyéni rendszerképet virtuális gép alapján:
 
-1. Jelentkezzen be az [Azure Portalra](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Jelentkezzen be toohello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Válassza a **További szolgáltatások**, majd a **DevTest Labs** elemet a listából.
+1. Válassza ki **további szolgáltatások**, majd válassza ki **DevTest Labs** hello listából.
 
-1. Válassza ki a kívánt labor labs listájának megtekintéséhez.  
+1. Labs hello listában jelölje ki hello kívánt labor.  
 
-1. A labor paneljén válassza **a virtuális gépek**.
+1. Hello labor paneljén válassza **a virtuális gépek**.
  
-1. Az a **a virtuális gépek** panelen válassza ki a virtuális gép, amelyből el kívánja az egyéni lemezkép létrehozásához.
+1. A hello **a virtuális gépek** panelen, jelölje be hello VM, amelyből el kívánja toocreate hello egyéni lemezképet.
 
-1. A virtuális gép paneljén válassza **egyéni kép létrehozása (VHD)**.
+1. Hello virtuális gép paneljén válassza **egyéni kép létrehozása (VHD)**.
 
     ![Hozzon létre egyéni lemezkép menüpont](./media/devtest-lab-create-template/create-custom-image.png)
 
-1. Az a **kép létrehozása** panelen adjon nevet és leírást az egyéni lemezképet. Ezt az információt az adatbázisok listája jelenik meg a virtuális gépek létrehozásakor.
+1. A hello **kép létrehozása** panelen adjon nevet és leírást az egyéni lemezképet. Ez az információ körrel hello listája jelenik meg a virtuális gépek létrehozásakor.
 
     ![Hozzon létre egyéni lemezkép panel](./media/devtest-lab-create-template/create-custom-image-blade.png)
 
-1. Adja meg, hogy a sysprep futtatása a virtuális Gépen. Ha a sysprep nem futott le a virtuális Gépre, adja meg, hogy egy virtuális gép létrehozásakor a egyéni lemezképből futtatja a sysprep.
+1. Adja meg, hogy a sysprep hello VM volt futtatva. Ha hello sysprep hello virtuális gép nem volt futtatva, adja meg, hogy egy virtuális gép létrehozásakor a egyéni lemezképből futtatja a sysprep.
 
-1. Válassza ki **OK** amikor befejeződött az egyéni lemezkép létrehozásához.
+1. Válassza ki **OK** Amikor végzett toocreate hello egyéni lemezképet.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -59,4 +59,4 @@ Létrehozhat egyéni rendszerképeket kiosztott virtuális gépről, és ezt kö
 
 ##<a name="next-steps"></a>Következő lépések
 
-- [A virtuális gépek hozzáadása a tesztkörnyezet](./devtest-lab-add-vm-with-artifacts.md)
+- [Virtuális gép tooyour labor hozzáadása](./devtest-lab-add-vm-with-artifacts.md)

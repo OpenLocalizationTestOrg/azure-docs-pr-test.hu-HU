@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB .NET-alkalmazás létrehozása a Graph API-val | Microsoft Docs"
-description: "Egy .NET-kódmintát mutat be, amellyel csatlakozhat egy Cosmos DB-adatbázishoz, és lekérdezéseket hajthat végre."
+title: "egy Azure Cosmos DB .NET alkalmazást, amely aaaBuild hello Graph API-val |} Microsoft Docs"
+description: "Megadja a .NET kódminta tooconnect tooand használható Azure Cosmos DB lekérdezése"
 services: cosmos-db
 documentationcenter: 
 author: dennyglee
@@ -15,21 +15,21 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 07/28/2017
 ms.author: denlee
-ms.openlocfilehash: a973b81ea5b06c5826cc31c399aae9dec43f5b72
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f28790fcb8c9f57c7bb3d844d8276fa04abcc39c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-net-application-using-the-graph-api"></a>Azure Cosmos DB: .NET-alkalmazás létrehozása a Graph API-val
+# <a name="azure-cosmos-db-build-a-net-application-using-hello-graph-api"></a>Azure Cosmos DB: Hello Graph API segítségével .NET-alkalmazás létrehozása
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum-, kulcs/érték és gráf típusú adatbázisokat, melyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-A bevezető bemutatja, hogyan hozhat létre az Azure Portal segítségével Azure Cosmos DB-fiókot, adatbázist és gráfot (tárolót). Ezután megtudhatja hogyan hozhat létre és futtathat egy a [Graph API](graph-sdk-dotnet.md) előzetes verziójával létrehozott konzolalkalmazást.  
+A gyors üzembe helyezési bemutatja, hogyan toocreate Azure Cosmos DB fiókkal, az adatbázis és a graph (tároló) használatával hello Azure-portálon. Majd létrehozása és futtatása egy konzolalkalmazás hello épülő [Graph API](graph-sdk-dotnet.md) (előzetes verzió).  
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ingyenes** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)t. Ügyeljen arra, hogy engedélyezze az **Azure Development** használatát a Visual Studio telepítése során.
+Ha még nincs telepítve a Visual Studio 2017, töltse le és használja a hello **szabad** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Győződjön meg arról, hogy engedélyezze **Azure fejlesztési** hello Visual Studio telepítése során.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -41,25 +41,25 @@ Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ing
 
 [!INCLUDE [cosmos-db-create-graph](../../includes/cosmos-db-create-graph.md)]
 
-## <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+## <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Most pedig klónozunk egy Graph API-alkalmazást a GitHubról, beállítjuk a kapcsolati karakterláncot, majd futtatni fogjuk az alkalmazást. Látni fogja, milyen egyszerű az adatokkal programozott módon dolgozni. 
+Most tegyük a githubból, a Klónozás egy grafikonon API app hello kapcsolati karakterlánc beállítása, és futtassa azt. Láthatja, milyen egyszerűen adatokkal toowork programozott módon. 
 
-1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és a `cd` paranccsal lépjen egy munkakönyvtárba.  
+1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és `cd` tooa munkakönyvtárát.  
 
-2. Futtassa a következő parancsot a mintatárház klónozásához. 
+2. Futtassa a következő parancs tooclone hello minta tárház hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-graph-dotnet-getting-started.git
     ```
 
-3. Ezután nyissa meg a Visual Studiót, majd a megoldásfájlt. 
+3. Nyissa meg a Visual Studio és a nyitott hello megoldásfájlt. 
 
-## <a name="review-the-code"></a>A kód áttekintése
+## <a name="review-hello-code"></a>Tekintse át a hello kódot
 
-Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs fájlt: az itt található kódsorok hozzák létre az Azure Cosmos DB erőforrásokat. 
+Most Meggyőződünk arról, mi történik a hello app gyors áttekintése. Nyissa meg hello Program.cs fájlt, és, hogy ezek a sorok, a kód létrehozása hello Azure Cosmos DB erőforrások találhat. 
 
-* A DocumentClient inicializálva van. Az előzetes verzióban hozzáadtunk egy gráfbővítmény API-t az Azure Cosmos DB-ügyfélhez. Jelenleg egy különálló gráfügyfélen dolgozunk, amely az Azure Cosmos DB-ügyféltől és annak erőforrásaitól függetlenül működik.
+* hello DocumentClient inicializálva van. A képen hello egy grafikonon bővítmény API hello Azure Cosmos DB ügyfélen hozzáadott. Egy önálló graph ügyfél hello Azure Cosmos DB ügyfél és az erőforrások különválik dolgozunk.
 
     ```csharp
     using (DocumentClient client = new DocumentClient(
@@ -82,10 +82,10 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs f�
         new DocumentCollection { Id = "graph" },
         new RequestOptions { OfferThroughput = 1000 });
     ```
-* A `CreateGremlinQuery` metódus használatával a program végrehajtja a Gremlin lépéssorozatot.
+* Hello Gremlin lépések egy sorozatát végrehajtása `CreateGremlinQuery` metódust.
 
     ```csharp
-    // The CreateGremlinQuery method extensions allow you to execute Gremlin queries and iterate
+    // hello CreateGremlinQuery method extensions allow you tooexecute Gremlin queries and iterate
     // results asychronously
     IDocumentQuery<dynamic> query = client.CreateGremlinQuery<dynamic>(graph, "g.V().count()");
     while (query.HasMoreResults)
@@ -100,64 +100,64 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs f�
 
 ## <a name="update-your-connection-string"></a>A kapcsolati karakterlánc frissítése
 
-Lépjen vissza az Azure Portalra a kapcsolati karakterlánc adataiért, majd másolja be azokat az alkalmazásba.
+Most lépjen vissza az Azure portál tooget toohello kapcsolati karakterlánc adatainak és hello alkalmazásba másolja.
 
-1. Nyissa meg az App.config fájlt a Visual Studio 2017-ben. 
+1. Nyissa meg a Visual Studio 2017 hello App.config fájlt. 
 
-2. Az Azure Portalon az Azure Cosmos DB-fiók bal oldali navigációs sávján kattintson a **Kulcsok** elemre. 
+2. Hello Azure portál Azure Cosmos DB fiókjában kattintson **kulcsok** a bal oldali navigációs hello. 
 
-    ![Elsődleges kulcs megtekintése és másolása az Azure Portal Kulcsok oldalán](./media/create-graph-dotnet/keys.png)
+    ![Megtekintése és másolása az elsődleges kulcs hello hello kulcsok oldalon Azure-portálon](./media/create-graph-dotnet/keys.png)
 
-3. Másolja az **URI** értéket a portálról, és adja meg az App.config fájl végpontkulcsának értékeként. Az értéket az előző képernyőképen látható Másolás gombbal másolhatja.
+3. Másolás a **URI** hello portálról értékét, és könnyebben hello az App.config fájlban hello végpont kulcs értékét. Képernyőkép toocopy hello érték megelőző hello látható módon használhatja hello Másolás gombra.
 
     `<add key="Endpoint" value="https://FILLME.documents.azure.com:443" />`
 
-4. Másolja az **ELSŐDLEGES KULCS** értékét a portálról, és adja meg az App.config fájl AuthKey kulcsaként, majd mentse a módosításokat. 
+4. Másolás a **elsődleges kulcs** hello portal értéket, és teszi hello az App.config fájlban hello AuthKey kulcs értékét, majd mentse a módosításokat. 
 
     `<add key="AuthKey" value="FILLME" />`
 
-Az alkalmazás frissítve lett minden olyan információval, amely az Azure Cosmos DB-vel való kommunikációhoz szükséges. 
+Most már frissítette az alkalmazást az Azure Cosmos DB toocommunicate szükséges összes hello információval. 
 
-## <a name="run-the-console-app"></a>A konzolalkalmazás futtatása
+## <a name="run-hello-console-app"></a>Hello konzol alkalmazás futtatása
 
-1. A Visual Studióban kattintson a jobb gombbal a **GraphGetStarted** projektre a **Megoldáskezelőben**, majd kattintson a **NuGet-csomagok kezelése** elemre. 
+1. A Visual Studióban, kattintson a jobb gombbal a hello **GraphGetStarted** a projekt **Megoldáskezelőben** majd **NuGet-csomagok kezelése**. 
 
-2. A NuGet **Browse** (Tallózás) mezőjébe írja be *Microsoft.Azure.Graphs* kifejezést, és jelölje be az **Includes prerelease** (Előzetes verzió is) jelölőnégyzetet. 
+2. A hello NuGet **Tallózás** mezőbe írja be *Microsoft.Azure.Graphs* , és ellenőrizze a hello **prerelease tartalmazza** mezőbe. 
 
-3. Az eredmények közül telepítse a **Microsoft.Azure.DocumentDB** kódtárat. Ezzel telepíti az Azure Cosmos DB gráfbővítmény kódtárcsomagja és annak összes függőségét.
+3. Hello eredmények közül telepítse a hello **Microsoft.Azure.Graphs** könyvtárban. Ezzel telepít hello Azure Cosmos DB diagram bővítmény kódtár csomagja és az összes függősége.
 
-    Ha a megoldás módosításainak áttekintéséről szóló üzenetet kap, kattintson az **OK** gombra. Ha a licenc elfogadásáról szóló üzenetet kap, kattintson az **Elfogadom** gombra.
+    Ha kapcsolatos módosításokat toohello megoldás áttekintése figyelmeztető hibaüzenet jelenik meg, kattintson a **OK**. Ha a licenc elfogadásáról szóló üzenetet kap, kattintson az **Elfogadom** gombra.
 
-4. Az alkalmazás futtatásához nyomja le a CTRL + F5 billentyűkombinációt.
+4. Kattintson a CTRL + F5 toorun hello alkalmazás.
 
-   A konzolablakban megjelennek a gráfhoz hozzáadandó csúcspontok és élek. Miután a parancsfájl futása befejeződött, nyomja meg kétszer az ENTER billentyűt a konzolablak bezárásához. 
+   hello konzolablak hello csomópontok és a hozzáadni kívánt toohello graph jeleníti meg. Hello parancsprogram befejezését, nyomja le az ENTER kétszer tooclose hello console ablakban. 
 
-## <a name="browse-using-the-data-explorer"></a>Tallózás az Adatkezelővel
+## <a name="browse-using-hello-data-explorer"></a>Keresse meg a hello adatkezelő használatával
 
-Ezután visszaléphet az Adatkezelőbe az Azure Portalon, ahol tallózhatja és lekérdezheti az új gráfadatokat.
+Ezután lépjen vissza tooData Explorer hello Azure-portálon a és keresse meg és az új diagram adatait kéri.
 
-1. Az Adatkezelőben az új adatbázis a Gráfok ablaktáblán jelenik meg. Bontsa ki a **graphdb**, **graphcollz** pontokat, és kattintson a **Gráf** lehetőségre.
+1. Az adatok Explorer hello új adatbázis hello diagramjait ablaktáblán jelenik meg. Bontsa ki a **graphdb**, **graphcollz** pontokat, és kattintson a **Gráf** lehetőségre.
 
-2. Kattintson a **Szűrő alkalmazása** gombra a gráf összes csúcspontjának megtekintéséhez az alapértelmezett lekérdezéssel. A mintaalkalmazás által létrehozott adatokat a Gráfok ablaktáblán találja.
+2. Kattintson a hello **szűrés** gomb toouse hello alapértelmezett lekérdezési tooview összes hello verticies hello gráfban. hello minta alkalmazás által generált hello adatok hello diagramjait ablaktáblán jelennek meg.
 
-    Szabadon nagyíthatja és kicsinyítheti a gráfot, kibonthatja a gráf megjelenítési területét, további csúcspontokat vehet fel, illetve áthelyezheti a csúcspontokat a megjelenítési felületen.
+    Mindkét hello graph ráközelíthet, bontsa ki a hello diagram megjelenítési terület, hozzáadhat további verticies, és helyezze át a hello verticies felületét jeleníti meg.
 
-    ![A gráf megtekintése az Azure Portal Adatkezelőjében](./media/create-graph-dotnet/graph-explorer.png)
+    ![Hello diagram megtekintése az adatok Explorerben a hello Azure-portálon](./media/create-graph-dotnet/graph-explorer.png)
 
-## <a name="review-slas-in-the-azure-portal"></a>Az SLA-k áttekintése az Azure Portalon
+## <a name="review-slas-in-hello-azure-portal"></a>Tekintse át a szolgáltatásiszint-szerződések a hello Azure-portálon
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Ha az alkalmazást már nem használja, akkor a következő lépésekkel a mintaalkalmazás által létrehozott összes erőforrást törölheti az Azure Portalon: 
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást hozta létre a gyors üzembe helyezés hello az Azure-portálon az alábbi lépésekkel hello: 
 
-1. Az Azure Portal bal oldali menüjében kattintson az **Erőforráscsoportok** lehetőségre, majd kattintson a létrehozott erőforrás nevére. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban bemutattuk, hogyan lehet Azure Cosmos DB-fiókot létrehozni, hogyan lehet az Adatkezelő segítségével gráfot készíteni, és hogyan lehet futtatni az alkalmazást. Most már készen áll arra, hogy a Gremlin használatával összetettebb lekérdezéseket hozzon létre és hatékony gráfbejárási logikákat implementáljon. 
+A gyors üzembe helyezés hogy megtanulta, hogyan toocreate Azure Cosmos DB adatait, hozzon létre egy grafikonon hello adatkezelő használatával, és futtassa az alkalmazást. Most már készen áll arra, hogy a Gremlin használatával összetettebb lekérdezéseket hozzon létre és hatékony gráfbejárási logikákat implementáljon. 
 
 > [!div class="nextstepaction"]
 > [Lekérdezés a Gremlin használatával](tutorial-query-graph.md)

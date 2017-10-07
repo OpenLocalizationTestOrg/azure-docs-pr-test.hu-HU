@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - karakterlánc |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablonok segítségével karakterláncok használata funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - karakterlánc |} Microsoft Docs"
+description: "A karakterláncok az Azure Resource Manager sablon toowork hello funkciók toouse ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 3e5c9ca546629f782a3d722b49f5fbaf5147e823
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 27f7f6a52cbe4e9915718184433e92ca92999346
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="string-functions-for-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokhoz karakterlánc
 
-Erőforrás-kezelő a következő funkciókat nyújt karakterláncok használata.
+A Resource Manager biztosít a következő funkciók karakterláncok való munkához hello:
 
 * [a Base64](#base64)
 * [base64ToJson](#base64tojson)
@@ -59,21 +59,21 @@ Erőforrás-kezelő a következő funkciókat nyújt karakterláncok használata
 ## <a name="base64"></a>a Base64
 `base64(inputString)`
 
-A bemeneti karakterlánc a base64 alakot adja vissza.
+Értéket ad vissza a bemeneti karakterlánc hello base64 ábrázolását hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| inputString |Igen |Karakterlánc |A visszatérési érték, mint a Base64 kódolású megjelenítése. |
+| inputString |Igen |Karakterlánc |hello érték tooreturn, mint a Base64 kódolású megjelenítése. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A base64 tartalmazó karakterlánc.
+Hello base64 tartalmazó karakterlánc.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan a Base64 kódolású függvény használatát.
+hello a következő példa bemutatja, hogyan toouse hello base64 függvény.
 
 ```json
 {
@@ -112,7 +112,7 @@ A következő példa bemutatja, hogyan a Base64 kódolású függvény használa
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -125,13 +125,13 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="base64tojson"></a>base64ToJson
 `base64tojson`
 
-A Base64 kódolású megjelenítése konvertál egy JSON-objektum.
+A base64 ábrázolását tooa JSON-objektum alakítja.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| base64Value |Igen |Karakterlánc |A base64 ábrázolását, egy JSON-objektum konvertálása. |
+| base64Value |Igen |Karakterlánc |hello base64 ábrázolását tooconvert tooa JSON-objektumból. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -139,7 +139,7 @@ A JSON-objektumból.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példában a base64ToJson függvény konvertálni az base64 értéket:
+hello következő példában hello base64ToJson függvény tooconvert base64 értéket:
 
 ```json
 {
@@ -178,7 +178,7 @@ Az alábbi példában a base64ToJson függvény konvertálni az base64 értéket
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -191,21 +191,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="base64tostring"></a>base64ToString
 `base64ToString(base64Value)`
 
-A Base64 kódolású megjelenítése karakterlánccá alakítja át.
+Számmá alakít egy base64 ábrázolását tooa karakterláncot.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| base64Value |Igen |Karakterlánc |A base64 ábrázolását karakterlánccá konvertálni. |
+| base64Value |Igen |Karakterlánc |hello base64 ábrázolását tooconvert tooa karakterlánc. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A konvertált base64 érték karakterlánc.
+Hello karakterlánc base64 érték alakítja.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példában a base64ToString függvény konvertálni az base64 értéket:
+hello következő példában hello base64ToString függvény tooconvert base64 értéket:
 
 ```json
 {
@@ -244,7 +244,7 @@ Az alábbi példában a base64ToString függvény konvertálni az base64 érték
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -259,13 +259,13 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="concat"></a>Concat
 `concat (arg1, arg2, arg3, ...)`
 
-Több karakterlánc-értékek egyesíti, és a összefűzött karakterláncot ad vissza, vagy több tömbök egyesíti, és a összefűzött tömböt ad vissza.
+Több karakterlánc-értékek egyesíti, és összefűzendő hello karakterláncot ad vissza, vagy több tömbök egyesíti, és összefűzendő hello tömböt ad vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |karakterlánc vagy tömb |A kapott első értéke. |
+| arg1 |Igen |karakterlánc vagy tömb |hello első érték a kapott. |
 | További argumentumok |Nem |Karakterlánc |További értéket kapott a sorrendben. |
 
 ### <a name="return-value"></a>Visszatérési érték
@@ -273,7 +273,7 @@ A karakterlánc vagy tömb összefűzött.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan kombinálhatja a két karakterlánc-értékeket, és olyan összefűzött karakterláncot adja vissza.
+hello a következő példa bemutatja, hogyan toocombine két karakterlánc-értékeket, és térjen vissza olyan összefűzött karakterláncot.
 
 ```json
 {
@@ -295,13 +295,13 @@ A következő példa bemutatja, hogyan kombinálhatja a két karakterlánc-ért�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | concatOutput | Karakterlánc | előtag-5yj4yjf5mbg72 |
 
-A következő példa bemutatja, hogyan kombinálhatók két tömb.
+hello a következő példa bemutatja, hogyan két toocombine tömbállandó.
 
 ```json
 {
@@ -336,11 +336,11 @@ A következő példa bemutatja, hogyan kombinálhatók két tömb.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| térjen vissza | A tömb | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
+| térjen vissza | Tömb | ["1-1", "1-2", "1-3", "2-1", "2-2", "2-3"] |
 
 <a id="contains" />
 
@@ -353,16 +353,16 @@ Ellenőrzi, hogy egy tömb értéket tartalmaz, objektum kulcsot tartalmaz, vagy
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| Tároló |Igen |a tömb, objektum vagy karakterlánc |Az érték, amely tartalmazza a keresendő érték. |
-| itemToFind |Igen |karakterlánc- vagy int |Az érték kereséséhez. |
+| Tároló |Igen |a tömb, objektum vagy karakterlánc |hello érték, amely hello érték toofind tartalmazza. |
+| itemToFind |Igen |karakterlánc- vagy int |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-**Igaz** Ha az elem található; ellenkező esetben **hamis**.
+**Igaz** Ha hello elem található; ellenkező esetben **hamis**.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használható különböző típusú tartalmazza:
+hello következő példa bemutatja, hogyan toouse különböző típusú tartalmazza:
 
 ```json
 {
@@ -413,7 +413,7 @@ A következő példa bemutatja, hogyan használható különböző típusú tart
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -429,13 +429,13 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="datauri"></a>dataUri
 `dataUri(stringToConvert)`
 
-Egy adat-URI azonosító alakít egy értéket.
+Alakít egy értéket tooa adat-URI azonosító.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToConvert |Igen |Karakterlánc |Az érték átalakítása egy adat-URI azonosító. |
+| stringToConvert |Igen |Karakterlánc |hello tooconvert tooa érték URI. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -443,7 +443,7 @@ Egy karakterláncot formázni egy adat-URI azonosító.
 
 ### <a name="examples"></a>Példák
 
-A következő példa egy adat-URI azonosító alakít egy értéket, és egy adat-URI azonosító alakít át karakterlánccá:
+a következő példa hello alakít egy értéket tooa adat-URI azonosító, és konvertálja az egy URI tooa karakterlánc adatokat:
 
 ```json
 {
@@ -473,7 +473,7 @@ A következő példa egy adat-URI azonosító alakít egy értéket, és egy ada
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -485,21 +485,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="datauritostring"></a>dataUriToString
 `dataUriToString(dataUriToConvert)`
 
-Egy adat-URI azonosító formátuma értékét karakterlánccá.
+Egy adat-URI azonosító érték tooa karakterlánc formátuma.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| dataUriToConvert |Igen |Karakterlánc |Az adatok URI értéket átalakítani. |
+| dataUriToConvert |Igen |Karakterlánc |hello adatok URI érték tooconvert. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A konvertált értéket tartalmazó karakterlánc.
+Hello tartalmazó karakterlánc érték alakítja.
 
 ### <a name="examples"></a>Példák
 
-A következő példa egy adat-URI azonosító alakít egy értéket, és egy adat-URI azonosító alakít át karakterlánccá:
+a következő példa hello alakít egy értéket tooa adat-URI azonosító, és konvertálja az egy URI tooa karakterlánc adatokat:
 
 ```json
 {
@@ -529,7 +529,7 @@ A következő példa egy adat-URI azonosító alakít egy értéket, és egy ada
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -547,15 +547,15 @@ Meghatározza, hogy egy tömb, az objektum, vagy a karakterlánc üres.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| itemToTest |Igen |a tömb, objektum vagy karakterlánc |Ellenőrizze a esetén üres érték. |
+| itemToTest |Igen |a tömb, objektum vagy karakterlánc |hello érték toocheck, ha üres. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** értéke üres, ha sikertelen, ha **hamis**.
+Beolvasása **igaz** hello értéke üres, ha sikertelen, ha **hamis**.
 
 ### <a name="examples"></a>Példák
 
-A következő példa ellenőrzi, hogy egy tömb, az objektumot, és a karakterlánc üres.
+a következő példa hello ellenőrzi, hogy egy tömb, az objektumot, és a karakterlánc üres.
 
 ```json
 {
@@ -594,7 +594,7 @@ A következő példa ellenőrzi, hogy egy tömb, az objektumot, és a karakterl�
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -607,22 +607,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="endswith"></a>megadott módon végződő
 `endsWith(stringToSearch, stringToFind)`
 
-Meghatározza, hogy egy karakterláncot végződik-e értéket. Eredményű összehasonlítás esetén azonban nem.
+Meghatározza, hogy egy karakterláncot végződik-e értéket. hello összehasonlítás esetén azonban nem.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Igen |Karakterlánc |Az érték, amely tartalmazza az elem található. |
-| stringToFind |Igen |Karakterlánc |Az érték kereséséhez. |
+| stringToSearch |Igen |Karakterlánc |hello érték, amely hello elem toofind tartalmazza. |
+| stringToFind |Igen |Karakterlánc |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-**Igaz** Ha az utolsó karaktereit a karakterlánc megfelel a érték; ellenkező esetben **hamis**.
+**Igaz** Ha hello utolsó karaktert vagy karaktereket hello karakterlánc megfelel a hello érték; ellenkező esetben **hamis**.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használja a megadott módon kezdődő és megadott módon végződő függvények:
+hello a következő példa bemutatja, hogyan toouse hello megadott módon kezdődő és megadott módon végződő funkciók:
 
 ```json
 {
@@ -658,7 +658,7 @@ A következő példa bemutatja, hogyan használja a megadott módon kezdődő é
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -674,21 +674,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="first"></a>első
 `first(arg1)`
 
-A karakterlánc, vagy a tömb első eleme első karaktert adja vissza.
+Beolvasása hello hello karakterlánc első karaktere vagy hello tömb első eleme.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |Az érték első karakter vagy elem lekéréséhez. |
+| arg1 |Igen |a tömb vagy karakterlánc |hello érték tooretrieve hello első elem vagy karakter. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Egy karakterlánc az első karakter, vagy a tömb első elem típusa (karakterlánc, int, tömb vagy objektum).
+Egy karakterlánc első karaktere hello vagy hello típusú (karakterlánc, int, tömb vagy objektum) hello egy tömb első eleme.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használható az első függvényét egy tömb és a karakterlánc.
+hello következő példa bemutatja, hogyan toouse hello tömb és karakterlánc az első függvényét.
 
 ```json
 {
@@ -715,7 +715,7 @@ A következő példa bemutatja, hogyan használható az első függvényét egy 
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -727,22 +727,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="indexof"></a>indexOf
 `indexOf(stringToSearch, stringToFind)`
 
-Egy értékének a karakterláncon belüli első helyét adja vissza. Eredményű összehasonlítás esetén azonban nem.
+Értéket ad vissza egy érték, egy karakterláncon belüli első helyének hello. hello összehasonlítás esetén azonban nem.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Igen |Karakterlánc |Az érték, amely tartalmazza az elem található. |
-| stringToFind |Igen |Karakterlánc |Az érték kereséséhez. |
+| stringToSearch |Igen |Karakterlánc |hello érték, amely hello elem toofind tartalmazza. |
+| stringToFind |Igen |Karakterlánc |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az elem található a pozíció jelölő egész. Az érték nulla alapú. Ha az elem nem található,-1 értéket ad vissza.
+Egész szám, amely hello elem toofind hello pozícióját jelöli. hello értéke nulla. Ha hello elem nem található,-1 értéket ad vissza.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használja a indexOf és lastIndexOf függvények:
+hello a következő példa bemutatja, hogyan toouse hello indexOf és lastIndexOf funkciók:
 
 ```json
 {
@@ -774,7 +774,7 @@ A következő példa bemutatja, hogyan használja a indexOf és lastIndexOf füg
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -789,21 +789,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="last"></a>utolsó
 `last (arg1)`
 
-Az utolsó karakter a karakterlánc vagy tömb utolsó eleme adja vissza.
+Az utolsó karakter hello karakterlánc vagy hello hello tömb utolsó eleme adja vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |Az érték utolsó karakter vagy elem lekéréséhez. |
+| arg1 |Igen |a tömb vagy karakterlánc |hello érték tooretrieve hello utolsó eleme vagy karakter. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az utolsó karakter, vagy a tömb utolsó eleme típusa (karakterlánc, int, tömb vagy objektum) formátumú karakterlánc.
+Egy karakterlánc hello utolsó karakter vagy hello típusú (karakterlánc, int, tömb vagy objektum) utolsó eleme hello tömbben.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használható az utolsó függvény egy tömb és a karakterlánc.
+hello következő példa bemutatja, hogyan toouse hello utolsó függvény egy tömböt és a karakterlánc.
 
 ```json
 {
@@ -830,7 +830,7 @@ A következő példa bemutatja, hogyan használható az utolsó függvény egy t
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -842,22 +842,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="lastindexof"></a>lastIndexOf
 `lastIndexOf(stringToSearch, stringToFind)`
 
-Egy értékének a karakterláncon belüli utolsó helyét adja vissza. Eredményű összehasonlítás esetén azonban nem.
+Értéket ad vissza egy érték, egy karakterláncon belüli utolsó helyének hello. hello összehasonlítás esetén azonban nem.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Igen |Karakterlánc |Az érték, amely tartalmazza az elem található. |
-| stringToFind |Igen |Karakterlánc |Az érték kereséséhez. |
+| stringToSearch |Igen |Karakterlánc |hello érték, amely hello elem toofind tartalmazza. |
+| stringToFind |Igen |Karakterlánc |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az elem található utolsó pozícióját jelölő egész. Az érték nulla alapú. Ha az elem nem található,-1 értéket ad vissza.
+Egész szám, amely hello elem toofind hello utolsó pozícióját jelöli. hello értéke nulla. Ha hello elem nem található,-1 értéket ad vissza.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használja a indexOf és lastIndexOf függvények:
+hello a következő példa bemutatja, hogyan toouse hello indexOf és lastIndexOf funkciók:
 
 ```json
 {
@@ -889,7 +889,7 @@ A következő példa bemutatja, hogyan használja a indexOf és lastIndexOf füg
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -904,13 +904,13 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="length"></a>Hossza
 `length(string)`
 
-A karakterlánc vagy tömb elemeinek a számú karaktert adja vissza.
+A karakterlánc vagy tömb elemeinek hello számú karaktert adja vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |a tömb vagy karakterlánc |A tömb használni az első elemek, vagy a karakterlánc első karakterek használata. |
+| arg1 |Igen |a tömb vagy karakterlánc |első hello elemek száma a tömb toouse hello, vagy hello karakterlánc toouse kapcsolódnak a hello karakterek száma. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -918,7 +918,7 @@ Egy egész szám.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan egy tömb és a karakterlánc hossza használhat:
+a következő példa azt mutatja meg hogyan hello toouse hosszúságú tömb és karakterlánc:
 
 ```json
 {
@@ -952,7 +952,7 @@ A következő példa bemutatja, hogyan egy tömb és a karakterlánc hossza hasz
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -964,25 +964,25 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="padleft"></a>PadLeft
 `padLeft(valueToPad, totalLength, paddingCharacter)`
 
-Karakterek hozzáadásával a bal oldali az összes megadott hosszúságú eléréséig jobbra igazított karakterláncot ad vissza.
+Hello teljes megadott hosszúságú eléréséig karakterek toohello balra hozzáadásával egy jobbra igazított karakterláncot ad vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| valueToPad |Igen |karakterlánc- vagy int |A jobbra igazított érték. |
-| totalLength |Igen |int |A visszaadott karakterláncban szereplő karakterek száma. |
-| paddingCharacter |Nem |egyetlen karakter |Bal-kitöltési, amíg a teljes hossza nem csökken használandó karakter. Az alapértelmezett érték: szóközzel. |
+| valueToPad |Igen |karakterlánc- vagy int |hello érték tooright-igazítása. |
+| totalLength |Igen |int |hello lévő karakterek összesített száma hello karakterláncot adott vissza. |
+| paddingCharacter |Nem |egyetlen karakter |hello karakter toouse balra-nullákból amíg hello teljes hossza nem csökken. hello alapértelmezett érték adható meg. |
 
-Ha az eredeti karakterláncot elválasztásához karakterek áll, akkor egyetlen karakter kerülnek.
+Ha hello eredeti karakterlánc hosszabb, mint karakterek toopad hello száma, egyetlen karakter kerülnek.
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A karakterlánc a legalább a megadott karakterek száma.
+A karakterláncnak legalább hello megadott karakterek száma.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan elválasztásához a felhasználó által megadott paraméter értéke nulla karakter hozzáadásával, amíg eléri a karakterek száma. 
+hello a következő példa bemutatja, hogyan toopad hello felhasználó által megadott paraméterérték hello hozzáadásával nulla karakter eléréséig hello karakterek összesített száma. 
 
 ```json
 {
@@ -1004,7 +1004,7 @@ A következő példa bemutatja, hogyan elválasztásához a felhasználó által
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1021,17 +1021,17 @@ Egy másik karakterlánc szerepét egy karakterlánc összes előfordulásának 
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| originalString |Igen |Karakterlánc |Az érték, amelynek egy karakterlánc másik karakterlánc szerepét összes példányát. |
-| oldString |Igen |Karakterlánc |Az eredeti karakterláncot eltávolítja a karakterláncot. |
-| newString |Igen |Karakterlánc |A karakterlánc helyett, az eltávolított karakterlánc hozzáadásához. |
+| originalString |Igen |Karakterlánc |hello érték, amely egy karakterlánc másik karakterlánc szerepét minden példánya van. |
+| oldString |Igen |Karakterlánc |hello karakterlánc toobe távolítva eredeti hello karakterláncból. |
+| newString |Igen |Karakterlánc |hello karakterlánc tooadd helyett hello karakterlánc eltávolítva. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A kicserélt karaktert tartalmazó karakterlánc.
+Hello karakterláncnak karakterek helyett.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, távolítsa el az összes kötőjelek a felhasználó által megadott karakterláncot, és a karakterlánc egy részét lecseréli egy másik karakterláncot.
+hello a következő példa bemutatja, hogyan összes tooremove kötőjelekből hello felhasználó által megadott karakterláncból, és hogyan hello tooreplace részét karakterláncra.
 
 ```json
 {
@@ -1057,7 +1057,7 @@ A következő példa bemutatja, távolítsa el az összes kötőjelek a felhaszn
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1069,14 +1069,14 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="skip"></a>Kihagyása
 `skip(originalValue, numberToSkip)`
 
-Egy karakterláncot ad vissza az összes karakter után a megadott számú karaktert, vagy az összes elem tömb után a megadott számú elemet.
+Minden hello karaktereket tartalmazó karakterláncot ad vissza, miután hello összes hello elem a megadott számú karakter vagy egy tömb, után hello megadott számú elemet.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| originalValue |Igen |a tömb vagy karakterlánc |A tömb vagy karakterlánc kihagyása használandó. |
-| numberToSkip |Igen |int |Elemek vagy kihagyását karakterek száma. Ha ez az érték 0 vagy kisebb, a elemek vagy az karaktere adott vissza. Ha a tömb vagy karakterlánc hossza nagyobb, üres tömb vagy karakterlánc adja vissza. |
+| originalValue |Igen |a tömb vagy karakterlánc |hello tömb vagy karakterlánc toouse átugrásához. |
+| numberToSkip |Igen |int |elemek vagy karaktereket tooskip hello száma. Ha ez az érték 0 vagy kisebb, az összes elem hello, vagy karakter hello értéket ad vissza. Ha hello hello tömb vagy karakterlánc hossza nagyobb, üres tömb vagy karakterlánc adja vissza. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1084,7 +1084,7 @@ Tömb vagy karakterlánc.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példa kihagyja a megadott számú elemet a tömbben, és a megadott számú karaktert egy karakterláncon belül.
+a következő példa átugrása hello hello hello tömb megadott számú elemet, és hello egy karakterláncban megadott számú karaktert.
 
 ```json
 {
@@ -1126,11 +1126,11 @@ Az alábbi példa kihagyja a megadott számú elemet a tömbben, és a megadott 
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| arrayOutput | A tömb | ["három"] |
+| arrayOutput | Tömb | ["három"] |
 | stringOutput | Karakterlánc | két három |
 
 <a id="split" />
@@ -1138,14 +1138,14 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="split"></a>felosztás
 `split(inputString, delimiter)`
 
-Tartalmazza a karakterláncrészletet tartalmazza a bemeneti karakterlánc, amely a megadott elválasztók határolja karakterláncok tömbjét adja vissza.
+Értéket ad vissza, amely tartalmazza a hello hello karakterláncrészletek karakterláncokból álló tömb bemeneti karakterlánc, amely hello határolja megadott elválasztó karaktert.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| inputString |Igen |Karakterlánc |Ossza fel a karakterláncot. |
-| Elválasztó |Igen |karakterláncot vagy karakterláncok |A karakterlánc a felosztás használandó elválasztó. |
+| inputString |Igen |Karakterlánc |hello karakterlánc toosplit. |
+| Elválasztó |Igen |karakterláncot vagy karakterláncok |hello elválasztó toouse vágását meghatározó hello karakterlánc. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1153,7 +1153,7 @@ Karakterláncokból álló tömb.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példa felosztja a bemeneti karakterlánc egy vesszővel válassza el egymástól, és vesszővel vagy pontosvesszővel kell elválasztani őket.
+hello alábbi példa felosztja a bemeneti karakterlánc hello vesszővel válassza el, és vesszővel vagy pontosvesszővel kell elválasztani őket.
 
 ```json
 {
@@ -1186,34 +1186,34 @@ Az alábbi példa felosztja a bemeneti karakterlánc egy vesszővel válassza el
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| firstOutput | A tömb | ["egy", "két", "három"] |
-| secondOutput | A tömb | ["egy", "két", "három"] |
+| firstOutput | Tömb | ["egy", "két", "három"] |
+| secondOutput | Tömb | ["egy", "két", "három"] |
 
 <a id="startswith" />
 
 ## <a name="startswith"></a>startswith elemnek
 `startsWith(stringToSearch, stringToFind)`
 
-Meghatározza, hogy egy karakterlánc értékkel kezdődik-e. Eredményű összehasonlítás esetén azonban nem.
+Meghatározza, hogy egy karakterlánc értékkel kezdődik-e. hello összehasonlítás esetén azonban nem.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToSearch |Igen |Karakterlánc |Az érték, amely tartalmazza az elem található. |
-| stringToFind |Igen |Karakterlánc |Az érték kereséséhez. |
+| stringToSearch |Igen |Karakterlánc |hello érték, amely hello elem toofind tartalmazza. |
+| stringToFind |Igen |Karakterlánc |hello érték toofind. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-**Igaz** Ha az első karaktereit a karakterlánc megfelel a érték; ellenkező esetben **hamis**.
+**Igaz** Ha hello első karaktert vagy karaktereket hello karakterlánc megfelel a hello érték; ellenkező esetben **hamis**.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan használja a megadott módon kezdődő és megadott módon végződő függvények:
+hello a következő példa bemutatja, hogyan toouse hello megadott módon kezdődő és megadott módon végződő funkciók:
 
 ```json
 {
@@ -1249,7 +1249,7 @@ A következő példa bemutatja, hogyan használja a megadott módon kezdődő é
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1265,21 +1265,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="string"></a>Karakterlánc
 `string(valueToConvert)`
 
-A megadott érték konvertálása egy karakterláncot.
+Konvertálja hello megadott érték tooa karakterlánc.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| valueToConvert |Igen | Bármelyik |Az érték karakterlánccá konvertálni. Bármely típusú érték lehet konvertálni, többek között az objektumok és tömböket. |
+| valueToConvert |Igen | Bármelyik |hello érték tooconvert toostring. Bármely típusú érték lehet konvertálni, többek között az objektumok és tömböket. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az átalakított érték karakterlánc.
+Hello karakterlánc konvertálni az értéket.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan különböző típusú értékeket átalakítani karakterláncok:
+hello a következő példa bemutatja, hogyan tooconvert különböző típusú értékek toostrings:
 
 ```json
 {
@@ -1324,7 +1324,7 @@ A következő példa bemutatja, hogyan különböző típusú értékeket átala
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1337,23 +1337,23 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="substring"></a>Substring
 `substring(stringToParse, startIndex, length)`
 
-Egy részét, amely a megadott Karakterpozíció kezdődik, és tartalmazza a megadott számú karaktert adja vissza.
+Visszaadja, hogy a megadott hello kezdődik karakter pozíciója, és tartalmazza a hello karakterláncrész megadott számú karaktert.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToParse |Igen |Karakterlánc |Az eredeti karakterláncot, amely a karakterláncrészletet ki kell olvasni. |
-| startIndex |Nem |int |A nulla alapú karakter kezdőpozíciója a karakterláncrészletet. |
-| Hossza |Nem |int |A substring karakterek száma. A karakterláncon belüli helyet kell képviselnie. |
+| stringToParse |Igen |Karakterlánc |hello eredeti karakterlánc, mely hello karakterláncrészletet ki kell olvasni. |
+| startIndex |Nem |int |hello nulla alapú karakter kezdőpozíciója hello karakterláncrészletet. |
+| Hossza |Nem |int |hello karakterszámot hello karakterláncrészletet. Hello karakterláncon belüli tooa helyet kell képviselnie. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A karakterláncrészletet.
+hello karakterláncrészletet.
 
 ### <a name="remarks"></a>Megjegyzések
 
-A parancs nem működik, amikor a substring túlnyúlik a karakterlánc végén. Hibával meghiúsul a következő példa "az index és length paraméterek a karakterláncon belüli helyet kell képviselnie. Az index paraméter: "0", a length paraméter: "11", a karakterlánc-paraméter hossza: "10". ".
+hello függvény sikertelen lesz, amikor hello substring túlnyúlik hello karakterlánc hello végét. a következő példa hello meghiúsul, és hello hiba "hello indexét és hosszát paraméterek hivatkozhatnak hello karakterlánc tooa helyét. hello Indexparaméter: "0" hello hosszparaméter: "11" hello hello karakterlánc-paraméter hossza: "10". ".
 
 ```json
 "parameters": {
@@ -1366,7 +1366,7 @@ A parancs nem működik, amikor a substring túlnyúlik a karakterlánc végén.
 
 ### <a name="examples"></a>Példák
 
-A következő példa egy substring kiolvassa a paramétert.
+a következő példa hello karakterláncrész kiolvassa a paramétert.
 
 ```json
 {
@@ -1388,7 +1388,7 @@ A következő példa egy substring kiolvassa a paramétert.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1400,14 +1400,14 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="take"></a>hajtsa végre a megfelelő
 `take(originalValue, numberToTake)`
 
-A karakterlánc vagy tömb a megadott számú elemet a tömb kezdetétől a kezdetétől a megadott számú karaktert karakterláncot ad vissza.
+Hello egy karakterlánc megadott számú karaktert hello kezdetét adja vissza hello karakterlánc, vagy egy tömb hello megadott hello indítás hello tömb elemeinek száma.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| originalValue |Igen |a tömb vagy karakterlánc |A tömb vagy karakterlánc az elemek érvénybe. |
-| numberToTake |Igen |int |Elemek és érvénybe karakterek száma. Ha ez az érték 0 vagy kisebb, üres tömb vagy karakterlánc adja vissza. Ha a megadott tömb vagy karakterlánc hossza nagyobb, a tömb vagy karakterlánc összes elemet visszaadja a. |
+| originalValue |Igen |a tömb vagy karakterlánc |hello tömb vagy karakterlánc tootake hello elemeit. |
+| numberToTake |Igen |int |elemek vagy karaktereket tootake hello száma. Ha ez az érték 0 vagy kisebb, üres tömb vagy karakterlánc adja vissza. Ha nagyobb, mint a megadott tömb vagy karakterlánc hello hello hosszát, visszaadja a hello tömb vagy karakterlánc összes hello eleme. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1415,7 +1415,7 @@ Tömb vagy karakterlánc.
 
 ### <a name="examples"></a>Példák
 
-A következő példa a tömb elemei, és a karakterek egy karakterlánc megadott számú vesz igénybe.
+a következő példa vesz hello hello megadott hello tömb elemei, és egy karakterláncból karakterek száma.
 
 ```json
 {
@@ -1457,11 +1457,11 @@ A következő példa a tömb elemei, és a karakterek egy karakterlánc megadott
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
-| arrayOutput | A tömb | ["egy", "két"] |
+| arrayOutput | Tömb | ["egy", "két"] |
 | stringOutput | Karakterlánc | a |
 
 <a id="tolower" />
@@ -1469,21 +1469,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="tolower"></a>toLower
 `toLower(stringToChange)`
 
-Kisbetűsre alakítja át a megadott karakterlánc.
+A megadott karakterlánc toolower eset konvertálja hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToChange |Igen |Karakterlánc |Az érték kisbetűsre konvertálja. |
+| stringToChange |Igen |Karakterlánc |hello érték tooconvert toolower eset. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A karakterlánc kisbetűsre alakítja.
+a konvertált toolower eset hello karakterlánc.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példa egy paraméterérték konvertál, kisbetű és nagybetű.
+a következő példa hello alakít egy paraméter értéke toolower eset és tooupper eset.
 
 ```json
 {
@@ -1509,7 +1509,7 @@ Az alábbi példa egy paraméterérték konvertál, kisbetű és nagybetű.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1521,21 +1521,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="toupper"></a>toUpper
 `toUpper(stringToChange)`
 
-A megadott karakterlánc nagybetűvel alakítja.
+A megadott karakterlánc tooupper eset konvertálja hello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToChange |Igen |Karakterlánc |A nagybetűvel átalakítása érték. |
+| stringToChange |Igen |Karakterlánc |hello érték tooconvert tooupper eset. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A karakterlánc nagybetűsre alakítja.
+a konvertált tooupper eset hello karakterlánc.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példa egy paraméterérték konvertál, kisbetű és nagybetű.
+a következő példa hello alakít egy paraméter értéke toolower eset és tooupper eset.
 
 ```json
 {
@@ -1561,7 +1561,7 @@ Az alábbi példa egy paraméterérték konvertál, kisbetű és nagybetű.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1573,21 +1573,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="trim"></a>Trim
 `trim (stringToTrim)`
 
-Eltávolítja az összes kezdő és záró üres karaktereket a megadott karakterlánc.
+Eltávolítja az összes kezdő és záró üres karaktereket hello a megadott karakterlánc.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToTrim |Igen |Karakterlánc |A vágásokról érték. |
+| stringToTrim |Igen |Karakterlánc |hello érték tootrim. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A karakterlánc nélkül kezdő és záró üres karaktereket.
+kezdő és záró szóköz karakterek nélküli karakterláncot hello.
 
 ### <a name="examples"></a>Példák
 
-Az alábbi példa levágja a üres karaktereket és a paraméter.
+hello alábbi példa levágja hello üres karaktereket hello paraméter.
 
 ```json
 {
@@ -1609,7 +1609,7 @@ Az alábbi példa levágja a üres karaktereket és a paraméter.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1620,44 +1620,44 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="uniquestring"></a>uniqueString
 `uniqueString (baseString, ...)`
 
-A paraméterként megadott értékek alapján determinisztikus kivonat karakterláncot hoz létre. 
+A paraméterként megadott hello értékek alapján determinisztikus kivonat karakterláncot hoz létre. 
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| baseString |Igen |Karakterlánc |Az értéknek a kivonatoló függvényt egy egyedi karakterlánc létrehozásához. |
-| szükség szerint további paraméterek |Nem |Karakterlánc |Az érték, amely meghatározza a egyediségi szintű létrehozásához szükséges annyi karakterláncok adhat hozzá. |
+| baseString |Igen |Karakterlánc |hello értéket használja hello kivonatoló függvényt toocreate egy egyedi karakterlánc. |
+| szükség szerint további paraméterek |Nem |Karakterlánc |Tetszőleges számú karakterláncok értékként szükséges toocreate hello egyediségi szintű hello megadó adhat hozzá. |
 
 ### <a name="remarks"></a>Megjegyzések
 
-Ez a funkció akkor hasznos, ha kell létrehoznia egy erőforrást egy egyedi nevet. Az eredmény egyediségének hatókörét korlátozó paraméter értékeket ad meg. Megadhatja, hogy egyedi előfizetés, a csoport vagy a központi telepítési le-e a neve. 
+Ez a funkció akkor hasznos, ha egy erőforrást egy egyedi nevet toocreate van szüksége. Hello eredmény hello egyediségének hatókörét korlátozó paraméter értékeket ad meg. Megadható, hogy hello név egyedi toosubscription, erőforráscsoport és központi telepítés. 
 
-A visszaadott érték nem véletlenszerű karakterlánc, hanem inkább a kivonatoló függvényt eredményét. A visszaadott érték 13 karakterig. Nincs globálisan egyedi. Érdemes lehet az érték kombinálhatja az elnevezési, kifejező nevet létrehozni a előtaggal kezdődik. A következő példa bemutatja a visszaadott érték formátuma. A tényleges érték függ a megadott paraméterek.
+hello érték nincs véletlenszerű karakterlánc, de hello ahelyett, hogy a kivonatoló függvényt eredményét adja vissza. hello visszaadott érték 13 karakterig. Nincs globálisan egyedi. Az elnevezési egyezmény toocreate, kifejező nevet a érdemes lehet toocombine hello érték előtaggal kezdődik. hello következő példa bemutatja hello formátuma hello értéket adott vissza. a megadott paraméterek hello függ a hello tényleges érték.
 
     tcvhiyu5h2o5o
 
-A következő példák szemléltetik a uniqueString segítségével hozzon létre egy egyedi értéket a gyakran használt szintek.
+hello a következő példák bemutatják, hogyan toouse uniqueString toocreate egy egyedi érték a gyakran használt szintek.
 
-Egyedi előfizetés hatóköre
+Egyedi hatókörön belüli toosubscription
 
 ```json
 "[uniqueString(subscription().subscriptionId)]"
 ```
 
-Egyedi erőforráscsoport hatóköre
+Egyedi hatókörön belüli tooresource csoport
 
 ```json
 "[uniqueString(resourceGroup().id)]"
 ```
 
-Egyedi telepítési erőforrás csoport hatóköre
+Egyedi hatókörön belüli toodeployment erőforráscsoport
 
 ```json
 "[uniqueString(resourceGroup().id, deployment().name)]"
 ```
 
-A következő példa bemutatja, hogyan hozzon létre egy tárfiókot, az erőforráscsoport alapján egyedi nevét. Az erőforráscsoport belül a név nincs egyedi, ha a megszokott módon.
+hello a következő példa bemutatja, hogyan toocreate a storage-fiók egy egyedi nevet az erőforrás-csoport alapján. Hello erőforráscsoport, belül hello nincs egyedi, ha hello azonos módon.
 
 ```json
 "resources": [{ 
@@ -1672,7 +1672,7 @@ A következő példa bemutatja, hogyan hozzon létre egy tárfiókot, az erőfor
 
 ### <a name="examples"></a>Példák
 
-A következő példa eredménye uniquestring adja vissza:
+a következő példa hello eredmények uniquestring adja vissza:
 
 ```json
 {
@@ -1697,30 +1697,30 @@ A következő példa eredménye uniquestring adja vissza:
 ## <a name="uri"></a>URI
 `uri (baseUri, relativeUri)`
 
-A baseUri és a relativeUri karakterlánc kombinálásával hoz létre egy abszolút URI.
+Létrehoz egy abszolút URI hello baseUri és hello relativeUri karakterlánc kombinálásával.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| a baseUri |Igen |Karakterlánc |Az alap URI-azonosító karakterláncot. |
-| relativeUri |Igen |Karakterlánc |A relatív uri karakterlánc hozzáadása az alap URI-azonosító karakterláncot. |
+| a baseUri |Igen |Karakterlánc |hello alap URI-azonosító karakterláncot. |
+| relativeUri |Igen |Karakterlánc |hello relatív uri karakterlánc tooadd toohello alap URI-azonosító karakterláncot. |
 
-Az érték a **baseUri** a paraméter egy adott fájlt tartalmazhat, de csak az alap elérési utat használja az URI konstrukciója során. Például, hogy `http://contoso.com/resources/azuredeploy.json` alap URI-azonosítója a baseUri paraméter kiemelve `http://contoso.com/resources/`.
+hello értéke hello **baseUri** a paraméter egy adott fájlt tartalmazhat, de csak hello alap elérési utat használja hello URI konstrukciója során. Például, hogy `http://contoso.com/resources/azuredeploy.json` hello baseUri paraméter alap URI-azonosítója a találatok között `http://contoso.com/resources/`.
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Egy karakterlánc, amely az alapszintű és a relatív értékek abszolút URI.
+Abszolút URI-JÁNAK hello kiinduló és a relatív értéket jelölő karakterláncot hello.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan egy hivatkozást a beágyazott sablonok alapján a szülő-sablon létrehozásához.
+hello a következő példa bemutatja, hogyan tooconstruct hivatkozás tooa beágyazott sablon hello érték alapján hello szülő sablon.
 
 ```json
 "templateLink": "[uri(deployment().properties.templateLink.uri, 'nested/azuredeploy.json')]"
 ```
 
-A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToString használatára:
+a következő példa azt mutatja meg hogyan hello toouse uri, uriComponent, és uriComponentToString:
 
 ```json
 {
@@ -1749,7 +1749,7 @@ A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToStrin
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1768,15 +1768,15 @@ Kódolja URI.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| stringToEncode |Igen |Karakterlánc |Az érték kódolására. |
+| stringToEncode |Igen |Karakterlánc |hello érték tooencode. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A URI karakterlánc kódolt érték.
+Hello URI karakterlánc kódolt érték.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToString használatára:
+a következő példa azt mutatja meg hogyan hello toouse uri, uriComponent, és uriComponentToString:
 
 ```json
 {
@@ -1805,7 +1805,7 @@ A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToStrin
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1825,7 +1825,7 @@ Adja vissza a URI karakterlánc kódolású érték.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| uriEncodedString |Igen |Karakterlánc |Az URI kódolású értékét karakterlánccá konvertálni. |
+| uriEncodedString |Igen |Karakterlánc |hello URI-kódolású érték tooconvert tooa karakterlánc. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
@@ -1833,7 +1833,7 @@ A dekódolt karakterlánc URI-kódolt érték.
 
 ### <a name="examples"></a>Példák
 
-A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToString használatára:
+a következő példa azt mutatja meg hogyan hello toouse uri, uriComponent, és uriComponentToString:
 
 ```json
 {
@@ -1862,7 +1862,7 @@ A következő példa bemutatja, hogyan uri, uriComponent és uriComponentToStrin
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -1872,8 +1872,8 @@ Az alapértelmezett értékeit az előző példából kimenete:
 
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

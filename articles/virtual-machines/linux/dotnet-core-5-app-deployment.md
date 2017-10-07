@@ -1,5 +1,5 @@
 ---
-title: "Virtuálisgép-bővítmények az alkalmazás központi telepítésének automatizálása |} Microsoft Docs"
+title: "Alkalmazás központi telepítése virtuálisgép-bővítmények aaaAutomating |} Microsoft Docs"
 description: "Azure virtuális gép DotNet fő oktatóanyag"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2f972fef75aa8e13af7dab908c2b0e2ec28f1324
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 38a02a4271d6b9ba02a473a51794a7bd90ca3a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-deployment-with-azure-resource-manager-templates-for-linux-vms"></a>Alkalmazás központi telepítése Azure Resource Manager-sablonok Linux virtuális gépekhez
 
-Miután az összes Azure infrastrukturális követelmények azonosította, és a központi telepítési sablont lefordítva, a tényleges alkalmazástelepítés kell figyelembe venni. Itt az alkalmazás telepítése hivatkozik a tényleges bináris alkalmazásfájlokat alakzatot Azure-erőforrások telepítése. A zeneáruház minta, a .net Core NGINX és felügyelő kell telepíthetők és konfigurálhatók a virtuális gépeken. Bináris a zene telepítve kell lennie települ a virtuális gépre, és a zeneáruház adatbázist előre létre.
+Miután az összes Azure infrastrukturális követelmények azonosította, és a központi telepítési sablont lefordítva, hello tényleges alkalmazástelepítés címzett toobe van szüksége. Itt az alkalmazás telepítése tooinstalling hello tényleges bináris alkalmazásfájlokat alakzatot Azure-erőforrások hivatkozik. Hello zeneáruház minta .net Core, NGINX és felügyelő kell toobe telepítette és konfigurálta a virtuális gépeken. hello zene tároló bináris toobe hello virtuális gép telepítve kell, és hello zene tároló adatbázis előre létrehozott.
 
-Ez a dokumentum részletesen, hogyan automatizálható virtuálisgép-bővítmények alkalmazás központi telepítése és konfigurálása az Azure virtuális gépekhez. Minden függőségeket és külön konfigurációt vannak kiemelve. A legjobb használhatóság érdekében előtelepítése a megoldást az Azure-előfizetés és a munkahelyi együtt az Azure Resource Manager-sablon egy példányát. A teljes sablon – itt található [zene tároló központi telepítését, az Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
+Ez a dokumentum részletesen, hogyan virtuálisgép-bővítmények az alkalmazás központi telepítése és konfigurálása tooAzure virtuális gépek automatizálható. Minden függőségeket és külön konfigurációt vannak kiemelve. Hello legjobb élmény érdekében előtelepítése hello megoldás tooyour Azure-előfizetés és a munka hello Azure Resource Manager-sablon mellett egy példánya. hello teljes sablon – itt található [zene tároló központi telepítését, az Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
 
 ## <a name="configuration-script"></a>Konfigurációs parancsfájl
-Virtuálisgép-bővítmények olyan speciális programok, konfigurációs automation biztosításához a virtuális gépek elleni hajtható végre. Számos adott célra, például víruskereső, a naplózási konfiguráció és a Docker konfigurációs bővítmények érhetők el. Egy egyéni parancsprogramok futtatására szolgáló bővítmény segítségével futtassa a parancsfájlt egy virtuális gépet. A zeneáruház minta esetén az egyéni parancsprogramok futtatására szolgáló bővítmény a Ubuntu virtuális gépek konfigurálásáról és telepítéséről zene áruházból származó alkalmazás. 
+Virtuálisgép-bővítmények olyan speciális programok, szemben a virtuális gépek tooprovide konfigurációs automation hajtható végre. Számos adott célra, például víruskereső, a naplózási konfiguráció és a Docker konfigurációs bővítmények érhetők el. Egy egyéni parancsprogramok futtatására szolgáló bővítmény használt toorun létrehozott parancsfájlok a virtuális gépek ellen lehet. Hello zeneáruház példával toohello egyéni parancsfájl kiterjesztése tooconfigure hello Ubuntu virtuális gépek és hello zene áruház-alkalmazás telepítése. 
 
-Előtt, és részletesen leírja, hogyan vannak deklarálva virtuálisgép-bővítmények az Azure Resource Manager-sablon, vizsgálja meg a futtatni kívánt parancsfájl. Ezt a parancsfájlt a Ubuntu virtuális gép zene áruházból származó alkalmazás futtatására konfigurálható. Futtatásakor, a parancsfájl az összes telepíti a szükséges szoftver, a verziókövetésből zene áruházból származó alkalmazás telepítése, és az adatbázis előkészítése. 
+Előtt, és részletesen leírja, hogyan virtuálisgép-bővítmények bejelentették az Azure Resource Manager-sablonok, ellenőrizze a futtatott parancsfájl hello. Ez a parancsfájl hello Ubuntu virtuális gép toohost hello zene áruházból származó alkalmazás konfigurálja. Futtatásakor hello parancsfájl telepíti-e minden szükséges szoftvert, a verziókövetésből hello zene áruház-alkalmazás telepítése és hello adatbázis előkészítése. 
 
-További információt a .net üzemeltető Linux alkalmazás központi telepítéséről [Linux éles környezetben a közzététel](https://docs.asp.net/en/latest/publishing/linuxproduction.html).
+További információ a .net üzemeltető toolearn alapvető alkalmazás Linux, lásd: [közzététel tooa Linux éles környezetben](https://docs.asp.net/en/latest/publishing/linuxproduction.html).
 
 > Ez a minta bemutatási célokra van.
 > 
@@ -80,11 +80,11 @@ sudo service supervisor start
 ```
 
 ## <a name="vm-script-extension"></a>Virtuális gép parancsprogramok futtatására szolgáló bővítmény
-Virtuálisgép-bővítmények futtathatja a virtuális gépek elleni build időpontban a bővítmény erőforrás belefoglalja az Azure Resource Manager-sablon. A bővítmény a Visual Studio erőforrás hozzáadása varázsló segítségével, vagy érvényes JSON beszúrása a sablon lehet hozzáadni. A parancsprogramok futtatására szolgáló bővítmény erőforrás van beágyazva a virtuálisgép-erőforrás; Ez az alábbi példában látható.
+Virtuálisgép-bővítmények futtathatja a virtuális gépek elleni build időpontban hello Azure Resource Manager sablon hello bővítmény erőforrás-ot. hello bővítmény hello Visual Studio erőforrás hozzáadása varázsló segítségével, vagy érvényes JSON beszúrása hello sablon adhatók hozzá. hello parancsprogramok futtatására szolgáló bővítmény erőforrás van beágyazva hello virtuálisgép-erőforrás; Ez a példa a következő hello látható.
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [VM parancsprogramok futtatására szolgáló bővítmény](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359). 
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [VM parancsprogramok futtatására szolgáló bővítmény](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359). 
 
-Láthatja az alábbi JSON, hogy a parancsfájl a Githubon található. Ezt a parancsfájlt is tárolható az Azure Blob Storage tárolóban. Azure Resource Manager-sablonok is, a parancsfájl végrehajtási karakterláncot megtervezni, hogy sablon paraméterek értékek parancsfájl végrehajtására használhatók paraméterekként engedélyezése. Ebben az esetben a adat rendelkezésre áll-e a sablonok telepítésekor, és ezeket az értékeket ezután felhasználhatók, a parancsfájl végrehajtása közben.
+Az alábbi hello megfigyelheti hello parancsfájlok JSON-NÁ. a Githubon tárolja. Ezt a parancsfájlt is tárolható az Azure Blob Storage tárolóban. Azure Resource Manager-sablonok engedélyezése is hello parancsfájl végrehajtásának karakterlánc tooconstructed úgy, hogy a sablon paraméterek értékek parancsfájl végrehajtására használhatók paraméterekként. Ebben az esetben megadva adatai hello sablonok telepítésekor, és ezeket az értékeket felhasználható hello parancsfájl végrehajtása közben.
 
 ```json
 {
@@ -115,7 +115,7 @@ Láthatja az alábbi JSON, hogy a parancsfájl a Githubon található. Ezt a par
 }
 ```
 
-Az egyéni parancsprogramok futtatására szolgáló bővítmény használatával kapcsolatos további információkért lásd: [egyéni parancsfájl-kiterjesztés Resource Manager-sablonok](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További információ az egyéni parancsprogramok futtatására szolgáló bővítmény hello használatával, lásd: [egyéni parancsfájl-kiterjesztés Resource Manager-sablonok](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="next-step"></a>Következő lépés
 <hr>

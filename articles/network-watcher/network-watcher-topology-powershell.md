@@ -1,6 +1,6 @@
 ---
-title: "Azure hálózati figyelőt topológia - PowerShell megtekintése |} Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan lehet a hálózati topológia lekérdezése a PowerShell használatával."
+title: "aaaView Azure hálózati figyelőt topológia - PowerShell |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse PowerShell tooquery a hálózati topológia."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 40e01a7a6a2ea6127ab725f04649cec47b9d9422
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bc0ecf5baa81a68be53f55c74f362a7bc97116f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-network-watcher-topology-with-powershell"></a>A PowerShell-lel hálózati figyelőt topológia megtekintése
 
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-topology-cli.md)
 > - [REST API](network-watcher-topology-rest.md)
 
-A hálózati figyelőt topológia szolgáltatása a hálózati erőforrások, az előfizetés vizuális ábrázolását. A portál Ez a képi megjelenítés áll rendelkezésre, automatikusan. Az adatokat a topológia e nézetében a portálon mögött PowerShell kérhető.
-Ez a funkció lehetővé teszi a topológiainfomációja rugalmasabb, az adatok a képi megjelenítés felé más eszközökkel feldolgozottként.
+hello topológia szolgáltatása hálózati figyelőt hello hálózati erőforrások egy előfizetésben vizuális ábrázolását biztosítja. Hello portal Ez a képi megjelenítés áll rendelkezésre tooyou automatikusan. hello információk mögött hello topológia e nézetében hello portálon PowerShell kérhető.
+E képesség révén hello topológiainfomációja rugalmasabb hello adatok más eszközök toobuild kimenő hello képi megjelenítés által feldolgozottként.
 
-Az összekapcsolási két kapcsolatok alapján van modellezve.
+hello összekapcsolása a két van modellezve.
 
 - **Befoglaltsági** -példa: virtuális hálózat tartalmaz egy alhálózat egy hálózati Adaptert tartalmaz
 - **Kapcsolódó** -példa: a hálózati adapter kapcsolódik a virtuális gépek
 
-Az alábbi lista a topológia REST API lekérdezésekor visszaadott tulajdonságait.
+hello következő lista rendszer hello topológia REST API lekérdezésekor visszaadott tulajdonságait.
 
-* **név** – az erőforrás neve
-* **azonosító** -erőforrás uri.
-* **hely** – a hely, ahol az erőforrás található.
-* **társítások** -társítást a hivatkozott objektum listáját.
-    * **név** -a hivatkozott erőforrás nevét.
-    * **resourceId** – az erőforrás-azonosítója a található a hivatkozott erőforrás uri.
-    * **associationType** -ezt az értéket a gyermekobjektum és a szülő közötti kapcsolat hivatkozik. Érvényes értékek a következők **Contains** vagy **társított**.
+* **név** – hello hello erőforrás neve
+* **azonosító** -hello hello erőforrás URI azonosítóját.
+* **hely** -hello helyre, ahol hello erőforrás létezik-e.
+* **társítások** -társítások toohello listája hivatkozott objektum.
+    * **név** -hello hello neve hivatkozott erőforrás.
+    * **resourceId** -hello resourceId hello hello társítás hivatkozott hello erőforrás URI azonosítóját.
+    * **associationType** -Ez az érték hivatkozik hello gyermekobjektum és hello szülő hello kapcsolatát. Érvényes értékek a következők **Contains** vagy **társított**.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ebben az esetben használhatja a `Get-AzureRmNetworkWatcherTopology` parancsmag használatával beolvassa a topológia információkat. Van még egy cikk való [beolvasni a REST API-t a hálózati topológia](network-watcher-topology-rest.md).
+Ebben az esetben használhatja az hello `Get-AzureRmNetworkWatcherTopology` parancsmag tooretrieve hello topológiainfomációja. Van még egy cikk hogyan túl[beolvasni a REST API-t a hálózati topológia](network-watcher-topology-rest.md).
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A forgatókönyv a cikkben szereplő lekéri a topológia választ adott erőforráscsoport.
+a cikkben szereplő hello forgatókönyv hello topológia választ adott erőforráscsoport kéri le.
 
 ## <a name="retrieve-network-watcher"></a>Hálózati figyelőt beolvasása
 
-Az első lépés a hálózati figyelőt példányának lekéréséhez. A `$networkWatcher` változó átadott a `Get-AzureRmNetworkWatcherTopology` parancsmag.
+hello első lépéseként tooretrieve hello hálózati figyelőt példány. Hello `$networkWatcher` változó átadása toohello `Get-AzureRmNetworkWatcherTopology` parancsmag.
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
@@ -67,7 +67,7 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="retrieve-topology"></a>Topológia beolvasása
 
-A `Get-AzureRmNetworkWatcherTopology` parancsmag beolvassa a megadott erőforráscsoport-topológiát.
+Hello `Get-AzureRmNetworkWatcherTopology` parancsmag beolvassa a megadott erőforráscsoport hello topológia.
 
 ```powershell
 Get-AzureRmNetworkWatcherTopology -NetworkWatcher $networkWatcher -TargetResourceGroupName testrg
@@ -75,7 +75,7 @@ Get-AzureRmNetworkWatcherTopology -NetworkWatcher $networkWatcher -TargetResourc
 
 ## <a name="results"></a>Results (Eredmények)
 
-A visszaadott eredmények rendelkezik tulajdonsággal "Resources" nevét, amely tartalmazza a json válasz törzse a `Get-AzureRmNetworkWatcherTopology` parancsmag.  A válasz tartalmazza a hálózati biztonsági csoport és a társításokat (Ez azt jelenti, hogy a tartalmazza, a társított) erőforrásaihoz.
+hello eredményének rendelkezik tulajdonsággal "Források" név, hello json adott válasz törzsének hello tartalmazó `Get-AzureRmNetworkWatcherTopology` parancsmag.  hello válasz hello erőforrások hello hálózati biztonsági csoport és a társításokat (Ez azt jelenti, hogy a tartalmazza, a társított) tartalmaz.
 
 ```json
 Id              : 00000000-0000-0000-0000-000000000000
@@ -135,6 +135,6 @@ Resources       : [
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan jelenítheti meg az NSG folyamata naplók a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Ismerje meg, hogyan toovisualize az NSG-folyamat naplózza a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
 

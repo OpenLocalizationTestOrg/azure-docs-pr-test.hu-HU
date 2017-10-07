@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - erőforrások |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablonok segítségével erőforrásokra vonatkozó értékek lekérését funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - erőforrások |} Microsoft Docs"
+description: "Erőforrások hello funkciók toouse az Azure Resource Manager sablon tooretrieve értékeket ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 494ade55f21c19d9c68d5cc52756528401d9bb77
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c9d524b338b8b7ea6d8c9e0135d48e4fb8f167c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-functions-for-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokhoz erőforrás-funkciók
 
-Erőforrás-kezelő a következő funkciókat biztosít erőforrás értékek beolvasása:
+A Resource Manager biztosít a következő funkciók az erőforrás-értékek első hello:
 
 * [listKeys és a {Value} lista](#listkeys)
 * [szolgáltatók](#providers)
@@ -31,7 +31,7 @@ Erőforrás-kezelő a következő funkciókat biztosít erőforrás értékek be
 * [resourceId](#resourceid)
 * [előfizetést](#subscription)
 
-Ahhoz, hogy az értékeket a paraméterek, változók vagy a jelenlegi üzemelő példány, lásd: [központi telepítési érték funkciók](resource-group-template-functions-deployment.md).
+tooget értékeket a paraméterek, a változók vagy a hello jelenlegi üzemelő példány, lásd: [központi telepítési érték funkciók](resource-group-template-functions-deployment.md).
 
 <a id="listkeys" />
 <a id="list" />
@@ -41,18 +41,18 @@ Ahhoz, hogy az értékeket a paraméterek, változók vagy a jelenlegi üzemelő
 
 `list{Value}(resourceName or resourceIdentifier, apiVersion)`
 
-Minden erőforrástípus, amely támogatja a list művelet értékeket adja vissza. A leggyakoribb használata `listKeys`. 
+Beolvasása hello minden erőforrástípus, amely támogatja a hello list művelet értékeit. hello leggyakoribb használata `listKeys`. 
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| resourceName vagy resourceIdentifier |Igen |Karakterlánc |Az erőforrás egyedi azonosítója. |
-| apiVersion |Igen |Karakterlánc |API-verzió erőforrás futásidejű állapot. Általában a következő formátumban **éééé-hh-nn**. |
+| resourceName vagy resourceIdentifier |Igen |Karakterlánc |Hello erőforrás egyedi azonosítója. |
+| apiVersion |Igen |Karakterlánc |API-verzió erőforrás futásidejű állapot. Általában a hello formátumban **éééé-hh-nn**. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A visszaadott objektumot listKeys formátuma a következő:
+hello visszaadott listKeys objektum rendelkezik hello a következő formátumban:
 
 ```json
 {
@@ -71,32 +71,32 @@ A visszaadott objektumot listKeys formátuma a következő:
 }
 ```
 
-Más lista függvények visszatérési formátumuk eltérő. Egy függvény formátum megtekintéséhez foglalja bele a kimenetek szakaszban látható módon a példa sablont. 
+Más lista függvények visszatérési formátumuk eltérő. toosee hello formátum egy függvény figyelembevétel hello kimenetek szakaszban látható módon hello példa sablon. 
 
 ### <a name="remarks"></a>Megjegyzések
 
-Bármely művelet kezdetű **lista** használható legyen a sablon egy függvényt. A rendelkezésre álló műveletek közé tartozik, nem csak listKeys, de az is, például műveletek `list`, `listAdminKeys`, és `listStatus`. Azonban nem használható **lista** a kérelem törzsében szereplő értékeket igénylő műveletekhez. Például a [lista fiók SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) kérelemtörzs-paraméterrel, például a művelethez *signedExpiry*, így a sablonon belül nem használható.
+Bármely művelet kezdetű **lista** használható legyen a sablon egy függvényt. hello elérhető műveletek nem csak listKeys többek között is műveletek, például `list`, `listAdminKeys`, és `listStatus`. Azonban nem használható **lista** hello értékeket igénylő műveletekhez kérelem törzse. Például hello [lista fiók SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) kérelemtörzs-paraméterrel, például a művelethez *signedExpiry*, így a sablonon belül nem használható.
 
-Annak meghatározásához, mely rendelkezik a list művelet, a következő lehetőségei vannak:
+toodetermine, mely rendelkezik a list művelet, a következő beállítások hello rendelkezik:
 
-* Nézet a [REST API-műveleteket](/rest/api/) az erőforrás-szolgáltató és listázási műveletei keressen. Például, storage-fiókok vannak a [listKeys művelet](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).
-* Használja a [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell-parancsmagot. Az alábbi példa lekérdezi valamennyi listázási műveletei storage-fiókok:
+* Nézet hello [REST API-műveleteket](/rest/api/) az erőforrás-szolgáltató és listázási műveletei keressen. Például, a storage-fiókok vannak hello [listKeys művelet](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).
+* Használjon hello [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell-parancsmagot. hello alábbi példa lekérdezi valamennyi listázási műveletei storage-fiókok:
 
   ```powershell
   Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
   ```
-* A következő Azure CLI paranccsal csak a lista műveletek szűrése:
+* A következő Azure CLI parancs toofilter csak hello listázási műveletei hello használata:
 
   ```azurecli
   az provider operation show --namespace Microsoft.Storage --query "resourceTypes[?name=='storageAccounts'].operations[].name | [?contains(@, 'list')]"
   ```
 
-Adja meg az erőforrás használatával vagy a [resourceId függvény](#resourceid), vagy a formátum `{providerNamespace}/{resourceType}/{resourceName}`.
+Adja meg a hello erőforrás vagy hello használatával [resourceId függvény](#resourceid), vagy hello formátum `{providerNamespace}/{resourceType}/{resourceName}`.
 
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan vissza az elsődleges és másodlagos kulcsok a kimenetek szakaszban tárfiókból.
+hello következő példa bemutatja, hogyan tooreturn hello elsődleges és másodlagos hello tárfiókból kulcsok kimenete szakasz.
 
 ```json
 {
@@ -122,18 +122,18 @@ A következő példa bemutatja, hogyan vissza az elsődleges és másodlagos kul
 ## <a name="providers"></a>szolgáltatók
 `providers(providerNamespace, [resourceType])`
 
-Egy erőforrás-szolgáltató és a támogatott erőforrástípusai információt ad vissza. Erőforrástípus nincs megadva, a függvény a támogatott típusok esetében az erőforrás-szolgáltató.
+Egy erőforrás-szolgáltató és a támogatott erőforrástípusai információt ad vissza. Ha nem ad meg egy erőforrás típusa, a hello függvény hello erőforrás-szolgáltató az összes hello támogatott típus adja vissza.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| providerNamespace |Igen |Karakterlánc |A szolgáltató Namespace |
-| a resourceType |Nem |Karakterlánc |A típusú erőforrás a megadott névtérben. |
+| providerNamespace |Igen |Karakterlánc |Namespace hello szolgáltató |
+| a resourceType |Nem |Karakterlánc |a megadott névtér hello típusú erőforrás hello belül. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Minden támogatott típust ad vissza a következő formátumban: 
+Minden támogatott típus eredmény abban az esetben a következő formátumban hello: 
 
 ```json
 {
@@ -143,11 +143,11 @@ Minden támogatott típust ad vissza a következő formátumban:
 }
 ```
 
-Tömb által visszaadott érték sorrendje nem garantált.
+Tömb sorrendje hello visszaadott értékek nem garantált.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja, hogyan használja a szolgáltató funkciót:
+hello a következő példa bemutatja, hogyan toouse hello szolgáltató funkció:
 
 ```json
 {
@@ -163,7 +163,7 @@ A következő példa bemutatja, hogyan használja a szolgáltató funkciót:
 }
 ```
 
-A fenti példában egy objektum a következő formátumban adja vissza:
+hello előző példa visszaad egy objektumot a hello a következő formátumban:
 
 ```json
 {
@@ -197,21 +197,21 @@ Az erőforrás futásidejű állapot képviselő objektum beállítása/beolvas�
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
 | resourceName vagy resourceIdentifier |Igen |Karakterlánc |Név vagy egy erőforrás egyedi azonosítója. |
-| apiVersion |Nem |Karakterlánc |A megadott erőforrás API-verzió. Ez a paraméter tartalmazza, amikor az erőforrás nincs kiépítve belül ugyanazt a sablont. Általában a következő formátumban **éééé-hh-nn**. |
+| apiVersion |Nem |Karakterlánc |A megadott erőforrás hello API-verzióját. Ez a paraméter kihagyása hello erőforrás nincs kiépítve belül ugyanazt a sablont. Általában a hello formátumban **éééé-hh-nn**. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Minden erőforrástípus adja vissza a hivatkozás függvény különböző tulajdonságai. A függvény nem ad vissza egy egyetlen, előre meghatározott formátumban. Erőforrástípus tulajdonságainak megtekintéséhez a kimenetek szakaszában, a példában látható módon adja vissza az objektum.
+Minden erőforrástípus hello hivatkozás függvény különböző tulajdonságait adja vissza. hello függvény nem ad vissza egy egyetlen, előre meghatározott formátumban. toosee hello tulajdonságok erőforrástípusra, térjen vissza hello hello objektum kimenete szakasz hello példában látható módon.
 
 ### <a name="remarks"></a>Megjegyzések
 
-A hivatkozás függvény az értékét a futásidejű állapot osztályból származik, és ezért nem használható a változók szakaszban. A sablon kimenetének részében használható. 
+hello hivatkozás függvény az értékét a futásidejű állapot osztályból származik, és ezért nem használható hello változók szakaszban. A sablon kimenetének részében használható. 
 
-A hivatkozás függvény használatával, akkor implicit módon deklarálja, hogy egy erőforrás függ-e egy másik erőforrás, ha a hivatkozott erőforrás ugyanazt a sablont belül lett beállítva. Nem kell a dependsOn tulajdonság is használhatja. A függvény a rendszer nem értékeli ki, a hivatkozott erőforrás telepítés befejeződéséig.
+Hello hivatkozás funkcióval, akkor implicit módon deklarálja, hogy egy erőforrás függ-e egy másik erőforrás, ha a hivatkozott hello erőforrás ki van építve belül ugyanazt a sablont. Nem kell tooalso használata hello dependsOn tulajdonság. hello függvény nem kerül kiértékelésre hello hivatkozott erőforrás amíg nem fejeződik be telepítési.
 
-Lásd: a tulajdonság és erőforrástípus tartozó értékek, hozzon létre egy sablont, amely a kimenetek szakaszban adja vissza az objektum. Ha az adott típusú erőforrással rendelkezik, a sablon bármely új erőforrások telepítése nélkül a objektum beállítása/beolvasása. 
+toosee hello nevét és értékeit erőforrástípusra, hozzon létre egy sablont, amely hello kimenetek szakaszban hello objektum beállítása/beolvasása. Ha az adott típusú erőforrással rendelkezik, a sablon bármely új erőforrások telepítése nélkül hello objektum beállítása/beolvasása. 
 
-Általában akkor használják a **hivatkozás** működnek, mint egy adott értéket visszaadásának egy objektumot, például a blob-végpont URI vagy teljesen minősített tartománynevét.
+Általában akkor használják hello **hivatkozás** működéséhez tooreturn egy adott értéket az objektumot, például hello blob végpont URI vagy teljesen minősített tartománynevét.
 
 ```json
 "outputs": {
@@ -228,7 +228,7 @@ Lásd: a tulajdonság és erőforrástípus tartozó értékek, hozzon létre eg
 
 ### <a name="example"></a>Példa
 
-Központilag telepíti, és ugyanazt a sablont az erőforrásra hivatkozik, használja:
+hello toodeploy és a hivatkozás hello erőforrása ugyanazt a sablont, használja:
 
 ```json
 {
@@ -263,7 +263,7 @@ Központilag telepíti, és ugyanazt a sablont az erőforrásra hivatkozik, hasz
 }
 ``` 
 
-A fenti példában egy objektum a következő formátumban adja vissza:
+hello előző példa visszaad egy objektumot a hello a következő formátumban:
 
 ```json
 {
@@ -281,7 +281,7 @@ A fenti példában egy objektum a következő formátumban adja vissza:
 }
 ```
 
-A következő példa egy tárfiókot, amely nincs telepítve Ez a sablon hivatkozik. A tárfiók már létezik az ugyanazon erőforráscsoporton belül.
+hello alábbi példa hivatkozik, amelyek a sablonban nincs telepítve. hello tárfiók már létezik hello belül azonos erőforráscsoportot.
 
 ```json
 {
@@ -307,11 +307,11 @@ A következő példa egy tárfiókot, amely nincs telepítve Ez a sablon hivatko
 ## <a name="resourcegroup"></a>Erőforráscsoport
 `resourceGroup()`
 
-A jelenlegi erőforráscsoportban képviselő objektumot adja vissza. 
+Hello jelenlegi erőforráscsoportban képviselő objektumot adja vissza. 
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A visszaadott objektumot a következő formátumban kell megadni:
+hello visszaadott objektum van hello a következő formátumban:
 
 ```json
 {
@@ -328,7 +328,7 @@ A visszaadott objektumot a következő formátumban kell megadni:
 
 ### <a name="remarks"></a>Megjegyzések
 
-A közös a resourceGroup függvény használata erőforrások létrehozásához és az erőforráscsoport ugyanazon a helyen. Az alábbi példában az erőforráscsoport helye rendelje hozzá a webhelyhez tartozó hely.
+A közös hello resourceGroup függvény használata hello toocreate erőforrások hello erőforráscsoport és ugyanazon a helyen. hello alábbi példa hello erőforráscsoport helye tooassign hello helye webhelyhez.
 
 ```json
 "resources": [
@@ -344,7 +344,7 @@ A közös a resourceGroup függvény használata erőforrások létrehozásához
 
 ### <a name="example"></a>Példa
 
-A következő sablon az erőforráscsoport tulajdonságainak adja vissza.
+hello következő sablon adja vissza hello erőforráscsoport hello tulajdonságainak.
 
 ```json
 {
@@ -360,7 +360,7 @@ A következő sablon az erőforráscsoport tulajdonságainak adja vissza.
 }
 ```
 
-A fenti példában egy objektum a következő formátumban adja vissza:
+hello előző példa visszaad egy objektumot a hello a következő formátumban:
 
 ```json
 {
@@ -378,21 +378,21 @@ A fenti példában egy objektum a következő formátumban adja vissza:
 ## <a name="resourceid"></a>resourceId
 `resourceId([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)`
 
-Az erőforrás egyedi azonosítójának beolvasása. Ezt a funkciót használja, ha az erőforrás neve nem egyértelmű, vagy nem kiépített ugyanabban a sablonban. 
+Beolvasása hello erőforrás egyedi azonosítója. Ezt a funkciót használja, ha hello erőforrás neve nem egyértelmű, illetve nem kiépített hello belül ugyanazt a sablont. 
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| subscriptionId |Nem |karakterlánc (a GUID formátumban) |Alapértelmezett érték az aktuális előfizetésben. Adja meg ezt az értéket, ha szüksége van egy másik előfizetésben található erőforrás lekérése. |
-| erőforráscsoport-név |Nem |Karakterlánc |Alapértelmezett érték: a jelenlegi erőforráscsoportban. Adja meg ezt az értéket, ha erőforrást egy másik erőforráscsoportban van szüksége. |
+| subscriptionId |Nem |karakterlánc (a GUID formátumban) |Alapértelmezett érték: hello előfizetésben. Adjon meg ezt az értéket, amikor egy erőforrást egy másik előfizetésben tooretrieve van szüksége. |
+| erőforráscsoport-név |Nem |Karakterlánc |Alapértelmezett érték: a jelenlegi erőforráscsoportban. Adja meg ezt az értéket, ha tooretrieve egy erőforrást egy másik erőforráscsoportban van szükség. |
 | a resourceType |Igen |Karakterlánc |Beleértve az erőforrás-szolgáltató névtere erőforrás típusát. |
 | resourceName1 |Igen |Karakterlánc |Erőforrás neve. |
 | resourceName2 |Nem |Karakterlánc |Következő neve erőforrásszegmensre. Ha az erőforrás van beágyazva. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Az azonosító eredmény abban az esetben a következő formátumban:
+hello azonosító eredmény abban az esetben a következő formátumban hello:
 
 ```json
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
@@ -400,33 +400,33 @@ Az azonosító eredmény abban az esetben a következő formátumban:
 
 ### <a name="remarks"></a>Megjegyzések
 
-A megadott paraméterértékek függnek, hogy az erőforrás azonos előfizetésbe és erőforráscsoportba tartozik, mint a jelenlegi üzemelő példány.
+hello megadott paraméterértékek függnek, hogy hello erőforrás hello a jelenlegi telepítésben hello azonos előfizetésbe és erőforráscsoportba csoportban.
 
-Az erőforrás-azonosítója egy tárfiók ugyanahhoz az előfizetéshez és erőforráscsoport megtekintéséhez használja:
+ugyanaz a tárfiókon lévő hello azonosító tooget hello erőforrás előfizetés és az erőforráscsoport:
 
 ```json
 "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Az erőforrás-azonosítója egy tárfiók ugyanahhoz az előfizetéshez, de egy másik erőforráscsoportban található, amelyet:
+tooget hello erőforrás-azonosító a tárfiók ugyanahhoz az előfizetéshez, de egy másik erőforráscsoportban található, használja hello:
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Az erőforrás-azonosítója egy tárfiók egy másik előfizetésben és erőforráscsoportban használatához:
+tooget hello erőforrás-azonosító egy másik előfizetést, és az erőforráscsoportot, egy tárfiókot használja:
 
 ```json
 "[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Az erőforrás-azonosító egy másik erőforráscsoportban található adatbázis használatához:
+tooget hello erőforrás-azonosító egy másik erőforráscsoportban található adatbázis használata:
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]"
 ```
 
-Gyakran kell használnia a függvény egy tárfiókhoz vagy a virtuális hálózat használata egy másik erőforráscsoportban. A következő példa bemutatja, hogyan könnyen használható egy külső erőforráscsoportból erőforrás:
+Gyakran kell toouse Ez a függvény egy tárfiókhoz vagy a virtuális hálózat használata egy másik erőforráscsoportban. hello következő példa bemutatja, hogyan könnyen használható egy külső erőforráscsoportból erőforrás:
 
 ```json
 {
@@ -473,7 +473,7 @@ Gyakran kell használnia a függvény egy tárfiókhoz vagy a virtuális hálóz
 
 ### <a name="example"></a>Példa
 
-A következő példa az erőforrás-azonosítója egy tárfiók erőforráscsoportban adja vissza:
+hello alábbi példa hello erőforrás-Azonosítót adja vissza egy tárfiók hello erőforráscsoport:
 
 ```json
 {
@@ -501,7 +501,7 @@ A következő példa az erőforrás-azonosítója egy tárfiók erőforráscsopo
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -515,11 +515,11 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="subscription"></a>előfizetést
 `subscription()`
 
-Az előfizetés, a jelenlegi üzemelő példány részleteit adja vissza. 
+Hello előfizetés hello aktuális központi telepítés részleteit adja vissza. 
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A függvény a következő formátumban:
+hello függvény hello a következő formátumban:
 
 ```json
 {
@@ -532,7 +532,7 @@ A függvény a következő formátumban:
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja a előfizetés függvény hívása a kimenetek szakaszban. 
+hello következő példa bemutatja hello előfizetés függvény hívása hello kimenetek szakaszban. 
 
 ```json
 {
@@ -549,8 +549,8 @@ A következő példa bemutatja a előfizetés függvény hívása a kimenetek sz
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

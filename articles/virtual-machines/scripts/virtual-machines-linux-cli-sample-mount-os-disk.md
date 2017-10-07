@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI parancsfájl minta - csatlakoztatási operációsrendszer-lemez |} Microsoft Docs"
+title: "parancssori felület parancsfájl minta - csatlakoztatási operációsrendszer-lemez aaaAzure |} Microsoft Docs"
 description: "Az Azure CLI parancsfájl minta - csatlakoztatási operációsrendszer-lemez"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 02/27/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: b54a94d833644ebfae4c1fac59e4753ab723ced4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c614d09a64780575b70424d29052f1a6affec59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-a-vms-operating-system-disk"></a>A virtuális gépek operációs rendszer lemezhiba elhárítása
 
-Ezt a parancsfájlt az operációsrendszer-lemez hibás vagy problematikus virtuális gép, egy második virtuális gép adatlemezt csatlakoztatja. Ez akkor lehet hasznos, ha a hibaelhárítási lemezes problémákat vagy az adatok helyreállítása. 
+Ez a parancsfájl hello operációsrendszer-lemez hibás vagy problematikus virtuális gép csatlakoztatja adatok lemez tooa második virtuális gépként. Ez akkor lehet hasznos, ha a hibaelhárítási lemezes problémákat vagy az adatok helyreállítása. 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -32,22 +32,22 @@ Ezt a parancsfájlt az operációsrendszer-lemez hibás vagy problematikus virtu
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-machine/mount-os-disk/mount-os-disk.sh "gyors létrehozása méretű VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/mount-os-disk/mount-os-disk.sh "Quick Create VM")]
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy erőforráscsoport, virtuális gép és minden kapcsolódó erőforrás létrehozásához. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate egy erőforráscsoport, a virtuális gép hello, és az összes kapcsolódó erőforrásokat. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az vm megjelenítése](https://docs.microsoft.com/cli/azure/vm#show) | A virtuális gépek listáját adja vissza. Ebben az esetben a lekérdezési lehetőség szolgál a virtuális gép operációsrendszer-lemez adja vissza. Ezt az értéket egy változó neve "uri" majd kerül. |
+| [az vm megjelenítése](https://docs.microsoft.com/cli/azure/vm#show) | A virtuális gépek listáját adja vissza. Ebben az esetben a hello lekérdezési lehetőség használt tooreturn hello virtuális gép operációsrendszer-lemez. Ez az érték tooa változó neve "uri" kerül. |
 | [az a virtuális gép törlése](https://docs.microsoft.com/cli/azure/vm#delete) | Törli a virtuális gépet. |
 | [az virtuális gép létrehozása](https://docs.microsoft.com/cli/azure/vm#create) | Létrehoz egy virtuális gépet.  |
-| [az méretű lemez csatolása](https://docs.microsoft.com/cli/azure/vm/disk#attach) | Lemez csatolása a virtuális gép. |
-| [az vm-ip-címeinek listáját](https://docs.microsoft.com/cli/azure/vm#list-ip-addresses) | A virtuális gépek IP-címét adja vissza. |
+| [az méretű lemez csatolása](https://docs.microsoft.com/cli/azure/vm/disk#attach) | A lemez tooa virtuális gépek csatolja. |
+| [az vm-ip-címeinek listáját](https://docs.microsoft.com/cli/azure/vm#list-ip-addresses) | Beolvasása hello egy virtuális gép IP-címét. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További virtuális gép CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További virtuális gép CLI parancsfájl minták hello található [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

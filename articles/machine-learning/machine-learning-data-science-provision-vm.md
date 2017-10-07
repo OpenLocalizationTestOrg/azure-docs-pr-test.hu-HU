@@ -1,5 +1,5 @@
 ---
-title: "A Microsoft Data tudományos virtuális gép kiépítéséhez |} Microsoft Docs"
+title: "a Microsoft Data tudományos virtuális gép aaaProvision hello |} Microsoft Docs"
 description: "Konfigurálja és tudományos adatok virtuális gép létrehozása az Azure elemzéséhez és a gépi tanulás."
 services: machine-learning
 documentationcenter: 
@@ -13,14 +13,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: bradsev
-ms.openlocfilehash: 76cd54cd234dfe43e8f0d61f0b66f0ed0c09e8b7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 907a3bdc7e480d05e8e245f5e50d632900fcf471
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-the-microsoft-data-science-virtual-machine"></a>A Microsoft Data Science virtuális gép üzembe helyezése
-A Microsoft adatokat tudományos virtuális gép, a Windows Azure virtuális gép (VM) előtelepített és konfigurált számos népszerű eszköz adatelemzés és a gépi tanulás általánosan használt lemezkép. A rendszer részét képező eszközök:
+# <a name="provision-hello-microsoft-data-science-virtual-machine"></a>Hello Microsoft adatok tudományos virtuális gép kiépítése
+hello Microsoft adatok tudományos virtuális gép a Windows Azure virtuális gép (VM) előtelepített és konfigurált számos népszerű eszköz adatelemzés és a gépi tanulás általánosan használt lemezkép. hello részét képező eszközök a következők:
 
 * Microsoft R Server Developer Edition
 * Anaconda Python elosztási
@@ -32,154 +32,154 @@ A Microsoft adatokat tudományos virtuális gép, a Windows Azure virtuális gé
   * [Számítási hálózati Toolkit (CNTK)](https://github.com/Microsoft/CNTK): A Microsoft Research software eszközkészletet tanulási mély.
   * [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit): gyors machine learning-rendszer támogatása, például a online, a kivonatoló, allreduce, csökkentése, learning2search, aktív, és interaktív tanulási.
   * [XGBoost](https://xgboost.readthedocs.org/en/latest/): gyors és pontos súlyozott fa megvalósítási biztosító eszközt.
-  * [Rattle](http://rattle.togaware.com/) (az R analitikai eszköz a további könnyen): olyan eszköz, amely lehetővé teszi az első lépések adatelemzés és a gép R GUI-alapú adatok feltárása, ezzel megkönnyítik a tanulási, és az R-kód automatikus generálása modellezési.
+  * [Rattle](http://rattle.togaware.com/) (R analitikai eszköz tooLearn hello könnyen): olyan eszköz, amely lehetővé teszi az első lépések adatelemzés és a gép R GUI-alapú adatok feltárása, ezzel megkönnyítik a tanulási, és az R-kód automatikus generálása modellezési.
   * [mxnet](https://github.com/dmlc/mxnet): a teljesítmény és a rugalmasságot biztosít a részletes tanulási-keretrendszert
   * [Weka](http://www.cs.waikato.ac.nz/ml/weka/) : A látványelemek adatainak adatbányászati és gépi tanulási szoftver Java nyelven.
-  * [Apache részletezési](https://drill.apache.org/): sémamentes SQL lekérdezési motorja a Hadoop, a nosql-alapú és a felhőalapú tárolást.  ODBC és JDBC felületek engedélyezése lekérdező nosql-alapú és a szabványos Üzletiintelligencia-eszközök, például a Power BI, az Excel, a Tableau fájlokat támogatja.
+  * [Apache részletezési](https://drill.apache.org/): sémamentes SQL lekérdezési motorja a Hadoop, a nosql-alapú és a felhőalapú tárolást.  ODBC és JDBC felületek tooenable lekérdezése nosql-alapú és a szabványos Üzletiintelligencia-eszközök, például a Power BI, az Excel, a Tableau fájlokat támogatja.
 * Az R és Python a szalagtárak használja az Azure Machine Learning és más Azure-szolgáltatásokkal
-* Többek között beleértve a github webhelyen, a Visual Studio Team Services forráskódú adattárakban dolgozni a Git Bash Git
+* Git bash eszközt toowork beleértve többek között a github webhelyen, a Visual Studio Team Services forráskódú adattárakban Git
 * Számos népszerű Linux parancssori segédprogram (beleértve a awk, csökkentésének, perl, grep, keresés, wget, curl stb) Windows-port parancssor keresztül érhető el. 
 
 Adattudomány Ez magában foglalja a feladatok sorozata léptetés:
 
 1. Keresése, betöltése, és előzetesen feldolgozni az adatokat
 2. Összeállításakor és tesztelésekor modellek
-3. A modelleket a fogyasztás intelligens alkalmazások telepítése
+3. Az intelligens alkalmazásokban felhasználásra hello modellek telepítéséről
 
-Adatszakértőkön számos különféle eszközre segítségével ezeket a feladatokat. Túl sok időt vesz igénybe találja a szoftver, a megfelelő verzióját, majd töltse le és telepítse őket a lehet. A Microsoft Data tudományos virtuális gép a terheket megkönnyítheti azzal, hogy biztosít egy használatra kész lemezképnek, amely telepíthető az Azure összes számos népszerű eszköz előtelepített és konfigurált. 
+Adatszakértőkön használható különböző eszközök toocomplete ezeket a feladatokat. Azt kell túl sok időt vesz igénybe toofind hello hello szoftver, megfelelő verzióját, és majd letöltheti és telepítheti őket. hello Microsoft adatok tudományos virtuális gép a terheket megkönnyítheti azzal, hogy biztosít egy használatra kész lemezképnek, amely telepíthető az Azure összes számos népszerű eszköz előtelepített és konfigurált. 
 
-A Microsoft Data tudományos virtuális gép jump-starts analytics projektjéhez. Ez lehetővé teszi, hogy működik a feladatok R, Python, SQL és C# például különböző nyelveken. A Visual Studio biztosít egy IDE fejlesztéséhez és teszteléséhez a kódot, amely könnyen használható. Az Azure SDK tartalmazza a virtuális Gépet a különböző szolgáltatások segítségével a Microsoft felhőalapú platformja alkalmazások létrehozását teszi lehetővé. 
+a Microsoft Data tudományos virtuális gép hello jump-starts analytics projektjéhez. R, Python, SQL és C# például különböző nyelveken feladatok toowork lehetővé teszi. A Visual Studio egy IDE-toodevelop biztosít, és tesztelheti a kódját, amely könnyen toouse. hello szerepel a virtuális gép hello Azure SDK lehetővé teszi toobuild az alkalmazások különböző szolgáltatások segítségével a Microsoft felhőalapú platformja. 
 
-Nincsenek az adatok tudományos VM-lemezkép szoftver költségek. Csak kell fizetnie Azure használati díjak mely a virtuális gép kiépítése méretétől függ. További részleteket a számítási díjakat található az árazás részletes adatait tartalmazó részben található meg a [adatok tudományos virtuális gép](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/) lap. 
+Nincsenek az adatok tudományos VM-lemezkép szoftver költségek. Csak kell fizetnie hello Azure használati díjak mely hello virtuális gép kiépítése hello méretétől függ. További részleteket a hello számítási díjakat hello hello az árazás részletes adatait tartalmazó részben található [adatok tudományos virtuális gép](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/) lap. 
 
-## <a name="other-versions-of-the-data-science-virtual-machine"></a>Az adatok tudományos virtuális gép egyéb verziói
-A [CentOS](machine-learning-data-science-linux-dsvm-intro.md) lemezkép érhető el, legtöbb ugyanazokat az eszközöket, mint a Windows-lemezkép. Egy [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) kép is, amelyek számos hasonló eszközök és keretrendszerek tanulási mély érhető el.
+## <a name="other-versions-of-hello-data-science-virtual-machine"></a>Hello adatok tudományos virtuális gép egyéb verziói
+A [CentOS](machine-learning-data-science-linux-dsvm-intro.md) kép is elérhető, legtöbb hello azonos eszközei, Windows-lemezkép hello. Egy [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) kép is, amelyek számos hasonló eszközök és keretrendszerek tanulási mély érhető el.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A Microsoft Data tudományos virtuális gép létrehozásához, az alábbiakkal kell rendelkeznie:
+A Microsoft Data tudományos virtuális gép létrehozásához, hello következő kell rendelkeznie:
 
-* **Azure-előfizetés**: egy beszerzéséről [beolvasása az Azure ingyenes próbaverzió](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-* **Azure-tárfiók**: szeretne létrehozni egyet, lásd: [az Azure storage-fiók létrehozása](../storage/common/storage-create-storage-account.md#create-a-storage-account). Alternatív megoldásként a tárfiók a virtuális gép létrehozása, ha nem szeretné, hogy a meglévő fiók részeként is létrehozható.
+* **Azure-előfizetés**: tooobtain egy, lásd: [beolvasása az Azure ingyenes próbaverzió](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
+* **Azure-tárfiók**: toocreate egy, lásd: [az Azure storage-fiók létrehozása](../storage/common/storage-create-storage-account.md#create-a-storage-account). Másik lehetőségként hello tárfiók hello virtuális gép létrehozása, ha nem szeretné, hogy egy meglévő fiókkal toouse hello folyamat részeként is létrehozható.
 
 ## <a name="create-your-microsoft-data-science-virtual-machine"></a>A Microsoft Data tudományos virtuális gép létrehozása
-Az alábbiakban egy példányát, a Microsoft Data tudományos virtuális gép létrehozásához szükséges lépéseket:
+Az alábbiakban hello lépéseket toocreate hello Microsoft adatok tudományos virtuális gép egy példányát:
 
-1. Keresse meg a virtuális gépet, a listaelem [Azure-portálon](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
-2. Válassza ki a **létrehozása** panel alján, a varázsló veendő.![ Konfigurálja-adatok-tudományos-vm](./media/machine-learning-data-science-provision-vm/configure-data-science-virtual-machine.png)
-3. A varázsló a Microsoft Data tudományos virtuális gép létrehozásához használt szükséges **bemenetek** az egyes a **öt lépése** a jobb oldali ábra számba. Az alábbiakban az egyes lépéseket konfigurálásához szükséges adatokat:
+1. Keresse meg a listázása toohello virtuális gép [Azure-portálon](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
+2. Jelölje be hello **létrehozása** gombra, és egy varázsló figyelembe hello alsó toobe.![ Konfigurálja-adatok-tudományos-vm](./media/machine-learning-data-science-provision-vm/configure-data-science-virtual-machine.png)
+3. hello használt varázsló toocreate hello Microsoft adatok tudományos virtuális géphez szükséges **bemenetek** az egyes hello **öt lépése** hello sarkában található ezen az ábrán a számba. Az alábbiakban hello szükséges bemeneti adatok tooconfigure minden az alábbi lépéseket:
    
    1. **Alapvető beállítások**
       
       1. **Név**: az adatok tudományos kiszolgáló létrehozásakor nevét.
       2. **Felhasználónév**: rendszergazdai fiók bejelentkezési azonosító.
       3. **Jelszó**: rendszergazdai fiók jelszavát.
-      4. **Előfizetés**: Ha több előfizetéssel rendelkezik, válassza ki a amelyiken a gép létrehozását és számlázva van.
+      4. **Előfizetés**: Ha több előfizetéssel rendelkezik, válasszon hello egyik mely hello a gép toobe létrehozott és számlázható.
       5. **Erőforráscsoport**: hozhat létre egy új vagy meglévő csoport használata.
-      6. **Hely**: válassza ki a legjobban megfelelő adatközpont. Általában az adatközpont, amely az adatok, vagy a helynév leggyorsabb hálózati hozzáférési legközelebb.
-   2. **Méret**: válassza ki a kiszolgáló típusát, amely megfelel a funkcionális és költség megkötések. További lehetőségek a VM-méretek kaphat kiválasztása a "Nézet All".
+      6. **Hely**: Select hello adatközpont, amely a legjobban megfelelő. Általában akkor hello adatközpont, amely az adatok, vagy legközelebbi tooyour helynév leggyorsabb hálózati hozzáféréshez.
+   2. **Méret**: válassza ki, amely megfelel a funkcionális és költség megkötések hello kiszolgáló típusát. További lehetőségek a VM-méretek kaphat kiválasztása a "Nézet All".
    3. **Beállítások**:
       
       1. **Lemez típusa**: válassza a prémium szintű Ha inkább egy SSD-meghajtót (SSD), ellenkező esetben válassza a "Standard".
-      2. **A Tárfiók**: hozzon létre egy új Azure-tárfiók az előfizetésben, vagy használjon egy meglévőt ugyanazon *hely* , hogy a választott a **alapjai** a varázsló.
-      3. **Más paraméterek**: általában csak használja az alapértelmezett értékeket. Az egyes mezőkkel tájékoztató hivatkozásra rámutat is, ha meg kívánja használni a nem az alapértelmezett értékeket.
+      2. **A Tárfiók**: hozzon létre egy új Azure-tárfiók az előfizetésben, vagy használjon egy meglévőt a hello azonos *hely* , amely a hello választott **alapjai** hello varázsló.
+      3. **Más paraméterek**: általában csak hello alapértelmezett értékeket használunk. Abban az esetben, ha azt szeretné, hogy nem alapértelmezett értékek felhasználása tooconsider hello is rámutat hello egyes mezőkkel hello tájékoztató hivatkozásra.
    4. **Összefoglalás**: Győződjön meg arról, hogy az összes megadott adatok helyesek.
-   5. **Vásároljon**: kattintson a **megvásárlása** kiépítési elindításához. Hivatkozás a tranzakció feltételeit valósul meg. A virtuális gép nem rendelkezik a kiválasztott kiszolgáló méretéhez számítási túl további díjakat a **mérete** lépés. 
+   5. **Vásároljon**: kattintson a **megvásárlása** toostart hello kiépítés. Találhatóak hello tranzakció toohello feltételeit. hello virtuális gép nem rendelkezik a további díjakat hello számítási hello kiválasztott hello server méret túl **mérete** lépés. 
 
 > [!NOTE]
-> A kiépítése körülbelül 10-20 percet kell végrehajtani. A kiépítési állapotát az Azure portálon jelenik meg.
+> hello kiépítése körülbelül 10-20 percet kell végrehajtani. hello hello kiépítési állapotának a hello Azure-portálon jelenik meg.
 > 
 > 
 
-## <a name="how-to-access-the-microsoft-data-science-virtual-machine"></a>Hogyan érhetők el a Microsoft Data tudományos virtuális gép
-A virtuális gép létrehozása után azokat a rendszergazdai fiók hitelesítő adatait az előző konfigurált használatával is a távoli asztal **alapjai** szakasz. 
+## <a name="how-tooaccess-hello-microsoft-data-science-virtual-machine"></a>Hogyan tooaccess hello Microsoft adatok tudományos virtuális gép
+Egyszer hello a virtuális gép létrehozása, akkor a távoli asztal hello rendszergazdai fiók hitelesítő adatait az előző hello konfigurált használatával történő **alapjai** szakasz. 
 
-Miután a virtuális gép létrehozása és üzembe helyezve, készen áll indíthatja azon eszközöket, amelyek telepítése és konfigurálása történik meg. Start menü csempék és számos eszközt az asztali ikonok vannak. 
+Miután a virtuális gép létrehozása és üzembe helyezve, áll készen toostart hello eszközökkel, amelyek telepítése és konfigurálása történik meg. Start menü csempék és asztali ikonok számos hello eszközök vannak. 
 
-## <a name="how-to-create-a-strong-password-for-jupyter-and-start-the-notebook-server"></a>Hozzon létre egy erős jelszót a Jupyter, és indítsa el a notebook kiszolgáló
-Alapértelmezés szerint a Jupyter notebook kiszolgáló előre konfigurálva van, de a virtuális Gépen le van tiltva, amíg a Jupyter jelszót állíthat be. Hozzon létre egy erős jelszót a Jupyter notebook kiszolgáló telepítve a számítógépen, hogy futtassa a következő parancsot a adatok tudományos virtuális gépen vagy a parancssorból, kattintson duplán az asztali parancsikonra adtunk nevű **Jupyter beállítása Jelszó & Start** a virtuális gép helyi rendszergazdai fiók.
+## <a name="how-toocreate-a-strong-password-for-jupyter-and-start-hello-notebook-server"></a>Hogyan toocreate Jupyter, és indítson el egy erős jelszót hello notebook kiszolgáló
+Alapértelmezés szerint hello Jupyter notebook server előre konfigurálva van, de a virtuális gép hello tiltott, amíg a Jupyter jelszót állíthat be. toocreate hello Jupyter notebook server hello gépen telepített egy erős jelszót, futtassa a következő parancsot a parancssorban az adatok tudományos virtuális gépet, vagy kattintson duplán a hello asztali parancsikonjára adtunk hello hello nevű  **Jupyter jelszavát & Start** a virtuális gép helyi rendszergazdai fiók.
 
     C:\dsvm\tools\setup\JupyterSetPasswordAndStart.cmd
 
-Kövesse a megjelenő utasításokat, és válasszon egy erős jelszót, amikor a rendszer kéri.
+Kövesse a köszönőüzenetei, és válasszon egy erős jelszót, amikor a rendszer kéri.
 
-Az előző parancsfájlja létrehozza a Jelszókivonat és azt a Jupyter konfigurációs fájlban található tároló: **C:\ProgramData\jupyter\jupyter_notebook_config.py** paraméter neve alatt ***c.NotebookApp.password***.
+hello előző parancsfájlja létrehozza a Jelszókivonat és a tároló azt hello Jupyter konfigurációs fájlban található: **C:\ProgramData\jupyter\jupyter_notebook_config.py** hello paraméter neve alatt ***c. NotebookApp.password***.
 
-A parancsfájl is lehetővé teszi, és a Jupyter kiszolgálón fusson a háttérben. Jupyter kiszolgáló akkor jön létre, mivel a WIndows Feladatütemező windows feladat neve **Start_IPython_Notebook**.  Előfordulhat, hogy a böngésző a notebook megnyitása előtt a jelszó beállítása után néhány másodpercet vár. Kifejezéseit leíró szakasza az alábbi **Jupyter Notebook** a Jupyter notebook kiszolgáló elérésével. 
+hello parancsfájlt is lehetővé teszi, hogy és hello Jupyter server hello háttérben futnak. Jupyter kiszolgáló akkor jön létre, mivel a windows hello WIndows Feladatütemező feladat neve **Start_IPython_Notebook**.  Előfordulhat, hogy toowait hello jelszó beállítása előtt a böngésző hello notebook megnyitása után néhány másodpercig. Lásd: hello című az alábbi **Jupyter Notebook** a hogyan tooaccess hello Jupyter notebook kiszolgáló. 
 
 
-## <a name="tools-installed-on-the-microsoft-data-science-virtual-machine"></a>Eszközök vannak telepítve a Microsoft Data tudományos virtuális gép
+## <a name="tools-installed-on-hello-microsoft-data-science-virtual-machine"></a>A Microsoft Data tudományos virtuális gép hello telepített eszközök
 
 ### <a name="microsoft-r-server-developer-edition"></a>Microsoft R Server Developer Edition
-Ha szeretné használni az R az elemzésekhez, a virtuális Gépnek legyen telepítve Microsoft R Server Developer kiadásában. Microsoft R Server a széles körű telepíthető vállalati szintű analytics platform támogatott R alapján, méretezhető és biztonságos. Big Data típusú adatok statisztikák, a prediktív modellezési és a gépi tanulási képességek számos támogató, R Server támogatja analytics – feltárása, elemzés, adatmegjelenítési és modellezési teljes skáláját. Használatával, és nyílt forráskódú R kiterjesztése, Microsoft R-kiszolgáló nem teljes mértékben kompatibilis R parancsfájlokat, funkciók és CRAN csomagok vállalati léptékű adatok elemzésére. Adja hozzá az adatok párhuzamos és darabolt feldolgozása nyitott forrás R memórián belüli vonatkozó korlátozások is javítja. Ez lehetővé teszi, hogy futhat az analytics adatok nagyobb, mint mi elfér a fizikai memóriát.  Visual Studio Community Edition szerepel-e a virtuális gép tartalmazza, amely egy teljes IDE R. használata biztosítja a Visual Studio bővítmény az R eszközöket Is töltse le és használja is, mint más IDEs [Rstudióból](http://www.rstudio.com). 
+Ha toouse R az elemzésekhez, hello virtuális gép van telepítve Microsoft R Server Developer kiadásában. Microsoft R Server a széles körű telepíthető vállalati szintű analytics platform támogatott R alapján, méretezhető és biztonságos. Big Data típusú adatok statisztikák, a prediktív modellezési és a gépi tanulási képességek számos támogató, R Server hello teljes körű elemzés – feltárása, elemzés, adatmegjelenítési és modellezési támogatja. Használatával, és nyílt forráskódú R kiterjesztése, Microsoft R-kiszolgáló nem teljes mértékben kompatibilis R parancsfájlokat, funkciók és CRAN csomagok, vállalati léptékű tooanalyze adatokat. Párhuzamos és darabolt adatok feldolgozása hozzáadásával nyitott forrás R hello memórián belüli korlátozásai is javítja. Ez lehetővé teszi toorun analytics nagyobb, mint mi elfér a memóriahasználatot adatokon.  A Visual Studio Community Edition szerepel-e virtuális gép tartalmazza, amely egy teljes IDE R. használata biztosítja a Visual Studio bővítmény hello R eszközöket hello Is töltse le és használja is, mint más IDEs [Rstudióból](http://www.rstudio.com). 
 
 ### <a name="python"></a>Python
-A fejlesztési pythonos környezetekben Anaconda Python elosztási 2.7 és 3.5-ös telepítve van. Ehhez a terjesztéshez együtt a legnépszerűbb matematikai, tervezés és adatok analytics csomagok körülbelül 300 alap Python tartalmazza. Python Tools használhatja a Visual Studio (PTVS) belül a Visual Studio 2015 Community edition vagy kötegelt IDEs Anaconda ÜRESJÁRATBAN vagy Spyder például az egyik telepített. Indítja el az egyik meg a keresési sávon rákeresve (**Win** + **S** kulcs).
+A fejlesztési pythonos környezetekben Anaconda Python elosztási 2.7 és 3.5-ös telepítve van. Ehhez a terjesztéshez tartalmaz hello kiinduló Python körülbelül 300 hello legnépszerűbb matematikai, tervezés és adatok analytics csomagok együtt. Python Tools használhatja a Visual Studio (PTVS) belül hello Visual Studio 2015 Community edition vagy IDEs mellékelhető ÜRESJÁRATBAN vagy Spyder Anaconda hello egyik telepített. Indítja el az egyik meg hello keresősáv rákeresve (**Win** + **S** kulcs).
 
 > [!NOTE]
-> A Python Tools for Visual Studio Anaconda Python 2.7-es és 3.5-ös mutasson létrehozásához szükséges egyéni környezetek egyes verzióihoz. A Visual Studio 2015 Community Edition környezet elérési utak beállításához navigáljon **eszközök** -> **Python Tools** -> **Python-környezetek**majd **+ egyéni**. 
+> toopoint hello a Python Tools for Visual Studio Anaconda Python 2.7, és 3.5-ös verzióját, egyes verzióihoz kell toocreate egyéni környezetekben. tooset környezet elérési utak a Visual Studio 2015 Community Edition hello lépjen túl**eszközök** -> **Python Tools** -> **Python-környezetek** majd **+ egyéni**. 
 > 
 > 
 
 Anaconda Python 2.7 telepítőmappájában található C:\Anaconda és Anaconda Python 3.5 c:\Anaconda\envs\py35 telepítőmappájában található. Lásd: [PVTS dokumentációban](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it) a részletes lépéseket. 
 
 ### <a name="jupyter-notebook"></a>Jupyter notebook
-Jupyter notebook, egy környezet kóddal és elemzési anaconda terjesztési is tartalmaz. A Jupyter notebook kiszolgáló előre beállított Python 2.7-es, a Python 3.4-es, a Python 3.5-ös és a R kernelek. Egy asztali látható ikon nevű "Jupyter notebook használatához indítsa el a böngészőt a Notebook kiszolgálóhoz való hozzáféréshez. Ha a távoli asztalon keresztül a virtuális gép, meglátogathatja [https://localhost:9999 /](https://localhost:9999/) Ha jelentkezett be a virtuális gép a Jupyter notebook-kiszolgálóhoz való hozzáféréshez.
+Anaconda terjesztési is Jupyter notebook, egy környezeti tooshare kódot és az elemzések tartalmaz. A Jupyter notebook kiszolgáló előre beállított Python 2.7-es, a Python 3.4-es, a Python 3.5-ös és a R kernelek. Egy asztali látható ikon nevű, "Jupyter Notebook toolaunch hello böngésző tooaccess hello Notebook kiszolgáló. Ha a virtuális gép hello távoli asztalon keresztül, meglátogathatja [https://localhost:9999 /](https://localhost:9999/) tooaccess hello Jupyter notebook kiszolgáló toohello Virtuálisgép jelentkezni.
 
 > [!NOTE]
 > Folytassa, ha kapott tanúsítványt figyelmeztetéseket. 
 > 
 > 
 
-A Microsoft több minta jegyzetfüzetet r és Python csomagolását A Jupyter notebookok megjelenítése után jelentkezik be a Jupyter Microsoft R Server, SQL Server 2016 R Services (adatbázis-analytics), Python, Microsoft kognitív ToolKit (CNTK) részletes biztonságával és más Azure technológiák használata. A notebook kezdőlapján a hivatkozásra kattintva a minták után a hitelesítést a Jupyter notebook a korábbi lépésben létrehozott jelszó használatával tekintheti meg. 
+Azt a Python több minta jegyzetfüzetet csomagolását és az r hello Jupyter notebookok megjelenítése hogyan toowork Microsoft R Server, SQL Server 2016 R Services (adatbázis-analytics), Python, Microsoft kognitív ToolKit (CNTK) részletes biztonságával és más Azure Miután jelentkezik be tooJupyter technológiák. Hello notebook kezdőlapján hello hivatkozás toohello minták után Önnek a hitelesítéshez toohello Jupyter notebook hello korábbi lépésben létrehozott jelszó használatával tekintheti meg. 
 
 ### <a name="visual-studio-2015-community-edition"></a>A Visual Studio 2015 Community edition
-A Visual Studio Community edition telepítve a virtuális Gépen. A népszerű IDE kis csoportjai és tesztelési célokra használható Microsoft ingyenes verzióját is. A licencfeltételek megtekintheti [Itt](https://www.visualstudio.com/support/legal/mt171547).  Az asztali ikonra duplán kattintva nyissa meg a Visual Studio vagy a **Start** menü. Programokat is kereshet **Win** + **S** , majd gépelje be a "Visual Studio". Ha van például a C#, Python, R, node.js nyelvű projektek is létrehozhat. Beépülő modulok települnek, amely együttműködik az Azure-szolgáltatásokat, mint az Azure Data Catalog, az Azure HDInsight (Hadoop, Spark) és az Azure Data Lake kényelmes. 
+A Visual Studio Community edition hello VM telepítve. Hello szabad változatának kis csoportjai és tesztelési célokra használható Microsoft népszerű IDE. Licencelési időszakonként hello megtekintheti [Itt](https://www.visualstudio.com/support/legal/mt171547).  Nyissa meg a Visual Studio hello asztali ikonok vagy hello duplán kattintva **Start** menü. Programokat is kereshet **Win** + **S** , majd gépelje be a "Visual Studio". Ha van például a C#, Python, R, node.js nyelvű projektek is létrehozhat. Beépülő modulok települnek, melyek az Azure-szolgáltatásokat, mint az Azure Data Catalog, az Azure HDInsight (Hadoop, Spark) és az Azure Data Lake kényelmes toowork. 
 
 > [!NOTE]
-> Üzenet jelenik meg, hogy a próbaidőszak lejárt kaphat. Microsoft-fiók hitelesítő adatait, vagy hozzon létre egy új ingyenes fiókot, a Visual Studio Community Edition elérésének. 
+> Üzenet jelenik meg, hogy a próbaidőszak lejárt kaphat. Microsoft-fiók hitelesítő adatait, vagy hozzon létre egy új ingyenes fiók tooget hozzáférés toohello Visual Studio Community Edition. 
 > 
 > 
 
 ### <a name="sql-server-2016-developer-edition"></a>SQL Server 2016 Developer edition
-A fejlesztői verzióját az SQL Server 2016 R Services adatbázis-analytics futtatásához a virtuális Gépre valósul meg. R biztosítanak a platform fejlesztéséhez és intelligens alkalmazások telepítéséhez. A hatékony és erőteljes R nyelv és a Közösség számos csomag segítségével modellek létrehozása és előrejelzéseket létrehozni az SQL Server-adatok. Beállíthatja, hogy az adatok közel analytics mert R szolgáltatások (az adatbázis-) az R nyelv integrálható az SQL Server. Ezzel a megoldással a költségek és az adatátvitelt jelölik a kapcsolódó biztonsági kockázatokról.
+A fejlesztői verzió, az SQL Server 2016 R szolgáltatások toorun adatbázis-elemzés a virtuális gép hello valósul meg. R biztosítanak a platform fejlesztéséhez és intelligens alkalmazások telepítéséhez. Hello hatékony és erőteljes R nyelv használatával és hello hello közösségi toocreate modelleket csomagok számát és előrejelzéseket létrehozni az SQL Server-adatok. Elemzés Bezárás toohello adatok biztosítható, mert R szolgáltatások (az adatbázis-) hello R nyelv integrálható az SQL Server. Ezzel a megoldással hello költségek és az adatátvitelt jelölik a kapcsolódó biztonsági kockázatokról.
 
 > [!NOTE]
-> Az SQL Server 2016 developer kiadásában csak fejlesztési és tesztelési célokra használható. Licenccel kell rendelkeznie a termelési futtatásához. 
+> SQL Server 2016 hello developer kiadásában csak akkor használható fejlesztéshez, és vizsgálati célra. A licenc toorun van szüksége az éles környezetben. 
 > 
 > 
 
-Az SQL server férhetnek megnyitása **SQL Server Management Studio**. A virtuális gép neve van feltöltve, a kiszolgáló neve. Ha a Windows rendszergazdaként jelentkezett be Windows-hitelesítés használatára. Miután az SQL Server Management Studio más felhasználók létrehozása, adatbázisok létrehozására, importálhat adatokat, és az SQL-lekérdezések futtatása. 
+Hello SQL server férhetnek megnyitása **SQL Server Management Studio**. A virtuális gép nevét, hello kiszolgálónév fel van töltve. Ha jelentkezett be, mint a rendszergazda a Windows hello Windows-hitelesítés használatára. Miután az SQL Server Management Studio más felhasználók létrehozása, adatbázisok létrehozására, importálhat adatokat, és az SQL-lekérdezések futtatása. 
 
-Adatbázis-analytics Microsoft R használatának engedélyezéséhez futtassa a következő parancsot ütemezésként idő a kiszolgáló-rendszergazdai bejelentkezés után az SQL Server management studio művelet. 
+adatbázis-tooenable analytics Microsoft R, futtassa a következő parancsot egy egyik hello használatának hello rendszergazdaként a bejelentkezés után az SQL Server management studio művelet idő. 
 
         CREATE LOGIN [%COMPUTERNAME%\SQLRUserGroup] FROM WINDOWS 
 
-        (Please replace the %COMPUTERNAME% with your VM name)
+        (Please replace hello %COMPUTERNAME% with your VM name)
 
 
 ### <a name="azure"></a>Azure
-Több Azure-eszközök telepítve vannak a virtuális Gépet:
+Virtuális gép hello több Azure eszközök telepítve vannak:
 
-* Nincs az Azure SDK-dokumentáció eléréséhez asztali parancsikonjára. 
-* **AzCopy**: áthelyezni az adatokat mindkét a Microsoft Azure Storage-fiókot használni. Használat megtekintéséhez írja be **Azcopy** parancsot a parancssorba a használat megtekintéséhez. 
-* **A Microsoft Azure Tártallózó**: az Azure Storage-fiókot és átviteli adatokat az Azure storage érkező vagy oda irányuló tárolt objektumok között használt. Beírhatja **Tártallózó** a Keresés vagy nem található, a Windows Start menüben, az eszköz eléréséhez. 
-* **Adlcopy**: adatok áthelyezése az Azure Data Lake használt. Használat megtekintéséhez írja be **adlcopy** parancssorban. 
-* **dtui**: áthelyezni az adatokat, és az Azure Cosmos DB, egy NoSQL-adatbázis, a felhő használt. Típus **dtui** a parancssorból. 
+* Van egy asztali parancsikonjára tooaccess hello Azure SDK-dokumentáció. 
+* **AzCopy**: toomove adatok átviteléhez a Microsoft Azure Storage-fiókot használni. toosee használati, típus **Azcopy** , a parancssor toosee hello használat. 
+* **A Microsoft Azure Tártallózó**: használt toobrowse belül az Azure Storage-fiókot és átviteli adatok tooand az Azure storage tárolt hello objektumok között. Beírhatja **Tártallózó** keresési vagy keresés azt a hello Windows Start menü tooaccess ezt az eszközt. 
+* **Adlcopy**: toomove adatok tooAzure Data Lake használt. toosee használati, típus **adlcopy** parancssorban. 
+* **dtui**: toomove adatok tooand a Azure Cosmos-Adatbázisból, egy NoSQL-adatbázis hello felhő használt. Típus **dtui** a parancssorból. 
 * **A Microsoft adatkezelési átjáró**: lehetővé teszi, hogy a helyszíni adatforrások és a felhő közötti adatátvitelt jelölik. Például az Azure Data Factory belül használják. 
-* **A Microsoft Azure Powershell**: a Powershell programozási nyelv is telepítve van a virtuális Gépet az Azure-erőforrások felügyeletéhez használt eszköz. 
+* **A Microsoft Azure Powershell**: egy eszközt az Azure-erőforrások használt tooadminister hello Powershell programozási nyelv is telepítve van a virtuális Gépet. 
 
 ### <a name="power-bi"></a>Power BI
-Irányítópultok és a kiváló megjelenítések létrehozásához a **Power BI Desktop** telepítve van. Az eszköz segítségével szerez adatokat különböző forrásokból származó az irányítópultokat és jelentéseket készít, és közzéteheti a felhőben. További információ: a [Power BI](http://powerbi.microsoft.com) hely. A Start menüben található Power BI desktopban. 
+toohelp készít az irányítópultok és a kiváló képi megjelenítéseket, hello **Power BI Desktop** telepítve van. Az eszköz toopull adatokat különböző forrásokból, tooauthor használja az irányítópultok és jelentések és toopublish őket toohello felhő. További információ: hello [Power BI](http://powerbi.microsoft.com) hely. A Power BI desktop hello Start menüben található. 
 
 > [!NOTE]
-> Power BI eléréséhez az Office 365-fiók szükséges. 
+> Az Office 365-fiók tooaccess Power bi-ban van szüksége. 
 > 
 > 
 
 ## <a name="additional-microsoft-development-tools"></a>További Microsoft fejlesztőeszközök
-A [ **Microsoft Webplatform-telepítő** ](https://www.microsoft.com/web/downloads/platform.aspx) felderítése és más Microsoft fejlesztői eszközök is használható. Az eszköz a Microsoft Data tudományos virtuális gép asztalán mutató hivatkozás is van.  
+Hello [ **Microsoft Webplatform-telepítő** ](https://www.microsoft.com/web/downloads/platform.aspx) is használt toodiscover és más Microsoft fejlesztőeszközök letöltése. Hello Microsoft adatok tudományos virtuális gép asztalán helyi toohello eszközt is van.  
 
-## <a name="important-directories-on-the-vm"></a>A virtuális gép fontos könyvtárak létrehozása sikerült
+## <a name="important-directories-on-hello-vm"></a>Virtuális gép hello fontos könyvtárak létrehozása sikerült
 | Elem | Címtár |
 | --- | --- |
 | Jupyter notebook kiszolgáló konfigurációk |C:\ProgramData\jupyter |
@@ -193,16 +193,16 @@ A [ **Microsoft Webplatform-telepítő** ](https://www.microsoft.com/web/downloa
 | Egyéb eszközök |c:\dsvm\tools |
 
 > [!NOTE]
-> Példányok, a Microsoft Data tudományos létrehozott virtuális gépek előtt 1.5.0 (előtt 2016 szeptemberétől 3.) egy némileg eltérő könyvtárstruktúrát használja, mint az előző táblázatban megadott. 
+> Microsoft adatok tudományos virtuális gép létrehozása előtt (előtt 3 2016 szeptemberétől kezdve) 1.5.0 hello példányai némileg eltérő könyvtárstruktúra használja, mint tábla megelőző hello megadott. 
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbiakban a lépéseket, ahol folytathatja a tanulási és kutatási funkciójával. 
+Íme néhány következő lépések toocontinue a tanulási és kutatási funkciójával. 
 
-* Megismerkedhet a különböző adatok tudományos eszközök az adatok tudományos virtuális gép által a start menü és az a menü felsorolt eszközök.
-* Navigáljon a **C:\Program Files\Microsoft SQL Server\130\R_SERVER\library\RevoScaleR\demoScripts** mintákat az R, amely támogatja a vállalati léptékű adatelemzés RevoScaleR szalagtár használatával.  
-* A következő cikkben: [10 lehetősége van az adatok tudományos virtuális gép](http://aka.ms/dsvmtenthings)
-* Ismerje meg, hogyan hozhat létre a teljes körű elemzési megoldásokat rendszeresen használatával a [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/data-science-process/).
-* Látogasson el a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com) machine learning és az adatok analytics mintákat a Cortana Intelligence Suite használó. Egy ikont is adtunk meg a **Start** menü és a virtuális gépet a tár az asztalon.
+* Megismerkedhet a különböző adatok tudományos eszközök hello adattudomány VM hello kattintson a start menü és az hello menü felsorolt hello eszközök hello.
+* Keresse meg a túl**C:\Program Files\Microsoft SQL Server\130\R_SERVER\library\RevoScaleR\demoScripts** minták hello RevoScaleR szalagtár R, amely támogatja a vállalati léptékű adatelemzés használatával.  
+* A cikk elolvasása hello: [10 lehetősége van a virtuális gép adattudomány hello](http://aka.ms/dsvmtenthings)
+* Ismerje meg, hogyan toobuild end tooend elemzési megoldásokat rendszeresen használatával hello [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/data-science-process/).
+* A Microsoft hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com) a machine learning és az elemzés, hogy használjon hello Cortana Intelligence Suite – minták. Egy ikont is adtunk meg hello **Start** menü és hello virtuális gép toothis tár hello asztalon.
 

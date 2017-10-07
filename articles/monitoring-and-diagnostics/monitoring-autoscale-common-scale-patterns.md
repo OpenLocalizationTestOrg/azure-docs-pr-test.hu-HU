@@ -1,6 +1,6 @@
 ---
-title: "Közös automatikus skálázás minták áttekintése |} Microsoft Docs"
-description: "Ismerje meg a közös minták automatikus méretezési némelyike az erőforrás az Azure-ban."
+title: "annak a közös automatikus skálázás aaaOverview |} Microsoft Docs"
+description: "Ismerje meg, hogy az erőforrás néhány hello közös minták tooauto skálázása az Azure-ban."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: ancav
-ms.openlocfilehash: fce51546e041c8989d813c3935e058c52b38ba77
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fc5bd97852e0af01aa32940c99721ab8e21033ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-common-autoscale-patterns"></a>Közös automatikus skálázás minták áttekintése
-Ez a cikk ismerteti az egyes közös mintázatokat az erőforrás méretezése az Azure-ban.
+Ez a cikk ismerteti, néhány hello közös minták tooscale az erőforrás az Azure-ban.
 
-Az Azure a figyelő automatikus méretezési csak a virtuális gép méretezési készletek (VMSS), a felhőszolgáltatások, az app service-csomagokról és a app service Environment-környezetek vonatkozik. 
+Az Azure a figyelő automatikus méretezési csak tooVirtual gép méretezési készletek (VMSS), felhőszolgáltatások, app service-csomagokról és app service Environment-környezetek vonatkozik. 
 
 # <a name="lets-get-started"></a>Lehetővé teszi, hogy első lépései
 
-Ez a cikk feltételezi, hogy Ön ismeri a automatikus méretezési. Is [első lépések az erőforrás méretezése][1]. Az alábbiakban néhány gyakori méretezési mintázatokat.
+Ez a cikk feltételezi, hogy Ön ismeri a automatikus méretezési. Is [elindított ide tooscale lekérni az erőforrás][1]. hello közé tartoznak a következők hello közös méretezési minták.
 
 ## <a name="scale-based-on-cpu"></a>A skála CPU alapján
 
 A webes alkalmazás (/ VMSS/felhő szerepkör-szolgáltatás) és 
 
-- Kívánt méretezési out/skála alapján CPU.
-- Emellett szeretné gondoskodjon arról, hogy a példányok minimális száma. 
-- Emellett szeretne biztosítani a maximális korlát értékre révén példányainak számát.
+- Azt szeretné, hogy tooscale alapján CPU out/skála.
+- Továbbá azt szeretné, hogy tooensure példányok minimális száma. 
+- Emellett kívánt méretezheti a példányok maximális száma toohello számos beállított tooensure.
 
 ![A skála CPU alapján][2]
 
@@ -44,7 +44,7 @@ A webes alkalmazás (/ VMSS/felhő szerepkör-szolgáltatás) és
 A webes alkalmazás (/ VMSS/felhő szerepkör-szolgáltatás) és
 
 - (A hétköznapokon) alapértelmezés szerint a 3 példányokat szeretne.
-- Nem várt forgalom hétvégén, és ezért szeretné hétvégén le 1 példány méretezése.
+- Nem várt forgalom hétvégén, és ezért szeretne tooscale too1 példány le hétvégén.
 
 ![Hétköznapokon vs hétvégén másképp méretezése][3]
 
@@ -52,16 +52,16 @@ A webes alkalmazás (/ VMSS/felhő szerepkör-szolgáltatás) és
 
 A webes alkalmazás (/ VMSS/felhő szerepkör-szolgáltatás) és 
 
-- Kívánt felfelé vagy lefelé méretezési alapértelmezés szerint a CPU-használat alapján
-- Azonban során ünnepi (vagy adott nap, a vállalkozása számára fontos) szeretne felülírja az alapértelmezett értékeket, és további kapacitás a rendelkezésére.
+- Azt szeretné, hogy tooscale fel/le alapértelmezés szerint a CPU-használat alapján.
+- Azonban ünnepi (vagy adott nap fontos a vállalati) során szeretné, hogy toooverride hello alapértelmezett beállításokat, és további kapacitással rendelkeznek a rendelkezésére.
 
 ![Skála eltérően a munkaszüneti napokat is][4]
 
 ## <a name="scale-based-on-custom-metric"></a>Egyéni metrika alapuló méretezési
 
-Rendelkezik egy előtér-webkiszolgáló és a háttérkiszolgáló kommunikáló API réteget. 
+Rendelkezik egy előtér-webkiszolgáló és egy API-réteghez, amelynek hello háttérrendszerrel kommunikál. 
 
-- Az API-réteg elérhető az előtérben lévő egyéni események alapján méretezésére (Példa: a bevásárlókocsiban elemek száma. a kivétel folyamat méretezésére)
+- Azt szeretné, hogy a hello előtér egyéni események alapján tooscale hello API réteg (Példa: azt szeretné, hogy a kivételt folyamat alapján hello elemszáma bevásárlókocsiból vásárlás hello tooscale)
 
 ![Egyéni metrika alapuló méretezési][5]
 

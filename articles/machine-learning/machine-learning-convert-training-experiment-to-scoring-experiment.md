@@ -1,6 +1,6 @@
 ---
-title: "A modell Azure Machine Learning Studio központi telepítésének előkészítése |} Microsoft Docs"
-description: "Hogyan készíti elő a betanított modell a központi telepítés webszolgáltatásként alakítja át a Machine Learning Studio tanítási kísérletet egy prediktív kísérletté."
+title: "aaaHow tooprepare a modell Azure Machine Learning Studio-KözpontiTelepítés |} Microsoft Docs"
+description: "Hogyan tooprepare a betanított modell egy központi telepítés szolgáltatás átalakításával a Machine Learning Studio képzési kísérletezhet tooa prediktív kísérletté."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: garye
-ms.openlocfilehash: 716a9a9b723df7ff6eb111fa40f2b5941d57d67a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d25bc68be63679a803bfc24a9e29e009a9263f5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-prepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>A modell Azure Machine Learning Studio központi telepítésének előkészítése
+# <a name="how-tooprepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>Hogyan tooprepare a modell Azure Machine Learning Studio-KözpontiTelepítés
 
-Az Azure Machine Learning Studio biztosítja az eszközöket, a prediktív elemzés modellezése, és ezután egy Azure webes szolgáltatás telepítésével azok kell.
+Az Azure Machine Learning Studio által biztosított eszközök toodevelop egy prediktív elemzési modell kell, és ezután azok egy Azure webes szolgáltatás telepítésével hello meg.
 
-Ehhez a kísérlet létrehozásának - nevű használhatja Studio egy *tanítási kísérletet* – amelyen betanítása, pontozása, és szerkesztheti a modell. Ha már elégedett, kap a modell a tanítási kísérletet, és átalakításával üzembe helyezésére egy *prediktív kísérletté* pontszám felhasználói adatok megfelelően van konfigurálva.
+toodo, használhatja a Studio toocreate kísérlet - nevű egy *tanítási kísérletet* – amelyen betanítása, pontozása, és szerkesztheti a modell. Ha már elégedett, a tanítási kísérletet tooa átalakításával beolvasni a modell készen toodeploy *prediktív kísérletté* , hogy van-e beállítva tooscore felhasználói adatokat.
 
 Ez a folyamat egy példa látható [forgatókönyv: a hitelkockázat értékelésére az Azure Machine Learning a prediktív elemzési megoldás fejlesztése](machine-learning-walkthrough-develop-predictive-solution.md).
 
-Ez a cikk egy részletes bemutatója a részleteinek hogyan lekérdezi a egy tanítási kísérletet egy prediktív kísérletté alakítja át, és hogyan legyen telepítve központilag, hogy prediktív kísérletté vesz igénybe. Ezen adatok megismerni, ismerje meg a központilag telepített modell abba, hogy hatékonyabb konfigurálása.
+Ez a cikk egy részletes bemutatója hello részleteinek hogyan lekérdezi a egy tanítási kísérletet egy prediktív kísérletté alakítja át, és hogyan legyen telepítve központilag, hogy prediktív kísérletté vesz igénybe. Ezen adatok megismerni, áttekintheti, hogyan tooconfigure a telepített modell toomake hatékonyabb azt.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="overview"></a>Áttekintés 
 
-A folyamat egy tanítási kísérletet egy prediktív kísérletté átalakítása három lépést foglal magában:
+a tanítási kísérletet tooa prediktív kísérletté átalakítani hello folyamat három lépést foglal magában:
 
-1. Cserélje le a gépi tanulási algoritmus modulok a betanított modell.
-2. Trim a kísérletet, és csak a szükséges pontozási modulok. A tanítási kísérletet, amelyek szükségesek a képzési, de nem szükségesek, ha a modell betanítása modulok számos tartalmaz.
-3. Határozza meg, hogy a modell a webes felhasználói adatokat fogad, és milyen adatok visszaadásához fog.
+1. Cserélje le a hello machine learning algoritmus modulok a betanított modell.
+2. Trim hello kísérlet tooonly ilyen modulokhoz, pontozási szükséges. A tanítási kísérletet, amelyek szükségesek a képzési, de nem szükségesek, miután hello modell betanítása modulok számos tartalmaz.
+3. Határozza meg, hogy a modell hello webes felhasználói adatokat fogad, és milyen adatok visszaadásához fog.
 
 > [!TIP]
-> A tanítási kísérletet, a képzési és a saját adatok használata a modell pontozása már megtörtént. De központi telepítésének végrehajtása után felhasználók új adatokat küld a modell, és előrejelzés eredményeket ad vissza. Igen a tanítási kísérletet átalakítása egy prediktív kísérletté, hogy előkészítse a telepítéshez, mivel tartsa szem előtt a modell mások által használt hogyan.
+> A tanítási kísérletet, a képzési és a saját adatok használata a modell pontozása már megtörtént. Azonban Amennyiben telepített, felhasználók küld új tooyour adatmodell, és előrejelzéses eredményeket ad vissza. Igen a tanítási kísérletet tooa prediktív kísérletté tooget, és készen áll a központi telepítés konvertálásakor, tartsa szem előtt hogyan hello modell mások által használható.
 > 
 > 
 
 ## <a name="set-up-web-service-button"></a>Webes szolgáltatások beállítása gomb
-A kísérlet futtatása után (kattintson **futtatása** a kísérletvászonra alján), kattintson a **webes szolgáltatások beállítása** gomb (válassza ki a **prediktív webszolgáltatás** lehetőséget). **Webes szolgáltatások beállítása** hajt végre, a tanítási kísérletet egy prediktív kísérletté átalakítása három lépést:
+A kísérlet futtatása után (kattintson **futtatása** hello kísérletvászonra hello alján), hello kattintson **webes szolgáltatások beállítása** gomb (válassza hello **prediktív webszolgáltatás** a beállítás). **Webes szolgáltatások beállítása** hajtja végre az Ön hello átalakítani a tanítási kísérletet tooa prediktív kísérletté három lépést:
 
-1. A betanított modell menti a **betanított modellek** a modulpalettán (bal oldalán a kísérletvászonra) szakasza. Felülírja a gépi tanulási algoritmus és [tanítási modell] [ train-model] a mentett betanított modell rendelkező modulok.
+1. A betanított modell hello mentése **betanított modellek** hello modulpalettán (hello kísérletvászonra toohello balra) szakasza. Kicseréli hello gépi tanulási algoritmus és [tanítási modell] [ train-model] modell betanítása mentett hello rendelkező modulok.
 2. Elemzi a kísérletet, és eltávolítja a modult, amely egyértelműen használták csak képzési és már nem szükséges.
 3. Beilleszti _webszolgáltatás bemenetét_ és _kimeneti_ modulok importálása a kísérlet során (ezek a modulok fogadja el, és térjen vissza a felhasználói adatok) alapértelmezett helyét.
 
-Például a következő kísérlet betanítja két osztályú súlyozott döntési fa-modellben nyilvántartásba mintaadatok:
+Például hello következő kísérletezhet szerelvények két osztályú súlyozott döntési fa-modellben nyilvántartásba mintaadatok:
 
 ![Tanítási kísérletet][figure1]
 
-A modul a kísérletben alapvetően négy különböző feladatokat látnak el:
+a kísérletben hello modulok alapvetően négy különböző feladatokat látnak el:
 
 ![A modul funkciók][figure2]
 
-A tanítási kísérletet egy prediktív kísérletté alakításakor néhányat ezek a modulok már nem szükséges, vagy most más célt szolgál:
+A tanítási kísérletet tooa prediktív kísérletté alakításakor néhányat ezek a modulok már nem szükséges, vagy most más célt szolgál:
 
-* **Adatok** -pontozási nem használják a minta adatkészlet adatainak – a felhasználó a webszolgáltatás pontozni adatokat fogja adni. A metaadatok ehhez az adatkészlethez, adattípusok, például a azonban a betanított modell használatával. Ezért meg kell tartani az adatkészletet a prediktív kísérletté, akkor több a metaadatok.
+* **Adatok** -nem használják a minta adatkészlet adatainak hello pontozási – hello felhasználói hello webszolgáltatás fogja adni hello adatok toobe program pontozza a mennyiségeket. Ehhez az adatkészlethez, adattípusok, például a hello metaadatok azonban hello betanított modell használatával. Így tookeep hello adatkészlet hello prediktív kísérletté kell, hogy több a metaadatok.
 
-* **Előkészítő** – attól függően, hogy a felhasználói adatokat, amelyek ezeket a modulokat is, vagy nem lehet feldolgozni a bejövő adatok szükséges pontozó, elküldve. A **webes szolgáltatások beállítása** gomb nem touch ezek – el kell döntenie, hogyan szeretné kezelni azokat.
+* **Előkészítő** – attól függően, hogy ezek a modulok feltétlenül nem szükséges tooprocess hello bejövő adatok pontozó, benyújtott hello felhasználói adatokat. Hello **webes szolgáltatások beállítása** gomb nem touch ezek - toodecide van szüksége, hogy hogyan kívánja toohandle őket.
   
-    Például az ebben a példában a minta-adatkészleteken érték hiányzik, ezért lehet egy [Clean Missing Data] [ clean-missing-data] modul megtalálható azokkal kapcsolatban. A minta-adatkészleteken is oszlopok esetén nem szükséges a modell betanításához. Ezért egy [Select Columns in Dataset] [ select-columns] modul megtalálható-e felesleges oszlopok kizárása az adatfolyam. Ha tudja, hogy a pontozó a webszolgáltatás keresztül küldött adatok nem lesznek a hiányzó értékeket, akkor eltávolíthatja az [Clean Missing Data] [ clean-missing-data] modul. Mivel azonban a [Select Columns in Dataset] [ select-columns] modul segítségével határozza meg, amely a betanított modell vár az oszlopokat, modult meg kell maradnia.
+    Például ebben a példában hello minta-adatkészleteken lehet érték hiányzik, ezért a [Clean Missing Data] [ clean-missing-data] modul végre tudta hajtani belefoglalt toodeal velük. Hello minta-adatkészleteken is oszlopokat, amelyek nem szükséges tootrain hello modell. Ezért egy [Select Columns in Dataset] [ select-columns] modul végre tudta belefoglalt tooexclude ezeket a felesleges oszlopok hello adatfolyam. Ha pontozó küldött hello adatok keresztül hello webszolgáltatás nincs hiányzó értékeket, majd eltávolíthatja hello [Clean Missing Data] [ clean-missing-data] modul. Mivel azonban hello [Select Columns in Dataset] [ select-columns] modul segítségével hello oszlopok definiálására, hogy hello betanított modell vár az adatok, modult kell tooremain.
 
-* **A vonat** -ezek a modulok a modell betanításához használandó. Amikor rákattint **webes szolgáltatások beállítása**, ezek a modulok egyetlen modult tartalmaz a modell betanítása Ön helyett. Ez a modul menti a **betanított modellek** a modulpalettán szakasza.
+* **Vonat** -e modulokra használt tootrain hello modell. Amikor rákattint **webes szolgáltatások beállítása**, ezek a modulok egyetlen modult tartalmaz hello modell betanítása Ön helyett. Ez a modul mentett hello **betanított modellek** hello modulpalettán szakasza.
 
-* **Pontszám** – ebben a példában a [Split Data] [ split] modul szolgál az adatfolyamot felosztani a Tesztadatok és betanítási adata. A prediktív kísérletben azt még nem betanítása többé, így [Split Data] [ split] távolíthatja el. Hasonlóképpen, a második [Score Model] [ score-model] modul és a [modell kiértékelése] [ evaluate-model] modul segítségével, hasonlítsa össze a Tesztadatok eredményei Ezek a modulok nem szükségesek a prediktív kísérletben. A fennmaradó [Score Model] [ score-model] modul, azonban szükség van a webszolgáltatás keresztül pontszám eredményének.
+* **Pontszám** – ebben a példában a hello [Split Data] [ split] modul az használt toodivide hello adatfolyam Tesztadatok és betanítási adata. A prediktív kísérletté hello, azt még nem betanítása többé, így [Split Data] [ split] távolíthatja el. Hasonlóképpen, a második hello [Score Model] [ score-model] modul és hello [modell kiértékelése] [ evaluate-model] modul hello tesztből használt toocompare eredmény adatok, így ezek a modulok nincs szükség a prediktív hello kipróbálásához. hello fennmaradó [Score Model] [ score-model] modul, azonban az szükséges tooreturn keresztül hello webszolgáltatás pontszám eredményt.
 
 Ez a példa megjelenésének kattintás után **webes szolgáltatások beállítása**:
 
 ![Prediktív kísérletté konvertálni][figure3]
 
-Dolgozott **webes szolgáltatások beállítása** elegendő lehet, hogy készítse elő a kísérletet, és egy webszolgáltatás telepíthető. Azonban érdemes lehet néhány további munkáját jellemző a kísérlet során.
+hello dolgozott **webes szolgáltatások beállítása** lehet, hogy elegendő tooprepare a kísérlet toobe telepített webszolgáltatásként. Azonban érdemes lehet toodo néhány további feladata adott tooyour kísérlet.
 
 ### <a name="adjust-input-and-output-modules"></a>Módosítsa a bemeneti és kimeneti modulok
-A tanítási kísérletet használt betanítási adatok, és majd volt az egyes feldolgozási oly módon, hogy a gépi tanulási algoritmus szükséges adatok megszerzéséhez. A webes szolgáltatás fogadni várt adatok nem kell a feldolgozás, ha megkerüléséhez azt: csatlakozás kimenetét a **webszolgáltatás bemeneti modul** egy másik modul a kísérletben a. A felhasználó adatait most érkeznek ezen a helyen a modellben.
+A tanítási kísérletet, a használt betanítási adatok, és majd volt néhány feldolgozási tooget hello hello gépi tanulási algoritmus szükséges, az űrlap adatait. Hello adatokat várt tooreceive hello webszolgáltatás keresztül nem lesz szükség a feldolgozás, ha megkerüléséhez azt: csatlakozás hello hello kimenete **webszolgáltatás bemeneti modul** tooa különböző modul a kísérletben. hello felhasználói adatok most érkeznek hello modellben ezen a helyen.
 
-Alapértelmezés szerint például **webes szolgáltatások beállítása** helyezi a **webszolgáltatás bemenetét** modul felső részén a adatfolyam, a fenti ábrán látható módon. De azt manuálisan is elhelyezheti a **webszolgáltatás bemenetét** múltbeli adatok feldolgozása modulok:
+Alapértelmezés szerint például **webes szolgáltatások beállítása** visszahelyezi hello **webszolgáltatás bemenetét** modul az adatfolyam, ahogy az a fenti ábrán hello hello tetején. De azt kézzel is elhelyezheti hello **webszolgáltatás bemenetét** túli hello adatfeldolgozási modulok:
 
-![A webszolgáltatás bemenetét áthelyezése][figure4]
+![Áthelyezése hello webszolgáltatás bemenetét][figure4]
 
-A webszolgáltatás megadott bemeneti adatok most fogja továbbítani közvetlenül a Score Model modulba bármely előfeldolgozása nélkül.
+hello bemeneti adatai megadott keresztül hello webszolgáltatás most továbbítani fogja közvetlenül a hello Score Model-modul bármely előfeldolgozása nélkül.
 
-Hasonlóképpen, alapértelmezés szerint **webes szolgáltatások beállítása** helyezi a webes szolgáltatás kimenetigyorsítótár-modul a adatfolyama alján. Ebben a példában a webszolgáltatás fog térni a felhasználó a kimenetét a [Score Model] [ score-model] modult, amely a bemeneti adatok teljes vektor mellett a pontozási eredményeinek is.
-Azonban ha valami más vissza szeretne, majd hozzá további modulok előtt a **webes szolgáltatás kimeneti** modul. 
+Hasonlóképpen, alapértelmezés szerint **webes szolgáltatások beállítása** visszahelyezi hello webszolgáltatás kimeneti modul az adatfolyam hello alján. Ebben a példában a hello webszolgáltatás visszaadható toohello felhasználói hello kimenete hello [Score Model] [ score-model] modult, amely hello teljes bemeneti adatok vektoros mellett pontozási eredményei hello is.
+Azonban ha inkább tooreturn valami más, majd hozzá további modulok előtt hello **webes szolgáltatás kimeneti** modul. 
 
-Például csak a pontozási eredményeinek és a bemeneti adatok nem a teljes vektort adnak vissza, vegye fel a [Select Columns in Dataset] [ select-columns] a pontozási eredményeinek kivételével az összes oszlop kizárásához modul. Ezután lépjen a **webes szolgáltatás kimeneti** modul kimenetével a [Select Columns in Dataset] [ select-columns] modul. A kísérlet így néz ki:
+Például tooreturn csak hello pontozási eredményeinek és nem hello teljes vektort a bemeneti adatok hozzáadása egy [Select Columns in Dataset] [ select-columns] modul tooexclude kivételével az összes oszlop hello pontozási eredményei. Ezután lépjen a hello **webes szolgáltatás kimeneti** modul toohello kimenete hello [Select Columns in Dataset] [ select-columns] modul. hello kísérlet így néz ki:
 
-![A webes szolgáltatás kimeneti áthelyezése][figure5]
+![Hello webes szolgáltatás kimeneti áthelyezése][figure5]
 
 ### <a name="add-or-remove-additional-data-processing-modules"></a>Adja hozzá, vagy távolítsa el a további adatok feldolgozása modulok
-Ha a kísérletben, amelyek biztosan pontozási során nem szükséges további modulok, ezek távolíthatja el. Például mert helyeztük a **webszolgáltatás bemenetét** modult a pont után az adatok feldolgozása modulok, azt is távolítsa el a [Clean Missing Data] [ clean-missing-data] modult a prediktív kísérletté.
+Ha a kísérletben, amelyek biztosan pontozási során nem szükséges további modulok, ezek távolíthatja el. Például mert hello helyeztük **webszolgáltatás bemenetét** modul tooa pont hello adatfeldolgozási modulok, azt is eltávolítja hello [Clean Missing Data] [ clean-missing-data] modul hello prediktív kísérletté.
 
 A prediktív kísérletté most néz ki:
 
@@ -103,21 +103,21 @@ A prediktív kísérletté most néz ki:
 
 
 ### <a name="add-optional-web-service-parameters"></a>Adja hozzá a választható paraméterek: Web Service
-Bizonyos esetekben érdemes lehet a felhasználó a webszolgáltatás modulok működésének módosításához, ha a szolgáltatás hozzáfér. *Webszolgáltatási paramétereket* lehetővé teszi ezt.
+Bizonyos esetekben érdemes lehet a webes szolgáltatás toochange a modulok hello működését tooallow hello felhasználói hello szolgáltatás elérésekor. *Webszolgáltatási paramétereket* toodo lehetővé teszi ezt.
 
-Ilyenek például beállítását egy [és adatokat importálhat] [ import-data] modul, ezért a felhasználó az üzembe helyezett webszolgáltatás adhat meg egy másik adatforráshoz, a webszolgáltatás elérésekor. Vagy konfigurálása egy [adatok exportálása] [ export-data] modul, hogy egy másik cél adható meg.
+Ilyenek például beállítását egy [és adatokat importálhat] [ import-data] modul hello hello felhasználója telepített webes szolgáltatás, megadhat egy másik adatforráshoz hello webszolgáltatás elérésekor. Vagy konfigurálása egy [adatok exportálása] [ export-data] modul, hogy egy másik cél adható meg.
 
-Adja meg a webszolgáltatás-paramétereket, és rendelje hozzá őket egy vagy több modulja paramétert, és megadhatja, hogy azok kötelező vagy választható. A felhasználó a webszolgáltatás értékeket biztosít ezeket a paramétereket, amikor hozzáfér a szolgáltatáshoz, és ennek megfelelően módosítják a modul műveletek.
+Adja meg a webszolgáltatás-paramétereket, és rendelje hozzá őket egy vagy több modulja paramétert, és megadhatja, hogy azok kötelező vagy választható. hello felhasználói hello webszolgáltatás biztosítja a értékeket a paraméterek hello szolgáltatás érhető el, és ennek megfelelően módosítják hello modul műveletek.
 
-Mik azok a webszolgáltatás-paramétereket és a használatukat kapcsolatos további információkért lásd: [használata Azure Machine Learning webszolgáltatás-paramétereket][webserviceparameters].
+További információt a milyen webszolgáltatás-paramétereket, és hogyan toouse, lásd: [használata Azure Machine Learning webszolgáltatás-paramétereket][webserviceparameters].
 
 [webserviceparameters]: machine-learning-web-service-parameters.md
 
 
-## <a name="deploy-the-predictive-experiment-as-a-web-service"></a>A prediktív kísérletté egy webszolgáltatás-bővítmény telepítése
-Most, hogy a prediktív kísérletté megfelelően elő van készítve, telepítheti azt egy Azure webszolgáltatásként. A webszolgáltatással, felhasználók adatokat küldhet a modell, és a modell az előrejelzés ad vissza.
+## <a name="deploy-hello-predictive-experiment-as-a-web-service"></a>Hello prediktív kísérletté egy webszolgáltatás-bővítmény telepítése
+Most, hogy hello prediktív kísérletté megfelelően elő van készítve, telepítheti azt egy Azure webszolgáltatásként. Hello webszolgáltatás segítségével, is el lehet küldeni tooyour adatmodell, és hello modell visszatér az előrejelzés.
 
-A teljes telepítési folyamat további információkért lásd: [az Azure Machine Learning webszolgáltatás telepítése][deploy]
+Hello teljes központi telepítés folyamatáról további információk: [az Azure Machine Learning webszolgáltatás telepítése][deploy]
 
 [deploy]: machine-learning-publish-a-machine-learning-web-service.md
 

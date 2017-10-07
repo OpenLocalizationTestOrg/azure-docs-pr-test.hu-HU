@@ -1,6 +1,6 @@
 ---
-title: "Azure-projekt tulajdonságai"
-description: "Az Eclipse Azure eszköztára Azure projektjének tulajdonságai-beállításokat ismerteti."
+title: "aaaAzure projektjének tulajdonságai"
+description: "Az Eclipse Azure eszköztára hello hello Azure projektjének tulajdonságai beállításokat ismerteti."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9d9eb695b63c2f4efa3ebea97ddb2f2780180bca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d8993ca38e7e03a8c7ebe96d174594aa0ff78e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-project-properties"></a>Azure-projekt tulajdonságai
-Számos beállítása az Azure-projekt Eclipse Azure eszköztára belül állítható be.
+Számos beállítása az Azure-projekt Eclipse Azure eszköztára hello belül állítható be.
 
 ## <a name="configuring-azure-project-properties"></a>Azure-projekt tulajdonságainak konfigurálása
-A tulajdonság az Azure-projekt párbeszédek segítségével történik, az Azure-projekt tulajdonságainak konfigurálása. Kattintson a jobb gombbal a projekt Eclipse a Project Explorer ablaktáblában, kattintson a **tulajdonságok**, majd válassza ki a **Azure** almenü.
+Az Azure projekt hello tulajdonság párbeszédpanelek segítségével történik, az Azure-projekt tulajdonságainak konfigurálása. Kattintson a jobb gombbal a hello projekt Eclipse a Project Explorer ablaktáblában, kattintson a **tulajdonságok**, majd válassza ki a hello **Azure** almenü.
 
 ![][ic719480]
 
-E tulajdonság oldalán módosíthatja a következő elemek: 
+A tulajdonság lapon belül módosíthatja a következő elemek hello: 
 
-* **Szolgáltatásnév:** az Azure-projekt nevét.
-* **A build:** e a projekt be van állítva a compute emulator épületen vagy telepítése az Azure-bA.
-* **Cél operációs rendszer:** az operációs rendszert használja, ha a projekt rendszerbe az Azure-bA.
+* **Szolgáltatásnév:** hello az Azure-projekt nevét.
+* **A build:** hogy hello projekt felépítéséhez toohello compute emulator vagy a központi telepítési tooAzure beállítása.
+* **Cél operációs rendszer:** hello operációs rendszer toouse, ha a projekt telepített tooAzure.
 
 ## <a name="see-also"></a>Lásd még:
 [Eclipse Azure eszköztára][Azure Toolkit for Eclipse]
 
-[Az eclipse-ben az Azure eszközkészlet telepítése][Installing the Azure Toolkit for Eclipse] 
+[Hello Azure eszköztára Eclipse telepítése][Installing hello Azure Toolkit for Eclipse] 
 
 [Hozzon létre egy Hello World alkalmazásról egy Azure az eclipse-ben][Creating a Hello World Application for Azure in Eclipse]
 
@@ -45,7 +45,7 @@ E tulajdonság oldalán módosíthatja a következő elemek:
 
 [Az Azure Storage-fiók listája][Azure Storage Account List]
 
-Azure Java használatával kapcsolatos további információkért lásd: a [Azure Java fejlesztői központból][Azure Java Developer Center].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -54,7 +54,7 @@ Azure Java használatával kapcsolatos további információkért lásd: a [Azur
 [Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
 [Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

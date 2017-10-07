@@ -1,5 +1,5 @@
 ---
-title: "Adja hozzá az Office 365-felhasználók összekötőt a Logic Apps |} Microsoft Docs"
+title: "aaaAdd hello Office 365-felhasználók összekötőt a Logic Apps |} Microsoft Docs"
 description: "Office 365-felhasználók összekötő REST API-paraméterekkel rendelkező áttekintése"
 services: 
 documentationcenter: 
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 330f733440932a769eb0fe6031cd0d947a820080
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2fae1c80d195a368b5f6c1ad650905a0d6e94c83
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-office-365-users-connector"></a>Az Office 365-felhasználók összekötő az első lépései
-Office 365 felhasználói profilok, a keresés felhasználói és több csatlakozni. Az Office 365-felhasználók a következőket teheti:
+# <a name="get-started-with-hello-office-365-users-connector"></a>Hello Office 365-felhasználók összekötő az első lépései
+Csatlakozás tooOffice 365 felhasználók tooget profilok, a keresés felhasználói és egyebek. Az Office 365-felhasználók a következőket teheti:
 
-* Az üzleti folyamat Office 365-felhasználók származó adatok alapján történő létrehozása. 
-* Közvetlen beosztottai első használata műveleteket vezető felhasználói profil, és több kapják meg. Ezeket a műveleteket válaszol, és végezze el a kimeneti más műveletek érhető el. Például lekérni egy személy közvetlen beosztottai, majd ezt az adatot és SQL Azure-adatbázis frissítéséhez. 
+* Az Office 365 felhasználóktól kapott hello adatok alapján üzleti folyamatot létrehozni. 
+* Közvetlen beosztottai első használata műveleteket vezető felhasználói profil, és több kapják meg. Ezeket a műveleteket válaszol, és végezze el hello kimeneti más műveletek érhető el. Például lekérni egy személy közvetlen beosztottai, majd ezt az adatot és SQL Azure-adatbázis frissítéséhez. 
 
 Most hozzon létre egy logic app kezdheti, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-office-365-users"></a>Kapcsolatot létesíthet Office 365-felhasználók
-Ezt az összekötőt a logic Apps alkalmazások hozzáadásakor kell bejelentkezés az Office 365-felhasználó fiókját, és lehetővé teszik a logic Apps alkalmazásokat fiókjához.
+## <a name="create-a-connection-toooffice-365-users"></a>Kapcsolat tooOffice 365 felhasználók létrehozása
+Az összekötő tooyour a logic apps hozzáadásakor kell bejelentkezés tooyour Office 365 felhasználói fiókot, és a logic apps tooconnect tooyour fiók használatának engedélyezése.
 
-> [!INCLUDE [Steps to create a connection to Office 365 Users](../../includes/connectors-create-api-office365users.md)]
+> [!INCLUDE [Steps toocreate a connection tooOffice 365 Users](../../includes/connectors-create-api-office365users.md)]
 > 
 > 
 
-Miután létrehozta a kapcsolatot, akkor adja meg az Office 365-felhasználók tulajdonságai, például a felhasználói azonosítóját. A **REST API-referenciában** a témakörben ismertetett ezeket a tulajdonságokat.
+Hello kapcsolat létrehozása után meg hello Office 365-felhasználók tulajdonságai, például hello felhasználói azonosítóját. Hello **REST API-referenciában** a témakörben ismertetett ezeket a tulajdonságokat.
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/officeusers/).
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/officeusers/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza a [API-k lista](apis-list.md).
+Lépjen vissza toohello [API-k lista](apis-list.md).

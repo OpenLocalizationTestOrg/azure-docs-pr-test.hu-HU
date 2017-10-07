@@ -1,5 +1,5 @@
 ---
-title: "Keresse meg és a Server Explorer tárolási erőforrások kezelése |} Microsoft Docs"
+title: "aaaBrowsing és a Server Explorer tárolási erőforrások kezelése |} Microsoft Docs"
 description: "Keresse meg és a Server Explorer tárolási erőforrások kezelése"
 services: visual-studio-online
 documentationcenter: na
@@ -14,143 +14,143 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 8/24/2017
 ms.author: kraigb
-ms.openlocfilehash: 43ab501c69c0c1e3271dbfcf08e5342a3507ab82
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f5b456b812f2ad8103c50538d532a57397bcccbb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="browsing-and-managing-storage-resources-with-server-explorer"></a>Keresse meg és a Server Explorer tárolási erőforrások kezelése
 [!INCLUDE [storage-try-azure-tools](../includes/storage-try-azure-tools.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ha telepítette az Azure-eszközök a Microsoft Visual Studio, megtekintheti blob, queue és table adatok a storage-fiókok a az Azure-bA. Az Azure Storage-csomópont a Server Explorer adatokat, amelyek a helyi storage emulator fiókja és az egyéb Azure storage-fiókok jeleníti meg.
+Ha hello Azure eszközök a Microsoft Visual Studio telepítése, megtekintheti blob, queue és table adatok a storage-fiókok a az Azure-bA. a Server Explorer hello Azure Storage csomópontban jelennek meg. a helyi storage emulator fiókja és az egyéb Azure storage-fiókok adatokat.
 
-A Visual Studio Server Explorer tekinti meg az egérrel a menüsoron, válassza ki a **nézet**, **Server Explorer**. A tárolási csomópontnak minden Azure előfizetés/tanúsítvány kapcsolódik a meglévő tárfiókok mutatja. A tárfiók nem jelenik meg, ha egyszerűen hozzáadhatja az utasításokat követve [a témakör későbbi részében](#add-storage-accounts-by-using-server-explorer).
+a Visual Studio Server Explorer tooview hello menüsávban válassza **nézet**, **Server Explorer**. hello tárolás csomópont alatt minden Azure előfizetés/tanúsítvány kapcsolódik hello tárfiókok mutatja. A tárfiók nem jelenik meg, ha egyszerűen hozzáadhatja hello utasításokat követve [a témakör későbbi részében](#add-storage-accounts-by-using-server-explorer).
 
-Az Azure SDK 2.7-től kezdődően is használhatja az új Cloud Explorer megtekintése és kezelése az Azure-erőforrások. Lásd: [Azure-erőforrások kezelése Cloud Explorer](vs-azure-tools-resources-managing-with-cloud-explorer.md) további információt.
+Az Azure SDK 2.7-től kezdődően hello új Cloud Explorer tooview használja, és az Azure erőforrások kezeléséhez-e. Lásd: [Azure-erőforrások kezelése Cloud Explorer](vs-azure-tools-resources-managing-with-cloud-explorer.md) további információt.
 
 ## <a name="view-and-manage-storage-resources-in-visual-studio"></a>Megtekintheti, és a Visual Studio tárolási erőforrások kezelése
-Server Explorer automatikusan emulátor a tárfiókban lévő blobokat, üzenetsorokat és táblákat listája látható. A storage emulator-fiók megtalálható a Server Explorer-e a tárolási csomópontnak, mint a **fejlesztési** csomópont.
+Server Explorer automatikusan emulátor a tárfiókban lévő blobokat, üzenetsorokat és táblákat listája látható. hello emulátor tárfiók megtalálható a Server Explorer-e hello tárolási csomópontnak, hello **fejlesztési** csomópont.
 
-A storage emulator fiók erőforrások megtekintéséhez bontsa ki a **fejlesztési** csomópont. Ha a storage emulator még nem indult el kibővítésekor a **fejlesztési** csomópont, akkor automatikusan elindul. Ez eltarthat néhány másodpercig. Továbbra is működik egyéb területein a Visual Studio, amíg a storage emulator elindul.
+toosee hello emulátor tárfiók erőforrásokat, bontsa ki a hello **fejlesztési** csomópont. Ha hello storage emulator még nem indult el hello kibővítésekor **fejlesztési** csomópont, akkor automatikusan elindul. Ez eltarthat néhány másodpercig. Egyéb területein a Visual Studio toowork folytatható, amíg hello storage emulator elindul.
 
-A tárfiókban lévő erőforrások megtekintéséhez bontsa ki a tárfiók csomópontot a Server Explorer. A következő alárendelt csomópont jelenik meg:
+a tárfiók erőforrásainak tooview bontsa ki a Server Explorer hello tárolási fiók csomópontot. a következő alárendelt csomópontok hello jelennek meg:
 
 * Blobok
 * Üzenetsorok
 * Táblák
 
 ## <a name="work-with-blob-resources"></a>A Blob erőforrásokat
-A Blobok csomópont jeleníti meg a kiválasztott tárolási fiók tárolók listája. BLOB tárolók blob fájlokat tartalmazza, és ezek a blobok rendezze mappákban és almappáiban. Lásd: [használata a .NET-Blob Storage](storage/blobs/storage-dotnet-how-to-use-blobs.md) további információt.
+hello Blobok csomópont hello kiválasztott tárfiók tárolók listáját jeleníti meg. BLOB tárolók blob fájlokat tartalmazza, és ezek a blobok rendezze mappákban és almappáiban. Lásd: [hogyan toouse Blob Storage a .NET-](storage/blobs/storage-dotnet-how-to-use-blobs.md) további információt.
 
-### <a name="to-create-a-blob-container"></a>A blob-tároló létrehozása
-1. Nyissa meg a helyi menüje a **Blobok** csomópont, és válassza a **Blob-tároló létrehozása**.
-2. Az a **Blob-tároló létrehozása** párbeszédpanelen adja meg az új tároló nevét.  
-3. Nyomja le az **ENTER** a billentyűzet vagy az Ön is kattintson vagy koppintson a blobtárolóba menti a név mező kívül.
+### <a name="toocreate-a-blob-container"></a>a blob-tároló toocreate
+1. Nyissa meg hello helyi menüje hello **Blobok** csomópont, és válassza a **Blob-tároló létrehozása**.
+2. A hello **Blob-tároló létrehozása** párbeszédpanelen adja meg az új tároló hello hello neve.  
+3. Nyomja le az **ENTER** a billentyűzet vagy az Ön is kattintson vagy koppintson hello neve mező toosave hello blob tároló kívül.
    
    > [!NOTE]
-   > A blob-tároló neve egy szám (0-9) vagy kisbetűt (a – z) kell kezdődnie.
+   > hello blobtároló neve egy szám (0-9) vagy kisbetűt (a – z) kell kezdődnie.
    > 
    > 
 
-### <a name="to-delete-a-blob-container"></a>A blob-tároló törlése
-* Nyissa meg a helyi menüben a blob tároló, távolítsa el, és válassza a kívánt **törlése**.
+### <a name="toodelete-a-blob-container"></a>a blob-tároló toodelete
+* Helyi menü megnyitása hello hello blob tároló tooremove szeretne, és válassza a **törlése**.
 
-### <a name="to-display-a-list-of-the-items-contained-in-a-blob-container"></a>A blob-tárolóban található elemek listájának megjelenítéséhez
-* Nyissa meg a blob-tároló neve helyi menüje a listában, és válassza a **nyitott**.
+### <a name="toodisplay-a-list-of-hello-items-contained-in-a-blob-container"></a>toodisplay a blobtárolóban található hello elemek listája
+* Nyissa meg a blob-tároló neve hello helyi menüje hello listában, és válassza a **nyitott**.
   
-    Egy blob-tároló tartalmának megtekintésekor egy lapon, a blob-tároló nézet néven jelenik meg.
+    A blob tároló tartalmának hello megtekintésekor egy hello blob tároló nézet néven lapján jelenik meg.
   
     ![VST_SE_BlobDesigner](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC749016.png)
   
-    A blob-tároló nézet jobb felső sarkában a gombok segítségével blobok a következő műveleteket hajthatja végre:
+    Hello követő műveleteket a blobok hello jobb felső sarkában hello blob tároló nézet hello gombok használatával végezheti el:
   
   * Adjon meg egy szűrő értéket, és alkalmazza azt
-  * A tárolóban lévő blobok listájának frissítése
+  * Hello tárolóban lévő blobok hello listájának frissítése
   * Fájl feltöltése
   * Blob törlése
     
     > [!NOTE]
-    > A fájl törlése a blob-tároló nem törli a fájl; csak eltávolítja azt a blob-tároló.
+    > A fájl egy blob-tárolóból nem törlése hello alapul szolgáló fájlt. Ez csak eltávolítja hello blob tároló.
     > 
     > 
   * Nyissa meg a blob
-  * Mentse a blob a helyi számítógépen
+  * Mentse a blob toohello helyi számítógépről
 
-### <a name="to-create-a-folder-or-subfolder-in-a-blob-container"></a>A blob-tároló mappát vagy almappát létrehozásához
-1. Adja meg a blob-tároló Cloud Explorer. A tároló ablakban válassza ki a **Blob feltöltése** gombra.
+### <a name="toocreate-a-folder-or-subfolder-in-a-blob-container"></a>toocreate egy mappát vagy almappát blob tároló
+1. A Cloud Explorer hello blob tároló kiválasztása Hello tároló ablakban válassza ki a hello **Blob feltöltése** gombra.
    
     ![A fájl feltöltése a blob mappába](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766037.png)
-2. A a **új fájl feltöltése** párbeszédpanelen válassza ki a **Tallózás** gombra kattintva adja meg a feltölteni kívánt fájlt, és írja be a mappa nevét a a **mappa (nem kötelező)** mezőbe.
+2. A hello **új fájl feltöltése** párbeszédpanelen válassza ki a hello **keresse meg** gomb toospecify hello kívánt fájlt, tooupload, majd adja meg a mappa nevét a hello **mappa (nem kötelező)** mezőbe .
    
-    Tároló mappa almappákat ugyanezt az eljárást követve adhat hozzá. Ha nem adja meg a mappa nevét, a fájl feltöltődik a legfelső szintű a blob-tároló. A fájl jelenik meg a megadott mappában a tárolóban.
+    A következő tároló mappa almappákat hello azonos is hozzáadhat eljárást. Ha nem adja meg a mappa nevét, hello fájl lesz feltöltve toohello legfelső szintű hello blob tároló. hello fájl hello tárolóban hello megadott mappában jelenik meg.
    
-    ![Egy blob-tárolóba felvett mappában találhatók](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766038.png)
-3. Kattintson duplán a mappára, vagy lenyomja az ENTER BILLENTYŰT, hogy a mappa tartalmát. Ha a tároló mappában található, lépjen vissza a legfelső szintű a tároló kiválasztásával a **nyitott Szülőkönyvtárában** (felfelé mutató nyíl) gombra.
+    ![Fel tooa blob tároló mappa](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766038.png)
+3. Kattintson duplán a hello mappát, vagy nyomja le az ENTER toosee hello hello mappa tartalmát. Ha éppen hello tároló mappa, hátsó toohello legfelső szintű hello tároló navigálhat hello kiválasztásával **nyitott Szülőkönyvtárában** (felfelé mutató nyíl) gombra.
 
-### <a name="to-delete-a-container-folder"></a>Tároló mappa törlése
-* Az összes a mappában lévő fájlok törlése
+### <a name="toodelete-a-container-folder"></a>toodelete tároló mappa
+* Törölje az összes hello mappában levő fájlok hello
   
   > [!NOTE]
-  > Mivel a blob tárolók mappák virtuális mappák, üres mappa nem hozható létre, és nem is töröl egy mappát törli a fájl tartalmát. Törölje a mappát egy olyan mappa teljes tartalmát törölnie kell.
+  > Mivel a blob tárolók mappák virtuális mappák, üres mappa nem hozható létre, és nem is töröl egy mappát toodelete fájl tartalmát. Lehetősége van toodelete hello teljes tartalma egy toodelete hello mappáját.
   > 
   > 
 
-### <a name="to-filter-blobs-in-a-container"></a>A tárolóban lévő blobok szűrése
-Szűrheti a blobot, amely megjeleníti azokat a közös előtag megadása.
+### <a name="toofilter-blobs-in-a-container"></a>a tárolóban lévő blobok toofilter
+Szűrheti a hello blobot, amely megjeleníti azokat a közös előtag megadása.
 
-Például, ha beírja az előtag `hello` a szűrő szöveg mezőbe, majd válassza ki a **Execute** (**!**) gomb, csak a "hello" karakterrel kezdődő blobok jelenik meg.
+Például, ha hello előtag meg `hello` a hello szűrő szövegmezőbe, és válassza a hello **Execute** (**!**) gomb, csak a "hello" karakterrel kezdődő blobok jelenik meg.
 
 ![VST_SE_FilterBlobs](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC519076.png)
 
 > [!NOTE]
-> A Szűrő mezőbe kis-és nagybetűket, és nem támogatja a helyettesítő karaktereket is tartalmazó szűrést. Blobok csak előtag alapján szűrhetők. Az előtag tartalmazhatják elválasztó elválasztó blobot, amely egy virtuális hierarchia rendszerezéséhez használatakor. Például az előtag HelloFabric szűrés / verziótól kezdve, hogy a karakterlánc összes BLOB adja vissza.
+> hello szűrőmező kis-és nagybetűket, és nem támogatja a helyettesítő karaktereket is tartalmazó szűrést. Blobok csak előtag alapján szűrhetők. hello előtag tartalmazhatják elválasztó használata egy elválasztó tooorganize blobok virtuális hierarchiába. Például a szűrés előtag HelloFabric hello / adja vissza az összes BLOB karakterláncokat kezdve.
 > 
 > 
 
-### <a name="to-download-blob-data"></a>A blob adatok letöltése
-* A **Cloud Explorer**, nyissa meg a helyi menü az egy vagy több blobot, és válassza a **nyissa meg a**, vagy válassza ki a blob nevét, és válassza a **nyissa meg a** gombra, vagy kattintson duplán a blob név.
+### <a name="toodownload-blob-data"></a>toodownload Blobadatok
+* A **Cloud Explorer**, nyissa meg egy vagy több blobot hello helyi menüt, és válassza **nyissa meg a**, vagy válasszon hello blob nevet, és válassza a hello **nyissa meg a** gombra, vagy kettős kattintással hello blob neve.
   
-    Megjelenik egy blob letöltés előrehaladását a **Azure tevékenységnapló** ablak.
+    megjelenik egy blob letöltés előrehaladását hello hello **Azure tevékenységnapló** ablak.
   
-    A blob az adott fájltípus alapértelmezett-szerkesztő megnyitása. Ha az operációs rendszer felismeri a fájl típusa, a fájl megnyitása a helyileg telepített alkalmazások; Ellenkező esetben felkéri a blob típusú fájl megfelelő alkalmazás kiválasztása. A blob letöltésekor létrehozott helyi fájl csak olvashatóként van megjelölve.
+    hello blob az adott fájltípus hello alapértelmezett-szerkesztő megnyitása. Ha hello operációs rendszer hello fájltípus felismeri, hello nyílik meg a helyileg telepített alkalmazások; Ellenkező esetben felkéri toochoose hello blob típusú hello fájl megfelelő alkalmazás. egy blob letöltésekor létrehozott hello helyi fájl csak olvashatóként van megjelölve.
   
-    BLOB adatok helyben és be van jelölve, a blob utolsó módosítási időpontjának a Blob szolgáltatás ellen. A blob frissült, mivel utoljára lett letöltve, ha azt újból letöltődnek; Ellenkező esetben a blob innen lesz betöltve a helyi lemezen. Alapértelmezés szerint a blob letölti egy ideiglenes könyvtárhoz. Egy adott könyvtár blobok letöltéséhez nyissa meg a helyi menüben a kijelölt blob nevével, és válassza **Mentés másként**. Egy blobba menti ezen a módon kikapcsolja, amikor a blob-fájl nincs megnyitva, és a helyi fájl írható-olvasható attribútumokkal jön létre.
+    BLOB adatok helyben és összeveti hello blob utolsó módosítási időpontjának a Blob szolgáltatás hello. Ha hello blob óta utolsó letöltési frissítették, hogy újból letöltődnek; Ellenkező esetben hello blob innen lesz betöltve: hello helyi lemez. Alapértelmezés szerint a blob az letöltött tooa ideiglenes könyvtár. toodownload blobok tooa adott címtárhoz, nyissa meg hello helyi menüje kijelölt hello blob-nevek, és válassza a **Mentés másként**. Az ilyen módon blob mentésekor hello blob fájl nincs megnyitva, és hello helyi fájl írható-olvasható attribútumokkal jön létre.
 
-### <a name="to-upload-blobs"></a>Blobok feltöltése
-* Válassza ki a **Blob feltöltése** gombra kattint, ha a tároló meg nyitva a blob-tároló nézetben megtekinthető.
+### <a name="tooupload-blobs"></a>tooupload blobok
+* Válassza ki a hello **Blob feltöltése** gomb, hello tároló meg nyitva hello blob tároló nézetben megtekinthető.
   
-    Választhat egy vagy több fájlt feltölteni, és feltöltheti az összes fájltípus. A **Azure tevékenységnapló** mutatja a feltöltés előrehaladását. Blob adatokkal kapcsolatos további információkért lásd: [az Azure Blob Storage szolgáltatás használata a .NET](http://go.microsoft.com/fwlink/p/?LinkId=267911).
+    Válasszon egyet, vagy további fájlok tooupload, és feltöltheti bármilyen típusú fájlokat. Hello **Azure tevékenységnapló** mutat be hello hello feltöltés előrehaladását. További információ a blobadatokat, toowork lásd: [hogyan toouse hello Azure Blob Storage szolgáltatást a .NET](http://go.microsoft.com/fwlink/p/?LinkId=267911).
 
-### <a name="to-view-logs-transferred-to-blobs"></a>A blobok továbbított naplók megtekintése
-* Ha Azure Diagnostics használatával adatokat az Azure alkalmazásból jelentkezik, és amelyre átmásolta naplók tárfiókja, látni fogja, ezek a naplók az Azure által létrehozott tárolók. Egyszerűen azonosíthatja a problémákat az alkalmazáshoz, ezek a naplók megtekintéséhez a Server Explorer, különösen akkor, ha üzembe helyezésüket követően az Azure-bA. Azure Diagnostics kapcsolatos további információkért lásd: [naplózási adatok gyűjtése Azure Diagnostics használatával](https://msdn.microsoft.com/library/azure/gg433048.aspx).
+### <a name="tooview-logs-transferred-tooblobs"></a>tooview naplók átvitt tooblobs
+* Ha Azure Diagnostics toolog adatokat az Azure-alkalmazás használ, és amelyre átmásolta a naplók tooyour tárfiókot, láthatja a tárolók, ezek a naplók az Azure által létrehozott. Ezek a naplók megtekintéséhez a Server Explorer egy egyszerűen tooidentify problémák az alkalmazással, különösen akkor, ha a telepített tooAzure lett. Azure Diagnostics kapcsolatos további információkért lásd: [naplózási adatok gyűjtése Azure Diagnostics használatával](https://msdn.microsoft.com/library/azure/gg433048.aspx).
 
-### <a name="to-get-the-url-for-a-blob"></a>Az URL-cím lekérése blob
-* A blob helyi menü megnyitásához, és válassza a **URL-CÍMÉT**.
+### <a name="tooget-hello-url-for-a-blob"></a>a BLOB tooget hello URL-címe
+* Hello blob helyi menü megnyitásához, és válassza a **URL-CÍMÉT**.
 
-### <a name="to-edit-a-blob"></a>Egy blob szerkesztése
-* Válassza ki a blob, és válassza a **nyissa meg a Blob** gombra.
+### <a name="tooedit-a-blob"></a>a blob tooedit
+* Válassza ki a hello blob, és válassza a hello **nyissa meg a Blob** gombra.
   
-    A fájl egy ideiglenes helyre letöltése és megnyitni a helyi számítógépen. Módosítása után újra kell tölteni a blob.
+    hello fájl letöltött tooa ideiglenes helyre, és megnyitott hello helyi számítógépen. Módosítása után újra kell tölteni a hello blob.
 
 ## <a name="work-with-queue-resources"></a>A várólista erőforrásokat
-Egy Azure storage-fiókban tárolt szolgáltatások tárüzenetsort, és engedélyezi a felhőalapú szerepköreit üzenettovábbítási mechanizmus kommunikálnak egymással, és más szolgáltatásokkal használhatja. A várólista hozzáférhet programozott módon keresztül egy felhőalapú szolgáltatás, és a külső ügyfelek webszolgáltatáson keresztül. A várólista közvetlenül a Visual Studio Server Explorer használatával is elérhető.
+Egy Azure storage-fiókban tárolt szolgáltatások tárüzenetsort és használhatja őket tooallow a felhőalapú szolgáltatás szerepkörök toocommunicate, egymással, és más szolgáltatások által üzenettovábbítási mechanizmus. Van-e hozzáférési hello várólista programozott módon keresztül egy felhőalapú szolgáltatás, és a külső ügyfelek webszolgáltatáson keresztül. Hello várólista közvetlenül a Visual Studio Server Explorer használatával is elérhető.
 
-Amikor egy felhőalapú szolgáltatás által használt várólisták fejlesztése, előfordulhat, hogy használni kívánt Visual Studio várólisták létrehozásához, és azokat interaktív használatához közben az Ön által fejlesztett és tesztelheti a kódját.
+Egy felhőalapú szolgáltatás által használt várólisták fejlesztésekor előfordulhat, hogy szeretné, hogy toouse Visual Studio toocreate várólisták, és azokat interaktív használatához közben az Ön által fejlesztett és tesztelheti a kódját.
 
-A Server Explorer eszközben, megtekintheti a várólisták tárfiókokban, hozzon létre és Várólisták törlése, nyissa meg a várólisták megtekintheti az üzenetet, és adja hozzá az üzenetek várólistára. Megtekintésre várólista megnyitásakor megtekintheti az egyes üzeneteket, és a következő műveletek végezhetők várakozási bal felső sarokban a gombok használatával:
+A Server Explorer eszközben, megtekintheti hello várólisták tárfiókokban, hozzon létre és Várólisták törlése, nyissa meg a várólista tooview az üzeneteket, és adja hozzá az üzenetek tooa várólista. Egy várólista megtekintésre megnyitásakor megtekintheti az egyes köszönőüzenetei, és hello követő műveletek hello várólista hello bal felső sarokban hello gombok használatával végezheti el:
 
-* Frissítse a nézetet a várólista
-* Üzenet a várólistában hozzáadása
-* A legfelső üzenet created
-* A teljes várólista törlése
+* Hello várólista hello nézet frissítése
+* Egy üzenetsor toohello hozzáadása
+* Created legfelső köszönőüzenetei
+* Törölje a jelet hello teljes várólista
 
-Az alábbi ábrán egy két üzeneteket tartalmazó sor.
+a következő kép hello két üzeneteket tartalmaz várólista jeleníti meg.
 
 ![A várólista megtekintéséhez](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC651470.png)
 
-További információ a tárolási szolgáltatási várólisták létrehozásáról: [hogyan: használja a Queue Storage szolgáltatás](http://go.microsoft.com/fwlink/?LinkID=264702). A webszolgáltatás tárolási szolgáltatási várólisták, lásd: [a Queue szolgáltatás alapfogalmai](http://go.microsoft.com/fwlink/?LinkId=264788). Üzenetek küldése egy tárolási szolgáltatások üzenetsorba Visual Studio használatával kapcsolatos információkért lásd: [tárolási szolgáltatások várólista-üzenetek küldése](https://msdn.microsoft.com/library/azure/jj649344.aspx).
+További információ a tárolási szolgáltatási várólisták létrehozásáról: [hogyan: használata hello Queue Storage szolgáltatás](http://go.microsoft.com/fwlink/?LinkID=264702). Hello webszolgáltatás tárolási szolgáltatási várólisták, lásd: [a Queue szolgáltatás alapfogalmai](http://go.microsoft.com/fwlink/?LinkId=264788). Hogyan toosend üzenetek tooa tárolási szolgáltatásainak várólista Visual Studio használatával kapcsolatos információkért lásd: [üzenetek küldésekor tooa tárolási szolgáltatások várólista](https://msdn.microsoft.com/library/azure/jj649344.aspx).
 
 > [!NOTE]
 > A service bus-üzenetsorok elkülönülnek a tárolási szolgáltatások sorok. Service bus-üzenetsorok kapcsolatos további információkért tekintse meg a Service Bus-üzenetsorok, témakörök és előfizetések.
@@ -158,118 +158,118 @@ További információ a tárolási szolgáltatási várólisták létrehozásár
 > 
 
 ## <a name="work-with-table-resources"></a>A tábla erőforrásokat
-Az Azure Table Storage szolgáltatás nagy mennyiségű strukturált adatok tárolására alkalmas. A szolgáltatás egy NoSQL-adattár, amely az Azure-felhőből és azon kívülről érkező hitelesített hívásokat fogadja. Az Azure-táblák strukturált, nem relációs adatok tárolására alkalmasak.
+hello Azure Table storage szolgáltatást a strukturált adatok nagy mennyiségű tárolja. hello szolgáltatás áll, egy NoSQL-adattár, amely elfogadja érkező hitelesített hívásokat belüli és kívüli hello Azure felhőben. Az Azure-táblák strukturált, nem relációs adatok tárolására alkalmasak.
 
-### <a name="to-create-a-table"></a>Tábla létrehozása
-1. A Cloud Explorerben válassza ki a **táblák** a tárhely csomópontot fiókot, és válassza a **Create Table**.
-2. Az a **Create Table** párbeszédpanelen adja meg a tábla nevét.
+### <a name="toocreate-a-table"></a>egy tábla toocreate
+1. A Cloud Explorerben válassza ki a hello **táblák** hello tárhely csomópontot fiókot, és válassza a **Create Table**.
+2. A hello **Create Table** párbeszédpanelen adja meg a hello tábla nevét.
 
-### <a name="to-view-table-data"></a>Tábla adatainak megtekintéséhez
-1. A Cloud Explorerben nyissa meg a **Azure** csomópont, és nyissa meg a **tárolási** csomópont.
-2. Nyissa meg a tárolási fiók csomópont érdekelt, és nyissa meg a **táblák** csomópont a tárfiók táblázatok listájának megjelenítéséhez.
-3. Nyissa meg a helyi menü táblázat, és válassza a **nézet tábla**.
+### <a name="tooview-table-data"></a>tooview tábla adatai
+1. A Cloud Explorerben nyissa meg a hello **Azure** csomópontját, és ezután nyissa meg hello **tárolási** csomópont.
+2. Nyissa meg hello tárolási fiók csomópontnak, hogy érdekli, és nyissa meg a hello **táblák** csomópont toosee hello tárfiók táblák listáját.
+3. Egy tábla hello helyi menü megnyitásához, és válassza a **nézet tábla**.
    
     ![Egy Azure-tábla a Megoldáskezelőben](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC744165.png)
 
-A tábla (látható sorok) entitásokat és a Tulajdonságok (látható oszlopok) szerint van rendezve. Például az alábbi ábrán látható entitások szerepel a **tábla Designer**:
+hello tábla entitásokat (látható sorok) és a Tulajdonságok (látható oszlopok) szerint van rendezve. Például a következő ábra hello látható entitások hello felsorolt **tábla Designer**:
 
-### <a name="to-edit-table-data"></a>A tábla adatainak szerkesztése
-1. Az a **tábla Designer**, nyissa meg a helyi menüben a tulajdonsághoz (egy cellát) vagy egy entitás (egy sorban), és válassza a **szerkesztése**.
+### <a name="tooedit-table-data"></a>tooedit tábla adatai
+1. A hello **tábla Designer**, nyissa meg a hello helyi menü egy entitás (egy sorban) vagy a tulajdonsághoz (egy cellát), és válassza a **szerkesztése**.
    
     ![Hozzáadása vagy módosítása egy tábla entitás](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC656238.png)
    
-    Egyetlen tábla az entitások nem ugyanazokat a Tulajdonságok (oszlop) rendelkezniük. Vegye figyelembe a következő korlátozások vonatkoznak a tábla adatok megtekintése és módosítása.
+    Egyetlen tábla az entitások nem szükséges toohave hello ugyanaz a Tulajdonságok (oszlop) készletét. Ne feledje hello korlátozások tábla adatok megtekintése és módosítása a következő.
    
    * Nem tekinthetők meg és a bináris adatok szerkesztéséhez (típus byte[]), de érdemes egy táblázatban.
-   * Nem lehet szerkeszteni a **PartitionKey** vagy **RowKey** érték található, mert az Azure-ban a table storage nem támogatja a műveletet.
+   * Nem lehet szerkeszteni hello **PartitionKey** vagy **RowKey** érték található, mivel a table storage Azure-ban Ez a művelet nem támogatja.
    * Nem hozható létre a tulajdonságot, Timestamp, Azure Storage szolgáltatás tulajdonsággal egy ezen a néven.
-   * Ha egy dátum/idő értéket ad meg, hajtsa végre az formátuma nem megfelelő. a számítógép területi és nyelvi beállítások a (például hh/nn/éééé óó: pp: [AM |} PM] az USA Angol nyelvű).
+   * Egy dátum/idő értéket ad meg, ha a számítógép területi és nyelvi beállítások megfelelő toohello formátuma kell követnie (például hh/nn/éééé óó: pp: [AM |} PM] az USA Angol nyelvű).
 
-### <a name="to-add-entities"></a>Entitás hozzáadása
-1. Az a **tábla Designer**, válassza ki a **entitás hozzáadása** gombra.
+### <a name="tooadd-entities"></a>tooadd entitások
+1. A hello **tábla Designer**, válassza ki a hello **entitás hozzáadása** gombra.
    
     ![Entitás hozzáadása](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC655336.png)
-2. Az a **entitás hozzáadása** párbeszédpanelen adja meg az értékeket a **PartitionKey** és **RowKey** tulajdonságok.
+2. A hello **entitás hozzáadása** párbeszédpanelen adja meg a hello hello értékének **PartitionKey** és **RowKey** tulajdonságok.
    
     ![Entitás párbeszédpanel hozzáadása](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC655335.png)
    
-    Adja meg az értékeket gondosan már nem módosíthatók őket, kivéve, ha törölni egy entitást, és vegye fel újra a párbeszédpanel bezárása után.
+    Adja meg gondosan hello értékeket már nem módosíthatók őket, kivéve, ha törölni hello entitást, és vegye fel újra hello párbeszédpanel bezárása után.
 
-### <a name="to-filter-entities"></a>Entitások szűrése
-Testre szabhatja az entitásokat, amely egy táblázat jelenik meg, ha a lekérdezés-szerkesztő használata.
+### <a name="toofilter-entities"></a>toofilter entitások
+Testre szabhatja a hello Lekérdezésszerkesztő használatakor a táblázatban látható entitások hello készletét.
 
-1. A lekérdezés-szerkesztő megnyitásához megtekintésre tábla.
-2. Válassza ki a lekérdezés-szerkesztő gombjára a tábla nézet.
+1. tooopen hello Lekérdezésszerkesztő megnyitni egy táblát a megtekintéshez.
+2. Válassza ki a hello Lekérdezésszerkesztő gombjára hello tábla nézet.
    
-    A **Lekérdezésszerkesztő** párbeszédpanel jelenik meg. A következő ábrán egy lekérdezést, amely éppen készül a Lekérdezésszerkesztőben.
+    Hello **Lekérdezésszerkesztő** párbeszédpanel jelenik meg. hello alábbi ábrán egy lekérdezést, amely éppen készül hello Lekérdezésszerkesztőben.
    
     ![Lekérdezés-szerkesztő](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC652231.png)
-3. Ha elkészült a lekérdezés létrehozása a párbeszédpanel bezárásához. A lekérdezés megjelenő szöveg képernyőn a WCF Data Services szűrő beviteli mezőben jelenik meg.
-4. A lekérdezés futtatásához, válassza a zöld háromszögnek ikont.
+3. Ha elkészült hello lekérdezés felépítése, hello párbeszédpanel bezárásához. hello megjelenő szöveg képernyőn hello lekérdezés a WCF Data Services szűrő beviteli mezőben jelenik meg.
+4. toorun hello lekérdezéséhez hello zöld háromszögnek ikonja.
    
-    Entitás megjelenő adatok is végezhet a **tábla Designer** Ha megad egy a WCF Data Services szűrési karakterláncot közvetlenül a Szűrő mezőbe. Az ilyen típusú karakterlánc egy SQL WHERE záradék hasonló, de a kiszolgálón, a HTTP-kérelem érkezik. Szűrőkarakterláncokban összeállításához kapcsolatos információkért lásd: [Szűrőkarakterláncokban hozhat létre a tábla Designer](https://msdn.microsoft.com/library/azure/ff683669.aspx).
+    Szűrhető, hogy megjelenik-hello Entitásadatok **tábla Designer** Ha közvetlenül hello szűrő mezőben adja meg a WCF Data Services szűrési karakterláncot. A karakterlánc típusú hasonló tooa SQL WHERE záradék, de legyen elküldve a toohello kiszolgáló, egy HTTP-kérelem. További információ a hogyan tooconstruct szűrése karakterláncok: [Szűrőkarakterláncokban hozhat létre a tábla Designer hello](https://msdn.microsoft.com/library/azure/ff683669.aspx).
    
-    Az alábbi ábrán egy példa egy érvényes szűrési karakterláncot:
+    hello alábbi ábrán egy példa egy érvényes szűrési karakterláncot:
    
     ![VST_SE_TableFilter](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC655337.png)
 
 ### <a name="refresh-storage-data"></a>Tárolási adatok frissítése
-Amikor Server Explorer csatlakozik, vagy az adatok beolvasása a tárfiókból, eltarthat egy perc alatt, a művelet elvégzéséhez. Ha ez sikertelen, a művelet lehet, hogy túllépi az időkorlátot. Adatok lekérésére, miközben továbbra is működik, a Visual Studio többi részével. Ha túl sokáig tart a művelet megszakításához válassza a **frissítés leállítása** a Server Explorer gombjára.
+Amikor Server Explorer tooor lekérdezi adatok csatlakozik a tárfiókból, hello művelet toocomplete tooa perces másolatot is eltarthat. Ha nem tud kapcsolódni, hello művelet lehet, hogy túllépi az időkorlátot. Adatainak lekérése közben folytathatja a toowork a Visual Studio többi részével. Ha túl sokáig tart toocancel hello művelet kiválasztása hello **frissítés leállítása** hello Server Explorer gombjára.
 
-#### <a name="to-refresh-blob-container-data"></a>A blob-tároló adatok frissítése
-* Válassza ki a **Blobok** csomóponton sem **tárolási** , és válassza a **frissítése** a Server Explorer gombjára.
-* -Listájának frissítése blobot, amely akkor jelenik meg, válassza ki a **Execute** gombra.
+#### <a name="toorefresh-blob-container-data"></a>toorefresh blob tároló adatok
+* Jelölje be hello **Blobok** csomóponton sem **tárolási** hello válassza **frissítése** hello Server Explorer gombjára.
+* toorefresh hello blobok megjelenő listában, válasszon hello **Execute** gombra.
 
-#### <a name="to-refresh-table-data"></a>A tábla adatainak frissítése
-* Válassza ki a **táblák** csomóponton sem **tárolási** , és válassza a **frissítése** gombra.
-* Az alkalmazásban megjelenő entitások listájának frissítése a **tábla Designer**, válassza ki a **Execute** gombra a **tábla Designer**.
+#### <a name="toorefresh-table-data"></a>toorefresh tábla adatai
+* Jelölje be hello **táblák** csomóponton sem **tárolási** hello válassza **frissítése** gombra.
+* toorefresh hello entitások listájának hello megjelenő **tábla Designer**, válassza ki a hello **Execute** hello gombjára **tábla Designer**.
 
-#### <a name="to-refresh-queue-data"></a>A várólista adatok frissítése
-* Válassza ki a **várólisták** csomópontot, majd válassza a **frissítése** gombra.
+#### <a name="toorefresh-queue-data"></a>toorefresh várólista adatok
+* SELECT hello **várólisták** csomópontot, majd válassza a hello **frissítése** gombra.
 
-#### <a name="to-refresh-all-items-in-a-storage-account"></a>A tárfiók szereplő összes frissítése
-* Válassza ki a fiók nevét, és válassza a **frissítése** gombra az eszköztáron a Server Explorer.
+#### <a name="toorefresh-all-items-in-a-storage-account"></a>az összes tárfiók elem toorefresh
+* Válassza ki a hello fiók nevét, és válassza a hello **frissítése** a Server Explorer hello gombjára.
 
 ### <a name="add-storage-accounts-by-using-server-explorer"></a>A Server Explorer storage-fiókok hozzáadása
-Tárfiók hozzáadása a Server Explorer használatával két módja van. Létrehozhat egy új tárfiókot az Azure-előfizetése, vagy csatolhat a meglévő tárfiókot.
+Két módon tooadd tárfiókok Server Explorer használatával. Létrehozhat egy új tárfiókot az Azure-előfizetése, vagy csatolhat a meglévő tárfiókot.
 
-#### <a name="to-create-a-new-storage-account-by-using-server-explorer"></a>Új tárfiók létrehozása a Server Explorer használatával
-1. A Server Explorer eszközben a tárhely csomópontot a helyi menü megnyitásához, és válassza a Storage-fiók létrehozása.
+#### <a name="toocreate-a-new-storage-account-by-using-server-explorer"></a>egy új tárfiókot, a Server Explorer toocreate
+1. A Server Explorer eszközben hello tárolási csomópont hello helyi menü megnyitásához, és válassza a Storage-fiók létrehozása.
    
     ![Új Azure storage-fiók létrehozása](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC744166.png)
-2. Válassza ki vagy adja meg az új tárfiók a következő adatokat a **Storage-fiók létrehozása** párbeszédpanel megnyitásához.
+2. Válassza ki vagy adja meg a következő információ hello hello az új tárfiók hello **Storage-fiók létrehozása** párbeszédpanel megnyitásához.
    
-   * Az Azure-előfizetés kívánt tárfiók hozzáadása.
-   * Az új tárfiók használni kívánt nevét.
-   * A régiót vagy affinitáscsoportot (például az USA nyugati régiója vagy Kelet-Ázsia).
-   * A tárfiók, például a Georedundáns használni kívánt replikációs típusát.
+   * hello Azure-előfizetés toowhich tooadd hello tárfiókot szeretne.
+   * hello nevet toouse hello új tárfiók.
+   * hello régiót vagy affinitáscsoportot (például az USA nyugati régiója vagy Kelet-Ázsia).
+   * hello típus replikációs hello tárfiók, például a Georedundáns kívánt toouse.
 3. Válassza a **Létrehozás** elemet.
    
-    Az új tárfiók megjelenik a **tárolási** lista a Megoldáskezelőben.
+    új tárfiók hello hello megjelenik **tárolási** lista a Megoldáskezelőben.
 
-#### <a name="to-attach-an-existing-storage-account-by-using-server-explorer"></a>Meglévő tárfiók csatolása a Server Explorer használatával
-1. A Server Explorer eszközben az Azure storage csomóponthoz a helyi menü megnyitásához, és válassza **külső tárterület csatolása**.
+#### <a name="tooattach-an-existing-storage-account-by-using-server-explorer"></a>a Server Explorer meglévő tárfiók tooattach
+1. A Server Explorer eszközben hello az Azure storage csomópont hello helyi menü megnyitásához, és válassza **külső tárterület csatolása**.
    
     ![Meglévő tárfiók hozzáadása](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766039.png)
-2. Válassza ki vagy adja meg az új tárfiók a következő adatokat a **Storage-fiók létrehozása** párbeszédpanel megnyitásához.
+2. Válassza ki vagy adja meg a következő információ hello hello az új tárfiók hello **Storage-fiók létrehozása** párbeszédpanel megnyitásához.
    
-   * A meglévő tárfiók csatolásához neve. Adjon meg egy nevet, vagy válassza ki azt a listából.
-   * A kiválasztott tárfiók kulcsa. Ez az érték általában biztosított, válasszon egy tárfiókot. Ha azt szeretné, hogy a Visual Studio jegyezze meg a tárfiók hívóbetűjét, válassza ki a felhasználó megjegyzését fiók kulcs mezőben.
-   * A tárfiók, például HTTP, HTTPS vagy egy egyéni végpont való csatlakozáshoz használni kívánt protokollt. Lásd: [kapcsolati karakterláncok konfigurálása hogyan](https://msdn.microsoft.com/library/azure/ee758697.aspx) egyéni végpontokat további információt.
+   * hello meglévő tárfiók tooattach kívánt hello neve. Adjon meg egy nevet, vagy válassza ki a hello listából.
+   * hello hello kulcsa kiválasztott tárfiók. Ez az érték általában biztosított, válasszon egy tárfiókot. Ha azt szeretné, hogy a Visual Studio tooremember hello tárfiók kulcsa, válassza a hello tárolása fiók kulcs mezőben.
+   * hello protokoll toouse tooconnect toohello tárfiókot, például HTTP, HTTPS vagy egy egyéni végpontot. Lásd: [hogyan tooConfigure kapcsolódási karakterláncokat](https://msdn.microsoft.com/library/azure/ee758697.aspx) egyéni végpontokat további információt.
 
-### <a name="to-view-the-secondary-endpoints"></a>A másodlagos végpontok megtekintése
-* Ha létrehozott egy tárolási fiók a **írásvédett Georedundáns** replikációs beállítás, megtekintheti a másodlagos végpontját. Nyissa meg a helyi menüben a fiók neve, és válassza **tulajdonságok**.
+### <a name="tooview-hello-secondary-endpoints"></a>tooview hello másodlagos végpontok
+* Ha létrehozott egy tárfiókot, hello segítségével **írásvédett Georedundáns** replikációs beállítás, megtekintheti a másodlagos végpontját. Nyissa meg a helyi menüje hello hello fiók nevét, és válassza **tulajdonságok**.
   
     ![Tárolási másodlagos végpontok](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766040.png)
 
-### <a name="to-remove-a-storage-account-from-server-explorer"></a>A tárfiók eltávolítása a Server Explorer
-* A Server Explorer eszközben nyissa meg a helyi menüben a fiók neve, és válassza **törlése**. Ha törli a tárfiókot, minden mentett kulcsadatokat fiók is törlődnek.
+### <a name="tooremove-a-storage-account-from-server-explorer"></a>a storage-fiókok a Server Explorer tooremove
+* A Server Explorer eszközben hello nevének hello helyi menü megnyitásához, és válassza **törlése**. Ha törli a tárfiókot, minden mentett kulcsadatokat fiók is törlődnek.
   
   > [!NOTE]
-  > A Server Explorer a storage-fiók törlése esetén nem változik a tárfiók vagy adatokat tartalmaz; egyszerűen eltávolítja a hivatkozás a Server Explorer. Véglegesen törli a tárfiókot, használja a [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885).
+  > A Server Explorer a storage-fiók törlése esetén nem változik a tárfiók vagy adatokat tartalmaz; a Server Explorer hello hivatkozás egyszerűen eltávolítja. toopermanently tárfiók törléséhez használja a hello [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885).
   > 
   > 
 
 ## <a name="next-steps"></a>Következő lépések
-További információt az Azure storage szolgáltatások használatára, lásd: [elérése az Azure Storage szolgáltatásainak](https://msdn.microsoft.com/library/azure/ee405490.aspx).
+További tudnivalók a toolearn az Azure storage szolgáltatásainak használatába, lásd: [hello Azure tárolási szolgáltatások eléréséhez használt](https://msdn.microsoft.com/library/azure/ee405490.aspx).
 

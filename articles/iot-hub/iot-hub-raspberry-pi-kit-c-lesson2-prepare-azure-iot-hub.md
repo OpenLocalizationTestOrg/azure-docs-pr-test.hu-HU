@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT - lecke 2 Connect Raspberry pi (C): eszköz regisztrálása |} Microsoft Docs"
-description: "Hozzon létre egy erőforráscsoportot, Azure IoT hub létrehozása és az Azure IoT hub Pi regisztrálása az Azure parancssori felület használatával."
+title: "Connect Raspberry pi (C) tooAzure IoT - lecke 2: eszköz regisztrálása |} Microsoft Docs"
+description: "Hozzon létre egy erőforráscsoportot, Azure IoT hub létrehozása és regisztrálása Pi hello Azure IoT hub hello Azure parancssori felület használatával."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,33 +17,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: d7bfd8f6ae8d15dfe09f06a40a4ab415ff2e0a7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 473658c5a8e1e0d4cfced0efafbad2640a1e0696
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-iot-hub-and-register-raspberry-pi-3"></a>Az IoT hub létrehozni és regisztrálni az málna Pi 3
 ## <a name="what-you-will-do"></a>Mit fog
 * Hozzon létre egy erőforráscsoportot.
-* Az Azure IoT hub létrehozása az erőforráscsoportban.
-* Az Azure IoT hub málna Pi 3 hozzáadása az Azure parancssori felület (CLI) használatával.
+* Az Azure IoT hub létrehozása hello erőforráscsoportban.
+* Adja hozzá a málna Pi 3 toohello Azure IoT hub hello Azure parancssori felület (CLI) használatával.
 
-Ha az Azure parancssori felület használatával Pi hozzáadása az IoT hub, a szolgáltatás kulcsot hoz létre egy az Pi a service szolgáltatással való hitelesítésre. Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
+Hello Azure CLI tooadd Pi tooyour IoT-központ használatakor hello szolgáltatás kulcsot hoz létre egy az Pi tooauthenticate hello szolgáltatásban. Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
-* Hogyan lehet az Azure CLI segítségével létrehoz egy IoT-központot.
-* Hogyan hozhat létre egy eszközidentitás Pi az IoT hub.
+* Hogyan toouse hello Azure CLI toocreate egy IoT-központot.
+* Hogyan toocreate az IoT hub eszköz identitása pi.
 
 ## <a name="what-you-need"></a>Mi szükséges
 * Az Azure-fiók
-* A Mac vagy a Windows rendszerű számítógépeken a telepített Azure parancssori felülettel
+* Mac vagy Windows-számítógép hello Azure parancssori felület telepítése
 
 ## <a name="create-your-iot-hub"></a>Az IoT hub létrehozása
-Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több millió az IoT-eszközök kezelése. Az IoT hub létrehozásához kövesse az alábbi lépéseket:
+Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több millió az IoT-eszközök kezelése. toocreate az IoT hub, kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be az Azure-fiókjával a következő parancs futtatásával:
+1. Jelentkezzen be tooyour Azure-fiók hello a következő parancs futtatásával:
 
    ```bash
    az login
@@ -51,40 +51,40 @@ Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több milli�
 
    Az elérhető előfizetések sikeres bejelentkezés után vannak felsorolva.
 
-2. Állítsa be az alapértelmezett előfizetést szeretné használni a következő parancs futtatásával:
+2. Állítsa be a hello alapértelmezett előfizetést, amelyet az toouse hello a következő parancs futtatásával:
 
    ```bash
    az account set --subscription {subscription id or name}
    ```
 
-   `subscription ID or name`Itt található: a kimenetét a `az login` vagy a `az account list` parancsot.
+   `subscription ID or name`Itt található: hello hello kimenete `az login` vagy hello `az account list` parancsot.
 
-3. Regisztrálja a szolgáltatót a következő parancs futtatásával. Erőforrás-szolgáltató a szolgáltatások, hogy biztosít erőforrásokat az alkalmazáshoz. Az Azure-erőforrás, a szolgáltató által telepítése előtt regisztrálnia kell a szolgáltatót.
+3. Hello szolgáltató regisztrálása hello a következő parancs futtatásával. Erőforrás-szolgáltató a szolgáltatások, hogy biztosít erőforrásokat az alkalmazáshoz. Hello szolgáltató ajánlatok hello Azure-erőforrás telepítése előtt regisztrálnia kell az hello szolgáltató.
 
    ```bash
    az provider register -n "Microsoft.Devices"
    ```
-4. Hozzon létre egy erőforráscsoportot az USA nyugati régiója régióban iot-minta a következő parancs futtatásával:
+4. Hozzon létre egy erőforráscsoportot nevű iot-minta hello USA nyugati régiója régióban hello a következő parancs futtatásával:
 
    ```bash
    az group create --name iot-sample --location westus
    ```
 
-   `westus`az a hely, az erőforráscsoport létrehozásához. Ha egy másik hely használni kívánt, futtathatja `az account list-locations -o table` megtekintéséhez az összes hely Azure támogatja.
+   `westus`az hello hely, az erőforráscsoport létrehozásához. Ha máshová szeretné toouse, futtathatja `az account list-locations -o table` toosee összes hello Azure támogatja helyét.
  
-5. Az iot-minta erőforráscsoportban IoT hub létrehozása a következő parancs futtatásával:
+5. IoT hub létrehozása hello iot-minta erőforráscsoportban hello a következő parancs futtatásával:
 
    ```bash
    az iot hub create --name {my hub name} --resource-group iot-sample
    ```
 
-   Alapértelmezés szerint a létrehoz egy IoT-központ az ingyenes tarifacsomag. További információkért lásd: [Azure IoT Hub árképzési](https://azure.microsoft.com/pricing/details/iot-hub/).
+   Alapértelmezés szerint hello létrehoz egy IoT-központot hello ingyenes tarifacsomag. További információkért lásd: [Azure IoT Hub árképzési](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 > [!NOTE]
-> Az IoT hub nevét globálisan egyedinek kell lennie. Az Azure-előfizetéshez tartozó Azure IoT Hub kiadása csak egy F1 hozhat létre.
+> az IoT hub hello nevének globálisan egyedi kell lennie. Az Azure-előfizetéshez tartozó Azure IoT Hub kiadása csak egy F1 hozhat létre.
 
 ## <a name="register-pi-in-your-iot-hub"></a>Az IoT hub Pi regisztrálása
-Minden eszköz, amely üzeneteket küld az IoT hub, valamint üzeneteket fogad az IoT hub regisztrálni kell egy egyedi azonosítót.
+Minden eszköz, amely üzeneteket küld üzenetek tooyour IoT-központot, illetve üzeneteket fogad az IoT hub regisztrálni kell egy egyedi azonosítót.
 
 A központ Pi regisztrálása fut a következő parancsot:
 
@@ -93,8 +93,8 @@ az iot device create --device-id myraspberrypi --hub {my hub name} --resource-gr
 ```
 
 ## <a name="summary"></a>Összefoglalás
-Az IoT-központ elkészítette és Pi regisztrálva az IoT hub eszköz megadásával. Készen áll arra, hogyan Pi üzenetek küldése az IoT hub.
+Az IoT-központ elkészítette és Pi regisztrálva az IoT hub eszköz megadásával. Most készen áll a toolearn hogyan toosend a Pi tooyour IoT-központ érkező üzenetek.
 
 ## <a name="next-steps"></a>Következő lépések
-[Hozzon létre egy Azure függvény alkalmazást és feldolgozni, és az IoT hub üzenetek tárolásához Azure Storage-fiók](iot-hub-raspberry-pi-kit-c-lesson3-deploy-resource-manager-template.md).
+[Hozzon létre egy Azure függvény alkalmazás és az Azure Storage fiók tooprocess és a tároló IoT-központ üzenetek](iot-hub-raspberry-pi-kit-c-lesson3-deploy-resource-manager-template.md).
 

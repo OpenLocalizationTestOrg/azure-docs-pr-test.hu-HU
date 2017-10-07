@@ -1,6 +1,6 @@
 ---
-title: "MapReduce és a PowerShell használata a Hadoop - az Azure HDInsight |} Microsoft Docs"
-description: "Tudnivalók a PowerShell használatával távolról ugyanúgy futtathatják a HDInsight Hadoop a MapReduce-feladatok."
+title: "aaaUse MapReduce és a Hadoop - Azure HDInsight PowerShell |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse PowerShell tooremotely hibaüzenettel MapReduce-feladatok Hadoop on HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/16/2017
 ms.author: larryfr
-ms.openlocfilehash: c3801573808709f29cb1e563ac803f225a28cafc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 59524f0e8813d4c017f92bccb2e50d4c018acf71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-mapreduce-jobs-with-hadoop-on-hdinsight-using-powershell"></a>A PowerShell használatával HDInsight Hadoop MapReduce-feladatok futtassa
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-Ez a dokumentum egy példát a MapReduce-feladatok futtatásához egy Hadoop on HDInsight-fürt Azure PowerShell használatával.
+A dokumentum a egy Hadoop MapReduce feladatot biztosít Azure PowerShell toorun használatának példája a HDInsight-fürthöz.
 
 ## <a id="prereq"></a>Előfeltételek
 
 * **(A HDInsight Hadoop) Azure HDInsight-fürtök**
 
   > [!IMPORTANT]
-  > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * **Munkaállomás Azure PowerShell-lel**.
 
 ## <a id="powershell"></a>A MapReduce feladatot az Azure PowerShell használatával futtassa
 
-Az Azure PowerShell biztosít *parancsmagok* , amelyek lehetővé teszik, hogy távolról a HDInsight a MapReduce-feladatok futtatását. Belsőleg, mindez REST-hívások segítségével [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (korábbi nevén lépni a Templeton) fut a HDInsight-fürthöz.
+Az Azure PowerShell biztosít *parancsmagok* , amelyek lehetővé teszik MapReduce-feladatok futtatása tooremotely a hdinsight platformon. Belsőleg, mindez túl REST-hívások segítségével[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (korábbi nevén lépni a Templeton) futó hello HDInsight-fürthöz.
 
-A következő parancsmagokat használja a MapReduce-feladatok futtatása egy távoli HDInsight-fürt.
+hello következő parancsmagok használhatók egy távoli HDInsight-fürt MapReduce-feladatok futásakor.
 
-* **Login-AzureRmAccount**: Azure PowerShell hitelesíti az Azure-előfizetéshez.
+* **Login-AzureRmAccount**: hitelesíti az Azure PowerShell tooyour Azure-előfizetés.
 
-* **Új AzureRmHDInsightMapReduceJobDefinition**: létrehoz egy új *definition feladat* MapReduce megadott információk segítségével.
+* **Új AzureRmHDInsightMapReduceJobDefinition**: létrehoz egy új *definition feladat* hello segítségével megadott MapReduce információkat.
 
-* **Start-AzureRmHDInsightJob**: a feladat definíciójához küld HDInsight, elindítja a feladatot, és adja vissza egy *feladat* objektum, amely segítségével a feladat állapotának ellenőrzése.
+* **Start-AzureRmHDInsightJob**: hello feladat definition tooHDInsight küld, hello feladat elindul, és adja vissza egy *feladat* objektum, amely használt toocheck hello hello feladat állapota lehet.
 
-* **Várjon, amíg-AzureRmHDInsightJob**: a feladat állapotának ellenőrzése a feladatobjektum használja. Arra vár, amíg a feladat befejeződik, vagy a várakozási ideje lejár.
+* **Várjon, amíg-AzureRmHDInsightJob**: hello objektum toocheck hello feladatállapot hello feladat használja. Arra vár, amíg hello feladat befejeződik, vagy hello várakozási ideje lejár.
 
-* **Get-AzureRmHDInsightJobOutput**: a feladat kimenetének beolvasása.
+* **Get-AzureRmHDInsightJobOutput**: hello feladat eredményének tooretrieve hello használt.
 
-A következő lépések bemutatják, hogyan lehet ezeket a parancsmagokat használja a feladat futtatásához a HDInsight-fürtön.
+hello következő lépések bemutatják, hogyan toouse ezen parancsmagok toorun egy feladat a HDInsight-fürthöz.
 
-1. Egy szerkesztővel, az alábbi kód, Mentés **mapreducejob.ps1**.
+1. Egy szerkesztővel, mentse a következő kódot hello **mapreducejob.ps1**.
 
-    [!code-powershell[fő](../../powershell_scripts/hdinsight/use-mapreduce/use-mapreduce.ps1?range=5-69)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-mapreduce/use-mapreduce.ps1?range=5-69)]
 
-2. Nyisson meg egy új **Azure PowerShell** parancssort. Módosítsa a könyvtárat, hol található a **mapreducejob.ps1** fájlt, majd futtassa a parancsfájlt a következő paranccsal:
+2. Nyisson meg egy új **Azure PowerShell** parancssort. Hello könyvtárak toohello módosítani **mapreducejob.ps1** fájlt, majd a következő parancsfájl toorun hello hello használata:
 
         .\mapreducejob.ps1
 
-    A parancsprogram futtatásakor kéri a HDInsight-fürt nevét és a HTTPS/rendszergazda fiók nevét és a jelszót a fürthöz. Is kérheti, hogy az Azure-előfizetéshez hitelesítést.
+    Hello parancsprogram futtatásakor hello hello HDInsight-fürt nevét és a hello HTTPS/rendszergazda fiók nevét és a jelszó hello fürt kéri. Azure-előfizetés. kért tooauthenticate tooyour is lehet.
 
-3. A feladat befejeződik, a kimenet az alábbihoz hasonló jelenhet meg:
+3. Hello feladat befejeződik, a szöveg a következő kimeneti hasonló toohello jelenhet meg:
 
         Cluster         : CLUSTERNAME
         ExitCode        : 0
@@ -77,27 +77,27 @@ A következő lépések bemutatják, hogyan lehet ezeket a parancsmagokat haszn�
         SubmissionTime  : 12/5/2014 8:34:09 PM
         JobId           : job_1415949758166_0071
 
-    A kimeneti azt jelzi, hogy a feladat sikeresen befejeződött-e.
+    A kimenet hello feladat sikeresen befejeződött.
 
     > [!NOTE]
-    > Ha a **ExitCode** értéke csak 0, lásd: [hibaelhárítás](#troubleshooting).
+    > Ha hello **ExitCode** értéke csak 0, lásd: [hibaelhárítás](#troubleshooting).
 
-    Ebben a példában a letöltött fájlokat tárolja egy **kimenet.txt** fájl a könyvtárban, amely futtatja a parancsfájlt.
+    Ebben a példában is tárolja a letöltött hello fájlok tooan **kimenet.txt** fájl hello hello parancsfájlt futtató.
 
 ### <a name="view-output"></a>Nézet kimeneti
 
-Nyissa meg a **kimenet.txt** fájlt egy szövegszerkesztőben, a szavakat, és a feladat által létrehozott számát.
+Nyissa meg hello **kimenet.txt** szavak és hello feladat által előállított adatokra is egy text editor toosee hello fájlban.
 
 > [!NOTE]
-> A MapReduce feladatot, kimeneti fájlok nem módosíthatók. Ezért ez a minta fut újra, ha módosítani szeretné a kimeneti fájl nevét.
+> hello kimeneti fájlokat a MapReduce-feladatok nem módosíthatók. Így ha ez a minta újrafuttatásához kell toochange hello hello kimeneti fájl nevét.
 
 ## <a id="troubleshooting"></a>Hibaelhárítás
 
-Ha nem áll rendelkezésre információ ad vissza, ha a feladat befejeződik, egy meghibásodott feldolgozása során. Hiba történt a feladat információinak megtekintése, vegye fel a következő parancsot végén a **mapreducejob.ps1** fájl, mentse, majd futtassa újból.
+Ha nem áll rendelkezésre információ ad vissza, ha hello feladat befejeződik, egy meghibásodott feldolgozása során. Ez a feladat információi tooview hiba hozzáadása a következő parancs toohello vége hello hello **mapreducejob.ps1** fájl, mentse, majd futtassa újból.
 
 ```powershell
-# Print the output of the WordCount job.
-Write-Host "Display the standard output ..." -ForegroundColor Green
+# Print hello output of hello WordCount job.
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $wordCountJob.JobId `
@@ -105,11 +105,11 @@ Get-AzureRmHDInsightJobOutput `
         -DisplayOutputType StandardError
 ```
 
-Ez a parancsmag írt ezzel a kiszolgálón a feladat futtatásakor olyan információkat ad vissza, és segíthet meghatározni, miért nem sikerült a feladat.
+Ez a parancsmag írt tooSTDERR hello kiszolgálón hello feladat futtatásakor hello-adatait adja vissza, és segíthet meghatározni, miért hello feladat sikertelen.
 
 ## <a id="summary"></a>Summary (Összefoglalás)
 
-Ahogy látja, Azure PowerShell könnyedén MapReduce-feladatok futtatása a HDInsight-fürtöt, figyelheti a feladat állapotát és a kimeneti beolvasása.
+Ahogy látja, Azure PowerShell Ez egy egyszerű módot toorun MapReduce-feladatok egy HDInsight-fürthöz, a figyelő hello feladat állapotát, és a lekérése hello kimeneti.
 
 ## <a id="nextsteps"></a>Következő lépések
 

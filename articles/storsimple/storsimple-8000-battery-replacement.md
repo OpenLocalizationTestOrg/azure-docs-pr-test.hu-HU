@@ -1,6 +1,6 @@
 ---
-title: "Cserélje le a Microsoft Azure StorSimple 8000 series eszköz akkumulátorról |} Microsoft Docs"
-description: "Távolítsa el, cserélje le, és a biztonsági mentési akkumulátor modul a StorSimple eszköz karbantartása ismerteti."
+title: "a Microsoft Azure StorSimple 8000 series eszközön aaaReplace akkumulátor |} Microsoft Docs"
+description: "Leírja, hogyan tooremove, cserélje le, és a StorSimple eszköz hello biztonsági mentési akkumulátor modul karbantartása."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 174a3163082594ea6a49b7f5a78857848f8f0566
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5ac767807e6c3fd817d8d522629db2aceaac9bdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replace-the-backup-battery-module-on-your-storsimple-device"></a>Cserélje le a biztonsági mentési akkumulátor modul a StorSimple eszköz
+# <a name="replace-hello-backup-battery-module-on-your-storsimple-device"></a>Cserélje le a StorSimple eszköz hello biztonsági mentési akkumulátor modul
 
 ## <a name="overview"></a>Áttekintés
-Az elsődleges ház Power- és hűtési modul (PCM) a Microsoft Azure StorSimple eszköz rendelkezik egy további akkumulátor csomagot. Ez a csomag biztosítja a power, így a StorSimple eszköz adatok mentése az elsődleges házhoz AC áramkimaradás esetén. Ez akkumulátor csomag nevezzük a *biztonsági mentési akkumulátor modul*. A biztonsági mentési akkumulátor modul csak a StorSimple eszköz (a EBOD ház nem tartalmaz a biztonsági mentési akkumulátor modul) az elsődleges ház létezik.
+hello elsődleges ház teljesítmény- és hűtési modul (PCM) a Microsoft Azure StorSimple eszköz rendelkezik egy további akkumulátor csomagot. Ez a csomag biztosítja a teljesítmény, így hello StorSimple eszköz adat menthető AC power toohello elsődleges ház elvesztése esetén. Ez akkumulátor csomag hivatkozott tooas hello *biztonsági mentési akkumulátor modul*. csak az elsődleges ház hello a StorSimple eszköz létezik hello biztonsági mentési akkumulátor modul (hello EBOD ház nem tartalmaz a biztonsági mentési akkumulátor modul).
 
 Ez az oktatóanyag azt ismerteti, hogyan:
 
-* Távolítsa el a biztonsági mentési akkumulátor modul
+* Hello biztonsági mentési akkumulátor modul eltávolítása
 * Egy új biztonsági mentési akkumulátor modul telepítése
-* A biztonsági mentési akkumulátor modul karbantartása
+* Hello biztonsági mentési akkumulátor modul karbantartása
 
 > [!IMPORTANT]
-> Mielőtt eltávolítása és cseréje egy biztonsági mentési akkumulátor modult, tekintse át a biztonsági információk a [StorSimple hardver összetevő cseréje bemutatása](storsimple-8000-hardware-component-replacement.md).
+> Mielőtt eltávolítása és cseréje egy biztonsági mentési akkumulátor modult, tekintse át a biztonsági információk hello hello [bemutatása tooStorSimple hardver összetevő cseréje](storsimple-8000-hardware-component-replacement.md).
 
 
-## <a name="remove-the-backup-battery-module"></a>Távolítsa el a biztonsági mentési akkumulátor modul
-A biztonsági mentési akkumulátor modul, a StorSimple eszközt a rendszer a terepen cserélhető Cisco egységet. Mielőtt a PCM van telepítve, az akkumulátor modul az eredeti csomagban kell tárolni. A következő lépésekkel távolítsa el a biztonsági mentési telep.
+## <a name="remove-hello-backup-battery-module"></a>Hello biztonsági mentési akkumulátor modul eltávolítása
+hello biztonsági mentési akkumulátor modul a StorSimple eszközt a egy terepen cserélhető Cisco egységet. Mielőtt hello PCM van telepítve, az eredeti csomagban hello akkumulátor modul kell tárolni. Hajtsa végre a következő lépéseket tooremove hello biztonsági mentési akkumulátor hello.
 
-#### <a name="to-remove-the-backup-battery-module"></a>A biztonsági mentési akkumulátor modul eltávolítása
-1. Az Azure portálon nyissa meg a StorSimple Device Manager szolgáltatás paneljét. Ugrás a **eszközök** majd az eszközök listájában válassza ki az eszköz. Navigáljon a **figyelő** > **hardver állapotának**. A **megosztott összetevők**, nézze meg az akkumulátor állapotát.
-2. Azonosítsa a PCM, amelyben az akkumulátor sikertelen volt. 1. ábra mutatja a StorSimple eszköz hátulján olvasható.
+#### <a name="tooremove-hello-backup-battery-module"></a>tooremove hello biztonsági mentési akkumulátor modul
+1. A hello Azure-portálon válassza a tooyour StorSimple Device Manager szolgáltatás panelre. Nyissa meg túl**eszközök** majd válassza ki az eszköz hello eszközök listáját. Keresse meg a túl**figyelő** > **hardver állapotának**. A **megosztott összetevők**, nézze meg hello akkumulátor hello állapotának.
+2. Hello PCM mely hello az akkumulátor nem sikerült azonosítani. 1. ábra mutatja hello hátsó hello StorSimple eszközt.
    
     ![Az eszköz elsődleges ház modulok Csatlakozópanel](./media/storsimple-battery-replacement/IC740994.png)
    
@@ -53,11 +53,11 @@ A biztonsági mentési akkumulátor modul, a StorSimple eszközt a rendszer a te
    | 3 |A vezérlő 0 |
    | 4 |1. vezérlő |
    
-    3 szám a 2. ábrán látható, a figyelési kijelző PCM 0, amely megfelel a kereslet az olyan **akkumulátor tartalék** kell kell kapcsolni.
+    Hello 2. ábra a 3-as számú eredményobjektumokról mutató figyelési hello PCM 0 megfelelő túl a kereslet az olyan**akkumulátor tartalék** kell kell kapcsolni.
    
     ![Az eszköz PCM figyelési kijelző LED Csatlakozópanel](./media/storsimple-battery-replacement/IC740992.png)
    
-    **2. ábra** vissza a PCM a figyelési kijelző LED megjelenítése
+    **2. ábra** vissza a PCM ábrázoló hello kijelző LED figyelése
    
    | Címke | Leírás |
    |:--- |:--- |
@@ -67,43 +67,43 @@ A biztonsági mentési akkumulátor modul, a StorSimple eszközt a rendszer a te
    | 4 |PCM OK |
    | 5 |DC áramszünet esetén |
    | 6 |Kifogástalan akkumulátor |
-3. A sikertelen akkumulátor PCM eltávolításához kövesse [távolítsa el a PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm).
-4. A eltávolított PCM növekedési felfelé elforgatása az akkumulátor modul leíróját a következő, az alábbi ábrán jelzett és lekéréses, akár az akkumulátor eltávolítása.
+3. tooremove hello PCM sikertelen töltöttségű telepre vonatkozó, a kövesse hello [távolítsa el a PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm).
+4. Hello PCM eltávolítva, a növekedési és a Elforgatás hello töltöttségű telepre vonatkozó modul felfelé kezelni, a következő ábra hello jelöltük, és húzza azt ki tooremove hello töltöttségű telepre vonatkozó.
    
     ![PCM akkumulátor eltávolítása](./media/storsimple-battery-replacement/IC741019.png)
    
-    **3. ábra** az akkumulátor eltávolítása a PCM
-5. A modul a terepen cserélhető Cisco egységet csomagolására helyezze el.
-6. Térjen vissza a hibás egység Microsoft megfelelő szervizelési és kezelése.
+    **3. ábra** hello PCM hello akkumulátor eltávolítása
+5. Tegyen hello modul hello terepen cserélhető Cisco egységet-csomagban.
+6. Térjen vissza a hello hibás egység tooMicrosoft megfelelő szervizelési és kezelése.
 
 ## <a name="install-a-new-backup-battery-module"></a>Egy új biztonsági mentési akkumulátor modul telepítése
-A következő lépésekkel telepíti a helyettesítő akkumulátor modulját az elsődleges szolgáltatással a StorSimple eszköz PCM.
+Hajtsa végre a következő lépéseket akkumulátor tooinstall hello helyettesítő modul hello PCM hello elsődleges szolgáltatással a StorSimple eszköz hello.
 
-#### <a name="to-install-the-battery-module"></a>A akkumulátor modul telepítése
-1. A biztonsági mentési akkumulátor modul elhelyezni a PCM a megfelelő helyzetben.
-2. Nyomja le az akkumulátor modul leíróját a következő egészen az, hogy az összekötő ülés.
-3. Cserélje le az elsődleges szolgáltatással PCM a következő [energia- és hűtési modul lecseréli a StorSimple eszköz](storsimple-power-cooling-module-replacement.md).
-4. A Csere befejezése után nyissa meg az eszközre, és folytassa a **figyelő** > **hardver állapotának** az Azure portálon. Győződjön meg arról, hogy a telepítés sikeres volt-e az akkumulátor állapotának ellenőrzése. Zöld állapot azt jelzi, hogy az akkumulátor állapota kifogástalan.
+#### <a name="tooinstall-hello-battery-module"></a>tooinstall hello akkumulátor modul
+1. Hely hello biztonsági mentési akkumulátor modul a hello PCM hello megfelelő helyzetben.
+2. Lefelé hello akkumulátor modul nyomja le az összes hello módon tooseat hello összekötő kezelni.
+3. Cserélje le PCM hello hello elsődleges szolgáltatással hello útmutatását követve [energia- és hűtési modul lecseréli a StorSimple eszköz](storsimple-power-cooling-module-replacement.md).
+4. Hello helyettesítő befejezése után nyissa meg tooyour eszközt, és keresse meg a túl**figyelő** > **hardver állapotának** a hello Azure-portálon. Hello hello akkumulátor toomake meg arról, hogy sikeres volt-e hello telepítési állapotának ellenőrzése. Zöld állapot azt jelzi, hogy hello akkumulátorról működik megfelelően.
 
-## <a name="maintain-the-backup-battery-module"></a>A biztonsági mentési akkumulátor modul karbantartása
-A StorSimple eszközt a a biztonsági mentési akkumulátor a modul adja meg a tartományvezérlő teljesítményét power adatvesztési esemény során. Lehetővé teszi a StorSimple eszköz szabályozott módon leállítása előtt kritikus adatok mentése. A két akkumulátor feltöltött a PCMs a rendszer két egymást követő adatvesztési eseményeket is kezelni.
+## <a name="maintain-hello-backup-battery-module"></a>Hello biztonsági mentési akkumulátor modul karbantartása
+A StorSimple eszköz hello biztonsági mentési akkumulátor modul biztosít power toohello vezérlő power adatvesztési esemény során. Ez lehetővé teszi, hogy hello StorSimple eszköz toosave kritikus fontosságú adatok előzetes tooshutting le szabályozott módon. A két akkumulátor feltöltött hello PCMs hello rendszer kezelni tud a két egymást követő adatvesztési eseményeket.
 
-Az Azure portálon a **hardver állapotának** alatt a **figyelő** panel jelzi, hogy a az akkumulátor hibásan működik, vagy a záró életciklusa közeledik. Akkumulátor állapotát jelzi **PCM 0 akkumulátor** vagy **PCM 1 akkumulátor** alatt **megosztott összetevők**. Ezen a panelen megjelenik egy **csökkentett teljesítményű** állapotban a(z) élettartam végi közeledik, és **sikertelen** end életciklusa elérte a.
+Hello Azure-portálon, a hello **hardver állapotának** alatt hello **figyelő** panel jelzi, hogy a hello akkumulátor hibásan működik, vagy hello end életciklusa közeledik. hello akkumulátor állapotát jelzi **PCM 0 akkumulátor** vagy **PCM 1 akkumulátor** alatt **megosztott összetevők**. Ezen a panelen megjelenik egy **csökkentett teljesítményű** állapotban a(z) élettartam végi közeledik, és **sikertelen** end életciklusa elérte a.
 
 > [!NOTE]
-> Az akkumulátor is tud jelentéseket **sikertelen** ha egyszerűen kell számítjuk fel.
+> hello akkumulátor is tud jelentéseket **sikertelen** ha egyszerűen kell toobe számítjuk fel.
 
 
-Ha a **csökkentett teljesítményű** állapot jelenik meg, az alábbi intézkedéseket javasoljuk:
+Ha hello **csökkentett teljesítményű** állapot jelenik meg, azt javasoljuk, hogy a következő lépések hello:
 
-* Előfordulhat, hogy a rendszer észlelt egy friss az áramellátás megszakadása miatt, vagy előfordulhat, hogy a az akkumulátorok rendszeres karbantartás zajlik. Vegye figyelembe a rendszer a folytatás előtt 12 óra.
+* Előfordulhat, hogy hello rendszer észlelt egy friss az áramellátás megszakadása miatt, vagy előfordulhat, hogy a hello akkumulátorok rendszeres karbantartás zajlik. Figyelje meg hello rendszer a folytatás előtt 12 óra.
   
-  * Ha az állapot továbbra is **csökkentett teljesítményű** után a létrehozni kívánt AC folyamatos kapcsolat 12 óra kapcsolja a tartományvezérlők és PCMs fut, majd az akkumulátor kell lecserélni. Adjon [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) helyettesítő biztonsági mentési akkumulátor modulként.
-  * A állapotba kerül, 12 óra elteltével az OK gombra, ha az akkumulátor működik, és azt csak akkor szükséges, a karbantartási kell fizetni.
-* Ha nem lett az AC Power társított veszteséget és a PCM-e kapcsolva és csatlakoztatva AC power, az akkumulátor kell lecserélni. [Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) helyettesítő biztonsági mentési akkumulátor modul rendezéséhez.
+  * Ha hello állapot továbbra is **csökkentett teljesítményű** után 12 óra folyamatos kapcsolat tooAC power hello, tartományvezérlői és PCMs fut, majd hello akkumulátor toobe cserélni kell-e. Adjon [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) helyettesítő biztonsági mentési akkumulátor modulként.
+  * Hello állapotba kerül, 12 óra elteltével az OK gombra, ha hello akkumulátorról működik, és csak szükséges a karbantartási járnak.
+* Ha nem történt AC power és hello PCM társított megszűnését be van kapcsolva, és tooAC power csatlakoztatva, hello akkumulátor kell cserélni toobe. [Forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md) tooorder helyettesítő biztonsági mentési akkumulátor modul.
 
 > [!IMPORTANT]
-> Számolja fel a sikertelen akkumulátor nemzeti és regionális szabályok szerint.
+> Számolja fel hello toonational és regionális előírások szerint akkumulátor nem sikerült.
 
 ## <a name="next-steps"></a>Következő lépések
 További információ [StorSimple hardver összetevő cseréje](storsimple-8000-hardware-component-replacement.md).

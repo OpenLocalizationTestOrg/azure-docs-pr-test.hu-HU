@@ -1,6 +1,6 @@
 ---
-title: "Egy Windows virtuális Gépet a klasszikus üzembe helyezési modellel - Azure átméretezése |} Microsoft Docs"
-description: "A klasszikus üzembe helyezési modellel, az Azure Powershell létrehozott Windows virtuális gépek méretét."
+title: "egy Windows virtuális gép hello klasszikus üzembe helyezési modellel - Azure aaaResize |} Microsoft Docs"
+description: "A Windows hello klasszikus üzembe helyezési modellel, az Azure Powershell használatával létrehozott virtuális gépek méretét."
 services: virtual-machines-windows
 documentationcenter: 
 author: Drewm3
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/19/2016
 ms.author: drewm
-ms.openlocfilehash: 4277bc8394c7ba140291e9dc776162e87deab96b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39fab14431e2351c9515b0611e850eccfec7a798
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="resize-a-windows-vm-created-in-the-classic-deployment-model"></a>A Windows virtuális gép létrehozása a klasszikus üzembe helyezési modellel átméretezése
-Ez a cikk bemutatja, hogyan méretezze át egy Windows virtuális Gépet, a klasszikus üzembe helyezési modellel, az Azure Powershell használatával létrehozni.
+# <a name="resize-a-windows-vm-created-in-hello-classic-deployment-model"></a>A Windows virtuális gépek hello klasszikus üzembe helyezési modellel létrehozott átméretezése
+Ez a cikk bemutatja, hogyan tooresize egy Windows virtuális gép létrehozása hello klasszikus üzembe helyezési modellel Azure Powershell használatával.
 
-Annak eldöntéséhez, hogy átméretezni a virtuális gép lehetőséget, nincsenek két fogalom, amely a tartomány a méretezze át a virtuális gép számára elérhető méretek szabályozza. Az első fogalma a régió, ahol a virtuális Gépre van telepítve. A Virtuálisgép-méretek elérhető régióban listáját az Azure-régiókat weblap szolgáltatások lapon alatt áll. A második fogalma a fizikai hardver a virtuális Gépet tartalmazó. A fizikai kiszolgálók, virtuális gépeket üzemeltet a fürtök közös fizikai hardver együtt vannak csoportosítva. A módszer egy virtuális gép méretének módosítása eltér attól függően, hogy a kívánt új Virtuálisgép-méretet támogatja a hardveres fürt a virtuális Gépet tartalmazó.
+Annak eldöntéséhez, hogy hello képességét tooresize egy virtuális Gépet, nincsenek két fogalom, amelyek szabályozzák hello tartomány méretek elérhető tooresize hello virtuális gép. első hello fogalma-hello régióban, amelyben a virtuális Gépre van telepítve. Virtuálisgép-méretek elérhető régióban hello listája hello szolgáltatások lapon hello Azure-régiókat weblap alatt áll. második hello fogalma-hello fizikai hardver a virtuális gép jelenleg üzemeltet. hello fizikai kiszolgálók virtuális gépeket üzemeltet a fürtök közös fizikai hardver együtt vannak csoportosítva. hello módszert a virtuális gép méretének módosítása eltér attól függően, hogy hello kívánt új Virtuálisgép-méretet támogatja hello hardver fürt hello VM tartalmazó.
 
 > [!IMPORTANT] 
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. Emellett [méretezze át a virtuális gép létrehozása a Resource Manager üzembe helyezési modellel](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Emellett [méretezze át a virtuális gépek hello Resource Manager üzembe helyezési modellel létrehozott](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="add-your-account"></a>A fiók hozzáadása
-Konfigurálnia kell az Azure PowerShell, a klasszikus Azure-erőforrásokat. Konfigurálhatja az Azure PowerShell hagyományos erőforrások kezeléséhez az alábbi lépésekkel.
+Klasszikus Azure-erőforrások az Azure PowerShell toowork kell konfigurálni. Kövesse az alábbi tooconfigure Azure PowerShell toomanage hagyományos erőforrások hello lépéseket.
 
-1. A PowerShell-parancssorba írja be a `Add-AzureAccount` kattintson **Enter**. 
-2. Írja be az Azure-előfizetéshez társított e-mail címét, és kattintson a **Folytatás**. 
-3. Adja meg a fiókhoz tartozó jelszót. 
+1. Hello PowerShell parancssorába írja be a `Add-AzureAccount` kattintson **Enter**. 
+2. Írja be az Azure-előfizetéshez társított hello e-mail címét, és kattintson a **Folytatás**. 
+3. Adja meg a fiókhoz tartozó jelszót hello. 
 4. Kattintson a **bejelentkezés**. 
 
-## <a name="resize-in-the-same-hardware-cluster"></a>Hardver ugyanazon fürt átméretezése
-A virtuális gép elérhető, a hardver-fürt a virtuális Gépet üzemeltető méretre átméretezéséhez hajtsa végre az alábbi lépéseket.
+## <a name="resize-in-hello-same-hardware-cluster"></a>Átméretezi a hello azonos fürt hardver
+tooresize egy virtuális gép tooa terület hello hardver fürt hello virtuális Gépet üzemeltető hajtsa végre a lépéseket követve hello.
 
-1. Futtassa a következő PowerShell-parancsot a hardver-fürt a felhőalapú szolgáltatás, amely tartalmazza a virtuális Gépet üzemeltető érhető el a Virtuálisgép-méretek listázása.
+1. Futtassa a következő PowerShell-paranccsal toolist hello Virtuálisgép-méretek elérhető hello hardver fürt üzemeltető hello felhőalapú szolgáltatás, amely tartalmazza a virtuális gép hello hello.
    
     ```powershell
     Get-AzureService | where {$_.ServiceName -eq "<cloudServiceName>"}
     ```
-2. A következő parancsokat a virtuális gép átméretezésével.
+2. Futtassa a következő parancsok tooresize hello VM hello.
    
     ```powershell
     Get-AzureVM -ServiceName <cloudServiceName> -Name <vmName> | Set-AzureVMSize -InstanceSize <newVMSize> | Update-AzureVM
     ```
 
 ## <a name="resize-on-a-new-hardware-cluster"></a>Új hardver fürt átméretezése
-A virtuális gép nem érhető el, a hardver-fürt a virtuális Gépet, a felhőalapú üzemeltetési méretre átméretezése szolgáltatás és a felhőalapú szolgáltatás virtuális gépeinek kell újra létrehoznia. Ezért a felhőalapú szolgáltatás virtuális gépeinek meg kell adni a hardver-fürtökön támogatott méretének minden felhőalapú szolgáltatás egyetlen hardver fürtön helyezkedik el. A következő lépések azt ismerteti, hogyan méretezze át a virtuális gépek törlésével és majd újbóli létrehozása a felhőalapú szolgáltatás.
+egy virtuális gép tooa méret nem érhető el a hello hardver fürt üzemeltet tooresize hello VM, hello felhőszolgáltatás és hello felhőalapú szolgáltatás virtuális gépeinek kell újból létre kell hozni. Minden felhőalapú szolgáltatás egyetlen hardver fürtön tárolja, ezért hello felhőalapú szolgáltatás virtuális gépeinek meg kell adni a hardver-fürtökön támogatott mérete. hello következő lépéseket ismerteti, hogyan tooresize törlésével és majd újbóli létrehozása a virtuális gépek hello felhőalapú szolgáltatás.
 
-1. Futtassa a következő PowerShell-parancsot a Virtuálisgép-méretek elérhető régióban listázásához. 
+1. Futtassa a következő PowerShell parancs toolist hello Virtuálisgép-méretek elérhető hello régióban hello. 
    
     ```powershell
     Get-AzureLocation | where {$_.Name -eq "<locationName>"}
     ```
-2. Jegyezze fel az összes konfigurációs beállítások az egyes virtuális gépek a a felhőalapú szolgáltatás, amely tartalmazza a virtuális gépek a méretezhető. 
-3. Törölje a felhőalapú szolgáltatás, a lemezek megőrizni az egyes virtuális gépek beállítás választása esetén minden virtuális gépe.
-4. Hozza létre újra a virtuális Gépet a kívánt Virtuálisgép-méretet használó méretezhető át.
-5. Hozza létre újra a többi virtuális gépen, amely a felhőalapú szolgáltatás, a hardver fürt ilyenkor a felhőalapú szolgáltatáshoz elérhető Virtuálisgép-méretet használó voltak.
+2. Jegyezze fel az összes konfigurációs beállítások az egyes virtuális gépek hello VM toobe átméretezték, ezért tartalmazó hello felhőszolgáltatásban. 
+3. Hello felhőszolgáltatásban hello beállítás tooretain hello lemezek kiválasztása az egyes virtuális gépek összes virtuális gép törlése.
+4. Hozza létre újra hello VM toobe átméretezték, ezért hello használata szükséges Virtuálisgép-méretet.
+5. Hozza létre újból minden más virtuális gépek, amelyek használatával elérhető ilyenkor hello felhőszolgáltatás hello hardver fürt Virtuálisgép-méretet hello felhőszolgáltatásban.
 
 Egy minta parancsfájlt törlése és újbóli létrehozása egy felhőszolgáltatás, új Virtuálisgép-méretet használó található [Itt](https://github.com/Azure/azure-vm-scripts). 
 
 ## <a name="next-steps"></a>Következő lépések
-* [A virtuális gép létrehozása a Resource Manager üzembe helyezési modellel átméretezése](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* [Méretezze át a virtuális gépek hello Resource Manager üzembe helyezési modellel létrehozott](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

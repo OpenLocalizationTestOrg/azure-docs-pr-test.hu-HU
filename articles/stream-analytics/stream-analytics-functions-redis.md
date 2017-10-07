@@ -1,6 +1,6 @@
 ---
-title: "Adatfolyam-elemzés, valós idejű feldolgozása az Azure Functions |} Microsoft Docs"
-description: "Megtudhatja, hogyan használható az Azure-függvény csatlakozott a Service Bus-üzenetsorba, egy Stream Analytics-feladat eredményének Azure Redis gyorsítótár adatokkal való feltöltése."
+title: "aaaStream elemzés valós idejű feldolgozással az Azure Functions |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse egy Azure-függvény csatlakozott a Service Bus-üzenetsorba, toopopulate egy egy Stream Analytics-feladat eredményének hello Azure Redis Cache."
 keywords: "adatfolyam esetében a redis cache service bus-üzenetsorba"
 services: stream-analytics
 author: ryancrawcour
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/28/2017
 ms.author: ryancraw
-ms.openlocfilehash: ad14cc858ff513573e2718a26a9ab5c524e1adc6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5ef4fe76c2cadf896a80eeaf421f010c315918af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-store-data-from-azure-stream-analytics-in-an-azure-redis-cache-using-azure-functions"></a>Azure Stream Analytics adatok tárolása az az Azure Redis Cache Azure Functions használatával
-Az Azure Stream Analytics lehetővé teszi gyors fejlesztésére, és alacsony költségű megoldások ahhoz, hogy az eszközök, érzékelőket, infrastruktúra, és alkalmazások vagy bármilyen streamet valós idejű elemzése telepítését. Ez lehetővé teszi a különböző használati esetek például valós idejű felügyeleti és figyelési parancs és vezérlő, csalások felderítéséhez, csatlakoztatott autók vagy sok más. Ilyen helyzetekben érdemes lehet például egy Azure Redis cache-egy elosztott adattárba Azure Stream Analytics outputted adatok tárolására.
+# <a name="how-toostore-data-from-azure-stream-analytics-in-an-azure-redis-cache-using-azure-functions"></a>Hogyan Azure Stream Analytics egy Azure Redis Cache használata az Azure Functions a toostore adatait
+Az Azure Stream Analytics lehetővé teszi gyors fejlesztésére és központi telepítése az alacsony költségű megoldások toogain valós idejű elemzése eszközök, érzékelőket, infrastruktúra, és alkalmazások vagy bármilyen streamet. Ez lehetővé teszi a különböző használati esetek például valós idejű felügyeleti és figyelési parancs és vezérlő, csalások felderítéséhez, csatlakoztatott autók vagy sok más. Ilyen helyzetekben érdemes lehet egy Azure Redis Cache-gyorsítótár például egy elosztott adattárba Azure Stream Analytics outputted toostore adatok.
 
-Tegyük fel, hogy egy távközlési vállalati részét képezik. Ha több, ugyanazzal az identitással, ugyanazon érkező hívások idő, de különböző földrajzilag SIM csalások felderítésére kívánt helyét. Az összes a potenciális csalárd telefonhívásokat tárolása az Azure Redis cache-rendszer biztosítja. Az ebben a blogban nyújtunk segítséget a hogyan könnyen befejezheti a feladatot. 
+Tegyük fel, hogy egy távközlési vállalati részét képezik. Ahol több érkező hívást hello ugyanazzal az identitással toodetect SIM csalás próbál, a hello azonos időben, de különböző földrajzi helyeken. Az összes hello lehetséges csalárd telefonhívásokat tárolása az Azure Redis cache-rendszer biztosítja. Az ebben a blogban nyújtunk segítséget a hogyan könnyen befejezheti a feladatot. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Fejezze be a [valós idejű csalások felderítéséhez] [ fraud-detection] segédlet az ASA
+Teljes hello [valós idejű csalások felderítéséhez] [ fraud-detection] segédlet az ASA
 
 ## <a name="architecture-overview"></a>Architektúra áttekintése
 ![Képernyőkép-architektúra](./media/stream-analytics-functions-redis/architecture-overview.png)
 
-A fenti ábrán látható, a Stream Analytics lehetővé teszi a bemeneti adatok lekérdezése és küldött egy kimeneti adatfolyam. A kimeneti alapján, az Azure Functions majd elindítható valamilyen esemény. 
+Ahogy az ábra megelőző hello, Stream Analytics lehetővé teszi a bemeneti adatok toobe streaming lekérdezett és tooan kimeneti küldött. Hello kimeneti alapján, az Azure Functions majd elindítható valamilyen esemény. 
 
-Az ebben a blogban azt összpontosítanak az adatcsatornát az Azure Functions része, vagy pontosabban az időt. az esemény félrevezető adatokat tároló a gyorsítótárba.
-Miután befejezte a [valós idejű csalások felderítéséhez] [ fraud-detection] oktatóanyagban rendelkezik (az eseményközpontok) bemeneti, a lekérdezés és kimenetnek (blob-tároló) már konfigurálva és fusson. Az ebben a blogban módosítjuk használja helyette a Service Bus-üzenetsorba kimenete. Ezt követően nem csatlakozni az Azure-függvény ebből a várólistából. 
+A blogban található Microsoft hello Azure Functions részét, ez az adatcsatorna összpontosítson, vagy pontosabban hello a csalárd adatokat tároló hello gyorsítótárba esemény váltanak.
+Hello befejezése után [valós idejű csalások felderítéséhez] [ fraud-detection] oktatóanyagban rendelkezik (az eseményközpontok) bemeneti, a lekérdezés és kimenetnek (blob-tároló) már konfigurálva és fusson. Az ebben a blogban módosítjuk hello kimeneti toouse a Service Bus-üzenetsorba helyette. Ezt követően csatlakoztassa azt egy Azure-függvény toothis várólista. 
 
 ## <a name="create-and-connect-a-service-bus-queue-output"></a>Hozzon létre, és csatlakozzon a Service Bus-üzenetsorba kimenete
-Hozzon létre egy Service Bus-üzenetsorba, kövesse a lépéseket, 1. és 2. a .NET részt [Ismerkedés a Service Bus-üzenetsorok][servicebus-getstarted].
-Most tegyük a várólista csatlakozni a Stream Analytics-feladat, amely a korábbi csalások észlelése segédlet jött létre.
+toocreate a Service Bus-üzenetsorba, hajtsa végre az 1. és 2 hello .NET szakasz [Ismerkedés a Service Bus-üzenetsorok][servicebus-getstarted].
+Most tegyük csatlakozás hello várólista toohello Stream Analytics-feladat a hello létrehozott korábbi csalások észlelése segédlet.
 
-1. Az Azure-portálon lépjen a **kimenetek** a feladat, és válassza ki a panel **Hozzáadás** az oldal tetején.
+1. A hello Azure-portálon, válassza a toohello **kimenetek** panel a feladatot, és válassza ki a **hozzáadása** hello oldal hello tetején.
    
     ![Kimenet hozzáadása](./media/stream-analytics-functions-redis/adding-outputs.png)
-2. Válasszon **Service Bus-üzenetsorba** , a **gyűjtése** és kövesse a képernyőn megjelenő utasításokat. Ügyeljen arra, hogy válassza ki a Service Bus-üzenetsorba, a létrehozott névtér [Ismerkedés a Service Bus-üzenetsorok][servicebus-getstarted]. Ha elkészült, kattintson a "jobb oldali" gombra.
-3. Adja meg a következő értékeket:
+2. Válasszon **Service Bus-üzenetsorba** , hello **gyűjtése** és az üdvözlő képernyőt hello útmutatás. A Service Bus-üzenetsorba hello meg arról, hogy toochoose hello névterekkel létrehozott [Ismerkedés a Service Bus-üzenetsorok][servicebus-getstarted]. Ha elkészült, kattintson a hello "jobb oldali" gombra.
+3. Adja meg a következő értékek hello:
    
    * **Esemény szerializáló formátum**: JSON-ban
    * **Kódolás**: UTF8
    * **FORMÁTUM**: sorral elválasztott
-4. Kattintson a **létrehozása** gombra, adja hozzá a forrás, és győződjön meg arról, hogy a Stream Analytics sikeresen csatlakozott-e a tárfiók.
-5. Az a **lekérdezés** lapon, az aktuális lekérdezés cserélje le a következő. Cserélje le * [YOUR SERVICE BUS NAME] * a 3. lépésben létrehozott kimeneti névvel. 
+4. Kattintson a hello **létrehozása** tooadd gombra kattint, a forrás- és, hogy a Stream Analytics képes csatlakozni toohello tárfiók tooverify.
+5. A hello **lekérdezés** lapra, cserélje ki hello aktuális lekérdezés hello következőre. Cserélje le * [YOUR SERVICE BUS NAME] * a 3. lépésben létrehozott hello kimeneti nevű. 
    
     ```    
    
@@ -69,37 +69,37 @@ Most tegyük a várólista csatlakozni a Stream Analytics-feladat, amely a korá
     ```
 
 ## <a name="create-an-azure-redis-cache"></a>Azure Redis Cache létrehozása
-Hozzon létre egy Azure Redis Cache-gyorsítótár a .NET részt [használata Azure Redis Cache hogyan] [ use-rediscache] mindaddig, amíg a szakasz nevű ***a gyorsítótár-ügyfelek konfigurálása***.
-Művelet befejeződése után egy új Redis Cache rendelkezik. A **összes beállítás**, jelölje be **hívóbetűk** és jegyezze fel a ***elsődleges kapcsolódási karakterlánc***.
+Hozzon létre egy Azure Redis cache-hello .NET szakasz [hogyan tooUse Azure Redis Cache] [ use-rediscache] amíg hello szakasz nevű ***hello gyorsítótár-ügyfelek konfigurálása***.
+Művelet befejeződése után egy új Redis Cache rendelkezik. A **összes beállítás**, jelölje be **hívóbetűk** és jegyezze fel a hello ***elsődleges kapcsolódási karakterlánc***.
 
 ![Képernyőkép-architektúra](./media/stream-analytics-functions-redis/redis-cache-keys.png)
 
 ## <a name="create-an-azure-function"></a>Egy Azure-függvény létrehozása
-Hajtsa végre a [az első Azure-függvény létrehozása] [ functions-getstarted] oktatóanyag az Azure Functions első lépéseiben. Ha már rendelkezik egy Azure függvény használni szeretné, majd ugorjon előre [Redis Cache írása](#Writing-to-Redis-Cache)
+Hajtsa végre a [az első Azure-függvény létrehozása] [ functions-getstarted] az Azure Functions használatába oktatóanyag tooget. Ha már rendelkezik egy Azure függvény volna, például toouse, akkor hagyja ki azokat, amelyek túl[tooRedis gyorsítótár írása](#Writing-to-Redis-Cache)
 
-1. A portál a alkalmazásszolgáltatások válassza a bal oldali navigációs sávon, majd az Azure-függvény alkalmazásnév, a függvény app webhely eléréséhez.
+1. Hello portálon alkalmazásszolgáltatások hello bal oldali navigációs sávon válassza az Azure-függvény app name tooget toohello függvény app webhelyet.
     ![Képernyőkép a szolgáltatások függvény alkalmazáslistájában](./media/stream-analytics-functions-redis/app-services-function-list.png)
-2. Kattintson a **új függvény > ServiceBusQueueTrigger – C#**. Az alábbi mezők kövesse az alábbi utasításokat:
+2. Kattintson a **új függvény > ServiceBusQueueTrigger – C#**. Hello a következő mezőket, kövesse az alábbi utasításokat:
    
-   * **Várólista neve**: neve megegyezik a sor létrehozásakor megadott név [Ismerkedés a Service Bus-üzenetsorok] [ servicebus-getstarted] (nem a service bus neve). Ellenőrizze, hogy csatlakozik-e a Stream Analytics kimeneti várólista használja.
-   * **A Service Bus kapcsolati**: válasszon **a kapcsolati karakterlánc hozzáadásának**. Keresse meg a kapcsolati karakterláncot, lépjen a klasszikus portálra, válassza ki **Service Bus**, a service bus hozott létre, és **KAPCSOLATADATOK** a képernyő alján. Győződjön meg arról, hogy a fő képernyőn ezen a lapon. Másolja és illessze be a kapcsolati karakterláncot. Nyugodtan adjon meg a kapcsolat neve.
+   * **Várólista neve**: hello azonos nevet a hello sor létrehozásakor megadott hello névként [Ismerkedés a Service Bus-üzenetsorok] [ servicebus-getstarted] (nem hello neve hello a service bus). Győződjön meg arról, amely a Stream Analytics kimeneti csatlakoztatott toohello hello várólista használja.
+   * **A Service Bus kapcsolati**: válasszon **a kapcsolati karakterlánc hozzáadásának**. toofind hello kapcsolati karakterláncot, nyissa meg toohello klasszikus portálra, válassza ki **Service Bus**, hozott létre, a service bus hello és **KAPCSOLATADATOK** üdvözlő képernyőt hello alján. Győződjön meg arról, hogy a fő képernyőn hello ezen a lapon. Másolja és illessze be hello kapcsolati karakterláncot. Érzi, hogy szabad tooenter bármely kapcsolat neve.
      
        ![Képernyőkép a service bus-kapcsolat](./media/stream-analytics-functions-redis/servicebus-connection.png)
    * **AccessRights**: válasszon **kezelése**
 3. Kattintson a **Create** (Létrehozás) gombra
 
-## <a name="writing-to-redis-cache"></a>Redis gyorsítótár írása
-Létrehoztunk egy Azure-függvény, amely egy Service Bus-üzenetsorba olvassa be most. Ehhez marad csak a funkcióval a Redis Cache ezeket az adatokat írni. 
+## <a name="writing-tooredis-cache"></a>Írás tooRedis gyorsítótár
+Létrehoztunk egy Azure-függvény, amely egy Service Bus-üzenetsorba olvassa be most. Összes toodo marad, a függvény toowrite ezen adatok toohello Redis Cache használja. 
 
-1. Válassza ki az újonnan létrehozott **ServiceBusQueueTrigger**, és kattintson a **Alkalmazásbeállítások működéséhez** a jobb felső sarokban. Válassza ki **az App Service-beállítások > Beállítások > Alkalmazásbeállítások**
-2. A kapcsolati karakterláncok szakaszban, hozzon létre egy nevet a a **neve** szakasz. Illessze be a található a elsődleges kapcsolati karakterláncot a **Redis gyorsítótárat létrehozni** lépjen be a **érték** szakasz. Válassza ki **egyéni** ahol felirat látható **SQL-adatbázis**.
-3. Kattintson a **mentése** tetején.
+1. Válassza ki az újonnan létrehozott **ServiceBusQueueTrigger**, és kattintson a **Alkalmazásbeállítások működik** a hello jobb felső sarokban. Válassza ki **Ugrás tooApp szolgáltatás beállításaira > Beállítások > Alkalmazásbeállítások**
+2. Kapcsolati karakterláncok szakasz hello, hozzon létre egy nevet a hello **neve** szakasz. Illessze be a hello talált hello elsődleges kapcsolati karakterláncot **Redis gyorsítótárat létrehozni** történő hello lépés **érték** szakasz. Válassza ki **egyéni** ahol felirat látható **SQL-adatbázis**.
+3. Kattintson a **mentése** hello tetején.
    
     ![Képernyőkép a service bus-kapcsolat](./media/stream-analytics-functions-redis/function-connection-string.png)
-4. Most lépjen vissza a alkalmazás Service beállításai, és válassza ki **eszközök > App Service-szerkesztő (előzetes verzió) > a > Lépjen**.
+4. Most lépjen vissza toohello App Service-beállításokat, és válassza ki **eszközök > App Service-szerkesztő (előzetes verzió) > a > Lépjen**.
    
     ![Képernyőkép a service bus-kapcsolat](./media/stream-analytics-functions-redis/app-service-editor.png)
-5. Egy tetszőleges szerkesztővel, hozzon létre egy JSON fájlt **project.json** a következőre, és a helyi lemezre menteni.
+5. Egy tetszőleges szerkesztővel, hozzon létre egy JSON fájlt **project.json** a következő hello és tooyour helyi lemezre menti.
    
         {
             "frameworks": {
@@ -111,8 +111,8 @@ Létrehoztunk egy Azure-függvény, amely egy Service Bus-üzenetsorba olvassa b
                 }
             }
         }
-6. Ez a fájl feltöltése a legfelső szintű könyvtárba, a függvény (nem WWWROOT). Nevű fájlba kell megjelennie **project.lock.json** jelennek meg automatikusan, erősítse meg, hogy a Nuget-csomagok "StackExchange.Redis" és "Newtonsoft.Json" importálta-e.
-7. Az a **run.csx** fájlt, cserélje le az előre generált kódot az alábbira. A lazyConnection függvényben cserélje le az "Kapcs NAME" 2. lépésében létrehozott nevű **adatok tárolásához a Redis gyorsítótárba**.
+6. A feltöltés a függvény (nem WWWROOT) hello legfelső szintű könyvtárba. Nevű fájlba kell megjelennie **project.lock.json** jelennek meg automatikusan, erősítse meg, hogy Nuget hello csomagok "StackExchange.Redis" és "Newtonsoft.Json" importálva.
+7. A hello **run.csx** fájlt, cserélje le a következő kód hello hello előre generált kódot. Hello lazyConnection függvényben, cserélje le az "Kapcs NAME" 2. lépésében létrehozott hello nevű **adattárolásra való hello Redis gyorsítótár**.
 
 ````
 
@@ -126,27 +126,27 @@ Létrehoztunk egy Azure-függvény, amely egy Service Bus-üzenetsorba olvassa b
     {
         log.Info($"Function processed message: {myQueueItem}");
 
-        // Connection refers to a property that returns a ConnectionMultiplexer
+        // Connection refers tooa property that returns a ConnectionMultiplexer
         IDatabase db = Connection.GetDatabase();
         log.Info($"Created database {db}");
 
-        // Parse JSON and extract the time
+        // Parse JSON and extract hello time
         var message = JsonConvert.DeserializeObject<dynamic>(myQueueItem);
         string time = message.time;
         string callingnum1 = message.callingnum1;
 
-        // Perform cache operations using the cache object...
-        // Simple put of integral data types into the cache
+        // Perform cache operations using hello cache object...
+        // Simple put of integral data types into hello cache
         string key = time + " - " + callingnum1;
         db.StringSet(key, myQueueItem);
         log.Info($"Object put in database. Key is {key} and value is {myQueueItem}");
 
-        // Simple get of data types from the cache
+        // Simple get of data types from hello cache
         string value = db.StringGet(key);
         log.Info($"Database got: {value}"); 
     }
 
-    // Connect to the Service Bus
+    // Connect toohello Service Bus
     private static Lazy<ConnectionMultiplexer> lazyConnection = 
         new Lazy<ConnectionMultiplexer>(() =>
             {
@@ -164,41 +164,41 @@ Létrehoztunk egy Azure-függvény, amely egy Service Bus-üzenetsorba olvassa b
 
 ````
 
-## <a name="start-the-stream-analytics-job"></a>A Stream Analytics-feladat indítása
-1. A telcodatagen.exe alkalmazás indításához. A használati a következőképpen történik:````telcodatagen.exe [#NumCDRsPerHour] [SIM Card Fraud Probability] [#DurationHours]````
-2. A Stream Analytics-feladat paneljéről a portálon, kattintson a **Start** az oldal tetején.
+## <a name="start-hello-stream-analytics-job"></a>Hello Stream Analytics-feladat indítása
+1. Hello telcodatagen.exe alkalmazás indításához. hello használata a következőképpen történik:````telcodatagen.exe [#NumCDRsPerHour] [SIM Card Fraud Probability] [#DurationHours]````
+2. A Stream Analytics-feladat panelen hello hello portálon kattintson az **Start** hello oldal hello tetején.
    
     ![Képernyőkép a indítási feladat](./media/stream-analytics-functions-redis/starting-job.png)
-3. Az a **indítási feladat** panelen megjelenő, válassza ki **most** , majd a **Start** gomb a képernyő alján. A feladat állapotmódosítások indítása és futtatásának ideje módosításai után.
+3. A hello **indítási feladat** panelen megjelenő, válassza ki **most** majd hello **Start** üdvözlő képernyőt hello alján gombra. hello feladat állapota tooStarting és egyes módosítások tooRunning időpont után.
    
     ![Képernyőkép a start feladat idő kiválasztása](./media/stream-analytics-functions-redis/start-job-time.png)
 
 ## <a name="run-solution-and-check-results"></a>Futtassa a megoldás és eredmények ellenőrzése
-Visszatér a **ServiceBusQueueTrigger** lapon meg kell jelennie jelentkezzen utasításokat. Ezek a naplók megjelenítése a Service Bus-üzenetsorba, tegye közzé az adatbázis kapott azonosítóértékeket valami, és be szeretné olvasni, az idő használata a kulcs!
+Ha visszalép tooyour **ServiceBusQueueTrigger** lapon meg kell jelennie jelentkezzen utasításokat. Ezek a naplók megjelenítése hello Service Bus-üzenetsorba, tegye közzé hello adatbázis kapott azonosítóértékeket valami, és be szeretné olvasni hello időparaméterrel hello kulcsként ki!
 
-Győződjön meg arról, hogy az adatok a Redis gyorsítótárt, lépjen a Redis gyorsítótár lap az új portálon (ahogy az előző [hozzon létre egy Azure Redis Cache](#Create-an-Azure-Redis-Cache) lépés), és válassza a konzolt.
+amely az adatok a Redis gyorsítótár tooverify tooyour Redis gyorsítótár oldal hello új portálon lépjen (ahogy az előző hello [hozzon létre egy Azure Redis Cache](#Create-an-Azure-Redis-Cache) lépés), és válassza a konzolt.
 
-Ezután írhat Redis-parancsok futtatásával győződjön meg arról, hogy adatokat valójában a gyorsítótárban.
+Ezután írhat Redis parancsok tooconfirm, hogy adatokat valójában hello gyorsítótárában.
 
 ![Képernyőkép a Redis-konzol](./media/stream-analytics-functions-redis/redis-console.png)
 
 ## <a name="next-steps"></a>Következő lépések
-A rendszer az Azure Functions új szempontot várakozással, és együtt teheti meg a Stream analytics Reméljük, ez új lehetőségek oldja meg. Ha olyan visszajelzést, amit meg akar mellett a, szabadon használhatja a [Azure UserVoice webhelyén](https://feedback.azure.com/forums/270577-stream-analytics).
+Hello új szempontot Azure Functions Izgatottan várja el a Stream analytics együtt teheti meg, és Reméljük, ez új lehetőségek oldja meg. Ha olyan visszajelzést, amit meg akar mellett a, érzi, hogy szabad toouse hello [Azure UserVoice webhelyén](https://feedback.azure.com/forums/270577-stream-analytics).
 
-Ha új Microsoft Azure, azt hívhat meg, hogy próbálja ki által regisztrációt egy [ingyenes Azure próba-fiókot](https://azure.microsoft.com/pricing/free-trial/). Ha még nem ismeri a Stream Analytics, akkor kérjük [az első Stream Analytics-feladat létrehozása](stream-analytics-create-a-job.md).
+Ha új Microsoft Azure, a Microsoft meghívhatjuk tootry által végzett regisztrációt azt egy [ingyenes Azure próba-fiókot](https://azure.microsoft.com/pricing/free-trial/). Ha új tooStream Analytics áll, akkor azt meghívhatjuk túl[az első Stream Analytics-feladat létrehozása](stream-analytics-create-a-job.md).
 
 Ha bármelyik segítséget vagy kérdése van, írjon [MSDN](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics) vagy [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-stream-analytics) fórumok. 
 
-Megtekintheti a következőket is:
+Azt is láthatja, hogy a következő erőforrások hello:
 
 * [Az Azure Functions fejlesztői segédanyagai](../azure-functions/functions-reference.md)
 * [Az Azure Functions C# fejlesztői leírás](../azure-functions/functions-reference-csharp.md)
 * [Az Azure Functions F # fejlesztői leírás](../azure-functions/functions-reference-fsharp.md)
 * [Az Azure Functions NodeJS fejlesztői leírás](../azure-functions/functions-reference.md)
 * [Az Azure Functions eseményindítók és kötések](../azure-functions/functions-triggers-bindings.md)
-* [Azure Redis Cache figyelése](../redis-cache/cache-how-to-monitor.md)
+* [Hogyan toomonitor Azure Redis Cache-gyorsítótár](../redis-cache/cache-how-to-monitor.md)
 
-Ezek naprakész állapotát az összes a legújabb híreket és szolgáltatásokat, hajtsa végre a [ @AzureStreaming ](https://twitter.com/AzureStreaming) a Twitteren.
+minden hello legújabb híreket és szolgáltatásokat, naprakész toostay kövesse [ @AzureStreaming ](https://twitter.com/AzureStreaming) a Twitteren.
 
 [fraud-detection]: stream-analytics-real-time-fraud-detection.md
 [servicebus-getstarted]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md

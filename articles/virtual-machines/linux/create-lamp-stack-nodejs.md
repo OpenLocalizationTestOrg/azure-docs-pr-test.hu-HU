@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CLI 1.0 rendelkező Linux virtuális gép üzembe helyezéshez LÁMPA |} Microsoft Docs"
-description: "Útmutató a LÁMPA verem telepítése egy Linux virtuális gépre az Azure-ban"
+title: "a Linux virtuális gépen a hello Azure CLI 1.0 LÁMPA aaaDeploy |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooinstall hello LÁMPA verem a Linux virtuális gép az Azure-ban"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: jluk
@@ -15,36 +15,36 @@ ms.devlang: NA
 ms.topic: article
 ms.date: 2/21/2017
 ms.author: juluk
-ms.openlocfilehash: feba2fb20d1831e92358ff5d1b4c9589d63d28dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e78a82d388ce68710933b9b673aa1b2460bdbb14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-lamp-stack-with-the-azure-cli-10"></a>LÁMPA verem az Azure CLI 1.0 és központi telepítése
-Ez a cikk végigvezeti egy Apache webkiszolgálón, a MySQL és a PHP (a LÁMPA stack) Azure központi telepítése. Egy Azure-fiókra lesz szüksége ([ingyenes próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/)) és a [Azure CLI](../../cli-install-nodejs.md) , amely [az Azure-fiókjával kapcsolódik](../../xplat-cli-connect.md).
+# <a name="deploy-lamp-stack-with-hello-azure-cli-10"></a>LÁMPA verem hello Azure CLI 1.0 és központi telepítése
+Ez a cikk bemutatja, hogyan hogyan toodeploy Apache webalkalmazás-kiszolgáló, a MySQL és a PHP (hello LÁMPA stack) az Azure-on. Egy Azure-fiókra lesz szüksége ([ingyenes próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/)) és hello [Azure CLI](../../cli-install-nodejs.md) , amely [tooyour Azure-fiók csatlakoztatva](../../xplat-cli-connect.md).
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-- [Az azure CLI 1.0] – a parancssori felületen a klasszikus és resource management üzembe helyezési modellel (a cikk)
-- [Azure CLI 2.0](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
+- [Az azure CLI 1.0] – a parancssori felületen hello klasszikus és resource management üzembe helyezési modellel (a cikk)
+- [Az Azure CLI 2.0](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell
 
 ```
-# One command to create a resource group holding a VM with LAMP already on it
+# One command toocreate a resource group holding a VM with LAMP already on it
 $ azure group create -n uniqueResourceGroup -l westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json
 ```
 
 * A meglévő virtuális gép LÁMPA telepítése
 
 ```
-# Two commands: one updates packages, the other installs Apache, MySQL, and PHP
+# Two commands: one updates packages, hello other installs Apache, MySQL, and PHP
 user@ubuntu$ sudo apt-get update
 user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 ```
 
 ## <a name="deploy-lamp-on-new-vm-walkthrough"></a>Az új virtuális gép forgatókönyv LÁMPA telepítése
-Hozzon létre elindíthatja egy [erőforráscsoport](../../azure-resource-manager/resource-group-overview.md) , amely az új virtuális Gépet fogja tartalmazni:
+Elindíthatja, hozzon létre egy [erőforráscsoport](../../azure-resource-manager/resource-group-overview.md) fogja tartalmazni, amely új virtuális gép hello:
 
     $ azure group create uniqueResourceGroup westus
     info:    Executing command group create
@@ -59,14 +59,14 @@ Hozzon létre elindíthatja egy [erőforráscsoport](../../azure-resource-manage
     data:
     info:    group create command OK
 
-Hozzon létre a virtuális gépért, használhatja az Azure Resource Manager sablon már megírt található [ide a Githubon](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
+toocreate hello virtuális gépért, használja az Azure Resource Manager sablon már megírt található [ide a Githubon](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
 
     $ azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json uniqueResourceGroup uniqueLampName
 
 Néhány további bemenetek értesítése választ kell megjelennie:
 
     info:    Executing command group deployment create
-    info:    Supply values for the following parameters
+    info:    Supply values for hello following parameters
     storageAccountNamePrefix: lampprefix
     location: westus
     adminUsername: someUsername
@@ -76,7 +76,7 @@ Néhány további bemenetek értesítése választ kell megjelennie:
     info:    Initializing template configurations and parameters
     info:    Creating a deployment
     info:    Created template deployment "uniqueLampName"
-    info:    Waiting for deployment to complete
+    info:    Waiting for deployment toocomplete
     data:    DeploymentName     : uniqueLampName
     data:    ResourceGroupName  : uniqueResourceGroup
     data:    ProvisioningState  : Succeeded
@@ -97,17 +97,17 @@ Néhány további bemenetek értesítése választ kell megjelennie:
     data:    ubuntuOSVersion           String        14.04.2-LTS
     info:    group deployment create command OK
 
-Most létrehozott egy Linux virtuális Gépet a LÁMPA már telepítve van-e. Ha kívánja, ellenőrizheti a telepítést le Ugrás [ellenőrizze LÁMPA sikeresen telepítve](#verify-lamp-successfully-installed).
+Most létrehozott egy Linux virtuális Gépet a LÁMPA már telepítve van-e. Ha kívánja, ellenőrizheti átugorja túl hello telepítés[ellenőrizze LÁMPA sikeresen telepítve](#verify-lamp-successfully-installed).
 
 ## <a name="deploy-lamp-on-existing-vm-walkthrough"></a>LÁMPA telepített meglévő virtuális gép forgatókönyv
-Ha a Linux virtuális gép létrehozása segítségre van szüksége, látogasson [Itt megtudhatja, hogyan hozzon létre egy Linux virtuális Gépet a](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Ezt követően kell SSH a Linux virtuális gép be. Ha SSH-kulcs létrehozása segítségre van szüksége, látogasson [itt SSH-kulcs létrehozása Linux/Mac hogyan](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Ha a Linux virtuális gép létrehozása segítségre van szüksége, látogasson [ide toolearn hogyan toocreate Linux virtuális gép](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). A következő lépésben tooSSH hello Linux virtuális gép be. Ha SSH-kulcs létrehozása segítségre van szüksége, látogasson [ide toolearn hogyan toocreate egy SSH-kulcsot a Linux/Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 Ha már rendelkezik egy SSH-kulccsal, kísérhet előre és SSH a parancssorból a Linux virtuális Gépet a `ssh exampleUsername@exampleDNS`.
 
-Most, hogy a Linux virtuális Gépen belül dolgozik, akkor azt is végezze el a LÁMPA verem telepítését Debian-alapú terjesztéseket. A pontos parancsok eltérőek lehetnek a más Linux disztribúciókkal.
+Most, hogy a Linux virtuális Gépen belül dolgozik, akkor azt is bízná hello LÁMPA verem telepítését Debian-alapú terjesztéseket. az egyéb Linux disztribúciókkal hello pontos parancsok eltérőek lehetnek.
 
 #### <a name="installing-on-debianubuntu"></a>Debian/Ubuntu telepítése
-A következő csomagok telepítve van szüksége: `apache2`, `mysql-server`, `php5`, és `php5-mysql`. Közvetlenül grabbing ezeket a csomagokat, vagy használja a Tasksel telepítheti ezeket a csomagokat. Mindkét lehetőség utasításokat alább láthatók.
-Telepítése előtt kell letölteni, és frissítse a csomag listája.
+A következő telepített csomagok hello van szüksége: `apache2`, `mysql-server`, `php5`, és `php5-mysql`. Közvetlenül grabbing ezeket a csomagokat, vagy használja a Tasksel telepítheti ezeket a csomagokat. Mindkét lehetőség utasításokat alább láthatók.
+Telepítése előtt kell toodownload, és frissítse a csomag listája.
 
     user@ubuntu$ sudo apt-get update
 
@@ -122,47 +122,47 @@ Másik megoldásként letöltheti a Tasksel, a Debian/Ubuntu eszköz, amely töb
     user@ubuntu$ sudo apt-get install tasksel
     user@ubuntu$ sudo tasksel install lamp-server
 
-Miután az előző beállítások valamelyikét, kérni fogja ezeket a csomagokat és a különböző más függőségek telepítése. Nyomja meg az "y", majd az "Enter" továbbra is, és állítsa be a rendszergazdai jelszó a MySQL más lépéseket követve. Ez telepíti a minimálisan szükséges PHP-bővítmények a MySQL PHP használatához szükséges. 
+Miután hello előző beállítások valamelyikét, fog felszólító tooinstall kell ezeket a csomagokat és a különböző más függőségek. Nyomja meg az "y", majd az "Enter" toocontinue, és hajtsa végre az összes többi kér tooset rendszergazdai jelszó MySQL. A MySQL hello minimálisan szükséges PHP szükséges bővítmények toouse PHP Ezzel telepíti. 
 
 ![][1]
 
-Futtassa a következő parancsot, hogy más PHP-bővítményeket, amelyek csomagként érhető el:
+Futtassa a következő parancs toosee hello más PHP-bővítményeket, amelyek csomagként érhető el:
 
     user@ubuntu$ apt-cache search php5
 
 
 #### <a name="create-infophp-document"></a>Info.php dokumentum létrehozása
-Meg kell tudni ellenőrizni a Apache, a MySQL és a PHP verziójának rendelkezik a parancssor használatával történő beírásával `apache2 -v`, `mysql -v`, vagy `php -v`.
+Kell tudni toocheck Apache, a MySQL és a PHP verziójának rendelkezik hello parancssor használatával történő beírásával `apache2 -v`, `mysql -v`, vagy `php -v`.
 
-Ha azt szeretné, további teszteléséhez, létrehozhat egy gyors PHP adatai lap használatával jeleníthetők meg a böngészőben. Hozzon létre egy fájl Nano szövegszerkesztőben ezzel a paranccsal:
+Ha szeretné tootest például további, gyors PHP-információ lapon tooview hozhat létre a böngészőben. Hozzon létre egy fájl Nano szövegszerkesztőben ezzel a paranccsal:
 
     user@ubuntu$ sudo nano /var/www/html/info.php
 
-GNU Nano szövegszerkesztőben belül adja hozzá a következő sorokat:
+Hello GNU Nano szövegszerkesztőben belül adja hozzá az alábbi hello:
 
     <?php
     phpinfo();
     ?>
 
-Ezután mentse, és zárja be a szövegszerkesztőben.
+Ezután mentse, és zárja be a hello szövegszerkesztőben.
 
 Ezért minden új telepítések életbe léptetéséhez indítsa újra a Apache ezzel a paranccsal.
 
     user@ubuntu$ sudo service apache2 restart
 
 ## <a name="verify-lamp-successfully-installed"></a>Ellenőrizze a LÁMPA sikeresen telepítve
-Most már ellenőrizheti, a PHP adatok lapján létrehozott nyisson meg egy böngészőt, és http://youruniqueDNS/info.php címen. Ez a rendszerkép hasonlóan kell kinéznie.
+Most nyisson meg egy böngészőt, és toohttp://youruniqueDNS/info.php fog létrehozott hello PHP adatok lapján ellenőrizheti. Az alábbihoz hasonló toothis kép.
 
 ![][2]
 
-Az Apache telepítése akkor http://youruniqueDNS/ címen a Apache2 Ubuntu alapértelmezett oldal megtekintésével ellenőrizheti. Ez a rendszerkép hasonlót meg kell jelennie.
+Az Apache telepítése tooyou http://youruniqueDNS/ címen hello Apache2 Ubuntu alapértelmezett oldal megtekintésével ellenőrizheti. Ez a rendszerkép hasonlót meg kell jelennie.
 
 ![][3]
 
 Gratulálunk, rendelkezik a telepítő csak egy LÁMPA verem az Azure virtuális gép!
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse meg a LÁMPA veremben az Ubuntu dokumentáció:
+Tekintse meg a hello hello LÁMPA veremben Ubuntu dokumentáció:
 
 * [https://help.ubuntu.com/Community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 

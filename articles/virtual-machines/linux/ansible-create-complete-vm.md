@@ -1,6 +1,6 @@
 ---
-title: "Ansible használatával teljes Linux virtuális gép létrehozása az Azure-ban |} Microsoft Docs"
-description: "Ansible használata létrehozását és kezelését a teljes Linux virtuálisgép-környezetet az Azure-ban"
+title: "aaaUse Ansible toocreate egy teljes Linux virtuális Gépet az Azure-ban |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Ansible toocreate és kezelése a Linux virtuális gép teljes körű környezetet az Azure-ban"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: b2fcc288b40c12a9b3f966156ee2eedf4acca313
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 970b0427f39fc23240f9faab868196ca4f444e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-complete-linux-virtual-machine-environment-in-azure-with-ansible"></a>Hozzon létre egy teljes Linux virtuális gép környezetet az Azure-ban Ansible
-Ansible lehetővé teszi, hogy automatizálja a központi telepítési és konfigurációs az erőforrásoknak a környezetben. Ansible segítségével kezelheti a virtuális gépek (VM), ugyanaz, mint bármely egyéb erőforrásokat az Azure-ban. Ez a cikk bemutatja, hogyan hozzon létre egy teljes körű Linux környezetet és az azt támogató Ansible erőforrásokhoz. Azt is megtudhatja hogyan [hozzon létre egy egyszerű virtuális gép Ansible](ansible-create-vm.md).
+Ansible lehetővé teszi a erőforrások tooautomate hello telepítését és konfigurálását a környezetben. A virtuális gépek (VM) Ansible toomanage használja az Azure-ban, hello ugyanaz, mint bármely egyéb erőforrásokat. Ez a cikk bemutatja, hogyan toocreate teljes körű Linux környezetet és az azt támogató Ansible erőforrásokhoz. Itt olvashat hogyan túl[hozzon létre egy egyszerű virtuális gép Ansible](ansible-create-vm.md).
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ansible az Azure-erőforrások kezeléséhez, a következőkre lesz szüksége:
+toomanage Azure Ansible erőforrásokhoz, a következő hello szüksége:
 
-- Ansible és a gazdagép a rendszerre telepített Azure Python SDK-moduljai.
+- Ansible és a gazdagép a rendszerre telepített Azure Python SDK modulok hello.
     - Ansible telepíthető [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73), és [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)
-- Az Azure hitelesítő adatait, és Ansible konfigurált is használhatja őket.
+- Azure hitelesítő adatait, és a beállított Ansible toouse őket.
     - [Az Azure hitelesítő adatok létrehozása és Ansible konfigurálása](ansible-install-configure.md#create-azure-credentials)
-- Az Azure CLI 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. 
-    - Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). Is [felhő rendszerhéj](/azure/cloud-shell/quickstart) a böngészőből.
+- Az Azure CLI 2.0.4 verzió vagy újabb. Futtatás `az --version` toofind hello verziója. 
+    - Ha tooupgrade van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). Is [felhő rendszerhéj](/azure/cloud-shell/quickstart) a böngészőből.
 
 
 ## <a name="create-virtual-network"></a>Virtuális hálózat létrehozása
-Egy Ansible forgatókönyv a következő szakasz létrehoz egy virtuális hálózatot nevű *myVnet* a a *10.0.0.0/16* címtér:
+hello egy Ansible forgatókönyv a következő szakasz létrehoz egy virtuális hálózatot nevű *myVnet* a hello *10.0.0.0/16* címtér:
 
 ```yaml
 - name: Create virtual network
@@ -47,7 +47,7 @@ Egy Ansible forgatókönyv a következő szakasz létrehoz egy virtuális háló
     address_prefixes: "10.10.0.0/16"
 ```
 
-Adjon hozzá egy alhálózatot, az alábbi szakasz hoz nevű alhálózat *mySubnet* a a *myVnet* virtuális hálózat:
+tooadd alhálózat, a következő szakasz hello alhálózatot hoz létre nevű *mySubnet* a hello *myVnet* virtuális hálózat:
 
 ```yaml
 - name: Add subnet
@@ -60,7 +60,7 @@ Adjon hozzá egy alhálózatot, az alábbi szakasz hoz nevű alhálózat *mySubn
 
 
 ## <a name="create-public-ip-address"></a>Nyilvános IP-cím létrehozása
-Internetes erőforrások eléréséhez hozzon létre, és egy nyilvános IP-címet rendel a virtuális Gépet. A következő szakasz egy Ansible alkalmazástervezési hoz létre egy nyilvános IP-cím nevű *myPublicIP*:
+tooaccess erőforrások közötti hello Internet, hozzon létre, és rendelje a nyilvános IP-cím tooyour virtuális gép. hello egy Ansible forgatókönyv a következő szakasz hoz létre egy nyilvános IP-cím nevű *myPublicIP*:
 
 ```yaml
 - name: Create public IP address
@@ -72,7 +72,7 @@ Internetes erőforrások eléréséhez hozzon létre, és egy nyilvános IP-cím
 
 
 ## <a name="create-network-security-group"></a>Hálózati biztonsági csoport létrehozása
-Hálózati biztonsági csoportok szabályozhatja a hálózati forgalmat a virtuális Gépet mindkét. A következő szakasz egy Ansible alkalmazástervezési hoz létre a hálózati biztonsági csoport nevű *myNetworkSecurityGroup* és a szabály az SSH-forgalmat engedélyezi a 22-es TCP-portot határozza meg:
+Hálózati biztonsági csoportok hello folyamatábrán hálózati forgalom mindkét a virtuális Gépet. hello egy Ansible forgatókönyv a következő szakasz a hálózati biztonsági csoportot hoz létre nevű *myNetworkSecurityGroup* határozza meg a szabály tooallow SSH forgalom 22-es TCP-porton és:
 
 ```yaml
 - name: Create Network Security Group that allows SSH
@@ -90,7 +90,7 @@ Hálózati biztonsági csoportok szabályozhatja a hálózati forgalmat a virtu�
 
 
 ## <a name="create-virtual-network-interface-card"></a>Hozzon létre a virtuális hálózati kártya
-A virtuális hálózati kártya (NIC) a virtuális gép csatlakozik egy adott virtuális hálózaton, a nyilvános IP-cím és a hálózati biztonsági csoport. A következő szakasz egy Ansible alkalmazástervezési hoz létre a virtuális hálózati adapter nevű *myNIC* csatlakozik a létrehozott virtuális hálózati erőforrások:
+A virtuális hálózati kártya (NIC) a virtuális hálózat, a nyilvános IP-cím és a hálózati biztonsági csoport VM tooa csatlakozik. hello egy Ansible forgatókönyv a következő szakasz hoz létre a virtuális hálózati adapter nevű *myNIC* csatlakozó virtuális hálózati erőforrások toohello hozott létre:
 
 ```yaml
 - name: Create virtual network inteface card
@@ -105,7 +105,7 @@ A virtuális hálózati kártya (NIC) a virtuális gép csatlakozik egy adott vi
 
 
 ## <a name="create-virtual-machine"></a>Virtuális gép létrehozása
-Az utolsó lépés a virtuális gép létrehozása és használata a létrehozott összes erőforrást. A következő szakasz egy Ansible alkalmazástervezési hoz létre egy elnevezett VM *myVM* , és csatolja a virtuális hálózati adapter nevű *myNIC*. Adja meg a saját nyilvános kulcs adatai a *key_data* párosítsa a következőképpen:
+hello végső lépés toocreate egy virtuális Gépet, és létrehozott összes hello erőforrások használatára. hello egy Ansible forgatókönyv a következő szakasz hoz létre egy elnevezett VM *myVM* és rendeli hello nevű virtuális hálózati adapter *myNIC*. Adja meg a saját nyilvános kulcs adatait hello *key_data* párosítsa a következőképpen:
 
 ```yaml
 - name: Create VM
@@ -127,7 +127,7 @@ Az utolsó lépés a virtuális gép létrehozása és használata a létrehozot
 ```
 
 ## <a name="complete-ansible-playbook"></a>Teljes Ansible forgatókönyv
-Ezek a szakaszok egyesítik, hozzon létre egy Ansible alkalmazástervezési nevű *azure_create_complete_vm.yml* , majd illessze be az alábbiakat:
+toobring ezekben a szakaszokban együtt, hozzon létre egy Ansible alkalmazástervezési nevű *azure_create_complete_vm.yml* és a Beillesztés hello a következő tartalmát:
 
 ```yaml
 - name: Create Azure VM
@@ -187,19 +187,19 @@ Ezek a szakaszok egyesítik, hozzon létre egy Ansible alkalmazástervezési nev
         version: latest
 ```
 
-Ansible kell azokat az erőforrások telepítése egy erőforráscsoportot. Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/vm#create) paranccsal. Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a a *eastus* helye:
+Ansible kell egy erőforrás csoport toodeploy az összes erőforrást. Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/vm#create) paranccsal. hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helye:
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-A teljes méretű környezet Ansible létrehozásához, futtassa a forgatókönyv az alábbiak szerint:
+toocreate hello teljes méretű környezet Ansible hello alkalmazástervezési futtassa a következőképpen:
 
 ```bash
 ansible-playbook azure_create_complete_vm.yml
 ```
 
-A kimeneti hasonlít-e a következő példa bemutatja, hogy a virtuális gép létrehozása sikeresen megtörtént:
+hello kimeneti a következőhöz hasonló toohello hello bemutatja a virtuális gép létrehozása sikeresen befejeződött a következő:
 
 ```bash
 PLAY [Create Azure VM] ****************************************************
@@ -230,4 +230,4 @@ localhost                  : ok=7    changed=6    unreachable=0    failed=0
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a példa többek között a szükséges virtuális hálózati erőforrások teljes körű Virtuálisgép-környezetet hoz létre. Például egy közvetlenül a virtuális gép létrehozása a meglévő hálózati erőforrások alapértelmezett beállításokkal, tekintse meg a [hozzon létre egy virtuális Gépet](ansible-create-vm.md).
+Ez a példa többek között a virtuális hálózati erőforrások hello szükséges teljes körű Virtuálisgép-környezetet hoz létre. A több közvetlen példa toocreate egy virtuális Gépet a meglévő hálózati erőforrások alapértelmezett beállításokkal, tekintse meg [hozzon létre egy virtuális Gépet](ansible-create-vm.md).

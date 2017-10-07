@@ -1,6 +1,6 @@
 ---
-title: "Azure-előfizetés korlátozásai és a kvóták |} Microsoft Docs"
-description: "A közös Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések listáját tartalmazza. Ide tartoznak a korlátjának növelésére korlátok együtt maximális értékeket."
+title: "aaaAzure előfizetés korlátozásai és a kvóták |} Microsoft Docs"
+description: "A közös Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések listáját tartalmazza. Ide tartoznak a hogyan tooincrease korlátozza a maximális értékek együtt."
 services: 
 documentationcenter: 
 author: rothja
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: byvinyal
-ms.openlocfilehash: a76acd67e9ba7822f2837b3c08e2ede389047f11
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a754d56124520791254ab8f1729808f0750ff222
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Az Azure-előfizetésekre és -szolgáltatásokra vonatkozó korlátozások, kvóták és megkötések
-Ez a dokumentum mutatja a leggyakrabban használt Microsoft Azure korlátok, kvóták néven is ismert. Ez a dokumentum jelenleg nem fedi le az összes Azure-szolgáltatásokhoz. Adott idő alatt a lista lesz kibontható vagy frissíteni, amelyek több, a platform.
+Ez a dokumentum soroljuk hello leggyakrabban használt Microsoft Azure-korlátok, kvóták néven is ismert. Ez a dokumentum jelenleg nem fedi le az összes Azure-szolgáltatásokhoz. Az idő múlásával hello lista kibontásra váró, és hello platform további toocover frissítése.
 
-Látogasson el a [Azure díjszabása áttekintése](https://azure.microsoft.com/pricing/) tudhat meg többet az Azure-beli árakról. Van, a költségek használatával megbecsülhető a [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/) vagy egy szolgáltatás árképzési részleteit megjelenítő oldalon felkeresésével (például [Windows virtuális gépek](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)). Tippek a költségek kezeléséhez, tekintse meg a [Azure számlázás és költség felügyeleti váratlan költségek megakadályozása](billing/billing-getting-started.md).
-
-> [!NOTE]
-> Ha azt szeretné, a korlát vagy a fenti kvóta emelése a **alapértelmezett korlát**, [nyissa meg az online támogatás ügyfélkérés díjmentesen](azure-supportability/resource-manager-core-quotas-request.md). A korlátai nem léptethető elő fent a **maximális** az alábbi táblázatban szereplő érték. Ha nincs **maximális** oszlop, akkor az erőforrás nem állítható korlátokkal rendelkeznek. 
-> 
-> Ingyenes próba-előfizetések nem jogosultak a korlátot, vagy kvóta növeli. Ha egy ingyenes próbaverziót, frissíthet egy [használatalapú fizetés](https://azure.microsoft.com/offers/ms-azr-0003p/) előfizetés. További információkért lásd: [frissítése az Azure ingyenes próbaverzió használatalapú fizetésre](billing/billing-upgrade-azure-subscription.md).
-> 
-
-## <a name="limits-and-the-azure-resource-manager"></a>Korlátozásai és az Azure erőforrás-kezelő
-Már lehetséges a több Azure-erőforrások az Azure egyetlen erőforráscsoporthoz kombinálni. Erőforráscsoportok használata esetén, amelyek egyszer volt a globális korlátok regionális szinten az Azure Resource Manager felügyelhető legyen. Azure erőforráscsoport-sablonok kapcsolatos további információkért lásd: [Azure Resource Manager áttekintése](azure-resource-manager/resource-group-overview.md).
-
-Az alábbi korlátok új tábla összes különbséget korlátok megfelelően az Azure Resource Manager használatakor bővült. Például van egy **előfizetési korlátozásait** tábla és egy **előfizetési korlátozásait - Azure Resource Manager** tábla. Ha a megadott korlát érvényes, a mindkét forgatókönyvet, csak látható az első tábla. Hiányában korlátok legyenek globális minden régióban.
+Látogasson el a [Azure díjszabása áttekintése](https://azure.microsoft.com/pricing/) további információk az Azure-beli árakról toolearn. Van, a költségek hello használatával megbecsülheti [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/) vagy hello díjszabás részleteit megjelenítő oldalon a szolgáltatás számára (például [Windows virtuális gépek](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)). A tippek toohelp a költségeinek kezelése című [Azure számlázás és költség felügyeleti váratlan költségek megakadályozása](billing/billing-getting-started.md).
 
 > [!NOTE]
-> Fontos, hogy Azure erőforráscsoport-sablonok az erőforrásokra vonatkozó kvótákat /-régióban elérhető-e az előfizetés, és nem előfizetésenként, mert a szolgáltatás felügyeleti kvóták emelje ki. Most használja core kvóták példaként. Ha magok támogatása a kvóta növelését van szüksége, döntse el, hogy hány magok régiók használja, és végezze el az összegek és régiók, amelyet egy adott kérelem az Azure-erőforráscsoport core kvóták szüksége. Ezért, ha szeretné Nyugat-Európában 30 mag használatával futtassa az alkalmazást; Nyugat-Európában 30 magok kifejezetten igényeljen. Azonban Ön nem rendelkezik a core kvóta növelése más régióban – csak Nyugat-Európában fog rendelkezni a 30-core kvótát.
+> Ha azt szeretné, tooraise hello korlátot vagy a fenti hello kvóta **alapértelmezett korlát**, [nyissa meg az online támogatás ügyfélkérés díjmentesen](azure-supportability/resource-manager-core-quotas-request.md). hello korlátai nem léptethető fent hello **maximális** a következő táblák hello szereplő érték. Ha nincs **maximális** oszlopban, majd hello erőforrás nem állítható korlátokkal rendelkeznek. 
+> 
+> Ingyenes próba-előfizetések nem jogosultak a korlátot, vagy kvóta növeli. Ha egy ingyenes próbaverziót, frissítheti tooa [használatalapú fizetés](https://azure.microsoft.com/offers/ms-azr-0003p/) előfizetés. További információkért lásd: [Azure ingyenes próbaverzió frissítése tooPay-,-akkor-Ugrás](billing/billing-upgrade-azure-subscription.md).
+> 
+
+## <a name="limits-and-hello-azure-resource-manager"></a>Korlátozásai és hello Azure Resource Manager
+Már lehetséges toocombine tooa a több Azure-erőforrások egy Azure-erőforráscsoportot. Erőforráscsoportok használatakor egyszer volt a globális korlátozza az Azure Resource Manager hello regionális szintű felügyelhető legyen. Azure erőforráscsoport-sablonok kapcsolatos további információkért lásd: [Azure Resource Manager áttekintése](azure-resource-manager/resource-group-overview.md).
+
+Az alábbi új tábla hello korlátok lett hozzáadott tooreflect összes különbséget korlátok hello Azure Resource Manager használata esetén. Például van egy **előfizetési korlátozásait** tábla és egy **előfizetési korlátozásait - Azure Resource Manager** tábla. Ha a megadott korlát érvényes tooboth forgatókönyvek, csak látható hello első tábla. Hiányában korlátok legyenek globális minden régióban.
+
+> [!NOTE]
+> Ez megegyezik, hogy Azure erőforráscsoport-sablonok az erőforrásokra vonatkozó kvótákat /-régióban elérhető-e az előfizetés, és nem előfizetésenként, fontos tooemphasize hello szolgáltatás felügyeleti kvóták. Most használja core kvóták példaként. Ha a kvóta növeléséhez magok támogatása toorequest van szüksége, akkor toodecide hogyan szeretné, hogy melyik régióban toouse, és végezze el egy adott kérelem az Azure erőforráscsoport sok magok kvóták alapvető hello összegeket és a kívánt régiók. Ezért ha toouse 30 kell processzormag, Nyugat-Európában toorun a az alkalmazás Nyugat-Európában 30 magok kifejezetten igényeljen. Azonban Ön nem rendelkezik a core kvóta növelése más régióban – csak Nyugat-Európában hello 30-core kvóta lesz.
 > <!-- -->
-> Ennek köszönhetően Ön érdemes figyelembe venni annak eldöntése, az Azure-erőforráscsoport kvóták kell lennie a munkaterheléshez bármely egy régióban, és minden régióban, amelybe a központi telepítés tervezi, hogy mennyi kérelem. Lásd: [telepítési problémák elhárítása](resource-manager-common-deployment-errors.md) további segítséget itt találhat az aktuális kvóták adott régióban felderítéséhez.
+> Ennek eredményeképpen előfordulhat azt hasznos tooconsider dönt, hogy mi az Azure-erőforráscsoport kvóták kell toobe minden olyan egy régió tartozik, és kérelmet, amely minden régióban, amelybe a központi telepítés tervezi összeg a munkaterhelés számára. Lásd: [telepítési problémák elhárítása](resource-manager-common-deployment-errors.md) további segítséget itt találhat az aktuális kvóták adott régióban felderítéséhez.
 > 
 > 
 
@@ -59,7 +59,7 @@ Az alábbi korlátok új tábla összes különbséget korlátok megfelelően az
 * [Batch](#batch-limits)
 * [BizTalk szolgáltatások](#biztalk-services-limits)
 * [TARTALOMKÉZBESÍTÉSI HÁLÓZAT (CDN)](#cdn-limits)
-* [Cloud Services](#cloud-services-limits)
+* [Felhőszolgáltatások](#cloud-services-limits)
 * [Tárolópéldányok](#container-instances-limits)
 * [Data Factory](#data-factory-limits)
 * [Data Lake analitikai szolgáltatás](#data-lake-analytics-limits)
@@ -79,16 +79,16 @@ Az alábbi korlátok új tábla összes különbséget korlátok megfelelően az
 * [Értesítési központ szolgáltatás](#notification-hub-service-limits)
 * [Erőforráscsoport](#resource-group-limits)
 * [Scheduler](#scheduler-limits)
-* [Keresés](#search-limits)
+* [Search](#search-limits)
 * [Szolgáltatásbusz](#service-bus-limits)
 * [Site Recovery](#site-recovery-limits)
 * [SQL Database](#sql-database-limits)
-* [Storage](#storage-limits)
+* [Tárolás](#storage-limits)
 * [StorSimple rendszer](#storsimple-system-limits)
 * [Stream Analytics](#stream-analytics-limits)
 * [Előfizetés](#subscription-limits)
 * [Traffic Manager](#traffic-manager-limits)
-* [Virtual Machines](#virtual-machines-limits)
+* [Virtuális gépek](#virtual-machines-limits)
 * [Virtual Machine Scale Sets](#virtual-machine-scale-sets-limits)
 
 ### <a name="subscription-limits"></a>Előfizetési korlátozásait
@@ -96,7 +96,7 @@ Az alábbi korlátok új tábla összes különbséget korlátok megfelelően az
 [!INCLUDE [azure-subscription-limits](../includes/azure-subscription-limits.md)]
 
 #### <a name="subscription-limits---azure-resource-manager"></a>Előfizetési korlátozásait - Azure Resource Manager
-Az alábbi korlátokat alkalmazza, ha az Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával. Korlátok, nem módosított rendelkező az Azure erőforrás-kezelő nem az alábbiak. Tekintse meg az előző táblázatban ezeket a határértékeket.
+a következő korlátozások hello alkalmazza, ha hello Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával. Nem módosított rendelkező hello Azure Resource Manager korlátok alább nem láthatók. Az ilyen határidők toohello előző táblázatban tájékozódhat.
 
 Erőforrás-kezelő kérelmekre vonatkozó korlátozások kezelésére vonatkozó információkért lásd: [sávszélesség-szabályozás erőforrás-kezelő kérelmek](resource-manager-request-limits.md).
 
@@ -110,7 +110,7 @@ Erőforrás-kezelő kérelmekre vonatkozó korlátozások kezelésére vonatkoz�
 [!INCLUDE [azure-virtual-machines-limits](../includes/azure-virtual-machines-limits.md)]
 
 #### <a name="virtual-machines-limits---azure-resource-manager"></a>Virtuális gépek korlátok - Azure Resource Manager
-Az alábbi korlátokat alkalmazza, ha az Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával. Korlátok, nem módosított rendelkező az Azure erőforrás-kezelő nem az alábbiak. Tekintse meg az előző táblázatban ezeket a határértékeket.
+a következő korlátozások hello alkalmazza, ha hello Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával. Nem módosított rendelkező hello Azure Resource Manager korlátok alább nem láthatók. Az ilyen határidők toohello előző táblázatban tájékozódhat.
 
 [!INCLUDE [azure-virtual-machines-limits-azure-resource-manager](../includes/azure-virtual-machines-limits-azure-resource-manager.md)]
 
@@ -144,7 +144,7 @@ A tárfiókok korlátai további részletekért lásd: [Azure Storage méretezhe
 #### <a name="storage-service-limits"></a>Storage szolgáltatásra vonatkozó korlátozások
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 #### <a name="virtual-machine-disk-limits"></a>Virtuális gépek lemez korlátai 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
@@ -167,7 +167,7 @@ Lásd: [virtuálisgép-méretek](virtual-machines/linux/sizes.md?toc=%2fazure%2f
 [!INCLUDE [azure-cloud-services-limits](../includes/azure-cloud-services-limits.md)]
 
 ### <a name="app-service-limits"></a>App Service szolgáltatásra vonatkozó korlátok
-Az alábbi korlátokat App Service Web Apps, a Mobile Apps, az API-alkalmazások és a Logic Apps korlátok tartalmazza.
+hello következő korlátozza az App Service Web Apps, a Mobile Apps, az API-alkalmazások és a Logic Apps korlátok tartalmazza.
 
 [!INCLUDE [azure-websites-limits](../includes/azure-websites-limits.md)]
 
@@ -178,22 +178,22 @@ Az alábbi korlátokat App Service Web Apps, a Mobile Apps, az API-alkalmazások
 [!INCLUDE [azure-batch-limits](../includes/azure-batch-limits.md)]
 
 ### <a name="biztalk-services-limits"></a>BizTalk szolgáltatások korlátok
-A következő táblázat a korlátok Azure Biztalk szolgáltatások.
+hello következő táblázat hello korlátok Azure Biztalk szolgáltatások.
 
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="azure-cosmos-db-limits"></a>Az Azure Cosmos DB korlátok
-Azure Cosmos-adatbázis egy globális méretű adatbázist, amelyben átviteli sebesség és tárterület is méretezhető kezelni, függetlenül az alkalmazás által igényelt. Ha az Azure Cosmos DB biztosít méretezésének kérdése van, kérjük, küldjön e-mailek askcosmosdb@microsoft.com.
+Azure Cosmos-adatbázis egy olyan globális méretű adatbázis, mely átviteli sebesség és tárterület lehet méretezett toohandle függetlenül az alkalmazás által igényelt. Ha Azure Cosmos DB biztosít hello méretezésének kérdése van, kérjük, küldjön e-mailek tooaskcosmosdb@microsoft.com.
 
 ### <a name="mobile-engagement-limits"></a>A Mobile Engagement korlátok
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
 
 ### <a name="search-limits"></a>Keresési korlátok
-Tarifacsomagok határozza meg, a kapacitás és a keresőszolgáltatása határain. Szolgáltatásszintek:
+Tarifacsomagok hello kapacitás és a keresési szolgáltatás határain határozza meg. Szolgáltatásszintek:
 
 * *Szabad* értékelési és kis fejlesztési projektek szánt más Azure-előfizetők megosztott, több-bérlős szolgáltatást.
-* *Alapszintű* dedikált számítási erőforrások biztosít a termelési számítási feladatokhoz kisebb méretekben, magas rendelkezésre állású lekérdezés munkaterhelések legfeljebb három replikával.
-* *Standard (S1, S2, S3, S3 nagy sűrűségű)* értéke nagyobb a termelési számítási feladatokhoz. Több szinten vannak a standard csomagot, hogy Ön egy erőforrás-konfigurációhoz, amely a legjobban illik a munkaterhelés-profil.
+* *Alapszintű* biztosít a számítási erőforrások dedikált kisebb léptékű termelési számítási feladatokhoz toothree replikák a munkaterhelések magas rendelkezésre állású lekérdezés mentése.
+* *Standard (S1, S2, S3, S3 nagy sűrűségű)* értéke nagyobb a termelési számítási feladatokhoz. Több szinten vannak, hogy Ön egy erőforrás-konfigurációhoz, amely a legjobban illik a munkaterhelés profil hello standard csomagra.
 
 **Előfizetésenként korlátok**
 
@@ -203,7 +203,7 @@ Tarifacsomagok határozza meg, a kapacitás és a keresőszolgáltatása határa
 
 [!INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-További kapcsolatos részletesebb felügyeletét, például a dokumentum mérete, a lekérdezések száma másodpercenként, kulcsok, kérések és válaszok, használati korlátait: [szolgáltatási korlátait, az Azure Search](search/search-limits-quotas-capacity.md).
+toolearn részletesebb felügyeletét, például a dokumentum mérete, a lekérdezések száma másodpercenként, kulcsok, kérések és válaszok, használati korlátait kapcsolatos további információkért lásd: [szolgáltatási korlátait, az Azure Search](search/search-limits-quotas-capacity.md).
 
 ### <a name="media-services-limits"></a>A Media Services korlátok
 [!INCLUDE [azure-mediaservices-limits](../includes/azure-mediaservices-limits.md)]

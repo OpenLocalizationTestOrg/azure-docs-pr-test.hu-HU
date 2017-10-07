@@ -1,6 +1,6 @@
 ---
-title: "A StorSimple 8000 series eszköz figyelése |} Microsoft Docs"
-description: "Ismerteti a StorSimple Device Manager szolgáltatás a figyelheti a használati, i/o-teljesítmény és kapacitás kihasználtságát."
+title: "aaaMonitor a StorSimple 8000 series eszköz |} Microsoft Docs"
+description: "Ismerteti, hogyan toouse hello StorSimple Device Manager szolgáltatás toomonitor használati, i/o-teljesítmény és kapacitás kihasználtságát."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/02/2017
 ms.author: alkohli
-ms.openlocfilehash: ac11c6c8532007ee40db128dd9933c99a32a9420
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 092dab8dd301c50fc12316b4031a8d1b34fab876
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-monitor-your-storsimple-device"></a>A StorSimple Device Manager szolgáltatással a StorSimple eszköz figyelése
+# <a name="use-hello-storsimple-device-manager-service-toomonitor-your-storsimple-device"></a>Hello StorSimple Device Manager szolgáltatás toomonitor a StorSimple eszköz használata
 ## <a name="overview"></a>Áttekintés
-A StorSimple Device Manager szolgáltatás használatával figyelheti az adott eszközökön belül a StorSimple megoldásban. Hozzon létre egyéni diagramok i/o teljesítmény, tárolókapacitás használatát, hálózati teljesítményt és eszköz teljesítménymutatók alapján, és rögzítheti az irányítópulton azokat. További információkért látogasson el [testre szabhatja a portál irányítópultján](/articles/azure-portal/azure-portal-dashboards.md).
+A StorSimple megoldásban belül hello StorSimple Device Manager szolgáltatás toomonitor konkrét eszközökhöz használható. Hozzon létre egyéni diagramok i/o teljesítmény, tárolókapacitás használatát, hálózati teljesítményt és eszköz teljesítménymutatók alapján, és ezek toohello irányítópulton rögzítheti. További információ: túl[testre szabhatja a portál irányítópultján](/articles/azure-portal/azure-portal-dashboards.md).
 
-Az Azure portálon egy adott eszköz a figyelési adatok megtekintéséhez válassza ki a StorSimple Device Manager szolgáltatást. Az eszközök listájában válassza ki azt az eszközt, és folytassa a **figyelő**. Ezután láthatja a **kapacitás**, **használati**, és **teljesítmény** diagramokon a kijelölt eszközre vonatkozóan.
+tooview hello megfigyelési információk egy adott eszközre, a hello Azure-portálon, válassza ki a hello StorSimple Device Manager szolgáltatást. Az eszközök hello listából válassza ki azt az eszközt, és folytassa a túl**figyelő**. Láthatja majd hello **kapacitás**, **használati**, és **teljesítmény** diagramok hello kijelölt eszközre vonatkozóan.
 
 ## <a name="capacity"></a>Kapacitás
-**Kapacitás** nyomon követi a kiépített és az eszközön rendelkezésre területet. A fennmaradó kapacitás majd jelenik meg helyileg rögzített vagy rétegzett.
+**Kapacitás** számok hello kiépített és hello hello eszközön rendelkezésre. fennmaradó kapacitás hello majd jelenik meg helyileg rögzített vagy rétegzett.
 
-A kiépített és a fennmaradó kapacitás további bontásban rétegzett és helyileg rögzített kötetek. Az egyes kötetek a kiépített és az eszközön a fennmaradó kapacitás jelenik meg.
+kiépített hello és a szabad kapacitás további bontják rétegzett és helyileg rögzített kötetek. Az egyes kötetek hello kapacitás és kapacitás hello eszközön fennmaradó hello ez megjelenik.
 
 ![IO-kapacitás](./media/storsimple-8000-monitor-device/device-capacity.png)
 
 
 
 ## <a name="usage"></a>Használat
-**Használati** nyomon követi a a kötetek, a kötettárolók vagy az eszköz által használt adatok tárolási terület mennyisége kapcsolatos metrikákat. A tárolókapacitás kihasználtságát elsődleges tárhelyét, a felhőalapú tárolást és az eszköz tárolóját alapján jelentéseket is létrehozhat. Kapacitáskihasználás egy adott köteten, egy adott kötettároló vagy az összes kötet tároló mérhető.
-Alapértelmezés szerint az elmúlt 24 órában használatát jelenti. Módosíthatja a diagram az időtartam, amelyen keresztül a használati való kiválasztással jelentett módosítása:
+**Használati** számok metrikák kapcsolódó toohello hello kötetek, a kötettárolók vagy az eszköz által használt adatok tárhely mennyiségét. Hello tárolókapacitás kihasználtságát elsődleges tárhelyét, a felhőalapú tárolást és az eszköz tárolóját alapján jelentéseket is létrehozhat. Kapacitáskihasználás egy adott köteten, egy adott kötettároló vagy az összes kötet tároló mérhető.
+Alapértelmezés szerint az elmúlt 24 órára hello használati igen. Hello diagram toochange hello időtartama keresztül mely hello használati való kiválasztással jelentett módosíthatja:
 * Elmúlt 24 órában
 * Elmúlt 7 nap
 * Elmúlt 30 nap
@@ -45,93 +45,93 @@ Alapértelmezés szerint az elmúlt 24 órában használatát jelenti. Módosít
 * Elmúlt év
 
 
-Az elsődleges, felhőhöz, és helyi tárhelyet leírása a következő lehet:
+hello elsődleges, a felhő és a helyi tároló használt jelentheti az alábbiak szerint:
 
 ### <a name="primary-storage-usage"></a>Elsődleges tárhely kihasználtsága
-A diagramokat megjelenítése előtt az adatok deduplikációja és tömörített StorSimple-köteteket írt adatok mennyiségét. A kötettároló, vagy csak egy kötet összes kötet által használt elsődleges tárolási tekintheti meg. A használt elsődleges tárolási további által használt elsődleges rétegzett tárhely lebontva és elsődleges helyileg rögzített használt tároló.
+A diagramokat hello adatmennyiség tooStorSimple kötetek írása előtt hello adatok deduplikációja és tömörített megjelenítése. Hello kötettároló, vagy csak egy kötet összes kötet által használt elsődleges tárhely tekintheti meg. hello elsődleges tárolási használt elsődleges rétegzett tárolás felhasznált és elsődleges helyileg rögzített tárolót használja a további oszlanak meg.
 
-A következő diagram megjelenítése a StorSimple eszköz előtt és után egy felhő-pillanatfelvételt készült használt elsődleges tárolására. Ez ugyanis csak a kötet adatait, egy felhő-pillanatfelvételt nem szükséges az elsődleges tárolási módosítani. Ahogy látja, a diagram nincs különbség miatt felhő pillanatképének használt elsődleges rétegzett vagy helyileg rögzített tároló jeleníti meg. A felhő-pillanatfelvételt lépések du. körülbelül 11:50 azokon az eszközökön.
+hello következő diagramok megjelenítése hello elsődleges tárolási a StorSimple eszköz előtt és után egy felhő-pillanatfelvételt készült használnak. Ez ugyanis csak a kötet adatait, egy felhő-pillanatfelvételt nem kell módosítani a hello elsődleges tárolási. Ahogy látja, hello diagram ábrázolja hello elsődleges rétegzett vagy helyileg rögzített használt tároló felhő pillanatképének miatt nincs különbség. hello felhőalapú pillanatfelvétel lépések du. körülbelül 11:50 azokon az eszközökön.
 
 ![Felhő pillanatkép utáni elsődleges kapacitáskihasználás](./media/storsimple-8000-monitor-device/device-primary-storage-after-cloudsnapshot.png)
 
-Ha a gazdagép csatlakozik a StorSimple eszköz IO most futtatja, látni fogja az elsődleges rétegzett tárolás növekedése vagy elsődleges helyileg rögzített használt tároló függően (Szintezett vagy helyileg rögzített) kötetek esetén írhat az adatokat. Az alábbiakban a StorSimple eszköz elsődleges tárolási használati diagramokat. Ezen az eszközön a StorSimple gazdagépen elindította a szolgáltató írása, körülbelül 2:30 pm a rétegzett kötetek az eszközön. A maximális írási bájt/s a IO az állomáson futó megfelelő tekintheti meg.
+Ha most futtatja IO hello csatlakozó állomás tooyour StorSimple eszközön, látni fogja az elsődleges rétegzett tárolás növekedése vagy elsődleges helyileg rögzített használt tároló függően (Szintezett vagy helyileg rögzített) kötetek esetén írhat hello adatokat. Az alábbiakban hello elsődleges tárolási használati diagramok a StorSimple eszköz. Ezen az eszközön hello StorSimple gazdagépen elindította a szolgáltató írása, körülbelül 2:30 pm a rétegzett kötetek hello eszközön. Hello csúcs hello írási bájt/s hello állomáson futó toohello IO megfelelő tekintheti meg.
 
 ![Ha a futó IO rétegzett kötet teljesítmény](./media/storsimple-8000-monitor-device/device-io-from-initiator.png)
 
-A használt elsődleges rétegzett tárhely tekinti meg, ha, amely állapotba került, mivel az elsődleges helyileg rögzített használati változatlan marad, mivel nincs írási műveleteket az eszközön helyileg rögzített kötetek számára szolgáltatott.
+Ha megnézzük hello elsődleges rétegelt tárolás használt, amely másolatot állapotba került, mivel az elsődleges hello helyileg rögzített használati változatlan marad, mert nincsenek nem írt kiszolgált toohello helyileg rögzített kötetek hello eszközön.
 
 ![Elsődleges tárolókapacitás kihasználtságát IO a rétegzett kötetek futtatásakor](./media/storsimple-8000-monitor-device/device-primary-storage-io-from-initiator.png)
 
-Ha futtatja 3. frissítéssel vagy magasabb oszthatja meg az elsődleges tárolókapacitás kihasználtságát egy egyéni köteten, az összes kötegről, összes rétegzett kötetek és minden helyileg rögzített kötetekhez alább látható módon. Minden helyileg rögzített kötetek bontásához lehetővé teszi gyorsan megállapítani, hány a helyi rétegen használ.
+Ha futtatja 3. frissítéssel vagy újabb rendszerre, akkor is hello elsődleges tárolókapacitás kihasználtságát szerint lebontva egy egyéni köteten, az összes kötegről, minden rétegzett kötetek és minden helyileg rögzített kötetekhez alább látható módon. Az összes helyileg rögzített kötetekhez lehetővé teszi a bontásához tooquickly megállapítása, hány hello helyi rétegen használ.
 
 ![Az összes rétegzett kötet elsődleges kapacitáskihasználás](./media/storsimple-8000-monitor-device/monitor-usage3.png)
 
 ![Az összes helyileg rögzített kötet elsődleges kapacitáskihasználás](./media/storsimple-8000-monitor-device/monitor-usage4.png)
 
-Minden részt vevő kötetet a listában kattintson a Tovább, és a megfelelő használati.
+Egyes hello kötetek hello listában kattintson a Tovább, és hello megfelelő használati.
 
 ![Az összes helyileg rögzített kötet elsődleges kapacitáskihasználás](./media/storsimple-8000-monitor-device/device-primary-storage-usage-by-volume.png)
 
 ### <a name="cloud-storage-usage"></a>A felhőalapú tároló használata
-A diagramokat megjelenítése használt felhőbeli tárhely mennyiségét. Ezek az adatok deduplikációja és tömöríti. Ez a mennyiség magában foglalja a felhőalapú pillanatfelvételek, amelyek esetleg nem tükröződnek elsődleges kötet és az örökölt vagy szükséges megőrzési célra maradnak adatokat tartalmaz. Hasonlítsa össze az elsődleges és a felhőalapú tárolás fogyasztási adatokat, ha meg szeretne ismerkedni és az adatforgalom csökkentése érdekében, annak ellenére száma nem pontos.
+A diagramokat megjelenítése hello használt felhőbeli tárhely mennyiségét. Ezek az adatok deduplikációja és tömöríti. Ez a mennyiség magában foglalja a felhőalapú pillanatfelvételek, amelyek esetleg nem tükröződnek elsődleges kötet és az örökölt vagy szükséges megőrzési célra maradnak adatokat tartalmaz. Összehasonlíthatja hello elsődleges és a felhő tárolási felhasználási adatok tooget hello adatok csökkentési képet értékelje, annak ellenére hello száma nem pontos.
 
-A következő diagram megjelenítése a felhőbeli tárhely kihasználtságát a StorSimple eszköz, ha egy felhő-pillanatfelvételt kerül.
+hello következő diagramok megjelenítése hello felhőbeli tárhely kihasználtságát a StorSimple eszköz egy felhő-pillanatfelvételt időpontjában volt.
 
-* A felhő-pillanatfelvételt elkezdődött: körülbelül 11:50-kor az eszközön, és láthatja, hogy a pillanatkép-felhő, mielőtt nincs nem használt felhőbeli tárhelyhez. 
-* Egyszer a felhő-pillanatfelvételt befejeződött, a felhőbeli tárhely kihasználtságát változásszinkronizálás 0,89 GB fel. 
-* Miközben folyamatban volt a felhő-pillanatfelvételt, nincs is megfelelő csúcs a IO eszközről a felhőbe.
+* időpontban elindított hello felhőalapú pillanatfelvétel körülbelül 11:50-kor az eszközön, és láthatja, hogy a felhő-pillanatfelvételt hello előtt merült fel nem használt felhőbeli tárhelyhez. 
+* Egyszer hello felhőalapú pillanatfelvétel befejeződött, hello felhőbeli tárhely kihasználtságát változásszinkronizálás 0,89 GB fel. 
+* Miközben folyamatban volt hello felhőalapú pillanatfelvétel, nincs is megfelelő maximális hello IO eszköz toocloud a.
 
     ![Felhőbeli tárhely kihasználtságát a felhő-pillanatfelvételt előtt](./media/storsimple-8000-monitor-device/device-cloud-storage-before-cloudsnapshot.png)
 
     ![Felhőbeli tárhely kihasználtságát felhő pillanatkép utáni](./media/storsimple-8000-monitor-device/device-cloud-storage-after-cloudsnapshot.png)
 
-    ![Az eszközről a felhőbe során egy felhő-pillanatfelvételt IO](./media/storsimple-8000-monitor-device/device-io-to-cloud-during-cloudsnapshot.png)
+    ![Eszköz toocloud során egy felhő-pillanatfelvételt tevékenységének](./media/storsimple-8000-monitor-device/device-io-to-cloud-during-cloudsnapshot.png)
 
 
 ### <a name="local-storage-usage"></a>Helyi tárterület-használat
-Diagramokat jelenít meg az eszköz, amely több, mint az elsődleges tárhelyhasználatot lesz, mert ez magában foglalja a lineáris SSD-réteghez a teljes kihasználtság. A réteg tartalmaz egy adatmennyiséget is megtalálható az eszközhöz tartozó más szintekre. A lineáris SSD-réteg kapacitása nem szakad meg, így ha új adatok, a régi adatok áthelyezése a HDD-réteg (amikor deduplikált és tömörített), és ezt követően a felhő.
+Diagramokat jelenít meg hello teljes kihasználtság hello eszköz, amely lesz több mint elsődleges tárhelyhasználatot mert hello SSD-lineáris réteget tartalmaz. A réteg tartalmaz egy is megtalálható hello eszköz más szintekre adatok mennyiségét. hello hello SSD-lineáris réteg kapacitása nem szakad meg, úgy, hogy ha új adatok, hello régi adatok áthelyezett toohello HDD-réteg (amikor deduplikált és tömörített) és ezt követően toohello felhő.
 
-Idő, elsődleges tárolási keresztül használt és helyi tárhelyet valószínűleg megnöveli a együtt mindaddig, amíg az adatok elkezdi helyezhető el a felhőbe. Ezen a ponton használja a helyi tároló tetőzni valószínűleg megkezdődik, de a használt elsődleges tároló növeli, mivel a rendszer több adatot ír.
+Az idő múlásával felhasznált és helyi tárhelyet valószínűleg megnöveli a együtt amíg hello adatok kezdete toobe elsődleges tárolási rétegzett toohello felhő. Ezen a ponton hello használt helyi tárhely valószínűleg akkor kezdődik, tooplateau, de a használt elsődleges tároló hello növeli, több adatot ír.
 
-A következő diagram megjelenítése a StorSimple eszköz használhatók, ha egy felhő-pillanatfelvételt készült elsődleges tárolására. A felhő-pillanatfelvételt: 00:50 óra, és a helyi tároló ekkor csökken. A helyi tárhelyet csökkent 1.445 GB 1.09 GB. Ez azt jelzi, hogy nagy valószínűséggel a lineáris SSD-réteget a tömörítetlen adatokhoz lett deduplikált, tömörített, helyezi át a HDD-réteget. Vegye figyelembe, hogy az eszköz már egy nagy mennyiségű adatot a rétegek az SSD és HDD, nem jelenhet meg ezen csökken. Ebben a példában az eszköz regisztrációját kisebb mennyiségű adatot.
+hello következő diagramok megjelenítése hello elsődleges tárolási a StorSimple eszköz használhatók, ha egy felhő-pillanatfelvételt kerül. hello felhőalapú pillanatfelvétel: 00:50 óra és az hello helyi tároló ekkor csökken. a 1.445 GB too1.09 GB csökkent hello helyi tárhelyet. Ez azt jelzi, hogy nagy valószínűséggel hello hello lineáris SSD-réteget a tömörítetlen adatokhoz lett deduplikált, tömörített, hello HDD-réteget áthelyezése. Vegye figyelembe, hogy hello eszköz már egy nagy mennyiségű adatot hello SSD és HDD-réteg is, nem jelenhet meg ezen csökken. Ebben a példában hello eszközhöz tartozik egy kisebb mennyiségű adatot.
 
 ![Felhő pillanatképet készít a helyi tárhely kihasználtságát](./media/storsimple-8000-monitor-device/device-local-storage-after-cloudsnapshot.png)
 
 ## <a name="performance"></a>Teljesítmény
-**Teljesítmény** nyomon követi az olvasások száma kapcsolatos metrikákat, és írási műveletek között, vagy az iSCSI-kezdeményező felületek a gazdagép-kiszolgálón és az eszköz vagy az eszközön, és a felhőben. A teljesítmény mérhető egy adott köteten, egy adott kötettároló vagy az összes kötet tároló. Teljesítmény is CPU-használat és a hálózat átviteli sebességét, a különböző hálózati adaptereken, az eszközön.
+**Teljesítmény** számok metrikák olvasási toohello száma és a kapcsolódó írási műveletek között vagy hello iSCSI kezdeményező felületek hello gazdagép-kiszolgálón és a hello eszközön vagy a hello eszköz és a hello felhő. A teljesítmény mérhető egy adott köteten, egy adott kötettároló vagy az összes kötet tároló. Teljesítmény is CPU-használat és a hálózat adatátviteli sebességét hello különböző hálózati adapterek az eszközön.
 
-### <a name="io-performance-for-initiator-to-device"></a>I/o-teljesítmény kezdeményező eszközre
-Az alábbi táblázatban látható az i/o-a kezdeményező éles eszköz a kötetek az eszközre. A metrikák ábrázolt vannak írási és olvasási bájt / mp. Is diagram olvasási, írási és függőben lévő I/O vagy olvasási és írási késések fordulnak elő.
+### <a name="io-performance-for-initiator-toodevice"></a>A kezdeményező toodevice i/o-teljesítmény
+az alábbi hello diagram hello i/o-hello kezdeményező tooyour eszköz az összes hello kötet egy éles eszköz jeleníti meg. hello metrikák ábrázolt vannak írási és olvasási bájt / mp. Is diagram olvasási, írási és függőben lévő I/O vagy olvasási és írási késések fordulnak elő.
 
-![IO-teljesítmény kezdeményező eszközre](./media/storsimple-8000-monitor-device/device-io-from-initiator.png)
+![A kezdeményező toodevice I/O teljesítménye](./media/storsimple-8000-monitor-device/device-io-from-initiator.png)
 
-### <a name="io-performance-for-device-to-cloud"></a>Felhőbe eszköz i/o-teljesítmény
-Az ugyanarra az eszközre az i/o-műveletek ábrázolási az adatok az eszközről a felhőbe a kötet tárolók. Ezen az eszközön csak a lineáris rétegében, illetve semmi nem rendelkezik kiömlött a felhőbe. Nincsenek az eszközről a felhőbe előforduló olvasási és írási műveletek. Emiatt a diagramon csúcsait egy 5 perces időközönként, amely megfelel a gyakoriság, amellyel a szívverés jelölőnégyzet be van jelölve az eszköz és a szolgáltatás között lehet.
+### <a name="io-performance-for-device-toocloud"></a>Az eszköz toocloud i/o-teljesítmény
+A hello ugyanarra az eszközre hello i/o-műveletek ábrázolási hello eszköz toohello felhőből hello adatokhoz tartozó összes hello kötettárolók. Ezen az eszközön hello adatok csak hello lineáris szinten lévő és nem rendelkezik kiömlött toohello felhő. Nincsenek eszköz toohello felhőből előforduló olvasási és írási műveletek. Emiatt hello csúcsait hello diagramon egy 5 perces időközönként megfelelő toohello gyakoriság, amellyel a hello szívverés be van jelölve hello eszköz és hello szolgáltatás között lehet.
 
-Az ugyanarra az eszközre egy felhőalapú során létrehozott pillanatképen: 00:50 óra kezdő tartozó. Ennek következtében az eszközről a felhőbe áramló adatokat. Írás ennek az időtartamnak a volt a felhőben szolgáltatott. IO ábrázolja a legmagasabb írási bájt/s az idő, amikor során létrehozott pillanatképen megfelelő.
+A hello ugyanarra az eszközre egy felhő-pillanatfelvételt kerül a kötet adatait: 00:50 óra indítása. Ennek következtében a hello eszköz toohello felhőből áramló adatokat. Írás ennek az időtartamnak a volt kiszolgált toohello felhő. hello IO diagram csúcsot hello írási bájt/s megfelelő toohello időben amikor hello pillanatkép készült jeleníti meg.
 
-![Az eszközről a felhőbe során egy felhő-pillanatfelvételt IO](./media/storsimple-8000-monitor-device/device-io-to-cloud-during-cloudsnapshot.png)
+![Eszköz toocloud során egy felhő-pillanatfelvételt tevékenységének](./media/storsimple-8000-monitor-device/device-io-to-cloud-during-cloudsnapshot.png)
 
 ### <a name="network-throughput-for-device-network-interfaces"></a>Az eszköz hálózati illesztők tartozó hálózati teljesítmény
-**Hálózati teljesítmény** nyomon követi a gazdagép-kiszolgálón és az eszköz és az eszköz és a felhő között az iSCSI-kezdeményező hálózati interfész átvitt adatok mennyisége kapcsolatos metrikákat. Ez a metrika az egyes iSCSI hálózati adaptereihez figyelheti az eszközön.
+**Hálózati teljesítmény** számok metrikák kapcsolódó toohello továbbított adatmennyiséget hello iSCSI kezdeményező hálózati interfész hello gazdagép-kiszolgálón és hello eszköz és hello eszköz és hello felhő között. Ez a mérőszám az egyes hello iSCSI hálózati adapterek figyelheti az eszközön.
 
-A következő diagram megjelenítése a hálózati átviteli sebesség a Data 0, 1 1 GbE hálózati az eszközön, amely mindkét felhő engedélyezve (alapértelmezett) és az iSCSI-kompatibilis. Az eszközön. június 14-körülbelül 9 du. adatok kiterjeszti a felhőbe lett rétegzett (a felhő pillanatképek nem adott időpontban, amely alatt a mechanizmust, amely kiterjeszti a felhőbe helyezze át az adatokat rétegezéséhez mutat vették) amely a felhőbe kiszolgált IO eredményezett. Nincs megfelelő csúcs a hálózati átviteli kijelző egy időben, a hálózati forgalom nagy részét pedig kimenő a felhőbe.
+hello következő diagramok megjelenítése hello hálózati teljesítményt hello Data 0, 1 1 GbE hálózati az eszközön, amely mindkét felhő engedélyezve (alapértelmezett) és az iSCSI-kompatibilis. Ezen az eszközön. június 14-körülbelül 9 du. az adatok hello cloud (pillanatképeket létező felhőalapú, ebben az időszakban, mely pontok tootiering alatt hello toomove hello adatokat hello felhőbe) kiszolgált toohello felhő IO eredményező be lett rétegzett. Nincs megfelelő csúcs hello hálózati átviteli kijelző hello ugyanannyi időt vesz igénybe, és a legtöbb hello hálózati forgalom érték kimenő toohello felhő.
 
 ![A Data 0 hálózati teljesítményt](./media/storsimple-8000-monitor-device/device-network-throughput-data0.png)
 
-Ha úgy tekintünk, az adatok 1 felület átviteli diagram, egy másik 1 GbE hálózati adapter, amely volt az iSCSI-kompatibilis csak, majd ennek az időtartamnak a hálózati forgalom gyakorlatilag történt.
+Ha úgy tekintünk hello Data 1 felület átviteli diagram, egy másik 1 GbE hálózati adapter, amely volt az iSCSI-kompatibilis csak, majd gyakorlatilag hálózati forgalom történt ennek az időtartamnak a.
 
 ![Az adatok 1 tartozó hálózati teljesítmény](./media/storsimple-8000-monitor-device/device-network-throughput-data1.png)
 
 
 ## <a name="cpu-utilization-for-device"></a>Az eszköz CPU-felhasználás
-**CPU-felhasználás** nyomon követi a CPU-használata az eszközön kapcsolatos metrikákat. A következő diagram egy eszköz számára a Processzor kihasználtsága statisztikák éles környezetben jeleníti meg.
+**CPU-felhasználás** számok metrikák kapcsolódó toohello CPU-használata az eszközön. hello következő diagram ábrázolja hello Processzor kihasználtsága statisztikák eszköz éles környezetben.
 
 ![Az eszköz CPU-felhasználás](./media/storsimple-8000-monitor-device/device-cpu-utilization.png)
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [a StorSimple Device Manager szolgáltatás eszközök irányítópult](storsimple-device-dashboard.md).
-* Megtudhatja, hogyan [felügyelete a StorSimple eszközt a StorSimple Device Manager szolgáltatással](storsimple-manager-service-administration.md).
+* Ismerje meg, hogyan túl[hello StorSimple Device Manager szolgáltatás eszközök irányítópulttal](storsimple-device-dashboard.md).
+* Ismerje meg, hogyan túl[használata hello StorSimple Device Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-manager-service-administration.md).
 

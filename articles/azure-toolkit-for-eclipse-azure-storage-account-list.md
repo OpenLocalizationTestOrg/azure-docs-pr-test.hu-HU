@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Storage-fiók listája"
-description: "Az Azure-eszközkészlet használata az eclipse-ben a tárolási Fiókbeállítások kezelése"
+title: "Tárfiók aaaAzure"
+description: "Az Eclipse hello Azure eszközkészlet használata tárolási beállításainak kezelése"
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: f859efa389d3fe0b4b7b16255d57f1aa13123319
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35e25881ca95ae4050a26283e4726d9549b37f46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-account-list"></a>Az Azure Storage-fiók listája
-Az Azure storage-fiókok a JDK, a kiszolgáló és a tetszőleges összetevők, valamint állapot tárolására, gyorsítótárazás használata esetén használandó letöltési helyeiről engedélyezése. Eclipse-ben, amely a projektekhez az Eclipse munkaterületen elérhető ismert storage-fiókok listáját. Megnyitásához a **Tárfiókok** párbeszédpanel, amely segítségével kezelhető a lista belül eclipse-ben kattintson **ablak**, kattintson a **beállítások**, bontsa ki a **Azure**, és kattintson a **Tárfiókok**.
+Az Azure storage-fiókok lehetővé teszik a JDK, a kiszolgáló és a tetszőleges összetevők, valamint a gyorsítótárazás használatakor állapot tárolásához használt helyek toobe letöltése. Eclipse-ben elérhető tooyour projektekhez az Eclipse munkaterületen ismert storage-fiókok listáját. tooopen hello **Tárfiókok** párbeszédpanel, amely, amely a listában, belül eclipse-ben használt toomanage kattintson **ablak**, kattintson a **beállítások**, bontsa ki a **Azure** , és kattintson a **Tárfiókok**.
 
-Az alábbi látható a **Tárfiókok** párbeszédpanel.
+hello következő mutatja hello **Tárfiókok** párbeszédpanel.
 
 ![][ic719496]
 
-Ezen a párbeszédpanelen is megnyithatja az egy **fiókok** párbeszédpanelek, amelyek használják a storage-fiókok, például a következő hivatkozásra:
+Ezen a párbeszédpanelen is megnyithatja az egy **fiókok** storage-fiókok, például hello következő használó párbeszédpanelek hivatkozásra:
 
-* A **JDK** lapján a **kiszolgálókonfiguráció** párbeszédpanel.
-* A **Server** lapján a **kiszolgálókonfiguráció** párbeszédpanel.
-* A **összetevő felvétele** párbeszédpanel.
-* A **gyorsítótárazását** tulajdonságainak párbeszédpanelét jeleníti meg.
+* Hello **JDK** hello lapján **kiszolgálókonfiguráció** párbeszédpanel.
+* Hello **Server** hello lapján **kiszolgálókonfiguráció** párbeszédpanel.
+* Hello **összetevő felvétele** párbeszédpanel.
+* Hello **gyorsítótárazását** tulajdonságainak párbeszédpanelét jeleníti meg.
 
-## <a name="to-import-your-storage-accounts-using-a-publish-settings-file"></a>A storage-fiókok használatával egy közzétételi beállítások fájlja importálása
-1. Belül a **Tárfiókok** párbeszédpanel, kattintson a **közzététele beállításfájl importálás**.
+## <a name="tooimport-your-storage-accounts-using-a-publish-settings-file"></a>a tárolási fiókok tooimport a közzétételi beállítások fájlja
+1. Hello belül **Tárfiókok** párbeszédpanel, kattintson a **közzététele beállításfájl importálás**.
 
-2. (Kihagyhatja ezt a lépést, ha már mentette a közzétételi beállítások fájlja a helyi számítógépen.) Az a **importálási előfizetési adatok** párbeszédpanel, kattintson a **KÖZZÉTÉTELI-beállítások fájl letöltése**. Ha még nem jelentkezik be az Azure-fiókjába, fogja kérni fogja a bejelentkezéshez. Majd kéri az Azure mentési beállítások fájl közzététele. (Az eredményül kapott utasításokat a bejelentkezési oldalon - figyelmen kívül hagyhatja ezeket az Azure portál által szolgáltatott és Visual Studio felhasználóknak.) Mentse a helyi számítógépen.
+2. (Kihagyhatja ezt a lépést, ha már mentette a közzétételi beállítások fájl tooyour helyi számítógépen.) A hello **importálási előfizetési adatok** párbeszédpanel, kattintson a **KÖZZÉTÉTELI-beállítások fájl letöltése**. Ha még nem jelentkezik be az Azure-fiókjába, a kért toolog fogja. Akkor kérni fogja az Azure toosave közzététele beállításfájl. (Hello eredményül kapott utasításokat az hello bejelentkezési oldalakon - figyelmen kívül hagyhatja ezeket hello Azure-portál által biztosított és a Visual Studio felhasználóknak.) Mentse a helyi számítógép tooyour.
 
-3. Még mindig a **importálási előfizetési adatok** párbeszédpanel, kattintson a **Tallózás** gombra, válassza ki a korábban mentett helyileg közzétételi beállítások fájlja, majd **nyissa meg a**.
+3. Továbbra is a hello **importálási előfizetési adatok** párbeszédpanel, hello kattintson **Tallózás** gombra, jelölje be hello közzététele beállításfájl korábban mentett helyileg, és kattintson a **megnyitása**.
 
-4. Kattintson a **OK** bezárásához a **importálási előfizetési adatok** párbeszédpanel.
+4. Kattintson a **OK** tooclose hello **importálási előfizetési adatok** párbeszédpanel.
 
-## <a name="to-create-a-new-storage-account"></a>Egy új tárfiók létrehozása
-1. Belül a **Tárfiókok** párbeszédpanel, kattintson a **Hozzáadás**.
+## <a name="toocreate-a-new-storage-account"></a>új tárfiók toocreate
+1. Hello belül **Tárfiókok** párbeszédpanel, kattintson a **Hozzáadás**.
 
-2. Belül a **Tárfiók hozzáadása** párbeszédpanel, kattintson a **új**.
+2. Hello belül **Tárfiók hozzáadása** párbeszédpanel, kattintson a **új**.
 
-3. Belül a **új Tárfiók** párbeszédpanelen adja meg a következő értékeket:
+3. Hello belül **új Tárfiók** párbeszédpanelen adható meg érték a következő hello:
 
    * Tárfiók neve.
 
-   * A tárfiók helye.
+   * Hello tárfiók helye.
 
-   * A tárfiók leírását.
+   * Hello tárfiók leírását.
 
-   * Az előfizetést, amelyhez a storage-fiók tartozik.
+   * hello előfizetés toowhich hello tárfiók tartozik.
 
-4. Kattintson a **OK** bezárásához a **új Tárfiók** párbeszédpanel.
+4. Kattintson a **OK** tooclose hello **új Tárfiók** párbeszédpanel.
 
-A tárfiók keletkezik több percig is eltarthat. Létrehozása után kattintson **OK** bezárásához a **Tárfiók hozzáadása** párbeszédpanel, és az új tárfiók nem kerülnek be a rendelkezésre álló tár fiókok listáját.
+A tárolási fiók toobe létrehozása több percig is eltarthat. Kattintson a létrehozás után **OK** tooclose hello **Tárfiók hozzáadása** párbeszédpanel, és az új tárfiók hozzáadódnak toohello rendelkezésre álló tár listája.
 
-## <a name="to-add-an-existing-storage-account-to-the-list"></a>Meglévő tárfiók hozzáadása a listához
-1. Ha még nem rendelkezik Azure-tárfiókot, hozzon létre egyet a felsorolt lépéseket követve a **létrehozni egy új tárolási fiók szakasz** felett. (Másik lehetőségként létrehozhat egy új tárfiókot, a [Azure felügyeleti portálon][Azure Management Portal].)
+## <a name="tooadd-an-existing-storage-account-toohello-list"></a>egy meglévő tárolási toohello fióklista tooadd
+1. Ha még nem rendelkezik egy fiókot, hozzon létre egyet által az Azure storage hello lépések felsorolt hello **toocreate új tárolási fiók szakasz** felett. (Másik lehetőségként létrehozhat egy új tárfiókot hello, [Azure felügyeleti portálon][Azure Management Portal].)
 
-2. Belül a **Tárfiókok** párbeszédpanel, kattintson a **Hozzáadás**.
+2. Hello belül **Tárfiókok** párbeszédpanel, kattintson a **Hozzáadás**.
 
-3. Belül a **Tárfiók hozzáadása** párbeszédpanelen adja meg az értékeket **neve** és **hozzáférési kulcs**. A fiók nevét és hívóbetűjét egy meglévő Azure-tárfiókot kell lennie. Használja a **tárolási** szakasza a [Azure felügyeleti portálon] [ Azure Management Portal] a tárfiókok neve és kulcsok megtekintéséhez. A **Tárfiók hozzáadása** párbeszédpanel az alábbihoz hasonlóan fog kinézni.
+3. Hello belül **Tárfiók hozzáadása** párbeszédpanelen adja meg az értékeket **neve** és **hozzáférési kulcs**. hello nevét és a hozzáférési kulcsot a meglévő Azure-tárfiók kell lennie. Használjon hello **tárolási** hello szakasza [Azure felügyeleti portálon] [ Azure Management Portal] tooview a tárfiók nevét és a kulcsok. A **Tárfiók hozzáadása** párbeszédpanel hasonló toohello következő fog kinézni.
    
    ![][ic719497]
 
-4. Kattintson a **OK** bezárásához a **Tárfiók hozzáadása** párbeszédpanel.
+4. Kattintson a **OK** tooclose hello **Tárfiók hozzáadása** párbeszédpanel.
 
-## <a name="to-modify-a-storage-account-to-use-a-new-access-key"></a>Új hozzáférési kulcs használatához a tárfiók módosítása
-1. Belül a **Tárfiókok** párbeszédpanel, kattintson a tároló fiókra szerkesztése szeretne, és kattintson **szerkesztése**.
+## <a name="toomodify-a-storage-account-toouse-a-new-access-key"></a>a tárolási fiók toouse új hozzáférési kulcs toomodify
+1. Hello belül **Tárfiókok** párbeszédpanel, kattintson a tárfiók hello tooedit szeretne, és kattintson a **szerkesztése**.
 
-2. Belül a **szerkesztése Tárfiók_elérési_kulcsa** párbeszédpanelen módosítsa a **hozzáférési kulcs** érték.
+2. Hello belül **szerkesztése Tárfiók_elérési_kulcsa** párbeszédpanelen hello módosítása **hozzáférési kulcs** érték.
 
-3. Kattintson a **OK** bezárásához a **szerkesztése Tárfiók_elérési_kulcsa** párbeszédpanel.
+3. Kattintson a **OK** tooclose hello **szerkesztése Tárfiók_elérési_kulcsa** párbeszédpanel.
 
-## <a name="to-remove-a-storage-account-from-the-list-maintained-in-eclipse"></a>A tárfiók eltávolítása a listáról, az eclipse-ben karbantartása
-1. Belül a **Tárfiókok** párbeszédpanel, kattintson a tároló fiókra szerkesztése szeretne, és kattintson **eltávolítása**.
+## <a name="tooremove-a-storage-account-from-hello-list-maintained-in-eclipse"></a>tooremove hello listából tárfiók tartani az eclipse-ben
+1. Hello belül **Tárfiókok** párbeszédpanel, kattintson a tárfiók hello tooedit szeretne, és kattintson a **eltávolítása**.
 
-2. Kattintson a **OK** amikor a rendszer kéri a tárfiók eltávolítása.
+2. Kattintson a **OK** amikor felszólító tooremove hello storage-fiók.
 
 > [!NOTE]
-> A tárfiók keresztül eltávolítása a **Tárfiókok** párbeszédpanel csak eltávolítja azt a listában tárfiókok megtekinthető Eclipse belül. A tárfiók nem távolítja el az Azure-előfizetésből. Emellett a tárfiók sikerült listájában jelennek meg újra a után Eclipse Újratölti az előfizetés részleteit.
+> Hello keresztül hello tárfiók eltávolítása **Tárfiókok** párbeszédpanel csak eltávolítja hello listája megtekinthető Eclipse belül. Hello tárfiók nem távolítja el az Azure-előfizetésből. Emellett hello tárfiók sikerült listájában jelennek meg újra a után Eclipse Újratölti az előfizetés hello részleteit.
 > 
 > 
 
 ## <a name="see-also"></a>Lásd még:
 [Eclipse Azure eszköztára][Azure Toolkit for Eclipse]
 
-[Az eclipse-ben az Azure eszközkészlet telepítése][Installing the Azure Toolkit for Eclipse] 
+[Hello Azure eszköztára Eclipse telepítése][Installing hello Azure Toolkit for Eclipse] 
 
 [Hozzon létre egy Hello World alkalmazásról egy Azure az eclipse-ben][Creating a Hello World Application for Azure in Eclipse]
 
-Azure Java használatával kapcsolatos további információkért lásd: a [Azure Java fejlesztői központból][Azure Java Developer Center].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -105,8 +105,8 @@ Azure Java használatával kapcsolatos további információkért lásd: a [Azur
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[What's New in hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 

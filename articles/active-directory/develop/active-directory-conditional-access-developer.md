@@ -1,5 +1,5 @@
 ---
-title: "A feltételes hozzáférés az Azure Active Directory fejlesztői útmutató |} Microsoft Docs"
+title: "Útmutató az Azure Active Directory feltételes hozzáférési aaaDeveloper |} Microsoft Docs"
 description: "Fejlesztői útmutatás és az Azure AD feltételes hozzáférési forgatókönyvek"
 services: active-directory
 keywords: 
@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.openlocfilehash: b8fac1b258535fd668b45acbe2c1c8580fb8a340
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 589393f5d084d64872b372d895dc889f300592bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="developer-guidance-for-azure-active-directory-conditional-access"></a>A feltételes hozzáférés az Azure Active Directory fejlesztői útmutató
 
-Az Azure Active Directory (AD) biztonságos az alkalmazás és szolgáltatás védelme számos lehetőséget kínál.  Ezek a egyedi szolgáltatások egyik feltételes hozzáférés.  Feltételes hozzáférés lehetővé teszi a fejlesztők és a vállalati ügyfelek többféle, beleértve a szolgáltatások védelmét:
+Az Azure Active Directory (AD) kínál számos módon toosecure az alkalmazás és szolgáltatás védelmére.  Ezek a egyedi szolgáltatások egyik feltételes hozzáférés.  Feltételes hozzáférés lehetővé teszi a fejlesztők és a vállalati ügyfelek tooprotect szolgáltatások többféle többek között:
 
 * Multi-Factor Authentication
-* Így csak az Intune-ban regisztrált eszközök férhessenek hozzá az egyes szolgáltatások
+* Így csak az Intune-ban regisztrált eszközök tooaccess adott szolgáltatások
 * Korlátozza a felhasználó helyét és IP-címtartományok
 
-A feltételes hozzáférés a szolgáltatás összes funkciójáról további információkért lásd: [feltételes hozzáférés a klasszikus Azure portálon](../active-directory-conditional-access.md). 
+A feltételes hozzáférés hello szolgáltatás összes funkciójáról a további információkért lásd: [feltételes hozzáférés a klasszikus Azure portálon hello](../active-directory-conditional-access.md). 
 
-Ez a cikk azt összpontosítani milyen feltételes hozzáférési azt jelenti, hogy a fejlesztők számára hozhat létre alkalmazásokat az Azure AD.  Ismeretét feltételezi [egyetlen](active-directory-integrating-applications.md) és [több-bérlős](active-directory-devhowto-multi-tenant-overview.md) alkalmazások és [közös hitelesítési minták](active-directory-authentication-scenarios.md).
+Ez a cikk azt összpontosítani milyen feltételes hozzáférési azt jelenti, hogy toodevelopers épület alkalmazások az Azure AD.  Ismeretét feltételezi [egyetlen](active-directory-integrating-applications.md) és [több-bérlős](active-directory-devhowto-multi-tenant-overview.md) alkalmazások és [közös hitelesítési minták](active-directory-authentication-scenarios.md).
 
-Azt kell alaposabban tanulmányozhatja a hatása lehet alkalmazni a feltételes hozzáférési szabályzatokat vezérlő nincs keresztül erőforrások eléréséhez.  Továbbá azt Fedezze fel a web apps, az a-meghatalmazásos folyamat, a feltételes hozzáférés megvalósítását elérése a Microsoft Graph, hívja az API-k.
+Igazolnia kell alaposabban hello hatása lehet alkalmazni a feltételes hozzáférési szabályzatokat vezérlő nincs keresztül erőforrások eléréséhez.  Továbbá azt Fedezze fel hello következményei hello a-meghatalmazásos folyamat, a feltételes hozzáférés webes alkalmazások elérése a Microsoft Graph hello, hívja az API-k.
 
 ## <a name="how-does-conditional-access-impact-an-app"></a>Milyen hatással van a feltételes hozzáférés az alkalmazások?
 
 ### <a name="app-topologies-impacted"></a>Érintett alkalmazás topológiák
 
-Leggyakoribb esetekben a feltételes hozzáférés nem változtatja meg az alkalmazások viselkedését, vagy a fejlesztőtől származó módosításokat igényel.  Bizonyos esetekben csak amikor egy alkalmazás közvetve vagy csendes kér egy szolgáltatás jogkivonat egy alkalmazás módosítását igényli az kód kezelni a feltételes hozzáférés "kihívást".  Elképzelhető, hogy más dolga, mint egy interaktív bejelentkezési kérelem végrehajtása. 
+Leggyakoribb esetekben a feltételes hozzáférés nem változtatja meg az alkalmazások viselkedését, vagy hello fejlesztőtől származó módosításokat igényel.  Csak bizonyos esetekben egy alkalmazás közvetve vagy csendes kér egy jogkivonatot egy szolgáltatáshoz, egy alkalmazás megköveteli kód módosítása toohandle feltételes hozzáférési "kihívások".  Elképzelhető, hogy más dolga, mint egy interaktív bejelentkezési kérelem végrehajtása. 
 
-Pontosabban a következő esetekben igényel kezelésére "kihívást" feltételes hozzáférési kódot: 
+Pontosabban hello következő esetekben szükséges kód toohandle feltételes hozzáférés "kihívást": 
 
-* A Microsoft Graph hozzáférő alkalmazásokat
-* Az a-meghatalmazásos folyamat végrehajtása alkalmazások
+* A Microsoft Graph hello hozzáférő alkalmazásokat
+* Alkalmazások hello a-meghatalmazásos folyamat végrehajtása
 * Az alkalmazások több szolgáltatások/erőforrások elérése
 * Egylapos alkalmazások ADAL.js
 
-Feltételes hozzáférési szabályzatok alkalmazhatók az alkalmazás, de is alkalmazható egy webes API-k éri el az alkalmazást. A feltételes hozzáférési házirend konfigurálásával kapcsolatos további tudnivalókért tekintse meg [Azure Active Directory feltételes hozzáférés – első lépések](../active-directory-conditional-access-azuread-connected-apps.md#configure-per-application-access-rules).
+Feltételes hozzáférési házirendek alkalmazott toohello alkalmazás, de is lehet alkalmazott tooa webes API az alkalmazás fér hozzá. További részletek toolearn, hogyan tooconfigure feltételes hozzáférési házirendet, adja meg a [Azure Active Directory feltételes hozzáférés – első lépések](../active-directory-conditional-access-azuread-connected-apps.md#configure-per-application-access-rules).
 
-A helyzettől függően az ügyfél egy vállalati alkalmazni, és bármikor eltávolíthatja a feltételes hozzáférési szabályzatok.  Ahhoz, hogy az alkalmazás működését, amikor egy új házirendet alkalmaz meg kell a "kérdés" kezelése. A következő példák bemutatják a challenge kezelését. 
+Hello forgatókönyvtől függően az ügyfél egy vállalati alkalmazni, és bármikor eltávolíthatja a feltételes hozzáférési szabályzatokat.  Ahhoz, hogy az alkalmazás toocontinue működik-e egy új házirend alkalmazásakor kell tooimplement hello "kérdés" kezelését. hello a következő példák bemutatják, kérdés kezelését. 
 
 ### <a name="conditional-access-examples"></a>Feltételes hozzáférési példa
 
-Egyes esetekben szükséges kódmódosításokat feltételes hozzáférés kezelésére, míg mások a vártnak megfelelően van.  Az alábbiakban néhány olyan forgatókönyvet, többtényezős hitelesítést, amely néhány különbség betekintést biztosít a feltételes hozzáférés segítségével.
+Bizonyos esetekben kód módosítások toohandle feltételes hozzáférést igényelnek, míg mások a vártnak megfelelően van.  Az alábbiakban néhány olyan forgatókönyvet, néhány hello különbség betekintést biztosít a feltételes hozzáférés toodo multi-factor authentication használatával.
 
-* Egy egyszeres-bérlő iOS-alkalmazást fejleszt, és a feltételes hozzáférési házirend alkalmazása.  Az alkalmazás a felhasználó bejelentkezik, és nem igényelhet hozzáférést egy API-t.  Amikor a felhasználó bejelentkezik, a házirend automatikusan megnyílik, és a felhasználó számára szükséges-e többtényezős hitelesítés (MFA). 
-* A több-bérlős webes alkalmazás, amely a Microsoft Graph használja az Exchange-hozzáférést, más szolgáltatások között készítésekor.  Ez az alkalmazás fogad el egy vállalati ügyfelünk SharePoint Online-on állít be egy házirendet.  Ha a webes alkalmazás jogkivonat MS Graph kér, az összes Microsoft Service egy házirend érvényben van-e (kifejezetten szolgáltatások graph keresztül elérhető).  A végfelhasználói többtényezős Hitelesítést a rendszer. Abban az esetben a végfelhasználónak van bejelentkezve, érvényes jogkivonatokat, a "kérdés" jogcímek küld vissza a webalkalmazás.  
-* A natív alkalmazással középső réteg szolgáltatást használ a Microsoft Graph eléréséhez készítésekor.  Egy vállalati ügyfél használja az alkalmazást a vállalatnál Exchange online-házirend vonatkozik.  Ha felhasználó jelentkezik be, a natív alkalmazással a középső réteg hozzáférést kér, és elküldi azt.  A középső réteg hajt végre a-meghatalmazásos folyamat a MS Graph hozzáférést kérni.  A "kérdés" jogcímek ezen a ponton a középső réteg áll rendelkezésre. A középső réteg elküldi a probléma a natív alkalmazással, amely szükséges ahhoz, hogy a feltételes hozzáférési házirend.
+* Egy egyszeres-bérlő iOS-alkalmazást fejleszt, és a feltételes hozzáférési házirend alkalmazása.  hello alkalmazás a felhasználó bejelentkezik, és hozzáférést tooan API nem igényelhetnek.  Hello felhasználó jelentkezik be, amikor hello házirend automatikusan megnyílik, és hello felhasználó számára szükséges tooperform többtényezős hitelesítés (MFA). 
+* A több-bérlős webes alkalmazás által használt hello Microsoft Graph tooaccess Exchange, más szolgáltatások között készítésekor.  Ez az alkalmazás fogad el egy vállalati ügyfelünk SharePoint Online-on állít be egy házirendet.  Amikor hello webalkalmazás jogkivonat MS Graph, az összes Microsoft Service egy házirend érvényben van-e (kifejezetten szolgáltatások graph keresztül elérhető).  A végfelhasználói többtényezős Hitelesítést a rendszer. Hello esetben hello végfelhasználói érvényes jogkivonatokat van bejelentkezve, a "kérdés" jogcímek toohello webalkalmazás adja vissza.  
+* Egy natív alkalmazás, amely a középső réteg tooaccess hello Microsoft Graph használ készítésekor.  Egy vállalati ügyfél használja az alkalmazást hello vállalat egy házirend tooExchange Online vonatkozik.  Ha felhasználó jelentkezik be, a hello natív alkalmazás kéri a hozzáférési toohello középső réteg, és elküldi a hello jogkivonat.  hello középső réteg a-meghatalmazásos folyamat toorequest hozzáférés toohello MS Graph hajt végre.  Ezen a ponton a "kérdés" jogcímek toohello középső réteg áll rendelkezésre. hello középső réteg küldi hello challenge hátsó toohello natív alkalmazást, mert toocomply hello feltételes hozzáférési házirenddel kell.
 
 ### <a name="complying-with-a-conditional-access-policy"></a>A feltételes hozzáférési házirend megfelel
 
-Számos különböző alkalmazás topológia esetén a feltételes hozzáférési házirend van kiértékelve, amikor a munkamenet.  Mint a lépésköz legyen az alkalmazások és szolgáltatások a feltételes hozzáférési szabályzatot, a a pont, ahol meghívták a forgatókönyv megvalósításához próbál fokozottan függ.
+Számos különböző alkalmazás topológia esetén a feltételes hozzáférési házirend van kiértékelve, amikor a hello munkamenet.  Mint az alkalmazások és szolgáltatások hello granularitása a feltételes hozzáférési házirend, hello pontot, amellyel meghívták nagyban függ hello forgatókönyvön tooaccomplish próbál.
 
-Amikor az alkalmazás megpróbálja elérni egy szolgáltatást, a feltételes hozzáférési házirenddel, akkor a feltételes hozzáférés kihívást merülhetnek fel.  Ez a kérdés kódolású a `claims` paraméter, amely rendelkezik az Azure AD választ, vagy a Microsoft Graph.  Íme egy példa a challenge paraméter: 
+Amikor az alkalmazás tooaccess feltételes hozzáférési házirenddel szolgáltatásként próbál, akkor a feltételes hozzáférés kihívást merülhetnek fel.  Ez a kérdés hello van kódolva `claims` paraméter, amely rendelkezik az Azure AD választ, vagy a Microsoft Graph hello.  Íme egy példa a challenge paraméter: 
 
 ```
 claims={"access_token":{"polids":{"essential":true,"Values":["<GUID>"]}}}
 ```
 
-A fejlesztők a challenge igénybe, és fűzi azokat egy új kérelmet az Azure AD-kiszolgálóra.  Sikeres ebben az állapotban kérni fogja a végfelhasználó számára, amelyek szükségesek ahhoz a feltételes hozzáférési házirend bármely művelet elvégzésére. A következő esetekben a hiba vagy a paraméter kicsomagolása magyarázatát olvashatja. 
+A fejlesztők a challenge igénybe, és egy új kérelmet tooAzure AD alakzatot fűzi azokat.  Ebben az állapotban átadásakor megadását kéri az hello végfelhasználói tooperform bármely művelet szükséges toocomply hello feltételes hozzáférési házirenddel. A következő forgatókönyvek hello hello hiba, és hogyan tooextract hello paraméter mintaadatokról magyarázatát olvashatja. 
 
 ## <a name="scenarios"></a>Forgatókönyvek
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-Azure AD feltételes hozzáférés lehetővé teszi a [Azure AD Premium](../active-directory-whatis.md#choose-an-edition).  További követelmények licencelésével kapcsolatban a [licenc nélküli használati jelentés](../active-directory-conditional-access-unlicensed-usage-report.md).  A fejlesztők csatlakozhat a [Microsoft Developer Network](https://msdn.microsoft.com/dn308572.aspx), mely tartalmazza a nagyvállalati mobilitási csomag, amely magában foglalja a prémium szintű Azure AD ingyenes előfizetés.
+Azure AD feltételes hozzáférés lehetővé teszi a [Azure AD Premium](../active-directory-whatis.md#choose-an-edition).  Hello követelményeinek licenceléssel kapcsolatos részletesebb [licenc nélküli használati jelentés](../active-directory-conditional-access-unlicensed-usage-report.md).  A fejlesztők csatlakozhat hello [Microsoft Developer Network](https://msdn.microsoft.com/dn308572.aspx), mely tartalmazza a nagyvállalati mobilitási csomag, amely magában foglalja a prémium szintű Azure AD ingyenes előfizetés toohello.
 
 ### <a name="considerations-for-specific-scenarios"></a>Meghatározott forgatókönyvek szempontjai
 
-Feltételes hozzáférés forgatókönyvekben csak alkalmazza a következő információkat:
+információk csak a következő hello alkalmazza a feltételes hozzáférés forgatókönyvekben:
 
-* A Microsoft Graph hozzáférő alkalmazásokat
-* Az a-meghatalmazásos folyamat végrehajtása alkalmazások
+* A Microsoft Graph hello hozzáférő alkalmazásokat
+* Alkalmazások hello a-meghatalmazásos folyamat végrehajtása
 * Az alkalmazások több szolgáltatások/erőforrások elérése
 * Egylapos alkalmazások ADAL.js
 
-A következő szakaszokban azt jelenik meg a közös bemutató forgatókönyvek összetettebbek.  Az alapvető működési elv feltételes hozzáférési házirendek kiértékelése időpontjában a token van szükség a szolgáltatás, amely rendelkezik egy feltételes hozzáférési házirend alkalmazása, kivéve, ha a Microsoft Graph keresztül van használatban.
+A következő részekben hello azt fogja bejutni közös bemutató forgatókönyvek összetettebbek.  működési elv hello core feltételes hozzáférési házirendek kiértékelése időpontban hello hello token kérik hello szolgáltatást egy feltételes hozzáférési házirend alkalmazva, kivéve, ha a Microsoft Graph hello keresztül van használatban.
 
-### <a name="scenario-app-accessing-the-microsoft-graph"></a>Forgatókönyv: Alkalmazás elérése a Microsoft Graph
+### <a name="scenario-app-accessing-hello-microsoft-graph"></a>Forgatókönyv: Alkalmazás hello Microsoft Graph elérése
 
-Ebben a forgatókönyvben azt végezze el az esetben, ha a webes alkalmazás kérelmek eléréséhez a Microsoft Graph számára. A feltételes hozzáférési házirend ebben az esetben sikerült hozzárendelni a SharePoint, Exchange vagy néhány egyéb szolgáltatás, amely érhető el a Microsoft Graph keresztül feladatként.  Ebben a példában tegyük fel nincs Sharepoint online feltételes hozzáférési házirendet.
+Ebben a forgatókönyvben azt bízná hello esetben ha a webes alkalmazás hozzáférés toohello Microsoft Graph kér. hello feltételes hozzáférési házirend ebben az esetben hozzárendelése sikerült tooSharePoint, Exchange vagy néhány egyéb szolgáltatás, amelyhez a Microsoft Graph hello keresztül feladatként.  Ebben a példában tegyük fel nincs Sharepoint online feltételes hozzáférési házirendet.
 
-![Az alkalmazás elérése a Microsoft Graph folyamatábrán](media/active-directory-conditional-access-developer/app-accessing-microsoft-graph-scenario.png)
+![Alkalmazás hello Microsoft Graph folyamatábrán elérése](media/active-directory-conditional-access-developer/app-accessing-microsoft-graph-scenario.png)
 
-A Microsoft Graph-egy alsóbb rétegbeli munkaterhelés feltételes hozzáférés nélkül eléréséhez szükséges engedélyezési először kér az alkalmazás.  A kérelem sikeres bármely házirend meghívása nélkül, és az alkalmazás a Microsoft Graph-jogkivonatokat kap.  Ezen a ponton az alkalmazás lehet használni a hozzáférési jogkivonat tulajdonosi kérést a kért végpont. Most az alkalmazás van szüksége, például a Sharepoint Online Microsoft Graph-végpont elérésére:`https://graph.microsoft.com/v1.0/me/mySite`
+hello app először kérelmez engedélyezési toohello Microsoft Graph-szükséges fér hozzá egy alsóbb rétegbeli munkaterhelés feltételes hozzáférés nélkül.  sikeres hello bármely házirend meghívása nélkül, és hello alkalmazást a Microsoft Graph-jogkivonatokat kap.  Ezen a ponton hello alkalmazás használhat hello hozzáférési jogkivonat tulajdonosi kérelemben kért hello végpont. Most, hello alkalmazásnak kell tooaccess a Sharepoint Online végpont Microsoft Graph, például:`https://graph.microsoft.com/v1.0/me/mySite`
 
-Az alkalmazás már rendelkezik Microsoft Graph egy érvényes tokent, így az új kérelem ellátásához nélkül egy új jogkivonat kiállítása történik. A kérelem sikertelen lesz, és a Microsoft Graph egy HTTP 403 Tiltott a formájában kiadott jogcímeket kihívást egy ```WWW-Authenticate``` kérdés.
-Íme egy példa a válasz: 
+hello app már van egy érvényes tokent a Microsoft Graph-hello, így műveleteket hajthat végre hello új kérelem nélkül egy új jogkivonat kiállítása történik. A kérelem sikertelen lesz, és a Microsoft Graph formájában hello egy HTTP 403 Tiltott a kiadott jogcímeket kihívást egy ```WWW-Authenticate``` kérdés.
+Íme egy példa a hello válasz: 
 
 ```
 HTTP 403; Forbidden 
@@ -105,87 +105,87 @@ error=insufficient_claims
 www-authenticate="Bearer realm="", authorization_uri="https://login.windows.net/common/oauth2/authorize", client_id="<GUID>", error=insufficient_claims, claims={"access_token":{"polids":{"essential":true,"values":["<GUID>"]}}}"
 ```
 
-A jogcímek kihívás belül van a ```WWW-Authenticate``` fejlécet, amely értelmezni tudja a jogcímek paraméter a következő kérelem kibontásához.  Amint azt a rendszer hozzáfűzi az új kérelem, az Azure AD tudni fogja, hogy a feltételes hozzáférési házirend kiértékeléséhez, amikor a felhasználó bejelentkezik, és az alkalmazás most már megfelel a feltételes hozzáférési házirend van.  A kérés a Sharepoint Online végpontra ismétlődő sikeres lesz.
+hello jogcímek challenge belül van hello ```WWW-Authenticate``` fejlécet, amely lehet elemzett tooextract hello jogcímek paraméter hello következő kérés.  Miután hozzáfűzött toohello új kérelem, az Azure AD tudja tooevaluate hello feltételes hozzáférési házirend, ha most hello felhasználói és hello alkalmazás aláírása nem felelnek meg hello feltételes hozzáférési szabályzat.  Ismétlődő hello kérelem toohello Sharepoint Online végpont sikeres lesz.
 
-Bemutatják, hogyan lehet kezelni a jogcímek kihívás mintakódok, lásd a [.NET asztali kódminta](https://github.com/Azure-Samples/active-directory-dotnet-native-desktop) az ADAL .NET vagy a [a nevében-az kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca) ADAL .NET-keretrendszerhez készült.
+Bemutatják, hogyan toohandle hello jogcímek challenge mintakódok, tekintse meg a toohello [.NET asztali kódminta](https://github.com/Azure-Samples/active-directory-dotnet-native-desktop) ADAL .NET vagy hello [a nevében-az kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca) ADAL .NET-keretrendszerhez készült.
 
-### <a name="scenario-app-performing-the-on-behalf-of-flow"></a>Forgatókönyv: Alkalmazás a a-meghatalmazásos folyamat végrehajtása
+### <a name="scenario-app-performing-hello-on-behalf-of-flow"></a>Forgatókönyv: Alkalmazás hello a-meghatalmazásos folyamat végrehajtása
 
-Ebben a forgatókönyvben azt végezze el az esetet, amelyben a natív alkalmazással hívja a webes szolgáltatás/API-t.  Viszont teszi a szolgáltatás [az "a-meghatalmazásos" folyamat](active-directory-authentication-scenarios.md#application-types-and-scenarios) egy alsóbb rétegbeli szolgáltatás hívásához.  Ebben az esetben azt alkalmazott a feltételes hozzáférési szabályzatot az alárendelt szolgáltatás (Web API 2) és a kiszolgáló/démon alkalmazás helyett a natív alkalmazással használ. 
+Ebben a forgatókönyvben azt bízná hello esetet, amelyben a natív alkalmazással hívja a webes szolgáltatás/API-t is.  Viszont teszi a szolgáltatás ["a-meghatalmazásos" folyamat hello](active-directory-authentication-scenarios.md#application-types-and-scenarios) toocall egy alsóbb rétegbeli szolgáltatás.  Ebben az esetben azt alkalmazta a feltételes hozzáférési házirend toohello alárendelt szolgáltatás (Web API 2) és a kiszolgáló/démon alkalmazás helyett a natív alkalmazással használ. 
 
-![Alkalmazás végrehajtása a-nevében-: folyamatábrája](media/active-directory-conditional-access-developer/app-performing-on-behalf-of-scenario.png)
+![Alkalmazás végrehajtása hello a nevében-az folyamatábrája](media/active-directory-conditional-access-developer/app-performing-on-behalf-of-scenario.png)
 
-Az eredeti token kérelem webes API 1 nem kéri a felhasználót a multi-factor authentication végfelhasználói, webes API-1 lehet, hogy mindig éri el az alsóbb rétegbeli API-t.  Webes API 1 megkísérli egy jogkivonatot a nevében – az a felhasználó a Web API 2, ha a kérés nem teljesíthető, mivel a felhasználó nem jelentkezett be többtényezős hitelesítést.
+hello kezdeti jogkivonatkérelem webes API 1 nem kéri a felhasználót a multi-factor authentication hello végfelhasználói, webes API 1 nem lehetséges, hogy mindig találati hello alsóbb rétegbeli API.  Webes API 1 toorequest egy token a-nevében-: hello felhasználó megpróbál a Web API 2, miután hello kérelem sikertelen lesz, mivel hello felhasználó nem jelentkezett be többtényezős hitelesítést.
 
 Az Azure AD egy HTTP-válasz érdekes adatokkal tér vissza: 
 
 > [!NOTE]
-> Ebben a példában a multi-factor Authentication hitelesítés hibaleírás, de számos különböző `interaction_required` lehetséges vonatkozó feltételes hozzáférés.  
+> Ebben a példában a multi-factor Authentication hitelesítés hibaleírás, de számos különböző `interaction_required` lehetséges kapcsolódó tooconditional hozzáférést.  
 
 ```
 HTTP 400; Bad Request 
 error=interaction_required
-error_description=AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '<Web API 2 App/Client ID>'.
+error_description=AADSTS50076: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must use multi-factor authentication tooaccess '<Web API 2 App/Client ID>'.
 claims={"access_token":{"polids":{"essential":true,"Values":["<GUID>"]}}}
 ```
 
-A webes API 1. a hiba azt catch `error=interaction_required`, és elküldi a `claims` kihívás az asztal alkalmazásra.  Ezen a ponton a egy asztali alkalmazás egy új tehet `acquireToken()` hívja, és a hozzáfűző a `claims`challenge extra lekérdezési karakterlánc paraméterként.  Az új kérelemben a felhasználónak kell a többtényezős hitelesítést és az új jogkivonat visszaküldi a webes API-1 és az a-meghatalmazásos folyamat befejezéséhez.
+A webes API-1, a Microsoft hello hiba catch `error=interaction_required`, és küldje vissza hello `claims` challenge toohello egy asztali alkalmazás.  Ezen a ponton végezhet egy új hello egy asztali alkalmazás `acquireToken()` hívja, és a hozzáfűző hello `claims`challenge extra lekérdezési karakterlánc paraméterként.  Az új kérelemben hello felhasználói toodo többtényezős hitelesítést igényel, és elküldheti-e az új jogkivonat hátsó tooWeb API 1 és a teljes hello a-meghatalmazásos folyamat.
 
-Próbálja ki ebben a forgatókönyvben, tekintse meg a [.NET kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca).  Azt mutatja be egy új kérelmet az ügyfélalkalmazás belül, és a jogcímek kihívás vissza a webes API 1 átadása a natív alkalmazással. 
+Ebben az esetben ki tootry lásd: a [.NET kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca).  Azt mutatja be, hogyan toopass jogcímek challenge vissza alkalmazásból webes API 1 toohello natív hello és hoz létre új kérelmet hello ügyfélalkalmazás belül. 
 
 ### <a name="scenario-app-accessing-multiple-services"></a>Forgatókönyv: Alkalmazás több szolgáltatás használata
 
-Ebben a forgatókönyvben azt végezze el az eset webalkalmazás fér hozzá két szolgáltatást, amelyek egyike a feltételes hozzáférési házirend hozzárendelése.  Attól függően, hogy az alkalmazás logika egy elérési utat, ahol az alkalmazás nem igényel a két webes szolgáltatásokhoz való hozzáférés előfordulhat, hogy létezik.  Ebben a forgatókönyvben jogkivonat kér le a sorrend fontos szerepet a végfelhasználói élményt nyújt.
+Ebben a forgatókönyvben azt bízná amelyek egyike a feltételes hozzáférési házirend hozzárendelése egy webalkalmazást fér hozzá két szolgáltatások hello eset is.  Attól függően, hogy az alkalmazás logika egy elérési utat, amelyben az alkalmazás nem igényli a hozzáférési tooboth webszolgáltatások előfordulhat, hogy létezik.  Ebben a forgatókönyvben jogkivonatot kérni hello sorrendje fontos szerepet hello végfelhasználói élményt nyújt.
 
-Tegyük fel, A és B webszolgáltatás tudunk és B webszolgáltatás rendelkezik a feltételes hozzáférési házirend is tartozik.  A kezdeti interaktív hitelesítési kérelmek mindkét szolgáltatás hozzájárulási igényel, míg a feltételes hozzáférési házirend nem minden esetben szükséges.  Webszolgáltatás B jogkivonat kér az alkalmazás, ha a házirend meghívták, és webszolgáltatás A későbbi kérelmek is sikeres a következőképpen.
+Tegyük fel, A és B webszolgáltatás tudunk és B webszolgáltatás rendelkezik a feltételes hozzáférési házirend is tartozik.  Hello kezdeti interaktív hitelesítési kérelmek mindkét szolgáltatás hozzájárulási igényel, míg hello feltételes hozzáférési házirend nem minden esetben szükséges.  Ha hello app webszolgáltatáshoz B jogkivonat kér, hello házirend meghívták, és A webszolgáltatás kérelmeknél is az alábbiak szerint sikeres lesz.
 
 ![Az alkalmazás eléréséhez több-szolgáltatások folyamatábrája](media/active-directory-conditional-access-developer/app-accessing-multiple-services-scenario.png)
 
-Azt is megteheti Ha az alkalmazás a webes szolgáltatás a jogkivonat kezdetben kér, a végfelhasználó nem lép működésbe a feltételes hozzáférési szabályzat.  Ez lehetővé teszi az alkalmazás fejlesztőjének nem kényszerítik ki minden olyan esetben meg kell hívni a feltételes hozzáférési szabályzatot, és szabályozhatja a végfelhasználói élmény. A legbonyolultabb helyzet, ha az alkalmazás ezt követően kérelmeket webszolgáltatáshoz b jogkivonat Ezen a ponton a végfelhasználónak kell tartania a feltételes hozzáférési szabályzat.  Ha az alkalmazás próbál `acquireToken`, akkor hozhat létre a következő hiba (mutatja be a következő ábra): 
+Másik lehetőségként Ha hello alkalmazás jogkivonat kezdetben kér a webes szolgáltatás A, hello végfelhasználói nem lép működésbe hello feltételes hozzáférési szabályzat.  Így hello alkalmazás fejlesztőjének toocontrol hello végfelhasználói élményt, és nem kényszerítik ki a hello feltételes hozzáférési házirend toobe minden esetben meghívni. hello legbonyolultabb eset. Ha hello alkalmazás ezt követően kéri jogkivonat webszolgáltatáshoz a b kiszolgálóra. Ezen a ponton hello végfelhasználói kell toocomply hello feltételes hozzáférési házirenddel.  Amikor megpróbál hello app túl`acquireToken`, akkor hozhat létre a következő (mutatja be a következő diagram hello) hiba hello: 
 
 ```
 HTTP 400; Bad Request
 error=interaction_required
-error_description=AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '<Web API App/Client ID>'.
+error_description=AADSTS50076: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must use multi-factor authentication tooaccess '<Web API App/Client ID>'.
 claims={"access_token":{"polids":{"essential":true,"Values":["<GUID>"]}}}
 ``` 
 
 ![Az alkalmazás egy új jogkivonatot kérő több szolgáltatás eléréséhez](media/active-directory-conditional-access-developer/app-accessing-multiple-services-new-token.png)
 
-Ha az alkalmazás ADAL-könyvtárhoz, a jogkivonat nem mindig a rendszer ismét megkísérli interaktív módon.  Az interaktív kérelem esetén a végfelhasználónak a lehetőség, hogy megfeleljen a feltételes hozzáférés az.  Ez érvényét veszti, ha a kérés egy `AcquireTokenSilentAsync` vagy `PromptBehavior.Never` ebben az esetben az alkalmazás számára szükséges-e az interaktív ```AcquireToken``` ahhoz, hogy megkapja a végső felhasználási lehetőséget a házirend ahhoz, hogy a kérelmet. 
+Ha hello alkalmazás hello ADAL-könyvtár, egy hiba tooacquire hello token mindig a rendszer ismét megkísérli interaktív módon.  Az interaktív kérés esetén hello végfelhasználónak hello lehetőség toocomply hello feltételes hozzáférést.  Ez érvényét veszti, ha hello kérelme, mert egy `AcquireTokenSilentAsync` vagy `PromptBehavior.Never` ebben az esetben hello alkalmazásnak kell-e az interaktív tooperform ```AcquireToken``` kérelem toogive hello végfelhasználás hello lehetőség toocomply hello házirendnek. 
 
 ### <a name="scenario-single-page-app-spa-using-adaljs"></a>Forgatókönyv: Egy lap App (SPA) ADAL.js használatával
 
-Ebben a forgatókönyvben azt végezze el az esetben, ha van a egylapos alkalmazások (SPA), ADAL.js használatával védett feltételes hozzáférés webes API-hívás.  Ez egy egyszerű architektúra, de néhány apró, amelyeket figyelembe kell venni, a feltételes hozzáférés körül fejlesztése során.
+Ebben a forgatókönyvben azt végezze el a hello eset, amikor a egylapos alkalmazások (SPA) van, egy feltételes hozzáférési védett ADAL.js toocall használatával webes API.  Ez egy egyszerű architektúra, de néhány apró kell figyelembe venni, a feltételes hozzáférés körül fejlesztésekor toobe rendelkezik.
 
 ADAL.js, nincsenek tokenek beszerzése néhány függvények: `login()`, `acquireToken(...)`, `acquireTokenPopup(…)`, és `acquireTokenRedirect(…)`. 
 
 * `login()`beolvassa az azonosító tokent egy interaktív bejelentkezési kérelem keresztül, de nem olvasható be a hozzáférési jogkivonatok valamelyik (beleértve a feltételes hozzáférés védett webes API-k) szolgáltatás.  
-* `acquireToken(…)`majd segítségével csendes szerezzen be egy jogkivonatot, azaz a felhasználói felület semmilyen körülmények között nem szerepelnek.  
-* `acquireTokenPopup(…)`és `acquireTokenRedirect(…)` vannak is lehet párbeszédes formában történő igényelni az erőforrás jogkivonat tehát, mindig bejelentkezési felhasználói felület megjelenítése.
+* `acquireToken(…)`majd kell használt toosilently szerezhet be egy jogkivonatot, azaz a felhasználói felület semmilyen körülmények között nem szerepelnek.  
+* `acquireTokenPopup(…)`és `acquireTokenRedirect(…)` mindkét használt toointeractively kérjen mindig bejelentkezési felhasználói felület megjelenítése tehát erőforrás tokent.
 
-Amikor egy alkalmazásnak kell egy webes API hívásához hozzáférési tokent, az megpróbál egy `acquireToken(…)`.  Ha a token munkamenet lejárt, vagy igazolnia kell a feltételes hozzáférési házirend ahhoz, hogy a *acquireToken* függvény meghiúsul, és az alkalmazás által használt `acquireTokenPopup()` vagy `acquireTokenRedirect()`.
+Amikor egy alkalmazásnak kell egy hozzáférési jogkivonat toocall egy webes API-t, az megpróbál egy `acquireToken(…)`.  Ha hello token munkamenet lejárt, vagy a feltételes hozzáférési házirenddel toocomply kell, majd hello *acquireToken* sikertelen funkciót, és az alkalmazás által használt hello `acquireTokenPopup()` vagy `acquireTokenRedirect()`.
 
 ![Egyetlen lapnak alkalmazást ADAL folyamatábrája](media/active-directory-conditional-access-developer/spa-using-adal-scenario.png)
 
-Bemutatjuk, a feltételes hozzáférési forgatókönyv egy példán keresztül.  A végfelhasználó csak a helyen lévő és a munkamenet nem rendelkezik.  Most elvégezni egy `login()` hívja, szerezze be a Azonosítót tokent multi-factor authentication nélkül.  Ezután a felhasználó találatok gomb, az alkalmazás szükséges hozzá kérelem adatai egy webes API-t.  Az alkalmazás megkísérli egy `acquireToken()` hívás azonban sikertelen lesz, mivel még a többtényezős hitelesítés és a vonatkozó igényeket a feltételes hozzáférési házirend ahhoz, hogy a felhasználó nem végezte el.
+Bemutatjuk, a feltételes hozzáférési forgatókönyv egy példán keresztül.  hello végfelhasználói ebben az esetben hello helyen lévő és nem rendelkezik a munkamenetben.  Most elvégezni egy `login()` hívja, szerezze be a Azonosítót tokent multi-factor authentication nélkül.  Majd hello felhasználói találatok hello toorequest adatai egy webes API-t igénylő gomb.  hello app toodo megpróbál egy `acquireToken()` hívás azonban sikertelen, mert hello felhasználó nem végezte el a multi-factor authentication még és toocomply hello feltételes hozzáférési házirenddel kell.
 
-Az Azure AD a következő HTTP-választ küld vissza: 
+Az Azure AD küld vissza a következő HTTP-válasz hello: 
 
 ```
 HTTP 400; Bad Request 
 error=interaction_required
-error_description=AADSTS50076: Due to a configuration change made by your administrator, or because you moved to a new location, you must use multi-factor authentication to access '<Web API App/Client ID>'.
+error_description=AADSTS50076: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must use multi-factor authentication tooaccess '<Web API App/Client ID>'.
 ```
 
-A tényleges kell a `error=interaction_required`.  Az alkalmazás ezután használhatja `acquireTokenPopup()` vagy `acquireTokenRedirect()` ugyanazon az erőforráson futó.  A felhasználónak meg kell a többtényezős hitelesítést. A felhasználó a multi-factor Authentication hitelesítés befejezése után az alkalmazás a kért erőforrás friss jogkivonatot ad ki.
+Az alkalmazásnak kell toocatch hello `error=interaction_required`.  hello alkalmazás majd választhat `acquireTokenPopup()` vagy `acquireTokenRedirect()` a hello azonos erőforrás.  hello felhasználó kényszerített toodo multi-factor Authentication hitelesítést. Hello multi-factor Authentication hitelesítést követően a hello felhasználói hello app kiadott új hozzáférési jogkivonat hello a kért erőforrás.
 
-Próbálja ki ebben a forgatókönyvben, tekintse meg a [JS SPA a nevében-az kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca).  A fenti használ, a feltételes hozzáférési házirend és a webes API-t korábban regisztrált egy JS SPA bemutatásához ebben a forgatókönyvben. Azt illusztrálja, hogyan megfelelően kezeli a jogcímek kihívás, és egy hozzáférési jogkivonatot, amely a webes API nem használható. Alternatív megoldásként az Általános kivétel [Angular.js kódminta](https://github.com/Azure-Samples/active-directory-angularjs-singlepageapp) egy szögben kifejezett SPA útmutatót
+Ebben az esetben ki tootry lásd: a [JS SPA a nevében-az kódminta](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof-ca).  A fenti hello feltételes hozzáférési házirend és a webes API-t regisztrált korábban egy JS SPA toodemonstrate ebben a forgatókönyvben használja. Hogyan tooproperly leíró hello jogcímek ellenőrző kérdés és a szereznie egy hozzáférési jogkivonatot, amely nem használható a Web API mutatja. Másik lehetőségként kivételt hello általános [Angular.js kódminta](https://github.com/Azure-Samples/active-directory-angularjs-singlepageapp) egy szögben kifejezett SPA útmutatót
 
 
 ## <a name="see-also"></a>Lásd még:
 
-* A képességeivel kapcsolatos további tudnivalókért lásd: [feltételes hozzáférés az Azure AD](../active-directory-conditional-access.md).
+* toolearn hello képességeit, bővebben lásd: [feltételes hozzáférés az Azure AD](../active-directory-conditional-access.md).
 * További Azure AD-mintakódok, lásd: [Github-tárház, kódmintákat](https://github.com/azure-samples?utf8=%E2%9C%93&q=active-directory). 
-* További információk az ADAL SDK és a hozzáférés a referenciadokumentációt: [könyvtár útmutató](active-directory-authentication-libraries.md).
-* Több-bérlős forgatókönyvekkel kapcsolatos további tudnivalókért lásd: [a több-bérlős minta használatával a felhasználók bejelentkezés](active-directory-devhowto-multi-tenant-overview.md).
+* További információk a hello ADAL SDK és a hozzáférés hello referenciadokumentációt: [könyvtár útmutató](active-directory-authentication-libraries.md).
+* További információ a több-bérlős forgatókönyvek toolearn lásd: [hogyan kell hello több-bérlős minta használatával a felhasználók toosign](active-directory-devhowto-multi-tenant-overview.md).

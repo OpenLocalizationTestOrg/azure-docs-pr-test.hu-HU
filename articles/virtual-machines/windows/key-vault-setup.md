@@ -1,6 +1,6 @@
 ---
-title: "Állítsa be a kulcsot tároló a Windows virtuális gépek az Azure Resource Manager |} Microsoft Docs"
-description: "Hogyan állítható be Key Vault az Azure Resource Manager virtuális gép való használatra."
+title: "Key Vault a Windows virtuális gépeinek az Azure Resource Manager aaaSet |} Microsoft Docs"
+description: "Hogyan tooset Key Vault mentése az Azure Resource Manager virtuális gép való használatra."
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2017
 ms.author: kasing
-ms.openlocfilehash: a5083a5216efbfd76fd912ec48c2f0ec3b30c4a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 53bbe90708202ecfdcf754822d04bf2469631f08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-key-vault-for-virtual-machines-in-azure-resource-manager"></a>A virtuális gépek az Azure Resource Manager Key Vault beállítása
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-Azure Resource Manager-készletben, a titkos kulcsokat vagy tanúsítványokat van modellezve a Key Vault erőforrás-szolgáltató által biztosított erőforrásokhoz. Key Vault kapcsolatos további információkért lásd: [Mi az Azure Key Vault?](../../key-vault/key-vault-whatis.md)
+Azure Resource Manager-készletben, a titkos kulcsokat vagy tanúsítványokat hello a Key Vault erőforrás-szolgáltató által biztosított erőforrásként van modellezve. toolearn Key Vault kapcsolatos további információkért lásd: [Mi az Azure Key Vault?](../../key-vault/key-vault-whatis.md)
 
 > [!NOTE]
-> 1. Ahhoz, hogy az Azure Resource Manager virtuális gépekkel, használandó kulcstároló a **EnabledForDeployment** be kell állítani a Key Vault tulajdonságot igaz értékre. Ehhez a különböző ügyfelek részére.
-> 2. A Key Vault kell létrehozni az előfizetés és a virtuális gép és a helyen.
+> 1. Ahhoz, hogy az Azure Resource Manager virtuális gépekkel használt Key Vault toobe, hello **EnabledForDeployment** tulajdonság a Key Vault tootrue kell állítani. Ehhez a különböző ügyfelek részére.
+> 2. hello Key Vault igényeinek toobe létrehozott hello azonos előfizetésben és helyen, a virtuális gép hello.
 >
 >
 
-## <a name="use-powershell-to-set-up-key-vault"></a>Key Vault beállítása a PowerShell használatával
-Kulcstároló létrehozása PowerShell használatával: [Ismerkedés az Azure Key Vault](../../key-vault/key-vault-get-started.md#vault).
+## <a name="use-powershell-tooset-up-key-vault"></a>Használjon PowerShell tooset Key Vault mentése
+toocreate kulcstároló powershellel, lásd: [Ismerkedés az Azure Key Vault](../../key-vault/key-vault-get-started.md#vault).
 
 Új kulcstárolók, a következő PowerShell-parancsmagot is használhatja:
 
@@ -44,15 +44,15 @@ Meglévő kulcstárolók, a következő PowerShell-parancsmagot is használhatja
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployment
 
-## <a name="us-cli-to-set-up-key-vault"></a>Parancssori felület beállítása a Key Vault us
-Kulcstároló létrehozása a parancssori felület (CLI) használatával, lásd: [kezelése Key Vault parancssori felület használatával](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault).
+## <a name="us-cli-tooset-up-key-vault"></a>Parancssori felület velünk tooset Key Vault mentése
+toocreate kulcstároló hello parancssori felület (CLI) használatával lásd: [kezelése Key Vault parancssori felület használatával](../../key-vault/key-vault-manage-with-cli2.md#create-a-key-vault).
 
-A parancssori felületen kell létrehoznia a key vault a központi telepítési házirend hozzárendelése előtt. Ehhez futtassa az alábbi parancsot:
+Parancssori felület meg kell toocreate hello kulcstároló hello telepítési házirend hozzárendelése előtt. Ehhez a következő parancs hello használata:
 
     azure keyvault set-policy ContosoKeyVault –enabled-for-deployment true
 
-## <a name="use-templates-to-set-up-key-vault"></a>A sablonok segítségével Key Vault beállítása
-Amíg egy sablont használ, meg kell adnia a `enabledForDeployment` tulajdonságot `true` a Key Vault erőforrás.
+## <a name="use-templates-tooset-up-key-vault"></a>Használja fel a Key Vault sablonok tooset
+Egy sablont használ, miközben tooset hello kell `enabledForDeployment` tulajdonság túl`true` hello Key Vault erőforrás számára.
 
     {
       "type": "Microsoft.KeyVault/vaults",

@@ -46,11 +46,11 @@
 ### [Windows rendszerű virtuális gépek](../../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [A Service Fabric áttekintése](../../service-fabric/service-fabric-overview.md)
 
-# Útmutatók
+# Hogyan tooguides
 ## Felkészülés
 ### [Webalkalmazás-architektúrák](../../guidance/guidance-ra-app-service.md)
 ### [Virtuálisgép-architektúrák](../../guidance/guidance-ra-compute.md)
-### [Csatlakozás helyszíni hálózatokhoz](../../guidance/guidance-ra-hybrid-networking.md)
+### [Tooon helyi hálózatok csatlakoztatása](../../guidance/guidance-ra-hybrid-networking.md)
 ### [Mikroszolgáltatások mintái/forgatókönyvei](../../service-fabric/service-fabric-patterns-and-scenarios.md)
 ## Fejlesztés
 ### [WordPress-alkalmazások](../../app-service-web/web-sites-php-web-site-gallery.md)

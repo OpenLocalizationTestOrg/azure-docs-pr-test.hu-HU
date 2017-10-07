@@ -1,6 +1,6 @@
 ---
-title: H264 Egyetlen Bitrate 1080p hang 5.1 |} Microsoft Docs
-description: "A témakör áttekintést a ** H264 egyetlen Bitrate 1080p hang 5.1* * feladat, előre definiált."
+title: aaaH264 egyetlen Bitrate 1080p hang 5.1 |} Microsoft Docs
+description: "hello a témakör áttekintést hello ** H264 egyetlen Bitrate 1080p hang 5.1* * feladat, előre definiált."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 07440d18afa83c571f1568a2e43fb6bca5e8b452
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8ee5f34f4fd84c615ca8c5e7554e9ec832f54a25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-single-bitrate-1080p-audio-51"></a>H264 Egyetlen Bitrate 1080p hang 5.1
-`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható. Használhatja a `preset name` adhatja meg, melyik formátumba kódolja a médiafájl szeretné. Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával. Az egyéni készletet a kódoló majd át lesz. Ez által támogatott összes előre definiált nevek listája `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható. Használhatja a `preset name` mely formátumú fájlba szeretné tooencode toospecify a médiafájl. Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával. Majd át kellene hello egyéni előre definiált toohello kódoló. Minden hello hello listáját az adott néven beállítás által támogatott nevek `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).  
   
- Ez a témakör bemutatja a `H264 Single Bitrate 1080p Audio 5.1` beállított XML és a JSON formátumban.  
+ Ez a témakör bemutatja a hello `H264 Single Bitrate 1080p Audio 5.1` beállított XML és a JSON formátumban.  
   
- Ezt a készletet hoz létre egyetlen MP4-fájl egy sávszélességű 6750 kbit/s és AAC 5.1 hang. Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. a készletet, vizsgálja meg az XML- vagy JSON-ban megadva. Az egyes azt jelenti, hogy milyen egyes elemei, és az érvényes értékek az egyes elemekhez, tekintse meg a [Media Encoder Standard séma](media-services-mes-schema.md).  
+ Ezt a készletet hoz létre egyetlen MP4-fájl egy sávszélességű 6750 kbit/s és AAC 5.1 hang. Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. Ennek az adott néven beállítás esetében vizsgálja meg, XML vagy az alább megadott JSON hello. További ismereteket szeretnének elsajátítani a azt jelenti, hogy milyen egyes elemei, és hello az érvényes értékek az egyes elemek: hello [Media Encoder Standard séma](media-services-mes-schema.md).  
   
  XML  
   

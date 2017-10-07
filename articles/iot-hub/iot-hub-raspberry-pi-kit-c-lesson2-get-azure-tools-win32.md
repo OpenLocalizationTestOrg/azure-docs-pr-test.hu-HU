@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT - lecke 2 Connect Raspberry pi (C): (Windows) Azure-eszközök |} Microsoft Docs"
-description: "Telepítse a Python és az Azure parancssori felület (CLI) Windows 7 és újabb verziók."
+title: "Connect Raspberry pi (C) tooAzure IoT - lecke 2: (Windows) Azure-eszközök |} Microsoft Docs"
+description: "Telepítse a Python és hello Azure parancssori felület (CLI) Windows 7 és újabb verziók."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: aa96000cb676c088a90f2b3d45c159913185a2e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1819d61fafbee6ac42a1bea5c16437cd8bf43af9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-azure-tools-windows-7-and-later"></a>Első Azure-eszközök (Windows 7 és újabb verziók)
 > [!div class="op_single_selector"]
@@ -30,46 +30,46 @@ ms.lasthandoff: 07/11/2017
 > * [macOS 10.10](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-mac.md)
 
 ## <a name="what-you-will-do"></a>Mit fog
-Telepítse a Python és az Azure parancssori felület (CLI). Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
+Telepítse a Python és hello Azure parancssori felület (CLI). Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
-* Hogyan kell telepíteni a Python.
-* Tudnivalók az Azure parancssori felület telepítése.
+* Hogyan tooinstall Python.
+* Hogyan tooinstall hello Azure parancssori felület.
 
 ## <a name="what-you-need"></a>Mi szükséges
 * Egy internetkapcsolattal rendelkező Windows-számítógép.
 * Aktív Azure-előfizetés. Ha az Azure-fiók nem rendelkezik, hozzon létre egy [ingyenes Azure próba-fiókot](http://azure.microsoft.com/pricing/free-trial/) csak néhány perc múlva.
 
 ## <a name="install-python"></a>Python telepítése
-[Telepítse a Python](https://www.python.org/downloads/) a Windows-számítógépen. Python 2.7, 3.4-es vagy 3.5-ös verzióját is telepítheti. Ez az oktatóanyag a Python 2.7 alapul. Ha már telepítette a Python, folytassa a következő szakasszal, és az Azure parancssori felület telepítése.
+[Telepítse a Python](https://www.python.org/downloads/) a Windows-számítógépen. Python 2.7, 3.4-es vagy 3.5-ös verzióját is telepítheti. Ez az oktatóanyag a Python 2.7 alapul. Ha már telepítette a Python, nyissa meg a következő szakaszban toohello és hello Azure parancssori felület telepítése.
 
-Ahol python.exe és pip.exe vannak telepítve a rendszer a mappák elérési útját adja hozzá kell `PATH` környezeti változó. Alapértelmezés szerint a python.exe telepítve van a `C:\Python27` és pip.exe telepítve van-e `C:\Python27\Scripts`.
+Szükség tooadd hello elérési útját, amelyben python.exe és pip.exe is telepített toohello rendszer hello mappák `PATH` környezeti változó. Alapértelmezés szerint a python.exe telepítve van a `C:\Python27` és pip.exe telepítve van-e `C:\Python27\Scripts`.
 
-## <a name="install-the-azure-cli"></a>Telepítse az Azure CLI-t
-Az Azure parancssori felület olyan többplatformos parancssori környezetet biztosít az Azure. Közvetlenül a parancssorból kiépítését működik, és kezelheti az erőforrásokat.
+## <a name="install-hello-azure-cli"></a>Hello Azure parancssori felület telepítése
+hello Azure CLI olyan többplatformos parancssori környezetet biztosít az Azure. Közvetlenül a parancssor tooprovision dolgozhassanak és kezelheti az erőforrásokat.
 
-Az Azure parancssori felület telepítéséhez kövesse az alábbi lépéseket:
+tooinstall hello Azure CLI használata esetén kövesse az alábbi lépéseket:
 
 1. Nyisson meg egy parancssori ablakot rendszergazdaként.
-2. Futtassa az alábbi parancsot:
+2. Futtassa a következő parancsok hello:
 
    ```bash
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
-3. Ellenőrizze a telepítést a következő parancs futtatásával:
+3. Ellenőrizze a hello telepítést hello a következő parancs futtatásával:
 
    ```bash
    az iot -h
    ```
 
-Ha a telepítés sikeres megjelenik a következő kimenetet.
+Megjelenik a hello parancskimenet sikeres hello telepítés esetén.
 
 ![Kimeneti sikerességét jelző](media/iot-hub-raspberry-pi-lessons/lesson2/az_iot_help_win.png)
 
 ## <a name="summary"></a>Összefoglalás
-Az Azure parancssori felület telepítése. A következő feladathoz az Azure IoT hub- és eszközidentitások létrehozása az Azure parancssori felület használatával.
+Hello Azure parancssori felület telepítése. A Tovább gombra a feladatütemezés toocreate az Azure IoT hub- és eszközidentitások hello Azure parancssori felület használatával.
 
 ## <a name="next-steps"></a>Következő lépések
 [Az IoT hub létrehozni és regisztrálni az málna Pi 3](iot-hub-raspberry-pi-kit-c-lesson2-prepare-azure-iot-hub.md)

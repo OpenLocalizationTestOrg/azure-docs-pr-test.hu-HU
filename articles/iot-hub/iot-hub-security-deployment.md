@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT üzembe |} Microsoft Docs"
-description: "Hogyan IoT üzembe. Eszközök kiépítését, kapcsolatok és az IoT-központ szolgáltatáshoz való hozzáférés biztonságossá tételének irányelveit tartalmazza."
+title: "aaaSecure az Azure IoT központi telepítésének |} Microsoft Docs"
+description: "Hogyan toosecure IoT-telepítéssel. Biztonságossá tétele az eszközök kiépítését, kapcsolatok és hozzáférési toohello IoT-központ szolgáltatás iránymutatásokat tartalmaz."
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 47a3a2973c2b2c7c104d6c404573801375723182
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0fc71f5ed2747531360eaebbbaab21b1ff268520
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [iot-secure-your-deployment](../../includes/iot-secure-your-deployment.md)]
 
 ## <a name="see-also"></a>Lásd még:
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [Egy eszköz szimulálva Azure IoT oldala][lnk-iotedge]
 
