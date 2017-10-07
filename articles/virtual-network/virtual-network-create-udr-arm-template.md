@@ -1,6 +1,6 @@
 ---
-title: "Szabályozhatja az Azure - útválasztó és a virtuális készülékek sablon |} Microsoft Docs"
-description: "Megtudhatja, hogyan szabályozhatja az Azure Resource Manager-sablonnal útválasztási és a virtuális készülékek."
+title: "az Azure - útválasztó és a virtuális készülékek aaaControl sablon |} Microsoft Docs"
+description: "Megtudhatja, hogyan Azure Resource Manager-sablonnal toocontrol útválasztási és a virtuális készülékek."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-a-template"></a><span data-ttu-id="15ee7-103">Hozzon létre felhasználói útvonalakat (UDR) sablon használatával</span><span class="sxs-lookup"><span data-stu-id="15ee7-103">Create User-Defined Routes (UDR) using a template</span></span>
+# <a name="create-user-defined-routes-udr-using-a-template"></a><span data-ttu-id="5c0e9-103">Hozzon létre felhasználói útvonalakat (UDR) sablon használatával</span><span class="sxs-lookup"><span data-stu-id="5c0e9-103">Create User-Defined Routes (UDR) using a template</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="15ee7-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="15ee7-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
-> * [<span data-ttu-id="15ee7-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="15ee7-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
-> * [<span data-ttu-id="15ee7-106">Sablon</span><span class="sxs-lookup"><span data-stu-id="15ee7-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
-> * [<span data-ttu-id="15ee7-107">PowerShell (klasszikus)</span><span class="sxs-lookup"><span data-stu-id="15ee7-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
-> * [<span data-ttu-id="15ee7-108">Parancssori felület (klasszikus)</span><span class="sxs-lookup"><span data-stu-id="15ee7-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
+> * [<span data-ttu-id="5c0e9-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5c0e9-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
+> * [<span data-ttu-id="5c0e9-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="5c0e9-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
+> * [<span data-ttu-id="5c0e9-106">Sablon</span><span class="sxs-lookup"><span data-stu-id="5c0e9-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
+> * [<span data-ttu-id="5c0e9-107">PowerShell (klasszikus)</span><span class="sxs-lookup"><span data-stu-id="5c0e9-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
+> * [<span data-ttu-id="5c0e9-108">Parancssori felület (klasszikus)</span><span class="sxs-lookup"><span data-stu-id="5c0e9-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> <span data-ttu-id="15ee7-109">Az Azure-erőforrásokkal való munka megkezdése előtt fontos megérteni, hogy az Azure jelenleg két üzembe helyezési modellel rendelkezik, a Resource Managerrel és a klasszikussal.</span><span class="sxs-lookup"><span data-stu-id="15ee7-109">Before you work with Azure resources, it's important to understand that Azure currently has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="15ee7-110">Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal.</span><span class="sxs-lookup"><span data-stu-id="15ee7-110">Make sure you understand [deployment models and tools](../azure-resource-manager/resource-manager-deployment-model.md) before you work with any Azure resource.</span></span> <span data-ttu-id="15ee7-111">A különféle eszközök dokumentációit a cikk tetején található fülekre kattintva tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="15ee7-111">You can view the documentation for different tools by clicking the tabs at the top of this article.</span></span> <span data-ttu-id="15ee7-112">Ez a cikk a Resource Manager-alapú üzemi modellt ismerteti.</span><span class="sxs-lookup"><span data-stu-id="15ee7-112">This article covers the Resource Manager deployment model.</span></span> 
+> <span data-ttu-id="5c0e9-109">Azure-erőforrások használata előtt-e, hogy Azure jelenleg két üzembe helyezési modellel rendelkezik fontos toounderstand: Azure Resource Manager és klasszikus.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-109">Before you work with Azure resources, it's important toounderstand that Azure currently has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="5c0e9-110">Bizonyosodjon meg arról, hogy megfelelő ismeretekkel rendelkezik az [üzembe helyezési modellekről és eszközökről](../azure-resource-manager/resource-manager-deployment-model.md), mielőtt elkezdene dolgozni az Azure-erőforrásokkal.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-110">Make sure you understand [deployment models and tools](../azure-resource-manager/resource-manager-deployment-model.md) before you work with any Azure resource.</span></span> <span data-ttu-id="5c0e9-111">Ez a cikk hello tetején hello fülekre kattintva megtekintheti a különféle eszközök dokumentációit hello.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-111">You can view hello documentation for different tools by clicking hello tabs at hello top of this article.</span></span> <span data-ttu-id="5c0e9-112">Ez a cikk ismerteti a hello Resource Manager üzembe helyezési modellben.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-112">This article covers hello Resource Manager deployment model.</span></span> 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-## <a name="udr-resources-in-a-template-file"></a><span data-ttu-id="15ee7-113">Egy sablonfájlban UDR erőforrások</span><span class="sxs-lookup"><span data-stu-id="15ee7-113">UDR resources in a template file</span></span>
-<span data-ttu-id="15ee7-114">Tekintheti meg és töltse le a [mintasablon](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span><span class="sxs-lookup"><span data-stu-id="15ee7-114">You can view and download the [sample template](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span></span>
+## <a name="udr-resources-in-a-template-file"></a><span data-ttu-id="5c0e9-113">Egy sablonfájlban UDR erőforrások</span><span class="sxs-lookup"><span data-stu-id="5c0e9-113">UDR resources in a template file</span></span>
+<span data-ttu-id="5c0e9-114">Tekintheti meg és töltse le a hello [mintasablon](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span><span class="sxs-lookup"><span data-stu-id="5c0e9-114">You can view and download hello [sample template](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span></span>
 
-<span data-ttu-id="15ee7-115">A következő szakasz azt mutatja be az előtér-UDR definíciója a **azuredeploy-vnet-nsg-udr.json** fájl az esethez:</span><span class="sxs-lookup"><span data-stu-id="15ee7-115">The following section shows the definition of the front-end UDR in the **azuredeploy-vnet-nsg-udr.json** file for the scenario:</span></span>
+<span data-ttu-id="5c0e9-115">hello következő szakasz azt mutatja be hello hello definíciója hello az előtér-UDR **azuredeploy-vnet-nsg-udr.json** fájl hello forgatókönyvhöz:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-115">hello following section shows hello definition of hello front-end UDR in hello **azuredeploy-vnet-nsg-udr.json** file for hello scenario:</span></span>
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/11/2017
         }
       ]
 
-<span data-ttu-id="15ee7-116">Rendelje hozzá a az előtér-alhálózathoz UDR, akkor módosítsa az alhálózati definíció a sablonban, majd a UDR a referencia-azonosító használata.</span><span class="sxs-lookup"><span data-stu-id="15ee7-116">To associate the UDR to the front-end subnet, you have to change the subnet definition in the template, and use the reference id for the UDR.</span></span>
+<span data-ttu-id="5c0e9-116">tooassociate hello UDR toohello előtér-alhálózathoz, hogy a toochange hello alhálózati definíció hello sablonban és hello-hivatkozás esetén használja a hello UDR.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-116">tooassociate hello UDR toohello front-end subnet, you have toochange hello subnet definition in hello template, and use hello reference id for hello UDR.</span></span>
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ ms.lasthandoff: 07/11/2017
           }
         },
 
-<span data-ttu-id="15ee7-117">Figyelje meg, ugyanazt a háttér-NSG-t és a sablon a háttér-alhálózat számára történik.</span><span class="sxs-lookup"><span data-stu-id="15ee7-117">Notice the same being done for the back-end NSG and the back-end subnet in the template.</span></span>
+<span data-ttu-id="5c0e9-117">Figyelje meg, hello azonos hello háttér-NSG és hello háttér-alhálózat hello sablonban számára történik.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-117">Notice hello same being done for hello back-end NSG and hello back-end subnet in hello template.</span></span>
 
-<span data-ttu-id="15ee7-118">Is gondoskodnia kell arról, hogy a **FW1** a virtuális gép rendelkezik az IP-továbbítás tulajdonság engedélyezve van a hálózati adapter által használandó kapnak, és továbbítsa a csomagokat.</span><span class="sxs-lookup"><span data-stu-id="15ee7-118">You also need to ensure that the **FW1** VM has the IP forwarding property enabled on the NIC that will be used to receive and forward packets.</span></span> <span data-ttu-id="15ee7-119">Az alábbi szakasz FW1 a hálózati adapter definícióját a azuredeploy-nsg-udr.json fájlban, a fenti forgatókönyv alapján jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="15ee7-119">The section below shows the definition of the NIC for FW1 in the azuredeploy-nsg-udr.json file, based on the scenario above.</span></span>
+<span data-ttu-id="5c0e9-118">Szükség tooensure adott hello **FW1** a virtuális gép rendelkezik hello IP-továbbítás engedélyezve van a hálózati adapterre használt tooreceive, és előre csomagok hello tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-118">You also need tooensure that hello **FW1** VM has hello IP forwarding property enabled on hello NIC that will be used tooreceive and forward packets.</span></span> <span data-ttu-id="5c0e9-119">hello szakasz alatt látható hello definíciója hello NIC FW1 hello azuredeploy-nsg-udr.json fájlban, a fenti hello forgatókönyv alapján.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-119">hello section below shows hello definition of hello NIC for FW1 in hello azuredeploy-nsg-udr.json file, based on hello scenario above.</span></span>
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ ms.lasthandoff: 07/11/2017
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a><span data-ttu-id="15ee7-120">A sablon üzembe helyezése kattintással végrehajtható üzembe helyezéssel</span><span class="sxs-lookup"><span data-stu-id="15ee7-120">Deploy the template by using click to deploy</span></span>
-<span data-ttu-id="15ee7-121">A nyilvános tárházban elérhető mintasablon a fent leírt forgatókönyv létrehozásához használt alapértelmezett értékeket tartalmazó paraméterfájlt használja.</span><span class="sxs-lookup"><span data-stu-id="15ee7-121">The sample template available in the public repository uses a parameter file containing the default values used to generate the scenario described above.</span></span> <span data-ttu-id="15ee7-122">Ha a sablon üzembe helyezését kattintással végrehajtható üzembe helyezéssel szeretné elvégezni, kövesse [ezt a hivatkozást](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), kattintson az **Üzembe helyezés az Azure-on** lehetőségre, cserélje ki az alapértelmezett paraméterértékeket, ha szükséges, majd kövesse a portálon megjelenő utasításokat.</span><span class="sxs-lookup"><span data-stu-id="15ee7-122">To deploy this template using click to deploy, follow [this link](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), click **Deploy to Azure**, replace the default parameter values if necessary, and follow the instructions in the portal.</span></span>
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a><span data-ttu-id="5c0e9-120">Hello sablon üzembe helyezése a toodeploy kattintson</span><span class="sxs-lookup"><span data-stu-id="5c0e9-120">Deploy hello template by using click toodeploy</span></span>
+<span data-ttu-id="5c0e9-121">hello mintasablon elérhető hello nyilvános tárházban hello alapértelmezett értékeket használja toogenerate hello forgatókönyv a fent leírt tartalmazó paraméter fájlt használ.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-121">hello sample template available in hello public repository uses a parameter file containing hello default values used toogenerate hello scenario described above.</span></span> <span data-ttu-id="5c0e9-122">toodeploy toodeploy, a sablon használatával kattintson kövesse [erre a hivatkozásra](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), kattintson a **tooAzure telepítése**, cserélje le a hello alapértelmezett paraméterértékek szükség és hello portal hello utasításait kövesse.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-122">toodeploy this template using click toodeploy, follow [this link](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), click **Deploy tooAzure**, replace hello default parameter values if necessary, and follow hello instructions in hello portal.</span></span>
 
-1. <span data-ttu-id="15ee7-123">Ha még nem használta az Azure PowerShellt, tekintse meg [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című részt, majd kövesse az utasításokat egészen az utolsó lépésig az Azure-ba való bejelentkezéshez és az előfizetése kiválasztásához.</span><span class="sxs-lookup"><span data-stu-id="15ee7-123">If you have never used Azure PowerShell, see [How to Install and Configure Azure PowerShell](/powershell/azure/overview) and follow the instructions all the way to the end to sign into Azure and select your subscription.</span></span>
-2. <span data-ttu-id="15ee7-124">Futtassa az alábbi parancsot egy erőforráscsoport létrehozásához:</span><span class="sxs-lookup"><span data-stu-id="15ee7-124">Run the following command to create a resource group:</span></span>
+1. <span data-ttu-id="5c0e9-123">Ha még sosem használta az Azure PowerShell, lásd: [hogyan tooInstall és konfigurálása az Azure PowerShell](/powershell/azure/overview) és az útmutatás hello összes hello módon toohello toosign befejezése az Azure, és jelölje ki az előfizetését.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-123">If you have never used Azure PowerShell, see [How tooInstall and Configure Azure PowerShell](/powershell/azure/overview) and follow hello instructions all hello way toohello end toosign into Azure and select your subscription.</span></span>
+2. <span data-ttu-id="5c0e9-124">Futtassa a következő parancs toocreate hello erőforráscsoport:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-124">Run hello following command toocreate a resource group:</span></span>
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. <span data-ttu-id="15ee7-125">A következő parancsot a sablon telepítéséhez:</span><span class="sxs-lookup"><span data-stu-id="15ee7-125">Run the following command to deploy the template:</span></span>
+3. <span data-ttu-id="5c0e9-125">Futtassa a következő parancs toodeploy hello sablon hello:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-125">Run hello following command toodeploy hello template:</span></span>
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -129,7 +129,7 @@ ms.lasthandoff: 07/11/2017
         -TemplateParameterUri https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json
     ```
 
-    <span data-ttu-id="15ee7-126">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="15ee7-126">Expected output:</span></span>
+    <span data-ttu-id="5c0e9-126">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-126">Expected output:</span></span>
    
         ResourceGroupName : TestRG
         Location          : westus
@@ -171,22 +171,22 @@ ms.lasthandoff: 07/11/2017
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a><span data-ttu-id="15ee7-127">A sablon üzembe helyezése az Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="15ee7-127">Deploy the template by using the Azure CLI</span></span>
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a><span data-ttu-id="5c0e9-127">Hello sablon üzembe helyezése hello Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="5c0e9-127">Deploy hello template by using hello Azure CLI</span></span>
 
-<span data-ttu-id="15ee7-128">Az ARM-sablon az Azure parancssori felület használatával történő telepítéséhez kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="15ee7-128">To deploy the ARM template by using the Azure CLI, complete the following steps:</span></span>
+<span data-ttu-id="5c0e9-128">toodeploy hello ARM-sablon Azure CLI használata esetén a lépéseket követve teljes hello hello segítségével:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-128">toodeploy hello ARM template by using hello Azure CLI, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="15ee7-129">Ha még sosem használta az Azure CLI-t, akkor tekintse meg [Install and Configure the Azure CLI](../cli-install-nodejs.md) (Az Azure CLI telepítése és konfigurálása) részt, és kövesse az utasításokat addig a pontig, ahol ki kell választania az Azure-fiókot és -előfizetést.</span><span class="sxs-lookup"><span data-stu-id="15ee7-129">If you have never used Azure CLI, see [Install and Configure the Azure CLI](../cli-install-nodejs.md) and follow the instructions up to the point where you select your Azure account and subscription.</span></span>
-2. <span data-ttu-id="15ee7-130">Futtassa a következő parancs futtatásával váltson Resource Manager módra:</span><span class="sxs-lookup"><span data-stu-id="15ee7-130">Run the following command to switch to Resource Manager mode:</span></span>
+1. <span data-ttu-id="5c0e9-129">Ha még sosem használta az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) hello utasítások mentése toohello pont, ahol ki kell választania az Azure-fiókja és -előfizetést.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-129">If you have never used Azure CLI, see [Install and Configure hello Azure CLI](../cli-install-nodejs.md) and follow hello instructions up toohello point where you select your Azure account and subscription.</span></span>
+2. <span data-ttu-id="5c0e9-130">Futtassa a következő parancs tooswitch tooResource kezelő módban hello:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-130">Run hello following command tooswitch tooResource Manager mode:</span></span>
 
     ```azurecli
     azure config mode arm
     ```
 
-    <span data-ttu-id="15ee7-131">A fenti parancs várható kimenete:</span><span class="sxs-lookup"><span data-stu-id="15ee7-131">Here is the expected output for the command above:</span></span>
+    <span data-ttu-id="5c0e9-131">Itt egy hello parancs fenti hello várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-131">Here is hello expected output for hello command above:</span></span>
 
         info:    New mode is arm
 
-3. <span data-ttu-id="15ee7-132">A böngészőben navigáljon **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, másolja a json-fájl tartalmát, és illessze be egy új fájlt a számítógép.</span><span class="sxs-lookup"><span data-stu-id="15ee7-132">From your browser, navigate to **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, copy the contents of the json file, and paste into a new file in your computer.</span></span> <span data-ttu-id="15ee7-133">Ebben a forgatókönyvben azt kellene másolni, alatt az értékeket nevű fájlba **c:\udr\azuredeploy.parameters.json**.</span><span class="sxs-lookup"><span data-stu-id="15ee7-133">For this scenario, you would be copying the values below to a file named **c:\udr\azuredeploy.parameters.json**.</span></span>
+3. <span data-ttu-id="5c0e9-132">A böngészőből keresse túl**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**hello hello json-fájlt másolja és illessze be egy új fájlt a számítógép.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-132">From your browser, navigate too**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, copy hello contents of hello json file, and paste into a new file in your computer.</span></span> <span data-ttu-id="5c0e9-133">Ebben a forgatókönyvben meg kellene másolni, hello értékek nevű tooa fájl alábbi **c:\udr\azuredeploy.parameters.json**.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-133">For this scenario, you would be copying hello values below tooa file named **c:\udr\azuredeploy.parameters.json**.</span></span>
 
     ```json
         {
@@ -206,13 +206,13 @@ ms.lasthandoff: 07/11/2017
         }
     ```
 
-4. <span data-ttu-id="15ee7-134">Futtassa a következő parancsot az új VNet telepíteni, fent letöltött és módosított sablonnal és paraméterfájlokkal fájlok:</span><span class="sxs-lookup"><span data-stu-id="15ee7-134">Run the following command to deploy the new VNet by using the template and parameter files you downloaded and modified above:</span></span>
+4. <span data-ttu-id="5c0e9-134">Futtassa a következő parancs toodeploy új virtuális hálózat hello hello sablonnal és paraméterfájlokkal fájlokkal, fent letöltött és módosított hello:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-134">Run hello following command toodeploy hello new VNet by using hello template and parameter files you downloaded and modified above:</span></span>
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
     ```
 
-    <span data-ttu-id="15ee7-135">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="15ee7-135">Expected output:</span></span>
+    <span data-ttu-id="5c0e9-135">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-135">Expected output:</span></span>
    
         info:    Executing command group create
         info:    Getting resource group TestRG
@@ -229,17 +229,17 @@ ms.lasthandoff: 07/11/2017
         data:    
         info:    group create command OK
 
-5. <span data-ttu-id="15ee7-136">A következő parancsot az új erőforráscsoport létrehozása erőforrások:</span><span class="sxs-lookup"><span data-stu-id="15ee7-136">Run the following command to view the resources created in the new resource group:</span></span>
+5. <span data-ttu-id="5c0e9-136">Futtassa a következő parancs tooview hello erőforrások hello új erőforráscsoport létrehozása hello:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-136">Run hello following command tooview hello resources created in hello new resource group:</span></span>
 
     ```azurecli
     azure group show TestRG
     ```
 
-    <span data-ttu-id="15ee7-137">A várt eredmény:</span><span class="sxs-lookup"><span data-stu-id="15ee7-137">Expected result:</span></span>
+    <span data-ttu-id="5c0e9-137">A várt eredmény:</span><span class="sxs-lookup"><span data-stu-id="5c0e9-137">Expected result:</span></span>
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for the group
+            info:    Listing resources for hello group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ ms.lasthandoff: 07/11/2017
             info:    group show command OK
 
 > [!TIP]
-> <span data-ttu-id="15ee7-138">Ha nem látja az erőforrásokat, futtassa a `azure group deployment show` parancs a központi telepítés a kiépítési állapot biztosításához *Succeded*.</span><span class="sxs-lookup"><span data-stu-id="15ee7-138">If you do not see all the resources, run the `azure group deployment show` command to ensure the provisioning state of the deployment is *Succeded*.</span></span>
+> <span data-ttu-id="5c0e9-138">Ha nem látja az összes hello erőforrások, futtassa a hello `azure group deployment show` kiépítés hello központi telepítésének állapotát a parancs tooensure hello van *Succeded*.</span><span class="sxs-lookup"><span data-stu-id="5c0e9-138">If you do not see all hello resources, run hello `azure group deployment show` command tooensure hello provisioning state of hello deployment is *Succeded*.</span></span>
 > 

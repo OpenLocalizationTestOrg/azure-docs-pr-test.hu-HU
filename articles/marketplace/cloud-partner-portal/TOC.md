@@ -5,7 +5,7 @@
 ## [Bevezetés a felhőpartnerportál használatába](./cloud-partner-portal-getting-started-with-the-cloud-partner-portal.md)
 ## [Támogatott termékek](./Cloud-partner-portal-products-that-can-get-published-via-portal.md)
 
-# Útmutatók
+# Hogyan-tooguides
 ## Virtuális gépek kezelése
 ### [Virtuálisgép-ajánlat készítése](../../cloud-partner-portal/cloud-partner-portal-publish-virtual-machine.md)
 #### [Előfeltételek](../../cloud-partner-portal/cloud-partner-portal-publish-virtual-machine.md#what-are-pre-requisites-for-publishing-a-vm)
@@ -21,7 +21,7 @@
 
 ### [Létező ajánlat frissítése](./cloud-partner-portal-update-existing-offer.md)
 ### [Virtuálisgép-ajánlat/SKU törlése](./cloud-partner-portal-delete-an-offer.md)
-### [Áttelepítés a felhőpartnerportálba](./cloud-partner-portal-how-to-migrate-to-the-new-cloud-partner-portal.md)
+### [Toocloud partnerportál áttelepítése](./cloud-partner-portal-how-to-migrate-to-the-new-cloud-partner-portal.md)
 
 ## [Ügyfélérdeklődések lekérése](./cloud-partner-portal-get-customer-leads.md)
 ### [Azure-tábla](../../cloud-partner-portal/cloud-partner-portal-lead-management-instructions-azure-table.md)

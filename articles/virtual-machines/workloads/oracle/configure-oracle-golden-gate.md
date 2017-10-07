@@ -1,5 +1,5 @@
 ---
-title: "Oracle Golden kapu valósítja meg az Azure Linux virtuális gép |} Microsoft Docs"
+title: "az Azure Linux virtuális gép az Oracle-Golden kapu aaaImplement |} Microsoft Docs"
 description: "Gyorsan karban lehessen az Oracle Golden mentése és az Azure-alapú környezetben futó."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rclaus
-ms.openlocfilehash: a05711357d345267647c02e42336fd37c09e1bff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 320cafd5d23ee472f0af9f92577bc6f432f65778
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a><span data-ttu-id="bbeb9-103">Oracle Golden kapu valósítja meg az Azure Linux virtuális gép</span><span class="sxs-lookup"><span data-stu-id="bbeb9-103">Implement Oracle Golden Gate on an Azure Linux VM</span></span> 
+# <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a><span data-ttu-id="2c063-103">Oracle Golden kapu valósítja meg az Azure Linux virtuális gép</span><span class="sxs-lookup"><span data-stu-id="2c063-103">Implement Oracle Golden Gate on an Azure Linux VM</span></span> 
 
-<span data-ttu-id="bbeb9-104">Az Azure CLI az Azure-erőforrások parancssorból vagy szkriptekkel történő létrehozására és kezelésére használható.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-104">The Azure CLI is used to create and manage Azure resources from the command line or in scripts.</span></span> <span data-ttu-id="bbeb9-105">Ez az útmutató részletesen használata az Azure parancssori felület telepítése az Azure piactér gyűjtemény lemezképről való 12c Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-105">This guide details how to use the Azure CLI to deploy an Oracle 12c database from the Azure Marketplace gallery image.</span></span> 
+<span data-ttu-id="2c063-104">hello Azure CLI használt toocreate és hello parancssorból vagy parancsfájlokban Azure-erőforrások kezeléséhez.</span><span class="sxs-lookup"><span data-stu-id="2c063-104">hello Azure CLI is used toocreate and manage Azure resources from hello command line or in scripts.</span></span> <span data-ttu-id="2c063-105">Ez az útmutató adatokat hogyan toouse hello Azure CLI toodeploy egy 12c Oracle adatbázis-hello Azure piactér gyűjtemény lemezképből.</span><span class="sxs-lookup"><span data-stu-id="2c063-105">This guide details how toouse hello Azure CLI toodeploy an Oracle 12c database from hello Azure Marketplace gallery image.</span></span> 
 
-<span data-ttu-id="bbeb9-106">Ez a dokumentum lépésről lépésre bemutatja létrehozása, telepítése és konfigurálása az Oracle Golden kapu egy Azure virtuális gépen.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-106">This document shows you step-by-step how to create, install, and configure Oracle Golden Gate on an Azure VM.</span></span>
+<span data-ttu-id="2c063-106">Ez a dokumentum lépésről lépésre bemutatja hogyan toocreate, telepíteni és beállítani az Oracle Golden kapu egy Azure virtuális gépen.</span><span class="sxs-lookup"><span data-stu-id="2c063-106">This document shows you step-by-step how toocreate, install, and configure Oracle Golden Gate on an Azure VM.</span></span>
 
-<span data-ttu-id="bbeb9-107">A kezdés előtt győződjön meg arról, hogy az Azure CLI telepítve van.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-107">Before you start, make sure that the Azure CLI has been installed.</span></span> <span data-ttu-id="bbeb9-108">További információért lásd az [Azure CLI telepítési útmutatóját](https://docs.microsoft.com/cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-108">For more information, see [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="2c063-107">Mielőtt elkezdené, győződjön meg arról, hogy telepítve van az Azure CLI hello listájában.</span><span class="sxs-lookup"><span data-stu-id="2c063-107">Before you start, make sure that hello Azure CLI has been installed.</span></span> <span data-ttu-id="2c063-108">További információért lásd az [Azure CLI telepítési útmutatóját](https://docs.microsoft.com/cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="2c063-108">For more information, see [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span>
 
-## <a name="prepare-the-environment"></a><span data-ttu-id="bbeb9-109">A környezet előkészítése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-109">Prepare the environment</span></span>
+## <a name="prepare-hello-environment"></a><span data-ttu-id="2c063-109">Hello környezet előkészítése</span><span class="sxs-lookup"><span data-stu-id="2c063-109">Prepare hello environment</span></span>
 
-<span data-ttu-id="bbeb9-110">Az Oracle Golden kapu telepítés elvégzéséhez szüksége az azonos rendelkezésre állási készlet két Azure virtuális gépek létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-110">To perform the Oracle Golden Gate installation, you need to create two Azure VMs on the same availability set.</span></span> <span data-ttu-id="bbeb9-111">A Piactéri lemezképet hozhat létre a virtuális gépek **Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-111">The Marketplace image you use to create the VMs is **Oracle:Oracle-Database-Ee:12.1.0.2:latest**.</span></span>
+<span data-ttu-id="2c063-110">tooperform hello a Golden kapu Oracle telepítés kell toocreate két Azure-alapú virtuális gépek hello azonos rendelkezésre állási csoportot.</span><span class="sxs-lookup"><span data-stu-id="2c063-110">tooperform hello Oracle Golden Gate installation, you need toocreate two Azure VMs on hello same availability set.</span></span> <span data-ttu-id="2c063-111">hello Piactéri rendszerkép toocreate hello virtuális gépek használata **Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest**.</span><span class="sxs-lookup"><span data-stu-id="2c063-111">hello Marketplace image you use toocreate hello VMs is **Oracle:Oracle-Database-Ee:12.1.0.2:latest**.</span></span>
 
-<span data-ttu-id="bbeb9-112">Szükség Unix szerkesztő vi ismernie kell, és megismerheti a x11 (X Windows).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-112">You also need to be familiar with Unix editor vi and have a basic understanding of x11 (X Windows).</span></span>
+<span data-ttu-id="2c063-112">Is toobe Unix szerkesztő vi ismernie kell, és megismerheti a x11 (X Windows).</span><span class="sxs-lookup"><span data-stu-id="2c063-112">You also need toobe familiar with Unix editor vi and have a basic understanding of x11 (X Windows).</span></span>
 
-<span data-ttu-id="bbeb9-113">Az alábbiakban áttekintjük a környezet konfigurációjának összefoglalása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-113">The following is a summary of the environment configuration:</span></span>
+<span data-ttu-id="2c063-113">hello az alábbiakban látható hello környezet konfigurációjának összefoglalása:</span><span class="sxs-lookup"><span data-stu-id="2c063-113">hello following is a summary of hello environment configuration:</span></span>
 > 
-> |  | <span data-ttu-id="bbeb9-114">**Elsődleges hely**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-114">**Primary site**</span></span> | <span data-ttu-id="bbeb9-115">**Hely replikálása**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-115">**Replicate site**</span></span> |
+> |  | <span data-ttu-id="2c063-114">**Elsődleges hely**</span><span class="sxs-lookup"><span data-stu-id="2c063-114">**Primary site**</span></span> | <span data-ttu-id="2c063-115">**Hely replikálása**</span><span class="sxs-lookup"><span data-stu-id="2c063-115">**Replicate site**</span></span> |
 > | --- | --- | --- |
-> | <span data-ttu-id="bbeb9-116">**Oracle-kiadás**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-116">**Oracle release**</span></span> |<span data-ttu-id="bbeb9-117">Oracle 12c kiadás 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-117">Oracle 12c Release 2 – (12.1.0.2)</span></span> |<span data-ttu-id="bbeb9-118">Oracle 12c kiadás 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-118">Oracle 12c Release 2 – (12.1.0.2)</span></span>|
-> | <span data-ttu-id="bbeb9-119">**Számítógép neve**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-119">**Machine name**</span></span> |<span data-ttu-id="bbeb9-120">myVM1</span><span class="sxs-lookup"><span data-stu-id="bbeb9-120">myVM1</span></span> |<span data-ttu-id="bbeb9-121">myVM2</span><span class="sxs-lookup"><span data-stu-id="bbeb9-121">myVM2</span></span> |
-> | <span data-ttu-id="bbeb9-122">**Operációs rendszer**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-122">**Operating system**</span></span> |<span data-ttu-id="bbeb9-123">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="bbeb9-123">Oracle Linux 6.x</span></span> |<span data-ttu-id="bbeb9-124">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="bbeb9-124">Oracle Linux 6.x</span></span> |
-> | <span data-ttu-id="bbeb9-125">**Oracle SID**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-125">**Oracle SID**</span></span> |<span data-ttu-id="bbeb9-126">CDB1</span><span class="sxs-lookup"><span data-stu-id="bbeb9-126">CDB1</span></span> |<span data-ttu-id="bbeb9-127">CDB1</span><span class="sxs-lookup"><span data-stu-id="bbeb9-127">CDB1</span></span> |
-> | <span data-ttu-id="bbeb9-128">**Replikációs séma**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-128">**Replication schema**</span></span> |<span data-ttu-id="bbeb9-129">TESZT</span><span class="sxs-lookup"><span data-stu-id="bbeb9-129">TEST</span></span>|<span data-ttu-id="bbeb9-130">TESZT</span><span class="sxs-lookup"><span data-stu-id="bbeb9-130">TEST</span></span> |
-> | <span data-ttu-id="bbeb9-131">**Tulajdonos vagy replicate Golden kapu**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-131">**Golden Gate owner/replicate**</span></span> |<span data-ttu-id="bbeb9-132">C ##GGADMIN</span><span class="sxs-lookup"><span data-stu-id="bbeb9-132">C##GGADMIN</span></span> |<span data-ttu-id="bbeb9-133">REPUSER</span><span class="sxs-lookup"><span data-stu-id="bbeb9-133">REPUSER</span></span> |
-> | <span data-ttu-id="bbeb9-134">**Golden kapu folyamat**</span><span class="sxs-lookup"><span data-stu-id="bbeb9-134">**Golden Gate process**</span></span> |<span data-ttu-id="bbeb9-135">EXTORA</span><span class="sxs-lookup"><span data-stu-id="bbeb9-135">EXTORA</span></span> |<span data-ttu-id="bbeb9-136">REPORA</span><span class="sxs-lookup"><span data-stu-id="bbeb9-136">REPORA</span></span>|
+> | <span data-ttu-id="2c063-116">**Oracle-kiadás**</span><span class="sxs-lookup"><span data-stu-id="2c063-116">**Oracle release**</span></span> |<span data-ttu-id="2c063-117">Oracle 12c kiadás 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="2c063-117">Oracle 12c Release 2 – (12.1.0.2)</span></span> |<span data-ttu-id="2c063-118">Oracle 12c kiadás 2 – (12.1.0.2)</span><span class="sxs-lookup"><span data-stu-id="2c063-118">Oracle 12c Release 2 – (12.1.0.2)</span></span>|
+> | <span data-ttu-id="2c063-119">**Számítógép neve**</span><span class="sxs-lookup"><span data-stu-id="2c063-119">**Machine name**</span></span> |<span data-ttu-id="2c063-120">myVM1</span><span class="sxs-lookup"><span data-stu-id="2c063-120">myVM1</span></span> |<span data-ttu-id="2c063-121">myVM2</span><span class="sxs-lookup"><span data-stu-id="2c063-121">myVM2</span></span> |
+> | <span data-ttu-id="2c063-122">**Operációs rendszer**</span><span class="sxs-lookup"><span data-stu-id="2c063-122">**Operating system**</span></span> |<span data-ttu-id="2c063-123">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="2c063-123">Oracle Linux 6.x</span></span> |<span data-ttu-id="2c063-124">Oracle Linux 6.x</span><span class="sxs-lookup"><span data-stu-id="2c063-124">Oracle Linux 6.x</span></span> |
+> | <span data-ttu-id="2c063-125">**Oracle SID**</span><span class="sxs-lookup"><span data-stu-id="2c063-125">**Oracle SID**</span></span> |<span data-ttu-id="2c063-126">CDB1</span><span class="sxs-lookup"><span data-stu-id="2c063-126">CDB1</span></span> |<span data-ttu-id="2c063-127">CDB1</span><span class="sxs-lookup"><span data-stu-id="2c063-127">CDB1</span></span> |
+> | <span data-ttu-id="2c063-128">**Replikációs séma**</span><span class="sxs-lookup"><span data-stu-id="2c063-128">**Replication schema**</span></span> |<span data-ttu-id="2c063-129">TESZT</span><span class="sxs-lookup"><span data-stu-id="2c063-129">TEST</span></span>|<span data-ttu-id="2c063-130">TESZT</span><span class="sxs-lookup"><span data-stu-id="2c063-130">TEST</span></span> |
+> | <span data-ttu-id="2c063-131">**Tulajdonos vagy replicate Golden kapu**</span><span class="sxs-lookup"><span data-stu-id="2c063-131">**Golden Gate owner/replicate**</span></span> |<span data-ttu-id="2c063-132">C ##GGADMIN</span><span class="sxs-lookup"><span data-stu-id="2c063-132">C##GGADMIN</span></span> |<span data-ttu-id="2c063-133">REPUSER</span><span class="sxs-lookup"><span data-stu-id="2c063-133">REPUSER</span></span> |
+> | <span data-ttu-id="2c063-134">**Golden kapu folyamat**</span><span class="sxs-lookup"><span data-stu-id="2c063-134">**Golden Gate process**</span></span> |<span data-ttu-id="2c063-135">EXTORA</span><span class="sxs-lookup"><span data-stu-id="2c063-135">EXTORA</span></span> |<span data-ttu-id="2c063-136">REPORA</span><span class="sxs-lookup"><span data-stu-id="2c063-136">REPORA</span></span>|
 
 
-### <a name="sign-in-to-azure"></a><span data-ttu-id="bbeb9-137">Bejelentkezés az Azure-ba</span><span class="sxs-lookup"><span data-stu-id="bbeb9-137">Sign in to Azure</span></span> 
+### <a name="sign-in-tooazure"></a><span data-ttu-id="2c063-137">Jelentkezzen be tooAzure</span><span class="sxs-lookup"><span data-stu-id="2c063-137">Sign in tooAzure</span></span> 
 
-<span data-ttu-id="bbeb9-138">Jelentkezzen be Azure előfizetés a [az bejelentkezési](/cli/azure/#login) parancsot.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-138">Sign in to your Azure subscription with the [az login](/cli/azure/#login) command.</span></span> <span data-ttu-id="bbeb9-139">Ezután kövesse a képernyőn megjelenő utasításokat.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-139">Then follow the on-screen directions.</span></span>
+<span data-ttu-id="2c063-138">Jelentkezzen be Azure előfizetés hello tooyour [az bejelentkezési](/cli/azure/#login) parancsot.</span><span class="sxs-lookup"><span data-stu-id="2c063-138">Sign in tooyour Azure subscription with hello [az login](/cli/azure/#login) command.</span></span> <span data-ttu-id="2c063-139">Ezután kövesse hello képernyőn megjelenő utasításokat.</span><span class="sxs-lookup"><span data-stu-id="2c063-139">Then follow hello on-screen directions.</span></span>
 
 ```azurecli
 az login
 ```
 
-### <a name="create-a-resource-group"></a><span data-ttu-id="bbeb9-140">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="bbeb9-140">Create a resource group</span></span>
+### <a name="create-a-resource-group"></a><span data-ttu-id="2c063-140">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="2c063-140">Create a resource group</span></span>
 
-<span data-ttu-id="bbeb9-141">Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-141">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="bbeb9-142">Egy Azure erőforráscsoport egy olyan logikai tároló mely Azure-erőforrások vannak telepítve és onnan, ami által kezelhető legyen.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-142">An Azure resource group is a logical container into which Azure resources are deployed and from which they can be managed.</span></span> 
+<span data-ttu-id="2c063-141">Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="2c063-141">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="2c063-142">Egy Azure erőforráscsoport egy olyan logikai tároló mely Azure-erőforrások vannak telepítve és onnan, ami által kezelhető legyen.</span><span class="sxs-lookup"><span data-stu-id="2c063-142">An Azure resource group is a logical container into which Azure resources are deployed and from which they can be managed.</span></span> 
 
-<span data-ttu-id="bbeb9-143">A következő példában létrehozunk egy `westus` nevű erőforráscsoportot a `myResourceGroup` helyen.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-143">The following example creates a resource group named `myResourceGroup` in the `westus` location.</span></span>
+<span data-ttu-id="2c063-143">hello alábbi példa létrehoz egy erőforráscsoportot `myResourceGroup` a hello `westus` helyét.</span><span class="sxs-lookup"><span data-stu-id="2c063-143">hello following example creates a resource group named `myResourceGroup` in hello `westus` location.</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-### <a name="create-an-availability-set"></a><span data-ttu-id="bbeb9-144">Rendelkezésre állási csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="bbeb9-144">Create an availability set</span></span>
+### <a name="create-an-availability-set"></a><span data-ttu-id="2c063-144">Rendelkezésre állási csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="2c063-144">Create an availability set</span></span>
 
-<span data-ttu-id="bbeb9-145">A következő lépés az opcionális de javasolt.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-145">The following step is optional but recommended.</span></span> <span data-ttu-id="bbeb9-146">További információkért lásd: [Azure rendelkezésre állási készletek útmutató](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-146">For more information, see [Azure availability sets guide](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span></span>
+<span data-ttu-id="2c063-145">a következő lépés hello, kötelező, de ajánlott.</span><span class="sxs-lookup"><span data-stu-id="2c063-145">hello following step is optional but recommended.</span></span> <span data-ttu-id="2c063-146">További információkért lásd: [Azure rendelkezésre állási készletek útmutató](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span><span class="sxs-lookup"><span data-stu-id="2c063-146">For more information, see [Azure availability sets guide](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines).</span></span>
 
 ```azurecli
 az vm availability-set create \
@@ -78,13 +78,13 @@ az vm availability-set create \
     --platform-update-domain-count 2
 ```
 
-### <a name="create-a-virtual-machine"></a><span data-ttu-id="bbeb9-147">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="bbeb9-147">Create a virtual machine</span></span>
+### <a name="create-a-virtual-machine"></a><span data-ttu-id="2c063-147">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="2c063-147">Create a virtual machine</span></span>
 
-<span data-ttu-id="bbeb9-148">Hozzon létre egy virtuális gépet az [az vm create](/cli/azure/vm#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-148">Create a VM with the [az vm create](/cli/azure/vm#create) command.</span></span> 
+<span data-ttu-id="2c063-148">Hozzon létre egy virtuális gép hello [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="2c063-148">Create a VM with hello [az vm create](/cli/azure/vm#create) command.</span></span> 
 
-<span data-ttu-id="bbeb9-149">Az alábbi példakód létrehozza nevű két virtuális gép `myVM1` és `myVM2`.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-149">The following example creates two VMs named `myVM1` and `myVM2`.</span></span> <span data-ttu-id="bbeb9-150">SSH-kulcsok létrehozása, ha még nem léteznek a kulcs alapértelmezett helye.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-150">Create SSH keys if they do not already exist in a default key location.</span></span> <span data-ttu-id="bbeb9-151">Ha konkrét kulcsokat szeretné használni, használja az `--ssh-key-value` beállítást.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-151">To use a specific set of keys, use the `--ssh-key-value` option.</span></span>
+<span data-ttu-id="2c063-149">hello alábbi példa létrehoz két virtuális gépek nevű `myVM1` és `myVM2`.</span><span class="sxs-lookup"><span data-stu-id="2c063-149">hello following example creates two VMs named `myVM1` and `myVM2`.</span></span> <span data-ttu-id="2c063-150">SSH-kulcsok létrehozása, ha még nem léteznek a kulcs alapértelmezett helye.</span><span class="sxs-lookup"><span data-stu-id="2c063-150">Create SSH keys if they do not already exist in a default key location.</span></span> <span data-ttu-id="2c063-151">toouse egy adott kulcsok beállításához használja a hello `--ssh-key-value` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="2c063-151">toouse a specific set of keys, use hello `--ssh-key-value` option.</span></span>
 
-#### <a name="create-myvm1-primary"></a><span data-ttu-id="bbeb9-152">Hozzon létre myVM1 (elsődleges):</span><span class="sxs-lookup"><span data-stu-id="bbeb9-152">Create myVM1 (primary):</span></span>
+#### <a name="create-myvm1-primary"></a><span data-ttu-id="2c063-152">Hozzon létre myVM1 (elsődleges):</span><span class="sxs-lookup"><span data-stu-id="2c063-152">Create myVM1 (primary):</span></span>
 ```azurecli
 az vm create \
      --resource-group myResourceGroup \
@@ -95,7 +95,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-<span data-ttu-id="bbeb9-153">A virtuális gép létrehozása után az Azure parancssori felület információit mutatja meg az alábbi példához hasonló.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-153">After the VM has been created, the Azure CLI shows information similar to the following example.</span></span> <span data-ttu-id="bbeb9-154">(Vegye figyelembe a `publicIpAddress`.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-154">(Take note of the `publicIpAddress`.</span></span> <span data-ttu-id="bbeb9-155">Ez a cím eléréséhez használt virtuális gép.)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-155">This address is used to access the VM.)</span></span>
+<span data-ttu-id="2c063-153">Hello a virtuális gép létrehozása, miután hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="2c063-153">After hello VM has been created, hello Azure CLI shows information similar toohello following example.</span></span> <span data-ttu-id="2c063-154">(Jegyezze fel a hello `publicIpAddress`.</span><span class="sxs-lookup"><span data-stu-id="2c063-154">(Take note of hello `publicIpAddress`.</span></span> <span data-ttu-id="2c063-155">Ez a cím az használt tooaccess hello VM.)</span><span class="sxs-lookup"><span data-stu-id="2c063-155">This address is used tooaccess hello VM.)</span></span>
 
 ```azurecli
 {
@@ -110,7 +110,7 @@ az vm create \
 }
 ```
 
-#### <a name="create-myvm2-replicate"></a><span data-ttu-id="bbeb9-156">Hozzon létre myVM2 (replikáció):</span><span class="sxs-lookup"><span data-stu-id="bbeb9-156">Create myVM2 (replicate):</span></span>
+#### <a name="create-myvm2-replicate"></a><span data-ttu-id="2c063-156">Hozzon létre myVM2 (replikáció):</span><span class="sxs-lookup"><span data-stu-id="2c063-156">Create myVM2 (replicate):</span></span>
 ```azurecli
 az vm create \
      --resource-group myResourceGroup \
@@ -121,13 +121,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-<span data-ttu-id="bbeb9-157">Vegye figyelembe a `publicIpAddress` , valamint a létrehozása után.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-157">Take note of the `publicIpAddress` as well after it has been created.</span></span>
+<span data-ttu-id="2c063-157">Jegyezze fel a hello `publicIpAddress` , valamint a létrehozása után.</span><span class="sxs-lookup"><span data-stu-id="2c063-157">Take note of hello `publicIpAddress` as well after it has been created.</span></span>
 
-### <a name="open-the-tcp-port-for-connectivity"></a><span data-ttu-id="bbeb9-158">Nyissa meg a TCP-portot a kapcsolatot</span><span class="sxs-lookup"><span data-stu-id="bbeb9-158">Open the TCP port for connectivity</span></span>
+### <a name="open-hello-tcp-port-for-connectivity"></a><span data-ttu-id="2c063-158">Nyissa meg a TCP-portját hello kapcsolat</span><span class="sxs-lookup"><span data-stu-id="2c063-158">Open hello TCP port for connectivity</span></span>
 
-<span data-ttu-id="bbeb9-159">A következő lépés, hogy konfigurálja a külső végpontok száma, amelyek lehetővé teszik, hogy távolról fér hozzá az Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-159">The next step is to configure external endpoints,  which enable you to access the Oracle database remotely.</span></span> <span data-ttu-id="bbeb9-160">A külső végpontok száma konfigurálásához futtassa a következő parancsokat.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-160">To configure the external endpoints, run the following commands.</span></span>
+<span data-ttu-id="2c063-159">következő lépés hello tooconfigure külső végpontok száma, amelyek lehetővé teszik a távoli tooaccess hello Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="2c063-159">hello next step is tooconfigure external endpoints,  which enable you tooaccess hello Oracle database remotely.</span></span> <span data-ttu-id="2c063-160">tooconfigure hello külső végpontok száma, futtassa a következő parancsok hello.</span><span class="sxs-lookup"><span data-stu-id="2c063-160">tooconfigure hello external endpoints, run hello following commands.</span></span>
 
-#### <a name="open-the-port-for-myvm1"></a><span data-ttu-id="bbeb9-161">Nyissa meg a myVM1 portja:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-161">Open the port for myVM1:</span></span>
+#### <a name="open-hello-port-for-myvm1"></a><span data-ttu-id="2c063-161">Nyissa meg a hello port myVM1:</span><span class="sxs-lookup"><span data-stu-id="2c063-161">Open hello port for myVM1:</span></span>
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -137,7 +137,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-<span data-ttu-id="bbeb9-162">Az eredményeket a következő válasz hasonlóan kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-162">The results should look similar to the following response:</span></span>
+<span data-ttu-id="2c063-162">hello eredmények alábbihoz hasonló toohello válasz a következő:</span><span class="sxs-lookup"><span data-stu-id="2c063-162">hello results should look similar toohello following response:</span></span>
 
 ```bash
 {
@@ -158,7 +158,7 @@ az network nsg rule create --resource-group myResourceGroup\
 }
 ```
 
-#### <a name="open-the-port-for-myvm2"></a><span data-ttu-id="bbeb9-163">Nyissa meg a myVM2 portja:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-163">Open the port for myVM2:</span></span>
+#### <a name="open-hello-port-for-myvm2"></a><span data-ttu-id="2c063-163">Nyissa meg a hello port myVM2:</span><span class="sxs-lookup"><span data-stu-id="2c063-163">Open hello port for myVM2:</span></span>
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -168,25 +168,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-to-the-virtual-machine"></a><span data-ttu-id="bbeb9-164">Csatlakozás a virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="bbeb9-164">Connect to the virtual machine</span></span>
+### <a name="connect-toohello-virtual-machine"></a><span data-ttu-id="2c063-164">Csatlakoztassa toohello virtuális gépet</span><span class="sxs-lookup"><span data-stu-id="2c063-164">Connect toohello virtual machine</span></span>
 
-<span data-ttu-id="bbeb9-165">Használja az alábbi parancsot egy SSH-munkamenet létrehozásához a virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-165">Use the following command to create an SSH session with the virtual machine.</span></span> <span data-ttu-id="bbeb9-166">Cserélje le az IP-címet a virtuális gépe `publicIpAddress` címére.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-166">Replace the IP address with the `publicIpAddress` of your virtual machine.</span></span>
+<span data-ttu-id="2c063-165">Használjon hello következő parancsot a toocreate egy hello virtuális gép SSH-munkamenetet.</span><span class="sxs-lookup"><span data-stu-id="2c063-165">Use hello following command toocreate an SSH session with hello virtual machine.</span></span> <span data-ttu-id="2c063-166">Cserélje le hello IP-cím hello `publicIpAddress` a virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="2c063-166">Replace hello IP address with hello `publicIpAddress` of your virtual machine.</span></span>
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-### <a name="create-the-database-on-myvm1-primary"></a><span data-ttu-id="bbeb9-167">Létrehozza az adatbázist az myVM1 (elsődleges)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-167">Create the database on myVM1 (primary)</span></span>
+### <a name="create-hello-database-on-myvm1-primary"></a><span data-ttu-id="2c063-167">Adatbázis létrehozásához. hello myVM1 (elsődleges)</span><span class="sxs-lookup"><span data-stu-id="2c063-167">Create hello database on myVM1 (primary)</span></span>
 
-<span data-ttu-id="bbeb9-168">Az Oracle szoftver már telepítve van a Piactéri lemezképhez, így a következő lépés az adatbázis telepítéséhez.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-168">The Oracle software is already installed on the Marketplace image, so the next step is to install the database.</span></span> 
+<span data-ttu-id="2c063-168">hello Oracle szoftver már telepítve van hello Piactéri lemezképhez, így a következő lépésre hello tooinstall hello adatbázis.</span><span class="sxs-lookup"><span data-stu-id="2c063-168">hello Oracle software is already installed on hello Marketplace image, so hello next step is tooinstall hello database.</span></span> 
 
-<span data-ttu-id="bbeb9-169">Futtassa a szoftvert az "oracle" felügyelő:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-169">Run the software as the 'oracle' superuser:</span></span>
+<span data-ttu-id="2c063-169">Hello szoftvert futtató hello "oracle" felügyelő:</span><span class="sxs-lookup"><span data-stu-id="2c063-169">Run hello software as hello 'oracle' superuser:</span></span>
 
 ```bash
 sudo su - oracle
 ```
 
-<span data-ttu-id="bbeb9-170">Az adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-170">Create the database:</span></span>
+<span data-ttu-id="2c063-170">hello adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="2c063-170">Create hello database:</span></span>
 
 ```bash
 $ dbca -silent \
@@ -207,7 +207,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-<span data-ttu-id="bbeb9-171">Kimenetének létrehozása a következő válasz hasonlóan kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-171">Outputs should look similar to the following response:</span></span>
+<span data-ttu-id="2c063-171">Kimenetek alábbihoz hasonló toohello válasz a következő:</span><span class="sxs-lookup"><span data-stu-id="2c063-171">Outputs should look similar toohello following response:</span></span>
 
 ```bash
 Copying database files
@@ -236,10 +236,10 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
+Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
 ```
 
-<span data-ttu-id="bbeb9-172">A ORACLE_SID és ORACLE_HOME változók megadása.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-172">Set the ORACLE_SID and ORACLE_HOME variables.</span></span>
+<span data-ttu-id="2c063-172">Hello ORACLE_SID és ORACLE_HOME változók megadása.</span><span class="sxs-lookup"><span data-stu-id="2c063-172">Set hello ORACLE_SID and ORACLE_HOME variables.</span></span>
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -247,7 +247,7 @@ $ ORACLE_SID=gg1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-<span data-ttu-id="bbeb9-173">Szükség esetén adhat hozzá ORACLE_HOME és ORACLE_SID .bashrc fájlt úgy, hogy ezek a beállítások a későbbi bejelentkezések lesznek mentve:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-173">Optionally, you can add ORACLE_HOME and ORACLE_SID to the .bashrc file, so that these settings are saved for future sign-ins:</span></span>
+<span data-ttu-id="2c063-173">Szükség esetén ORACLE_HOME és ORACLE_SID toohello .bashrc fájl, adhat hozzá, hogy ezek a beállítások a későbbi bejelentkezések lesznek mentve:</span><span class="sxs-lookup"><span data-stu-id="2c063-173">Optionally, you can add ORACLE_HOME and ORACLE_SID toohello .bashrc file, so that these settings are saved for future sign-ins:</span></span>
 
 ```bash
 # add oracle home
@@ -258,18 +258,18 @@ export ORACLE_SID=gg1
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 ```
 
-### <a name="start-oracle-listener"></a><span data-ttu-id="bbeb9-174">Indítsa el az Oracle-figyelő</span><span class="sxs-lookup"><span data-stu-id="bbeb9-174">Start Oracle listener</span></span>
+### <a name="start-oracle-listener"></a><span data-ttu-id="2c063-174">Indítsa el az Oracle-figyelő</span><span class="sxs-lookup"><span data-stu-id="2c063-174">Start Oracle listener</span></span>
 ```bash
 $ sudo su - oracle
 $ lsnrctl start
 ```
 
-### <a name="create-the-database-on-myvm2-replicate"></a><span data-ttu-id="bbeb9-175">Az adatbázis létrehozása a következőn myVM2 (replikáció)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-175">Create the database on myVM2 (replicate)</span></span>
+### <a name="create-hello-database-on-myvm2-replicate"></a><span data-ttu-id="2c063-175">Hello adatbázis létrehozása a következőn myVM2 (replikáció)</span><span class="sxs-lookup"><span data-stu-id="2c063-175">Create hello database on myVM2 (replicate)</span></span>
 
 ```bash
 sudo su - oracle
 ```
-<span data-ttu-id="bbeb9-176">Az adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-176">Create the database:</span></span>
+<span data-ttu-id="2c063-176">hello adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="2c063-176">Create hello database:</span></span>
 
 ```bash
 $ dbca -silent \
@@ -290,7 +290,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-<span data-ttu-id="bbeb9-177">A ORACLE_SID és ORACLE_HOME változók megadása.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-177">Set the ORACLE_SID and ORACLE_HOME variables.</span></span>
+<span data-ttu-id="2c063-177">Hello ORACLE_SID és ORACLE_HOME változók megadása.</span><span class="sxs-lookup"><span data-stu-id="2c063-177">Set hello ORACLE_SID and ORACLE_HOME variables.</span></span>
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -298,7 +298,7 @@ $ ORACLE_SID=cdb1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-<span data-ttu-id="bbeb9-178">Szükség esetén is hozzáadott ORACLE_HOME és ORACLE_SID .bashrc fájlt úgy, hogy ezek a beállítások lesznek mentve a későbbi bejelentkezések.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-178">Optionally, you can added ORACLE_HOME and ORACLE_SID to the .bashrc file, so that these settings are saved for future sign-ins.</span></span>
+<span data-ttu-id="2c063-178">Szükség esetén is felvett ORACLE_HOME és ORACLE_SID toohello .bashrc fájlt, így ezek a beállítások lesznek mentve a későbbi bejelentkezések.</span><span class="sxs-lookup"><span data-stu-id="2c063-178">Optionally, you can added ORACLE_HOME and ORACLE_SID toohello .bashrc file, so that these settings are saved for future sign-ins.</span></span>
 
 ```bash
 # add oracle home
@@ -309,16 +309,16 @@ export ORACLE_SID=cdb1
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib
 ```
 
-### <a name="start-oracle-listener"></a><span data-ttu-id="bbeb9-179">Indítsa el az Oracle-figyelő</span><span class="sxs-lookup"><span data-stu-id="bbeb9-179">Start Oracle listener</span></span>
+### <a name="start-oracle-listener"></a><span data-ttu-id="2c063-179">Indítsa el az Oracle-figyelő</span><span class="sxs-lookup"><span data-stu-id="2c063-179">Start Oracle listener</span></span>
 ```bash
 $ sudo su - oracle
 $ lsnrctl start
 ```
 
-## <a name="configure-golden-gate"></a><span data-ttu-id="bbeb9-180">Golden kapu beállítása</span><span class="sxs-lookup"><span data-stu-id="bbeb9-180">Configure Golden Gate</span></span> 
-<span data-ttu-id="bbeb9-181">Golden kapu konfigurálásához lépéseket az ebben a szakaszban.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-181">To configure Golden Gate, take the steps in this section.</span></span>
+## <a name="configure-golden-gate"></a><span data-ttu-id="2c063-180">Golden kapu beállítása</span><span class="sxs-lookup"><span data-stu-id="2c063-180">Configure Golden Gate</span></span> 
+<span data-ttu-id="2c063-181">tooconfigure Golden kapu, ebben a szakaszban hello lépéseket.</span><span class="sxs-lookup"><span data-stu-id="2c063-181">tooconfigure Golden Gate, take hello steps in this section.</span></span>
 
-### <a name="enable-archive-log-mode-on-myvm1-primary"></a><span data-ttu-id="bbeb9-182">Archív napló mód a myVM1 (elsődleges) engedélyezése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-182">Enable archive log mode on myVM1 (primary)</span></span>
+### <a name="enable-archive-log-mode-on-myvm1-primary"></a><span data-ttu-id="2c063-182">Archív napló mód a myVM1 (elsődleges) engedélyezése</span><span class="sxs-lookup"><span data-stu-id="2c063-182">Enable archive log mode on myVM1 (primary)</span></span>
 
 ```bash
 $ sqlplus / as sysdba
@@ -333,7 +333,7 @@ SQL> STARTUP MOUNT;
 SQL> ALTER DATABASE ARCHIVELOG;
 SQL> ALTER DATABASE OPEN;
 ```
-<span data-ttu-id="bbeb9-183">Kényszerített naplózását, és ellenőrizze, hogy legalább egy naplófájlt.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-183">Enable force logging, and make sure at least one log file is present.</span></span>
+<span data-ttu-id="2c063-183">Kényszerített naplózását, és ellenőrizze, hogy legalább egy naplófájlt.</span><span class="sxs-lookup"><span data-stu-id="2c063-183">Enable force logging, and make sure at least one log file is present.</span></span>
 
 ```bash
 SQL> ALTER DATABASE FORCE LOGGING;
@@ -345,25 +345,25 @@ SQL> ALTER DATABASE ADD SUPPLEMENTAL LOG DATA;
 SQL> EXIT;
 ```
 
-### <a name="download-golden-gate-software"></a><span data-ttu-id="bbeb9-184">Golden kapu szoftver letöltése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-184">Download Golden Gate software</span></span>
-<span data-ttu-id="bbeb9-185">Töltse le, és az Oracle Golden kapu szoftver előkészítése, végezze el az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-185">To download and prepare the Oracle Golden Gate software, complete the following steps:</span></span>
+### <a name="download-golden-gate-software"></a><span data-ttu-id="2c063-184">Golden kapu szoftver letöltése</span><span class="sxs-lookup"><span data-stu-id="2c063-184">Download Golden Gate software</span></span>
+<span data-ttu-id="2c063-185">toodownload és hello Oracle Golden kapu szoftver, a következő lépéseket teljes hello előkészítése:</span><span class="sxs-lookup"><span data-stu-id="2c063-185">toodownload and prepare hello Oracle Golden Gate software, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="bbeb9-186">Töltse le a **fbo_ggs_Linux_x64_shiphome.zip** fájlt a [Oracle Golden kapu letöltési oldala](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-186">Download the **fbo_ggs_Linux_x64_shiphome.zip** file from the [Oracle Golden Gate download page](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span></span> <span data-ttu-id="bbeb9-187">A letöltési címben **Oracle GoldenGate 12.x.x.x az Oracle Linux x86-64**, kell lennie a .zip fájlokat letölteni.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-187">Under the download title **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64**, there should be a set of .zip files to download.</span></span>
+1. <span data-ttu-id="2c063-186">Töltse le a hello **fbo_ggs_Linux_x64_shiphome.zip** hello fájlt [Oracle Golden kapu letöltési oldala](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span><span class="sxs-lookup"><span data-stu-id="2c063-186">Download hello **fbo_ggs_Linux_x64_shiphome.zip** file from hello [Oracle Golden Gate download page](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html).</span></span> <span data-ttu-id="2c063-187">Hello alatt töltse le a cím **Oracle GoldenGate 12.x.x.x az Oracle Linux x86-64**, .zip fájlokat toodownload készlete kell lennie.</span><span class="sxs-lookup"><span data-stu-id="2c063-187">Under hello download title **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64**, there should be a set of .zip files toodownload.</span></span>
 
-2. <span data-ttu-id="bbeb9-188">Miután letöltötte a .zip fájlokat az ügyfélszámítógépre, használja a biztonságos másolási protokoll (SCP) a fájlok másolása a virtuális Gépet:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-188">After you download the .zip files to your client computer, use Secure Copy Protocol (SCP) to copy the files to your VM:</span></span>
+2. <span data-ttu-id="2c063-188">Hello .zip fájlokat tooyour ügyfélszámítógép letöltése után használja a biztonságos másolási protokoll (SCP) toocopy hello fájlok tooyour VM:</span><span class="sxs-lookup"><span data-stu-id="2c063-188">After you download hello .zip files tooyour client computer, use Secure Copy Protocol (SCP) toocopy hello files tooyour VM:</span></span>
 
   ```bash
   $ scp fbo_ggs_Linux_x64_shiphome.zip <publicIpAddress>:<folder>
   ```
 
-3. <span data-ttu-id="bbeb9-189">Helyezze át a .zip fájlokat a **/ opt** mappát.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-189">Move the .zip files to the **/opt** folder.</span></span> <span data-ttu-id="bbeb9-190">Az alábbiak szerint módosítsa a fájlok tulajdonosa:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-190">Then change the owner of the files as follows:</span></span>
+3. <span data-ttu-id="2c063-189">Helyezze át a hello .zip fájlokat toohello **/ opt** mappát.</span><span class="sxs-lookup"><span data-stu-id="2c063-189">Move hello .zip files toohello **/opt** folder.</span></span> <span data-ttu-id="2c063-190">Az alábbiak szerint módosítsa a hello fájlok hello tulajdonosa:</span><span class="sxs-lookup"><span data-stu-id="2c063-190">Then change hello owner of hello files as follows:</span></span>
 
   ```bash
   $ sudo su -
   # mv <folder>/*.zip /opt
   ```
 
-4. <span data-ttu-id="bbeb9-191">Bontsa ki a fájlokat (telepítés a Linux csomagolja ki segédprogram Ha még nincs telepítve van):</span><span class="sxs-lookup"><span data-stu-id="bbeb9-191">Unzip the files (install the Linux unzip utility if it's not already installed):</span></span>
+4. <span data-ttu-id="2c063-191">Bontsa ki a hello fájlok (telepítés hello Linux csomagolja ki segédprogram Ha még nincs telepítve van):</span><span class="sxs-lookup"><span data-stu-id="2c063-191">Unzip hello files (install hello Linux unzip utility if it's not already installed):</span></span>
 
   ```bash
   # yum install unzip
@@ -371,32 +371,32 @@ SQL> EXIT;
   # unzip fbo_ggs_Linux_x64_shiphome.zip
   ```
 
-5. <span data-ttu-id="bbeb9-192">Engedély módosítása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-192">Change permission:</span></span>
+5. <span data-ttu-id="2c063-192">Engedély módosítása:</span><span class="sxs-lookup"><span data-stu-id="2c063-192">Change permission:</span></span>
 
   ```bash
   # chown -R oracle:oinstall /opt/fbo_ggs_Linux_x64_shiphome
   ```
 
-### <a name="prepare-the-client-and-vm-to-run-x11-for-windows-clients-only"></a><span data-ttu-id="bbeb9-193">Az ügyfél és a virtuális gép számára való futás x11 (csak Windows-ügyfelek) előkészítése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-193">Prepare the client and VM to run x11 (for Windows clients only)</span></span>
-<span data-ttu-id="bbeb9-194">Ez az egy opcionális lépés.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-194">This is an optional step.</span></span> <span data-ttu-id="bbeb9-195">Ezt a lépést kihagyhatja, ha a Linux ügyfelet kell használnia, vagy már rendelkezik x11 beállítása.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-195">You can skip this step if you are using a Linux client or already have x11 setup.</span></span>
+### <a name="prepare-hello-client-and-vm-toorun-x11-for-windows-clients-only"></a><span data-ttu-id="2c063-193">Előkészítése hello ügyfél és a virtuális gép toorun x11 (csak Windows-ügyfelek)</span><span class="sxs-lookup"><span data-stu-id="2c063-193">Prepare hello client and VM toorun x11 (for Windows clients only)</span></span>
+<span data-ttu-id="2c063-194">Ez az egy opcionális lépés.</span><span class="sxs-lookup"><span data-stu-id="2c063-194">This is an optional step.</span></span> <span data-ttu-id="2c063-195">Ezt a lépést kihagyhatja, ha a Linux ügyfelet kell használnia, vagy már rendelkezik x11 beállítása.</span><span class="sxs-lookup"><span data-stu-id="2c063-195">You can skip this step if you are using a Linux client or already have x11 setup.</span></span>
 
-1. <span data-ttu-id="bbeb9-196">Töltse le a PuTTY és Xming a Windows rendszerű számítógépen:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-196">Download PuTTY and Xming to your Windows computer:</span></span>
+1. <span data-ttu-id="2c063-196">Töltse le a PuTTY és Xming tooyour Windows-számítógép:</span><span class="sxs-lookup"><span data-stu-id="2c063-196">Download PuTTY and Xming tooyour Windows computer:</span></span>
 
-  * [<span data-ttu-id="bbeb9-197">Töltse le a PuTTY</span><span class="sxs-lookup"><span data-stu-id="bbeb9-197">Download PuTTY</span></span>](http://www.putty.org/)
-  * [<span data-ttu-id="bbeb9-198">Töltse le a Xming</span><span class="sxs-lookup"><span data-stu-id="bbeb9-198">Download Xming</span></span>](https://xming.en.softonic.com/)
+  * [<span data-ttu-id="2c063-197">Töltse le a PuTTY</span><span class="sxs-lookup"><span data-stu-id="2c063-197">Download PuTTY</span></span>](http://www.putty.org/)
+  * [<span data-ttu-id="2c063-198">Töltse le a Xming</span><span class="sxs-lookup"><span data-stu-id="2c063-198">Download Xming</span></span>](https://xming.en.softonic.com/)
 
-2.  <span data-ttu-id="bbeb9-199">Miután telepítette a PuTTY, a PuTTY mappában (például, C:\Program Files\PuTTY), futtassa a puttygen.exe (PuTTY kulcs generátor).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-199">After you install PuTTY, in the PuTTY folder (for example, C:\Program Files\PuTTY), run puttygen.exe (PuTTY Key Generator).</span></span>
+2.  <span data-ttu-id="2c063-199">PuTTY telepítése után a PuTTY mappát (például, C:\Program Files\PuTTY) hello, puttygen.exe (PuTTY kulcs generátor) futtatásához.</span><span class="sxs-lookup"><span data-stu-id="2c063-199">After you install PuTTY, in hello PuTTY folder (for example, C:\Program Files\PuTTY), run puttygen.exe (PuTTY Key Generator).</span></span>
 
-3.  <span data-ttu-id="bbeb9-200">A PuTTY Megosztottelérésikulcs-készítő:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-200">In PuTTY Key Generator:</span></span>
+3.  <span data-ttu-id="2c063-200">A PuTTY Megosztottelérésikulcs-készítő:</span><span class="sxs-lookup"><span data-stu-id="2c063-200">In PuTTY Key Generator:</span></span>
 
-  - <span data-ttu-id="bbeb9-201">A kulcs létrehozásához válassza ki a **Generate** gombra.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-201">To generate a key, select the **Generate** button.</span></span>
-  - <span data-ttu-id="bbeb9-202">Másolja a kulcs tartalmát (**Ctrl + C**).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-202">Copy the contents of the key (**Ctrl+C**).</span></span>
-  - <span data-ttu-id="bbeb9-203">Válassza ki a **mentés titkos kulcs** gombra.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-203">Select the **Save private key** button.</span></span>
-  - <span data-ttu-id="bbeb9-204">Figyelmen kívül hagyhatja a figyelmeztetést, amely akkor jelenik meg, majd válassza ki **OK**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-204">Ignore the warning that appears, and then select **OK**.</span></span>
+  - <span data-ttu-id="2c063-201">a kulcs, jelölje be hello toogenerate **Generate** gombra.</span><span class="sxs-lookup"><span data-stu-id="2c063-201">toogenerate a key, select hello **Generate** button.</span></span>
+  - <span data-ttu-id="2c063-202">Hello kulcs hello tartalom másolása (**Ctrl + C**).</span><span class="sxs-lookup"><span data-stu-id="2c063-202">Copy hello contents of hello key (**Ctrl+C**).</span></span>
+  - <span data-ttu-id="2c063-203">Jelölje be hello **mentés titkos kulcs** gombra.</span><span class="sxs-lookup"><span data-stu-id="2c063-203">Select hello **Save private key** button.</span></span>
+  - <span data-ttu-id="2c063-204">Figyelmen kívül, amely akkor jelenik meg, majd válassza ki a hello figyelmeztetést **OK**.</span><span class="sxs-lookup"><span data-stu-id="2c063-204">Ignore hello warning that appears, and then select **OK**.</span></span>
 
-    ![A PuTTY megosztottelérésikulcs-készítő oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttykeygen.png)
+    ![Hello PuTTY megosztottelérésikulcs-készítő oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttykeygen.png)
 
-4.  <span data-ttu-id="bbeb9-206">A virtuális gépen, futtassa az alábbi parancsokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-206">In your VM, run these commands:</span></span>
+4.  <span data-ttu-id="2c063-206">A virtuális gépen, futtassa az alábbi parancsokat:</span><span class="sxs-lookup"><span data-stu-id="2c063-206">In your VM, run these commands:</span></span>
 
   ```bash
   # sudo su - oracle
@@ -404,61 +404,61 @@ SQL> EXIT;
   $ cd .ssh
   ```
 
-5. <span data-ttu-id="bbeb9-207">Hozzon létre egy fájlt **authorized_keys**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-207">Create a file named **authorized_keys**.</span></span> <span data-ttu-id="bbeb9-208">A kulcs tartalmának beillesztése a fájlban, és mentse a fájlt.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-208">Paste the contents of the key in this file, and then save the file.</span></span>
+5. <span data-ttu-id="2c063-207">Hozzon létre egy fájlt **authorized_keys**.</span><span class="sxs-lookup"><span data-stu-id="2c063-207">Create a file named **authorized_keys**.</span></span> <span data-ttu-id="2c063-208">Hello kulcs tartalmát hello illessze be ezt a fájlt, és mentse hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="2c063-208">Paste hello contents of hello key in this file, and then save hello file.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="bbeb9-209">A kulcs hossza csak a karakterlánc `ssh-rsa`.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-209">The key must contain the string `ssh-rsa`.</span></span> <span data-ttu-id="bbeb9-210">A kulcs tartalmát is, egy egyszerű szövegsor kell lennie.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-210">Also, the contents of the key must be a single line of text.</span></span>
+  > <span data-ttu-id="2c063-209">hello kulcs tartalmaznia kell a hello karakterlánc `ssh-rsa`.</span><span class="sxs-lookup"><span data-stu-id="2c063-209">hello key must contain hello string `ssh-rsa`.</span></span> <span data-ttu-id="2c063-210">Hello hello kulcs tartalmát is, egy egyszerű szövegsor kell lennie.</span><span class="sxs-lookup"><span data-stu-id="2c063-210">Also, hello contents of hello key must be a single line of text.</span></span>
   >  
 
-6. <span data-ttu-id="bbeb9-211">Indítsa el a PuTTY alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-211">Start PuTTY.</span></span> <span data-ttu-id="bbeb9-212">Az a **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **Auth**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-212">In the **Category** pane, select **Connection** > **SSH** > **Auth**.</span></span> <span data-ttu-id="bbeb9-213">Az a **hitelesítéshez titkos kulcsfájl** mezőben tallózással keresse meg a korábban létrehozott kulcsot.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-213">In the **Private key file for authentication** box, browse to the key that you generated earlier.</span></span>
+6. <span data-ttu-id="2c063-211">Indítsa el a PuTTY alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="2c063-211">Start PuTTY.</span></span> <span data-ttu-id="2c063-212">A hello **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **Auth**. A hello **hitelesítéshez titkos kulcsfájl** mezőbe keresse meg a korábban létrehozott toohello kulcs.</span><span class="sxs-lookup"><span data-stu-id="2c063-212">In hello **Category** pane, select **Connection** > **SSH** > **Auth**. In hello **Private key file for authentication** box, browse toohello key that you generated earlier.</span></span>
 
-  ![A titkos kulcs beállítása oldalát bemutató képernyőkép](./media/oracle-golden-gate/setprivatekey.png)
+  ![Hello titkos kulcs beállítása oldalát bemutató képernyőkép](./media/oracle-golden-gate/setprivatekey.png)
 
-7. <span data-ttu-id="bbeb9-215">Az a **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **X11**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-215">In the **Category** pane, select **Connection** > **SSH** > **X11**.</span></span> <span data-ttu-id="bbeb9-216">Válassza ki a **engedélyezése X11 továbbítási** mezőbe.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-216">Then select the **Enable X11 forwarding** box.</span></span>
+7. <span data-ttu-id="2c063-214">A hello **kategória** ablaktáblán válassza előbb **kapcsolat** > **SSH** > **X11**.</span><span class="sxs-lookup"><span data-stu-id="2c063-214">In hello **Category** pane, select **Connection** > **SSH** > **X11**.</span></span> <span data-ttu-id="2c063-215">Válassza ki hello **engedélyezése X11 továbbítási** mezőbe.</span><span class="sxs-lookup"><span data-stu-id="2c063-215">Then select hello **Enable X11 forwarding** box.</span></span>
 
-  ![Az engedélyezés X11 oldalát bemutató képernyőkép](./media/oracle-golden-gate/enablex11.png)
+  ![Hello engedélyezése X11 oldalát bemutató képernyőkép](./media/oracle-golden-gate/enablex11.png)
 
-8. <span data-ttu-id="bbeb9-218">Az a **kategória** ablaktáblában lépjen **munkamenet**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-218">In the **Category** pane, go to **Session**.</span></span> <span data-ttu-id="bbeb9-219">Adja meg a gazdagép adatokat, majd válassza ki **nyitott**.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-219">Enter the host information, and then select **Open**.</span></span>
+8. <span data-ttu-id="2c063-217">A hello **kategória** ablaktáblában lépjen túl**munkamenet**.</span><span class="sxs-lookup"><span data-stu-id="2c063-217">In hello **Category** pane, go too**Session**.</span></span> <span data-ttu-id="2c063-218">Adja meg a hello állomásadatai, majd válassza ki **nyitott**.</span><span class="sxs-lookup"><span data-stu-id="2c063-218">Enter hello host information, and then select **Open**.</span></span>
 
-  ![A munkamenet oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttysession.png)
+  ![Hello munkamenet oldalát bemutató képernyőkép](./media/oracle-golden-gate/puttysession.png)
 
-### <a name="install-golden-gate-software"></a><span data-ttu-id="bbeb9-221">Golden kapu szoftver telepítése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-221">Install Golden Gate software</span></span>
+### <a name="install-golden-gate-software"></a><span data-ttu-id="2c063-220">Golden kapu szoftver telepítése</span><span class="sxs-lookup"><span data-stu-id="2c063-220">Install Golden Gate software</span></span>
 
-<span data-ttu-id="bbeb9-222">Oracle Golden kapu telepítéséhez kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-222">To install Oracle Golden Gate, complete the following steps:</span></span>
+<span data-ttu-id="2c063-221">tooinstall Oracle Golden kapu, teljes hello a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="2c063-221">tooinstall Oracle Golden Gate, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="bbeb9-223">Jelentkezzen be a oracle felhasználóként.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-223">Sign in as oracle.</span></span> <span data-ttu-id="bbeb9-224">(Kell használva jelentkezhet be a jelszó megadása nélkül.) Győződjön meg arról, hogy fut-e Xming, a telepítés megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-224">(You should be able to sign in without being prompted for a password.) Make sure that Xming is running before you begin the installation.</span></span>
+1. <span data-ttu-id="2c063-222">Jelentkezzen be a oracle felhasználóként.</span><span class="sxs-lookup"><span data-stu-id="2c063-222">Sign in as oracle.</span></span> <span data-ttu-id="2c063-223">(A jelszó megadása nélkül képes toosign kell lennie.) Győződjön meg arról, hogy fut-e Xming, hello telepítés megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="2c063-223">(You should be able toosign in without being prompted for a password.) Make sure that Xming is running before you begin hello installation.</span></span>
  
   ```bash
   $ cd /opt/fbo_ggs_Linux_x64_shiphome/Disk1
   $ ./runInstaller
   ```
-2. <span data-ttu-id="bbeb9-225">Válassza ki az "Oracle adatbázis 12c Oracle GoldenGate".</span><span class="sxs-lookup"><span data-stu-id="bbeb9-225">Select 'Oracle GoldenGate for Oracle Database 12c'.</span></span> <span data-ttu-id="bbeb9-226">Válassza ki **tovább** a folytatáshoz.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-226">Then select **Next** to continue.</span></span>
+2. <span data-ttu-id="2c063-224">Válassza ki az "Oracle adatbázis 12c Oracle GoldenGate".</span><span class="sxs-lookup"><span data-stu-id="2c063-224">Select 'Oracle GoldenGate for Oracle Database 12c'.</span></span> <span data-ttu-id="2c063-225">Válassza ki **következő** toocontinue.</span><span class="sxs-lookup"><span data-stu-id="2c063-225">Then select **Next** toocontinue.</span></span>
 
-  ![A telepítő telepítési válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_01.png)
+  ![Képernyőfelvétel a hello telepítő telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_01.png)
 
-3. <span data-ttu-id="bbeb9-228">Módosíthatja a szoftver helyét.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-228">Change the software location.</span></span> <span data-ttu-id="bbeb9-229">Válassza ki a **Start Manager** mezőbe, majd adja meg az adatbázis helyén.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-229">Then select  the **Start Manager** box and enter the database location.</span></span> <span data-ttu-id="bbeb9-230">Válassza ki **tovább** a folytatáshoz.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-230">Select **Next** to continue.</span></span>
+3. <span data-ttu-id="2c063-227">Hello szoftver helyének módosítása.</span><span class="sxs-lookup"><span data-stu-id="2c063-227">Change hello software location.</span></span> <span data-ttu-id="2c063-228">Válassza ki hello **Start Manager** mezőben, és írja be a hello adatbázis helye.</span><span class="sxs-lookup"><span data-stu-id="2c063-228">Then select  hello **Start Manager** box and enter hello database location.</span></span> <span data-ttu-id="2c063-229">Válassza ki **következő** toocontinue.</span><span class="sxs-lookup"><span data-stu-id="2c063-229">Select **Next** toocontinue.</span></span>
 
-  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_02.png)
+  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_02.png)
 
-4. <span data-ttu-id="bbeb9-232">Módosítsa a készlet könyvtárat, majd válassza ki **tovább** a folytatáshoz.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-232">Change the inventory directory, and then select **Next** to continue.</span></span>
+4. <span data-ttu-id="2c063-231">Módosítsa hello készlet könyvtárat, majd válassza ki **következő** toocontinue.</span><span class="sxs-lookup"><span data-stu-id="2c063-231">Change hello inventory directory, and then select **Next** toocontinue.</span></span>
 
-  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_03.png)
+  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_03.png)
 
-5. <span data-ttu-id="bbeb9-234">Az a **összegzés** képernyőn válassza ki **telepítése** folytatja.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-234">On the **Summary** screen, select **Install** to continue.</span></span>
+5. <span data-ttu-id="2c063-233">A hello **összegzés** képernyőn válassza ki **telepítése** toocontinue.</span><span class="sxs-lookup"><span data-stu-id="2c063-233">On hello **Summary** screen, select **Install** toocontinue.</span></span>
 
-  ![A telepítő telepítési válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_04.png)
+  ![Képernyőfelvétel a hello telepítő telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_04.png)
 
-6. <span data-ttu-id="bbeb9-236">"Legfelső szintű" parancsfájllal kérheti.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-236">You might be prompted to run a script as 'root'.</span></span> <span data-ttu-id="bbeb9-237">Ha igen, nyisson meg egy külön munkamenet ssh a virtuális gépre, a sudo legfelső szintű, és futtassa a parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-237">If so, open a separate session, ssh to the VM, sudo to root, and then run the script.</span></span> <span data-ttu-id="bbeb9-238">Válassza ki **OK** továbbra is.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-238">Select **OK** continue.</span></span>
+6. <span data-ttu-id="2c063-235">Előfordulhat, hogy a kért toorun parancsfájl "legfelső szintű".</span><span class="sxs-lookup"><span data-stu-id="2c063-235">You might be prompted toorun a script as 'root'.</span></span> <span data-ttu-id="2c063-236">Ha igen, nyisson meg egy külön munkamenet ssh toohello VM, sudo tooroot, és futtassa hello parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="2c063-236">If so, open a separate session, ssh toohello VM, sudo tooroot, and then run hello script.</span></span> <span data-ttu-id="2c063-237">Válassza ki **OK** továbbra is.</span><span class="sxs-lookup"><span data-stu-id="2c063-237">Select **OK** continue.</span></span>
 
-  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_05.png)
+  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_05.png)
 
-7. <span data-ttu-id="bbeb9-240">Ha a telepítés befejeződött, válassza ki a **Bezárás** a folyamat befejezéséhez.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-240">When the installation has finished, select **Close** to complete the process.</span></span>
+7. <span data-ttu-id="2c063-239">Hello telepítésének befejezését, válassza ki a **Bezárás** toocomplete hello folyamat.</span><span class="sxs-lookup"><span data-stu-id="2c063-239">When hello installation has finished, select **Close** toocomplete hello process.</span></span>
 
-  ![A telepítés válasszon oldalát bemutató képernyőkép](./media/oracle-golden-gate/golden_gate_install_06.png)
+  ![Képernyőfelvétel a hello telepítési kiválasztása lap](./media/oracle-golden-gate/golden_gate_install_06.png)
 
-### <a name="set-up-service-on-myvm1-primary"></a><span data-ttu-id="bbeb9-242">Állítsa be a szolgáltatást a myVM1 (elsődleges)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-242">Set up service on myVM1 (primary)</span></span>
+### <a name="set-up-service-on-myvm1-primary"></a><span data-ttu-id="2c063-241">Állítsa be a szolgáltatást a myVM1 (elsődleges)</span><span class="sxs-lookup"><span data-stu-id="2c063-241">Set up service on myVM1 (primary)</span></span>
 
-1. <span data-ttu-id="bbeb9-243">Hozzon létre, vagy frissítse a tnsnames.ora fájlt:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-243">Create or update the tnsnames.ora file:</span></span>
+1. <span data-ttu-id="2c063-242">Hozzon létre vagy hello tnsnames.ora fájl frissítése:</span><span class="sxs-lookup"><span data-stu-id="2c063-242">Create or update hello tnsnames.ora file:</span></span>
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -491,29 +491,29 @@ SQL> EXIT;
     )
   ```
 
-2. <span data-ttu-id="bbeb9-244">A Golden kapu tulajdonosi és felhasználói fiókokat hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-244">Create the Golden Gate owner and user accounts.</span></span>
+2. <span data-ttu-id="2c063-243">Hello Golden kapu tulajdonosi és felhasználói fiókokat hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="2c063-243">Create hello Golden Gate owner and user accounts.</span></span>
 
   > [!NOTE]
-  > <span data-ttu-id="bbeb9-245">A tulajdonos fióknak C ## előtaggal kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-245">The owner account must have C## prefix.</span></span>
+  > <span data-ttu-id="2c063-244">hello tulajdonos fióknak rendelkeznie kell a C ## előtag.</span><span class="sxs-lookup"><span data-stu-id="2c063-244">hello owner account must have C## prefix.</span></span>
   >
 
     ```bash
     $ sqlplus / as sysdba
     SQL> CREATE USER C##GGADMIN identified by ggadmin;
     SQL> EXEC dbms_goldengate_auth.grant_admin_privilege('C##GGADMIN',container=>'ALL');
-    SQL> GRANT DBA to C##GGADMIN container=all;
+    SQL> GRANT DBA tooC##GGADMIN container=all;
     SQL> connect C##GGADMIN/ggadmin
     SQL> ALTER SESSION SET CONTAINER=PDB1;
     SQL> EXIT;
     ```
 
-3. <span data-ttu-id="bbeb9-246">Hozza létre a Golden kapu tesztfelhasználói fiókja:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-246">Create the Golden Gate test user account:</span></span>
+3. <span data-ttu-id="2c063-245">Hello Golden kapu teszt felhasználói fiók létrehozása:</span><span class="sxs-lookup"><span data-stu-id="2c063-245">Create hello Golden Gate test user account:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba TO test;
+  SQL> GRANT connect, resource, dba tootest;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
@@ -521,9 +521,9 @@ SQL> EXIT;
   SQL> EXIT;
   ```
 
-4. <span data-ttu-id="bbeb9-247">A kivonat paraméterfájl konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-247">Configure the extract parameter file.</span></span>
+4. <span data-ttu-id="2c063-246">Hello kivonat paraméterfájl konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="2c063-246">Configure hello extract parameter file.</span></span>
 
- <span data-ttu-id="bbeb9-248">Indítsa el az arany kapu parancssori felület (ggsci):</span><span class="sxs-lookup"><span data-stu-id="bbeb9-248">Start the Golden gate command-line interface (ggsci):</span></span>
+ <span data-ttu-id="2c063-247">Indítsa el a hello arany kapu parancssori felület (ggsci):</span><span class="sxs-lookup"><span data-stu-id="2c063-247">Start hello Golden gate command-line interface (ggsci):</span></span>
 
   ```bash
   $ sudo su - oracle
@@ -537,7 +537,7 @@ SQL> EXIT;
 
   GGSCI> EDIT PARAMS EXTORA
   ```
-5. <span data-ttu-id="bbeb9-249">Adja hozzá a következőket a KIVONATOT paraméterfájl (vi parancsok segítségével).</span><span class="sxs-lookup"><span data-stu-id="bbeb9-249">Add the following to the EXTRACT parameter file (by using vi commands).</span></span> <span data-ttu-id="bbeb9-250">Nyomja meg az Esc billentyűt, ': wq! "</span><span class="sxs-lookup"><span data-stu-id="bbeb9-250">Press Esc key, ':wq!'</span></span> <span data-ttu-id="bbeb9-251">sikerült menteni a fájlt.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-251">to save file.</span></span> 
+5. <span data-ttu-id="2c063-248">Adja hozzá a következő toohello kivonat paraméter fájl (parancsokkal vi) hello.</span><span class="sxs-lookup"><span data-stu-id="2c063-248">Add hello following toohello EXTRACT parameter file (by using vi commands).</span></span> <span data-ttu-id="2c063-249">Nyomja meg az Esc billentyűt, ': wq! "</span><span class="sxs-lookup"><span data-stu-id="2c063-249">Press Esc key, ':wq!'</span></span> <span data-ttu-id="2c063-250">toosave fájlt.</span><span class="sxs-lookup"><span data-stu-id="2c063-250">toosave file.</span></span> 
 
   ```bash
   EXTRACT EXTORA
@@ -551,7 +551,7 @@ SQL> EXIT;
   TABLE pdb1.test.TCUSTMER;
   TABLE pdb1.test.TCUSTORD;
   ```
-6. <span data-ttu-id="bbeb9-252">Regisztráció nyerje ki – integrált kivonat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-252">Register extract--integrated extract:</span></span>
+6. <span data-ttu-id="2c063-251">Regisztráció nyerje ki – integrált kivonat:</span><span class="sxs-lookup"><span data-stu-id="2c063-251">Register extract--integrated extract:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -566,7 +566,7 @@ SQL> EXIT;
 
   GGSCI> exit
   ```
-7. <span data-ttu-id="bbeb9-253">Kinyerési ellenőrzőpontok felállítása, és indítsa el a valós idejű kivonat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-253">Set up extract checkpoints and start real-time extract:</span></span>
+7. <span data-ttu-id="2c063-252">Kinyerési ellenőrzőpontok felállítása, és indítsa el a valós idejű kivonat:</span><span class="sxs-lookup"><span data-stu-id="2c063-252">Set up extract checkpoints and start real-time extract:</span></span>
 
   ```bash
   $ ./ggsci
@@ -578,7 +578,7 @@ SQL> EXIT;
 
   GGSCI>  START EXTRACT EXTORA
 
-  Sending START request to MANAGER ...
+  Sending START request tooMANAGER ...
   EXTRACT EXTORA starting
 
   GGSCI > info all
@@ -588,7 +588,7 @@ SQL> EXIT;
   MANAGER     RUNNING
   EXTRACT     RUNNING     EXTORA      00:00:11      00:00:04
   ```
-<span data-ttu-id="bbeb9-254">Ebben a lépésben a kiindulási Állapotváltozás, később, a másik szakaszban használt keresése:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-254">In this step, you find the starting SCN, which will be used later, in a different section:</span></span>
+<span data-ttu-id="2c063-253">Ebben a lépésben található hello Állapotváltozás, később, a másik szakaszban használt indítása:</span><span class="sxs-lookup"><span data-stu-id="2c063-253">In this step, you find hello starting SCN, which will be used later, in a different section:</span></span>
 
   ```bash
   $ sqlplus / as sysdba
@@ -617,10 +617,10 @@ SQL> EXIT;
   GGSCI> ADD EXTRACT INITEXT, SOURCEISTABLE
   ```
 
-### <a name="set-up-service-on-myvm2-replicate"></a><span data-ttu-id="bbeb9-255">A myVM2 szolgáltatás beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-255">Set up service on myVM2 (replicate)</span></span>
+### <a name="set-up-service-on-myvm2-replicate"></a><span data-ttu-id="2c063-254">A myVM2 szolgáltatás beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="2c063-254">Set up service on myVM2 (replicate)</span></span>
 
 
-1. <span data-ttu-id="bbeb9-256">Hozzon létre, vagy frissítse a tnsnames.ora fájlt:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-256">Create or update the tnsnames.ora file:</span></span>
+1. <span data-ttu-id="2c063-255">Hozzon létre vagy hello tnsnames.ora fájl frissítése:</span><span class="sxs-lookup"><span data-stu-id="2c063-255">Create or update hello tnsnames.ora file:</span></span>
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -653,39 +653,39 @@ SQL> EXIT;
     )
   ```
 
-2. <span data-ttu-id="bbeb9-257">Hozzon létre egy párhuzamos fiókot:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-257">Create a replicate account:</span></span>
+2. <span data-ttu-id="2c063-256">Hozzon létre egy párhuzamos fiókot:</span><span class="sxs-lookup"><span data-stu-id="2c063-256">Create a replicate account:</span></span>
 
   ```bash
   $ sqlplus / as sysdba
   SQL> alter session set container = pdb1;
   SQL> create user repuser identified by rep_pass container=current;
-  SQL> grant dba to repuser;
+  SQL> grant dba toorepuser;
   SQL> exec dbms_goldengate_auth.grant_admin_privilege('REPUSER',container=>'PDB1');
   SQL> connect repuser/rep_pass@pdb1 
   SQL> EXIT;
   ```
 
-3. <span data-ttu-id="bbeb9-258">Golden kapu teszt felhasználói fiók létrehozása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-258">Create a Golden Gate test user account:</span></span>
+3. <span data-ttu-id="2c063-257">Golden kapu teszt felhasználói fiók létrehozása:</span><span class="sxs-lookup"><span data-stu-id="2c063-257">Create a Golden Gate test user account:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba TO test;
+  SQL> GRANT connect, resource, dba tootest;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
   SQL> EXIT;
   ```
 
-4. <span data-ttu-id="bbeb9-259">A paraméterfájl REPLICAT replikálni a módosításokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-259">REPLICAT parameter file to replicate changes:</span></span> 
+4. <span data-ttu-id="2c063-258">REPLICAT paraméter fájl tooreplicate változásai:</span><span class="sxs-lookup"><span data-stu-id="2c063-258">REPLICAT parameter file tooreplicate changes:</span></span> 
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS REPORA  
   ```
-  <span data-ttu-id="bbeb9-260">REPORA paraméter fájl tartalma:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-260">Content of REPORA parameter file:</span></span>
+  <span data-ttu-id="2c063-259">REPORA paraméter fájl tartalma:</span><span class="sxs-lookup"><span data-stu-id="2c063-259">Content of REPORA parameter file:</span></span>
 
   ```bash
   REPLICAT REPORA
@@ -698,7 +698,7 @@ SQL> EXIT;
   MAP pdb1.test.*, TARGET pdb1.test.*;
   ```
 
-5. <span data-ttu-id="bbeb9-261">Replicat ellenőrzőpont beállítása:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-261">Set up a replicat checkpoint:</span></span>
+5. <span data-ttu-id="2c063-260">Replicat ellenőrzőpont beállítása:</span><span class="sxs-lookup"><span data-stu-id="2c063-260">Set up a replicat checkpoint:</span></span>
 
   ```bash
   GGSCI> ADD REPLICAT REPORA, INTEGRATED, EXTTRAIL ./dirdat/rt
@@ -718,22 +718,22 @@ SQL> EXIT;
   GGSCI> ADD REPLICAT INITREP, SPECIALRUN
   ```
 
-### <a name="set-up-the-replication-myvm1-and-myvm2"></a><span data-ttu-id="bbeb9-262">A replikáció (myVM1 és myVM2) beállítása</span><span class="sxs-lookup"><span data-stu-id="bbeb9-262">Set up the replication (myVM1 and myVM2)</span></span>
+### <a name="set-up-hello-replication-myvm1-and-myvm2"></a><span data-ttu-id="2c063-261">Hello replikációjának (myVM1 és myVM2)</span><span class="sxs-lookup"><span data-stu-id="2c063-261">Set up hello replication (myVM1 and myVM2)</span></span>
 
-#### <a name="1-set-up-the-replication-on-myvm2-replicate"></a><span data-ttu-id="bbeb9-263">1. A replikáció myVM2 beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-263">1. Set up the replication on myVM2 (replicate)</span></span>
+#### <a name="1-set-up-hello-replication-on-myvm2-replicate"></a><span data-ttu-id="2c063-262">1. A replikáció myVM2 hello beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="2c063-262">1. Set up hello replication on myVM2 (replicate)</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS MGR
   ```
-<span data-ttu-id="bbeb9-264">Frissítse a fájlt a következő:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-264">Update the file with the following:</span></span>
+<span data-ttu-id="2c063-263">Hello fájl frissítése hello alábbira:</span><span class="sxs-lookup"><span data-stu-id="2c063-263">Update hello file with hello following:</span></span>
 
   ```bash
   PORT 7809
   ACCESSRULE, PROG *, IPADDR *, ALLOW
   ```
-<span data-ttu-id="bbeb9-265">Indítsa újra a kezelő szolgáltatás:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-265">Then restart the Manager service:</span></span>
+<span data-ttu-id="2c063-264">Indítsa újra a hello kezelő szolgáltatás:</span><span class="sxs-lookup"><span data-stu-id="2c063-264">Then restart hello Manager service:</span></span>
 
   ```bash
   GGSCI> STOP MGR
@@ -741,9 +741,9 @@ SQL> EXIT;
   GGSCI> EXIT
   ```
 
-#### <a name="2-set-up-the-replication-on-myvm1-primary"></a><span data-ttu-id="bbeb9-266">2. Állítsa be a replikáció myVM1 (elsődleges)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-266">2. Set up the replication on myVM1 (primary)</span></span>
+#### <a name="2-set-up-hello-replication-on-myvm1-primary"></a><span data-ttu-id="2c063-265">2. (Elsődleges) myVM1 hello a replikáció beállítása</span><span class="sxs-lookup"><span data-stu-id="2c063-265">2. Set up hello replication on myVM1 (primary)</span></span>
 
-<span data-ttu-id="bbeb9-267">Indítsa el a kezdeti betöltés és a hibák:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-267">Start the initial load and check for errors:</span></span>
+<span data-ttu-id="2c063-266">Indítsa el a kezdeti betöltés hello és a hibák:</span><span class="sxs-lookup"><span data-stu-id="2c063-266">Start hello initial load and check for errors:</span></span>
 
 ```bash
 $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -751,60 +751,60 @@ $ ./ggsci
 GGSCI> START EXTRACT INITEXT
 GGSCI> VIEW REPORT INITEXT
 ```
-#### <a name="3-set-up-the-replication-on-myvm2-replicate"></a><span data-ttu-id="bbeb9-268">3. A replikáció myVM2 beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="bbeb9-268">3. Set up the replication on myVM2 (replicate)</span></span>
+#### <a name="3-set-up-hello-replication-on-myvm2-replicate"></a><span data-ttu-id="2c063-267">3. A replikáció myVM2 hello beállítása (replikáció)</span><span class="sxs-lookup"><span data-stu-id="2c063-267">3. Set up hello replication on myVM2 (replicate)</span></span>
 
-<span data-ttu-id="bbeb9-269">A módosítás előtt beszerzett számot száma az Állapotváltozás:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-269">Change the SCN number with the number you obtained before:</span></span>
+<span data-ttu-id="2c063-268">Hello Állapotváltozás számot hello előtt beszerzett módosítása:</span><span class="sxs-lookup"><span data-stu-id="2c063-268">Change hello SCN number with hello number you obtained before:</span></span>
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   START REPLICAT REPORA, AFTERCSN 1857887
   ```
-<span data-ttu-id="bbeb9-270">A replikáció már megkezdődött, és új rekordok teszt táblák beszúrásával tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-270">The replication has begun, and you can test it by inserting new records to TEST tables.</span></span>
+<span data-ttu-id="2c063-269">hello replikációs megkezdődött, és a teszteléshez le új rekordok tooTEST táblák beszúrva.</span><span class="sxs-lookup"><span data-stu-id="2c063-269">hello replication has begun, and you can test it by inserting new records tooTEST tables.</span></span>
 
 
-### <a name="view-job-status-and-troubleshooting"></a><span data-ttu-id="bbeb9-271">Feladat állapotának megtekintése és hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="bbeb9-271">View job status and troubleshooting</span></span>
+### <a name="view-job-status-and-troubleshooting"></a><span data-ttu-id="2c063-270">Feladat állapotának megtekintése és hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="2c063-270">View job status and troubleshooting</span></span>
 
-#### <a name="view-reports"></a><span data-ttu-id="bbeb9-272">Jelentések megtekintése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-272">View reports</span></span>
-<span data-ttu-id="bbeb9-273">MyVM1 jelentések megtekintéséhez futtassa a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-273">To view reports on myVM1, run the following commands:</span></span>
+#### <a name="view-reports"></a><span data-ttu-id="2c063-271">Jelentések megtekintése</span><span class="sxs-lookup"><span data-stu-id="2c063-271">View reports</span></span>
+<span data-ttu-id="2c063-272">tooview myVM1, futtassa a következő parancsok hello jelentések:</span><span class="sxs-lookup"><span data-stu-id="2c063-272">tooview reports on myVM1, run hello following commands:</span></span>
 
   ```bash
   GGSCI> VIEW REPORT EXTORA 
   ```
  
-<span data-ttu-id="bbeb9-274">MyVM2 jelentések megtekintéséhez futtassa a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-274">To view reports on myVM2, run the following commands:</span></span>
+<span data-ttu-id="2c063-273">tooview myVM2, futtassa a következő parancsok hello jelentések:</span><span class="sxs-lookup"><span data-stu-id="2c063-273">tooview reports on myVM2, run hello following commands:</span></span>
 
   ```bash
   GGSCI> VIEW REPORT REPORA
   ```
 
-#### <a name="view-status-and-history"></a><span data-ttu-id="bbeb9-275">Nézet állapota és előzményei</span><span class="sxs-lookup"><span data-stu-id="bbeb9-275">View status and history</span></span>
-<span data-ttu-id="bbeb9-276">A myVM1 állapota és előzményei megtekintéséhez futtassa a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-276">To view status and history on myVM1, run the following commands:</span></span>
+#### <a name="view-status-and-history"></a><span data-ttu-id="2c063-274">Nézet állapota és előzményei</span><span class="sxs-lookup"><span data-stu-id="2c063-274">View status and history</span></span>
+<span data-ttu-id="2c063-275">tooview állapota és előzményei a myVM1, futtassa a következő parancsok hello:</span><span class="sxs-lookup"><span data-stu-id="2c063-275">tooview status and history on myVM1, run hello following commands:</span></span>
 
   ```bash
   GGSCI> dblogin userid c##ggadmin, password ggadmin 
   GGSCI> INFO EXTRACT EXTORA, DETAIL
   ```
 
-<span data-ttu-id="bbeb9-277">A myVM2 állapota és előzményei megtekintéséhez futtassa a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="bbeb9-277">To view status and history on myVM2, run the following commands:</span></span>
+<span data-ttu-id="2c063-276">tooview állapota és előzményei a myVM2, futtassa a következő parancsok hello:</span><span class="sxs-lookup"><span data-stu-id="2c063-276">tooview status and history on myVM2, run hello following commands:</span></span>
 
   ```bash
   GGSCI> dblogin userid repuser@pdb1 password rep_pass 
   GGSCI> INFO REP REPORA, DETAIL
   ```
-<span data-ttu-id="bbeb9-278">Ezzel befejezte a telepítési és konfigurációs Golden kapu Oracle Linux.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-278">This completes the installation and configuration of Golden Gate on Oracle linux.</span></span>
+<span data-ttu-id="2c063-277">Ezzel befejezte a hello telepítés és konfigurálás Golden kapu Oracle linux rendszeren.</span><span class="sxs-lookup"><span data-stu-id="2c063-277">This completes hello installation and configuration of Golden Gate on Oracle linux.</span></span>
 
 
-## <a name="delete-the-virtual-machine"></a><span data-ttu-id="bbeb9-279">A virtuális gép törlése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-279">Delete the virtual machine</span></span>
+## <a name="delete-hello-virtual-machine"></a><span data-ttu-id="2c063-278">Hello virtuális gép törlése</span><span class="sxs-lookup"><span data-stu-id="2c063-278">Delete hello virtual machine</span></span>
 
-<span data-ttu-id="bbeb9-280">Ha már nincs szükség, az alábbi parancs segítségével távolítsa el az erőforráscsoportot, virtuális gép és az összes kapcsolódó erőforrások.</span><span class="sxs-lookup"><span data-stu-id="bbeb9-280">When it's no longer needed, the following command can be used to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="2c063-279">Már nincs szükség, ha a következő parancs hello lehet használt tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="2c063-279">When it's no longer needed, hello following command can be used tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli
 az group delete --name myResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="bbeb9-281">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="bbeb9-281">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2c063-280">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="2c063-280">Next steps</span></span>
 
-[<span data-ttu-id="bbeb9-282">Magas rendelkezésre állású virtuális gép létrehozása oktatóanyag</span><span class="sxs-lookup"><span data-stu-id="bbeb9-282">Create highly available virtual machines tutorial</span></span>](../../linux/create-cli-complete.md)
+[<span data-ttu-id="2c063-281">Magas rendelkezésre állású virtuális gép létrehozása oktatóanyag</span><span class="sxs-lookup"><span data-stu-id="2c063-281">Create highly available virtual machines tutorial</span></span>](../../linux/create-cli-complete.md)
 
-[<span data-ttu-id="bbeb9-283">A virtuális gépek parancssori felületen való üzembe helyezését ismertető minták megismerése</span><span class="sxs-lookup"><span data-stu-id="bbeb9-283">Explore VM deployment CLI samples</span></span>](../../linux/cli-samples.md)
+[<span data-ttu-id="2c063-282">A virtuális gépek parancssori felületen való üzembe helyezését ismertető minták megismerése</span><span class="sxs-lookup"><span data-stu-id="2c063-282">Explore VM deployment CLI samples</span></span>](../../linux/cli-samples.md)

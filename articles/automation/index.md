@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Automation dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan automatizálhatja a folyamatokat és a konfigurációkezelést az Automation használatával, hogy időt takarítson meg és növelje a rendszeres adminisztratív feladatok megbízhatóságát."
+title: "aaaAzure Automation dokumentációjából - oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Automation tooautomate folyamatok és konfigurációkezelés rendelés toosave az idő és felügyeleti feladatok szokásos megbízhatósága növelése."
 services: automation
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 00c4fe633a7ef76b20d2a9d1c704bb09da6b19a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eda979bac2434d9b4a91a4e661f5b46a6540a1d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automation-documentation"></a>Automation – dokumentáció
 
-Ismerje meg, hogyan takaríthat meg időt és növelheti a felhőkörnyezetben végrehajtott rendszeres adminisztratív feladatok megbízhatóságát az Automation használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentációk bemutatják, hogyan automatizálhatja a folyamatokat forgatókönyvek segítségével, és hogyan automatizálhatja a konfigurációkezelést a célállapot-konfigurációkkal (DSC).
+Ismerje meg, hogyan toouse Automation toosave idő és növelje az hello fontosságú egy felhőalapú környezetben végrehajtott rendszeres felügyeleti feladatok megbízhatóságát. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan tooautomate dolgozza fel a runbookok használata vagy a célállapot-konfiguráció használata konfigurációkezelés automatizálhatja.
 
 <ul class="panelContent cardsFTitle">
     <li>

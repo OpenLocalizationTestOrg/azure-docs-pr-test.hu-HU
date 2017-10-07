@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Stream Analytics-kezelés .NET SDK |} Microsoft Docs"
-description: "Első lépések a Stream Analytics felügyeleti .NET SDK-val. Megtudhatja, hogyan állítson be és az analytics-feladatok futtatásához. Hozzon létre egy projekt, bemenetek, kimenetek és átalakításához."
+title: az Azure Stream Analytics .NET SDK aaaManagement |} Microsoft Docs
+description: "Első lépések a Stream Analytics felügyeleti .NET SDK-val. Megtudhatja, hogyan tooset össze, és az analytics-feladatok futtatása. Hozzon létre egy projekt, bemenetek, kimenetek és átalakításához."
 keywords: .NET SDK-val analytics API
 services: stream-analytics
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/06/2017
 ms.author: jeffstok
-ms.openlocfilehash: f9aa812e6e82cc0f72d0cd1fe63058e53f794775
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 507c11938bc5bf2249a2e41f6bcc076db8ead3f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-the-azure-stream-analytics-api-for-net"></a><span data-ttu-id="c44ca-106">.NET SDK-kezelés: Beállítása és az Azure Stream Analytics API használatával a .NET-hez analytics-feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="c44ca-106">Management .NET SDK: Set up and run analytics jobs using the Azure Stream Analytics API for .NET</span></span>
-<span data-ttu-id="c44ca-107">Megtudhatja, hogyan állítson be és használja a Stream Analytics API Management .NET SDK használatával .NET analytics-feladatok futtatása.</span><span class="sxs-lookup"><span data-stu-id="c44ca-107">Learn how to set up and run analytics jobs using the Stream Analytics API for .NET using the Management .NET SDK.</span></span> <span data-ttu-id="c44ca-108">Projekt beállítása, hozzon létre a bemeneti és kimeneti adatforrások, átalakítások, és úgy indítsa és feladatok.</span><span class="sxs-lookup"><span data-stu-id="c44ca-108">Set up a project, create input and output sources, transformations, and start and stop jobs.</span></span> <span data-ttu-id="c44ca-109">Az analytics-feladatok adatok Blob-tároló vagy az eseményközpont folyamatos átviteléhez.</span><span class="sxs-lookup"><span data-stu-id="c44ca-109">For your analytics jobs, you can stream data from Blob storage or from an event hub.</span></span>
+# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-hello-azure-stream-analytics-api-for-net"></a><span data-ttu-id="e4382-106">.NET SDK-kezelés: Beállítása és hello Azure Stream Analytics API használatával a .NET-hez analytics-feladatok futtatása</span><span class="sxs-lookup"><span data-stu-id="e4382-106">Management .NET SDK: Set up and run analytics jobs using hello Azure Stream Analytics API for .NET</span></span>
+<span data-ttu-id="e4382-107">Ismerje meg, hogyan tooset fel és futtatási analytics-feladatok hello Stream Analytics API használatával a .NET használatával hello felügyeleti .NET SDK-val.</span><span class="sxs-lookup"><span data-stu-id="e4382-107">Learn how tooset up and run analytics jobs using hello Stream Analytics API for .NET using hello Management .NET SDK.</span></span> <span data-ttu-id="e4382-108">Projekt beállítása, hozzon létre a bemeneti és kimeneti adatforrások, átalakítások, és úgy indítsa és feladatok.</span><span class="sxs-lookup"><span data-stu-id="e4382-108">Set up a project, create input and output sources, transformations, and start and stop jobs.</span></span> <span data-ttu-id="e4382-109">Az analytics-feladatok adatok Blob-tároló vagy az eseményközpont folyamatos átviteléhez.</span><span class="sxs-lookup"><span data-stu-id="e4382-109">For your analytics jobs, you can stream data from Blob storage or from an event hub.</span></span>
 
-<span data-ttu-id="c44ca-110">Tekintse meg a [felügyeleti referenciadokumentációt tartalmaz a Stream Analytics API .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span><span class="sxs-lookup"><span data-stu-id="c44ca-110">See the [management reference documentation for the Stream Analytics API for .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span></span>
+<span data-ttu-id="e4382-110">Lásd: hello [felügyeleti referenciadokumentációt hello Stream Analytics API a .NET-keretrendszerhez készült](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span><span class="sxs-lookup"><span data-stu-id="e4382-110">See hello [management reference documentation for hello Stream Analytics API for .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span></span>
 
-<span data-ttu-id="c44ca-111">Az Azure Stream Analytics egy olyan teljes körűen felügyelt szolgáltatás biztosít alacsony késésű, magas rendelkezésre állású, méretezhető, összetett Eseményfeldolgozási keresztül a streamelési adatok a felhőben.</span><span class="sxs-lookup"><span data-stu-id="c44ca-111">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable, complex event processing over streaming data in the cloud.</span></span> <span data-ttu-id="c44ca-112">A Stream Analytics lehetővé teszi az ügyfelek a folyamatos átviteli feladatok beállítása az adatfolyamokat elemzése, és lehetővé teszi a közel valós idejű elemzési meghajtó.</span><span class="sxs-lookup"><span data-stu-id="c44ca-112">Stream Analytics enables customers to set up streaming jobs to analyze data streams, and allows them to drive near real-time analytics.</span></span>  
+<span data-ttu-id="e4382-111">Az Azure Stream Analytics egy teljes körűen felügyelt szolgáltatás biztosítása kis késleltetésű, magas rendelkezésre állású, méretezhető, összetett esemény feldolgozása keresztül adatfolyam hello felhőben.</span><span class="sxs-lookup"><span data-stu-id="e4382-111">Azure Stream Analytics is a fully managed service providing low-latency, highly available, scalable, complex event processing over streaming data in hello cloud.</span></span> <span data-ttu-id="e4382-112">A Stream Analytics lehetővé teszi, hogy az ügyfelek tooset folyamatos átviteli feladatok tooanalyze adatfolyamot fel, és közel valós idejű elemzési toodrive lehetővé teszi.</span><span class="sxs-lookup"><span data-stu-id="e4382-112">Stream Analytics enables customers tooset up streaming jobs tooanalyze data streams, and allows them toodrive near real-time analytics.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="c44ca-113">Ebben a cikkben a példakód Azure Stream Analytics Management .NET SDK v2.x verziójával lett frissítve.</span><span class="sxs-lookup"><span data-stu-id="c44ca-113">We have updated the sample code in this article with Azure Stream Analytics Management .NET SDK v2.x version.</span></span> <span data-ttu-id="c44ca-114">A által használt lagecy (1.x) SDK-verzió használó példakódot, talál [a Management .NET SDK v1.x használja a Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).</span><span class="sxs-lookup"><span data-stu-id="c44ca-114">For sample code using the uses lagecy (1.x) SDK version, please see [Use the Management .NET SDK v1.x for Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).</span></span>
+> <span data-ttu-id="e4382-113">Ebben a cikkben hello mintakód Azure Stream Analytics Management .NET SDK v2.x verziójával lett frissítve.</span><span class="sxs-lookup"><span data-stu-id="e4382-113">We have updated hello sample code in this article with Azure Stream Analytics Management .NET SDK v2.x version.</span></span> <span data-ttu-id="e4382-114">A hello használó példakódot lagecy (1.x) SDK verzióját használja, ellenőrizze a [hello Management .NET SDK v1.x használja a Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).</span><span class="sxs-lookup"><span data-stu-id="e4382-114">For sample code using hello uses lagecy (1.x) SDK version, please see [Use hello Management .NET SDK v1.x for Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c44ca-115">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c44ca-115">Prerequisites</span></span>
-<span data-ttu-id="c44ca-116">A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="c44ca-116">Before you begin this article, you must have the following:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e4382-115">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="e4382-115">Prerequisites</span></span>
+<span data-ttu-id="e4382-116">Ez a cikk elkezdéséhez hello következő kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="e4382-116">Before you begin this article, you must have hello following:</span></span>
 
-* <span data-ttu-id="c44ca-117">Telepítse a Visual Studio 2017 vagy 2015.</span><span class="sxs-lookup"><span data-stu-id="c44ca-117">Install Visual Studio 2017 or 2015.</span></span>
-* <span data-ttu-id="c44ca-118">Töltse le és telepítse [Azure .NET SDK](https://azure.microsoft.com/downloads/).</span><span class="sxs-lookup"><span data-stu-id="c44ca-118">Download and install [Azure .NET SDK](https://azure.microsoft.com/downloads/).</span></span>
-* <span data-ttu-id="c44ca-119">Azure-erőforráscsoport létrehozása az előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="c44ca-119">Create an Azure Resource Group in your subscription.</span></span> <span data-ttu-id="c44ca-120">Egy Azure PowerShell-parancsfájlpélda a következő:</span><span class="sxs-lookup"><span data-stu-id="c44ca-120">The following is a sample Azure PowerShell script.</span></span> <span data-ttu-id="c44ca-121">Azure PowerShell információkért lásd: [telepítse és konfigurálja az Azure Powershellt](/powershell/azure/overview);</span><span class="sxs-lookup"><span data-stu-id="c44ca-121">For Azure PowerShell information, see [Install and configure Azure PowerShell](/powershell/azure/overview);</span></span>  
+* <span data-ttu-id="e4382-117">Telepítse a Visual Studio 2017 vagy 2015.</span><span class="sxs-lookup"><span data-stu-id="e4382-117">Install Visual Studio 2017 or 2015.</span></span>
+* <span data-ttu-id="e4382-118">Töltse le és telepítse [Azure .NET SDK](https://azure.microsoft.com/downloads/).</span><span class="sxs-lookup"><span data-stu-id="e4382-118">Download and install [Azure .NET SDK](https://azure.microsoft.com/downloads/).</span></span>
+* <span data-ttu-id="e4382-119">Azure-erőforráscsoport létrehozása az előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="e4382-119">Create an Azure Resource Group in your subscription.</span></span> <span data-ttu-id="e4382-120">hello az alábbiakban látható egy minta Azure PowerShell-parancsfájlt.</span><span class="sxs-lookup"><span data-stu-id="e4382-120">hello following is a sample Azure PowerShell script.</span></span> <span data-ttu-id="e4382-121">Azure PowerShell információkért lásd: [telepítse és konfigurálja az Azure Powershellt](/powershell/azure/overview);</span><span class="sxs-lookup"><span data-stu-id="e4382-121">For Azure PowerShell information, see [Install and configure Azure PowerShell](/powershell/azure/overview);</span></span>  
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Add-AzureAccount
 
-        # Select the Azure subscription you want to use to create the resource group
+        # Select hello Azure subscription you want toouse toocreate hello resource group
         Select-AzureSubscription -SubscriptionName <subscription name>
 
-            # If Stream Analytics has not been registered to the subscription, remove the remark symbol (#) to run the Register-AzureRMProvider cmdlet to register the provider namespace
+            # If Stream Analytics has not been registered toohello subscription, remove hello remark symbol (#) toorun hello Register-AzureRMProvider cmdlet tooregister hello provider namespace
             #Register-AzureRMProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
         New-AzureResourceGroup -Name <YOUR RESOURCE GROUP NAME> -Location <LOCATION>
 
 
-* <span data-ttu-id="c44ca-122">Beállítása egy bemeneti forrás- és kimeneti használatára.</span><span class="sxs-lookup"><span data-stu-id="c44ca-122">Set up an input source and output target to use.</span></span> <span data-ttu-id="c44ca-123">A további tudnivalókat [bemenet hozzáadása](stream-analytics-add-inputs.md) állíthat be egy minta bemeneti és [hozzáadása kimenetek](stream-analytics-add-outputs.md) állíthat be egy minta kimenet.</span><span class="sxs-lookup"><span data-stu-id="c44ca-123">For further instructions see [Add Inputs](stream-analytics-add-inputs.md) to set up a sample input and [Add Outputs](stream-analytics-add-outputs.md) to set up a sample output.</span></span>
+* <span data-ttu-id="e4382-122">Állítson be egy bemeneti forrás és cél toouse kimeneti.</span><span class="sxs-lookup"><span data-stu-id="e4382-122">Set up an input source and output target toouse.</span></span> <span data-ttu-id="e4382-123">A további tudnivalókat [bemenet hozzáadása](stream-analytics-add-inputs.md) be egy minta bemeneti tooset és [hozzáadása kimenetek](stream-analytics-add-outputs.md) tooset be egy minta kimenet.</span><span class="sxs-lookup"><span data-stu-id="e4382-123">For further instructions see [Add Inputs](stream-analytics-add-inputs.md) tooset up a sample input and [Add Outputs](stream-analytics-add-outputs.md) tooset up a sample output.</span></span>
 
-## <a name="set-up-a-project"></a><span data-ttu-id="c44ca-124">Projekt beállítása</span><span class="sxs-lookup"><span data-stu-id="c44ca-124">Set up a project</span></span>
-<span data-ttu-id="c44ca-125">Az analytics-feladat használja a Stream Analytics API a .NET-hez, először állítsa be a projekthez.</span><span class="sxs-lookup"><span data-stu-id="c44ca-125">To create an analytics job use the Stream Analytics API for .NET, first set up your project.</span></span>
+## <a name="set-up-a-project"></a><span data-ttu-id="e4382-124">Projekt beállítása</span><span class="sxs-lookup"><span data-stu-id="e4382-124">Set up a project</span></span>
+<span data-ttu-id="e4382-125">toocreate analytics-feladat hello Stream Analytics API használata a .NET, először állítsa be a projekthez.</span><span class="sxs-lookup"><span data-stu-id="e4382-125">toocreate an analytics job use hello Stream Analytics API for .NET, first set up your project.</span></span>
 
-1. <span data-ttu-id="c44ca-126">Hozzon létre egy Visual Studio C# .NET konzolalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="c44ca-126">Create a Visual Studio C# .NET console application.</span></span>
-2. <span data-ttu-id="c44ca-127">A Package Manager-konzolon, a következő parancsokat a NuGet-csomagok.</span><span class="sxs-lookup"><span data-stu-id="c44ca-127">In the Package Manager Console, run the following commands to install the NuGet packages.</span></span> <span data-ttu-id="c44ca-128">Az első címtárra az Azure Stream Analytics felügyeleti .NET SDK.</span><span class="sxs-lookup"><span data-stu-id="c44ca-128">The first one is the Azure Stream Analytics Management .NET SDK.</span></span> <span data-ttu-id="c44ca-129">A második érték van az Azure ügyfél-hitelesítéshez.</span><span class="sxs-lookup"><span data-stu-id="c44ca-129">The second one is for Azure client authentication.</span></span>
+1. <span data-ttu-id="e4382-126">Hozzon létre egy Visual Studio C# .NET konzolalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="e4382-126">Create a Visual Studio C# .NET console application.</span></span>
+2. <span data-ttu-id="e4382-127">Hello Csomagkezelő konzol, a következő futtatási hello parancsokat tooinstall hello NuGet-csomagok.</span><span class="sxs-lookup"><span data-stu-id="e4382-127">In hello Package Manager Console, run hello following commands tooinstall hello NuGet packages.</span></span> <span data-ttu-id="e4382-128">hello először egyik hello Azure Stream Analytics felügyeleti .NET SDK-t.</span><span class="sxs-lookup"><span data-stu-id="e4382-128">hello first one is hello Azure Stream Analytics Management .NET SDK.</span></span> <span data-ttu-id="e4382-129">hello második van az Azure ügyfél-hitelesítéshez.</span><span class="sxs-lookup"><span data-stu-id="e4382-129">hello second one is for Azure client authentication.</span></span>
    
         Install-Package Microsoft.Azure.Management.StreamAnalytics -Version 2.0.0
         Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Version 2.3.1
-3. <span data-ttu-id="c44ca-130">Adja hozzá a következő **appSettings** szakaszt az App.config fájlban:</span><span class="sxs-lookup"><span data-stu-id="c44ca-130">Add the following **appSettings** section to the App.config file:</span></span>
+3. <span data-ttu-id="e4382-130">Adja hozzá a következő hello **appSettings** szakasz toohello App.config fájlban:</span><span class="sxs-lookup"><span data-stu-id="e4382-130">Add hello following **appSettings** section toohello App.config file:</span></span>
    
         <appSettings>
           <add key="ClientId" value="1950a258-227b-4e31-a9cf-717495945fc2" />
@@ -70,15 +70,15 @@ ms.lasthandoff: 08/29/2017
           <add key="ActiveDirectoryTenantId" value="YOUR TENANT ID" />
         </appSettings>
 
-    <span data-ttu-id="c44ca-131">Cserélje le az értékeket **SubscriptionId** és **ActiveDirectoryTenantId** a Azure-előfizetés és a bérlői azonosítók.</span><span class="sxs-lookup"><span data-stu-id="c44ca-131">Replace values for **SubscriptionId** and **ActiveDirectoryTenantId** with your Azure subscription and tenant IDs.</span></span> <span data-ttu-id="c44ca-132">Ezeket az értékeket a következő Azure PowerShell-parancsmag futtatásával kérhető le:</span><span class="sxs-lookup"><span data-stu-id="c44ca-132">You can get these values by running the following Azure PowerShell cmdlet:</span></span>
+    <span data-ttu-id="e4382-131">Cserélje le az értékeket **SubscriptionId** és **ActiveDirectoryTenantId** a Azure-előfizetés és a bérlői azonosítók.</span><span class="sxs-lookup"><span data-stu-id="e4382-131">Replace values for **SubscriptionId** and **ActiveDirectoryTenantId** with your Azure subscription and tenant IDs.</span></span> <span data-ttu-id="e4382-132">Ezek az értékek kaphat hello Azure PowerShell-parancsmag a következő futtatásával:</span><span class="sxs-lookup"><span data-stu-id="e4382-132">You can get these values by running hello following Azure PowerShell cmdlet:</span></span>
 
         Get-AzureAccount
 
-4. <span data-ttu-id="c44ca-133">Adja hozzá a .csproj fájlban a következő hivatkozást:</span><span class="sxs-lookup"><span data-stu-id="c44ca-133">Add the following reference in your .csproj file:</span></span>
+4. <span data-ttu-id="e4382-133">Adja hozzá a következő hivatkozás a .csproj fájlban hello:</span><span class="sxs-lookup"><span data-stu-id="e4382-133">Add hello following reference in your .csproj file:</span></span>
 
         <Reference Include="System.Configuration" />
 
-5. <span data-ttu-id="c44ca-134">Adja hozzá a következő **használatával** utasítást, hogy a projekt forrásfájl (Program.cs):</span><span class="sxs-lookup"><span data-stu-id="c44ca-134">Add the following **using** statements to the source file (Program.cs) in the project:</span></span>
+5. <span data-ttu-id="e4382-134">Adja hozzá a következő hello **használatával** utasítások toohello forrásfájl (Program.cs) hello projektben:</span><span class="sxs-lookup"><span data-stu-id="e4382-134">Add hello following **using** statements toohello source file (Program.cs) in hello project:</span></span>
    
         using System;
         using System.Collections.Generic;
@@ -90,7 +90,7 @@ ms.lasthandoff: 08/29/2017
         using Microsoft.Azure.Management.StreamAnalytics.Models;
         using Microsoft.Rest.Azure.Authentication;
         using Microsoft.Rest;
-6. <span data-ttu-id="c44ca-135">Adja hozzá a segítő hitelesítési módszert:</span><span class="sxs-lookup"><span data-stu-id="c44ca-135">Add an authentication helper method:</span></span>
+6. <span data-ttu-id="e4382-135">Adja hozzá a segítő hitelesítési módszert:</span><span class="sxs-lookup"><span data-stu-id="e4382-135">Add an authentication helper method:</span></span>
 
    ```
    private static async Task<ServiceClientCredentials> GetCredentials()
@@ -102,10 +102,10 @@ ms.lasthandoff: 08/29/2017
     }
    ```
 
-## <a name="create-a-stream-analytics-management-client"></a><span data-ttu-id="c44ca-136">Hozzon létre egy Stream Analytics management ügyfél</span><span class="sxs-lookup"><span data-stu-id="c44ca-136">Create a Stream Analytics management client</span></span>
-<span data-ttu-id="c44ca-137">A **StreamAnalyticsManagementClient** objektum lehetővé teszi, hogy a feladat, és a feladat összetevők, például a bemeneti, kimeneti és átalakítása kezelheti.</span><span class="sxs-lookup"><span data-stu-id="c44ca-137">A **StreamAnalyticsManagementClient** object allows you to manage the job and the job components, such as input, output, and transformation.</span></span>
+## <a name="create-a-stream-analytics-management-client"></a><span data-ttu-id="e4382-136">Hozzon létre egy Stream Analytics management ügyfél</span><span class="sxs-lookup"><span data-stu-id="e4382-136">Create a Stream Analytics management client</span></span>
+<span data-ttu-id="e4382-137">A **StreamAnalyticsManagementClient** objektum lehetővé teszi a toomanage hello feladat és hello feladat összetevők, például bemeneti, kimeneti és átalakítás.</span><span class="sxs-lookup"><span data-stu-id="e4382-137">A **StreamAnalyticsManagementClient** object allows you toomanage hello job and hello job components, such as input, output, and transformation.</span></span>
 
-<span data-ttu-id="c44ca-138">Adja hozzá a következő kódot elejéhez a **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="c44ca-138">Add the following code to the beginning of the **Main** method:</span></span>
+<span data-ttu-id="e4382-138">Adja hozzá a következő kód toohello elejére hello hello **fő** módszert:</span><span class="sxs-lookup"><span data-stu-id="e4382-138">Add hello following code toohello beginning of hello **Main** method:</span></span>
 
    ```
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
@@ -126,14 +126,14 @@ ms.lasthandoff: 08/29/2017
     };
    ```
 
-<span data-ttu-id="c44ca-139">A **resourceGroupName** változó értékét meg kell egyeznie az erőforráscsoport létrehozása, vagy az előfeltételként szükséges lépések kivételezett nevével.</span><span class="sxs-lookup"><span data-stu-id="c44ca-139">The **resourceGroupName** variable's value should be the same as the name of the resource group you created or picked in the prerequisite steps.</span></span>
+<span data-ttu-id="e4382-139">Hello **resourceGroupName** változó értékét a hello erőforrás hello neve azonos gazdagépcsoport létrehozott vagy hello előfeltételként szükséges lépések kivételezett hello kell lennie.</span><span class="sxs-lookup"><span data-stu-id="e4382-139">hello **resourceGroupName** variable's value should be hello same as hello name of hello resource group you created or picked in hello prerequisite steps.</span></span>
 
-<span data-ttu-id="c44ca-140">Feladat létrehozása a hitelesítő adatok megjelenítési aspektusa automatizálását, tekintse meg [hitelesítéséhez az Azure Resource Manager szolgáltatásnevet](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span><span class="sxs-lookup"><span data-stu-id="c44ca-140">To automate the credential presentation aspect of job creation, refer to [Authenticating a service principal with Azure Resource Manager](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span></span>
+<span data-ttu-id="e4382-140">tooautomate hello credential bemutató szempontja, hogy a feladat létrehozása, tekintse meg a túl[hitelesítéséhez az Azure Resource Manager szolgáltatásnevet](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span><span class="sxs-lookup"><span data-stu-id="e4382-140">tooautomate hello credential presentation aspect of job creation, refer too[Authenticating a service principal with Azure Resource Manager](../azure-resource-manager/resource-group-authenticate-service-principal.md).</span></span>
 
-<span data-ttu-id="c44ca-141">Ez a cikk fennmaradó részében feltételezik, hogy ez a kód elején a **fő** metódust.</span><span class="sxs-lookup"><span data-stu-id="c44ca-141">The remaining sections of this article assume that this code is at the beginning of the **Main** method.</span></span>
+<span data-ttu-id="e4382-141">hello Ez a cikk fennmaradó részében feltételezik, hogy ez a kód hello hello elején **fő** metódust.</span><span class="sxs-lookup"><span data-stu-id="e4382-141">hello remaining sections of this article assume that this code is at hello beginning of hello **Main** method.</span></span>
 
-## <a name="create-a-stream-analytics-job"></a><span data-ttu-id="c44ca-142">Stream Analytics-feladat létrehozása</span><span class="sxs-lookup"><span data-stu-id="c44ca-142">Create a Stream Analytics job</span></span>
-<span data-ttu-id="c44ca-143">A következő kódot a Stream Analytics-feladat a megadott erőforráscsoport alapján hoz létre.</span><span class="sxs-lookup"><span data-stu-id="c44ca-143">The following code creates a Stream Analytics job under the resource group that you have defined.</span></span> <span data-ttu-id="c44ca-144">Hozzáadandó egy bemeneti, kimeneti és átalakítása a feladatot később.</span><span class="sxs-lookup"><span data-stu-id="c44ca-144">You will add an input, output, and transformation to the job later.</span></span>
+## <a name="create-a-stream-analytics-job"></a><span data-ttu-id="e4382-142">Stream Analytics-feladat létrehozása</span><span class="sxs-lookup"><span data-stu-id="e4382-142">Create a Stream Analytics job</span></span>
+<span data-ttu-id="e4382-143">hello alábbi kód létrehoz egy Stream Analytics-feladat a megadott erőforráscsoport hello.</span><span class="sxs-lookup"><span data-stu-id="e4382-143">hello following code creates a Stream Analytics job under hello resource group that you have defined.</span></span> <span data-ttu-id="e4382-144">Egy bemeneti, kimeneti és átalakítása toohello feladat később fogja hozzáadni.</span><span class="sxs-lookup"><span data-stu-id="e4382-144">You will add an input, output, and transformation toohello job later.</span></span>
 
    ```
    // Create a streaming job
@@ -159,8 +159,8 @@ ms.lasthandoff: 08/29/2017
    StreamingJob createStreamingJobResult = streamAnalyticsManagementClient.StreamingJobs.CreateOrReplace(streamingJob, resourceGroupName, streamingJobName);
    ```
 
-## <a name="create-a-stream-analytics-input-source"></a><span data-ttu-id="c44ca-145">Hozzon létre egy Stream Analytics bemeneti forrása</span><span class="sxs-lookup"><span data-stu-id="c44ca-145">Create a Stream Analytics input source</span></span>
-<span data-ttu-id="c44ca-146">A következő kódot a Stream Analytics bemeneti forrás a blob bemeneti forrása típusa és a fürt megosztott kötetei szolgáltatás szerializálási hoz létre.</span><span class="sxs-lookup"><span data-stu-id="c44ca-146">The following code creates a Stream Analytics input source with the blob input source type and CSV serialization.</span></span> <span data-ttu-id="c44ca-147">Az event hubs ezen bemeneti forrása hozhat létre **EventHubStreamInputDataSource** helyett **BlobStreamInputDataSource**.</span><span class="sxs-lookup"><span data-stu-id="c44ca-147">To create an event hub input source, use **EventHubStreamInputDataSource** instead of **BlobStreamInputDataSource**.</span></span> <span data-ttu-id="c44ca-148">Hasonlóképpen testre szabhatja a bemeneti forrás a szerializálási típushoz.</span><span class="sxs-lookup"><span data-stu-id="c44ca-148">Similarly, you can customize the serialization type of the input source.</span></span>
+## <a name="create-a-stream-analytics-input-source"></a><span data-ttu-id="e4382-145">Hozzon létre egy Stream Analytics bemeneti forrása</span><span class="sxs-lookup"><span data-stu-id="e4382-145">Create a Stream Analytics input source</span></span>
+<span data-ttu-id="e4382-146">hello alábbira hoz létre a Stream Analytics bemeneti forrás hello blob bemeneti forrása típusa és a fürt megosztott kötetei szolgáltatás szerializálást.</span><span class="sxs-lookup"><span data-stu-id="e4382-146">hello following code creates a Stream Analytics input source with hello blob input source type and CSV serialization.</span></span> <span data-ttu-id="e4382-147">az event hubs ezen bemeneti forrása, toocreate használja **EventHubStreamInputDataSource** helyett **BlobStreamInputDataSource**.</span><span class="sxs-lookup"><span data-stu-id="e4382-147">toocreate an event hub input source, use **EventHubStreamInputDataSource** instead of **BlobStreamInputDataSource**.</span></span> <span data-ttu-id="e4382-148">Hasonlóképpen testre szabhatja a hello szerializálási típushoz hello bemeneti forrás.</span><span class="sxs-lookup"><span data-stu-id="e4382-148">Similarly, you can customize hello serialization type of hello input source.</span></span>
 
    ```
    // Create an input
@@ -192,20 +192,20 @@ ms.lasthandoff: 08/29/2017
    Input createInputResult = streamAnalyticsManagementClient.Inputs.CreateOrReplace(input, resourceGroupName, streamingJobName, inputName);
    ```
 
-<span data-ttu-id="c44ca-149">Beviteli móddal, akár a Blob-tároló vagy egy eseményközpontba kötődnek, egy adott feladat.</span><span class="sxs-lookup"><span data-stu-id="c44ca-149">Input sources, whether from Blob storage or an event hub, are tied to a specific job.</span></span> <span data-ttu-id="c44ca-150">Használja az ugyanazon bemeneti forrás a különböző feladatok, hívja meg ismét a metódust, és adjon meg egy másik feladatnévvel.</span><span class="sxs-lookup"><span data-stu-id="c44ca-150">To use the same input source for different jobs, you must call the method again and specify a different job name.</span></span>
+<span data-ttu-id="e4382-149">Beviteli móddal, akár a Blob-tároló vagy egy eseményközpontot, kapcsolt tooa adott feladat.</span><span class="sxs-lookup"><span data-stu-id="e4382-149">Input sources, whether from Blob storage or an event hub, are tied tooa specific job.</span></span> <span data-ttu-id="e4382-150">toouse hello ugyanazon bemeneti forrás a különböző feladatokhoz, kell hello metódust hívja meg ismét, és adjon meg egy másik feladatnévvel.</span><span class="sxs-lookup"><span data-stu-id="e4382-150">toouse hello same input source for different jobs, you must call hello method again and specify a different job name.</span></span>
 
-## <a name="test-a-stream-analytics-input-source"></a><span data-ttu-id="c44ca-151">A Stream Analytics bemeneti forrás tesztelése</span><span class="sxs-lookup"><span data-stu-id="c44ca-151">Test a Stream Analytics input source</span></span>
-<span data-ttu-id="c44ca-152">A **TestConnection** metódus teszteli, hogy a Stream Analytics-feladat csatlakozni tudjanak a bemeneti forrás a bemeneti forrás típusa különleges, valamint egyéb szempontokat.</span><span class="sxs-lookup"><span data-stu-id="c44ca-152">The **TestConnection** method tests whether the Stream Analytics job is able to connect to the input source as well as other aspects specific to the input source type.</span></span> <span data-ttu-id="c44ca-153">Például a blobbemeneti forrás egy korábbi lépésben létrehozott, a a módszerrel ellenőrzi, hogy a Tárfiók nevét és a kulcspár használatával lehet csatlakozni a tárfiókhoz, valamint a ellenőrizze, hogy létezik-e a megadott tároló.</span><span class="sxs-lookup"><span data-stu-id="c44ca-153">For example, in the blob input source you created in an earlier step, the method will check that the Storage account name and key pair can be used to connect to the Storage account as well as check that the specified container exists.</span></span>
+## <a name="test-a-stream-analytics-input-source"></a><span data-ttu-id="e4382-151">A Stream Analytics bemeneti forrás tesztelése</span><span class="sxs-lookup"><span data-stu-id="e4382-151">Test a Stream Analytics input source</span></span>
+<span data-ttu-id="e4382-152">Hello **TestConnection** e hello Stream Analytics-feladat-e képes tooconnect toohello bemeneti forrás, valamint egyéb szempontok adott toohello metódus tesztek bemeneti forrás típusa.</span><span class="sxs-lookup"><span data-stu-id="e4382-152">hello **TestConnection** method tests whether hello Stream Analytics job is able tooconnect toohello input source as well as other aspects specific toohello input source type.</span></span> <span data-ttu-id="e4382-153">Például hello blob bemeneti forrása egy korábbi lépésben létrehozott hello metódus ellenőrzi, hogy hello tárfióknév kulcspár is használt tooconnect toohello tárfiókot kell, valamint ellenőrizze, hogy hello megadott tároló létezik-e.</span><span class="sxs-lookup"><span data-stu-id="e4382-153">For example, in hello blob input source you created in an earlier step, hello method will check that hello Storage account name and key pair can be used tooconnect toohello Storage account as well as check that hello specified container exists.</span></span>
 
    ```
-   // Test the connection to the input
+   // Test hello connection toohello input
    ResourceTestStatus testInputResult = streamAnalyticsManagementClient.Inputs.Test(resourceGroupName, streamingJobName, inputName);
    ```
 
-## <a name="create-a-stream-analytics-output-target"></a><span data-ttu-id="c44ca-154">A Stream Analytics kimeneti cél létrehozásához</span><span class="sxs-lookup"><span data-stu-id="c44ca-154">Create a Stream Analytics output target</span></span>
-<span data-ttu-id="c44ca-155">Egy kimeneti cél létrehozása nagyon hasonlít a Stream Analytics bemeneti forrás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="c44ca-155">Creating an output target is very similar to creating a Stream Analytics input source.</span></span> <span data-ttu-id="c44ca-156">Beviteli móddal, például a kimeneti célokat egy adott feladat vannak társítva.</span><span class="sxs-lookup"><span data-stu-id="c44ca-156">Like input sources, output targets are tied to a specific job.</span></span> <span data-ttu-id="c44ca-157">Kimeneti egyazon célobjektum használ a különböző feladatokhoz, hívja meg ismét a metódust, és adjon meg egy másik feladatnévvel.</span><span class="sxs-lookup"><span data-stu-id="c44ca-157">To use the same output target for different jobs, you must call the method again and specify a different job name.</span></span>
+## <a name="create-a-stream-analytics-output-target"></a><span data-ttu-id="e4382-154">A Stream Analytics kimeneti cél létrehozásához</span><span class="sxs-lookup"><span data-stu-id="e4382-154">Create a Stream Analytics output target</span></span>
+<span data-ttu-id="e4382-155">Nagyon hasonló toocreating a Stream Analytics bemeneti forrás egy kimeneti cél létrehozása történik.</span><span class="sxs-lookup"><span data-stu-id="e4382-155">Creating an output target is very similar toocreating a Stream Analytics input source.</span></span> <span data-ttu-id="e4382-156">Beviteli móddal, például a kimeneti célpontjai kapcsolt tooa adott feladat.</span><span class="sxs-lookup"><span data-stu-id="e4382-156">Like input sources, output targets are tied tooa specific job.</span></span> <span data-ttu-id="e4382-157">toouse hello azonos kimeneti célja a különböző feladatokhoz, kell hello metódust hívja meg ismét, és adjon meg egy másik feladatnévvel.</span><span class="sxs-lookup"><span data-stu-id="e4382-157">toouse hello same output target for different jobs, you must call hello method again and specify a different job name.</span></span>
 
-<span data-ttu-id="c44ca-158">Az alábbi kód létrehoz egy kimeneti célhoz (Azure SQL-adatbázis).</span><span class="sxs-lookup"><span data-stu-id="c44ca-158">The following code creates an output target (Azure SQL database).</span></span> <span data-ttu-id="c44ca-159">Testre szabhatja a kimeneti adatok céltípus és/vagy szerializálási típushoz.</span><span class="sxs-lookup"><span data-stu-id="c44ca-159">You can customize the output target's data type and/or serialization type.</span></span>
+<span data-ttu-id="e4382-158">a következő kód hello hoz létre egy kimeneti célhoz (Azure SQL-adatbázis).</span><span class="sxs-lookup"><span data-stu-id="e4382-158">hello following code creates an output target (Azure SQL database).</span></span> <span data-ttu-id="e4382-159">Testre szabhatja hello kimeneti cél adatok típusát és/vagy szerializálási típushoz.</span><span class="sxs-lookup"><span data-stu-id="e4382-159">You can customize hello output target's data type and/or serialization type.</span></span>
 
    ```
    // Create an output
@@ -223,33 +223,33 @@ ms.lasthandoff: 08/29/2017
    Output createOutputResult = streamAnalyticsManagementClient.Outputs.CreateOrReplace(output, resourceGroupName, streamingJobName, outputName);
    ```
 
-## <a name="test-a-stream-analytics-output-target"></a><span data-ttu-id="c44ca-160">A Stream Analytics kimeneti cél tesztelése</span><span class="sxs-lookup"><span data-stu-id="c44ca-160">Test a Stream Analytics output target</span></span>
-<span data-ttu-id="c44ca-161">A Stream Analytics kimeneti cél is tartozik. a **TestConnection** kapcsolatok tesztelése a módszert.</span><span class="sxs-lookup"><span data-stu-id="c44ca-161">A Stream Analytics output target also has the **TestConnection** method for testing connections.</span></span>
+## <a name="test-a-stream-analytics-output-target"></a><span data-ttu-id="e4382-160">A Stream Analytics kimeneti cél tesztelése</span><span class="sxs-lookup"><span data-stu-id="e4382-160">Test a Stream Analytics output target</span></span>
+<span data-ttu-id="e4382-161">A Stream Analytics kimeneti cél is tartozik hello **TestConnection** kapcsolatok tesztelése a módszert.</span><span class="sxs-lookup"><span data-stu-id="e4382-161">A Stream Analytics output target also has hello **TestConnection** method for testing connections.</span></span>
 
    ```
-   // Test the connection to the output
+   // Test hello connection toohello output
    ResourceTestStatus testOutputResult = streamAnalyticsManagementClient.Outputs.Test(resourceGroupName, streamingJobName, outputName);
    ```
 
-## <a name="create-a-stream-analytics-transformation"></a><span data-ttu-id="c44ca-162">Hozzon létre egy Stream Analytics átalakítása</span><span class="sxs-lookup"><span data-stu-id="c44ca-162">Create a Stream Analytics transformation</span></span>
-<span data-ttu-id="c44ca-163">A következő kódot a Stream Analytics átalakítás hoz létre a lekérdezés "Válasszon * bemeneti" és egy streamelési egységet a Stream Analytics-feladat lefoglalni határozza meg.</span><span class="sxs-lookup"><span data-stu-id="c44ca-163">The following code creates a Stream Analytics transformation with the query "select * from Input" and specifies to allocate one streaming unit for the Stream Analytics job.</span></span> <span data-ttu-id="c44ca-164">A streamelési egységek beállítása további információkért lásd: [Scale Azure Stream Analytics-feladatok](stream-analytics-scale-jobs.md).</span><span class="sxs-lookup"><span data-stu-id="c44ca-164">For more information on adjusting streaming units, see [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md).</span></span>
+## <a name="create-a-stream-analytics-transformation"></a><span data-ttu-id="e4382-162">Hozzon létre egy Stream Analytics átalakítása</span><span class="sxs-lookup"><span data-stu-id="e4382-162">Create a Stream Analytics transformation</span></span>
+<span data-ttu-id="e4382-163">hello alábbira hoz létre a Stream Analytics átalakítás hello lekérdezés "Válasszon * bemeneti" és egy streamelési egységet tooallocate hello Stream Analytics-feladat határozza meg.</span><span class="sxs-lookup"><span data-stu-id="e4382-163">hello following code creates a Stream Analytics transformation with hello query "select * from Input" and specifies tooallocate one streaming unit for hello Stream Analytics job.</span></span> <span data-ttu-id="e4382-164">A streamelési egységek beállítása további információkért lásd: [Scale Azure Stream Analytics-feladatok](stream-analytics-scale-jobs.md).</span><span class="sxs-lookup"><span data-stu-id="e4382-164">For more information on adjusting streaming units, see [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md).</span></span>
 
    ```
    // Create a transformation
    Transformation transformation = new Transformation()
    {
-       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with the value you put for the 'inputName' variable above or in a previous step
+       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with hello value you put for hello 'inputName' variable above or in a previous step
        StreamingUnits = 1
    };
    Transformation createTransformationResult = streamAnalyticsManagementClient.Transformations.CreateOrReplace(transformation, resourceGroupName, streamingJobName, transformationName);
    ```
 
-<span data-ttu-id="c44ca-165">Például a bemeneti és kimeneti átalakítás is van kötve az adott Stream Analytics-feladat csoportban hozták létre.</span><span class="sxs-lookup"><span data-stu-id="c44ca-165">Like input and output, a transformation is also tied to the specific Stream Analytics job it was created under.</span></span>
+<span data-ttu-id="e4382-165">Bemeneti és kimeneti, például átalakítás egyben a feltételekhez toohello adott Stream Analytics-feladat csoportban hozták létre.</span><span class="sxs-lookup"><span data-stu-id="e4382-165">Like input and output, a transformation is also tied toohello specific Stream Analytics job it was created under.</span></span>
 
-## <a name="start-a-stream-analytics-job"></a><span data-ttu-id="c44ca-166">A Stream Analytics-feladat indítása</span><span class="sxs-lookup"><span data-stu-id="c44ca-166">Start a Stream Analytics job</span></span>
-<span data-ttu-id="c44ca-167">Miután létrehozta a Stream Analytics-feladat, és a input(s), kimenete és átalakítása, megkezdheti a feladat meghívása a **Start** metódust.</span><span class="sxs-lookup"><span data-stu-id="c44ca-167">After creating a Stream Analytics job and its input(s), output(s), and transformation, you can start the job by calling the **Start** method.</span></span>
+## <a name="start-a-stream-analytics-job"></a><span data-ttu-id="e4382-166">A Stream Analytics-feladat indítása</span><span class="sxs-lookup"><span data-stu-id="e4382-166">Start a Stream Analytics job</span></span>
+<span data-ttu-id="e4382-167">Miután létrehozta a Stream Analytics-feladat, és a input(s), kimenete és átalakítása, elindíthatja hello feladat hívó hello **Start** metódust.</span><span class="sxs-lookup"><span data-stu-id="e4382-167">After creating a Stream Analytics job and its input(s), output(s), and transformation, you can start hello job by calling hello **Start** method.</span></span>
 
-<span data-ttu-id="c44ca-168">A következő példa egy egyéni kimeneti kezdési idejű Stream Analytics-feladat beállítása a 2012. December 12., 12:12:12 kód indítása (UTC):</span><span class="sxs-lookup"><span data-stu-id="c44ca-168">The following sample code starts a Stream Analytics job with a custom output start time set to December 12, 2012, 12:12:12 UTC:</span></span>
+<span data-ttu-id="e4382-168">a következő példakód hello Stream Analytics-feladat kezdődik-e egy egyéni kimeneti kezdési idő beállítása tooDecember 12, 2012, 12:12:12 UTC:</span><span class="sxs-lookup"><span data-stu-id="e4382-168">hello following sample code starts a Stream Analytics job with a custom output start time set tooDecember 12, 2012, 12:12:12 UTC:</span></span>
 
    ```
    // Start a streaming job
@@ -261,34 +261,34 @@ ms.lasthandoff: 08/29/2017
    streamAnalyticsManagementClient.StreamingJobs.Start(resourceGroupName, streamingJobName, startStreamingJobParameters);
    ```
 
-## <a name="stop-a-stream-analytics-job"></a><span data-ttu-id="c44ca-169">A Stream Analytics-feladat leállítása</span><span class="sxs-lookup"><span data-stu-id="c44ca-169">Stop a Stream Analytics job</span></span>
-<span data-ttu-id="c44ca-170">Egy futó Stream Analytics-feladat meghívásával leállíthatja a **leállítása** metódust.</span><span class="sxs-lookup"><span data-stu-id="c44ca-170">You can stop a running Stream Analytics job by calling the **Stop** method.</span></span>
+## <a name="stop-a-stream-analytics-job"></a><span data-ttu-id="e4382-169">A Stream Analytics-feladat leállítása</span><span class="sxs-lookup"><span data-stu-id="e4382-169">Stop a Stream Analytics job</span></span>
+<span data-ttu-id="e4382-170">Egy futó Stream Analytics-feladat leállításához hívó hello **leállítása** metódust.</span><span class="sxs-lookup"><span data-stu-id="e4382-170">You can stop a running Stream Analytics job by calling hello **Stop** method.</span></span>
 
    ```
    // Stop a streaming job
    streamAnalyticsManagementClient.StreamingJobs.Stop(resourceGroupName, streamingJobName);
    ```
 
-## <a name="delete-a-stream-analytics-job"></a><span data-ttu-id="c44ca-171">A Stream Analytics-feladat törlése</span><span class="sxs-lookup"><span data-stu-id="c44ca-171">Delete a Stream Analytics job</span></span>
-<span data-ttu-id="c44ca-172">A **törlése** metódus törli a feladatot, valamint az alapul szolgáló alárendelt erőforrások, például az input(s), kimenete és átalakítása a feladat.</span><span class="sxs-lookup"><span data-stu-id="c44ca-172">The **Delete** method will delete the job as well as the underlying sub-resources, including input(s), output(s), and transformation of the job.</span></span>
+## <a name="delete-a-stream-analytics-job"></a><span data-ttu-id="e4382-171">A Stream Analytics-feladat törlése</span><span class="sxs-lookup"><span data-stu-id="e4382-171">Delete a Stream Analytics job</span></span>
+<span data-ttu-id="e4382-172">Hello **törlése** metódus hello feladat, valamint az alapul szolgáló alárendelt erőforrások, például az input(s), kimenete és átalakítása hello feladat hello törli.</span><span class="sxs-lookup"><span data-stu-id="e4382-172">hello **Delete** method will delete hello job as well as hello underlying sub-resources, including input(s), output(s), and transformation of hello job.</span></span>
 
    ```
    // Delete a streaming job
    streamAnalyticsManagementClient.StreamingJobs.Delete(resourceGroupName, streamingJobName);
    ```
 
-## <a name="get-support"></a><span data-ttu-id="c44ca-173">Támogatás kérése</span><span class="sxs-lookup"><span data-stu-id="c44ca-173">Get support</span></span>
-<span data-ttu-id="c44ca-174">Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span><span class="sxs-lookup"><span data-stu-id="c44ca-174">For further assistance, try our [Azure Stream Analytics forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span></span>
+## <a name="get-support"></a><span data-ttu-id="e4382-173">Támogatás kérése</span><span class="sxs-lookup"><span data-stu-id="e4382-173">Get support</span></span>
+<span data-ttu-id="e4382-174">Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span><span class="sxs-lookup"><span data-stu-id="e4382-174">For further assistance, try our [Azure Stream Analytics forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c44ca-175">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c44ca-175">Next steps</span></span>
-<span data-ttu-id="c44ca-176">Hogy megismerte a .NET SDK használatával hozhat létre és futtathat analytics-feladatok alapjait.</span><span class="sxs-lookup"><span data-stu-id="c44ca-176">You've learned the basics of using a .NET SDK to create and run analytics jobs.</span></span> <span data-ttu-id="c44ca-177">További információ:</span><span class="sxs-lookup"><span data-stu-id="c44ca-177">To learn more, see the following:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e4382-175">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e4382-175">Next steps</span></span>
+<span data-ttu-id="e4382-176">Hogy megismerte a .NET SDK toocreate használatával hello alapjait és analytics-feladatok futtatásához.</span><span class="sxs-lookup"><span data-stu-id="e4382-176">You've learned hello basics of using a .NET SDK toocreate and run analytics jobs.</span></span> <span data-ttu-id="e4382-177">toolearn több, tekintse meg a hello következőt:</span><span class="sxs-lookup"><span data-stu-id="e4382-177">toolearn more, see hello following:</span></span>
 
-* [<span data-ttu-id="c44ca-178">Az Azure Stream Analytics bemutatása</span><span class="sxs-lookup"><span data-stu-id="c44ca-178">Introduction to Azure Stream Analytics</span></span>](stream-analytics-introduction.md)
-* <span data-ttu-id="c44ca-179">[Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)</span><span class="sxs-lookup"><span data-stu-id="c44ca-179">[Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)</span></span>
-* <span data-ttu-id="c44ca-180">[Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)</span><span class="sxs-lookup"><span data-stu-id="c44ca-180">[Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md)</span></span>
-* <span data-ttu-id="c44ca-181">[Az Azure Stream Analytics felügyeleti .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span><span class="sxs-lookup"><span data-stu-id="c44ca-181">[Azure Stream Analytics Management .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span></span>
-* <span data-ttu-id="c44ca-182">[Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Referencia az Azure Stream Analytics lekérdezési nyelvhez)</span><span class="sxs-lookup"><span data-stu-id="c44ca-182">[Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx)</span></span>
-* [<span data-ttu-id="c44ca-183">Az Azure Stream Analytics felügyeleti REST API referenciája</span><span class="sxs-lookup"><span data-stu-id="c44ca-183">Azure Stream Analytics Management REST API Reference</span></span>](https://msdn.microsoft.com/library/azure/dn835031.aspx)
+* [<span data-ttu-id="e4382-178">A Stream Analytics bemutatása tooAzure</span><span class="sxs-lookup"><span data-stu-id="e4382-178">Introduction tooAzure Stream Analytics</span></span>](stream-analytics-introduction.md)
+* <span data-ttu-id="e4382-179">[Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)</span><span class="sxs-lookup"><span data-stu-id="e4382-179">[Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)</span></span>
+* <span data-ttu-id="e4382-180">[Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)</span><span class="sxs-lookup"><span data-stu-id="e4382-180">[Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md)</span></span>
+* <span data-ttu-id="e4382-181">[Az Azure Stream Analytics felügyeleti .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span><span class="sxs-lookup"><span data-stu-id="e4382-181">[Azure Stream Analytics Management .NET SDK](https://msdn.microsoft.com/library/azure/dn889315.aspx).</span></span>
+* <span data-ttu-id="e4382-182">[Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Referencia az Azure Stream Analytics lekérdezési nyelvhez)</span><span class="sxs-lookup"><span data-stu-id="e4382-182">[Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx)</span></span>
+* [<span data-ttu-id="e4382-183">Az Azure Stream Analytics felügyeleti REST API referenciája</span><span class="sxs-lookup"><span data-stu-id="e4382-183">Azure Stream Analytics Management REST API Reference</span></span>](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
 <!--Image references-->
 [5]: ./media/markdown-template-for-new-articles/octocats.png

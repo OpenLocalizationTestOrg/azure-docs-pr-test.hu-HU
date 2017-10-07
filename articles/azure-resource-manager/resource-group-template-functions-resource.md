@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - erőforrások |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablonok segítségével erőforrásokra vonatkozó értékek lekérését funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - erőforrások |} Microsoft Docs"
+description: "Erőforrások hello funkciók toouse az Azure Resource Manager sablon tooretrieve értékeket ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 494ade55f21c19d9c68d5cc52756528401d9bb77
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c9d524b338b8b7ea6d8c9e0135d48e4fb8f167c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="resource-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="cb98d-103">Az Azure Resource Manager sablonokhoz erőforrás-funkciók</span><span class="sxs-lookup"><span data-stu-id="cb98d-103">Resource functions for Azure Resource Manager templates</span></span>
+# <a name="resource-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="ecba3-103">Az Azure Resource Manager sablonokhoz erőforrás-funkciók</span><span class="sxs-lookup"><span data-stu-id="ecba3-103">Resource functions for Azure Resource Manager templates</span></span>
 
-<span data-ttu-id="cb98d-104">Erőforrás-kezelő a következő funkciókat biztosít erőforrás értékek beolvasása:</span><span class="sxs-lookup"><span data-stu-id="cb98d-104">Resource Manager provides the following functions for getting resource values:</span></span>
+<span data-ttu-id="ecba3-104">A Resource Manager biztosít a következő funkciók az erőforrás-értékek első hello:</span><span class="sxs-lookup"><span data-stu-id="ecba3-104">Resource Manager provides hello following functions for getting resource values:</span></span>
 
-* [<span data-ttu-id="cb98d-105">listKeys és a {Value} lista</span><span class="sxs-lookup"><span data-stu-id="cb98d-105">listKeys and list{Value}</span></span>](#listkeys)
-* [<span data-ttu-id="cb98d-106">szolgáltatók</span><span class="sxs-lookup"><span data-stu-id="cb98d-106">providers</span></span>](#providers)
-* [<span data-ttu-id="cb98d-107">hivatkozás</span><span class="sxs-lookup"><span data-stu-id="cb98d-107">reference</span></span>](#reference)
-* [<span data-ttu-id="cb98d-108">Erőforráscsoport</span><span class="sxs-lookup"><span data-stu-id="cb98d-108">resourceGroup</span></span>](#resourcegroup)
-* [<span data-ttu-id="cb98d-109">resourceId</span><span class="sxs-lookup"><span data-stu-id="cb98d-109">resourceId</span></span>](#resourceid)
-* [<span data-ttu-id="cb98d-110">előfizetést</span><span class="sxs-lookup"><span data-stu-id="cb98d-110">subscription</span></span>](#subscription)
+* [<span data-ttu-id="ecba3-105">listKeys és a {Value} lista</span><span class="sxs-lookup"><span data-stu-id="ecba3-105">listKeys and list{Value}</span></span>](#listkeys)
+* [<span data-ttu-id="ecba3-106">szolgáltatók</span><span class="sxs-lookup"><span data-stu-id="ecba3-106">providers</span></span>](#providers)
+* [<span data-ttu-id="ecba3-107">hivatkozás</span><span class="sxs-lookup"><span data-stu-id="ecba3-107">reference</span></span>](#reference)
+* [<span data-ttu-id="ecba3-108">Erőforráscsoport</span><span class="sxs-lookup"><span data-stu-id="ecba3-108">resourceGroup</span></span>](#resourcegroup)
+* [<span data-ttu-id="ecba3-109">resourceId</span><span class="sxs-lookup"><span data-stu-id="ecba3-109">resourceId</span></span>](#resourceid)
+* [<span data-ttu-id="ecba3-110">előfizetést</span><span class="sxs-lookup"><span data-stu-id="ecba3-110">subscription</span></span>](#subscription)
 
-<span data-ttu-id="cb98d-111">Ahhoz, hogy az értékeket a paraméterek, változók vagy a jelenlegi üzemelő példány, lásd: [központi telepítési érték funkciók](resource-group-template-functions-deployment.md).</span><span class="sxs-lookup"><span data-stu-id="cb98d-111">To get values from parameters, variables, or the current deployment, see [Deployment value functions](resource-group-template-functions-deployment.md).</span></span>
+<span data-ttu-id="ecba3-111">tooget értékeket a paraméterek, a változók vagy a hello jelenlegi üzemelő példány, lásd: [központi telepítési érték funkciók](resource-group-template-functions-deployment.md).</span><span class="sxs-lookup"><span data-stu-id="ecba3-111">tooget values from parameters, variables, or hello current deployment, see [Deployment value functions](resource-group-template-functions-deployment.md).</span></span>
 
 <a id="listkeys" />
 <a id="list" />
 
-## <a name="listkeys-and-listvalue"></a><span data-ttu-id="cb98d-112">listKeys és a {Value} lista</span><span class="sxs-lookup"><span data-stu-id="cb98d-112">listKeys and list{Value}</span></span>
+## <a name="listkeys-and-listvalue"></a><span data-ttu-id="ecba3-112">listKeys és a {Value} lista</span><span class="sxs-lookup"><span data-stu-id="ecba3-112">listKeys and list{Value}</span></span>
 `listKeys(resourceName or resourceIdentifier, apiVersion)`
 
 `list{Value}(resourceName or resourceIdentifier, apiVersion)`
 
-<span data-ttu-id="cb98d-113">Minden erőforrástípus, amely támogatja a list művelet értékeket adja vissza.</span><span class="sxs-lookup"><span data-stu-id="cb98d-113">Returns the values for any resource type that supports the list operation.</span></span> <span data-ttu-id="cb98d-114">A leggyakoribb használata `listKeys`.</span><span class="sxs-lookup"><span data-stu-id="cb98d-114">The most common usage is `listKeys`.</span></span> 
+<span data-ttu-id="ecba3-113">Beolvasása hello minden erőforrástípus, amely támogatja a hello list művelet értékeit.</span><span class="sxs-lookup"><span data-stu-id="ecba3-113">Returns hello values for any resource type that supports hello list operation.</span></span> <span data-ttu-id="ecba3-114">hello leggyakoribb használata `listKeys`.</span><span class="sxs-lookup"><span data-stu-id="ecba3-114">hello most common usage is `listKeys`.</span></span> 
 
-### <a name="parameters"></a><span data-ttu-id="cb98d-115">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="cb98d-115">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="ecba3-115">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="ecba3-115">Parameters</span></span>
 
-| <span data-ttu-id="cb98d-116">Paraméter</span><span class="sxs-lookup"><span data-stu-id="cb98d-116">Parameter</span></span> | <span data-ttu-id="cb98d-117">Szükséges</span><span class="sxs-lookup"><span data-stu-id="cb98d-117">Required</span></span> | <span data-ttu-id="cb98d-118">Típus</span><span class="sxs-lookup"><span data-stu-id="cb98d-118">Type</span></span> | <span data-ttu-id="cb98d-119">Leírás</span><span class="sxs-lookup"><span data-stu-id="cb98d-119">Description</span></span> |
+| <span data-ttu-id="ecba3-116">Paraméter</span><span class="sxs-lookup"><span data-stu-id="ecba3-116">Parameter</span></span> | <span data-ttu-id="ecba3-117">Szükséges</span><span class="sxs-lookup"><span data-stu-id="ecba3-117">Required</span></span> | <span data-ttu-id="ecba3-118">Típus</span><span class="sxs-lookup"><span data-stu-id="ecba3-118">Type</span></span> | <span data-ttu-id="ecba3-119">Leírás</span><span class="sxs-lookup"><span data-stu-id="ecba3-119">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="cb98d-120">resourceName vagy resourceIdentifier</span><span class="sxs-lookup"><span data-stu-id="cb98d-120">resourceName or resourceIdentifier</span></span> |<span data-ttu-id="cb98d-121">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-121">Yes</span></span> |<span data-ttu-id="cb98d-122">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-122">string</span></span> |<span data-ttu-id="cb98d-123">Az erőforrás egyedi azonosítója.</span><span class="sxs-lookup"><span data-stu-id="cb98d-123">Unique identifier for the resource.</span></span> |
-| <span data-ttu-id="cb98d-124">apiVersion</span><span class="sxs-lookup"><span data-stu-id="cb98d-124">apiVersion</span></span> |<span data-ttu-id="cb98d-125">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-125">Yes</span></span> |<span data-ttu-id="cb98d-126">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-126">string</span></span> |<span data-ttu-id="cb98d-127">API-verzió erőforrás futásidejű állapot.</span><span class="sxs-lookup"><span data-stu-id="cb98d-127">API version of resource runtime state.</span></span> <span data-ttu-id="cb98d-128">Általában a következő formátumban **éééé-hh-nn**.</span><span class="sxs-lookup"><span data-stu-id="cb98d-128">Typically, in the format, **yyyy-mm-dd**.</span></span> |
+| <span data-ttu-id="ecba3-120">resourceName vagy resourceIdentifier</span><span class="sxs-lookup"><span data-stu-id="ecba3-120">resourceName or resourceIdentifier</span></span> |<span data-ttu-id="ecba3-121">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-121">Yes</span></span> |<span data-ttu-id="ecba3-122">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-122">string</span></span> |<span data-ttu-id="ecba3-123">Hello erőforrás egyedi azonosítója.</span><span class="sxs-lookup"><span data-stu-id="ecba3-123">Unique identifier for hello resource.</span></span> |
+| <span data-ttu-id="ecba3-124">apiVersion</span><span class="sxs-lookup"><span data-stu-id="ecba3-124">apiVersion</span></span> |<span data-ttu-id="ecba3-125">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-125">Yes</span></span> |<span data-ttu-id="ecba3-126">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-126">string</span></span> |<span data-ttu-id="ecba3-127">API-verzió erőforrás futásidejű állapot.</span><span class="sxs-lookup"><span data-stu-id="ecba3-127">API version of resource runtime state.</span></span> <span data-ttu-id="ecba3-128">Általában a hello formátumban **éééé-hh-nn**.</span><span class="sxs-lookup"><span data-stu-id="ecba3-128">Typically, in hello format, **yyyy-mm-dd**.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-129">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-129">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-129">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-129">Return value</span></span>
 
-<span data-ttu-id="cb98d-130">A visszaadott objektumot listKeys formátuma a következő:</span><span class="sxs-lookup"><span data-stu-id="cb98d-130">The returned object from listKeys has the following format:</span></span>
+<span data-ttu-id="ecba3-130">hello visszaadott listKeys objektum rendelkezik hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-130">hello returned object from listKeys has hello following format:</span></span>
 
 ```json
 {
@@ -71,32 +71,32 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-131">Más lista függvények visszatérési formátumuk eltérő.</span><span class="sxs-lookup"><span data-stu-id="cb98d-131">Other list functions have different return formats.</span></span> <span data-ttu-id="cb98d-132">Egy függvény formátum megtekintéséhez foglalja bele a kimenetek szakaszban látható módon a példa sablont.</span><span class="sxs-lookup"><span data-stu-id="cb98d-132">To see the format of a function, include it in the outputs section as shown in the example template.</span></span> 
+<span data-ttu-id="ecba3-131">Más lista függvények visszatérési formátumuk eltérő.</span><span class="sxs-lookup"><span data-stu-id="ecba3-131">Other list functions have different return formats.</span></span> <span data-ttu-id="ecba3-132">toosee hello formátum egy függvény figyelembevétel hello kimenetek szakaszban látható módon hello példa sablon.</span><span class="sxs-lookup"><span data-stu-id="ecba3-132">toosee hello format of a function, include it in hello outputs section as shown in hello example template.</span></span> 
 
-### <a name="remarks"></a><span data-ttu-id="cb98d-133">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="cb98d-133">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="ecba3-133">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="ecba3-133">Remarks</span></span>
 
-<span data-ttu-id="cb98d-134">Bármely művelet kezdetű **lista** használható legyen a sablon egy függvényt.</span><span class="sxs-lookup"><span data-stu-id="cb98d-134">Any operation that starts with **list** can be used as a function in your template.</span></span> <span data-ttu-id="cb98d-135">A rendelkezésre álló műveletek közé tartozik, nem csak listKeys, de az is, például műveletek `list`, `listAdminKeys`, és `listStatus`.</span><span class="sxs-lookup"><span data-stu-id="cb98d-135">The available operations include not only listKeys, but also operations like `list`, `listAdminKeys`, and `listStatus`.</span></span> <span data-ttu-id="cb98d-136">Azonban nem használható **lista** a kérelem törzsében szereplő értékeket igénylő műveletekhez.</span><span class="sxs-lookup"><span data-stu-id="cb98d-136">However, you cannot use **list** operations that require values in the request body.</span></span> <span data-ttu-id="cb98d-137">Például a [lista fiók SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) kérelemtörzs-paraméterrel, például a művelethez *signedExpiry*, így a sablonon belül nem használható.</span><span class="sxs-lookup"><span data-stu-id="cb98d-137">For example, the [List Account SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) operation requires request body parameters like *signedExpiry*, so you cannot use it within a template.</span></span>
+<span data-ttu-id="ecba3-134">Bármely művelet kezdetű **lista** használható legyen a sablon egy függvényt.</span><span class="sxs-lookup"><span data-stu-id="ecba3-134">Any operation that starts with **list** can be used as a function in your template.</span></span> <span data-ttu-id="ecba3-135">hello elérhető műveletek nem csak listKeys többek között is műveletek, például `list`, `listAdminKeys`, és `listStatus`.</span><span class="sxs-lookup"><span data-stu-id="ecba3-135">hello available operations include not only listKeys, but also operations like `list`, `listAdminKeys`, and `listStatus`.</span></span> <span data-ttu-id="ecba3-136">Azonban nem használható **lista** hello értékeket igénylő műveletekhez kérelem törzse.</span><span class="sxs-lookup"><span data-stu-id="ecba3-136">However, you cannot use **list** operations that require values in hello request body.</span></span> <span data-ttu-id="ecba3-137">Például hello [lista fiók SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) kérelemtörzs-paraméterrel, például a művelethez *signedExpiry*, így a sablonon belül nem használható.</span><span class="sxs-lookup"><span data-stu-id="ecba3-137">For example, hello [List Account SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) operation requires request body parameters like *signedExpiry*, so you cannot use it within a template.</span></span>
 
-<span data-ttu-id="cb98d-138">Annak meghatározásához, mely rendelkezik a list művelet, a következő lehetőségei vannak:</span><span class="sxs-lookup"><span data-stu-id="cb98d-138">To determine which resource types have a list operation, you have the following options:</span></span>
+<span data-ttu-id="ecba3-138">toodetermine, mely rendelkezik a list művelet, a következő beállítások hello rendelkezik:</span><span class="sxs-lookup"><span data-stu-id="ecba3-138">toodetermine which resource types have a list operation, you have hello following options:</span></span>
 
-* <span data-ttu-id="cb98d-139">Nézet a [REST API-műveleteket](/rest/api/) az erőforrás-szolgáltató és listázási műveletei keressen.</span><span class="sxs-lookup"><span data-stu-id="cb98d-139">View the [REST API operations](/rest/api/) for a resource provider, and look for list operations.</span></span> <span data-ttu-id="cb98d-140">Például, storage-fiókok vannak a [listKeys művelet](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).</span><span class="sxs-lookup"><span data-stu-id="cb98d-140">For example, storage accounts have the [listKeys operation](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).</span></span>
-* <span data-ttu-id="cb98d-141">Használja a [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell-parancsmagot.</span><span class="sxs-lookup"><span data-stu-id="cb98d-141">Use the [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell cmdlet.</span></span> <span data-ttu-id="cb98d-142">Az alábbi példa lekérdezi valamennyi listázási műveletei storage-fiókok:</span><span class="sxs-lookup"><span data-stu-id="cb98d-142">The following example gets all list operations for storage accounts:</span></span>
+* <span data-ttu-id="ecba3-139">Nézet hello [REST API-műveleteket](/rest/api/) az erőforrás-szolgáltató és listázási műveletei keressen.</span><span class="sxs-lookup"><span data-stu-id="ecba3-139">View hello [REST API operations](/rest/api/) for a resource provider, and look for list operations.</span></span> <span data-ttu-id="ecba3-140">Például, a storage-fiókok vannak hello [listKeys művelet](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).</span><span class="sxs-lookup"><span data-stu-id="ecba3-140">For example, storage accounts have hello [listKeys operation](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).</span></span>
+* <span data-ttu-id="ecba3-141">Használjon hello [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell-parancsmagot.</span><span class="sxs-lookup"><span data-stu-id="ecba3-141">Use hello [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell cmdlet.</span></span> <span data-ttu-id="ecba3-142">hello alábbi példa lekérdezi valamennyi listázási műveletei storage-fiókok:</span><span class="sxs-lookup"><span data-stu-id="ecba3-142">hello following example gets all list operations for storage accounts:</span></span>
 
   ```powershell
   Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
   ```
-* <span data-ttu-id="cb98d-143">A következő Azure CLI paranccsal csak a lista műveletek szűrése:</span><span class="sxs-lookup"><span data-stu-id="cb98d-143">Use the following Azure CLI command to filter only the list operations:</span></span>
+* <span data-ttu-id="ecba3-143">A következő Azure CLI parancs toofilter csak hello listázási műveletei hello használata:</span><span class="sxs-lookup"><span data-stu-id="ecba3-143">Use hello following Azure CLI command toofilter only hello list operations:</span></span>
 
   ```azurecli
   az provider operation show --namespace Microsoft.Storage --query "resourceTypes[?name=='storageAccounts'].operations[].name | [?contains(@, 'list')]"
   ```
 
-<span data-ttu-id="cb98d-144">Adja meg az erőforrás használatával vagy a [resourceId függvény](#resourceid), vagy a formátum `{providerNamespace}/{resourceType}/{resourceName}`.</span><span class="sxs-lookup"><span data-stu-id="cb98d-144">Specify the resource by using either the [resourceId function](#resourceid), or the format `{providerNamespace}/{resourceType}/{resourceName}`.</span></span>
+<span data-ttu-id="ecba3-144">Adja meg a hello erőforrás vagy hello használatával [resourceId függvény](#resourceid), vagy hello formátum `{providerNamespace}/{resourceType}/{resourceName}`.</span><span class="sxs-lookup"><span data-stu-id="ecba3-144">Specify hello resource by using either hello [resourceId function](#resourceid), or hello format `{providerNamespace}/{resourceType}/{resourceName}`.</span></span>
 
 
-### <a name="example"></a><span data-ttu-id="cb98d-145">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-145">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-145">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-145">Example</span></span>
 
-<span data-ttu-id="cb98d-146">A következő példa bemutatja, hogyan vissza az elsődleges és másodlagos kulcsok a kimenetek szakaszban tárfiókból.</span><span class="sxs-lookup"><span data-stu-id="cb98d-146">The following example shows how to return the primary and secondary keys from a storage account in the outputs section.</span></span>
+<span data-ttu-id="ecba3-146">hello következő példa bemutatja, hogyan tooreturn hello elsődleges és másodlagos hello tárfiókból kulcsok kimenete szakasz.</span><span class="sxs-lookup"><span data-stu-id="ecba3-146">hello following example shows how tooreturn hello primary and secondary keys from a storage account in hello outputs section.</span></span>
 
 ```json
 {
@@ -119,21 +119,21 @@ ms.lasthandoff: 08/18/2017
 
 <a id="providers" />
 
-## <a name="providers"></a><span data-ttu-id="cb98d-147">szolgáltatók</span><span class="sxs-lookup"><span data-stu-id="cb98d-147">providers</span></span>
+## <a name="providers"></a><span data-ttu-id="ecba3-147">szolgáltatók</span><span class="sxs-lookup"><span data-stu-id="ecba3-147">providers</span></span>
 `providers(providerNamespace, [resourceType])`
 
-<span data-ttu-id="cb98d-148">Egy erőforrás-szolgáltató és a támogatott erőforrástípusai információt ad vissza.</span><span class="sxs-lookup"><span data-stu-id="cb98d-148">Returns information about a resource provider and its supported resource types.</span></span> <span data-ttu-id="cb98d-149">Erőforrástípus nincs megadva, a függvény a támogatott típusok esetében az erőforrás-szolgáltató.</span><span class="sxs-lookup"><span data-stu-id="cb98d-149">If you do not provide a resource type, the function returns all the supported types for the resource provider.</span></span>
+<span data-ttu-id="ecba3-148">Egy erőforrás-szolgáltató és a támogatott erőforrástípusai információt ad vissza.</span><span class="sxs-lookup"><span data-stu-id="ecba3-148">Returns information about a resource provider and its supported resource types.</span></span> <span data-ttu-id="ecba3-149">Ha nem ad meg egy erőforrás típusa, a hello függvény hello erőforrás-szolgáltató az összes hello támogatott típus adja vissza.</span><span class="sxs-lookup"><span data-stu-id="ecba3-149">If you do not provide a resource type, hello function returns all hello supported types for hello resource provider.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="cb98d-150">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="cb98d-150">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="ecba3-150">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="ecba3-150">Parameters</span></span>
 
-| <span data-ttu-id="cb98d-151">Paraméter</span><span class="sxs-lookup"><span data-stu-id="cb98d-151">Parameter</span></span> | <span data-ttu-id="cb98d-152">Szükséges</span><span class="sxs-lookup"><span data-stu-id="cb98d-152">Required</span></span> | <span data-ttu-id="cb98d-153">Típus</span><span class="sxs-lookup"><span data-stu-id="cb98d-153">Type</span></span> | <span data-ttu-id="cb98d-154">Leírás</span><span class="sxs-lookup"><span data-stu-id="cb98d-154">Description</span></span> |
+| <span data-ttu-id="ecba3-151">Paraméter</span><span class="sxs-lookup"><span data-stu-id="ecba3-151">Parameter</span></span> | <span data-ttu-id="ecba3-152">Szükséges</span><span class="sxs-lookup"><span data-stu-id="ecba3-152">Required</span></span> | <span data-ttu-id="ecba3-153">Típus</span><span class="sxs-lookup"><span data-stu-id="ecba3-153">Type</span></span> | <span data-ttu-id="ecba3-154">Leírás</span><span class="sxs-lookup"><span data-stu-id="ecba3-154">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="cb98d-155">providerNamespace</span><span class="sxs-lookup"><span data-stu-id="cb98d-155">providerNamespace</span></span> |<span data-ttu-id="cb98d-156">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-156">Yes</span></span> |<span data-ttu-id="cb98d-157">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-157">string</span></span> |<span data-ttu-id="cb98d-158">A szolgáltató Namespace</span><span class="sxs-lookup"><span data-stu-id="cb98d-158">Namespace of the provider</span></span> |
-| <span data-ttu-id="cb98d-159">a resourceType</span><span class="sxs-lookup"><span data-stu-id="cb98d-159">resourceType</span></span> |<span data-ttu-id="cb98d-160">Nem</span><span class="sxs-lookup"><span data-stu-id="cb98d-160">No</span></span> |<span data-ttu-id="cb98d-161">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-161">string</span></span> |<span data-ttu-id="cb98d-162">A típusú erőforrás a megadott névtérben.</span><span class="sxs-lookup"><span data-stu-id="cb98d-162">The type of resource within the specified namespace.</span></span> |
+| <span data-ttu-id="ecba3-155">providerNamespace</span><span class="sxs-lookup"><span data-stu-id="ecba3-155">providerNamespace</span></span> |<span data-ttu-id="ecba3-156">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-156">Yes</span></span> |<span data-ttu-id="ecba3-157">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-157">string</span></span> |<span data-ttu-id="ecba3-158">Namespace hello szolgáltató</span><span class="sxs-lookup"><span data-stu-id="ecba3-158">Namespace of hello provider</span></span> |
+| <span data-ttu-id="ecba3-159">a resourceType</span><span class="sxs-lookup"><span data-stu-id="ecba3-159">resourceType</span></span> |<span data-ttu-id="ecba3-160">Nem</span><span class="sxs-lookup"><span data-stu-id="ecba3-160">No</span></span> |<span data-ttu-id="ecba3-161">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-161">string</span></span> |<span data-ttu-id="ecba3-162">a megadott névtér hello típusú erőforrás hello belül.</span><span class="sxs-lookup"><span data-stu-id="ecba3-162">hello type of resource within hello specified namespace.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-163">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-163">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-163">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-163">Return value</span></span>
 
-<span data-ttu-id="cb98d-164">Minden támogatott típust ad vissza a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="cb98d-164">Each supported type is returned in the following format:</span></span> 
+<span data-ttu-id="ecba3-164">Minden támogatott típus eredmény abban az esetben a következő formátumban hello:</span><span class="sxs-lookup"><span data-stu-id="ecba3-164">Each supported type is returned in hello following format:</span></span> 
 
 ```json
 {
@@ -143,11 +143,11 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-165">Tömb által visszaadott érték sorrendje nem garantált.</span><span class="sxs-lookup"><span data-stu-id="cb98d-165">Array ordering of the returned values is not guaranteed.</span></span>
+<span data-ttu-id="ecba3-165">Tömb sorrendje hello visszaadott értékek nem garantált.</span><span class="sxs-lookup"><span data-stu-id="ecba3-165">Array ordering of hello returned values is not guaranteed.</span></span>
 
-### <a name="example"></a><span data-ttu-id="cb98d-166">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-166">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-166">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-166">Example</span></span>
 
-<span data-ttu-id="cb98d-167">A következő példa bemutatja, hogyan használja a szolgáltató funkciót:</span><span class="sxs-lookup"><span data-stu-id="cb98d-167">The following example shows how to use the provider function:</span></span>
+<span data-ttu-id="ecba3-167">hello a következő példa bemutatja, hogyan toouse hello szolgáltató funkció:</span><span class="sxs-lookup"><span data-stu-id="ecba3-167">hello following example shows how toouse hello provider function:</span></span>
 
 ```json
 {
@@ -163,7 +163,7 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-168">A fenti példában egy objektum a következő formátumban adja vissza:</span><span class="sxs-lookup"><span data-stu-id="cb98d-168">The preceding example returns an object in the following format:</span></span>
+<span data-ttu-id="ecba3-168">hello előző példa visszaad egy objektumot a hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-168">hello preceding example returns an object in hello following format:</span></span>
 
 ```json
 {
@@ -187,31 +187,31 @@ ms.lasthandoff: 08/18/2017
 
 <a id="reference" />
 
-## <a name="reference"></a><span data-ttu-id="cb98d-169">Hivatkozás</span><span class="sxs-lookup"><span data-stu-id="cb98d-169">reference</span></span>
+## <a name="reference"></a><span data-ttu-id="ecba3-169">Hivatkozás</span><span class="sxs-lookup"><span data-stu-id="ecba3-169">reference</span></span>
 `reference(resourceName or resourceIdentifier, [apiVersion])`
 
-<span data-ttu-id="cb98d-170">Az erőforrás futásidejű állapot képviselő objektum beállítása/beolvasása.</span><span class="sxs-lookup"><span data-stu-id="cb98d-170">Returns an object representing a resource's runtime state.</span></span>
+<span data-ttu-id="ecba3-170">Az erőforrás futásidejű állapot képviselő objektum beállítása/beolvasása.</span><span class="sxs-lookup"><span data-stu-id="ecba3-170">Returns an object representing a resource's runtime state.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="cb98d-171">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="cb98d-171">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="ecba3-171">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="ecba3-171">Parameters</span></span>
 
-| <span data-ttu-id="cb98d-172">Paraméter</span><span class="sxs-lookup"><span data-stu-id="cb98d-172">Parameter</span></span> | <span data-ttu-id="cb98d-173">Szükséges</span><span class="sxs-lookup"><span data-stu-id="cb98d-173">Required</span></span> | <span data-ttu-id="cb98d-174">Típus</span><span class="sxs-lookup"><span data-stu-id="cb98d-174">Type</span></span> | <span data-ttu-id="cb98d-175">Leírás</span><span class="sxs-lookup"><span data-stu-id="cb98d-175">Description</span></span> |
+| <span data-ttu-id="ecba3-172">Paraméter</span><span class="sxs-lookup"><span data-stu-id="ecba3-172">Parameter</span></span> | <span data-ttu-id="ecba3-173">Szükséges</span><span class="sxs-lookup"><span data-stu-id="ecba3-173">Required</span></span> | <span data-ttu-id="ecba3-174">Típus</span><span class="sxs-lookup"><span data-stu-id="ecba3-174">Type</span></span> | <span data-ttu-id="ecba3-175">Leírás</span><span class="sxs-lookup"><span data-stu-id="ecba3-175">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="cb98d-176">resourceName vagy resourceIdentifier</span><span class="sxs-lookup"><span data-stu-id="cb98d-176">resourceName or resourceIdentifier</span></span> |<span data-ttu-id="cb98d-177">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-177">Yes</span></span> |<span data-ttu-id="cb98d-178">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-178">string</span></span> |<span data-ttu-id="cb98d-179">Név vagy egy erőforrás egyedi azonosítója.</span><span class="sxs-lookup"><span data-stu-id="cb98d-179">Name or unique identifier of a resource.</span></span> |
-| <span data-ttu-id="cb98d-180">apiVersion</span><span class="sxs-lookup"><span data-stu-id="cb98d-180">apiVersion</span></span> |<span data-ttu-id="cb98d-181">Nem</span><span class="sxs-lookup"><span data-stu-id="cb98d-181">No</span></span> |<span data-ttu-id="cb98d-182">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-182">string</span></span> |<span data-ttu-id="cb98d-183">A megadott erőforrás API-verzió.</span><span class="sxs-lookup"><span data-stu-id="cb98d-183">API version of the specified resource.</span></span> <span data-ttu-id="cb98d-184">Ez a paraméter tartalmazza, amikor az erőforrás nincs kiépítve belül ugyanazt a sablont.</span><span class="sxs-lookup"><span data-stu-id="cb98d-184">Include this parameter when the resource is not provisioned within same template.</span></span> <span data-ttu-id="cb98d-185">Általában a következő formátumban **éééé-hh-nn**.</span><span class="sxs-lookup"><span data-stu-id="cb98d-185">Typically, in the format, **yyyy-mm-dd**.</span></span> |
+| <span data-ttu-id="ecba3-176">resourceName vagy resourceIdentifier</span><span class="sxs-lookup"><span data-stu-id="ecba3-176">resourceName or resourceIdentifier</span></span> |<span data-ttu-id="ecba3-177">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-177">Yes</span></span> |<span data-ttu-id="ecba3-178">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-178">string</span></span> |<span data-ttu-id="ecba3-179">Név vagy egy erőforrás egyedi azonosítója.</span><span class="sxs-lookup"><span data-stu-id="ecba3-179">Name or unique identifier of a resource.</span></span> |
+| <span data-ttu-id="ecba3-180">apiVersion</span><span class="sxs-lookup"><span data-stu-id="ecba3-180">apiVersion</span></span> |<span data-ttu-id="ecba3-181">Nem</span><span class="sxs-lookup"><span data-stu-id="ecba3-181">No</span></span> |<span data-ttu-id="ecba3-182">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-182">string</span></span> |<span data-ttu-id="ecba3-183">A megadott erőforrás hello API-verzióját.</span><span class="sxs-lookup"><span data-stu-id="ecba3-183">API version of hello specified resource.</span></span> <span data-ttu-id="ecba3-184">Ez a paraméter kihagyása hello erőforrás nincs kiépítve belül ugyanazt a sablont.</span><span class="sxs-lookup"><span data-stu-id="ecba3-184">Include this parameter when hello resource is not provisioned within same template.</span></span> <span data-ttu-id="ecba3-185">Általában a hello formátumban **éééé-hh-nn**.</span><span class="sxs-lookup"><span data-stu-id="ecba3-185">Typically, in hello format, **yyyy-mm-dd**.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-186">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-186">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-186">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-186">Return value</span></span>
 
-<span data-ttu-id="cb98d-187">Minden erőforrástípus adja vissza a hivatkozás függvény különböző tulajdonságai.</span><span class="sxs-lookup"><span data-stu-id="cb98d-187">Every resource type returns different properties for the reference function.</span></span> <span data-ttu-id="cb98d-188">A függvény nem ad vissza egy egyetlen, előre meghatározott formátumban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-188">The function does not return a single, predefined format.</span></span> <span data-ttu-id="cb98d-189">Erőforrástípus tulajdonságainak megtekintéséhez a kimenetek szakaszában, a példában látható módon adja vissza az objektum.</span><span class="sxs-lookup"><span data-stu-id="cb98d-189">To see the properties for a resource type, return the object in the outputs section as shown in the example.</span></span>
+<span data-ttu-id="ecba3-187">Minden erőforrástípus hello hivatkozás függvény különböző tulajdonságait adja vissza.</span><span class="sxs-lookup"><span data-stu-id="ecba3-187">Every resource type returns different properties for hello reference function.</span></span> <span data-ttu-id="ecba3-188">hello függvény nem ad vissza egy egyetlen, előre meghatározott formátumban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-188">hello function does not return a single, predefined format.</span></span> <span data-ttu-id="ecba3-189">toosee hello tulajdonságok erőforrástípusra, térjen vissza hello hello objektum kimenete szakasz hello példában látható módon.</span><span class="sxs-lookup"><span data-stu-id="ecba3-189">toosee hello properties for a resource type, return hello object in hello outputs section as shown in hello example.</span></span>
 
-### <a name="remarks"></a><span data-ttu-id="cb98d-190">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="cb98d-190">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="ecba3-190">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="ecba3-190">Remarks</span></span>
 
-<span data-ttu-id="cb98d-191">A hivatkozás függvény az értékét a futásidejű állapot osztályból származik, és ezért nem használható a változók szakaszban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-191">The reference function derives its value from a runtime state, and therefore cannot be used in the variables section.</span></span> <span data-ttu-id="cb98d-192">A sablon kimenetének részében használható.</span><span class="sxs-lookup"><span data-stu-id="cb98d-192">It can be used in outputs section of a template.</span></span> 
+<span data-ttu-id="ecba3-191">hello hivatkozás függvény az értékét a futásidejű állapot osztályból származik, és ezért nem használható hello változók szakaszban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-191">hello reference function derives its value from a runtime state, and therefore cannot be used in hello variables section.</span></span> <span data-ttu-id="ecba3-192">A sablon kimenetének részében használható.</span><span class="sxs-lookup"><span data-stu-id="ecba3-192">It can be used in outputs section of a template.</span></span> 
 
-<span data-ttu-id="cb98d-193">A hivatkozás függvény használatával, akkor implicit módon deklarálja, hogy egy erőforrás függ-e egy másik erőforrás, ha a hivatkozott erőforrás ugyanazt a sablont belül lett beállítva.</span><span class="sxs-lookup"><span data-stu-id="cb98d-193">By using the reference function, you implicitly declare that one resource depends on another resource if the referenced resource is provisioned within same template.</span></span> <span data-ttu-id="cb98d-194">Nem kell a dependsOn tulajdonság is használhatja.</span><span class="sxs-lookup"><span data-stu-id="cb98d-194">You do not need to also use the dependsOn property.</span></span> <span data-ttu-id="cb98d-195">A függvény a rendszer nem értékeli ki, a hivatkozott erőforrás telepítés befejeződéséig.</span><span class="sxs-lookup"><span data-stu-id="cb98d-195">The function is not evaluated until the referenced resource has completed deployment.</span></span>
+<span data-ttu-id="ecba3-193">Hello hivatkozás funkcióval, akkor implicit módon deklarálja, hogy egy erőforrás függ-e egy másik erőforrás, ha a hivatkozott hello erőforrás ki van építve belül ugyanazt a sablont.</span><span class="sxs-lookup"><span data-stu-id="ecba3-193">By using hello reference function, you implicitly declare that one resource depends on another resource if hello referenced resource is provisioned within same template.</span></span> <span data-ttu-id="ecba3-194">Nem kell tooalso használata hello dependsOn tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="ecba3-194">You do not need tooalso use hello dependsOn property.</span></span> <span data-ttu-id="ecba3-195">hello függvény nem kerül kiértékelésre hello hivatkozott erőforrás amíg nem fejeződik be telepítési.</span><span class="sxs-lookup"><span data-stu-id="ecba3-195">hello function is not evaluated until hello referenced resource has completed deployment.</span></span>
 
-<span data-ttu-id="cb98d-196">Lásd: a tulajdonság és erőforrástípus tartozó értékek, hozzon létre egy sablont, amely a kimenetek szakaszban adja vissza az objektum.</span><span class="sxs-lookup"><span data-stu-id="cb98d-196">To see the property names and values for a resource type, create a template that returns the object in the outputs section.</span></span> <span data-ttu-id="cb98d-197">Ha az adott típusú erőforrással rendelkezik, a sablon bármely új erőforrások telepítése nélkül a objektum beállítása/beolvasása.</span><span class="sxs-lookup"><span data-stu-id="cb98d-197">If you have an existing resource of that type, your template returns the object without deploying any new resources.</span></span> 
+<span data-ttu-id="ecba3-196">toosee hello nevét és értékeit erőforrástípusra, hozzon létre egy sablont, amely hello kimenetek szakaszban hello objektum beállítása/beolvasása.</span><span class="sxs-lookup"><span data-stu-id="ecba3-196">toosee hello property names and values for a resource type, create a template that returns hello object in hello outputs section.</span></span> <span data-ttu-id="ecba3-197">Ha az adott típusú erőforrással rendelkezik, a sablon bármely új erőforrások telepítése nélkül hello objektum beállítása/beolvasása.</span><span class="sxs-lookup"><span data-stu-id="ecba3-197">If you have an existing resource of that type, your template returns hello object without deploying any new resources.</span></span> 
 
-<span data-ttu-id="cb98d-198">Általában akkor használják a **hivatkozás** működnek, mint egy adott értéket visszaadásának egy objektumot, például a blob-végpont URI vagy teljesen minősített tartománynevét.</span><span class="sxs-lookup"><span data-stu-id="cb98d-198">Typically, you use the **reference** function to return a particular value from an object, such as the blob endpoint URI or fully qualified domain name.</span></span>
+<span data-ttu-id="ecba3-198">Általában akkor használják hello **hivatkozás** működéséhez tooreturn egy adott értéket az objektumot, például hello blob végpont URI vagy teljesen minősített tartománynevét.</span><span class="sxs-lookup"><span data-stu-id="ecba3-198">Typically, you use hello **reference** function tooreturn a particular value from an object, such as hello blob endpoint URI or fully qualified domain name.</span></span>
 
 ```json
 "outputs": {
@@ -226,9 +226,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="example"></a><span data-ttu-id="cb98d-199">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-199">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-199">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-199">Example</span></span>
 
-<span data-ttu-id="cb98d-200">Központilag telepíti, és ugyanazt a sablont az erőforrásra hivatkozik, használja:</span><span class="sxs-lookup"><span data-stu-id="cb98d-200">To deploy and reference the resource in the same template, use:</span></span>
+<span data-ttu-id="ecba3-200">hello toodeploy és a hivatkozás hello erőforrása ugyanazt a sablont, használja:</span><span class="sxs-lookup"><span data-stu-id="ecba3-200">toodeploy and reference hello resource in hello same template, use:</span></span>
 
 ```json
 {
@@ -263,7 +263,7 @@ ms.lasthandoff: 08/18/2017
 }
 ``` 
 
-<span data-ttu-id="cb98d-201">A fenti példában egy objektum a következő formátumban adja vissza:</span><span class="sxs-lookup"><span data-stu-id="cb98d-201">The preceding example returns an object in the following format:</span></span>
+<span data-ttu-id="ecba3-201">hello előző példa visszaad egy objektumot a hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-201">hello preceding example returns an object in hello following format:</span></span>
 
 ```json
 {
@@ -281,7 +281,7 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-202">A következő példa egy tárfiókot, amely nincs telepítve Ez a sablon hivatkozik.</span><span class="sxs-lookup"><span data-stu-id="cb98d-202">The following example references a storage account that is not deployed in this template.</span></span> <span data-ttu-id="cb98d-203">A tárfiók már létezik az ugyanazon erőforráscsoporton belül.</span><span class="sxs-lookup"><span data-stu-id="cb98d-203">The storage account already exists within the same resource group.</span></span>
+<span data-ttu-id="ecba3-202">hello alábbi példa hivatkozik, amelyek a sablonban nincs telepítve.</span><span class="sxs-lookup"><span data-stu-id="ecba3-202">hello following example references a storage account that is not deployed in this template.</span></span> <span data-ttu-id="ecba3-203">hello tárfiók már létezik hello belül azonos erőforráscsoportot.</span><span class="sxs-lookup"><span data-stu-id="ecba3-203">hello storage account already exists within hello same resource group.</span></span>
 
 ```json
 {
@@ -304,14 +304,14 @@ ms.lasthandoff: 08/18/2017
 
 <a id="resourcegroup" />
 
-## <a name="resourcegroup"></a><span data-ttu-id="cb98d-204">Erőforráscsoport</span><span class="sxs-lookup"><span data-stu-id="cb98d-204">resourceGroup</span></span>
+## <a name="resourcegroup"></a><span data-ttu-id="ecba3-204">Erőforráscsoport</span><span class="sxs-lookup"><span data-stu-id="ecba3-204">resourceGroup</span></span>
 `resourceGroup()`
 
-<span data-ttu-id="cb98d-205">A jelenlegi erőforráscsoportban képviselő objektumot adja vissza.</span><span class="sxs-lookup"><span data-stu-id="cb98d-205">Returns an object that represents the current resource group.</span></span> 
+<span data-ttu-id="ecba3-205">Hello jelenlegi erőforráscsoportban képviselő objektumot adja vissza.</span><span class="sxs-lookup"><span data-stu-id="ecba3-205">Returns an object that represents hello current resource group.</span></span> 
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-206">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-206">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-206">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-206">Return value</span></span>
 
-<span data-ttu-id="cb98d-207">A visszaadott objektumot a következő formátumban kell megadni:</span><span class="sxs-lookup"><span data-stu-id="cb98d-207">The returned object is in the following format:</span></span>
+<span data-ttu-id="ecba3-207">hello visszaadott objektum van hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-207">hello returned object is in hello following format:</span></span>
 
 ```json
 {
@@ -326,9 +326,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="remarks"></a><span data-ttu-id="cb98d-208">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="cb98d-208">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="ecba3-208">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="ecba3-208">Remarks</span></span>
 
-<span data-ttu-id="cb98d-209">A közös a resourceGroup függvény használata erőforrások létrehozásához és az erőforráscsoport ugyanazon a helyen.</span><span class="sxs-lookup"><span data-stu-id="cb98d-209">A common use of the resourceGroup function is to create resources in the same location as the resource group.</span></span> <span data-ttu-id="cb98d-210">Az alábbi példában az erőforráscsoport helye rendelje hozzá a webhelyhez tartozó hely.</span><span class="sxs-lookup"><span data-stu-id="cb98d-210">The following example uses the resource group location to assign the location for a web site.</span></span>
+<span data-ttu-id="ecba3-209">A közös hello resourceGroup függvény használata hello toocreate erőforrások hello erőforráscsoport és ugyanazon a helyen.</span><span class="sxs-lookup"><span data-stu-id="ecba3-209">A common use of hello resourceGroup function is toocreate resources in hello same location as hello resource group.</span></span> <span data-ttu-id="ecba3-210">hello alábbi példa hello erőforráscsoport helye tooassign hello helye webhelyhez.</span><span class="sxs-lookup"><span data-stu-id="ecba3-210">hello following example uses hello resource group location tooassign hello location for a web site.</span></span>
 
 ```json
 "resources": [
@@ -342,9 +342,9 @@ ms.lasthandoff: 08/18/2017
 ]
 ```
 
-### <a name="example"></a><span data-ttu-id="cb98d-211">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-211">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-211">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-211">Example</span></span>
 
-<span data-ttu-id="cb98d-212">A következő sablon az erőforráscsoport tulajdonságainak adja vissza.</span><span class="sxs-lookup"><span data-stu-id="cb98d-212">The following template returns the properties of the resource group.</span></span>
+<span data-ttu-id="ecba3-212">hello következő sablon adja vissza hello erőforráscsoport hello tulajdonságainak.</span><span class="sxs-lookup"><span data-stu-id="ecba3-212">hello following template returns hello properties of hello resource group.</span></span>
 
 ```json
 {
@@ -360,7 +360,7 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-213">A fenti példában egy objektum a következő formátumban adja vissza:</span><span class="sxs-lookup"><span data-stu-id="cb98d-213">The preceding example returns an object in the following format:</span></span>
+<span data-ttu-id="ecba3-213">hello előző példa visszaad egy objektumot a hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-213">hello preceding example returns an object in hello following format:</span></span>
 
 ```json
 {
@@ -375,58 +375,58 @@ ms.lasthandoff: 08/18/2017
 
 <a id="resourceid" />
 
-## <a name="resourceid"></a><span data-ttu-id="cb98d-214">resourceId</span><span class="sxs-lookup"><span data-stu-id="cb98d-214">resourceId</span></span>
+## <a name="resourceid"></a><span data-ttu-id="ecba3-214">resourceId</span><span class="sxs-lookup"><span data-stu-id="ecba3-214">resourceId</span></span>
 `resourceId([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)`
 
-<span data-ttu-id="cb98d-215">Az erőforrás egyedi azonosítójának beolvasása.</span><span class="sxs-lookup"><span data-stu-id="cb98d-215">Returns the unique identifier of a resource.</span></span> <span data-ttu-id="cb98d-216">Ezt a funkciót használja, ha az erőforrás neve nem egyértelmű, vagy nem kiépített ugyanabban a sablonban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-216">You use this function when the resource name is ambiguous or not provisioned within the same template.</span></span> 
+<span data-ttu-id="ecba3-215">Beolvasása hello erőforrás egyedi azonosítója.</span><span class="sxs-lookup"><span data-stu-id="ecba3-215">Returns hello unique identifier of a resource.</span></span> <span data-ttu-id="ecba3-216">Ezt a funkciót használja, ha hello erőforrás neve nem egyértelmű, illetve nem kiépített hello belül ugyanazt a sablont.</span><span class="sxs-lookup"><span data-stu-id="ecba3-216">You use this function when hello resource name is ambiguous or not provisioned within hello same template.</span></span> 
 
-### <a name="parameters"></a><span data-ttu-id="cb98d-217">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="cb98d-217">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="ecba3-217">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="ecba3-217">Parameters</span></span>
 
-| <span data-ttu-id="cb98d-218">Paraméter</span><span class="sxs-lookup"><span data-stu-id="cb98d-218">Parameter</span></span> | <span data-ttu-id="cb98d-219">Szükséges</span><span class="sxs-lookup"><span data-stu-id="cb98d-219">Required</span></span> | <span data-ttu-id="cb98d-220">Típus</span><span class="sxs-lookup"><span data-stu-id="cb98d-220">Type</span></span> | <span data-ttu-id="cb98d-221">Leírás</span><span class="sxs-lookup"><span data-stu-id="cb98d-221">Description</span></span> |
+| <span data-ttu-id="ecba3-218">Paraméter</span><span class="sxs-lookup"><span data-stu-id="ecba3-218">Parameter</span></span> | <span data-ttu-id="ecba3-219">Szükséges</span><span class="sxs-lookup"><span data-stu-id="ecba3-219">Required</span></span> | <span data-ttu-id="ecba3-220">Típus</span><span class="sxs-lookup"><span data-stu-id="ecba3-220">Type</span></span> | <span data-ttu-id="ecba3-221">Leírás</span><span class="sxs-lookup"><span data-stu-id="ecba3-221">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="cb98d-222">subscriptionId</span><span class="sxs-lookup"><span data-stu-id="cb98d-222">subscriptionId</span></span> |<span data-ttu-id="cb98d-223">Nem</span><span class="sxs-lookup"><span data-stu-id="cb98d-223">No</span></span> |<span data-ttu-id="cb98d-224">karakterlánc (a GUID formátumban)</span><span class="sxs-lookup"><span data-stu-id="cb98d-224">string (In GUID format)</span></span> |<span data-ttu-id="cb98d-225">Alapértelmezett érték az aktuális előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="cb98d-225">Default value is the current subscription.</span></span> <span data-ttu-id="cb98d-226">Adja meg ezt az értéket, ha szüksége van egy másik előfizetésben található erőforrás lekérése.</span><span class="sxs-lookup"><span data-stu-id="cb98d-226">Specify this value when you need to retrieve a resource in another subscription.</span></span> |
-| <span data-ttu-id="cb98d-227">erőforráscsoport-név</span><span class="sxs-lookup"><span data-stu-id="cb98d-227">resourceGroupName</span></span> |<span data-ttu-id="cb98d-228">Nem</span><span class="sxs-lookup"><span data-stu-id="cb98d-228">No</span></span> |<span data-ttu-id="cb98d-229">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-229">string</span></span> |<span data-ttu-id="cb98d-230">Alapértelmezett érték: a jelenlegi erőforráscsoportban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-230">Default value is current resource group.</span></span> <span data-ttu-id="cb98d-231">Adja meg ezt az értéket, ha erőforrást egy másik erőforráscsoportban van szüksége.</span><span class="sxs-lookup"><span data-stu-id="cb98d-231">Specify this value when you need to retrieve a resource in another resource group.</span></span> |
-| <span data-ttu-id="cb98d-232">a resourceType</span><span class="sxs-lookup"><span data-stu-id="cb98d-232">resourceType</span></span> |<span data-ttu-id="cb98d-233">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-233">Yes</span></span> |<span data-ttu-id="cb98d-234">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-234">string</span></span> |<span data-ttu-id="cb98d-235">Beleértve az erőforrás-szolgáltató névtere erőforrás típusát.</span><span class="sxs-lookup"><span data-stu-id="cb98d-235">Type of resource including resource provider namespace.</span></span> |
-| <span data-ttu-id="cb98d-236">resourceName1</span><span class="sxs-lookup"><span data-stu-id="cb98d-236">resourceName1</span></span> |<span data-ttu-id="cb98d-237">Igen</span><span class="sxs-lookup"><span data-stu-id="cb98d-237">Yes</span></span> |<span data-ttu-id="cb98d-238">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-238">string</span></span> |<span data-ttu-id="cb98d-239">Erőforrás neve.</span><span class="sxs-lookup"><span data-stu-id="cb98d-239">Name of resource.</span></span> |
-| <span data-ttu-id="cb98d-240">resourceName2</span><span class="sxs-lookup"><span data-stu-id="cb98d-240">resourceName2</span></span> |<span data-ttu-id="cb98d-241">Nem</span><span class="sxs-lookup"><span data-stu-id="cb98d-241">No</span></span> |<span data-ttu-id="cb98d-242">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-242">string</span></span> |<span data-ttu-id="cb98d-243">Következő neve erőforrásszegmensre. Ha az erőforrás van beágyazva.</span><span class="sxs-lookup"><span data-stu-id="cb98d-243">Next resource name segment if resource is nested.</span></span> |
+| <span data-ttu-id="ecba3-222">subscriptionId</span><span class="sxs-lookup"><span data-stu-id="ecba3-222">subscriptionId</span></span> |<span data-ttu-id="ecba3-223">Nem</span><span class="sxs-lookup"><span data-stu-id="ecba3-223">No</span></span> |<span data-ttu-id="ecba3-224">karakterlánc (a GUID formátumban)</span><span class="sxs-lookup"><span data-stu-id="ecba3-224">string (In GUID format)</span></span> |<span data-ttu-id="ecba3-225">Alapértelmezett érték: hello előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="ecba3-225">Default value is hello current subscription.</span></span> <span data-ttu-id="ecba3-226">Adjon meg ezt az értéket, amikor egy erőforrást egy másik előfizetésben tooretrieve van szüksége.</span><span class="sxs-lookup"><span data-stu-id="ecba3-226">Specify this value when you need tooretrieve a resource in another subscription.</span></span> |
+| <span data-ttu-id="ecba3-227">erőforráscsoport-név</span><span class="sxs-lookup"><span data-stu-id="ecba3-227">resourceGroupName</span></span> |<span data-ttu-id="ecba3-228">Nem</span><span class="sxs-lookup"><span data-stu-id="ecba3-228">No</span></span> |<span data-ttu-id="ecba3-229">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-229">string</span></span> |<span data-ttu-id="ecba3-230">Alapértelmezett érték: a jelenlegi erőforráscsoportban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-230">Default value is current resource group.</span></span> <span data-ttu-id="ecba3-231">Adja meg ezt az értéket, ha tooretrieve egy erőforrást egy másik erőforráscsoportban van szükség.</span><span class="sxs-lookup"><span data-stu-id="ecba3-231">Specify this value when you need tooretrieve a resource in another resource group.</span></span> |
+| <span data-ttu-id="ecba3-232">a resourceType</span><span class="sxs-lookup"><span data-stu-id="ecba3-232">resourceType</span></span> |<span data-ttu-id="ecba3-233">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-233">Yes</span></span> |<span data-ttu-id="ecba3-234">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-234">string</span></span> |<span data-ttu-id="ecba3-235">Beleértve az erőforrás-szolgáltató névtere erőforrás típusát.</span><span class="sxs-lookup"><span data-stu-id="ecba3-235">Type of resource including resource provider namespace.</span></span> |
+| <span data-ttu-id="ecba3-236">resourceName1</span><span class="sxs-lookup"><span data-stu-id="ecba3-236">resourceName1</span></span> |<span data-ttu-id="ecba3-237">Igen</span><span class="sxs-lookup"><span data-stu-id="ecba3-237">Yes</span></span> |<span data-ttu-id="ecba3-238">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-238">string</span></span> |<span data-ttu-id="ecba3-239">Erőforrás neve.</span><span class="sxs-lookup"><span data-stu-id="ecba3-239">Name of resource.</span></span> |
+| <span data-ttu-id="ecba3-240">resourceName2</span><span class="sxs-lookup"><span data-stu-id="ecba3-240">resourceName2</span></span> |<span data-ttu-id="ecba3-241">Nem</span><span class="sxs-lookup"><span data-stu-id="ecba3-241">No</span></span> |<span data-ttu-id="ecba3-242">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-242">string</span></span> |<span data-ttu-id="ecba3-243">Következő neve erőforrásszegmensre. Ha az erőforrás van beágyazva.</span><span class="sxs-lookup"><span data-stu-id="ecba3-243">Next resource name segment if resource is nested.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-244">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-244">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-244">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-244">Return value</span></span>
 
-<span data-ttu-id="cb98d-245">Az azonosító eredmény abban az esetben a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="cb98d-245">The identifier is returned in the following format:</span></span>
+<span data-ttu-id="ecba3-245">hello azonosító eredmény abban az esetben a következő formátumban hello:</span><span class="sxs-lookup"><span data-stu-id="ecba3-245">hello identifier is returned in hello following format:</span></span>
 
 ```json
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 ```
 
-### <a name="remarks"></a><span data-ttu-id="cb98d-246">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="cb98d-246">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="ecba3-246">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="ecba3-246">Remarks</span></span>
 
-<span data-ttu-id="cb98d-247">A megadott paraméterértékek függnek, hogy az erőforrás azonos előfizetésbe és erőforráscsoportba tartozik, mint a jelenlegi üzemelő példány.</span><span class="sxs-lookup"><span data-stu-id="cb98d-247">The parameter values you specify depend on whether the resource is in the same subscription and resource group as the current deployment.</span></span>
+<span data-ttu-id="ecba3-247">hello megadott paraméterértékek függnek, hogy hello erőforrás hello a jelenlegi telepítésben hello azonos előfizetésbe és erőforráscsoportba csoportban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-247">hello parameter values you specify depend on whether hello resource is in hello same subscription and resource group as hello current deployment.</span></span>
 
-<span data-ttu-id="cb98d-248">Az erőforrás-azonosítója egy tárfiók ugyanahhoz az előfizetéshez és erőforráscsoport megtekintéséhez használja:</span><span class="sxs-lookup"><span data-stu-id="cb98d-248">To get the resource ID for a storage account in the same subscription and resource group, use:</span></span>
+<span data-ttu-id="ecba3-248">ugyanaz a tárfiókon lévő hello azonosító tooget hello erőforrás előfizetés és az erőforráscsoport:</span><span class="sxs-lookup"><span data-stu-id="ecba3-248">tooget hello resource ID for a storage account in hello same subscription and resource group, use:</span></span>
 
 ```json
 "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-<span data-ttu-id="cb98d-249">Az erőforrás-azonosítója egy tárfiók ugyanahhoz az előfizetéshez, de egy másik erőforráscsoportban található, amelyet:</span><span class="sxs-lookup"><span data-stu-id="cb98d-249">To get the resource ID for a storage account in the same subscription but a different resource group, use:</span></span>
+<span data-ttu-id="ecba3-249">tooget hello erőforrás-azonosító a tárfiók ugyanahhoz az előfizetéshez, de egy másik erőforráscsoportban található, használja hello:</span><span class="sxs-lookup"><span data-stu-id="ecba3-249">tooget hello resource ID for a storage account in hello same subscription but a different resource group, use:</span></span>
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-<span data-ttu-id="cb98d-250">Az erőforrás-azonosítója egy tárfiók egy másik előfizetésben és erőforráscsoportban használatához:</span><span class="sxs-lookup"><span data-stu-id="cb98d-250">To get the resource ID for a storage account in a different subscription and resource group, use:</span></span>
+<span data-ttu-id="ecba3-250">tooget hello erőforrás-azonosító egy másik előfizetést, és az erőforráscsoportot, egy tárfiókot használja:</span><span class="sxs-lookup"><span data-stu-id="ecba3-250">tooget hello resource ID for a storage account in a different subscription and resource group, use:</span></span>
 
 ```json
 "[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-<span data-ttu-id="cb98d-251">Az erőforrás-azonosító egy másik erőforráscsoportban található adatbázis használatához:</span><span class="sxs-lookup"><span data-stu-id="cb98d-251">To get the resource ID for a database in a different resource group, use:</span></span>
+<span data-ttu-id="ecba3-251">tooget hello erőforrás-azonosító egy másik erőforráscsoportban található adatbázis használata:</span><span class="sxs-lookup"><span data-stu-id="ecba3-251">tooget hello resource ID for a database in a different resource group, use:</span></span>
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]"
 ```
 
-<span data-ttu-id="cb98d-252">Gyakran kell használnia a függvény egy tárfiókhoz vagy a virtuális hálózat használata egy másik erőforráscsoportban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-252">Often, you need to use this function when using a storage account or virtual network in an alternate resource group.</span></span> <span data-ttu-id="cb98d-253">A következő példa bemutatja, hogyan könnyen használható egy külső erőforráscsoportból erőforrás:</span><span class="sxs-lookup"><span data-stu-id="cb98d-253">The following example shows how a resource from an external resource group can easily be used:</span></span>
+<span data-ttu-id="ecba3-252">Gyakran kell toouse Ez a függvény egy tárfiókhoz vagy a virtuális hálózat használata egy másik erőforráscsoportban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-252">Often, you need toouse this function when using a storage account or virtual network in an alternate resource group.</span></span> <span data-ttu-id="ecba3-253">hello következő példa bemutatja, hogyan könnyen használható egy külső erőforráscsoportból erőforrás:</span><span class="sxs-lookup"><span data-stu-id="ecba3-253">hello following example shows how a resource from an external resource group can easily be used:</span></span>
 
 ```json
 {
@@ -471,9 +471,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="example"></a><span data-ttu-id="cb98d-254">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-254">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-254">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-254">Example</span></span>
 
-<span data-ttu-id="cb98d-255">A következő példa az erőforrás-azonosítója egy tárfiók erőforráscsoportban adja vissza:</span><span class="sxs-lookup"><span data-stu-id="cb98d-255">The following example returns the resource ID for a storage account in the resource group:</span></span>
+<span data-ttu-id="ecba3-255">hello alábbi példa hello erőforrás-Azonosítót adja vissza egy tárfiók hello erőforráscsoport:</span><span class="sxs-lookup"><span data-stu-id="ecba3-255">hello following example returns hello resource ID for a storage account in hello resource group:</span></span>
 
 ```json
 {
@@ -501,25 +501,25 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-<span data-ttu-id="cb98d-256">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="cb98d-256">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="ecba3-256">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="ecba3-256">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="cb98d-257">Név</span><span class="sxs-lookup"><span data-stu-id="cb98d-257">Name</span></span> | <span data-ttu-id="cb98d-258">Típus</span><span class="sxs-lookup"><span data-stu-id="cb98d-258">Type</span></span> | <span data-ttu-id="cb98d-259">Érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-259">Value</span></span> |
+| <span data-ttu-id="ecba3-257">Név</span><span class="sxs-lookup"><span data-stu-id="ecba3-257">Name</span></span> | <span data-ttu-id="ecba3-258">Típus</span><span class="sxs-lookup"><span data-stu-id="ecba3-258">Type</span></span> | <span data-ttu-id="ecba3-259">Érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-259">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="cb98d-260">sameRGOutput</span><span class="sxs-lookup"><span data-stu-id="cb98d-260">sameRGOutput</span></span> | <span data-ttu-id="cb98d-261">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-261">String</span></span> | <span data-ttu-id="cb98d-262">/Subscriptions/{Current-Sub-ID}/resourceGroups/examplegroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="cb98d-262">/subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
-| <span data-ttu-id="cb98d-263">differentRGOutput</span><span class="sxs-lookup"><span data-stu-id="cb98d-263">differentRGOutput</span></span> | <span data-ttu-id="cb98d-264">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-264">String</span></span> | <span data-ttu-id="cb98d-265">/Subscriptions/{Current-Sub-ID}/resourceGroups/otherResourceGroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="cb98d-265">/subscriptions/{current-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
-| <span data-ttu-id="cb98d-266">differentSubOutput</span><span class="sxs-lookup"><span data-stu-id="cb98d-266">differentSubOutput</span></span> | <span data-ttu-id="cb98d-267">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-267">String</span></span> | <span data-ttu-id="cb98d-268">/Subscriptions/{different-Sub-ID}/resourceGroups/otherResourceGroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="cb98d-268">/subscriptions/{different-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
-| <span data-ttu-id="cb98d-269">nestedResourceOutput</span><span class="sxs-lookup"><span data-stu-id="cb98d-269">nestedResourceOutput</span></span> | <span data-ttu-id="cb98d-270">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="cb98d-270">String</span></span> | <span data-ttu-id="cb98d-271">/Subscriptions/{Current-Sub-ID}/resourceGroups/examplegroup/Providers/Microsoft.SQL/Servers/serverName/Databases/databaseName</span><span class="sxs-lookup"><span data-stu-id="cb98d-271">/subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.SQL/servers/serverName/databases/databaseName</span></span> |
+| <span data-ttu-id="ecba3-260">sameRGOutput</span><span class="sxs-lookup"><span data-stu-id="ecba3-260">sameRGOutput</span></span> | <span data-ttu-id="ecba3-261">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-261">String</span></span> | <span data-ttu-id="ecba3-262">/Subscriptions/{Current-Sub-ID}/resourceGroups/examplegroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="ecba3-262">/subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
+| <span data-ttu-id="ecba3-263">differentRGOutput</span><span class="sxs-lookup"><span data-stu-id="ecba3-263">differentRGOutput</span></span> | <span data-ttu-id="ecba3-264">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-264">String</span></span> | <span data-ttu-id="ecba3-265">/Subscriptions/{Current-Sub-ID}/resourceGroups/otherResourceGroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="ecba3-265">/subscriptions/{current-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
+| <span data-ttu-id="ecba3-266">differentSubOutput</span><span class="sxs-lookup"><span data-stu-id="ecba3-266">differentSubOutput</span></span> | <span data-ttu-id="ecba3-267">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-267">String</span></span> | <span data-ttu-id="ecba3-268">/Subscriptions/{different-Sub-ID}/resourceGroups/otherResourceGroup/Providers/Microsoft.Storage/storageAccounts/examplestorage</span><span class="sxs-lookup"><span data-stu-id="ecba3-268">/subscriptions/{different-sub-id}/resourceGroups/otherResourceGroup/providers/Microsoft.Storage/storageAccounts/examplestorage</span></span> |
+| <span data-ttu-id="ecba3-269">nestedResourceOutput</span><span class="sxs-lookup"><span data-stu-id="ecba3-269">nestedResourceOutput</span></span> | <span data-ttu-id="ecba3-270">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ecba3-270">String</span></span> | <span data-ttu-id="ecba3-271">/Subscriptions/{Current-Sub-ID}/resourceGroups/examplegroup/Providers/Microsoft.SQL/Servers/serverName/Databases/databaseName</span><span class="sxs-lookup"><span data-stu-id="ecba3-271">/subscriptions/{current-sub-id}/resourceGroups/examplegroup/providers/Microsoft.SQL/servers/serverName/databases/databaseName</span></span> |
 
 <a id="subscription" />
 
-## <a name="subscription"></a><span data-ttu-id="cb98d-272">előfizetést</span><span class="sxs-lookup"><span data-stu-id="cb98d-272">subscription</span></span>
+## <a name="subscription"></a><span data-ttu-id="ecba3-272">előfizetést</span><span class="sxs-lookup"><span data-stu-id="ecba3-272">subscription</span></span>
 `subscription()`
 
-<span data-ttu-id="cb98d-273">Az előfizetés, a jelenlegi üzemelő példány részleteit adja vissza.</span><span class="sxs-lookup"><span data-stu-id="cb98d-273">Returns details about the subscription for the current deployment.</span></span> 
+<span data-ttu-id="ecba3-273">Hello előfizetés hello aktuális központi telepítés részleteit adja vissza.</span><span class="sxs-lookup"><span data-stu-id="ecba3-273">Returns details about hello subscription for hello current deployment.</span></span> 
 
-### <a name="return-value"></a><span data-ttu-id="cb98d-274">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="cb98d-274">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="ecba3-274">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="ecba3-274">Return value</span></span>
 
-<span data-ttu-id="cb98d-275">A függvény a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="cb98d-275">The function returns the following format:</span></span>
+<span data-ttu-id="ecba3-275">hello függvény hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="ecba3-275">hello function returns hello following format:</span></span>
 
 ```json
 {
@@ -530,9 +530,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-### <a name="example"></a><span data-ttu-id="cb98d-276">Példa</span><span class="sxs-lookup"><span data-stu-id="cb98d-276">Example</span></span>
+### <a name="example"></a><span data-ttu-id="ecba3-276">Példa</span><span class="sxs-lookup"><span data-stu-id="ecba3-276">Example</span></span>
 
-<span data-ttu-id="cb98d-277">A következő példa bemutatja a előfizetés függvény hívása a kimenetek szakaszban.</span><span class="sxs-lookup"><span data-stu-id="cb98d-277">The following example shows the subscription function called in the outputs section.</span></span> 
+<span data-ttu-id="ecba3-277">hello következő példa bemutatja hello előfizetés függvény hívása hello kimenetek szakaszban.</span><span class="sxs-lookup"><span data-stu-id="ecba3-277">hello following example shows hello subscription function called in hello outputs section.</span></span> 
 
 ```json
 {
@@ -548,9 +548,9 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="cb98d-278">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="cb98d-278">Next steps</span></span>
-* <span data-ttu-id="cb98d-279">A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="cb98d-279">For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="cb98d-280">Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="cb98d-280">To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
-* <span data-ttu-id="cb98d-281">Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="cb98d-281">To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
-* <span data-ttu-id="cb98d-282">A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="cb98d-282">To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ecba3-278">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ecba3-278">Next steps</span></span>
+* <span data-ttu-id="ecba3-279">Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="ecba3-279">For a description of hello sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="ecba3-280">toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="ecba3-280">toomerge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
+* <span data-ttu-id="ecba3-281">megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="ecba3-281">tooiterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+* <span data-ttu-id="ecba3-282">toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="ecba3-282">toosee how toodeploy hello template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
 

@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Linux-környezet az Azure CLI 2.0 |} Microsoft Docs"
-description: "Tárolási, Linux virtuális gép, egy virtuális hálózati és alhálózati, egy adott terheléselosztóhoz, egy olyan hálózati adapter, egy nyilvános IP-cím és a hálózati biztonsági csoport, az Azure CLI 2.0 használatával alapoktól összes létrehozása."
+title: "a Linux környezet az Azure CLI 2.0 hello aaaCreate |} Microsoft Docs"
+description: "Tárolási, Linux virtuális gép, egy virtuális hálózati és alhálózati, egy terhelés-kiegyenlítő, egy hálózati Adapterre, egy nyilvános IP-cím és a hálózati biztonsági csoport létrehozása minden a hello Azure CLI 2.0 használatával szabad hello."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/06/2017
 ms.author: iainfou
-ms.openlocfilehash: e5c4785428b2150e951923e98079e00808a82d87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7287ea178e76001b84dade628ead04a59dc27f40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-virtual-machine-with-the-azure-cli"></a><span data-ttu-id="cbe37-103">Teljes Linux virtuális gép létrehozása az Azure parancssori felülettel</span><span class="sxs-lookup"><span data-stu-id="cbe37-103">Create a complete Linux virtual machine with the Azure CLI</span></span>
-<span data-ttu-id="cbe37-104">Gyorsan létrehozhat egy virtuális gép (VM) az Azure-ban, egy Azure CLI parancs, amely az alapértelmezett értékeket használja, minden szükséges támogató erőforrások létrehozására használhatja.</span><span class="sxs-lookup"><span data-stu-id="cbe37-104">To quickly create a virtual machine (VM) in Azure, you can use a single Azure CLI command that uses default values to create any required supporting resources.</span></span> <span data-ttu-id="cbe37-105">Erőforrások, például a virtuális hálózat, a nyilvános IP-cím és a hálózati biztonsági csoportszabályok automatikusan jönnek létre.</span><span class="sxs-lookup"><span data-stu-id="cbe37-105">Resources such as a virtual network, public IP address, and network security group rules are automatically created.</span></span> <span data-ttu-id="cbe37-106">Nagyobb mértékben vezérelheti a az éles környezetben használja, előfordulhat, hogy ezeket az erőforrásokat előre létrehozni, majd a virtuális gépek hozzá őket.</span><span class="sxs-lookup"><span data-stu-id="cbe37-106">For more control of your environment in production use, you may create these resources ahead of time and then add your VMs to them.</span></span> <span data-ttu-id="cbe37-107">Ez a cikk végigvezeti egy virtuális Gépet, és mindegyik egyenként támogató erőforrás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="cbe37-107">This article guides you through how to create a VM and each of the supporting resources one by one.</span></span>
+# <a name="create-a-complete-linux-virtual-machine-with-hello-azure-cli"></a><span data-ttu-id="e2b8b-103">Hozzon létre egy teljes Linux virtuális gép hello Azure parancssori felület</span><span class="sxs-lookup"><span data-stu-id="e2b8b-103">Create a complete Linux virtual machine with hello Azure CLI</span></span>
+<span data-ttu-id="e2b8b-104">tooquickly (VM) virtuális gép létrehozása az Azure-ban, egy Azure CLI parancs által használt alapértelmezett értékek toocreate szükséges erőforrások támogató használja.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-104">tooquickly create a virtual machine (VM) in Azure, you can use a single Azure CLI command that uses default values toocreate any required supporting resources.</span></span> <span data-ttu-id="e2b8b-105">Erőforrások, például a virtuális hálózat, a nyilvános IP-cím és a hálózati biztonsági csoportszabályok automatikusan jönnek létre.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-105">Resources such as a virtual network, public IP address, and network security group rules are automatically created.</span></span> <span data-ttu-id="e2b8b-106">Nagyobb mértékben vezérelheti a az éles környezetben használja, előfordulhat, hogy ezeket az erőforrásokat előre létrehozni, és adja meg a virtuális gépek toothem.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-106">For more control of your environment in production use, you may create these resources ahead of time and then add your VMs toothem.</span></span> <span data-ttu-id="e2b8b-107">Ez a cikk végigvezeti Önt hogyan toocreate a virtuális gépek és az egyes hello támogató erőforrásokat egyenként.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-107">This article guides you through how toocreate a VM and each of hello supporting resources one by one.</span></span>
 
-<span data-ttu-id="cbe37-108">Győződjön meg arról, hogy telepítette-e a legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) jelentkezett be az Azure-fiókot és [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="cbe37-108">Make sure that you have installed the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and logged to an Azure account in with [az login](/cli/azure/#login).</span></span>
+<span data-ttu-id="e2b8b-108">Győződjön meg arról, hogy telepítette hello legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) és a fiók naplózott tooan Azure [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-108">Make sure that you have installed hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and logged tooan Azure account in with [az login](/cli/azure/#login).</span></span>
 
-<span data-ttu-id="cbe37-109">A következő példákban cserélje le a saját értékeit példa paraméterek nevei.</span><span class="sxs-lookup"><span data-stu-id="cbe37-109">In the following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="cbe37-110">Példa paraméter nevek a következők *myResourceGroup*, *myVnet*, és *myVM*.</span><span class="sxs-lookup"><span data-stu-id="cbe37-110">Example parameter names include *myResourceGroup*, *myVnet*, and *myVM*.</span></span>
+<span data-ttu-id="e2b8b-109">Hello alábbi példák, cserélje le például paraméterek nevei a saját értékeit.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-109">In hello following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="e2b8b-110">Példa paraméter nevek a következők *myResourceGroup*, *myVnet*, és *myVM*.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-110">Example parameter names include *myResourceGroup*, *myVnet*, and *myVM*.</span></span>
 
-## <a name="create-resource-group"></a><span data-ttu-id="cbe37-111">Erőforráscsoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="cbe37-111">Create resource group</span></span>
-<span data-ttu-id="cbe37-112">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="cbe37-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="cbe37-113">Egy erőforráscsoportot a virtuális gépek és a támogató virtuális hálózati erőforrások előtt létre kell hozni.</span><span class="sxs-lookup"><span data-stu-id="cbe37-113">A resource group must be created before a virtual machine and supporting virtual network resources.</span></span> <span data-ttu-id="cbe37-114">Az erőforráscsoport létrehozása [az csoport létrehozása](/cli/azure/group#create).</span><span class="sxs-lookup"><span data-stu-id="cbe37-114">Create the resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="cbe37-115">Az alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a a *eastus* helye:</span><span class="sxs-lookup"><span data-stu-id="cbe37-115">The following example creates a resource group named *myResourceGroup* in the *eastus* location:</span></span>
+## <a name="create-resource-group"></a><span data-ttu-id="e2b8b-111">Erőforráscsoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="e2b8b-111">Create resource group</span></span>
+<span data-ttu-id="e2b8b-112">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> <span data-ttu-id="e2b8b-113">Egy erőforráscsoportot a virtuális gépek és a támogató virtuális hálózati erőforrások előtt létre kell hozni.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-113">A resource group must be created before a virtual machine and supporting virtual network resources.</span></span> <span data-ttu-id="e2b8b-114">Hello erőforráscsoport létrehozása [az csoport létrehozása](/cli/azure/group#create).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-114">Create hello resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="e2b8b-115">hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helye:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-115">hello following example creates a resource group named *myResourceGroup* in hello *eastus* location:</span></span>
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-<span data-ttu-id="cbe37-116">Alapértelmezés szerint az Azure parancssori felület parancsait eredménye a JSON-ban (JavaScript Object Notation).</span><span class="sxs-lookup"><span data-stu-id="cbe37-116">By default, the output of Azure CLI commands is in JSON (JavaScript Object Notation).</span></span> <span data-ttu-id="cbe37-117">Ha módosítani szeretné az alapértelmezett való küldéséhez lista vagy táblázat, például használja [konfigurálása az – output](/cli/azure/#configure).</span><span class="sxs-lookup"><span data-stu-id="cbe37-117">To change the default output to a list or table, for example, use [az configure --output](/cli/azure/#configure).</span></span> <span data-ttu-id="cbe37-118">Azt is megteheti `--output` kimeneti formátumban módosítsa valamelyik parancsának egy ideig.</span><span class="sxs-lookup"><span data-stu-id="cbe37-118">You can also add `--output` to any command for a one time change in output format.</span></span> <span data-ttu-id="cbe37-119">A következő példa bemutatja a JSON-kimenetét a `az group create` parancs:</span><span class="sxs-lookup"><span data-stu-id="cbe37-119">The following example shows the JSON output from the `az group create` command:</span></span>
+<span data-ttu-id="e2b8b-116">Alapértelmezés szerint hello Azure parancssori felület parancsait eredménye a JSON-ban (JavaScript Object Notation).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-116">By default, hello output of Azure CLI commands is in JSON (JavaScript Object Notation).</span></span> <span data-ttu-id="e2b8b-117">toochange hello alapértelmezett kimeneti tooa vagy táblázat, például használja [konfigurálása az – output](/cli/azure/#configure).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-117">toochange hello default output tooa list or table, for example, use [az configure --output](/cli/azure/#configure).</span></span> <span data-ttu-id="e2b8b-118">Azt is megteheti `--output` tooany parancs csak egyszer módosítható a változás a kimeneti formátum.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-118">You can also add `--output` tooany command for a one time change in output format.</span></span> <span data-ttu-id="e2b8b-119">hello következő példa bemutatja hello JSON-kimenetét a hello `az group create` parancs:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-119">hello following example shows hello JSON output from hello `az group create` command:</span></span>
 
 ```json                       
 {
@@ -49,8 +49,8 @@ az group create --name myResourceGroup --location eastus
 }
 ```
 
-## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="cbe37-120">Hozzon létre egy virtuális hálózat és alhálózat</span><span class="sxs-lookup"><span data-stu-id="cbe37-120">Create a virtual network and subnet</span></span>
-<span data-ttu-id="cbe37-121">Tovább létre virtuális hálózatot az Azure és az alhálózatot, amelyhez a virtuális gépeket hozhat létre.</span><span class="sxs-lookup"><span data-stu-id="cbe37-121">Next you create a virtual network in Azure and a subnet in to which you can create your VMs.</span></span> <span data-ttu-id="cbe37-122">Használjon [az hálózati vnet létrehozása](/cli/azure/network/vnet#create) nevű virtuális hálózat létrehozása *myVnet* rendelkező a *192.168.0.0/16* címelőtagot.</span><span class="sxs-lookup"><span data-stu-id="cbe37-122">Use [az network vnet create](/cli/azure/network/vnet#create) to create a virtual network named *myVnet* with the *192.168.0.0/16* address prefix.</span></span> <span data-ttu-id="cbe37-123">Nevű alhálózat is hozzáadhat *mySubnet* a címelőtagot rendelkező *192.168.1.0/24*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-123">You also add a subnet named *mySubnet* with the address prefix of *192.168.1.0/24*:</span></span>
+## <a name="create-a-virtual-network-and-subnet"></a><span data-ttu-id="e2b8b-120">Hozzon létre egy virtuális hálózat és alhálózat</span><span class="sxs-lookup"><span data-stu-id="e2b8b-120">Create a virtual network and subnet</span></span>
+<span data-ttu-id="e2b8b-121">Ezután létrehozhat egy virtuális hálózatot az Azure-ban, és toowhich lévő alhálózatot hozhat létre a virtuális gépek.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-121">Next you create a virtual network in Azure and a subnet in toowhich you can create your VMs.</span></span> <span data-ttu-id="e2b8b-122">Használjon [az hálózati vnet létrehozása](/cli/azure/network/vnet#create) toocreate nevű virtuális hálózat *myVnet* a hello *192.168.0.0/16* címelőtag.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-122">Use [az network vnet create](/cli/azure/network/vnet#create) toocreate a virtual network named *myVnet* with hello *192.168.0.0/16* address prefix.</span></span> <span data-ttu-id="e2b8b-123">Nevű alhálózat is hozzáadhat *mySubnet* a címelőtagot hello *192.168.1.0/24*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-123">You also add a subnet named *mySubnet* with hello address prefix of *192.168.1.0/24*:</span></span>
 
 ```azurecli
 az network vnet create \
@@ -61,7 +61,7 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-<span data-ttu-id="cbe37-124">A kimeneti jeleníti meg az alhálózat szerint logikailag létrehozni a virtuális hálózaton belül:</span><span class="sxs-lookup"><span data-stu-id="cbe37-124">The output shows the subnet as logically created inside the virtual network:</span></span>
+<span data-ttu-id="e2b8b-124">hello az alábbiakat mutatja be, logikailag hello virtuális hálózaton belül létrehozott hello alhálózati:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-124">hello output shows hello subnet as logically created inside hello virtual network:</span></span>
 
 ```json
 {
@@ -101,8 +101,8 @@ az network vnet create \
 ```
 
 
-## <a name="create-a-public-ip-address"></a><span data-ttu-id="cbe37-125">Hozzon létre egy nyilvános IP-címet</span><span class="sxs-lookup"><span data-stu-id="cbe37-125">Create a public IP address</span></span>
-<span data-ttu-id="cbe37-126">Most hozzon létre egy nyilvános IP-cím [létrehozása az hálózati nyilvános ip-](/cli/azure/network/public-ip#create).</span><span class="sxs-lookup"><span data-stu-id="cbe37-126">Now let's create a public IP address with [az network public-ip create](/cli/azure/network/public-ip#create).</span></span> <span data-ttu-id="cbe37-127">A nyilvános IP-cím lehetővé teszi a virtuális gépek csatlakozni az internetről.</span><span class="sxs-lookup"><span data-stu-id="cbe37-127">This public IP address enables you to connect to your VMs from the Internet.</span></span> <span data-ttu-id="cbe37-128">Mivel az alapértelmezett cím dinamikus, azt is létrehozhat az elnevezett DNS-bejegyzés a `--domain-name-label` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="cbe37-128">Because the default address is dynamic, we also create a named DNS entry with the `--domain-name-label` option.</span></span> <span data-ttu-id="cbe37-129">Az alábbi példa létrehoz egy nyilvános IP-cím nevű *myPublicIP* a DNS-nevét *mypublicdns*.</span><span class="sxs-lookup"><span data-stu-id="cbe37-129">The following example creates a public IP named *myPublicIP* with the DNS name of *mypublicdns*.</span></span> <span data-ttu-id="cbe37-130">Mivel a DNS-nevének egyedinek kell lennie, adja meg a saját egyedi DNS-név:</span><span class="sxs-lookup"><span data-stu-id="cbe37-130">Because the DNS name must be unique, provide your own unique DNS name:</span></span>
+## <a name="create-a-public-ip-address"></a><span data-ttu-id="e2b8b-125">Hozzon létre egy nyilvános IP-címet</span><span class="sxs-lookup"><span data-stu-id="e2b8b-125">Create a public IP address</span></span>
+<span data-ttu-id="e2b8b-126">Most hozzon létre egy nyilvános IP-cím [létrehozása az hálózati nyilvános ip-](/cli/azure/network/public-ip#create).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-126">Now let's create a public IP address with [az network public-ip create](/cli/azure/network/public-ip#create).</span></span> <span data-ttu-id="e2b8b-127">A nyilvános IP-cím lehetővé teszi, hogy Ön tooconnect tooyour virtuális gépek hello Internet a.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-127">This public IP address enables you tooconnect tooyour VMs from hello Internet.</span></span> <span data-ttu-id="e2b8b-128">Mivel hello alapértelmezett cím dinamikus, nem is létrehozni egy elnevezett DNS-bejegyzés hello `--domain-name-label` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-128">Because hello default address is dynamic, we also create a named DNS entry with hello `--domain-name-label` option.</span></span> <span data-ttu-id="e2b8b-129">hello alábbi példa létrehoz egy nyilvános IP-cím nevű *myPublicIP* hello DNS-névvel, *mypublicdns*.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-129">hello following example creates a public IP named *myPublicIP* with hello DNS name of *mypublicdns*.</span></span> <span data-ttu-id="e2b8b-130">Hello DNS-nevének egyedinek kell lennie, mert adja meg a saját egyedi DNS-név:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-130">Because hello DNS name must be unique, provide your own unique DNS name:</span></span>
 
 ```azurecli
 az network public-ip create \
@@ -111,7 +111,7 @@ az network public-ip create \
     --dns-name mypublicdns
 ```
 
-<span data-ttu-id="cbe37-131">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="cbe37-131">Output:</span></span>
+<span data-ttu-id="e2b8b-131">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-131">Output:</span></span>
 
 ```json
 {
@@ -140,8 +140,8 @@ az network public-ip create \
 ```
 
 
-## <a name="create-a-network-security-group"></a><span data-ttu-id="cbe37-132">Hálózati biztonsági csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="cbe37-132">Create a network security group</span></span>
-<span data-ttu-id="cbe37-133">A forgalmat a virtuális gépek mindkét szabályozására, a hálózati biztonsági csoport létrehozása.</span><span class="sxs-lookup"><span data-stu-id="cbe37-133">To control the flow of traffic in and out of your VMs, create a network security group.</span></span> <span data-ttu-id="cbe37-134">Hálózati biztonsági csoport egy hálózati adapter vagy az alhálózat alkalmazhatók.</span><span class="sxs-lookup"><span data-stu-id="cbe37-134">A network security group can be applied to a NIC or subnet.</span></span> <span data-ttu-id="cbe37-135">Az alábbi példában [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) hozhat létre a hálózati biztonsági csoport nevű *myNetworkSecurityGroup*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-135">The following example uses [az network nsg create](/cli/azure/network/nsg#create) to create a network security group named *myNetworkSecurityGroup*:</span></span>
+## <a name="create-a-network-security-group"></a><span data-ttu-id="e2b8b-132">Hálózati biztonsági csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="e2b8b-132">Create a network security group</span></span>
+<span data-ttu-id="e2b8b-133">toocontrol hello folyamata forgalom mindkét a virtuális gépek hálózati biztonsági csoport létrehozása.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-133">toocontrol hello flow of traffic in and out of your VMs, create a network security group.</span></span> <span data-ttu-id="e2b8b-134">Hálózati biztonsági csoport lehet alkalmazott tooa hálózati adapter vagy az alhálózatot.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-134">A network security group can be applied tooa NIC or subnet.</span></span> <span data-ttu-id="e2b8b-135">hello alábbi példában [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) hálózati biztonsági csoport nevű toocreate *myNetworkSecurityGroup*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-135">hello following example uses [az network nsg create](/cli/azure/network/nsg#create) toocreate a network security group named *myNetworkSecurityGroup*:</span></span>
 
 ```azurecli
 az network nsg create \
@@ -149,7 +149,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="cbe37-136">Megadhatja a szabályokat, amelyek az adott adatforgalom engedélyezéséhez vagy letiltásához.</span><span class="sxs-lookup"><span data-stu-id="cbe37-136">You define rules that allow or deny the specific traffic.</span></span> <span data-ttu-id="cbe37-137">(SSH támogatásához) 22-es portot a bejövő kapcsolatok engedélyezéséhez hozzon létre egy bejövő szabályt az a hálózati biztonsági csoport [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create).</span><span class="sxs-lookup"><span data-stu-id="cbe37-137">To allow inbound connections on port 22 (to support SSH), create an inbound rule for the network security group with [az network nsg rule create](/cli/azure/network/nsg/rule#create).</span></span> <span data-ttu-id="cbe37-138">Az alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRuleSSH*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-138">The following example creates a rule named *myNetworkSecurityGroupRuleSSH*:</span></span>
+<span data-ttu-id="e2b8b-136">Megadhatja a szabályokat, amelyek hello adott adatforgalom engedélyezéséhez vagy letiltásához.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-136">You define rules that allow or deny hello specific traffic.</span></span> <span data-ttu-id="e2b8b-137">tooallow (toosupport SSH) 22-es portot a bejövő kapcsolatok, hozzon létre egy bejövő szabályt az hello hálózati biztonsági csoport [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-137">tooallow inbound connections on port 22 (toosupport SSH), create an inbound rule for hello network security group with [az network nsg rule create](/cli/azure/network/nsg/rule#create).</span></span> <span data-ttu-id="e2b8b-138">hello alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRuleSSH*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-138">hello following example creates a rule named *myNetworkSecurityGroupRuleSSH*:</span></span>
 
 ```azurecli
 az network nsg rule create \
@@ -162,7 +162,7 @@ az network nsg rule create \
     --access allow
 ```
 
-<span data-ttu-id="cbe37-139">Engedélyezi a bejövő kapcsolatokat (a webes forgalom támogatásához) 80-as porton, vegyen fel egy másik hálózati biztonsági csoport szabály.</span><span class="sxs-lookup"><span data-stu-id="cbe37-139">To allow inbound connections on port 80 (to support web traffic), add another network security group rule.</span></span> <span data-ttu-id="cbe37-140">Az alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRuleHTTP*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-140">The following example creates a rule named *myNetworkSecurityGroupRuleHTTP*:</span></span>
+<span data-ttu-id="e2b8b-139">tooallow (toosupport webes forgalom), 80-as porton bejövő kapcsolatok hozzáadása egy másik hálózati biztonsági csoport szabály.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-139">tooallow inbound connections on port 80 (toosupport web traffic), add another network security group rule.</span></span> <span data-ttu-id="e2b8b-140">hello alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRuleHTTP*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-140">hello following example creates a rule named *myNetworkSecurityGroupRuleHTTP*:</span></span>
 
 ```azurecli
 az network nsg rule create \
@@ -175,13 +175,13 @@ az network nsg rule create \
     --access allow
 ```
 
-<span data-ttu-id="cbe37-141">Ellenőrizze a hálózati biztonsági csoport és a szabályok [az hálózati nsg megjelenítése](/cli/azure/network/nsg#show):</span><span class="sxs-lookup"><span data-stu-id="cbe37-141">Examine the network security group and rules with [az network nsg show](/cli/azure/network/nsg#show):</span></span>
+<span data-ttu-id="e2b8b-141">Ellenőrizze, hogy hello hálózati biztonsági csoport és a szabályok [az hálózati nsg megjelenítése](/cli/azure/network/nsg#show):</span><span class="sxs-lookup"><span data-stu-id="e2b8b-141">Examine hello network security group and rules with [az network nsg show](/cli/azure/network/nsg#show):</span></span>
 
 ```azurecli
 az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="cbe37-142">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="cbe37-142">Output:</span></span>
+<span data-ttu-id="e2b8b-142">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-142">Output:</span></span>
 
 ```json
 {
@@ -236,7 +236,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+      "description": "Allow outbound traffic from all VMs tooall VMs in VNET",
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -252,7 +252,7 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to Internet",
+      "description": "Allow outbound traffic from all VMs tooInternet",
       "destinationAddressPrefix": "Internet",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -331,8 +331,8 @@ az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGro
 }
 ```
 
-## <a name="create-a-virtual-nic"></a><span data-ttu-id="cbe37-143">A virtuális hálózati adapter létrehozása</span><span class="sxs-lookup"><span data-stu-id="cbe37-143">Create a virtual NIC</span></span>
-<span data-ttu-id="cbe37-144">Virtuális hálózati adapterek (NIC), ezért programozott módon való használatukat alkalmazhat.</span><span class="sxs-lookup"><span data-stu-id="cbe37-144">Virtual network interface cards (NICs) are programmatically available because you can apply rules to their use.</span></span> <span data-ttu-id="cbe37-145">Egynél több is lehet.</span><span class="sxs-lookup"><span data-stu-id="cbe37-145">You can also have more than one.</span></span> <span data-ttu-id="cbe37-146">Az alábbi [az hálózat összevont hálózati létrehozása](/cli/azure/network/nic#create) parancsban, létrehozhat egy hálózati adapter nevű *myNic* és rendelje hozzá azt a hálózati biztonsági csoport.</span><span class="sxs-lookup"><span data-stu-id="cbe37-146">In the following [az network nic create](/cli/azure/network/nic#create) command, you create a NIC named *myNic* and associate it with the network security group.</span></span> <span data-ttu-id="cbe37-147">A nyilvános IP-cím *myPublicIP* is kapcsolódik a virtuális hálózati adaptert.</span><span class="sxs-lookup"><span data-stu-id="cbe37-147">The public IP address *myPublicIP* is also associated with the virtual NIC.</span></span>
+## <a name="create-a-virtual-nic"></a><span data-ttu-id="e2b8b-143">A virtuális hálózati adapter létrehozása</span><span class="sxs-lookup"><span data-stu-id="e2b8b-143">Create a virtual NIC</span></span>
+<span data-ttu-id="e2b8b-144">Virtuális hálózati adapterek (NIC), ezért programozott módon alkalmazhat szabályok tootheir használja.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-144">Virtual network interface cards (NICs) are programmatically available because you can apply rules tootheir use.</span></span> <span data-ttu-id="e2b8b-145">Egynél több is lehet.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-145">You can also have more than one.</span></span> <span data-ttu-id="e2b8b-146">Hello alábbi [az hálózati hálózati adapter létrehozása](/cli/azure/network/nic#create) parancsban, létrehozhat egy hálózati adapter nevű *myNic* és társítsa azt az hello hálózati biztonsági csoport.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-146">In hello following [az network nic create](/cli/azure/network/nic#create) command, you create a NIC named *myNic* and associate it with hello network security group.</span></span> <span data-ttu-id="e2b8b-147">nyilvános IP-cím hello *myPublicIP* is társul hello virtuális hálózati adaptert.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-147">hello public IP address *myPublicIP* is also associated with hello virtual NIC.</span></span>
 
 ```azurecli
 az network nic create \
@@ -344,7 +344,7 @@ az network nic create \
     --network-security-group myNetworkSecurityGroup
 ```
 
-<span data-ttu-id="cbe37-148">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="cbe37-148">Output:</span></span>
+<span data-ttu-id="e2b8b-148">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-148">Output:</span></span>
 
 ```json
 {
@@ -435,16 +435,16 @@ az network nic create \
 ```
 
 
-## <a name="create-an-availability-set"></a><span data-ttu-id="cbe37-149">Rendelkezésre állási csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="cbe37-149">Create an availability set</span></span>
-<span data-ttu-id="cbe37-150">Rendelkezésre állási a virtuális gépek készletek súgó terjedésének tartalék tartományok és a frissítés tartományokban.</span><span class="sxs-lookup"><span data-stu-id="cbe37-150">Availability sets help spread your VMs across fault domains and update domains.</span></span> <span data-ttu-id="cbe37-151">Annak ellenére, hogy csak egy virtuális gép most létrehozni, akkor célszerű könnyebben bontsa ki a jövőben a rendelkezésre állási készletek használatával.</span><span class="sxs-lookup"><span data-stu-id="cbe37-151">Even though you only create one VM right now, it's best practice to use availability sets to make it easier to expand in the future.</span></span> 
+## <a name="create-an-availability-set"></a><span data-ttu-id="e2b8b-149">Rendelkezésre állási csoport létrehozása</span><span class="sxs-lookup"><span data-stu-id="e2b8b-149">Create an availability set</span></span>
+<span data-ttu-id="e2b8b-150">Rendelkezésre állási a virtuális gépek készletek súgó terjedésének tartalék tartományok és a frissítés tartományokban.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-150">Availability sets help spread your VMs across fault domains and update domains.</span></span> <span data-ttu-id="e2b8b-151">Annak ellenére, hogy csak egy virtuális gép most létrehozni, akkor ajánlott eljárás toouse rendelkezésre állási készletek toomake azt a jövőbeli hello könnyebb tooexpand.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-151">Even though you only create one VM right now, it's best practice toouse availability sets toomake it easier tooexpand in hello future.</span></span> 
 
-<span data-ttu-id="cbe37-152">Tartalék tartományok definiálása, amelyek egy közös forrás- és hálózati kikapcsolás virtuális gépek csoportja.</span><span class="sxs-lookup"><span data-stu-id="cbe37-152">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="cbe37-153">Alapértelmezés szerint a rendelkezésre állási csoport belül konfigurált virtuális gépek egymástól legfeljebb három tartalék tartományokban.</span><span class="sxs-lookup"><span data-stu-id="cbe37-153">By default, the virtual machines that are configured within your availability set are separated across up to three fault domains.</span></span> <span data-ttu-id="cbe37-154">A tartalék tartományok valamelyikében egy hardver a probléma nem érinti az alkalmazást futtató minden VM.</span><span class="sxs-lookup"><span data-stu-id="cbe37-154">A hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span>
+<span data-ttu-id="e2b8b-152">Tartalék tartományok definiálása, amelyek egy közös forrás- és hálózati kikapcsolás virtuális gépek csoportja.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-152">Fault domains define a grouping of virtual machines that share a common power source and network switch.</span></span> <span data-ttu-id="e2b8b-153">Alapértelmezés szerint hello virtuális gépek a rendelkezésre állási csoport belül állítottak be toothree tartalék tartományok egymástól között.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-153">By default, hello virtual machines that are configured within your availability set are separated across up toothree fault domains.</span></span> <span data-ttu-id="e2b8b-154">A tartalék tartományok valamelyikében egy hardver a probléma nem érinti az alkalmazást futtató minden VM.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-154">A hardware issue in one of these fault domains does not affect every VM that is running your app.</span></span>
 
-<span data-ttu-id="cbe37-155">Frissítési tartományok adja meg a virtuális gépek és a mögöttes fizikai hardver, amely egy időben újra kell indítani.</span><span class="sxs-lookup"><span data-stu-id="cbe37-155">Update domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at the same time.</span></span> <span data-ttu-id="cbe37-156">Tervezett karbantartás során a melyik frissítési tartományok újraindítása van sorrendje nem feltétlenül egymást követő, de egyszerre csak egy frissítési tartományt újraindítása után.</span><span class="sxs-lookup"><span data-stu-id="cbe37-156">During planned maintenance, the order in which update domains are rebooted might not be sequential, but only one update domain is rebooted at a time.</span></span>
+<span data-ttu-id="e2b8b-155">Frissítési tartományok jelzi a virtuális gépek és a mögöttes fizikai hardver, hogy újra kell indítani a hello csoportok ugyanannyi időt vesz igénybe.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-155">Update domains indicate groups of virtual machines and underlying physical hardware that can be rebooted at hello same time.</span></span> <span data-ttu-id="e2b8b-156">Tervezett karbantartás során a melyik frissítési tartományok újraindítása van hello sorrendje nem feltétlenül egymást követő, de egyszerre csak egy frissítési tartományt újraindítása után.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-156">During planned maintenance, hello order in which update domains are rebooted might not be sequential, but only one update domain is rebooted at a time.</span></span>
 
-<span data-ttu-id="cbe37-157">Amikor a rendelkezésre állási csoportba helyezi őket Azure automatikusan elosztása virtuális gépek a hiba, és a frissítési tartományok.</span><span class="sxs-lookup"><span data-stu-id="cbe37-157">Azure automatically distributes VMs across the fault and update domains when placing them in an availability set.</span></span> <span data-ttu-id="cbe37-158">További információkért lásd: [virtuális gépek rendelkezésre állásának kezelése](manage-availability.md).</span><span class="sxs-lookup"><span data-stu-id="cbe37-158">For more information, see [managing the availability of VMs](manage-availability.md).</span></span>
+<span data-ttu-id="e2b8b-157">Azure automatikusan osztja el a virtuális gépek hello hiba és a frissítési tartományok közötti amikor rendelkezésre állási csoportba helyezi őket.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-157">Azure automatically distributes VMs across hello fault and update domains when placing them in an availability set.</span></span> <span data-ttu-id="e2b8b-158">További információkért lásd: [hello virtuális gépek rendelkezésre állásának kezelése](manage-availability.md).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-158">For more information, see [managing hello availability of VMs](manage-availability.md).</span></span>
 
-<span data-ttu-id="cbe37-159">Hozzon létre egy rendelkezésre állási készletét, a virtuális Gépet a [az virtuális gép rendelkezésre állási-csoport létrehozása](/cli/azure/vm/availability-set#create).</span><span class="sxs-lookup"><span data-stu-id="cbe37-159">Create an availability set for your VM with [az vm availability-set create](/cli/azure/vm/availability-set#create).</span></span> <span data-ttu-id="cbe37-160">Az alábbi példakód létrehozza a rendelkezésre állási készlet elnevezett *myAvailabilitySet*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-160">The following example creates an availability set named *myAvailabilitySet*:</span></span>
+<span data-ttu-id="e2b8b-159">Hozzon létre egy rendelkezésre állási készletét, a virtuális Gépet a [az virtuális gép rendelkezésre állási-csoport létrehozása](/cli/azure/vm/availability-set#create).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-159">Create an availability set for your VM with [az vm availability-set create](/cli/azure/vm/availability-set#create).</span></span> <span data-ttu-id="e2b8b-160">hello alábbi példakód létrehozza rendelkezésre állási készlet elnevezett *myAvailabilitySet*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-160">hello following example creates an availability set named *myAvailabilitySet*:</span></span>
 
 ```azurecli
 az vm availability-set create \
@@ -452,7 +452,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-<span data-ttu-id="cbe37-161">A kimeneti megjegyzések tartalék tartományok és a frissítési tartományok:</span><span class="sxs-lookup"><span data-stu-id="cbe37-161">The output notes fault domains and update domains:</span></span>
+<span data-ttu-id="e2b8b-161">kimeneti megjegyzések tartalék tartományok hello és tartományok frissítése:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-161">hello output notes fault domains and update domains:</span></span>
 
 ```json
 {
@@ -476,12 +476,12 @@ az vm availability-set create \
 ```
 
 
-## <a name="create-the-linux-vms"></a><span data-ttu-id="cbe37-162">A Linux virtuális gépek létrehozása</span><span class="sxs-lookup"><span data-stu-id="cbe37-162">Create the Linux VMs</span></span>
-<span data-ttu-id="cbe37-163">A hálózati erőforrásokhoz az internetről elérhető virtuális gépek támogatásához létrehozott.</span><span class="sxs-lookup"><span data-stu-id="cbe37-163">You've created the network resources to support Internet-accessible VMs.</span></span> <span data-ttu-id="cbe37-164">Most hozzon létre egy virtuális Gépet, és biztosíthatja az SSH-kulcsot.</span><span class="sxs-lookup"><span data-stu-id="cbe37-164">Now create a VM and secure it with an SSH key.</span></span> <span data-ttu-id="cbe37-165">Ebben az esetben egy Ubuntu virtuális gép a legutóbbi LTS alapján hozzon létre programot fogjuk.</span><span class="sxs-lookup"><span data-stu-id="cbe37-165">In this case, we're going to create an Ubuntu VM based on the most recent LTS.</span></span> <span data-ttu-id="cbe37-166">További képekkel található [az vm képlistában](/cli/azure/vm/image#list)leírtak szerint [Azure Virtuálisgép-rendszerképekről keresése](cli-ps-findimage.md).</span><span class="sxs-lookup"><span data-stu-id="cbe37-166">You can find additional images with [az vm image list](/cli/azure/vm/image#list), as described in [finding Azure VM images](cli-ps-findimage.md).</span></span>
+## <a name="create-hello-linux-vms"></a><span data-ttu-id="e2b8b-162">Hello Linux virtuális gépek létrehozása</span><span class="sxs-lookup"><span data-stu-id="e2b8b-162">Create hello Linux VMs</span></span>
+<span data-ttu-id="e2b8b-163">Létrehozott hello hálózati erőforrások toosupport internetről elérhető virtuális gépeket.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-163">You've created hello network resources toosupport Internet-accessible VMs.</span></span> <span data-ttu-id="e2b8b-164">Most hozzon létre egy virtuális Gépet, és biztosíthatja az SSH-kulcsot.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-164">Now create a VM and secure it with an SSH key.</span></span> <span data-ttu-id="e2b8b-165">Ebben az esetben az oktatóanyagban módosítjuk az Ubuntu virtuális gép alapján hello toocreate legutóbbi LTS.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-165">In this case, we're going toocreate an Ubuntu VM based on hello most recent LTS.</span></span> <span data-ttu-id="e2b8b-166">További képekkel található [az vm képlistában](/cli/azure/vm/image#list)leírtak szerint [Azure Virtuálisgép-rendszerképekről keresése](cli-ps-findimage.md).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-166">You can find additional images with [az vm image list](/cli/azure/vm/image#list), as described in [finding Azure VM images](cli-ps-findimage.md).</span></span>
 
-<span data-ttu-id="cbe37-167">Azt is megadhatja egy SSH-kulcsot a hitelesítéshez használandó.</span><span class="sxs-lookup"><span data-stu-id="cbe37-167">We also specify an SSH key to use for authentication.</span></span> <span data-ttu-id="cbe37-168">Ha még nem rendelkezik az SSH nyilvános kulcsból álló kulcspárt, akkor [hozza létre a címzetteket](mac-create-ssh-keys.md) , vagy használja a `--generate-ssh-keys` paraméter kell létrehoznia őket.</span><span class="sxs-lookup"><span data-stu-id="cbe37-168">If you do not have an SSH public key pair, you can [create them](mac-create-ssh-keys.md) or use the `--generate-ssh-keys` parameter to create them for you.</span></span> <span data-ttu-id="cbe37-169">Ha Ön már egy kulcspár, ez a paraméter meglévő kulcsokat használ a `~/.ssh`.</span><span class="sxs-lookup"><span data-stu-id="cbe37-169">If you already a key pair, this parameter uses existing keys in `~/.ssh`.</span></span>
+<span data-ttu-id="e2b8b-167">Azt is megadhatja egy SSH-kulcs toouse hitelesítéshez.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-167">We also specify an SSH key toouse for authentication.</span></span> <span data-ttu-id="e2b8b-168">Ha még nem rendelkezik az SSH nyilvános kulcsból álló kulcspárt, akkor [hozza létre a címzetteket](mac-create-ssh-keys.md) , vagy használjon hello `--generate-ssh-keys` paraméter toocreate meg őket.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-168">If you do not have an SSH public key pair, you can [create them](mac-create-ssh-keys.md) or use hello `--generate-ssh-keys` parameter toocreate them for you.</span></span> <span data-ttu-id="e2b8b-169">Ha Ön már egy kulcspár, ez a paraméter meglévő kulcsokat használ a `~/.ssh`.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-169">If you already a key pair, this parameter uses existing keys in `~/.ssh`.</span></span>
 
-<span data-ttu-id="cbe37-170">A virtuális gép létrehozása az erőforrások és információk együtt hozásával a [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="cbe37-170">Create the VM by bringing all our resources and information together with the [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="cbe37-171">Az alábbi példakód létrehozza a virtuális gépek nevű *myVM*:</span><span class="sxs-lookup"><span data-stu-id="cbe37-171">The following example creates a VM named *myVM*:</span></span>
+<span data-ttu-id="e2b8b-170">Hello virtuális gép létrehozása az erőforrások és az adatokat a hello hozásával [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-170">Create hello VM by bringing all our resources and information together with hello [az vm create](/cli/azure/vm#create) command.</span></span> <span data-ttu-id="e2b8b-171">hello alábbi példakód létrehozza a virtuális gépek nevű *myVM*:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-171">hello following example creates a VM named *myVM*:</span></span>
 
 ```azurecli
 az vm create \
@@ -495,7 +495,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="cbe37-172">SSH-kapcsolatot a virtuális gép létrehozása után a nyilvános IP-cím a megadott DNS-bejegyzés.</span><span class="sxs-lookup"><span data-stu-id="cbe37-172">SSH to your VM with the DNS entry you provided when you created the public IP address.</span></span> <span data-ttu-id="cbe37-173">Ez `fqdn` a virtuális gép létrehozásakor a kimenet látható:</span><span class="sxs-lookup"><span data-stu-id="cbe37-173">This `fqdn` is shown in the output as you create your VM:</span></span>
+<span data-ttu-id="e2b8b-172">SSH tooyour VM a hello hello nyilvános IP-cím létrehozása után a megadott DNS-bejegyzés.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-172">SSH tooyour VM with hello DNS entry you provided when you created hello public IP address.</span></span> <span data-ttu-id="e2b8b-173">Ez `fqdn` hello kimenet látható a virtuális gép létrehozása:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-173">This `fqdn` is shown in hello output as you create your VM:</span></span>
 
 ```json
 {
@@ -514,14 +514,14 @@ az vm create \
 ssh azureuser@mypublicdns.eastus.cloudapp.azure.com
 ```
 
-<span data-ttu-id="cbe37-174">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="cbe37-174">Output:</span></span>
+<span data-ttu-id="e2b8b-174">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-174">Output:</span></span>
 
 ```bash
-The authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
+hello authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
 ECDSA key fingerprint is SHA256:SylINP80Um6XRTvWiFaNz+H+1jcrKB1IiNgCDDJRj6A.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -534,39 +534,39 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 0 updates are security updates.
 
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
+hello programs included with hello Ubuntu system are free software;
+hello exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+Ubuntu comes with ABSOLUTELY NO WARRANTY, toohello extent permitted by
 applicable law.
 
-To run a command as administrator (user "root"), use "sudo <command>".
+toorun a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 azureuser@myVM:~$
 ```
 
-<span data-ttu-id="cbe37-175">NGINX telepítheti, és a hálózati forgalom a virtuális gép folyamata.</span><span class="sxs-lookup"><span data-stu-id="cbe37-175">You can install NGINX and see the traffic flow to the VM.</span></span> <span data-ttu-id="cbe37-176">Telepítse a NGINX az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="cbe37-176">Install NGINX as follows:</span></span>
+<span data-ttu-id="e2b8b-175">NGINX telepítése, és tekintse meg a hello forgalom folyamat toohello virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-175">You can install NGINX and see hello traffic flow toohello VM.</span></span> <span data-ttu-id="e2b8b-176">Telepítse a NGINX az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-176">Install NGINX as follows:</span></span>
 
 ```bash
 sudo apt-get install -y nginx
 ```
 
-<span data-ttu-id="cbe37-177">A művelet alapértelmezett NGINX hely megtekintéséhez nyissa meg a webböngészőt, és adja meg a teljes Tartománynevét:</span><span class="sxs-lookup"><span data-stu-id="cbe37-177">To see the default NGINX site in action, open your web browser and enter your FQDN:</span></span>
+<span data-ttu-id="e2b8b-177">toosee hello alapértelmezett NGINX webhely műveletben, nyissa meg a webböngészőt, és adja meg a teljes Tartománynevét:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-177">toosee hello default NGINX site in action, open your web browser and enter your FQDN:</span></span>
 
 ![Alapértelmezett NGINX helyet a virtuális gépen](media/create-cli-complete/nginx.png)
 
-## <a name="export-as-a-template"></a><span data-ttu-id="cbe37-179">Sablonként exportálja</span><span class="sxs-lookup"><span data-stu-id="cbe37-179">Export as a template</span></span>
-<span data-ttu-id="cbe37-180">Mi történik, ha szeretné a paramétereket, vagy éles környezetben további fejlesztési környezet létrehozása, amely megfelel az?</span><span class="sxs-lookup"><span data-stu-id="cbe37-180">What if you now want to create an additional development environment with the same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="cbe37-181">Erőforrás-kezelő a környezet összes paramétereit meghatározó JSON-sablonokat használ.</span><span class="sxs-lookup"><span data-stu-id="cbe37-181">Resource Manager uses JSON templates that define all the parameters for your environment.</span></span> <span data-ttu-id="cbe37-182">A JSON-sablon Vezérlőpultjának kimenő teljes környezetek létrehozása.</span><span class="sxs-lookup"><span data-stu-id="cbe37-182">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="cbe37-183">Is [JSON sablonok létrehozása manuálisan](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy egy meglévő környezet hozza létre a JSON-sablon exportálása.</span><span class="sxs-lookup"><span data-stu-id="cbe37-183">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment to create the JSON template for you.</span></span> <span data-ttu-id="cbe37-184">Használjon [az exportálása](/cli/azure/group#export) az erőforráscsoport exportálása az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="cbe37-184">Use [az group export](/cli/azure/group#export) to export your resource group as follows:</span></span>
+## <a name="export-as-a-template"></a><span data-ttu-id="e2b8b-179">Sablonként exportálja</span><span class="sxs-lookup"><span data-stu-id="e2b8b-179">Export as a template</span></span>
+<span data-ttu-id="e2b8b-180">Mi történik, ha most szeretné toocreate tartalmazó hello további fejlesztési környezet paramétereket, vagy a megfelelő az éles környezetben?</span><span class="sxs-lookup"><span data-stu-id="e2b8b-180">What if you now want toocreate an additional development environment with hello same parameters, or a production environment that matches it?</span></span> <span data-ttu-id="e2b8b-181">Erőforrás-kezelő a környezet összes hello paramétereit meghatározó JSON-sablonokat használ.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-181">Resource Manager uses JSON templates that define all hello parameters for your environment.</span></span> <span data-ttu-id="e2b8b-182">A JSON-sablon Vezérlőpultjának kimenő teljes környezetek létrehozása.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-182">You build out entire environments by referencing this JSON template.</span></span> <span data-ttu-id="e2b8b-183">Is [JSON sablonok létrehozása manuálisan](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) vagy a meglévő környezetben toocreate hello JSON-sablon exportálása meg.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-183">You can [build JSON templates manually](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) or export an existing environment toocreate hello JSON template for you.</span></span> <span data-ttu-id="e2b8b-184">Használjon [az exportálása](/cli/azure/group#export) tooexport az erőforráscsoport az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-184">Use [az group export](/cli/azure/group#export) tooexport your resource group as follows:</span></span>
 
 ```azurecli
 az group export --name myResourceGroup > myResourceGroup.json
 ```
 
-<span data-ttu-id="cbe37-185">Ezzel a paranccsal létrejön az `myResourceGroup.json` az aktuális munkakönyvtárban fájlban.</span><span class="sxs-lookup"><span data-stu-id="cbe37-185">This command creates the `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="cbe37-186">Ha a sablon alapján hoz létre egy olyan környezetben, az összes erőforrás nevét kéri.</span><span class="sxs-lookup"><span data-stu-id="cbe37-186">When you create an environment from this template, you are prompted for all the resource names.</span></span> <span data-ttu-id="cbe37-187">Töltheti fel ezeket a neveket a sablon fájlban adja hozzá a `--include-parameter-default-value` paramétert a `az group export` parancsot.</span><span class="sxs-lookup"><span data-stu-id="cbe37-187">You can populate these names in your template file by adding the `--include-parameter-default-value` parameter to the `az group export` command.</span></span> <span data-ttu-id="cbe37-188">Az erőforrás nevének megadása a JSON-sablon szerkesztése vagy [parameters.json fájl létrehozása](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) , amely meghatározza, hogy az erőforrás nevét.</span><span class="sxs-lookup"><span data-stu-id="cbe37-188">Edit your JSON template to specify the resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies the resource names.</span></span>
+<span data-ttu-id="e2b8b-185">Ezzel a paranccsal létrejön hello `myResourceGroup.json` az aktuális munkakönyvtárban fájlban.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-185">This command creates hello `myResourceGroup.json` file in your current working directory.</span></span> <span data-ttu-id="e2b8b-186">Ha a sablon alapján hoz létre egy olyan környezetben, az összes hello erőforrás nevét kéri.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-186">When you create an environment from this template, you are prompted for all hello resource names.</span></span> <span data-ttu-id="e2b8b-187">Töltheti fel ezeket a neveket a sablon fájlban adja hozzá a hello `--include-parameter-default-value` paraméter toohello `az group export` parancsot.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-187">You can populate these names in your template file by adding hello `--include-parameter-default-value` parameter toohello `az group export` command.</span></span> <span data-ttu-id="e2b8b-188">A JSON sablonok toospecify hello erőforrás nevét, szerkesztése vagy [parameters.json fájl létrehozása](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) , amely meghatározza a hello erőforrás nevét.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-188">Edit your JSON template toospecify hello resource names, or [create a parameters.json file](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) that specifies hello resource names.</span></span>
 
-<span data-ttu-id="cbe37-189">A sablon olyan környezetet hozhat létre, [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="cbe37-189">To create an environment from your template, use [az group deployment create](/cli/azure/group/deployment#create) as follows:</span></span>
+<span data-ttu-id="e2b8b-189">a sablont, használja a környezet toocreate [az csoport központi telepítésének létrehozása](/cli/azure/group/deployment#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="e2b8b-189">toocreate an environment from your template, use [az group deployment create](/cli/azure/group/deployment#create) as follows:</span></span>
 
 ```azurecli
 az group deployment create \
@@ -574,7 +574,7 @@ az group deployment create \
     --template-file myResourceGroup.json
 ```
 
-<span data-ttu-id="cbe37-190">Előfordulhat, hogy szeretné olvasni [felügyeleticsomag-sablonok telepítésével kapcsolatos további](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="cbe37-190">You might want to read [more about how to deploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="cbe37-191">További tudnivalók Növekményesen környezetek frissítése, használja a paraméterek fájlját, és egyetlen tárolási helyen sablonok elérésére.</span><span class="sxs-lookup"><span data-stu-id="cbe37-191">Learn about how to incrementally update environments, use the parameters file, and access templates from a single storage location.</span></span>
+<span data-ttu-id="e2b8b-190">Érdemes lehet tooread [kapcsolatos további sablonokból toodeploy](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="e2b8b-190">You might want tooread [more about how toodeploy from templates](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="e2b8b-191">További tudnivalók tooincrementally frissítés környezetekben, hogyan hello paraméterek fájlt használja, és sablonok érheti el egyetlen tárolási helyet.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-191">Learn about how tooincrementally update environments, use hello parameters file, and access templates from a single storage location.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cbe37-192">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="cbe37-192">Next steps</span></span>
-<span data-ttu-id="cbe37-193">Most már készen áll a több hálózati összetevőkkel és virtuális gépek használatának megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="cbe37-193">Now you're ready to begin working with multiple networking components and VMs.</span></span> <span data-ttu-id="cbe37-194">Ez a minta-környezet segítségével bevezetett alapösszetevőket itt használatával, az alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="cbe37-194">You can use this sample environment to build out your application by using the core components introduced here.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e2b8b-192">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e2b8b-192">Next steps</span></span>
+<span data-ttu-id="e2b8b-193">Most már készen áll a hálózati összetevők és a virtuális gépek használata toobegin most.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-193">Now you're ready toobegin working with multiple networking components and VMs.</span></span> <span data-ttu-id="e2b8b-194">Ki az alkalmazást a minta környezet toobuild bevezetett hello alapösszetevőket itt segítségével is használhatók.</span><span class="sxs-lookup"><span data-stu-id="e2b8b-194">You can use this sample environment toobuild out your application by using hello core components introduced here.</span></span>

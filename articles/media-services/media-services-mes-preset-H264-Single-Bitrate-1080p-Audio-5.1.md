@@ -1,6 +1,6 @@
 ---
-title: H264 Egyetlen Bitrate 1080p hang 5.1 |} Microsoft Docs
-description: "A témakör áttekintést a ** H264 egyetlen Bitrate 1080p hang 5.1* * feladat, előre definiált."
+title: aaaH264 egyetlen Bitrate 1080p hang 5.1 |} Microsoft Docs
+description: "hello a témakör áttekintést hello ** H264 egyetlen Bitrate 1080p hang 5.1* * feladat, előre definiált."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 07440d18afa83c571f1568a2e43fb6bca5e8b452
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8ee5f34f4fd84c615ca8c5e7554e9ec832f54a25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-single-bitrate-1080p-audio-51"></a><span data-ttu-id="be03e-103">H264 Egyetlen Bitrate 1080p hang 5.1</span><span class="sxs-lookup"><span data-stu-id="be03e-103">H264 Single Bitrate 1080p Audio 5.1</span></span>
-<span data-ttu-id="be03e-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="be03e-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="be03e-105">Használhatja a `preset name` adhatja meg, melyik formátumba kódolja a médiafájl szeretné.</span><span class="sxs-lookup"><span data-stu-id="be03e-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="be03e-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="be03e-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="be03e-107">Az egyéni készletet a kódoló majd át lesz.</span><span class="sxs-lookup"><span data-stu-id="be03e-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="be03e-108">Ez által támogatott összes előre definiált nevek listája `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="be03e-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-single-bitrate-1080p-audio-51"></a><span data-ttu-id="d7755-103">H264 Egyetlen Bitrate 1080p hang 5.1</span><span class="sxs-lookup"><span data-stu-id="d7755-103">H264 Single Bitrate 1080p Audio 5.1</span></span>
+<span data-ttu-id="d7755-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="d7755-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="d7755-105">Használhatja a `preset name` mely formátumú fájlba szeretné tooencode toospecify a médiafájl.</span><span class="sxs-lookup"><span data-stu-id="d7755-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="d7755-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="d7755-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="d7755-107">Majd át kellene hello egyéni előre definiált toohello kódoló.</span><span class="sxs-lookup"><span data-stu-id="d7755-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="d7755-108">Minden hello hello listáját az adott néven beállítás által támogatott nevek `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="d7755-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="be03e-109">Ez a témakör bemutatja a `H264 Single Bitrate 1080p Audio 5.1` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="be03e-109">This topic shows the `H264 Single Bitrate 1080p Audio 5.1` preset in XML and JSON format..</span></span>  
+ <span data-ttu-id="d7755-109">Ez a témakör bemutatja a hello `H264 Single Bitrate 1080p Audio 5.1` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="d7755-109">This topic shows hello `H264 Single Bitrate 1080p Audio 5.1` preset in XML and JSON format..</span></span>  
   
- <span data-ttu-id="be03e-110">Ezt a készletet hoz létre egyetlen MP4-fájl egy sávszélességű 6750 kbit/s és AAC 5.1 hang.</span><span class="sxs-lookup"><span data-stu-id="be03e-110">This preset produces a single MP4 file with a bitrate of 6750 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="be03e-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. a készletet, vizsgálja meg az XML- vagy JSON-ban megadva.</span><span class="sxs-lookup"><span data-stu-id="be03e-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="be03e-112">Az egyes azt jelenti, hogy milyen egyes elemei, és az érvényes értékek az egyes elemekhez, tekintse meg a [Media Encoder Standard séma](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="be03e-112">For explanations of what each element means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
+ <span data-ttu-id="d7755-110">Ezt a készletet hoz létre egyetlen MP4-fájl egy sávszélességű 6750 kbit/s és AAC 5.1 hang.</span><span class="sxs-lookup"><span data-stu-id="d7755-110">This preset produces a single MP4 file with a bitrate of 6750 kbps, and AAC 5.1 audio.</span></span> <span data-ttu-id="d7755-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. Ennek az adott néven beállítás esetében vizsgálja meg, XML vagy az alább megadott JSON hello.</span><span class="sxs-lookup"><span data-stu-id="d7755-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="d7755-112">További ismereteket szeretnének elsajátítani a azt jelenti, hogy milyen egyes elemei, és hello az érvényes értékek az egyes elemek: hello [Media Encoder Standard séma](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="d7755-112">For explanations of what each element means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>  
   
- <span data-ttu-id="be03e-113">XML</span><span class="sxs-lookup"><span data-stu-id="be03e-113">XML</span></span>  
+ <span data-ttu-id="d7755-113">XML</span><span class="sxs-lookup"><span data-stu-id="d7755-113">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="be03e-114">JSON</span><span class="sxs-lookup"><span data-stu-id="be03e-114">JSON</span></span>  
+ <span data-ttu-id="d7755-114">JSON</span><span class="sxs-lookup"><span data-stu-id="d7755-114">JSON</span></span>  
   
 ```  
 {  

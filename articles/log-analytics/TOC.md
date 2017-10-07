@@ -44,7 +44,7 @@
 ### [Gyakori kérdések](log-analytics-log-search-faq.md)
 ### [Naplókeresés – Áttekintés](log-analytics-log-search-new.md)
 ### [Naplókeresési portálok](log-analytics-log-search-portals.md)
-#### [Naplókeresési portál használata](log-analytics-log-search-log-search-portal.md)
+#### [Hello napló keresése a portálon](log-analytics-log-search-log-search-portal.md)
 ### [Váltás az örökölt nyelvről](log-analytics-log-search-transition.md)
 ### [Folyamat-összekötő](log-analytics-flow-tutorial.md)
 

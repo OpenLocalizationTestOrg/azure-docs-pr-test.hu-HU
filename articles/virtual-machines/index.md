@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Virtual Machines dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg a Windows és Linux virtuális gépek létrehozását, üzembe helyezését és kezelését. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
+title: "aaaAzure Virtual Machines – dokumentáció - oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate, telepítését és kezelését Windows vagy Linux rendszerű virtuális gépek. Oktatóanyagok, API-referenciák, és egyéb dokumentációk."
 services: virtual-machines
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: da4f6ab3c7f0c4f96440b3008e6ac62d94ea2406
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95fa1ff5d7725c4405b0ad240926e0e16d7b3c29
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="virtual-machines-documentation"></a>Virtual Machines-dokumentáció
 
-Ismerje meg az Azure virtuális gépek létrehozásának eljárást. Az oktatóanyagok, API-referenciák és egyéb dokumentációk bemutatják, hogyan hozhat létre és telepíthet Windows vagy Linux rendszerű virtuális gépeket, valamint összetett virtuálisgép-sablonokat.
+Megtudhatja, hogyan toocreate Azure virtuális gépek. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt mutatja be toocreate és központi telepítése a Windows és Linux rendszerű virtuális gépek, valamint összetett Virtuálisgép-sablonokat.
 
 <ul class="panelContent cardsFTitle">
     <li>

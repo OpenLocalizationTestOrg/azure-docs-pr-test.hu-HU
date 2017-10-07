@@ -9,8 +9,8 @@
 ## [Beállítások kezelése](multi-factor-authentication-end-user-manage-settings.md)
 ## [Hibaelhárítás](multi-factor-authentication-end-user-troubleshoot.md)
 ## [Alkalmazásjelszavak beállítása](multi-factor-authentication-end-user-app-passwords.md)
-## A Microsoft Authenticator használata
-### [Bevezetés az alkalmazás használatába](microsoft-authenticator-app-how-to.md)
+## Hello Microsoft Authenticator alkalmazással
+### [Ismerkedés a hello alkalmazás](microsoft-authenticator-app-how-to.md)
 ### [Bejelentkezés telefonnal](microsoft-authenticator-app-phone-signin-faq.md)
 ### [Gyakori kérdések](microsoft-authenticator-app-faq.md)
 # Erőforrások

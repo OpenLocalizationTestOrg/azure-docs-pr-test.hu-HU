@@ -1,6 +1,6 @@
 ---
-title: "A HBase - Azure valós idejű Twitter sentiment elemzése |} Microsoft Docs"
-description: "További információt a HBase egy HDInsight (Hadoop) fürt segítségével Twitter big Data típusú adatok elemzésének valós idejű céggel kapcsolatos véleményeket."
+title: "valós idejű Twitter sentiment aaaAnalyze a HBase - Azure |} Microsoft Docs"
+description: "Megtudhatja, hogyan big Data típusú adatok a HBase egy HDInsight (Hadoop) fürt segítségével Twitter elemzésének toodo valós idejű céggel kapcsolatos véleményeket."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jgao
-ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 87e5c0c0a90d222a3f0bc3c3f3fce1e938320480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a><span data-ttu-id="1513e-103">A HBase a hdinsight eszközben valós idejű Twitter sentiment elemzése</span><span class="sxs-lookup"><span data-stu-id="1513e-103">Analyze real-time Twitter sentiment with HBase in HDInsight</span></span>
-<span data-ttu-id="1513e-104">További információt a valós idejű [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big data Twitter a hdinsight HBase-fürtöt használatával.</span><span class="sxs-lookup"><span data-stu-id="1513e-104">Learn how to do real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) of big data from Twitter by using a HBase cluster in HDInsight.</span></span>
+# <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a><span data-ttu-id="71715-103">A HBase a hdinsight eszközben valós idejű Twitter sentiment elemzése</span><span class="sxs-lookup"><span data-stu-id="71715-103">Analyze real-time Twitter sentiment with HBase in HDInsight</span></span>
+<span data-ttu-id="71715-104">Megtudhatja, hogyan valós idejű toodo [véleményeket elemzés](http://en.wikipedia.org/wiki/Sentiment_analysis) a big data Twitter a hdinsight HBase-fürtöt használatával.</span><span class="sxs-lookup"><span data-stu-id="71715-104">Learn how toodo real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) of big data from Twitter by using a HBase cluster in HDInsight.</span></span>
 
-<span data-ttu-id="1513e-105">Közösségi webhelyek egyik fő növeli a big Data típusú adatok alkalmazására vonatkozóan.</span><span class="sxs-lookup"><span data-stu-id="1513e-105">Social websites are one of the major driving forces for big data adoption.</span></span> <span data-ttu-id="1513e-106">Nyilvános API-k, például a Twitter helyek által biztosított az hasznos adatforrást ismertetése népszerű trendeket és elemzésére.</span><span class="sxs-lookup"><span data-stu-id="1513e-106">Public APIs provided by sites like Twitter are a useful source of data for analyzing and understanding popular trends.</span></span> <span data-ttu-id="1513e-107">Ebben az oktatóanyagban a konzol szolgáltatásalkalmazás, és hajtsa végre a következő egy ASP.NET-webalkalmazás fejlesztése:</span><span class="sxs-lookup"><span data-stu-id="1513e-107">In this tutorial, you develop a console streaming service application and an ASP.NET web application to perform the following:</span></span>
+<span data-ttu-id="71715-105">Közösségi webhelyek rendszer egyik hello fő vezetői kényszeríti a big Data típusú adatok alkalmazására vonatkozóan.</span><span class="sxs-lookup"><span data-stu-id="71715-105">Social websites are one of hello major driving forces for big data adoption.</span></span> <span data-ttu-id="71715-106">Nyilvános API-k, például a Twitter helyek által biztosított az hasznos adatforrást ismertetése népszerű trendeket és elemzésére.</span><span class="sxs-lookup"><span data-stu-id="71715-106">Public APIs provided by sites like Twitter are a useful source of data for analyzing and understanding popular trends.</span></span> <span data-ttu-id="71715-107">Ebben az oktatóanyagban egy szolgáltatási alkalmazás és egy ASP.NET web application tooperform hello következő konzol fejlesztése:</span><span class="sxs-lookup"><span data-stu-id="71715-107">In this tutorial, you develop a console streaming service application and an ASP.NET web application tooperform hello following:</span></span>
 
 ![HDInsight HBase elemzése Twitter véleményeket][img-app-arch]
 
-* <span data-ttu-id="1513e-109">Az adatfolyam-továbbítási alkalmazást</span><span class="sxs-lookup"><span data-stu-id="1513e-109">The streaming application</span></span>
+* <span data-ttu-id="71715-109">adatfolyam-alkalmazás hello</span><span class="sxs-lookup"><span data-stu-id="71715-109">hello streaming application</span></span>
 
-  * <span data-ttu-id="1513e-110">földrajzi címkézett Twitter-üzeneteket beolvasni valós időben a Twitter streaming API használatával</span><span class="sxs-lookup"><span data-stu-id="1513e-110">get geo-tagged tweets in real time by using the Twitter streaming API</span></span>
-  * <span data-ttu-id="1513e-111">értékelje ki a céggel kapcsolatos véleményeket, a Twitter-üzenetek</span><span class="sxs-lookup"><span data-stu-id="1513e-111">evaluate the sentiment of these tweets</span></span>
-  * <span data-ttu-id="1513e-112">HBase-ban tárolja a céggel kapcsolatos véleményeket adatokat a Microsoft HBase SDK használatával</span><span class="sxs-lookup"><span data-stu-id="1513e-112">store the sentiment information in HBase by using the Microsoft HBase SDK</span></span>
-* <span data-ttu-id="1513e-113">Az Azure Websitesra alkalmazás</span><span class="sxs-lookup"><span data-stu-id="1513e-113">The Azure Websites application</span></span>
+  * <span data-ttu-id="71715-110">első Twitter földrajzi címkézett-üzenetek valós időben Twitterről hello segítségével streamelési API</span><span class="sxs-lookup"><span data-stu-id="71715-110">get geo-tagged tweets in real time by using hello Twitter streaming API</span></span>
+  * <span data-ttu-id="71715-111">értékelje ki, a Twitter-üzeneteket hello céggel kapcsolatos véleményeket</span><span class="sxs-lookup"><span data-stu-id="71715-111">evaluate hello sentiment of these tweets</span></span>
+  * <span data-ttu-id="71715-112">információk a HBase segítségével hello Microsoft HBase SDK hello véleményeket tárolásához</span><span class="sxs-lookup"><span data-stu-id="71715-112">store hello sentiment information in HBase by using hello Microsoft HBase SDK</span></span>
+* <span data-ttu-id="71715-113">hello Azure Websitesra alkalmazás</span><span class="sxs-lookup"><span data-stu-id="71715-113">hello Azure Websites application</span></span>
 
-  * <span data-ttu-id="1513e-114">a Bing maps valós idejű statisztikai eredmények ábrázolhatók ASP.NET webes alkalmazás használatával.</span><span class="sxs-lookup"><span data-stu-id="1513e-114">plot the real-time statistical results on Bing maps by using an ASP.NET web application.</span></span> <span data-ttu-id="1513e-115">Az alábbi képernyőfelvételen a Twitter-üzeneteket a képi megjelenítés hasonlít:</span><span class="sxs-lookup"><span data-stu-id="1513e-115">A visualization of the tweets is similar to the following screenshot:</span></span>
+  * <span data-ttu-id="71715-114">a Bing maps statisztikai eredmények valós idejű hello megrajzolásához ASP.NET webes alkalmazás használatával.</span><span class="sxs-lookup"><span data-stu-id="71715-114">plot hello real-time statistical results on Bing maps by using an ASP.NET web application.</span></span> <span data-ttu-id="71715-115">Hello Twitter-üzeneteket a képi megjelenítés a következő képernyőkép hasonló toohello:</span><span class="sxs-lookup"><span data-stu-id="71715-115">A visualization of hello tweets is similar toohello following screenshot:</span></span>
 
     ![hdinsight.hbase.Twitter.sentiment.Bing.Map][img-bing-map]
 
-    <span data-ttu-id="1513e-117">Megtörténik az egyes Kulcsszavak egyfajta eléréséhez, ha a Twitter-üzeneteket a kifejezett véleményével pozitív, a negatív vagy a semleges lekérdezés Twitter-üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="1513e-117">You are able to query tweets with certain keywords to get a sense of if the expressed opinion in the tweets is positive, negative, or neutral.</span></span>
+    <span data-ttu-id="71715-117">Biztos képes tooquery Twitter-üzenetek az egyes Kulcsszavak tooget egyfajta hello Twitter-üzeneteket a kifejezett hello véleményével pozitív, a negatív vagy a semleges esetén.</span><span class="sxs-lookup"><span data-stu-id="71715-117">You are able tooquery tweets with certain keywords tooget a sense of if hello expressed opinion in hello tweets is positive, negative, or neutral.</span></span>
 
-<span data-ttu-id="1513e-118">Egy Visual Studio megoldás teljes mintát a Githubon található: [valós idejű közösségimédia véleményeket elemzés app](https://github.com/maxluk/tweet-sentiment).</span><span class="sxs-lookup"><span data-stu-id="1513e-118">A complete Visual Studio solution sample can be found on GitHub: [Realtime social sentiment analysis app](https://github.com/maxluk/tweet-sentiment).</span></span>
+<span data-ttu-id="71715-118">Egy Visual Studio megoldás teljes mintát a Githubon található: [valós idejű közösségimédia véleményeket elemzés app](https://github.com/maxluk/tweet-sentiment).</span><span class="sxs-lookup"><span data-stu-id="71715-118">A complete Visual Studio solution sample can be found on GitHub: [Realtime social sentiment analysis app](https://github.com/maxluk/tweet-sentiment).</span></span>
 
-### <a name="prerequisites"></a><span data-ttu-id="1513e-119">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="1513e-119">Prerequisites</span></span>
-<span data-ttu-id="1513e-120">Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="1513e-120">Before you begin this tutorial, you must have the following:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="71715-119">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="71715-119">Prerequisites</span></span>
+<span data-ttu-id="71715-120">Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="71715-120">Before you begin this tutorial, you must have hello following:</span></span>
 
-* <span data-ttu-id="1513e-121">**A HDInsight HBase-fürtöt**.</span><span class="sxs-lookup"><span data-stu-id="1513e-121">**An HBase cluster in HDInsight**.</span></span> <span data-ttu-id="1513e-122">Fürtök létrehozására vonatkozó utasításokért lásd: [HBase a Hadoop HDInsight használatának megkezdésében][hbase-get-started].</span><span class="sxs-lookup"><span data-stu-id="1513e-122">For instructions about creating clusters, see  [Get started using HBase with Hadoop in HDInsight][hbase-get-started].</span></span> 
+* <span data-ttu-id="71715-121">**A HDInsight HBase-fürtöt**.</span><span class="sxs-lookup"><span data-stu-id="71715-121">**An HBase cluster in HDInsight**.</span></span> <span data-ttu-id="71715-122">Fürtök létrehozására vonatkozó utasításokért lásd: [HBase a Hadoop HDInsight használatának megkezdésében][hbase-get-started].</span><span class="sxs-lookup"><span data-stu-id="71715-122">For instructions about creating clusters, see  [Get started using HBase with Hadoop in HDInsight][hbase-get-started].</span></span> 
 
-* <span data-ttu-id="1513e-123">**A munkaállomás** a Visual Studio 2013 vagy 2015/2017 telepítve.</span><span class="sxs-lookup"><span data-stu-id="1513e-123">**A workstation** with Visual Studio 2013/2015/2017 installed.</span></span> <span data-ttu-id="1513e-124">Útmutatásért lásd: [Visual Studio telepítése](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span><span class="sxs-lookup"><span data-stu-id="1513e-124">For instructions, see [Installing Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span></span>
+* <span data-ttu-id="71715-123">**A munkaállomás** a Visual Studio 2013 vagy 2015/2017 telepítve.</span><span class="sxs-lookup"><span data-stu-id="71715-123">**A workstation** with Visual Studio 2013/2015/2017 installed.</span></span> <span data-ttu-id="71715-124">Útmutatásért lásd: [Visual Studio telepítése](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span><span class="sxs-lookup"><span data-stu-id="71715-124">For instructions, see [Installing Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span></span>
 
-## <a name="create-a-twitter-application-id-and-secrets"></a><span data-ttu-id="1513e-125">Egy alkalmazás Twitter-Azonosítót és titkos kulcsok létrehozása</span><span class="sxs-lookup"><span data-stu-id="1513e-125">Create a Twitter application ID and secrets</span></span>
-<span data-ttu-id="1513e-126">A streamelési API-k használata Twitter [OAuth](http://oauth.net/) kérések engedélyezésére.</span><span class="sxs-lookup"><span data-stu-id="1513e-126">The Twitter streaming APIs use [OAuth](http://oauth.net/) to authorize requests.</span></span> <span data-ttu-id="1513e-127">Az első lépés lehetővé teszi az OAuth, hogy hozzon létre egy új alkalmazást a Twitter fejlesztői helyen.</span><span class="sxs-lookup"><span data-stu-id="1513e-127">The first step to use OAuth is to create a new application on the Twitter developer site.</span></span>
+## <a name="create-a-twitter-application-id-and-secrets"></a><span data-ttu-id="71715-125">Egy alkalmazás Twitter-Azonosítót és titkos kulcsok létrehozása</span><span class="sxs-lookup"><span data-stu-id="71715-125">Create a Twitter application ID and secrets</span></span>
+<span data-ttu-id="71715-126">hello streamelési API-k használata Twitter [OAuth](http://oauth.net/) tooauthorize kérelmeket.</span><span class="sxs-lookup"><span data-stu-id="71715-126">hello Twitter streaming APIs use [OAuth](http://oauth.net/) tooauthorize requests.</span></span> <span data-ttu-id="71715-127">hello első lépés toouse OAuth toocreate egy új alkalmazást hello Twitter fejlesztői helyen.</span><span class="sxs-lookup"><span data-stu-id="71715-127">hello first step toouse OAuth is toocreate a new application on hello Twitter developer site.</span></span>
 
-<span data-ttu-id="1513e-128">**Twitter-Alkalmazásazonosító és titkos kulcsok létrehozása**</span><span class="sxs-lookup"><span data-stu-id="1513e-128">**To create Twitter application ID and secrets**</span></span>
+<span data-ttu-id="71715-128">**Twitter-Alkalmazásazonosító toocreate és a titkos kulcsok**</span><span class="sxs-lookup"><span data-stu-id="71715-128">**toocreate Twitter application ID and secrets**</span></span>
 
-1. <span data-ttu-id="1513e-129">Jelentkezzen be [alkalmazások Twitter](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="1513e-129">Sign in to [Twitter Apps](https://apps.twitter.com/).</span></span> <span data-ttu-id="1513e-130">Kattintson a **feliratkozás most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="1513e-130">Click the **Sign up now** link if you don't have a Twitter account.</span></span>
-2. <span data-ttu-id="1513e-131">Kattintson a **új alkalmazás létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="1513e-131">Click **Create New App**.</span></span>
-3. <span data-ttu-id="1513e-132">Adjon meg egy **neve**, **leírás**, és **webhely**.</span><span class="sxs-lookup"><span data-stu-id="1513e-132">Enter a **Name**, **Description**, and **Website**.</span></span> <span data-ttu-id="1513e-133">A Twitter-alkalmazás neve lehet egy egyedi nevet.</span><span class="sxs-lookup"><span data-stu-id="1513e-133">The Twitter application name must be a unique name.</span></span> <span data-ttu-id="1513e-134">A webhely nem valóban mezővel.</span><span class="sxs-lookup"><span data-stu-id="1513e-134">The Website field is not really used.</span></span> <span data-ttu-id="1513e-135">Nem kell lennie egy érvényes URL-címet.</span><span class="sxs-lookup"><span data-stu-id="1513e-135">It doesn't have to be a valid URL.</span></span>
-4. <span data-ttu-id="1513e-136">Ellenőrizze **Igen, elfogadom**, és kattintson a **az Twitter-alkalmazás létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="1513e-136">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
-5. <span data-ttu-id="1513e-137">Kattintson a **engedélyek** fülre, majd **csak olvasható**.</span><span class="sxs-lookup"><span data-stu-id="1513e-137">Click the **Permissions** tab, and then click **Read only**.</span></span> <span data-ttu-id="1513e-138">A csak olvasási jogosultságot is elegendő ehhez az oktatóanyaghoz.</span><span class="sxs-lookup"><span data-stu-id="1513e-138">The read-only permission is sufficient for this tutorial.</span></span>
-6. <span data-ttu-id="1513e-139">Kattintson a **kulcsok és a hozzáférési jogkivonatok** fülre.</span><span class="sxs-lookup"><span data-stu-id="1513e-139">Click the **Keys and Access Tokens** tab.</span></span>
-7. <span data-ttu-id="1513e-140">Kattintson a **a hozzáférési jogkivonat létrehozása** az oldal alján.</span><span class="sxs-lookup"><span data-stu-id="1513e-140">Click **Create my access token** on the bottom of the page.</span></span>
-9. <span data-ttu-id="1513e-141">Másolás a **(API-kulcs) kulcsa**, **felhasználói titok (API titkos)**, **hozzáférési jogkivonat**, és **Access token titkos** értékeket.</span><span class="sxs-lookup"><span data-stu-id="1513e-141">Copy the **Consumer Key (API Key)**, **Consumer Secret (API Secret)**, **Access token**, and **Access token secret** values.</span></span> <span data-ttu-id="1513e-142">Az oktatóanyag későbbi részében szüksége ezeket az értékeket.</span><span class="sxs-lookup"><span data-stu-id="1513e-142">You need these values later in the tutorial.</span></span>
+1. <span data-ttu-id="71715-129">Jelentkezzen be a túl[Twitter alkalmazások](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="71715-129">Sign in too[Twitter Apps](https://apps.twitter.com/).</span></span> <span data-ttu-id="71715-130">Kattintson a hello **feliratkozás most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="71715-130">Click hello **Sign up now** link if you don't have a Twitter account.</span></span>
+2. <span data-ttu-id="71715-131">Kattintson a **új alkalmazás létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="71715-131">Click **Create New App**.</span></span>
+3. <span data-ttu-id="71715-132">Adjon meg egy **neve**, **leírás**, és **webhely**.</span><span class="sxs-lookup"><span data-stu-id="71715-132">Enter a **Name**, **Description**, and **Website**.</span></span> <span data-ttu-id="71715-133">hello Twitter alkalmazásnév egy egyedi nevet kell lennie.</span><span class="sxs-lookup"><span data-stu-id="71715-133">hello Twitter application name must be a unique name.</span></span> <span data-ttu-id="71715-134">hello Website mezője valóban nem használatos.</span><span class="sxs-lookup"><span data-stu-id="71715-134">hello Website field is not really used.</span></span> <span data-ttu-id="71715-135">Nincs beállítva a toobe egy érvényes URL-címet.</span><span class="sxs-lookup"><span data-stu-id="71715-135">It doesn't have toobe a valid URL.</span></span>
+4. <span data-ttu-id="71715-136">Ellenőrizze **Igen, elfogadom**, és kattintson a **az Twitter-alkalmazás létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="71715-136">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
+5. <span data-ttu-id="71715-137">Kattintson a hello **engedélyek** fülre, majd **csak olvasható**.</span><span class="sxs-lookup"><span data-stu-id="71715-137">Click hello **Permissions** tab, and then click **Read only**.</span></span> <span data-ttu-id="71715-138">hello csak olvasási jogosultságot is elegendő ehhez az oktatóanyaghoz.</span><span class="sxs-lookup"><span data-stu-id="71715-138">hello read-only permission is sufficient for this tutorial.</span></span>
+6. <span data-ttu-id="71715-139">Kattintson a hello **kulcsok és a hozzáférési jogkivonatok** fülre.</span><span class="sxs-lookup"><span data-stu-id="71715-139">Click hello **Keys and Access Tokens** tab.</span></span>
+7. <span data-ttu-id="71715-140">Kattintson a **a hozzáférési jogkivonat létrehozása** a hello hello lap alján.</span><span class="sxs-lookup"><span data-stu-id="71715-140">Click **Create my access token** on hello bottom of hello page.</span></span>
+9. <span data-ttu-id="71715-141">Másolás hello **(API-kulcs) kulcsa**, **felhasználói titok (API titkos)**, **hozzáférési jogkivonat**, és **Access token titkos** értékeket.</span><span class="sxs-lookup"><span data-stu-id="71715-141">Copy hello **Consumer Key (API Key)**, **Consumer Secret (API Secret)**, **Access token**, and **Access token secret** values.</span></span> <span data-ttu-id="71715-142">Ezek az értékek hello oktatóanyag későbbi részében szüksége.</span><span class="sxs-lookup"><span data-stu-id="71715-142">You need these values later in hello tutorial.</span></span>
 
-    > <span data-ttu-id="1513e-143">! [MEGJEGYZÉS] A teszt OAuth gomb többé nem működik.</span><span class="sxs-lookup"><span data-stu-id="1513e-143">![NOTE] The Test OAuth button does not work anymore.</span></span>
+    > <span data-ttu-id="71715-143">! [Megjegyzés] hello teszt OAuth gomb többé nem működik.</span><span class="sxs-lookup"><span data-stu-id="71715-143">![NOTE] hello Test OAuth button does not work anymore.</span></span>
 
-## <a name="create-twitter-streaming-service"></a><span data-ttu-id="1513e-144">Twitter-adatfolyam-szolgáltatás létrehozása</span><span class="sxs-lookup"><span data-stu-id="1513e-144">Create Twitter streaming service</span></span>
-<span data-ttu-id="1513e-145">Meg kell Twitter-üzeneteket, az alkalmazások létrehozásához tweetet véleményeket pontszám kiszámításához, és a feldolgozott tweetet szavak küldeni a HBase.</span><span class="sxs-lookup"><span data-stu-id="1513e-145">You need to create an application to get tweets, calculate tweet sentiment score, and send the processed tweet words to HBase.</span></span>
+## <a name="create-twitter-streaming-service"></a><span data-ttu-id="71715-144">Twitter-adatfolyam-szolgáltatás létrehozása</span><span class="sxs-lookup"><span data-stu-id="71715-144">Create Twitter streaming service</span></span>
+<span data-ttu-id="71715-145">Egy alkalmazás tooget Twitter-üzeneteket, toocreate kell tweetet véleményeket pontszám kiszámításához, és a feldolgozott hello tweetet szavak tooHBase küldése.</span><span class="sxs-lookup"><span data-stu-id="71715-145">You need toocreate an application tooget tweets, calculate tweet sentiment score, and send hello processed tweet words tooHBase.</span></span>
 
-<span data-ttu-id="1513e-146">**Az adatfolyam-továbbítási alkalmazások létrehozásához**</span><span class="sxs-lookup"><span data-stu-id="1513e-146">**To create the streaming application**</span></span>
+<span data-ttu-id="71715-146">**adatfolyam-alkalmazás toocreate hello**</span><span class="sxs-lookup"><span data-stu-id="71715-146">**toocreate hello streaming application**</span></span>
 
-1. <span data-ttu-id="1513e-147">Nyissa meg **Visual Studio**, és hozzon létre egy Visual C# konzolalkalmazást nevű **TweetSentimentStreaming**.</span><span class="sxs-lookup"><span data-stu-id="1513e-147">Open **Visual Studio**, and create a Visual C# console application called **TweetSentimentStreaming**.</span></span>
-2. <span data-ttu-id="1513e-148">A **Csomagkezelő konzol**, a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="1513e-148">From **Package Manager Console**, run the following commands:</span></span>
+1. <span data-ttu-id="71715-147">Nyissa meg **Visual Studio**, és hozzon létre egy Visual C# konzolalkalmazást nevű **TweetSentimentStreaming**.</span><span class="sxs-lookup"><span data-stu-id="71715-147">Open **Visual Studio**, and create a Visual C# console application called **TweetSentimentStreaming**.</span></span>
+2. <span data-ttu-id="71715-148">A **Csomagkezelő konzol**- ben futtassa hello következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="71715-148">From **Package Manager Console**, run hello following commands:</span></span>
 
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
 
-    <span data-ttu-id="1513e-149">Ezek a parancsok telepítése a [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely a HBase fürt eléréséhez az ügyféloldali kódtár, és a [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) csomagot, amely a Twitter API eléréséhez használt.</span><span class="sxs-lookup"><span data-stu-id="1513e-149">These commands install the [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is the client library to access the HBase cluster, and the [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) package, which is used to access the Twitter API.</span></span>
+    <span data-ttu-id="71715-149">Ezek a parancsok telepítése hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely hello ügyfél könyvtár tooaccess hello HBase-fürtöt, és hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) csomag, amely használt tooaccess hello Twitter API.</span><span class="sxs-lookup"><span data-stu-id="71715-149">These commands install hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is hello client library tooaccess hello HBase cluster, and hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) package, which is used tooaccess hello Twitter API.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="1513e-150">A minta a cikk ezt használja a fentiekben megadott verzióval tesztelték.</span><span class="sxs-lookup"><span data-stu-id="1513e-150">The sample used in this article has been tested using the version specified above.</span></span>  <span data-ttu-id="1513e-151">Eltávolíthatja a - verzió kapcsoló telepítse a legújabb verziót.</span><span class="sxs-lookup"><span data-stu-id="1513e-151">You can remove the -version switch to install the latest version.</span></span>
+   > <span data-ttu-id="71715-150">a cikk ezt használja hello minta tesztelték fent megadott hello verziójával.</span><span class="sxs-lookup"><span data-stu-id="71715-150">hello sample used in this article has been tested using hello version specified above.</span></span>  <span data-ttu-id="71715-151">Eltávolíthatja hello - verzióját switch tooinstall hello legújabb verzióra.</span><span class="sxs-lookup"><span data-stu-id="71715-151">You can remove hello -version switch tooinstall hello latest version.</span></span>
    >
    >
-3. <span data-ttu-id="1513e-152">A **Megoldáskezelőben**, adja hozzá **System.Configuration** a hivatkozásával.</span><span class="sxs-lookup"><span data-stu-id="1513e-152">From **Solution Explorer**, add **System.Configuration** to the reference.</span></span>
-4. <span data-ttu-id="1513e-153">Egy új osztályt fájl hozzáadása a projekthez nevű **HBaseWriter.cs**, majd cserélje le a kódot a következőre:</span><span class="sxs-lookup"><span data-stu-id="1513e-153">Add a new class file to the project called **HBaseWriter.cs**, and then replace the code with the following:</span></span>
+3. <span data-ttu-id="71715-152">A **Megoldáskezelőben**, adja hozzá **System.Configuration** toohello hivatkozás.</span><span class="sxs-lookup"><span data-stu-id="71715-152">From **Solution Explorer**, add **System.Configuration** toohello reference.</span></span>
+4. <span data-ttu-id="71715-153">Adja hozzá az új osztály fájl toohello projekt nevű **HBaseWriter.cs**, majd cserélje le a következőre hello hello kódot:</span><span class="sxs-lookup"><span data-stu-id="71715-153">Add a new class file toohello project called **HBaseWriter.cs**, and then replace hello code with hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -103,8 +103,8 @@ ms.lasthandoff: 08/03/2017
             {
                 // HDinsight HBase cluster and HBase table information
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
-                const string HADOOPUSERNAME = "admin"; //the default name is "admin"
-                const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+                const string HADOOPUSERNAME = "admin"; //hello default name is "admin"
+                const string HADOOPUSERPASSWORD = "<Enter hello Hadoop User Password>";
 
                 const string HBASETABLENAME = "tweets_by_words";
                 const string COUNT_ROW_KEY = "~ROWCOUNT";
@@ -112,13 +112,13 @@ ms.lasthandoff: 08/03/2017
 
                 long rowCount = 0;
 
-                // Sentiment dictionary file and the punctuation characters
+                // Sentiment dictionary file and hello punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
             ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
 
-                // For writting to HBase
+                // For writting tooHBase
                 HBaseClient client;
 
                 // a sentiment dictionary for estimate sentiment. It is loaded from a physical file.
@@ -129,13 +129,13 @@ ms.lasthandoff: 08/03/2017
                 Queue<ITweet> queue = new Queue<ITweet>();
                 bool threadRunning = true;
 
-                // This function connects to HBase, loads the sentiment dictionary, and starts the thread for writting.
+                // This function connects tooHBase, loads hello sentiment dictionary, and starts hello thread for writting.
                 public HBaseWriter()
                 {
                     ClusterCredentials credentials = new ClusterCredentials(new Uri(CLUSTERNAME), HADOOPUSERNAME, HADOOPUSERPASSWORD);
                     client = new HBaseClient(credentials);
 
-                    // create the HBase table if it doesn't exist
+                    // create hello HBase table if it doesn't exist
                     if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
@@ -151,7 +151,7 @@ ms.lasthandoff: 08/03/2017
                     // Load sentiment dictionary from a file
                     LoadDictionary();
 
-                    // Start a thread for writting to HBase
+                    // Start a thread for writting tooHBase
                     writerThread = new Thread(new ThreadStart(WriterThreadFunction));
                     writerThread.Start();
                 }
@@ -179,7 +179,7 @@ ms.lasthandoff: 08/03/2017
                     }
                     catch(Exception ex)
                     {
-                        if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+                        if (ex.InnerException.Message.Equals("hello remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
                         {
                             return 0;
                         }
@@ -193,7 +193,7 @@ ms.lasthandoff: 08/03/2017
                     return 0;
                 }
 
-                // Enqueue the Tweets received
+                // Enqueue hello Tweets received
                 public void WriteTweet(ITweet tweet)
                 {
                     lock (queue)
@@ -260,19 +260,19 @@ ms.lasthandoff: 08/03/2017
                     }
                 }
 
-                // Popular a CellSet object to be written into HBase
+                // Popular a CellSet object toobe written into HBase
                 private void CreateTweetByWordsCells(CellSet set, ITweet tweet)
                 {
-                    // Split the Tweet into words
+                    // Split hello Tweet into words
                     string[] words = tweet.Text.ToLower().Split(_punctuationChars);
 
-                    // Calculate sentiment score base on the words
+                    // Calculate sentiment score base on hello words
                     int sentimentScore = CalcSentimentScore(words);
                     var word_pairs = words.Take(words.Length - 1)
                                         .Select((word, idx) => string.Format("{0} {1}", word, words[idx + 1]));
                     var all_words = words.Concat(word_pairs).ToList();
 
-                    // For each word in the Tweet add a row to the HBase table
+                    // For each word in hello Tweet add a row toohello HBase table
                     foreach (string word in all_words)
                     {
                         string time_index = (ulong.MaxValue - (ulong)tweet.CreatedAt.ToBinary()).ToString().PadLeft(20) + tweet.IdStr;
@@ -281,7 +281,7 @@ ms.lasthandoff: 08/03/2017
                         // Create a row
                         var row = new CellSet.Row { key = Encoding.UTF8.GetBytes(key) };
 
-                        // Add columns to the row, including Tweet identifier, language, coordinator(if available), and sentiment
+                        // Add columns toohello row, including Tweet identifier, language, coordinator(if available), and sentiment
                         var value = new Cell { column = Encoding.UTF8.GetBytes("d:id_str"), data = Encoding.UTF8.GetBytes(tweet.IdStr) };
                         row.values.Add(value);
 
@@ -302,7 +302,7 @@ ms.lasthandoff: 08/03/2017
                     }
                 }
 
-                // Write a Tweet (CellSet) to HBase
+                // Write a Tweet (CellSet) tooHBase
                 public void WriterThreadFunction()
                 {
                     try
@@ -321,7 +321,7 @@ ms.lasthandoff: 08/03/2017
                                     } while (queue.Count > 0);
                                 }
 
-                                // Write the Tweet by words cell set to the HBase table
+                                // Write hello Tweet by words cell set toohello HBase table
                                 client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
@@ -344,8 +344,8 @@ ms.lasthandoff: 08/03/2017
                 public string Polarity { get; set; }
             }
         }
-5. <span data-ttu-id="1513e-154">Az előző kód állandók beállított beleértve **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, és DICTIONARYFILENAME.</span><span class="sxs-lookup"><span data-stu-id="1513e-154">Set the constants in the previous code, including **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, and DICTIONARYFILENAME.</span></span> <span data-ttu-id="1513e-155">A DICTIONARYFILENAME, a fájlnév és a direction.tsv helyét.</span><span class="sxs-lookup"><span data-stu-id="1513e-155">The DICTIONARYFILENAME is the filename and the location of the direction.tsv.</span></span>  <span data-ttu-id="1513e-156">A fájl letölthető **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span><span class="sxs-lookup"><span data-stu-id="1513e-156">The file can be downloaded from **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span></span> <span data-ttu-id="1513e-157">A HBase tábla nevét módosítani szeretné, ha a táblázat nevét, a webes alkalmazás ennek megfelelően kell módosítania.</span><span class="sxs-lookup"><span data-stu-id="1513e-157">If you want to change the HBase table name, you must change the table name in the web application accordingly.</span></span>
-6. <span data-ttu-id="1513e-158">Nyissa meg **Program.cs**, és cserélje ki a kódot a következőre:</span><span class="sxs-lookup"><span data-stu-id="1513e-158">Open **Program.cs**, and replace the code with the following:</span></span>
+5. <span data-ttu-id="71715-154">Hello állandók beállított hello előző kóddal, beleértve a **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, és DICTIONARYFILENAME.</span><span class="sxs-lookup"><span data-stu-id="71715-154">Set hello constants in hello previous code, including **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, and DICTIONARYFILENAME.</span></span> <span data-ttu-id="71715-155">hello DICTIONARYFILENAME hello fájlnév és hello direction.tsv hello helyét.</span><span class="sxs-lookup"><span data-stu-id="71715-155">hello DICTIONARYFILENAME is hello filename and hello location of hello direction.tsv.</span></span>  <span data-ttu-id="71715-156">hello fájl tölthető le: **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span><span class="sxs-lookup"><span data-stu-id="71715-156">hello file can be downloaded from **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span></span> <span data-ttu-id="71715-157">Ha azt szeretné, hogy toochange hello HBase tábla nevét, ennek megfelelően meg kell változtatnia hello táblanév hello webalkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="71715-157">If you want toochange hello HBase table name, you must change hello table name in hello web application accordingly.</span></span>
+6. <span data-ttu-id="71715-158">Nyissa meg **Program.cs**, és cserélje le a hello kód a következő hello:</span><span class="sxs-lookup"><span data-stu-id="71715-158">Open **Program.cs**, and replace hello code with hello following:</span></span>
 
         using System;
         using System.Diagnostics;
@@ -386,7 +386,7 @@ ms.lasthandoff: 08/03/2017
                                 tweetCount++;
                                 var tweet = args.Tweet;
 
-                                // Write Tweets to HBase
+                                // Write Tweets tooHBase
                                 hbase.WriteTweet(tweet);
 
                                 if (timer.ElapsedMilliseconds > 1000)
@@ -416,50 +416,50 @@ ms.lasthandoff: 08/03/2017
 
             }
         }
-7. <span data-ttu-id="1513e-159">Állítsa be az állandókat, beleértve a **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** és **TWITTERAPPAPISECRET**.</span><span class="sxs-lookup"><span data-stu-id="1513e-159">Set the constants including **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** and **TWITTERAPPAPISECRET**.</span></span>
+7. <span data-ttu-id="71715-159">Állítsa be a hello állandók, beleértve a **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** és **TWITTERAPPAPISECRET**.</span><span class="sxs-lookup"><span data-stu-id="71715-159">Set hello constants including **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** and **TWITTERAPPAPISECRET**.</span></span>
 
-<span data-ttu-id="1513e-160">Az adatfolyam-továbbítási szolgáltatás futtatásához nyomja le az **F5**.</span><span class="sxs-lookup"><span data-stu-id="1513e-160">To run the streaming service, press **F5**.</span></span> <span data-ttu-id="1513e-161">Az alábbiakban látható egy Képernyőkép a konzolalkalmazást a:</span><span class="sxs-lookup"><span data-stu-id="1513e-161">The following is a screenshot of the console application:</span></span>
+<span data-ttu-id="71715-160">adatfolyam-szolgáltatás, nyomja meg az toorun hello **F5**.</span><span class="sxs-lookup"><span data-stu-id="71715-160">toorun hello streaming service, press **F5**.</span></span> <span data-ttu-id="71715-161">hello az alábbiakban látható egy Képernyőkép a Konzolalkalmazás hello:</span><span class="sxs-lookup"><span data-stu-id="71715-161">hello following is a screenshot of hello console application:</span></span>
 
 ![hdinsight.hbase.Twitter.sentiment.Streaming.Service][img-streaming-service]
 
-<span data-ttu-id="1513e-163">Tartsa meg az adatfolyam-továbbítási konzol alkalmazást, amikor a webalkalmazás fejlesztése, így további adatokat.</span><span class="sxs-lookup"><span data-stu-id="1513e-163">Keep the streaming console application running while you develop the web application, so you have more data to use.</span></span> <span data-ttu-id="1513e-164">Vizsgálja meg a táblába beszúrt adatokat, a HBase rendszerhéj is használhat.</span><span class="sxs-lookup"><span data-stu-id="1513e-164">To examine the data inserted into the table, you can use HBase Shell.</span></span> <span data-ttu-id="1513e-165">Lásd: [Ismerkedés a HBase a hdinsight eszközben](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span><span class="sxs-lookup"><span data-stu-id="1513e-165">See [Get started with HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span></span>
+<span data-ttu-id="71715-163">Hello adatfolyam-Konzolalkalmazás, miközben a most kialakított hello webalkalmazás, így további adatok toouse kell tartani.</span><span class="sxs-lookup"><span data-stu-id="71715-163">Keep hello streaming console application running while you develop hello web application, so you have more data toouse.</span></span> <span data-ttu-id="71715-164">hello táblába tooexamine hello adatok a HBase rendszerhéj használhatja.</span><span class="sxs-lookup"><span data-stu-id="71715-164">tooexamine hello data inserted into hello table, you can use HBase Shell.</span></span> <span data-ttu-id="71715-165">Lásd: [Ismerkedés a HBase a hdinsight eszközben](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span><span class="sxs-lookup"><span data-stu-id="71715-165">See [Get started with HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span></span>
 
-## <a name="visualize-real-time-sentiment"></a><span data-ttu-id="1513e-166">Valós idejű véleményeket megjelenítése</span><span class="sxs-lookup"><span data-stu-id="1513e-166">Visualize real-time sentiment</span></span>
-<span data-ttu-id="1513e-167">Ebben a szakaszban a valós idejű véleményeket adatokat olvasni a HBase és az adatokat a Bing maps megrajzolásához ASP.NET MVC webalkalmazás létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="1513e-167">In this section, you create an ASP.NET MVC web application to read the real-time sentiment data from HBase and plot the data on Bing maps.</span></span>
+## <a name="visualize-real-time-sentiment"></a><span data-ttu-id="71715-166">Valós idejű véleményeket megjelenítése</span><span class="sxs-lookup"><span data-stu-id="71715-166">Visualize real-time sentiment</span></span>
+<span data-ttu-id="71715-167">Ebben a szakaszban hoz létre egy ASP.NET MVC webes alkalmazás tooread hello valós idejű véleményeket adatok a HBase és rajzot hello adatokat a Bing térképekhez.</span><span class="sxs-lookup"><span data-stu-id="71715-167">In this section, you create an ASP.NET MVC web application tooread hello real-time sentiment data from HBase and plot hello data on Bing maps.</span></span>
 
-<span data-ttu-id="1513e-168">**ASP.NET MVC webes alkalmazás létrehozása**</span><span class="sxs-lookup"><span data-stu-id="1513e-168">**To create an ASP.NET MVC Web application**</span></span>
+<span data-ttu-id="71715-168">**az ASP.NET MVC webalkalmazás toocreate**</span><span class="sxs-lookup"><span data-stu-id="71715-168">**toocreate an ASP.NET MVC Web application**</span></span>
 
-1. <span data-ttu-id="1513e-169">Nyissa meg a Visual Studiót.</span><span class="sxs-lookup"><span data-stu-id="1513e-169">Open Visual Studio.</span></span>
-2. <span data-ttu-id="1513e-170">Kattintson a **fájl**, kattintson a **új**, és kattintson a **projekt**.</span><span class="sxs-lookup"><span data-stu-id="1513e-170">Click **File**, click **New**, and then click **Project**.</span></span>
-3. <span data-ttu-id="1513e-171">Adja meg a következő információkat:</span><span class="sxs-lookup"><span data-stu-id="1513e-171">Enter the following information:</span></span>
+1. <span data-ttu-id="71715-169">Nyissa meg a Visual Studiót.</span><span class="sxs-lookup"><span data-stu-id="71715-169">Open Visual Studio.</span></span>
+2. <span data-ttu-id="71715-170">Kattintson a **fájl**, kattintson a **új**, és kattintson a **projekt**.</span><span class="sxs-lookup"><span data-stu-id="71715-170">Click **File**, click **New**, and then click **Project**.</span></span>
+3. <span data-ttu-id="71715-171">Adja meg a következő információ hello:</span><span class="sxs-lookup"><span data-stu-id="71715-171">Enter hello following information:</span></span>
 
-   * <span data-ttu-id="1513e-172">Sablon kategória: **Visual C# / webalkalmazás**</span><span class="sxs-lookup"><span data-stu-id="1513e-172">Template category: **Visual C#/Web**</span></span>
-   * <span data-ttu-id="1513e-173">Sablon: **ASP.NET-webalkalmazás**</span><span class="sxs-lookup"><span data-stu-id="1513e-173">Template: **ASP.NET Web Application**</span></span>
-   * <span data-ttu-id="1513e-174">Name: **TweetSentimentWeb**</span><span class="sxs-lookup"><span data-stu-id="1513e-174">Name: **TweetSentimentWeb**</span></span>
-   * <span data-ttu-id="1513e-175">Hely: **C:\Tutorials**</span><span class="sxs-lookup"><span data-stu-id="1513e-175">Location: **C:\Tutorials**</span></span>
-4. <span data-ttu-id="1513e-176">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="1513e-176">Click **OK**.</span></span>
-5. <span data-ttu-id="1513e-177">A **válasszon olyan sablont,**, kattintson a **MVC**.</span><span class="sxs-lookup"><span data-stu-id="1513e-177">In **Select a template**, click **MVC**.</span></span>
-6. <span data-ttu-id="1513e-178">A **Microsoft Azure**, kattintson a **előfizetések kezelése oldalt**.</span><span class="sxs-lookup"><span data-stu-id="1513e-178">In **Microsoft Azure**, click **Manage Subscriptions**.</span></span>
-7. <span data-ttu-id="1513e-179">A **kezelése a Microsoft Azure-előfizetések**, kattintson a **bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="1513e-179">From **Manage Microsoft Azure Subscriptions**, click **Sign in**.</span></span>
-8. <span data-ttu-id="1513e-180">Adja meg Azure hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="1513e-180">Enter your Azure credentials.</span></span> <span data-ttu-id="1513e-181">Azure-előfizetés adatainak jelenik meg a **fiókok** fülre.</span><span class="sxs-lookup"><span data-stu-id="1513e-181">Your Azure subscription information is shown on the **Accounts** tab.</span></span>
-9. <span data-ttu-id="1513e-182">Kattintson a **bezárása** bezárásához a **kezelése a Microsoft Azure-előfizetések** ablak.</span><span class="sxs-lookup"><span data-stu-id="1513e-182">Click **Close** to close the **Manage Microsoft Azure Subscriptions** window.</span></span>
-10. <span data-ttu-id="1513e-183">A **új ASP.NET projekt - TweetSentimentWeb**, kattintson a **OK**.</span><span class="sxs-lookup"><span data-stu-id="1513e-183">From **New ASP.NET Project - TweetSentimentWeb**, click **OK**.</span></span>
-11. <span data-ttu-id="1513e-184">A **konfigurálása a Microsoft Azure webhely beállításai**, jelölje be a **régió** Ez az Önhöz legközelebbi.</span><span class="sxs-lookup"><span data-stu-id="1513e-184">From **Configure Microsoft Azure Site Settings**, select the **Region** that is closest to you.</span></span> <span data-ttu-id="1513e-185">Adja meg az adatbázis-kiszolgálót nem kell.</span><span class="sxs-lookup"><span data-stu-id="1513e-185">You don't need to specify a database server.</span></span>
-12. <span data-ttu-id="1513e-186">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="1513e-186">Click **OK**.</span></span>
+   * <span data-ttu-id="71715-172">Sablon kategória: **Visual C# / webalkalmazás**</span><span class="sxs-lookup"><span data-stu-id="71715-172">Template category: **Visual C#/Web**</span></span>
+   * <span data-ttu-id="71715-173">Sablon: **ASP.NET-webalkalmazás**</span><span class="sxs-lookup"><span data-stu-id="71715-173">Template: **ASP.NET Web Application**</span></span>
+   * <span data-ttu-id="71715-174">Name: **TweetSentimentWeb**</span><span class="sxs-lookup"><span data-stu-id="71715-174">Name: **TweetSentimentWeb**</span></span>
+   * <span data-ttu-id="71715-175">Hely: **C:\Tutorials**</span><span class="sxs-lookup"><span data-stu-id="71715-175">Location: **C:\Tutorials**</span></span>
+4. <span data-ttu-id="71715-176">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="71715-176">Click **OK**.</span></span>
+5. <span data-ttu-id="71715-177">A **válasszon olyan sablont,**, kattintson a **MVC**.</span><span class="sxs-lookup"><span data-stu-id="71715-177">In **Select a template**, click **MVC**.</span></span>
+6. <span data-ttu-id="71715-178">A **Microsoft Azure**, kattintson a **előfizetések kezelése oldalt**.</span><span class="sxs-lookup"><span data-stu-id="71715-178">In **Microsoft Azure**, click **Manage Subscriptions**.</span></span>
+7. <span data-ttu-id="71715-179">A **kezelése a Microsoft Azure-előfizetések**, kattintson a **bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="71715-179">From **Manage Microsoft Azure Subscriptions**, click **Sign in**.</span></span>
+8. <span data-ttu-id="71715-180">Adja meg Azure hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="71715-180">Enter your Azure credentials.</span></span> <span data-ttu-id="71715-181">Az Azure-előfizetés információk jelennek meg a hello **fiókok** fülre.</span><span class="sxs-lookup"><span data-stu-id="71715-181">Your Azure subscription information is shown on hello **Accounts** tab.</span></span>
+9. <span data-ttu-id="71715-182">Kattintson a **Bezárás** tooclose hello **kezelése a Microsoft Azure-előfizetések** ablak.</span><span class="sxs-lookup"><span data-stu-id="71715-182">Click **Close** tooclose hello **Manage Microsoft Azure Subscriptions** window.</span></span>
+10. <span data-ttu-id="71715-183">A **új ASP.NET projekt - TweetSentimentWeb**, kattintson a **OK**.</span><span class="sxs-lookup"><span data-stu-id="71715-183">From **New ASP.NET Project - TweetSentimentWeb**, click **OK**.</span></span>
+11. <span data-ttu-id="71715-184">A **konfigurálása a Microsoft Azure webhely beállításai**, jelölje be hello **régió** , amely a legközelebbi tooyou.</span><span class="sxs-lookup"><span data-stu-id="71715-184">From **Configure Microsoft Azure Site Settings**, select hello **Region** that is closest tooyou.</span></span> <span data-ttu-id="71715-185">Nincs szükség a toospecify adatbázis-kiszolgálót.</span><span class="sxs-lookup"><span data-stu-id="71715-185">You don't need toospecify a database server.</span></span>
+12. <span data-ttu-id="71715-186">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="71715-186">Click **OK**.</span></span>
 
-<span data-ttu-id="1513e-187">**NuGet-csomagok**</span><span class="sxs-lookup"><span data-stu-id="1513e-187">**To install NuGet packages**</span></span>
+<span data-ttu-id="71715-187">**tooinstall NuGet-csomagok**</span><span class="sxs-lookup"><span data-stu-id="71715-187">**tooinstall NuGet packages**</span></span>
 
-1. <span data-ttu-id="1513e-188">Az a **eszközök** menüben kattintson a **Nuget-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.</span><span class="sxs-lookup"><span data-stu-id="1513e-188">From the **Tools** menu, click **Nuget Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="1513e-189">A lap alján a konzol panel nyílik meg.</span><span class="sxs-lookup"><span data-stu-id="1513e-189">The console panel is opened at the bottom of the page.</span></span>
-2. <span data-ttu-id="1513e-190">A következő paranccsal telepítse a [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely az ügyféloldali kódtár HBase fürt eléréséhez:</span><span class="sxs-lookup"><span data-stu-id="1513e-190">Use the following command to install the [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is the client library to access HBase cluster:</span></span>
+1. <span data-ttu-id="71715-188">A hello **eszközök** menüben kattintson a **Nuget-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.</span><span class="sxs-lookup"><span data-stu-id="71715-188">From hello **Tools** menu, click **Nuget Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="71715-189">hello konzol panel alján hello hello van megnyitva.</span><span class="sxs-lookup"><span data-stu-id="71715-189">hello console panel is opened at hello bottom of hello page.</span></span>
+2. <span data-ttu-id="71715-190">Használjon hello következő parancsot a tooinstall hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) csomag, amely hello ügyfél könyvtár tooaccess HBase-fürtöt:</span><span class="sxs-lookup"><span data-stu-id="71715-190">Use hello following command tooinstall hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is hello client library tooaccess HBase cluster:</span></span>
 
         Install-Package Microsoft.HBase.Client
 
-<span data-ttu-id="1513e-191">**HBaseReader osztály hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="1513e-191">**To add HBaseReader class**</span></span>
+<span data-ttu-id="71715-191">**tooadd HBaseReader osztály**</span><span class="sxs-lookup"><span data-stu-id="71715-191">**tooadd HBaseReader class**</span></span>
 
-1. <span data-ttu-id="1513e-192">A **Megoldáskezelőben**, bontsa ki a **TweetSentiment**.</span><span class="sxs-lookup"><span data-stu-id="1513e-192">From **Solution Explorer**, expand **TweetSentiment**.</span></span>
-2. <span data-ttu-id="1513e-193">Kattintson a jobb gombbal **modellek**, kattintson a **Hozzáadás**, és kattintson a **osztály**.</span><span class="sxs-lookup"><span data-stu-id="1513e-193">Right-click **Models**, click **Add**, and then click **Class**.</span></span>
-3. <span data-ttu-id="1513e-194">Az a **neve** mezőbe írja be **HBaseReader.cs**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="1513e-194">In the **Name** field, type **HBaseReader.cs**, and then click **Add**.</span></span>
-4. <span data-ttu-id="1513e-195">Cserélje le a kód a következő:</span><span class="sxs-lookup"><span data-stu-id="1513e-195">Replace the code with the following:</span></span>
+1. <span data-ttu-id="71715-192">A **Megoldáskezelőben**, bontsa ki a **TweetSentiment**.</span><span class="sxs-lookup"><span data-stu-id="71715-192">From **Solution Explorer**, expand **TweetSentiment**.</span></span>
+2. <span data-ttu-id="71715-193">Kattintson a jobb gombbal **modellek**, kattintson a **Hozzáadás**, és kattintson a **osztály**.</span><span class="sxs-lookup"><span data-stu-id="71715-193">Right-click **Models**, click **Add**, and then click **Class**.</span></span>
+3. <span data-ttu-id="71715-194">A hello **neve** mezőbe írja be **HBaseReader.cs**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="71715-194">In hello **Name** field, type **HBaseReader.cs**, and then click **Add**.</span></span>
+4. <span data-ttu-id="71715-195">Cserélje le a hello kód hello alábbira:</span><span class="sxs-lookup"><span data-stu-id="71715-195">Replace hello code with hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -485,7 +485,7 @@ ms.lasthandoff: 08/03/2017
                 const string HADOOPUSERPASSWORD = "<HBaseCluserUserPassword>";
                 const string HBASETABLENAME = "tweets_by_words";
 
-                // The constructor
+                // hello constructor
                 public HBaseReader()
                 {
                     ClusterCredentials creds = new ClusterCredentials(
@@ -495,12 +495,12 @@ ms.lasthandoff: 08/03/2017
                     client = new HBaseClient(creds);
                 }
 
-                // Query Tweets sentiment data from the HBase table asynchronously
+                // Query Tweets sentiment data from hello HBase table asynchronously
                 public async Task<IEnumerable<Tweet>> QueryTweetsByKeywordAsync(string keyword)
                 {
                     List<Tweet> list = new List<Tweet>();
 
-                    // Demonstrate Filtering the data from the past 6 hours the row key
+                    // Demonstrate Filtering hello data from hello past 6 hours hello row key
                     string timeIndex = (ulong.MaxValue -
                         (ulong)DateTime.UtcNow.Subtract(new TimeSpan(6, 0, 0)).ToBinary()).ToString().PadLeft(20);
                     string startRow = keyword + "_" + timeIndex;
@@ -522,7 +522,7 @@ ms.lasthandoff: 08/03/2017
                     {
                         foreach (CellSet.Row row in next.rows)
                         {
-                            // find the cell with string pattern "d:coor"
+                            // find hello cell with string pattern "d:coor"
                             var coordinates =
                                 row.values.Find(c => Encoding.UTF8.GetString(c.column) == "d:coor");
 
@@ -567,23 +567,23 @@ ms.lasthandoff: 08/03/2017
                 public int Sentiment { get; set; }
             }
         }
-5. <span data-ttu-id="1513e-196">Belül a **HBaseReader** osztályt, majd az állandó értékek az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="1513e-196">Inside the **HBaseReader** class, change the constant values as follows:</span></span>
+5. <span data-ttu-id="71715-196">Belső hello **HBaseReader** osztályt, majd hello állandó értékek az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="71715-196">Inside hello **HBaseReader** class, change hello constant values as follows:</span></span>
 
-   * <span data-ttu-id="1513e-197">**CLUSTERNAME**: A HBase fürt nevét, például *https://<HBaseClusterName>.azurehdinsight.net/*.</span><span class="sxs-lookup"><span data-stu-id="1513e-197">**CLUSTERNAME**: The HBase cluster name, for example, *https://<HBaseClusterName>.azurehdinsight.net/*.</span></span>
-   * <span data-ttu-id="1513e-198">**HADOOPUSERNAME**: A HBase fürt Hadoop felhasználói felhasználónevet.</span><span class="sxs-lookup"><span data-stu-id="1513e-198">**HADOOPUSERNAME**: The HBase cluster Hadoop user user name.</span></span> <span data-ttu-id="1513e-199">Az alapértelmezett név az *admin*.</span><span class="sxs-lookup"><span data-stu-id="1513e-199">The default name is *admin*.</span></span>
-   * <span data-ttu-id="1513e-200">**HADOOPUSERPASSWORD**: A HBase fürt Hadoop felhasználói jelszavát.</span><span class="sxs-lookup"><span data-stu-id="1513e-200">**HADOOPUSERPASSWORD**: The HBase cluster Hadoop user password.</span></span>
-   * <span data-ttu-id="1513e-201">**HBASETABLENAME** = "tweets_by_words";</span><span class="sxs-lookup"><span data-stu-id="1513e-201">**HBASETABLENAME** = "tweets_by_words";</span></span>
+   * <span data-ttu-id="71715-197">**CLUSTERNAME**: hello HBase fürt nevét, például *https://<HBaseClusterName>.azurehdinsight.net/*.</span><span class="sxs-lookup"><span data-stu-id="71715-197">**CLUSTERNAME**: hello HBase cluster name, for example, *https://<HBaseClusterName>.azurehdinsight.net/*.</span></span>
+   * <span data-ttu-id="71715-198">**HADOOPUSERNAME**: hello HBase fürt Hadoop felhasználói felhasználónevet.</span><span class="sxs-lookup"><span data-stu-id="71715-198">**HADOOPUSERNAME**: hello HBase cluster Hadoop user user name.</span></span> <span data-ttu-id="71715-199">hello alapértelmezés szerint ez *admin*.</span><span class="sxs-lookup"><span data-stu-id="71715-199">hello default name is *admin*.</span></span>
+   * <span data-ttu-id="71715-200">**HADOOPUSERPASSWORD**: hello HBase fürt Hadoop felhasználói jelszavát.</span><span class="sxs-lookup"><span data-stu-id="71715-200">**HADOOPUSERPASSWORD**: hello HBase cluster Hadoop user password.</span></span>
+   * <span data-ttu-id="71715-201">**HBASETABLENAME** = "tweets_by_words";</span><span class="sxs-lookup"><span data-stu-id="71715-201">**HBASETABLENAME** = "tweets_by_words";</span></span>
 
-     <span data-ttu-id="1513e-202">A HBase tábla neve **"tweets_by_words";**.</span><span class="sxs-lookup"><span data-stu-id="1513e-202">The HBase table name is **"tweets_by_words";**.</span></span> <span data-ttu-id="1513e-203">Az értékeknek meg kell felelniük az értékeket, az adatfolyam-továbbítási szolgáltatás küldte, hogy a webes alkalmazás a adatokat olvas ugyanabban a HBase táblában.</span><span class="sxs-lookup"><span data-stu-id="1513e-203">The values must match the values you sent in the streaming service, so that the web application reads the data from the same HBase table.</span></span>
+     <span data-ttu-id="71715-202">hello HBase tábla neve **"tweets_by_words";**.</span><span class="sxs-lookup"><span data-stu-id="71715-202">hello HBase table name is **"tweets_by_words";**.</span></span> <span data-ttu-id="71715-203">hello az értékeknek egyezniük kell a akkor küldi hello adatfolyam-szolgáltatás, így hello webalkalmazás hello adatokat olvas hello hello értékek ugyanabban a HBase táblában.</span><span class="sxs-lookup"><span data-stu-id="71715-203">hello values must match hello values you sent in hello streaming service, so that hello web application reads hello data from hello same HBase table.</span></span>
 
-<span data-ttu-id="1513e-204">**TweetsController vezérlő hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="1513e-204">**To add TweetsController controller**</span></span>
+<span data-ttu-id="71715-204">**tooadd TweetsController vezérlő**</span><span class="sxs-lookup"><span data-stu-id="71715-204">**tooadd TweetsController controller**</span></span>
 
-1. <span data-ttu-id="1513e-205">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="1513e-205">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="1513e-206">Kattintson a jobb gombbal **tartományvezérlők**, kattintson a **Hozzáadás**, és kattintson a **vezérlő**.</span><span class="sxs-lookup"><span data-stu-id="1513e-206">Right-click **Controllers**, click **Add**, and then click **Controller**.</span></span>
-3. <span data-ttu-id="1513e-207">Kattintson a **Web API 2 vezérlő - üres**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="1513e-207">Click **Web API 2 Controller - Empty**, and then click **Add**.</span></span>
-4. <span data-ttu-id="1513e-208">Az a **vezérlőnév** mezőbe írja be **TweetsController**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="1513e-208">In the **Controller name** field, type **TweetsController**, and then click **Add**.</span></span>
-5. <span data-ttu-id="1513e-209">A **Megoldáskezelőben**, kattintson duplán a TweetsController.cs megnyitni a fájlt.</span><span class="sxs-lookup"><span data-stu-id="1513e-209">From **Solution Explorer**, double-click TweetsController.cs to open the file.</span></span>
-6. <span data-ttu-id="1513e-210">Módosítsa a fájl, ezért úgy tűnik a következő:</span><span class="sxs-lookup"><span data-stu-id="1513e-210">Modify the file, so it looks like the following:</span></span>
+1. <span data-ttu-id="71715-205">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="71715-205">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="71715-206">Kattintson a jobb gombbal **tartományvezérlők**, kattintson a **Hozzáadás**, és kattintson a **vezérlő**.</span><span class="sxs-lookup"><span data-stu-id="71715-206">Right-click **Controllers**, click **Add**, and then click **Controller**.</span></span>
+3. <span data-ttu-id="71715-207">Kattintson a **Web API 2 vezérlő - üres**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="71715-207">Click **Web API 2 Controller - Empty**, and then click **Add**.</span></span>
+4. <span data-ttu-id="71715-208">A hello **vezérlőnév** mezőbe írja be **TweetsController**, és kattintson a **Hozzáadás**.</span><span class="sxs-lookup"><span data-stu-id="71715-208">In hello **Controller name** field, type **TweetsController**, and then click **Add**.</span></span>
+5. <span data-ttu-id="71715-209">A **Megoldáskezelőben**, kattintson duplán a TweetsController.cs tooopen hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="71715-209">From **Solution Explorer**, double-click TweetsController.cs tooopen hello file.</span></span>
+6. <span data-ttu-id="71715-210">Módosítsa hello fájlt, így azt a következőhöz hasonló hello:</span><span class="sxs-lookup"><span data-stu-id="71715-210">Modify hello file, so it looks like hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -608,12 +608,12 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-<span data-ttu-id="1513e-211">**Heatmap.js hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="1513e-211">**To add heatmap.js**</span></span>
+<span data-ttu-id="71715-211">**tooadd heatmap.js**</span><span class="sxs-lookup"><span data-stu-id="71715-211">**tooadd heatmap.js**</span></span>
 
-1. <span data-ttu-id="1513e-212">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="1513e-212">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="1513e-213">Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.</span><span class="sxs-lookup"><span data-stu-id="1513e-213">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
-3. <span data-ttu-id="1513e-214">Az a **elem neve** mezőbe írja be **heatmap.js**.</span><span class="sxs-lookup"><span data-stu-id="1513e-214">In the **Item name** field, type **heatmap.js**.</span></span>
-4. <span data-ttu-id="1513e-215">Illessze be a következő kódot a fájlba.</span><span class="sxs-lookup"><span data-stu-id="1513e-215">Paste the following code into the file.</span></span> <span data-ttu-id="1513e-216">A kód Alastair Aitchison kiírt.</span><span class="sxs-lookup"><span data-stu-id="1513e-216">The code was written by Alastair Aitchison.</span></span> <span data-ttu-id="1513e-217">További információkért lásd: [Bing Maps AJAX v7 HeatMap könyvtár](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span><span class="sxs-lookup"><span data-stu-id="1513e-217">For more information, see [Bing Maps AJAX v7 HeatMap Library](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span></span>
+1. <span data-ttu-id="71715-212">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="71715-212">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="71715-213">Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.</span><span class="sxs-lookup"><span data-stu-id="71715-213">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
+3. <span data-ttu-id="71715-214">A hello **elem neve** mezőbe írja be **heatmap.js**.</span><span class="sxs-lookup"><span data-stu-id="71715-214">In hello **Item name** field, type **heatmap.js**.</span></span>
+4. <span data-ttu-id="71715-215">Illessze be a kódot hello fájlba a következő hello.</span><span class="sxs-lookup"><span data-stu-id="71715-215">Paste hello following code into hello file.</span></span> <span data-ttu-id="71715-216">hello kód Alastair Aitchison kiírt.</span><span class="sxs-lookup"><span data-stu-id="71715-216">hello code was written by Alastair Aitchison.</span></span> <span data-ttu-id="71715-217">További információkért lásd: [Bing Maps AJAX v7 HeatMap könyvtár](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span><span class="sxs-lookup"><span data-stu-id="71715-217">For more information, see [Bing Maps AJAX v7 HeatMap Library](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span></span>
 
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -621,22 +621,22 @@ ms.lasthandoff: 08/03/2017
         * Date: 15th April 2011
         *
         * Description:
-        * This JavaScript file provides an algorithm that can be used to add a heatmap
-        * overlay on a Bing Maps v7 control. The intensity and temperature palette
-        * of the heatmap are designed to be easily customisable.
+        * This JavaScript file provides an algorithm that can be used tooadd a heatmap
+        * overlay on a Bing Maps v7 control. hello intensity and temperature palette
+        * of hello heatmap are designed toobe easily customisable.
         *
         * Requirements:
-        * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
+        * hello heatmap layer itself is created dynamically on hello client-side using
+        * hello HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
-        * not, I'd love to hear from you!
+        * not, I'd love toohear from you!
         *
         * Usage:
-        * The HeatMapLayer constructor requires:
-        * - A reference to a map object
+        * hello HeatMapLayer constructor requires:
+        * - A reference tooa map object
         * - An array or Microsoft.Maps.Location items
-        * - Optional parameters to customise the appearance of the layer
+        * - Optional parameters toocustomise hello appearance of hello layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
         */
 
@@ -652,16 +652,16 @@ ms.lasthandoff: 08/03/2017
 
             // Set default options
             var _options = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 1000,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'meters',
 
-                // Colour temperature gradient of the map
+                // Colour temperature gradient of hello map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
                     "0.25": 'rgba(0,0,255,40)',    // Blue
@@ -670,7 +670,7 @@ ms.lasthandoff: 08/03/2017
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
 
-                // Callback function to be fired after heatmap layer has been redrawn
+                // Callback function toobe fired after heatmap layer has been redrawn
                 callback: null
             };
 
@@ -679,7 +679,7 @@ ms.lasthandoff: 08/03/2017
                 var _mapDiv = _map.getRootElement();
 
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
-                    // Create the canvas element
+                    // Create hello canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
 
@@ -691,16 +691,16 @@ ms.lasthandoff: 08/03/2017
 
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
 
-                    // Override defaults with any options passed in the constructor
+                    // Override defaults with any options passed in hello constructor
                     _setOptions(options);
 
                     // Load array of location data
                     _setPoints(locations);
 
-                    // Create a colour gradient from the suppied colourstops
+                    // Create a colour gradient from hello suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
 
-                    // Wire up the event handler to redraw heatmap canvas
+                    // Wire up hello event handler tooredraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
 
@@ -712,7 +712,7 @@ ms.lasthandoff: 08/03/2017
                 }
             }
 
-            // Resets the heat map
+            // Resets hello heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -730,19 +730,19 @@ ms.lasthandoff: 08/03/2017
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
 
-            // Applies a colour gradient to the intensity map
+            // Applies a colour gradient toohello intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 var dat = ctx.getImageData(0, 0, _canvas.width, _canvas.height);
                 var pix = dat.data; // pix is a CanvasPixelArray containing height x width x 4 bytes of data (RGBA)
                 for (var p = 0, len = pix.length; p < len;) {
-                    var a = pix[p + 3] * 4; // get the alpha of this pixel
-                    if (a != 0) { // If there is any data to plot
-                        pix[p] = _temperaturemap[a]; // set the red value of the gradient that corresponds to this alpha
-                        pix[p + 1] = _temperaturemap[a + 1]; //set the green value based on alpha
-                        pix[p + 2] = _temperaturemap[a + 2]; //set the blue value based on alpha
+                    var a = pix[p + 3] * 4; // get hello alpha of this pixel
+                    if (a != 0) { // If there is any data tooplot
+                        pix[p] = _temperaturemap[a]; // set hello red value of hello gradient that corresponds toothis alpha
+                        pix[p + 1] = _temperaturemap[a + 1]; //set hello green value based on alpha
+                        pix[p + 2] = _temperaturemap[a + 2]; //set hello blue value based on alpha
                     }
-                    p += 4; // Move on to the next pixel
+                    p += 4; // Move on toohello next pixel
                 }
                 ctx.putImageData(dat, 0, 0);
             }
@@ -754,22 +754,22 @@ ms.lasthandoff: 08/03/2017
                 }
             }
 
-            // Sets the heatmap points from an array of Microsoft.Maps.Locations  
+            // Sets hello heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
 
-            // Main method to draw the heatmap
+            // Main method toodraw hello heatmap
             function _createHeatMap() {
-                // Ensure the canvas matches the current dimensions of the map
-                // This also has the effect of resetting the canvas
+                // Ensure hello canvas matches hello current dimensions of hello map
+                // This also has hello effect of resetting hello canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
 
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
 
-                // Calculate the pixel radius of each heatpoint at the current map zoom
+                // Calculate hello pixel radius of each heatpoint at hello current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
@@ -778,12 +778,12 @@ ms.lasthandoff: 08/03/2017
 
                 var ctx = _canvas.getContext("2d");
 
-                // Convert lat/long to pixel location
+                // Convert lat/long toopixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
 
-                // Create the Intensity Map by looping through each location
+                // Create hello Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
@@ -797,15 +797,15 @@ ms.lasthandoff: 08/03/2017
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
 
-                    // Draw the heatpoint onto the canvas
+                    // Draw hello heatpoint onto hello canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
 
-                // Apply the specified colour gradient to the intensity map
+                // Apply hello specified colour gradient toohello intensity map
                 _colouriseHeatMap();
 
-                // Call the callback function, if specified
+                // Call hello callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
@@ -830,17 +830,17 @@ ms.lasthandoff: 08/03/2017
                 _setOptions(options);
             }
 
-            // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
+            // Sets an array of Microsoft.Maps.Locations from which hello heatmap is created
             this.SetPoints = function (locations) {
-                // Reset the existing heatmap layer
+                // Reset hello existing heatmap layer
                 _clearHeatMap();
-                // Pass in the new set of locations
+                // Pass in hello new set of locations
                 _setPoints(locations);
-                // Recreate the layer
+                // Recreate hello layer
                 _createHeatMap();
             }
 
-            // Removes the heatmap layer from the DOM
+            // Removes hello heatmap layer from hello DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
 
@@ -855,19 +855,19 @@ ms.lasthandoff: 08/03/2017
                 _viewchangeendhandler = null;
             }
 
-            // Call the initialisation routine
+            // Call hello initialisation routine
             _init();
         };
 
-        // Call the Module Loaded method
+        // Call hello Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
-<span data-ttu-id="1513e-218">**TwitterStream.js hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="1513e-218">**To add twitterStream.js**</span></span>
+<span data-ttu-id="71715-218">**tooadd twitterStream.js**</span><span class="sxs-lookup"><span data-stu-id="71715-218">**tooadd twitterStream.js**</span></span>
 
-1. <span data-ttu-id="1513e-219">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="1513e-219">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="1513e-220">Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.</span><span class="sxs-lookup"><span data-stu-id="1513e-220">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
-3. <span data-ttu-id="1513e-221">Az a **elem neve** mezőbe írja be**twitterStream.js**.</span><span class="sxs-lookup"><span data-stu-id="1513e-221">In the **Item name** field, type**twitterStream.js**.</span></span>
-4. <span data-ttu-id="1513e-222">Másolja és illessze be a fájlt a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="1513e-222">Copy and paste the following code into the file:</span></span>
+1. <span data-ttu-id="71715-219">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="71715-219">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="71715-220">Kattintson a jobb gombbal **parancsfájlok**, kattintson a **Hozzáadás**, kattintson a **JavaScript-fájl**.</span><span class="sxs-lookup"><span data-stu-id="71715-220">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
+3. <span data-ttu-id="71715-221">A hello **elem neve** mezőbe írja be**twitterStream.js**.</span><span class="sxs-lookup"><span data-stu-id="71715-221">In hello **Item name** field, type**twitterStream.js**.</span></span>
+4. <span data-ttu-id="71715-222">Másolja és illessze be a kódot hello fájlba a következő hello:</span><span class="sxs-lookup"><span data-stu-id="71715-222">Copy and paste hello following code into hello file:</span></span>
 
         var liveTweetsPos = [];
         var liveTweets = [];
@@ -878,7 +878,7 @@ ms.lasthandoff: 08/03/2017
         var heatmapPos;
 
         function initialize() {
-            // Initialize the map
+            // Initialize hello map
             var options = {
                 credentials: "AvFJTZPZv8l3gF8VC3Y7BPBd0r7LKo8dqKG02EAlqg9WAi0M7la6zSIT-HwkMQbx",
                 center: new Microsoft.Maps.Location(23.0, 8.0),
@@ -891,24 +891,24 @@ ms.lasthandoff: 08/03/2017
             // Heatmap options for positive, neutral and negative layers
 
             var heatmapOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels'
             };
 
             var heatmapPosOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -926,13 +926,13 @@ ms.lasthandoff: 08/03/2017
             };
 
             var heatmapNegOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -949,7 +949,7 @@ ms.lasthandoff: 08/03/2017
                 }
             };
 
-            // Register and load the Client Side HeatMap Module
+            // Register and load hello Client Side HeatMap Module
             Microsoft.Maps.registerModule("HeatMapModule", "scripts/heatmap.js");
             Microsoft.Maps.loadModule("HeatMapModule", {
                 callback: function () {
@@ -993,7 +993,7 @@ ms.lasthandoff: 08/03/2017
         }
 
         function addTweet(item) {
-            //Add tweet to the heat map arrays.
+            //Add tweet toohello heat map arrays.
             var tweetLocation = new Microsoft.Maps.Location(item.Latitude, item.Longtitude);
             if (item.Sentiment > 0) {
                 liveTweetsPos.push(tweetLocation);
@@ -1063,10 +1063,10 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-<span data-ttu-id="1513e-223">**A layout.cshtml módosítása**</span><span class="sxs-lookup"><span data-stu-id="1513e-223">**To modify the layout.cshtml**</span></span>
+<span data-ttu-id="71715-223">**toomodify hello layout.cshtml**</span><span class="sxs-lookup"><span data-stu-id="71715-223">**toomodify hello layout.cshtml**</span></span>
 
-1. <span data-ttu-id="1513e-224">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **megosztott**, és kattintson duplán az _**Layout.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="1513e-224">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Shared**, and then double-click _**Layout.cshtml**.</span></span>
-2. <span data-ttu-id="1513e-225">Cserélje le a tartalmat a következő:</span><span class="sxs-lookup"><span data-stu-id="1513e-225">Replace the content with the following:</span></span>
+1. <span data-ttu-id="71715-224">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **megosztott**, és kattintson duplán az _**Layout.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="71715-224">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Shared**, and then double-click _**Layout.cshtml**.</span></span>
+2. <span data-ttu-id="71715-225">Cserélje le a hello tartalom hello alábbira:</span><span class="sxs-lookup"><span data-stu-id="71715-225">Replace hello content with hello following:</span></span>
 
         <!DOCTYPE html>
         <html>
@@ -1126,10 +1126,10 @@ ms.lasthandoff: 08/03/2017
         </body>
         </html>
 
-<span data-ttu-id="1513e-226">**A Index.cshtml módosítása**</span><span class="sxs-lookup"><span data-stu-id="1513e-226">**To modify the Index.cshtml**</span></span>
+<span data-ttu-id="71715-226">**toomodify hello Index.cshtml**</span><span class="sxs-lookup"><span data-stu-id="71715-226">**toomodify hello Index.cshtml**</span></span>
 
-1. <span data-ttu-id="1513e-227">A **Solution Explorer**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **Home**, majd kattintson duplán **Index.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="1513e-227">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Home**, and then double-click **Index.cshtml**.</span></span>
-2. <span data-ttu-id="1513e-228">Cserélje le a tartalmat a következő:</span><span class="sxs-lookup"><span data-stu-id="1513e-228">Replace the content with the following:</span></span>
+1. <span data-ttu-id="71715-227">A **Solution Explorer**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **nézetek**, bontsa ki a **Home**, majd kattintson duplán **Index.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="71715-227">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Home**, and then double-click **Index.cshtml**.</span></span>
+2. <span data-ttu-id="71715-228">Cserélje le a hello tartalom hello alábbira:</span><span class="sxs-lookup"><span data-stu-id="71715-228">Replace hello content with hello following:</span></span>
 
         @{
             ViewBag.Title = "Tweet Sentiment";
@@ -1139,10 +1139,10 @@ ms.lasthandoff: 08/03/2017
             <div id="map_canvas"/>
         </div>
 
-<span data-ttu-id="1513e-229">**A site.css fájl módosításához:**</span><span class="sxs-lookup"><span data-stu-id="1513e-229">**To modify the site.css file**</span></span>
+<span data-ttu-id="71715-229">**toomodify hello site.css fájl**</span><span class="sxs-lookup"><span data-stu-id="71715-229">**toomodify hello site.css file**</span></span>
 
-1. <span data-ttu-id="1513e-230">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **tartalom**, majd kattintson duplán **Site.css**.</span><span class="sxs-lookup"><span data-stu-id="1513e-230">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Content**, and then double-click **Site.css**.</span></span>
-2. <span data-ttu-id="1513e-231">Az alábbi kód hozzáfűzése a fájlhoz:</span><span class="sxs-lookup"><span data-stu-id="1513e-231">Append the following code to the file:</span></span>
+1. <span data-ttu-id="71715-230">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, bontsa ki a **tartalom**, majd kattintson duplán **Site.css**.</span><span class="sxs-lookup"><span data-stu-id="71715-230">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Content**, and then double-click **Site.css**.</span></span>
+2. <span data-ttu-id="71715-231">Hozzáfűzés a következő kód toohello fájl hello:</span><span class="sxs-lookup"><span data-stu-id="71715-231">Append hello following code toohello file:</span></span>
 
         /* make container, and thus map, 100% width */
         .map_container {
@@ -1162,39 +1162,39 @@ ms.lasthandoff: 08/03/2017
           font-size: 30px;
         }
 
-<span data-ttu-id="1513e-232">**A global.asax fájl módosításához:**</span><span class="sxs-lookup"><span data-stu-id="1513e-232">**To modify the global.asax file**</span></span>
+<span data-ttu-id="71715-232">**toomodify hello global.asax fájl**</span><span class="sxs-lookup"><span data-stu-id="71715-232">**toomodify hello global.asax file**</span></span>
 
-1. <span data-ttu-id="1513e-233">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, majd kattintson duplán **Global.asax**.</span><span class="sxs-lookup"><span data-stu-id="1513e-233">From **Solution Explorer**, expand **TweetSentimentWeb**, and then double-click **Global.asax**.</span></span>
-2. <span data-ttu-id="1513e-234">Adja hozzá a következő **használatával** utasítást:</span><span class="sxs-lookup"><span data-stu-id="1513e-234">Add the following **using** statement:</span></span>
+1. <span data-ttu-id="71715-233">A **Megoldáskezelőben**, bontsa ki a **TweetSentimentWeb**, majd kattintson duplán **Global.asax**.</span><span class="sxs-lookup"><span data-stu-id="71715-233">From **Solution Explorer**, expand **TweetSentimentWeb**, and then double-click **Global.asax**.</span></span>
+2. <span data-ttu-id="71715-234">Adja hozzá a következő hello **használatával** utasítást:</span><span class="sxs-lookup"><span data-stu-id="71715-234">Add hello following **using** statement:</span></span>
 
         using System.Web.Http;
-3. <span data-ttu-id="1513e-235">Adja hozzá a következő sorokat belül a **Application_Start()** függvény:</span><span class="sxs-lookup"><span data-stu-id="1513e-235">Add the following lines inside the **Application_Start()** function:</span></span>
+3. <span data-ttu-id="71715-235">Adja hozzá az alábbi belül hello hello **Application_Start()** függvény:</span><span class="sxs-lookup"><span data-stu-id="71715-235">Add hello following lines inside hello **Application_Start()** function:</span></span>
 
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
 
-    <span data-ttu-id="1513e-236">Módosítsa a regisztrációját, az API útvonalakat, tegye a Web API az MVC alkalmazáson belüli működik.</span><span class="sxs-lookup"><span data-stu-id="1513e-236">Modify the registration of the API routes to make the Web API controller work inside the MVC application.</span></span>
+    <span data-ttu-id="71715-236">Hello regisztrációs hello API útvonalak toomake hello Web API vezérlő munka hello MVC alkalmazás belül módosíthatja.</span><span class="sxs-lookup"><span data-stu-id="71715-236">Modify hello registration of hello API routes toomake hello Web API controller work inside hello MVC application.</span></span>
 
-<span data-ttu-id="1513e-237">**A webalkalmazás futtatásához**</span><span class="sxs-lookup"><span data-stu-id="1513e-237">**To run the web application**</span></span>
+<span data-ttu-id="71715-237">**toorun hello webalkalmazás**</span><span class="sxs-lookup"><span data-stu-id="71715-237">**toorun hello web application**</span></span>
 
-1. <span data-ttu-id="1513e-238">Ellenőrizze, hogy az adatfolyam-továbbítási szolgáltatás Konzolalkalmazás továbbra is fut-e, így láthatja, hogy a valós idejű módosításokat.</span><span class="sxs-lookup"><span data-stu-id="1513e-238">Verify that the streaming service console application is still running so you can see the real-time changes.</span></span>
-2. <span data-ttu-id="1513e-239">Nyomja le az **F5** a webalkalmazás futtatásához:</span><span class="sxs-lookup"><span data-stu-id="1513e-239">Press **F5** to run the web application:</span></span>
+1. <span data-ttu-id="71715-238">Győződjön meg arról, hogy hello szolgáltatás Konzolalkalmazás streaming még mindig fut, így hello valós idejű módosítások látható.</span><span class="sxs-lookup"><span data-stu-id="71715-238">Verify that hello streaming service console application is still running so you can see hello real-time changes.</span></span>
+2. <span data-ttu-id="71715-239">Nyomja le az **F5** toorun hello webalkalmazás:</span><span class="sxs-lookup"><span data-stu-id="71715-239">Press **F5** toorun hello web application:</span></span>
 
     ![hdinsight.hbase.Twitter.sentiment.Bing.Map][img-bing-map]
-3. <span data-ttu-id="1513e-241">A mezőbe írjon be egy kulcsszót, és kattintson **Ugrás**.</span><span class="sxs-lookup"><span data-stu-id="1513e-241">In the text box, enter a keyword, and then click **Go**.</span></span>  <span data-ttu-id="1513e-242">Attól függően, hogy az adatok a HBase táblában lévő gyűjtött a néhány kulcsszavak nem található.</span><span class="sxs-lookup"><span data-stu-id="1513e-242">Depending on the data collected in the HBase table, some keywords might not be found.</span></span> <span data-ttu-id="1513e-243">Próbálja meg néhány gyakori kulcsszavak, például egy "kedvelt", "xbox" és "playstation."</span><span class="sxs-lookup"><span data-stu-id="1513e-243">Try some common keywords, such as "love," "xbox," and "playstation."</span></span>
-4. <span data-ttu-id="1513e-244">Közötti váltás **pozitív**, **semleges**, és **negatív** összehasonlítandó szóló véleményeket.</span><span class="sxs-lookup"><span data-stu-id="1513e-244">Toggle among **Positive**, **Neutral**, and **Negative** to compare sentiment on the subject.</span></span>
-5. <span data-ttu-id="1513e-245">Lehetővé teszik az adatfolyam-továbbítási szolgáltatás egy órán át, futtassa a azonos kulcsszavak, és hasonlítsa össze az eredményt.</span><span class="sxs-lookup"><span data-stu-id="1513e-245">Let the streaming service run for another hour, and then search the same keywords, and compare the results.</span></span>
+3. <span data-ttu-id="71715-241">Hello szövegmezőben, írjon be egy kulcsszót, és kattintson **Ugrás**.</span><span class="sxs-lookup"><span data-stu-id="71715-241">In hello text box, enter a keyword, and then click **Go**.</span></span>  <span data-ttu-id="71715-242">Attól függően, hogy hello adatgyűjtés hello HBase tábla a néhány kulcsszavak nem található.</span><span class="sxs-lookup"><span data-stu-id="71715-242">Depending on hello data collected in hello HBase table, some keywords might not be found.</span></span> <span data-ttu-id="71715-243">Próbálja meg néhány gyakori kulcsszavak, például egy "kedvelt", "xbox" és "playstation."</span><span class="sxs-lookup"><span data-stu-id="71715-243">Try some common keywords, such as "love," "xbox," and "playstation."</span></span>
+4. <span data-ttu-id="71715-244">Közötti váltás **pozitív**, **semleges**, és **negatív** hello témában toocompare céggel kapcsolatos véleményeket.</span><span class="sxs-lookup"><span data-stu-id="71715-244">Toggle among **Positive**, **Neutral**, and **Negative** toocompare sentiment on hello subject.</span></span>
+5. <span data-ttu-id="71715-245">Lehetővé teszik a adatfolyam-továbbítási szolgáltatás futtatásához egy másik óráig hello és majd keresési hello azonos kulcsszavak, és hasonlítsa össze a hello eredmények.</span><span class="sxs-lookup"><span data-stu-id="71715-245">Let hello streaming service run for another hour, and then search hello same keywords, and compare hello results.</span></span>
 
-<span data-ttu-id="1513e-246">Szükség esetén telepítheti az alkalmazást az Azure Websitesra is.</span><span class="sxs-lookup"><span data-stu-id="1513e-246">Optionally, you can deploy the application to Azure Websites.</span></span> <span data-ttu-id="1513e-247">Útmutatásért lásd: [Ismerkedés az Azure Websites és ASP.NET][website-get-started].</span><span class="sxs-lookup"><span data-stu-id="1513e-247">For instructions, see [Get started with Azure Websites and ASP.NET][website-get-started].</span></span>
+<span data-ttu-id="71715-246">Szükség esetén telepítheti hello alkalmazás tooAzure webhelyeket.</span><span class="sxs-lookup"><span data-stu-id="71715-246">Optionally, you can deploy hello application tooAzure Websites.</span></span> <span data-ttu-id="71715-247">Útmutatásért lásd: [Ismerkedés az Azure Websites és ASP.NET][website-get-started].</span><span class="sxs-lookup"><span data-stu-id="71715-247">For instructions, see [Get started with Azure Websites and ASP.NET][website-get-started].</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="1513e-248">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1513e-248">Next Steps</span></span>
-<span data-ttu-id="1513e-249">Ebben az oktatóprogramban megtanulhatta Twitter-üzeneteket beolvasni, a Twitter-üzeneteket a céggel kapcsolatos véleményeket elemzése, a HBase a céggel kapcsolatos véleményeket adatok mentése és a valós idejű Twitter véleményeket adatokat a Bing Maps.</span><span class="sxs-lookup"><span data-stu-id="1513e-249">In this tutorial, you learned how to get tweets, analyze the sentiment of tweets, save the sentiment data to HBase, and present the real-time Twitter sentiment data to Bing maps.</span></span> <span data-ttu-id="1513e-250">További tudnivalókért lásd:</span><span class="sxs-lookup"><span data-stu-id="1513e-250">To learn more, see:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="71715-248">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="71715-248">Next Steps</span></span>
+<span data-ttu-id="71715-249">Ebben az oktatóanyagban megtanulta, hogyan tooget Twitter-üzeneteket, a Twitter-üzeneteket, mentse hello véleményeket adatok tooHBase, és a jelen hello valós idejű Twitter véleményeket tooBing leképezések hello céggel kapcsolatos véleményeket elemzése.</span><span class="sxs-lookup"><span data-stu-id="71715-249">In this tutorial, you learned how tooget tweets, analyze hello sentiment of tweets, save hello sentiment data tooHBase, and present hello real-time Twitter sentiment data tooBing maps.</span></span> <span data-ttu-id="71715-250">toolearn több, lásd:</span><span class="sxs-lookup"><span data-stu-id="71715-250">toolearn more, see:</span></span>
 
-* <span data-ttu-id="1513e-251">[Első lépései a hdinsight eszközzel][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="1513e-251">[Get started with HDInsight][hdinsight-get-started]</span></span>
-* [<span data-ttu-id="1513e-252">HBase-replikálás konfigurálása a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="1513e-252">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
-* <span data-ttu-id="1513e-253">[Twitter-adatok elemzése a Hadooppal a HDInsightban][hdinsight-analyze-twitter-data]</span><span class="sxs-lookup"><span data-stu-id="1513e-253">[Analyze Twitter data with Hadoop in HDInsight][hdinsight-analyze-twitter-data]</span></span>
-* <span data-ttu-id="1513e-254">[HDInsight eszközzel repülési késleltetés adatok elemzése][hdinsight-analyze-flight-delay-data]</span><span class="sxs-lookup"><span data-stu-id="1513e-254">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-delay-data]</span></span>
-* <span data-ttu-id="1513e-255">[Java-MapReduce programok fejlesztése a HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="1513e-255">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
+* <span data-ttu-id="71715-251">[Első lépései a hdinsight eszközzel][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="71715-251">[Get started with HDInsight][hdinsight-get-started]</span></span>
+* [<span data-ttu-id="71715-252">HBase-replikálás konfigurálása a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="71715-252">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
+* <span data-ttu-id="71715-253">[Twitter-adatok elemzése a Hadooppal a HDInsightban][hdinsight-analyze-twitter-data]</span><span class="sxs-lookup"><span data-stu-id="71715-253">[Analyze Twitter data with Hadoop in HDInsight][hdinsight-analyze-twitter-data]</span></span>
+* <span data-ttu-id="71715-254">[HDInsight eszközzel repülési késleltetés adatok elemzése][hdinsight-analyze-flight-delay-data]</span><span class="sxs-lookup"><span data-stu-id="71715-254">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-delay-data]</span></span>
+* <span data-ttu-id="71715-255">[Java-MapReduce programok fejlesztése a HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="71715-255">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
 
 [hbase-get-started]: hdinsight-hbase-tutorial-get-started-linux.md
 [website-get-started]: ../app-service-web/app-service-web-get-started-dotnet.md

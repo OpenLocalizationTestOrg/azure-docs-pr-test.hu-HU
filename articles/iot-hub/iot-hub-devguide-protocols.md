@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub kommunikációs protokollok és portok |} Microsoft Docs"
-description: "Fejlesztői útmutató - ismerteti a támogatott kommunikációs protokollok a eszközről a felhőbe és a felhő-eszköz- és a portszámok, amelyek nyitva kell lennie."
+title: "az IoT-központ kommunikációs aaaAzure protokollok és portok |} Microsoft Docs"
+description: "Fejlesztői útmutató - ismerteti hello támogatott kommunikációs protokollok a eszközről a felhőbe és a felhő-eszköz- és hello portszámok, amelyek nyitva kell lennie."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: 98004a48734e33f85eebf8f6213d9f0751dea843
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 31cb948f1d30edd87edb13ad0dd859c02bcc3239
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Olyan kommunikációs protokollt hivatkozhat - a
 
-Az IoT-központ lehetővé teszi, hogy az eszközök használhatnak [MQTT][lnk-mqtt], MQTT keresztül websocket elemeket, [AMQP][lnk-amqp], websocket elemeket, és a HTTP-alapú AMQP az eszközoldali protokollok kommunikáció. Ezeket a protokollokat hogyan támogatják a különböző funkciók IoT-központ kapcsolatos információkért lásd: [eszközről a felhőbe kommunikációs útmutatást] [ lnk-d2c-guidance] és [felhő eszközre kommunikációs útmutatást] [lnk-c2d-guidance].
+Az IoT-központ lehetővé teszi, hogy az eszközök toouse [MQTT][lnk-mqtt], MQTT keresztül websocket elemeket, [AMQP][lnk-amqp], websocket elemeket, és a HTTP-alapú AMQP az eszközoldali protokollok kommunikáció. Ezeket a protokollokat hogyan támogatják a különböző funkciók IoT-központ kapcsolatos információkért lásd: [eszközről a felhőbe kommunikációs útmutatást] [ lnk-d2c-guidance] és [felhő eszközre kommunikációs útmutatást] [lnk-c2d-guidance].
 
-A következő táblázat a magas szintű javaslatok a kiválasztott protokoll:
+hello következő tábla ajánlásokat hello magas szintű a kiválasztott protokoll:
 
 | Protokoll | Ha ez a protokoll válasszon |
 | --- | --- |
-| MQTT <br> MQTT WebSocket keresztül |Használjon minden eszközön, amelyekhez nem szükséges több eszközön (minden saját eszköz hitelesítő adatokkal rendelkező) azonos a TLS-kapcsolaton keresztül csatlakozni. |
-| AMQP <br> AMQP WebSocket keresztül |A mezőt, és a felhő átjárók segítségével előnyeit multiplexáló eszközök közötti kapcsolat. |
+| MQTT <br> MQTT WebSocket keresztül |Minden eszközön, amelyre nincs szükség tooconnect több eszközzel (minden saját eszköz hitelesítő adatokkal rendelkező) keresztül hello ugyanazt a TLS-kapcsolatot. |
+| AMQP <br> AMQP WebSocket keresztül |Használja a mezőt, és a felhő átjárók tootake előnyeit multiplexáló eszközök közötti kapcsolat. |
 | HTTP |Használjon más protokollt nem támogató eszközökön. |
 
-Ha úgy dönt, hogy a eszközoldali kommunikációs protokollja, vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok, ha úgy dönt, hogy a eszközoldali kommunikációs protokollja hello:
 
-* **Felhő eszközre mintát**. HTTP nincs hatékonyan kiszolgáló leküldéses végrehajtásához. Ilyen HTTP használatakor eszközök kérdezze le az IoT-központ az felhő-eszközre küldött üzenetek. Ez a módszer nem hatékony, az eszköz és az IoT-központ is. Az aktuális HTTP irányelveit minden egyes eszköz kell kérdezze le az üzenetek 25 percenként vagy több. Másrészről, MQTT és AMQP támogatja a kiszolgáló leküldéses felhő-eszközre küldött üzenetek fogadásakor. Lehetővé teszik az azonnali leküldéses értesítések az üzenetek az IoT-központ az eszközre. Kézbesítési késés fontos, ha MQTT vagy AMQP a a legjobb protokollok használatára. Ritkán csatlakoztatott eszközök esetén a HTTP is működik.
-* **Átjárók mezőben**. MQTT és a HTTP használata esetén nem lehet csatlakoztatni (minden saját eszköz hitelesítő adatokkal rendelkező) több eszközön ugyanazt a TLS-kapcsolatot használja. Ebből kifolyólag a [mezőben az átjáró alkalmazásának típusai][lnk-azure-gateway-guidance], ezeket a protokollokat optimálisnál, mert azok megkövetelik, hogy egy TLS-kapcsolatot a mező átjáró és az IoT-központ között az egyes eszközök a mező átjáró csatlakozik.
-* **Kevés erőforrás eszközök**. A MQTT és HTTP-alapú tárak egy kisebb kezdjen, mint az AMQP szalagtárak rendelkezik. Ha az eszköz csak korlátozott erőforrásokat (például, kevesebb mint 1 MB RAM), ezeket a protokollokat lehet a kizárólag protokollmegvalósítás érhető el.
-* **A hálózati átviteli**. A szabványos AMQP protokollt használja a port: 5671, amíg MQTT porton figyel 8883, amelyek problémákat okozhatnak hálózatokban, amelyek be van zárva, való nem HTTP protokollt. MQTT websocket elemek keresztül, a websocket elemeket, és a HTTP-alapú AMQP érhetők el ebben a forgatókönyvben használandó.
+* **Felhő eszközre mintát**. A HTTP nem rendelkezik egy hatékony módját tooimplement kiszolgáló leküldéses. Ilyen HTTP használatakor eszközök kérdezze le az IoT-központ az felhő-eszközre küldött üzenetek. Ez a módszer nem hatékony hello eszköz és az IoT-központ. Az aktuális HTTP irányelveit minden egyes eszköz kell kérdezze le az üzenetek 25 percenként vagy több. A hello ugyanakkor, MQTT és AMQP támogatja kiszolgáló leküldéses a felhő-eszközre küldött üzenetek fogadásakor. Az IoT-központ toohello eszközről üzenetek azonnali leküldéses értesítések lehetővé teszik. Kézbesítési késés fontos, ha a MQTT vagy AMQP hello legjobb protokollok toouse. Ritkán csatlakoztatott eszközök esetén a HTTP is működik.
+* **Átjárók mezőben**. MQTT és a HTTP használata esetén nem lehet csatlakoztatni (minden saját eszköz hitelesítő adatokkal rendelkező) több eszköz használatával hello ugyanazt a TLS-kapcsolatot. Ebből kifolyólag a [mezőben az átjáró alkalmazásának típusai][lnk-azure-gateway-guidance], ezeket a protokollokat optimálisnál, mert azok megkövetelik hello mező átjáró és az IoT-központ között egy TLS-kapcsolat, minden eszközön csatlakoztatott toohello mező átjáró.
+* **Kevés erőforrás eszközök**. hello MQTT és a HTTP-könyvtárak rendelkezik egy hello AMQP szalagtárak-nál kisebb erőforrásigényét. Ilyen, ha hello eszköz csak korlátozott erőforrásokat (például, kevesebb mint 1 MB RAM) ezeket a protokollokat, akkor lehetséges, hello kizárólag protokollmegvalósítás érhető el.
+* **A hálózati átviteli**. hello szabványos AMQP protokoll port: 5671, amíg MQTT porton figyel 8883, amelyek problémákat okozhatnak hálózatokban, amelyek a lezárt toonon HTTP protokoll. Websocket elemek keresztül MQTT, websocket elemeket, és a HTTP-alapú AMQP érhető el ebben a forgatókönyvben használt toobe.
 * **Terhelés méretének**. MQTT és AMQP a bináris protokollok, amelyek tömörebb hasznos adat található HTTP-nál.
 
 > [!WARNING]
-> HTTP használata esetén minden egyes eszköz kell a lekérésének felhő-eszközre küldött üzenetek 25 percenként vagy több. Azonban során fejlesztési, a rendszer, és kérdezze le a gyakrabban 25 percenként elfogadható.
+> HTTP használata esetén minden egyes eszköz kell a lekérésének felhő-eszközre küldött üzenetek 25 percenként vagy több. Azonban során fejlesztési, a rendszer elfogadható toopoll gyakrabban 25 percenként.
 
 ## Portszámok
 
-Eszközök képesek kommunikálni az Azure-ban a különböző protokollok IoT-központot. A választott protokoll jellemzően a megoldás a meghatározott követelmények vezérlik. A következő táblázat az eszközök egy adott protokollt használhatják nyitva kell lennie a kimenő portokat sorolja fel:
+Eszközök képesek kommunikálni az Azure-ban a különböző protokollok IoT-központot. Hello választott protokoll általában hello konkrét követelmények hello megoldás vezérlik. hello következő táblázat hello kimenő meg kell nyitni egy eszköz toobe képes toouse egy adott protokoll:
 
 | Protokoll | Port |
 | --- | --- |
@@ -55,12 +55,12 @@ Eszközök képesek kommunikálni az Azure-ban a különböző protokollok IoT-k
 | Az AMQP keresztül websocket elemek |443 |
 | HTTP |443 |
 
-Miután létrehozta az IoT-központ Azure-régióban, az IoT hub megtartja ugyanazt a címet, hogy az IoT-központ teljes. Azonban szolgáltatásminőség, karbantartásához, ha a Microsoft áthelyezése egy másik skálázási egység az IoT hub majd ezt a jogosultságot egy új IP-címet.
+Miután létrehozta az IoT-központ Azure-régióban, hello IoT hub tartja hello azonos IP-címet, hogy az IoT-központ hello élettartamát. Azonban toomaintain szolgáltatásminőség, ha a Microsoft hello IoT hub tooa különböző méretezési egység, akkor az új IP-cím van hozzárendelve.
 
 
 ## Következő lépések
 
-Hogyan IoT-központ megvalósítja a MQTT protokoll kapcsolatos további információkért lásd: [kommunikáljon az IoT hub MQTT protokollal a][lnk-mqtt-support].
+toolearn hogyan megvalósítja az IoT-központ a hello MQTT protokoll kapcsolatos további információkért lásd: [kommunikáljon az IoT hubbal hello MQTT protokoll használatával][lnk-mqtt-support].
 
 [lnk-d2c-guidance]: iot-hub-devguide-d2c-guidance.md
 [lnk-c2d-guidance]: iot-hub-devguide-c2d-guidance.md

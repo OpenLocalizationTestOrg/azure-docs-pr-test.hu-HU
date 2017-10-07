@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület – beállítások"
-description: "A globális beállítások használata az Azure Mobile Engagement az alkalmazás kezelése"
+title: "aaaAzure Mobile Engagement felhasználói felület – beállítások"
+description: "Ismerje meg, hogyan toomanage hello segítségével az Azure Mobile Engagement az alkalmazás a globális beállítások"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,85 +14,85 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: af5c81df2b9f288161b38625d3ac2adde8fb195d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02d4a36c591fc5e097410b7e931d1c9ce81d68d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-global-settings-of-your-application"></a><span data-ttu-id="31c8d-103">Az alkalmazás a globális beállítások kezelése</span><span class="sxs-lookup"><span data-stu-id="31c8d-103">How to manage the global settings of your application</span></span>
-<span data-ttu-id="31c8d-104">A **beállítások** menüpontok egy alkalmazás vary, az alkalmazás és az engedélyek, az alkalmazás rendelkezik platformtól függően érhető el.</span><span class="sxs-lookup"><span data-stu-id="31c8d-104">The **Settings** menu options available for an application vary, depending on the platform of the application and the permissions you have been granted for the application.</span></span> <span data-ttu-id="31c8d-105">A beállítások a következőket tartalmazzák: részletek, projektek, natív leküldés, leküldési sebességét, Tag (app-info) és a kereskedelmi nyomás.</span><span class="sxs-lookup"><span data-stu-id="31c8d-105">Settings include the following: Details, Projects, Native Push, Push Speed, Tag (app info), and Commercial Pressure.</span></span> <span data-ttu-id="31c8d-106">A beállítások szakasz Tag (app-info) menüpont kezelheti az alkalmazás (az SDK használatával) vagy a kiszolgáló (az eszköz API-val).</span><span class="sxs-lookup"><span data-stu-id="31c8d-106">The Tag (app info) menu option of the Settings section can be managed by your application (using the SDK) or by your backend (using the Device API).</span></span> 
+# <a name="how-toomanage-hello-global-settings-of-your-application"></a><span data-ttu-id="d9ac6-103">Hogyan toomanage hello az alkalmazás globális beállítások</span><span class="sxs-lookup"><span data-stu-id="d9ac6-103">How toomanage hello global settings of your application</span></span>
+<span data-ttu-id="d9ac6-104">Hello **beállítások** menü lehetőségeit egy alkalmazás vary, attól függően, hogy hello platform hello alkalmazás és a hello engedélyek hello alkalmazás rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-104">hello **Settings** menu options available for an application vary, depending on hello platform of hello application and hello permissions you have been granted for hello application.</span></span> <span data-ttu-id="d9ac6-105">A beállítások hello következőket tartalmazzák: részletek, projektek, natív leküldés, leküldési sebességét, Tag (app-info) és a kereskedelmi nyomás.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-105">Settings include hello following: Details, Projects, Native Push, Push Speed, Tag (app info), and Commercial Pressure.</span></span> <span data-ttu-id="d9ac6-106">hello Tag (app-info) menüpont hello beállítások szakasz kezelheti az alkalmazás (hello SDK használatával) vagy a kiszolgáló (hello eszköz API használatával).</span><span class="sxs-lookup"><span data-stu-id="d9ac6-106">hello Tag (app info) menu option of hello Settings section can be managed by your application (using hello SDK) or by your backend (using hello Device API).</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="31c8d-107">Sok szakasza a **a Mobile Engagement** portál felhasználói felületének tartalmaz a **megjelenítése SÚGÓ** gombra.</span><span class="sxs-lookup"><span data-stu-id="31c8d-107">Many sections of the **Mobile Engagement** portal UI contain the **SHOW HELP** button.</span></span> <span data-ttu-id="31c8d-108">Nyomja le az erre a gombra kattintva szakasz környezetfüggő ismertetése.</span><span class="sxs-lookup"><span data-stu-id="31c8d-108">Press this button to get more contextual information about a section.</span></span>
+> <span data-ttu-id="d9ac6-107">Hello sok szakasza **a Mobile Engagement** portál felhasználói felületének tartalmazhat hello **megjelenítése SÚGÓ** gombra.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-107">Many sections of hello **Mobile Engagement** portal UI contain hello **SHOW HELP** button.</span></span> <span data-ttu-id="d9ac6-108">Nyomja meg a gomb tooget szakasz környezetfüggő tájékozódhat.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-108">Press this button tooget more contextual information about a section.</span></span>
 > 
 > 
 
-## <a name="details"></a><span data-ttu-id="31c8d-109">Részletek</span><span class="sxs-lookup"><span data-stu-id="31c8d-109">Details</span></span>
-<span data-ttu-id="31c8d-110">Az alkalmazás és a szerepkörengedélyek a tulajdonos nevét és az alkalmazás leírását módosíthatja megtekintése.</span><span class="sxs-lookup"><span data-stu-id="31c8d-110">Allows you to change the name and description of your application, view the owner of your application and your role permissions.</span></span> 
+## <a name="details"></a><span data-ttu-id="d9ac6-109">Részletek</span><span class="sxs-lookup"><span data-stu-id="d9ac6-109">Details</span></span>
+<span data-ttu-id="d9ac6-110">Lehetővé teszi a toochange hello nevét és leírását, az alkalmazás, az alkalmazás és a szerepköri jogosultságok megtekintése hello tulajdonosa.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-110">Allows you toochange hello name and description of your application, view hello owner of your application and your role permissions.</span></span> 
 
-<span data-ttu-id="31c8d-111">Elemzés konfiguráció lehetővé teszi a nap, hét indítsa el a és a nap és a megőrzési időtartam megtekintése és módosítása.</span><span class="sxs-lookup"><span data-stu-id="31c8d-111">Analytics configuration enables  you to view or change the day weeks start on and the retention time in day(s).</span></span>
+<span data-ttu-id="d9ac6-111">Elemzés a konfiguráció lehetővé teszi a tooview, vagy módosítsa hello nap, hét indítsa el a és hello nap és a megőrzési időt.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-111">Analytics configuration enables  you tooview or change hello day weeks start on and hello retention time in day(s).</span></span>
 
   ![settings1][46]
 
-## <a name="projects"></a><span data-ttu-id="31c8d-113">Projektek</span><span class="sxs-lookup"><span data-stu-id="31c8d-113">Projects</span></span>
-<span data-ttu-id="31c8d-114">Az alkalmazás megjelenik az összes projekt kiválasztását teszi lehetővé.</span><span class="sxs-lookup"><span data-stu-id="31c8d-114">Allows you to select all projects you want your application to appear in.</span></span> 
+## <a name="projects"></a><span data-ttu-id="d9ac6-113">Projektek</span><span class="sxs-lookup"><span data-stu-id="d9ac6-113">Projects</span></span>
+<span data-ttu-id="d9ac6-114">Lehetővé teszi a tooselect összes projektet, melyekben a kívánt az alkalmazás tooappear.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-114">Allows you tooselect all projects you want your application tooappear in.</span></span> 
 
-<span data-ttu-id="31c8d-115">Keresse meg a projekt is, és megtekintheti a nevét, leírását, tulajdonos és a szerepköri jogosultságok bármely része az alkalmazás projekt.</span><span class="sxs-lookup"><span data-stu-id="31c8d-115">You can also search for a project and view the name, description, owner and your role permissions of any project your application is part of.</span></span>
+<span data-ttu-id="d9ac6-115">A projekt és nézet hello név, a leírás, a tulajdonos is kereshet és a szerepkörengedélyek a projekt az alkalmazás része.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-115">You can also search for a project and view hello name, description, owner and your role permissions of any project your application is part of.</span></span>
 
-<span data-ttu-id="31c8d-116">További információkért lásd: [felhasználói felületének dokumentációja – kezdőlap][Link 13]</span><span class="sxs-lookup"><span data-stu-id="31c8d-116">For more information, see: [UI Documentation – Home][Link 13]</span></span>
+<span data-ttu-id="d9ac6-116">További információkért lásd: [felhasználói felületének dokumentációja – kezdőlap][Link 13]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-116">For more information, see: [UI Documentation – Home][Link 13]</span></span>
 
   ![settings3][48]
 
-## <a name="native-push"></a><span data-ttu-id="31c8d-118">Natív leküldéssel</span><span class="sxs-lookup"><span data-stu-id="31c8d-118">Native Push</span></span>
-<span data-ttu-id="31c8d-119">Lehetővé teszi a natív leküldéses regisztrálni egy új tanúsítványt vagy a delete és a meglévő tanúsítványt.</span><span class="sxs-lookup"><span data-stu-id="31c8d-119">Allows you to register a new certificate or delete and existing certificate for use with native push.</span></span> <span data-ttu-id="31c8d-120">Natív leküldéses lehetővé teszi, hogy az Azure Mobile Engagement leküldéses az alkalmazáshoz, tetszőleges időpontban, még ha az nem futna.</span><span class="sxs-lookup"><span data-stu-id="31c8d-120">Native Push enables Azure Mobile Engagement to push to your application at any time, even when it is not running.</span></span> 
+## <a name="native-push"></a><span data-ttu-id="d9ac6-118">Natív leküldéssel</span><span class="sxs-lookup"><span data-stu-id="d9ac6-118">Native Push</span></span>
+<span data-ttu-id="d9ac6-119">Lehetővé teszi egy új tanúsítványt vagy törlése és a meglévő tanúsítvány használata a natív leküldéses tooregister.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-119">Allows you tooregister a new certificate or delete and existing certificate for use with native push.</span></span> <span data-ttu-id="d9ac6-120">Natív leküldéses lehetővé teszi, hogy az Azure Mobile Engagement toopush tooyour alkalmazásból bármikor, még akkor is, ha az nem futna.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-120">Native Push enables Azure Mobile Engagement toopush tooyour application at any time, even when it is not running.</span></span> 
 
-<span data-ttu-id="31c8d-121">Miután megadta a hitelesítő adatokat vagy tanúsítványokat legalább egy natív leküldés szolgáltatáshoz, kiválaszthatja a "Minden alkalommal" a LEKÜLDÉSES API elérését a kampányok, és használja a "bejelentő" paraméter létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="31c8d-121">After providing credentials or certificates for at least one Native Push service, you can select "Any time" when creating Reach Campaigns, and also use the "notifier" parameter in the PUSH API.</span></span>
+<span data-ttu-id="d9ac6-121">Miután megadta a hitelesítő adatokat vagy tanúsítványokat legalább egy natív leküldés szolgáltatáshoz, kiválaszthatja a "Minden alkalommal" hello LEKÜLDÉSES API elérését a kampányok, valamint használata hello "bejelentő" paraméter létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-121">After providing credentials or certificates for at least one Native Push service, you can select "Any time" when creating Reach Campaigns, and also use hello "notifier" parameter in hello PUSH API.</span></span>
 
-### <a name="apple-push-notification-service-apns"></a><span data-ttu-id="31c8d-122">Apple Push Notification szolgáltatás (APNS)</span><span class="sxs-lookup"><span data-stu-id="31c8d-122">Apple Push Notification Service (APNS)</span></span>
-<span data-ttu-id="31c8d-123">Az Apple Push Notification szolgáltatással natív leküldés engedélyezéséhez szüksége lesz a tanúsítvány regisztrálása.</span><span class="sxs-lookup"><span data-stu-id="31c8d-123">To enable Native Push using the Apple Push Notification Service you will need to register your certificate.</span></span> <span data-ttu-id="31c8d-124">Akkor adja meg a tanúsítvány típusát (fejlesztés) fejlesztési vagy éles (termék).</span><span class="sxs-lookup"><span data-stu-id="31c8d-124">You will need to specify the type of certificate as either development (DEV) or production (PROD).</span></span> <span data-ttu-id="31c8d-125">Majd kell feltölti a tanúsítványt, és a jelszót.</span><span class="sxs-lookup"><span data-stu-id="31c8d-125">Then you will need upload your certificate and the password.</span></span>
+### <a name="apple-push-notification-service-apns"></a><span data-ttu-id="d9ac6-122">Apple Push Notification szolgáltatás (APNS)</span><span class="sxs-lookup"><span data-stu-id="d9ac6-122">Apple Push Notification Service (APNS)</span></span>
+<span data-ttu-id="d9ac6-123">tooenable natív leküldés hello Apple Push Notification szolgáltatás használata akkor tooregister a tanúsítványt.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-123">tooenable Native Push using hello Apple Push Notification Service you will need tooregister your certificate.</span></span> <span data-ttu-id="d9ac6-124">Szüksége lesz toospecify hello típusának megfelelő tanúsítványtároló fejlesztési (fejlesztés) vagy a termelési (termék).</span><span class="sxs-lookup"><span data-stu-id="d9ac6-124">You will need toospecify hello type of certificate as either development (DEV) or production (PROD).</span></span> <span data-ttu-id="d9ac6-125">Majd kell feltölti a tanúsítvány és hello jelszavát.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-125">Then you will need upload your certificate and hello password.</span></span>
 
-<span data-ttu-id="31c8d-126">További információkért lásd:: [SDK-dokumentáció - (iOS) – az Apple leküldéses értesítések az alkalmazás előkészítése][Link 5]</span><span class="sxs-lookup"><span data-stu-id="31c8d-126">For more information, see: [SDK Documentation - iOS - How to Prepare your Application for Apple Push notifications][Link 5]</span></span>
+<span data-ttu-id="d9ac6-126">További információkért lásd: [SDK-dokumentáció - iOS - hogyan tooPrepare az alkalmazás az Apple leküldéses értesítések küldése][Link 5]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-126">For more information, see: [SDK Documentation - iOS - How tooPrepare your Application for Apple Push notifications][Link 5]</span></span>
 
 ![settings4][49]
 
-### <a name="windows-push-notification-service-wpns"></a><span data-ttu-id="31c8d-128">A Windows leküldéses értesítéseket kezelő szolgáltatása (WPNS)</span><span class="sxs-lookup"><span data-stu-id="31c8d-128">Windows Push Notification Service (WPNS)</span></span>
-<span data-ttu-id="31c8d-129">A Windows leküldéses értesítéseket kezelő szolgáltatással való natív leküldés engedélyezéséhez meg kell adnia az alkalmazás hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="31c8d-129">To enable Native Push using Windows Notification Service, you must provide your application's credentials.</span></span> <span data-ttu-id="31c8d-130">Szüksége lesz a csomag biztonsági azonosítóját (SID) és a titkos kulcsot.</span><span class="sxs-lookup"><span data-stu-id="31c8d-130">You will need your Package security identifier (SID) and your Secret key.</span></span>
+### <a name="windows-push-notification-service-wpns"></a><span data-ttu-id="d9ac6-128">A Windows leküldéses értesítéseket kezelő szolgáltatása (WPNS)</span><span class="sxs-lookup"><span data-stu-id="d9ac6-128">Windows Push Notification Service (WPNS)</span></span>
+<span data-ttu-id="d9ac6-129">Natív leküldéses értesítéseket kezelő szolgáltatással Windows tooenable, meg kell adnia az alkalmazás hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-129">tooenable Native Push using Windows Notification Service, you must provide your application's credentials.</span></span> <span data-ttu-id="d9ac6-130">Szüksége lesz a csomag biztonsági azonosítóját (SID) és a titkos kulcsot.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-130">You will need your Package security identifier (SID) and your Secret key.</span></span>
 
 ![settings5][50]
 
-### <a name="google-cloud-messaging-for-android-gcm"></a><span data-ttu-id="31c8d-132">A Google Cloud Messaging (GCM) Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="31c8d-132">Google Cloud Messaging for Android (GCM)</span></span>
-<span data-ttu-id="31c8d-133">A GCM használatával natív leküldés engedélyezéséhez kövesse az utasításokat a Google kell.</span><span class="sxs-lookup"><span data-stu-id="31c8d-133">To enable Native Push using GCM, you need to follow the instructions from Google.</span></span> <span data-ttu-id="31c8d-134">Ezután be kell illesztenie egy egyszerű kiszolgálói API-kulcsot, IP-korlátozások nélkül konfigurált.</span><span class="sxs-lookup"><span data-stu-id="31c8d-134">Then you must paste a server simple API key, configured without IP restrictions.</span></span> <span data-ttu-id="31c8d-135">Szükséges integrációs az SDK-val Android v1.12.0 +.</span><span class="sxs-lookup"><span data-stu-id="31c8d-135">Requires integration with the SDK for Android v1.12.0+.</span></span>
+### <a name="google-cloud-messaging-for-android-gcm"></a><span data-ttu-id="d9ac6-132">A Google Cloud Messaging (GCM) Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="d9ac6-132">Google Cloud Messaging for Android (GCM)</span></span>
+<span data-ttu-id="d9ac6-133">Natív leküldés GCM szolgáltatással, Google toofollow hello utasítást kell tooenable.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-133">tooenable Native Push using GCM, you need toofollow hello instructions from Google.</span></span> <span data-ttu-id="d9ac6-134">Ezután be kell illesztenie egy egyszerű kiszolgálói API-kulcsot, IP-korlátozások nélkül konfigurált.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-134">Then you must paste a server simple API key, configured without IP restrictions.</span></span> <span data-ttu-id="d9ac6-135">Integráció a hello SDK igényel Android v1.12.0 +.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-135">Requires integration with hello SDK for Android v1.12.0+.</span></span>
 
-<span data-ttu-id="31c8d-136">További információkért lásd:</span><span class="sxs-lookup"><span data-stu-id="31c8d-136">For more information, see:</span></span> 
+<span data-ttu-id="d9ac6-136">További információkért lásd:</span><span class="sxs-lookup"><span data-stu-id="d9ac6-136">For more information, see:</span></span> 
 
-* <span data-ttu-id="31c8d-137">[SDK-dokumentáció Android GCM integrálása][Link 5]</span><span class="sxs-lookup"><span data-stu-id="31c8d-137">[SDK Documentation Android How to Integrate GCM][Link 5]</span></span>
-* [<span data-ttu-id="31c8d-138">Google fejlesztői GCM útmutató</span><span class="sxs-lookup"><span data-stu-id="31c8d-138">Google Developer GCM Guide</span></span>](http://developer.android.com/guide/google/gcm/gs.html)
+* <span data-ttu-id="d9ac6-137">[SDK dokumentációjának Android hogyan tooIntegrate GCM][Link 5]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-137">[SDK Documentation Android How tooIntegrate GCM][Link 5]</span></span>
+* [<span data-ttu-id="d9ac6-138">Google fejlesztői GCM útmutató</span><span class="sxs-lookup"><span data-stu-id="d9ac6-138">Google Developer GCM Guide</span></span>](http://developer.android.com/guide/google/gcm/gs.html)
 
-### <a name="amazon-device-messaging-for-android-adm"></a><span data-ttu-id="31c8d-139">Amazon eszköz Messaging (ADM) Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="31c8d-139">Amazon Device Messaging for Android (ADM)</span></span>
-<span data-ttu-id="31c8d-140">ADM használatával natív leküldés engedélyezéséhez meg kell adnia Amazon <OAuth credentials> egy ügyfél-azonosító és a titkos Ügyfélkulcs (az SDK-val való integráció szükséges Android v2.1.0 +).</span><span class="sxs-lookup"><span data-stu-id="31c8d-140">To enable Native Push using ADM, you must provide Amazon <OAuth credentials> consisting of a Client ID and Client Secret (Requires integration with SDK for Android v2.1.0+).</span></span>
+### <a name="amazon-device-messaging-for-android-adm"></a><span data-ttu-id="d9ac6-139">Amazon eszköz Messaging (ADM) Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="d9ac6-139">Amazon Device Messaging for Android (ADM)</span></span>
+<span data-ttu-id="d9ac6-140">tooenable natív leküldés ADM használ, meg kell adnia az Amazon <OAuth credentials> egy ügyfél-azonosító és a titkos Ügyfélkulcs (az SDK-val való integráció szükséges Android v2.1.0 +).</span><span class="sxs-lookup"><span data-stu-id="d9ac6-140">tooenable Native Push using ADM, you must provide Amazon <OAuth credentials> consisting of a Client ID and Client Secret (Requires integration with SDK for Android v2.1.0+).</span></span>
 
-<span data-ttu-id="31c8d-141">További információkért lásd:</span><span class="sxs-lookup"><span data-stu-id="31c8d-141">For more information, see:</span></span> 
+<span data-ttu-id="d9ac6-141">További információkért lásd:</span><span class="sxs-lookup"><span data-stu-id="d9ac6-141">For more information, see:</span></span> 
 
-* <span data-ttu-id="31c8d-142">[SDK-dokumentáció Android ADM integrálása][Link 5]</span><span class="sxs-lookup"><span data-stu-id="31c8d-142">[SDK Documentation Android How to Integrate ADM][Link 5]</span></span>
-* [<span data-ttu-id="31c8d-143">Amazon fejlesztői ADM dokumentáció</span><span class="sxs-lookup"><span data-stu-id="31c8d-143">Amazon Developer ADM Documentation</span></span>](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
+* <span data-ttu-id="d9ac6-142">[SDK dokumentációjának Android hogyan tooIntegrate ADM][Link 5]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-142">[SDK Documentation Android How tooIntegrate ADM][Link 5]</span></span>
+* [<span data-ttu-id="d9ac6-143">Amazon fejlesztői ADM dokumentáció</span><span class="sxs-lookup"><span data-stu-id="d9ac6-143">Amazon Developer ADM Documentation</span></span>](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
-## <a name="push-speed"></a><span data-ttu-id="31c8d-145">Leküldési sebesség</span><span class="sxs-lookup"><span data-stu-id="31c8d-145">Push Speed</span></span>
-<span data-ttu-id="31c8d-146">Az alkalmazás aktuális leküldési sebességét jeleníti meg, és megadhatja az alkalmazás leküldési sebességét.</span><span class="sxs-lookup"><span data-stu-id="31c8d-146">Shows the current push speed of your application and allows you to define the push speed of your application.</span></span>
+## <a name="push-speed"></a><span data-ttu-id="d9ac6-145">Leküldési sebesség</span><span class="sxs-lookup"><span data-stu-id="d9ac6-145">Push Speed</span></span>
+<span data-ttu-id="d9ac6-146">Az alkalmazás hello aktuális leküldési sebességét jeleníti meg, és lehetővé teszi az alkalmazás toodefine hello leküldési sebességét.</span><span class="sxs-lookup"><span data-stu-id="d9ac6-146">Shows hello current push speed of your application and allows you toodefine hello push speed of your application.</span></span>
 
   ![settings7][52]
 
-## <a name="tag-app-info"></a><span data-ttu-id="31c8d-148">Tag (app-info)</span><span class="sxs-lookup"><span data-stu-id="31c8d-148">Tag (app info)</span></span>
+## <a name="tag-app-info"></a><span data-ttu-id="d9ac6-148">Tag (app-info)</span><span class="sxs-lookup"><span data-stu-id="d9ac6-148">Tag (app info)</span></span>
 ![settings11][56]
 
-## <a name="commercial-pressure"></a><span data-ttu-id="31c8d-150">A kereskedelmi nyomás</span><span class="sxs-lookup"><span data-stu-id="31c8d-150">Commercial Pressure</span></span>
+## <a name="commercial-pressure"></a><span data-ttu-id="d9ac6-150">A kereskedelmi nyomás</span><span class="sxs-lookup"><span data-stu-id="d9ac6-150">Commercial Pressure</span></span>
 ![settings12][57]
 
-## <a name="see-also"></a><span data-ttu-id="31c8d-152">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="31c8d-152">See also</span></span>
-* <span data-ttu-id="31c8d-153">[Alapfogalmak][Link 6]</span><span class="sxs-lookup"><span data-stu-id="31c8d-153">[Concepts][Link 6]</span></span>
-* <span data-ttu-id="31c8d-154">[Hibaelhárítási útmutató szolgáltatás][Link 24]</span><span class="sxs-lookup"><span data-stu-id="31c8d-154">[Troubleshooting Guide Service][Link 24]</span></span>
+## <a name="see-also"></a><span data-ttu-id="d9ac6-152">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="d9ac6-152">See also</span></span>
+* <span data-ttu-id="d9ac6-153">[Alapfogalmak][Link 6]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-153">[Concepts][Link 6]</span></span>
+* <span data-ttu-id="d9ac6-154">[Hibaelhárítási útmutató szolgáltatás][Link 24]</span><span class="sxs-lookup"><span data-stu-id="d9ac6-154">[Troubleshooting Guide Service][Link 24]</span></span>
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png

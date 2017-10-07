@@ -1,6 +1,6 @@
 ---
-title: "Tárolók a Windows Azure virtuális gépek |} Microsoft Docs"
-description: "Ismerteti a virtuális gépek, Docker és Linux-tárolók és az Azure, az egyes csoportok használatát, így a minden egyes előnyei és forgatókönyvek, amelyek mindkét megközelítés működik jól."
+title: "Windows Azure virtuális gépeken aaaContainers |} Microsoft Docs"
+description: "Ismerteti a virtuális gépek, Docker és Linux-tárolók és az Azure, az egyes csoportok használatát, így az egyes hello előnyöket méghozzá forgatókönyvek, amelyben mindkét megközelítés."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: squillace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 9d03e9a98aa990d6747a3e06c008f54ee18445cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7acf984e1bcafbb78728156c07533629b9d62149
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="virtual-machines-and-containers-in-azure"></a><span data-ttu-id="1c1ae-103">Virtuális gépek és tárolók az Azure-ben</span><span class="sxs-lookup"><span data-stu-id="1c1ae-103">Virtual machines and containers in Azure</span></span>
+# <a name="virtual-machines-and-containers-in-azure"></a><span data-ttu-id="0970c-103">Virtuális gépek és tárolók az Azure-ben</span><span class="sxs-lookup"><span data-stu-id="0970c-103">Virtual machines and containers in Azure</span></span>
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 [!INCLUDE [virtual-machines-common-and-containers](../../../includes/virtual-machines-common-containers.md)]
