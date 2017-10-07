@@ -1,25 +1,7 @@
 ---
-title: "Azure Analysis Services oktatóanyag – 3. lecke: Megjelölés dátumtáblaként | Microsoft Docs"
-description: "A lecke a dátumtáblák megjelölését ismerteti az Azure Analysis Services oktatóprojektjében."
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 06/01/2017
-ms.author: owend
-ms.openlocfilehash: c62f2726fef5219155a08b70c61162c914600d1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+cím: aaa "Azure Analysis Services-oktatóanyag lecke 3: be van jelölve dátumtáblázatként |} Microsoft Docs"Leírás: ismerteti, hogyan toomark dátum tábla hello Azure Analysis Services-oktatóanyag projektben. szolgáltatások: analysis-szolgáltatások documentationcenter: "Szerző: minewiskan manager: erikre szerkesztőben:" címkék: "
+
+MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 06/01/2017 ms.author: owend
 ---
 # <a name="lesson-3-mark-as-date-table"></a>3. lecke: Megjelölés dátumtáblaként
 
@@ -29,29 +11,29 @@ A 2. leckében (Az adatok beszerzése) importálta a DimDate nevű táblát. Ha 
   
 A DAX időintelligenciára vonatkozó funkcióinak használatakor, például ha a mértékegységeket később hozza létre, meg kell határoznia egy *Dátumtáblát* és egy egyedi azonosító *Dátumoszlopot* a táblában.
   
-Ebben a leckében megjelöli a DimDate táblát *Dátumtáblaként* és a Date oszlopot (a Dátumtáblában) *Dátumoszlopként* (egyedi azonosító).  
+Ez a lecke megjelölni a hello DimDate táblázatban hello *dátumtáblázat* és hello dátumoszlopban (a hello dátumtáblázat) hello, *dátumoszlopban* (egyedi azonosítója).  
 
-Mielőtt megjelölné a dátumtáblát és dátumoszlopot, érdemes lehet rendbe tenni a modellt, hogy könnyebben értelmezhető legyen. A DimDate táblában figyelje meg a **FullDateAlternateKey** elnevezésű oszlopot. Ez az oszlop egy-egy sort tartalmaz a táblában lévő mindegyik naptári naphoz. Ezt az oszlopot sokat fogja használni a mértékegységképletekben és jelentésekben. A FullDateAlternateKey elnevezés azonban nem túl jól azonosítja az oszlop funkcióját. Ha átkereszteli **Date** névre, könnyebb lesz azonosítania és felhasználnia a képletekben. Amikor lehetséges, érdemes átneveznie a különféle objektumokat, azaz a táblákat és oszlopokat, hogy könnyebben azonosíthatók legyenek az SSDT-ben és az ügyfelek jelentési rendszereiben, például a Power BI-ba és az Excelben. 
+Csak azt követően megjelölni hello dátum tábla és a dátum oszlop, akkor egy időben toodo kissé háztartási toomake a modell könnyebb toounderstand. Figyelje meg hello DimDate tábla nevű oszlop **FullDateAlternateKey**. Ez az oszlop egy sor minden nap hello táblázatban szereplő naptári évenként tartalmazza. Ezt az oszlopot sokat fogja használni a mértékegységképletekben és jelentésekben. A FullDateAlternateKey elnevezés azonban nem túl jól azonosítja az oszlop funkcióját. Az Átnevezés túl**dátum**, így könnyebb tooidentify, és tartalmazzák a képletekben. Amikor csak lehetséges –-e egy jó ötlet toorename objektumok például a táblákat és oszlopokat toomake azokat könnyebben tooidentify SSDT és az alkalmazások, például a Power bi-ban és az Excel jelentés ügyfélen. 
   
-A lecke elvégzésének várható időtartama: **3 perc**.  
+Becsült idő toocomplete Ez a lecke: **három perc**  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. A leckében foglalt feladatok végrehajtása előtt el kell végeznie az előző leckét ([2. lecke: Az adatok beszerzése](../tutorials/aas-lesson-2-get-data.md)). 
+Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Ez a lecke hello feladatok elvégzése előtt kell befejeződött hello előző lecke: [lecke 2: adatok beolvasása](../tutorials/aas-lesson-2-get-data.md). 
 
-### <a name="to-rename-the-fulldatealternatekey-column"></a>A FullDateAlternateKey oszlop átnevezése
+### <a name="toorename-hello-fulldatealternatekey-column"></a>toorename hello FullDateAlternateKey oszlop
 
-1.  A modelltervezőben kattintson a **DimDate** táblára.
+1.  A hello modellek tervezőjében, kattintson a hello **DimDate** tábla.
 
-2.  Kattintson duplán a **FullDateAlternateKey** oszlop fejlécére, majd nevezze át **Date** névre.
+2.  Kattintson duplán a hello hello fejléc **FullDateAlternateKey** oszlop, és nevezze át túl**dátum**.
 
   
-### <a name="to-set-mark-as-date-table"></a>A Megjelölés dátumtáblaként beállítás megadása  
+### <a name="tooset-mark-as-date-table"></a>be van jelölve dátumtáblázatként tooset  
   
-1.  Válassza ki a **Dátum** oszlopot, majd a **Tulajdonságok** ablakban az **Adattípus** alatt bizonyosodjon meg róla, hogy a **Dátum** lehetőség van kiválasztva.  
+1.  SELECT hello **dátum** oszlop, majd a hello **tulajdonságok** ablakban, a **adattípus**, győződjön meg arról, hogy **dátum** van kiválasztva.  
   
-2.  Kattintson a **Tábla** menüre, majd a **Dátum**, és végül a **Megjelölés dátumtáblaként** lehetőségre.  
+2.  Hello kattintson **tábla** menüben, majd kattintson a **dátum**, és kattintson a **be van jelölve dátumtáblázatként**.  
   
-3.  A **Megjelölés dátumtáblaként** párbeszédpanelen, a **Dátum** listában válassza a **Date** oszlopot egyedi azonosítóként. Alapértelmezés szerint általában ez van kiválasztva. Kattintson az **OK** gombra. 
+3.  A hello **be van jelölve dátumtáblázatként** párbeszédpanel hello **dátum** listbox, jelölje be hello **dátum** oszlop szerint hello egyedi azonosítója. Alapértelmezés szerint általában ez van kiválasztva. Kattintson az **OK** gombra. 
 
     ![aas-lesson3-date-table](../tutorials/media/aas-lesson3-date-table.png)
   

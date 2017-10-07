@@ -1,6 +1,6 @@
 ---
-title: "Több földrajzi területről indított bejelentkezések"
-description: "Különböző régiókban, és a modulok nem teszi lehetővé a felhasználó elutazott volna ezeket régiók közötti idő oly módon, hogy egy jelentést, amely jelzi a felhasználó, akinek két bejelentkezési jelent meg."
+title: "aaaSign modulok különböző földrajzi régiókból"
+description: "Olyan jelentést, amely jelzi a felhasználó, akinek két bejelentkezési különböző régiókban és hello idő közötti modulok hello felhasználói toohave közötti azokban a régiókban megtett lehetetlenné teszi hello bejelentkezési toooriginate jelent meg."
 services: active-directory
 documentationcenter: 
 author: SSalahAhmed
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 1de57f64692ade442f9ef8d1e3b587ffee35d7cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7c2e9589558476f36f6ae319f807f151b6144e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-from-multiple-geographies"></a>Bejelentkezések különböző földrajzi régiókból
-Ez a jelentés tartalmaz, ahol különböző régiókban oly módon, hogy megjelent két bejelentkezést és a bejelentkezések között eltelt idő a felhasználó is tudott volna elutazni közötti azokban a régiókban lehetetlenné teszi a felhasználó sikeres bejelentkezések. Lehetséges okok a következők:
+Ez a jelentés tartalmaz, ahol két bejelentkezést jelent meg a különböző területek toooriginate és hello idő közötti hello bejelentkezések hello felhasználói toohave, amennyi ezen régiók közötti lehetetlenné teszi a felhasználó sikeres bejelentkezések. Lehetséges okok a következők:
 
 * Felhasználó oszt meg a jelszavát másokkal
-* Felhasználó a távoli asztal segítségével elindítani a webböngészőt a bejelentkezéshez
-* Egy támadó szándékkal valaki bejelentkezett felhasználói fiók egy másik országból
+* Felhasználó a távoli asztali toolaunch egy webes böngésző használ a bejelentkezéshez
+* Egy támadó szándékkal valaki bejelentkezett a felhasználó egy másik országból toohello fiók
 * Felhasználó által használt, a VPN vagy a proxy
-* Van bejelentkezett felhasználó több eszközről egy időben, például az asztali és a mobiltelefon, és az IP-címét a mobiltelefon szokatlan.
+* Felhasználói alá van írva a több eszközről: hello azonos időben, például az asztali és a mobiltelefon és hello IP-címe hello mobiltelefon: szokatlan.
 
-Ez a jelentés eredményeinek megtudhatja, a sikeres bejelentkezési események, együtt a bejelentkezéseket, a régiókban, ahol a bejelentkezések oly módon, hogy megjelent és a becsült utazás időpontja között eltelt idő azokban a régiókban között. Megjelenített utazás idő csak becsült érték, és eltér a tényleges utazás alkalommal a helyek közötti lehet.
+Ez a jelentés eredményeinek hello sikeres bejelentkezési események, együtt hello között eltelt idő hello bejelentkezéseket, régiókban, ahol hello bejelentkezések a toooriginate jelent meg, és hello becsült utazás idő közötti azokban a régiókban hello jelennek meg. hello utazás idő látható csak becsült érték, és különböző hello utazás tényleges hello helyek közötti lehet.
 
 ![Több földrajzi területről indított bejelentkezések](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
 

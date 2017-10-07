@@ -1,6 +1,6 @@
 ---
-title: "A figyelő az Azure API Management figyelő |} Microsoft Docs"
-description: "Útmutató: Azure-figyelővel Azure API Management szolgáltatás figyelése."
+title: "API-kezelés az Azure-figyelő aaaMonitor |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomonitor Azure API Management service, Azure-figyelővel."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 0f64947755c79739bb6f15325929bd074cfd7210
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5012d8ed57ea4f94ea6bc1b7c4e1102516ec4414
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-api-management-with-azure-monitor"></a>Figyelő API-kezelés az Azure-figyelő
-Az Azure figyelő az Azure-szolgáltatások, amely az összes Azure-erőforrások figyelése egyetlen helyről biztosít. Azure megfigyelővel ábrázolhatja, lekérdezése, továbbítani, archiválására, és a metrikák és a naplók az Azure erőforrások, például az API Management érkező műveletek. 
+Az Azure figyelő az Azure-szolgáltatások, amely az összes Azure-erőforrások figyelése egyetlen helyről biztosít. Azure megfigyelővel ábrázolhatja, lekérdezése, továbbítani, archivált, és műveletek hello metrikák és az Azure erőforrások, például az API Management származó naplók. 
 
-A következő videó bemutatja, hogyan figyelheti a figyelővel az Azure API Management. Azure-figyelővel kapcsolatos további információkért lásd: [Ismerkedés az Azure-figyelő]. 
+a következő videó bemutatja hogyan hello toomonitor figyelővel Azure API Management. Azure-figyelővel kapcsolatos további információkért lásd: [Ismerkedés az Azure-figyelő]. 
 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Monitor-API-Management-with-Azure-Monitor/player]
@@ -31,47 +31,47 @@ A következő videó bemutatja, hogyan figyelheti a figyelővel az Azure API Man
 >
  
 ## <a name="metrics"></a>Mérőszámok
-Az API Management jelenleg öt metrikák bocsát ki, és vegyen fel több, a jövőben tervezzük. A metrikák kibocsátott percenként, felkínálva a valós idejű információkat az állapot és az API-kat állapotának közelében. Az alábbiakban látható a metrikák összefoglalása:
-* Átjáró kérelmek teljes száma: az API-lekérdezések száma az időtartamon belül. 
-* Átjáró sikeres kérelmek:, beleértve a 304, 307 és annak minden kisebb, mint 301 (például 200) sikeres HTTP válaszkódot kapott API-kérelmek száma. 
-* Sikertelen átjáró kérelmek:, beleértve a 400-as és annak minden nagyobb, mint 500 hibás HTTP válaszkódot kapott API-kérelmek száma.
-* Jogosulatlan átjáró kérelmek: érkezett a HTTP válaszkódot, beleértve a 401-es, a 403-as és a 429 API-kérelmek száma. 
-* Más átjáró kérelmek: érkezett a HTTP válaszkódot, amelyek nem tartoznak sem a megelőző kategóriák (például 418) API-kérelmek száma.
+Az API Management jelenleg öt metrikák bocsát ki, és a jövőbeli hello további tooadd tervezzük. A metrikák kibocsátott percenként, felkínálva a közel valós idejű információkat hello állapot és az API-kat állapotát. Az alábbiakban látható hello metrikák összefoglalása:
+* Átjáró kérelmek teljes száma: hello API-lekérdezések száma hello időszakban. 
+* Átjáró sikeres kérelmek: API-kérelmek fogadott, többek között a 304, 307 és annak minden kisebb, mint (például 200) 301 sikeres HTTP válaszkódot hello száma. 
+* Nem sikerült az átjáró kérelmek: hello API kérelmek száma, beleértve a 400-as és annak minden nagyobb, mint 500 hibás HTTP válaszkódot kapott.
+* Jogosulatlan átjáró kérelmek:, beleértve a 401-es, a 403-as és a 429 HTTP válaszkódot kapott API-kérelmek hello száma. 
+* Más átjáró kérelmek: API-kérelmek fogadott, amelyek nem tartoznak a megelőző kategóriák (például 418) hello tooany HTTP válaszkódot hello száma.
 
-Az API Management szolgáltatásban metrikák vagy hozzáférési metrikák összes Azure-erőforrások Azure figyelőben érheti el. Metrikák megtekintése az API Management szolgáltatásban:
-1. Nyissa meg az Azure-portálon.
-2. Nyissa meg az API Management szolgáltatáshoz.
+Az API Management szolgáltatásban metrikák vagy hozzáférési metrikák összes Azure-erőforrások Azure figyelőben érheti el. az API Management szolgáltatásban tooview metrikák:
+1. Nyissa meg hello Azure-portálon.
+2. Nyissa meg a tooyour API-kezelés szolgáltatás.
 3. Kattintson a **metrikák**.
 
 ![Metrikák panel][metrics-blade]
 
-Metrikák használatával kapcsolatos további információkért lásd: [áttekintése a metrikák].
+További információ toouse metrika, lásd: [áttekintése a metrikák].
 
 ## <a name="activity-logs"></a>Tevékenységnaplók
-Tevékenységi naplóit adja meg az API Management-szolgáltatások a végrehajtott műveletek betekintést. Azt korábban hívták "naplófájlok" vagy "működési logs". Tevékenység-naplók segítségével meghatározhatja a "mi, ki, és mikor" az összes írni az API Management szolgáltatásokban végzett műveleteket (PUT, POST, Törlés). 
+Tevékenységi naplóit hello műveletek az API Management-szolgáltatások a végrehajtott betekintést nyújtanak. Azt korábban hívták "naplófájlok" vagy "működési logs". Tevékenység-naplók segítségével meghatározhatja hello "mi, ki, és mikor" az összes írni az API Management szolgáltatásokban végzett műveleteket (PUT, POST, Törlés). 
 
 > [!NOTE]
-> Tevékenység naplói nem tartalmazzák (GET) olvasási műveletek vagy a műveletek végre Publisher a klasszikus portálon vagy az eredeti felügyeleti API-k használatával.
+> Tevékenység naplói nem tartalmazzák (GET) olvasási műveletek vagy végrehajtott műveletek hello Publisher klasszikus portál vagy az eredeti felügyeleti API-k használatával hello.
 
-Tevékenység naplók elérhetők az API Management szolgáltatásban, és elérni az összes Azure-erőforrások Azure figyelőben naplókat. Naplózza az tevékenységének megtekintéséhez az API Management szolgáltatásban:
-1. Nyissa meg az Azure-portálon.
-2. Nyissa meg az API Management szolgáltatáshoz.
+Tevékenység naplók elérhetők az API Management szolgáltatásban, és elérni az összes Azure-erőforrások Azure figyelőben naplókat. tooview tevékenység naplózza az API Management szolgáltatásban:
+1. Nyissa meg hello Azure-portálon.
+2. Nyissa meg a tooyour API-kezelés szolgáltatás.
 3. Kattintson a **tevékenységnapló**.
 
 ![Tevékenység naplók panel][activity-logs-blade]
 
-Metrikák használatával kapcsolatos további információkért lásd: [tevékenységi naplóit – áttekintés].
+További információ toouse metrika, lásd: [tevékenységi naplóit – áttekintés].
 
 ## <a name="alerts"></a>Riasztások
-A riasztások metrikák és tevékenység naplók alapján konfigurálhatja. Azure a figyelő riasztást tegye a következőket, amikor elindítja a konfigurálását teszi lehetővé:
+Konfigurálhat tooreceive metrikák és tevékenység naplók alapján. Az Azure a figyelő lehetővé teszi egy riasztási toodo hello követően amikor elindítja a tooconfigure:
 
 * E-mail értesítés küldése
 * A webhook hívása
 * Egy Azure logikai alkalmazás meghívása
 
-A riasztási szabályok konfigurálhatja az API Management szolgáltatásban, vagy az Azure-figyelő. Az API Management azok konfigurálását: 
-1. Nyissa meg az Azure-portálon.
-2. Nyissa meg az API Management szolgáltatáshoz.
+A riasztási szabályok konfigurálhatja az API Management szolgáltatásban, vagy az Azure-figyelő. tooconfigure az API Management őket: 
+1. Nyissa meg hello Azure-portálon.
+2. Nyissa meg a tooyour API-kezelés szolgáltatás.
 3. Kattintson a **riasztási szabályok**.
 
 ![A riasztási szabályok panel][alert-rules-blade]
@@ -79,9 +79,9 @@ A riasztási szabályok konfigurálhatja az API Management szolgáltatásban, va
 Riasztások használatával kapcsolatos további információkért lásd: [áttekintése a riasztások].
 
 ## <a name="diagnostic-logs"></a>Diagnosztikai naplók
-Diagnosztikai naplók gazdag információkkal kapcsolatos műveletek és a naplózás és a hibaelhárítási célból fontos hibák. Diagnosztikai naplók eltérnek a tevékenységi naplóit. Tevékenység naplók az Azure-erőforrások a végrehajtott műveletek betekintést. Diagnosztikai naplók Észreveheti az olyan műveletek, hogy az erőforrás végre magát.
+Diagnosztikai naplók gazdag információkkal kapcsolatos műveletek és a naplózás és a hibaelhárítási célból fontos hibák. Diagnosztikai naplók eltérnek a tevékenységi naplóit. Tevékenység naplók az Azure-erőforrások a végrehajtott műveletek hello betekintést. Diagnosztikai naplók Észreveheti az olyan műveletek, hogy az erőforrás végre magát.
 
-Az API Management jelenleg biztosít diagnosztika kapcsolatos egyéni API naplókat (óránkénti kötegelni) igénylése összes bejegyzést, hogy az alábbi szerkezettel:
+Az API Management jelenleg biztosít diagnosztika mindegyik bejegyzés rendelkezik a következő struktúra hello igénylése kapcsolatos egyéni API naplókat (óránkénti kötegelni):
 
 ```
 {
@@ -113,14 +113,14 @@ Az API Management jelenleg biztosít diagnosztika kapcsolatos egyéni API napló
  }
 ```
 
-Diagnosztikai naplók elérhetők az API Management szolgáltatásban, és hozzáférés az összes Azure-erőforrások Azure figyelőben naplók. Diagnosztikai naplók megtekintése az API Management szolgáltatásban:
-1. Nyissa meg az Azure-portálon.
-2. Nyissa meg az API Management szolgáltatáshoz.
+Diagnosztikai naplók elérhetők az API Management szolgáltatásban, és hozzáférés az összes Azure-erőforrások Azure figyelőben naplók. tooview diagnosztikai naplók az API Management szolgáltatásban:
+1. Nyissa meg hello Azure-portálon.
+2. Nyissa meg a tooyour API-kezelés szolgáltatás.
 3. Kattintson a **diagnosztikai naplófájl**.
 
 ![Diagnosztikai naplók panel][diagnostic-logs-blade]
 
-Metrikák használatával kapcsolatos további információkért lásd: [diagnosztikai naplók áttekintése].
+További információ toouse metrika, lásd: [diagnosztikai naplók áttekintése].
 
 ## <a name="next-step"></a>Következő lépés
 

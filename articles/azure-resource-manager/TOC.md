@@ -22,7 +22,7 @@
 ## Sablonok létrehozása
 ### [Ajánlott eljárások a sablonokhoz](resource-manager-template-best-practices.md)
 ### [Sablon szakaszai](resource-group-authoring-templates.md)
-### [Hivatkozás más sablonokra](resource-group-linked-templates.md)
+### [Hivatkozás tooother sablonok](resource-group-linked-templates.md)
 ### [Függőség megadása két erőforrás között](resource-group-define-dependencies.md)
 ### [Több példány létrehozása](resource-group-create-multiple.md)
 ### [Hely beállítása](resource-manager-template-location.md)
@@ -53,8 +53,8 @@
 ### [Azure CLI](xplat-cli-azure-resource-manager.md)
 ### [Portál](resource-group-portal.md)
 ### [REST API](resource-manager-rest-api.md)
-### [Címkék használata az erőforrások rendszerezéséhez](resource-group-using-tags.md)
-### [Erőforrások áthelyezése új csoportba vagy előfizetésbe](resource-group-move-resources.md)
+### [Címkék tooorganize erőforrások használata](resource-group-using-tags.md)
+### [Erőforrások toonew csoport áthelyezése vagy előfizetés](resource-group-move-resources.md)
 ### [Irányítási példák](resource-manager-subscription-examples.md)
 
 ## Vezérlési hozzáférés
@@ -62,14 +62,14 @@
 #### [PowerShell](resource-group-authenticate-service-principal.md)
 #### [Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 #### [Azure CLI 1.0](resource-group-authenticate-service-principal-cli.md)
-#### [Portal](resource-group-create-service-principal-portal.md)
-### [Hitelesítési API az előfizetések hozzáféréséhez](resource-manager-api-authentication.md)
+#### [Portál](resource-group-create-service-principal-portal.md)
+### [Authentication API tooaccess előfizetések](resource-manager-api-authentication.md)
 ### [Erőforrások zárolása](resource-group-lock-resources.md)
 
 ## Erőforrás-házirendek beállítása
 ### [Mik azok az erőforrás-házirendek?](resource-manager-policy.md)
-### [Szabályzat hozzárendelése a portál használatával](resource-manager-policy-portal.md)
-### [Szabályzat hozzárendelése szkriptek használatával](resource-manager-policy-create-assign.md)
+### [A házirend-portál tooassign](resource-manager-policy-portal.md)
+### [Parancsfájlok tooassign házirend](resource-manager-policy-create-assign.md)
 ### Példák
 #### [Címkék](resource-manager-policy-tags.md)
 #### [Elnevezési konvenciók](resource-manager-policy-naming-convention.md)

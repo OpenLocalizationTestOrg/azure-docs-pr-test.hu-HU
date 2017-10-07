@@ -1,6 +1,6 @@
 ---
-title: "Biztonságos kapcsolódás háttér erőforrásokhoz az App Service-környezet"
-description: "További tudnivalók a biztonságos kapcsolódás App Service-környezetből származó."
+title: "aaaSecurely csatlakozás tooBackEnd erőforrásokhoz bárhonnan, az App Service-környezetek"
+description: "További információk a hogyan toosecurely kapcsolódó toobackend erőforrások az App Service Environment-környezet."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
-ms.openlocfilehash: 0b6d3a47dc429c469b37c2c74f546cfeca580358
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6311d3fc301512ea3c4ed8f14f268f75755aa415
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securely-connecting-to-backend-resources-from-an-app-service-environment"></a>Biztonságos kapcsolódás háttér erőforrásokhoz az App Service-környezet
+# <a name="securely-connecting-toobackend-resources-from-an-app-service-environment"></a>Biztonságosan csatlakozás tooBackend erőforrásokhoz bárhonnan, az App Service-környezetek
 ## <a name="overview"></a>Áttekintés
-Mivel az App Service-környezetek mindig jön létre **vagy** az Azure Resource Manager virtuális hálózati **vagy** klasszikus telepítési modell [virtuális hálózati][virtualnetwork], más háttér erőforrások az App Service-környezetek kimenő kapcsolatok áramolhasson az kizárólag a virtuális hálózaton.  2016. június végzett legutóbbi módosítását ASEs is telepíthető a virtuális hálózatok, amelyek nyilvános címtartományt, vagy RFC1918 címterek (azaz Magáncímeket).  
+Mivel az App Service-környezetek mindig jön létre **vagy** az Azure Resource Manager virtuális hálózati **vagy** klasszikus telepítési modell [virtuális hálózati] [ virtualnetwork], az App Service Environment-környezet tooother háttér erőforrásokból kimenő kapcsolatok áramolhasson kizárólag hello virtuális hálózaton keresztül.  2016. június végzett legutóbbi módosítását ASEs is is telepíthető az nyilvános címtartományt, vagy RFC1918 címterek (azaz Magáncímeket) használó virtuális hálózatok.  
 
-Előfordulhat például, a virtuális gépek zárolva 1433-as port a fürtön futó SQL Server.  A végpont lehet ACLd, hogy csak más erőforrásokhoz való hozzáférést a virtuális hálózaton.  
+Előfordulhat például, a virtuális gépek zárolva 1433-as port a fürtön futó SQL Server.  lehet, hogy hello végpont tooonly egyéb erőforrásokhoz való hozzáférés engedélyezése a ACLd hello ugyanazt a virtuális hálózatot.  
 
-Másik példaként, bizalmas végpontok előfordulhat, hogy működik a helyszíni és csatlakoztatni az Azure-bA vagy [pont-pont] [ SiteToSite] vagy [Azure ExpressRoute] [ ExpressRoute] kapcsolatok.  Ennek eredményeképpen a pont-pont vagy ExpressRoute-alagutak csatlakoztatott virtuális hálózatok csak erőforrások hozzáférhetnek a helyszíni végpont lesz.
+Másik példaként, bizalmas végpontok a helyi, és akár keresztül csatlakoztatott tooAzure kell [pont-pont] [ SiteToSite] vagy [Azure ExpressRoute] [ ExpressRoute] kapcsolatok.  Ennek eredményeképpen csak azokat az erőforrásokat a virtuális hálózatok csatlakoztatva toohello pont-pont, vagy ExpressRoute-alagutak lesz képes tooaccess helyszíni végpontok.
 
-Az összes forgatókönyvekben az App Service-környezetek futó alkalmazások tudnak biztonságosan csatlakozik a különböző kiszolgálók és az erőforrások.  A saját végpontokhoz ugyanazon virtuális hálózatban egy App Service Environment-környezetben futó alkalmazások kimenő forgalom (vagy ugyanahhoz a virtuális hálózathoz csatlakozik), csak a folyamat lesz a virtuális hálózaton keresztül.  Saját végpontokhoz kimenő forgalom nem halad a nyilvános interneten keresztül.
+Az összes forgatókönyvekben az App Service-környezetek futó alkalmazások kell képes toosecurely csatlakoztassa toohello különböző kiszolgálókon és erőforrásokat.  Egy App Service Environment-környezet tooprivate végpontok hello a futó alkalmazásokból kimenő forgalom ugyanazt a virtuális hálózatot (vagy toohello csatlakoztatva azonos virtuális hálózatban), csak a folyamat fog hello virtuális hálózaton keresztül.  Kimenő forgalom tooprivate végpontok nem halad keresztül hello a nyilvános internethez.
 
-Egy szerint a végpontokat a virtuális hálózaton belül az App Service-környezetek vonatkozik a kimenő forgalom.  App Service Environment-környezetek nem érhető el a virtuális gépek találhatók végpontok a **azonos** az App Service Environment-környezet alhálózaton.  Általában ne legyen hiba, amíg az App Service Environment-környezetek telepít egy alhálózatba, csak az App Service Environment-környezet által kizárólagos használatra fenntartva.
+Egy szerint toooutbound forgalmat egy App Service Environment-környezet tooendpoints a virtuális hálózaton belül érvényes.  App Service Environment-környezetek nem érhető el a végpontok hello található virtuális gépek **azonos** alhálózat szerint hello App Service Environment-környezet.  Általában ne legyen hiba, amíg az App Service Environment-környezetek telepít egy alhálózatba csak hello App Service Environment-környezet által kizárólagos használatra fenntartva.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="outbound-connectivity-and-dns-requirements"></a>Kimenő kapcsolatok és a DNS-követelmények
-Az App Service Environment-környezet működését, a különböző végpontok kimenő hozzáférést igényel. "A hálózati kapcsolat szükséges" szakaszában van a külső végpontok egy ASE által használt teljes listáját a [ExpressRoute tartozó fürthálózat-konfiguráció](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) cikk.
+Az egy App Service Environment-környezet toofunction megfelelően, akkor csak kimenő hozzáférést toovarious végpontok. Hello külső végpontok egy ASE által használt teljes listája megtalálható-e hello hello "A hálózati kapcsolat szükséges" szakasza [ExpressRoute tartozó fürthálózat-konfiguráció](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) cikk.
 
-App Service-környezetek virtuális hálózat egy érvényes DNS-infrastruktúra szükséges.  Ha bármilyen okból az App Service Environment-környezet létrehozása után a DNS-konfiguráció módosul, a fejlesztők kényszerítheti az App Service-környezet az új DNS-konfiguráció érvényesítéséhez.  A működés közbeni környezet újra kell indítani a portálon az App Service Environment-felügyelet panel tetején található "Restart" ikonnal váltanak, akkor a a környezet az új DNS-konfiguráció érvényesítéséhez.
+App Service-környezetek hello virtuális hálózat egy érvényes DNS-infrastruktúra szükséges.  Ha bármilyen okból hello DNS-konfiguráció esetén megváltozik egy App Service Environment-környezet létrehozása után, a fejlesztők kényszerítheti az App Service Environment-környezet toopick hello új DNS-konfiguráció.  Hello "Restart" ikonnal hello App Service Environment-környezet hello tetején található működés közbeni környezet újraindítás kiváltó felügyelet panel hello portálon hatására hello környezet toopick hello új DNS-konfiguráció.
 
-Ajánlott továbbá, hogy a virtuális hálózaton egyéni DNS-kiszolgálók kell-e a telepítő az App Service Environment-környezet létrehozása előtt időben.  Ha egy virtuális hálózat DNS-konfiguráció megváltozott egy App Service Environment-környezet létrehozása közben, az App Service Environment-környezet létrehozása folyamat sikertelen vezethet.  Egy hasonló tekintettel az egy egyéni DNS-kiszolgáló létezik a VPN-átjáró másik végén, és a DNS-kiszolgáló nem érhető el vagy nem érhető el, ha az App Service Environment-környezet létrehozása is sikertelen lesz.
+Ajánlott továbbá, hogy egyéni DNS-kiszolgálók hello a virtuális hálózaton kell előre idő előzetes toocreating az App Service-környezetek beállítása.  Ha egy virtuális hálózat DNS-konfiguráció megváltozott egy App Service Environment-környezet létrehozása közben, hello App Service Environment-környezet létrehozása folyamat sikertelen vezethet.  Egy hasonló tekintettel az egyéni DNS-kiszolgáló létezik a hello másik végén egy VPN gateway és hello DNS-kiszolgáló esetén nem érhető el vagy nem érhető el, hello App Service Environment-környezet létrehozása is sikertelen lesz.
 
-## <a name="connecting-to-a-sql-server"></a>Kapcsolódás az SQL-kiszolgálóhoz
+## <a name="connecting-tooa-sql-server"></a>Kapcsolódás az SQL Server tooa
 Egy közös SQL Server-konfigurációs az 1433-as portot figyelő végponttal rendelkezik:
 
 ![SQL Server-végpont][SqlServerEndpoint]
 
-Kétféleképpen forgalom korlátozására ehhez a végponthoz:
+Kétféleképpen a forgalom toothis végpont korlátozása:
 
 * [Hálózati hozzáférés-vezérlési listák] [ NetworkAccessControlLists] (hálózati hozzáférés-vezérlési listák)
 * [Hálózati biztonsági csoportok][NetworkSecurityGroups]
 
 ## <a name="restricting-access-with-a-network-acl"></a>A hálózati hozzáférés-vezérlési lista a hozzáférés korlátozása
-1433-as port a hálózati hozzáférés-vezérlési lista segítségével biztosítható.  Whitelists ügyfél az alábbi példában egy virtuális hálózaton belül származó címek, és engedélyezi, hogy más ügyfelekkel.
+1433-as port a hálózati hozzáférés-vezérlési lista segítségével biztosítható.  whitelists ügyfél az alábbi hello példában címek egy virtuális hálózaton belül származó, és blokkolja hozzáférést tooall más ügyfelekkel.
 
 ![Hálózati hozzáférés vezérlő példa][NetworkAccessControlListExample]
 
-Az SQL Server fog tudni csatlakozni az SQL Server példányát használja, az azonos virtuális hálózatban lévő App Service Environment-környezetben futó alkalmazások a **belső hálózatok** az SQL Server virtuális gép IP-címet.  
+A App Service Environment-környezetben futó alkalmazások hello ugyanazt a virtuális hálózatot, mert hello SQL Server lesz képes tooconnect toohello SQL Server-példány használatával hello **belső hálózatok** hello SQL Server virtuális gép IP-címet.  
 
-Az alábbi példa kapcsolati karakterláncot az SQL Server Privát IP-címére hivatkozik.
+hello példa kapcsolati karakterlánc hivatkozás alatti hello SQL Server Privát IP-címére.
 
     Server=tcp:10.0.1.6;Database=MyDatabase;User ID=MyUser;Password=PasswordHere;provider=System.Data.SqlClient
 
-Habár a virtuális gép egy nyilvános végpontot, a nyilvános IP-cím használatával történő kapcsolódási kísérletek program elutasítja a hálózati hozzáférés-vezérlési lista miatt. 
+Bár a hello virtuális gépen van egy nyilvános végpontot, hello nyilvános IP-cím használatával történő kapcsolódási kísérletek elutasításra hello hálózati hozzáférés-vezérlési lista miatt. 
 
 ## <a name="restricting-access-with-a-network-security-group"></a>Hálózati biztonsági csoport a hozzáférés korlátozása
-Hálózati biztonsági csoport van egy másik módjáról hozzáférés biztosítása érdekében.  Hálózati biztonsági csoportok egyedi virtuális gépeket, vagy egy alhálózathoz, virtuális gépeket tartalmazó lehet alkalmazni.
+Hálózati biztonsági csoport van egy másik módjáról hozzáférés biztosítása érdekében.  Hálózati biztonsági csoportok alkalmazott tooindividual virtuális gépek vagy virtuális gépeket tartalmazó tooa alhálózati lehet.
 
-Először egy hálózati biztonsági csoportot kell létrehozni:
+Hálózati biztonsági csoport először létre toobe van szüksége:
 
     New-AzureNetworkSecurityGroup -Name "testNSGexample" -Location "South Central US" -Label "Example network security group for an app service environment"
 
-Hozzáférés korlátozása csak a virtuális hálózat belső forgalom a hálózati biztonsági csoport nagyon egyszerű.  Az alapértelmezett szabályok a hálózati biztonsági csoport csak engedélyezik a hozzáférést, az azonos virtuális hálózatban lévő egyéb hálózati ügyfelekről.
+Hozzáférés tooonly virtuális hálózat belső forgalom korlátozása a hálózati biztonsági csoport nagyon egyszerű.  hello alapértelmezett szabályok a hálózati biztonsági csoport csak engedélyezik a hozzáférést a többi hálózati ügyfelet hello ugyanazt a virtuális hálózatot.
 
-Ennek eredményeképpen zárolás SQL-kiszolgálóhoz való hozzáférés, más dolga, mint egy hálózati biztonsági csoport az alapértelmezett szabály alkalmazása vagy a virtuális gépek futnak az SQL Server, vagy az alhálózatot a virtuális gépeket tartalmazó.
+Emiatt a hozzáférés tooSQL zárolása-kiszolgáló egy más dolga, mint az alapértelmezett szabályok tooeither hello futó virtuális gépek az SQL Server vagy hello virtuális gépeket tartalmazó hello alhálózatot a hálózati biztonsági csoport alkalmazása.
 
-Az alábbi minta hálózati biztonsági csoport az tartalmazó alhálózat vonatkozik:
+az alábbi hello minta hálózati biztonsági csoport toohello tartalmazó alhálózat vonatkozik:
 
     Get-AzureNetworkSecurityGroup -Name "testNSGExample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-1'
 
-A végeredménynek olyan szabályokat, amelyek külső hozzáférés, miközben lehetővé teszi a virtuális hálózat belső hozzáférés letiltása:
+hello végeredménynek olyan szabályokat, amelyek külső hozzáférés, miközben lehetővé teszi a virtuális hálózat belső hozzáférés letiltása:
 
 ![Alapértelmezett hálózati biztonsági szabályok][DefaultNetworkSecurityRules]
 
 ## <a name="getting-started"></a>Bevezetés
-Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el a [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
+Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el hello [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
 
-App Service Environment-környezetek megkezdéséhez, lásd: [App Service Environment bemutatása][IntroToAppServiceEnvironment]
+Lásd az App Service-környezetek lépései tooget [bemutatása tooApp Service-környezet][IntroToAppServiceEnvironment]
 
-További részletek az App Service-környezet a bejövő forgalom vezérlése körül: [az App Service-környezetek bejövő forgalom szabályozása][ControlInboundASE]
+Ellenőrző bejövő forgalom tooyour App Service Environment-környezet körül, lásd: [szabályozása a bejövő forgalom tooan App Service Environment-környezet][ControlInboundASE]
 
-Az Azure App Service platformmal kapcsolatos további információkért lásd: [Azure App Service][AzureAppService].
+Hello Azure App Service platformmal kapcsolatos további információkért lásd: [Azure App Service][AzureAppService].
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

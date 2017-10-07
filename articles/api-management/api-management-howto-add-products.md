@@ -1,6 +1,6 @@
 ---
-title: "Hogyan hozhat létre, és a termék közzététele az Azure API Management"
-description: "Ismerje meg, hogyan hozhat létre és termékek közzététele az Azure API Management."
+title: "aaaHow toocreate és a termék közzététele az Azure API Management"
+description: "Megtudhatja, hogyan toocreate és termékek közzététele az Azure API Management."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 73bf4451ba1b71807e22440beecc73a7e8045c5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0a37f08b4e29ca68be9caec4c7604e3b4b6aaa6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-publish-a-product-in-azure-api-management"></a>Hogyan hozhat létre, és a termék közzététele az Azure API Management
-Az Azure API Management a termék egy vagy több API-k, valamint a memóriahasználati kvóta és a használati feltételeket tartalmaz. Miután közzétette a termék, a fejlesztők a termék előfizetni és a termék API-k használatának megkezdéséhez. A témakör való termék létrehozása, az API-k hozzáadása, és közzéteheti azt a fejlesztők számára.
+# <a name="how-toocreate-and-publish-a-product-in-azure-api-management"></a>Hogyan toocreate és a termék közzététele az Azure API Management
+Az Azure API Management a termék egy vagy több API-k, valamint a használati kvóta és hello használati feltételeket tartalmaz. Miután közzétette a termék, a fejlesztők toohello termék előfizetés és toouse hello termék API-k megkezdéséhez. hello a témakör egy útmutató toocreating termék, az API-k hozzáadása, és a közzététel a fejlesztők számára.
 
 ## <a name="create-product"></a>Termék létrehozása
-Műveletek felvétele, illetve egy API-t, a közzétevő portálon konfigurálva. A közzétevő portál eléréséhez kattintson **Publisher portal** az Azure portálon az API Management szolgáltatás.
+Műveletek bekerülnek és tooan API a hello publisher portálon. tooaccess hello publisher portálon kattintson **Publisher portal** a hello Azure portál, az API Management szolgáltatás.
 
 ![Közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
+> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
 > 
 > 
 
-Kattintson a **termékek** megjelenítéséhez a bal oldali menüben a **termékek** lapon, majd kattintson **termék hozzáadása**.
+Kattintson a **termékek** hello menüben található hello bal oldali toodisplay hello **termékek** lapon, majd kattintson **termék hozzáadása**.
 
 ![Termékek][api-management-products]
 
 ![Új termék][api-management-add-new-product]
 
-Adjon meg egy leíró nevet a termékből a **neve** mező, és a termék leírása a **leírás** mező.
+Adjon meg egy leíró nevet a hello termék hello **neve** mező és hello hello termék leírása **leírás** mező.
 
-Az API Management termékek lehet **nyitott** vagy **védett**. A védett termékeket csak előfizetők használhatják, míg a nyílt termékeket előfizetés nélkül is lehet használni. Ellenőrizze **előfizetés szükséges** előfizetést igénylő védett termék létrehozásához. Ez az alapértelmezett beállítás.
+Az API Management termékek lehet **nyitott** vagy **védett**. Védett termékek kell is használhatók, miközben a Megnyitás előfizetett toobefore termékek előfizetés nélkül is használható. Ellenőrizze **előfizetés szükséges** toocreate egy védett terméket, amely a előfizetést igényel. Ez az hello alapértelmezett beállítása.
 
-Ellenőrizze **előfizetés jóváhagyás szükséges** Ha azt szeretné, hogy tekintse át és fogadja el vagy utasítsa el a termék előfizetés megkísérli a rendszergazda. Ha a jelölőnégyzet nincs bejelölve, a előfizetés kísérletek lesz automatikusan jóváhagyta. Az előfizetések további információkért lásd: [megtekintheti a termék-előfizetők][View subscribers to a product].
+Ellenőrizze **előfizetés jóváhagyás szükséges** Ha szeretné, hogy egy rendszergazda tooreview, és fogadja el vagy utasítsa el az előfizetés kísérletek toothis termék. Ha hello jelölőnégyzet nincs bejelölve, a előfizetés kísérletek lesz automatikusan jóváhagyta. Az előfizetések további információkért lásd: [nézet előfizetők tooa termék][View subscribers tooa product].
 
-Engedélyezze a fejlesztői fiókok többször előfizetni a terméket, ellenőrizze a **több előfizetés engedélyezése** jelölőnégyzetet. Ha a négyzet nincs bejelölve, minden developer-fiók csak egy alkalommal a termék kérhet le.
+tooallow fejlesztői fiókok toosubscribe többször toohello terméket, ellenőrizze a hello **több előfizetés engedélyezése** jelölőnégyzetet. Ha a négyzet nincs bejelölve, minden developer-fiók csak egy alkalommal toohello termék kérhet le.
 
 ![Korlátlan több előfizetéssel][api-management-unlimited-multiple-subscriptions]
 
-Több egyidejű előfizetések számának korlátozása érdekében ellenőrizze a **egyidejű előfizetések számának korlátozása** jelölje be a jelölőnégyzetet, és írja be az előfizetési határértéket. A következő példában egyidejű előfizetések korlátozódnak négy fejlesztői fiókonként.
+több egyidejű előfizetéssel toolimit hello száma ellenőrizze hello **egyidejű előfizetések számának korlátozása** jelölje be a jelölőnégyzetet, és írja be a hello előfizetési korlátját. A következő példa hello egyidejű előfizetések fejlesztői fiókonként korlátozott toofour.
 
 ![Négy több előfizetéssel][api-management-four-multiple-subscriptions]
 
-Minden új termék beállítások konfigurálása után kattintson **mentése** az új termék létrehozásához.
+Ha minden új termék beállításainak konfigurálása után kattintson **mentése** toocreate hello új terméket.
 
 ![Termékek][api-management-products-page]
 
-> Alapértelmezés szerint új termékek közzé nem tett, és csak a **rendszergazdák** csoport.
+> Alapértelmezés szerint új termékek közzé nem tett, és látható csak toohello **rendszergazdák** csoport.
 > 
 > 
 
-A termék konfigurálásához kattintson a termék nevére a a **termékek** fülre.
+tooconfigure termék, kattintson a hello termék nevére a hello **termékek** fülre.
 
-## <a name="add-apis"></a>API-k hozzáadása egy termékre
-A **termékek** lapon négy hivatkozása a konfigurációhoz: **összegzés**, **beállítások**, **látható**, és  **Előfizetők**. A **összegzés** lapon látható, ahol akkor is vegye fel az API-k és közzétételét és a termék.
+## <a name="add-apis"></a>API-k hozzáadása tooa termék
+Hello **termékek** lapon négy hivatkozása a konfigurációhoz: **összegzés**, **beállítások**, **látható**, és  **Előfizetők**. Hello **összegzés** lapon látható, ahol akkor is vegye fel az API-k és közzétételét és a termék.
 
 ![Összefoglalás][api-management-new-product-summary]
 
-A termék közzététele előtt kell hozzáadnia egy vagy több API-k. Ehhez kattintson **API vegye fel a termék**.
+A termék közzététele előtt kell tooadd egy vagy több API-k. toodo, kattintson **hozzáadása API tooproduct**.
 
 ![API-k hozzáadása][api-management-add-apis-to-product]
 
-Válassza ki a kívánt API-kat, és kattintson a **mentése**.
+Jelölje be hello szükséges API-t, és kattintson **mentése**.
 
-## <a name="add-description"></a>Leíró adatokat hozzáadni a termék
-A **beállítások** lapon adhatja meg a termék, például a célja, hozzáférést biztosít az API-k és más hasznos információk részletes információkat tartalmaznak. A tartalom célja a fejlesztők számára, amely hívja az API-t kell lesz, és egyszerű szöveg- vagy HTML-kódot is beírhatók.
+## <a name="add-description"></a>Hozzáadás leíró tooa termék
+Hello **beállítások** a lapon adhatók meg tooprovide részletes információkat hello termék például mindössze egyetlen célra szorítkoznak, hello hozzáférést biztosít a API-k és más hasznos információkat. hello tartalom hello API hívása lesz, és egyszerű szöveg- vagy HTML-kódot is beírhatók hello a fejlesztők irányul.
 
 ![A termék beállításai][api-management-product-settings]
 
-Ellenőrizze **előfizetés szükséges** védett termék, amely használható, vagy törölje a jelölőnégyzet bejelölésével hozzon létre egy megnyitott terméket, amely a előfizetés nélkül meghívható előfizetését igényli létrehozásához.
+Ellenőrizze **előfizetés szükséges** toocreate egy előfizetés toobe használt, vagy törölje a jelet igénylő védett termék hello jelölőnégyzet toocreate egy megnyitott terméket, amely a előfizetés nélkül meghívható.
 
-Válassza ki **előfizetés jóváhagyás szükséges** Ha manuálisan jóváhagyja az összes termék előfizetési kérelmek. Alapértelmezés szerint az összes termék előfizetések automatikusan kapnak.
+Válassza ki **előfizetés jóváhagyás szükséges** Ha azt szeretné, toomanually összes termék előfizetési kérelmek jóváhagyása. Alapértelmezés szerint az összes termék előfizetések automatikusan kapnak.
 
-Engedélyezze a fejlesztői fiókok többször előfizetni a terméket, ellenőrizze a **több előfizetés engedélyezése** jelölje be a jelölőnégyzetet, és opcionálisan adja meg a határértéket. Ha a négyzet nincs bejelölve, minden developer-fiók csak egy alkalommal a termék kérhet le.
+tooallow fejlesztői fiókok toosubscribe többször toohello terméket, ellenőrizze a hello **több előfizetés engedélyezése** jelölje be a jelölőnégyzetet, és opcionálisan adja meg a határértéket. Ha a négyzet nincs bejelölve, minden developer-fiók csak egy alkalommal toohello termék kérhet le.
 
-Nem kötelező kitölteni a **használati feltételek** mezőt, amely leírja a termék, mely előfizetők a termék használatához el kell fogadnia a használati feltételeket.
+Nem kötelező kitölteni hello **használati feltételek** hello termék, amely előfizetők el kell fogadnia ahhoz toouse hello termékben a hello használati feltételeit leíró mező.
 
 ## <a name="publish-product"></a>Termék közzététele
-A termék API-k hívása előtt közzé kell tenni a terméket. A a **összegzés** termék lapra, majd **közzététel**, és kattintson a **Igen, azt közzé** megerősítéséhez. A korábban közzétett termék titkos kattintson **Közzététel megszüntetése**.
+A termék API-k hello hívása előtt hello termék közzé kell tenni. A hello **összegzés** hello termék lapra, majd **közzététel**, és kattintson a **Igen, azt közzé** tooconfirm. Kattintson egy olyan, korábban kiadott termék magánhálózat toomake **Közzététel megszüntetése**.
 
 ![Termék közzététele][api-management-publish-product]
 
-## <a name="make-visible"></a>a fejlesztők számára láthatóvá termék
-A **látható** lap lehetővé teszi annak meghatározását, mely szerepkörök képesek a termék megjelenik a fejlesztői portálján, és a termék előfizetni.
+## <a name="make-visible"></a>Ellenőrizze a termék látható toodevelopers
+Hello **látható** lapon meghatározhatja, melyik szerepkörök képes toosee hello termék hello developer portálon, és toohello termék előfizetés toochoose.
 
 ![A termék látható][api-management-product-visiblity]
 
-Letiltása és engedélyezése látható-e a termék a fejlesztők számára az egy csoport, ellenőrizze, vagy törölje a jelet az a csoport melletti jelölőnégyzetet, majd kattintson **mentése**.
+tooenable vagy tiltsa le látható-e a termék hello fejlesztők számára az egy csoportba, ellenőrizze, vagy hello csoport hello jelölőnégyzeteket, törölje a jelet, és kattintson a **mentése**.
 
-> További információkért lásd: [létrehozásáról és csoportoknak a segítségével az Azure API Management fejlesztői fiókok kezelése][How to create and use groups to manage developer accounts in Azure API Management].
+> További információkért lásd: [hogyan toocreate és -felhasználási csoportok toomanage fejlesztői fiókok az Azure API Management][How toocreate and use groups toomanage developer accounts in Azure API Management].
 > 
 > 
 
-## <a name="view-subscribers"></a>Termék-előfizetők megtekintése
-A **előfizetők** lap felsorolja a fejlesztők számára a termék előfizetett. A részletek és minden fejlesztői beállításait a a fejlesztői nevére kattintva is megtekinthetők. Ebben a példában nincs fejlesztők előfizetett még a termék.
+## <a name="view-subscribers"></a>Előfizetők tooa termék megtekintése
+Hello **előfizetők** lap felsorolja az előfizetett toohello termék hello fejlesztőknek. hello részleteit és beállításait minden fejlesztői tekintheti meg a fejlesztői hello nevére kattintva. Ebben a példában nincs fejlesztők még előfizetett toohello termék.
 
 ![Fejlesztők][api-management-developer-list]
 
-## <a name="next-steps"> </a>Következő lépések
-Miután a kívánt API-k hozzáadásával, és a termék közzétett, a fejlesztők előfizetni a termék és az API-k hívására megkezdéséhez. Lásd: mutatja be, ezeket a cikkeket, valamint a speciális termék konfigurációs [hogyan létrehozása, és speciális termékbeállítások konfigurálása az Azure API Management][How create and configure advanced product settings in Azure API Management].
+## <a name="next-steps"></a>Következő lépések
+Egyszer hello szükséges API-k és hello termék közzétett, a fejlesztők is toohello termék előfizetés és toocall hello API-k megkezdéséhez. Lásd: mutatja be, ezeket a cikkeket, valamint a speciális termék konfigurációs [hogyan létrehozása, és speciális termékbeállítások konfigurálása az Azure API Management][How create and configure advanced product settings in Azure API Management].
 
-Termékek kezelésével kapcsolatos további információkért tekintse meg a következő videó.
+Működő termékekkel kapcsolatos további információkért tekintse meg a következő videó hello.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Using-Products/player]
 > 
 > 
 
 [Create a product]: #create-product
-[Add APIs to a product]: #add-apis
-[Add descriptive information to a product]: #add-description
+[Add APIs tooa product]: #add-apis
+[Add descriptive information tooa product]: #add-description
 [Publish a product]: #publish-product
-[Make a product visible to developers]: #make-visible
-[View subscribers to a product]: #view-subscribers
+[Make a product visible toodevelopers]: #make-visible
+[View subscribers tooa product]: #view-subscribers
 [Next steps]: #next-steps
 
 [api-management-management-console]: ./media/api-management-howto-add-products/api-management-management-console.png
@@ -144,10 +144,10 @@ Termékek kezelésével kapcsolatos további információkért tekintse meg a k�
 [api-management-]: ./media/api-management-howto-add-products/
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
-[How to create and use groups to manage developer accounts in Azure API Management]: api-management-howto-create-groups.md
+[How toocreate and use groups toomanage developer accounts in Azure API Management]: api-management-howto-create-groups.md
 [How create and configure advanced product settings in Azure API Management]: api-management-howto-product-with-rules.md 

@@ -1,5 +1,5 @@
 ---
-title: "Elemzés keresse meg a Azure CDN |} Microsoft Docs"
+title: "az Azure CDN aaaLog elemzése |} Microsoft Docs"
 description: "Ügyfél engedélyezheti a webhelynapló elemzése Azure CDN szolgáltatás használata."
 services: cdn
 documentationcenter: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: v-semcev
-ms.openlocfilehash: 03ff74ae4e40d3f2279caaf4f73e9b4aac6a2ebb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 56e5a4fec46fd156cf38252732afb4522741d009
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnostics-logs-for-azure-cdn"></a>Az Azure CDN diagnosztikai naplókat
 
-Miután engedélyezte a CDN az alkalmazáshoz, valószínűleg érdemes a CDN használata, ellenőrizze, a kézbesítés állapotát, és lehetséges problémák hibaelhárítása. Az Azure CDN további olyan funkciókat kínál az [CDN egyszerűsített analitika](cdn-analyze-usage-patterns.md) és [diagnosztikai naplók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)
+Miután engedélyezte a CDN az alkalmazáshoz, akkor lesz valószínűleg toomonitor hello CDN használati szeretné a szállítási hello állapotának ellenőrzése és lehetséges problémák elhárítása. Az Azure CDN további olyan funkciókat kínál az [CDN egyszerűsített analitika](cdn-analyze-usage-patterns.md) és [diagnosztikai naplók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)
 
 ## <a name="cdn-core-analytics"></a>CDN egyszerűsített analitika
-Aktuális Azure CDN rendelkező felhasználóként Verizon standard vagy prémium profilhoz akkor még egyszerűsített analitika megtekintheti a kiegészítő portálon a "Kezelése" lehetőséget az Azure-portálon keresztül érhető el. 
+Aktuális Azure CDN rendelkező felhasználóként Verizon standard vagy prémium profilhoz akkor még képes tooview egyszerűsített analitika hello kiegészítő portálon hello "Kezelése" lehetőséget a hello Azure-portálon keresztül érhető el. 
 
 ## <a name="azure-diagnostic-logs"></a>Az Azure diagnosztikai naplók
 
@@ -35,43 +35,43 @@ Az új szolgáltatással az Azure, most már megtekintheti egyszerűsített anal
  - Azure Event Hubs
  - [A Naplóelemzési OMS-tárház](https://docs.microsoft.com/azure/log-analytics/log-analytics-get-started)
  
- Ez a szolgáltatás az összes CDN-végpontok Verizon (Standard és prémium) és a CDN-profilra Akamai (általános) tartozó érhető el.
+ Ez a szolgáltatás az összes CDN-végpontok tooVerizon (Standard és prémium) és a CDN-profilra Akamai (általános) tartozó érhető el.
 
-Diagnosztikai naplók alapvető a szoftverhasználati mérési adatok exportálása a CDN-végpontot különböző forrásokból, így képes felhasználni azokat egy egyedi módon teszik lehetővé. Például a következő típusú adatok exportálása teheti meg:
+Diagnosztikai naplók lehetővé teszik a CDN végpont tooa különböző forrásokból származó tooexport alapvető a szoftverhasználati mérési adatok, hogy tudja felhasználni azokat testreszabásához. Megteheti például hello a következő típusú adatok exportálása:
 
-- Blob-tároló, Exportálás CSV-FÁJLBA, és létre diagramokat az adatok exportálása az excel.
-- Adatok exportálása az event hubs, és más azure-szolgáltatásokkal együtt összefüggéseket.
-- Exportálhatja az adatokat a analytics naplózása, és a saját OMS-munkaterület adatainak megtekintéséhez
+- Adattárolás tooblob exportálása, tooCSV exportálása és diagramjait létrehozása Excelben.
+- Adatok tooevent hubok exportálja, és más azure-szolgáltatásokkal együtt összefüggéseket.
+- Adatok toolog elemzés és tekintse meg a saját OMS-munkaterület az adatok exportálása
 
-Az alábbi ábrán egy tipikus CDN egyszerűsített analitika nézet adatokká.
+hello alábbi ábrán egy tipikus CDN egyszerűsített analitika nézet adatokká.
 
 ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/01_OMS-workspace.png)
 
 *1. ábra – CDN egyszerűsített analitika megtekintése*
 
-A következő forgatókönyv végighalad a Adatséma core analytics, a funkció engedélyezése kézbesítéséhez azokat különböző helyekre és az ezekre a célokra fel lépéseit.
+a következő forgatókönyv hello végighalad hello sémája hello alapvető analitikai adatok, hello szolgáltatás engedélyezése és azok toovarious célok számítógépeket, és fel a helyre lépéseit.
 
 ## <a name="enable-logging-with-azure-portal"></a>Az Azure-portálon naplózásának engedélyezése
 
 > [!NOTE]
-> A diagnosztikai naplók vannak kapcsolva **ki** alapértelmezés szerint. 
+> hello diagnosztikai naplók vannak kapcsolva **ki** alapértelmezés szerint. 
 
-A CDN egyszerűsített analitika naplózás engedélyezéséhez az alábbi lépésekkel:
+Kövesse az alábbi tooenable naplózást a CDN egyszerűsített analitika hello lépéseket:
 
-Jelentkezzen be az [Azure Portalra](http://portal.azure.com). Ha már nincs engedélyezve a munkafolyamat a CDN [Azure CDN engedélyezése](cdn-create-new-endpoint.md) a folytatás előtt.
+Jelentkezzen be toohello [Azure-portálon](http://portal.azure.com). Ha már nincs engedélyezve a munkafolyamat a CDN [Azure CDN engedélyezése](cdn-create-new-endpoint.md) a folytatás előtt.
 
-1. A portálon lépjen a **CDN-profil**.
-2. Válassza ki a CDN-profil, majd válassza ki, hogy engedélyezni szeretné a CDN-végpont **diagnosztikai naplók**.
+1. Hello portálon lépjen túl**CDN-profil**.
+2. Válassza ki a CDN-profilt, majd válassza ki a megjeleníteni kívánt tooenable hello CDN-végpont **diagnosztikai naplók**.
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/02_Browse-to-Diagnostics-logs.png)
 
-3. Ugrás a **diagnosztikai naplók** részen **figyelés** területen, majd módosítsa az állapot **a**.
+3. Nyissa meg túl**diagnosztikai naplók** részen **figyelés** területen, majd hello állapotmódosítás túl**a**.
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/03_Diagnostics-logs-options.png)
 
 ### <a name="enable-logging-with-azure-storage"></a>Az Azure Storage naplózásának engedélyezése
     
-A naplók tárolásához Azure Storage használatához válassza **tárfiókba archív**, válassza ki, megőrzés (nap), és kattintson **CoreAnalytics** alatt **napló**.
+toouse Azure Storage toostore hello naplókat, válassza ki **tooa tárfiók archiválására**, válassza ki, megőrzés (nap), és kattintson **CoreAnalytics** alatt **napló**.
 
 ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/04_Diagnostics-logs-storage.png)
 
@@ -79,13 +79,13 @@ A naplók tárolásához Azure Storage használatához válassza **tárfiókba a
 
 ### <a name="logging-with-oms-log-analytics"></a>Az OMS szolgáltatáshoz naplózása
 
-A naplók tárolásához OMS Naplóelemzési használatához kövesse az alábbi lépéseket:
+toouse OMS Naplóelemzési toostore hello naplókat, kövesse az alábbi lépéseket:
 
-1. Az a **diagnosztikai naplók** részen **figyelés**, jelölje be **küldeni a Naplóelemzési** a 
+1. A hello **diagnosztikai naplók** részen **figyelés**, jelölje be **tooLog Analytics küldése** a 
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/05_Ready-to-Configure.png)    
 
-2. A Naplóelemzési naplózás konfigurálásához kattintson a konfigurálás. Ezzel megnyitná egy párbeszédpanelt, amelyen egy előző munkaterületen válassza ki vagy hozzon létre egy újat.
+2. Hello Naplóelemzési naplózás konfigurálásához kattintson a konfigurálás. Ezzel megnyitná tooa párbeszédpanel, amelyen egy előző munkaterületen válassza ki vagy hozzon létre egy újat.
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/06_Choose-workspace.png)
 
@@ -93,35 +93,35 @@ A naplók tárolásához OMS Naplóelemzési használatához kövesse az alábbi
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/07_Create-new.png)
 
-4. Ezután ki kell választania egy új nevet a munkaterület, meglévő előfizetés, erőforráscsoport (új vagy meglévő), hely és a tarifacsomag. Lehetősége van az ebben a konfigurációban az irányítópulton való rögzítéshez. Kattintson az OK gombra a konfiguráció befejezéséhez.
+4. Ezután ki kell választania egy új nevet a munkaterület, meglévő előfizetés, erőforráscsoport (új vagy meglévő), hely és a tarifacsomag. Rendelkezik a konfigurációs tooyour irányítópulton rögzítési hello lehetőséget. Kattintson az OK toocomplete hello konfigurációs.
 
     Ezután meg kell jelennie a munkaterület az OMS-munkaterület és a erőforrás csoport nevével. Nevének egyedinek kell lennie, és csak betűket, számokat és kötőjeleket tartalmazhat használhat. Szóközöket és aláhúzásjeleket tartalmazhat nem engedélyezettek. 
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/08_Workspace-resource.png)
 
-5. Ezután arról, hogy a munkaterület elkészült, és ismét a naplózási konfigurálására szolgáló képernyőn rövid üzenetet kapni. Ellenőrizheti a Naplóelemzési munkaterület nevét.
+5. Ezután arról, hogy a munkaterület elkészült, és a naplózás konfigurálására szolgáló képernyőn tooyour ismét rövid üzenetet kapni. Ellenőrizheti a Naplóelemzési munkaterület hello nevét.
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/09_Return-to-logging.png)
 
-    A Naplóelemzési konfigurációs beállítása után győződjön meg arról is jelölje be a CDN a naplózás a CoreAnalytics jelölőnégyzetet.
+    Hello Naplóelemzési konfigurációs beállítása után ellenőrizze, hogy akkor is jelölőnégyzetet hello CoreAnalytics CDN naplózásához.
 
-6. Ha minden tetszőlegesen a, kattintson a **mentése** gombra a konfigurációs párbeszédpanel tetején.
+6. Ha minden tooyour tetszőlegesen, kattintson a hello **mentése** hello konfigurációs párbeszédpaneléről hello tetején gombra.
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/10_Save-me.png)
 
-    A **mentése** gomb már nem aktív, és, hogy a be-és kikapcsolása gomb jelenleg a, de a kék lila helyett.
+    Hello **mentése** gomb már nem aktív, és adott hello a/GOMBRÓL most ON, de a kék lila helyett.
 
-7. Ha azt szeretné, az új OMS-munkaterület megtekintéséhez nyissa meg az Azure-portálra irányítópultot, kattintson a Naplóelemzési munkaterület nevét. Ezután megjelenik a munkaterület (Győződjön meg arról, hogy OMS-munkaterület ki van jelölve, a bal oldalon). Kattintson a csempére a munkaterület az OMS-tárházban megjelenítéséhez OMS-portálon. 
+7. Toosee az új OMS-munkaterület, lépjen tooyour Azure portál irányítópultján kattintson a Naplóelemzési munkaterület hello nevét. Ezután megjelenik a munkaterület (Győződjön meg arról, hogy az OMS-munkaterület hello bal oldali van-e jelölve). Kattintson a hello OMS-portálon csempe toosee a munkaterület hello OMS-tárházban. 
 
     ![portál – diagnosztikai naplók](./media/cdn-diagnostics-log/11_OMS-dashboard.png) 
 
-    Az OMS-tárház adatokat naplózhatnak készen áll. Adatok felhasználásához, használjon egy [OMS megoldás](#consuming-oms-log-analytics-data), az érintett a cikk későbbi részében.
+    Az OMS-tárház mostantól készen áll a toolog adatokat. A rendezés tooconsume adatok-verziót kell használnia egy [OMS megoldás](#consuming-oms-log-analytics-data), az érintett a cikk későbbi részében.
 
 További információt a naplózási adatok késések [Itt](#log-data-delays).
 
 ## <a name="enable-logging-with-powershell"></a>A PowerShell-lel naplózásának engedélyezése
 
-Alább példája engedélyezése és az Azure PowerShell-parancsmagok segítségével diagnosztikai naplófájlok.
+Az alábbiakban látható egy példa a hogyan keresztül tooenable és get diagnosztikai naplók hello Azure PowerShell-parancsmagok.
 
 ###<a name="enabling-diagnostic-logs-in-a-storage-account"></a>Diagnosztika engedélyezése bejelentkezik a Storage-fiók
 
@@ -132,12 +132,12 @@ Először jelentkezzen be, és válasszon egy előfizetést:
     Select-AzureSubscription -SubscriptionId 
 
 
-Engedélyezze a diagnosztikai naplók, a Tárfiók használja ezt a parancsot:
+tooEnable diagnosztikai naplófájlok egy Tárfiókot, az alábbi parancsot használja:
 
 ```powershell
     Set-AzureRmDiagnosticSetting -ResourceId "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}" -StorageAccountId "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicStorage/storageAccounts/{storageAccountName}" -Enabled $true -Categories CoreAnalytics
 ```
-Engedélyezése diagnosztikai naplófájlok az OMS-munkaterület használja ezt a parancsot:
+tooEnable diagnosztikai naplófájlok az OMS-munkaterület az alábbi parancsot használja:
 
 ```powershell
     Set-AzureRmDiagnosticSetting -ResourceId "/subscriptions/`{subscriptionId}<subscriptionId>
@@ -147,85 +147,85 @@ Engedélyezése diagnosztikai naplófájlok az OMS-munkaterület használja ezt 
 
 
 ## <a name="consuming-diagnostics-logs-from-azure-storage"></a>Diagnosztikai naplók az Azure Storage felhasználása
-Ez a szakasz ismerteti a séma, a CDN egyszerűsített analitika hogyan ezek egy Azure Storage-fiók belül vannak rendezve, és a naplók letöltése CSV-fájlba példakódot tartalmaz.
+Ez a szakasz hello CDN egyszerűsített analitika hello sémája ismerteti, hogyan ezek egy Azure Storage-fiók belül vannak rendezve, és itt minta kód toodownload hello tooa CSV-fájlban naplózza.
 
 ### <a name="using-microsoft-azure-storage-explorer"></a>A Microsoft Azure Tártallózó használatával
-Az alapvető analitikai adatok eléréséhez az Azure Storage-fiókjához, először egy eszköz tárfiókokban tartalmához való hozzáféréshez. Eszközök is elérhetők több a piacon, amíg azt, amelyik ajánlott a Microsoft Azure Tártallózó. Letöltheti a eszközt [Itt](http://storageexplorer.com/). Után a szoftver letöltése és telepítése a, konfigurálja úgy, hogy az azonos Azure Storage-fiókot adott meg, hova szeretné a CDN diagnosztikai naplók használja.
+Az Azure Storage-fiók hello hello alapvető analitikai adatok próbál hozzáférni, először egy eszköz tooaccess hello tartalmát egy tárfiókot. Eszközök is elérhetők több hello piacon, egy, az ajánlott hello napjainkban hello Microsoft Azure Tártallózó. Hello eszközt letöltheti [Itt](http://storageexplorer.com/). Ha hello szoftver letöltése és telepítése adja meg azt a toouse hello azonos Azure Storage-fiókot, amely a célként megadott toohello CDN diagnosztikai naplók lett konfigurálva.
 
 1.  Nyissa meg **Microsoft Azure Tártallózó**
-2.  Keresse meg a storage-fiók
-3.  Lépjen a **"Blobtárolók"** csomópont alatt ez a tároló fiókot, és bontsa ki a csomópontot
-4.  Válassza ki a tárolót **"insights-logs-coreanalytics"** , és kattintson rá duplán
-5.  Annak az eredménye megjelenítése fel az első szintjét, mely tűnik kezdve a jobb oldali ablaktáblában lévő **"resourceId ="**. Továbbra is, egészen amíg meg nem jelenik a fájl kattintva **PT1H.json**. Lásd a következő megjegyzést, az elérési út ismertetése.
-6.  Minden egyes blob **PT1H.json** számára egy adott CDN-végpont vagy tartozó egyéni tartomány egy órában az elemzési naplókat jelöli.
-7.  A sémát a JSON-fájl tartalmának a Core Analytics naplók a séma szakaszban ismertetett
+2.  Keresse meg a tárfiók hello
+3.  Nyissa meg toohello **"Blobtárolók"** csomópont alatt ez a tároló fiókot, és bontsa ki a hello csomópont
+4.  Jelölje be hello nevű tárolót **"insights-logs-coreanalytics"** , és kattintson rá duplán
+5.  Annak az eredménye megjelenítése fel a hello jobb oldali panelen kezdve hello első szintjét, mely tűnik **"resourceId ="**. Továbbra is az összes hello módon kattint, amíg megjelenik a hello fájl **PT1H.json**. Hello Megjegyzés hello elérési ismertetése a következő témakörben talál.
+6.  Minden egyes blob **PT1H.json** jelöli analytics naplók hello egy adott CDN-végpont vagy tartozó egyéni tartomány egy óra.
+7.  a JSON-fájl tartalmának hello hello sémája szakaszban leírt hello séma hello Core Analytics naplókat
 
 
 > [!NOTE]
 > **A BLOB elérési út formátuma**
 > 
-> Core Analytics naplók óránként akkor jönnek létre. Minden adat egy óráig gyűjtött és tárolt JSON-adatként egyetlen Azure Blob. Az Azure Blob elérési jelenik meg, hogy van-e olyan hierarchikus struktúra. Ez van, mert a tárolók explorer eszköz értelmezi "/" értelmezi, és megjeleníti a hierarchia kényelmét szolgálja. A teljes elérési útja ténylegesen, csak a blob nevét jelöli. Ez a blob neve követi a következő elnevezés szabály szerint   
+> Core Analytics naplók óránként akkor jönnek létre. Minden adat egy óráig gyűjtött és tárolt JSON-adatként egyetlen Azure Blob. hello elérési toothis Azure Blob jelenik meg, hogy van-e olyan hierarchikus struktúra. Ez mert hello tárolók explorer eszköz értelmezi "/" értelmezi, és látható hello hierarchia kényelmét szolgálja. Ténylegesen hello teljes elérési útja csak hello blob nevét jelöli. Ez a név hello BLOB követi a következő elnevezési konvenció hello 
     
     resourceId=/SUBSCRIPTIONS/{Subscription Id}/RESOURCEGROUPS/{Resource Group Name}/PROVIDERS/MICROSOFT.CDN/PROFILES/{Profile Name}/ENDPOINTS/{Endpoint Name}/ y={Year}/m={Month}/d={Day}/h={Hour}/m={Minutes}/PT1H.json
 
 **Mezők leírása:**
 
-|érték|Leírás|
+|érték|leírás|
 |-------|---------|
-|Előfizetés azonosítója    |Az Azure-előfizetés azonosítója. Ez a Guid formátumban van.|
-|Erőforrás |Csoport neve neve az erőforráscsoport, amelybe a CDN-erőforrások tartoznak.|
-|Profilnév |A CDN-profil neve|
-|A végpont neve |A CDN-végpont neve|
-|Év|  az év például 2017 4 számjegyből álló ábrázolása|
-|Hónap| a hónapok sorszáma 2 számjegyű ábrázolása. 01 január =... 12 decembert jelenti – =|
-|Nap|   a hónap napját 2 számjegy ábrázolása|
-|PT1H.JSON| Az analitikai adatok tárolására tényleges JSON-fájl|
+|Előfizetés azonosítója    |Hello Azure előfizetés-azonosítója. Ez a hello Guid formátumban van.|
+|Erőforrás |Csoport neve neve hello erőforrás csoport toowhich hello CDN erőforrások tartoznak.|
+|Profilnév |Hello CDN-profil neve|
+|A végpont neve |CDN-végpont hello neve|
+|Év|  hello év például 2017 4 számjegyből álló ábrázolása|
+|Hónap| hello hónap száma 2 számjegyű ábrázolása. 01 január =... 12 decembert jelenti – =|
+|Nap|   hello hónap napja hello 2 számjegy ábrázolása|
+|PT1H.JSON| Hello analitikai adatok tárolására tényleges JSON-fájl|
 
-### <a name="exporting-the-core-analytics-data-to-a-csv-file"></a>Az alapvető analitikai adatok exportálása CSV-fájlba
+### <a name="exporting-hello-core-analytics-data-tooa-csv-file"></a>Hello alapvető analitikai adatok tooa CSV-fájl exportálása
 
-Abba, hogy könnyen elérhetők az egyszerűsített analitika, azt adja meg egy minta tartozó kódot egy eszközt, amely lehetővé teszi, hogy a JSON-fájlok letöltésére olyan egyszerű vesszővel tagolt fájl formátumra, amely könnyen hozzanak létre diagramokat vagy más összesítéseket használható.
+toomake könnyen tooaccess hello egyszerűsített analitika nyújtunk informatikai egy mintakód egy eszközt, amely lehetővé teszi, hogy egy egyszerű vesszővel tagolt fájl formátumra, amely lehet használt tooeasily hello JSON-fájlok letöltése a diagramok vagy más összesítéseket létrehozása.
 
-Ez az eszköz használatát:
+Íme hello eszköz használatát:
 
-1.  Látogasson el a github-címre: [https://github.com/Azure-Samples/azure-cdn-samples/tree/master/CoreAnalytics-ExportToCsv](https://github.com/Azure-Samples/azure-cdn-samples/tree/master/CoreAnalytics-ExportToCsv )
-2.  A kód letöltése
-3.  Útmutatás alapján fordításához és konfigurálása
-4.  Futtassa az eszközt
-5.  Letöltött CSV-fájlt egy egyszerű strukturálatlan hierarchia analytics adatainak megjelenítése.
+1.  Látogasson el a hello github hivatkozás: [https://github.com/Azure-Samples/azure-cdn-samples/tree/master/CoreAnalytics-ExportToCsv](https://github.com/Azure-Samples/azure-cdn-samples/tree/master/CoreAnalytics-ExportToCsv )
+2.  Hello kód letöltése
+3.  Kövesse az utasításokat toocompile és konfigurálása
+4.  Hello eszköz futtatása
+5.  Letöltött CSV-fájlt egy egyszerű strukturálatlan hierarchia hello analytics adatainak megjelenítése.
 
 ## <a name="consuming-diagnostics-logs-from-an-oms-log-analytics-repository"></a>Diagnosztikai naplók az OMS szolgáltatáshoz tárházból felhasználása
-A Naplóelemzési egy olyan szolgáltatás, az Operations Management Suite (OMS), amely figyeli a felhőalapú és helyszíni környezetek karbantartásához azok rendelkezésre állását és teljesítményét. A felhőben és a helyszíni környezetben található erőforrások által létrehozott, valamint egyéb figyelési eszközök által biztosított adatokat gyűjtésével biztosítsa elemzést több forráson. 
+A Naplóelemzési egy olyan szolgáltatás, az Operations Management Suite (OMS), amely figyeli a felhőalapú és helyszíni környezetben toomaintain azok rendelkezésre állását és teljesítményét. Összegyűjti az több forrás erőforrások a felhőalapú és helyszíni környezetben és az egyéb felügyeleti eszközök tooprovide elemzés által létrehozott adatok. 
 
-Naplóelemzési használandó kell [naplózását](#enable-logging-with-azure-storage) Azure OMS Log Analytics-tárházba, amely tárgyalt az ebben a cikkben.
+Naplóelemzési toouse, meg kell [naplózását](#enable-logging-with-azure-storage) cikkben korábban tárgyalt toohello Azure OMS Naplóelemzés tárház.
 
-### <a name="using-the-oms-repository"></a>Az OMS-tárház használatával
+### <a name="using-hello-oms-repository"></a>Hello OMS-tárház használatával
 
- Az alábbi ábrán látható, a tárház kimenetek és a bemenetek architektúrája:
+ a következő ábra azt mutatja be hello architektúra hello ráfordítások és hello tárház kimenetek hello:
 
 ![OMS napló Analytics tárház](./media/cdn-diagnostics-log/12_Repo-overview.png)
 
 *3. ábra - napló Analytics tárház*
 
-Az sokféleképpen megoldások használatával megjelenítheti az adatokat. Ezt úgy szerezheti be a felügyeleti megoldás a [Azure piactér](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/monitoring-management?page=1&subcategories=management-solutions).
+Hello adatok megoldások használatával megjelenítheti az sokféleképpen. Megoldásokat szerezhet be a hello [Azure piactér](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/monitoring-management?page=1&subcategories=management-solutions).
 
-Telepíthető megoldások Azure piactérről kattintva a **most töltse le innen** hivatkozás az egyes megoldások alján.
+Telepíthető megoldások Azure piactérről hello kattintva **most töltse le innen** hello alján lévő egyes megoldások hivatkozásra.
 
 ### <a name="adding-an-oms-cdn-management-solution"></a>Egy OMS CDN-felügyeleti megoldás hozzáadása
 
-Kövesse az alábbi lépéseket a felügyeleti megoldás hozzáadása:
+Kövesse ezeket a lépéseket tooadd olyan felügyeleti megoldást:
 
-1.   Ha még nem tette meg, jelentkezzen be az Azure-előfizetéshez az Azure portálra, és nyissa meg az irányítópulton való rögzítéséhez.
+1.   Ha még nem tette meg, toohello bejelentkezés az Azure-előfizetéshez az Azure portálon, és nyissa meg tooyour irányítópult.
     ![Az Azure irányítópult](./media/cdn-diagnostics-log/13_Azure-dashboard.png)
 
-2. Az a **új** részen **piactér**, jelölje be **figyelés + felügyeleti**.
+2. A hello **új** részen **piactér**, jelölje be **figyelés + felügyeleti**.
 
     ![Piactér](./media/cdn-diagnostics-log/14_Marketplace.png)
 
-3. Az a **figyelés + felügyeleti** panelen kattintson a **láthatja az összes**.
+3. A hello **figyelés + felügyeleti** panelen kattintson a **láthatja az összes**.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/15_See-all.png)
 
-4.  Keresse meg a CDN a Keresés mezőbe.
+4.  Keresse meg a CDN hello Keresés mezőbe.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/16_Search-for.png)
 
@@ -233,43 +233,43 @@ Kövesse az alábbi lépéseket a felügyeleti megoldás hozzáadása:
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/17_Core-analytics.png)
 
-6.  Miután rákattintott **létrehozása**, kérni fog egy új OMS-munkaterület létrehozása, vagy használjon egy meglévőt. 
+6.  Miután rákattintott **létrehozása**, fogja ismételt toocreate egy új OMS-munkaterület, vagy használjon egy meglévőt. 
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/18_Adding-solution.png)
 
-7.  Válassza ki a munkaterületet előtt. Majd kell hozzáadnia az automation-fiók.
+7.  Válassza ki a létrehozott előtt hello munkaterület. Akkor kell tooadd automation-fiók.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/19_Add-automation.png)
 
-8. Az alábbi képernyőn látható az automatizálási fiók formában adja meg az. 
+8. hello alábbi képernyőn látható hello automatizálási fiókot formában adja meg. 
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/20_Automation.png)
 
-9. Az automation-fiók létrehozását követően készen áll a megoldás hozzáadása. Kattintson a **Létrehozás** gombra.
+9. Hello automation-fiók létrehozását követően készen áll a tooadd áll a megoldás. Kattintson a hello **létrehozása** gombra.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/21_Ready.png)
 
-10. A megoldás most már fel lett véve a munkaterületen. Térjen vissza az Azure portál irányítópultján.
+10. A megoldás most lett felvéve tooyour munkaterületen. Lépjen vissza az Azure portál irányítópultján tooyour.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/22_Dashboard.png)
 
-    Kattintson a Naplóelemzési munkaterület létrehozott nyissa meg a munkaterületet. 
+    Kattintson a létrehozott toogo tooyour munkaterület hello Naplóelemzési munkaterület. 
 
-11. Kattintson a **OMS-portálon** csempe megtekintéséhez az új megoldás az OMS-portálon.
+11. Kattintson a hello **OMS-portálon** toosee az új megoldás az OMS-portálon hello csempére.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/23_workspace.png)
 
-12. Az OMS-portálon mostantól a következő képernyő hasonlóan kell kinéznie:
+12. Az OMS-portálon mostantól a következő képernyő hello kell hasonlítania:
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/24_OMS-solution.png)
 
-    Kattintson az áttekintőlapon megjeleníteni az adatokat több nézet.
+    Kattintson az egyik hello csempék toosee számos nézet azokat az adatokat.
 
     ![Az összes megtekintése](./media/cdn-diagnostics-log/25_Interior-view.png)
 
-    Tekintse meg az adatokat az egyes nézetek képviselő további csempék jobbra vagy balra görgetve. 
+    Balra görgetve, vagy további jobb toosee tartalmazó csempék éppen úgy egyes nézetek képviselő hello adatokká. 
 
-    A csempék valamelyikére kattintva lehetővé teszi az adatok további információt.
+    Hello csempék valamelyikére kattintva lehetővé teszi az adatok további információt.
 
      ![Az összes megtekintése](./media/cdn-diagnostics-log/26_Further-detail.png)
 
@@ -279,11 +279,11 @@ Ajánlatok és az OMS-kezelési megoldások tarifacsomagok [Itt](https://docs.mi
 
 ### <a name="customizing-views"></a>Nézetek testreszabása
 
-Testre szabhatja a nézet a adatokká használatával a **adatforrásnézet-tervezőből**. Nyissa meg az OMS-munkaterület és designing megkezdéséhez kattintson a **adatforrásnézet-tervezőből** csempére.
+Testre szabhatja hello nézet a adatokká hello segítségével **adatforrásnézet-tervezőből**. Nyissa meg tooyour OMS-munkaterület és újra kell kezdenie designing hello kattintva **adatforrásnézet-tervezőből** csempére.
 
 ![Nézettervező](./media/cdn-diagnostics-log/27_Designer.png)
 
-Húzza és diagramok típusú elvetni a bal oldali, és töltse ki a bal oldali elemezni kívánt adatok részleteit.
+Húzza és dobja el a diagramok típusú hello balról, és töltse ki a bal oldali hello tooanalyze kívánt hello az adatait.
 
 ![Nézettervező](./media/cdn-diagnostics-log/28_Designer.png)
 
@@ -292,14 +292,14 @@ Húzza és diagramok típusú elvetni a bal oldali, és töltse ki a bal oldali 
 
 Verizon napló adatok késleltetése | Akamai napló adatok késleltetése
 --- | ---
-Verizon naplóadatokat 1 óra késleltetett, és indítsa el a végpont-propagálás befejezését követően megjelenő 2 órát igénybe vehet. | Akamai naplóadatokat késleltetett 24 óra, és a start jelenik meg, ha több mint 24 órája létrehozták 2 órát vesz igénybe. Ha nemrég készült, start jelenik meg a naplófájlokat akár 25 órát is igénybe vehet.
+Verizon naplóadatokat 1 óra késleltetett, és eltarthat, mire too2 óra toostart végpont propagálás befejezését követően megjelenne. | Akamai naplóadatokat késleltetett 24 óra, és foglaljon too2 óra toostart jelenik meg, ha több mint 24 órája hozták létre. Ha nemrég készült, hello naplók toostart szereplő too25 órát is eltarthat.
 
 ## <a name="diagnostic-log-types-for-cdn-core-analytics"></a>Diagnosztikai naplófájl típusokat CDN egyszerűsített analitika
 
-Jelenleg csak egyszerűsített analitika naplók, metrikák HTTP-válaszok statisztikai adatainak és a kimenő forgalom statisztika alapegységét megjelenítő a CDN POP/széleit tartalmazó fel.
+Jelenleg csak egyszerűsített analitika naplók, metrikák HTTP-válaszok statisztikai adatainak és a kimenő forgalom statisztika, amint az hello CDN POP/szélén látható tartalmazó fel.
 
 ### <a name="core-analytics-metrics-details"></a>Core Analytics metrikák részletei
-A következő táblázat az egyszerűsített analitika naplókban elérhető metrikák listáját tartalmazza. Nem minden metrikák érhetők el minden szolgáltató, annak ellenére, hogy ezek az eltérések minimális. Az alábbi táblázatban is látható, ha egy metrika érhető el a szolgáltató által. Vegye figyelembe, hogy a metrikák érhetők el csak ezek CDN-végpontok, amelyek azokat a forgalmat.
+a következő táblázat hello hello egyszerűsített analitika naplózza az elérhető mérőszámok listáját tartalmazza. Nem minden metrikák érhetők el minden szolgáltató, annak ellenére, hogy ezek az eltérések minimális. a következő táblázat is hello jeleníti meg, ha egy metrika érhető el a szolgáltató által. Vegye figyelembe, hogy hello metrikák érhetők el csak ezek CDN-végpontok, amelyek azokat a forgalmat.
 
 
 |Metrika                     | Leírás   | Verizon  | Akamai 
@@ -315,10 +315,10 @@ A következő táblázat az egyszerűsített analitika naplókban elérhető met
 | RequestCountHttpStatus302 | HTTP 302-es kód választ eredményező összes kérelmek száma              |Nem   |Igen   |
 | RequestCountHttpStatus304 |  304-es HTTP-kód választ eredményező összes kérelmek száma             |Nem   |Igen   |
 | RequestCountHttpStatus404 | HTTP 404-es kód választ eredményező összes kérelmek száma              |Nem   |Igen   |
-| RequestCountCacheHit |A gyorsítótár találati eredményező összes kérelmek száma. Ez azt jelenti, hogy az eszköz állítása és kiszolgálása között a POP-ről az ügyfélnek.               | Igen  |Nem   |
-| RequestCountCacheMiss | A gyorsítótár-tévesztései eredményező összes kérelmek száma. Ez azt jelenti, hogy az eszköz nem található meg az ügyfél legközelebb POP, és ezért be lett olvasva a forrásból.              |Igen   | Nem  |
-| RequestCountCacheNoCache | Az eszköz minden kérelemhez, amely megakadályozta a gyorsítótárba egy felhasználói konfiguráció az oldal miatt száma.              |Igen   | Nem  |
-| RequestCountCacheUncacheable | Az eszközökhöz, amely megakadályozza az eszköz a Cache-Control és Expires fejléc, amely jelzi, hogy azt nem gyorsítótárazza a POP- vagy HTTP-ügyfél által a gyorsítótárba összes kérelmek száma                |Igen   |Nem   |
+| RequestCountCacheHit |A gyorsítótár találati eredményező összes kérelmek száma. Ez azt jelenti, hogy hello eszköz kiszolgálásának hello POP toohello ügyfél-ről.               | Igen  |Nem   |
+| RequestCountCacheMiss | A gyorsítótár-tévesztései eredményező összes kérelmek száma. Ez azt jelenti, hogy hello eszköz hello POP legközelebbi toohello ügyfél nem található, és ezért be lett olvasva a hello forrása.              |Igen   | Nem  |
+| RequestCountCacheNoCache | A kérelmek tooan eszköz, amely megakadályozta a gyorsítótárba hello oldal tooa felhasználói konfiguráció miatt az összes száma.              |Igen   | Nem  |
+| RequestCountCacheUncacheable | Teljes számát, amely megakadályozta a gyorsítótárba által hello eszköz Cache-Control tooassets kér, és a lejárati fejléceket, amely jelzi, hogy azt nem gyorsítótárazza a POP vagy hello HTTP-ügyfél által                |Igen   |Nem   |
 | RequestCountCacheOthers | Gyorsítótár állapotú fent nem vonatkozik minden kérelmek száma.              |Igen   | Nem  |
 | EgressTotal | Kimenő adatátvitel GB-ban              |Igen   |Igen   |
 | EgressHttpStatus2xx | Kimenő adatátviteli * a válaszok a 2xx HTTP-állapotkódok GB-ban            |Igen   |Nem   |
@@ -326,28 +326,28 @@ A következő táblázat az egyszerűsített analitika naplókban elérhető met
 | EgressHttpStatus4xx | Kimenő adatátvitel a válaszok a 4xx HTTP-állapotkódok GB-ban               |Igen   | Nem  |
 | EgressHttpStatus5xx | Kimenő adatátvitel 5xx HTTP-állapotkódok GB-ban a válaszok               |Igen   |  Nem |
 | EgressHttpStatusOthers | Kimenő adatátvitel válaszok az egyéb HTTP-állapotkódok GB-ban                |Igen   |Nem   |
-| EgressCacheHit |  Kimenő adatátvitel kapott válaszok közvetlenül a CDN-gyorsítótárból a CDN POP/szegély  |Igen   |  Nem |
-| EgressCacheMiss | Kimenő adatátvitel a válaszok nem található a legközelebbi POP-kiszolgálón, és lekérése a forráskiszolgálóról              |Igen   |  Nem |
-| EgressCacheNoCache | Kimenő adatátvitel eszközök, amely megakadályozta a felhasználói konfiguráció az oldal miatt a gyorsítótárba.                |Igen   |Nem   |
-| EgressCacheUncacheable | Kimenő adatátvitel eszközök, amelyek a rendszer megakadályozza az eszköz Cache-Control vagy Expires fejléc, amely jelzi, hogy azt nem gyorsítótárazza a POP vagy a HTTP-ügyfél által a gyorsítótárba                    |Igen   | Nem  |
+| EgressCacheHit |  Kimenő adatátviteli kapott válaszok hello CDN gyorsítótár-ről a hello CDN POP/élei számára  |Igen   |  Nem |
+| EgressCacheMiss | Kimenő adatátvitel a válaszok nem található a legközelebbi kiszolgáló POP hello, és lekérése hello forráskiszolgálóról              |Igen   |  Nem |
+| EgressCacheNoCache | Kimenő adatátvitel eszközök, amely megakadályozta a gyorsítótárba hello oldal tooa felhasználói konfiguráció miatt.                |Igen   |Nem   |
+| EgressCacheUncacheable | Kimenő adatátvitel eszközök, amely megakadályozhatja, hogy a hello eszköz Cache-Control vagy Expires fejléc, amely jelzi, hogy azt nem gyorsítótárazza a POP vagy hello HTTP-ügyfél által a gyorsítótárba                    |Igen   | Nem  |
 | EgressCacheOthers |  Kimenő adatátvitel más gyorsítótár forgatókönyvek esetén.             |Igen   | Nem  |
 
-* Kimenő forgalom CDN POP-ra kiszolgálókról kézbesítve lenne az ügyfél hivatkozik.
+* A kimenő adatforgalom CDN POP-ra kiszolgálók toohello ügyfélről kézbesíteni tootraffic hivatkozik.
 
 
-### <a name="schema-of-the-core-analytics-logs"></a>A Core Analytics naplók séma 
+### <a name="schema-of-hello-core-analytics-logs"></a>Hello Core Analytics naplók sémája 
 
-Összes napló JSON formátumban vannak tárolva, és mindegyik bejegyzés rendelkezik a következő karakterlánc mezők a séma alatt:
+Összes napló JSON formátumban vannak tárolva, és mindegyik bejegyzés rendelkezik sztringek mezőinek hello alatt séma a következő:
 
 ```json
     "records": [
         {
             "time": "2017-04-27T01:00:00",
-            "resourceId": "<ARM Resource Id of the CDN Endpoint>",
+            "resourceId": "<ARM Resource Id of hello CDN Endpoint>",
             "operationName": "Microsoft.Cdn/profiles/endpoints/contentDelivery",
             "category": "CoreAnalytics",
             "properties": {
-                "DomainName": "<Name of the domain for which the statistics is reported>",
+                "DomainName": "<Name of hello domain for which hello statistics is reported>",
                 "RequestCountTotal": integer value,
                 "RequestCountHttpStatus2xx": integer value,
                 "RequestCountHttpStatus3xx": integer value,
@@ -382,7 +382,7 @@ A következő táblázat az egyszerűsített analitika naplókban elérhető met
 }
 ```
 
-Ahol a "time" jelenti az óra határ, amelynek a statisztikáit jelentett kezdési idejét. Ha egy metrika nem támogatott a CDN-szolgáltató helyett egy double vagy egész szám, null értékű lesz. A null érték jelezné metrika, és ez nem azonos a 0 értéket. Ne feledje, hogy az a metrikák a végponthoz tartományonként egy készletét lesz.
+Ahol a hello "time" hello kezdési időt, amelynek hello statisztika jelentett hello óra határ jelenti. Ha egy metrika nem támogatott a CDN-szolgáltató helyett egy double vagy egész szám, null értékű lesz. A null érték metrika hello hiányában, és ez nem azonos a 0 értéket. Ne feledje, hogy az egyetlen halmazát hello végponthoz tartományonként metrikákat lesz.
 
 Az alábbi példa tulajdonságai:
 

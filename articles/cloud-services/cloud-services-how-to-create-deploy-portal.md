@@ -1,6 +1,6 @@
 ---
-title: "Hogyan hozhat létre és telepíthet egy felhőalapú szolgáltatás |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre és telepíthet egy felhőalapú szolgáltatás, az Azure portál használatával."
+title: "aaaHow toocreate és egy felhőalapú szolgáltatás üzembe helyezése |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és központi telepítése egy felhőalapú szolgáltatás hello Azure-portál használatával."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: e5ce666f1d826c7901c9fd5e7fafe6171139c3ad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc8b81a594f3514e662c49c9a46a33da8a551f4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-deploy-a-cloud-service"></a>Hogyan hozhat létre és telepíthet egy felhőalapú szolgáltatás
+# <a name="how-toocreate-and-deploy-a-cloud-service"></a>Hogyan toocreate és egy felhőalapú szolgáltatás telepítése
 > [!div class="op_single_selector"]
 > * [Azure Portal](cloud-services-how-to-create-deploy-portal.md)
 > * [klasszikus Azure portál](cloud-services-how-to-create-deploy.md)
 >
 >
 
-Az Azure portálon két módot biztosít hozhat létre és telepíthet egy felhőalapú szolgáltatás: *Gyorslétrehozás* és *egyéni létrehozás*.
+hello Azure-portálon két lehetőséget biztosít az Ön toocreate és egy felhőalapú szolgáltatás üzembe helyezése: *Gyorslétrehozás* és *egyéni létrehozás*.
 
-Ez a cikk ismerteti, hogyan hozzon létre egy új felhőalapú szolgáltatás, majd a gyors létrehozás módszerrel **feltöltése** frissítése és telepítése az Azure cloud service csomag. Ha ezt a módszert használja, az Azure-portálon teszi követelményeinek befejezése menet elérhető kényelmes hivatkozásokat. Ha készen áll a felhőalapú szolgáltatás történő létrehozásakor telepítendő, mindkettő egyszerre használja egyéni létrehozás teheti meg.
+Ez a cikk azt ismerteti, hogyan toouse hello gyors létrehozás módszerrel toocreate új felhőalapú szolgáltatás, és ezután **feltöltése** tooupload és az Azure cloud service csomag telepítését. Ha ezt a módszert használja, hello Azure-portálon teszi követelményeinek befejezése menet elérhető kényelmes hivatkozásokat. Ha készen áll a felhőalapú szolgáltatás létrehozásakor toodeploy, mind hello teheti ugyanannyi időt vesz igénybe, használja a egyéni létrehozás.
 
 > [!NOTE]
-> Ha azt tervezi, közzététele a felhőalapú szolgáltatás a Visual Studio Team Services (VSTS), használja a Gyorslétrehozás, és majd VSTS közzététel beállítása az Azure gyors üzembe helyezés vagy az irányítópulton. További információkért lásd: [használatával Visual Studio Team Services Azure folyamatos kézbesítése][TFSTutorialForCloudService], vagy tekintse át a súgóban talál a **gyors üzembe helyezés** lap.
+> Ha azt tervezi, toopublish a felhőszolgáltatás a Visual Studio Team Services (VSTS), használja a Gyorslétrehozás, és VSTS közzététel hello Azure gyors üzembe helyezési vagy hello irányítópultról majd beállítása. További információkért lásd: [folyamatos kézbesítési tooAzure használatával Visual Studio Team Services által][TFSTutorialForCloudService], vagy tekintse át a súgóban talál hello **gyors üzembe helyezés** lap.
 >
 >
 
 ## <a name="concepts"></a>Alapelvek
-Három összetevők szükségesek a felhő alapú szolgáltatásként az Azure-ban az alkalmazás központi telepítéséről:
+Három kötelező toodeploy egy alkalmazás az Azure-ban felhőszolgáltatásként:
 
 * **Szolgáltatásdefiníció**  
-  A felhőalapú szolgáltatás definíciós fájl (.csdef) a szolgáltatásmodellt, beleértve a szerepkörök számának meghatározása.
+  hello felhő szolgáltatásdefiníciós fájl (.csdef) hello modell, beleértve a szerepkörök hello számának meghatározása.
 * **Szolgáltatás konfigurációja**  
-  A felhőalapú szolgáltatás konfigurációs fájlját (.cscfg) a felhőre vonatkozó konfigurációs beállításokat tartalmazza, szolgáltatás és az egyes szerepkörök, beleértve a szerepkörpéldányok számát.
+  hello felhőalapú szolgáltatás konfigurációs fájlját (.cscfg) hello felhőalapú szolgáltatás és az adott szerepkörök, beleértve a szerepkörpéldányok számát hello konfigurációs beállításait biztosítja.
 * **Szolgáltatáscsomag**  
-  A szolgáltatás csomagba (.cspkg) tartalmazza az alkalmazás kódjában és konfigurációkat és a szolgáltatásdefiníciós fájlban.
+  hello szolgáltatás csomagba (.cspkg) hello alkalmazáskód és konfigurációk és hello szolgáltatásdefiníciós fájl tartalmazza.
 
-Ezek és csomag létrehozásával kapcsolatos részletesebb [Itt](cloud-services-model-and-package.md).
+További ezekről, és hogyan toocreate csomag [Itt](cloud-services-model-and-package.md).
 
 ## <a name="prepare-your-app"></a>Az alkalmazás előkészítése
-Egy felhőalapú szolgáltatás telepítése előtt a felhőalapú szolgáltatás csomagba (.cspkg) alkalmazáskódjában és egy felhőalapú szolgáltatás konfigurációs fájlját (.cscfg) kell létrehoznia. Az Azure SDK eszközöket biztosít a szükséges központi telepítés fájlok előkészítése. Az SDK telepítése a [Azure letölti](https://azure.microsoft.com/downloads/) oldalon, a nyelvet, amelyben az alkalmazás kódjában fejlesztéséhez.
+Egy felhőalapú szolgáltatás telepítése előtt létre kell hoznia hello cloud service csomagba (.cspkg) alkalmazáskódjában és egy felhőalapú szolgáltatás konfigurációs fájlját (.cscfg). hello Azure SDK eszközöket biztosít a szükséges központi telepítés fájlok előkészítése. Hello SDK hello telepítheti [Azure letölti](https://azure.microsoft.com/downloads/) lap, ahol inkább toodevelop hello nyelvi az alkalmazás kódjában.
 
 Három cloud service funkciókhoz speciális konfigurációk service-csomag exportálása előtt:
 
-* Ha szeretné központilag telepíteni egy felhőszolgáltatás, amely a Secure Sockets Layer (SSL) használ az adatok titkosításához, [állítsa be az alkalmazását](cloud-services-configure-ssl-certificate-portal.md#modify) SSL-t.
-* Ha a távoli asztal kapcsolatokat szerepkörpéldányt beállítani, a konfigurálni kívánt [a szerepkörök konfigurálása](cloud-services-role-enable-remote-desktop-new-portal.md) a távoli asztal.
-* Ha konfigurálni szeretné részletes figyelését a felhőalapú szolgáltatás, Azure diagnosztika engedélyezése a felhőalapú szolgáltatáshoz. *Minimális figyelési* (az alapértelmezett figyelési szint) az állomás operációs rendszereket a szerepkörpéldányok (virtuális gépek) szolgáltatástól összegyűjtött teljesítményszámlálókat használ. *Részletes figyelési* gyűjti a teljesítményadatokat belül a szerepkörpéldányok ahhoz, hogy szorosabb kérelem feldolgozása során előforduló problémák elemzése alapján további metrikákat. Azure Diagnostics engedélyezése regisztrációval, lásd: [engedélyezése az Azure diagnostics](cloud-services-dotnet-diagnostics.md).
+* Ha azt szeretné, hogy egy felhőszolgáltatás, amely a Secure Sockets Layer (SSL) használ az adatok titkosításához, toodeploy [állítsa be az alkalmazását](cloud-services-configure-ssl-certificate-portal.md#modify) SSL-t.
+* Ha azt szeretné, hogy tooconfigure távoli asztali kapcsolatok toorole példányok [hello szerepkörök konfigurálása](cloud-services-role-enable-remote-desktop-new-portal.md) a távoli asztal.
+* Ha tooconfigure részletes figyelését a felhőalapú szolgáltatás, engedélyezze az Azure Diagnostics hello felhőalapú szolgáltatás. *Minimális figyelési* (hello alapértelmezett szint figyelési) hello állomás operációs rendszerek (a virtuális gépek). szerepkörpéldányokra szolgáltatástól összegyűjtött teljesítményszámlálókat használ. *Részletes figyelési* gyűjti a teljesítményadatokat belül hello szerepkör példányok tooenable szorosabb elemzésének kérelem feldolgozása során előforduló problémák alapján további metrikák. Hogyan toofind tooenable Azure Diagnostics, lásd: [engedélyezése az Azure diagnostics](cloud-services-dotnet-diagnostics.md).
 
-Felhőalapú szolgáltatás létrehozása a webes szerepkörök vagy feldolgozói szerepkörök példányai, le kell [a service-csomag létrehozása](cloud-services-model-and-package.md#servicepackagecspkg).
+toocreate webes szerepkörök vagy feldolgozói szerepkörök példányai egy felhőszolgáltatás, kell [hello service-csomag létrehozása](cloud-services-model-and-package.md#servicepackagecspkg).
 
 ## <a name="before-you-begin"></a>Előkészületek
-* Ha még nem telepítette az Azure SDK-t, kattintson a **Azure SDK telepítése** megnyitásához a [Azure letöltőoldala](https://azure.microsoft.com/downloads/), és töltse le az SDK for a nyelvet, amelyben a kód kialakításához. (Összekapcsolta elvégezheti később lehetőséget.)
-* Ha bármely szerepkörpéldányokat szükséges tanúsítvány, a tanúsítványok létrehozása. Cloud services és a titkos kulcs egy .pfx fájlba szükséges. A tanúsítványok feltöltheti az Azure-ba, létrehozásához, és a felhőalapú szolgáltatás telepítéséhez.
+* Ha még nem telepítette a hello Azure SDK-t, kattintson a **Azure SDK telepítése** tooopen hello [Azure letöltőoldala](https://azure.microsoft.com/downloads/), majd töltse le az SDK hello hello nyelven, ahol inkább toodevelop a kódot. (Konfigurálnia kell egy lehetőség toodo ezt később.)
+* Ha a szerepkörpéldányok szükséges tanúsítvány, hello tanúsítványok létrehozása. Cloud services és a titkos kulcs egy .pfx fájlba szükséges. Feltöltheti hello tanúsítványok tooAzure létrehozásához és telepítéséhez hello felhőalapú szolgáltatás.
 
 ## <a name="create-and-deploy"></a>Létrehozása és telepítése
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. Kattintson a **új > számítási**, és görgessen lefelé, és kattintson a **Felhőszolgáltatás**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. Kattintson a **új > számítási**, majd görgessen lefelé tooand kattintson **Felhőszolgáltatás**.
 
     ![A felhőalapú szolgáltatás közzététele](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
-3. Az új **Felhőszolgáltatás** panelen adjon meg egy értéket a **DNS-név**.
+3. Az új hello **Felhőszolgáltatás** panelen adjon meg egy értéket a hello **DNS-név**.
 4. Hozzon létre egy új **erőforráscsoport** vagy válasszon egy meglévőt.
 5. Válasszon ki egy **helyet**.
-6. Kattintson a **csomag**. Ekkor megnyílik a **a csomag feltöltése** panelen. Töltse ki a kötelező mezőket. Ha egyetlen példányt tartalmaz, a szerepkörökben, győződjön meg arról **üzembe helyezés akkor is, ha egy vagy több szerepkör egyetlen példányt tartalmaz** van kiválasztva.
+6. Kattintson a **csomag**. Ekkor megnyílik hello **a csomag feltöltése** panelen. Hello kötelező mezők kitöltésével. Ha egyetlen példányt tartalmaz, a szerepkörökben, győződjön meg arról **üzembe helyezés akkor is, ha egy vagy több szerepkör egyetlen példányt tartalmaz** van kiválasztva.
 7. Győződjön meg arról, hogy **indítsa el a központi telepítés** van kiválasztva.
-8. Kattintson a **OK** bezárul, amely a **a csomag feltöltése** panelen.
-9. Ha nem rendelkezik a tanúsítványok hozzáadása, kattintson a **létrehozása**.
+8. Kattintson a **OK** amely bezárul hello **a csomag feltöltése** panelen.
+9. Ha nem rendelkezik a tanúsítványok tooadd, kattintson a **létrehozása**.
 
     ![A felhőalapú szolgáltatás közzététele](media/cloud-services-how-to-create-deploy-portal/select-package.png)
 
 ## <a name="upload-a-certificate"></a>A tanúsítvány feltöltése
-Ha a központi telepítési csomag [tanúsítványok](cloud-services-configure-ssl-certificate-portal.md#modify), most már feltöltheti a tanúsítványt.
+Ha a központi telepítési csomag [toouse tanúsítványok konfigurált](cloud-services-configure-ssl-certificate-portal.md#modify), most már feltöltheti hello tanúsítványt.
 
-1. Válassza ki **tanúsítványok**, majd a a **tanúsítványok hozzáadása** panelen válassza ki az SSL tanúsítvány .pfx fájlt, és adja meg a **jelszó** a tanúsítvány
-2. Kattintson a **Attach tanúsítvány**, és kattintson a **OK** a a **adja hozzá a tanúsítványok** panelen.
-3. Kattintson a **létrehozása** a a **Felhőszolgáltatás** panelen. Ha a központi telepítés elérte a **készen** állapota, továbbléphet a következő lépéseket.
+1. Válassza ki **tanúsítványok**, és a hello **tanúsítványok hozzáadása** panelen válassza ki a hello SSL tanúsítvány .pfx fájlját, és adja meg a hello **jelszó** hello tanúsítvány
+2. Kattintson a **Attach tanúsítvány**, és kattintson a **OK** a hello **adja hozzá a tanúsítványok** panelen.
+3. Kattintson a **létrehozása** a hello **Felhőszolgáltatás** panelen. Amikor hello telepítési elérte hello **készen** állapotát, folytathatja a következő lépések toohello.
 
     ![A felhőalapú szolgáltatás közzététele](media/cloud-services-how-to-create-deploy-portal/attach-cert.png)
 
 ## <a name="verify-your-deployment-completed-successfully"></a>Ellenőrizze a telepítés sikeresen befejeződött
-1. Kattintson a cloud service-példány.
+1. Kattintson a hello cloud service-példány.
 
-    Az állapot jelenítsen meg, hogy van-e a szolgáltatás **futtató**.
-2. A **Essentials**, kattintson a **webhely URL-címe** a felhőalapú szolgáltatás megnyitása a böngészőben.
+    hello állapot jelenítsen meg, hogy van-e hello szolgáltatás **futtató**.
+2. A **Essentials**, hello kattintson **webhely URL-címe** tooopen a felhőalapú szolgáltatás egy webböngészőben.
 
     ![CloudServices_QuickGlance](./media/cloud-services-how-to-create-deploy-portal/running.png)
 

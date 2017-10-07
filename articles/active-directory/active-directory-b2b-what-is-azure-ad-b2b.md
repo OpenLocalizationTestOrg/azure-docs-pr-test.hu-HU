@@ -1,6 +1,6 @@
 ---
-title: "Mi az az Azure Active Directory B2B együttműködés? | Microsoft Docs"
-description: "Az Azure Active Directory B2B együttműködés a vállalatokon átívelő kapcsolatok üzleti partnerek szelektíven érhessék el a vállalati alkalmazásokhoz való engedélyezésével támogatja."
+title: "aaaWhat az Azure Active Directory B2B együttműködés? | Microsoft Docs"
+description: "Az Azure Active Directory B2B együttműködés a vállalatokon átívelő kapcsolatok üzleti partnerek tooselectively hozzáférés engedélyezése a vállalati alkalmazásokat támogatja."
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -17,39 +17,39 @@ ms.date: 06/27/2017
 ms.author: curtand
 ms.custom: aaddev
 ms.reviewer: sasubram
-ms.openlocfilehash: fbc12a52555b190d43b5e953fd4d19923a25b0ed
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 359989b66f3d012c306e8748a607662fffacb919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-ad-b2b-collaboration"></a>Mi az az Azure AD B2B együttműködés?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AhwrweCBdsc" frameborder="0" allowfullscreen></iframe>
 
-Az Azure AD-vállalatok (B2B) együttműködési képességek engedélyezése bármely szervezet használata az Azure AD biztonságos felhasználók bármilyen más szervezettől származik, minimális és maximális mérete. Azon szervezetek lehet az Azure ad-vel vagy nélkül, vagy akár egy informatikai szervezet vagy anélkül. 
+Az Azure AD-vállalatok (B2B) együttműködési képességek engedélyezése bármely szervezet használata az Azure AD toowork biztonságos felhasználók bármilyen más szervezettől származik, minimális és maximális mérete. Azon szervezetek lehet az Azure ad-vel vagy nélkül, vagy akár egy informatikai szervezet vagy anélkül. 
 
-Az Azure AD használatával a szervezetek dokumentumokhoz, erőforrások és a partnerek számára, alkalmazások hozzáférést biztosíthat a teljes felügyeletet gyakorolhat a saját vállalati adatok megőrzésével. A fejlesztők használhatják az Azure AD-vállalatok API-alkalmazások írását, amelyek a két szervezet a kapcsolják össze több biztonságos helyen. Azt is igen egyszerű, a végfelhasználók számára, keresse meg.
+A szervezetek az Azure AD használatával hozzáférést biztosíthat toodocuments, erőforrások és alkalmazások tootheir partnerek, teljes felügyeletet gyakorolhat a saját vállalati adatok megőrzésével. A fejlesztők a hello Azure AD vállalatok API-k toowrite alkalmazásokat, amelyek a két szervezet a kapcsolják össze több biztonságos helyen. Azt is igen egyszerű, a végfelhasználók toonavigate.
 
-ügyfeleink 97 % jelzik, Azure AD B2B együttműködés nagyon fontos, hogy azokat.
+ügyfeleink 97 % jelzik, Azure AD B2B együttműködés nagyon fontos toothem.
 
 ![a tortadiagram](media/active-directory-b2b-what-is-azure-ad-b2b/97-percent-support.png)
 
 Korai április 2017 frissítésétől volt körülbelül 3 millió felhasználó alapján már használja az Azure AD B2B együttműködés képességeit. És az Azure AD a szervezeteknek, amelyek több mint 10 olyan felhasználót 23 százaléka már élvező ezeket a képességeket.
 
-## <a name="the-key-benefits-of-azure-ad-b2b-collaboration-to-your-organization"></a>A szervezet Azure AD B2B együttműködés legfontosabb előnyei
+## <a name="hello-key-benefits-of-azure-ad-b2b-collaboration-tooyour-organization"></a>Azure AD B2B együttműködés tooyour szervezet hello legfontosabb előnyei
 
 ### <a name="work-with-any-user-from-any-partner"></a>Bármely felhasználó bármely partnertől használata
 
 * Partnerek a saját hitelesítő adatok használata
 
-* Nem kötelező használni az Azure AD-partnerek számára
+* Az Azure AD partnerek toouse nincsenek követelményei
 
 * Nincsenek külső címtárak vagy bonyolult telepítési szükséges
 
 ### <a name="simple-and-secure-collaboration"></a>Egyszerű és biztonságos együttműködési
 
-* Minden vállalati alkalmazás vagy adatokat, hozzáférést biztosítanak a kifinomult, az Azure AD által biztosított engedélyezési házirendek alkalmazása közben
+* Adja meg a hozzáférés tooany vállalati alkalmazás vagy adatokat, kifinomult, az Azure AD által biztosított engedélyezési házirendek alkalmazása közben
 
 * A felhasználók számára könnyen
 
@@ -63,20 +63,20 @@ Korai április 2017 frissítésétől volt körülbelül 3 millió felhasználó
 
 * Nincsenek külső adminisztrációs terhelés
 
-## <a name="you-can-easily-add-b2b-collaboration-users-to-your-organization"></a>Egyszerűen hozzáadhatja B2B együttműködés felhasználók a szervezet
+## <a name="you-can-easily-add-b2b-collaboration-users-tooyour-organization"></a>Egyszerűen hozzáadhatja a B2B együttműködés felhasználók tooyour szervezet
 
-Rendszergazdák B2B együttműködés (vendég) felhasználója hozzáadhatja a [Azure-portálon](https://portal.azure.com).
+Rendszergazdák B2B együttműködés (vendég) felhasználókat adhat hozzá hello [Azure-portálon](https://portal.azure.com).
 
 ![vendég felhasználók hozzáadása](media/active-directory-b2b-what-is-azure-ad-b2b/adding-b2b-users-admin.png)
 
-### <a name="enable-your-collaborators-to-bring-their-own-identity"></a>A közreműködők a saját identitás érdekében engedélyezése
+### <a name="enable-your-collaborators-toobring-their-own-identity"></a>A közreműködők toobring saját identitás engedélyezése
 
-B2B közreműködők is jelentkezzen be az általuk választott identitást. Ha a felhasználó nem rendelkezik Microsoft-fiókkal vagy egy Azure AD-fiókot – egy hoz létre őket zökkenőmentesen ajánlat beváltásra időpontjában.
+B2B közreműködők is jelentkezzen be az általuk választott identitást. Ha hello felhasználó nem rendelkezik Microsoft-fiókkal vagy egy Azure AD-fiókot – egy során jön létre a számukra zökkenőmentesen hello ajánlat beváltásra.
 
 ![bejelentkezési identitás választás](media/active-directory-b2b-what-is-azure-ad-b2b/sign-in-identity-choice.png)
 
-### <a name="delegate-to-application-and-group-owners"></a>Alkalmazás és a csoportházirend-tulajdonosok delegálása 
-Alkalmazás és a csoportházirend-tulajdonosok adhat hozzá B2B felhasználók közvetlenül bármely alkalmazás, amely a fontos adatokhoz, hogy a Microsoft-alkalmazások vagy a nem. Rendszergazdák számára delegálhatják engedély B2B felhasználók hozzáadása a nem rendszergazda. A nem rendszergazda használhatja a [az Azure AD alkalmazás-hozzáférési Panel](https://myapps.microsoft.com) B2B együttműködés felhasználók hozzáadása az alkalmazások vagy csoportok számára.
+### <a name="delegate-tooapplication-and-group-owners"></a>Delegált tooapplication és csoport tulajdonosainak 
+Alkalmazás és a csoportházirend-tulajdonosok B2B felhasználókat adhat hozzá közvetlenül az Ön számára legfontosabb, hogy a Microsoft-alkalmazások vagy a nem tooany alkalmazás. Rendszergazdák engedélyt tooadd B2B felhasználók toonon-rendszergazdák számára delegálhatják. A nem rendszergazda használható hello [az Azure AD alkalmazás-hozzáférési Panel](https://myapps.microsoft.com) tooadd B2B együttműködés felhasználók tooapplications vagy csoportokat.
 
 ![hozzáférési panel](media/active-directory-b2b-what-is-azure-ad-b2b/access-panel.png)
 
@@ -85,34 +85,34 @@ Alkalmazás és a csoportházirend-tulajdonosok adhat hozzá B2B felhasználók 
 ### <a name="authorization-policies-protect-your-corporate-content"></a>Engedélyezési házirendek a vállalati tartalom védelme
 
 Kényszerítheti a feltételes hozzáférési szabályzatok, például többtényezős hitelesítés:
-- A bérlői szintű
-- Az alkalmazás szintjén
-- Vállalati alkalmazások és adatok védelme érdekében bizonyos felhasználók részére
+- Hello bérlői szinten
+- Hello alkalmazás szinten
+- Az adott felhasználóknak tooprotect vállalati alkalmazások és adatok
 
 ![tag hozzáadása](media/active-directory-b2b-what-is-azure-ad-b2b/add-member.png)
 
-### <a name="use-our-apis-and-sample-code-to-easily-build-applications-to-onboard"></a>Az API-k és a mintakódot érheti alkalmazások
-A külső partnerek a board a szervezet igényeinek megfelelően testre szabott módon kapcsolja.
+### <a name="use-our-apis-and-sample-code-tooeasily-build-applications-tooonboard"></a>Az API-k és minta kód tooeasily alkalmazások tooonboard összeállítása
+Kapcsolja a külső partnerek a board módon testreszabott tooyour szervezete igényeinek.
 
-Használja a [B2B együttműködés meghívó API-k](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation), testre szabhatja a bevezetési lép, beleértve az előfizetési önkiszolgáló portálokat létrehozása. Az önkiszolgáló portál nyújtunk mintakód [a Githubon](https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web).
+Hello segítségével [B2B együttműködés meghívó API-k](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation), testre szabhatja a bevezetési lép, beleértve az előfizetési önkiszolgáló portálokat létrehozása. Az önkiszolgáló portál nyújtunk mintakód [a Githubon](https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web).
 
 ![regisztrációs portál](media/active-directory-b2b-what-is-azure-ad-b2b/sign-up-portal.png)
 
-Az Azure AD B2B együttműködés a partnerkapcsolatok oly módon, hogy a végfelhasználók számára egyszerű és intuitív található védelméhez az Azure AD a teljes power kérheti le. Ezért induljon el, a külső együttműködés az Azure AD B2B már használó szervezetek több ezer csatlakozáshoz!
+Azure AD B2B együttműködés érhet hello teljes hatványra emelésének Azure AD tooprotect a partnerkapcsolatok oly módon, hogy a végfelhasználók számára egyszerű és intuitív található. Ezért habozzon, illesztési hello több ezer a külső együttműködés az Azure AD B2B már használó szervezetek!
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Rendszergazdai élmény találhatók a [Azure-portálon](https://portal.azure.com).
+* Rendszergazdai élmény találhatók hello [Azure-portálon](https://portal.azure.com).
 
-* Információk munkavégző lép érhetők el a [hozzáférési Panel](https://myapps.microsoft.com).
+* Információk munkavégző lép érhetők el hello [hozzáférési Panel](https://myapps.microsoft.com).
 
-* És szerint mindig a termékért felelős csoport visszajelzést, beszélgetéseket, és javaslatokat keresztül csatlakozzon a [a Microsoft technikai közösségi](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b).
+* És visszajelzés, beszélgetéseket, és javaslatokat keresztül hello termékért felelős csoport szerint mindig csatlakozzon a [a Microsoft technikai közösségi](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b).
 
 Ismerje meg az Azure AD B2B együttműködés további cikkeit:
 
 * [Hogyan rendszergazdák Azure Active Directory B2B együttműködés felhasználók hozzá?](active-directory-b2b-admin-add-users.md)
 * [Hogyan hozzá az információkkal dolgozó szakemberek B2B együttműködés felhasználók?](active-directory-b2b-iw-add-users.md)
-* [A B2B együttműködés meghívó e-mail elemei](active-directory-b2b-invitation-email.md)
+* [hello B2B együttműködés meghívó e-mail hello elemei](active-directory-b2b-invitation-email.md)
 * [B2B együttműködés meghívó érvényesítési](active-directory-b2b-redemption-experience.md)
 * [Az Azure AD B2B együttműködés licencelés](active-directory-b2b-licensing.md)
 * [Hibaelhárítás az Azure Active Directory B2B együttműködés](active-directory-b2b-troubleshooting.md)

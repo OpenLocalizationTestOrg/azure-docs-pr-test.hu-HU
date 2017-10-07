@@ -3,7 +3,7 @@
 # Bevezetés
 ## [Az első API kezelése](api-management-get-started.md)
 ## [Az API védelme sebességkorlátozással](api-management-howto-product-with-rules.md)
-## [Gyorsítótárazás hozzáadása a hatékonyabb működés érdekében](api-management-howto-cache.md)
+## [Adja hozzá a gyorsítótárazási tooimprove teljesítmény](api-management-howto-cache.md)
 ## [Gyakori kérdések](api-management-faq.md)
 # Útmutató
 ## API-k fejlesztése
@@ -13,8 +13,8 @@
 ### [API-definíció importálása](api-management-howto-import-api.md)
 ## A háttérmodul védelme
 ### [A Web API háttérmodul védelme az AAD-vel](api-management-howto-protect-backend-with-aad.md)
-### [Csatlakozás virtuális hálózathoz](api-management-using-with-vnet.md)
-### [Csatlakozás belső virtuális hálózathoz](api-management-using-with-internal-vnet.md)
+### [Virtuális hálózat tooa](api-management-using-with-vnet.md)
+### [Belső virtuális hálózat tooan](api-management-using-with-internal-vnet.md)
 ### [Az Application Gateway integrálása belső VNET-en](api-management-howto-integrate-internal-vnet-appgateway.md)
 ### [Kölcsönös tanúsítványhitelesítés](api-management-howto-mutual-certificates.md)
 ## Szabályzatok konfigurálása
@@ -26,7 +26,7 @@
 ### [A szabályzatok áttekintése](api-management-howto-policies.md)
 ### [Titkok kezelése tulajdonságokkal](api-management-howto-properties.md)
 ### [API-k biztonságossá tétele ügyféltanúsítvány-alapú hitelesítés használatával](api-management-howto-mutual-certificates-for-clients.md)
-## A fejlesztői élmény testreszabása
+## Hello fejlesztői testreszabásához
 ### [Lap tartalmának és elrendezésének módosítása](api-management-modify-content-layout.md)
 ### [Lapelemek stílusának testreszabása](api-management-customize-styles.md)
 ### [Rendszerlapok testreszabása sablonok használatával](api-management-developer-portal-templates.md)
@@ -37,10 +37,10 @@
 ### [OAuth-támogatás engedélyezése a konzolon](api-management-howto-oauth2.md)
 ## Kezelés éles környezetben
 ### [Csoportok kezelése](api-management-howto-create-groups.md)
-### [Üzembe helyezés több Azure-régióban](api-management-howto-deploy-multi-region.md)
-### [Eseménynaplózás az Azure Event Hubs segítségével](api-management-howto-log-event-hubs.md)
+### [Toomultiple Azure telepítése régiók](api-management-howto-deploy-multi-region.md)
+### [Az Event Hubs események tooAzure naplózása](api-management-howto-log-event-hubs.md)
 ### [Vészhelyreállítás biztonsági mentéssel és visszaállítással](api-management-howto-disaster-recovery-backup-restore.md)
-### [Hívások nyomomon követése az API Inspectorral](api-management-howto-api-inspector.md)
+### [Hello API Inspector nyomkövetési hívások](api-management-howto-api-inspector.md)
 ### [Felhasználói fiókok kezelése](api-management-howto-create-or-invite-developers.md)
 ### [Kezelés automatizálással](automation-manage-api-management.md)
 ### [Konfigurálás a Git használatával](api-management-configuration-repository-git.md)
@@ -81,14 +81,14 @@
 ## [API Management – összhangban a többi Azure-szolgáltatással](http://weblogs.asp.net/cschittko/api-management-plays-well-with-other-azure-services)
 ## [API Management-bővítmény a SmartBear Ready! API-hoz](http://smartbear.com/plugins/microsoft-azure-api-management-plugin/)
 ## [Azure-ütemterv](https://azure.microsoft.com/roadmap/)
-## [Az Event Hubs és az API Management összekapcsolása](http://weblogs.asp.net/cschittko/connecting-eventhubs-to-api-management)
+## [Kapcsolódás az Event Hubs tooAPI kezelése](http://weblogs.asp.net/cschittko/connecting-eventhubs-to-api-management)
 ## [A SOAP WCF-szolgáltatásainak használata HTTP-n keresztül](http://mostlydotnetdev.blogspot.nl/2015/03/azure-api-management-apim-consuming.html)
 ## [MSDN-fórum](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureapimgmt)
 ## [Díjszabás](https://azure.microsoft.com/pricing/details/api-management/)
 ## [Díjkalkulátor](https://azure.microsoft.com/pricing/calculator/)
-## [RBAC-hoz hasonló hozzáférés biztosítása REST API használatával](http://blogs.msdn.com/b/katriend/archive/2015/12/21/using-the-azure-api-management-rest-api-as-workaround-to-rbac-functionality.aspx)
+## [Az RBAC-szerű hozzáférést hello REST API használatával](http://blogs.msdn.com/b/katriend/archive/2015/12/21/using-the-azure-api-management-rest-api-as-workaround-to-rbac-functionality.aspx)
 ## [Szolgáltatási hírek](https://azure.microsoft.com/updates/?product=api-management)
-## [A PostMan beállítása az API Management API-jainak hívására](http://www.bizbert.com/bizbert/2015/07/08/Setting+Up+PostMan+To+Call+The+Azure+Management+APIs.aspx)
+## [PostMan toocall API Management API-k beállítása](http://www.bizbert.com/bizbert/2015/07/08/Setting+Up+PostMan+To+Call+The+Azure+Management+APIs.aspx)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-api-management)
 ## [Videók](https://azure.microsoft.com/documentation/videos/index/?services=api-management) 
 ## [Tanulmány: Felhőalapú API Management](http://j.mp/ms-apim-whitepaper)

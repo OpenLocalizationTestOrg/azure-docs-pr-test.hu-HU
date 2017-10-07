@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Stream Analytics dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan futtathat IoT-elemzést a felhőben teljes körűen felügyelt eseményfeldolgozással. Valós időben elemezhet például alkalmazásokból, érzékelőkből, eszközökből származó adatokat."
+title: "aaaAzure Stream Analytics dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorun IoT elemzés hello a felhő teljes körűen felügyelt esemény feldolgozása. Valós időben elemezhet például alkalmazásokból, érzékelőkből, eszközökből származó adatokat."
 services: stream-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/23/2017
 ms.author: carolz
-ms.openlocfilehash: f82be4ff7bd0839be4f826f9a04ba0876f4ec91d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4015137b0f39f86ada69d92e77e72b77b799d2d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-documentation"></a>Stream Analytics-dokumentáció
 
-Ismerje meg, hogyan futtathat eszközök internetes hálózata-elemzést (IoT) a felhőben Stream Analytics teljes körűen felügyelt eseményfeldolgozási motorral. Oktatóanyagok és egyéb dokumentációk, amelyek bemutatják, hogyan elemezhet valós időben például alkalmazásokból, érzékelőkből, eszközökből és a közösségi médiából származó adatokat. 
+Ismerje meg, hogyan toorun az eszközök internetes hálózatát (IoT) elemzés hello a Stream Analytics egy teljes körűen felügyelt Eseményfeldolgozási motor felhő. Oktatóanyagok és egyéb dokumentációt mutatja be valós idejű alkalmazások érzékelők, eszközök, közösségi média és több tooanalyze adatokat. 
 
 <ul class="panelContent cardsFTitle">
      <li>

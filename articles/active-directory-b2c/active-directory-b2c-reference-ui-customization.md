@@ -1,6 +1,6 @@
 ---
 title: "Felhasználói felület (UI) testreszabása – az Azure AD B2C |} Microsoft Docs"
-description: "A felhasználói felület (UI) testreszabási szolgáltatások az Azure Active Directory B2C témakör:"
+description: "Hello felhasználói felület (UI) testreszabási szolgáltatások az Azure Active Directory B2C témakör:"
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: 122fa997ea11b369aae3c59edf0043ab19d21aea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 04f8c5f1277f8d4409cd10971d22a0ebd2024785
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-customize-the-azure-ad-b2c-user-interface-ui"></a>Az Azure Active Directory B2C: Testreszabása az Azure AD B2C felhasználói felület (UI)
+# <a name="azure-active-directory-b2c-customize-hello-azure-ad-b2c-user-interface-ui"></a>Az Azure Active Directory B2C: Testreszabása az Azure AD B2C hello felhasználói felület (UI)
 
-Felhasználói élmény az alkalmazás elérhető az ügyfél kiemelkedő.  Az ügyfél alap nő a márka megjelenésének és arculatának felhasználói élmény létrehozásával. Az Azure Active Directory B2C (az Azure AD B2C) lehetővé teszi, hogy testre szabhatja a regisztráció, bejelentkezés, profil szerkesztése, és a jelszó-átállítási tartalmazó képpontos tökéletes vezérlő.
+Felhasználói élmény az alkalmazás elérhető az ügyfél kiemelkedő.  Az ügyfél alap nő létrehozásával a felhasználói élmény, a márka hello megjelenését és működését. Az Azure Active Directory B2C (az Azure AD B2C) lehetővé teszi, hogy testre szabhatja a regisztráció, bejelentkezés, profil szerkesztése, és a jelszó-átállítási tartalmazó képpontos tökéletes vezérlő.
 
 > [!NOTE]
-> A jelen cikkben ismertetett lap felhasználói felületi testreszabási szolgáltatás nem vonatkozik a bejelentkezési egyetlen házirend, a hozzá tartozó jelszó alaphelyzetbe állítása lap és ellenőrzési e-maileket.  Ezek a funkciók használata a [vállalati arculat megjelenítése a szolgáltatás](../active-directory/active-directory-add-company-branding.md) helyette.
+> hello lap felhasználói felületi testreszabási szolgáltatás cikkben leírt toohello bejelentkezési egyetlen házirend, a hozzá tartozó jelszó alaphelyzetbe állítása lap és az ellenőrző e-mailek nem vonatkozik.  Ezek a funkciók használata hello [vállalati arculat megjelenítése a szolgáltatás](../active-directory/active-directory-add-company-branding.md) helyette.
 >
 
-Ez a cikk ismerteti a következő témaköröket:
+Ez a cikk ismerteti a következő témakörök hello:
 
-* A lap felhasználói felületi testreszabási szolgáltatás.
-* Egy eszköz a HTML-tartalmakat feltöltése az Azure Blob Storage a lap felhasználói felületének testreszabása szolgáltatással való használathoz.
-* A testre szabható egymásra épülő stílus lapok (CSS) használata az Azure AD B2C által használt Kezelőfelület-elemek.
+* hello lap felhasználói felületi testreszabási szolgáltatás.
+* Egy eszköz feltöltése HTML tartalom tooAzure Blob Storage hello lap felhasználói felületének testreszabása szolgáltatással való használathoz.
+* hello használt Kezelőfelület-elemeken Azure AD B2C testre szabható egymásra épülő stílus lapok (CSS) használatával.
 * Gyakorlati tanácsok gyakorló ezt a szolgáltatást.
 
-## <a name="the-page-ui-customization-feature"></a>A lap felhasználói felületi testreszabási szolgáltatás
+## <a name="hello-page-ui-customization-feature"></a>hello lap felhasználói felületi testreszabási szolgáltatás
 
-Testre szabhatja a megjelenését a felhasználói regisztráció, bejelentkezés, a jelszó alaphelyzetbe állítása és profil szerkesztése lapok (konfigurálásával [házirendek](active-directory-b2c-reference-policies.md)). Az ügyfelek beolvasása zökkenőmentes élményt, amikor máshová az alkalmazás és az Azure AD B2C által kiszolgált lapok között.
+Testre szabhatja a hello megjelenését a felhasználói regisztráció, bejelentkezés, a jelszó alaphelyzetbe állítása és profil szerkesztése lapok (konfigurálásával [házirendek](active-directory-b2c-reference-policies.md)). Az ügyfelek beolvasása zökkenőmentes élményt, amikor máshová az alkalmazás és az Azure AD B2C által kiszolgált lapok között.
 
-Más szolgáltatás, amelyben felhasználói felület lehetőségei, az Azure AD B2C használ-e egy egyszerű és modern felhasználói felület testreszabásával megközelítése szemben.
+Eltérően más szolgáltatásokkal, ahol a felhasználói felület lehetőségei, az Azure AD B2C használ egy egyszerű és modern közelítse tooUI testreszabási.
 
-Hogyan működik ez: Azure AD B2C az ügyfél böngészőjében kód fut, és a modern megközelítés nevű [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/).  Tartalom futásidőben, be van töltve a házirendben megadott URL-címről. Másik URL-címéből különböző oldalain adhatja meg. Tartalom betöltődnek az URL-cím egy HTML-részlet szúrja be az Azure AD B2C egyesített, miután az ügyfél az oldal jelenik meg. Ehhez van szüksége:
+Hogyan működik ez: Azure AD B2C az ügyfél böngészőjében kód fut, és a modern megközelítés nevű [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/).  Tartalom futásidőben, be van töltve a házirendben megadott URL-címről. Másik URL-címéből különböző oldalain adhatja meg. Tartalom betöltődnek az URL-cím egy HTML-részlet szúrja be az Azure AD B2C egyesített, miután hello lap megjelenített tooyour ügyfél. Toodo van szüksége:
 
-1. Hozzon létre egy üres tartalom szabályos HTML5 `<div id="api"></div>` elem található valahol az `<body>`. A elem jelöli, ahol az Azure AD B2C tartalom egészül ki.
+1. Hozzon létre egy üres tartalom szabályos HTML5 `<div id="api"></div>` elem található valahol hello `<body>`. A elem jelek, ahol az Azure AD B2C tartalom hello egészül ki.
 1. A tartalmat a HTTPS-végpontnak állomás (a CORS engedélyezett). Vegye figyelembe, mind az beszerzése és beállítások kérelem módszerek engedélyezni kell a CORS konfigurálása során.
-1. CSS használatával az Azure AD B2C beszúrása felhasználói felületi elemeket stílus.
+1. CSS toostyle hello felhasználói felületi elemei, amelyek az Azure AD B2C beszúrása használja.
 
 ### <a name="a-basic-example-of-customized-html"></a>Egy alapszintű testreszabott HTML – példa
 
-A következő példa egy a legalapvetőbb HTML-tartalmakat, amelyek segítségével tesztelheti ezt a képességet. Használja a [segédeszköze](active-directory-b2c-reference-ui-customization-helper-tool.md) feltöltése és konfigurálása az Azure Blob Storage tárolóban ezt a tartalmat. Ezután ellenőrizheti, hogy az egyszerű, nem stilizált gombok & űrlapmezők minden oldalon megjelenített és megfelelően működik.
+a következő példa hello hello legalapvetőbb HTML-tartalmakat, amelyeket felhasználhat tootest ezt a képességet. Használjon hello [segédeszköze](active-directory-b2c-reference-ui-customization-helper-tool.md) tooupload és konfigurálja ezt a tartalmat az Azure Blob Storage tárolóban. Azt majd ellenőrizheti, hogy hello alapvető, nem stilizált gombok & űrlapmezők minden oldalon megjelenített és megfelelően működik.
 
 ```HTML
 <!DOCTYPE html>
@@ -63,21 +63,21 @@ A következő példa egy a legalapvetőbb HTML-tartalmakat, amelyek segítségé
 </html>
 ```
 
-## <a name="test-out-the-ui-customization-feature"></a>Tesztelje a felhasználói felület testreszabása szolgáltatás
+## <a name="test-out-hello-ui-customization-feature"></a>Tesztelje hello felhasználói felületi testreszabási szolgáltatás
 
-Szeretné, hogy a minta HTML és CSS tartalom használatával a felhasználói felület testreszabása a szolgáltatás kipróbálásához?  Ön mellékelt [egy segédeszköze](active-directory-b2c-reference-ui-customization-helper-tool.md) , amely feltölti és minta tartalom konfigurálja az Azure Blob Storage tárolóban.
+Szeretné, hogy ki hello felhasználói felületi testreszabási szolgáltatás tootry minta HTML- és CSS tartalmat használatával?  Ön mellékelt [egy segédeszköze](active-directory-b2c-reference-ui-customization-helper-tool.md) , amely feltölti és minta tartalom konfigurálja az Azure Blob Storage tárolóban.
 
 > [!NOTE]
-> A felhasználói felület tartalom bárhol tárolhatja: a webkiszolgálók, a tartalomtovábbító, AWS S3, megosztási fájlrendszerek stb. Mindaddig, amíg a CORS engedélyezése mellett a tartalmak tárolása egy nyilvánosan elérhető HTTPS-végponton, akkor áll. Azure Blob Storage tárolóban csak szemléltető célokra használjuk.
+> A felhasználói felület tartalom bárhol tárolhatja: a webkiszolgálók, a tartalomtovábbító, AWS S3, megosztási fájlrendszerek stb. Mindaddig, amíg a CORS engedélyezése mellett egy nyilvánosan elérhető a HTTPS-végpont hello tartalom üzemelteti, biztosan jó toogo. Azure Blob Storage tárolóban csak szemléltető célokra használjuk.
 >
 
-## <a name="the-ui-fragments-embedded-by-azure-ad-b2c"></a>A felhasználói felület töredék Azure AD B2C beágyazott
+## <a name="hello-ui-fragments-embedded-by-azure-ad-b2c"></a>Azure AD B2C beágyazott hello felhasználói felület töredék
 
-Az alábbi szakaszok tartalmazzák a HTML5-töredék, amely az Azure AD B2C egyesíti a `<div id="api"></div>` elem található a tartalmat. **Ne jelölje be ezeket a töredékeket a HTML 5 tartalom.** Az Azure AD B2C szolgáltatás futásidőben beszúrja azokat. Használja referenciának ezeket a töredékeket, a saját egymásra épülő stílus lapok (CSS) tervezésekor.
+hello alábbi szakaszok tartalmazzák, amely az Azure AD B2C egyesít hello hello HTML5-töredék `<div id="api"></div>` elem található a tartalmat. **Ne jelölje be ezeket a töredékeket a HTML 5 tartalom.** hello Azure AD B2C-vel futásidőben beszúrja azokat. Használja referenciának ezeket a töredékeket, a saját egymásra épülő stílus lapok (CSS) tervezésekor.
 
-### <a name="fragment-inserted-into-the-identity-provider-selection-page"></a>A "identitás szolgáltató kiválasztása lapon" beszúrt töredék
+### <a name="fragment-inserted-into-hello-identity-provider-selection-page"></a>Hello "Identitás szolgáltató kiválasztása lapon" beszúrt töredék
 
-Ezen a lapon a regisztráció vagy bejelentkezés során a felhasználó választhat az identitás-szolgáltatóktól listáját tartalmazza. Az ilyen gombokat közé tartozik a közösségi Identitásszolgáltatók, például a Facebook-on és Google + és helyi fiókok (e-mail cím vagy a felhasználó neve alapján).
+Ezen a lapon hello felhasználó-szolgáltatók közül választhatnak regisztráció vagy bejelentkezés során identitás listáját tartalmazza. Az ilyen gombokat közé tartozik a közösségi Identitásszolgáltatók, például a Facebook-on és Google + és helyi fiókok (e-mail cím vagy a felhasználó neve alapján).
 
 ```HTML
 <div id="api" data-name="IdpSelections">
@@ -101,18 +101,18 @@ Ezen a lapon a regisztráció vagy bejelentkezés során a felhasználó válasz
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-local-account-sign-up-page"></a>A "helyi fiók előfizetési page" beszúrt töredék
+### <a name="fragment-inserted-into-hello-local-account-sign-up-page"></a>Hello "helyi fiók előfizetési page" beszúrt töredék
 
-Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi fiók regisztrációs űrlap. Az űrlap szöveg beviteli mezőt, a jelszó beviteli mezője, a választógomb, a egyetlen legördülő listák és a többszörös kiválasztási jelölőnégyzetet például különböző bemeneti vezérlőket tartalmazhat.
+Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi fiók regisztrációs űrlap. hello űrlap szöveg beviteli mezőt, a jelszó beviteli mezője, a választógomb, a egyetlen legördülő listák és a többszörös kiválasztási jelölőnégyzetet például különböző bemeneti vezérlőket tartalmazhat.
 
 ```HTML
 <div id="api" data-name="SelfAsserted">
     <div class="intro">
-        <p>Create your account by providing the following details</p>
+        <p>Create your account by providing hello following details</p>
     </div>
 
     <div id="attributeVerification">
-        <div class="errorText" id="passwordEntryMismatch" style="display: none;">The password entry fields do not match. Please enter the same password in both fields and try again.</div>
+        <div class="errorText" id="passwordEntryMismatch" style="display: none;">hello password entry fields do not match. Please enter hello same password in both fields and try again.</div>
         <div class="errorText" id="requiredFieldMissing" style="display: none;">A required field is missing. Please fill out all required fields and try again.</div>
         <div class="errorText" id="fieldIncorrect" style="display: none;">One or more fields are filled out incorrectly. Please check your entries and try again.</div>
         <div class="errorText" id="claimVerificationServerError" style="display: none;"></div>
@@ -122,17 +122,17 @@ Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi 
                     <div class="attrEntry validate">
                         <div>
                             <div class="verificationInfoText" id="email_intro" style="display: inline;">Verification is necessary. Please click Send button.</div>
-                            <div class="verificationInfoText" id="email_info" style="display:none">Verification code has been sent to your inbox. Please copy it to the input box below.</div>
+                            <div class="verificationInfoText" id="email_info" style="display:none">Verification code has been sent tooyour inbox. Please copy it toohello input box below.</div>
                             <div class="verificationSuccessText" id="email_success" style="display:none">E-mail address verified. You can now continue.</div>
                             <div class="verificationErrorText" id="email_fail_retry" style="display:none">Incorrect code, try again.</div>
-                            <div class="verificationErrorText" id="email_fail_no_retry" style="display:none">Exceeded number of retries you need to send new code.</div>
+                            <div class="verificationErrorText" id="email_fail_no_retry" style="display:none">Exceeded number of retries you need toosend new code.</div>
                             <div class="verificationErrorText" id="email_fail_server" style="display:none">Server error, please try again</div>
                             <div class="verificationErrorText" id="email_incorrect_format" style="display:none">Incorect format.</div>
                         </div>
 
                     <div class="helpText show">This information is required</div>
                         <label>Email</label>
-                        <input id="email" class="textInput" type="text" placeholder="Email" required="" autofocus=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Email address that can be used to contact you.');" class="tiny">What is this?</a>
+                        <input id="email" class="textInput" type="text" placeholder="Email" required="" autofocus=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Email address that can be used toocontact you.');" class="tiny">What is this?</a>
 
                     <div class="buttons verify" claim_id="email">
                         <div id="email_ver_wait" class="working" style="display: none;"></div>
@@ -148,9 +148,9 @@ Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi 
                 </li>
                 <li>
                     <div class="attrEntry">
-                        <div class="helpText">8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ " ( ) ; .This information is required</div>
+                        <div class="helpText">8-16 characters, containing 3 out of 4 of hello following: Lowercase characters, uppercase characters, digits (0-9), and one or more of hello following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ " ( ) ; .This information is required</div>
                         <label>Enter password</label>
-                        <input id="password" class="textInput" type="password" placeholder="Enter password" pattern="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" title="8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Enter password');" class="tiny">What is this?</a>
+                        <input id="password" class="textInput" type="password" placeholder="Enter password" pattern="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" title="8-16 characters, containing 3 out of 4 of hello following: Lowercase characters, uppercase characters, digits (0-9), and one or more of hello following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('Enter password');" class="tiny">What is this?</a>
                     </div>
                 </li>
                 <li>
@@ -202,7 +202,7 @@ Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi 
                     <div class="attrEntry">
                         <div class="helpText">This information is required</div>
                         <label>Zip code</label>
-                        <input id="postalCode" class="textInput" type="text" placeholder="Zip code" required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('The postal code of your address.');" class="tiny">What is this?</a>
+                        <input id="postalCode" class="textInput" type="text" placeholder="Zip code" required=""><a href="javascript:void(0)" onclick="selfAssertedClient.showHelp('hello postal code of your address.');" class="tiny">What is this?</a>
                     </div>
                 </li>
             </ul>
@@ -216,11 +216,11 @@ Ez a lap tartalmaz egy e-mail címet vagy egy felhasználónevet alapuló helyi 
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-social-account-sign-up-page"></a>A "" közösségi fiók bejelentkezési oldalán"beszúrt töredék
+### <a name="fragment-inserted-into-hello-social-account-sign-up-page"></a>Töredék beszúrt hello "" társadalombiztosítási fiók regisztrációs oldalon"
 
-Ezen a lapon jelenhet meg, ha regisztrál a Facebook-on vagy a Google + például közösségi identitásszolgáltató egy meglévő fiókkal.  Ha további információkat kell gyűjteni a regisztrációs űrlap használatával a végfelhasználó használható. Ezen a lapon hasonlít a helyi fiók regisztrációs oldalon (az előző szakaszban látható) a jelszó számbeviteli mezők kivételével.
+Ezen a lapon jelenhet meg, ha regisztrál a Facebook-on vagy a Google + például közösségi identitásszolgáltató egy meglévő fiókkal.  Ha további információt kell gyűjteni a regisztrációs űrlap használatával hello végfelhasználói használható. Ezen a lapon hello jelszó számbeviteli mezők kivételével hello hasonló toohello helyi fiók regisztrációs oldalon (lásd az előző szakaszban hello).
 
-### <a name="fragment-inserted-into-the-unified-sign-up-or-sign-in-page"></a>A "egyesített regisztráció vagy bejelentkezés page" beszúrt töredék
+### <a name="fragment-inserted-into-hello-unified-sign-up-or-sign-in-page"></a>Hello "Egyesített regisztráció vagy bejelentkezés page" beszúrt töredék
 
 Ezen a lapon a regisztrációs és bejelentkezés ügyfelek, akik használhatják a közösségi Identitásszolgáltatók, például a Facebook-on vagy a Google + és helyi fiókok kezeli.
 
@@ -273,7 +273,7 @@ Ezen a lapon a regisztrációs és bejelentkezés ügyfelek, akik használhatjá
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-multi-factor-authentication-page"></a>A "multi-factor authentication-page" beszúrt töredék
+### <a name="fragment-inserted-into-hello-multi-factor-authentication-page"></a>"A multi-factor authentication-page" hello beszúrt töredék
 
 Ezen a lapon felhasználók regisztráció vagy bejelentkezés során ellenőrizheti a telefonszámok (szöveges vagy hangos használatával).
 
@@ -281,7 +281,7 @@ Ezen a lapon felhasználók regisztráció vagy bejelentkezés során ellenőriz
 <div id="api" data-name="Phonefactor">
     <div id="phonefactor_initial">
         <div class="intro">
-            <p>Enter a number below that we can send a code via SMS or phone to authenticate you.</p>
+            <p>Enter a number below that we can send a code via SMS or phone tooauthenticate you.</p>
         </div>
         <div class="errorText" id="errorMessage" style="display:none"></div>
         <div class="phoneEntry" id="phoneEntry">
@@ -317,31 +317,31 @@ Ezen a lapon felhasználók regisztráció vagy bejelentkezés során ellenőriz
 </div>
 ```
 
-### <a name="fragment-inserted-into-the-error-page"></a>A "" hibalap"beszúrt töredék
+### <a name="fragment-inserted-into-hello-error-page"></a>"" Hibalap"hello beszúrt töredék
 
 ```HTML
 <div id="api" class="error-page-content" data-name="GlobalException">
     <h2>Sorry, but we're having trouble signing you in.</h2>
-    <div class="error-page-help">We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, please try again.</div>
+    <div class="error-page-help">We track these errors automatically, but if hello problem persists feel free toocontact us. In hello meantime, please try again.</div>
     <div class="error-page-messagedetails">Your administrator hasn't provided any contact details.</div>
     <div class="error-page-messagedetails">
         <div class="error-page-correlationid">Correlation ID:1c4f0397-c6e4-4afe-bf74-42f488f2f15f</div>
         <div>Timestamp:2015-09-14 23:22:35Z</div>
-        <div class="error-page-detail">AADB2C90065: A B2C client-side error 'Access is denied.' has occurred requesting the remote resource.</div>
+        <div class="error-page-detail">AADB2C90065: A B2C client-side error 'Access is denied.' has occurred requesting hello remote resource.</div>
     </div>
 </div>
 ```
 
 ## <a name="localizing-your-html-content"></a>A HTML-tartalmakat azaz
 
-A HTML-tartalmakat is honosítás bekapcsolásával ["Nyelvi testreszabási"](active-directory-b2c-reference-language-customization.md).  Ez a funkció lehetővé teszi, hogy az Azure AD B2C az Open ID Connect paraméter továbbítására `ui-locales`, a végpontnak.  A tartalomkiszolgáló Ez a paraméter használatával adja meg a testreszabott HTML-lapok nyelvspecifikus.
+A HTML-tartalmakat is honosítás bekapcsolásával ["Nyelvi testreszabási"](active-directory-b2c-reference-language-customization.md).  Ez a funkció lehetővé teszi, hogy az Azure AD B2C tooforward hello Open ID Connect paraméter, `ui-locales`, tooyour végpont.  A kiszolgáló a paraméter testre szabott tooprovide HTML-lapok, amelyek az adott nyelvű használhatja.
 
-## <a name="things-to-remember-when-building-your-own-content"></a>Megjegyzendő tudnivalók a saját tartalom felépítése közben
+## <a name="things-tooremember-when-building-your-own-content"></a>A saját tartalom fejlesztéskor dolgot tooremember
 
-Ha azt tervezi, a lap felhasználói felületének testreszabása szolgáltatás használatához, tekintse át az alábbi gyakorlati tanácsokat:
+Ha azt tervezi, toouse hello lap felhasználói felületi testreszabási szolgáltatás, tekintse át a következő gyakorlati tanácsok hello:
 
-* Nem az Azure AD B2C alapértelmezett tartalmát, és próbálja meg módosítani. Érdemes a HTML5 tartalom teljesen új összeállításához és alapértelmezett tartalom használni.
-* Biztonsági okok miatt jelenleg nem engedélyezi, hogy bármely JavaScript szerepeljenek a tartalmat. A legtöbb mire van szüksége a kezdő verzióról elérhetőnek kell lennie. Ha nem, [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) kérjen új funkciókat.
+* Nem hello Azure AD B2C alapértelmezett tartalom másolása és toomodify kísérlet azt. Az ajánlott toobuild származó teljesen új és toouse alapértelmezett tartalom hivatkozásként HTML5 tartalom van.
+* Biztonsági okokból azt nem teszik lehetővé, tooinclude bármely JavaScript a tartalom. Mire van szüksége a legtöbb hello kezdő verzióról elérhetőnek kell lennie. Ha nem, [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) toorequest új funkciókat.
 * A támogatott böngészőkben:
   * Az Internet Explorer 11, 10, a peremhálózati
   * Az Internet Explorer 9 böngészőben 8 korlátozott támogatása

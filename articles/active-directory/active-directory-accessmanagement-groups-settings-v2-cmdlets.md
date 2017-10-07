@@ -1,6 +1,6 @@
 ---
-title: "A csoportkezelés az Azure Active Directory PowerShell-példák |} Microsoft Docs"
-description: "Ezen a lapon biztosít a PowerShell-példák segítséget nyújtanak az Azure Active Directoryban csoportok kezelése"
+title: "csoportkezelés az Azure Active Directory aaaPowerShell példák |} Microsoft Docs"
+description: "Ezen a lapon a PowerShell-példák toohelp biztosít az Azure Active Directoryban csoportok kezelése"
 keywords: "Az Azure Active Directory, Azure Active Directory PowerShell, csoportok, csoportok kezelése"
 services: active-directory
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: curtand
 ms.reviewer: rodejo
-ms.openlocfilehash: a81820bc778c26f6e8051e2817ebd2b9c24b697a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ba049babc436e99a290f20899b3a87bcfa811d9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-version-2-cmdlets-for-group-management"></a>Csoportok kezelése az Azure Active Directory 2-es parancsmagok
 > [!div class="op_single_selector"]
@@ -30,14 +30,14 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-Ez a cikk tartalmaz példákat az Azure Active Directory (Azure AD) a csoportok kezelése a PowerShell segítségével.  Azt is bemutatja, hogyan rendszerrel az Azure AD PowerShell modult. Először meg kell [töltse le az Azure AD PowerShell modult](https://www.powershellgallery.com/packages/AzureAD/).
+Ebben a cikkben található példák bemutatják, hogyan toouse PowerShell toomanage a csoportok az Azure Active Directory (Azure AD).  Azt is megtudhatja, hogyan tooget állítsa be a hello Azure AD PowerShell modult. Először meg kell [hello Azure AD PowerShell-modul letöltése](https://www.powershellgallery.com/packages/AzureAD/).
 
-## <a name="installing-the-azure-ad-powershell-module"></a>Az Azure AD PowerShell-modul telepítése
-Az Azure AD PowerShell-modul telepítéséhez használja a következő parancsokat:
+## <a name="installing-hello-azure-ad-powershell-module"></a>Hello Azure AD PowerShell-modul telepítése
+tooinstall hello Azure AD PowerShell modult, a következő parancsok hello használata:
 
     PS C:\Windows\system32> install-module azuread
 
-Győződjön meg arról, hogy a modul el lett-e telepítve, használja a következő parancsot:
+amely modul hello tooverify lett telepítve, a következő parancs hello használata:
 
     PS C:\Windows\system32> get-module azuread
 
@@ -45,33 +45,33 @@ Győződjön meg arról, hogy a modul el lett-e telepítve, használja a követk
     ---------- ---------    ----                                ----------------
     Binary     2.0.0.115    azuread                      {Add-AzureADAdministrati...}
 
-Most elindíthatja a modulban a parancsmagok használatával. Az Azure AD modulban a parancsmagok teljes leírása, olvassa el az online dokumentációját [Azure Active Directory PowerShell 2-es verzió](/powershell/azure/install-adv2?view=azureadps-2.0).
+Most elindíthatja hello modul hello-parancsmagokkal. A hello Azure AD modulban hello parancsmagok teljes leírása, tekintse meg az toohello online dokumentációját [Azure Active Directory PowerShell 2-es verzió](/powershell/azure/install-adv2?view=azureadps-2.0).
 
-## <a name="connecting-to-the-directory"></a>A címtár csatlakoztatása
-Azure AD PowerShell-parancsmagok használatával csoportok kezelése elindításához, csatlakoznia kell a kezelni kívánt könyvtár a PowerShell-munkamenethez. Használja az alábbi parancsot:
+## <a name="connecting-toohello-directory"></a>Csatlakozás toohello könyvtár
+Azure AD PowerShell-parancsmagok használatával csoportok kezelése előtt a PowerShell-munkamenet toohello directory kívánt toomanage kell csatlakoztatni. A következő parancs hello használata:
 
     PS C:\Windows\system32> Connect-AzureAD
 
-A parancsmag felszólítja a könyvtár eléréséhez használni kívánt hitelesítő adataival. A jelen példában használjuk karen@drumkit.onmicrosoft.com a telepítési könyvtár eléréséhez. A parancsmag visszaadja a jóváhagyást a munkamenet sikeresen csatlakoztatva lett a címtárhoz megjelenítése:
+hello parancsmag kéri a hello hitelesítő adatok toouse tooaccess szeretné, hogy a címtárban. A jelen példában használjuk karen@drumkit.onmicrosoft.com tooaccess hello bemutató könyvtár. hello parancsmag ad vissza egy megerősítő tooshow hello munkamenet sikeresen csatlakoztatva lett tooyour könyvtár:
 
     Account                       Environment Tenant
     -------                       ----------- ------
     Karen@drumkit.onmicrosoft.com AzureCloud  85b5ff1e-0402-400c-9e3c-0f…
 
-Most elindíthatja a AzureAD-parancsmagok használatával kezelheti a csoportok a címtárban.
+Most elindíthatja a címtárban hello AzureAD parancsmagok toomanage csoportok használatával.
 
 ## <a name="retrieving-groups"></a>Csoportok beolvasása
-A Get-AzureADGroups parancsmaggal a címtárban lévő meglévő csoportjainak lekérdezésére. A címtár összes csoportjainak lekérdezésére, paraméterek nélkül a parancsmagot használja:
+meglévő csoportok tooretrieve a könyvtárból, használhatja a Get-AzureADGroups parancsmag hello. minden tooretrieve csoportok hello könyvtárban, paraméterek nélkül használja a hello parancsmagot:
 
     PS C:\Windows\system32> get-azureadgroup
 
-A parancsmag az összes csoport a csatlakoztatott címtárhoz adja vissza.
+hello parancsmag az összes csoport hello csatlakoztatott címtárhoz adja vissza.
 
-A - objectID paraméter segítségével egy adott csoport, amelynek meg a csoport objectID beolvasásához:
+Hello - objectID paraméter tooretrieve is használhat, amelynek hello csoport objectID megadott adott csoporthoz:
 
     PS C:\Windows\system32> get-azureadgroup -ObjectId e29bae11-4ac0-450c-bc37-6dae8f3da61b
 
-A parancsmag most visszaadja a csoportot, amelynek objectID megegyezik a megadott paraméter értékét:
+hello parancsmag most hello csoport, amelynek objectID megegyezik-e hello hello paraméter megadott adja vissza:
 
     DeletionTimeStamp            :
     ObjectId                     : e29bae11-4ac0-450c-bc37-6dae8f3da61b
@@ -88,7 +88,7 @@ A parancsmag most visszaadja a csoportot, amelynek objectID megegyezik a megadot
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-Kereshet egy adott csoport használja a - szűrő paramétert. Ez a paraméter egy ODATA szűrőfeltétel vesz igénybe, és minden csoport a szűrőnek, az alábbi példában látható módon adja vissza:
+Kereshet egy adott csoport használatával hello - szűrő paraméter. Ez a paraméter egy ODATA szűrőfeltétel vesz igénybe, és adja vissza az összes csoport szűrőnek hello, mint például a következő hello:
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -109,15 +109,15 @@ Kereshet egy adott csoport használja a - szűrő paramétert. Ez a paraméter e
     SecurityEnabled              : True
 
 > [!NOTE] 
-> A AzureAD PowerShell-parancsmagok valósítja meg az OData-lekérdezés szabványnak. További információkért lásd: **$filter** a [OData rendszer lekérdezési lehetőségek az OData-végpont használatával](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter).
+> hello AzureAD PowerShell-parancsmagok hello szabványos OData-lekérdezés végrehajtása. További információkért lásd: **$filter** a [OData rendszer lekérdezési lehetőségek hello OData-végpont használatával](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter).
 
 ## <a name="creating-groups"></a>Csoportok létrehozása
-Új csoport létrehozása a könyvtárban, a New-AzureADGroup parancsmag használható. Ez a parancsmag "Marketing" nevű új biztonsági csoportot hoz létre:
+a címtárban, használja a New-AzureADGroup hello parancsmagot az új csoport toocreate. Ez a parancsmag "Marketing" nevű új biztonsági csoportot hoz létre:
 
     PS C:\Windows\system32> New-AzureADGroup -Description "Marketing" -DisplayName "Marketing" -MailEnabled $false -SecurityEnabled $true -MailNickName "Marketing"
 
 ## <a name="updating-groups"></a>Csoportok frissítése
-Meglévő csoport frissítéséhez használja a Set-AzureADGroup parancsmagot. Ebben a példában a Microsoft épp módosított a DisplayName tulajdonsága a következő csoporthoz: "Az Intune-rendszergazdák." Először azt még keresése a csoport, a Get-AzureADGroup parancsmaggal, és a DisplayName attribútum szűrés:
+tooupdate egy meglévő csoportot, használja a Set-AzureADGroup hello parancsmagot. Ebben a példában a Microsoft épp módosított hello DisplayName tulajdonságát hello csoport "Intune-rendszergazdák." Először igazolnia fogjuk megtalálni hello csoport hello Get-AzureADGroup parancsmag és a szűrő hello DisplayName attribútum használatával:
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -137,11 +137,11 @@ Meglévő csoport frissítéséhez használja a Set-AzureADGroup parancsmagot. E
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-Ezt követően a Microsoft épp módosított a Description tulajdonságot az "Intune eszköz-rendszergazdák" új érték:
+A következő azt épp módosított hello leírás toohello új tulajdonságérték "Intune eszköz-rendszergazdák":
 
     PS C:\Windows\system32> Set-AzureADGroup -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -Description "Intune Device Administrators"
 
-Most ismét találtunk a csoportot, ha az új érték a Description tulajdonságot frissíti a rendszer látható:
+Most ismét találtunk hello csoport, ha látható hello Description tulajdonságot frissített tooreflect van hello új érték:
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -162,18 +162,18 @@ Most ismét találtunk a csoportot, ha az új érték a Description tulajdonság
     SecurityEnabled              : True
 
 ## <a name="deleting-groups"></a>Csoportok törlése
-A címtárban lévő csoport törléséhez használja a Remove-AzureADGroup parancsmag az alábbiak szerint:
+a címtárban lévő toodelete csoportok parancsmaggal hello Remove-AzureADGroup az alábbiak szerint:
 
     PS C:\Windows\system32> Remove-AzureADGroup -ObjectId b11ca53e-07cc-455d-9a89-1fe3ab24566b
 
 ## <a name="managing-members-of-groups"></a>A csoportok tagjai kezelése
-Új tagok hozzáadása csoporthoz van szüksége, használja az Add-AzureADGroupMember parancsmagot. Ez a parancs hozzáadja a használtuk az előző példában Intune rendszergazdák csoport tagja:
+Ha tooadd új tagok tooa csoport van szüksége, használja az Add-AzureADGroupMember hello parancsmagot. Ez a parancs az előző példában hello használtuk tag toohello az Intune-rendszergazdák csoport hozzáadása:
 
     PS C:\Windows\system32> Add-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
--ObjectId paraméter a ObjectID szeretnénk a tag hozzáadása a csoporthoz, és azt szeretné, hogy a csoportba tagként felvenni kívánt felhasználó ObjectID - RefObjectId.
+hello - ObjectId paraméter hello ObjectID a hello csoport toowhich szeretnénk tooadd tagja, és hello - RefObjectId hello ObjectID hello felhasználó szeretnénk tooadd tag toohello csoportként.
 
-A meglévő egy csoport tagjai, amelyet a Get-AzureADGroupMember parancsmag, ebben a példában látható módon:
+tooget hello meglévő egy csoport tagjai, parancsmaggal hello Get-AzureADGroupMember, ebben a példában látható módon:
 
     PS C:\Windows\system32> Get-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
@@ -182,19 +182,19 @@ A meglévő egy csoport tagjai, amelyet a Get-AzureADGroupMember parancsmag, ebb
                           72cd4bbd-2594-40a2-935c-016f3cfeeeea User
                           8120cc36-64b4-4080-a9e8-23aa98e8b34f User
 
-Távolítsa el a korábban hozzáadott a csoport tagja, használja a Remove-AzureADGroupMember parancsmag, az itt látható:
+tooremove hello tag korábban hozzáadott toohello csoport, használja a Remove-AzureADGroupMember hello parancsmagot, ahogy az itt látható:
 
     PS C:\Windows\system32> Remove-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -MemberId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-A felhasználói csoport membership(s), amellyel a Select-AzureADGroupIdsUserIsMemberOf parancsmag. Ez a parancsmag paramétereit, vesz igénybe, a ObjectId, amelyre vonatkozóan szeretné ellenőrizni a csoporttagságot a felhasználó és csoportok, amelyre vonatkozóan szeretné ellenőrizni a csoporttagságot listája. A csoportok listáját megadott "Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck" típusú összetett változó formájában, így azt először hozzon létre egy változót ezzel a típussal kell lennie:
+tooverify hello csoport membership(s) egy olyan felhasználó hello válassza-AzureADGroupIdsUserIsMemberOf parancsmag használható. Ez a parancsmag paramétereit hello hello felhasználó mely toocheck hello csoporttagságok ObjectId tesz és mely toocheck hello tagságát csoportok listája. csoportok listájának hello megadott formában hello "Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck" típusú összetett változó, úgy azt először hozzon létre egy változót ezzel a típussal kell lennie:
 
     PS C:\Windows\system32> $g = new-object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 
-A következő nyújtunk a komplex változó a "csoportazonosítókat" attribútumban ellenőrzéséhez csoportazonosítókat értékeit:
+A következő általunk értékeket a hello csoportazonosítókat toocheck hello attribútum "Csoportazonosítókat" a komplex változó:
 
     PS C:\Windows\system32> $g.GroupIds = "b11ca53e-07cc-455d-9a89-1fe3ab24566b", "31f1ff6c-d48c-4f8a-b2e1-abca7fd399df"
 
-Most elleni $g a csoportok ObjectID 72cd4bbd-2594-40a2-935c-016f3cfeeeea rendelkező felhasználó csoporttagságát ellenőrizni szeretnénk, ha érhetjük el:
+Mostantól Ha azt szeretné, hogy toocheck hello csoporttagságait elleni $g hello csoportok ObjectID 72cd4bbd-2594-40a2-935c-016f3cfeeeea rendelkező felhasználó, érhetjük el:
 
     PS C:\Windows\system32> Select-AzureADGroupIdsUserIsMemberOf -ObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea -GroupIdsForMembershipCheck $g
 
@@ -203,31 +203,31 @@ Most elleni $g a csoportok ObjectID 72cd4bbd-2594-40a2-935c-016f3cfeeeea rendelk
     https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String)             {31f1ff6c-d48c-4f8a-b2e1-abca7fd399df}
 
 
-A visszaadott érték, amelynek tagja a felhasználói csoportok listája. A partnerek, csoportok vagy Szolgáltatásnevekről tagsági csoportok használatával válassza AzureADGroupIdsContactIsMemberOf, válasszon-AzureADGroupIdsGroupIsMemberOf megadott listája ellenőrzési módszert is alkalmazhat vagy SELECT-AzureADGroupIdsServicePrincipalIsMemberOf
+hello visszaadott érték, amelynek tagja a felhasználói csoportok listája. A metódus toocheck névjegyek, csoportok vagy Szolgáltatásnevekről tagsági csoportok használatával válassza AzureADGroupIdsContactIsMemberOf, válasszon-AzureADGroupIdsGroupIsMemberOf adott listáját is alkalmazhat vagy SELECT-AzureADGroupIdsServicePrincipalIsMemberOf
 
 ## <a name="managing-owners-of-groups"></a>Csoport tulajdonosainak kezelése
-Tulajdonosok hozzáadása egy csoporthoz, az Add-AzureADGroupOwner parancsmaggal:
+tooadd tulajdonosok tooa csoport, használja a hello Add-AzureADGroupOwner parancsmagot:
 
     PS C:\Windows\system32> Add-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-A - ObjectId paraméter nem a csoport tulajdonosa hozzáadandó szeretnénk ObjectID, és - RefObjectId azt szeretnénk, ha szeretne hozzáadni a csoport tulajdonosa felhasználó ObjectID.
+hello - ObjectId paraméter hello ObjectID a hello csoport toowhich szeretnénk tooadd egy olyan tulajdonost, és hello - RefObjectId hello ObjectID hello felhasználó hello csoport tulajdonos szeretnénk tooadd.
 
-Egy csoport tulajdonosainak lekéréséhez használja a Get-AzureADGroupOwner parancsmagot:
+egy csoport tulajdonosainak tooretrieve hello hello Get-AzureADGroupOwner parancsmagokat használhatja:
 
     PS C:\Windows\system32> Get-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
-A parancsmag visszaadja a megadott csoport tulajdonosok listája:
+hello parancsmag hello megadott csoport tulajdonosainak hello listáját adja vissza:
 
     DeletionTimeStamp ObjectId                             ObjectType
     ----------------- --------                             ----------
                           e831b3fd-77c9-49c7-9fca-de43e109ef67 User
 
-Ha szeretne egy olyan tulajdonost eltávolítása egy csoportból, használja a Remove-AzureADGroupOwner parancsmag:
+Ha azt szeretné, hogy tooremove tulajdonost egy csoportból, használja a hello Remove-AzureADGroupOwner parancsmagot:
 
     PS C:\Windows\system32> remove-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -OwnerId e831b3fd-77c9-49c7-9fca-de43e109ef67
 
 ## <a name="reserved-aliases"></a>Fenntartott aliasok 
-A csoport létrehozásakor egyes végpontokkal, a végfelhasználó számára adjon meg egy mailNickname vagy alias használata az e-mail cím, a csoport részeként. A következő magas szintű jogosultsággal rendelkező e-mail-aliasokkal használt csoportok csak az Azure AD globális rendszergazda hozhatók létre. 
+Egy csoport jön létre, amikor bizonyos végpontokkal hello végfelhasználói toospecify egy mailNickname vagy alias toobe hello címre küldi hello csoport részeként. A következő magas szintű jogosultsággal rendelkező e-mail-aliasok hello csoportok csak az Azure AD globális rendszergazda hozhatók létre. 
   
 * visszaélés 
 * Rendszergazda 
@@ -244,5 +244,5 @@ A csoport létrehozásakor egyes végpontokkal, a végfelhasználó számára ad
 ## <a name="next-steps"></a>Következő lépések
 További Azure Active Directory PowerShell dokumentációját a található [Azure Active Directory-modul parancsmagokkal](/powershell/azure/install-adv2?view=azureadps-2.0).
 
-* [Erőforráshozzáférés-kezelés Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
+* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
 * [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md)

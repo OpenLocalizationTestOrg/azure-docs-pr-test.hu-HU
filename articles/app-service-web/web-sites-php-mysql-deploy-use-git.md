@@ -1,6 +1,6 @@
 ---
-title: "PHP-MySQL webes alkalmazás létrehozása az Azure App Service-ben és üzembe helyezése a Git használatával"
-description: "Ez az oktatóanyag bemutatja, hogyan kell, amely tárolja az adatokat a MySQL PHP-webalkalmazás létrehozása és használata az Azure Git-telepítés."
+title: "aaaCreate egy PHP-MySQL webalkalmazás az Azure App Service-ben, és telepítse a Git használatával"
+description: "Ez az oktatóanyag bemutatja, hogyan toocreate a PHP webes alkalmazást, amely tárolja az adatokat a MySQL és a Git telepítési tooAzure használja."
 services: app-service\web
 documentationcenter: php
 author: rmcmurray
@@ -15,36 +15,36 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: aa845eb474dbd42ae2c31880690d4ced059eb448
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c22946777598cc973cd9dfc8d2a258bd08cc39a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-php-mysql-web-app-in-azure-app-service-and-deploy-using-git"></a>PHP-MySQL webes alkalmazás létrehozása az Azure App Service-ben és üzembe helyezése a Git használatával
-Az oktatóanyag bemutatja, hogyan PHP-MySQL-webalkalmazás létrehozása és központi telepítése úgy, hogy [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Git használatával. Használandó [PHP][install-php], a MySQL parancssori eszköz (része [MySQL][install-mysql]), és [Git] [ install-git] telepítve a számítógépre. Ez az oktatóanyag utasításai követhetők bármely operációs rendszeren, beleértve a Windows, Mac és Linux. Ez az útmutató befejezése után fog egy PHP/MySQL az Azure-ban futó webalkalmazás.
+Az oktatóanyag bemutatja, hogyan toocreate egy PHP-MySQL web app, és hogyan toodeploy azt túl[App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Git használatával. Használandó [PHP][install-php], MySQL parancssori eszköz hello (része [MySQL][install-mysql]), és [Git] [ install-git] telepítve a számítógépre. hello az oktatóanyag utasításai követhetők bármelyik operációs rendszeren, beleértve a Windows, Mac és Linux. Ez az útmutató befejezése után fog egy PHP/MySQL az Azure-ban futó webalkalmazás.
 
 Az oktatóanyagban érintett témák köre:
 
-* A webes alkalmazás és MySQL adatbázis használatával létrehozása a [Azure Portal][management-portal]. Mivel a PHP nincs engedélyezve az [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) alapértelmezés szerint nem különleges futtatásához szükséges a PHP-kódot.
-* Hogyan közzététele az Azure Git használatával az alkalmazás közzétételét.
-* Feladatok automatizálásához szerkesztő Composer bővítményt engedélyezése minden `git push`.
+* Hogyan toocreate egy webalkalmazást és a MySQL-adatbázis hello segítségével [Azure Portal][management-portal]. Mivel a PHP nincs engedélyezve az [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) alapértelmezés szerint a szükséges toorun semmi különleges a PHP-kódot.
+* Hogyan toopublish, és újból közzéteszi a Git használatával alkalmazás tooAzure.
+* Hogyan tooenable hello Composer bővítményt tooautomate szerkesztő feladatokat minden `git push`.
 
-Az oktatóanyag utasításait követve egy egyszerű regisztrációs webalkalmazás PHP fog létrehozni. Az alkalmazás üzemel a webalkalmazásokban. A kész alkalmazás képernyőfelvételének alatt van:
+Az oktatóanyag utasításait követve egy egyszerű regisztrációs webalkalmazás PHP fog létrehozni. a webalkalmazásokban hello alkalmazás üzemel. A képernyőfelvétel a hello befejeződött alkalmazás alatt van:
 
 ![Az Azure PHP-webhely][running-app]
 
-## <a name="set-up-the-development-environment"></a>A fejlesztési környezet kialakítása
-Ez az oktatóanyag feltételezi, hogy rendelkezik [PHP][install-php], a MySQL parancssori eszköz (része [MySQL][install-mysql]), és [Git] [ install-git] telepítve a számítógépre.
+## <a name="set-up-hello-development-environment"></a>Hello fejlesztési környezet beállítása
+Ez az oktatóanyag feltételezi, hogy rendelkezik [PHP][install-php], MySQL parancssori eszköz hello (része [MySQL][install-mysql]), és [Git] [ install-git] telepítve a számítógépre.
 
 <a id="create-web-site-and-set-up-git"></a>
 
 ## <a name="create-a-web-app-and-set-up-git-publishing"></a>Webalkalmazás létrehozása és beállítása a Git-közzététel
-Kövesse az alábbi lépéseket a webes alkalmazás és MySQL-adatbázis létrehozásához:
+A webes alkalmazás és MySQL-adatbázis, kövesse ezeket a lépéseket toocreate:
 
-1. Jelentkezzen be a [Azure-portálon][management-portal].
-2. Kattintson a **új** ikonra.
-3. Kattintson a **tekintse meg az összes** melletti **piactér**. 
+1. Bejelentkezési toohello [Azure Portal][management-portal].
+2. Kattintson a hello **új** ikonra.
+3. Kattintson a **tekintse meg az összes** következő túl**piactér**. 
 4. Kattintson a **Web + mobil**, majd **webes alkalmazás + MySQL**. Ezt követően kattintson a **Create** (Létrehozás) gombra.
 5. Adjon meg egy érvényes nevet az erőforráscsoport számára.
    
@@ -52,53 +52,53 @@ Kövesse az alábbi lépéseket a webes alkalmazás és MySQL-adatbázis létreh
 6. Adja meg az új webes alkalmazás értékeit.
    
     ![Webalkalmazás létrehozása][new-web-app]
-7. Adja meg az új adatbázis, beleértve a jogi feltételek elfogadását jelző mezőt.
+7. Adja meg az értékeket az új adatbázisra, beleértve a elfogadja toohello jogi feltételeket.
    
     ![Új MySQL-adatbázis létrehozása][new-mysql-db]
-8. Ha a webalkalmazás létrejött, látni fogja az új webalkalmazás panelen.
+8. Hello webalkalmazás létrehozásakor hello új webalkalmazás panelen jelenik meg.
 9. A **beállítások** kattintson a **folyamatos üzembe helyezés**, majd kattintson a *kötelező beállítások konfigurálása*.
    
     ![Git-közzététel beállítása][setup-publishing]
-10. Válassza ki **helyi Git-tárház** adatforrásra vonatkozóan.
+10. Válassza ki **helyi Git-tárház** hello adatforrásra vonatkozóan.
     
      ![Git-tárház beállítása][setup-repository]
-11. Git-közzététel engedélyezéséhez meg kell adnia egy felhasználónevet és jelszót. Jegyezze fel a felhasználónevet és jelszót hoz létre. (Ha egy Git-tárház előtt beállítását követően ez a lépés kimarad.)
+11. tooenable Git közzététele, meg kell adnia egy felhasználónevet és jelszót. Jegyezze fel a hello felhasználónevet és jelszót hoz létre. (Ha egy Git-tárház előtt beállítását követően ez a lépés kimarad.)
     
      ![Közzétételi hitelesítő adatok létrehozása][credentials]
 
 ## <a name="get-remote-mysql-connection-information"></a>Távoli MySQL kapcsolatadatok beolvasása
-A MySQL-adatbázis, amely futtatja a Web Apps, a fog csatlakozni kell a kapcsolat adatai. Ahhoz, hogy a MySQL-kapcsolati adatokat, kövesse az alábbi lépéseket:
+tooconnect toohello MySQL-adatbázis, amely futtatja a Web Apps, a fog kell hello kapcsolódási információt. tooget MySQL kapcsolati adatokat, kövesse az alábbi lépéseket:
 
-1. Az erőforráscsoport kattintson az adatbázisban:
+1. Az erőforráscsoport kattintson hello adatbázis:
    
     ![Adatbázis kiválasztása][select-database]
-2. Az adatbázisból **beállítások**, jelölje be **tulajdonságok**.
+2. Hello adatbázisból **beállítások**, jelölje be **tulajdonságok**.
    
     ![A tulajdonságok kiválasztása][select-properties]
-3. Jegyezze fel az értékei `Database`, `Host`, `User Id`, és `Password`.
+3. Jegyezze fel a hello értékeinek `Database`, `Host`, `User Id`, és `Password`.
    
     ![Megjegyzés: Tulajdonságok][note-properties]
 
 ## <a name="build-and-test-your-app-locally"></a>És az alkalmazás helyi teszteléséhez
 Most, hogy létrehozott egy webalkalmazást, az alkalmazás helyi fejleszthet, majd telepítheti azt a tesztelés után.
 
-A regisztrációs alkalmazás egy egyszerű PHP-alkalmazás, amely lehetővé teszi, hogy regisztrálja az esemény a név és e-mail cím megadásával. Előző igénylők kapcsolatos információkat a táblázatban jelennek meg. Regisztrációs adatokat a MySQL-adatbázisban tárolódik. Az alkalmazás tartalmaz egy fájl (másolás/beillesztés kód alatt érhető el):
+hello regisztrációs alkalmazása, amely lehetővé teszi a név és e-mail cím megadásával az esemény tooregister egyszerű PHP-alkalmazások. Előző igénylők kapcsolatos információkat a táblázatban jelennek meg. Regisztrációs adatokat a MySQL-adatbázisban tárolódik. hello alkalmazás áll egy fájl (másolás/beillesztés kód alatt érhető el):
 
 * **index.php**: regisztráció és a bejegyzés adatokat tartalmazó táblát űrlap jeleníti meg.
 
-Építsenek, és futtassa az alkalmazást helyileg, kövesse az alábbi lépéseket. Vegye figyelembe, hogy ezek a lépések feltételezik, a PHP és a MySQL parancssori eszköz (MySQL része) állítsa be a helyi számítógépen, és engedélyezte a [MySQL OEM kiterjesztése][pdo-mysql].
+toobuild és futtatási hello alkalmazás helyi, kövesse a hello lépéseket. Vegye figyelembe, hogy ezek a lépések feltételezik hello PHP és a MySQL parancssori eszköz (MySQL része) állítsa be a helyi számítógépen, és, hogy engedélyezte hello [MySQL OEM kiterjesztése][pdo-mysql].
 
-1. A távoli MySQL kiszolgálóhoz csatlakoznak, a értéke `Data Source`, `User Id`, `Password`, és `Database` , amely korábban kapott:
+1. Csatlakozás toohello távoli MySQL-kiszolgáló hello értéke `Data Source`, `User Id`, `Password`, és `Database` , amely korábban kapott:
    
         mysql -h{Data Source] -u[User Id] -p[Password] -D[Database]
-2. A MySQL parancssor jelenik meg:
+2. hello MySQL parancssor jelenik meg:
    
         mysql>
-3. Illessze be a következő `CREATE TABLE` parancs futtatásával hozzon létre a `registration_tbl` táblát az adatbázisban:
+3. Illessze be a következő hello `CREATE TABLE` parancs toocreate hello `registration_tbl` táblát az adatbázisban:
    
         CREATE TABLE registration_tbl(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(30), email VARCHAR(30), date DATE);
-4. Hozzon létre a helyi alkalmazások mappa gyökeréhez **index.php** fájlt.
-5. Nyissa meg a **index.php** szöveg- vagy IDE fájlt, és adja hozzá a következő kódot, és végezze el a szükséges módosításokat jelölésű `//TODO:` megjegyzések.
+4. Hozzon létre a helyi alkalmazások mappa gyökeréhez hello **index.php** fájlt.
+5. Nyissa meg hello **index.php** fájlt egy szövegszerkesztőben, vagy IDE, és adja hozzá a hello a következő kódot, és teljes hello a szükséges módosításokat jelölésű `//TODO:` megjegyzések.
 
         <html>
         <head>
@@ -119,7 +119,7 @@ A regisztrációs alkalmazás egy egyszerű PHP-alkalmazás, amely lehetővé te
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -127,13 +127,13 @@ A regisztrációs alkalmazás egy egyszerű PHP-alkalmazás, amely lehetővé te
         </form>
         <?php
             // DB connection info
-            //TODO: Update the values for $host, $user, $pwd, and $db
-            //using the values you retrieved earlier from the Azure Portal.
+            //TODO: Update hello values for $host, $user, $pwd, and $db
+            //using hello values you retrieved earlier from hello Azure Portal.
             $host = "value of Data Source";
             $user = "value of User Id";
             $pwd = "value of Password";
             $db = "value of Database";
-            // Connect to database.
+            // Connect toodatabase.
             try {
                 $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
                 $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -184,22 +184,22 @@ A regisztrációs alkalmazás egy egyszerű PHP-alkalmazás, amely lehetővé te
         </body>
         </html>
 
-1. A terminálban az alkalmazás mappájában navigáljon, és írja be a következő parancsot:
+1. Az egy terminál lépjen tooyour alkalmazás mappa és a típus hello a következő parancsot:
    
        php -S localhost:8000
 
-Most tallózással megkereshet **http://localhost:8000 /** kell tesztelni az alkalmazást.
+Most már megkeresheti túl**http://localhost:8000 /** tootest hello alkalmazás.
 
 ## <a name="publish-your-app"></a>Az alkalmazás közzététele
-Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti a Git használatával webalkalmazások. A rendszer a helyi Git-tárház inicializálása, és tegye közzé az alkalmazást.
+Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti azt Git tooWeb alkalmazások. A rendszer a helyi Git-tárház inicializálása, és hello alkalmazás közzététele.
 
 > [!NOTE]
-> Ezek a ugyanazokat a lépéseket az Azure portálon végén a webalkalmazás létrehozása és a készlet be Git-közzététel a fenti szakaszban látható.
+> A rendszer hello azonos hello hello végén hello hozzon létre egy webalkalmazást az Azure portálon, és állítsa be Git-közzététel a fenti szakaszban bemutatott lépések.
 > 
 > 
 
-1. (Választható)  Ha elfelejti vagy rossz helyen lévő a Git távoli repostitory URL-cím, keresse meg a webes alkalmazás tulajdonságainak az Azure portálon.
-2. Nyissa meg a GitBash (vagy egy terminált, ha Git a `PATH`), módosítsa a könyvtárat az alkalmazás gyökérkönyvtárában, és futtassa a következő parancsokat:
+1. (Választható)  Ha elfelejti vagy rossz helyen lévő a Git távoli repostitory URL-cím, keresse meg a toohello web app tulajdonságainak hello Azure portálon.
+2. Nyissa meg a GitBash (vagy egy terminált, ha Git a `PATH`), módosítsa a könyvtárakat toohello az alkalmazás gyökérkönyvtárában, és futtassa a következő parancsok hello:
    
         git init
         git add .
@@ -207,58 +207,58 @@ Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti a Git haszná
         git remote add azure [URL for remote repository]
         git push azure master
    
-    Fogja kérni fogja a korábban létrehozott jelszót.
+    A korábban létrehozott hello jelszó bekéri.
    
-    ![Az Azure Git keresztül kezdeti leküldéses][git-initial-push]
-3. Keresse meg a **http://[site name].azurewebsites.net/index.php** (ezt az információt fogja tárolni a fiók irányítópult) az alkalmazás használatának megkezdéséhez:
+    ![Kezdeti leküldéses tooAzure Git keresztül][git-initial-push]
+3. Keresse meg a túl**http://[site name].azurewebsites.net/index.php** toobegin hello alkalmazással (ezt az információt fogja tárolni az irányítópulton fiók):
    
     ![Az Azure PHP-webhely][running-app]
 
-Miután közzétette az alkalmazást, annak módosításával kezdődik, és a Git segítségével közzéteszi.
+Miután közzétette az alkalmazást, módosításokat tooit állapotában, és Git toopublish használja őket.
 
-## <a name="publish-changes-to-your-app"></a>Módosítások az alkalmazás közzététele
-A módosítások az alkalmazásban való közzétételéhez kövesse az alábbi lépéseket:
+## <a name="publish-changes-tooyour-app"></a>Módosítások tooyour alkalmazás közzététele
+toopublish módosítások tooyour alkalmazást, kövesse az alábbi lépéseket:
 
-1. Az alkalmazás helyileg módosítja.
-2. Nyissa meg a GitBash (vagy a Terminálszolgáltatások informatikai Git van a `PATH`), módosítsa a könyvtárat az alkalmazás gyökérkönyvtárában, és futtassa a következő parancsokat:
+1. Módosítások tooyour alkalmazás helyileg tétele.
+2. Nyissa meg a GitBash (vagy a Terminálszolgáltatások informatikai Git van a `PATH`), módosítsa a könyvtárakat toohello az alkalmazás gyökérkönyvtárában, és futtassa a következő parancsok hello:
    
         git add .
         git commit -m "comment describing changes"
         git push azure master
    
-    Fogja kérni fogja a korábban létrehozott jelszót.
+    A korábban létrehozott hello jelszó bekéri.
    
-    ![Azure Git keresztül előtte webhely módosításai][git-change-push]
-3. Keresse meg a **http://[site name].azurewebsites.net/index.php** , az alkalmazást, és esetleg elvégzett módosításokat:
+    ![Előtte hely módosítások tooAzure Git keresztül][git-change-push]
+3. Keresse meg a túl**http://[site name].azurewebsites.net/index.php** toosee az alkalmazás és az esetleg elvégzett módosításokat:
    
     ![Az Azure PHP-webhely][running-app]
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 <a name="composer"></a>
 
-## <a name="enable-composer-automation-with-the-composer-extension"></a>Szerkesztő automatizálása a Composer bővítményt engedélyezése
-Alapértelmezés szerint az App Service-ben a git telepítési folyamat nem minden composer.json, ha nincs fiókja, a PHP-projektben. Engedélyezheti a feldolgozás során composer.json `git push` Composer bővítményt engedélyezésével.
+## <a name="enable-composer-automation-with-hello-composer-extension"></a>Szerkesztő automatizálása a hello Composer bővítményt engedélyezése
+Alapértelmezés szerint hello git telepítési folyamatának az App Service-ben nem minden composer.json, ha nincs fiókja, a PHP-projektben. Engedélyezheti a feldolgozás során composer.json `git push` hello Composer bővítményt engedélyezésével.
 
-1. A PHP a webalkalmazás-alkalmazás paneljén a [Azure-portálon][management-portal], kattintson a **eszközök** > **bővítmények**.
+1. A PHP a webalkalmazás-alkalmazás paneljén hello [Azure-portálon][management-portal], kattintson a **eszközök** > **bővítmények**.
    
     ![Composer bővítményt beállításai][composer-extension-settings]
 2. Kattintson a **Hozzáadás**, majd kattintson a **szerkesztő**.
    
     ![Composer bővítményt hozzáadása][composer-extension-add]
-3. Kattintson a **OK** jogi feltételek elfogadásának. Kattintson a **OK** újra a adja hozzá a kiterjesztést.
+3. Kattintson a **OK** tooaccept jogi feltételeket. Kattintson a **OK** újra tooadd hello bővítmény.
    
-    A **bővítményeket telepített** panel most megjelenik a Composer bővítményt.  
+    Hello **bővítményeket telepített** panel mostantól megjeleníti hello Composer bővítményt.  
     ![Composer bővítményt megtekintése][composer-extension-view]
-4. Most, hajtsa végre `git add`, `git commit`, és `git push` , például az előző szakaszban. Most láthatja, hogy szerkesztő telepíti a composer.json definiált függőségek.
+4. Most, hajtsa végre `git add`, `git commit`, és `git push` , például az előző szakaszban hello. Most láthatja, hogy szerkesztő telepíti a composer.json definiált függőségek.
    
     ![Composer bővítményt sikeres][composer-extension-success]
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd: a [PHP fejlesztői központ](/develop/php/).
+További információkért lásd: hello [PHP fejlesztői központ](/develop/php/).
 
 <!-- URL List -->
 

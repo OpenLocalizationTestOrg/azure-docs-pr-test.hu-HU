@@ -1,6 +1,6 @@
 ---
-title: "Nem felügyelt felhőalapú alkalmazásokhoz, a Cloud App Discovery keresése |} Microsoft Docs"
-description: "Információk keresése és alkalmazások kezelése az a Cloud App Discovery, milyen előnyökkel és annak működéséről."
+title: "aaaFinding nem felügyelt felhőalapú alkalmazásokhoz, a Cloud App Discovery |} Microsoft Docs"
+description: "Információk keresése és alkalmazások kezelése az a Cloud App Discovery, melyek hello előnyei és annak működéséről."
 services: active-directory
 keywords: "a cloud app discovery alkalmazások kezelése"
 documentationcenter: 
@@ -15,33 +15,33 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 6284ff5bac8edbc19561d0916adef153526dfbe3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 50c24af9bb400e4be11f4ad2d1de13d26f5467bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="finding-unmanaged-cloud-applications-with-cloud-app-discovery"></a>A Cloud App Discovery megállapítás nem felügyelt felhőalkalmazások
 ## <a name="overview"></a>Áttekintés
-A modern vállalatok informatikai részlegek ismerik gyakran nem a szervezet tagjai segítségével végezhesse a munkáját felhőalapú alkalmazásokhoz. Legyen könnyen látható, hogy miért a rendszergazdák jogosulatlan hozzáférés a vállalati adatokat, lehetséges adatszivárgás és egyéb biztonsági kockázatok kétségei vannak. Tájékoztatási hiánya teheti a felsorolt biztonsági kockázatok kezelésével tűnhet terv létrehozása.
+A modern vállalatok informatikai részlegek ismerik gyakran nem minden hello felhőalapú alkalmazásokhoz, hogy a szervezet tagjai használjon toodo munkavégzést. Miért a rendszergazdák jogosulatlan hozzáférés toocorporate adatokat, a lehetséges adatszivárgás és az egyéb biztonsági kockázatok kétségei vannak könnyen toosee. Tájékoztatási hiánya teheti a felsorolt biztonsági kockázatok kezelésével tűnhet terv létrehozása.
 
-A cloud App Discovery lehetővé teszi az Azure Active Directory (AD) támogatás, amely lehetővé teszi, hogy a szervezet dolgozói által használt felhőalkalmazások felderítése.
+A cloud App Discovery lehetővé teszi az Azure Active Directory (AD) támogatás, amely lehetővé teszi a szervezet hello dolgozói által használt toodiscover felhőalapú alkalmazásokhoz.
 
 **A Cloud App Discovery a következőket teheti:**
 
-* Keresse meg a felhőalapú alkalmazások használják, és mérheti a használatot felhasználók száma, a forgalom vagy a webkiszolgáló az alkalmazásnak küldött kérelmek száma.
-* Azonosítsa az adott alkalmazást használó felhasználókat.
+* Keresse meg használt hello felhőalapú alkalmazásokhoz, és mérheti, hogy a használatát azon felhasználók számát, a forgalom vagy a kérelmek toohello webalkalmazás száma.
+* Az alkalmazás által használt hello felhasználók azonosítása.
 * Exportálhatja az adatokat kapcsolat nélküli elemzéshez.
 * Ezek az alkalmazások informatikai vezérlése alatt állapotba, és engedélyezze a egyszeri bejelentkezéshez a felhasználókezeléshez.
 
 ## <a name="how-it-works"></a>Működés
 1. Alkalmazás használati ügynök telepítve van a felhasználók számítógépeire.
-2. Az alkalmazás használati adatait, az ügynökök által rögzített a cloud app discovery szolgáltatásba zajlik a biztonságos, titkosított csatornán.
-3. A Cloud App Discovery szolgáltatásba kiértékeli az adatokat, és létrehozza a jelentéseket.
+2. hello alkalmazás használati adatai hello-ügynökök által rögzített egy biztonságos, titkosított csatornát felderítési toohello felhőalapú alkalmazásszolgáltatás továbbítása.
+3. a Cloud App Discovery szolgáltatás hello hello adatok kiértékeli, és létrehozza a jelentéseket.
 
 ![Cloud App Discovery diagramja](./media/active-directory-cloudappdiscovery/cad01.png)
 
-Első lépések a Cloud App Discovery, lásd: [első lépések a Cloud App Discovery szolgáltatásra](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
+lépések a Cloud App Discovery tooget lásd [első lépések a Cloud App Discovery szolgáltatásra](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 * [Cloud App Discovery biztonsági és adatvédelmi megfontolások](active-directory-cloudappdiscovery-security-and-privacy-considerations.md)  

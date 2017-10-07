@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory csoport tulajdonságainak kezelése |} Microsoft Docs"
-description: "A tulajdonságok és egyéb Azure Active Directoryban egy csoport konfigurációs beállításainak szerkesztése"
+title: "az Azure Active Directoryban aaaManage tulajdonságai |} Microsoft Docs"
+description: "Hogyan tooedit hello tulajdonságok és a konfigurációs beállításait, a csoport az Azure Active Directoryban"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,28 +16,28 @@ ms.date: 08/01/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: H1Hack27Feb2017;it-pro
-ms.openlocfilehash: b4baccafc0a9178223dbf64c664fc34ab9f7f916
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: aa17c62b4824e5c2de8adc1d34cd9618f3e722f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-settings-for-a-group-in-azure-active-directory"></a>Az Azure Active Directory csoport beállításainak kezelése
-Ez a cikk ismerteti az Azure Active Directory (Azure AD) csoport beállításainak módosításához.
+# <a name="manage-hello-settings-for-a-group-in-azure-active-directory"></a>Az Azure Active Directory csoport hello beállításainak kezelése
+Ez a cikk azt ismerteti, hogyan toochange hello egy csoporthoz az Azure Active Directory (Azure AD) beállításait.
 
-## <a name="how-do-i-find-and-change-the-settings"></a>Hogyan található és módosíthatja a beállításokat?
-1. Jelentkezzen be az [Azure AD felügyeleti központba](https://aad.portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** a szövegmezőbe, majd válassza ki azt a **Enter**.
+## <a name="how-do-i-find-and-change-hello-settings"></a>Hogyan található és hello beállításainak módosítása?
+1. Jelentkezzen be toohello [az Azure AD felügyeleti központban](https://aad.portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** hello szövegmezőbe, és válassza ki **Enter**.
 
    ![Nyitó felhasználók és csoportok panelen](./media/active-directory-groups-settings-azure-portal/search-user-management.png)
-3. Az a **felhasználók és csoportok** panelen válassza **összes csoport**.
+3. A hello **felhasználók és csoportok** panelen válassza **összes csoport**.
 
-   ![Az összes csoport panel megnyitása](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
-4. Az a **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
-5. Az a **csoport - *groupname***  panelen válassza **tulajdonságok**.
+   ![Minden megnyitásakor hello csoportok panelen](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
+4. A hello **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
+5. A hello **csoport - *groupname***  panelen válassza **tulajdonságok**.
 
-   ![A Tulajdonságok panelére léphet megnyitása](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
-6. Ha befejezte a csoport tulajdonságai, válassza ki a **mentése**.    
+   ![Nyitó hello tulajdonságok panelen](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
+6. Ha befejezte a hello csoport tulajdonságainak módosítását, válassza ki a **mentése**.    
 
    ![Tulajdonságok módosításainak mentése](./media/active-directory-groups-settings-azure-portal/save-group-properties.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory B2C: Saját attribútumokat adhat hozzá egyéni házirendeket, és használja a profil szerkesztése |} Microsoft Docs"
-description: "A forgatókönyv bővítmény tulajdonságok, egyéni attribútumok használatát, és többek között azokat a felhasználói felületen"
+title: "Az Azure Active Directory B2C: Saját attribútumok toocustom szabályzatok, és használja a profil szerkesztése |} Microsoft Docs"
+description: "A forgatókönyv a bővítmény tulajdonságok, egyéni attribútumok használatát, és így azok hello felhasználói felületen"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,63 +14,63 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: 67c9f6eca18e2dd77e00b8bc8c7bcc546ea3936e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8cc9c6a38d7652797ba54a3e02078ac2bf4a693b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-creating-and-using-custom-attributes-in-a-custom-profile-edit-policy"></a>Az Azure Active Directory B2C: Létrehozása és az egyéni attribútumok használata egy egyéni profilt a házirend szerkesztése
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Ebben a cikkben egy egyéni attribútum létrehozása a Azure AD B2C-címtárban, és egy egyéni jogcímet a felhasználó utazás profil szerkesztése az új attribútum használja.
+Ebben a cikkben egy egyéni attribútum létrehozása a Azure AD B2C-címtárban, és egy egyéni jogcím hello profil szerkesztése felhasználói út ezt az új attribútumot használja.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Hajtsa végre a cikk a [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md).
+Teljes hello hello cikkben ismertetett visszaállítási lépésekkel [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md).
 
-## <a name="use-custom-attributes-to-collect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>Az ügyfelek az Azure Active Directory B2C egyéni házirendekkel kapcsolatos információk összegyűjtéséhez használja az egyéni attribútumok
-Azure Active Directory (Azure AD) B2C-címtárban tartalmaz egy beépített attribútumok: megadott név, Vezetéknév, város, irányítószám, userPrincipalName, stb.  Gyakran a saját attribútumok létrehozásához szükséges.  Példa:
-* Egy ügyfélkapcsolati alkalmazást kell megőrizni a egy attribútum, például a "LoyaltyNumber."
+## <a name="use-custom-attributes-toocollect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>Az ügyfelek az Azure Active Directory B2C egyéni házirendekkel toocollect információt az egyéni attribútumok használata
+Azure Active Directory (Azure AD) B2C-címtárban tartalmaz egy beépített attribútumok: megadott név, Vezetéknév, város, irányítószám, userPrincipalName, stb.  Gyakran kell toocreate saját attribútumok.  Példa:
+* Egy ügyfélkapcsolati alkalmazást kell toopersist egy attribútum, például a "LoyaltyNumber."
 * Az identitásszolgáltató rendelkezik egy egyedi felhasználói azonosító, amelyet kell menteni, például a "uniqueUserGUID." "
-* Egyéni felhasználói út kell megőrizni a felhasználó például "migrationStatus." állapota
+* Egyéni felhasználói út kell toopersist hello állapotának felhasználó például "migrationStatus."
 
-Az Azure AD B2C-ben az attribútumokat, minden egyes felhasználói fiókjában tárolt bővítheti. Is olvasási és írási ezek az attribútumok használatával a [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md).
+Az Azure AD B2C-ben tárolt felhasználói attribútumok készletét hello bővítheti. Is olvasási és írási ezek az attribútumok hello segítségével [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md).
 
-Bővítmény tulajdonságai a felhasználó a címtárban található objektumokhoz sémája bővíthető.  A feltételek bővített tulajdonság, az egyéni attribútum és az egyéni jogcím tekintse meg az ugyanaz a cikk a környezetében, és nevét a környezetben (alkalmazás, objektum, a házirend) függ.
+Bővítmény tulajdonságai hello felhasználói objektum hello könyvtárban hello-séma kiterjesztése.  hello feltételek bővített tulajdonság, az egyéni attribútum és az egyéni jogcímleírásokat tekintse meg a toohello ugyanaz a cikk és hello név hello környezetében hello környezetben (alkalmazás, objektum, a házirend) függ.
 
-Bővítmény tulajdonságai csak regisztrálható az alkalmazásobjektum, annak ellenére, hogy egy felhasználó lehet, hogy adatokat tartalmaznak. Az alkalmazás a tulajdonság van csatolva. Az Application objektum regisztrálni egy bővített tulajdonság írási hozzáférést kell rendelni. 100 bővítmény tulajdonságai (közötti összes típusa és az összes alkalmazás) csak írható egyetlen objektumhoz sem. Bővítmény tulajdonságai a céltípus directory adnak, és az Azure AD B2C directory bérlő azonnal elérhető lesz.
-Az alkalmazás törlése, ha az összes felhasználó számára a bennük található adatokat ilyen bővítmény tulajdonságok is törlődnek. Egy bővített tulajdonság nem törli azokat az alkalmazást, ha a rendszer eltávolítja a cél címtárobjektumok, és törli az értékeket.
+Bővítmény tulajdonságai csak regisztrálható az alkalmazásobjektum, annak ellenére, hogy egy felhasználó lehet, hogy adatokat tartalmaznak. hello tulajdonság csatolt toohello alkalmazás. hello alkalmazásobjektum megadott írási tooregister egy bővített tulajdonság kell lennie. 100 bővítmény tulajdonságai (közötti összes típusa és az összes alkalmazás) csak írható tooany egyetlen objektumhoz. Bővítmény tulajdonságai toohello directory céltípus kerülnek, és azonnal elérhetővé hello Azure AD B2C directory-bérlőben.
+Hello alkalmazás törlésekor az összes felhasználó számára a bennük található adatokat ilyen bővítmény tulajdonságok is törlődnek. Egy bővített tulajdonság hello alkalmazás törlése, ha eltávolítják azt a hello címtárobjektumok célként, és törölni értékek hello.
 
-Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezetében található. Az objektumazonosító alkalmazás az azt használó TechnicalProfile kell szerepelnie.
+Bővítmény tulajdonságai csak a hello kontextusában hello bérlő regisztrált alkalmazás szerepel. hello objektumazonosító alkalmazás, az azt használó TechnicalProfile hello kell szerepelnie.
 
 >[!NOTE]
->Az Azure AD B2C-címtár közé tartozik a webes alkalmazás neve `b2c-extensions-app`.  Ez az alkalmazás elsősorban a b2c beépített házirendek az Azure-portálon létrehozott egyéni jogcímek esetében.  Egyéni házirendek b2c-bővítmények regisztrálni az alkalmazás használata csak haladó felhasználóknak javasolt.  Ehhez útmutatást a következő lépések című részben szerepelnek.
+>hello Azure AD B2C directory többek között a webes alkalmazás neve `b2c-extensions-app`.  Ez az alkalmazás elsősorban a hello hello Azure-portálon létrehozott egyéni jogcímek hello b2c beépített házirendjei használják.  Az alkalmazás tooregister bővítmények b2c egyéni házirendek használatával csak haladó felhasználóknak javasolt.  Ehhez útmutatást hello további lépések című részben szerepelnek.
 
 
-## <a name="creating-a-new-application-to-store-the-extension-properties"></a>A bővítmény tulajdonságok tárolásához egy új alkalmazás létrehozása
+## <a name="creating-a-new-application-toostore-hello-extension-properties"></a>Egy új alkalmazás toostore hello bővítmény tulajdonságai létrehozása
 
-1. Nyissa meg a böngésző munkamenetet, és keresse meg a [Azure porta](https://portal.azure.com) és jelentkezzen be rendszergazdai hitelesítő adataival a B2C-címtárban való konfigurálásához.
-1. Kattintson a **Azure Active Directory** a bal oldali navigációs menü. Szükség lehet további szolgáltatások kiválasztásával kereséséhez >.
+1. Nyissa meg a böngésző munkamenetet, és keresse meg a toohello [Azure porta](https://portal.azure.com) és jelentkezzen be rendszergazdai hitelesítő adataival hello tooconfigure kívánja B2C-címtárban.
+1. Kattintson a **Azure Active Directory** hello bal oldali navigációs menü. Szükség lehet az kiválasztásával további szolgáltatások toofind >.
 1. Válassza ki **App regisztrációk** kattintson **új alkalmazás regisztrációja**
-1. Adja meg az alábbi ajánlott bejegyzéseket:
-  * Adjon meg egy nevet a webalkalmazás: **WebApp-GraphAPI-DirectoryExtensions**
+1. Adja meg a hello következő ajánlott bejegyzéseket:
+  * Adjon meg egy nevet a webalkalmazás hello: **WebApp-GraphAPI-DirectoryExtensions**
   * Alkalmazás típusa: webes alkalmazás/API-t
   * Bejelentkezés URL:https://{tenantName}.onmicrosoft.com/WebApp-GraphAPI-DirectoryExtensions
-1. Válassza ki ** létrehozása. Sikeres létrehozása után megjelenik a **értesítések**
-1. Válassza ki az újonnan létrehozott webalkalmazás: **WebApp-GraphAPI-DirectoryExtensions**
+1. Válassza ki ** létrehozása. Sikeres létrehozása után megjelennek a hello **értesítések**
+1. Válassza ki az újonnan létrehozott hello webalkalmazás: **WebApp-GraphAPI-DirectoryExtensions**
 1. Válassza a beállítások: **szükséges engedélyek**
 1. Az API lehetőséget választhatja **Windows Active Directory**
 1. Jelölje be az Alkalmazásengedélyek: **címtáradatok olvasása és írása**, és **mentése**
 1. Válasszon **engedélyeket** , majd erősítse meg **Igen**.
-1. A vágólapra másolja ki és mentse a következő azonosítók a webalkalmazás-GraphAPI-DirectoryExtensions > Beállítások > Tulajdonságok >
+1. Tooyour vágólapra másolja ki és mentse a webalkalmazás-GraphAPI-DirectoryExtensions azonosítók következő hello > Beállítások > Tulajdonságok >
 *  **Alkalmazásazonosító** . Példa:`103ee0e6-f92d-4183-b576-8c3739027780`
 * **Objektumazonosító:**. Példa:`80d8296a-da0a-49ee-b6ab-fd232aa45201`
 
 
 
-## <a name="modifying-your-custom-policy-to-add-the-applicationobjectid"></a>Az egyéni házirend hozzáadása a ApplicationObjectId módosítása
+## <a name="modifying-your-custom-policy-tooadd-hello-applicationobjectid"></a>Az egyéni házirend tooadd hello ApplicationObjectId módosítása
 
 ```xml
     <ClaimsProviders>
@@ -96,16 +96,16 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
 ```
 
 >[!NOTE]
->A <TechnicalProfile Id="AAD-Common"> nevezzük "általános", mert az elemei szerepel, és használja fel újra az összes az Azure Active Directory TechnicalProfiles az elem használatával:`<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
+>Hello <TechnicalProfile Id="AAD-Common"> hivatkozott tooas "általános" azért, mert az elemei szerepel, és használja fel újra az összes hello Azure Active Directory TechnicalProfiles hello elem használatával:`<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
 
 >[!NOTE]
->A TechnicalProfile először írja az újonnan létrehozott bővített tulajdonság, egy egyszeri hibát tapasztalhatnak.  A bővített tulajdonság jön létre a rendszer először.  
+>Hello TechnicalProfile írási műveleteknél hello első alkalommal az újonnan létrehozott toohello bővítmény tulajdonság egy egyszeri hibát tapasztalhatnak.  hello bővített tulajdonság hello jön létre a rendszer első alkalommal.  
 
-## <a name="using-the-new-extension-property--custom-attribute-in-a-user-journey"></a>A bővítmény új tulajdonsággal egyéni attribútum a felhasználó út /
+## <a name="using-hello-new-extension-property--custom-attribute-in-a-user-journey"></a>Hello új bővítmény tulajdonság használatával / egyéni attribútum a felhasználó út
 
 
-1. Nyissa meg a függő Party(RP) fájlt, amely bemutatja a szerkesztő felhasználói út.  Ha indítja, töltse le a már konfigurált RP-PolicyEdit fájl az Azure portál Azure B2C egyéni házirend szakaszából tanácsos lehet.  Azt is megteheti nyissa meg az XML-fájl a tárolási mappából.
-2. Adja hozzá az egyéni jogcímleírásokat `loyaltyId`.  A jogcímek az egyéni-ot a `<RelyingParty>` elem, a UserJourney TechnicalProfiles átadott paraméterként, és a az alkalmazás a tokenben.
+1. Nyissa meg hello Party(RP) függő fájl, amely leírja a házirend szerkesztése felhasználói út.  Ha indítja, ajánlott toodownload hello RP-PolicyEdit már konfigurált verziójának közvetlenül hello hello Azure portál Azure B2C egyéni házirend szakasz fájlt lehet.  Azt is megteheti nyissa meg az XML-fájl a tárolási mappából.
+2. Adja hozzá az egyéni jogcímleírásokat `loyaltyId`.  Hello a jogcím-ot hello egyéni `<RelyingParty>` elem, mint egy paraméterrel toohello UserJourney TechnicalProfiles átadott, és a hello tokenben hello alkalmazáshoz.
 ```xml
 <RelyingParty>
    <DefaultUserJourney ReferenceId="ProfileEdit" />
@@ -123,7 +123,7 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
    </TechnicalProfile>
  </RelyingParty>
  ```
-3. A bővítményfájl házirend hozzáadása egy jogcím-definíció `TrustFrameworkExtensions.xml` belül a `<ClaimsSchema>` elem látható módon.
+3. Adjon hozzá egy jogcím definition toohello bővítmény házirend fájlt `TrustFrameworkExtensions.xml` belül hello `<ClaimsSchema>` elem látható módon.
 ```xml
 <ClaimsSchema>
         <ClaimType Id="extension_loyaltyId">
@@ -134,10 +134,10 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
         </ClaimType>
 </ClaimsSchema>
 ```
-4. Adja hozzá ugyanazt az alap házirendfájl-definíciót a jogcím `TrustFrameworkBase.xml`.  
->Hozzáadás a `ClaimType` az alap- és a bővítmények fájl definíciójában általában nem szükség, azonban a következő lépéseket a extension_loyaltyId felveszi az alap fájlban TechnicalProfiles, mert a házirend-érvényesítő elutasítják az alap fájl feltöltése nélkül.
->Az a TrustFrameworkBase.xml fájlban a "ProfileEdit" nevű felhasználó út végrehajtása nyomkövetéséhez hasznos lehet.  Keresse meg a felhasználó út a szerkesztőben azonos nevű, és figyelje meg, hogy az Orchestration 5. lépés meghívja a TechnicalProfileReferenceID = "SelfAsserted-ProfileUpdate".  Keresse meg és vizsgálja meg a TechnicalProfile, és ismerje meg az a folyamat.
-5. Adja hozzá a loyaltyId jogcímként bemeneti és kimeneti a a TechnicalProfile "SelfAsserted-ProfileUpdate"
+4. Adja hozzá a hello azonos jogcím-definíció toohello alap házirendfájl `TrustFrameworkBase.xml`.  
+>Hozzáadás a `ClaimType` definition hello talál és hello bővítmények fájl általában nem szükség, azonban hello lépések hello extension_loyaltyId tooTechnicalProfiles hello alap fájlt adja hozzá, mivel hello házirend érvényesítési elutasítják hello feltöltése hello alap fájl nélkül.
+>Hasznos tootrace hello végrehajtási hello felhasználói út nevű hello TrustFrameworkBase.xml fájl "ProfileEdit" lehet.  Ugyanaz a szerkesztőben nevet, és tekintse meg az hív meg, hogy az Orchestration 5. lépés hello TechnicalProfileReferenceID hello hello felhasználói út keresése = "SelfAsserted-ProfileUpdate".  Keresse meg és vizsgálja meg a TechnicalProfile toofamiliarize saját kezűleg a hello folyamata.
+5. Adja hozzá a loyaltyId jogcímként bemeneti és kimeneti a hello TechnicalProfile "SelfAsserted-ProfileUpdate"
 ```xml
 <TechnicalProfile Id="SelfAsserted-ProfileUpdate">
           <DisplayName>User ID signup</DisplayName>
@@ -151,8 +151,8 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
             <InputClaim ClaimTypeReferenceId="alternativeSecurityId" />
             <InputClaim ClaimTypeReferenceId="userPrincipalName" />
 
-            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
             <InputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -161,8 +161,8 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
 
-            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
             <OutputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -172,7 +172,7 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
           </ValidationTechnicalProfiles>
         </TechnicalProfile>
 ```
-6. Jogcím hozzáadása a TechnicalProfile "AAD-UserWriteProfileUsingObjectId" megőrizni az aktuális felhasználó a címtárban a bővített tulajdonság a jogcím értéke.
+6. Jogcím hozzáadása a "AAD-UserWriteProfileUsingObjectId" TechnicalProfile toopersist hello érték hello jogcím hello bővített tulajdonság, az aktuális felhasználó hello hello könyvtárban.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
           <Metadata>
@@ -197,10 +197,10 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 ```
-7. Jogcím hozzáadása a TechnicalProfile "AAD-UserReadUsingObjectId" a mellék attribútum értékének olvasásához minden alkalommal, amikor a felhasználó jelentkezik be. A TechnicalProfiles eddigi csak a helyi fiókok folyamata megváltoztak.  Ha az új attribútumhoz társadalombiztosítási/összevont fiók folyamata van szükség, TechnicalProfiles különböző szabálykészleteket kell módosítani. Tekintse meg a következő lépéseket.
+7. Adja hozzá a jogcím TechnicalProfile "AAD-UserReadUsingObjectId" tooread hello hello bővítmény attribútum értékének a minden alkalommal, amikor a felhasználó jelentkezik be. Így sokkal hello folyamat csak a helyi fiókok hello TechnicalProfiles megváltoztak.  Hello új attribútum társadalombiztosítási/összevont fiók hello folyamatában van szükség, ha a TechnicalProfiles különböző szabálykészleteket toobe módosítani kell. Tekintse meg a következő lépéseket.
 
 ```xml
-<!-- The following technical profile is used to read data after user authenticates. -->
+<!-- hello following technical profile is used tooread data after user authenticates. -->
      <TechnicalProfile Id="AAD-UserReadUsingObjectId">
        <Metadata>
          <Item Key="Operation">Read</Item>
@@ -225,14 +225,14 @@ Bővítmény tulajdonságai csak a bérlő regisztrált alkalmazás környezeté
 
 
 >[!IMPORTANT]
->A IncludeTechnicalProfile elem hozzáadása a TechnicalProfile az AAD-közös minden elemét.
+>hello IncludeTechnicalProfile elem hozzáadása az AAD-közös toothis TechnicalProfile összes hello eleme.
 
-## <a name="test-the-custom-policy-using-run-now"></a>Az egyéni házirend használatával "Futtatás most" tesztelése
-1. Nyissa meg a **panel az Azure AD B2C** , és keresse meg **identitás élmény keretrendszer > egyéni házirendek**.
-1. Válassza ki az egyéni házirendet, feltöltött, majd kattintson a **futtatása most** gombra.
-1. Iratkozhat fel e-mail cím használatával kell lennie.
+## <a name="test-hello-custom-policy-using-run-now"></a>Teszt hello egyéni házirend használatával "Futtatás most"
+1. Nyissa meg hello **panel az Azure AD B2C** , és keresse meg a túl**identitás élmény keretrendszer > egyéni házirendek**.
+1. Válassza ki a feltöltött hello egyéni házirendet, majd kattintson a hello **futtatása most** gombra.
+1. Meg kell tudni toosign be egy e-mail címet.
 
-Az azonosító tokent küldött vissza az alkalmazásba az új bővített tulajdonság extension_loyaltyId utasításnak egyéni jogcímként magában foglalja. Lásd a példát.
+hello azonosító tokent küldött vissza tooyour alkalmazás hello új bővített tulajdonság tartalmaz egy egyéni jogcímként extension_loyaltyId utasításnak. Lásd a példát.
 
 ```
 {
@@ -253,18 +253,18 @@ Az azonosító tokent küldött vissza az alkalmazásba az új bővített tulajd
 
 ## <a name="next-steps"></a>Következő lépések
 
-Adja hozzá a közösségi fiók bejelentkezések során a folyamatok az új jogcím felsorolt TechnicalProfiles módosításával. E két TechnicalProfiles írható és olvasható a felhasználói adatokat a alternativeSecurityId használja, mint a lokátor felhasználói objektum társadalombiztosítási/összevont fiók bejelentkezések használják.
+Adja hozzá a hello új jogcímet toohello adatfolyamok a közösségi fiók bejelentkezések során TechnicalProfiles felsorolt hello módosításával. E két TechnicalProfiles társadalombiztosítási/összevont fiók bejelentkezések toowrite használják, és hello alternativeSecurityId használatával, mint a lokátor hello felhasználói objektum hello hello felhasználói adatokat olvasni.
 ```
   <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 
   <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
 ```
 
-Beépített és egyéni házirendek közötti azonos kiterjesztési attribútumot használja.
-Amikor kiterjesztési attribútumot (más néven egyéni attribútumok) keresztül a portál élményt, azok használatával regisztrált a ** b2c-bővítmények-alkalmazást, amely minden b2c-bérlő szerepel.  Ezeket a bővítményattribútumokat használatához az egyéni házirendek:
-1. Lépjen a b2c bérlő portal.azure.com belül **Azure Active Directory** válassza **App regisztrációk**
+Használatával hello beépített és egyéni házirendek közötti azonos kiterjesztési attribútumot.
+Amikor kiterjesztési attribútumot (más néven egyéni attribútumok) keresztül hello portál élmény, azok hello segítségével regisztrált ** b2c-bővítmények-alkalmazást, amely minden b2c-bérlő szerepel.  toouse ezeket a bővítményattribútumokat, az egyéni házirendek:
+1. A b2c-bérlő a portal.azure.com, Ugrás túl**Azure Active Directory** válassza **App regisztrációk**
 2. Keresés a **b2c-bővítmények-alkalmazás** , és jelölje ki
-3. A "Essentials" rekord a **Alkalmazásazonosító** és a **objektum azonosítója**
+3. A "Essentials" rekord hello **Alkalmazásazonosító** és hello **objektum azonosítója**
 4. Tartalmazza azokat az AAD-gyakori technikai profil metaadatai között, például a következőképpen:
 
 ```xml
@@ -276,25 +276,25 @@ Amikor kiterjesztési attribútumot (más néven egyéni attribútumok) kereszt�
               <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
               <!-- Provide objectId and appId before using extension properties. -->
               <Metadata>
-                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is the "Object ID" from the "b2c-extensions-app"-->
-                <Item Key="ClientId">insert appId here</Item> <!--This is the "Application ID" from the "b2c-extensions-app"-->
+                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is hello "Object ID" from hello "b2c-extensions-app"-->
+                <Item Key="ClientId">insert appId here</Item> <!--This is hello "Application ID" from hello "b2c-extensions-app"-->
               </Metadata>
 ```
 
-A portál nyújthassunk konzisztencia fenntartása, hozzon létre a portál felhasználói felületének használatával ezek az attribútumok *előtt* azokat az egyéni házirendeket használ.  Amikor létrehoz egy attribútum "ActivationStatus" a portálon, meg kell hivatkozik rá az alábbiak szerint:
+tookeep konzisztencia az hello portál révén, ezek az attribútumok hello portál felhasználói felületének használatával hozzon létre *előtt* azokat az egyéni házirendeket használ.  Amikor létrehoz egy attribútum "ActivationStatus" hello portálon, az alábbiak szerint tooit kell hivatkoznia:
 
 ```
-extension_ActivationStatus in the custom policy
-extension_<app-guid>_ActivationStatus via the Graph API.
+extension_ActivationStatus in hello custom policy
+extension_<app-guid>_ActivationStatus via hello Graph API.
 ```
 
 
 ## <a name="reference"></a>Referencia
 
-* A **műszaki profil (TP)** egy elem típus, amely-re, egy *függvény* , amely definiál egy végpont nevét, a metaadatait, a protokollal, és a cseréjének részletezi, amelyek az identitás Felhasználói élmény keretrendszer végre kell hajtania.  Ha ez *függvény* az orchestration lépésben neve, vagy egy másik TechnicalProfile, a InputClaims és OutputClaims vannak megadva, a paraméterek a hívó által.
+* A **műszaki profil (TP)** -re mint elemtípuson van egy *függvény* , amely meghatározza egy végpont nevét, a metaadatait, a protokollal, és a részletek hello cseréjének, amely identitás hello Felhasználói élmény keretrendszer végre kell hajtania.  Ha ez *függvény* egy vezénylési lépés vagy egy másik TechnicalProfile, InputClaims és OutputClaims vannak megadva, a paraméterek hello hívó hello nevezik.
 
 
-* A bővítmény tulajdonságai teljes kezelését, tekintse meg a cikket [DIRECTORY-SÉMA bővítményei |} GRAPH API FOGALMAK](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
+* A bővítmény tulajdonságai teljes kezelés cikke hello [DIRECTORY-SÉMA bővítményei |} GRAPH API FOGALMAK](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
 
 >[!NOTE]
->A Graph API a bővítményattribútumokat megnevezett az konvenció `extension_ApplicationObjectID_attributename`. Bővítmények attribútumok extension_attributename, így kihagyása az XML ApplicationObjectId lesz az egyéni házirendek
+>A Graph API a bővítményattribútumokat megnevezett hello konvenció `extension_ApplicationObjectID_attributename`. Egyéni házirendek tooextensions attribútumok extension_attributename, így kihagyásával hello ApplicationObjectId a hello XML, tekintse meg a

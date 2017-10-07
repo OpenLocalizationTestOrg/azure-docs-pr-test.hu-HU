@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions Twilio-kötés |} Microsoft Docs"
-description: "Az Azure Functions Twilio-kötések használatának megismerése."
+title: "aaaAzure funkciók Twilio-kötés |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Twilio-kötések az Azure Functions."
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -17,32 +17,32 @@ ms.workload: na
 ms.date: 10/20/2016
 ms.author: wesmc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 870e47ec7f8ce41ee4acadc7b8ed59298958acbe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 882853947850e7d6795ca5b2f3fb6b9a83ede182
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-sms-messages-from-azure-functions-using-the-twilio-output-binding"></a>SMS küldése az Azure Functions használatával a Twilio üzeneteit kimeneti kötése
+# <a name="send-sms-messages-from-azure-functions-using-hello-twilio-output-binding"></a>SMS küldése az Azure Functions használatával hello Twilio kimeneti kötése
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk azt ismerteti, hogyan konfigurálhatja és használhatja a Twilio-kötések az Azure Functions. 
+Ez a cikk azt ismerteti, hogyan tooconfigure és használja az Azure Functions Twilio-kötései. 
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-Az Azure Functions támogatja Twilio kimeneti kötések néhány sornyi kódot SMS szöveges üzenetek küldéséhez a funkciók engedélyezéséhez és a [Twilio](https://www.twilio.com/) fiók. 
+Az Azure Functions támogatja a Twilio kimeneti kötések tooenable a funkciók toosend SMS szöveges üzenetek néhány sornyi kódot és egy [Twilio](https://www.twilio.com/) fiók. 
 
-## <a name="functionjson-for-the-twilio-output-binding"></a>az a Twilio Function.JSON kimeneti kötése
-A function.json fájl tartalmazza a következő tulajdonságokkal:
+## <a name="functionjson-for-hello-twilio-output-binding"></a>a hello Function.JSON Twilio kimeneti kötése
+hello function.json fájl megad hello következő tulajdonságai:
 
-* `name`: A Twilio SMS szöveges üzenetek függvény kódban használt változó neve.
-* `type`: meg kell *"twilioSms"*.
-* `accountSid`: Ez az érték, amely tárolja a Twilio-fiók Sid alkalmazásbeállítás neve értékre kell állítani.
-* `authToken`: Ez az érték, amely tárolja a Twilio-hitelesítési jogkivonat alkalmazásbeállítás neve értékre kell állítani.
-* `to`: Ez az érték a telefonszámot, amelyet az SMS szöveg küldött értéke.
-* `from`: Ez értéke a telefonszámot, amelyet az SMS szöveg küldi.
-* `direction`: meg kell *"out"*.
-* `body`: Ez az érték használatával lehet SMS üzenetet a merevlemez code, ha nincs szüksége a függvény a kódban dinamikusan beállításához. 
+* `name`: Hello Twilio SMS szöveges üzenet függvény a kódban használt változó neve.
+* `type`: be kell állítani túl*"twilioSms"*.
+* `accountSid`: Ez az érték, amely tárolja a Twilio-fiók Sid alkalmazásbeállítás neve toohello kell beállítani.
+* `authToken`: Ez az érték, amely tárolja a Twilio-hitelesítési jogkivonat alkalmazásbeállítás neve toohello kell beállítani.
+* `to`: Az alapérték hello SMS szöveg küldött toohello telefonszámot.
+* `from`: Az alapérték toohello telefonszámot, amelyet a küldi hello SMS szöveg.
+* `direction`: be kell állítani túl*"out"*.
+* `body`: Az érték lehet használt toohard kód hello SMS szöveges üzenet, ha nincs szüksége legyen dinamikusan hello code tooset a függvény. 
 
 Példa function.json:
 
@@ -62,7 +62,7 @@ Példa function.json:
 
 ## <a name="example-c-queue-trigger-with-twilio-output-binding"></a>Példa C# várólista eseményindító Twilio kimeneti kötése
 #### <a name="synchronous"></a>Szinkron
-A szinkron példakódot egy Azure Storage várólista eseményindító egy kimeneti paramétert használ egy szöveges üzenetet küldeni a megrendelés ügyfélnek.
+A szinkron példakódot egy Azure Storage várólista eseményindító használ egy kimeneti paraméter toosend szöveges üzenet tooa ügyfélnek megrendelés.
 
 ```cs
 #r "Newtonsoft.Json"
@@ -76,25 +76,25 @@ public static void Run(string myQueueItem, out SMSMessage message,  TraceWriter 
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    // In this example the queue item is a JSON string representing an order that contains the name of a 
-    // customer and a mobile number to send text updates to.
+    // In this example hello queue item is a JSON string representing an order that contains hello name of a 
+    // customer and a mobile number toosend text updates to.
     dynamic order = JsonConvert.DeserializeObject(myQueueItem);
     string msg = "Hello " + order.name + ", thank you for your order.";
 
-    // Even if you want to use a hard coded message and number in the binding, you must at least 
-    // initialize the SMSMessage variable.
+    // Even if you want toouse a hard coded message and number in hello binding, you must at least 
+    // initialize hello SMSMessage variable.
     message = new SMSMessage();
 
-    // A dynamic message can be set instead of the body in the output binding. In this example, we use 
-    // the order information to personalize a text message to the mobile number provided for
+    // A dynamic message can be set instead of hello body in hello output binding. In this example, we use 
+    // hello order information toopersonalize a text message toohello mobile number provided for
     // order status updates.
     message.Body = msg;
-    message.To = order.mobileNumber;
+    message.too= order.mobileNumber;
 }
 ```
 
 #### <a name="asynchronous"></a>Aszinkron
-Az aszinkron példakódot egy Azure Storage várólista eseményindító szöveges üzenetet küld egy rendelést ügyfélnek.
+Az aszinkron példakódot egy Azure Storage várólista eseményindító a szöveges üzenet tooa ügyfelünk megrendelés küld.
 
 ```cs
 #r "Newtonsoft.Json"
@@ -108,46 +108,46 @@ public static async Task Run(string myQueueItem, IAsyncCollector<SMSMessage> mes
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    // In this example the queue item is a JSON string representing an order that contains the name of a 
-    // customer and a mobile number to send text updates to.
+    // In this example hello queue item is a JSON string representing an order that contains hello name of a 
+    // customer and a mobile number toosend text updates to.
     dynamic order = JsonConvert.DeserializeObject(myQueueItem);
     string msg = "Hello " + order.name + ", thank you for your order.";
 
-    // Even if you want to use a hard coded message and number in the binding, you must at least 
-    // initialize the SMSMessage variable.
+    // Even if you want toouse a hard coded message and number in hello binding, you must at least 
+    // initialize hello SMSMessage variable.
     SMSMessage smsText = new SMSMessage();
 
-    // A dynamic message can be set instead of the body in the output binding. In this example, we use 
-    // the order information to personalize a text message to the mobile number provided for
+    // A dynamic message can be set instead of hello body in hello output binding. In this example, we use 
+    // hello order information toopersonalize a text message toohello mobile number provided for
     // order status updates.
     smsText.Body = msg;
-    smsText.To = order.mobileNumber;
+    smsText.too= order.mobileNumber;
 
     await message.AddAsync(smsText);
 }
 ```
 
 ## <a name="example-nodejs-queue-trigger-with-twilio-output-binding"></a>Példa Node.js várólista eseményindító Twilio kimeneti kötése
-Ez a Node.js-példa szöveges üzenetet küld egy rendelést ügyfélnek.
+Ez a Node.js-példa a szöveges üzenet tooa ügyfelünk megrendelés küld.
 
 ```javascript
 module.exports = function (context, myQueueItem) {
     context.log('Node.js queue trigger function processed work item', myQueueItem);
 
-    // In this example the queue item is a JSON string representing an order that contains the name of a 
-    // customer and a mobile number to send text updates to.
+    // In this example hello queue item is a JSON string representing an order that contains hello name of a 
+    // customer and a mobile number toosend text updates to.
     var msg = "Hello " + myQueueItem.name + ", thank you for your order.";
 
-    // Even if you want to use a hard coded message and number in the binding, you must at least 
-    // initialize the message binding.
+    // Even if you want toouse a hard coded message and number in hello binding, you must at least 
+    // initialize hello message binding.
     context.bindings.message = {};
 
-    // A dynamic message can be set instead of the body in the output binding. In this example, we use 
-    // the order information to personalize a text message to the mobile number provided for
+    // A dynamic message can be set instead of hello body in hello output binding. In this example, we use 
+    // hello order information toopersonalize a text message toohello mobile number provided for
     // order status updates.
     context.bindings.message = {
         body : msg,
-        to : myQueueItem.mobileNumber
+        too: myQueueItem.mobileNumber
     };
 
     context.done();

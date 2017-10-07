@@ -1,6 +1,6 @@
 ---
-title: "Értesítések konfigurálása és az e-mail sablonok az Azure API Management |} Microsoft Docs"
-description: "Útmutató a értesítések konfigurálása és az e-mail sablonok az Azure API Management."
+title: "aaaConfigure értesítések és az e-mail sablonok az Azure API Management |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooconfigure értesítések és az e-mail sablonok az Azure API Management."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 3d8b74e32059cfc1a4c3a8fc7d3bd04676ee80c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc23289c25a1641992b73cb955099b3f207b6968
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-notifications-and-email-templates-in-azure-api-management"></a>Az értesítések és e-mail sablonok konfigurálása az Azure API Management szolgáltatásban
-API-kezelés lehetővé teszi bizonyos események értesítéseinek konfigurálásához, és konfigurálhatja az e-mail-sablonokkal a rendszergazdák és fejlesztők számára az API Management-példány folytatott kommunikációhoz használt. Ez a témakör bemutatja, hogyan használható eseményt az értesítések konfigurálása, és ezeket az eseményeket az e-mail-sablonokat konfigurálásának áttekintése.
+# <a name="how-tooconfigure-notifications-and-email-templates-in-azure-api-management"></a>Hogyan tooconfigure értesítések és az e-mail sablonok az Azure API Management
+API-kezelési biztosítja hello tooconfigure értesítéseket meghatározott események és tooconfigure hello e-mail sablonok, amelyek használt toocommunicate hello rendszergazdák és fejlesztők számára az API Management-példány. Ez a témakör bemutatja, hogyan tooconfigure értesítések hello használható eseményt, és ezeket az eseményeket használt hello e-mail sablonok konfigurálásának áttekintése.
 
 ## <a name="publisher-notifications"></a>Publisher értesítések konfigurálása
-Értesítések konfigurálásához kattintson **Publisher portal** az Azure portálon az API Management szolgáltatás. Ezzel továbblép az API Management közzétevő portáljára.
+tooconfigure értesítéseket, kattintson a **Publisher portal** a hello Azure portál, az API Management szolgáltatás. Ezzel megnyitná toohello API Management publisher portálon.
 
 ![Közzétevő portál][api-management-management-console]
 
 > [!NOTE] 
-> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
+> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
 
-Kattintson a **értesítések** a a **API Management** megtekintéséhez az elérhető értesítések a bal oldali menüben.
+Kattintson a **értesítések** a hello **API Management** hello menüjének balra tooview hello elérhető értesítések.
 
 ![A Publisher értesítések][api-management-publisher-notifications]
 
-Az alábbi listán szereplő események értesítések konfigurálhatók.
+hello alábbi listán szereplő események konfigurálható az értesítésekhez.
 
-* **Előfizetési kérelmek (jóváhagyásra van szükség)** -a megadott e-mail címzettek és a felhasználók az előfizetés kérelmekről API termékek jóváhagyásra van szükség az e-mail értesítéseket kap.
-* **Új előfizetések** -a megadott e-mail címzettek és a felhasználók új API termék előfizetések kapcsolatos e-mail értesítéseket kap.
-* **Gyűjteményelem alkalmazáskérelmeinek** -a megadott e-mail címzettek és a felhasználók kapnak értesítő e-mailek, amikor az alkalmazás gyűjteményébe új kérelmeket.
-* **Titkos másolat** -a megadott e-mail címzettek és a felhasználók kapnak e-mailek Titkos másolatot a fejlesztők számára küldött összes e-maileket.
-* **Új probléma vagy megjegyzés** – a megadott e-mail címzettek és a felhasználók kapnak értesítő e-mailek, amikor új probléma vagy megjegyzés küldése a fejlesztői portálján.
-* **Zárja be a fiók üzenet** -a megadott e-mail címzettek és a felhasználók kapnak értesítő e-mailek, amikor egy fiók le van zárva.
-* **Megközelíti előfizetés kvótakorlátot** -a következő e-mailek címzettjeinek és felhasználók kapnak értesítő e-mailek, amikor az előfizetés használatának lekérdezi megközelíti a memóriahasználati kvóta.
+* **Előfizetési kérelmek (jóváhagyásra van szükség)** – hello megadott e-mailek címzettjeinek és a felhasználók kapnak értesítő e-mailek kapcsolatos előfizetés kéréseinek API jóváhagyásra van szükség.
+* **Új előfizetések** – hello megadott e-mailek címzettjeinek és a felhasználók új API termék előfizetések kapcsolatos e-mail értesítéseket kap.
+* **Gyűjteményelem alkalmazáskérelmeinek** – hello megadott e-mailek címzettjeinek és a felhasználók e-mail értesítéseket kap, amikor új alkalmazások elküldött toohello alkalmazáskatalógusában.
+* **Titkos másolat** – hello megadott e-mailek címzettjeinek és a felhasználók kapnak e-mailek Titkos másolatot minden küldött e-mailek toodevelopers.
+* **Új probléma vagy megjegyzés** – hello megadott e-mailek címzettjeinek és a felhasználók kapnak értesítő e-mailek, amikor új probléma vagy megjegyzés küldése hello fejlesztői portálján.
+* **Zárja be a fiók üzenet** – hello megadott e-mailek címzettjeinek és a felhasználók e-mail értesítéseket kap, ha a fiók le van zárva.
+* **Megközelíti előfizetés kvótakorlátot** - e-mailek címzettjeinek következő hello és a felhasználók e-mail értesítéseket kap, ha az előfizetés használatának lekérdezi Bezárás toousage kvóta.
 
-Az egyes eseményekhez megadhatja az e-mailek címzettjeinek az e-mail cím beviteli mezőbe, vagy választhat a felhasználók listájából.
+Az egyes eseményekhez megadhatja az e-mailek címzettjeinek hello e-mail cím beviteli mezőbe, vagy választhat a felhasználók listájából.
 
-Adja meg az e-mail címeket, adja meg azokat az e-mail cím szövegmezőben. Ha az e-mail címeket, külön azokat vesszővel válassza el őket.
+toospecify hello e-mail címek toobe értesítést kap, mezőben adja meg őket hello e-mail címet. Ha az e-mail címeket, külön azokat vesszővel válassza el őket.
 
 ![Értesítés címzettjeinek][api-management-email-addresses]
 
-Adja meg a felhasználóknak szeretne értesítést kapni, kattintson a **címzettet adjon hozzá**, jelölje be a jelölőnégyzetet, kattintson a felhasználók értesítést kapnak, és kattintson a **OK**.
+toospecify hello felhasználók toobe értesítést kap, kattintson a **címzettet adjon hozzá**, hello hello felhasználók toobe értesítés melletti jelölőnégyzetet, majd kattintson **OK**.
 
 > [!NOTE] 
-> Csak a rendszergazdák a listában jelennek meg.
+> Csak a rendszergazdák hello listában jelennek meg.
 
 
-Miután az értesítési címzettek, kattintson a **mentése** a frissített értesítés címzettjeinek alkalmazni.
+Miután hello értesítés címzettjeinek, kattintson a **mentése** tooapply hello értesítés címzettjeinek frissítése.
 
 > [!NOTE] 
-> Ha manuálisan lép távolabb a **Publisher értesítések** lapon a közzétevő portal riasztást küld a hiba nem mentett módosítások vannak.
+> Ha elnavigál hello **Publisher értesítések** lapon hello publisher portal riasztást küld a hiba nem mentett módosítások vannak.
 
 
 ## <a name="email-templates"></a>E-mail sablonok konfigurálása
-Az API Management e-mail sablonok biztosít a felügyelete, és a szolgáltatás használata során küldött e-mailek. A következő e-mail sablonok találhatók.
+Az API Management biztosít e-mail sablonok hello hello működés során felügyelete és hello szolgáltatás használatával küldött e-mail üzenetek. a következő e-mail sablonok hello vannak megadva.
 
 * Application gallery küldésének jóváhagyott
 * Fejlesztői farewell levél
 * Értesítési megközelítő fejlesztői kvótakorlátot
 * Felhasználó meghívása
-* Új megjegyzés hozzáadása egy problémához
+* Új megjegyzés hozzá tooan probléma
 * Kapott új probléma
 * Új előfizetés aktiválása
 * Előfizetés megújítása megerősítése
@@ -79,11 +79,11 @@ Az API Management e-mail sablonok biztosít a felügyelete, és a szolgáltatás
 
 Ezek a sablonok módosítható igény szerint.
 
-Tekintheti meg és konfigurálhatja az e-mail sablonok az API Management-példány, kattintson a **értesítések** a a **API Management** menüt, és válassza ki a **E-mail sablonok**fülre.
+tooview és hello e-mail sablonok az API Management-példány beállításához kattintson a gombra **értesítések** a hello **API Management** hello balra, és jelölje be hello menüjének **E-mail sablonok**  fülre.
 
 ![E-mail-sablonok][api-management-email-templates]
 
-Megtekintése vagy módosítása egy adott sablon, válassza ki azt a **sablonok** legördülő listából.
+tooview vagy egy adott sablon módosításához válassza ki azt a hello **sablonok** legördülő listából.
 
 ![E-mail sablonok listája][api-management-email-templates-list]
 
@@ -91,14 +91,14 @@ Minden e-mail sablon egyszerű szöveges tárgy és törzs HTML formátumban def
 
 ![E-mail sablon szerkesztő][api-management-email-template]
 
-A **paraméterek** lista felsorolja azokat a paramétereket, amikor a tárgya és törzse beszúrt fogja cserélni a kijelölt érték, ha az e-mailt küld. Paraméter beszúrása, vigye a kurzort, ahol szeretné nyissa meg a paramétert, majd kattintson a a paraméternév balra mutató nyílra.
+Hello **paraméterek** lista felsorolja azokat a paraméterek, amikor hello tárgya és törzse beszúrt, kijelölt kicserélt hello érték lesz üdvözlő e-mail küldésekor. a paramétert, tooinsert kurzorral hello ahol hello paraméter toogo kívánja, majd kattintson a hello toohello balra nyíl hello paraméternév.
 
-Kattintson a **előzetes** vagy **egy teszt küldése** hogyan az e-mailt fog keresse meg vagy egy teszt e-mailek küldése.
+Kattintson a **előzetes** vagy **egy teszt küldése** toosee hogyan hello e-mail fog meg, vagy egy teszt e-mailek küldése.
 
 > [!NOTE] 
-> A paraméterek nem cserélhető le tényleges értékek előnézet vagy egy teszt küldése.
+> hello paraméterek nem cserélhető le tényleges értékek előnézet vagy egy teszt küldése.
 
-Az e-mail sablon a módosítások mentéséhez kattintson **mentése**, vagy visszavonhatja a módosításokat kattintson **Mégse**.
+toosave hello módosítások toohello e-mail sablont, kattintson a **mentése**, vagy toocancel hello kattintson **Mégse**.
  
 
 [api-management-management-console]: ./media/api-management-howto-configure-notifications/api-management-management-console.png
@@ -114,8 +114,8 @@ Az e-mail sablon a módosítások mentéséhez kattintson **mentése**, vagy vis
 [Configure publisher notifications]: #publisher-notifications
 [Configure email templates]: #email-templates
 
-[How to create and use groups]: api-management-howto-create-groups.md
-[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How toocreate and use groups]: api-management-howto-create-groups.md
+[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

@@ -1,6 +1,6 @@
 ---
-title: "A lekérdezési művelet hozzáadása a logic apps |} Microsoft Docs"
-description: "A lekérdezés művelet, például a szűrő tömb műveletek végrehajtásához áttekintése."
+title: "a logic apps aaaAdd hello lekérdezési művelet |} Microsoft Docs"
+description: "A műveleteket, például a szűrő tömb hello lekérdezés műveletei áttekintése."
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,68 +15,68 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/20/2016
 ms.author: jehollan
-ms.openlocfilehash: a992fa17a07d6167297c4cf5fe9fb3b58181d7df
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d4be901e7e6bf1b644057648930667ab34f2124
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-query-action"></a>Ismerkedjen meg a lekérdezési művelet
-A lekérdezési művelet használatával is dolgozhat kötegek és tömbök munkafolyamatokat elvégzéséhez:
+# <a name="get-started-with-hello-query-action"></a>Ismerkedés a hello lekérdezési művelet
+Hello lekérdezési művelet használatával kötegek és tömbök tooaccomplish munkafolyamatokat dolgozhat:
 
 * Hozzon létre egy feladatot az összes magasabb prioritású rekord adatbázisból.
 * Az e-mailekhez, az Azure-blobot összes PDF melléklet mentése.
 
-Első lépések egy logikai alkalmazás lekérdezés műveletével, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
+tooget használatának hello lekérdezési művelet egy logic App, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-the-query-action"></a>A lekérdezés művelettel
-Egy művelet során, amely a logikai alkalmazás definiált munkafolyamat végzi. [További információ a műveletek](connectors-overview.md).  
+## <a name="use-hello-query-action"></a>Hello lekérdezés művelettel
+Egy művelet során, amely logikai alkalmazás definiált hello munkafolyamat végzi. [További információ a műveletek](connectors-overview.md).  
 
-A lekérdezés jelenleg műveletnek egy művelet, a szűrő tömb, a tervezőben elérhetővé neve. Ez lehetővé teszi egy tömb lekérdezése, és a szűrt eredmények készlettel tért vissza.
+hello lekérdezés jelenleg műveletnek egy művelet hívása hello szűrő tömb, hello Designer elérhetővé. Ez lehetővé teszi egy tömb tooquery, és vissza szűrt eredmények.
 
 Itt látható, hogyan adhat hozzá azt a logikai alkalmazást:
 
-1. Válassza ki a **új lépés** gombra.
+1. Jelölje be hello **új lépés** gombra.
 2. Válasszon **művelet hozzáadása**.
-3. A művelet a keresőmezőbe írja be **szűrő** listájára a **szűrő tömb** művelet.
+3. Hello művelet keresési mezőbe, írja be a **szűrő** toolist hello **szűrő tömb** művelet.
    
-    ![Válassza ki a lekérdezés](./media/connectors-native-query/using-action-1.png)
-4. Válassza ki a tömb szűréséhez. (Az alábbi képernyőfelvételen látható Twitter keresési eredmények tömbje.)
-5. Minden egyes kiértékelése feltétel létrehozása. (Az alábbi képernyőfelvételen szűrők a felhasználók, akik több mint 100 followers Twitter-üzeneteket.)
+    ![Válassza ki a hello lekérdezési művelet](./media/connectors-native-query/using-action-1.png)
+4. Válasszon egy tömb toofilter. (hello következő képernyőfelvétel egy Twitter-keresés eredményei hello tömbje.)
+5. Hozzon létre egy feltétel tooevaluate minden elemhez. (a következő képernyőkép hello szűrők a felhasználók, akik több mint 100 followers Twitter-üzeneteket.)
    
-    ![A lekérdezés a művelet](./media/connectors-native-query/using-action-2.png)
+    ![Teljes hello lekérdezési művelet](./media/connectors-native-query/using-action-2.png)
    
-    A művelet egy új tömb csak, amely megfelel a szűrő eredményeit tartalmazó fog kimeneti.
-6. Kattintson az eszköztáron menteni a bal felső sarkában, és a Logic Apps alkalmazást mentése és közzététele (aktiválása).
+    hello művelet kimeneti fog egy új, csak a hello szűrő megfelel eredményeket tartalmazó tömb.
+6. Kattintson a bal felső sarkának hello hello eszköztár toosave, és a logic app fog egyaránt mentés, és tegye közzé (aktiválása).
 
 ## <a name="query-action"></a>Lekérdezési művelet
-Az alábbiak a művelet, amely támogatja ezt az összekötőt. Az összekötő egy lehetséges művelettel rendelkezik.
+Az alábbiakban hello részleteit, amely támogatja ezt az összekötőt hello a művelethez. hello összekötő lehetséges egy-egy művelettel rendelkezik.
 
 | Műveletek | Leírás |
 | --- | --- |
-| Szűrő tömb |Minden elem tömbben feltételt ad meg, és az eredményt ad vissza. |
+| Szűrő tömb |Minden elem tömbben feltételt ad meg, és hello eredményt ad vissza. |
 
 ## <a name="action-details"></a>A művelet részletei
-A lekérdezési művelet egy lehetséges műveletet tartalmaz. A következő táblázatok ismertetik, hogy a művelet és a megfelelő kimeneti részletek művelettel társított szükséges és választható bemeneti mező.
+hello lekérdezési művelet egy lehetséges műveletet tartalmaz. hello alábbi táblázatok bemutatják az hello szükséges és választható beviteli mezők hello művelet és hello megfelelő kimeneti részletekért társított hello műveletével.
 
 ### <a name="filter-array"></a>Szűrő tömb
-A művelet, amely a kimenő HTTP-kérelem a beviteli mezők a következők:
+Az alábbiakban hello hello művelet, amely a kimenő HTTP-kérelem a beviteli mezők.
 A * azt jelenti, hogy mezőt kötelező kitölteni.
 
 | Megjelenített név | Tulajdonság neve | Leírás |
 | --- | --- | --- |
-| A * |A |A tömb szűrése |
-| Az állapot * |Ha |A feltétel kiértékelése minden elemhez |
+| A * |A |hello tömb toofilter |
+| Az állapot * |Ha |hello feltétel tooevaluate minden elemhez |
 
 <br>
 
 ### <a name="output-details"></a>Kimeneti részletei
-A HTTP-válasz kimeneti részleteit az alábbiakban.
+Az alábbiakban hello kimeneti részletes hello HTTP-válasz.
 
 | Tulajdonság neve | Adattípus | Leírás |
 | --- | --- | --- |
 | Szűrt tömb |A tömb |Olyan tömb, amely minden szűrt eredmény objektumot tartalmaz |
 
 ## <a name="next-steps"></a>Következő lépések
-Most, próbálja ki a platformot és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Az egyéb rendelkezésre álló összekötők logic Apps alkalmazások felmérésével felfedezheti a [API-k lista](apis-list.md).
+Most, próbálja ki hello platform és [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md). Ismerje meg a hello más rendelkezésre álló összekötők logic Apps alkalmazások felmérésével a [API-k lista](apis-list.md).
 

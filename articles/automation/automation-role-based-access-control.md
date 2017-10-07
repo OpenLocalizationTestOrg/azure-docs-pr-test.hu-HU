@@ -1,6 +1,6 @@
 ---
-title: "Szerepköralapú hozzáférés-vezérlés az Azure Automationben | Microsoft Docs"
-description: "A Szerepköralapú hozzáférés-vezérlés (RBAC) hozzáférés-vezérlést biztosít az Azure-erőforrásokhoz. Ez a cikk ismerteti az RBAC beállítását az Azure Automationben."
+title: "Azure Automation aaaRole-alapú hozzáférés-vezérlés |} Microsoft Docs"
+description: "A Szerepköralapú hozzáférés-vezérlés (RBAC) hozzáférés-vezérlést biztosít az Azure-erőforrásokhoz. Ez a cikk ismerteti, hogyan mentése az Azure Automationben RBAC tooset."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;sngun
-ms.openlocfilehash: 17c7e410a9c5b69ab450eb3affd192f1e3cb6e76
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 051438e44d0c5c514d6dbaac5a312344ee311cdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="role-based-access-control-in-azure-automation"></a>Szerepköralapú hozzáférés-vezérlés az Azure Automationben
 ## <a name="role-based-access-control"></a>Szerepköralapú hozzáférés-vezérlés
-A Szerepköralapú hozzáférés-vezérlés (RBAC) hozzáférés-vezérlést biztosít az Azure-erőforrásokhoz. Az [RBAC](../active-directory/role-based-access-control-configure.md) használata lehetővé teszi, hogy elkülönítse a kötelességeket a csapaton belül, valamint csak olyan mértékű hozzáférést biztosítson, amely a felhasználóknak a feladataik elvégzéséhez szükséges. A szerepköralapú hozzáférés az Azure portál, az Azure parancssori segédeszközök vagy az Azure felügyeleti API-k segítségével adható a felhasználóknak.
+A Szerepköralapú hozzáférés-vezérlés (RBAC) hozzáférés-vezérlést biztosít az Azure-erőforrásokhoz. Használatával [RBAC](../active-directory/role-based-access-control-configure.md), a csapat belül is elkülönítse a feladatokat, és támogatás csak hello hozzáférés toousers, csoportok és alkalmazások, hogy be kell tooperform a feladatokat a mennyisége. Szerepköralapú hozzáférés-toousers hello Azure-portálon, az Azure parancssori eszközöket vagy Azure szolgáltatásfelügyeleti API használatával engedélyezhetők.
 
 ## <a name="rbac-in-automation-accounts"></a>RBAC Automation-fiókokban
-Az Azure Automationben a hozzáférés biztosításához a megfelelő RBAC-szerepkörök rendelhetők az Automation-fiók tartományában lévő felhasználókhoz, csoportokhoz és alkalmazásokhoz. Alább láthatók az Automation-fiók által támogatott beépített szerepkörök:  
+Az Azure Automationben hozzáférést kapnak a hello megfelelő RBAC szerepkör toousers, csoportok és hello Automation-fiók hatókörének alkalmazásokat hozzárendelésével. Következő Automation-fiók által támogatott beépített szerepkörök vannak hello:  
 
 | **Szerepkör** | **Leírás** |
 |:--- |:--- |
-| Tulajdonos |A tulajdonosi szerepkör segítségével hozzáférhet minden erőforráshoz és művelethez egy Automation-fiókon belül, beleértve azt is, hogy hozzáférést biztosíthat más felhasználók, csoportok és alkalmazások számára az Automation-fiók kezeléséhez. |
-| Közreműködő |A közreműködői szerepkör segítségével minden elemet kezelhet, csak más felhasználók Automation-fiókokra vonatkozó hozzáférési jogosultságait nem módosíthatja. |
-| Olvasó |Az olvasói szerep lehetővé teszi az összes erőforrás megtekintését egy Automation-fiókban, de módosítás nem hajtható vele végre. |
-| Automation-operátor |Az Automation-operátori szerepkör lehetővé teszi olyan operatív feladatok végrehajtását, mint az indítás, a leállítás, a felfüggesztés, a folytatás és az ütemezés. Ez a szerepkör akkor hasznos, ha meg szeretné akadályozni, hogy az Automation-fiók erőforrásokat, például a hitelesítő adategységeket és a forgatókönyveket megtekintsék vagy módosítsák, de továbbra is engedélyezi a szervezet tagjai számára a forgatókönyvek végrehajtását. |
-| Felhasználói hozzáférés rendszergazdája |A felhasználói hozzáférés rendszergazdájának szerepköre lehetővé teszi, hogy kezelje a felhasználói hozzáférést az Azure Automation-fiókokhoz. |
+| Tulajdonos |hello tulajdonosi szerepkör lehetővé teszi, hogy tooall erőforrások eléréséhez és műveletek belül egy Automation-fiók, beleértve a hozzáférési tooother felhasználók, csoportok és alkalmazások toomanage hello Automation-fiók megadása. |
+| Közreműködő |hello közreműködői szerepkör lehetővé teszi, hogy toomanage más felhasználó módosítása kivételével mindent hozzáférési engedélyek tooan Automation-fiók. |
+| Olvasó |hello olvasó szerepkör lehetővé teszi tooview összes hello erőforrása egy automatizálási fiókot, de nem módosíthatja. |
+| Automation-operátor |hello Automation kezelői szerepkör lehetővé teszi tooperform működtetési feladatok például start, állítsa le, felfüggesztése, folytatása és feladatok ütemezése. Ez a szerepkör akkor hasznos, ha azt szeretné, tooprotect az Automation-fiók erőforrások, például a hitelesítő adatok eszközök és nem runbookok megtekinteni vagy módosítani, de továbbra is lehetővé teszik a szervezet tooexecute tagjai ezeknél a runbookoknál. |
+| Felhasználói hozzáférés rendszergazdája |hello felhasználói hozzáférés adminisztrátora szerepkör lehetővé teszi toomanage felhasználói hozzáférés tooAzure Automation-fiók. |
 
 > [!NOTE]
-> Nem biztosíthat hozzáférési jogot megadott runbookhoz vagy runbookokhoz, csak az Automation-fiókban található erőforrásokhoz és műveletekhez.  
+> Hozzáférési jogok tooa adott runbook vagy runbookok, csak a toohello erőforrások és a műveletek hello Automation-fiók belül nem tudja biztosítani.  
 > 
 > 
 
-Ebben a cikkben bemutatjuk az RBAC beállítását az Azure Automationben. Elsőként tekintse meg a Közreműködő, Olvasó, Automation-operátor és Felhasználói hozzáférés rendszergazdája számára biztosított egyéni engedélyeket, így elmélyítheti a tudását, mielőtt hozzáférést biztosítana másoknak az Automation-fiókhoz.  Ha ezt elmulasztja, a hozzáférés biztosítása nem tervezett és nem kívánt következményekkel járhat.     
+Ebben a cikkben a Microsoft végigvezeti hogyan mentése az Azure Automationben RBAC tooset. Első, de most, hogy azt hogy bárki megadása előtt alaposan megismernie a hello egyéni engedélyek megadott toohello közreműködő, olvasó, az automatizálási operátor és a felhasználói hozzáférés adminisztrátora nézze a közelebb hajtsa végre a megfelelő tartalomvédelmi toohello Automation-fiók.  Ha ezt elmulasztja, a hozzáférés biztosítása nem tervezett és nem kívánt következményekkel járhat.     
 
 ## <a name="contributor-role-permissions"></a>Közreműködői szerepkör engedélyei
-A következő táblázat azokat a műveleteket mutatja be, amelyeket a Közreműködő szerepkörrel végezhet el az Automationban.
+hello alábbi táblázat mutatja be hello közreműködő szerepkört az automatizálás által végrehajtható műveleteket hello.
 
 | **Erőforrás típusa** | **Olvasás** | **Írás** | **Törlés** | **Egyéb műveletek** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -67,7 +67,7 @@ A következő táblázat azokat a műveleteket mutatja be, amelyeket a Közremű
 | Automation-webhook |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) |
 
 ## <a name="reader-role-permissions"></a>Olvasói szerepkör engedélyei
-A következő táblázat azokat a műveleteket mutatja be, amelyeket az Olvasói szerepkörrel végezhet el az Automationban.
+hello alábbi táblázat mutatja be hello olvasó szerepkört az automatizálás által végrehajtható műveleteket hello.
 
 | **Erőforrás típusa** | **Olvasás** | **Írás** | **Törlés** | **Egyéb műveletek** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -79,7 +79,7 @@ A következő táblázat azokat a műveleteket mutatja be, amelyeket az Olvasói
 | Szerepkör-definíció |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) | | | |
 
 ## <a name="automation-operator-role-permissions"></a>Automation-operátori szerepkör engedélyei
-A következő táblázat azokat a műveleteket mutatja be, amelyeket az Automation-operátor szerepkörrel végezhet el az Automationban.
+hello alábbi táblázat mutatja be hello konkrét műveletek az automatizálás hello Automation operátor szerepkör végzi el.
 
 | **Erőforrás típusa** | **Olvasás** | **Írás** | **Törlés** | **Egyéb műveletek** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -101,10 +101,10 @@ A következő táblázat azokat a műveleteket mutatja be, amelyeket az Automati
 | Automation-runbookvázlat tesztfeladat | | | | |
 | Automation-webhook | | | | |
 
-Az [Automation-operátori műveletek](../active-directory/role-based-access-built-in-roles.md#automation-operator) az Automation-operátori szerepkör által az Automation-fiókon és az erőforrásokon támogatott műveleteket is felsorolja.
+További részletek hello [Automation operátor műveletek](../active-directory/role-based-access-built-in-roles.md#automation-operator) listák hello hello Automation operátor szerepköre hello Automation-fiók és az erőforrások által támogatott műveleteket.
 
 ## <a name="user-access-administrator-role-permissions"></a>Felhasználói hozzáférés rendszergazdája szerepkör engedélyei
-A következő táblázat azokat a műveleteket mutatja be, amelyeket a Felhasználói hozzáférés rendszergazdája szerepkörrel végezhet el az Automationban.
+hello alábbi táblázat mutatja be hello konkrét műveletek az automatizálás hello felhasználói hozzáférés adminisztrátora szerepkör végzi el.
 
 | **Erőforrás típusa** | **Olvasás** | **Írás** | **Törlés** | **Egyéb műveletek** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -127,106 +127,106 @@ A következő táblázat azokat a műveleteket mutatja be, amelyeket a Felhaszn�
 | Automation-webhook |![Zöld állapot](media/automation-role-based-access-control/green-checkmark.png) | | | |
 
 ## <a name="configure-rbac-for-your-automation-account-using-azure-portal"></a>Az Automation-fiókhoz tartozó RBAC konfigurálása az Azure portál segítségével
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/), és nyissa meg az Automation-fiókját az Automation-fiókok panelről.  
-2. Kattintson a jobb felső sarokban található **Hozzáférés** vezérlőre. Ezzel megnyitja a **Felhasználók** panelt, ahol hozzáadhat új felhasználókat, csoportokat vagy alkalmazásokat az Automation-fiók kezeléséhez, és megtekintheti a meglévő szerepköröket, amelyek konfigurálhatók az Automation-fiókhoz.  
+1. Jelentkezzen be toohello [Azure Portal](https://portal.azure.com/) , és nyissa meg az Automation-fiók hello Automation-fiók paneljén.  
+2. Kattintson a hello **hozzáférés** vezérlő hello bal felső sarokban. Ekkor megnyílik a hello **felhasználók** adhat hozzá új felhasználók, csoportok és alkalmazások toomanage az Automation-fiók panelen és nézet konfigurálhatja a meglévő szerepek hello Automation-fiók.  
    
    ![Hozzáférés gomb](media/automation-role-based-access-control/automation-01-access-button.png)  
 
 > [!NOTE]
-> Az **Előfizetési rendszergazdák** már létezik alapértelmezett felhasználóként. Az előfizetési rendszergazdák Active Directory-csoportja tartalmazza az Azure-előfizetés szolgáltatás-rendszergazdáit és társrendszergazdáit. A szolgáltatás-rendszergazda az Azure-előfizetés és erőforrásainak tulajdonosa, és örökli az Automation-fiókok tulajdonosi szerepkörét is. Ez azt jelenti, hogy a **szolgáltatás-rendszergazdák és a társrendszergazdák** számára **Örökölt** a hozzáférés egy előfizetéshez, az összes többi felhasználó számára pedig **Hozzárendelt**. Kattintson az **Előfizetési rendszergazdák** csoportjára az engedélyeik részleteinek megtekintéséhez.  
+> **Előfizetés rendszergazdái** hello alapértelmezett felhasználóként már létezik. hello előfizetés rendszergazdái active directory-csoport hello szolgáltatás rendszergazdájával vagy rendszergazdáival és az Azure-előfizetéshez tartozó co-administrator(s) tartalmaz. hello szolgáltatás-rendszergazdák az Azure-előfizetés és az erőforrások hello tulajdonosa, és fog hello tulajdonosi szerepkör örökölt vannak az automation-fiók hello túl. Ez azt jelenti, hogy van-e hello hozzáférés **örökölt** a **szolgáltatás-rendszergazdák és a társadminisztrátoroknak** előfizetés és az **hozzárendelt** összes hello más felhasználók számára. Kattintson a **előfizetés rendszergazdái** tooview további részleteket a rájuk vonatkozó engedélyek.  
 > 
 > 
 
 ### <a name="add-a-new-user-and-assign-a-role"></a>Új felhasználó hozzáadása és szerepkör hozzárendelése
-1. A Felhasználók panelen a **Hozzáadás** gombra kattintva nyissa meg a **Hozzáférés felvétele panelt**, ahol hozzáadhat egy felhasználót, csoportot vagy alkalmazást, majd hozzájuk rendelhet egy szerepkört.  
+1. Hello felhasználók paneljén kattintson **Hozzáadás** tooopen hello **Hozzáadás hozzáférési panel** ahol hozzáadhat egy felhasználó, csoport vagy alkalmazás, és hozzárendelése egy szerepkörhöz toothem.  
    
    ![Felhasználó hozzáadása](media/automation-role-based-access-control/automation-02-add-user.png)  
-2. Válasszon egy szerepkört az elérhető szerepkörök listájáról. Az **Olvasó** szerepkört választjuk ki, de választhatja az Automation-fiók által támogatott bármelyik elérhető szerepkört, illetve bármely egyéni szerepkört, amelyet korábban definiált.  
+2. Hello elérhető szerepkörök listájából válassza ki egy szerepkört. Azt fogja választani hello **olvasó** szerepkör, de választhat bármelyik hello elérhető beépített szerepkörök, amely támogatja az Automation-fiók vagy bármilyen definiált egyéni biztonsági szerepkört.  
    
    ![Szerepkör kiválasztása](media/automation-role-based-access-control/automation-03-select-role.png)  
-3. Kattintson a **Felhasználók hozzáadása** lehetőségre a **Felhasználók hozzáadása** panel megnyitásához. Ha hozzáadott felhasználókat, csoportokat vagy alkalmazásokat az előfizetés kezeléséhez, akkor azok a felhasználók megjelennek a listában, és kiválaszthatja őket hozzáférés hozzáadására. Ha nincs felhasználó a listán, vagy ha a hozzáadni kívánt felhasználó nem szerepel a listán, kattintson a **meghívás** lehetőségre a **Vendég meghívása** panel megnyitásához, ahol meghívhat egy érvényes Microsoft-fiókhoz tartozó e-mail-címmel (Outlook.com, OneDrive vagy Xbox Live Id) rendelkező felhasználót Ha beírta a felhasználó e-mail-címét, kattintson a **Kiválasztás** gombra a felhasználó hozzáadásához, majd kattintson az **OK** gombra. 
+3. Kattintson a **felhasználók hozzáadása az** tooopen hello **felhasználók hozzáadása az** panelen. Ha a felhasználók, csoportok vagy alkalmazások toomanage hozzáadott az előfizetéshez, akkor azoknak a felhasználóknak vannak felsorolva, és kiválaszthatja a tooadd hozzáférést. Ha nincs a felhasználók felsorolt, vagy ha érdekli hozzáadása hello felhasználó nem szerepel majd **meghívása** tooopen hello **hívhat meg vendégként** panel, ahol hívhat meg egy érvényes Microsoft-fiókkal rendelkező felhasználó e-mail címe például Outlook.com, OneDrive vagy Xbox Live ID azonosítót. Miután megadta a hello hello felhasználó e-mail címét, kattintson **kiválasztása** tooadd hello felhasználó, és kattintson a **OK**. 
    
    ![Felhasználók hozzáadása](media/automation-role-based-access-control/automation-04-add-users.png)  
    
-   Most meg kell jelennie a **Felhasználók** panelhez hozzáadott felhasználónak, mégpedig a hozzá rendelt **Olvasó** szerepkörrel.  
+   Most látnia kell a hello olyan hozzáadott felhasználó toohello **felhasználók** hello panelről **olvasó** szerepkörrel.  
    
    ![Felhasználók listázása](media/automation-role-based-access-control/automation-05-list-users.png)  
    
-   A felhasználóhoz a **Szerepkörök** panelről is hozzárendelhet szerepkört. 
-4. A **Szerepkörök panel** megnyitásához kattintson a Felhasználók panelről a **Szerepkörök** elemre. Erről a panelről megtekintheti a szerepkör nevét, és az adott szerepkörhöz rendelt felhasználók és csoportok számát.
+   Is hozzárendelhet egy szerepkör toohello felhasználót hello **szerepkörök** panelen. 
+4. Kattintson a **szerepkörök** a hello felhasználók panel tooopen hello **szerepkörök panelen**. Ezen a panelen megtekintheti hello szerepkör, felhasználók és csoportok toothat szerepét hello száma hello nevét.
    
     ![Szerepkör hozzárendelése a Felhasználók panelről](media/automation-role-based-access-control/automation-06-assign-role-from-users-blade.png)  
    
    > [!NOTE]
-   > A szerepköralapú vezérlés csak az Automation-fiók szintjén állítható be, az Automation-fiók alatti erőforrásoknál nem.
+   > Szerepköralapú hozzáférés-vezérlés állítható hello Automation-fiók szint csak, és nem a bármely alábbi erőforrás hello az Automation-fiók.
    > 
    > 
    
-    Hozzárendelhet egynél több szerepkört egy felhasználóhoz, csoporthoz vagy alkalmazáshoz. Ha például hozzáadjuk az **Automation operátor** szerepkört az **Olvasó** szerepkör mellett a felhasználóhoz, akkor megtekinthetik az összes Automation erőforrást, valamint végrehajthatják a forgatókönyv feladatokat. A legördülő listát kibontva megtekintheti a felhasználóhoz hozzárendelt szerepkörök listáját.  
+    Egynél több tooa felhasználói szerepkör, csoport vagy alkalmazás rendelhet. Például, ha jelenleg felvenni hello **Automation operátor** együtt hello szerepkör **olvasó szerepkört** toohello felhasználó, akkor azok is hello Automation erőforrások megtekintése, valamint hello runbook-feladatok végrehajtása. Hello legördülő tooview szerepkörrel toohello felhasználó listája bővítheti.  
    
     ![Több szerepkör megtekintése](media/automation-role-based-access-control/automation-07-view-multiple-roles.png)  
 
 ### <a name="remove-a-user"></a>Felhasználó eltávolítása
-Eltávolíthatja az Automation-fiókot nem kezelő, illetve már nem a szervezetnek dolgozó felhasználó engedélyeit. Alább láthatók egy felhasználó eltávolításának lépései: 
+Egy felhasználó, aki nem kezel hello Automation-fiók, vagy akik már nem működik a hello szervezet hello engedéllyel is eltávolíthat. Következő lépések tooremove vannak hello egy felhasználó: 
 
-1. A **Felhasználók** panelen válassza ki az eltávolítani kívánt szerepkört.
-2. A hozzárendelés részleteit megjelenítő panelen kattintson az **Eltávolítás** gombra.
-3. Az **Igen** gombra kattintva erősítse meg az eltávolítást. 
+1. A hello **felhasználók** panelen, jelölje be hello szerepkör-hozzárendelés, hogy kívánja-e tooremove.
+2. Kattintson a hello **eltávolítása** hello hozzárendelés részleteit megjelenítő panelen gombjára.
+3. Kattintson a **Igen** tooconfirm eltávolítása. 
    
    ![Felhasználók eltávolítása](media/automation-role-based-access-control/automation-08-remove-users.png)  
 
 ## <a name="role-assigned-user"></a>Szerepkörrel ellátott felhasználó
-Ha egy szerepkörhöz rendelt felhasználó bejelentkezik az Automation-fiókjába, a tulajdonos fiókja immár megjelenik az **Alapértelmezett könyvtárak** listájában. Ha meg szeretnék tekinteni az Automation-fiókot, amelyhez hozzá lettek adva, az alapértelmezett könyvtárat át kell váltani a tulajdonos alapértelmezett könyvtárára.  
+Amikor egy felhasználó lehet hozzárendelve tooa szerepkör tootheir Automation-fiók bejelentkezése, most láthatják hello tulajdonos fiókját hello listájában **alapértelmezett könyvtárak**. A sorrend tooview hello a hozzáadott Automation-fiók azok hello alapértelmezett címtár toohello tulajdonos alapértelmezett címtár kell váltania.  
 
 ![Alapértelmezett könyvtár](media/automation-role-based-access-control/automation-09-default-directory-in-role-assigned-user.png)  
 
 ### <a name="user-experience-for-automation-operator-role"></a>Automation-operátori szerepkör felhasználói élménye
-Ha egy Automation-operátori szerepkörrel felruházott felhasználó megtekinti a számára kijelölt Automation-fiókot, csak az Automation-fiókban létrehozott forgatókönyvek, forgatókönyv-feladatok és -ütemezések listáját látja, de a definíciójukat nem. Elindíthatják, leállíthatják, felfüggeszthetik, folytathatják és ütemezhetik a forgatókönyv-feladatokat. A felhasználó nem fog hozzáférni az Automation-erőforrásokhoz, például konfigurációkhoz, hibrid munkacsoportokhoz vagy DSC-csomópontokhoz.  
+Ha egy felhasználó, aki a hozzárendelt toohello Automation operátori szerepkör nézetek hello Automation-fiók vannak rendelve, csak hello listájának megtekintése a runbookok a következőkre, a runbook-feladatok és az ütemezések hello Automation-fiók hozott létre, de nem tekintheti meg azok definícióját. Ezek elindíthatja, állítsa le, felfüggesztése, folytatása vagy hello runbook-feladat ütemezése. hello felhasználónak nem kell tooother például konfigurációk, hibrid feldolgozó csoportokat vagy a DSC-csomópontok Automation erőforrások eléréséhez.  
 
-![Nincs hozzáférése az erőforrásokhoz](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)  
+![Nincs hozzáférés tooresourcres](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)  
 
-Ha a felhasználó rákattint a forgatókönyvre, a forrás megtekintésére vagy a forgatókönyv szerkesztésére vonatkozó parancsok nem érhetők el, mert az Automation-operátori szerepkör nem engedi a hozzáférést.  
+Ha hello felhasználó hello runbook kattint, hello parancsok tooview forrás hello vagy hello runbook szerkesztése nincsenek megadva, hello Automation kezelői szerepkör nem teszi lehetővé a hozzáférést toothem.  
 
-![Nincs engedélye a forgatókönyv szerkesztésére](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)  
+![Nincs hozzáférés tooedit runbook](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)  
 
-A felhasználó jogosult lesz ütemezések megtekintésére és létrehozására, de nem kap jogosultságot más adategységtípusokhoz.  
+hello felhasználói hozzáférés tooview és toocreate ütemezések fog rendelkezni, de más eszköz típusa nem lehet hozzáférési tooany.  
 
-![Nincs hozzáférése az adategységekhez](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)  
+![Nincs hozzáférés tooassets](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)  
 
-Ennek a felhasználónak nincs jogosultsága megtekinteni a forgatókönyvekhez társított webhookokat sem
+Ez a felhasználó is nem rendelkezik hozzáférési tooview hello webhookok társított runbook
 
-![Nincs hozzáférése a webhookokhoz](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)  
+![Nincs hozzáférés toowebhooks](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)  
 
 ## <a name="configure-rbac-for-your-automation-account-using-azure-powershell"></a>Az Automation-fiókhoz tartozó RBAC konfigurálása az Azure PowerShellel
-A szerepköralapú hozzáférés konfigurálható egy Automation-fiókra az alábbi [Azure PowerShell-parancsmagokkal](../active-directory/role-based-access-control-manage-access-powershell.md).
+Szerepköralapú hozzáférés-konfigurált tooan Automation-fiók is lehet hello alábbi [Azure PowerShell-parancsmagok](../active-directory/role-based-access-control-manage-access-powershell.md).
 
-• A [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) felsorolja az Azure Active Directoryban elérhető összes RBAC-szerepkört. Ezt a parancsot használhatja a **Name** (Név) tulajdonsággal, ha fel szeretné sorolni az összes műveletet, amelyet egy adott szerepkörrel lehet elvégezni.  
+• A [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) felsorolja az Azure Active Directoryban elérhető összes RBAC-szerepkört. A paranccsal együtt hello **neve** tulajdonság toolist összes hello egy adott szerepkör által végrehajtható műveleteket.  
     **Példa**  
     ![Szerepkör-definíció lekérése](media/automation-role-based-access-control/automation-14-get-azurerm-role-definition.png)  
 
-• A [Get-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx) felsorolja a megadott tartomány Azure AD RBAC szerepkör-hozzárendeléseit. Paraméterek nélkül ez a parancs az előfizetéshez tartozó összes szerepkör-hozzárendelést visszaadja. Az **ExpandPrincipalGroups** paraméter segítségével felsorolhatja egy adott felhasználó vagy a felhasználó csoportjának összes hozzáférés-hozzárendelését.  
-    **Példa:** Az alábbi paranccsal felsorolhatja az összes felhasználót és azok szerepkörét egy Automation-fiókon belül.
+• [Get-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx) listák hello: Azure AD RBAC szerepkör-hozzárendelések megadott hatókörben. Paraméter nélkül a parancs visszaadja az összes hello szerepkör-hozzárendelések hello előfizetés alapján. Használjon hello **ExpandPrincipalGroups** paraméter toolist hozzáférés hozzárendelések hello adni a felhasználó, valamint a hello csoportok hello felhasználó a tagja.  
+    **Példa:** használata hello következő toolist parancsot a hello minden felhasználó és az automation-fiók szerepkörét.
 
     Get-AzureRMRoleAssignment -scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>” 
 
 ![Szerepkör-kijelölés lekérése](media/automation-role-based-access-control/automation-15-get-azurerm-role-assignment.png)
 
-• A [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) segítségével felhasználóknak, csoportoknak és alkalmazásoknak biztosíthat hozzáférést egy adott hatókörhöz.  
-    **Példa:** Használja az alábbi parancsot, hogy hozzárendelje az „Automation-operátor” szerepkört egy, az Automation-fiók hatókörébe eső felhasználóhoz.
+• [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) tooassign hozzáférési toousers, csoportok és alkalmazások tooa adott hatókör.  
+    **Példa:** használata hello következő parancsot a tooassign hello "Automation-kezelő" szerepkör hello Automation-fiók hatókör felhasználójának.
 
-    New-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to grant access> -RoleDefinitionName "Automation operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”  
+    New-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish toogrant access> -RoleDefinitionName "Automation operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”  
 
 ![Új szerepkör hozzárendelése](media/automation-role-based-access-control/automation-16-new-azurerm-role-assignment.png)
 
-• A [Remove-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) segítségével távolítsa el a megadott felhasználó, csoport vagy alkalmazás hozzáférését egy adott hatókörből.  
-    **Példa:** Használja az alábbi parancsot a felhasználó „Automation-operátor” szerepkörből történő eltávolításához az Automation-fiók hatókörében.
+• Az [Remove-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) tooremove hozzáférést a megadott felhasználó, csoport vagy egy adott hatókör alkalmazást.  
+    **Példa:** használata hello következő parancsot a hello "Automation-kezelő" szerepkör az Automation-fiók hatókör hello tooremove hello felhasználót.
 
-    Remove-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to remove> -RoleDefinitionName "Automation Operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”
+    Remove-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish tooremove> -RoleDefinitionName "Automation Operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”
 
-A fenti példákban cserélje ki a **bejelentkezési azonosítót**, az **előfizetés azonosítóját**, az **erőforráscsoport nevét** és az **Automation-fiók nevét** a saját fiókja adataira. Ha a rendszer rákérdez, hogy tényleg szeretné-e törölni a szerepkör-hozzárendelést, kattintson az **Igen** gombra.   
+A fenti példák hello, cserélje le **bejelentkezés Id**, **előfizetés-azonosítóval**, **erőforráscsoport-név** és **Automation-fiók neve** a a fiók adatait. Válasszon **Igen** amikor tooconfirm kéri a felhasználói szerepkör-hozzárendelés tooremove folytatása előtt.   
 
 ## <a name="next-steps"></a>Következő lépések
-* Az RBAC for Azure Automation konfigurálásának különböző módjaira vonatkozó további információért lásd [az RBAC Azure PowerShellel folytatott kezelésével](../active-directory/role-based-access-control-manage-access-powershell.md) foglalkozó témakört.
-* További információk a forgatókönyvek elindításának különböző módjairól: [Forgatókönyv elindítása](automation-starting-a-runbook.md).
-* További információk a különböző forgatókönyv-típusokról: [Az Azure Automation forgatókönyveinek típusai](automation-runbook-types.md)
+* Azure Automation a különböző módokon tooconfigure RBAC információkért tekintse meg túl[kezelése az Azure PowerShell RBAC](../active-directory/role-based-access-control-manage-access-powershell.md).
+* A különböző módokon toostart egy runbookot, lásd: [runbook elindítása](automation-starting-a-runbook.md)
+* Különböző runbooktípusokkal kapcsolatos információkért tekintse meg túl[Azure Automation-runbook típusok](automation-runbook-types.md)
 

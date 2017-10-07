@@ -14,21 +14,21 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/04/2017
 ms.author: parakhj
-ms.openlocfilehash: 6c073d70debfdc3560405955d65fa9ccaa7d8b1f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b0c32086cebc171d91da2e7bfb48136723ccd4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-sign-in-by-using-azure-ad-accounts"></a>Az Azure Active Directory B2C: Azure AD-fiókok használatával írja alá
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Ez a cikk bemutatja, hogyan bejelentkezhet egy adott Azure Active Directory (Azure AD) szervezet keresztül a felhasználók engedélyezése [egyéni házirendek](active-directory-b2c-overview-custom.md).
+Ez a cikk bemutatja, hogyan tooenable bejelentkezhet egy adott Azure Active Directory (Azure AD) szervezeti hello segítségével a felhasználók [egyéni házirendek](active-directory-b2c-overview-custom.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Hajtsa végre a a [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md) cikk.
+Teljes hello szükséges lépések hello [Ismerkedés az egyéni házirendek](active-directory-b2c-get-started-custom.md) cikk.
 
 Ezek a lépések az alábbiak:
 
@@ -36,54 +36,54 @@ Ezek a lépések az alábbiak:
 2. Az Azure AD B2C-alkalmazás létrehozása.
 3. Két házirendmotor alkalmazás regisztrálásakor.
 4. Kulcsok beállítása.
-5. Az alapszintű csomag beállítása.
+5. Alapszintű csomag hello beállítása.
 
 ## <a name="create-an-azure-ad-app"></a>Az Azure AD-alkalmazás létrehozása
 
-Bejelentkezés a felhasználók egy meghatározott engedélyezése az Azure AD a szervezeten belül, regisztrálnia kell az alkalmazás belül a szervezeti Azure AD-bérlő.
+tooenable bejelentkezhet egy meghatározott felhasználók számára az Azure AD szervezet tooregister hello szervezeti Azure AD bérlő belül van szüksége.
 
 >[!NOTE]
-> A szervezeti a használjuk a "contoso.com" Azure AD-bérlő és a "fabrikamb2c.onmicrosoft.com" az Azure AD B2C bérlő az alábbi utasításokat.
+> Vesszük "contoso.com" hello szervezeti Azure AD-bérlő és a "fabrikamb2c.onmicrosoft.com" hello Azure AD B2C bérlő hello az utasításoknak a.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-1. A felső sávon válassza ki a fiókját. Az a **Directory** menüben válassza ki a szervezeti Azure AD-bérlő hol szeretne regisztrálni az alkalmazás (contoso.com).
-1. Válassza ki **további szolgáltatások** a bal oldali ablaktáblán, és keresse meg az "App regisztráció."
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+1. Hello felső sávon válassza ki a fiókját. A hello **Directory** menüben válassza ki a kívánt tooregister hello szervezeti Azure AD-bérlő az alkalmazás (contoso.com).
+1. Válassza ki **további szolgáltatások** hello bal oldali ablaktáblán, és keresse meg az "App regisztráció."
 1. Válassza ki **új alkalmazás regisztrációja**.
 1. Adjon meg egy nevet az alkalmazáshoz (például `Azure AD B2C App`).
-1. Válassza ki **Web app / API** az alkalmazás típusra.
-1. A **bejelentkezési URL-cím**, adja meg a következő URL-cím, ahol `yourtenant` cseréli le az Azure AD B2C bérlő neve (`fabrikamb2c.onmicrosoft.com`):
+1. Válassza ki **Web app / API** hello alkalmazás típusra.
+1. A **bejelentkezési URL-cím**, adja meg a következő URL-címe, hello ahol `yourtenant` helyébe hello az Azure AD B2C bérlő neve (`fabrikamb2c.onmicrosoft.com`):
 
     ```
     https://login.microsoftonline.com/te/yourtenant.onmicrosoft.com/oauth2/authresp
     ```
 
-1. Mentse az azonosítót.
-1. Válassza ki az újonnan létrehozott alkalmazást.
-1. Az a **beállítások** panelen válassza **kulcsok**.
-1. Hozzon létre egy új kulcsot, és mentse. A következő szakaszban a lépések még szüksége lesz rájuk.
+1. Mentse a hello azonosítót.
+1. Válassza ki az újonnan létrehozott hello alkalmazást.
+1. A hello **beállítások** panelen válassza **kulcsok**.
+1. Hozzon létre egy új kulcsot, és mentse. A hello a következő szakaszban található lépéseket hello még szüksége lesz rájuk.
 
-## <a name="add-the-azure-ad-key-to-azure-ad-b2c"></a>Az Azure AD-kulcs hozzáadása az Azure AD B2C
+## <a name="add-hello-azure-ad-key-tooazure-ad-b2c"></a>Az Azure AD hello kulcs tooAzure AD B2C hozzáadása
 
-A contoso.com alkalmazás kulcs tárolása az Azure AD B2C-bérlő kell. Ehhez tegye a következőket:
-1. Nyissa meg az Azure AD B2C-bérlő, és válassza ki **B2C beállítások** > **identitás élmény keretrendszer** > **házirend kulcsok**.
+Az Azure AD B2C-bérlő toostore hello contoso.com alkalmazás kulcs szükséges. toodo ezt:
+1. Nyissa meg tooyour az Azure AD B2C bérlő, és válassza **B2C beállítások** > **identitás élmény keretrendszer** > **házirend kulcsok**.
 1. Válassza ki **+ Hozzáadás**.
 1. Válassza ki vagy adja meg ezeket a beállításokat:
    * Válassza ki **manuális**.
-   * A **neve**, válasszon egy nevet, amely megfelel az Azure AD-bérlő nevét (például `ContosoAppSecret`).  Az előtag `B2C_1A_` automatikusan hozzáadódik a kulcs neve.
-   * Illessze be az alkalmazás kulcs a **titkos** mezőbe.
+   * A **neve**, válasszon egy nevet, amely megfelel az Azure AD-bérlő nevét (például `ContosoAppSecret`).  hello előtag `B2C_1A_` a rendszer automatikusan hozzáadja a kulcs toohello neve.
+   * Illessze be az alkalmazás kulcs hello **titkos** mezőbe.
    * Válassza ki **aláírás**.
 1. Kattintson a **Létrehozás** gombra.
-1. Győződjön meg arról, hogy létrehozta a kulcs `B2C_1A_ContosoAppSecret`.
+1. Győződjön meg arról, hogy létrehozott hello kulcs `B2C_1A_ContosoAppSecret`.
 
 
 ## <a name="add-a-claims-provider-in-your-base-policy"></a>A jogcím-szolgáltató hozzáadása a kiinduló házirend
 
-Ha azt szeretné, hogy a felhasználók jelentkezhetnek be az Azure AD használatával, kell meghatározni az Azure AD, a jogcím-szolgáltató. Ez azt jelenti meg kell adnia egy végpontot, amely az Azure AD B2C fognak kommunikálni. A végpont jogcímeket, az Azure AD B2C által használt győződjön meg arról, hogy egy adott felhasználó engedélyezést biztosít. 
+Ha azt szeretné, felhasználók toosign Azure AD használatával, egy jogcímszolgáltatótól, az Azure AD toodefine kell. Más szóval toospecify olyan végponttal, amely az Azure AD B2C is kommunikálni fognak van szüksége. hello végpont biztosítja, hogy egy adott felhasználó hitelesítette az Azure AD B2C tooverify által használt jogcímek egy készletét. 
 
-Meghatározhatja az Azure AD egy jogcímszolgáltatótól, az Azure AD-be való hozzáadásával a `<ClaimsProvider>` csomópont házirend bővítmény fájlban:
+Meghatározhatja az Azure AD egy jogcímszolgáltatótól, az Azure AD toohello hozzáadásával `<ClaimsProvider>` hello bővítményfájl házirend csomópontja:
 
-1. A bővítményfájl (TrustFrameworkExtensions.xml) megnyitása a munkakönyvtárat.
-1. Keresés a `<ClaimsProviders>` szakasz. Ha még nem létezik, adja hozzá a legfelső szintű csomópontja alatt.
+1. A munkakönyvtár hello bővítményfájl (TrustFrameworkExtensions.xml) megnyitása.
+1. Hello található `<ClaimsProviders>` szakasz. Ha még nem létezik, adja hozzá hello legfelső szintű csomópontja alatt.
 1. Adjon hozzá egy új `<ClaimsProvider>` csomópont az alábbiak szerint:
 
     ```XML
@@ -128,94 +128,94 @@ Meghatározhatja az Azure AD egy jogcímszolgáltatótól, az Azure AD-be való 
     </ClaimsProvider>
     ```
 
-1. Az a `<ClaimsProvider>` csomópont, frissítse az értéket a `<Domain>` segítségével különböztetheti meg egymástól az egyéb identitás-szolgáltatóktól származó egyedi értéket.
-1. A a `<ClaimsProvider>` csomópont, frissítse az értéket a `<DisplayName>` egy rövid nevet a jogcím-szolgáltató számára. Ez az érték nincs használatban.
+1. A hello `<ClaimsProvider>` csomópont, a frissítés hello értéke `<Domain>` tooa egyedi érték, amely lehet használt toodistinguish az egyéb identitás-szolgáltatóktól származó.
+1. A hello `<ClaimsProvider>` csomópont, a frissítés hello értéke `<DisplayName>` tooa rövid nevet a hello jogcím-szolgáltató. Ez az érték nincs használatban.
 
-### <a name="update-the-technical-profile"></a>A műszaki profil frissítése
+### <a name="update-hello-technical-profile"></a>Műszaki hello-profil frissítése
 
-Az Azure AD-végpont egy token beszerzéséhez ját definiálja a protokollokat, amelyeket az Azure AD B2C segítségével kommunikálni az Azure AD. Ez a `<TechnicalProfile>` eleme `<ClaimsProvider>`.
-1. Frissítés Azonosítóját a `<TechnicalProfile>` csomópont. Az azonosító olyan utal a műszaki profilhoz, a házirend egyéb részeitől.
-1. Frissítse az értéket a `<DisplayName>`. Ez az érték jelenik meg a Bejelentkezés gombra, a bejelentkezési képernyőn.
-1. Frissítse az értéket a `<Description>`.
-1. Az Azure AD az OpenID Connect protokollt használja, ezért ügyeljen arra, hogy az érték `<Protocol>` van `"OpenIdConnect"`.
+tooget hello Azure AD-végpont származó jogkivonat, toodefine hello protokollok, hogy az Azure AD B2C az Azure ad-val toocommunicate kell használnia kell. Ez történik, belül hello `<TechnicalProfile>` eleme `<ClaimsProvider>`.
+1. Hello hello azonosítója frissítése `<TechnicalProfile>` csomópont. Ez az azonosító nem használt toorefer toothis műszaki profil hello házirend egyéb részeitől.
+1. Frissítse a hello értéket `<DisplayName>`. Ez az érték a hello bejelentkezési gombra a bejelentkezési képernyőn jelenik meg.
+1. Frissítse a hello értéket `<Description>`.
+1. Az Azure AD hello OpenID Connect protokollt használja, ezért figyeljen oda arra, hogy hello értéke `<Protocol>` van `"OpenIdConnect"`.
 
-Frissíteni kell a `<Metadata>` az XML-fájl a szakaszban említett korábban megfelelően a beállításokat az adott Azure AD-bérlő. Az XML-fájlban, a metaadatok értékeinek frissítéséhez az alábbiak szerint:
+Tooupdate hello kell `<Metadata>` hello XML-fájl a szakaszban említett tooearlier tooreflect hello konfigurációs beállításokat az adott Azure AD-bérlő. Hello XML-fájl, a frissítés hello metaadat az alábbiak szerint:
 
-1. Állítsa be `<Item Key="METADATA">` való `https://login.windows.net/yourAzureADtenant/.well-known/openid-configuration`, ahol `yourAzureADtenant` a Azure AD-bérlő neve (contoso.com).
-1. Nyissa meg a böngészőt, és navigáljon a `METADATA` frissített URL-címet.
-1. A böngészőben keresse meg a "kiállító" objektum, és másolja az értékét. A következő formában: `https://sts.windows.net/{tenantId}/`.
-1. Illessze be a következő `<Item Key="ProviderName">` az XML-fájlban.
-1. Állítsa be `<Item Key="client_id">` számára az alkalmazás regisztrálása a alkalmazás azonosítója.
-1. Állítsa be `<Item Key="IdTokenAudience">` számára az alkalmazás regisztrálása a alkalmazás azonosítója.
-1. Győződjön meg arról, hogy `<Item Key="response_types">` értéke `id_token`.
-1. Győződjön meg arról, hogy `<Item Key="UsePolicyInRedirectUri">` értéke `false`.
+1. Állítsa be `<Item Key="METADATA">` túl`https://login.windows.net/yourAzureADtenant/.well-known/openid-configuration`, ahol `yourAzureADtenant` a Azure AD-bérlő neve (contoso.com).
+1. Nyissa meg a böngészőt, majd a toohello `METADATA` frissített URL-címet.
+1. Hello böngészőben hello "kiállító" objektum keresse meg, és másolja az értékét. Az alábbihoz hasonló hello: `https://sts.windows.net/{tenantId}/`.
+1. Illessze be a hello értéke `<Item Key="ProviderName">` hello XML-fájlban.
+1. Állítsa be `<Item Key="client_id">` toohello Alkalmazásazonosítót a hello alkalmazás regisztrációja.
+1. Állítsa be `<Item Key="IdTokenAudience">` toohello Alkalmazásazonosítót a hello alkalmazás regisztrációja.
+1. Győződjön meg arról, hogy `<Item Key="response_types">` értéke túl`id_token`.
+1. Győződjön meg arról, hogy `<Item Key="UsePolicyInRedirectUri">` értéke túl`false`.
 
-Is szükség van az Azure AD titkos kulcs regisztrált az Azure AD B2C-bérlő az Azure ad a hivatkozás `<ClaimsProvider>` információkat:
+Emellett szükség van az Azure AD B2C bérlő toohello az Azure AD a regisztrált toolink hello Azure AD titkos `<ClaimsProvider>` információkat:
 
-* Az a `<CryptographicKeys>` szakasz az előző XML-fájl, frissítse az értéket a `StorageReferenceId` a titkos kulcsot, amelyet megadott, a referencia-azonosítóra (például `ContosoAppSecret`).
+* A hello `<CryptographicKeys>` XML-fájl megelőző hello területen hello értéke frissítése `StorageReferenceId` toohello hivatkozási azonosítója, amelyet megadott hello titok (például `ContosoAppSecret`).
 
-### <a name="upload-the-extension-file-for-verification"></a>Az ellenőrzéshez a bővítmény-fájl feltöltése
+### <a name="upload-hello-extension-file-for-verification"></a>Az ellenőrzéshez hello kiterjesztésű fájl feltöltése
 
-Mostanra így az Azure AD B2C tudja kommunikálni az Azure AD-címtár konfigurálta a házirendet. Próbálja feltölti a bővítmény a házirend csak győződjön meg arról, hogy nincs probléma merül fel eddig. Ehhez tegye a következőket:
+Mostanra, konfigurálta a házirendet, hogy az Azure AD B2C tudja, hogyan toocommunicate az Azure AD-címtárát. Próbálja meg a házirend csak tooconfirm, hogy nincs probléma merül fel, amennyiben a hello kiterjesztésű fájl feltöltése. toodo így:
 
-1. Nyissa meg a **házirend** panel az Azure AD B2C-bérlőben.
-1. Ellenőrizze a **felülírja a házirendet, ha létezik** mezőbe.
-1. A bővítményfájl (TrustFrameworkExtensions.xml) feltöltése, és győződjön meg arról, hogy azt nem az érvényesítés.
+1. Nyissa meg hello **házirend** panel az Azure AD B2C-bérlőben.
+1. Ellenőrizze a hello **hello házirend felülírja, ha létezik** mezőbe.
+1. Töltse fel hello kiterjesztésű fájlt (TrustFrameworkExtensions.xml), és győződjön meg arról, hogy az érvényesítése nem hiúsul meg hello.
 
-## <a name="register-the-azure-ad-claims-provider-to-a-user-journey"></a>Regisztráció az Azure AD jogcímszolgáltató felhasználói út
+## <a name="register-hello-azure-ad-claims-provider-tooa-user-journey"></a>Hello Azure AD jogcímeket szolgáltató tooa felhasználói út regisztrálása
 
-Most kell az Azure AD identity provider hozzáadása a felhasználói utak egyike. Ezen a ponton az identitásszolgáltató be van állítva, de a sign-Close-Up/sign-in képernyők egyik nem érhető el. Tegye elérhetővé, a rendszer létrehoz egy meglévő sablon felhasználói út duplikált, és módosíthatja azt, hogy az Azure AD identity provider is rendelkezik:
+Most kell tooadd hello Azure AD identity provider tooone, a felhasználó utak. Ezen a ponton hello identitásszolgáltató be van állítva, de hello sign-Close-Up/sign-in képernyők egyik nem érhető el. toomake akkor érhető el, rendszer létrehoz egy meglévő sablon felhasználói út duplikált, és módosíthatja azt, hogy az identitásszolgáltató hello Azure AD is rendelkezik:
 
-1. Nyissa meg a házirend (például TrustFrameworkBase.xml) Alap fájlt.
-1. Keresés a `<UserJourneys>` elemet, és másolja a teljes `<UserJourney>` tartalmazó csomópont `Id="SignUpOrSignIn"`.
-1. Nyissa meg a bővítmény (például TrustFrameworkExtensions.xml) fájlt, és keresse a `<UserJourneys>` elemet. Ha az elem nem létezik, vegyen fel egyet.
-1. Illessze be a teljes `<UserJourney>` csomópont gyermekeként másolt a `<UserJourneys>` elemet.
-1. Nevezze át az új felhasználói út azonosítója (például a módon nevezze át `SignUpOrSignUsingContoso`).
+1. Nyissa meg a hello alap fájlt a házirend (például TrustFrameworkBase.xml).
+1. Hello található `<UserJourneys>` teljes elem és a példány hello `<UserJourney>` tartalmazó csomópont `Id="SignUpOrSignIn"`.
+1. Nyissa meg a hello bővítményfájl (például TrustFrameworkExtensions.xml), és megkeresi hello `<UserJourneys>` elemet. Ha hello elem nem létezik, vegyen fel egyet.
+1. Beillesztés hello teljes `<UserJourney>` hello gyermekeként másolt csomópont `<UserJourneys>` elemet.
+1. Hello azonosító hello új felhasználói út átnevezése (például a módon nevezze át `SignUpOrSignUsingContoso`).
 
-### <a name="display-the-button"></a>A "gomb"
+### <a name="display-hello-button"></a>Megjelenítési hello "gombra."
 
-A `<ClaimsProviderSelection>` a elem egy identitás szolgáltató gombjára egy sign-Close-Up/bejelentkezési képernyő hasonló. Ha ad hozzá egy `<ClaimsProviderSelection>` elem az Azure AD, egy új gombon, amikor egy felhasználó fájljai az oldalon. Ez az elem hozzáadása:
+Hello `<ClaimsProviderSelection>` elem hasonló tooan identity provider gombjára a sign-Close-Up/bejelentkezési képernyő. Ha ad hozzá egy `<ClaimsProviderSelection>` elem az Azure AD, egy új gombon, amikor egy felhasználó fájljai hello lapon. tooadd ezt az elemet:
 
-1. Keresse a `<OrchestrationStep>` tartalmazó csomópont `Order="1"` az újonnan létrehozott felhasználó út található.
-1. Adja hozzá a következőket:
+1. Hello található `<OrchestrationStep>` tartalmazó csomópont `Order="1"` az imént létrehozott hello felhasználói út.
+1. Adja hozzá a hello következő:
 
     ```XML
     <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
     ```
 
-1. Állítsa be `TargetClaimsExchangeId` egy megfelelő értékre. Azt javasoljuk, mint mások azonos egyezmény követően:  *\[ClaimProviderName\]Exchange*.
+1. Állítsa be `TargetClaimsExchangeId` tooan megfelelő értékre. Javasoljuk a következő hello ugyanaz, mint mások egyezmény:  *\[ClaimProviderName\]Exchange*.
 
-### <a name="link-the-button-to-an-action"></a>A gomb összekapcsolása egy műveletet
+### <a name="link-hello-button-tooan-action"></a>Hivatkozás hello tooan megnyomásakor
 
-Most, hogy a gomb helyen, hogy egy művelet kapcsolódnia kell. A művelet, ebben az esetben, akkor az Azure AD B2C-vel való kommunikációhoz fogadhatnak jogkivonatot az Azure AD. A gomb művelet mutató hivatkozás létrehozása az Azure AD jogcímeket szolgáltató létrehozhatja, ha a műszaki profil:
+Most, hogy a gomb helyen, toolink kell azt tooan művelet. hello művelet, ebben az esetben, akkor az Azure AD B2C toocommunicate az Azure AD tooreceive jogkivonatot. Hivatkozás hello tooan megnyomásakor létrehozhatja, ha az Azure AD jogcímeket szolgáltató műszaki hello-profil:
 
-1. Keresés a `<OrchestrationStep>` is tartalmazó `Order="2"` a a `<UserJourney>` csomópont.
-1. Adja hozzá a következőket:
+1. Hello található `<OrchestrationStep>` is tartalmazó `Order="2"` a hello `<UserJourney>` csomópont.
+1. Adja hozzá a hello következő:
 
     ```XML
     <ClaimsExchange Id="ContosoExchange" TechnicalProfileReferenceId="ContosoProfile" />
     ```
 
-1. Frissítés `Id` ugyanarra az értékre, amely `TargetClaimsExchangeId` az előző szakaszban leírt.
-1. Frissítés `TechnicalProfileReferenceId` a műszaki profil azonosítója létrehozott korábbi (ContosoProfile).
+1. Frissítés `Id` azonos érték, amely toohello `TargetClaimsExchangeId` az előző szakaszban hello.
+1. Frissítés `TechnicalProfileReferenceId` műszaki hello toohello azonosítója profilját, korábban létrehozott (ContosoProfile).
 
-### <a name="upload-the-updated-extension-file"></a>A frissített kiterjesztésű fájl feltöltése
+### <a name="upload-hello-updated-extension-file"></a>Hello frissített kiterjesztésű fájl feltöltése
 
-Befejezte a bővítmény fájl módosítása. Mentse a fájlt. Majd feltölteni a fájlt, és győződjön meg arról, hogy az összes érvényesítések sikeres.
+Elkészült módosítása hello kiterjesztésű fájlt. Mentse a fájlt. Majd feltölteni hello fájlt, és győződjön meg arról, hogy az összes érvényesítések sikeres.
 
-### <a name="update-the-rp-file"></a>A függő Entitás fájl frissítése
+### <a name="update-hello-rp-file"></a>Hello RP fájl frissítése
 
-Most frissíteni kell a függő entitásonkénti (RP) fájl, amely indít el az újonnan létrehozott felhasználó út:
+Most kell tooupdate hello függő entitásonkénti (RP) fájl, amely fogja elindítani az imént létrehozott hello felhasználói út:
 
-1. Készítsen másolatot a SignUpOrSignIn.xml a munkakönyvtárat, és adjon neki (például nevezze át SignUpOrSignInWithAAD.xml).
-1. Nyissa meg az új fájlt, és frissítse a `PolicyId` az attribútum `<TrustFrameworkPolicy>` egyedi értékkel (például SignUpOrSignInWithAAD). <br> Ez lesz a házirend nevét (például B2C\_1A\_SignUpOrSignInWithAAD).
-1. Módosítsa a `ReferenceId` attribútumnak `<DefaultUserJourney>` megfelelően az új felhasználói út (SignUpOrSignUsingContoso) létrehozott azonosítója.
-1. A módosítások mentéséhez, és töltse fel a fájlt.
+1. Készítsen másolatot a SignUpOrSignIn.xml a munkakönyvtárat, és adjon neki (például nevezni tooSignUpOrSignInWithAAD.xml).
+1. Nyissa meg hello új fájl- és frissítési hello `PolicyId` az attribútum `<TrustFrameworkPolicy>` egyedi értékkel (például SignUpOrSignInWithAAD). <br> Ez lesz a házirend hello nevét (például B2C\_1A\_SignUpOrSignInWithAAD).
+1. Módosítsa a hello `ReferenceId` attribútumnak `<DefaultUserJourney>` toomatch hello azonosító hello (SignUpOrSignUsingContoso) létrehozott új felhasználói út.
+1. A módosítások mentéséhez, és hello-fájl feltöltése.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 
-Tesztelje a egyéni házirendet, majd kattintson a panel megnyitása feltöltött **futtatása most**. Problémák diagnosztizálásához, olvassa el [hibaelhárítási](active-directory-b2c-troubleshoot-custom.md).
+A panel megnyitásával, majd feltöltött hello egyéni házirend tesztelése **futtatása most**. olvassa el toodiagnose problémák [hibaelhárítási](active-directory-b2c-troubleshoot-custom.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Visszajelzés küldése a [ AADB2CPreview@microsoft.com ](mailto:AADB2CPreview@microsoft.com).
+Visszajelzés küldése túl[AADB2CPreview@microsoft.com](mailto:AADB2CPreview@microsoft.com).

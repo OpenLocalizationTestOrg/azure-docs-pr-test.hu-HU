@@ -1,6 +1,6 @@
 ---
-title: "Adatok biztonsági mentése az Azure-ban"
-description: "Megtudhatja, hogyan az alkalmazások biztonsági mentéseinek létrehozását az Azure App Service-ben."
+title: "aaaBack be az alkalmazást az Azure-ban"
+description: "Megtudhatja, hogyan az alkalmazások az Azure App Service toocreate biztonsági másolatait."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 77e983afaaba8e944ab1f337e1c28ced83b63205
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e41d93d322bbc48b45b28eeaa817928d83c2b9d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-your-app-in-azure"></a>Adatok biztonsági mentése az Azure-ban
-A biztonsági mentése és visszaállítás szolgáltatás [Azure App Service](../app-service/app-service-value-prop-what-is.md) lehetővé teszi, hogy könnyen hozzanak létre alkalmazás biztonsági mentést, manuálisan vagy ütemezés szerint. Az alkalmazás felülírja a meglévő alkalmazás vagy egy másik alkalmazásnak visszaállítása visszaállíthatja egy korábbi állapothoz pillanatképet. 
+hello biztonsági mentése és visszaállítása a szolgáltatással [Azure App Service](../app-service/app-service-value-prop-what-is.md) lehetővé teszi, hogy könnyen hozzanak létre alkalmazás biztonsági mentést, manuálisan vagy ütemezés szerint. Felülírása hello meglévő alkalmazás vagy a visszaállítási tooanother alkalmazás visszaállításához hello app tooa pillanatképe korábbi állapotába. 
 
 Az alkalmazás biztonsági másolatból történő visszaállítását információkért lásd: [visszaállítása egy alkalmazást az Azure-ban](web-sites-restore.md).
 
 <a name="whatsbackedup"></a>
 
 ## <a name="what-gets-backed-up"></a>Mi a biztonsági mentés beolvasása
-App Service készíthet biztonsági másolatot egy Azure-tárfiók és tároló, amely az alkalmazás használatára konfigurálta a következő információkat. 
+App Service készíthet biztonsági másolatot a hello következő információk tooan Azure storage-fiókok és az alkalmazás toouse konfigurált tároló. 
 
 * Alkalmazáskonfiguráció
 * A fájl
-* Az alkalmazáshoz kapcsolódó adatbázis
+* Adatbázis csatlakoztatott tooyour alkalmazás
 
-A következő adatbázis-megoldások biztonsági mentését végző szolgáltatás használata támogatott: 
+biztonsági másolat szolgáltatás a következő adatbázis megoldások hello támogatottak: 
    - [SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
    - [A MySQL (előzetes verzió) Azure-adatbázis](https://azure.microsoft.com/en-us/services/mysql)
    - [Azure-adatbázis PostgreSQL (előzetes verzió)](https://azure.microsoft.com/en-us/services/postgres)
@@ -49,116 +49,116 @@ A következő adatbázis-megoldások biztonsági mentését végző szolgáltat�
 <a name="requirements"></a>
 
 ## <a name="requirements-and-restrictions"></a>Követelmények és korlátozások
-* A biztonsági mentését és visszaállítását funkció használatához az App Service-csomag kell lennie a **szabványos** réteg vagy **prémium** réteg. Az alkalmazásszolgáltatási csomag magasabb szintű használható használandó méretezésével kapcsolatos további információkért lásd: [vertikális felskálázás az Azure alkalmazásban](web-sites-scale.md).  
+* Készítsen biztonsági másolatot hello és visszaállítási funkció használatához az alkalmazásszolgáltatási csomag toobe a hello hello **szabványos** réteg vagy **prémium** réteg. Az App Service-csomag toouse magasabb szintű használható méretezésével kapcsolatos további információkért lásd: [vertikális felskálázás az Azure alkalmazásban](web-sites-scale.md).  
   **Prémium szintű** réteg lehetővé teszi, hogy a napi nagyobb számú biztonsági ups mint **szabványos** réteg.
-* Egy Azure storage-fiók és a tároló ugyanazt az előfizetést, mint az alkalmazás kívánt kell biztonsági másolatot készíteni. Az Azure storage-fiókokról további információkért lásd: a [hivatkozások](#moreaboutstorage) Ez a cikk végén.
-* Biztonsági mentés az alkalmazás- és a tartalom legfeljebb 10 GB-os lehet. Ha a biztonsági másolat mérete meghaladja ezt a korlátot, hibaüzenetet kap.
+* Egy Azure storage-fiók és a tároló az hello van szükség, amelyet az toobackup hello alkalmazásként ugyanahhoz az előfizetéshez. Az Azure storage-fiókokról további információkért lásd: hello [hivatkozások](#moreaboutstorage) hello Ez a cikk végén.
+* Biztonsági mentések be az alkalmazás- és tartalom too10 GB lehet. Hello biztonsági másolatának mérete túllépi ezt a korlátozást, ha hibaüzenetet kap.
 
 <a name="manualbackup"></a>
 
 ## <a name="create-a-manual-backup"></a>Manuális biztonsági mentés létrehozása
-1. Az a [Azure Portal](https://portal.azure.com), keresse meg az alkalmazás panelen, jelölje ki **biztonsági mentések**. A **biztonsági mentések** panel fog megjelenni.
+1. A hello [Azure Portal](https://portal.azure.com)tooyour alkalmazás paneljén lépjen, válassza ki **biztonsági mentések**. Hello **biztonsági mentések** panel fog megjelenni.
    
     ![Biztonsági mentések lap][ChooseBackupsPage]
    
    > [!NOTE]
-   > Ha az alábbi üzenet jelenik meg, kattintson rá az App Service-csomag frissítése előtt nyugodtan folytathatja a biztonsági másolatok.
+   > Ha az alábbi hello üzenet jelenik meg, kattintson rá az App Service-csomag előtt lépne tooupgrade biztonsági.
    > Lásd: [vertikális felskálázás az Azure alkalmazásban](web-sites-scale.md) további információt.  
    > ![Válassza ki a tárfiók](./media/web-sites-backup/01UpgradePlan1.png)
    > 
    > 
 
-2. A a **biztonsági mentés** paneljén kattintson **konfigurálása**
+2. A hello **biztonsági mentés** paneljén kattintson **konfigurálása**
 ![kattintson konfigurálása](./media/web-sites-backup/ClickConfigure1.png)
-3. Az a **biztonsági mentési konfigurációhoz** panelen kattintson a **tárolási: nincs konfigurálva** storage-fiókok konfigurálása.
+3. A hello **biztonsági mentési konfigurációhoz** panelen kattintson a **tárolási: nincs konfigurálva** tooconfigure egy tárfiókot.
    
     ![Válassza ki a tárfiók][ChooseStorageAccount]
-4. A biztonsági mentés célhelyének megadásához jelöljön ki egy **Tárfiók** és **tároló**. A tárfiók ugyanahhoz az előfizetéshez, mint a kívánt alkalmazást, készítsen biztonsági másolatot kell tartoznia. Ha kívánja, létrehozhat egy új tárfiókot vagy egy új tároló a megfelelő panelt a. Amikor elkészült, kattintson a **válasszon**.
+4. A biztonsági mentés célhelyének megadásához jelöljön ki egy **Tárfiók** és **tároló**. hello tárfiókot kell tartozniuk toohello tooback akarja hello alkalmazásként ugyanahhoz az előfizetéshez. Ha kívánja, létrehozhat egy új tárfiókot vagy egy új tároló hello megfelelő panelt a. Amikor elkészült, kattintson a **válasszon**.
    
     ![Válassza ki a tárfiók](./media/web-sites-backup/02ChooseStorageAccount1-1.png)
-5. A a **biztonsági mentési konfigurációhoz** még mindig nyitva marad panelen beállíthatja **adatbázis biztonsági másolata**, majd válassza ki a szerepeljen a biztonsági mentések (SQL-adatbázis vagy MySQL), majd kattintson a kívánt adatbázisokat **OK**.  
+5. A hello **biztonsági mentési konfigurációhoz** még mindig nyitva marad panelen beállíthatja **adatbázis biztonsági másolata**, majd válassza ki a hello adatbázisokat szeretné, hogy tooinclude hello biztonsági mentései (SQL-adatbázis vagy MySQL), majd kattintson a **OK**.  
    
     ![Válassza ki a tárfiók](./media/web-sites-backup/03ConfigureDatabase1.png)
    
    > [!NOTE]
-   > Ebben a listában szerepelnek az adatbázis, a kapcsolati karakterláncában szerepelnie kell a **kapcsolati karakterláncok** szakasza a **Alkalmazásbeállítások** alkalmazás.
+   > Egy adatbázis tooappear ezen a listán, a kapcsolati karakterláncában szerepelnie kell hello **kapcsolati karakterláncok** hello szakasza **Alkalmazásbeállítások** alkalmazás.
    > 
    > 
-6. Az a **biztonsági mentési konfigurációhoz** panelen kattintson a **mentése**.    
-7. Az a **biztonsági mentések** panelen kattintson a **biztonsági mentés**.
+6. A hello **biztonsági mentési konfigurációhoz** panelen kattintson a **mentése**.    
+7. A hello **biztonsági mentések** panelen kattintson a **biztonsági mentés**.
    
     ![BackUpNow gomb][BackUpNow]
    
-    A folyamatban lévő üzenet jelenik meg a biztonsági mentési folyamat során.
+    Megjelenik egy folyamatban lévő üzenet hello biztonsági mentési folyamat során.
 
-Miután beállította a tárfiók és tároló manuális biztonsági mentés bármikor kezdeményezhető.  
+Miután beállította hello tárfiók és tároló manuális biztonsági mentés bármikor kezdeményezhető.  
 
 <a name="automatedbackups"></a>
 
 ## <a name="configure-automated-backups"></a>Az automatikus biztonsági mentések konfigurálása
-1. Az a **biztonsági mentési konfigurációhoz** panelen állítsa **ütemezett biztonsági mentés** való **a**. 
+1. A hello **biztonsági mentési konfigurációhoz** panelen állítsa **ütemezett biztonsági mentés** túl**a**. 
    
     ![Válassza ki a tárfiók](./media/web-sites-backup/05ScheduleBackup1.png)
-2. Beállítások megjelenik, biztonsági mentési ütemezés beállítása **ütemezett biztonsági mentési** való **a**, majd konfigurálja a biztonsági mentés ütemezése tetszés szerint, és kattintson a **OK**.
+2. Beállítások megjelenik, biztonsági mentési ütemezés beállítása **ütemezett biztonsági mentési** túl**a**, majd konfigurálja a biztonsági mentés ütemezése hello tetszés szerint, és kattintson a **OK**.
    
     ![Az automatikus biztonsági mentés engedélyezése][SetAutomatedBackupOn]
 
 <a name="partialbackups"></a>
 
 ## <a name="configure-partial-backups"></a>Részleges biztonsági mentések konfigurálása
-Néha nem kívánja minden, az alkalmazás a biztonsági mentés. Íme, néhány példa:
+Néha nem szeretné, hogy toobackup mindent az alkalmazásnak. Íme, néhány példa:
 
 * Ön [beállítása heti biztonsági mentései](web-sites-backup.md#configure-automated-backups) az alkalmazás, amely tartalmazza a statikus tartalom, amely soha nem változik, például a régi blogbejegyzések vagy képeket.
-* Az alkalmazás rendelkezik több mint 10 GB-os tartalomtípus (Ez az a maximális időtartam készíthet biztonsági másolatot egy időben).
-* Nem szeretné a naplófájlok biztonsági mentését.
+* Az alkalmazás még több mint 10 GB-tartalmat (hello maximális mennyiség készíthet biztonsági másolatot egy időben).
+* Nem szeretné, hogy toobackup hello naplófájlokat.
 
-Részleges biztonsági másolatok lehetővé teszi, hogy úgy dönt, hogy pontosan amely fájlokat szeretne biztonsági másolatot készíteni.
+Részleges biztonsági másolatok lehetővé teszi, hogy úgy dönt, hogy pontosan amely fájlokat szeretné, hogy toobackup.
 
 ### <a name="exclude-files-from-your-backup"></a>Fájlok kizárása a biztonsági mentés
-Tegyük fel, hogy egy alkalmazás, amely tartalmazza a naplófájlok és a statikus képeket, biztonsági mentési egyszer és nem kívánja módosítani. Ilyen esetekben kizárhatja azokat a fájlokat és mappákat a jövőbeni biztonsági mentések tárolják. Fájlok és mappák kizárása a biztonsági másolatok, hozzon létre egy `_backup.filter` fájlt a `D:\home\site\wwwroot` az alkalmazás mappájában. Megadja azokat a fájlokat és mappákat szeretne kizárni a fájlban található. 
+Tegyük fel, amely tartalmazza a naplófájlok és a biztonsági mentési egyszer és nem fog toochange statikus képek alkalmazás. Ilyen esetekben kizárhatja azokat a fájlokat és mappákat a jövőbeni biztonsági mentések tárolják. tooexclude fájlokat és mappákat a biztonsági másolatból, hozzon létre egy `_backup.filter` hello fájlban `D:\home\site\wwwroot` az alkalmazás mappájában. Fájlok és mappák azt szeretné, hogy a fájl tooexclude hello listáját adja meg. 
 
-A fájlok eléréséhez egyszerűen, hogy a Kudu használja. Kattintson a **speciális eszközök -> Ugrás** Kudu eléréséhez a webalkalmazás beállítása.
+Egy egyszerű módot tooaccess a fájlok toouse Kudu. Kattintson a **speciális eszközök -> Ugrás** a webes alkalmazás tooaccess Kudu beállítása.
 
 ![A kudu portál használatával][kudu-portal]
 
-Azonosítsa a biztonsági másolatok kizárni kívánt mappákat.  Például szeretné a kijelölt mappa és a fájlok szűrik.
+Azonosítsa, hogy a kívánt tooexclude a biztonsági másolatok hello mappákat.  Például azt szeretné, toofilter hello kijelölt mappa és a fájlokat.
 
 ![Képek mappához][ImagesFolder]
 
-Hozzon létre egy nevű fájlt `_backup.filter` és a fenti lista be a fájlt, de eltávolítása `D:\home`. Egy soronként fájl vagy könyvtár felsorolása. Ezért a fájl tartalma kell lennie:
+Hozzon létre egy nevű fájlt `_backup.filter` és a fenti hello lista be hello fájlt, de eltávolítása `D:\home`. Egy soronként fájl vagy könyvtár felsorolása. Ezért hello fájl tartalma hello kell:
  ```bash
     \site\wwwroot\Images\brand.png
     \site\wwwroot\Images\2014
     \site\wwwroot\Images\2013
 ```
 
-Töltse fel `_backup.filter` fájlt a `D:\home\site\wwwroot\` mappában található a webhely használatával [ftp](web-sites-deploy.md#ftp) vagy más módszerrel. Ha kívánja, a fájlt közvetlenül a Kudu segítségével létrehozhat `DebugConsole` és szúrja be a hiba a tartalmat.
+Töltse fel `_backup.filter` toohello fájl `D:\home\site\wwwroot\` mappában található a webhely használatával [ftp](web-sites-deploy.md#ftp) vagy más módszerrel. Ha kívánja, létrehozhat hello fájl közvetlenül a Kudu `DebugConsole` és szúrja be a hiba a hello tartalmat.
 
-Biztonsági mentések futtatása a szokásos módon teheti meg, ugyanúgy [manuálisan](#create-a-manual-backup) vagy [automatikusan](#configure-automated-backups). Most, bármely fájlok és mappák megadott `_backup.filter` ki van zárva a jövőbeli biztonsági mentések ütemezett, vagy manuálisan indítják el. 
+Futtatási biztonsági mentések hello azonos módon szokásos módon teheti meg, [manuálisan](#create-a-manual-backup) vagy [automatikusan](#configure-automated-backups). Most, bármely fájlok és mappák megadott `_backup.filter` hello jövőbeli biztonsági mentések ütemezett, vagy manuálisan indítják el ki van zárva. 
 
 > [!NOTE]
-> A webhely részleges biztonsági másolatok a módon visszaállítása [a rendszeres biztonsági másolat visszaállításával](web-sites-restore.md). A visszaállítási folyamat nem a megfelelő művelet.
+> A hely hello részleges biztonsági másolatainak visszaállítása módon [a rendszeres biztonsági másolat visszaállításával](web-sites-restore.md). hello visszaállítási folyamat hello jobb oldali dolgot tegyenek.
 > 
-> Ha egy teljes biztonsági mentés helyreállítása, a hely összes tartalmat helyére függetlenül a biztonsági mentés van. Ha egy fájl a helyen, de nem a biztonsági mentés az lekérdezi törlődni fog. De részleges biztonsági másolat visszaállításakor egyik Feketelistára tett könyvtárban, vagy bármely Feketelistára tett fájlban található tartalmakhoz marad, mert a.
+> Ha teljes biztonsági mentés helyreállítása, hello hely összes tartalmat helyére függetlenül hello biztonsági mentés van. Ha egy fájl hello helyen, de nem hello biztonsági mentés az lekérdezi törlődni fog. De részleges biztonsági másolat visszaállításakor egyik feketelistára teszi hello könyvtárban, vagy bármely Feketelistára tett fájlban található tartalmakhoz marad, mert a.
 > 
 
 
 <a name="aboutbackups"></a>
 
 ## <a name="how-backups-are-stored"></a>Biztonsági másolatok tárolási módját
-Egy vagy több biztonsági mentés az alkalmazás elkészítése után a biztonsági másolatok jelennek meg a **tárolók** panelen található a tárfiók, és az alkalmazás. A tárfiókban lévő minden egyes biztonsági másolat áll egy`.zip` a biztonsági mentési adatokat tartalmazó fájlt, és egy `.xml` a javítócsomagban adatait tartalmazó fájlt a `.zip` fájl tartalmát. Csomagolja ki, és keresse meg ezeket a fájlokat, ha azt szeretné, hogy egy alkalmazás-visszaállítási végrehajtása nélkül a biztonsági másolatok eléréséhez.
+Egy vagy több biztonsági mentés az alkalmazás elkészítése után hello biztonsági másolatok jelennek meg hello **tárolók** panelen található a tárfiók, és az alkalmazás. Hello tárfiókot, minden egyes biztonsági másolat tartalmaz egy`.zip` hello biztonsági mentési adatokat tartalmazó fájlt, és egy `.xml` hello jegyzékfájl tartalmazó fájl `.zip` fájl tartalmát. Csomagolja ki, és keresse meg ezeket a fájlokat, ha azt szeretné, tooaccess a biztonsági másolatok egy alkalmazás-visszaállítási végrehajtása nélkül.
 
-Az adatbázis biztonsági mentése az alkalmazás the.zip fájl tárolja. SQL-adatbázis Ez egy BACPAC-fájl (nincs fájl kiterjesztése) és importálhatók. Egy SQL-adatbázis BACPAC exportálás alapján létrehozásához lásd: [létrehozni egy új felhasználói adatbázis BACPAC fájl importálása](http://technet.microsoft.com/library/hh710052.aspx).
+hello az adatbázis biztonsági mentése hello alkalmazás hello legfelső szintű the.zip fájl tárolja. SQL-adatbázis Ez egy BACPAC-fájl (nincs fájl kiterjesztése) és importálhatók. toocreate a SQL-adatbázis BACPAC exportálási hello alapján című [importálni egy új felhasználói adatbázis BACPAC fájl tooCreate](http://technet.microsoft.com/library/hh710052.aspx).
 
 > [!WARNING]
-> Módosítása a fájlokat a **websitebackups** tároló okozhat a biztonsági mentés érvénytelen, és ezért nem visszaállítható válik.
+> Hello fájlokat a módosítása a **websitebackups** tároló hello biztonsági mentési toobecome érvénytelen, és ezért nem visszaállítható okozhat.
 > 
 > 
 
 <a name="nextsteps"></a>
 
 ## <a name="next-steps"></a>Következő lépések
-A visszaállítása egy alkalmazás olyan biztonsági információ: [visszaállítása egy alkalmazást az Azure-ban](web-sites-restore.md). Is biztonsági mentése és visszaállítása a REST API használatával App Service apps (lásd: [biztonsági mentése és visszaállítása az App Service apps használata REST](websites-csm-backup.md)).
+A visszaállítása egy alkalmazás olyan biztonsági információ: [visszaállítása egy alkalmazást az Azure-ban](web-sites-restore.md). Is biztonsági mentése és visszaállítása a REST API használatával App Service apps (lásd: [használata REST toobackup és visszaállítási App Service apps](websites-csm-backup.md)).
 
 
 <!-- IMAGES -->

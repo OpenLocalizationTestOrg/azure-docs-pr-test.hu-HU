@@ -1,6 +1,6 @@
 ---
-title: "Az Azure tárolási táblában funkciók kötések |} Microsoft Docs"
-description: "Azure Storage kötések az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók tárolási tábla kötések |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Azure Storage kötések Azure Functions."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Az Azure Functions tárolási tábla kötések
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk azt ismerteti, konfigurálása és kód Azure Storage tábla kötések az Azure Functions. Azure Functions támogatja bemeneti és kimeneti Azure Storage-táblákat kötéseit.
+Ez a cikk ismerteti, hogyan tooconfigure és az Azure Storage kód tábla az Azure Functions kötések. Azure Functions támogatja bemeneti és kimeneti Azure Storage-táblákat kötéseit.
 
-A tárolási táblakötéssel a következő szituációkat ismerteti:
+hello tárolási tábla kötés támogatja-e a következő forgatókönyvek hello:
 
-* **Egy C# vagy Node.js függvény egyetlen sor olvasása** - beállított `partitionKey` és `rowKey`. A `filter` és `take` tulajdonságok nem szerepel ebben a forgatókönyvben.
-* **Olvassa el a C# függvényben több sort** – a Functions futtatókörnyezete biztosít egy `IQueryable<T>` objektum kötve a tábla. Típus `T` kell származnia `TableEntity` vagy megvalósítása `ITableEntity`. A `partitionKey`, `rowKey`, `filter`, és `take` tulajdonságok nem szerepel ebben a forgatókönyvben; használhatja a `IQueryable` elvégzéséhez szükséges szűrés objektum. 
-* **Egy csomópont függvény több sor olvasása** – állítsa be a `filter` és `take` tulajdonságok. Nincs beállítva `partitionKey` vagy `rowKey`.
-* **Egy vagy több sor írása C# függvények** -a Functions futtatókörnyezete biztosít egy `ICollector<T>` vagy `IAsyncCollector<T>` kötve a tábla, ahol `T` határozza meg a hozzáadni kívánt entitásokat sémája. Általában, írja be a `T` származik `TableEntity` vagy megvalósítja `ITableEntity`, de nem kell. A `partitionKey`, `rowKey`, `filter`, és `take` tulajdonságok nem szerepel ebben a forgatókönyvben.
+* **Egy C# vagy Node.js függvény egyetlen sor olvasása** - beállított `partitionKey` és `rowKey`. Hello `filter` és `take` tulajdonságok nem szerepel ebben a forgatókönyvben.
+* **Olvassa el a C# függvényben több sort** -hello Functions futtatókörnyezete biztosít egy `IQueryable<T>` objektumhoz kötött toohello tábla. Típus `T` kell származnia `TableEntity` vagy megvalósítása `ITableEntity`. Hello `partitionKey`, `rowKey`, `filter`, és `take` tulajdonságok nem szerepel ebben a forgatókönyvben; használhatja a hello `IQueryable` objektum toodo szükséges szűrés. 
+* **Egy csomópont függvény több sor olvasása** - beállított hello `filter` és `take` tulajdonságok. Nincs beállítva `partitionKey` vagy `rowKey`.
+* **Egy vagy több sor írása C# függvények** -hello Functions futtatókörnyezete biztosít egy `ICollector<T>` vagy `IAsyncCollector<T>` kötött toohello tábla, ahol `T` hello séma meghatározza hello entitások tooadd szeretné. Általában, írja be a `T` származik `TableEntity` vagy megvalósítja `ITableEntity`, de nem kell. Hello `partitionKey`, `rowKey`, `filter`, és `take` tulajdonságok nem szerepel ebben a forgatókönyvben.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="storage-table-input-binding"></a>Tárolási tábla bemeneti kötése
-Az Azure Storage bemeneti táblakötéssel lehetővé teszi a tárolási tábla használatát a függvényben. 
+hello Azure Storage bemeneti táblakötéssel lehetővé teszi a függvény egy tárolási tábla toouse. 
 
-A tárolási tábla bemenete egy olyan függvényt használja a következő JSON-objektumok a `bindings` function.json tömbje:
+hello tárolási tábla bemeneti tooa függvény használja a következő hello a JSON-objektumok hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -49,28 +49,28 @@ A tárolási tábla bemenete egy olyan függvényt használja a következő JSON
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Vegye figyelembe a következőket: 
+Vegye figyelembe a következőket hello: 
 
-* Használjon `partitionKey` és `rowKey` egyetlen entitás elolvasására együtt. Ezek a tulajdonságok egyike sem kötelező. 
-* `connection`egy alkalmazás-beállítás, amely tartalmazza a tárolási kapcsolati karakterlánc nevét kell tartalmaznia. Az Azure portálon, a szokásos szerkesztő a **integráció** lapon konfigurálja az Alkalmazásbeállítás hoz létre, a tárolási fiók vagy választja ki egy meglévőt. Emellett [konfigurálása az alkalmazás manuális beállításával](functions-how-to-use-azure-function-app-settings.md#settings).  
+* Használjon `partitionKey` és `rowKey` együtt tooread egyetlen entitás. Ezek a tulajdonságok egyike sem kötelező. 
+* `connection`egy tárolási kapcsolati karakterlánc tartalmazó Alkalmazásbeállítás hello nevét kell tartalmaznia. Hello Azure-portálon, a hello hello a szokásos szerkesztő **integráció** lapon konfigurálja az Alkalmazásbeállítás hoz létre, a tárolási fiók vagy választja ki egy meglévőt. Emellett [konfigurálása az alkalmazás manuális beállításával](functions-how-to-use-azure-function-app-settings.md#settings).  
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Bemeneti kihasználtsága
-A C# függvények, akkor eszközben csatlakozzon a bemeneti tábla entitás (vagy entitások) egy elnevezett paraméter a függvényaláíráshoz a például `<T> <name>`.
-Ha `T` , az adatokat, írja be, hogy szeretné-e deszerializálni az adatokat, és `paramName` a megadott név a [kötés bemeneti](#input). A Node.js funkciókat érheti el a bemeneti tábla entitás (vagy entitások) használatával `context.bindings.<name>`.
+A C# függvények, akkor kötni toohello bemeneti tábla entitás (vagy entitások) használatával egy elnevezett paraméter a függvényaláíráshoz, például `<T> <name>`.
+Ha `T` adattípus hello megjeleníteni kívánt toodeserialize hello adatokat, és `paramName` hello megadott hello név [kötés bemeneti](#input). A Node.js funkciókat érheti el hello bemeneti tábla entitás (vagy entitások) használatával `context.bindings.<name>`.
 
-A bemeneti adatok Node.js vagy C# funkciók is deszerializálható. A deszerializált objektum rendelkezik `RowKey` és `PartitionKey` tulajdonságok.
+Node.js vagy C# funkciók is deszerializálható hello bemeneti adatok. hello deszerializálni objektumok `RowKey` és `PartitionKey` tulajdonságok.
 
-A C# funkciók is köthető a következő típusok, és a Functions futtatókörnyezete megkísérli deszerializálni a tábla adatait, hogy a típus használatával:
+A C# funkciók is köthető a következő típusok hello tooany, és futásidejű megpróbál hello funkciók túl deszerializálni hello adatait, hogy a típus használatával:
 
 * Magában foglaló típussal`ITableEntity`
 * `IQueryable<T>`
@@ -78,8 +78,8 @@ A C# funkciók is köthető a következő típusok, és a Functions futtatókör
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>A minta bemeneti
-Kellene, hogy rendelkezik-e a következő function.json, amely várólista eseményindítót használ egy-egy sorának olvasása. Megadja a JSON `PartitionKey`  
- `RowKey`. `"rowKey": "{queueTrigger}"`azt jelzi, hogy a sorkulcs származik-e a várólista üzenet karakterlánc.
+Kellett volna lennie a következő function.json, használja a várólista eseményindító tooread egy-egy sorának hello rendelkezik. hello JSON megadja `PartitionKey`  
+ `RowKey`. `"rowKey": "{queueTrigger}"`azt jelzi, hogy hello sor kulcs hello várólista üzenet karakterlánc származik.
 
 ```json
 {
@@ -105,7 +105,7 @@ Kellene, hogy rendelkezik-e a következő function.json, amely várólista esem�
 }
 ```
 
-Tekintse meg a nyelvspecifikus minta a táblázat egyetlen entitás olvasó.
+Lásd: hello nyelvspecifikus minta a táblázat egyetlen entitás olvasó.
 
 * [C#](#inputcsharp)
 * [F#](#inputfsharp)
@@ -159,9 +159,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="storage-table-output-binding"></a>Tárolási tábla kimeneti kötése
-Az Azure Storage táblázatos kimenete kötés lehetővé teszi, hogy entitások írását tárolási tábla a függvényben. 
+a kimeneti hello Azure Storage tábla kötés lehetővé teszi a toowrite entitások tooa tárolási tábla a függvényben. 
 
-A kimeneti a függvényt használja a következő JSON-objektumok tárolási tábla a `bindings` function.json tömbje:
+hello tárolási táblázatos kimenete egy függvény hello hello a JSON-objektumok a következő célokra `bindings` function.json tömbje:
 
 ```json
 {
@@ -169,33 +169,33 @@ A kimeneti a függvényt használja a következő JSON-objektumok tárolási tá
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Vegye figyelembe a következőket: 
+Vegye figyelembe a következőket hello: 
 
-* Használjon `partitionKey` és `rowKey` együtt egyetlen entitás írni. Ezek a tulajdonságok egyike sem kötelező. Azt is megadhatja, `PartitionKey` és `RowKey` létrehozásakor az entitásobjektumok gyűjteményeit a függvény kódban.
-* `connection`egy alkalmazás-beállítás, amely tartalmazza a tárolási kapcsolati karakterlánc nevét kell tartalmaznia. Az Azure portálon, a szokásos szerkesztő a **integráció** lapon konfigurálja az Alkalmazásbeállítás hoz létre, a tárolási fiók vagy választja ki egy meglévőt. Emellett [konfigurálása az alkalmazás manuális beállításával](functions-how-to-use-azure-function-app-settings.md#settings). 
+* Használjon `partitionKey` és `rowKey` együtt toowrite egyetlen entitás. Ezek a tulajdonságok egyike sem kötelező. Azt is megadhatja, `PartitionKey` és `RowKey` létrehozásakor hello entitásobjektumok gyűjteményeit a függvény kódban.
+* `connection`egy tárolási kapcsolati karakterlánc tartalmazó Alkalmazásbeállítás hello nevét kell tartalmaznia. Hello Azure-portálon, a hello hello a szokásos szerkesztő **integráció** lapon konfigurálja az Alkalmazásbeállítás hoz létre, a tárolási fiók vagy választja ki egy meglévőt. Emellett [konfigurálása az alkalmazás manuális beállításával](functions-how-to-use-azure-function-app-settings.md#settings). 
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Kimeneti használata
-A C# függvények, akkor eszközben csatlakozzon a táblázatos kimenete az elnevezett `out` a függvényaláíráshoz a paraméter, például `out <T> <name>`, ahol `T` , az adatokat, írja be, hogy szeretné-e szerializálni az adatokat, és `paramName` a megadott név a [kimeneti kötése](#output). Node.js-függvény, akkor a táblának az elérésére használja `context.bindings.<name>`.
+A C# függvények, akkor eszközben toohello táblázatos kimenete nevű hello `out` a függvényaláíráshoz a paraméter, például `out <T> <name>`, ahol `T` adattípus hello megjeleníteni kívánt tooserialize hello adatokat, és `paramName` van hello nevét, hello megadott [kimeneti kötése](#output). A Node.js funkciókat érheti el hello tábla használatával kimeneti `context.bindings.<name>`.
 
-Node.js vagy C# funkciók objektumokat is szerializálni. A C# funkciók is kell kötni a következő esetében:
+Node.js vagy C# funkciók objektumokat is szerializálni. A C# funkciók is köthető a következő típusok toohello:
 
 * Magában foglaló típussal`ITableEntity`
-* `ICollector<T>`(a kimeneti több entitás. Lásd: [minta](#outcsharp).)
+* `ICollector<T>`(toooutput több entitás. Lásd: [minta](#outcsharp).)
 * `IAsyncCollector<T>`(aszinkron verzióját `ICollector<T>`)
-* `CloudTable`(az Azure Storage szolgáltatás SDK használatával. Lásd: [minta](#readmulti).)
+* `CloudTable`(hello Azure Storage szolgáltatás SDK használatával. Lásd: [minta](#readmulti).)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Minta kimenet
-A következő *function.json* és *run.csx* példa bemutatja, hogyan több tábla entitás írni.
+hello következő *function.json* és *run.csx* példa azt mutatja meg hogyan toowrite több tábla entitás.
 
 ```json
 {
@@ -217,7 +217,7 @@ A következő *function.json* és *run.csx* példa bemutatja, hogyan több tábl
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, amely több tábla entitás hoz létre.
+Lásd: hello nyelvspecifikus mintát, amely több tábla entitás hoz létre.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -262,7 +262,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -293,7 +293,7 @@ module.exports = function (context) {
 <a name="readmulti"></a>
 
 ## <a name="sample-read-multiple-table-entities-in-c"></a>Minta: Olvassa el a C# több tábla entitás  #
-A következő *function.json* és C# Kódpélda beolvassa az üzenetsorban lévő üzenetet megadott partíciókulcsot az entitásokat.
+hello következő *function.json* és C# Kódpélda beolvassa várólista üdvözlőüzenetére megadott partíciókulcsot az entitásokat.
 
 ```json
 {
@@ -317,7 +317,7 @@ A következő *function.json* és C# Kódpélda beolvassa az üzenetsorban lév�
 }
 ```
 
-A C#-kódban hozzáad egy hivatkozást az Azure Storage szolgáltatás SDK, úgy, hogy az entitás típusa is származik `TableEntity`.
+hello C#-kódban, hogy hello entitás típusa is származik ad hozzá egy hivatkozást toohello Azure Storage szolgáltatás SDK `TableEntity`.
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"

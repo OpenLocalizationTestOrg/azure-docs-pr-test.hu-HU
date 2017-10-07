@@ -1,6 +1,6 @@
 ---
-title: "A régebbi Windows-ügyfelek automatikus regisztráció az Azure AD-tartomány hibaelhárítási csatlakoztatott számítógépeit |} Microsoft Docs"
-description: "A régebbi Windows-ügyfelek automatikus regisztráció az Azure AD-tartomány hibaelhárítási csatlakoztatott számítógépeit."
+title: "aaaTroubleshooting hello automatikus regisztráció az Azure AD-tartomány csatlakoztatott számítógépek Windows régebbi ügyfelekhez |} Microsoft Docs"
+description: "Windows-kezelés régebbi ügyfelek hello automatikus regisztráció az Azure AD-tartomány hibaelhárítási csatlakoztatott számítógépeit."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: a7c8ef4c59c53c21258f0c61963d8f994a3946ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 84fe666576f13de09d1eaa5692517d45a4dbeebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad-for-windows-down-level-clients"></a>Automatikus regisztráció tartomány hibaelhárítási csatlakoztatott számítógépeit az Azure AD Windows régebbi ügyfelek 
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad-for-windows-down-level-clients"></a>Hibaelhárítás az automatikus regisztráció tartomány csatlakoztatott számítógépek tooAzure AD Windows régebbi ügyfelek 
 
-Ez a témakör a tulajdonság csak a következő ügyfelek vonatkozik: 
+Ez a témakör a következő ügyfelek alkalmazható csak toohello: 
 
 - Windows 7 
 - Windows 8.1 
@@ -31,38 +31,38 @@ Ez a témakör a tulajdonság csak a következő ügyfelek vonatkozik:
 - Windows Server 2012 R2 
  
 
-Windows 10 és Windows Server 2016: [automatikus regisztráció tartomány hibaelhárítási csatlakoztatott számítógépeit az Azure AD – a Windows 10 és Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).
+Windows 10 és Windows Server 2016: [automatikus regisztráció tartomány hibaelhárítási csatlakoztatott számítógépek tooAzure AD – Windows 10 és Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).
 
-Ez a témakör feltételezi, hogy konfigurálta a tartományhoz csatlakoztatott eszközök automatikus regisztráció megfelelően ismertetett [konfigurálása a Windows-tartományhoz csatlakoztatott eszközök automatikus regisztrálása az Azure Active Directoryval](active-directory-device-registration-get-started.md).
+Ez a témakör feltételezi, hogy konfigurálta a tartományhoz csatlakoztatott eszközök automatikus regisztráció megfelelően ismertetett [hogyan tooconfigure az automatikus regisztráció, a Windows-tartományhoz az Azure Active Directoryval eszközök](active-directory-device-registration-get-started.md).
  
-Ez a témakör nyújt hibaelhárítási útmutatót a lehetséges problémák megoldásához.  
-A sikeres eredményekkel ügyeljen a következőkre: 
+Ez a témakör útmutatást hogyan tooresolve lehetőségeket kínál a problémák hibaelhárítása.  
+Néhány dolgot toonote a sikeres eredményekkel: 
 
-- Az ügyfelek az Azure AD-regisztráció van felhasználó/eszköz. Példa: jdoe és jharnett jelentkezzen be az eszközt, ha ezeket a felhasználókat, a felhasználó adatai lap egy különálló regisztrációs (DeviceID) van-e létre.  
+- Az ügyfelek az Azure AD-regisztráció van felhasználó/eszköz. Példa: Ha jdoe és jharnett bejelentkezéskor toothis eszköz, a különböző regisztrációs (DeviceID) hoz létre minden egyes ezen felhasználók hello felhasználó adatai lap.  
 
-- Ezek az ügyfelek a beépített nyilvántartási bejelentkezéskor vagy zárolt vagy feloldott próbálja van konfigurálva, és lehet, hogy ez akkor váltódik ki, a Feladatütemező feladat 5 perces késleltetés. 
+- Ezen ügyfelek hello kezdő verzióról regisztrációs bejelentkezéskor vagy zárolt vagy feloldott konfigurált tootry, és lehet, hogy ez akkor váltódik ki, a Feladatütemező feladat 5 perces késleltetés. 
 
-- Egy telepítse újra az operációs rendszer vagy egy manuális regisztrációját és regisztrálja újra az lehet, hogy hozzon létre egy új regisztrációs Azure ad-val, és hatására a több bejegyzést a felhasználó adatai lap az Azure-portálon. 
+- Egy telepítse újra a hello operációs rendszer vagy egy manuális regisztrációját és regisztrálja újra az lehet, hogy hozzon létre egy új regisztrációs Azure ad-val, és hatására a több bejegyzés hello felhasználó adatai lap hello Azure-portálon. 
 
 
-## <a name="step-1-retrieve-the-registration-status"></a>1. lépés: A regisztráció állapotának lekérése 
+## <a name="step-1-retrieve-hello-registration-status"></a>1. lépés: Hello regisztrációs állapotának lekérése 
 
-**A regisztráció állapotának ellenőrzése:**  
+**tooverify hello regisztrációs állapotát:**  
 
-1. Nyissa meg a parancssort rendszergazdaként 
+1. Nyissa meg hello parancssort rendszergazdaként 
 
 2. Típusa`"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`
 
-A parancs egy párbeszédpanelt, amely lehetővé teszi az illesztési állapotával kapcsolatos további adatokat jeleníti meg.
+A parancs egy párbeszédpanelt, amely biztosít hello illesztési állapotával kapcsolatos további adatokat jeleníti meg.
 
 ![A munkahelyi csatlakoztatás Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-the-registration-status"></a>2. lépés: A regisztráció állapotának kiértékelésére. 
+## <a name="step-2-evaluate-hello-registration-status"></a>2. lépés: Hello regisztrációs állapotának kiértékelésére. 
 
-Ha a csatlakozás sikertelen volt, a párbeszédpanel biztosít információkhoz juthat a problémáról történt.
+Ha hello csatlakoztatás sikertelen volt, hello párbeszédpanel biztosít hello probléma történt részleteit.
 
-**A leggyakoribb problémák vannak:**
+**hello kapcsolatos leggyakoribb hibák a következők:**
 
 - Egy helytelenül konfigurált AD FS vagy az Azure AD
 
@@ -76,26 +76,26 @@ Ha a csatlakozás sikertelen volt, a párbeszédpanel biztosít információkhoz
 
     ![A munkahelyi csatlakoztatás Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- A szolgáltatás nem válaszol. 
+- hello szolgáltatás nem válaszol 
 
     ![A munkahelyi csatlakoztatás Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-Az állapot információt az eseménynaplóban a is talál **alkalmazások és szolgáltatások Log\Microsoft-munkahelyi csatlakoztatás**.
+Hello állapotadatokat is található eseménynaplóban hello **alkalmazások és szolgáltatások Log\Microsoft-munkahelyi csatlakoztatás**.
   
-**Sikertelen regisztráció leggyakoribb okai a következők:** 
+**Sikertelen regisztráció a hello leggyakoribb okok a következők:** 
 
-- A számítógép nincs a szervezet belső hálózaton vagy egy helyszíni kapcsolat nélkül VPN AD-tartományvezérlő.
+- A számítógép be kapcsolva nem hello vállalati belső hálózaton vagy egy virtuális Magánhálózati kapcsolat tooan nélkül a helyszíni AD-tartományvezérlő.
 
-- A számítógép helyi fiókkal jelentkezett be. 
+- Tooyour számítógép helyi fiókkal van bejelentkezve. 
 
 - Szolgáltatás konfigurációs problémák: 
 
-  - Az összevonási kiszolgáló konfigurációja támogatja **WIAORMULTIAUTHN**. 
+  - hello összevonási kiszolgáló lett konfigurált toosupport **WIAORMULTIAUTHN**. 
 
-  - Nincs mutat, a ellenőrzött tartomány nevét az Azure ad-ben az Active Directory-erdőben, ahol a számítógép tartozik szolgáltatáskapcsolódási pont objektum.
+  - Nincs tooyour ellenőrzött tartomány nevét az Azure AD oldalra mutat, ahol hello a számítógép tartozik hello AD-erdő szolgáltatáskapcsolódási pont objektum.
 
-  - A felhasználó elérte a határértéket, az eszközök. Lásd: Ismerkedés az Azure Active Directory Eszközregisztráció.
+  - A felhasználó elérte eszközök hello korlátot. Lásd: Ismerkedés az Azure Active Directory Eszközregisztráció.
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információkért lásd: a [automatikus eszközregisztráció – gyakori kérdések](active-directory-device-registration-faq.md) 
+További információkért lásd: hello [automatikus eszközregisztráció – gyakori kérdések](active-directory-device-registration-faq.md) 

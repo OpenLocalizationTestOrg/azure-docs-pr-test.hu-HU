@@ -1,5 +1,5 @@
 ---
-title: ApplicationInsights.config referencia - Azure |} Microsoft Docs
+title: aaaApplicationInsights.config referencia - Azure |} Microsoft Docs
 description: "Engedélyezze vagy tiltsa le az adatok gyűjtése modulok, és adja hozzá a teljesítményszámlálók és más paramétereket."
 services: application-insights
 documentationcenter: 
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/3/2017
 ms.author: bwren
-ms.openlocfilehash: 7737f47d4181b5e920434f3a5372991efb58f63e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 76cb11349d87dfc508ec8b1c454259a0b079c48a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-the-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>Az Application Insights SDK konfigurálása az ApplicationInsights.config vagy .xml használatával
-Az Application Insights .NET SDK NuGet-csomagok számos áll. A [core csomag](http://www.nuget.org/packages/Microsoft.ApplicationInsights) telemetriai adatok küldése az Application Insights az API-t biztosít. [További csomagok](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights) adja meg a telemetriai adatok *modulok* és *inicializálók* automatikusan nyomon követése a telemetriai adatok az alkalmazás és a környezetben. A konfigurációs fájl módosításával engedélyezze vagy tiltsa le a telemetria-modulokat és az inicializálók, és némelyikük paramétereinek megadása.
+# <a name="configuring-hello-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>Application Insights SDK hello konfigurálása az ApplicationInsights.config vagy .xml
+hello Application Insights .NET SDK NuGet-csomagok számos áll. A [core csomag](http://www.nuget.org/packages/Microsoft.ApplicationInsights) hello Application Insights telemetria küldi hello API biztosít. [További csomagok](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights) adja meg a telemetriai adatok *modulok* és *inicializálók* automatikusan nyomon követése a telemetriai adatok az alkalmazás és a környezetben. Hello konfigurációs fájl módosításával engedélyezze vagy tiltsa le a telemetria-modulokat és az inicializálók, és némelyikük paramétereinek megadása.
 
-A konfigurációs fájl neve `ApplicationInsights.config` vagy `ApplicationInsights.xml`, az alkalmazás típusától függően. Az automatikusan hozzáadódik a projekt amikor Ön [telepítse az SDK legtöbb verzióit][start]. Is hozzáadódik a webes alkalmazások [állapotfigyelő egy IIS-kiszolgálón][redfield], vagy, ha bejelöli a Appplication Insights [az Azure webhelyén vagy a virtuális gép bővítmény](app-insights-azure-web-apps.md).
+hello konfigurációs fájl neve `ApplicationInsights.config` vagy `ApplicationInsights.xml`, attól függően, az alkalmazás hello típusú. Az automatikusan bekerül az tooyour projekt mikor meg [hello SDK legtöbb változatának telepítése][start]. Webalkalmazás tooa által is megjelenik [állapotfigyelő az IIS-kiszolgáló][redfield], vagy hello Appplication Insights kiválasztásakor [bővítmény, az Azure webhelyén vagy a virtuális gép](app-insights-azure-web-apps.md).
 
-Nincs a vezérlőhöz egy egyenértékű fájlt a [SDK-t egy weblap][client].
+Nem áll rendelkezésre egy egyenértékű fájl toocontrol hello [SDK-t egy weblap][client].
 
-Ez a dokumentum ismerteti a szakaszok látható, a konfigurációs fájlban, hogyan azok szabályozza, hogy az SDK összetevői és mely NuGet-csomagok betölteni az összetevőket.
+Ez a dokumentum ismerteti a hello szakaszok látható hello konfigurációs fájlban, hogyan szabályozza azok a hello összetevői hello SDK-t, és melyik NuGet-csomagok betölteni az összetevőket.
 
 ## <a name="telemetry-modules-aspnet"></a>Telemetria modulok (ASP.NET)
-Minden telemetriai modul egy adott típusú adatokat gyűjt, és a core API segítségével küldheti az adatokat. A modulok különböző NuGet-csomagok, amelyek is vegye fel a szükséges sorok .config fájl telepíti.
+Minden telemetriai modul egy adott típusú adatokat gyűjt, és hello core API toosend hello adatokat használja. hello modulok különböző NuGet-csomagok, amelyek hello szükséges sorok toohello .config fájl is telepíti.
 
-Nincs a csomópont minden modul a konfigurációs fájlban. Modul letiltásához törölje a csomópont, vagy hozzászólási ki.
+Van a csomópont minden modul hello konfigurációs fájlban. toodisable egy modul hello csomópont törlése, vagy el megjegyzés.
 
 ### <a name="dependency-tracking"></a>A függőségi nyomon követése
-[Követés függőségi](app-insights-asp-net-dependencies.md) telemetriai adatainak az alkalmazás hajt végre, és külső szolgáltatások és adatbázisait hívások gyűjti. Ez a modul fog működni az IIS-kiszolgáló engedélyezéséhez kell [Állapotmonitor telepítése][redfield]. A használatára az Azure-webalkalmazásokban vagy a virtuális gépek, [jelölje ki az Application Insights bővítményt](app-insights-azure-web-apps.md).
+[Követés függőségi](app-insights-asp-net-dependencies.md) az alkalmazás lehetővé teszi a toodatabases és külső szolgáltatások adatbázisok hívások vonatkozó telemetriai adatokat gyűjt. tooallow a modul toowork az IIS-kiszolgálót, kell túl[Állapotmonitor telepítése][redfield]. toouse az Azure-webalkalmazásokban vagy a virtuális gépek, [hello Application Insights-bővítmény kiválasztása](app-insights-azure-web-apps.md).
 
-A saját függőségi nyomkövetési kód használatával is írhat a [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency).
+Követés kód hello segítségével a saját függőségi is írhat [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency).
 
 * `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`
 * [Microsoft.ApplicationInsights.DependencyCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet-csomagot.
 
 ### <a name="performance-collector"></a>Teljesítmény-gyűjtő
-[Gyűjti a rendszerteljesítmény-számlálók](app-insights-performance-counters.md) például CPU és memória- és hálózati betöltése az IIS telepítése. Megadhat számlálók gyűjthet, többek között a saját kezűleg beállított teljesítményszámlálók.
+[Gyűjti a rendszerteljesítmény-számlálók](app-insights-performance-counters.md) például CPU és memória- és hálózati betöltése az IIS telepítése. Megadhatja, hogy mely számlálók toocollect, beleértve a saját kezűleg beállított teljesítményszámlálók.
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet-csomagot.
 
 ### <a name="application-insights-diagnostics-telemetry"></a>Application Insights diagnosztika Telemetria
-A `DiagnosticsTelemetryModule` magát az Application Insights instrumentation kódban hibát jelez. Például ha a kód nem fér hozzá a teljesítményszámlálókat, vagy ha egy `ITelemetryInitializer` kivételt jelez. Ez a modul követik – nyomkövetési telemetria megjelenik a [diagnosztikai keresési][diagnostic]. Diagnosztikai adatokat küld a dc.services.vsallin.net.
+Hello `DiagnosticsTelemetryModule` az Application Insights instrumentation forráskód hello hibát jelez. Például ha hello kódja nem tudja elérni a teljesítményszámlálókat, vagy ha egy `ITelemetryInitializer` kivételt jelez. Ez a modul követik – nyomkövetési telemetria hello megjelenik [diagnosztikai keresési][diagnostic]. Diagnosztikai adatok toodc.services.vsallin.net küld.
 
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
-* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet-csomagot. Ha csak telepíteni ezt a csomagot, az ApplicationInsights.config fájl nem automatikusan létrejön.
+* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet-csomagot. Ha csak telepíteni ezt a csomagot, hello ApplicationInsights.config fájl nem automatikusan létrejön.
 
 ### <a name="developer-mode"></a>Fejlesztői mód
-`DeveloperModeWithDebuggerAttachedTelemetryModule`arra kényszeríti az Application Insights `TelemetryChannel` küldendő adatok azonnal, több telemetriai tétel egyszerre, ha van csatolva hibakereső az alkalmazás folyamatának. Ez csökkenti a közötti idő, amikor az alkalmazás telemetriai nyomon követi, és úgy tűnik, az Application Insights portál. A Processzor- és hálózati sávszélesség jelentős terhelést okoz.
+`DeveloperModeWithDebuggerAttachedTelemetryModule`kényszeríti az Application Insights hello `TelemetryChannel` azonnal, toosend adatok több telemetriai tétel egyszerre, ha hibakereső van csatlakoztatva toohello alkalmazás folyamata. Ez csökkenti a hello időn közötti hello néhány percet, ha az alkalmazás nyomon követi a telemetriai adatok, illetve ha hello Application Insights portál megjelenik. A Processzor- és hálózati sávszélesség jelentős terhelést okoz.
 
 * `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`
 * [Application Insights Windows Server](http://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet-csomag
 
 ### <a name="web-request-tracking"></a>Webes kérelem nyomon követése
-Jelentések a [időt és az eredmény válaszkód](app-insights-asp-net.md) a HTTP-kérések.
+Jelentések hello [időt és az eredmény válaszkód](app-insights-asp-net.md) a HTTP-kérések.
 
 * `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`
 * [Microsoft.ApplicationInsights.Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet-csomag
@@ -76,64 +76,64 @@ Jelentések a [időt és az eredmény válaszkód](app-insights-asp-net.md) a HT
 * [Application Insights Windows Server](http://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet-csomagot.
 
 ### <a name="eventsource-tracking"></a>EventSource nyomon követése
-`EventSourceTelemetryModule`az Application Insights nyomkövetési adatokat, küldendő EventSource események konfigurálását teszi lehetővé. Információ az EventSource nyomon követés: [használatával EventSource események](app-insights-asp-net-trace-logs.md#using-eventsource-events).
+`EventSourceTelemetryModule`lehetővé teszi a tooconfigure EventSource események toobe tooApplication Insights küldése a nyomkövetési adatokat. Információ az EventSource nyomon követés: [használatával EventSource események](app-insights-asp-net-trace-logs.md#using-eventsource-events).
 
 * `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`
 * [Microsoft.ApplicationInsights.EventSourceListener](http://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) 
 
 ### <a name="etw-event-tracking"></a>ETW-események követése
-`EtwCollectorTelemetryModule`az Application Insights nyomkövetési adatokat, küldendő ETW-szolgáltatóktól származó események konfigurálását teszi lehetővé. Információ az ETW-események nyomon követése: [ETW-esemény használatával](app-insights-asp-net-trace-logs.md#using-etw-events).
+`EtwCollectorTelemetryModule`lehetővé teszi a tooconfigure események az ETW-szolgáltatók toobe tooApplication Insights küldése a nyomkövetési adatokat. Információ az ETW-események nyomon követése: [ETW-esemény használatával](app-insights-asp-net-trace-logs.md#using-etw-events).
 
 * `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`
 * [Microsoft.ApplicationInsights.EtwCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) 
 
 ### <a name="microsoftapplicationinsights"></a>Microsoft.ApplicationInsights
-A Microsoft.ApplicationInsights csomag biztosítja a [API alapvető](https://msdn.microsoft.com/library/mt420197.aspx) SDK. Ezt az egyéb telemetriai modulok használják, és is [segítségével határozza meg a saját telemetriai](app-insights-api-custom-events-metrics.md).
+hello Microsoft.ApplicationInsights csomag biztosít hello [API alapvető](https://msdn.microsoft.com/library/mt420197.aspx) az hello SDK. hello egyéb telemetriai modulok használja, és is [toodefine használni a saját telemetriai](app-insights-api-custom-events-metrics.md).
 
 * Nem találhatók bejegyzések applicationinsights.config.
 * [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet-csomagot. Ha most telepíti a NuGet, nem .config fájl jön létre.
 
 ## <a name="telemetry-channel"></a>Telemetria csatorna
-A telemetria-csatorna a pufferelés és az Application Insights szolgáltatáshoz telemetriai adatok továbbítása kezeli.
+hello telemetriai csatorna pufferelés és továbbítása telemetriai toohello Application Insights szolgáltatás kezeli.
 
-* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel`az alapértelmezett csatornán szolgáltatások van. Adatok a memóriában puffereli azt.
-* `Microsoft.ApplicationInsights.PersistenceChannel`a konzol alkalmazások alternatív van. Azt is unflushed adatok mentése az állandó tároló az alkalmazás bezárása után, és elküldi azt az alkalmazás indításakor újra.
+* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel`az alapértelmezett csatornán hello szolgáltatások. Adatok a memóriában puffereli azt.
+* `Microsoft.ApplicationInsights.PersistenceChannel`a konzol alkalmazások alternatív van. Bármely unflushed toopersistent adattárolás azt is mentheti, ha az alkalmazás bezárása után, és visszaküldi azt hello alkalmazás indításakor újra.
 
 ## <a name="telemetry-initializers-aspnet"></a>Telemetria inicializálók (ASP.NET)
 Telemetria inicializálók tulajdonságainak környezetben küldött telemetriai minden elem mellett.
 
-Is [saját inicializálók írási](app-insights-api-filtering-sampling.md#add-properties) környezet tulajdonságainak beállítása.
+Is [saját inicializálók írási](app-insights-api-filtering-sampling.md#add-properties) tooset környezeti tulajdonságok.
 
-A szabványos inicializálók be vannak állítva vagy a Web vagy WindowsServer NuGet-csomagot:
+hello szabványos inicializálók be vannak állítva vagy hello Web vagy WindowsServer NuGet-csomagot:
 
-* `AccountIdTelemetryInitializer`Beállítja a AccountId tulajdonságot.
-* `AuthenticatedUserIdTelemetryInitializer`a AuthenticatedUserId tulajdonság beállítása a JavaScript SDK által beállított.
-* `AzureRoleEnvironmentTelemetryInitializer`frissítések a `RoleName` és `RoleInstance` tulajdonságainak a `Device` környezet az Azure futtatókörnyezetben kinyert adatokkal az összes telemetriai adat.
-* `BuildInfoConfigComponentVersionTelemetryInitializer`frissítések a `Version` tulajdonsága a `Component` kinyert értékét az összes telemetriai környezetben a `BuildInfo.config` MS Build által.
-* `ClientIpHeaderTelemetryInitializer`frissítések `Ip` tulajdonsága a `Location` környezetben az összes telemetriai elem alapján a `X-Forwarded-For` a kérelem HTTP-fejléc.
-* `DeviceTelemetryInitializer`következő tulajdonságait a `Device` környezetben az összes telemetriai adat.
-  * `Type`"PC" értékre van állítva
-  * `Id`értéke a számítógép tartománynevét, amelyen fut a webes alkalmazás.
-  * `OemName`kinyert értékre van állítva a `Win32_ComputerSystem.Manufacturer` mezőben a WMI segítségével.
-  * `Model`kinyert értékre van állítva a `Win32_ComputerSystem.Model` mezőben a WMI segítségével.
-  * `NetworkType`kinyert értékre van állítva a `NetworkInterface`.
-  * `Language`a névre van beállítva a `CurrentCulture`.
-* `DomainNameRoleInstanceTelemetryInitializer`frissítések a `RoleInstance` tulajdonsága a `Device` az összes telemetriai adatokat a tartomány nevét a számítógép, amelyen a webalkalmazás fut a környezetben.
-* `OperationNameTelemetryInitializer`frissítések a `Name` tulajdonsága a `RequestTelemetry` és a `Name` tulajdonsága a `Operation` összes telemetriai elem kontextusában a HTTP-metódus, valamint a ASP.NET MVC-vezérlő és feldolgozni a kérelmet meghívott művelet neve alapján.
-* `OperationIdTelemetryInitializer`vagy `OperationCorrelationTelemetryInitializer` frissítések a `Operation.Id` context tulajdonság az összes telemetriai elem nyomon követheti az automatikusan létrehozott kérelem kezelése közben `RequestTelemetry.Id`.
-* `SessionTelemetryInitializer`frissítések a `Id` tulajdonsága a `Session` kinyert érték az összes telemetriai környezetben a `ai_session` cookie-k jönnek létre a felhasználó böngészőben futó ApplicationInsights JavaScript instrumentation kóddal.
-* `SyntheticTelemetryInitializer`vagy `SyntheticUserAgentTelemetryInitializer` frissítések a `User`, `Session` és `Operation` összes telemetriai elemek környezetek tulajdonságainak nyomon követ, egy kérelem egy szintetikus forrásból kezelésekor, például a rendelkezésre állási tesztelése, vagy végezzen keresést a motor botot. Alapértelmezés szerint [Metrikaböngésző](app-insights-metrics-explorer.md) szintetikus telemetriai adatok nem jelennek meg.
+* `AccountIdTelemetryInitializer`hello AccountId tulajdonság beállítása.
+* `AuthenticatedUserIdTelemetryInitializer`hello AuthenticatedUserId tulajdonság beállítása beállított hello JavaScript SDK által.
+* `AzureRoleEnvironmentTelemetryInitializer`frissítések hello `RoleName` és `RoleInstance` hello tulajdonságainak `Device` hello Azure futtatókörnyezetben kinyert adatokkal az összes telemetriai adatokat a környezetben.
+* `BuildInfoConfigComponentVersionTelemetryInitializer`frissítések hello `Version` hello tulajdonságának `Component` hello kinyert hello értékű az összes telemetriai környezetben `BuildInfo.config` MS Build által.
+* `ClientIpHeaderTelemetryInitializer`frissítések `Ip` hello tulajdonságának `Location` környezetben az összes telemetriai elem alapján hello `X-Forwarded-For` hello kérelem HTTP-fejléc.
+* `DeviceTelemetryInitializer`a következő hello tulajdonságainak frissítések hello `Device` környezetben az összes telemetriai adat.
+  * `Type`túl értéke "PC"
+  * `Id`be van állítva hello számítógép tartománynevét toohello hello webes alkalmazást futtató.
+  * `OemName`hello kinyert toohello érték beállítása `Win32_ComputerSystem.Manufacturer` mezőben a WMI segítségével.
+  * `Model`hello kinyert toohello érték beállítása `Win32_ComputerSystem.Model` mezőben a WMI segítségével.
+  * `NetworkType`hello kinyert toohello érték beállítása `NetworkInterface`.
+  * `Language`hello toohello neve van beállítva `CurrentCulture`.
+* `DomainNameRoleInstanceTelemetryInitializer`frissítések hello `RoleInstance` hello tulajdonságának `Device` telemetriai szereplő összes hello tartománynévvel hello hello webes alkalmazást futtató számítógép a környezetben.
+* `OperationNameTelemetryInitializer`frissítések hello `Name` hello tulajdonságának `RequestTelemetry` és hello `Name` hello tulajdonságának `Operation` környezetben az összes telemetriai elem alapján hello HTTP-metódus, valamint az ASP.NET MVC-vezérlő és a művelet a meghívott tooprocess hello nevei a kérést.
+* `OperationIdTelemetryInitializer`vagy `OperationCorrelationTelemetryInitializer` frissítések hello `Operation.Id` context tulajdonság az összes telemetriai elem nyomon követheti az automatikusan generált hello kérelem kezelése közben `RequestTelemetry.Id`.
+* `SessionTelemetryInitializer`frissítések hello `Id` hello tulajdonságának `Session` hello kinyert érték az összes telemetriai környezetben `ai_session` hello által generált cookie-k hello felhasználó böngészőjében futó ApplicationInsights JavaScript instrumentation kódot.
+* `SyntheticTelemetryInitializer`vagy `SyntheticUserAgentTelemetryInitializer` frissítések hello `User`, `Session` és `Operation` összes telemetriai elemek környezetek tulajdonságainak nyomon követ, egy kérelem egy szintetikus forrásból kezelésekor, például a rendelkezésre állási tesztelése, vagy végezzen keresést a motor botot. Alapértelmezés szerint [Metrikaböngésző](app-insights-metrics-explorer.md) szintetikus telemetriai adatok nem jelennek meg.
 
-    A `<Filters>` azonosítása a kérelem tulajdonságok beállítása.
-* `UserAgentTelemetryInitializer`frissítések a `UserAgent` tulajdonsága a `User` környezetben az összes telemetriai elem alapján a `User-Agent` a kérelem HTTP-fejléc.
-* `UserTelemetryInitializer`frissítések a `Id` és `AcquisitionDate` tulajdonságainak `User` kinyert értékekkel az összes telemetriai környezetben a `ai_user` cookie-k az Application Insights JavaScript instrumentation kódot a felhasználó böngészőben futó állítja elő.
-* `WebTestTelemetryInitializer`a felhasználói azonosítóját, a munkamenet-azonosító és a szintetikus adatforrások tulajdonságainak beállítása a HTTP-kérelmek származó [rendelkezésreállás figyelésére szolgáló tesztek](app-insights-monitor-web-app-availability.md).
-  A `<Filters>` azonosítása a kérelem tulajdonságok beállítása.
+    Hello `<Filters>` azonosító hello kérelmek tulajdonságainak beállítása.
+* `UserAgentTelemetryInitializer`frissítések hello `UserAgent` hello tulajdonságának `User` környezetben az összes telemetriai elem alapján hello `User-Agent` hello kérelem HTTP-fejléc.
+* `UserTelemetryInitializer`frissítések hello `Id` és `AcquisitionDate` tulajdonságainak `User` hello kinyert értékekkel az összes telemetriai környezetben `ai_user` hello Application Insights JavaScript instrumentation kód hello futó által generált cookie-k felhasználó böngészőjében.
+* `WebTestTelemetryInitializer`készletek hello felhasználói azonosítót, a munkamenet-azonosító és a szintetikus tulajdonságait a HTTP-kérelmek származó [rendelkezésreállás figyelésére szolgáló tesztek](app-insights-monitor-web-app-availability.md).
+  Hello `<Filters>` azonosító hello kérelmek tulajdonságainak beállítása.
 
-A Service Fabric-beli .NET-alkalmazásokban, megadhatja a `Microsoft.ApplicationInsights.ServiceFabric` NuGet-csomagot. Ez a csomag tartalmaz egy `FabricTelemetryInitializer`, amely a Service Fabric további tulajdonságokkal bővít telemetriai elemek. További információkért lásd: a [GitHub-oldalon](https://go.microsoft.com/fwlink/?linkid=848457) vett fel a NuGet csomag tulajdonságait.
+A Service Fabric-beli .NET-alkalmazásokban, megadhat hello `Microsoft.ApplicationInsights.ServiceFabric` NuGet-csomagot. Ez a csomag tartalmaz egy `FabricTelemetryInitializer`, amely a Service Fabric tulajdonságok tootelemetry elemek hozzáadása. További információkért lásd: hello [GitHub-oldalon](https://go.microsoft.com/fwlink/?linkid=848457) a NuGet csomag által hozzáadott hello tulajdonságok.
 
 ## <a name="telemetry-processors-aspnet"></a>Telemetria processzor (ASP.NET)
-Telemetria processzorok szűréséhez, és minden telemetriai cikk módosítása, közvetlenül az SDK-ból a portálon való továbbítás előtt.
+Telemetriai processzorok szűréséhez, és minden telemetriai elem módosítása hello SDK toohello portálról elküldés előtt.
 
 Is [saját telemetriai processzorok írási](app-insights-api-filtering-sampling.md#filtering).
 
@@ -150,7 +150,7 @@ Ez e beállítás alapértelmezés szerint engedélyezve van. Az alkalmazás nag
 
 ```
 
-A paraméter a cél eléréséhez, próbálja meg az algoritmus biztosít. Az SDK-példányokhoz egymástól függetlenül, működik, így ha a kiszolgáló egy fürt több gépek, a telemetriai adatok tényleges mennyiségét és ennek megfelelően kell-e.
+hello paraméter biztosít hello target algoritmust hello megpróbál tooachieve. Minden példánya hello SDK függetlenül működik, így ha a kiszolgáló egy fürt több gépek, telemetriai adatok tényleges mennyiségét hello és ennek megfelelően kell-e.
 
 [További információ a mintavételi](app-insights-sampling.md).
 
@@ -162,7 +162,7 @@ Szerepel továbbá egy szabványos [telemetriai processzor mintavételi](app-ins
     <TelemetryProcessors>
      <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
 
-     <!-- Set a percentage close to 100/N where N is an integer. -->
+     <!-- Set a percentage close too100/N where N is an integer. -->
      <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
      <SamplingPercentage>10</SamplingPercentage>
      </Add>
@@ -173,10 +173,10 @@ Szerepel továbbá egy szabványos [telemetriai processzor mintavételi](app-ins
 
 
 ## <a name="channel-parameters-java"></a>A csatornaparaméterek (Java)
-Ezek a paraméterek befolyásolják, hogyan a Java SDK kell tárolni, valamint a telemetriai adatait, amely összegyűjti az.
+Ezek a paraméterek arról, hogy a Java SDK hello hogyan kell tárolni és ürítse ki az általa gyűjtött telemetriaadatok hello érintik.
 
 #### <a name="maxtelemetrybuffercapacity"></a>MaxTelemetryBufferCapacity
-A telemetriai adatok elemek száma, amelyek az SDK-val memórián belüli tároló tárolhatja. A számnak az elérésekor, a telemetria puffer ki van ürítve, – ez azt jelenti, hogy a telemetriai adatok elemek az Application Insights-kiszolgálónak küldött.
+hello telemetriai elemek száma, amelyek hello SDK memórián belüli tároló tárolhatja. A számnak az elérésekor, hello telemetriai puffer ki van ürítve, – a Ez azt jelenti, hogy hello telemetriai elemek toohello Application Insights server küldi el.
 
 * Minimum: 1
 * Maximális: 1000
@@ -194,7 +194,7 @@ A telemetriai adatok elemek száma, amelyek az SDK-val memórián belüli tárol
 ```
 
 #### <a name="flushintervalinseconds"></a>FlushIntervalInSeconds
-Meghatározza, hogy milyen gyakran az adatok tárolása a memóriában tárolt kell kiürítése (Application insights szolgáltatásnak elküldött).
+Megállapítja, milyen gyakran hello hello memórián belüli tároló tárolt adatok legyen kiürített (elküldött tooApplication Insights).
 
 * Minimum: 1
 * Maximális: 300
@@ -212,7 +212,7 @@ Meghatározza, hogy milyen gyakran az adatok tárolása a memóriában tárolt k
 ```
 
 #### <a name="maxtransmissionstoragecapacityinmb"></a>MaxTransmissionStorageCapacityInMB
-Meghatározza a maximális mérete (MB), amely számára engedélyezett az állandó tároló a helyi lemezen való. Ez a tároló nem sikerült továbbítani az Application Insights végpont tárolásakor telemetriai elemekre szolgál. A tároló mérete teljesülésekor új telemetriai elemek elvesznek.
+Meghatározza, hogy hello maximális mérete (MB), amely számára engedélyezett az állandó tároló toohello hello helyi lemezen. Ez a tároló nem sikerült továbbítani toobe toohello Application Insights végpont tárolásakor telemetriai elemekre szolgál. Hello tárméret teljesülésekor új telemetriai elemek elvesznek.
 
 * Minimum: 1
 * Maximum: 100
@@ -232,11 +232,11 @@ Meghatározza a maximális mérete (MB), amely számára engedélyezett az álla
 
 
 ## <a name="instrumentationkey"></a>InstrumentationKey
-Ez határozza meg az Application Insights-erőforrást, amelyen az adatok megjelenik. Általában létrehozhat egy különálló erőforrás külön kulccsal, minden, az alkalmazások.
+Ez határozza meg az adatok meg hello Application Insights-erőforrást. Általában létrehozhat egy különálló erőforrás külön kulccsal, minden, az alkalmazások.
 
-Ha be szeretné állítani a kulcs dinamikusan – például ha az eredmények elküldi a különböző erőforrások – az alkalmazásból hagyja ki ezt a kulcsot a konfigurációs fájlból, és helyette állítsa a kódban.
+Ha tooset hello kulcsot dinamikusan – például ha az alkalmazás toodifferent erőforrásoktól - toosend eredményét hello konfigurációs fájlból hello kulcs nincs megadva, és helyette állítsa a kódban.
 
-A kulcs beállítása TelemetryClient összes példánya esetén, beleértve a szabványos telemetriai modulok, kulcsát állítsa a TelemetryConfiguration.Active a. Egy inicializálási metódust, például egy ASP.NET-szolgáltatásban Global.aspx.cs osztályból tegye a következőket:
+tooset hello kulcs TelemetryClient, beleértve a szabványos telemetriai modulok összes példánya esetén TelemetryConfiguration.Active hello kulcs beállítva. Egy inicializálási metódust, például egy ASP.NET-szolgáltatásban Global.aspx.cs osztályból tegye a következőket:
 
 ```C#
 
@@ -249,7 +249,7 @@ A kulcs beállítása TelemetryClient összes példánya esetén, beleértve a s
       //...
 ```
 
-Ha csak egy meghatározott események küldése egy másik erőforráscsoportban, a kulcs az egy adott TelemetryClient állíthatja be:
+Ha csak toosend egy adott események tooa különböző erőforrás megadásához egy adott TelemetryClient hello kulcs adhatja meg:
 
 ```C#
 
@@ -260,10 +260,10 @@ Ha csak egy meghatározott események küldése egy másik erőforráscsoportban
 
 ```
 
-Egy új kulcs beszerzése [hozzon létre egy új erőforrást az Application Insights portáljáról][new].
+egy új kulcsot, tooget [hozzon létre egy új erőforrást a hello Application Insights portál][new].
 
 ## <a name="next-steps"></a>Következő lépések
-[További tudnivalók az API-t][api].
+[További tudnivalók hello API][api].
 
 <!--Link references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory v2.0-végpontra vonatkozó alkalmazástípusok |} Microsoft Docs"
-description: "Milyen alkalmazásokat és az Azure Active Directory v2.0-végponttól által támogatott forgatókönyveket."
+title: "hello Azure Active Directory v2.0-végponttól aaaApp típusokat |} Microsoft Docs"
+description: "alkalmazások és a v2.0-végponttól hello Azure Active Directory által támogatott forgatókönyveket hello típusú."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,39 +15,39 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 9d59e7f0e8f326c40be86e199d7712f6c565cc13
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: db95c88d6865abac8ce80378ccd6b63cb38e0a01
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="app-types-for-the-azure-active-directory-v20-endpoint"></a>Alkalmazástípusok az Azure Active Directory v2.0 végpont
-Az Azure Active Directory (Azure AD) v2.0-végponttól hitelesítést is támogatja a modern alkalmazás-architektúrák esetén az összes szabványos protokollokat számos [OAuth 2.0-s vagy az OpenID Connect](active-directory-v2-protocols.md). A cikkből megtudhatja, milyen típusú alkalmazásokat úgy, hogy az Azure AD v2.0, függetlenül a választott nyelv vagy platform használatával. A cikkben szereplő információkat, amelyekkel jobban megértheti az összetettebb feladatok előtt készült [a kód munka megkezdéséhez](active-directory-appmodel-v2-overview.md#getting-started).
+# <a name="app-types-for-hello-azure-active-directory-v20-endpoint"></a>Az Azure Active Directory v2.0-végponttól hello alkalmazástípusok
+hello Azure Active Directory (Azure AD) v2.0-végponttól hitelesítést is támogatja a modern alkalmazás-architektúrák esetén az összes szabványos protokollokat számos [OAuth 2.0-s vagy az OpenID Connect](active-directory-v2-protocols.md). Ez a cikk ismerteti a hello típusú alkalmazásokat, amelyek az Azure AD v2.0, függetlenül a választott nyelv vagy platform használatával hozhat létre. hello a cikkben szereplő információkat az összetettebb feladatok előtt tisztában tervezett toohelp [hello kóddal munka megkezdéséhez](active-directory-appmodel-v2-overview.md#getting-started).
 
 > [!NOTE]
-> A v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. Annak megállapításához, hogy a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> hello v2.0-végpontra nem támogatja, minden Azure Active Directory forgatókönyvek és funkciók. toodetermine kell használnia a hello v2.0-végpontra, hogy olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 > 
 > 
 
-## <a name="the-basics"></a>Az alapok
-Regisztrálnia kell az egyes alkalmazások által használt a v2.0-végpontra a [Microsoft alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com). A regisztrációs folyamata gyűjti, és hozzárendeli ezeket az értékeket az alkalmazás:
+## <a name="hello-basics"></a>hello alapjai
+Regisztrálnia kell az egyes alkalmazások hello hello v2.0-végponttól használó [Microsoft alkalmazásregisztrációs portálra](https://apps.dev.microsoft.com). hello az alkalmazásregisztrációs művelet során gyűjt, és hozzárendeli ezeket az értékeket az alkalmazás:
 
 * Egy **Alkalmazásazonosító** , amely egyedileg azonosítja az alkalmazást
-* A **átirányítási URI-** , amely közvetlen válaszokhoz az alkalmazás segítségével
+* A **átirányítási URI-** használható toodirect válaszok hátsó tooyour alkalmazás
 * Néhány más forgatókönyvekre jellemző értékek
 
-További részletek megtudhatja, hogyan [alkalmazások regisztrálásának folyamatával](active-directory-v2-app-registration.md).
+További információkért megtudhatja, hogyan túl[alkalmazások regisztrálásának folyamatával](active-directory-v2-app-registration.md).
 
-Az alkalmazás regisztrálása után az alkalmazás kommunikál az Azure AD kérelmeket küld az Azure AD v2.0-végponttól. Azt adja meg, nyílt forráskódú keretrendszerek és tárak, amelyek kezelik ezeket a kérelmeket részleteit. Lehetősége is van a megvalósítása a hitelesítési logikát saját kérések végpontokkal való létrehozásával:
+Hello alkalmazás regisztrálása után hello app kommunikál az Azure AD küldött kérelmek toohello az Azure AD v2.0-végponttól. Azt adja meg, nyílt forráskódú keretrendszerek és tárak, amelyek kezelik ezeket a kérelmeket hello részleteit. Akkor is hello beállítás tooimplement hello hitelesítési logikát saját kérések toothese végpontok létrehozásával:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
-<!-- TODO: Need a page for libraries to link to -->
+<!-- TODO: Need a page for libraries toolink too-->
 
 ## <a name="web-apps"></a>Webalkalmazások
-A web Apps (.NET, PHP, Java, Ruby, Python, csomópont), amelyhez a felhasználó böngészőn keresztül hozzáfér, használhatja a [OpenID Connect](active-directory-v2-protocols.md) a felhasználói bejelentkezés. Az OpenID Connect a web app egy azonosító jogkivonatot kap. Egy azonosító lexikális elem egy biztonsági jogkivonatot, ellenőrzi a felhasználó személyazonosságát, és a felhasználói jogcímek formájában információkat nyújt:
+A web Apps (.NET, PHP, Java, Ruby, Python, csomópont), amely hello felhasználói hozzáférések böngészőn keresztül, használhatja a [OpenID Connect](active-directory-v2-protocols.md) a felhasználói bejelentkezés. Az OpenID Connect hello webalkalmazás kap egy azonosító jogkivonatot. Egy azonosító lexikális elem egy biztonsági jogkivonatot, ellenőrzi a hello felhasználó identitását, és hello felhasználói hello jogcímek formájában információkat nyújt:
 
 ```
 // Partial raw ID token
@@ -62,20 +62,20 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtyaU1QZG1Cd...
 }
 ```
 
-Minden a jogkivonatok és jogcímek különböző típusairól az alkalmazásban elérhető megismerheti a [v2.0 jogkivonatok hivatkozás](active-directory-v2-tokens.md).
+Minden hello jogkivonatok és jogcímek különböző típusairól, amelyek a rendelkezésre álló tooan alkalmazás hello megismerheti [v2.0 jogkivonatok hivatkozás](active-directory-v2-tokens.md).
 
-A kiszolgáló webalkalmazásokban bejelentkezés hitelesítési folyamata hajtja végre ezeket a magas szintű lépéseket:
+A kiszolgáló webalkalmazásokban hello bejelentkezés hitelesítési folyamata magas szintű lépéseket hajtja végre:
 
 ![Webes alkalmazás hitelesítési folyamat](../../media/active-directory-v2-flows/convergence_scenarios_webapp.png)
 
-A felhasználói identitás biztosítható a Azonosítót jogkivonatban érvényesítés a v2.0-végpontra-tól kapott nyilvános aláírókulcs a. A munkamenet cookie-k be van állítva, a felhasználó a következő lapkérések azonosítására használható.
+Hello felhasználói identitás biztosítható, ha a hello azonosító token érvényesítés a v2.0-végponttól hello-tól kapott nyilvános aláírókulcs. Egy munkamenetcookie-t van beállítva, amely a következő lapkérések használt tooidentify hello felhasználó lehet.
 
-Ebben a forgatókönyvben a művelet megtekintéséhez tekintse meg a webes alkalmazás bejelentkezési Kódminták a 2.0-s verziója [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
+a 2.0-s verziója minták ebben a forgatókönyvben a művelet, próbálkozzon egy webes alkalmazás bejelentkezési kód hello toosee [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
 
-Egyszerű bejelentkezhet, valamint egy webalkalmazás-kiszolgáló valószínűleg hozzá kell egy másik webes szolgáltatás, például egy REST API-t. Ebben az esetben a kiszolgáló webalkalmazás kapcsolatba lép kombinált OpenID Connectet és az OAuth 2.0 folyamatában, segítségével a [OAuth 2.0 hitelesítésikód-folyamata](active-directory-v2-protocols.md). Ebben a forgatókönyvben kapcsolatos további információkért olvassa el [Ismerkedés a webalkalmazások és webes API-k](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md).
+Ezenkívül toosimple bejelentkezés, a webalkalmazás-kiszolgáló kell tooaccess egy másik webes szolgáltatás, például egy REST API-t. Ebben az esetben hello kiszolgáló a webalkalmazás kapcsolatba lép egy kombinált OpenID Connectet és az OAuth 2.0 folyamatában, hello segítségével [OAuth 2.0 hitelesítésikód-folyamata](active-directory-v2-protocols.md). Ebben a forgatókönyvben kapcsolatos további információkért olvassa el [Ismerkedés a webalkalmazások és webes API-k](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md).
 
 ## <a name="web-apis"></a>Webes API-k
-A v2.0-végpontra segítségével webszolgáltatásai, például az alkalmazás RESTful webes API-t. Azonosító-jogkivonatokat és a munkamenet cookie-k helyett egy webes API-t OAuth 2.0 hozzáférési tokent használ, az adatok védelmét és a bejövő kérelmek hitelesítéséhez szükséges. A hívó egy webes API hozzáfűz egy jogkivonatot a HTTP-kérések, például a hitelesítési fejlécéhez:
+Hello v2.0 végpont toosecure webes szolgáltatások, például az alkalmazás RESTful webes API segítségével. Azonosító-jogkivonatokat és a munkamenet cookie-k helyett a egy webes API-t az OAuth 2.0 hozzáférési jogkivonat toosecure használ, az adatok és tooauthenticate bejövő kérelmeket. hello hívó egy webes API hozzáfűz egy jogkivonatot a HTTP-kérések, ilyen hello authorization fejlécet:
 
 ```
 GET /api/items HTTP/1.1
@@ -85,39 +85,39 @@ Accept: application/json
 ...
 ```
 
-A webes API a hozzáférési tokent használ, ellenőrzi az API hívójának identitását, és a hozzáférési jogkivonat kódolt jogcímek információkhoz juthat a hívóról kibontani. Jogkivonatok és jogcímek, az alkalmazások számára elérhető összes típusú kapcsolatos további tudnivalókért lásd: a [v2.0 jogkivonatok hivatkozás](active-directory-v2-tokens.md).
+Webes API hello hello access token tooverify hello API hívójának identitását és tooextract információt hello hívó hello hozzáférési jogkivonat kódolt jogcímek használja. toolearn kapcsolatos összes hello jogkivonatok és jogcímek különböző típusairól, amelyek a rendelkezésre álló tooan app, lásd: hello [v2.0 jogkivonatok hivatkozás](active-directory-v2-tokens.md).
 
-A webes API adhat a felhasználóknak részt vevő vagy tilthatják le az adott funkció vagy adatok engedélyek, más néven jelentkezik, mintha [hatókörök](active-directory-v2-scopes.md). Egy hívó alkalmazás szerezni a hatókör engedéllyel, a felhasználónak bele kell egyeznie a hatókör a folyamat során. A v2.0-végpontra megkérdezi a felhasználót, az engedélyeket, és majd rögzíti a engedélyeket kap a webes API-t minden hozzáférési jogkivonatok. A Web API ellenőrzi a hozzáférési jogkivonatok egyes hívás fogadása és engedélyezési ellenőrzi.
+Egy webes API-t ad felhasználók hello power tooopt, vagy tilthatják le az adott funkció vagy adatok engedélyek, más néven jelentkezik, mintha [hatókörök](active-directory-v2-scopes.md). A hívó alkalmazás tooacquire engedély tooa hatókör, hello felhasználónak bele kell egyeznie toohello hatókör a folyamat során. hello v2.0-végponttól hello felhasználói kér engedélyt, és majd engedélyek rögzít minden hozzáférési jogkivonatok adott hello Web API kap. Webes API hello érvényesíti hello hozzáférési jogkivonatok egyes hívás fogadása és engedélyezési ellenőrzi.
 
-Egy webes API-alkalmazás, illetve a kiszolgáló webalkalmazások, asztali és mobile apps szolgáltatásban, egyoldalas alkalmazások, kiszolgálóoldali démonok, és akár egyéb webes API-k minden típusú hozzáférési jogkivonatok fogadhat. A magas szintű folyamata egy webes API így néz ki:
+Egy webes API-alkalmazás, illetve a kiszolgáló webalkalmazások, asztali és mobile apps szolgáltatásban, egyoldalas alkalmazások, kiszolgálóoldali démonok, és akár egyéb webes API-k minden típusú hozzáférési jogkivonatok fogadhat. a webes API hello magas szintű folyamata így néz ki:
 
 ![Webes API-hitelesítési folyamat](../../media/active-directory-v2-flows/convergence_scenarios_webapi.png)
 
-A webes API biztonságossá OAuth2 hozzáférési jogkivonatok segítségével történő beállításáról tekintse meg a webes API mintakódok a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
+Hogyan toosecure egy webes API OAuth2 hozzáférési jogkivonatok hello Web API-kódban kivételt a mintákkal toolearn a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
 
-Sok esetben webes API-kat is kell kimenő kérelmek más alsóbb rétegbeli webes API-kat Azure Active Directory által biztosított.  Ehhez az szükséges, webes API-k kihasználhatja az Azure AD **a nevében a** folyamatot, amely lehetővé teszi, hogy a webes API-t a helyszíni Exchange számára egy új hozzáférési jogkivonat kimenő kérelmek használhatók egy bejövő jogkivonatot.  A v2.0-végpontra a folyamat nevében ismertetett [részletesen Itt](active-directory-v2-protocols-oauth-on-behalf-of.md).
+Sok esetben a webes API-k toomake kimenő kérelmek tooother után webes API-khoz, Azure Active Directory által biztosított is kell.  toodo tehát webes API-k kihasználhatja az Azure AD **a nevében a** folyamatot, amely lehetővé teszi, hogy a webes API-k tooexchange hello számára egy másik access token toobe kimenő kérelmek szerepel egy bejövő jogkivonatot.  hello v2.0-végpontra a folyamat nevében ismertetett [részletesen Itt](active-directory-v2-protocols-oauth-on-behalf-of.md).
 
 ## <a name="mobile-and-native-apps"></a>Mobil- és natív alkalmazások
-Eszköz telepített alkalmazások, többek között a mobil- és asztali alkalmazások esetében gyakran igényelnek hozzáférést a háttér-szolgáltatásaihoz vagy webes API-k, amelyek adatokat tárolhatnak, és a feladatokat egy felhasználó nevében. Ezek az alkalmazások használatával adhat hozzá bejelentkezési és hitelesítési háttér szolgáltatásaihoz a [OAuth 2.0 hitelesítésikód-folyamata](active-directory-v2-protocols-oauth-code.md).
+Eszköz telepített alkalmazások, többek között a mobil- és asztali alkalmazások, gyakran kell tooaccess háttér-szolgáltatásaihoz vagy webes API-k, amelyek adatokat tárolhatnak, és a feladatokat egy felhasználó nevében. Ezek az alkalmazások hello használatával adhat hozzá bejelentkezési és hitelesítési tooback-szolgáltatások [OAuth 2.0 hitelesítésikód-folyamata](active-directory-v2-protocols-oauth-code.md).
 
-A folyamatot az alkalmazás fogad egy engedélyezési kód a v2.0-végpontra a felhasználó bejelentkezésekor. Az engedélyezési kód hívására háttér-szolgáltatásaihoz a bejelentkezett felhasználó nevében az alkalmazás engedélyt jelöli. Az alkalmazás továbbíthatja az OAuth 2.0 hozzáférési tokent, és egy frissítési jogkivonat a háttérben engedélyezési kódot. Az alkalmazás a hozzáférési jogkivonat hitelesítéshez használni kívánt webes API-k számára a HTTP-kérelmekre, és a frissítési jogkivonat használatával új hozzáférési jogkivonatok lekérésére, ha régebbi hozzáférési jogkivonatok végén.
+Ez a folyamat a hello app kap egy engedélyezési kód hello v2.0-végponttól hello felhasználó bejelentkezésekor. hello engedélyezési kód jelöli hello alkalmazás engedély toocall háttér-szolgáltatásaihoz hello van bejelentkezett felhasználó nevében. hello app továbbíthatja az OAuth 2.0 hozzáférési tokent, és egy frissítési jogkivonat hello háttérben hello engedélyezési kódot. hello alkalmazás használhat hello access token tooauthenticate tooWeb API-kat a HTTP-kérelmekre, és hello frissítési jogkivonat tooget új hozzáférési jogkivonatok használja, ha a régebbi hozzáférési jogkivonatok lejár.
 
 ![Natív alkalmazás hitelesítési folyamat](../../media/active-directory-v2-flows/convergence_scenarios_native.png)
 
 ## <a name="single-page-apps-javascript"></a>Egyoldalas alkalmazások (JavaScript)
-Számos modern alkalmazások alkalmazás előtér írt elsősorban a JavaScript rendelkezik. Gyakran írás például AngularJS, az Ember.js vagy Durandal.js keretrendszer használatával. Az Azure AD v2.0-végponttól használatával támogatja ezeket az alkalmazásokat a [OAuth 2.0 típusú implicit engedélyezési folyamat](active-directory-v2-protocols-implicit.md).
+Számos modern alkalmazások alkalmazás előtér írt elsősorban a JavaScript rendelkezik. Gyakran írás például AngularJS, az Ember.js vagy Durandal.js keretrendszer használatával. hello Azure AD v2.0-végponttól támogatja ezeket az alkalmazásokat hello segítségével [OAuth 2.0 típusú implicit engedélyezési folyamat](active-directory-v2-protocols-implicit.md).
 
-A folyamatot, az alkalmazás-jogkivonatokat kap a v2.0-ről a végponthoz, minden kiszolgáló-kiszolgáló cseréje nélkül engedélyezik. Minden hitelesítési logikát és kezelési vesz munkamenet helyezhető el teljes egészében a JavaScript ügyfélprogramokban, de további oldal átirányítja az.
+Ez a folyamat a hello alkalmazás-jogkivonatokat kap közvetlenül az hello v2.0 engedélyezik a végponthoz, anélkül, hogy a kiszolgáló-kiszolgáló cseréjét. Hitelesítési logikát és a munkamenet vesz kezelése teljes mértékben hello JavaScript ügyfélprogramokban, de további lap átirányítások helyezi.
 
 ![Implicit hitelesítési folyamat](../../media/active-directory-v2-flows/convergence_scenarios_implicit.png)
 
-Tekintse meg a folyamatot, próbálja meg az alkalmazás mintakódok egyikét a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
+toosee a folyamatot, próbálja ki valamelyik alkalmazás mintakódok hello a a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakasz.
 
 ## <a name="daemons-and-server-side-apps"></a>Démonok és kiszolgálóoldali alkalmazások
-Az alkalmazások, amelyek hosszú futású folyamatokat, vagy egy felhasználói beavatkozás nélkül is szükség van a védett erőforrások, például webes API-k eléréséhez. Ezek az alkalmazások hitelesítheti és a jogkivonatok lekérésére, az alkalmazás identitásával, nem pedig a felhasználó delegált identitása, az OAuth 2.0 ügyfél hitelesítő adatok folyamata a.
+Az alkalmazások, amelyek hosszú futású folyamatokat, vagy egy felhasználói beavatkozás nélkül is szükség van egy tooaccess védett erőforrások, például webes API-k. Ezek az alkalmazások hitelesítheti és jogkivonatokhoz hello alkalmazás identitásával, nem pedig a felhasználó delegált identitása, az OAuth 2.0 hello ügyfél hitelesítő adatok folyamata.
 
-A folyamatot, az alkalmazás kommunikál közvetlenül a `/token` végpont végpontok beszerzése:
+Ez a folyamat a hello app kommunikál közvetlenül hello `/token` végpont tooobtain végpontok:
 
 ![Démon alkalmazás hitelesítési folyamat](../../media/active-directory-v2-flows/convergence_scenarios_daemon.png)
 
-Egy démon alkalmazás elkészítésére, tekintse meg az ügyfél-hitelesítő adatok dokumentációjában találhatók a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakaszban, vagy adjon meg egy [.NET mintaalkalmazás](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).
+egy démon app toobuild dokumentációjában hello ügyfél hitelesítő adatait a a [bevezetés](active-directory-appmodel-v2-overview.md#getting-started) szakaszban, vagy adjon meg egy [.NET mintaalkalmazás](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).

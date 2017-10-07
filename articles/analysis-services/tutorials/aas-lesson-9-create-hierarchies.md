@@ -1,65 +1,47 @@
 ---
-title: "Azure Analysis Services oktatóanyag – 9. lecke: Hierarchiák létrehozása | Microsoft Docs"
-description: 
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 05/26/2017
-ms.author: owend
-ms.openlocfilehash: d628dc621335acf231342a6d9186079de16e85f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+cím: aaa "Azure Analysis Services-oktatóanyag lecke 9: hozzon létre hierarchiákat |} Microsoft Docs"Leírás: szolgáltatások: analysis-szolgáltatások documentationcenter:" Szerző: minewiskan manager: erikre szerkesztőben: "címkék:"
+
+MS.AssetId: ms.service: analysis-szolgáltatások ms.devlang: NA ms.topic: get-started-article ms.tgt_pltfrm: NA ms.workload: na ms.date: 05/26/2017 ms.author: owend
 ---
 # <a name="lesson-9-create-hierarchies"></a>9. lecke: Hierarchiák létrehozása
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Ebben a leckében hierarchiákat hozhat létre. A hierarchiák szintekbe rendezett oszlopcsoportok. A földrajzi hierarchia például tartalmazhatja az Ország, Állam, Megye és Város alszinteket. A hierarchiák a többi oszloptól külön is megjelenhetnek a jelentéskészítési ügyfélalkalmazás mezőlistájában, így az ügyfélfelhasználók könnyebben navigálhatnak közöttük és foglalhatják őket jelentésekbe. További tudnivalók: [Hierarchiák](https://docs.microsoft.com/sql/analysis-services/tabular-models/hierarchies-ssas-tabular)
+Ebben a leckében hierarchiákat hozhat létre. A hierarchiák szintekbe rendezett oszlopcsoportok. A földrajzi hierarchia például tartalmazhatja az Ország, Állam, Megye és Város alszinteket. Hierarchiák jelennek meg a jelentéskészítési ügyfél alkalmazás mezőlistán más oszlopokból külön így egyszerűbben ügyfél felhasználók toonavigate, és a jelentésbe foglalni. több, lásd: toolearn [hierarchiák](https://docs.microsoft.com/sql/analysis-services/tabular-models/hierarchies-ssas-tabular)
   
-Hierarchiák létrehozásához használja a modelltervezőt *Diagramnézetben*. A hierarchiák létrehozása és kezelése Adatnézetben nem támogatott.  
+toocreate hierarchiák, használja a hello modellek tervezőjében *diagramnézet*. A hierarchiák létrehozása és kezelése Adatnézetben nem támogatott.  
   
-A lecke elvégzésének várható időtartama: **20 perc**.  
+Becsült idő toocomplete Ez a lecke: **20 perc**  
   
 ## <a name="prerequisites"></a>Előfeltételek  
-Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Az ebben a leckében található feladatok végrehajtása előtt be kell fejeznie az előző leckét: [8. lecke: Perspektívák létrehozása](../tutorials/aas-lesson-8-create-perspectives.md).  
+Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét képezi, amelyet a megfelelő sorrendben kell elvégezni. Ez a lecke hello feladatok elvégzése előtt kell befejeződött hello előző lecke: [lecke 8: perspektívák létrehozásához](../tutorials/aas-lesson-8-create-perspectives.md).  
   
 ## <a name="create-hierarchies"></a>Hierarchiák létrehozása  
   
-#### <a name="to-create-a-category-hierarchy-in-the-dimproduct-table"></a>Category (Kategória) hierarchia létrehozása a DimProduct táblában  
+#### <a name="toocreate-a-category-hierarchy-in-hello-dimproduct-table"></a>a kategóriák hierarchiája hello DimProduct tábla toocreate  
   
-1.  A modelltervezőben (diagramnézetben) kattintson a jobb gombbal a **DimProduct** táblára, majd kattintson a **Hierarchia létrehozása** elemre. Az új hierarchia a tábla ablakának alján jelenik majd meg. Nevezze át a hierarchiát a következőre: **Category**.  
+1.  Hello modell Designer (diagramnézet), kattintson a jobb gombbal hello **DimProduct** tábla > **hierarchia létrehozása**. Új hierarchia hello tábla ablak hello alján jelenik meg. Nevezze át a hello hierarchia **kategória**.  
   
-2.  Kattintson a **ProductCategoryName** oszlopra, és húzza az új **Category** hierarchiába.  
+2.  Kattintással és húzással vigye a hello **ProductCategoryName** oszlop toohello új **kategória** hierarchia.  
   
-3.  A **Category** hierarchiában kattintson a jobb gombbal a **ProductCategoryName** > **Átnevezés** elemre, majd írja be a **Category** kifejezést.  
+3.  A hello **kategória** hierarchia, kattintson a jobb gombbal hello **ProductCategoryName** > **átnevezése**, majd írja be **kategória**.  
   
     > [!NOTE]  
-    > Ha átnevez egy oszlopot a hierarchiában, az oszlop neve nem változik a táblában. A hierarchiában található oszlopok csak a táblában lévő oszlopok ábrázolásai.  
+    > Egy hierarchiában lévő oszlop átnevezése nem nevezhető át, hogy hello tábla oszlopa. Egy hierarchiában lévő oszlop hello tábla hello oszlopa egy ábrázolása legyen.  
   
-4.  Kattintson a **ProductSubcategoryName** oszlopra, és húzza a **Category** hierarchiába. Nevezze át a következőre: **Subcategory**. 
+4.  Kattintással és húzással vigye a hello **ProductSubcategoryName** oszlop toohello **kategória** hierarchia. Nevezze át a következőre: **Subcategory**. 
   
-5.  Kattintson a jobb gombbal a **ModelName** oszlopra, majd kattintson a **Hozzáadás a hierarchiához** elemre, és válassza a **Category** lehetőséget. Nevezze át a következőre: **Model**.
+5.  Kattintson a jobb gombbal hello **ModelName** oszlop > **toohierarchy hozzáadása**, majd válassza ki **kategória**. Nevezze át a következőre: **Model**.
 
-6.  Végül adja hozzá az **EnglishProductName** oszlopot a Category hierarchiához. Nevezze át a következőre: **Product**.  
+6.  Végül adja hozzá **EnglishProductName** toohello kategóriák hierarchiája. Nevezze át a következőre: **Product**.  
 
     ![aas-lesson9-category](../tutorials/media/aas-lesson9-category.png)
   
-#### <a name="to-create-hierarchies-in-the-dimdate-table"></a>Hierarchiák létrehozása a DimDate táblában  
+#### <a name="toocreate-hierarchies-in-hello-dimdate-table"></a>hello DimDate tábla toocreate hierarchiák  
   
-1.  A **DimDate** táblában hozzon létre egy **Calendar** nevű hierarchiát.  
+1.  A hello **DimDate** table, hozzon létre egy nevű hierarchiát **naptár**.  
   
-3.  Adja hozzá az alábbi oszlopokat a megadott sorrendben:
+3.  Adja hozzá a következő oszlopok sorrendben hello:
 
     *  CalendarYear
     *  CalendarSemester
@@ -67,7 +49,7 @@ Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét k
     *  MonthCalendar
     *  DayNumberOfMonth
     
-4.  A **DimDate** táblában hozzon létre egy **Fiscal** nevű hierarchiát. Adja meg az alábbi oszlopokat a megadott sorrendben:  
+4.  A hello **DimDate** tábla, hozzon létre egy **pénzügyi** hierarchia. A következő oszlopok sorrendben hello a következők:  
   
     *  FiscalYear
     *  FiscalSemester
@@ -75,7 +57,7 @@ Ez a témakör a táblázatos modellezéssel foglalkozó oktatóanyag részét k
     *  MonthCalendar
     *  DayNumberOfMonth
   
-5.  A **DimDate** táblában hozzon létre egy **ProductionCalendar** nevű hierarchiát. Adja meg az alábbi oszlopokat a megadott sorrendben:  
+5.  Végezetül a hello **DimDate** tábla, hozzon létre egy **ProductionCalendar** hierarchia. A következő oszlopok sorrendben hello a következők:  
     *  CalendarYear
     *  WeekNumberOfYear
     *  DayNumberOfWeek

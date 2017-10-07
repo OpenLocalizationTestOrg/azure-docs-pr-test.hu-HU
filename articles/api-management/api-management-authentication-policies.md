@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management hitelesítési házirendek |} Microsoft Docs"
-description: "Ismerje meg a hitelesítési házirendek az Azure API Management használható."
+title: "aaaAzure API Management hitelesítési házirendek |} Microsoft Docs"
+description: "További tudnivalók hello hitelesítési házirendek az Azure API Management használható."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 63ef20a56ab7721f9ecc7025d05963cc4b0c27a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce93cced66cb67520e97c7c15f3685bffb08e1f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-authentication-policies"></a>Az API Management hitelesítési házirendek
-Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek hello. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AuthenticationPolicies"></a>Hitelesítési házirendek  
   
@@ -30,7 +30,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 -   [Az ügyféltanúsítvány hitelesítéséhez](api-management-authentication-policies.md#ClientCertificate) -az ügyféltanúsítványok háttérszolgáltatás a hitelesítést.  
   
 ##  <a name="Basic"></a>Alapszintű hitelesítés  
- Használja a `authentication-basic` házirend az egyszerű hitelesítést használ a háttérszolgáltatáshoz való hitelesítéshez szükséges. Ez a házirend hatékonyan állítja be a HTTP Authorization fejlécet a házirendben megadott hitelesítő adatokhoz megfelelő értéket.  
+ Használjon hello `authentication-basic` házirend tooauthenticate alapszintű hitelesítést használ, egy háttér szolgáltatással. Ez a házirend hatékonyan hello HTTP engedélyezési fejléc toohello érték megfelelő toohello hitelesítő adatok beállítása a hello házirendekben.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -54,18 +54,18 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|felhasználónév|Az alapszintű hitelesítő adat felhasználónevet adja meg.|Igen|N/A|  
-|jelszó|Megadja az alapvető hitelesítő adat.|Igen|N/A|  
+|felhasználónév|Hello felhasználónév a hello alapvető hitelesítő adatok megadása|Igen|N/A|  
+|jelszó|A hello alapvető hitelesítő adatok hello jelszót ad meg.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   
 -   **Házirend hatókörök:** API  
   
 ##  <a name="ClientCertificate"></a>Az ügyféltanúsítvány hitelesítéséhez  
- Használja a `authentication-certificate` házirend az ügyféltanúsítvány használatával háttérszolgáltatás való hitelesítéshez szükséges. A tanúsítvány kell lennie [telepítve az API Management](http://go.microsoft.com/fwlink/?LinkID=511599) első és az ujjlenyomat azonosíthatók.  
+ Használjon hello `authentication-certificate` házirend tooauthenticate egy háttér szolgáltatással ügyféltanúsítvány használatával. hello tanúsítványt kell toobe [telepítve az API Management](http://go.microsoft.com/fwlink/?LinkID=511599) első és az ujjlenyomat azonosít.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -89,10 +89,10 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|ujjlenyomat|Az ügyféltanúsítvány ujjlenyomata.|Igen|N/A|  
+|ujjlenyomat|hello hello-ügyfél tanúsítványának ujjlenyomata.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   

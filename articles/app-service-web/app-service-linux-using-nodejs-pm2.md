@@ -1,5 +1,5 @@
 ---
-title: "PM2 configuration for Linux Azure Web App alkalmazásban Node.js használatával |} Microsoft Docs"
+title: "a Node.js az Azure Web Apps Linux aaaUsing PM2 konfigurációs |} Microsoft Docs"
 description: "PM2 configuration for Node.js Linux Azure Web App használatával"
 keywords: "az Azure app service, webalkalmazás, nodejs, pm2, linux, oss"
 services: app-service
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 5002400a673e2c5cc4290bab488b839fb2282966
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 923783ffe656e01c43318899d1a656b553ebb5f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-pm2-configuration-for-nodejs-in-azure-web-app-on-linux"></a>A Node.js az Azure Web Apps Linux PM2 konfiguráció használata
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-Ha állítja be az alkalmazás verem Node.js webalkalmazás Azure Linux, kap egy Node.js indítási fájlt a következő ábrán látható módon beállítására:
+Hello alkalmazás verem tooNode.js Azure Web Apps Linux állítja be, ha kap hello beállítás tooset Node.js indítási fájl látható hello kép a következő módon:
 
 ![Node.js a rendszerindító fájlok][1]
 
-Ez a beállítás segítségével hajtsa végre az alábbi műveletek közül:
+Ez a beállítás toodo egy a következő feladatok hello használhatja:
 
-* Adja meg a indítási parancsfájlt a Node.js-alkalmazás (például: /bin/server.js).
-* Adja meg a PM2 konfigurációs fájl használata a Node.js-alkalmazás (például: /foo/process.json).
+* Adja meg a hello indítási parancsfájl a Node.js-alkalmazás (például: /bin/server.js).
+* Adja meg a hello PM2 konfigurációs fájl toouse a Node.js-alkalmazás (például: /foo/process.json).
   
   > [!NOTE]
-  > Ha azt szeretné, hogy automatikusan újrainduljon, ha egyes fájlok módosítják a Node.js folyamatok, PM2 konfigurációt használja. Ellenkező esetben az alkalmazás nem indítsa újra a változási értesítéseket (például az alkalmazás kódjában megváltozásakor) fogadásakor.
+  > Ha azt szeretné, a Node.js folyamatok toorestart automatikusan Ha egyes fájlok módosítják, hello PM2 konfigurációt használja. Ellenkező esetben az alkalmazás nem indítsa újra a változási értesítéseket (például az alkalmazás kódjában megváltozásakor) fogadásakor.
   > 
   > 
 
-Ellenőrizheti, hogy a Node.js [feldolgozni a fájlt dokumentáció](http://pm2.keymetrics.io/docs/usage/application-declaration/) minden a beállításokat, de az érték egy minta a process.json fájlként is használja:
+Ellenőrizheti a hello Node.js [feldolgozni a fájlt dokumentáció](http://pm2.keymetrics.io/docs/usage/application-declaration/) összes hello beállításokat, de az alábbiakban látható egy minta a process.json fájlként is használja:
 
         {
           "name"        : "worker",
@@ -56,12 +56,12 @@ Ellenőrizheti, hogy a Node.js [feldolgozni a fájlt dokumentáció](http://pm2.
           }
         }
 
-Fontos megjegyezni, ebben a konfigurációban minden olyan:
+Ebben a konfigurációban a fontos részek toonote a következők:
 
-* A "script" tulajdonság határozza meg az alkalmazás indítási parancsfájlra.
-* Az "instances" tulajdonság határozza meg, hogy a csomópont folyamat elindításához hány példánya. Ha az alkalmazás a nagyobb virtuális gépeken, több maggal rendelkező futnak, célszerű maximalizálhatja az erőforrások magasabb értéket itt beállításával.
-* A "figyelés" tömb határozza meg az összes fájl, amely újraindítja a csomópont folyamata, amikor változik.
-* A "watch_options" meg kell adnia a "usePolling" igaz a tartalmát csatlakoztatva van módjával jelenleg.
+* hello "script" tulajdonság határozza meg az alkalmazás indítási parancsfájlra.
+* hello "instances" tulajdonság hello csomópont folyamat toolaunch hány példánya határozza meg. Az alkalmazás a nagyobb virtuális gépeken, több maggal rendelkező futtat, akkor egy jó ötlet toomaximize az erőforrások magasabb értéket itt beállításával.
+* hello "bemutató" tömb toorestart hello csomópont folyamata szüksége, amikor változnak az összes fájlt határozza meg.
+* A "watch_options" hello jelenleg kell toospecify "usePolling" igaz miatt hello módja a tartalmát csatlakoztatva van.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Mi az Azure Web Apps Linux?](app-service-linux-intro.md)

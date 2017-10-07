@@ -1,5 +1,5 @@
 ---
-title: ".NET nyomkövetési naplók megtekintése az Application Insights felfedezése"
+title: "aaaExplore .NET nyomkövetési naplók az Application Insightsban"
 description: "Keresse meg a nyomkövetési, NLog és Log4Net létrehozott naplók."
 services: application-insights
 documentationcenter: .net
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/3/2017
 ms.author: bwren
-ms.openlocfilehash: 68e03bf10167ecde675d62782de7063aea9e81d9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6bfcd9e5751c3656236d7eb2fc09321740171a70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-net-trace-logs-in-application-insights"></a>.NET nyomkövetési naplók megtekintése az Application Insights felfedezése
-Ha NLog, a log4Net, vagy a System.Diagnostics.Trace a diagnosztikai nyomkövetés az ASP.NET-alkalmazás lehet küldeni a naplókat [Azure Application Insights][start], ahol vizsgálatát, és keresse meg őket. A naplók az alkalmazásból érkező, hogy azonosítsa a nyomkövetési adatokat társított minden egyes felhasználói kérelem karbantartás, és a kivizsgált más események és a kivétel jelentések más telemetriai adatok egyesül.
+NLog, a log4Net, vagy a System.Diagnostics.Trace a diagnosztikai nyomkövetés az ASP.NET-alkalmazás használatakor a naplók küldött túl lehet[Azure Application Insights][start], ahol vizsgálatát és keresése őket. A naplók egyesül hello egyéb telemetriai adatokat, így megállapítható, hogy az alkalmazás érkező hello társított minden egyes felhasználói kérelem karbantartási nyomkövetéseket, és a kivizsgált más események és a kivétel jelentések.
 
 > [!NOTE]
-> A rögzítési naplómoduljának kell? A 3. fél figyelő szoftverek hasznos adaptert, de ha már nem használt NLog, log4Net, vagy a System.Diagnostics.Trace, fontolja meg a csak hívó [Application Insights TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) közvetlenül.
+> Hello rögzítési naplómoduljának kell? A 3. fél figyelő szoftverek hasznos adaptert, de ha már nem használt NLog, log4Net, vagy a System.Diagnostics.Trace, fontolja meg a csak hívó [Application Insights TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) közvetlenül.
 >
 >
 
 ## <a name="install-logging-on-your-app"></a>Bejelentkezés az alkalmazás telepítése
 A kiválasztott naplózási keretrendszer telepítése a projektben. Ennek eredménye egy app.config vagy a web.config bejegyzése.
 
-Ha System.Diagnostics.Trace használ, adjon hozzá egy bejegyzést a Web.config fájlba szeretné:
+System.Diagnostics.Trace használata, ha egy bejegyzés tooweb.config tooadd szüksége:
 
 ```XML
 
@@ -47,28 +47,28 @@ Ha System.Diagnostics.Trace használ, adjon hozzá egy bejegyzést a Web.config 
      </system.diagnostics>
    </configuration>
 ```
-## <a name="configure-application-insights-to-collect-logs"></a>Az Application Insights gyűjtött naplók konfigurálása
-**[Az Application Insights hozzáadása a projekthez](app-insights-asp-net.md)**  még ezt nem tette meg, ha. Megjelenik egy lehetőség, hogy a naplógyűjtő tartalmazza.
+## <a name="configure-application-insights-toocollect-logs"></a>Az Application Insights toocollect naplók konfigurálása
+**[Az Application Insights tooyour projekt hozzáadása](app-insights-asp-net.md)**  még ezt nem tette meg, ha. Egy beállítás tooinclude hello naplógyűjtő láthatja.
 
-Vagy **konfigurálja az Application Insights** kattintson a jobb gombbal a projektben a Megoldáskezelőre. Jelölje be a **gyűjtemény konfigurálása**.
+Vagy **konfigurálja az Application Insights** kattintson a jobb gombbal a projektben a Megoldáskezelőre. A beállításnak a hello túl**gyűjtemény konfigurálása**.
 
 *Nincs Application Insights menü vagy a napló adatgyűjtő lehetőség?* Próbálja [hibaelhárítási](#troubleshooting).
 
 ## <a name="manual-installation"></a>Manuális telepítés
-Akkor használja ezt a módszert, ha a projekt típusa nem támogatott az Application Insights telepítővel (például a Windows asztali projekt).
+Akkor használja ezt a módszert, ha a projekt típusa nem támogatott hello (például a Windows asztali projekt) az Application Insights telepítővel.
 
-1. Ha azt tervezi, a log4Net, vagy a NLog, telepítse a projektet.
+1. Ha azt tervezi, toouse log4Net vagy NLog, telepítse a projektet.
 2. A Megoldáskezelőben kattintson jobb gombbal a projektre, és válassza a **NuGet-csomagok kezelése**.
 3. Az „Application Insights” kifejezés keresése
-4. Válassza ki a megfelelő csomag - egyikét:
+4. Válassza ki a hello megfelelő csomagot - egyikét:
 
-   * Microsoft.ApplicationInsights.TraceListener (System.Diagnostics.Trace hívások rögzítéséhez)
-   * (Az EventSource események rögzítése) Microsoft.ApplicationInsights.EventSourceListener
-   * (Az ETW-események rögzítése) Microsoft.ApplicationInsights.EtwListener
+   * Microsoft.ApplicationInsights.TraceListener (toocapture System.Diagnostics.Trace hívás)
+   * Microsoft.ApplicationInsights.EventSourceListener (toocapture EventSource esemény)
+   * Microsoft.ApplicationInsights.EtwListener (toocapture ETW-esemény)
    * Microsoft.ApplicationInsights.NLogTarget
    * Microsoft.ApplicationInsights.Log4NetAppender
 
-A NuGet csomag telepíti a szükséges szerelvényeket, valamint módosítja a web.config vagy az App.config fájlt.
+hello NuGet csomag telepíti hello szükséges szerelvényeket, valamint módosítja a web.config vagy az App.config fájlt.
 
 ## <a name="insert-diagnostic-log-calls"></a>Helyezze be a diagnosztikai naplófájl hívások
 Ha a System.Diagnostics.Trace használatához tipikus hívás lenne:
@@ -80,7 +80,7 @@ Ha inkább log4net vagy NLog:
     logger.Warn("Slow response - database01");
 
 ## <a name="using-eventsource-events"></a>EventSource eseményeket használ
-Konfigurálható [System.Diagnostics.Tracing.EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) eseményeket az Application Insights nyomkövetési adatokat, küldendő. Először telepítse a `Microsoft.ApplicationInsights.EventSourceListener` NuGet-csomagot. Szerkessze `TelemetryModules` szakasza a [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
+Konfigurálható [System.Diagnostics.Tracing.EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) események küldött toobe tooApplication Insights, mint a nyomkövetési adatokat. Először telepítse a hello `Microsoft.ApplicationInsights.EventSourceListener` NuGet-csomagot. Szerkessze `TelemetryModules` hello szakasza [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
 
 ```xml
     <Add Type="Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule, Microsoft.ApplicationInsights.EventSourceListener">
@@ -90,13 +90,13 @@ Konfigurálható [System.Diagnostics.Tracing.EventSource](https://msdn.microsoft
     </Add>
 ```
 
-Az egyes források állíthatók be a következő paraméterekkel:
- * `Name`Adja meg a gyűjtendő EventSource neve.
- * `Level`Adja meg a naplózási szint gyűjtéséhez. Egyike lehet `Critical`, `Error`, `Informational`, `LogAlways`, `Verbose`, `Warning`.
- * `Keywords`(Nem kötelező) adja meg a kulcsszavak kombinációk használni az egész értéket.
+Az egyes források állíthatók be a következő paraméterek hello:
+ * `Name`hello EventSource toocollect hello nevét adja meg.
+ * `Level`Adja meg a naplózási szint toocollect hello. Egyike lehet `Critical`, `Error`, `Informational`, `LogAlways`, `Verbose`, `Warning`.
+ * `Keywords`(Nem kötelező) Itt adhatja meg a kulcsszavak kombinációk toouse hello egész értéket.
 
 ## <a name="using-diagnosticsource-events"></a>DiagnosticSource eseményeket használ
-Konfigurálható [System.Diagnostics.DiagnosticSource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) eseményeket az Application Insights nyomkövetési adatokat, küldendő. Először telepítse a [ `Microsoft.ApplicationInsights.DiagnosticSourceListener` ](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener) NuGet-csomagot. Szerkessze a `TelemetryModules` szakasza a [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
+Konfigurálható [System.Diagnostics.DiagnosticSource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) események küldött toobe tooApplication Insights, mint a nyomkövetési adatokat. Először telepítse a hello [ `Microsoft.ApplicationInsights.DiagnosticSourceListener` ](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DiagnosticSourceListener) NuGet-csomagot. Szerkessze a hello `TelemetryModules` hello szakasza [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
 
 ```xml
     <Add Type="Microsoft.ApplicationInsights.DiagnsoticSourceListener.DiagnosticSourceTelemetryModule, Microsoft.ApplicationInsights.DiagnosticSourceListener">
@@ -106,13 +106,13 @@ Konfigurálható [System.Diagnostics.DiagnosticSource](https://github.com/dotnet
     </Add>
 ```
 
-Az egyes DiagnosticSource követni kívánt, adja hozzá a bejegyzés a `Name` attribútum értékének beállítása a DiagnosticSource nevét.
+Minden egyes DiagnosticSource keresi tootrace, adjon hozzá egy bejegyzést a hello `Name` attribútum a DiagnosticSource toohello nevének beállítása.
 
 ## <a name="using-etw-events"></a>Használja az ETW-események
-Application Insights nyomkövetési adatokat, küldendő ETW-események konfigurálása Először telepítse a `Microsoft.ApplicationInsights.EtwCollector` NuGet-csomagot. Szerkessze `TelemetryModules` szakasza a [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
+Konfigurálhatja az ETW-események toobe tooApplication Insights küldése a nyomkövetési adatokat. Először telepítse a hello `Microsoft.ApplicationInsights.EtwCollector` NuGet-csomagot. Szerkessze `TelemetryModules` hello szakasza [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) fájlt.
 
 > [!NOTE] 
-> ETW-események csak be kell, ha az SDK-t tartalmazó folyamat, amely tagja az "Teljesítménynapló felhasználói" vagy a rendszergazdák identitás alatt fut.
+> ETW-események csak be kell, ha hello folyamat üzemeltetési hello SDK alatt fut, amely tagja "Teljesítménynapló felhasználói" vagy a rendszergazdák az identitást.
 
 ```xml
     <Add Type="Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule, Microsoft.ApplicationInsights.EtwCollector">
@@ -122,35 +122,35 @@ Application Insights nyomkövetési adatokat, küldendő ETW-események konfigur
     </Add>
 ```
 
-Az egyes források állíthatók be a következő paraméterekkel:
- * `ProviderName`a gyűjtendő ETW-szolgáltató neve van.
- * `ProviderGuid`Adja meg a gyűjteni kívánt ETW-szolgáltató GUID helyett használható `ProviderName`.
- * `Level`Beállítja a naplózási szint gyűjtéséhez. Egyike lehet `Critical`, `Error`, `Informational`, `LogAlways`, `Verbose`, `Warning`.
- * `Keywords`(Nem kötelező) kulcsszó kombinációk használni az egész értéket állítja be.
+Az egyes források állíthatók be a következő paraméterek hello:
+ * `ProviderName`az ETW-szolgáltató toocollect hello hello név.
+ * `ProviderGuid`Adja meg a hello GUID-hello ETW-szolgáltató toocollect, ahelyett, hogy használható `ProviderName`.
+ * `Level`naplózási szint toocollect hello beállítása. Egyike lehet `Critical`, `Error`, `Informational`, `LogAlways`, `Verbose`, `Warning`.
+ * `Keywords`(Választható) beállítása hello kulcsszó kombinációk toouse egész értéket.
 
-## <a name="using-the-trace-api-directly"></a>A nyomkövetés API közvetlen használatával
-Hívása az Application Insights nyomkövetési API közvetlenül. A naplózási adapterek Ez az API használnak.
+## <a name="using-hello-trace-api-directly"></a>Hello nyomkövetési API közvetlen használatával
+Hívása hello Application Insights nyomkövetési API közvetlenül. hello naplózási adapterek Ez az API használnak.
 
 Példa:
 
     var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
     telemetry.TrackTrace("Slow response - database01");
 
-TrackTrace előnye, hogy viszonylag hosszú adatok helyezhetik az üzenetben. Például sikerült kódolni nincs POST-adatokat.
+TrackTrace előnye, hogy viszonylag hosszú adatok helyezhetik hello üzenetben. Például sikerült kódolni nincs POST-adatokat.
 
-Emellett egy súlyossági szintet adhat hozzá az üzenetet. És egyéb telemetriai adatok, például hozzáadhat, amelyek segítségével szűrőt, vagy keressen a nyomkövetési más-más részhalmazához. Példa:
+Emellett egy súlyossági szint tooyour üzenetet is hozzáadhat. És egyéb telemetriai adatok, például értékeket is hozzáadhat tulajdonság használható toohelp szűrőt, vagy keressen a nyomkövetési más-más részhalmazához. Példa:
 
     var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
     telemetry.TrackTrace("Slow database response",
                    SeverityLevel.Warning,
                    new Dictionary<string,string> { {"database", db.ID} });
 
-Ez lehetővé tenné, hogy a [keresési][diagnostic], az adott adatbázishoz vonatkozó adott súlyossági szintet az üzenetek egyszerűen kiszűrésére.
+Ez lehetővé tenné, hogy a [keresési][diagnostic], tooeasily szűrő egy adott adatbázis tooa vonatkozó adott súlyossági szint minden köszönőüzenetei ki.
 
 ## <a name="explore-your-logs"></a>A naplók felfedezés
 Futtassa az alkalmazást, vagy a hibakeresési módban, vagy telepítheti élő.
 
-Az alkalmazás áttekintése panelen a [az Application Insights portáljáról][portal], válassza a [keresési][diagnostic].
+Az alkalmazás áttekintése panelen a [hello Application Insights portál][portal], válassza a [keresési][diagnostic].
 
 ![Az Application insights részére válassza ki a keresés](./media/app-insights-asp-net-trace-logs/020-diagnostic-search.png)
 
@@ -160,11 +160,11 @@ Akkor is, például:
 
 * A naplókivonatokat, vagy az adott tulajdonságokkal rendelkező elemek szűrése
 * Egy adott cikk részletesen vizsgálhatja meg.
-* Található más felhasználó kérésben vonatkozó telemetriai adatokat (Ez azt jelenti, hogy az azonos OperationID azonosítójú rendelkező)
-* Ezen a lapon konfigurációjának mentése a Kedvencek közé
+* Más toohello vonatkozó telemetriai található azonos felhasználói kérelem (Ez azt jelenti, hogy a hello azonos OperationID azonosítójú)
+* Ezen a lapon hello konfigurációjának mentése a Kedvencek közé
 
 > [!NOTE]
-> **Mintavételi.** Ha az alkalmazása sok adatot küld, és az Application Insights SDK-t az ASP.NET 2.0.0-beta3 vagy újabb verziójához használja, működhet az adaptív mintavételezés funkció és lehet, hogy csak a telemetria valamely százalékát küldi el. [További tudnivalók a mintavételezésről.](app-insights-sampling.md)
+> **Mintavételi.** Ha az alkalmazás nagy mennyiségű adatot küld, és hello Application Insights SDK for ASP.NET verzió 2.0.0-beta3 vagy újabb használ, hello adaptív mintavételi szolgáltatás működtetésében, valamint csak százalékaként a telemetriai adatok küldése. [További tudnivalók a mintavételezésről.](app-insights-sampling.md)
 >
 >
 
@@ -175,30 +175,30 @@ Akkor is, például:
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 ### <a name="how-do-i-do-this-for-java"></a>Hogyan ez Java?
-Használja a [Java napló adapterek](app-insights-java-trace-logs.md).
+Használjon hello [Java napló adapterek](app-insights-java-trace-logs.md).
 
-### <a name="theres-no-application-insights-option-on-the-project-context-menu"></a>A projekt helyi menüben nincs Application Insights lehetőség
-* Ellenőrizze, hogy az Application Insights-eszközök telepítve van a fejlesztési számítógépen. A Visual Studio menüjében eszközök bővítmények és frissítések, keresse meg az Application Insights-eszközökkel. Ha nem, akkor a telepített lap, nyissa meg az Online lapot, és telepítse.
+### <a name="theres-no-application-insights-option-on-hello-project-context-menu"></a>Nincs Application Insights lehetőség hello projekt helyi menüben
+* Ellenőrizze, hogy az Application Insights-eszközök telepítve van a fejlesztési számítógépen. A Visual Studio menüjében eszközök bővítmények és frissítések, keresse meg az Application Insights-eszközökkel. Ha nem, akkor hello telepített lapon, hello Online lap megnyitásához, és telepítse.
 * Ez a projekt Application Insights-eszközök által nem támogatott típusú lehet. Használjon [manuális telepítés](#manual-installation).
 
-### <a name="no-log-adapter-option-in-the-configuration-tool"></a>A kiszolgálókonfigurációs eszköz nincs napló adapter lehetőség
-* A naplózási keretrendszer először telepítenie kell.
+### <a name="no-log-adapter-option-in-hello-configuration-tool"></a>Nincs napló adapter lehetőség hello konfigurálása eszköz
+* Először meg kell tooinstall hello naplózási keretrendszert.
 * Ha a System.Diagnostics.Trace használata esetén ellenőrizze, hogy [legyen konfigurálva `web.config` ](https://msdn.microsoft.com/library/system.diagnostics.eventlogtracelistener.aspx).
-* Rendelkezik készült Application Insights legújabb verzióját? A Visual Studio **eszközök** menüben válasszon **bővítmények és frissítések**, és nyissa meg a **frissítések** lapon. Fejlesztői elemzőeszközök nincs, kattintson a frissítést.
+* Rendelkezik készült Application Insights hello legújabb verzióját? A Visual Studio **eszközök** menüben válasszon **bővítmények és frissítések**, és nyissa meg hello **frissítések** lapon. Fejlesztői elemzőeszközök nincs, kattintson a tooupdate azt.
 
 ### <a name="emptykey"></a>Hiba jelenik meg: "Instrumentation kulcs nem lehet üres"
-A jelek szerint a naplózás adapter Nuget-csomagot telepítette az Application Insights telepítése nélkül.
+A jelek szerint a naplózás adapter Nuget-csomagot az Application Insights telepítése nélkül hello telepítette.
 
-A Megoldáskezelőben kattintson a jobb gombbal `ApplicationInsights.config` válassza **frissítés az Application Insights**. Olyan párbeszédpanel, amely felkéri, hogy jelentkezzen be az Azure-bA kap, és létrehozza az Application Insights-erőforrást, vagy használja ismét egy meglévőt. Ez segít kell azt.
+A Megoldáskezelőben kattintson a jobb gombbal `ApplicationInsights.config` válassza **frissítés az Application Insights**. Kaphat olyan párbeszédpanel, amely hozzáfűzendő toosign a tooAzure, és létrehozza az Application Insights-erőforrást, vagy használja ismét egy meglévőt. Ez segít kell azt.
 
-### <a name="i-can-see-traces-in-diagnostic-search-but-not-the-other-events"></a>Láthatom valahol mappában lévő diagnosztikai keresési, de nem tartozó más események
-Azt is néha időigényes az összes olyan események és kérelmek lekérni a feldolgozási folyamaton keresztül.
+### <a name="i-can-see-traces-in-diagnostic-search-but-not-hello-other-events"></a>Tudom lásd: a diagnosztikai keresési nyomkövetési adatokat, de nem hello más események
+Néha eltarthat egy ideig, míg minden hello események és a kérelmek tooget hello-feldolgozási folyamaton keresztül.
 
 ### <a name="limits"></a>Mennyi adatot megmarad?
-Számos tényező befolyásolja a megőrzött adatok mennyiségét. Tekintse meg a [korlátok](app-insights-api-custom-events-metrics.md#limits) szakasz az ügyfél esemény metrikák oldal további információt. 
+Számos tényező befolyásolja a hello megőrzött adatok mennyiségét. Lásd: hello [korlátok](app-insights-api-custom-events-metrics.md#limits) hello ügyfél esemény metrikák lap további információk szakasza. 
 
-### <a name="im-not-seeing-some-of-the-log-entries-that-i-expect"></a>Nem látható az egyes a naplóbejegyzéseket, amelyeket a várt
-Ha az alkalmazása sok adatot küld, és az Application Insights SDK-t az ASP.NET 2.0.0-beta3 vagy újabb verziójához használja, működhet az adaptív mintavételezés funkció és lehet, hogy csak a telemetria valamely százalékát küldi el. [További tudnivalók a mintavételezésről.](app-insights-sampling.md)
+### <a name="im-not-seeing-some-of-hello-log-entries-that-i-expect"></a>Nem látható az egyes várt hello naplóbejegyzések
+Ha az alkalmazás nagy mennyiségű adatot küld, és hello Application Insights SDK for ASP.NET verzió 2.0.0-beta3 vagy újabb használ, hello adaptív mintavételi szolgáltatás működtetésében, valamint csak százalékaként a telemetriai adatok küldése. [További tudnivalók a mintavételezésről.](app-insights-sampling.md)
 
 ## <a name="add"></a>Következő lépések
 * [Rendelkezésre állási és reakcióidőt tesztek beállítása][availability]

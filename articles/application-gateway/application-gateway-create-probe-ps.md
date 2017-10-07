@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy egyéni mintavételt - Azure Application Gateway - PowerShell |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy egyéni mintavétel az Alkalmazásátjáró PowerShell erőforrás-kezelő használatával"
+title: "egyéni aaaCreate mintavételi - Azure Application Gateway - PowerShell |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egyéni mintavételi az Alkalmazásátjáró PowerShell erőforrás-kezelő használatával"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: gwallace
-ms.openlocfilehash: b54fe5267d87a41eb9e81d5d1dc9b1b16c5c5e88
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 44c9ffa75401d6d0db023e66fa82c701fb0cf8bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-probe-for-azure-application-gateway-by-using-powershell-for-azure-resource-manager"></a>Egy egyéni mintavétel létrehozása az Azure Application Gateway az Azure Resource Manager PowerShell használatával.
 
@@ -28,10 +28,10 @@ ms.lasthandoff: 07/11/2017
 > * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 > * [Klasszikus Azure PowerShell](application-gateway-create-probe-classic-ps.md)
 
-Ebben a cikkben ad hozzá egy egyéni mintavételt meglévő Alkalmazásátjáró a PowerShell használatával. Egyéni mintavételt az alkalmazásokat, amelyek egy adott állapotának ellenőrzése lapon vagy az alapértelmezett webes alkalmazás a sikeres válasz nem biztosító alkalmazások hasznosak.
+Ebben a cikkben egy egyéni mintavételi tooan meglévő Alkalmazásátjáró a PowerShell használatával adja hozzá. Egyéni mintavételt hasznosak, az alkalmazásokat, amelyek egy adott állapotának ellenőrzése lapon vagy az alkalmazásokat, amelyek nem a sikeres válasz hello alapértelmezett webalkalmazáshoz.
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](application-gateway-create-probe-classic-ps.md) helyett javasol.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](application-gateway-create-probe-classic-ps.md).
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
@@ -39,19 +39,19 @@ Ebben a cikkben ad hozzá egy egyéni mintavételt meglévő Alkalmazásátjár�
 
 ### <a name="sign-in-and-create-resource-group"></a>Jelentkezzen be, és az erőforráscsoport létrehozása
 
-1. Használjon `Login-AzureRmAccount` hitelesítéséhez.
+1. Használjon `Login-AzureRmAccount` tooauthenticate.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-1. A fiókhoz tartozó előfizetések beolvasása.
+1. Hello előfizetések hello fiók lekérése.
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-1. Válassza ki, hogy melyik Azure előfizetést fogja használni.
+1. Válassza ki, amely az Azure-előfizetések toouse.
 
   ```powershell
   Select-AzureRmSubscription -Subscriptionid '{subscriptionGuid}'
@@ -63,28 +63,28 @@ Ebben a cikkben ad hozzá egy egyéni mintavételt meglévő Alkalmazásátjár�
   New-AzureRmResourceGroup -Name appgw-rg -Location 'West US'
   ```
 
-Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ez a hely lesz az erőforráscsoport erőforrásainak alapértelmezett helye. Győződjön meg arról, hogy minden parancs Alkalmazásátjáró létrehozása ugyanabban az erőforráscsoportban.
+Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ezen a helyen az erőforráscsoport erőforrások lesz hello alapértelmezett helye. Győződjön meg arról, hogy az összes parancsok toocreate egy alkalmazás átjáró használata hello ugyanabban az erőforráscsoportban.
 
-Az előző példában létrehozott nevű erőforráscsoport **appgw-RG** helyen **USA nyugati régiója**.
+A fenti példa hello, nevű erőforráscsoport létrehozott **appgw-RG** helyen **USA nyugati régiója**.
 
 ### <a name="create-a-virtual-network-and-a-subnet"></a>Hozzon létre egy virtuális hálózatot és egy alhálózatot
 
-Az alábbi példakód létrehozza a virtuális hálózat és az Alkalmazásátjáró alhálózatot. Alkalmazásátjáró saját alhálózatba használatát igényli. Emiatt az Alkalmazásátjáró létrehozott alhálózati kisebb, mint a vnet, hogy más alhálózatok létrehozott és használt lehetővé a címterületen belülre kell lennie.
+hello alábbi példa létrehoz egy virtuális hálózatot és egy hello alkalmazás átjáró-alhálózatot. Alkalmazásátjáró saját alhálózatba használatát igényli. Emiatt az Alkalmazásátjáró hello létrehozott hello alhálózati kisebb, mint a más alhálózatokon toobe létrehozott és használt hello VNET tooallow hello címterében kell lennie.
 
 ```powershell
-# Assign the address range 10.0.0.0/24 to a subnet variable to be used to create a virtual network.
+# Assign hello address range 10.0.0.0/24 tooa subnet variable toobe used toocreate a virtual network.
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 
-# Create a virtual network named appgwvnet in resource group appgw-rg for the West US region using the prefix 10.0.0.0/16 with subnet 10.0.0.0/24.
+# Create a virtual network named appgwvnet in resource group appgw-rg for hello West US region using hello prefix 10.0.0.0/16 with subnet 10.0.0.0/24.
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location 'West US' -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 
-# Assign a subnet variable for the next steps, which create an application gateway.
+# Assign a subnet variable for hello next steps, which create an application gateway.
 $subnet = $vnet.Subnets[0]
 ```
 
-### <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Nyilvános IP-cím létrehozása az előtérbeli konfigurációhoz
+### <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>A nyilvános IP-cím hello előtér-konfiguráció létrehozása
 
-Hozzon létre egy **publicIP01** nevű, nyilvános IP-címhez tartozó erőforrást az **appgw-rg** nevű erőforráscsoportban, az USA nyugati régiójában. Ebben a példában az Alkalmazásátjáró előtér-IP-címét egy nyilvános IP-címet használja.  Alkalmazásátjáró igényel a nyilvános IP-cím, ezért rendelkeznie egy dinamikusan létrehozott DNS-nevet a `-DomainNameLabel` a nyilvános IP-cím létrehozása közben nem adható meg.
+Hozzon létre egy nyilvános IP-erőforrás **publicIP01** erőforráscsoportban **appgw-rg** hello USA nyugati régiójában. A példa egy nyilvános IP-cím hello Alkalmazásátjáró hello előtér-IP-címhez.  Alkalmazás-átjáró által igényelt hello nyilvános IP cím toohave dinamikusan létrehozott DNS-név ezért hello `-DomainNameLabel` hello hello nyilvános IP-cím létrehozása közben nem adható meg.
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -Name publicIP01 -Location 'West US' -AllocationMethod Dynamic
@@ -92,17 +92,17 @@ $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -Name publicI
 
 ### <a name="create-an-application-gateway"></a>Application Gateway létrehozása
 
-Az Alkalmazásátjáró létrehozása előtt beállítása összes konfigurációs elemet. Az alábbi példakód létrehozza a konfigurációs elemek, amelyek szükségesek az alkalmazás átjáró-erőforráshoz.
+Az összes konfigurációs elemek beállítása hello Alkalmazásátjáró létrehozása előtt. hello alábbi példakód létrehozza hello konfigurációs elemek, amelyek szükségesek az alkalmazás átjáró-erőforráshoz.
 
 | **Összetevő** | **Leírás** |
 |---|---|
 | **Átjáró IP-konfiguráció** | Egy alkalmazás átjáró IP-konfigurációt.|
-| **Háttérkészlet** | IP-címek, FQDN-eknek vagy, a webszolgáltatási alkalmazás üzemeltetéséhez alkalmazáskiszolgálókra két hálózati adapterrel áll|
-| **Állapotmintáihoz** | Egy egyéni mintavételt a háttérrendszer a készlet tagjainak állapotának figyelésére szolgál|
-| **HTTP-beállítások** | Beleértve, port, protokoll, affinitási cookie-alapú, mintavételi és időtúllépés gyűjteménye.  Ezek a beállítások határozzák meg, hogyan továbbítódik a háttér címkészletet tagok|
-| **Az elülső rétegbeli portot** | A port, amelyet figyeli az Alkalmazásátjáró forgalom|
+| **Háttérkészlet** | IP-címek, FQDN-eknek vagy hálózati adapterrel, amelyek toohello alkalmazás hello webalkalmazást működtető kiszolgálók készlete|
+| **Állapotmintáihoz** | Egyéni tesztműveleti használt hello háttér a készlet tagjainak toomonitor hello állapotát|
+| **HTTP-beállítások** | Beleértve, port, protokoll, affinitási cookie-alapú, mintavételi és időtúllépés gyűjteménye.  Ezeket a beállításokat annak megállapítása, hogy forgalom irányított toohello háttér a készlet tagjainak|
+| **Az elülső rétegbeli portot** | Alkalmazásátjáró hello hello portot figyeli a forgalmat a|
 | **Figyelő** | A protokoll előtérbeli IP-konfigurációja és az elülső rétegbeli portot kombinációja. Ez az, hogy mi a bejövő kéréseket figyeli.
-|**A szabály**| Útvonalak a forgalmat a megfelelő háttér HTTP-beállításai alapján.|
+|**A szabály**| Útvonalak hello forgalom toohello megfelelő háttér HTTP-beállításai alapján.|
 
 ```powershell
 # Creates a application gateway Frontend IP configuration named gatewayIP01
@@ -114,67 +114,67 @@ $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPA
 # Creates a probe that will check health at http://contoso.com/path/path.htm
 $probe = New-AzureRmApplicationGatewayProbeConfig -Name probe01 -Protocol Http -HostName 'contoso.com' -Path '/path/path.htm' -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
-# Creates the backend http settings to be used. This component references the $probe created in the previous command.
+# Creates hello backend http settings toobe used. This component references hello $probe created in hello previous command.
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 80
 
-# Creates a frontend port for the application gateway to listen on port 80 that will be used by the listener.
+# Creates a frontend port for hello application gateway toolisten on port 80 that will be used by hello listener.
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01 -Port 80
 
-# Creates a frontend IP configuration. This associates the $publicip variable defined previously with the front-end IP that will be used by the listener.
+# Creates a frontend IP configuration. This associates hello $publicip variable defined previously with hello front-end IP that will be used by hello listener.
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 
-# Creates the listener. The listener is a combination of protocol and the frontend IP configuration $fipconfig and frontend port $fp created in previous steps.
+# Creates hello listener. hello listener is a combination of protocol and hello frontend IP configuration $fipconfig and frontend port $fp created in previous steps.
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
 
-# Creates the rule that routes traffic to the backend pools.  In this example we create a basic rule that uses the previous defined http settings and backend address pool.  It also associates the listener to the rule
+# Creates hello rule that routes traffic toohello backend pools.  In this example we create a basic rule that uses hello previous defined http settings and backend address pool.  It also associates hello listener toohello rule
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 
-# Sets the SKU of the application gateway, in this example we create a small standard application gateway with 2 instances.
+# Sets hello SKU of hello application gateway, in this example we create a small standard application gateway with 2 instances.
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 
-# The final step creates the application gateway with all the previously defined components.
+# hello final step creates hello application gateway with all hello previously defined components.
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location 'West US' -BackendAddressPools $pool -Probes $probe -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
 ```
 
-## <a name="add-a-probe-to-an-existing-application-gateway"></a>A mintavétel hozzáadása egy meglévő Alkalmazásátjáró
+## <a name="add-a-probe-tooan-existing-application-gateway"></a>A mintavétel tooan meglévő Alkalmazásátjáró hozzáadása
 
-A következő kódrészletet a mintavételi hozzáadása egy meglévő Alkalmazásátjáró.
+hello következő kódrészletet mintavételi tooan meglévő alkalmazás átjárót ad.
 
 ```powershell
-# Load the application gateway resource into a PowerShell variable by using Get-AzureRmApplicationGateway.
+# Load hello application gateway resource into a PowerShell variable by using Get-AzureRmApplicationGateway.
 $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
-# Create the probe object that will check health at http://contoso.com/path/path.htm
+# Create hello probe object that will check health at http://contoso.com/path/path.htm
 $getgw = Add-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name probe01 -Protocol Http -HostName 'contoso.com' -Path '/path/custompath.htm' -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
-# Set the backend HTTP settings to use the new probe
+# Set hello backend HTTP settings toouse hello new probe
 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 120
 
-# Save the application gateway with the configuration changes
+# Save hello application gateway with hello configuration changes
 Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 ```
 
 ## <a name="remove-a-probe-from-an-existing-application-gateway"></a>Távolítsa el a Hálózatfigyelő a meglévő Alkalmazásátjáró
 
-A következő kódrészletet a mintavételi eltávolítja a meglévő Alkalmazásátjáró.
+a következő kódrészletet hello vizsgálatok eltávolítja a meglévő Alkalmazásátjáró.
 
 ```powershell
-# Load the application gateway resource into a PowerShell variable by using Get-AzureRmApplicationGateway.
+# Load hello application gateway resource into a PowerShell variable by using Get-AzureRmApplicationGateway.
 $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
-# Remove the probe from the application gateway configuration object
+# Remove hello probe from hello application gateway configuration object
 $getgw = Remove-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name $getgw.Probes.name
 
-# Set the backend HTTP settings to remove the reference to the probe. The backend http settings now use the default probe
+# Set hello backend HTTP settings tooremove hello reference toohello probe. hello backend http settings now use hello default probe
 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
 
-# Save the application gateway with the configuration changes
+# Save hello application gateway with hello configuration changes
 Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 ```
 
 ## <a name="get-application-gateway-dns-name"></a>Az Application Gateway DNS-nevének beszerzése
 
-Az átjáró létrehozása után a következő lépés a kommunikációra szolgáló előtér konfigurálása. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. Ha szeretné, hogy a végfelhasználók elérjék az Application Gatewayt, használjon egy Application Gateway nyilvános végpontjára mutató CNAME-rekordot. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). A művelet végrehajtásához az Application Gateway részleteinek beszerzésére és a kapcsolódó IP/DNS-név lekérésére van szükség az Application Gatewayhez csatolt PublicIPAddress használatával. Az Application Gateway DNS-nevének használatával létrehozhat egy CNAME rekordot, amely a két webalkalmazást erre a DNS-névre irányítja. Az A-bejegyzések használata nem javasolt, mivel a virtuális IP-cím változhat az Application Gateway újraindításakor.
+Hello átjáró létrehozása után hello következő lépésre tooconfigure hello előtér-kommunikációhoz. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. tooensure végfelhasználók hello Alkalmazásátjáró használhatók egy olyan CNAME rekordot is találati toopoint toohello nyilvános végpontot hello Alkalmazásátjáró. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). toodo a, hello Alkalmazásátjáró és a társított IP-/ DNS-nevét, hello PublicIPAddress elem csatolt toohello Alkalmazásátjáró beolvasása részleteit. hello alkalmazás átjáró DNS-névnek kell lennie a használt toocreate egy olyan CNAME rekordot pontok hello két webes alkalmazások toothis DNS-név. A-rekordok hello használata nem javasolt, mert hello VIP módosíthatja az Alkalmazásátjáró újra kell indítani.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -204,5 +204,5 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerkedjen meg az SSL-feladatkiszervezést ellátogatva konfigurálása: [SSL-kiszervezés konfigurálása](application-gateway-ssl-arm.md)
+Ismerje meg, tooconfigure SSL kiszervezésével ellátogatva: [SSL-kiszervezés konfigurálása](application-gateway-ssl-arm.md)
 

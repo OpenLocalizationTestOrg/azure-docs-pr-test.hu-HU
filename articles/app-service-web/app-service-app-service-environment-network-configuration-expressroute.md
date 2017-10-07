@@ -1,6 +1,6 @@
 ---
-title: "Hálózati konfiguráció adatai Expressroute használata"
-description: "Hálózati konfiguráció részletei App Service Environment-környezetek futó virtuális hálózatok ExpressRoute-Kapcsolatcsoportot csatlakozik."
+title: "Konfigurációs részletek aaaNetwork az Express Route használata"
+description: "Hálózati konfiguráció részletei App Service Environment-környezetek futó virtuális hálózatok tooan ExpressRoute-Kapcsolatcsoportot csatlakoztatva."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/14/2016
 ms.author: stefsch
-ms.openlocfilehash: de1d998ee86c127149dee18e9df577705054ddb4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85bbc45cfed619485957ee2a898aa0a7604173cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="network-configuration-details-for-app-service-environments-with-expressroute"></a>Az ExpressRoute-kapcsolattal rendelkező App Service Environments-környezetek hálózati konfigurációjának részletei
 ## <a name="overview"></a>Áttekintés
-Az ügyfelek kapcsolódhatnak egy [Azure ExpressRoute] [ ExpressRoute] kapcsolat a virtuális hálózati infrastruktúrára, így kiterjesztése a helyszíni hálózat az Azure-bA.  Az App Service-környezetek hozhatók létre az alhálózatot [virtuális hálózati] [ virtualnetwork] infrastruktúra.  Az App Service-környezetben futó alkalmazások tud majd biztonságos kapcsolat létrehozása a háttér-erőforrások elérhető csak az ExpressRoute-kapcsolaton keresztül.  
+Az ügyfelek kapcsolódhatnak egy [Azure ExpressRoute] [ ExpressRoute] áramkör tootheir virtuális hálózati infrastruktúra, így kiterjesztése a helyszíni hálózati tooAzure.  Az App Service-környezetek hozhatók létre az alhálózatot [virtuális hálózati] [ virtualnetwork] infrastruktúra.  App Service Environment-környezet hello futó alkalmazások majd létesíthet biztonságos kapcsolatok tooback-a befejezési erőforrások elérhető csak keresztül hello ExpressRoute-kapcsolatot.  
 
-Az App Service-környezetek hozhatók létre **vagy** az Azure Resource Manager virtuális hálózati **vagy** klasszikus telepítési modell virtuális hálózatot.  2016. június végzett legutóbbi módosítását ASEs most is telepíthető a virtuális hálózatok, amelyek nyilvános címtartományt, vagy RFC1918 címterek (azaz Magáncímeket). 
+Az App Service-környezetek hozhatók létre **vagy** az Azure Resource Manager virtuális hálózati **vagy** klasszikus telepítési modell virtuális hálózatot.  2016. június végzett legutóbbi módosítását ASEs is most is telepíthető az nyilvános címtartományt, vagy RFC1918 címterek (azaz Magáncímeket) használó virtuális hálózatok. 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="required-network-connectivity"></a>Szükséges hálózati kapcsolat
-Nincsenek hálózati kapcsolat az App Service Environment-környezetek, előfordulhat, hogy kezdetben jutott egy ExpressRoute csatlakoztatott virtuális hálózatban.  App Service-környezetek megfelelő működéséhez szükséges a következő lépéseket:
+Nincsenek App Service Environment-környezetek, előfordulhat, hogy kezdetben jutott egy csatlakoztatott virtuális hálózati tooan ExpressRoute a hálózati kapcsolat követelményei.  App Service-környezetek követelje rendelés toofunction hello következő megfelelően:
 
-* Azure Storage végpontok világszerte mindkét porton 80-as és 443-as kimenő hálózati kapcsolatot.  Ez magában foglalja az App Service Environment-környezet ugyanabban a régióban található végpontok, valamint tárolási végpontok található **más** Azure-régiók.  Azure Storage-végpontok oldja meg a következő DNS-tartományok alatt: *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net* és *file.core.windows.net*.  
-* Kimenő hálózati kapcsolat az Azure-fájlok szolgáltatás 445-ös porton.
-* Az App Service Environment-környezet ugyanabban a régióban található Sql-adatbázis a végpontok kimenő hálózati kapcsolatot.  SQL-adatbázis a végpontok oldja meg a következő tartományi: *database.windows.net*.  Ehhez szükséges portok 1433-as számú 11000-11999 és 14000-14999 hozzáférését megnyitása.  További információ: [Ez a cikk a Sql Database 12-es port használati](../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md).
-* Kimenő hálózati kapcsolat az Azure felügyeleti vezérlősík végpontok (ASM, mind az ARM-végpontok).  Ez magában foglalja a kimenő kapcsolat mindkét *management.core.windows.net* és *management.azure.com*. 
-* Kimenő hálózati kapcsolattal *ocsp.msocsp.com*, *mscrl.microsoft.com* és *crl.microsoft.com*.  Ez az SSL-funkciók támogatásához szükséges.
-* A DNS-beállításait a virtuális hálózat összes végpontok és a korábbi pontban tartományok megoldásának képesnek kell lennie.  Ezeket a végpontokat nem oldható fel, ha az App Service Environment-környezet létrehozása kísérletek sikertelenek lesznek, és meglévő App Service Environment-környezetek sérültként lesz megjelölve.
+* Kimenő hálózati kapcsolat tooAzure tárolási végpontok világszerte mindkét 80-as és 443-as porton.  Ez magában foglalja a hello található végpontok és hello App Service Environment-környezet ugyanabban a régióban, valamint tárolási végpontok található **más** Azure-régiók.  Azure Storage-végpontok oldja meg a következő DNS-tartományok hello: *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net* és *file.core.windows.net*.  
+* Kimenő hálózati kapcsolat toohello Azure fájlok szolgáltatás 445-ös porton.
+* Kimenő hálózati kapcsolat tooSql DB végpont található hello azonos régióban, az App Service Environment-környezet hello.  SQL-adatbázis a végpontok oldja meg a tartomány a következő hello: *database.windows.net*.  Ehhez a hozzáférési tooports 1433-as számú 11000-11999 és 14000-14999 megnyitása.  További információ: [Ez a cikk a Sql Database 12-es port használati](../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md).
+* Kimenő hálózati kapcsolat toohello Azure felügyeleti vezérlősík végpontok (ASM, mind az ARM-végpontok).  Ez magában foglalja a kimenő kapcsolat tooboth *management.core.windows.net* és *management.azure.com*. 
+* Kimenő hálózati kapcsolatra túl*ocsp.msocsp.com*, *mscrl.microsoft.com* és *crl.microsoft.com*.  Ez a szükséges toosupport SSL funkciót.
+* hello virtuális hálózat DNS-konfiguráció hello megoldásának hello végpontok képesnek kell lennie, és a tartományok említett hello korábbi pontok.  Ezeket a végpontokat nem oldható fel, ha az App Service Environment-környezet létrehozása kísérletek sikertelenek lesznek, és meglévő App Service Environment-környezetek sérültként lesz megjelölve.
 * Kimenő hozzáférést 53-as porton szükség, DNS-kiszolgálókkal való kommunikációhoz.
-* Ha egy egyéni DNS-kiszolgáló létezik a VPN-átjáró másik végén, a DNS-kiszolgáló elérhető-e az alhálózatból az App Service Environment-környezet tartalmazó kell lennie. 
-* A kimenő hálózati elérési út nem haladnak keresztül belső vállalati proxyk, sem annak a helyszíni bújtatott hatályba.  Az App Service Environment-környezet így módosítja a kimenő hálózati forgalom hatékony NAT-cím.  A NAT-cím egy App Service Environment kimenő hálózati forgalom megváltoztatásakor kapcsolathibái sok a fenti végpontok.  Az eredmény App Service Environment-környezet létrehozása sikertelen kísérleteket, valamint a korábban kifogástalan App Service Environment-környezetek megfelelő állapotúként lett megjelölve.  
-* Az App Service Environment-környezetek lehetővé kell tenni ezt a bejövő forgalmat kezelő hálózati eléréséhez szükséges portok [cikk][requiredports].
+* Ha egy egyéni DNS-kiszolgáló létezik a VPN-átjáró másik végén hello, hello DNS-kiszolgálót tartalmazó hello App Service Environment-környezet hello alhálózatból elérhetőnek kell lennie. 
+* hello kimenő hálózati elérési út nem haladnak keresztül belső vállalati proxyk, sem annak kényszerített bújtatott tooon helyszíni.  Ennek során, a módosítások hello hello App Service Environment-környezet a kimenő hálózati forgalom hatékony NAT-cím.  Ha módosítja a hello NAT-cím egy App Service Environment kimenő hálózati forgalom, akkor a fent felsorolt hibák toomany hello végpontok kapcsolat.  Az eredmény App Service Environment-környezet létrehozása sikertelen kísérleteket, valamint a korábban kifogástalan App Service Environment-környezetek megfelelő állapotúként lett megjelölve.  
+* Az App Service Environment-környezetek engedélyezni kell az ezzel a bejövő forgalmat kezelő hálózati hozzáférési toorequired portok [cikk][requiredports].
 
-A DNS-követelmények érheti el, egy érvényes DNS-infrastruktúra van beállítva, és a virtuális hálózat megmarad biztosításával.  Ha bármilyen okból az App Service Environment-környezet létrehozása után a DNS-konfiguráció módosul, a fejlesztők kényszerítheti az App Service-környezet az új DNS-konfiguráció érvényesítéséhez.  Az az App Service Environment-felügyelet panel tetején található indítására, a "Restart" ikonnal működés közbeni környezet újraindítás a [Azure-portálon] [ NewPortal] okoz a környezetben, az új DNS-konfiguráció érvényesítéséhez.
+egy érvényes DNS-infrastruktúra hello virtuális hálózat megmarad és konfigurált biztosításával hello DNS-követelmények érheti el.  Ha bármilyen okból hello DNS-konfiguráció esetén megváltozik egy App Service Environment-környezet létrehozása után, a fejlesztők kényszerítheti az App Service Environment-környezet toopick hello új DNS-konfiguráció.  Működés közbeni környezet újraindítás hello App Service Environment-környezet felügyeleti panel az hello hello tetején található ikon "Restart" hello segítségével váltanak [Azure-portálon] [ NewPortal] hello környezet toopick, akkor másolatot hello új DNS-konfiguráció.
 
-A bejövő hálózati hozzáférési követelmények érheti el, úgy konfigurálja a [hálózati biztonsági csoport] [ NetworkSecurityGroups] hozzáférést a szükséges a Ez az App Service Environment alhálózaton [cikk][requiredports].
+hello bejövő hálózati hozzáférési követelmények érheti el, úgy konfigurálja a [hálózati biztonsági csoport] [ NetworkSecurityGroups] hello App Service Environment alhálózati tooallow szükséges hello hozzáférést a leírtak[cikk][requiredports].
 
 ## <a name="enabling-outbound-network-connectivity-for-an-app-service-environment"></a>Az App Service Environment-környezet kimenő hálózati kapcsolat engedélyezése
-Alapértelmezés szerint egy újonnan létrehozott ExpressRoute-kapcsolatcsoportot hirdeti egy alapértelmezett útvonalat, amely lehetővé teszi a kimenő internetkapcsolat.  Ez a konfiguráció az App Service-környezetek fog tudni csatlakozni más Azure-végpontok.
+Alapértelmezés szerint egy újonnan létrehozott ExpressRoute-kapcsolatcsoportot hirdeti egy alapértelmezett útvonalat, amely lehetővé teszi a kimenő internetkapcsolat.  Ez a konfiguráció az App Service Environment-környezet lesz képes tooconnect tooother Azure-végpontok.
 
-Azonban egy közös felhasználói konfigurálás az, hogy a saját alapértelmezett útvonalat (0.0.0.0/0), amely arra kényszeríti a kimenő Internet forgalmat inkább a helyszínen.  A forgalom áramlását tüntetnek megsérti App Service Environment-környezetek, mert a kimenő adatforgalmat a letiltott helyi, vagy NAT-címek, amelyek már nem használhatók a különböző Azure-végpontok egy felismerhetetlen készletéhez lenne.
+Azonban egy közös felhasználói konfigurálása toodefine a saját alapértelmezett útvonalat (0.0.0.0/0), amely arra kényszeríti a kimenő Internet tooinstead adatforgalmat helyszíni.  A forgalom áramlását tüntetnek megsérti App Service Environment-környezetek, mert hello kimenő adatforgalmat a letiltott helyi, vagy NAT-d tooan felismerhetetlen címek, amelyek már nem használhatók a különböző Azure-végpontok készlete.
 
-A megoldás, hogy egy (vagy több) felhasználó által megadott útvonalakat (udr-EK) adja meg az alhálózatot, amely tartalmazza az App Service Environment-környezet.  Egy UDR helyett az alapértelmezett útvonal szembeni szerződéses kötelezettségeket vonatkozó alhálózati útvonalakat határozza meg.
+egy (vagy több) toodefine felhasználó által megadott útvonalakat (udr-EK), amely tartalmazza az App Service Environment-környezet hello hello alhálózaton hello megoldás.  Egy UDR hello alapértelmezett útvonal helyett szembeni szerződéses kötelezettségeket vonatkozó alhálózati útvonalakat határozza meg.
 
-Ha lehetséges javasoljuk, hogy az alábbi konfigurációt használja:
+Ha lehetséges a következő konfigurációs toouse hello ajánlott:
 
-* Az ExpressRoute konfigurációs hirdeti 0.0.0.0/0, és alapértelmezés szerint kényszerített bújtatja minden kimenő forgalom helyszíni.
-* Az App Service Environment-környezet tartalmazó alkalmazva UDR 0.0.0.0/0 az interneten (például az az ebben a cikkben le megtalálhatók) a következő ugrás típusa határozza meg.
+* hello ExpressRoute konfigurációs hirdeti 0.0.0.0/0, és alapértelmezés szerint kényszerített bújtatja minden kimenő forgalom helyszíni.
+* hello alkalmazott UDR toohello alhálózati hello App Service Environment-környezet tartalmazó 0.0.0.0/0 az interneten (például az az ebben a cikkben le megtalálhatók) a következő ugrás típusa határozza meg.
 
-A kombinált hatását, hogy ezeket a lépéseket az, hogy az alhálózat-szintű UDR elsőbbséget élvez az ExpressRoute kényszerített bújtatás, biztosítva ezzel az App Service Environment-környezet a kimenő Internet-hozzáféréssel.
+hello kombinált hatását, hogy ezeket a lépéseket az, hogy hello alhálózat-szintű UDR elsőbbséget élvez hello ExpressRoute kényszerített bújtatás, biztosítva ezzel az App Service Environment-környezet hello kimenő Internet-hozzáféréssel.
 
 > [!IMPORTANT]
-> Egy UDR definiált útvonalak **kell** kellően specifikus elsőbbséget élveznek a bármely az ExpressRoute-konfiguráció által hirdetett útvonalakat.  Az alábbi példában a széles körű 0.0.0.0/0 címtartományt használja, és ilyen potenciálisan véletlenül felülbírálhatja útvonal-hirdetéseinek pontosabb címtartományai használatával.
+> egy UDR definiált útvonalak hello **kell** kell elég konkrétan fogalmaz ahhoz túl hello ExpressRoute-konfiguráció bármely útvonalak keresztül elsőbbséget hirdeti.  az alábbi példa hello hello széleskörű 0.0.0.0/0 címtartomány használ, és ilyen potenciálisan véletlenül felülbírálhatja útvonal-hirdetéseinek pontosabb címtartományai használatával.
 > 
-> App Service Environment-környezetek ExpressRoute-konfigurációk nem támogatottak, amelyek **cross-hirdetményt a magánhálózati társviszony-létesítési elérési utat a nyilvános társviszony-létesítési elérési útvonalak**.  ExpressRoute-konfigurációk, amelyek rendelkeznek a nyilvános társviszony konfigurálva, a Microsoft Azure IP-címtartományok számos útvonal-hirdetéseinek kap Microsoft.  Ha ezen címtartomány határokon meghirdetett a magánhálózati társviszony-létesítési elérési úton, a befejezési eredménye, hogy minden kimenő hálózati csomag az App Service Environment-alhálózatból kényszerített bújtatott az ügyfél a helyi hálózati infrastruktúrára lesz.  A hálózati folyamat jelenleg nem támogatott az App Service Environment-környezetek.  Egy megoldást a problémára, hogy állítsa le a kereszt-hirdetési útvonalak a nyilvános társviszony-létesítési elérési útról a magánhálózati társviszony-létesítési elérési utat.
+> App Service Environment-környezetek ExpressRoute-konfigurációk nem támogatottak, amelyek **határokon hirdetési hello nyilvános társviszony-létesítési elérési toohello magánhálózati társviszony-létesítési elérési útvonalak**.  ExpressRoute-konfigurációk, amelyek rendelkeznek a nyilvános társviszony konfigurálva, a Microsoft Azure IP-címtartományok számos útvonal-hirdetéseinek kap Microsoft.  Ha a cím tartományok közötti meghirdetett hello magánhálózati társviszony-létesítési elérési úton, hello end eredménye, hogy minden kimenő hálózati csomagokat a hello App Service Environment-alhálózatból lesz kényszerített bújtatott tooa az ügyfél a helyi hálózati infrastruktúra.  A hálózati folyamat jelenleg nem támogatott az App Service Environment-környezetek.  Az egyik megoldás toothis probléma toostop cross-hirdetési útvonalak hello nyilvános társviszony-létesítési elérési toohello magánhálózati társviszony-létesítési elérési útról.
 > 
 > 
 
 Háttér-információkat a felhasználó által megadott útvonalakat érhető el ezen [áttekintése][UDROverview].  
 
-Létrehozása és konfigurálása a felhasználó által megadott útvonalakat érhető el ezen [útmutató hogyan való][UDRHowTo].
+Létrehozása és konfigurálása a felhasználó által megadott útvonalakat érhető el ezen [hogyan tooGuide][UDRHowTo].
 
 ## <a name="example-udr-configuration-for-an-app-service-environment"></a>Példa UDR konfiguráció egy App Service Environment-környezet
 **Előfeltételek**
 
-1. Az Azure Powershell telepítése az [Azure letöltőoldala] [ AzureDownloads] (dátummal June 2015-ös vagy újabb).  A "Parancssori eszközök" a "Windows Powershell", amely telepíti a legújabb Powershell-parancsmagok egy "Telepítés" kapcsolat van.
-2. Javasoljuk, hogy egyedi alhálózatot kizárólagos használatra létrejön egy App Service Environment-környezet által.  Ez biztosítja, hogy a udr-EK alkalmazva lesz csak nyissa meg a kimenő forgalom az App Service Environment-környezet.
-3. **Fontos**: nem kell telepítenie az App Service-környezet csak **után** követi az alábbi konfigurációs lépéseket.  Ez biztosítja, hogy kimenő hálózati kapcsolattal elérhető egy App Service Environment-környezet telepítésének megkísérlése előtt.
+1. Telepítse az Azure Powershell hello [Azure letöltőoldala] [ AzureDownloads] (dátummal June 2015-ös vagy újabb).  A "Parancssori eszközök" a "Windows Powershell", amely telepíti majd hello legújabb Powershell-parancsmagok egy "A telepítés" kapcsolat van.
+2. Javasoljuk, hogy egyedi alhálózatot kizárólagos használatra létrejön egy App Service Environment-környezet által.  Ez biztosítja, hogy hello udr-EK alkalmazása toohello alhálózaton csak nyissa meg az App Service Environment-környezet hello kimenő forgalmát.
+3. **Fontos**: ne telepítsen App Service Environment-környezet csak hello **után** konfigurációs lépések hello követi.  Ez biztosítja, hogy kimenő hálózati kapcsolat érhető el az App Service-környezetek toodeploy megkísérlése előtt.
 
 **1. lépés:, Hozzon létre egy elnevezett útválasztási táblázatot**
 
-A következő kódrészletet a nyugati Velünk Azure azon régióját "DirectInternetRouteTable" nevű útvonaltábla létrehozása:
+hello következő kódrészlettel útvonaltábla létrehozása "DirectInternetRouteTable" nevű hello nyugati Velünk Azure régióban:
 
     New-AzureRouteTable -Name 'DirectInternetRouteTable' -Location uswest
 
-**2. lépés: Az útválasztási táblázatot hozhat létre egy vagy több útvonalakat**
+**2. lépés: Hello útválasztási táblázatot egy vagy több útvonal létrehozása**
 
-Szüksége lesz egy vagy több útvonal hozzáadása az útvonaltábla kimenő Internet-hozzáférés engedélyezéséhez.  
+Szüksége lesz egy tooadd vagy további útvonalakat toohello útvonaltábla a rendelés tooenable kimenő Internet-hozzáféréssel.  
 
-Az ajánlott megoldás kimenő Internet-hozzáférés konfigurálásához, egy útvonalat a 0.0.0.0/0 alább látható módon.
+hello ajánlott megközelítést alkalmazva konfigurálásához kimenő hozzáférést toohello Internet toodefine egy útvonalat a 0.0.0.0/0 az alábbi ábrán látható módon.
 
     Get-AzureRouteTable -Name 'DirectInternetRouteTable' | Set-AzureRoute -RouteName 'Direct Internet Range 0' -AddressPrefix 0.0.0.0/0 -NextHopType Internet
 
-Ne feledje, hogy a 0.0.0.0/0 a széles körű címtartományt, és így felülbírálják az ExpressRoute által hirdetett pontosabb címtartományok.  A korábbi ajánlás újra felépítésének, 0.0.0.0/0 útvonal egy UDR csak a 0.0.0.0/0 is hirdeti ExressRoute konfigurációjával együtt használhatók. 
+Ne feledje, hogy a 0.0.0.0/0 a széles körű címtartományt, és így felülbírálják pontosabb címtartományai hello ExpressRoute által hirdetett.  toore-hello többször korábbi ajánlás, egy UDR 0.0.0.0/0 útvonal, csak a 0.0.0.0/0 is hirdeti ExressRoute konfigurációjával együtt kell használni. 
 
-Alternatív megoldásként letöltheti CIDR tartományok Azure használja az átfogó és frissített listáját.  Az összes, az Azure IP-címtartományokat tartalmazó XML-fájl megtalálható a a [Microsoft Download Center][DownloadCenterAddressRanges].  
+Alternatív megoldásként letöltheti CIDR tartományok Azure használja az átfogó és frissített listáját.  hello összes hello Azure IP-címtartományokat tartalmazó XML-fájl megtalálható a hello [Microsoft Download Center][DownloadCenterAddressRanges].  
 
-Vegye figyelembe, hogy ezek a tartományok változnak az idők, állásához a felhasználó által megadott útvonalakat szinkronizálásához rendszeres manuális frissítéseket.  Is mivel az egyetlen UDR 100 útvonalat egy alapértelmezett felső korlátja, szüksége lesz a "összefoglalója" az Azure IP-címtartományok méretéhez igazítja a 100 útvonal korlátot figyelembe vételével, hogy UDR definiált útvonalak kell lenniük a pontosabb, mint az útvonalak által hirdetett az ExpressRoute.  
+Vegye figyelembe, hogy ezek a tartományok változnak az idők, állásához rendszeres manuális toohello felhasználó által definiált útvonalak tookeep szinkronban.  Is, mert nincs olyan alapértelmezett felső korlát az egyetlen UDR 100 útvonalat, meg kell túl "azokat" hello Azure IP-cím címtartományok toofit belül hello 100 útvonal, szem előtt tartani, hogy UDR által definiált útvonalak kell toobe pontosabb, mint által hirdetett hello útvonalak a ExpressRoute.  
 
-**3. lépés: Az útválasztási táblázatot az alhálózathoz, az App Service Environment-környezet tartalmazó társítása**
+**3. lépés: Hello útvonal tábla toohello alhálózati tartalmazó hello App Service Environment-környezet társítása**
 
-Az utolsó konfigurációs lépés a útválasztási táblázatot az alhálózathoz hozzárendelni, hova szeretné telepíteni az App Service Environment-környezet.  A következő parancsot a "DirectInternetRouteTable" a "ASESubnet", amely végül fogja tartalmazni az App Service-környezetek számára társítja.
+hello utolsó konfigurációs lépés tooassociate hello útvonal tábla toohello alhálózaton, hova szeretné telepíteni az App Service Environment-környezet hello.  hello következő parancs hozzárendeli hello "DirectInternetRouteTable" toohello "ASESubnet", amely egy App Service Environment-környezet végül fogja tartalmazni.
 
     Set-AzureSubnetRouteTable -VirtualNetworkName 'YourVirtualNetworkNameHere' -SubnetName 'ASESubnet' -RouteTableName 'DirectInternetRouteTable'
 
 
 **4. lépés: Utolsó lépéseit**
 
-Miután az útvonaltáblát az alhálózaton van kötve, javasoljuk, hogy először tesztelése, és erősítse meg a kívánt hatást.  Például egy virtuális gép üzembe helyezés az alhálózatot, és ellenőrizze, hogy:
+Ha hello útvonaltábla kötött toohello alhálózati, az ajánlott toofirst teszt, és erősítse meg, hello szánt hatása.  Például egy virtuális gép üzembe helyezés hello alhálózatot, és ellenőrizze, hogy:
 
-* Az Azure és az-Azure végpontok kimenő forgalmat ez a cikk a korábban említett **nem** le az ExpressRoute-kapcsolatcsoport továbbítására.  Nagyon fontos, hogy ellenőrizze ezt a viselkedést, mert ha az alhálózatból kimenő forgalom továbbra is kényszerített bújtatott a helyszíni App Service Environment-környezet létrehozása mindig sikertelen lesz. 
-* DNS-keresések a végpontok a korábban említett, az összes megoldásán megfelelően. 
+* Kimenő forgalom tooboth Azure és az Azure-végpontok említett korábban a Ez a cikk **nem** hello ExpressRoute-kapcsolatcsoportot lefelé halad.  Nagyon fontos tooverify mindig fogja ezt a viselkedést, mivel ha hello alhálózatból kimenő forgalom továbbra is kényszerített bújtatott a helyszíni App Service-környezet létrehozása sikertelen. 
+* DNS-keresések hello végpontok a korábban említett, az összes megoldásán megfelelően. 
 
-Miután a fenti lépések megerősítjük, szüksége lesz a törölje a virtuális gépet, mert az alhálózat kell "empty" az App Service Environment-környezet létrehozásakor.
+Miután megerősítik hello a fenti lépéseket, mert hello alhálózati toobe "üres" hello idő hello App Service Environment-környezet létrehozása a kell toodelete hello virtuális gép.
 
 Ezután folytathatja az App Service-környezetek létrehozása a!
 
 ## <a name="getting-started"></a>Bevezetés
-Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el a [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
+Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el hello [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
 
-App Service Environment-környezetek megkezdéséhez, lásd: [App Service Environment bemutatása][IntroToAppServiceEnvironment]
+Lásd az App Service-környezetek lépései tooget [bemutatása tooApp Service-környezet][IntroToAppServiceEnvironment]
 
-Az Azure App Service platformmal kapcsolatos további információkért lásd: [Azure App Service][AzureAppService].
+Hello Azure App Service platformmal kapcsolatos további információkért lásd: [Azure App Service][AzureAppService].
 
 <!-- LINKS -->
 [virtualnetwork]: http://azure.microsoft.com/services/virtual-network/

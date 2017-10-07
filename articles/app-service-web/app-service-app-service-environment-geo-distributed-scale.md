@@ -1,6 +1,6 @@
 ---
-title: "Földrajzi alapú méretezés App Service-környezetekkel"
-description: "Megtudhatja, hogyan vízszintesen skálázása a Traffic Manager és az App Service Environment-környezetek földrajzi terjesztési használó alkalmazásokat."
+title: "az App Service Environment-környezetek elosztott méretezési aaaGeo"
+description: "Ismerje meg, hogyan toohorizontally skálázása a Traffic Manager és az App Service Environment-környezetek földrajzi terjesztési használó alkalmazásokat."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 505301b2650c9b8bafdad352055f30e55148ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b441f637d8b7f679b3d83240baf99b8ee57e8f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>Földrajzi alapú méretezés App Service-környezetekkel
 ## <a name="overview"></a>Áttekintés
-Nagyon nagy méretű igénylő alkalmazás-forgatókönyvekre lépheti túl a számítási erőforrás-kapacitás egy központi telepítésnél, egy alkalmazás számára elérhető.  Szavazás alkalmazások, ilyen események és közvetített Szórakozás események példák minden forgatókönyv esetén van szükség a rendkívül nagy méretű. Nagy méretű követelmények által vízszintesen kiterjesztése alkalmazások esetén végrehajtott egyetlen régión belül, valamint a különböző régiókban, rendkívül Adatbetöltési követelményeinek kezeléséhez több alkalmazás központi telepítéssel rendelkező érheti el.
+Nagyon nagy méretű igénylő alkalmazás-forgatókönyvekre azért lépheti túl a hello számítási erőforrások kapacitás elérhető tooa egyetlen telepítése egy alkalmazás.  Szavazás alkalmazások, ilyen események és közvetített Szórakozás események példák minden forgatókönyv esetén van szükség a rendkívül nagy méretű. Nagy méretű követelmények által vízszintesen kiterjesztése alkalmazások, egyetlen régión belül, valamint a különböző régiókban, toohandle szélsőséges Adatbetöltési követelményeinek végrehajtott több alkalmazás központi telepítéssel rendelkező érheti el.
 
-App Service-környezetek vízszintes kibővítési ideális platform.  Egyszer egy App Service-környezet konfigurációs van beállítva, amely képes támogatni az olyan ismert lekérdezési gyakorisága, fejlesztők telepíthet további App Service Environment-környezetek "cookie-k vágó" módon a kívánt csúcs terhelés kapacitás elérése érdekében.
+App Service-környezetek vízszintes kibővítési ideális platform.  Amennyiben az App Service Environment-környezet konfigurálása során választott ki, amely támogathatja az egy ismert kérelmek aránya, fejlesztők telepíthet további App Service Environment-környezetek a "cookie-k vágó" módon tooattain kívánt csúcs terhelés kapacitású.
 
-Tegyük fel például egy alkalmazást az App Service Environment-környezet konfigurációjának futó tesztelték 20K kérelmek / másodperc (RPS) kezelésére.  Ha a kívánt csúcs terhelés kapacitás 100K RPS, majd öt (5) App Service-környezetek hozható létre és beállítani az alkalmazás kezeli a maximális tervezett terhelés biztosítása érdekében.
+Tegyük fel például egy alkalmazást az App Service Environment-környezet konfigurációjának futó lett tesztelt toohandle 20K kérelmek / másodperc (RPS).  Ha hello kívánt csúcs betöltése kapacitás 100K RPS, majd öt (5) App Service-környezetek hozhatók létre és konfigurált tooensure hello alkalmazás kezeli a hello maximális tervezett terhelés.
 
-Ügyfelek általában egy egyéni (vagy személyes) tartományt használó alkalmazások hozzáférhetnek, mivel a fejlesztők szükségük van egy módszerre, alkalmazás kérelmek szét minden App Service Environment-környezet előfordulása.  Az egyéni tartomány használatával megoldásához kiváló módja annak, hogy ehhez egy [Azure Traffic Manager-profil][AzureTrafficManagerProfile].  A Traffic Manager-profil beállítható úgy, hogy az egyes App Service Environment-környezetek összes helyen.  A TRAFFIC Manager automatikusan fogja kezelni a terjesztés az ügyfelek összes az App Service-környezetek, a terheléselosztás a Traffic Manager-profil beállításai alapján.  Ez a megközelítés működik, függetlenül attól, hogy összes az App Service Environment-környezetek telepítése egy Azure-régió, vagy több Azure-régiók közötti világszerte telepített.
+Mivel az ügyfelek általában egy egyéni (vagy személyes) tartomány, a fejlesztők számára szükséges alkalmazások hozzáférhetnek a módon toodistribute alkalmazások keresztül hello App Service Environment-környezet példányok mindegyikének kéri.  Egy ez remek mód tooaccomplish tooresolve hello egyéni tartományt használ egy [Azure Traffic Manager-profil][AzureTrafficManagerProfile].  a Traffic Manager-profil lehet az összes konfigurált toopoint hello hello egyedi App Service Environment-környezetek.  A TRAFFIC Manager automatikusan osztja el az ügyfelek között összes hello App Service Environment-környezetek alapján hello terheléselosztási hello Traffic Manager-profil beállításait fogja kezelni.  Ez a megközelítés működik, függetlenül attól, hogy összes hello App Service Environment-környezetek telepítése egy Azure-régió, vagy több Azure-régiók közötti világszerte telepített.
 
-Ezenkívül ügyfelek alkalmazások hozzáférhetnek a személyes tartomány keresztül, mert az ügyfelek nem tudnak a futó alkalmazások App Service-környezetek száma.  Ennek eredményeképpen a fejlesztők is gyorsan és egyszerűen hozzáadása és eltávolítása, App Service Environment-környezetek megfigyelt adatforgalom jelentette teher alapján.
+Ezenkívül ügyfelek alkalmazások hozzáférhetnek a hello kreatív tartomány keresztül, mert az ügyfelek nem tudnak a futó alkalmazások App Service-környezetek hello száma.  Ennek eredményeképpen a fejlesztők is gyorsan és egyszerűen hozzáadása és eltávolítása, App Service Environment-környezetek megfigyelt adatforgalom jelentette teher alapján.
 
-A fogalmi az alábbi ábrán az alkalmazások között három App Service Environment-környezetek egyetlen régión belül vízszintesen horizontálisan ábrázol.
+hello fogalmi az alábbi ábrán az alkalmazások között három App Service Environment-környezetek egyetlen régión belül vízszintesen horizontálisan ábrázol.
 
 ![Fogalmi architektúra][ConceptualArchitecture] 
 
-Ez a témakör további része végigvezeti egy elosztott topológia több App Service Environment-környezetek használatával mintaalkalmazás beállításához lépéseit.
+Ez a témakör további része hello végigvezeti hello lépéseit egy elosztott topológia több App Service Environment-környezetek használatával hello mintaalkalmazás beállításához.
 
-## <a name="planning-the-topology"></a>A topológia tervezése
-Mielőtt egy elosztott alkalmazás erőforrásigényét létrehozására, van néhány adatra információk időben segíti.
+## <a name="planning-hello-topology"></a>Hello topológia tervezése
+Egy elosztott alkalmazás erőforrásigényét létrehozására, mielőtt segít toohave néhány adatra információk időben.
 
-* **Az alkalmazáshoz tartozó egyéni tartomány:** Mi az, hogy az egyéni tartománynév használó ügyfelek az alkalmazás eléréséhez?  A mintaalkalmazás az egyéni tartománynév megadása *www.scalableasedemo.com*
-* **Traffic Manager-tartományra:** egy tartománynevet kell létrehozásakor kell választani egy [Azure Traffic Manager-profil][AzureTrafficManagerProfile].  Ez a név a rendszer kombinálja a *trafficmanager.net* jelző utótaghoz, így a Traffic Manager által kezelt tartomány bejegyzést.  A mintaalkalmazás, a név választott van *méretezhető ase bemutató*.  Ennek eredményeképpen a teljes tartománynevet a Traffic Manager által kezelt rendszer *méretezhető ase demo.trafficmanager.net*.
-* **Stratégiájának a app kezdjen méretezéshez:** lesz a alkalmazás kezdjen szétosztását több App Service Environment-környezetek egy régió között?  Több régióba?  Vegyes-és-egyezés a mindkét megközelítés?  A döntéshez az azzal kapcsolatos elvárások, ahol a felhasználói forgalom állapottesztjei származnak, valamint milyen jól méretezhető a többi egy alkalmazást támogató háttér-infrastruktúra.  Például a 100 %-os állapot nélküli alkalmazások, az alkalmazások is nagymértékben méretezhető több App Service Environment-környezetek kombinációját használva az Azure-régió, és a több Azure-régiók telepített App Service-környezetek /.  A 15 + nyilvános Azure-régiók elérhető lehetőségek közül választhat az ügyfelek valóban hozhat létre egy világszerte kapacitású alkalmazás erőforrásigényét.  Az ebben a cikkben használt mintaalkalmazás három App Service Environment-környezetek (déli középső Régiójában) egyetlen Azure régióban létrehozott.
-* **Az App Service Environment-környezetek elnevezési konvenció:** minden App Service Environment-környezet megköveteli egy egyedi nevet.  Egy vagy két App Service Environment-környezetek túl már van egy elnevezési konvenciója, amellyel azonosítható, minden egyes App Service Environment-környezet számára.  A mintaalkalmazás egyszerű elnevezési lett megadva.  A három App Service Environment-környezetek neve *fe1ase*, *fe2ase*, és *fe3ase*.
-* **Az alkalmazások elnevezési konvenció:** az alkalmazás több példányát telepíti, mert egy nevet a telepített alkalmazás egyes példányainak van szükség.  Egy kevés ismert azonban nagyon kényelmes App Service Environment-környezetek jellemzője, hogy használható-e az azonos alkalmazásnév több App Service Environment-környezetek között.  Mivel minden egyes App Service Environment-környezet csak egy egyedi tartományutótagot, a fejlesztők használhat újra a pontos néven app minden környezetben.  Egy fejlesztő például rendelkezhetnek elnevezése a következő alkalmazásokat: *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net*stb.  A mintaalkalmazás azonban minden app-példány is van egy egyedi nevet.  A használt alkalmazás-példány neve *webfrontend1*, *webfrontend2*, és *webfrontend3*.
+* **Hello app tartozó egyéni tartomány:** Újdonságok hello egyéni tartománynevet, hogy az ügyfelek tooaccess hello alkalmazás fogja használni?  Hello sample app hello egyéni tartomány nevét az *www.scalableasedemo.com*
+* **Traffic Manager-tartományra:** egy tartománynevet kell létrehozásakor kiválasztott toobe egy [Azure Traffic Manager-profil][AzureTrafficManagerProfile].  Ez a név a rendszer kombinálja hello *trafficmanager.net* utótag tooregister egy Traffic Manager által kezelt tartomány bejegyzést.  Hello mintaalkalmazást, hello neve választott pedig *méretezhető ase bemutató*.  Ennek eredményeképpen a Traffic Manager által kezelt hello teljes tartománynév rendszer *méretezhető ase demo.trafficmanager.net*.
+* **Hello app erőforrásigényét méretezéshez stratégia:** hello alkalmazás erőforrásigényét sor kerül egy régió több App Service környezetek között?  Több régióba?  Vegyes-és-egyezés a mindkét megközelítés?  hello döntéshez az azzal kapcsolatos elvárások, ahol felhasználói forgalom állapottesztjei származnak, valamint, hogy egy alkalmazást támogató háttér-infrastruktúra jól hello részeinek méretezheti.  Például a 100 %-os állapot nélküli alkalmazások, az alkalmazások is nagymértékben méretezhető több App Service Environment-környezetek kombinációját használva az Azure-régió, és a több Azure-régiók telepített App Service-környezetek /.  15 + nyilvános Azure-régiók elérhető toochoose származó, az ügyfelek valóban egy világszerte kapacitású alkalmazás erőforrásigényét hozhat létre.  Az ebben a cikkben használt hello mintaalkalmazás három App Service Environment-környezetek (déli középső Régiójában) egy Azure régió jöttek létre.
+* **App Service Environment-környezetek hello elnevezési konvenció:** minden App Service Environment-környezet megköveteli egy egyedi nevet.  Egy vagy két App Service Environment-környezetek túl hasznos toohave elnevezési toohelp azonosítása minden App Service Environment-környezet.  Hello mintaalkalmazás egyszerű elnevezési lett megadva.  hello hello három App Service Environment-környezetek nevei vannak *fe1ase*, *fe2ase*, és *fe3ase*.
+* **Hello alkalmazások elnevezési konvenció:** hello alkalmazás több példányát telepíti, mert a neve hello telepített alkalmazás egyes példányainak szükséges.  App Service Environment-környezetek egy kis ismert azonban nagyon hasznos funkció, hogy hello azonos alkalmazásnév használható több App Service Environment-környezetek között.  Mivel minden egyes App Service Environment-környezet csak egy egyedi tartományutótagot, a felhasználók kiválaszthatják toore használható hello pontos azonos alkalmazásnév minden környezetben.  Egy fejlesztő például rendelkezhetnek elnevezése a következő alkalmazásokat: *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net*stb.  Hello mintaalkalmazást, ha minden app-példány is rendelkezik egy egyedi nevet.  hello használt alkalmazás példánynevek vannak *webfrontend1*, *webfrontend2*, és *webfrontend3*.
 
-## <a name="setting-up-the-traffic-manager-profile"></a>A Traffic Manager-profil beállítása
-Ha egy alkalmazás több példánya több App Service Environment-környezetek vannak telepítve, az egyes alkalmazásokra példányok regisztrálható a Traffic Managerrel.  A mintaalkalmazás egy Traffic Manager profil van szükség a *méretezhető ase demo.trafficmanager.net* , amely irányíthatja a felhasználók számára a következő telepített alkalmazás példányra:
+## <a name="setting-up-hello-traffic-manager-profile"></a>Hello Traffic Manager-profil beállítása
+Ha egy alkalmazás több példánya több App Service Environment-környezetek vannak telepítve, a hello az egyes alkalmazásokra példányok a Traffic Managerrel regisztrálható.  Hello mintaalkalmazást a Traffic Manager profil van szükség a *méretezhető ase demo.trafficmanager.net* irányíthatja a ügyfelek telepítése a következő hello tooany app-példányok:
 
-* **webfrontend1.fe1ase.p.azurewebsites.NET:** a mintaalkalmazás az első App Service Environment-környezet telepített példánya.
-* **webfrontend2.fe2ase.p.azurewebsites.NET:** a mintaalkalmazást, a második App Service Environment-környezet telepített példánya.
-* **webfrontend3.fe3ase.p.azurewebsites.NET:** a mintaalkalmazást, a harmadik App Service Environment-környezet telepített példánya.
+* **webfrontend1.fe1ase.p.azurewebsites.NET:** hello mintaalkalmazás telepített példánya hello első App Service Environment-környezet.
+* **webfrontend2.fe2ase.p.azurewebsites.NET:** hello mintaalkalmazás telepített példánya hello második App Service Environment-környezet.
+* **webfrontend3.fe3ase.p.azurewebsites.NET:** hello mintaalkalmazás telepített példánya hello harmadik App Service Environment-környezet.
 
-A legegyszerűbben úgy lehet regisztrálni a több Azure App Service végpontot, az összes futó a **azonos** Azure-régió, a PowerShell használatával az [Azure Resource Manager Traffic Manager-támogatás][ARMTrafficManager].  
+hello legegyszerűbb módja tooregister több Azure App Service végpontot, hello az összes futó **azonos** Azure-régió, az a hello Powershell [Azure Resource Manager Traffic Manager-támogatás] [ ARMTrafficManager].  
 
-Az első lépés, ha az Azure Traffic Manager-profil.  A az alábbi kód bemutatja, hogyan lett létrehozva a profil a mintaalkalmazást:
+első lépés hello toocreate az Azure Traffic Manager-profil.  hello az alábbi kód bemutatja, hogyan hello mintaalkalmazás hello-profil lett létrehozva:
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-Értesítés az *RelativeDnsName* paraméter lett állítva: *méretezhető ase bemutató*.  Ez hogyan tartománynév *méretezhető ase demo.trafficmanager.net* létrejön, és a Traffic Manager-profil társított.
+Figyelje meg, hogyan hello *RelativeDnsName* paraméter túl lett beállítva*méretezhető ase bemutató*.  A rendszer hogyan hello tartománynév *méretezhető ase demo.trafficmanager.net* létrejön, és a Traffic Manager-profil társított.
 
-A *TrafficRoutingMethod* paraméter határozza meg a terheléselosztási házirend Traffic Manager terhelés elosztva a rendelkezésre álló végpontok hogyan fogja használni.  Ebben a példában a *Weighted* módszer választása.  Ennek eredményeképpen az ügyfelek kéréseire alatt elosztva a regisztrált alkalmazáshoz végpontok a relatív minden végponthoz társított súlyok alapján. 
+Hello *TrafficRoutingMethod* paraméter határozza meg a hello terheléselosztási házirend Traffic Manager hogyan toospread ügyfél betöltése hello elérhető végpontok közötti toodetermine fogja használni.  Az ebben a példában hello *Weighted* módszer választása.  Ennek eredményeképpen az ügyfelek kéréseire alatt elosztva hello regisztrált alkalmazás végpontok hello minden végponthoz társított relatív súlyok alapján. 
 
-A létrehozott profil minden alkalmazáspéldányban profilhoz van adva a natív Azure végpontként.  Az alábbi kódot, lekéri az előtérbeli webes alkalmazásokra mutató hivatkozás, és hozzáadja minden alkalmazás úton Traffic Manager-végpontként a *targetresourceid azonosítója* paraméter.
+A létrehozott hello-profil minden alkalmazáspéldányban meg van adva toohello profil natív Azure-végpont.  hello kódot kér le hivatkozást tooeach előtérbeli webes alkalmazás, és hozzáadja minden alkalmazás hello vállalja a Traffic Manager-végpontként *targetresourceid azonosítója* paraméter.
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
     Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
@@ -77,44 +77,44 @@ A létrehozott profil minden alkalmazáspéldányban profilhoz van adva a natív
 
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
 
-Figyelje meg, hogyan van egy hívás *Add-AzureTrafficManagerEndpointConfig* minden egyes alkalmazás-példányhoz.  A *targetresourceid azonosítója* paramétere minden Powershell-parancs egy telepített alkalmazás három példányt hivatkozik.  A Traffic Manager-profil betöltése elosztva a profillal regisztrált összes három végponton.
+Figyelje meg, hogyan van egy hívás túl*Add-AzureTrafficManagerEndpointConfig* minden egyes alkalmazás-példányhoz.  Hello *targetresourceid azonosítója* paraméter minden Powershell-parancsot a hello három telepített alkalmazás példányok egyik hivatkozik.  hello Traffic Manager-profil betöltése elosztva három végpontjai hello-profil regisztrálva.
 
-A három végpontok ugyanarra az értékre (10) használata a *súly* paraméter.  Az eredmény elterjedésének Traffic Manager-ügyfelek kéréseire minden három app példányára viszonylag egyenletes. 
+Az összes hello három végpontok használja ugyanazt az értéket (10) hello hello *súly* paraméter.  Az eredmény elterjedésének Traffic Manager-ügyfelek kéréseire minden három app példányára viszonylag egyenletes. 
 
-## <a name="pointing-the-apps-custom-domain-at-the-traffic-manager-domain"></a>Az alkalmazás egyéni tartományt, a Traffic Manager-tartományra mutat.
-Az utolsó lépés szükséges, hogy az egyéni tartomány, az alkalmazást a Traffic Manager-tartományra mutasson.  A mintaalkalmazás Ez azt jelenti, hogy mutató *www.scalableasedemo.com* : *méretezhető ase demo.trafficmanager.net*.  Ebben a lépésben kell elvégezni a tartomány tartományregisztrálóval, amely kezeli az egyéni tartomány.  
+## <a name="pointing-hello-apps-custom-domain-at-hello-traffic-manager-domain"></a>Hello App egyéni tartomány: hello Traffic Manager-tartományra mutat
+hello utolsó lépés szükséges toopoint hello egyéni tartomány hello alkalmazás hello Traffic Manager tartományban.  Hello mintaalkalmazás esetében ez azt jelenti, mutató *www.scalableasedemo.com* : *méretezhető ase demo.trafficmanager.net*.  Ez a lépés befejeződött, de kezeli az egyéni tartomány hello hello tartományregisztráló toobe kell.  
 
-A regisztráló tartományi felügyeleti eszközökkel, egy olyan CNAME REKORDOT kell létrehozni, amely az egyéni tartomány, a Traffic Manager-tartományra mutat rögzíti.  A következő ábrán látható egy példa a CNAME-konfiguráció néz:
+A regisztráló tartományi felügyeleti eszközökkel, egy CNAME rekordot kell toobe mely pontok hello az egyéni tartomány létrehozása: hello Traffic Manager-tartományra.  az alábbi képen hello a CNAME-konfiguráció néz példáját mutatja be:
 
 ![Egyéni tartomány CNAME][CNAMEforCustomDomain] 
 
-Bár nem ebben a témakörben ismertetett, ne feledje, hogy az egyes alkalmazásokra feltünteti az egyéni tartományt is regisztrálva, rendelkeznie kell.  Ellenkező esetben egy kérelem teszi az alkalmazás példánya, és az alkalmazás nem rendelkezik az egyéni tartomány regisztrál az alkalmazással, ha a kérelem sikertelen lesz.  
+Bár nem ebben a témakörben ismertetett, ne feledje, hogy minden egyes alkalmazás ezen példányát kell toohave hello egyéni tartomány regisztrál vele, valamint.  Ellenkező esetben ha kérelmet teszi tooan app-példány, és hello alkalmazás nem rendelkezik hello hello app regisztrált egyéni tartományt, hello kérelme sikertelen lesz.  
 
-Ebben a példában az egyéni tartomány pedig *www.scalableasedemo.com*, és minden alkalmazáspéldány a vele társított egyéni tartománnyal rendelkezik.
+Ez a példa hello az egyéni tartomány van *www.scalableasedemo.com*, és minden alkalmazáspéldány hello egyéni tartomány társítva van.
 
 ![Egyéni tartomány][CustomDomain] 
 
-Egy összefoglalása az Azure App Service-alkalmazásokhoz történő regisztrálásának egyéni tartományt, tekintse meg az alábbi cikket a [egyéni tartományok regisztrálása][RegisterCustomDomain].
+Egy összefoglalása az Azure App Service-alkalmazásokhoz történő regisztrálásának egyéni tartományt, tekintse meg következő cikket hello [egyéni tartományok regisztrálása][RegisterCustomDomain].
 
-## <a name="trying-out-the-distributed-topology"></a>Az Elosztott topológia kipróbálása
-End a Traffic Manager és a DNS-konfiguráció eredménye, hogy vonatkozó kérések *www.scalableasedemo.com* halad keresztül az alábbi sorrendben:
+## <a name="trying-out-hello-distributed-topology"></a>Próbálhatja ki hello Elosztott topológia
+hello end hello Traffic Manager és a DNS-konfiguráció eredménye, hogy vonatkozó kérések *www.scalableasedemo.com* halad keresztül a következő feladatütemezési hello:
 
 1. Egy böngésző vagy eszköz DNS-címkeresést tesz *www.scalableasedemo.com*
-2. A CNAME bejegyzése a tartományregisztráló azt eredményezi, a DNS-ben az Azure Traffic Manager kell átirányítani.
-3. DNS-címkeresést történik *méretezhető ase demo.trafficmanager.net* szemben az Azure Traffic Manager DNS-kiszolgálók egyikét.
-4. A terheléselosztási házirend alapján (a *TrafficRoutingMethod* a Traffic Manager-profil létrehozásakor korábban használt paraméter), a Traffic Manager válassza ki a beállított végpontjaikra lesz, és térjen vissza az adott végpontra teljes Tartománynevét a böngésző vagy az eszköz.
-5. Mivel a teljes Tartománynevet a végpont egy App Service Environment-környezet futó alkalmazás példány URL-címét, a böngésző vagy az eszköz felhasználói jóváhagyást kér a Microsoft Azure DNS-kiszolgáló IP-cím legyen feloldani a teljes Tartománynevet. 
-6. A böngésző vagy az eszköz a HTTP/S kérelem elküld az IP-címre.  
-7. A kérelem egy időben érkeznek, az App Service Environment-környezetek egyikén futó alkalmazás példányai közül.
+2. hello hello tartományregisztráló CNAME bejegyzése hello DNS keresési átirányítva toobe tooAzure Traffic Manager okoz.
+3. DNS-címkeresést történik *méretezhető ase demo.trafficmanager.net* elleni hello Azure Traffic Manager DNS-kiszolgálók egyikét.
+4. Hello terheléselosztási házirend alapján (hello *TrafficRoutingMethod* hello Traffic Manager-profil létrehozásakor korábban használt paraméter), jelölje ki a hello végpontok konfigurálva, és térjen vissza a Traffic Manager lesz hello, amelyek teljes Tartományneve végpont toohello böngésző vagy eszköz.
+5. Mivel hello hello végpont teljes Tartományneve az App Service-környezetek futó alkalmazás példánya hello URL-címét, hello böngésző vagy eszköz felhasználói jóváhagyást kér a Microsoft Azure DNS-kiszolgáló tooresolve hello FQDN tooan IP-címet. 
+6. hello böngésző vagy eszköz küldi hello HTTP/S kérelem toohello IP-címet.  
+7. hello kérelem hello app példányok hello App Service Environment-környezetek egyikén futó egyikén fog megérkezni.
 
-A konzol a következő ábrán egy DNS-címkeresés a mintaalkalmazás egyéni tartomány sikeresen feloldása egy alkalmazás-példányon futó egyet a három minta App Service Environment-környezetek (ebben az esetben a második, a három App Service Environment-környezetek):
+hello konzol a következő ábrán egy DNS-címkeresés hello sample app egyéni tartomány sikeresen feloldó tooan app példány hello három minta App Service Environment-környezetek egyikén futó (ebben az esetben hello második hello három App Service Environment-környezetek):
 
 ![DNS-címkeresés][DNSLookup] 
 
 ## <a name="additional-links-and-information"></a>További hivatkozások és információk
-Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el a [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
+Összes cikket, és hogyan-a következőre az App Service Environment-környezetek érhetők el hello [alkalmazásszolgáltatási környezetek – fontos fájl](../app-service/app-service-app-service-environments-readme.md).
 
-A Powershell-dokumentációja [Azure Resource Manager Traffic Manager-támogatás][ARMTrafficManager].  
+Hello Powershell dokumentációja [Azure Resource Manager Traffic Manager-támogatás][ARMTrafficManager].  
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

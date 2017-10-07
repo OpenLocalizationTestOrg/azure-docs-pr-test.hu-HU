@@ -1,5 +1,5 @@
 ---
-title: "Hozzon létre egy Azure Linux rendszeren futó webalkalmazás |} Microsoft Docs"
+title: "Linux rendszerű aaaCreate egy Azure webalkalmazás |} Microsoft Docs"
 description: "Webes alkalmazás létrehozási munkafolyamat Linux Azure webalkalmazás számára."
 keywords: "az Azure app service, webalkalmazás, linux, oss"
 services: app-service
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 49091d4a85bed23927850f9c0bbc5ea8b6e8c9e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de1bd030345d5e2a8024012067b5bcaa2cca09dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-web-app-running-on-linux"></a>Hozzon létre egy Azure Linux rendszeren futó webalkalmazás
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-## <a name="use-the-azure-portal-to-create-your-web-app"></a>A webalkalmazás létrehozása az Azure-portál használatával
-Megkezdheti a webalkalmazás létrehozása a Linux rendszeren a [Azure-portálon](https://portal.azure.com) a következő ábrán látható módon:
+## <a name="use-hello-azure-portal-toocreate-your-web-app"></a>Használja az Azure portál toocreate hello a webalkalmazás
+Megkezdheti a webalkalmazás létrehozása Linux hello [Azure-portálon](https://portal.azure.com) látható hello kép a következő módon:
 
-![Egy webalkalmazás létrehozása az Azure portálon][1]
+![Egy webalkalmazás létrehozása a hello Azure-portálon][1]
 
-Ezt követően a **létrehozás panel** nyitja meg a következő ábrán látható módon:
+A következő hello **létrehozás panel** megnyílik, ahogy az a következő kép hello:
 
-![A létrehozás panel][2]
+![hello létrehozás panel][2]
 
 1. Adjon meg egy nevet a webalkalmazás.
-2. Válasszon egy meglévő erőforráscsoportot, vagy hozzon létre egy újat. (Lásd az elérhető régiók a [korlátozások szakasz](app-service-linux-intro.md).)
-3. Válassza ki a meglévő Azure App Service-csomagot, vagy hozzon létre egy újat. (Lásd az App Service-csomag jegyzetének a [korlátozások szakasz](app-service-linux-intro.md).)
-4. Válassza ki a használni kívánt alkalmazáscsoportokat. Választhat a különböző verzióiban Node.js, PHP, a .net Core és a Ruby.
+2. Válasszon egy meglévő erőforráscsoportot, vagy hozzon létre egy újat. (Lásd a hello elérhető régiók [korlátozások szakasz](app-service-linux-intro.md).)
+3. Válassza ki a meglévő Azure App Service-csomagot, vagy hozzon létre egy újat. (Lásd az App Service csomag a hello [korlátozások szakasz](app-service-linux-intro.md).)
+4. Válassza ki a hello alkalmazás, hogy szeretné-e toouse verem. Választhat a különböző verzióiban Node.js, PHP, a .net Core és a Ruby.
 
-Miután létrehozta az alkalmazást, módosíthatja az alkalmazáscsoportokat az alkalmazásbeállítások az alábbi ábrán látható módon:
+Hello alkalmazás létrehozását követően módosíthatja hello alkalmazáscsoportokat hello Alkalmazásbeállítások látható hello kép a következő módon:
 
 ![Alkalmazásbeállítások][3]
 
 ## <a name="deploy-your-web-app"></a>A webalkalmazás telepítése
-Kiválasztása **központi telepítési beállítások** a felügyeleti portál felajánlja a lehetőséget az alkalmazás központi telepítéséhez a helyi Git- vagy GitHub-tárház használandó. A további utasításokat hasonlóak a nem Linux webalkalmazás. Az utasítások a [helyi Git-telepítésének](app-service-deploy-local-git.md) vagy [folyamatos üzembe helyezés](app-service-continuous-deployment.md) segítségével telepítse az alkalmazást.
+Kiválasztása **központi telepítési beállítások** hello felügyeleti portál által biztosított az Ön hello beállítás toouse helyi Git- vagy GitHub tárház toodeploy az alkalmazást. hello részeinek hello utasításokat a nem Linux webalkalmazás hasonló toothose. Hajtsa végre az hello utasításait [helyi Git-telepítésének](app-service-deploy-local-git.md) vagy [folyamatos üzembe helyezés](app-service-continuous-deployment.md) toodeploy az alkalmazást.
 
-FTP segítségével töltse fel az alkalmazást a webhelyhez. Letölthető az FTP-végpont a webalkalmazás a diagnosztikai naplók szakaszban a következő ábrán látható módon:
+FTP-tooupload az alkalmazás tooyour hely is használja. Letölthető hello FTP végpont a webalkalmazás hello diagnosztikai naplók szakasz látható hello kép a következő módon:
 
 ![Diagnosztikai naplók][4]
 

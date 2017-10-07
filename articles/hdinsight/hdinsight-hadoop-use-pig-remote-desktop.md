@@ -1,6 +1,6 @@
 ---
-title: "Hadoop a Pig használata a HDInsight - Azure távoli asztal |} Microsoft Docs"
-description: "Ismerje meg, a Pig parancs használata a távoli asztali kapcsolat egy Windows-alapú Hadoop-fürt hdinsightban történő Pig Latin utasítás futtatását."
+title: "a távoli asztal a HDInsight - Azure Hadoop Pig aaaUse |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Pig parancs toorun Pig Latin nyilatkozatai egy távoli asztali kapcsolat tooa Windows-alapú Hadoop-fürt hdinsightban."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 5e8d4fbd8afc54c8bbc1a9a71c66d7022a7d5986
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a4565fa827cd45fdbe6194b0486df93a6561084
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-pig-jobs-from-a-remote-desktop-connection"></a>A távoli asztali kapcsolat-ről futtatva a Pig-feladatokhoz
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-Ez a dokumentum egy forgatókönyv biztosít a Pig paranccsal futtassa a Pig Latin utasításokat egy távoli asztali kapcsolaton keresztül egy Windows-alapú HDInsight-fürthöz. A Pig Latin adatátalakítást, azok MapReduce-alkalmazások létrehozása helyett hozzárendelését és funkciók teszi lehetővé.
+Ez a dokumentum egy forgatókönyv biztosít hello Pig parancs toorun Pig Latin utasítások fürtről a távoli asztali kapcsolat tooa Windows-alapú HDInsight segítségével. A Pig Latin lehetővé teszi azok adatátalakítást, toocreate MapReduce alkalmazások helyett képezi le, és csökkentheti a funkciók.
 
 > [!IMPORTANT]
-> A távoli asztal a Windows operációs rendszert használó HDInsight-fürtök csak érhető el. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> A távoli asztal a Windows hello operációs rendszert használó HDInsight-fürtök csak érhető el. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> HDInsight 3.4-es vagy nagyobb, lásd: [HDInsight és az SSH használata a Pig](hdinsight-hadoop-use-pig-ssh.md) információk interaktív Pig-feladatokhoz közvetlenül a fürtön futó parancsot a parancssorból.
+> HDInsight 3.4-es vagy nagyobb, lásd: [HDInsight és az SSH használata a Pig](hdinsight-hadoop-use-pig-ssh.md) információ interaktív Pig közvetlenül egy feladat hello fürt parancsot a parancssorból.
 
 ## <a id="prereq"></a>Előfeltételek
-Ebben a cikkben szereplő lépések elvégzéséhez a következőkre lesz szüksége.
+toocomplete hello cikkben leírt lépéseket, szüksége lesz a hello következő.
 
 * (A HDInsight Hadoop) a Windows-alapú HDInsight-fürt
 * Windows 10, Windows 8 vagy Windows 7 rendszert futtató ügyfélszámítógép
 
 ## <a id="connect"></a>Csatlakozzon a távoli asztal
-A távoli asztal engedélyezése a HDInsight-fürthöz, majd csatlakozni a következő utasításokat követve [csatlakozás RDP Funkciót használnak a HDInsight-fürtök](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+A távoli asztal engedélyezése a hello HDInsight-fürthöz, majd kösse a tooit: hello utasításokat követve [csatlakozás RDP tooHDInsight-fürtök](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-## <a id="pig"></a>A Pig paranccsal
-1. A távoli asztali kapcsolattal rendelkezik, után indítsa el a **Hadoop parancssori** ikonnal az asztalon.
-2. A Pig parancs indítását. használja a következőket:
+## <a id="pig"></a>Hello Pig parancs használata
+1. Miután egy távoli asztali kapcsolat, indítsa el a hello **Hadoop parancssori** hello ikonnal hello asztalon.
+2. A következő toostart hello Pig parancs hello használata:
 
         %pig_home%\bin\pig
 
     Meg fog jelenni a `grunt>` kérdés.
-3. Adja meg a következő utasítást:
+3. Adja meg a következő utasítás hello:
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
 
-    Ez a parancs a sample.log fájl tartalmát betölti a naplók fájlba. A fájl tartalmát a következő parancs használatával tekintheti meg:
+    Ez a parancs hello hello sample.log fájl tartalmát betölti a hello naplók fájlt. Hello fájl tartalmának hello hello a következő parancs használatával tekintheti meg:
 
         DUMP LOGS;
-4. Az adatok átalakítása úgy, hogy csak a naplózási szint kibontani rekordokban reguláris kifejezést alkalmazza:
+4. Hello adatok átalakítása minden rekordból egy reguláris kifejezést tooextract csak hello naplózási szintek alkalmazásával:
 
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 
-    Használhat **DUMP** az átalakítás után az adatok megtekintéséhez. Ebben az esetben `DUMP LEVELS;`.
-5. További, átalakítások alkalmazása a következő utasítások használatával. Használjon `DUMP` az átalakítás lépések után az eredmények megjelenítéséhez.
+    Használhat **DUMP** tooview hello adatok hello átalakítás után. Ebben az esetben `DUMP LEVELS;`.
+5. További, átalakítások alkalmazása a következő utasítások hello segítségével. Használjon `DUMP` tooview hello eredménye hello átalakítása lépések után.
 
     <table>
     <tr>
     <th>Utasítás</th><th>Funkció</th>
     </tr>
     <tr>
-    <td>FILTEREDLEVELS = által LOGLEVEL SZINTJEINEK értéke nem null;</td><td>A naplózási szint megadásához null értéket tartalmazó sorok eltávolítása és az eredményt FILTEREDLEVELS be.</td>
+    <td>FILTEREDLEVELS = által LOGLEVEL SZINTJEINEK értéke nem null;</td><td>Hello naplózási szint null értéket tartalmazó sorok eltávolítása, és a FILTEREDLEVELS hello eredmények tárolja.</td>
     </tr>
     <tr>
-    <td>GROUPEDLEVELS = csoport FILTEREDLEVELS által LOGLEVEL;</td><td>A sorok naplózási szint szerint csoportosítja, és tárolja az eredményeket a GROUPEDLEVELS.</td>
+    <td>GROUPEDLEVELS = csoport FILTEREDLEVELS által LOGLEVEL;</td><td>Csoportok hello sort a naplózási szint szerint, és tárolja a hello eredmények GROUPEDLEVELS be.</td>
     </tr>
     <tr>
     <td>GYAKORISÁGOT = foreach GROUPEDLEVELS csoport létrehozás módja LOGLEVEL, COUNT (FILTEREDLEVELS. LOGLEVEL), COUNT;</td><td>Egy új készletet hoz létre, amely tartalmazza az egyes egyedi napló adatok értéke szinten, és hány alkalommal következik be. A GYAKORISÁGOT történő tárolás</td>
     </tr>
     <tr>
-    <td>EREDMÉNY = rendelés GYAKORISÁGOT által száma desc;</td><td>A naplózási szintek rendelések (csökkenő) száma szerint, és tárolja az eredmény</td>
+    <td>EREDMÉNY = rendelés GYAKORISÁGOT által száma desc;</td><td>Az eredmény hello naplózási szintek száma (csökkenő), és tárolja rendeléseket</td>
     </tr>
     </table>
-6.Az átalakítás eredménye használatával is mentheti a `STORE` utasítást. Például a következő parancsot a menti a `RESULT` számára a **/example/data/pigout** könyvtárban lévő az alapértelmezett tároló, a fürt:
+6.Az átalakítás hello eredménye hello segítségével is mentheti `STORE` utasítást. Például a következő parancs hello menti hello `RESULT` toohello **/example/data/pigout** könyvtárban lévő hello alapértelmezett tároló a fürt:
 
         STORE RESULT into 'wasb:///example/data/pigout'
 
    > [!NOTE]
-   > Az adatok tárolási fájlban található a megadott könyvtár **rész-nnnnn**. Ha a könyvtár már létezik, kapni fog egy hibaüzenetet.
+   > hello adatok hello megadott könyvtár nevű fájlban tárolódnak **rész-nnnnn**. Ha hello könyvtár már létezik, kapni fog egy hibaüzenetet.
    >
    >
-7. Lépjen ki a grunt parancssorába, írja be a következő utasítást.
+7. tooexit hello grunt parancssorból, írja be a következő utasítás hello.
 
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>A Pig Latin parancsfájlokat
-A Pig-parancs segítségével futtassa a Pig Latin, amely egy fájlban található.
+Hello Pig parancs toorun Pig Latin található egy fájlban is használható.
 
-1. Nyissa meg a grunt parancssorába kilépéskor **Jegyzettömb** , és hozzon létre egy új fájlt **pigbatch.pig** a a **PIG_HOME %** könyvtár.
-2. Írja vagy illessze be a következő sorokat a **pigbatch.pig** fájlt, és mentse azt:
+1. Hello grunt kérdés kilépéskor nyissa meg a **Jegyzettömb** , és hozzon létre egy új fájlt **pigbatch.pig** a hello **PIG_HOME %** könyvtár.
+2. Típus vagy Beillesztés hello következő sorok be hello **pigbatch.pig** fájlt, és mentse azt:
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
@@ -104,11 +104,11 @@ A Pig-parancs segítségével futtassa a Pig Latin, amely egy fájlban találhat
         FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
-3. Használja a következő futtatásához a **pigbatch.pig** fájl, a pig-paranccsal.
+3. A következő toorun hello használata hello **pigbatch.pig** fájl hello pig parancs használatával.
 
         pig %PIG_HOME%\pigbatch.pig
 
-    A kötegelt befejezését követően megjelenik a következő kimenetet, és legyen ugyanaz, mint amikor használt `DUMP RESULT;` az előző lépésekben:
+    Hello kötegelt befejezését követően megjelenik kimenete, amely kell kell hello ugyanaz, mint ha használja a következő hello `DUMP RESULT;` hello előző lépésekben:
 
         (TRACE,816)
         (DEBUG,434)
@@ -118,7 +118,7 @@ A Pig-parancs segítségével futtassa a Pig Latin, amely egy fájlban találhat
         (FATAL,2)
 
 ## <a id="summary"></a>Summary (Összefoglalás)
-Ahogy látja, a Pig-parancs segítségével interaktív módon futtassa MapReduce műveleteket, vagy egy kötegfájlt tárolt Pig Latin feladatok futtatása.
+Ahogy látja, a Pig parancs hello lehetővé teszi toointeractively MapReduce műveletek futtatása, vagy egy parancsfájlba tárolt Pig Latin feladatok futtatása.
 
 ## <a id="nextsteps"></a>Következő lépések
 Általános információk a hdinsight Pig:

@@ -1,6 +1,6 @@
 ---
-title: "További tudnivalók a legújabb Azure vendég operációs rendszereinek kiadásait |} Microsoft Docs"
-description: "A legújabb kiadás híreket és SDK való kompatibilitást, Azure Cloud Services vendég operációs rendszer."
+title: "aaaLearn kapcsolatos legújabb Azure vendég operációs rendszereinek kiadásait hello |} Microsoft Docs"
+description: "Azure Cloud Services vendég operációs rendszer legújabb kiadás híreket és SDK-kompatibilitási hello."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 8/24/2017
 ms.author: raiye
-ms.openlocfilehash: a4439346817df9223c032abc1405a7cf9cbe780b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7274f5a68a32ce91bdede77e1443cdb8053c07ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Az Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrix
-Itt való naprakész információkat a legújabb Azure vendég operációs rendszer feloldja a Felhőszolgáltatásai számára. Ez az információ segít a frissítési lépések megtervezéséről, mielőtt egy vendég operációs rendszer le van tiltva. Ha a szerepkörök használatára konfigurálja *automatikus* vendég operációs rendszer frissíti a [Azure vendég operációs rendszer frissítési beállítások][Azure Guest OS Update Settings], nem elengedhetetlen, hogy olvassa el ezen a lapon.
+A Felhőszolgáltatások feloldja a legújabb Azure vendég operációs rendszer hello naprakész információkat biztosít. Ez az információ segít a frissítési lépések megtervezéséről, mielőtt egy vendég operációs rendszer le van tiltva. Ha a szerepkörök toouse *automatikus* vendég operációs rendszer frissíti a [Azure vendég operációs rendszer frissítési beállítások][Azure Guest OS Update Settings], nem elengedhetetlen, hogy olvassa el ezen a lapon.
 
 > [!IMPORTANT]
-> Ezen az oldalon Felhőszolgáltatás webes és feldolgozói szerepkörök, amelyek egy vendég operációs rendszer fut vonatkozik. Létezik **nem alkalmazható** infrastruktúra-szolgáltatási virtuális gépeket.
+> Ezen a lapon tooCloud szolgáltatások webes és feldolgozói szerepkörök, amelyek egy vendég operációs rendszer fut vonatkozik. Létezik **nem alkalmazható** tooIaaS virtuális gépek.
 >
 >
 
 
 > [!NOTE]
-> Az RSS-hírcsatorna nemrég lett elavult. A Watch hamarosan elérhető új adatcsatornára frissítések!
+> RSS-hírcsatorna hello nemrég elavulttá vált. A Watch hamarosan elérhető új adatcsatornára frissítések!
 >
 >
 
-Nem tudja, hogy milyen a vendég operációs rendszer, vagy hogyan a vendég operációs rendszer feloldja a munkát? Olvasási [ez](#how-it-works) szakasz.
+Nem tudja, hogy milyen hello vendég operációs rendszer, vagy hogyan hello vendég operációs rendszer feloldja a munkát? Olvasási [ez](#how-it-works) szakasz.
 
 ## <a name="news-updates"></a>Hírek
 
@@ -57,7 +57,7 @@ Június vendég operációs rendszer bevezetés. június 16 indul, és a terveze
 Előfordulhat, hogy Vendég operációs rendszer adott ki.
 
 ###### <a name="may-17-2017"></a>**2017. május 17.**
-Egy biztonsági hiba miatt azonban azt választotta, hogy letiltja a következő 2016. December és 2017. január operációs rendszereinek kiadásait, amelyek nem rendelkeznek a [javítsa ki] a portálról: WA-VENDÉG-operációs rendszer-5.4_201612-01, WA-VENDÉG-operációsrendszer-4.39_201612-01, WA-VENDÉG-operációs rendszer-3.46_201612-01, WA-VENDÉG-az operációs rendszer-2.59_201701-01
+Tooa biztonsági hiba miatt a 2016. December és 2017. január hello letiltása a Microsoft operációs rendszereinek kiadásait, amelyek nem rendelkeznek hello [javítsa ki] hello portálról: WA-VENDÉG-operációs rendszer-5.4_201612-01, WA-VENDÉG-operációs rendszer-4.39_201612-01, WA-VENDÉG-operációsrendszer-3.46_ 201612-01, WA-VENDÉG-OPERÁCIÓSRENDSZER-2.59_201701-01
 
 ###### <a name="may-12-2017"></a>**2017. május 12.**
 Előfordulhat, hogy Vendég operációs rendszer bevezetés előfordulhat, hogy 12 indul, és a tervezett kiadását. június 13 rendelkezik.
@@ -69,7 +69,7 @@ Előfordulhat, hogy Vendég operációs rendszer bevezetés előfordulhat, hogy 
 Március vendég operációs rendszer bevezetés 2017. március 14., és az 2017. április 10-én kiadott.
 
 ###### <a name="january-10-2017"></a>**2017. január 10.**
-A január vendég operációs rendszer, amely csak az operációsrendszer-család 2 (Windows 2008 Server R2) hatással javítások tartalmazza. Ezért csak az operációsrendszer-család 2 kép kiadtuk (WA-VENDÉG-operációsrendszer-2.59_201701-01) ebben a hónapban. Az összes többi operációsrendszer-családok, a December operációs rendszer (201612 - 01) a legújabb marad.
+hello január vendég operációs rendszer tartalmazza, amely csak az operációsrendszer-család 2 (Windows 2008 Server R2) hatással javítások. Ezért csak hello termékcsalád 2 az operációs rendszer lemezképének kiadtuk (WA-VENDÉG-operációsrendszer-2.59_201701-01) ebben a hónapban. Minden más operációsrendszer-családok, a hello December operációs rendszer (legújabb hello 201612 - 01) marad.
 
 
 ## <a name="releases"></a>Kiadások
@@ -79,9 +79,9 @@ A január vendég operációs rendszer, amely csak az operációsrendszer-csalá
 .NET-keretrendszer telepített: 4.0-s, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2-es verziójához
 
 > [!NOTE]
-> A dátumok egy * biztosan változhat.
+> A dátumok egy * tulajdonos toochange vannak.
 >
-> Az operációsrendszer-család 5 az RDP-jelszónak legalább 10 karakterből kell lennie.
+> hello operációsrendszer-család 5 RDP-jelszónak legalább 10 karakterből kell lennie.
 >
 
 | Konfigurációs karakterlánc | Kiadás dátuma | Tiltsa le a dátum | Lejárt dátum |
@@ -102,7 +102,7 @@ A január vendég operációs rendszer, amely csak az operációsrendszer-csalá
 Támogatja a .NET 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 
 > [!NOTE]
-> A dátumok egy * biztosan változhat
+> A dátumok egy * tulajdonos toochange vannak
 >
 >
 
@@ -128,7 +128,7 @@ Támogatja a .NET 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 Támogatja a .NET 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 
 > [!NOTE]
-> A dátumok egy * biztosan változhat
+> A dátumok egy * tulajdonos toochange vannak
 >
 >
 
@@ -154,7 +154,7 @@ Támogatja a .NET 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 Támogatja a .NET 3.5, 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 
 > [!NOTE]
-> A dátumok egy * biztosan változhat
+> A dátumok egy * tulajdonos toochange vannak
 >
 >
 
@@ -177,10 +177,10 @@ Támogatja a .NET 3.5, 4.0-s, 4.5-ös, 4.5.1, 4.5.2.
 
 
 ## <a name="msrc-patch-updates"></a>MSRC javítás frissítések
-Havonta megjelenő vendég operációs rendszer részét képező javítások listáját [Itt][patches].
+hello mellékelt havonta vendég operációs rendszer megjelenő javítások érhető [Itt][patches].
 
 ## <a name="sdk-support"></a>SDK-támogatás
-Annak ellenére, hogy a [használatból való kivonást házirend az Azure SDK-ban] [ retire policy sdk] azt jelzi, hogy csak a fent 2.2-es verzió támogatott, a megadott Vendég operációsrendszer-családok engedélyezi, hogy korábbi verzióit. Mindig a legújabb támogatott SDK kell használnia.
+Akkor is, ha hello [hello Azure SDK-használatból való kivonást házirend] [ retire policy sdk] azt jelzi, hogy csak a fent 2.2-es verzió támogatott, a megadott Vendég operációsrendszer-családok lehetővé teszik toouse korábbi verzióiban. Mindig használjon hello legújabb támogatott SDK.
 
 | Vendég operációsrendszer-család | Kompatibilis SDK-verzió |
 | --- | --- |
@@ -191,45 +191,45 @@ Annak ellenére, hogy a [használatból való kivonást házirend az Azure SDK-b
 | 1 |1.0-s vagy újabb |
 
 ## <a name="guest-os-release-information"></a>Vendég operációs rendszer fontos információ
-Vannak a vendég operációs rendszereinek kiadásait fontos három dátumokat: **kiadási** dátum, **le van tiltva** dátum, és **lejárati** dátum. A vendég operációs rendszer elérhető tekinthető, amikor a portálon, és a vendég operációs rendszer célként választható ki. Ha a vendég operációs rendszer elér a **le van tiltva** dátum, az Azure-ból eltávolítják azt. Bármely a vendég operációs rendszer célzó felhőalapú szolgáltatás azonban továbbra is működik normál.
+Nincsenek a fontos tooGuest az operációs rendszer feloldja a három dátumok: **kiadási** dátum, **le van tiltva** dátum, és **lejárati** dátum. Egy vendég operációs rendszer elérhető tekintendő, ha hello portálon, és a vendég operációs rendszer hello céljaként választható ki. Ha a vendég operációs rendszer elér hello **le van tiltva** dátum, az Azure-ból eltávolítják azt. Bármely a vendég operációs rendszer célzó felhőalapú szolgáltatás azonban továbbra is működik normál.
 
-Az ablak között a **le van tiltva** dátum és a **lejárati** dátum biztosít a puffer könnyebben átmeneti a egy vendég operációs rendszer egy újabb. Ha használ *automatikus* , a vendég operációs rendszer, mindig lesz a legújabb verziót, és nem kell aggódni lejár.
+hello ablak közötti hello **le van tiltva** dátum- és hello **lejárati** dátum lehetővé teszi egy vendég operációs rendszer újabb tooone puffer tooeasily átmenetet. Ha használ *automatikus* , a vendég operációs rendszer, mindig lesz hello legújabb verziójában, és nem kell tooworry kapcsolatos lejár.
 
-Ha a **lejárati** dátum továbbítja, a felhőalapú szolgáltatás továbbra is használja a vendég operációs rendszer leállítása, törlődnek, vagy frissíteni kell. További a használatból való kivonást házirenddel kapcsolatos [Itt][retirepolicy].
+Ha hello **lejárati** folyamaton, a felhőalapú szolgáltatás továbbra is használja a vendég operációs rendszer leáll, törölt vagy kényszerített tooupgrade dátum. További hello használatból való kivonást házirenddel kapcsolatos [Itt][retirepolicy].
 
 ## <a name="guest-os-family-version-explanation"></a>Vendég operációs rendszer családja verziójú ismertetése
-A Vendég operációsrendszer-családok a Microsoft Windows Server verziói alapulnak. A vendég operációs rendszer a Azure Felhőszolgáltatások futó operációs rendszer. Minden egyes vendég operációs rendszer családja, verzió, és kiadással rendelkezik számát.
+a Microsoft Windows Server verziói hello Vendég operációsrendszer-családok alapul. hello vendég operációs rendszer egy hello alapul szolgáló operációs rendszer futó Azure Cloud Services. Minden egyes vendég operációs rendszer családja, verzió, és kiadással rendelkezik számát.
 
 * **Vendég operációsrendszer-család**  
   A Windows Server operációs rendszer kiadás, amely a vendég operációs rendszer alapul. Például *termékcsalád 3* Windows Server 2012 rendszeren alapul.
 * **Vendég operációs rendszer verziója**  
-  Adott termékcsalád Vendég operációsrendszer-lemezképhez, valamint a megfelelő [Microsoft biztonsági válasz Center (MSRC)] [ msrc] javítást a vendég operációs rendszer verziójának hozzák időpontban. Nem minden javítások kerülhet.
+  Adott tooa Vendég operációsrendszer-család kép és a megfelelő [Microsoft biztonsági válasz Center (MSRC)] [ msrc] hello dátum hello új vendég operációs rendszer verzió a javítást jön létre. Nem minden javítások kerülhet.
 
     Számok: 0-kor indulnak, és 1 növelése minden alkalommal, amikor egy új készletet frissítések kerül. Vezető nullákat csak láthatók. Ha fontos. Ez azt jelenti, hogy 2.10 verziója egy másik, sokkal újabb verziójú, mint a 2.1-es verziója.
 * **Vendég operációsrendszer-kiadásnak**  
-  A vendég operációs rendszer verziója kiadásában. Újbóli akkor fordul elő, ha a Microsoft problémák talál vizsgálatnál; módosítani kellene. A legújabb kiadás mindig felülír minden korábbi kiadását, nyilvános vagy sem. Az Azure-portálon csak akkor engedélyezi a felhasználók számára a legújabb kiadás egy adott verziójához. Központi telepítések korábbi kiadásáról futó rendszerint nem kényszerített, attól függően, hogy a hiba súlyossága frissítve.
+  A vendég operációs rendszer verziója kiadásában. Újbóli akkor fordul elő, ha a Microsoft problémák talál vizsgálatnál; módosítani kellene. hello legújabb kiadásának mindig felülír minden korábbi kiadását, nyilvános vagy sem. Azure-portálon hello csak segítségével a felhasználók toopick hello legújabb kiadás egy adott verziójához. Központi telepítések korábbi kiadásáról futó rendszerint nem kényszerített hello hiba súlyosságát hello attól frissítése.
 
-Az alábbi példában 2 a családja, 12 verziója pedig "rel2" kiadása.
+Hello az alábbi példában szereplő 2 hello termékcsalád, 12 hello verziója pedig "rel2" hello kiadás.
 
 **Vendég operációs rendszer kiadási** - 2.12 rel2
 
 **Ebben a kiadásban a konfigurációs karakterláncból** -WA-VENDÉG-operációsrendszer-2.12_201208-02
 
-A konfigurációs karakterláncot a vendég operációs rendszer ezt az információt, és a dátum mely MSRC javítások vették kiadás megjelenítő beágyazott rendelkezik. Ebben a példában akár a Windows Server 2008 R2 előállított és például augusztus 2012 MSRC javítások foglalható tekintendők. Csak a kifejezetten a Windows Server adott verziójának alkalmazandó javítások tartoznak. Például ha egy MSRC javítás Microsoft Office vonatkozik, így nem is fog szerepelni, mert ennek a terméknek nem része a Windows Server alapjául szolgáló lemezképhez.
+hello konfigurációs karakterláncot a vendég operációs rendszer van ágyazva, és a dátum mely MSRC javítások vették kiadás megjelenítő ugyanezt az információt. Ebben a példában például augusztus 2012 tooand mentése a Windows Server 2008 R2 előállított MSRC javítások foglalható tekintendők. Csak a kifejezetten a Windows Server toothat verziója alkalmazása javítások tartoznak. Például ha egy MSRC javítás tooMicrosoft Office, így nem is fog szerepelni mert ennek a terméknek nem része a Windows Server alapjául szolgáló lemezképhez hello.
 
 ## <a name="guest-os-system-update-process"></a>Vendég operációs rendszer frissítési folyamat
-Ezen a lapon a vendég operációs rendszer jövőbeli verziókkal kapcsolatos tartalmaz. Az ügyfelek jelezte, hogy azok tudni szeretné, ha kiadási oka, hogy a felhőszolgáltatás szerepköreit újraindul, ha "Automatikus" Update be lettek állítva. Vendég operációs rendszereinek kiadásait általában fordulhat elő, legalább öt (5) nap után a MSRC frissítés kiadása, amely minden hónap második keddjén jelennek meg. Új kiadásai a megfelelő MSRC javításokat minden Vendég operációsrendszer-család esetében.
+Ezen a lapon a vendég operációs rendszer jövőbeli verziókkal kapcsolatos tartalmaz. Az ügyfelek jelezte, hogy azok szeretne tooknow, amennyiben a kiadási oka az, hogy a felhőszolgáltatás szerepköreit újraindul, ha túl "automatikus" frissítési be lettek állítva. Vendég operációs rendszereinek kiadásait általában legalább öt (5) nap után hello MSRC frissítés kiadása, amely akkor lép fel hello minden hónap második keddjén fordulhat elő. Új kiadásai hello vonatkozó MSRC javításokat minden Vendég operációsrendszer-család esetében.
 
-A Microsoft Azure folyamatosan kiadásával frissítések. A vendég operációs rendszer csak egy ilyen frissítés folyamatban. Egy kiadási számos tényező befolyásolhatja túl sok itt listázásához. Emellett Azure szó százait több ezer gép futtatja. Ez azt jelenti, hogy nem lehetséges a pontos dátumot és időt, amikor a szerepkör(ök) újraindul. Jelenleg is dolgozunk korlátozható vagy időt vesznek egy tervet.
+A Microsoft Azure folyamatosan kiadásával frissítések. hello vendég operációs rendszer a hello folyamat csak egy ilyen frissítés. Egy kiadási számos tényező befolyásolhatja túl sok toolist itt. Emellett Azure szó százait több ezer gép futtatja. Ez azt jelenti, hogy nem lehetséges toogive a pontos dátumot és időt, amikor a szerepkör(ök) újraindul. A Microsoft a terv toolimit dolgozik, vagy újraindítások idő.
 
-A vendég operációs rendszer új verziót meg van nyitva, egész Azure teljesen propagálása időbe telhet. Szolgáltatások frissítve lett, hogy az új vendég operációs rendszer, mivel azok újraindítása van frissítési tartományok érvényesítenie. "Automatikus" frissítések használandó szolgáltatások a kiadási első fogja kapni. A frissítés után az új vendég operációs rendszer verzió a szolgáltatás az Azure portálon felsorolt láthatja. Ebben az időszakban újból kiadott biztonsági frissítések fordulhat elő. Egyes verziói telepítésére hosszabb idő alatt, és az automatikus frissítési újraindítások esetleg nem kerül sor a hivatalos kiadás dátuma után sok hétig. Miután a vendég operációs rendszer nem érhető el, majd explicit módon kiválaszthatja verzió a portálról, vagy a konfigurációs fájlban.
+Ha a vendég operációs rendszer közzétett hello új kiadását, toofully propagálása történik Azure időbe telhet. Mivel szolgáltatások frissített toohello új vendég operációs rendszer, azok újraindított érvényesítenie frissítési tartományok. Szolgáltatások set toouse "Automatikus" frissítések a kiadási első fogja kapni. Hello frissítés után látni fogja, a szolgáltatás a hello felsorolt hello új vendég operációs rendszer verziója Azure-portálon. Ebben az időszakban újból kiadott biztonsági frissítések fordulhat elő. Egyes verziói telepítésére hosszabb idő alatt, és az automatikus frissítési újraindítások esetleg nem kerül sor után hello hivatalos kiadás dátuma sok hétig. Miután a vendég operációs rendszer nem érhető el, majd explicit módon kiválaszthatja verzió hello portálon vagy a konfigurációs fájlban.
 
-Ezután újraindul, és további technikai adatai Vendég és a gazda operációs Rendszerével frissítések mutatók értékes információk nagy mennyiségű, lásd az MSDN blogbejegyzésében [szerepkör példány újraindítása miatt az operációs rendszer frissítései][restarts].
+Ezután újraindul, és a mutatók toomore műszaki adatai Vendég és a gazda operációs Rendszerével frissítések értékes információk nagy mennyiségű, lásd: hello MSDN blogbejegyzésében [szerepkör példány újraindítása miatt tooOS frissítések] [ restarts].
 
-Ha manuálisan módosítja a vendég operációs rendszer, tekintse meg a [vendég operációs rendszer használatból való kivonást házirend] [ retirepolicy] további információt.
+Ha a felhasználó a vendég operációs rendszer, lásd: hello [vendég operációs rendszer használatból való kivonást házirend] [ retirepolicy] további információt.
 
 ## <a name="guest-os-supportability-and-retirement-policy"></a>Vendég operációs rendszer támogatásának és a használatból való kivonást házirend
-A vendég operációs rendszer támogatásának és a használatból való kivonást házirend kifejtett [Itt][retirepolicy].
+Vendég operációs rendszer támogatásának és a használatból való kivonást házirend hello kifejtett [Itt][retirepolicy].
 
 [Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure Guest OS Update Settings]: cloud-services-how-to-configure.md

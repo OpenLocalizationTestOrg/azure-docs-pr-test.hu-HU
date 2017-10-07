@@ -1,5 +1,5 @@
 ---
-title: "Bevezetés az Azure Application Gateway webalkalmazási tűzfalának (WAF) használatába | Microsoft Docs"
+title: "aaaIntroduction tooweb alkalmazás tűzfalat (waf-ot) az Azure Application Gateway |} Microsoft Docs"
 description: "Ez az oldal áttekintést nyújt az Application Gateway webalkalmazási tűzfalának (WAF) működéséről"
 documentationcenter: na
 services: application-gateway
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: amsriva
-ms.openlocfilehash: 50863b60f2843f033bdb07f4564d937cd6f0b7be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5a42ce0fb2bd12a391844099e2de8fa2571195e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-application-firewall-waf"></a>Webalkalmazási tűzfal (WAF)
 
 A webalkalmazási tűzfal (WAF) az Application Gateway egyik szolgáltatása, amely központi védelmet nyújt a webalkalmazásoknak a gyakori biztonsági rések ellen. 
 
-A webalkalmazási tűzfal az [alapvető OWASP-szabálykészletek](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0-s vagy 2.2.9-es verzióinak szabályai alapján működik. A webalkalmazások egyre inkább ki vannak téve rosszindulatú támadásoknak, amelyek az ismert biztonsági réseket használják ki. Az ilyen jellegű támadások között például gyakoriak az SQL-injektálásos és a webhelyek közötti, parancsprogramot alkalmazó támadások. Az ilyen támadások megakadályozása az alkalmazás kódjában kihívást jelenthet, és szigorú felügyeletet, javítást és megfigyelést igényelhet az alkalmazás topológiájának több rétegén. A központosított webalkalmazási tűzfal egyszerűbbé teszi a biztonságfelügyeletet, és segít az alkalmazás-rendszergazdáknak a fenyegetések vagy a behatolások elleni védekezésben. Emellett a WAF-megoldás gyorsabban képes kezelni a biztonsági fenyegetéseket azáltal, hogy kijavítja az ismert biztonsági réseket egy központi helyen, ahelyett hogy az egyes webalkalmazások védelmét biztosítaná. A meglévő alkalmazásátjárókat egyszerűen át lehet alakítani webalkalmazási tűzfallal rendelkező alkalmazásátjárókká.
+Webalkalmazási tűzfal hello szabályok alapján [OWASP core szabálykészletek](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 vagy a program 2.2.9-es. A webalkalmazások egyre inkább ki vannak téve rosszindulatú támadásoknak, amelyek az ismert biztonsági réseket használják ki. A biztonsági rések között közös SQL injektálási támadások, helyközi scripting támadások tooname néhány. Megakadályozza az ilyen jellegű támadások alkalmazáskód kihívást jelenthet, és előfordulhat, hogy szigorú karbantartása, javítását és ellenőrzés hello alkalmazás topológia több réteget. Központosított webalkalmazási tűzfal segít tisztázni biztonságkezelés jóval egyszerűbb, és lehetővé teszi a nagyobb megbízhatósági tooapplication rendszergazdák fenyegetések és a behatolás elleni. WAF megoldás is reagálhasson tooa biztonsági kockázatot jelentenek gyorsabb által egy ismert biztonsági rések egy központi helyen, és minden egyes webalkalmazás biztonságossá tétele érdekében. Meglévő alkalmazásátjárót könnyen lehet konvertált tooa webes alkalmazás engedélyezve van a tűzfal Alkalmazásátjáró.
 
 ![imageURLroute](./media/application-gateway-web-application-firewall-overview/WAF1.png)
 
-Az Application Gateway egy alkalmazáskézbesítési vezérlőként működik, és SSL-lezárást, cookie-alapú munkamenet-affinitást, ciklikus időszeleteléses terheléselosztást, tartalomalapú útválasztást, valamint több webhely és biztonsági fejlesztés üzemeltetésének képességét kínálja. Az Application Gateway által kínált biztonsági fejlesztések között szerepel az SSL-házirend kezelése és a végpontok közötti SSL-támogatás. Az ADC-ajánlatba közvetlenül integrált WAF (webalkalmazási tűzfal) tovább erősíti az alkalmazásbiztonságot. Ez egy könnyen konfigurálható központi helyet biztosít a webalkalmazások kezeléséhez és a gyakori webes biztonsági rések elleni védelemhez.
+Alkalmazásátjáró csúszóablakszerűen történik, az alkalmazás kézbesítési vezérlő és ajánlatok SSL-lezárást, munkamenet cookie-alapú kapcsolat, ciklikus multiplexelés terheléselosztási, tartalomalapú útválasztás, képes toohost több webhelyeket és biztonsági javításokat. Alkalmazásátjáró által kínált biztonsági fejlesztések közé tartozik a SSL házirendkezelés, záró tooend SSL támogatja. Az alkalmazásbiztonság most fokozni WAF (webalkalmazási tűzfal) közvetlenül hello LÉPETT ajánlat történő integrálását. Ez egy egyszerű tooconfigure központi helyen toomanage biztosít, és a webes alkalmazások közös webes biztonsági rések elleni védelmét.
 
 ## <a name="benefits"></a>Előnyök
 
-Az alábbiak az Application Gateway és a webalkalmazási tűzfal használatának legfontosabb előnyei:
+Az alábbiakban hello Application Gateway és a webes alkalmazás tűzfal biztosító hello core előnyei:
 
 ### <a name="protection"></a>Védelem
 
-* A háttérkód módosítása nélkül védheti a webalkalmazásokat a webes biztonsági résektől és támadásoktól.
+* A webes alkalmazás webes biztonsági rések és toobackend kód módosítása nélkül támadások védelméhez.
 
-* Egyszerre több webalkalmazást védhet egy Application Gateway mögött. Az Application Gateway akár 20 webhely üzemeltetését is támogatja egyetlen átjáró mögött, amelyek a WAF segítségével mind védhetők a webes támadásokkal szemben.
+* Több webkiszolgáló védelme hello alkalmazásokat azonos időben Alkalmazásátjáró mögött. Alkalmazásátjáró támogatja az üzemeltető too20 webhelyek mögött csak egyetlen átjáró, amely sikerült az összes védeni webes támadások ellen, és WAF fel.
 
 ### <a name="monitoring"></a>Figyelés
 
-* Valós idejű WAF-naplók segítségével követheti nyomon a webalkalmazást fenyegető támadásokat. A WAF-riasztások és -naplók nyomon követése, illetve a tendenciák kimutatása érdekében ezek a naplók integrálva vannak az [Azure Monitorral](../monitoring-and-diagnostics/monitoring-overview.md).
+* Valós idejű WAF-naplók segítségével követheti nyomon a webalkalmazást fenyegető támadásokat. Ez a napló integrálva van [Azure figyelő](../monitoring-and-diagnostics/monitoring-overview.md) tootrack WAF riasztást, és naplózza, és könnyedén figyelheti a trendeket.
 
-* A WAF hamarosan az Azure Security Centerrel is integrálva lesz. Az Azure Security Center egyetlen központi helyen jeleníti meg minden Azure-erőforrás biztonsági állapotát.
+* A WAF hamarosan az Azure Security Centerrel is integrálva lesz. Az Azure Security Center lehetővé teszi, hogy az összes Azure-erőforrások biztonsági állapotának hello központi nézet.
 
 ### <a name="customization"></a>Testreszabás
 
-* A WAF-szabályok és -szabálycsoportok testreszabhatók az alkalmazás követelményeinek való megfelelés, illetve a téves riasztások kiszűrése érdekében.
+* hello képességét toocustomize WAF szabályok és a szabály toosuit alkalmazás igényeinek csoportnak, és hogy a vakriasztások megszüntetéséhez.
 
 ## <a name="features"></a>Szolgáltatások
 
-A webalkalmazási tűzfal alapértelmezés szerint a CRS 3.0-s verziójával van előre konfigurálva, de a 2.2.9-es verzió használata mellett is dönthet. A CRS 3.0-s verziója esetén kevesebb hibás riasztással kell számolnia, mint a 2.2.9-es verziónál. A [szabályok igény szerinti testreszabására](application-gateway-customize-waf-rules-portal.md) is lehetősége van. A webalkalmazási tűzfal többek között a következő gyakori internetes biztonsági rések ellen nyújt védelmet:
+Webalkalmazási tűzfal rendelkezik előre beállított CRS 3.0 alapértelmezés szerint, vagy dönthet úgy toouse program 2.2.9-es. A CRS 3.0-s verziója esetén kevesebb hibás riasztással kell számolnia, mint a 2.2.9-es verziónál. képes túl hello[testreszabása szabályok toosuit igényeinek](application-gateway-customize-waf-rules-portal.md) valósul meg. Néhány hello közös webes biztonsági rések mely webalkalmazási tűzfal véd tartalmazza:
 
 * SQL-injektálás elleni védelem
 * Webhelyek közötti, parancsprogramot alkalmazó támadások elleni védelem
@@ -62,7 +62,7 @@ A webalkalmazási tűzfal alapértelmezés szerint a CRS 3.0-s verziójával van
 * Robotprogramok, webbejárók és képolvasók elleni védelem
 * Alkalmazások (vagyis Apache, IIS stb.) gyakori konfigurációs hibáinak észlelése
 
-A szabályok és a hozzájuk tartozó védelmi megoldások részletesebb listáját az [Alapvető szabálykészletek](#core-rule-sets) című szakasz tartalmazza.
+További szabályok részletes listáját és azok védelmét: hello következő [szabálykészletek alapvető](#core-rule-sets).
 
 ### <a name="core-rule-sets"></a>Alapvető szabálykészletek
 
@@ -70,61 +70,61 @@ Az Application Gateway a következő két szabálykészletet támogatja: CRS 3.0
 
 #### <a name="owasp30"></a>OWASP_3.0
 
-A mellékelt 3.0-s alapvető szabálykészlet 13 szabálycsoportot tartalmaz, ahogy a következő táblázatban is látható. Ezen szabálycsoportok mindegyike több, egyenként letiltható szabályt tartalmaz.
+hello 3.0 core szabálykészlet megadott van 13 szabály hello a következő táblázatban ismertetett módon. Ezen szabálycsoportok mindegyike több, egyenként letiltható szabályt tartalmaz.
 
 |Szabálycsoport|Leírás|
 |---|---|
-|**[REQUEST-910-IP-REPUTATION](application-gateway-crs-rulegroups-rules.md#crs910)**|Az ismert levélszemétküldők és kártékony tevékenységek ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-911-METHOD-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs911)**|Egyes metódusok (például PUT, PATCH< stb.) zárolásához tartalmaz szabályokat.|
-|**[REQUEST-912-DOS-PROTECTION](application-gateway-crs-rulegroups-rules.md#crs912)**| A szolgáltatásmegtagadási támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-913-SCANNER-DETECTION](application-gateway-crs-rulegroups-rules.md#crs913)**| A port- és környezetleolvasók ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-920-PROTOCOL-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs920)**|A protokoll- és a kódolási problémák ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-921-PROTOCOL-ATTACK](application-gateway-crs-rulegroups-rules.md#crs921)**|A fejlécinjektálás, a kéréscsempészet és a válaszfelosztás ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-930-APPLICATION-ATTACK-LFI](application-gateway-crs-rulegroups-rules.md#crs930)**|A fájlok és elérési utak elleni támadásoktól védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-931-APPLICATION-ATTACK-RFI](application-gateway-crs-rulegroups-rules.md#crs931)**|A távolifájl-beszúrásos (RFI) támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-932-APPLICATION-ATTACK-RCE](application-gateway-crs-rulegroups-rules.md#crs932)**|A távolikód-futtatásos támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-933-APPLICATION-ATTACK-PHP](application-gateway-crs-rulegroups-rules.md#crs933)**|A PHP-injektálási támadások ellen védelmet biztosító szabályokat tartalmaz.|
+|**[REQUEST-910-IP-REPUTATION](application-gateway-crs-rulegroups-rules.md#crs910)**|Szabályok tooprotect ismert levélszemétküldők vagy rosszindulatú tevékenységet tartalmaz.|
+|**[REQUEST-911-METHOD-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs911)**|Szabályok toolock módszereket tartalmazza (PUT, javítás <...)|
+|**[REQUEST-912-DOS-PROTECTION](application-gateway-crs-rulegroups-rules.md#crs912)**| Tartalmazza a szabályok tooprotect szolgáltatásmegtagadásos (DoS) támadásokkal szemben.|
+|**[REQUEST-913-SCANNER-DETECTION](application-gateway-crs-rulegroups-rules.md#crs913)**| Port és a környezet képolvasók elleni szabályok tooprotect tartalmazza.|
+|**[REQUEST-920-PROTOCOL-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs920)**|Protokoll és a kódolás problémák elleni szabályok tooprotect tartalmazza.|
+|**[REQUEST-921-PROTOCOL-ATTACK](application-gateway-crs-rulegroups-rules.md#crs921)**|Szabályok tooprotect fejléc injektálási, kérelmek és a felosztás válasz tartalmazza|
+|**[REQUEST-930-APPLICATION-ATTACK-LFI](application-gateway-crs-rulegroups-rules.md#crs930)**|Fájl- és elérési útja támadások elleni szabályok tooprotect tartalmazza.|
+|**[REQUEST-931-APPLICATION-ATTACK-RFI](application-gateway-crs-rulegroups-rules.md#crs931)**|Szabályok tooprotect szemben a távoli fájl befoglalási (RFI) tartalmazza.|
+|**[REQUEST-932-APPLICATION-ATTACK-RCE](application-gateway-crs-rulegroups-rules.md#crs932)**|Szabályok tooprotect tartalmaz újra távoli kód végrehajtása.|
+|**[REQUEST-933-APPLICATION-ATTACK-PHP](application-gateway-crs-rulegroups-rules.md#crs933)**|Szabályok tooprotect PHP injektálási támadások elleni tartalmazza.|
 |**[REQUEST-941-APPLICATION-ATTACK-XSS](application-gateway-crs-rulegroups-rules.md#crs941)**|A helyközi, parancsfájlt alkalmazó támadások ellen védelmet biztosító szabályokat tartalmaz.|
 |**[REQUEST-942-APPLICATION-ATTACK-SQLI](application-gateway-crs-rulegroups-rules.md#crs942)**|Az SQL-injektálási támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION](application-gateway-crs-rulegroups-rules.md#crs943)**|A munkamenet-rögzítési támadások ellen védelmet biztosító szabályokat tartalmaz.|
+|**[REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION](application-gateway-crs-rulegroups-rules.md#crs943)**|Szabályok tooprotect munkamenet rögzítés támadások elleni tartalmazza.|
 
 #### <a name="owasp229"></a>OWASP_2.2.9
 
-A mellékelt 2.2.9-es alapvető szabálykészlet 10 szabálycsoportot tartalmaz, ahogy a következő táblázatban is látható. Ezen szabálycsoportok mindegyike több, egyenként letiltható szabályt tartalmaz.
+hello program 2.2.9-es core szabálykészlet megadott van 10 szabály hello a következő táblázatban ismertetett módon. Ezen szabálycsoportok mindegyike több, egyenként letiltható szabályt tartalmaz.
 
 |Szabálycsoport|Leírás|
 |---|---|
-|**[crs_20_protocol_violations](application-gateway-crs-rulegroups-rules.md#crs20)**|A protokollsértések (például érvénytelen karakterek, GET parancs egy kéréstörzzsel stb.) ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_21_protocol_anomalies](application-gateway-crs-rulegroups-rules.md#crs21)**|A helytelen fejléc-információk ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_23_request_limits](application-gateway-crs-rulegroups-rules.md#crs23)**|A korlátozásokat meghaladó argumentumok vagy fájlok ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_30_http_policy](application-gateway-crs-rulegroups-rules.md#crs30)**|A korlátozott metódusok, fejlécek és fájltípusok ellen védelmet biztosító szabályokat tartalmaz. |
-|**[crs_35_bad_robots](application-gateway-crs-rulegroups-rules.md#crs35)**|Az internetes webbejárók és keresők ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_40_generic_attacks](application-gateway-crs-rulegroups-rules.md#crs40)**|Általános támadások (például munkamenet-rögzítés, távolifájl-beszúrás, PHP-injektálás) ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|Az SQL-injektálási támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_41_xss_attacks](application-gateway-crs-rulegroups-rules.md#crs41xss)**|A helyközi, parancsfájlt alkalmazó támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_42_tight_security](application-gateway-crs-rulegroups-rules.md#crs42)**|Az elérésiút-átjárási támadások ellen védelmet biztosító szabályokat tartalmaz.|
-|**[crs_45_trojans](application-gateway-crs-rulegroups-rules.md#crs45)**|A backdoor trójai programok ellen védelmet biztosító szabályokat tartalmaz.|
+|**[crs_20_protocol_violations](application-gateway-crs-rulegroups-rules.md#crs20)**|Tartalmazza a szabályok tooprotect elleni protokoll megsértése (érvénytelen karaktereket, GET egy kérelemtörzset, stb.)|
+|**[crs_21_protocol_anomalies](application-gateway-crs-rulegroups-rules.md#crs21)**|Szabályok tooprotect elleni helytelen fejléc-információ tartalmazza.|
+|**[crs_23_request_limits](application-gateway-crs-rulegroups-rules.md#crs23)**|Szabályok tooprotect argumentumok vagy fájlokat, amelyek mérete meghaladja a korlátozások tartalmazza.|
+|**[crs_30_http_policy](application-gateway-crs-rulegroups-rules.md#crs30)**|Szabályok tooprotect korlátozott módszerek, fejlécek és fájltípusokat tartalmazza. |
+|**[crs_35_bad_robots](application-gateway-crs-rulegroups-rules.md#crs35)**|Szabályok tooprotect szemben a szabványos és -képolvasók tartalmazza.|
+|**[crs_40_generic_attacks](application-gateway-crs-rulegroups-rules.md#crs40)**|Tartalmazza a szabályok tooprotect általános támadások (munkamenet rögzítés távoli fájl befoglalási, PHP injektálási, stb.)|
+|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|Tartalmazza a szabályok tooprotect SQL injektálási támadások ellen|
+|**[crs_41_xss_attacks](application-gateway-crs-rulegroups-rules.md#crs41xss)**|Szabályok tooprotect elleni közötti helyközi tartalmazza.|
+|**[crs_42_tight_security](application-gateway-crs-rulegroups-rules.md#crs42)**|Tartalmaz egy szabály tooprotect elérési átjárás támadások ellen|
+|**[crs_45_trojans](application-gateway-crs-rulegroups-rules.md#crs45)**|Szabályok tooprotect backdoor trójai programok ellen tartalmazza.|
 
 ### <a name="waf-modes"></a>WAF-üzemmódok
 
-Az Application Gateway WAF az alábbi két üzemmódban való futtatásra konfigurálható:
+Alkalmazás átjáró WAF lehet a következő két mód hello konfigurált toorun:
 
-* **Észlelés üzemmód** – Amikor az Application Gateway WAF észlelés üzemmódban való futtatásra van konfigurálva, figyel és egy naplófájlba naplóz minden veszélyforrás-riasztást. A **Diagnosztika** szakaszban be kell kapcsolni az Application Gateway naplózási diagnosztikáját. Emellett ellenőrizze, hogy a WAF-napló ki van-e választva és be van-e kapcsolva. Az észlelési üzemmódban futtatott webalkalmazási tűzfal nem blokkolja a bejövő kéréseket.
-* **Megelőzés üzemmód** – Amikor az Application Gateway WAF megelőzés üzemmódban való futtatásra van konfigurálva, aktívan blokkolja a szabályok által észlelt behatolásokat és támadásokat. A támadó egy 403-as jogosulatlan hozzáférési kivételt kap, és a kapcsolat megszakad. A megelőzés üzemmód továbbra is naplózza az ilyen támadásokat a WAF-naplókban.
+* **Észlelési mód** – Ha az alkalmazás átjáró WAF észlelési módban konfigurált toorun figyeli, és az összes fenyegetés riasztás jelentkezik be tooa naplófájl. Az Alkalmazásátjáró naplózási diagnosztika kell bekapcsolni hello segítségével **diagnosztika** szakasz. Emellett szükség van, amely hello WAF tooensure napló be van jelölve, és kapcsolja be. Az észlelési üzemmódban futtatott webalkalmazási tűzfal nem blokkolja a bejövő kéréseket.
+* **Megelőző módja** – Ha a beállított toorun megelőzési módban Application Gateway aktívan letiltja a szabályok által észlelt támadásokkal szemben. hello támadó megkapja a 403-as jogosulatlan hozzáférési kivétel és hello kapcsolat megszakad. Megelőző módja folytatódik toolog ilyen jellegű támadások hello WAF naplókat.
 
 ### <a name="application-gateway-waf-reports"></a>WAF-figyelés
 
-Fontos az alkalmazásátjáró állapotának folyamatos figyelése. A webalkalmazási tűzfal és az általa védett alkalmazások állapotát az Azure Monitorral, az Azure Security Centerrel (hamarosan elérhető) és a Log Analytics naplózási és integrációs szolgáltatásaival figyelheti meg.
+Az Alkalmazásátjáró hello állapotának figyelése fontos. A webes alkalmazás tűzfal és hello alkalmazások, amelyek az általa védett hello állapotának figyelése szolgáltatáson keresztül naplózása és az Azure figyelő, az Azure Security Center (hamarosan elérhető) és Log Analyticshez való integráció.
 
 ![diagnosztika](./media/application-gateway-web-application-firewall-overview/diagnostics.png)
 
 #### <a name="azure-monitor"></a>Azure Monitor
 
-Az Application Gateway-naplók integrálva vannak az [Azure Monitorral](../monitoring-and-diagnostics/monitoring-overview.md),  ami lehetővé teszi a diagnosztikai információk (például a WAF-riasztások és -naplók) nyomon követését.  Ez a képesség a portál Application Gateway-erőforrásának **Diagnosztika** lapján vagy közvetlenül az Azure Monitor szolgáltatáson keresztül érhető el. További információk az Application Gateway diagnosztikai naplóinak engedélyezéséről: [Application Gateway-diagnosztika](application-gateway-diagnostics.md)
+Az Application Gateway-naplók integrálva vannak az [Azure Monitorral](../monitoring-and-diagnostics/monitoring-overview.md),  Ez lehetővé teszi tootrack diagnosztikai adatokat – például WAF riasztások és a naplók.  Ez a funkció hello Alkalmazásátjáró erőforrás hello hello portál belül megadott **diagnosztika** lapon vagy keresztül hello Azure-figyelő szolgáltatás közvetlenül. az Alkalmazásátjáró diagnosztikai naplók engedélyezése olvashat toolearn [Alkalmazásátjáró diagnosztika](application-gateway-diagnostics.md)
 
 #### <a name="azure-security-center"></a>Azure Security Center
 
-[Az Azure Security Center](../security-center/security-center-intro.md) az Azure-erőforrások biztonsági felügyeletének átláthatóbbá és szabályozhatóbbá tételével megkönnyíti a fenyegetések megelőzését, észlelését és elhárítását. Az alkalmazásátjáró most már [integrálható az Azure Security Centerbe](application-gateway-integration-security-center.md). Az Azure Security Center átvizsgálja a környezetet védelem nélküli webalkalmazásokat keresve. Ezek után javasolhatja az alkalmazásátjáró WAF-nak a sebezhető erőforrások védelmét. Közvetlenül létrehozhat alkalmazásátjáró WAF-ot az Azure Security Centerből.  Ezek a WAF-példányok az Azure Security Centerbe integrálódnak, és a jelentésekhez használható riasztásokat, valamint állapotinformációkat fognak visszaküldeni az Azure Security Centerbe.
+[Az Azure Security Center](../security-center/security-center-intro.md) és nyújt segítséget megakadályozása, észleli, és a láthatóság növelésével toothreats válaszolni vezérlése hello Azure-erőforrások biztonsági. Az alkalmazásátjáró most már [integrálható az Azure Security Centerbe](application-gateway-integration-security-center.md). Az Azure Security Center ellenőrzése a környezetben nem védett toodetect webes alkalmazások. Azt is most ajánlott alkalmazás átjáró WAF tooprotect sebezhető erőforrásokról. Alkalmazás átjáró WAF közvetlenül az Azure Security Center hello hozhat létre.  Ezek a példányok WAF az Azure Security Center integrálva vannak, és elküldi a riasztásokat és állapotadatokat tooAzure Security Center biztonsági jelentéskészítéshez.
 
 ![1. ábra](./media/application-gateway-web-application-firewall-overview/figure1.png)
 
@@ -164,11 +164,11 @@ Az Application Gateway WAF részletes jelentéseket biztosít az összes észlel
 
 ## <a name="application-gateway-waf-sku-pricing"></a>Application Gateway WAF – A termékváltozat díjszabása
 
-A webalkalmazási tűzfal az új WAF termékváltozatban érhető el. Ez a termékváltozat kizárólag az Azure Resource Manager üzembe helyezési modelljében érhető el, a klasszikus üzemi modellben nem. A WAF termékváltozat csak közepes és nagy méretű alkalmazásátjáró-példányokhoz használható. Az alkalmazásátjárókra vonatkozó összes korlátozás a WAF termékváltozatra is érvényes. A díjszabás az átjárópéldányok óránkénti díján és az adatfeldolgozási díjon alapul. A WAF termékváltozathoz tartozó óránkénti átjáródíj eltér a normál termékváltozat díjaitól, és az [Application Gateway díjszabását](https://azure.microsoft.com/pricing/details/application-gateway/) ismertető webhelyen tekinthető meg. Az adatfeldolgozási díjak nem változnak. Nincsenek szabályonként vagy szabálycsoportonként kiszabott díjak. Ugyanazzal a webalkalmazási tűzfallal több webalkalmazást is elláthat védelemmel, többletköltség nélkül. 
+A webalkalmazási tűzfal az új WAF termékváltozatban érhető el. A Termékváltozat csak Azure Resource Manager üzembe helyezési modell és hello klasszikus telepítési modell mellett nem érhető el. A WAF termékváltozat csak közepes és nagy méretű alkalmazásátjáró-példányokhoz használható. Az Alkalmazásátjáró összes hello korlátok toohello WAF SKU is érvényesek. A díjszabás az átjárópéldányok óránkénti díján és az adatfeldolgozási díjon alapul. A WAF termékváltozathoz tartozó óránkénti átjáródíj eltér a normál termékváltozat díjaitól, és az [Application Gateway díjszabását](https://azure.microsoft.com/pricing/details/application-gateway/) ismertető webhelyen tekinthető meg. Az adatfeldolgozás díjakat továbbra is hello azonos. Nincsenek szabályonként vagy szabálycsoportonként kiszabott díjak. Több webalkalmazás megvédheti mögött hello azonos webalkalmazási tűzfal, és nincs további díjakat támogatásához több alkalmazás van. 
 
-A WAF számlázási időszaka 2017. május 5-től indul, addig a WAF termékváltozathoz tartozó átjárók esetében is a normál díjszabás lesz érvényben.
+A számlázás WAF a indul hatékonyan 5/5/2017, amíg WAF SKU átjárók továbbra is a normál díjszabás díjakon toobe majd hello.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Miután részletesebben megismerkedett a WAF képességeivel, tekintse meg a [webalkalmazási tűzfal Application Gatewayen történő konfigurálását](application-gateway-web-application-firewall-portal.md) ismertető cikket.
+Után további információk a WAF hello képességeit, látogasson el a [hogyan tooconfigure web Application Gateway alkalmazás tűzfala](application-gateway-web-application-firewall-portal.md).
 

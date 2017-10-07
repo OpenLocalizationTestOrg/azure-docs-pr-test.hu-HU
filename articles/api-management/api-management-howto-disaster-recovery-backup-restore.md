@@ -1,6 +1,6 @@
 ---
-title: "Megvalósítása vész-helyreállítási használatával biztonsági mentése és visszaállítása az Azure API Management |} Microsoft Docs"
-description: "Útmutató: biztonsági mentése és visszaállítása az Azure API Management katasztrófa utáni helyreállítás végrehajtásához."
+title: "aaaImplement vész-helyreállítási használatával biztonsági mentése és visszaállítása az Azure API Management |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse biztonsági mentése és visszaállítása az Azure API Management tooperform katasztrófa utáni helyreállítás."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 07c0265490cfae733133b6e0c938f90f9b392da4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 058bfb579e3a3f51fb1dac8ea37eb4fdbc83a4ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Vész-helyreállítási szolgáltatás biztonsági mentéssel implementálja, és az Azure API Management visszaállítása
-Közzétételét és kezelését az API-kat Azure API Management szolgáltatáson keresztül kiválasztásával készítésének sok hibatűrést és infrastruktúra képességeket, amelyeket egyébként külön kialakítása, megvalósítása és kezelése. Az Azure platformon csökkenti a nagy része egy azon részét, a költség, a lehetséges hibák.
+# <a name="how-tooimplement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Hogyan tooimplement vész-helyreállítási segítségével biztonsági mentés és a szolgáltatás visszaállítása az Azure API Management
+Az toopublish kiválasztása és kezelése az API-k ki sok hiba tűréshatár és infrastruktúra képességeket, amelyeket egyébként külön toodesign, megvalósítása és kezelése Azure API Management szolgáltatáson keresztül. hello Azure platformon csökkenti a lehetséges hibák hello költség töredéke alatt, nagy része.
 
-Rendelkezésre állási helyreállítás érintő a régió, ahol az API Management szolgáltatás tárolása, hogy a szolgáltatás egy másik régióban pótlására bármikor készen kell lennie. Attól függően, hogy a rendelkezésre állási célokat és a helyreállítási idő célkitűzése érdemes lefoglalni egy biztonsági mentési szolgáltatás egy vagy több régióban, majd próbálja meg a konfigurációs és a tartalom szinkronban vannak a aktív szolgáltatás karbantartása. A szolgáltatás biztonsági mentési és visszaállítási funkciót biztosít a szükséges építőelem végrehajtási vész-helyreállítási stratégiát.
+rendelkezésre állási problémákhoz hello terület, ahol az API Management szolgáltatást érintő toorecover üzemeltetett meg kell tooreconstitute készen áll a szolgáltatás egy másik régióban bármikor. Attól függően, hogy a rendelkezésre állási célokat és a helyreállítási idő célkitűzése előfordulhat, hogy szeretné, hogy egy biztonsági mentési szolgáltatás egy vagy több régióban tooreserve, és próbálja meg toomaintain, a konfiguráció és a tartalom szinkronban vannak hello aktív szolgáltatás. hello szolgáltatás biztonsági mentési és visszaállítási funkciót biztosít a hello szükséges építőelem végrehajtási vész-helyreállítási stratégiát.
 
-Ez az útmutató bemutatja, hogyan Azure Resource Manager-kérelmek hitelesítéséhez szükséges, és hogyan biztonsági mentése és visszaállítása az API Management szolgáltatáspéldány.
+Ez az útmutató bemutatja, hogyan tooauthenticate Azure Resource Manager kér, és hogyan toobackup és az API Management szolgáltatáspéldány visszaállítása.
 
 > [!NOTE]
-> A biztonsági mentése és visszaállítása egy API-kezelés szolgáltatáspéldány vész-helyreállítási folyamatot a API-kezelés szolgáltatás példányainak ahhoz hasonló forgatókönyvek esetén átmeneti replikálására is használható.
+> hello biztonsági mentése és visszaállítása egy API-kezelés szolgáltatáspéldány vész-helyreállítási folyamata a API-kezelés szolgáltatás példányainak ahhoz hasonló forgatókönyvek esetén átmeneti replikálására is használható.
 >
-> Vegye figyelembe, hogy minden egyes biztonsági másolat 30 nap múlva lejár. Ha a biztonsági másolat visszaállítása a 30 napos lejárati időszak lejárta után kísérli meg, a visszaállítás sikertelen lesz, és egy `Cannot restore: backup expired` üzenet.
+> Vegye figyelembe, hogy minden egyes biztonsági másolat 30 nap múlva lejár. Ha a biztonsági mentés toorestore hello 30 napos lejárati időszak lejárta után, hello visszaállítása sikertelen lesz, és egy `Cannot restore: backup expired` üzenet.
 >
 >
 
 ## <a name="authenticating-azure-resource-manager-requests"></a>Hitelesítő Azure Resource Manager-kérelmek
 > [!IMPORTANT]
-> A REST API-t a biztonsági mentési és visszaállítási Azure Resource Managert használja, és egy különböző hitelesítési eljárást, mint a REST API-k az API Management entitások kezeléséhez. Ebben a szakaszban a lépések azt ismertetik, hogyan Azure Resource Manager-kérelmek hitelesítéséhez szükséges. További információkért lásd: [kérelmek hitelesítéséhez az Azure Resource Manager](http://msdn.microsoft.com/library/azure/dn790557.aspx).
+> hello REST API-t a biztonsági mentési és visszaállítási Azure Resource Managert használja, és különböző hitelesítési mechanizmussal rendelkezik, mint a REST API-k kezelése az API Management entitások hello. Ebben a szakaszban hello lépések bemutatják, hogyan tooauthenticate Azure Resource Manager kéri. További információkért lásd: [kérelmek hitelesítéséhez az Azure Resource Manager](http://msdn.microsoft.com/library/azure/dn790557.aspx).
 >
 >
 
-Minden olyan feladat, amelyeknek az Azure Resource Manager használatával erőforrások az Azure Active Directoryban az alábbi lépéseket követve hitelesíteni kell.
+Arról, hogy a hello Azure Resource Manager eszközzel hello feladatokat az Azure Active Directoryban a lépéseket követve hello hitelesíteni kell.
 
-* Hozzáadhat egy alkalmazást az Azure Active Directory-bérlő.
-* Állítsa be az alkalmazás hozzáadott.
-* A token beolvasása az Azure Resource Manager kérések hitelesítése.
+* Adja hozzá az alkalmazás toohello Azure Active Directory-bérlő.
+* Hello alkalmazáshoz hozzáadott engedélyeket.
+* Hello jogkivonat lekérése kérelmek tooAzure erőforrás-kezelő hitelesítéséhez.
 
-Az első lépés, ha az Azure Active Directory-alkalmazást. Jelentkezzen be a [klasszikus Azure portál](http://manage.windowsazure.com/) példányt, és keresse meg az előfizetést, amely tartalmazza az API-kezelés szolgáltatás a **alkalmazások** fülre az alapértelmezett Azure Active Directoryban.
+első lépés hello toocreate egy Azure Active Directory-alkalmazás. Jelentkezzen be a hello [klasszikus Azure portál](http://manage.windowsazure.com/) hello az előfizetést, amely tartalmazza az API Management service-példány, és keresse meg a toohello **alkalmazások** fülre az alapértelmezett Azure Active Directoryban.
 
 > [!NOTE]
-> Ha az Azure Active Directory alapértelmezett címtár nem látható a fiókjához, lépjen kapcsolatba a fiókhoz a szükséges engedélyek megadására az Azure-előfizetés rendszergazdája.
+> Ha nem látható tooyour fiók hello Azure Active Directory alapértelmezett címtár, hello Azure-előfizetés toogrant hello kapcsolattartási hello rendszergazdája szükséges engedélyek tooyour fiók.
 
 ![Azure Active Directory-alkalmazás létrehozása][api-management-add-aad-application]
 
-Kattintson a **Hozzáadás**, **a szerveztem által fejlesztett alkalmazás hozzáadása**, és válassza a **natív ügyfélalkalmazás**. Adjon meg egy leíró nevet, és kattintson a Tovább nyílra. Írjon be egy helyőrző URL-címet, például `http://resources` a a **átirányítási URI-**, mert a mezőt kötelező kitölteni, de az érték nem használatos később. Jelölje be a jelölőnégyzetet az alkalmazás menteni.
+Kattintson a **Hozzáadás**, **a szerveztem által fejlesztett alkalmazás hozzáadása**, és válassza a **natív ügyfélalkalmazás**. Adjon meg egy leíró nevet, majd kattintson a Tovább nyílra hello. Írjon be egy helyőrző URL-címet, például `http://resources` a hello **átirányítási URI-**, mert a mezőt kötelező kitölteni, de hello értéket később nem használja. Kattintson a hello jelölőnégyzetet toosave hello alkalmazásra.
 
-Ha az alkalmazás menti, kattintson **konfigurálása**, görgessen le a **egyéb alkalmazások engedélyei** szakaszt, és kattintson a **alkalmazás hozzáadása**.
+Miután hello alkalmazás mentettük, kattintson a **konfigurálása**, toohello görgetve **engedélyek tooother alkalmazások** szakaszt, és kattintson a **alkalmazás hozzáadása**.
 
 ![Engedélyek hozzáadása][api-management-aad-permissions-add]
 
-Válassza ki **Windows** **Azure szolgáltatásfelügyeleti API** és a jelölőnégyzet bejelölésével vegye fel az alkalmazást.
+Válassza ki **Windows** **Azure szolgáltatásfelügyeleti API** kattintson hello jelölőnégyzet tooadd hello alkalmazásra.
 
 ![Engedélyek hozzáadása][api-management-aad-permissions]
 
-Kattintson a **delegált engedélyek** mellett az újonnan hozzáadott **Windows** **Azure szolgáltatásfelügyeleti API** alkalmazást, jelölje be a **Azure szolgáltatás Management (preview)**, és kattintson a **mentése**.
+Kattintson a **delegált engedélyek** mellett az újonnan hozzáadott hello **Windows** **Azure szolgáltatásfelügyeleti API** alkalmazás, hello jelölőnégyzetét **Access Azure Service Management (preview)**, és kattintson a **mentése**.
 
 ![Engedélyek hozzáadása][api-management-aad-delegated-permissions]
 
-Előtt hívja az API-kat, hogy a biztonsági mentés és állítsa vissza azt, fontos szolgáltatáshitelesítést egy token. Az alábbi példában a [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) nuget-csomagot a jogkivonatot lekérdezni.
+Előzetes tooinvoking hello API-k, amelyek létrehozzák hello biztonsági mentési, majd állítsa vissza azt, a szükséges tooget jogkivonatot. hello alábbi példában hello [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) nuget csomag tooretrieve hello jogkivonat.
 
 ```c#
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -83,7 +83,7 @@ namespace GetTokenResourceManagerRequests
             var result = authenticationContext.AcquireToken("https://management.azure.com/", {application id}, new Uri({redirect uri});
 
             if (result == null) {
-                throw new InvalidOperationException("Failed to obtain the JWT token");
+                throw new InvalidOperationException("Failed tooobtain hello JWT token");
             }
 
             Console.WriteLine(result.AccessToken);
@@ -94,105 +94,105 @@ namespace GetTokenResourceManagerRequests
 }
 ```
 
-Cserélje le `{tentand id}`, `{application id}`, és `{redirect uri}` az alábbi utasításokat.
+Cserélje le `{tentand id}`, `{application id}`, és `{redirect uri}` utasításai hello segítségével.
 
-Cserélje le `{tenant id}` együtt az imént létrehozott Azure Active Directory-alkalmazás a bérlő azonosítója. Az azonosító eléréséhez kattintson **végpontok megtekintése**.
+Cserélje le `{tenant id}` hello bérlői azonosítójú hello Azure Active Directory-alkalmazás imént létrehozott. Hello azonosító eléréséhez kattintson **végpontok megtekintése**.
 
 ![Végpontok][api-management-aad-default-directory]
 
 ![Végpontok][api-management-endpoint]
 
-Cserélje le `{application id}` és `{redirect uri}` használatával a **ügyfél-azonosító** és az URL-CÍMÉT a **átirányítási URI-azonosítók** szakaszban az Azure Active Directory-alkalmazás **konfigurálása** fülre.
+Cserélje le `{application id}` és `{redirect uri}` hello segítségével **ügyfél-azonosító** és URL-címet a hello hello **átirányítási URI-azonosítók** szakaszban az Azure Active Directory-alkalmazás **konfigurálása**  fülre.
 
 ![Erőforrások][api-management-aad-resources]
 
-Ha az értékek vannak megadva, a Kódpélda kell visszaadnia jogkivonatot az alábbi példához hasonló.
+Miután hello értékek vannak megadva, hello példakód a következő példa egy token hasonló toohello kell visszaadnia.
 
 ![Token][api-management-arm-token]
 
-Előtt hívja meg az alábbi szakaszok ismertetik a biztonsági mentési és visszaállítási műveletek, állítsa be a REST-hívást a hitelesítési kérelem fejlécéhez.
+Mielőtt hívása hello biztonsági mentési és visszaállítási hello a következő részekben leírt műveleteket, állítsa be a hello engedélyezési kérelem fejléce a REST-hívást.
 
 ```c#
 request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 ```
 
 ## <a name="step1"></a>Készítsen biztonsági másolatot egy API-kezelés szolgáltatás
-Biztonsági mentése egy API-kezelés szolgáltatás a probléma a következő HTTP-kérelem:
+tooback fel az API Management szolgáltatás probléma hello HTTP-kérelem a következő:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup?api-version={api-version}`
 
 Ahol:
 
-* `subscriptionId`-a kívánt API Management szolgáltatást tartalmazó előfizetés azonosítója a biztonsági mentés
-* `resourceGroupName`-karakterlánc 'Api - alapértelmezett-{szolgáltatás-régió}' formájában ahol `service-region` azonosítja az Azure-régió, ahol az API Management szolgáltatást, akkor próbált biztonsági mentési üzemelteti, pl.`North-Central-US`
-* `serviceName`-a szolgáltatás nevét, az API Management végez biztonsági másolatának meg egyszerre, ahol létrehozták
+* `subscriptionId`-toobackup próbált hello API Management szolgáltatást tartalmazó hello előfizetés azonosítója
+* `resourceGroupName`-hello képernyőn "API - alapértelmezett-{szolgáltatás-régió}" karakterlánc ahol `service-region` hello Azure-régió, ahol hello API-kezelés szolgáltatás, amelyhez toobackup tárolása, pl. azonosítja`North-Central-US`
+* `serviceName`-hello hello végez biztonsági másolatot, ahol létrehozták hello időpontban megadott API-kezelés szolgáltatás neve
 * `api-version`-cseréje`2014-02-14`
 
-A kérelem törzsében adja meg a cél az Azure storage-fiók neve, a hozzáférési kulcsot, a blob-tároló neve és a biztonsági másolat neve:
+A hello hello kérelem törzse adja meg a hello cél az Azure storage-fiók neve, a hozzáférési kulcsot, a blob-tároló neve és a biztonsági másolat neve:
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-Állítsa a `Content-Type` a kérelem fejlécében `application/json`.
+Állítsa be hello hello `Content-Type` kérelemfejléc túl`application/json`.
 
-Biztonsági mentés egy hosszú ideig futó művelet, amely több percet is igénybe vehet.  Ha a kérelem sikeres volt, és a biztonsági mentési folyamat kezdeményezett kapni fog egy `202 Accepted` a válasz állapotkódja egy `Location` fejléc.  Ellenőrizze a "GET" kéréseket az URL-címet a `Location` fejlécet a művelet állapotának megállapítása. Miközben folyamatban van a biztonsági mentés fog továbbra is megjelenik egy '202 elfogadott' állapotkód. Válaszkód `200 OK` jelzi a biztonsági mentési művelet sikeres befejezését.
+Biztonsági mentés egy hosszú ideig futó művelet, amely több percig toocomplete is igénybe vehet.  Ha hello kérés sikeres volt, és biztonsági mentési folyamat hello kezdeményezett kapni fog egy `202 Accepted` a válasz állapotkódja egy `Location` fejléc.  Ellenőrizze a "GET" kérelmek hello toohello URL-címet `Location` fejléc toofind kimenő hello művelet hello állapotát. Hello biztonsági mentés közben továbbra tooreceive 202 elfogadott állapotkódot. Válaszkód `200 OK` fogja jelezni hello biztonsági mentési művelet sikeres befejezését.
 
-Amikor egy biztonsági mentési kérést vegye figyelembe a következő korlátozások vonatkoznak.
+Vegye figyelembe a következő korlátozások, amikor egy biztonsági mentési kérést hello.
 
-* **Tároló** a kérés törzsében megadott **léteznie kell**.
+* **Tároló** hello kérés törzsében megadott **léteznie kell**.
 * Biztonsági mentés folyamatban, amíg **nem szabadna megpróbálniuk a szolgáltatás felügyeleti műveleteket sem** SKU frissítése vagy alacsonyabb szintre való visszalépést, a tartomány kiszolgálónév-változás, például stb.
-* A visszaállítás egy **biztonsági mentés csak 30 napig garantáltan** időpontjában a létrehozása óta.
-* **Használati adatok** elemzési jelentések létrehozásához használt **nincs megadva** a biztonsági mentésben. Használjon [Azure API Management REST API] [ Azure API Management REST API] rendszeresen beolvasása az analytics-jelentések meg van őrizve.
-* A gyakoriság, amellyel elvégezhető a szolgáltatás biztonsági mentések hatással lesz a helyreállításipont-célkitűzést. Minimalizálása érdekében azt javasoljuk a rendszeres biztonsági mentések végrehajtására, valamint a igény szerinti biztonsági mentést végez az API Management szolgáltatás fontos módosítások elvégzése után.
-* **Módosítások** a szolgáltatás konfigurációs (pl. API-k, házirendek, fejlesztői portál megjelenését) biztonsági mentés közben végzett művelet van folyamatban **előfordulhat, hogy nem kell a biztonsági mentésben szereplő, és ezért elvész**.
+* A visszaállítás egy **biztonsági mentés csak 30 napig garantáltan** hello pillanattól a létrehozása óta.
+* **Használati adatok** elemzési jelentések létrehozásához használt **nincs megadva** hello biztonsági mentése. Használjon [Azure API Management REST API] [ Azure API Management REST API] tooperiodically beolvasni elemzés jelentések meg van őrizve.
+* hello gyakoriság, amellyel elvégezhető a szolgáltatás biztonsági mentések hatással lesz a helyreállításipont-célkitűzést. azt javasoljuk van, rendszeres biztonsági mentések végrehajtására, valamint a fontos elvégzése után igény szerinti biztonsági mentést végez toominimize tooyour API-kezelés szolgáltatás változik.
+* **Módosítások** készült toohello szolgáltatáskonfiguráció (pl. API-k, házirendek, fejlesztői portál megjelenését) biztonsági mentési művelet során van folyamatban **hello biztonsági mentés nem tartalmazhatja, és ezért elvész**.
 
 ## <a name="step2"></a>Egy API-kezelés szolgáltatás visszaállítása
-Az API Management visszaállítása egy korábban létrehozott biztonsági másolat szolgáltatás ellenőrizze a következő HTTP-kérelem:
+az API Management szolgáltatásnak, egy korábban létrehozott biztonsági másolatból toorestore győződjön hello HTTP-kérelem a következő:
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/restore?api-version={api-version}`
 
 Ahol:
 
-* `subscriptionId`-a biztonsági másolatból történő visszaállítását végzi az API Management szolgáltatást tartalmazó előfizetés azonosítója
-* `resourceGroupName`-karakterlánc 'Api - alapértelmezett-{szolgáltatás-régió}' formájában ahol `service-region` pl. azonosítja az Azure-régió, ahol az API Management szolgáltatás visszaállítását végzi, a biztonsági másolat tárolása,`North-Central-US`
-* `serviceName`-a API-kezelés szolgáltatás a visszaállítandó meg, ahol létrehozták egyszerre neve
+* `subscriptionId`-hello API-kezelés szolgáltatás visszaállítását végzi, a biztonsági másolatot tartalmazó hello előfizetés azonosítója
+* `resourceGroupName`-hello képernyőn "API - alapértelmezett-{szolgáltatás-régió}" karakterlánc ahol `service-region` hello Azure-régió, ahol hello API-kezelés szolgáltatás visszaállítását végzi, a biztonsági másolat tárolása, pl. azonosítja`North-Central-US`
+* `serviceName`-hello API-kezelés szolgáltatás a visszaállítandó megadott hello időpontban, ahol létrehozták hello neve
 * `api-version`-cseréje`2014-02-14`
 
-A kérelem törzsében adja meg a biztonságimásolat-fájl helyét, azaz az Azure storage-fiók neve, a hozzáférési kulcsot, a blob-tároló neve és biztonsági másolat neve:
+Hello hello kérelem törzse adja meg a hello biztonságimásolat-fájl helyét, azaz az Azure storage-fiók neve, a hozzáférési kulcsot, a blob-tároló neve és biztonsági másolat neve:
 
 ```
 '{  
-    storageAccount : {storage account name for the backup},  
-    accessKey : {access key for the account},  
+    storageAccount : {storage account name for hello backup},  
+    accessKey : {access key for hello account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-Állítsa a `Content-Type` a kérelem fejlécében `application/json`.
+Állítsa be hello hello `Content-Type` kérelemfejléc túl`application/json`.
 
-Visszaállítás egy hosszú ideig futó művelet, amely előfordulhat, hogy 30 vagy több percig tarthat befejezéséhez.  Ha a kérelem sikeres volt, és a visszaállítási folyamat kezdeményezett kapni fog egy `202 Accepted` a válasz állapotkódja egy `Location` fejléc.  Ellenőrizze a "GET" kéréseket az URL-címet a `Location` fejlécet a művelet állapotának megállapítása. A visszaállítás közben, továbbra is megkapják '202 elfogadott' állapotkód. Válaszkód `200 OK` tájékoztatja a visszaállítási művelet sikeres befejezését.
+Visszaállítás egy hosszú ideig futó művelet, amely too30 vagy több percig toocomplete is tarthat.  Ha hello kérés sikeres volt, és hello visszaállítási folyamat kezdeményezett kapni fog egy `202 Accepted` a válasz állapotkódja egy `Location` fejléc.  Ellenőrizze a "GET" kérelmek hello toohello URL-címet `Location` fejléc toofind kimenő hello művelet hello állapotát. Hello visszaállítása közben továbbra tooreceive '202 elfogadott' állapotkód. Válaszkód `200 OK` fogja jelezni hello visszaállítási művelet sikeres befejezését.
 
 > [!IMPORTANT]
-> **A Termékváltozat** a szolgáltatás a visszaállítandó **egyeznie kell** a visszaállítandó biztonsági másolat szolgáltatás a Termékváltozat.
+> **hello SKU** hello szolgáltatást a visszaállítandó **meg kell egyeznie** hello hello Termékváltozata biztonsági másolat szolgáltatás visszaállítása folyamatban.
 >
-> **Módosítások** végzett a szolgáltatási konfiguráció (pl. API-k, házirendek, fejlesztői portál megjelenését) visszaállítása közben a művelet van folyamatban **felülíródnak**.
+> **Módosítások** készült toohello szolgáltatáskonfiguráció (pl. API-k, házirendek, fejlesztői portál megjelenését) visszaállítási művelet során folyamatban van a **felülíródnak**.
 >
 >
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse meg a biztonsági mentési/visszaállítási folyamat két különböző forgatókönyvek a következő Microsoft-blogjaihoz.
+Tekintse meg a következő Microsoft blogok hello biztonsági mentési/visszaállítási folyamat két különböző forgatókönyvek a hello.
 
 * [Az Azure API Management fiókok replikálása](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/)
-  * Köszönjük, hogy a Gisela saját hozzájárulás a cikkhez.
+  * Köszönjük, hogy tooGisela saját hozzájárulás toothis cikk.
 * [Az Azure API Management: Biztonsági mentése, és konfiguráció visszaállítása](http://blogs.msdn.com/b/stuartleeks/archive/2015/04/29/azure-api-management-backing-up-and-restoring-configuration.aspx)
-  * Stuart által részletes módszer nem egyezik meg a hivatalos útmutatást de nagyon fontos.
+  * Stuart által részletes hello módszer nem egyezik meg a hello hivatalos útmutatást de nagyon fontos.
 
 [Backup an API Management service]: #step1
 [Restore an API Management service]: #step2

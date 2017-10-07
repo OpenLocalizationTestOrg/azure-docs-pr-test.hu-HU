@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Application Insights Telemetriai adatokat a modell - Telemetriai kérelem |} Microsoft Docs"
+title: "Application Insights Telemetria adatmodell - aaaAzure Telemetriai kérelem |} Microsoft Docs"
 description: "Application Insights – kéréstelemetria tartozó adatmodell"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 8e782e45b706cadec66e7404dd9abc2e01dea917
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6042975a35f5e672e5adb5390feecc63d0b284b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="request-telemetry-application-insights-data-model"></a>Telemetriai kérelem: az Application Insights adatmodell
 
-A kérelem telemetriai elemet (a [Application Insights](app-insights-overview.md)) az alkalmazás olyan külső kérés végrehajtási logikai sorozatát jelenti. Minden kérelem végrehajtása azonosítja egyedi `ID` és `url` tartalmazó összes végrehajtási paramétert. Logikai szerint csoportosíthatja kérelmek `name` , és adja meg a `source` a kérelem. Kód végrehajtása eredményezhet `success` vagy `fail` , és egy bizonyos `duration`. A sikeres és Sikertelen végrehajtások csoportosíthatók további korlátozásokat `resultCode`. Kezdő időpont a boríték szinten definiált – kéréstelemetria.
+A kérelem telemetriai elemet (a [Application Insights](app-insights-overview.md)) jelöli hello külső kérelem tooyour alkalmazás által indított végrehajtási logikai sorozata. Minden kérelem végrehajtása azonosítja egyedi `ID` és `url` tartalmazó összes hello végrehajtási paramétert. Logikai szerint csoportosíthatja kérelmek `name` , és adja meg a hello `source` a kérelem. Kód végrehajtása eredményezhet `success` vagy `fail` , és egy bizonyos `duration`. A sikeres és Sikertelen végrehajtások csoportosíthatók további korlátozásokat `resultCode`. Kezdő időpont hello – kéréstelemetria hello boríték szinten definiált.
 
-Telemetria támogatja a szabványos bővíthetőségi modell egyéni kérelem `properties` és `measurements`.
+Telemetria támogatja hello szabványos bővíthetőségi modell használatával egyéni kérelem `properties` és `measurements`.
 
 ## <a name="name"></a>Név
 
-A kérés neve kódútvonala. a kérelem feldolgozásának jelöli. Alacsony számossága értéket kérelmek jobban csoportosítása. A HTTP-kérelmek azt jelöli, a HTTP-metódus és URL-cím elérési út sablont, például `GET /values/{id}` nélkül a tényleges `id` érték.
+Hello kérelem neve útvonalán tooprocess hello kérés jelöli. Alacsony cardinality értéke tooallow kérelmek jobban csoportosítása. A HTTP-kérelmek azt jelöli hello HTTP-metódus és URL-cím elérési út sablont, például `GET /values/{id}` nélkül tényleges hello `id` érték.
 
-Application Insights webes SDK kérelem neve "adott állapotban" elküldi a nagybetűk ben elérhető. A felhasználói felület a csoportosítás akkor kis-és nagybetűket, `GET /Home/Index` a külön-külön számolt `GET /home/INDEX` annak ellenére, hogy gyakran ennek eredményeképpen az ugyanazon vezérlő és a művelet végrehajtása. A, amelyek oka, hogy vannak-e általában URL-címek [kis-és nagybetűket](http://www.w3.org/TR/WD-html40-970708/htmlweb.html). Előfordulhat, hogy szeretné látni, ha az összes `404` történt az URL-adta-e írni. További a kérelem tenantnév-gyűjtemény által az ASP.Net webes SDK-t el tudja olvasni a [blogbejegyzés](http://apmtips.com/blog/2015/02/23/request-name-and-url/).
+Application Insights webes SDK kérelem neve "adott állapotban" tanúsítványinformációit tooletter esetben küld. A felhasználói felület a csoportosítás akkor kis-és nagybetűket, `GET /Home/Index` külön-külön számít a `GET /home/INDEX` annak ellenére, hogy gyakran eredményeznek hello azonos vezérlő és a művelet végrehajtását. Hello, amelyek oka, hogy vannak-e általában URL-címek [kis-és nagybetűket](http://www.w3.org/TR/WD-html40-970708/htmlweb.html). Érdemes lehet toosee, ha az összes `404` hello nagybetűs beírt URL-címek került sor. További a kérelem tenantnév-gyűjtemény ASP.Net webes SDK-ban a hello olvasható [blogbejegyzés](http://apmtips.com/blog/2015/02/23/request-name-and-url/).
 
 Maximális hossz: 1024 karakter hosszú lehet
 
@@ -46,13 +46,13 @@ Maximális hossz: 2048 karakter
 
 ## <a name="source"></a>Forrás
 
-A kérelem forrását. Többek között a rendszerállapot-kulcsot a hívó vagy a hívónak IP-címét. További információkért lásd: [korrelációs](application-insights-correlation.md) lap.
+Hello kérelem forrását. Többek között az hello instrumentation kulcs hello hívó vagy hello hívó hello IP-címét. További információkért lásd: [korrelációs](application-insights-correlation.md) lap.
 
 Maximális hossz: 1024 karakter hosszú lehet
 
 ## <a name="duration"></a>Időtartam
 
-Időtartam formátumú kérelem: `DD.HH:MM:SS.MMMMMM`. Pozitív, és kisebbnek kell lennie mint `1000` nap. A mező kitöltése kötelező, mivel – kéréstelemetria jelenti. a művelet kezdete és vége.
+Időtartam formátumú kérelem: `DD.HH:MM:SS.MMMMMM`. Pozitív, és kisebbnek kell lennie mint `1000` nap. A mező kitöltése kötelező, mint – kéréstelemetria hello elején és végén hello hello műveletet jelöl.
 
 ## <a name="response-code"></a>Válaszkód
 
@@ -62,13 +62,13 @@ Maximális hossz: 1024 karakter hosszú lehet
 
 ## <a name="success"></a>Sikeres
 
-Sikeres vagy sikertelen hívás megjelölése. A mező kitöltése kötelező. Ha nincs beállítva az explicit módon `false` -kérés sikeres legyen tekinthető. Ez az érték beállítása `false` Ha művelet kivétel miatt megszakadt vagy a eredmény hibakódot adott vissza.
+Sikeres vagy sikertelen hívás megjelölése. A mező kitöltése kötelező. Ha nem állítja be túl`false` -kérelem toobe sikeresnek minősül. Az érték túl`false` Ha művelet kivétel miatt megszakadt vagy a eredmény hibakódot adott vissza.
 
-A webes alkalmazásokhoz az Application Insights határozza meg kérelem sikertelen volt, amikor ez a válaszkód kisebb, mint a `400` vagy annál `401`. Azonban előfordulhatnak olyan esetek, amikor az alapértelmezett leképezés nem felel meg az alkalmazás a szemantikai. A válaszkód `404` jelezheti, hogy "nincs rekordok", amely rendszeres folyamat része lehet. Azt is jelezheti egy megszakadt hivatkozás. A nem működő hivatkozások még összetettebb logikát is létrehozható. Csak akkor, ha ezeket a hivatkozásokat URL-cím hivatkozó elemzésével a ugyanazon a helyen lévő hivatkozások is megjelölése hibák. Vagy azok megjelölése hibák, amikor a vállalat mobilalkalmazás érik el. Hasonlóképpen `301` és `302` az ügyfélről, amely nem támogatja az átirányítási elérésekor hibát jelez.
+Hello webes alkalmazásokhoz, a Application Insights kérelem megadása, ha hello válaszkód kevesebb hello sikertelenként `400` vagy túl`401`. Azonban előfordulhatnak olyan esetek, amikor az alapértelmezett leképezés nem felel meg a szemantikai hello alkalmazás hello. A válaszkód `404` jelezheti, hogy "nincs rekordok", amely rendszeres folyamat része lehet. Azt is jelezheti egy megszakadt hivatkozás. Hello hivatkozások hibás még akkor is alkalmazhat az összetettebb logikát. Csak akkor, ha ezeket a hivatkozásokat a ugyanaz a hely URL-cím hivatkozó elemzésével hello lévő hivatkozások is megjelölése hibák. Vagy hibák hello vállalati mobilalkalmazás történő megjelölése őket. Hasonlóképpen `301` és `302` hello ügyfélről, amely nem támogatja az átirányítási elérésekor hibát jelez.
 
-Részlegesen elfogadta a tartalom `206` utalhat egy általános kérelem sikertelen. Az Application Insights végpont például egyetlen kérelemként kapja meg a kötegelt telemetriai elemek. Azt adja vissza `206` Ha a köteg bizonyos elemek nem dolgozott sikeresen megtörtént. Növekvő mértékű `206` , amelyet akkor kell megvizsgálni hibáját jelzi. Hasonló logika vonatkozik `207` több ahol sikeres lehet, hogy külön válaszkódot legrosszabb állapota.
+Részlegesen elfogadta a tartalom `206` utalhat egy általános kérelem sikertelen. Az Application Insights végpont például egyetlen kérelemként kapja meg a kötegelt telemetriai elemek. Azt adja vissza `206` amikor bizonyos elemek hello kötegben fel nem dolgozott sikeresen megtörtént. Növekvő mértékű `206` , amelyet a vizsgált toobe hibáját jelzi. Hasonló logika vonatkozik túl`207` ahol hello sikeres lehet, hogy több állapot hello állapotösszegzés legrosszabb állapotán külön válaszkódot.
 
-További a kérelem eredménye elolvashatja és az állapot kód a [blogbejegyzés](http://apmtips.com/blog/2016/12/03/request-success-and-response-code/).
+További a kérelem eredménye olvasható kód és a hello állapotkód [blogbejegyzés](http://apmtips.com/blog/2016/12/03/request-success-and-response-code/).
 
 ## <a name="custom-properties"></a>Egyéni tulajdonságok
 
@@ -82,5 +82,5 @@ További a kérelem eredménye elolvashatja és az állapot kód a [blogbejegyz�
 
 - [Egyéni – kéréstelemetria írása](app-insights-api-custom-events-metrics.md#trackrequest)
 - Lásd: [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
-- Megtudhatja, hogyan [konfigurálása az ASP.NET Core](app-insights-asp-net.md) alkalmazás az Application insights szolgáltatással.
+- Ismerje meg, hogyan túl[konfigurálása az ASP.NET Core](app-insights-asp-net.md) alkalmazás az Application insights szolgáltatással.
 - Tekintse meg [platformok](app-insights-platforms.md) Application Insights által támogatott.

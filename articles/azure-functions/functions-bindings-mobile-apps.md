@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Apps funkciók kötések |} Microsoft Docs"
-description: "Azure Mobile Apps kötések az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók Mobile Apps kötések |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Azure Mobile Apps kötések Azure Functions."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/31/2016
 ms.author: glenga
-ms.openlocfilehash: c5e1c02984f9773b263c0bee7685c7d5ff62e658
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3679a5d5c66705b32e422ec17e3a1e6d6ac063c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-mobile-apps-bindings"></a>Az Azure Mobile Apps funkciók kötések
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk ismerteti, hogyan lehet konfigurálni és kód [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) Azure Functions kötések. Azure Functions támogatja bemeneti és kimeneti Mobile Apps kötéseit.
+Ez a cikk azt ismerteti, hogyan tooconfigure és kód [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) Azure Functions kötések. Azure Functions támogatja bemeneti és kimeneti Mobile Apps kötéseit.
 
-A Mobile Apps bemeneti és kimeneti kötések lehetővé teszik, hogy [az olvasási és írási adattáblák](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) a mobilalkalmazásban.
+hello Mobile Apps bemeneti és kimeneti kötések lehetővé teszik, hogy [olvasási és írási toodata táblák](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) a mobilalkalmazásban.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="mobile-apps-input-binding"></a>Mobile Apps bemeneti kötése
-A Mobile Apps bemeneti kötése tölt be egy olyan rekordot egy mobil table végpont a, és továbbadja azt a függvényt. A C# és F # függvényekben a rekord módosításai rendszer automatikusan küldi vissza a tábla amikor sikeresen kilép, a függvény.
+Mobile Apps bemeneti kötése hello tölt be egy olyan rekordot egy mobil table végpont a, és továbbadja azt a függvényt. A C# és F # függvényekben bármilyen változás toohello rekord automatikusan küldése hátsó toohello tábla amikor hello függvény sikeresen kilép.
 
-A Mobile Apps bemenete egy olyan függvényt használja a következő JSON-objektum a `bindings` function.json tömbje:
+Mobile Apps hello bemeneti tooa függvény használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:
 
 ```json
 {
     "name": "<Name of input parameter in function signature>",
     "type": "mobileTable",
     "tableName": "<Name of your mobile app's data table>",
-    "id" : "<Id of the record to retrieve - see below>",
+    "id" : "<Id of hello record tooretrieve - see below>",
     "connection": "<Name of app setting that has your mobile app's URL - see below>",
     "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
     "direction": "in"
 }
 ```
 
-Vegye figyelembe a következőket:
+Vegye figyelembe a következőket hello:
 
-* `id`lehet, hogy statikus, vagy az eseményindító, amely meghívja a függvényt alapulhat. Például, ha egy [várólista eseményindító]() a függvénynél, majd `"id": "{queueTrigger}"` az üzenetsorban lévő üzenetet karakterlánc értékét használja a rekord azonosító beolvasása.
-* `connection`a függvény alkalmazásban, viszont a mobilalkalmazás URL-CÍMÉT tartalmazó Alkalmazásbeállítás nevét kell tartalmaznia. A funkció URL-címet a mobilalkalmazás elleni szükséges REST-műveletek összeállításához. Akkor [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() a mobilalkalmazás URL-címet tartalmaz, amely (mely tűnik `http://<appname>.azurewebsites.net`), majd adja meg az Alkalmazásbeállítás a nevét a `connection` tulajdonságot a bemeneti kötése. 
-* Meg kell adnia `apiKey` Ha Ön [valósít meg API-kulcs a Node.js mobile Apps-háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), vagy [valósít meg API-kulcs a .NET-mobil háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). Ehhez meg [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() , amely tartalmazza az API-kulcsot, majd adja hozzá a `apiKey` tulajdonságot a bemeneti kötése az Alkalmazásbeállítás nevét. 
+* `id`lehet, hogy statikus, vagy is alapulhat, amely meghívja hello függvényt hello eseményindító. Például, ha egy [várólista eseményindító]() a függvénynél, majd `"id": "{queueTrigger}"` használ hello hello üzenetsor karakteres érték szerint rekord azonosítója tooretrieve hello.
+* `connection`a függvény alkalmazásban, viszont a mobilalkalmazás hello URL-CÍMÉT tartalmazó alkalmazás beállítása hello nevét kell tartalmaznia. a funkció hello a URL-cím tooconstruct hello szükséges REST műveleteinek a mobilalkalmazás ellen. Akkor [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() a mobilalkalmazás URL-címet tartalmaz, amely (mely tűnik `http://<appname>.azurewebsites.net`), majd meg kell adnia hello nevet hello Alkalmazásbeállítás hello `connection` tulajdonságot a bemeneti kötése. 
+* Toospecify kell `apiKey` Ha akkor [valósít meg API-kulcs a Node.js mobile Apps-háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), vagy [valósít meg API-kulcs a .NET-mobil háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, hogy [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() hello API-kulcsot tartalmazó, majd adja hozzá a hello `apiKey` tulajdonságot a bemeneti hello Alkalmazásbeállítás hello névhez történő kötés. 
   
   > [!IMPORTANT]
-  > Az API-kulcs nem kell osztani a mobilalkalmazás-ügyfelekkel. Ez csak kell elosztani biztonságosan Szolgáltatásoldali ügyfelek, például az Azure Functions. 
+  > Az API-kulcs nem kell osztani a mobilalkalmazás-ügyfelekkel. Elosztott biztonságosan tooservice mellett az ügyfelek, például az Azure Functions csak kell lennie. 
   > 
   > [!NOTE]
   > Az Azure Functions tárolja a kapcsolati adatokat és API-kulcsokat beállításait, hogy nem ellenőrzi azokat a verziókövetési tárházzal. Ez megvédi a bizalmas adatokat.
@@ -67,16 +67,16 @@ Vegye figyelembe a következőket:
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Bemeneti kihasználtsága
-Ez a szakasz bemutatja, hogyan használható a Mobile Apps bemeneti kötése a funkciókódot. 
+Ez a szakasz bemutatja, hogyan toouse a Mobile Apps bemeneti kötelező a funkciókódot. 
 
-A megadott tábla és a rekord Azonosítójú rekord található, amikor átadva azokat a megnevezett [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) paraméter (vagy a node.js, akkor átad a a `context.bindings.<name>` objektum). Ha a rekord nem található, a paraméter nem `null`. 
+Amikor hello hello rekord megadott tábla és a rekordazonosító található, akkor átad a nevű hello [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) paraméter (vagy a node.js, akkor átad a hello `context.bindings.<name>` objektum). Hello rekord nem található, amikor hello paraméter `null`. 
 
-A C# és F # funkciók, a változtatások a bemeneti rekord (bemeneti paraméter) automatikusan küld vissza a Mobile Apps tábla amikor sikeresen kilép, a függvény. A Node.js funkciók használata `context.bindings.<name>` a bemeneti rekord eléréséhez. Node.js rekord nem módosítható.
+A C# és F # függvények toohello bemeneti rekord (bemeneti paraméter) végrehajtott módosítások automatikusan elküld hátsó toohello Mobile Apps tábla amikor hello függvény sikeresen kilép. A Node.js funkciók használata `context.bindings.<name>` tooaccess hello bemeneti rekord. Node.js rekord nem módosítható.
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>A minta bemeneti
-Tegyük fel, amely lekéri a Mobile Apps tábla egyik rekordja, azonosító: a várólista eseményindító üzenet a következő function.json:
+Tegyük fel, hogy rendelkezik a következő function.json hello, amely lekéri a Mobile Apps hello várólista eseményindító üzenet hello azonosítójú tábla egyik rekordja:
 
 ```json
 {
@@ -102,7 +102,7 @@ Tegyük fel, amely lekéri a Mobile Apps tábla egyik rekordja, azonosító: a v
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, amely a bemeneti rekord a kötés használja. A C# és F # minták is módosíthatja a rekord `text` tulajdonság.
+Lásd: a bemeneti rekord hello hello kötés használó hello nyelvspecifikus mintaalkalmazás. hello C# és F # minták is módosíthatók hello rekord `text` tulajdonság.
 
 * [C#](#inputcsharp)
 * [Node.js](#inputnodejs)
@@ -150,9 +150,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="mobile-apps-output-binding"></a>Mobile Apps kimeneti kötése
-Használja a Mobile Apps kimenete egy új rekordot írni a Mobile Apps tábla végpont kötése.  
+Hello Mobile Apps kimeneti kötése toowrite új rekord tooa Mobile Apps tábla végpont használja.  
 
-A Mobile Apps a függvényt használja a következő JSON-objektumot a kimeneti a `bindings` function.json tömbje:
+egy függvény hello hello a JSON-objektum a következő célokra kimeneti Mobile Apps hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -165,13 +165,13 @@ A Mobile Apps a függvényt használja a következő JSON-objektumot a kimeneti 
 }
 ```
 
-Vegye figyelembe a következőket:
+Vegye figyelembe a következőket hello:
 
-* `connection`a függvény alkalmazásban, viszont a mobilalkalmazás URL-CÍMÉT tartalmazó Alkalmazásbeállítás nevét kell tartalmaznia. A funkció URL-címet a mobilalkalmazás elleni szükséges REST-műveletek összeállításához. Akkor [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() a mobilalkalmazás URL-címet tartalmaz, amely (mely tűnik `http://<appname>.azurewebsites.net`), majd adja meg az Alkalmazásbeállítás a nevét a `connection` tulajdonságot a bemeneti kötése. 
-* Meg kell adnia `apiKey` Ha Ön [valósít meg API-kulcs a Node.js mobile Apps-háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), vagy [valósít meg API-kulcs a .NET-mobil háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). Ehhez meg [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() , amely tartalmazza az API-kulcsot, majd adja hozzá a `apiKey` tulajdonságot a bemeneti kötése az Alkalmazásbeállítás nevét. 
+* `connection`a függvény alkalmazásban, viszont a mobilalkalmazás hello URL-CÍMÉT tartalmazó alkalmazás beállítása hello nevét kell tartalmaznia. a funkció hello a URL-cím tooconstruct hello szükséges REST műveleteinek a mobilalkalmazás ellen. Akkor [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() a mobilalkalmazás URL-címet tartalmaz, amely (mely tűnik `http://<appname>.azurewebsites.net`), majd meg kell adnia hello nevet hello Alkalmazásbeállítás hello `connection` tulajdonságot a bemeneti kötése. 
+* Toospecify kell `apiKey` Ha akkor [valósít meg API-kulcs a Node.js mobile Apps-háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), vagy [valósít meg API-kulcs a .NET-mobil háttéralkalmazás](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, hogy [alkalmazásbeállítás létrehozása az függvény alkalmazásban]() hello API-kulcsot tartalmazó, majd adja hozzá a hello `apiKey` tulajdonságot a bemeneti hello Alkalmazásbeállítás hello névhez történő kötés. 
   
   > [!IMPORTANT]
-  > Az API-kulcs nem kell osztani a mobilalkalmazás-ügyfelekkel. Ez csak kell elosztani biztonságosan Szolgáltatásoldali ügyfelek, például az Azure Functions. 
+  > Az API-kulcs nem kell osztani a mobilalkalmazás-ügyfelekkel. Elosztott biztonságosan tooservice mellett az ügyfelek, például az Azure Functions csak kell lennie. 
   > 
   > [!NOTE]
   > Az Azure Functions tárolja a kapcsolati adatokat és API-kulcsokat beállításait, hogy nem ellenőrzi azokat a verziókövetési tárházzal. Ez megvédi a bizalmas adatokat.
@@ -181,14 +181,14 @@ Vegye figyelembe a következőket:
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Kimeneti használata
-Ez a szakasz bemutatja, hogyan használhatja a Mobile Apps kimeneti kötelező a funkciókódot. 
+Ez a szakasz bemutatja, hogyan toouse a Mobile Apps kimeneti kötelező a funkciókódot. 
 
-A C# funkciók, használja a megnevezett kimeneti paramétert `out object` a kimeneti rekord eléréséhez. A Node.js funkciók használata `context.bindings.<name>` a kimeneti rekord eléréséhez.
+A C# funkciók, használja a megnevezett kimeneti paramétert `out object` tooaccess hello kimeneti rekord. A Node.js funkciók használata `context.bindings.<name>` tooaccess hello kimeneti rekord.
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Minta kimenet
-Tegyük fel, a következő function.json, amely meghatározza a várólista eseményindító és a Mobile Apps kimeneti:
+Tegyük fel, a következő function.json, amely meghatározza a várólista eseményindító és a Mobile Apps kimeneti hello:
 
 ```json
 {
@@ -213,7 +213,7 @@ Tegyük fel, a következő function.json, amely meghatározza a várólista esem
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, amely létrehoz egy rekordot a Mobile Apps tábla végpont az üzenetsorban lévő üzenetet tartalmát.
+Lásd: hello nyelvspecifikus mintát, amely létrehoz egy rekordot hello Mobile Apps tábla végpont hello üzenetsor hello tartalmát.
 
 * [C#](#outcsharp)
 * [Node.js](#outnodejs)

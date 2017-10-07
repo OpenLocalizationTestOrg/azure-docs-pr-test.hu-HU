@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory Alkalmazáskezelés hibaelhárítása |} Microsoft Docs"
-description: "Az Azure Active Directory alkalmazásfelügyelettel kapcsolatos leggyakoribb hibáinak megoldása"
+title: Azure Active Directory Application Management aaaTroubleshoot |} Microsoft Docs
+description: "Hárítsa el a hello leggyakoribb problémák kapcsolódó tooAzure Active Directory-alkalmazások kezelése"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,19 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 40579bbc950fb4ed9ddece4880b03d8ef32149ae
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dc31fd331a15160900d481eb85d1f9545ed728b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-active-directory-application-management"></a>Az Azure Active Directory Alkalmazáskezelés hibaelhárítása
-Az alábbi hivatkozásokkal egy tartalomtérkép érhető el, amely segít a **Vállalati alkalmazások** Azure Active Directoryban való felügyeletekor fellépő leggyakoribb problémák megoldásában.
+hello következő hivatkozások be fogja hozni, amely segít hello kapcsolatos leggyakoribb hibák némelyike kezelése tapasztalt tooresolve tooa-tartalmak térképét **vállalati alkalmazások** az Azure Active Directoryban.
 
 * [Alkalmazás konfigurációjával kapcsolatos problémák](active-directory-application-config-content-map.md)
 * [Bejelentkezési problémák](active-directory-application-sign-in-content-map.md)
 * [Kiépítés kapcsolatos problémák](active-directory-application-provisioning-content-map.md)
 * [Hozzáférés-kezelés problémák](active-directory-application-access-content-map.md)
-* [A hozzáférési Panel kapcsolatos problémák](active-directory-application-access-panel-content-map.md)
-* [Az alkalmazásproxyval kapcsolatos problémák](active-directory-application-proxy-content-map.md)
+* [Hozzáférési Panel hello kapcsolatos problémák](active-directory-application-access-panel-content-map.md)
+* [Hello alkalmazásproxyval kapcsolatos problémák](active-directory-application-proxy-content-map.md)
 * [Feltételes hozzáféréssel kapcsolatos problémák](active-directory-application-conditional-access-content-map.md)

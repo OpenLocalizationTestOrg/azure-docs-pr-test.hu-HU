@@ -1,6 +1,6 @@
 ---
-title: "Az első Java-webalkalmazás létrehozása az Azure-ban"
-description: "Egy alapszintű Java-alkalmazás üzembe helyezésével megtudhatja, hogy miként futtathat webalkalmazásokat az App Service-ben."
+title: "aaaCreate az első Java-webalkalmazás az Azure-ban"
+description: "Ismerje meg, hogyan toorun webalkalmazások az App Service egy alapszintű Java-alkalmazás központi telepítésével."
 services: app-service\web
 documentationcenter: 
 author: rmcmurray
@@ -15,24 +15,24 @@ ms.topic: quickstart
 ms.date: 6/7/2017
 ms.author: cephalin;robmcm
 ms.custom: mvc
-ms.openlocfilehash: b91b9bde5eb8ea0d7e2196056b635fe54095e748
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 81315c07b5aa84cbec50a17b2cb3914927b19c00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-java-web-app-in-azure"></a>Az első Java-webalkalmazás létrehozása az Azure-ban
 
-Az [Azure App Service](../app-service/app-service-value-prop-what-is.md) [Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) szolgáltatása egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatást biztosít. Ez a gyorsútmutató bemutatja, hogyan helyezhet üzembe Java-webalkalmazásokat az App Service-ben a [Java EE-fejlesztőknek készült Eclipse IDE](http://www.eclipse.org/) használatával.
+Hello [webalkalmazások](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) szolgáltatása [Azure App Service](../app-service/app-service-value-prop-what-is.md) jól skálázható, önálló javítási a webhelyszolgáltató biztosít. A gyors üzembe helyezés bemutatja, hogyan toodeploy Java webes hello segítségével app tooApp szolgáltatás [Eclipse IDE Java EE-fejlesztőknek](http://www.eclipse.org/).
 
 ![„Hello Azure!” példa webalkalmazás](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A gyorsútmutató elvégzéséhez a következők telepítése szükséges:
+toocomplete a gyors üzembe helyezés telepítése:
 
-* Az ingyenes, [Java EE-fejlesztőknek készült Eclipse IDE](http://www.eclipse.org/downloads/). Ez a gyorsútmutató az Eclipse Neont használj.
-* Az [Eclipse-hez készült Azure-eszközkészlet](/azure/azure-toolkit-for-eclipse-installation).
+* szabad hello [Eclipse IDE Java EE-fejlesztőknek](http://www.eclipse.org/downloads/). Ez a gyorsútmutató az Eclipse Neont használj.
+* Hello [Eclipse Azure eszköztára](/azure/azure-toolkit-for-eclipse-installation).
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -40,7 +40,7 @@ A gyorsútmutató elvégzéséhez a következők telepítése szükséges:
 
 Az Eclipse-ben válassza a **File (Fájl)** > **New (Új)** > **Dynamic Web Project** (Dinamikus webprojekt) lehetőséget.
 
-A **New Dynamic Web Project** (Új dinamikus webprojekt) párbeszédpanelen adja a **MyFirstJavaOnAzureWebApp** nevet a projektnek, és válassza a **Finish** (Befejezés) lehetőséget.
+A hello **új dinamikus webes projekt** párbeszédpanelen neve hello projekt **MyFirstJavaOnAzureWebApp**, és válassza ki **Befejezés**.
    
 ![New Dynamic Web Project (Új dinamikus webprojekt) párbeszédpanel](./media/app-service-web-get-started-java/new-dynamic-web-project-dialog-box.png)
 
@@ -50,19 +50,19 @@ Ha a Project Explorer (Projektböngésző) nem jelenik meg, állítsa azt vissza
 
 ![Az Eclipse-hez készült Java EE munkaterület](./media/app-service-web-get-started-java/pe.png)
 
-A Project Explorer (Projektböngésző) nézetben bontsa ki a **MyFirstJavaOnAzureWebApp** projektet.
+A Project Explorer bontsa ki a hello **MyFirstJavaOnAzureWebApp** projekt.
 Kattintson a jobb gombbal az **WebContent** elemre, majd válassza a **(New) Új** > **JSP File (JSP-fájl)** (JSP-fájl) lehetőséget.
 
 ![Az új JSP-fájl menüje a Project Explorer (Projektböngésző) nézetben](./media/app-service-web-get-started-java/new-jsp-file-menu.png)
 
-A **New JSP File** (Új JSP-fájl) párbeszédpanelen:
+A hello **új JSP-fájl** párbeszédpanel:
 
-* Nevezze el a fájlt az alábbi módon: **index.jsp**.
+* Nevű hello fájl **index.jsp**.
 * Válassza a **Finish** (Befejezés) elemet.
 
   ![New JSP File (Új JSP-fájl) párbeszédpanel](./media/app-service-web-get-started-java/new-jsp-file-dialog-box-page-1.png)
 
-Az index.jsp fájlban cserélje le a `<body></body>` elemet az alábbi jelöléssel:
+Hello index.jsp fájlban cserélje le hello `<body></body>` hello jelölés során a következő elem:
 
 ```jsp
 <body>
@@ -70,21 +70,21 @@ Az index.jsp fájlban cserélje le a `<body></body>` elemet az alábbi jelölés
 </body>
 ```
 
-Mentse a módosításokat.
+Hello módosítások mentéséhez.
 
-## <a name="publish-the-web-app-to-azure"></a>A webalkalmazás közzététele az Azure-ban
+## <a name="publish-hello-web-app-tooazure"></a>Hello web app tooAzure közzététele
 
-A Project Explorer (Projektböngésző) nézetben kattintson a jobb gombbal a projektre, majd válassza az **Azure** > **Publish as Azure Web App** (Közzététel Azure-webalkalmazásként) lehetőséget.
+A Project Explorer, kattintson a jobb gombbal a projekt hello, és válassza **Azure** > **Azure Web Apps közzététel**.
 
 ![A Publish as Azure Web App (Közzététel Azure-webalkalmazásként) helyi menü](./media/app-service-web-get-started-java/publish-as-azure-web-app-context-menu.png)
 
-Az **Azure bejelentkezési** párbeszédpanelen tartsa meg az **Interactive** (Interaktív) lehetőséget, majd válassza a **Sign in** (Bejelentkezés) gombot.
+A hello **Azure bejelentkezés** párbeszédpanelen, a tárolás során is garantálják hello **interaktív** lehetőséget, majd válassza ki **bejelentkezés**.
 
-Kövesse a bejelentkezési utasításokat.
+Kövesse az utasításokat bejelentkezési hello.
 
 ### <a name="deploy-web-app-dialog-box"></a>Deploy Web App (Webalkalmazás üzembe helyezése) párbeszédpanel
 
-Miután bejelentkezett Azure-fiókjába, megjelenik a **Deploy Web App** (Webalkalmazás üzembe helyezése) párbeszédpanel.
+Miután bejelentkezett az Azure-fiók tooyour, hello **webalkalmazás telepítése** párbeszédpanel jelenik meg.
 
 Kattintson a **Létrehozás** gombra.
 
@@ -92,20 +92,20 @@ Kattintson a **Létrehozás** gombra.
 
 ### <a name="create-app-service-dialog-box"></a>A Create App Service (App Service létrehozása) párbeszédpanel
 
-Megjelenik a **Create App Service** (App Service létrehozása) párbeszédpanel az alapértelmezett értékekkel. Az alábbi képen látható **170602185241** szám eltérő az Ön párbeszédpanelén.
+Hello **létrehozása az App Service** párbeszédpanel jelenik meg az alapértelmezett értékekkel. szám hello **170602185241** hello a következő kép nem azonos a párbeszédpanelen látható.
 
 ![A Create App Service (App Service létrehozása) párbeszédpanel](./media/app-service-web-get-started-java/cas1.png)
 
-A **Create App Service** (App Service létrehozása) párbeszédpanelen:
+A hello **létrehozása az App Service** párbeszédpanel:
 
-* Tartsa meg a webalkalmazáshoz létrehozott nevet. Ennek a névnek az Azure-on belül egyedinek kell lennie. Ez a név a webalkalmazáshoz tartozó URL-cím része. Ha például a webalkalmazás neve **MyJavaWebApp**, az URL-cím *myjavawebapp.azurewebsites.net*.
-* Tartsa meg az alapértelmezett webes tárolót.
+* Tartsa hello webalkalmazás hello generált név. Ennek a névnek az Azure-on belül egyedinek kell lennie. hello neve hello URL-címet hello webalkalmazás részét képezi. Példa: Ha hello webes alkalmazás neve **MyJavaWebApp**, URL-cím hello *myjavawebapp.azurewebsites.net*.
+* Tartsa hello alapértelmezett webes tárolót.
 * Válasszon ki egy Azure-előfizetést.
-* Az **App service plan** (App Service-csomag) lapon:
+* A hello **App service-csomag** lapon:
 
-  * **Create new** (Új létrehozása): tartsa meg az alapértelmezettet, amely az App Service-csomag neve.
+  * **Új**: tartsa hello alapértelmezett értéket, amely hello hello App Service-csomag nevét.
   * **Location** (Hely): válassza a **West Europe** (Nyugat-Európa) lehetőséget vagy egy Önhöz közeli helyet.
-  * **Pricing tier** (Tarifacsomag): válassza az ingyenes lehetőséget. A szolgáltatások díját az [App Service díjszabás](https://azure.microsoft.com/pricing/details/app-service/) részben találja.
+  * **A tarifacsomag**: Válasszon hello ingyenes lehetőséget. A szolgáltatások díját az [App Service díjszabás](https://azure.microsoft.com/pricing/details/app-service/) részben találja.
 
    ![A Create App Service (App Service létrehozása) párbeszédpanel](./media/app-service-web-get-started-java/create-app-service-dialog-box.png)
 
@@ -113,7 +113,7 @@ A **Create App Service** (App Service létrehozása) párbeszédpanelen:
 
 ### <a name="resource-group-tab"></a>Resource group (Erőforráscsoport) lap
 
-Válassza ki a **Resource group** (Erőforráscsoport) lapot. Tartsa meg az erőforráscsoporthoz tartozó alapértelmezetten létrehozott értéket.
+Jelölje be hello **erőforráscsoport** fülre. Tartsa hello alapértelmezés szerint generált érték hello erőforráscsoport.
 
 ![Resource group (Erőforráscsoport) lap](./media/app-service-web-get-started-java/create-app-service-resource-group.png)
 
@@ -122,38 +122,38 @@ Válassza ki a **Resource group** (Erőforráscsoport) lapot. Tartsa meg az erő
 Kattintson a **Létrehozás** gombra.
 
 <!--
-### The JDK tab
+### hello JDK tab
 
-Select the **JDK** tab. Keep the default, and then select **Create**.
+Select hello **JDK** tab. Keep hello default, and then select **Create**.
 
 ![Create App Service plan](./media/app-service-web-get-started-java/create-app-service-specify-jdk.png)
 -->
 
-Az Azure-eszközkészlet létrehozza a webalkalmazást, és megjelenít egy folyamatjelző panelt.
+hello Azure eszközkészlet hello webalkalmazás hoz létre, és megjelenik a folyamatjelző párbeszédpanel.
 
 ![App Service létrehozásának állapotjelző párbeszédpanelje](./media/app-service-web-get-started-java/create-app-service-progress-bar.png)
 
 ### <a name="deploy-web-app-dialog-box"></a>Deploy Web App (Webalkalmazás üzembe helyezése) párbeszédpanel
 
-A **Deploy Web App** (Webalkalmazás üzembe helyezése) párbeszédpanelen válassza a **Deploy to root** (Üzembe helyezés a gyökérnél) beállítást. Ha egy App Service a *wingtiptoys.azurewebsites.net* helyen, és nem a gyökérnél végzi el az üzembe helyezést, a **MyFirstJavaOnAzureWebApp** nevű webalkalmazás a *wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp* helyen lesz üzembe helyezve.
+A hello **webalkalmazás telepítése** párbeszédpanelen jelölje ki **tooroot telepítése**. Ha egy alkalmazás szolgáltatás: *wingtiptoys.azurewebsites.net* toohello gyökér, hello webes alkalmazás neve nem telepít és **MyFirstJavaOnAzureWebApp** a rendszer túl *wingtiptoys.azurewebsites.net/MyFirstJavaOnAzureWebApp*.
 
 ![Deploy Web App (Webalkalmazás üzembe helyezése) párbeszédpanel](./media/app-service-web-get-started-java/deploy-web-app-to-root.png)
 
-A párbeszédpanel megjeleníti az Azure-nál, a JDK-nál és a webes tárolónál kiválasztott beállításokat.
+hello párbeszédpanel mezőben látható hello Azure JDK és webes tároló beállításokat.
 
-A webalkalmazás Azure-ban történő közzétételéhez válassza a **Deploy** (Üzembe helyezés) lehetőséget.
+Válassza ki **telepítés** toopublish hello web app tooAzure.
 
-A közzététel befejezése után válassza a **Published** (Közzétéve) hivatkozást az **Azure Activity Log** (Azure tevékenységnapló) párbeszédpanelen.
+Hello közzététel befejezése után válassza ki a hello **közzétett** hello hivatkozásra **Azure tevékenységnapló** párbeszédpanel megnyitásához.
 
 ![Azure Activity Log (Azure tevékenységnapló) párbeszédpanel](./media/app-service-web-get-started-java/aal.png)
 
-Gratulálunk! Sikeresen végrehajtotta a webalkalmazás üzembe helyezését az Azure-ban. 
+Gratulálunk! Sikeresen telepítette a webes alkalmazás tooAzure. 
 
 ![„Hello Azure!” példa webalkalmazás](./media/app-service-web-get-started-java/browse-web-app-1.png)
 
-## <a name="update-the-web-app"></a>A webalkalmazás frissítése
+## <a name="update-hello-web-app"></a>Hello webes alkalmazás frissítése
 
-Módosítsa a JSP-mintakódot egy eltérő üzenetre.
+Módosítsa a minta JSP kód tooa különböző üdvözlőüzenetére.
 
 ```jsp
 <body>
@@ -161,35 +161,35 @@ Módosítsa a JSP-mintakódot egy eltérő üzenetre.
 </body>
 ```
 
-Mentse a módosításokat.
+Hello módosítások mentéséhez.
 
-A Project Explorer (Projektböngésző) nézetben kattintson a jobb gombbal a projektre, majd válassza az **Azure** > **Publish as Azure Web App** (Közzététel Azure-webalkalmazásként) lehetőséget.
+A Project Explorer, kattintson a jobb gombbal a projekt hello, és válassza **Azure** > **Azure Web Apps közzététel**.
 
-Megjelenik a **Deploy Web App** (Webalkalmazás üzembe helyezése) párbeszédpanel, és megjeleníti a korábban létrehozott App Service-t. 
+Hello **webalkalmazás telepítése** párbeszédpanel jelenik meg, és azt mutatja be, amelyet korábban hozott létre az app service hello. 
 
 > [!NOTE]
-> Minden egyes közzétételkor válassza a **Deploy to root** (Üzembe helyezés a gyökérnél) beállítást.
+> Válassza ki **tooroot telepítése** minden alkalommal, amikor a közzététele.
 >
 
-Válassza ki a webalkalmazást, majd a **Deploy** (Üzembe helyezés) lehetőséget, ami közzéteszi a módosításokat.
+Hello webalkalmazás válassza ki, majd **telepítés**, amely közzéteszi a hello módosításokat.
 
-Amikor megjelenik a **Publishing** (Közzététel) hivatkozás, válassza azt ki a webalkalmazás tallózásához, és tekintse meg a módosításokat.
+Ha hello **közzétételi** hivatkozás jelenik meg, válassza ki azt a toobrowse toohello web app és hello módosítások megtekintéséhez.
 
-## <a name="manage-the-web-app"></a>A webalkalmazás kezelése
+## <a name="manage-hello-web-app"></a>Hello webes alkalmazás kezelése
 
-Ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>, és tekintse meg a létrehozott webalkalmazást.
+Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toosee hello webalkalmazást, amelyet létrehozott.
 
-A bal oldali menüben válassza az **Erőforráscsoportok** elemet.
+Hello bal oldali menüben válassza ki a **erőforráscsoportok**.
 
-![Navigálás a portálon az erőforráscsoportokhoz](media/app-service-web-get-started-java/rg.png)
+![Portálnavigációjával tooresource csoportok](media/app-service-web-get-started-java/rg.png)
 
-Válassza az erőforráscsoportot. Az oldal megjeleníti a gyorsútmutatóban létrehozott erőforrásokat.
+Válasszon hello erőforráscsoportot. hello lapon látható a gyors üzembe helyezés létrehozott hello erőforrásokat.
 
 ![myResourceGroup erőforráscsoport](media/app-service-web-get-started-java/rg2.png)
 
-Válassza a webalkalmazást (**webapp-170602193915** az előző képen).
+Jelölje be hello web app (**webapp-170602193915** a kép megelőző hello).
 
-Megjelenik az **Áttekintés** oldal. Ezen az oldalon megtekintheti az alkalmazás állapotát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés. A panel bal oldalán lévő lapok a különböző megnyitható konfigurációs oldalakat jelenítik meg. 
+Hello **áttekintése** lap jelenik meg. Ezen a lapon hogyan hello app tesz a nézetét biztosítja. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés. hello lapok hello bal oldalán található hello megjelenítése hello megnyithatja különböző konfigurációkat. 
 
 ![Az App Service lap az Azure Portalon](media/app-service-web-get-started-java/web-app-blade.png)
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI minták – az Azure Functions |} Microsoft Docs"
+title: "az Azure Functions CLI minták – aaaAzure |} Microsoft Docs"
 description: "Az Azure CLI minták – az Azure Functions"
 services: functions
 documentationcenter: functions
@@ -16,15 +16,15 @@ ms.workload: functions
 ms.date: 04/11/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 6830ab9ada50da99871592e2c0911ac9cb8f5797
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2041e710560a41f230a0ffc20dc89756c6b5c854
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples"></a>Az Azure CLI-minták
 
-A következő táblázat a bash parancsfájlok az Azure Functions az Azure CLI-t használó mutató hivatkozásokat tartalmaz.
+hello alábbi táblázat tartalmaz hivatkozásokat toobash parancsfájlok hello Azure CLI-t használó Azure Functions.
 
 | | |
 |-|-|
@@ -33,15 +33,15 @@ A következő táblázat a bash parancsfájlok az Azure Functions az Azure CLI-t
 | [Egy függvény-alkalmazás létrehozása az App Service-csomagot](scripts/functions-cli-create-app-service-plan.md) | Függvény-alkalmazás létrehozása a kijelölt App Service-csomagot. |
 | | |
 |**Integrálása**||
-| [Hozzon létre egy függvény alkalmazást, és csatlakozzon a storage-fiók](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | Hozzon létre egy függvény alkalmazást, és csatlakoztassa a storage-fiók. |
-| [Hozzon létre egy függvény alkalmazást, és csatlakozzon az Azure Cosmos Adatbázishoz.](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | Hozzon létre egy függvény alkalmazást, és csatlakoztassa egy Azure Cosmos DB |
+| [Hozzon létre egy függvény alkalmazást, és csatlakozzon a tooa storage-fiók](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | Hozzon létre egy függvény alkalmazást, és csatlakoztassa tooa tárfiók. |
+| [Függvény-alkalmazás létrehozása, és csatlakozzon az Azure Cosmos DB tooan](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | Hozzon létre egy függvény alkalmazást, és csatlakoztassa tooan Azure Cosmos DB |
 | | |
 |**Alkalmazás konfigurálása**||
-| [Egyéni tartomány leképezése egy függvény alkalmazást](scripts/functions-cli-configure-custom-domain.md) | Adja meg a funkciók egy egyéni tartományt.  |
-| [Egy SSL-tanúsítvány kötését függvény alkalmazásokhoz](scripts/functions-cli-configure-ssl-certificate.md)  |  A funkciók egy egyéni tartomány SSL-tanúsítványok feltöltése. |
+| [Egy egyéni tartomány tooa függvény app leképezése](scripts/functions-cli-configure-custom-domain.md) | Adja meg a funkciók egy egyéni tartományt.  |
+| [Egy SSL tanúsítvány tooa függvény alkalmazás kötése](scripts/functions-cli-configure-ssl-certificate.md)  |  A funkciók egy egyéni tartomány SSL-tanúsítványok feltöltése. |
 <!--
 
 |**Scale app**||
 
-|**Connect app to resources**||
+|**Connect app tooresources**||
 -->

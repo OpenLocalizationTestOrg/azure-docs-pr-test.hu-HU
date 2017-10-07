@@ -1,6 +1,6 @@
 ---
-title: "Létrehozása felhasználói felületének meghatározása az Azure által felügyelt alkalmazások megismerése |} Microsoft Docs"
-description: "Ismerteti, hogyan lehet az Azure által felügyelt alkalmazások felhasználói felületi-meghatározások létrehozása"
+title: "az Azure által felügyelt alkalmazások felhasználói felületi definíciójának létrehozása aaaUnderstand |} Microsoft Docs"
+description: "Ismerteti, hogyan toocreate felhasználói felület definíciókat az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/11/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 176b891538f85c5638a2321561c3d8bd377d245b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d53ddf438c24d5a6cb8dd53ca0b4694ab0462515
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-createuidefinition"></a>Ismerkedés a CreateUiDefinition
-Ez a dokumentum bemutatja a core CreateUiDefinition, amely az Azure-portálon kezelt alkalmazás létrehozásához a felhasználói felület létrehozásához használja.
+Ez a dokumentum egy CreateUiDefinition, hello Azure portál toogenerate hello felhasználói felület által kezelt alkalmazás létrehozásához használt alapvető fogalmait hello vezet be.
 
 ```json
 {
@@ -39,34 +39,34 @@ Egy CreateUiDefinition mindig három tulajdonságot tartalmazza:
 
 * eseménykezelő
 * Verzió
-* Paraméterek
+* paraméterek
 
-Kezelt alkalmazások, mindig kell kezelő `Microsoft.Compute.MultiVm`, és a legfrissebb támogatott verziót `0.1.2-preview`.
+Kezelt alkalmazások, mindig kell kezelő `Microsoft.Compute.MultiVm`, és a legújabb támogatott hello verziója `0.1.2-preview`.
 
-A paraméterek tulajdonság sémájának attól függ, hogy a megadott kezelő és verziót. Kezelt alkalmazások, a támogatott tulajdonságok: `basics`, `steps`, és `outputs`. A alapjait és lépéseket tulajdonságok tartalmaznak a _elemek_ - például a szövegmezőből és a legördülő lista - az Azure portálon megjelenítendő. A kimenetek tulajdonság a megadott elemek kimeneti értékeit hozzárendelése az Azure Resource Manager központi telepítési sablon paramétereinek szolgál.
+hello paraméterek tulajdonság sémájának hello hello megadott kezelő és a verzió hello kombinációja függ. Kezelt alkalmazások hello támogatott tulajdonságok: `basics`, `steps`, és `outputs`. hello alapjait és lépéseket tulajdonságok tartalmaznak hello _elemek_ – például a szövegmezők és legördülő listák megnyílásának - toobe megjelenő hello Azure-portálon. hello kimenetek tulajdonság használt toomap hello kimeneti értékeit hello megadott elemek toohello paraméterei hello Azure Resource Manager központi telepítési sablont.
 
-Beleértve `$schema` javasolt, de nem kötelező. Ha meg van adva, a következő `version` meg kell egyeznie a verzió belül a `$schema` URI.
+Beleértve `$schema` javasolt, de nem kötelező. Ha meg van adva, a következő hello `version` meg kell egyeznie a hello verzió belül hello `$schema` URI.
 
 ## <a name="basics"></a>Alapvető beállítások
-Az alapok lépés mindig az első lépés a varázsló jönnek létre, ha az Azure-portálon elemzi a CreateUiDefinition. A megadott elemek megjelenítése mellett `basics`, a portálon a felhasználók számára előfizetés, erőforráscsoport és a telepítési hely kiválasztása elemek esetében. Általában lekérdezése a központi telepítés kiterjedő paraméterek, például egy fürt vagy a rendszergazdai hitelesítő adatokat, nevét elemeket kell nyissa meg az ebben a lépésben.
+hello alapjai lépés mindig hello jönnek létre, ha az Azure-portálon hello elemzi a CreateUiDefinition hello varázsló első lépése. Ezenkívül toodisplaying hello elemek megadott `basics`, hello portál esetében elemei felhasználók toochoose hello előfizetés, erőforráscsoport és hello telepítési helyét. Általában lekérdezése a központi telepítés kiterjedő paraméterek hello nevét egy fürt vagy a rendszergazdai hitelesítő adatokat, például elemeket kell nyissa meg az ebben a lépésben.
 
-Ha egy elem viselkedés attól függ, a felhasználó előfizetés, erőforráscsoportból vagy helyét, majd, hogy elem nem használható az alapokat. Például **Microsoft.Compute.SizeSelector** attól függ, a felhasználó előfizetésben és helyen meghatározni az elérhető méretek listáját. Ezért **Microsoft.Compute.SizeSelector** csak akkor használható a lépéseket. Általában csak elemeinek a **Microsoft.Common** névtér alapokat is használható. Bár bizonyos elemek más névtérben (például **Microsoft.Compute.Credentials**), amely nem függ a felhasználói környezet, továbbra is engedélyezett.
+Ha egy elem viselkedés attól függ, hello felhasználói előfizetés, erőforráscsoporthoz vagy helyre, majd, hogy elem nem használható az alapokat. Például **Microsoft.Compute.SizeSelector** hello felhasználói előfizetésben és helyen toodetermine hello listájában elérhető méretek függ. Ezért **Microsoft.Compute.SizeSelector** csak akkor használható a lépéseket. Általában csak elemek hello **Microsoft.Common** névtér alapokat is használható. Bár bizonyos elemek más névtérben (például **Microsoft.Compute.Credentials**), amely nem függ a hello felhasználói környezet, továbbra is engedélyezett.
 
 ## <a name="steps"></a>Lépések
-A lépések tulajdonság nulla vagy több további lépést is végre megjelenítése után alapjai, egy vagy több elemet tartalmaz, amelyek mindegyike tartalmazhat. Fontolja meg egy szerepkör vagy a réteg az alkalmazás telepítése lépést. Például hozzáadhat egy bemenetek a fő csomóponthoz, és egy lépést az ezen csomópontokhoz tartozó fürtben.
+hello lépéseket tulajdonság nulla vagy több további lépést toodisplay után alapjai, egy vagy több elemet tartalmaz, amelyek mindegyike tartalmazhat. Fontolja meg egy szerepkör vagy a réteg hello alkalmazás telepítése lépést. Például hozzáadhat egy bemenetek hello fő csomóponthoz, és egy lépést hello ezen csomópontokhoz tartozó fürtben.
 
 ## <a name="outputs"></a>kimenetek
-Az Azure-portálon használja a `outputs` tulajdonság elemeket a `basics` és `steps` paramétereinek az Azure Resource Manager központi telepítési sablont. Ehhez a szótárhoz kulcsai a sablon-paraméterek nevei, és a kimeneti objektumokat a hivatkozott elemeket tulajdonságainak értékei.
+hello Azure-portált használja hello `outputs` tulajdonság toomap elemek `basics` és `steps` toohello paraméterei hello Azure Resource Manager központi telepítési sablont. a szótár hello kulcsok hello hello sablon paraméterek nevei, és hello értékei származó hivatkozott hello hello kimeneti objektumok tulajdonságai.
 
 ## <a name="functions"></a>Functions
-Hasonló [sablonfüggvényei](resource-group-template-functions.md) az Azure Resource Manager (mind a szintaxist és a funkció), CreateUiDefinition elem bemenetekhez és kimenetekhez való munkához funkciókat biztosít, valamint szolgáltatások – pl. conditionals.
+Hasonló túl[sablonfüggvényei](resource-group-template-functions.md) az Azure Resource Manager (mind a szintaxist és a funkció), CreateUiDefinition elem bemenetekhez és kimenetekhez való munkához funkciókat biztosít, valamint szolgáltatások – pl. conditionals.
 
 ## <a name="next-steps"></a>Következő lépések
-CreateUiDefinition önmagában egy egyszerű sémával rendelkezik. A valódi mélysége származik támogatott elemeket és függvények, amelyek wondrous részletesen leírja a következő dokumentumokat:
+CreateUiDefinition önmagában egy egyszerű sémával rendelkezik. hello valós mélysége azt minden hello támogatott elemek és funkciók, mely a következő dokumentumok hello wondrous részletesen leírja származnak:
 
 - [Elemek](managed-application-createuidefinition-elements.md)
 - [Functions](managed-application-createuidefinition-functions.md)
 
 A jelenlegi JSON-séma CreateUiDefinition érhető el itt: https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json. 
 
-Ugyanazon a helyen későbbi verzióiban lesz elérhető. Cserélje le a `0.1.2-preview` az URL-cím része, és a `version` a használni kívánt azonosító értéket. A jelenleg támogatott verziójú azonosítók `0.0.1-preview`, `0.1.0-preview`, `0.1.1-preview`, és `0.1.2-preview`.
+Későbbi verzióiban lesz elérhető legyen a következőn hello ugyanazon a helyen. Cserélje le a hello `0.1.2-preview` hello URL-cím és hello része `version` érték hello verzió azonosítójú toouse szeretné. hello támogatott verzió azonosítók `0.0.1-preview`, `0.1.0-preview`, `0.1.1-preview`, és `0.1.2-preview`.

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory tartományi szolgáltatások: RHEL virtuális gép csatlakoztatása felügyelt tartományhoz |} Microsoft Docs"
-description: "Red Hat Enterprise Linux virtuális gépek csatlakoztatása az Azure AD tartományi szolgáltatások"
+title: "Az Azure Active Directory tartományi szolgáltatások: Csatlakozás az RHEL VM tooa felügyelt tartományhoz |} Microsoft Docs"
+description: "A Red Hat Enterprise Linux virtuális gép tooAzure AD tartományi szolgáltatások"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,131 +14,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 69f1850bfed90392e9a4695e2443ffaa6bfc746d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41ca2aaf2eefbf9c403d2b834d61a1aa0943d950
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="join-a-red-hat-enterprise-linux-7-virtual-machine-to-a-managed-domain"></a>Red Hat Enterprise Linux 7 virtuális gépek csatlakoztatása felügyelt tartományokhoz
-Ez a cikk bemutatja, hogyan Red Hat Enterprise Linux (RHEL) 7 virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz.
+# <a name="join-a-red-hat-enterprise-linux-7-virtual-machine-tooa-managed-domain"></a>Csatlakozás Red Hat Enterprise Linux 7 virtuális gép tooa felügyelt tartományhoz
+Ez a cikk bemutatja, hogyan toojoin a Red Hat Enterprise Linux (RHEL) 7 virtuális gép tooan Azure AD tartományi szolgáltatások által felügyelt tartomány.
 
 ## <a name="provision-a-red-hat-enterprise-linux-virtual-machine"></a>Red Hat Enterprise Linux virtuális gép kiépítése
-A következő lépésekkel rendszerű RHEL 7 virtuális gép az Azure portál használatával.
+Hajtsa végre a következő lépéseket tooprovision egy RHEL 7 virtuális gép hello Azure-portál használatával hello.
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
 
     ![Azure-portál irányítópultjának](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-dashboard.png)
-2. Kattintson a **új** a bal oldali ablaktáblán, és írja be **Red Hat** azokat a keresési sávon, az alábbi képernyőfelvételen látható módon. A Red Hat Enterprise Linux jelennek meg a keresési eredmények között. Kattintson a **Red Hat Enterprise Linux 7.2**.
+2. Kattintson a **új** a bal oldali ablaktábla és a típus hello **Red Hat** hello keresősávban, ahogy az alábbi képernyőfelvétel a hello be. Red Hat Enterprise Linux bejegyzéseket hello találatok jelennek meg. Kattintson a **Red Hat Enterprise Linux 7.2**.
 
     ![Válassza ki az RHEL eredmények](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-find-rhel-image.png)
-3. A Keresés a **mindent** ablaktábla szerepelnie kell a Red Hat Enterprise Linux 7.2 kép. Kattintson a **Red Hat Enterprise Linux 7.2** a virtuálisgép-lemezkép kapcsolatos további információk megjelenítéséhez.
+3. Keresés hello hello **mindent** ablaktábla szerepelnie kell a Red Hat Enterprise Linux 7.2 hello kép. Kattintson a **Red Hat Enterprise Linux 7.2** tooview hello virtuálisgép-lemezkép további információt.
 
     ![Válassza ki az RHEL eredmények](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-select-rhel-image.png)
-4. Az a **Red Hat Enterprise Linux 7.2** ablaktáblán, a virtuálisgép-lemezkép további információt kell megjelennie. Az a **telepítési modell kiválasztása** legördülő menüben válasszon ki **klasszikus**. Kattintson a **létrehozása** gombra.
+4. A hello **Red Hat Enterprise Linux 7.2** ablaktáblán hello virtuálisgép-lemezkép további információt kell megjelennie. A hello **telepítési modell kiválasztása** legördülő menüben válasszon ki **klasszikus**. Kattintson a hello **létrehozása** gombra.
 
     ![Kép részleteinek megtekintése](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-clicked.png)
-5. A a **alapjai** oldalán a **hozzon létre virtuális gépet** varázslóban adja meg a **állomásnév** az új virtuális gép. Is a helyi rendszergazdai felhasználónév megadása a **felhasználónév** mező és egy **jelszó**. Választhatja azt is, a helyi rendszergazda felhasználó hitelesítéséhez SSH-kulcsot használ. Jelölje ki a **Tarifacsomagot** a virtuális géphez.
+5. A hello **alapjai** hello oldalán **hozzon létre virtuális gépet** varázsló, adja meg a hello **állomásnév** hello új virtuális gép. Ezenfelül adja meg a helyi rendszergazdai felhasználónév hello **felhasználónév** mező és egy **jelszó**. Dönthet úgy is toouse az SSH-kulcs tooauthenticate hello helyi rendszergazda felhasználó. Jelölje ki a **Tarifacsomagot** hello virtuális géphez.
 
     ![Hozzon létre virtuális Gépet - alapismeretek lap](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-basic-details.png)
-6. Az a **mérete** oldalán a **hozzon létre virtuális gépet** varázsló, válassza ki a virtuális gép méretét.
+6. A hello **mérete** hello oldalán **hozzon létre virtuális gépet** hello virtuális gép varázsló, jelölje be hello mérete.
 
     ![Hozzon létre Virtuálisgép - méret kiválasztása](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-select-vm-size.png)
 
-7. Az a **beállítások** oldalán a **hozzon létre virtuális gépet** lapján jelölje be a tárolási fiókot használja a virtuális gép. Kattintson a **virtuális hálózati** jelölje be a virtuális hálózatot, amelyhez a Linux virtuális gép kell telepíteni. Az a **virtuális hálózati** panelen válassza az Azure AD tartományi szolgáltatásokat a virtuális hálózat érhető el. Ebben a példában a "MyPreviewVNet" virtuális hálózati mentse azt.
+7. A hello **beállítások** hello oldalán **hozzon létre virtuális gépet** hello virtuális gép varázsló, jelölje be hello storage-fiókjához. Kattintson a **virtuális hálózati** tooselect hello virtuális hálózati toowhich hello Linux virtuális Gépre kell telepíteni. A hello **virtuális hálózati** panelen, jelölje be hello virtuális hálózat, amelyben az Azure AD tartományi szolgáltatások érhető el. Ebben a példában azt válasszon hello "MyPreviewVNet" virtuális hálózatot.
 
     ![Virtuális gép létrehozása – válassza ki a virtuális hálózat](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-select-vnet.png)
-8. Az a **összegzés** oldalán a **hozzon létre virtuális gépet** varázsló, tekintse át, és kattintson a **OK** gombra.
+8. A hello **összegzés** hello oldalán **hozzon létre virtuális gépet** varázsló, tekintse át, és kattintson hello **OK** gombra.
 
     ![VM - kiválasztott virtuális hálózat létrehozása](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-vnet-selected.png)
-9. Központi telepítés az RHEL 7.2 lemezképen alapuló új virtuális gép elindul.
+9. Hello hello RHEL 7.2 lemezképen alapuló új virtuális gép telepítését kell kezdődnie.
 
     ![Hozzon létre virtuális Gépet - KözpontiTelepítés elindítva](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-deployment-started.png)
-10. Néhány perc múlva a virtuális gép kell telepíteni sikeresen és készítenie való használatra.
+10. Néhány perc elteltével hello virtuális gép sikeresen telepített és használatra kész állapotba kell lennie.
 
     ![Hozzon létre virtuális Gépet - telepítve](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-create-vm-deployed.png)
 
-## <a name="connect-remotely-to-the-newly-provisioned-linux-virtual-machine"></a>Távoli csatlakozás az újonnan kiépített Linux virtuális gép
-Az RHEL 7.2 rendszerű virtuális gép az Azure-ban van kiépítve. A következő feladathoz távolról csatlakozni a virtuális gép.
+## <a name="connect-remotely-toohello-newly-provisioned-linux-virtual-machine"></a>Távoli csatlakozás az újonnan kiépített toohello Linux virtuális gép
+hello RHEL 7.2 rendszerű virtuális gép az Azure-ban van kiépítve. hello következő feladata tooconnect távolról toohello virtuális gépet.
 
-**Csatlakozás az RHEL 7.2 rendszerű virtuális géphez** kövesse a cikkben lévő utasítások [Linuxot futtató virtuális gép bejelentkezés](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+**Csatlakozás toohello RHEL 7.2 rendszerű virtuális gép** hello hello cikk utasításait követve [hogyan toolog a Linux rendszerű virtuális gép tooa](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-A további lépések végrehajtása azt feltételezi, hogy a PuTTY SSH-ügyfél segítségével csatlakozzon az RHEL virtuális géphez. További információkért lásd: a [PuTTY letöltési oldalát](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
+hello további hello lépéseit azt feltételezik, hogy hello PuTTY SSH ügyfél tooconnect toohello RHEL virtuális gép használja. További információkért lásd: hello [PuTTY letöltési oldalát](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 
-1. A PuTTY programot nyithatja meg.
-2. Adja meg a **állomásnév** az újonnan létrehozott RHEL virtuális géphez. Ebben a példában a virtuális gép a gazdagép neve "contoso-rhel.cloudapp .net" van. Ha nem biztos a virtuális gép állomásnevét, tekintse meg a virtuális gép irányítópult az Azure portálon.
+1. Nyissa meg hello PuTTY program.
+2. Adja meg a hello **állomásnév** az RHEL virtuális gép található, újonnan létrehozott hello. Ebben a példában a virtuális gép van hello állomás neve "contoso-rhel.cloudapp .net". Ha nem biztos a virtuális gép hello állomásnevét, tekintse meg a toohello VM irányítópult hello Azure-portálon.
 
     ![A puTTY-csatlakozás](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-connect.png)
-3. Jelentkezzen be a virtuális gépet a helyi rendszergazdai hitelesítő adatokat adja meg, hogy a virtuális gép létrehozásának használatával. Ebben a példában a helyi rendszergazdai fiók "mahesh" használtuk.
+3. Jelentkezzen be toohello virtuális gép hello virtuális gép létrehozásakor megadott hello helyi rendszergazdai hitelesítő adatokkal. Ebben a példában hello helyi rendszergazdai fiók "mahesh" használtuk.
 
     ![PuTTY bejelentkezés](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-login.png)
 
-## <a name="install-required-packages-on-the-linux-virtual-machine"></a>A Linux virtuális gépre telepíti a szükséges csomagokat
-A virtuális géphez való csatlakozás után a következő feladathoz tartományhoz való csatlakozást, a virtuális gépen a szükséges csomagokat telepíteni fogja. Hajtsa végre a következő lépéseket:
+## <a name="install-required-packages-on-hello-linux-virtual-machine"></a>Telepíti a szükséges csomagokat hello Linux virtuális gépen
+Csatlakozó toohello virtuális gép után hello következő feladata a tooinstall csomagok szükséges a tartományhoz való csatlakozást hello virtuális gépen. Hajtsa végre az alábbi lépésekkel hello:
 
-1. **Telepítse a realmd:** a realmd csomag szolgál a tartományhoz való csatlakozást. A PuTTY terminál írja be a következő parancsot:
+1. **Telepítse a realmd:** hello realmd csomag szolgál a tartományhoz való csatlakozást. A PuTTY terminál írja be a következő parancs hello:
 
     sudo yum telepítés realmd
 
     ![Realmd telepítése](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-realmd.png)
 
-    Néhány perc múlva a realmd csomag telepítve kell beolvasni a virtuális gépen.
+    Néhány perc múlva hello realmd csomag hello virtuális gép első telepíthető.
 
     ![telepített realmd](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-installed.png)
-2. **Telepítse a sssd:** a realmd csomag függ sssd tartomány összekapcsolási műveletek végrehajtásához. A PuTTY terminál írja be a következő parancsot:
+2. **Telepítse a sssd:** hello realmd csomag sssd tooperform tartomány összekapcsolási műveletek függ. A PuTTY terminál írja be a következő parancs hello:
 
     sudo yum telepítés sssd
 
     ![Sssd telepítése](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-sssd.png)
 
-    Néhány perc múlva a sssd csomag telepítve kell beolvasni a virtuális gépen.
+    Néhány perc múlva hello sssd csomag hello virtuális gép első telepíthető.
 
     ![telepített realmd](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-sssd-installed.png)
-3. **Telepítse a kerberos:** a PuTTY terminál, írja be a következő parancsot:
+3. **Telepítse a kerberos:** a PuTTY terminál, írja be a következő parancs hello:
 
     sudo yum telepítés krb5-munkaállomás krb5-függvénytárak
 
     ![Kerberos telepítése](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-install-kerberos.png)
 
-    Néhány perc múlva a realmd csomag telepítve kell beolvasni a virtuális gépen.
+    Néhány perc múlva hello realmd csomag hello virtuális gép első telepíthető.
 
     ![A Kerberos telepítve](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-kerberos-installed.png)
 
-## <a name="join-the-linux-virtual-machine-to-the-managed-domain"></a>A Linux virtuális gép csatlakoztatása felügyelt tartományhoz
-Most, hogy a szükséges csomagokat a Linux virtuális gépek vannak telepítve, a következő feladat a virtuális gép csatlakoztatása felügyelt tartományhoz.
+## <a name="join-hello-linux-virtual-machine-toohello-managed-domain"></a>Csatlakozás hello Linux virtuális gép toohello felügyelt tartományhoz
+Most, hogy a szükséges hello csomagok hello Linux virtuális gépek vannak telepítve, hello következő feladata toojoin hello virtuális gép toohello által felügyelt tartományokhoz.
 
-1. Az AAD tartományi szolgáltatásokra által kezelt tartomány felderítése. A PuTTY terminál írja be a következő parancsot:
+1. Hello AAD tartományi szolgáltatásokra által kezelt tartomány felderítése. A PuTTY terminál írja be a következő parancs hello:
 
     sudo tartomány CONTOSO100.COM felderítése
 
     ![A kezdőtartomány felderítése](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-discover.png)
 
-    Ha **a kezdőtartomány felderítése** nem tudja a kezelt tartományban található, győződjön meg arról, hogy a tartomány elérhető-e a virtuális gépről (próbálja ping). Bizonyosodjon meg arról, hogy a virtuális gép valóban már alkalmazva van az azonos virtuális hálózatban, amelyben a felügyelt tartományra érhető el.
-2. Kerberos inicializálni. A PuTTY terminál írja be a következő parancsot. Adjon meg egy felhasználót, aki a "AAD DC rendszergazdák" csoportba tartozik. Csak ezek a felhasználók kapcsolódhatnak a számítógépek a felügyelt tartományra.
+    Ha **a kezdőtartomány felderítése** értéke nem lehet toofind a felügyelt tartományok, bizonyosodjon meg arról, hogy hello tartomány elérhető hello (próbálja ping) virtuális gépről. Gondoskodjon arról is, hogy hello a virtuális gép valóban már telepített toohello ugyanazt a virtuális hálózatot, mely hello által kezelt tartomány érhető el.
+2. Kerberos inicializálni. A PuTTY terminál írja be a következő parancs hello. Adjon meg egy felhasználót, aki toohello "AAD DC rendszergazdák" csoportba tartozik. Csak ezek a felhasználók kapcsolódhatnak számítógépek toohello által felügyelt tartományokhoz.
 
     kinitbob@CONTOSO100.COM
 
     ![Kinit](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-kinit.png)
 
-    Győződjön meg arról, hogy adja meg a tartomány nevét a nagybetűvel, más kinit sikertelen lesz.
-3. A számítógép csatlakoztatása a tartományhoz. A PuTTY terminál írja be a következő parancsot. Adja meg az előző lépést ("kinit") megadott ugyanahhoz a felhasználóhoz.
+    Győződjön meg arról, hogy hello tartománynév nagybetűvel adja meg, más kinit sikertelen lesz.
+3. Hello gép toohello tartományhoz. A PuTTY terminál írja be a következő parancs hello. Adja meg a hello hello megelőző lépést ("kinit") megadott ugyanahhoz a felhasználóhoz.
 
     sudo tartomány illesztési – részletes CONTOSO100.COM -U 'bob@CONTOSO100.COM"
 
     ![A kezdőtartomány-csatlakozás](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-realmd-join.png)
 
-Kell ("sikeresen regisztrált számítógép tartomány") üzenet jelenik meg, ha a gép sikeresen csatlakozott a felügyelt tartományra.
+Egy üzenet ("sikeresen regisztrált számítógép tartomány") kell kapnia hello gép sikeresen csatlakoztatva toohello által kezelt tartomány esetén.
 
 ## <a name="verify-domain-join"></a>Ellenőrizze a tartományhoz való csatlakozást
-Gyorsan ellenőrizheti, hogy a gép sikeresen csatlakoztatva lett a felügyelt tartományra. Csatlakozás az újonnan tartományhoz RHEL virtuális gép SSH és a tartományi felhasználói fiókot, és ellenőrizze a megoldódott a felhasználói fiók megfelelően.
+Gyorsan ellenőrizheti, hogy hello gép megtörtént-e sikeresen csatlakoztatva toohello által felügyelt tartományokhoz. Csatlakozás toohello újonnan tartományhoz RHEL virtuális gép SSH és a tartományi felhasználói fiókot, majd ellenőrizze toosee megoldódott hello felhasználói fiókja helyes.
 
-1. A PuTTY terminálon, írja be a kapcsolódni a következő parancsot az újonnan tartományhoz RHEL virtuális gép SSH használatával. A felügyelt tartományhoz tartozó tartományi fiókot használni (például "bob@CONTOSO100.COM" Ebben az esetben.)
+1. A Terminálszolgáltatások, PuTTY a következő parancs tooconnect toohello újonnan típus hello a tartományhoz csatlakoztatott RHEL virtuális gép SSH használatával. Toohello felügyelt tartományhoz tartozó tartományi fiókot használni (például "bob@CONTOSO100.COM" Ebben az esetben.)
 
     ssh -l bob@CONTOSO100.COM contoso-rhel.cloudapp.net
-2. A PuTTY terminál írja be a következő parancsot, hogy ha a kezdőkönyvtár megfelelően inicializálva.
+2. A PuTTY terminálon írja be a következő parancs toosee, ha hello kezdőkönyvtár megfelelően inicializálva hello.
 
     pwd
-3. A PuTTY terminál írja be a következő parancsot, ha a csoporttagságot lehet megoldani az helyes megjelenítéséhez.
+3. Írja be a PuTTY terminál, ha hello csoporttagságot lehet megoldani az megfelelően a következő parancs toosee hello.
 
     id
 
@@ -147,11 +147,11 @@ Egy minta kimenet parancs a következőképpen:
 ![Ellenőrizze a tartományhoz való csatlakozást](./media/active-directory-domain-services-admin-guide/rhel-join-azure-portal-putty-verify-domain-join.png)
 
 ## <a name="troubleshooting-domain-join"></a>Hibaelhárítás a tartományhoz való csatlakozást
-Tekintse meg a [hibaelhárítás tartományhoz való csatlakozást](active-directory-ds-admin-guide-join-windows-vm.md#troubleshooting-domain-join) cikk.
+Tekintse meg a toohello [hibaelhárítás tartományhoz való csatlakozást](active-directory-ds-admin-guide-join-windows-vm.md#troubleshooting-domain-join) cikk.
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 * [Azure AD tartományi szolgáltatások – első lépések útmutató](active-directory-ds-getting-started.md)
-* [Windows Server virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
-* [Bejelentkezés a Linux rendszerű virtuális gép](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* [Csatlakozás egy Windows Server virtuális gép tooan Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
+* [Hogyan toolog a Linux rendszerű virtuális gép tooa](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 * [Kerberos telepítése](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 * [Red Hat Enterprise Linux 7 - Windows-integrációs útmutatója](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)

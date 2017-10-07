@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2016
 ms.author: magoedte
-ms.openlocfilehash: 7c6365b729d73f1c5b9bc57952b1723255d9e9f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 513a90d144e7ade9c21cd7f3b718578989702c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-runbook-worker-a-runbook-job-terminates-with-a-status-of-suspended"></a>Hibrid forgatókönyv-feldolgozó: A runbook egyik feladata Felfüggesztve állapotban fejeződik be
 ## <a name="summary"></a>Összefoglalás
-A runbook hamarosan után kísérel meg végrehajtani, akkor állítsa be háromszor fel van függesztve. Feltételek vonatkoznak, amelyek megszakíthatja a runbook sikeres befejezését, és a kapcsolódó hibaüzenet tartalmazza, amely jelzi, hogy miért további adatokat. Ez a cikk nyújt a hibrid forgatókönyv-feldolgozót a runbook végrehajtása hibákhoz kapcsolódó problémák hibaelhárítási lépéseket.
+A runbook fel van függesztve, hamarosan tooexecute kísérlet után háromszor azt. Feltételek vonatkoznak, amelyek megszakíthatja hello runbook sikeres befejezését, és a kapcsolódó hello hibaüzenet tartalmazza, amely jelzi, hogy miért további adatokat. Ez a cikk hibaelhárítási lépéseket biztosít a problémák kapcsolódó toohello hibrid forgatókönyv-feldolgozó runbook végrehajtása sikertelen.
 
-Ha az Azure nem problémával az ebben a cikkben, látogasson el az Azure-fórumok a [MSDN és a Stack Overflow](https://azure.microsoft.com/support/forums/). A probléma, beküldheti, ezek fórumokban, vagy [ @AzureSupport a Twitteren](https://twitter.com/AzureSupport). Emellett fájlt a az Azure támogatási kérelmet kiválasztásával **segítségre van szüksége** a a [az Azure támogatási](https://azure.microsoft.com/support/options/) hely.
+Ha az Azure nem problémával az ebben a cikkben, látogasson el az Azure-fórumok hello [MSDN és hello a Stack Overflow](https://azure.microsoft.com/support/forums/). A probléma a fórumokban beküldheti vagy túl[ @AzureSupport a Twitteren](https://twitter.com/AzureSupport). Emellett fájlt a az Azure támogatási kérelmet kiválasztásával **segítségre van szüksége** a hello [az Azure támogatási](https://azure.microsoft.com/support/options/) hely.
 
 ## <a name="symptom"></a>Jelenség
-A Runbook végrehajtása sikertelen, és a visszaadott hiba a következő, "a feladat művelete"Aktiválás"Feladatművelet nem futtatható, mert a folyamat váratlanul leállt. A feladat művelet végrehajtására történt kísérlet 3-szor."
+A Runbook végrehajtása sikertelen, és hello hibaüzenet, "hello Feladatművelet"Aktiválás"Feladatművelet nem futtatható, mivel hello folyamat váratlanul leállt. hello feladat művelet végrehajtására történt kísérlet 3-szor."
 
 ## <a name="cause"></a>Ok
-Nincsenek a hiba lehetséges okai: 
+Nincsenek hello hiba lehetséges okai: 
 
-1. A hibrid feldolgozó a proxy vagy az tűzfal mögött van
-2. A hibrid feldolgozó futtató számítógép nem felel meg a minimális hardver [követelmények](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
-3. A runbookok nem tudja hitelesíteni a helyi erőforrások
+1. a proxy vagy az tűzfal mögött van hello hibridfeldolgozó
+2. hello számítógép hello hibridfeldolgozó futó rendelkezik kisebb, mint hello minimális hardver [követelmények](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
+3. runbookokat hello nem tudja hitelesíteni a helyi erőforrások
 
 ## <a name="cause-1-hybrid-runbook-worker-is-behind-proxy-or-firewall"></a>1. ok: Az hibrid forgatókönyv-feldolgozó proxy és tűzfal mögött van.
-A hibrid forgatókönyv-feldolgozó fut a számítógépen van egy tűzfal vagy a proxykiszolgáló mögött, és a kimenő hálózati hozzáférés nem engedélyezett, lehet, illetve megfelelően konfigurálva.
+hello számítógép hello hibrid forgatókönyv-feldolgozó fut egy tűzfal vagy a proxy mögött van, és a kimenő hálózati hozzáférés nem engedélyezett, lehet, illetve megfelelően konfigurálva.
 
 ### <a name="solution"></a>Megoldás
-Ellenőrizze a számítógép rendelkezik-e kimenő hozzáférést *. cloudapp.net 443 9354 és 30000-30199 portokon. 
+Ellenőrizze a hello számítógép rendelkezik-e kimenő hozzáférést too*.cloudapp .net 443 9354 és 30000-30199 portokon. 
 
 ## <a name="cause-2-computer-has-less-than-minimum-hardware-requirements"></a>2. ok: A számítógépben kisebb, mint a minimális hardverkövetelmények
-A hibrid forgatókönyv-feldolgozó futtató számítógépeken meg kell felelnie a minimális hardverkövetelményeknek, ez a szolgáltatás futtatásához kijelölése előtt. Ellenkező esetben az attól függően, hogy az erőforrás-használat más háttérfolyamatot és végrehajtása során runbookok által okozott versengés, a számítógép túlterhelt fog válik, és runbook-feladat késleltetés vagy időtúllépések okozhat. 
+Meg kell felelniük a hibrid forgatókönyv-feldolgozó hello futtató számítógépek hardverre vonatkozó minimális elvárásokat hello toohost kijelölő, mielőtt ezt a szolgáltatást. Ellenkező esetben az hello erőforrás-használat más háttérfolyamatot és versengés okozta a runbookok végrehajtása közben, attól függően, hogy hello számítógép túlterhelt fog válik, és runbook feladat működés lelassulhat, vagy időtúllépés miatt. 
 
 ### <a name="solution"></a>Megoldás
-Először ellenőrizze a hibrid forgatókönyv-feldolgozó szolgáltatás futtatására kijelölt számítógép megfelel a minimális hardverkövetelményeknek.  Ha igen, figyelheti a Processzor- és memóriafelhasználását a hibrid forgatókönyv-feldolgozó folyamat teljesítményét és a Windows között a korrelációs meghatározásához.  Ha memória vagy a CPU-terhelés, jelezheti, hogy a szükséges frissítése vagy további processzorok hozzáadásával, vagy növelje a memória erőforrás szűk cím, és hárítsa el a hibát. Azt is megteheti válassza ki a különböző számítási erőforrása, amely támogathatja a minimális követelményeknek és a skála, ha terheléshez növelését szükség.         
+Először ellenőrizze a kijelölt toorun hello hibrid forgatókönyv-feldolgozó szolgáltatás hello számítógép megfelel-e hello hardverre vonatkozó minimális elvárásokat.  Ha igen, figyelheti CPU és memória kihasználtsága toodetermine bármely korrelációs hibrid forgatókönyv-feldolgozó folyamat hello teljesítményét és a Windows között.  Ha memória vagy a CPU-terhelés, ez lehetséges, hogy hello kell tooupgrade jelzik, vagy további processzorok hozzáadásával, vagy növelje memória tooaddress erőforrás szűk hello és hello hiba megoldásához. Azt is megteheti válassza ki a különböző számítási erőforrása, amely támogatja a hello minimális követelményeknek, és ha terheléshez jelezheti növelését szükséges.         
 
 ## <a name="cause-3-runbooks-cannot-authenticate-with-local-resources"></a>3. ok: A Runbookok nem tudják hitelesíteni magukat a helyi erőforrások
 ### <a name="solution"></a>Megoldás
-Ellenőrizze a **Microsoft-SMA** egy kapcsolódó esemény leírása az eseménynaplóban *Win32 a folyamat kilépett a következő kód [4294967295]*.  Ez a hiba oka még nem konfigurált hitelesítési a runbookok vagy a hibrid feldolgozócsoport a futtató hitelesítő adatokat adott.  Tekintse át [Runbookokra vonatkozó engedélyek](automation-hybrid-runbook-worker.md#runbook-permissions) a runbookok megfelelően konfigurált hitelesítési megerősítéséhez.  
+Ellenőrizze a hello **Microsoft-SMA** egy kapcsolódó esemény leírása az eseménynaplóban *Win32 a folyamat kilépett a következő kód [4294967295]*.  hello Ez a hiba oka még nem konfigurált hitelesítési a runbookok vagy hello futtató hitelesítő adatokat adott hello hibrid feldolgozócsoport számára.  Tekintse át [Runbookokra vonatkozó engedélyek](automation-hybrid-runbook-worker.md#runbook-permissions) a runbookok megfelelően konfigurált hitelesítési tooconfirm.  
 

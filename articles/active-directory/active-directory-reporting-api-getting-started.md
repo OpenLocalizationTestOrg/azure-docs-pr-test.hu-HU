@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD reporting API a klasszikus Azure AD portálon az első lépések |} Microsoft Docs"
-description: "Ismerkedés az Azure Active Directory reporting API-val"
+title: "aaaGetting hello Azure AD jelentéskészítési API hello Azure AD-klasszikus portál használatába |} Microsoft Docs"
+description: "Hogyan tooget használatába hello Azure Active Directory reporting API-val"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/18/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 5e98b660fe19bb8abebf1c3b996b6295a6c4e728
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 52e22d442650731fc6ed28991fc65f9182af0540
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-started-with-the-azure-active-directory-reporting-api-on-the-azure-ad-classic-portal"></a>Az Azure Active Directory reporting API-val a klasszikus Azure AD portálon az első lépések
-*Ez a témakör része a [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).*
+# <a name="getting-started-with-hello-azure-active-directory-reporting-api-on-hello-azure-ad-classic-portal"></a>Ismerkedés az Azure Active Directory reporting API-val az Azure AD hello klasszikus portál hello
+*Ez a témakör hello része [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).*
 
-Az Azure Active Directory tartalmazza a különféle jelentések. Ezen jelentések adatai nagyon hasznosak lehetnek az alkalmazások számára, például a SIEM rendszerekhez, a naplózáshoz és az üzleti intelligencia eszközökhöz. Az Azure AD-jelentéskészítés API-k REST-alapú API-kon keresztül biztosítják az adatok szoftveres hozzáférését. Különböző programnyelvekkel és eszközökkel hívhatja ezeket az API-kat.
+Az Azure Active Directory tartalmazza a különféle jelentések. Ezek a jelentések adatainak hello lehet nagyon hasznos tooyour alkalmazások, például a SIEM rendszerek, naplózási és üzleti intelligencia eszközök. hello Azure AD jelentéskészítési API-k olyan programozott hozzáférés toohello adatokat REST-alapú API-készlet. Különböző programnyelvekkel és eszközökkel hívhatja ezeket az API-kat.
 
-Ez a cikk azt ismerteti a kell Ismerkedés az Azure AD reporting API-k.
-A következő szakaszban hogy a naplózás használatával kapcsolatos további részletekért és jelentkezzen be API-k. Minden más API-k esetében, tekintse meg a [az Azure AD-jelentéseket és events(preview)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-reports-and-events-preview) cikk.
+Ez a cikk azt ismerteti hello hello Azure AD reporting használatába tooget szükséges API-k.
+Hello a következő szakaszban található a további tudnivalók a hello naplózási és jelentkezzen be API-k. Minden más API-k esetében, tekintse meg a hello [az Azure AD-jelentéseket és events(preview)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-reports-and-events-preview) cikk.
 
 Kérdéseit, vagy visszajelzést, lépjen kapcsolatba [AAD jelentéskészítési súgó](mailto:aadreportinghelp@microsoft.com).
 
 ## <a name="learning-map"></a>Tanulási térkép
-1. **Készítse elő** -előtt tesztelheti az API-mintákat, végre kell hajtania a [Előfeltételek az Azure AD reporting API eléréséhez](active-directory-reporting-api-prerequisites.md).
-2. **Fedezze fel** -jelentéskészítési API-k első benyomást beolvasása:
+1. **Készítse elő** -tesztelheti az API-mintákat, jóvá kell toocomplete hello [Előfeltételek tooaccess hello Azure AD jelentéskészítési API](active-directory-reporting-api-prerequisites.md).
+2. **Fedezze fel** -hello reporting API-k első benyomást kell szereznie:
    
-   * [A mintákat a ellenőrzési API használatával](active-directory-reporting-api-audit-samples.md) 
-   * [A mintákat a bejelentkezési tevékenység jelentés API használatával](active-directory-reporting-api-sign-in-activity-samples.md)
+   * [Hello minták hello ellenőrzési API használatával](active-directory-reporting-api-audit-samples.md) 
+   * [Hello minták használatával hello bejelentkezési tevékenység jelentés API-hoz.](active-directory-reporting-api-sign-in-activity-samples.md)
 3. **Testre szabhatja** -saját megoldás létrehozása: 
    
-   * [A naplózási API-hivatkozás használata](active-directory-reporting-api-audit-reference.md) 
-   * [A bejelentkezési tevékenység jelentéshivatkozás API használatával](active-directory-reporting-api-sign-in-activity-reference.md)
+   * [Hello naplózási API-hivatkozás használata](active-directory-reporting-api-audit-reference.md) 
+   * [Hello bejelentkezési tevékenység jelentés segítségével API-referencia](active-directory-reporting-api-sign-in-activity-reference.md)
 
 ## <a name="next-steps"></a>Következő lépések
-Ha fejezetét láthatja az összes elérhető Azure AD Graph API végpontjainak útvonalon [https://graph.windows.net/tenant-name/reports/$ metaadatok? api-version = beta](https://graph.windows.net/tenant-name/reports/$metadata?api-version=beta).
+Ha kíváncsi toosee összes hello túl útvonalon elérhető Azure AD Graph API-végpontok[https://graph.windows.net/tenant-name/reports/$ metaadatok? api-version = beta](https://graph.windows.net/tenant-name/reports/$metadata?api-version=beta).
 

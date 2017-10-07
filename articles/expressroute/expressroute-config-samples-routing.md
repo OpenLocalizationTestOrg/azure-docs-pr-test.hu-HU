@@ -1,5 +1,5 @@
 ---
-title: "ExpressRoute ügyfél útválasztó konfigurációs minták |} Microsoft Docs"
+title: "aaaExpressRoute ügyfél útválasztó konfigurációs minták |} Microsoft Docs"
 description: "Ezen a lapon útválasztó config minták biztosít a Cisco és a Juniper útválasztó."
 documentationcenter: na
 services: expressroute
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
-ms.openlocfilehash: 032e584dc5abf59e9e3e8d80673b402f1fbf721b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c91f24e6082e01c3e8df91b4fcfda46a6c29fa8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="router-configuration-samples-to-set-up-and-manage-routing"></a>Útválasztó beállítása és kezelése az útválasztási konfigurációs minták
-Ezen a lapon Cisco IOS-XE és a Juniper MX adatsorozat útválasztók felületet és útválasztási konfigurációs minták biztosít. Ezek a minták csak útmutatót kell, és nem kell használni, mert a. A gyártó, így kapja meg a hálózat megfelelő konfigurációi dolgozhat. 
+# <a name="router-configuration-samples-tooset-up-and-manage-routing"></a>Útválasztó-konfigurálási tooset minták fel, és útválasztási kezelése
+Ezen a lapon Cisco IOS-XE és a Juniper MX adatsorozat útválasztók felületet és útválasztási konfigurációs minták biztosít. Ezek tervezett toobe minták csak tájékoztatásra szolgálnak, és nem kell használni, mert a. Dolgozhat a szállító toocome a megfelelő konfigurációival a hálózathoz. 
 
 > [!IMPORTANT]
-> Ezen a lapon minták célja, hogy pusztán az útmutatást kell. A gyártója által biztosított értékesítés / műszaki adapterek és a hálózati így kapja meg az igényeinek megfelelő konfigurációt kell dolgozni. A Microsoft nem támogatja a beállításokat ezen a lapon szereplő kapcsolatos problémákat. Támogatási kérdéseivel forduljon az eszköz gyártója.
+> Ezen a lapon minta értéke tervezett toobe tisztán vonatkozó útmutatást. Kérje a gyártója által biztosított értékesítés / technikai csapat és a hálózati csoport toocome be a megfelelő konfigurációk toomeet igényeinek. A Microsoft nem fogja támogatni a problémák kapcsolódó tooconfigurations ezen a lapon szerepel. Támogatási kérdéseivel forduljon az eszköz gyártója.
 > 
 > 
 
 ## <a name="mtu-and-tcp-mss-settings-on-router-interfaces"></a>Útválasztó-kapcsolatokon MTU-beállítása és TCP MSS beállításai
-* A MTU-beállítása, a ExpressRoute kapcsolat 1500, a tipikus alapértelmezett MTU-beállítása az Ethernet-adapter egy útválasztón. Az útválasztó alapértelmezés szerint van egy másik MTU-beállítása, hacsak nincs szükség az érték határozza meg az útválasztó-illesztő.
-* Az Azure VPN Gateway eltérően a TCP MSS ExpressRoute-kör nem kell megadni.
+* hello ExpressRoute kapcsolat MTU-beállítása hello érték 1500, amely hello alapértelmezett MTU-beállítása az Ethernet-adapter útválasztó. Az útválasztó alapértelmezés szerint van egy másik MTU-beállítása, hacsak nincs nincs szükség toospecify értéket hello útválasztó illesztő.
+* Az Azure VPN Gateway eltérően hello TCP MSS ExpressRoute-kör nem kell megadott toobe.
 
-Útválasztó-konfiguráció minták az alábbi összes esetében érvényesek. Felülvizsgálati [ExpressRoute-társviszony](expressroute-circuit-peerings.md) és [ExpressRoute útválasztási követelmények](expressroute-routing.md) útválasztási olvashat.
+Útválasztó-konfiguráció minták az alábbi tooall esetében érvényesek. Felülvizsgálati [ExpressRoute-társviszony](expressroute-circuit-peerings.md) és [ExpressRoute útválasztási követelmények](expressroute-routing.md) útválasztási olvashat.
 
 
 ## <a name="cisco-ios-xe-based-routers"></a>Cisco IOS-XE-alapú útválasztók
-Ebben a szakaszban a minták bármely útválasztóját az IOS-XE operációsrendszer-család érvényes.
+Ebben a szakaszban hello minták bármely útválasztóját hello IOS-XE operációsrendszer-család érvényes.
 
 ### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1. És alárendelt kapcsolatain konfigurálása
-Szüksége lesz egy sub felületet / minden útválasztót csatlakozhat a Microsoft társviszony-létesítés. Egy sub felületet azonosítható a VLAN-azonosító vagy halmozott két virtuális helyi hálózati azonosítókat és az IP-címet.
+Szüksége lesz egy sub felületet / társviszony-létesítés minden útválasztót, csatlakozás tooMicrosoft. Egy sub felületet azonosítható a VLAN-azonosító vagy halmozott két virtuális helyi hálózati azonosítókat és az IP-címet.
 
 **Dot1Q felületdefiníció**
 
-Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felület az egyetlen VLAN-azonosítót. A VLAN-azonosító minden társviszony-létesítés egyedi. Az IPv4-cím utolsó oktettje mindig lesz páratlan szám.
+Ez a minta nyújt hello alárendelt felületdefiníció egy alárendelt felület az egyetlen VLAN-azonosítót. hello VLAN-azonosító minden társviszony-létesítés egyedi. az IPv4-cím utolsó oktettje hello mindig lesz páratlan szám.
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <VLAN_ID>
@@ -51,14 +51,14 @@ Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felüle
 
 **QinQ felületdefiníció**
 
-Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felület egy két virtuális helyi hálózati azonosítóval. A külső VLAN-azonosító (s-címke), ha változatlan marad, a társviszony között. A belső VLAN-azonosító (c-címke) társviszony-létesítés minden egyedi. Az IPv4-cím utolsó oktettje mindig lesz páratlan szám.
+Ez a minta alárendelt felületdefiníció hello két VLAN-azonosítók egy alárendelt felületet biztosít. külső VLAN-azonosító (s-címke), ha a használt marad hello hello azonos közötti összes hello esetében. hello belső a VLAN-azonosító (c-címke) társviszony-létesítés minden egyedi. az IPv4-cím utolsó oktettje hello mindig lesz páratlan szám.
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <s-tag> seconddot1Q <c-tag>
      ip address <IPv4_Address><Subnet_Mask>
 
 ### <a name="2-setting-up-ebgp-sessions"></a>2. EBGP munkamenetek beállítása
-Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-létesítéshez. Az alábbi minta egy BGP-munkamenetet a Microsoft telepítési teszi lehetővé. Ha a sub felület használt IPv4-cím volt a.b.c.d, az IP-címet a BGP szomszéd (Microsoft) nem a.b.c.d+1. A BGP szomszéd IPv4-cím utolsó oktettje mindig lesz páros szám.
+Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-létesítéshez. hello minta az alábbi lehetővé teszi a BGP-munkamenetet a Microsoft toosetup. Ha a sub felület használt IPv4-cím hello a.b.c.d volt, akkor hello IP-cím hello BGP szomszéd (Microsoft) a.b.c.d+1 lesz. utolsó oktettje hello hello BGP szomszéd IPv4-cím mindig lesz páros szám.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -69,8 +69,8 @@ Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-l�
      exit-address-family
     !
 
-### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3. A BGP-munkameneten keresztül hirdetését előtagok beállítása
-Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az alábbi minta.
+### <a name="3-setting-up-prefixes-toobe-advertised-over-hello-bgp-session"></a>3. Hello BGP keresztüli meghirdetett előtagok toobe beállítása
+Az útválasztó tooadvertise válassza előtagok tooMicrosoft konfigurálhatja. Így az alábbi példa használatával hello teheti meg.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -83,7 +83,7 @@ Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az 
     !
 
 ### <a name="4-route-maps"></a>4. Útvonal-leképezések
-Útvonal-leképezések is használhat, és előtag sorolja fel, a szűrő-előtagok a hálózaton történő propagálása. Az alábbi minta segítségével a feladatnak. Győződjön meg arról, hogy rendelkezik a megfelelő előtaggal listák beállítása.
+Útvonal-leképezések is használhat, és előtag a hálózaton történő propagálása toofilter előtagok sorolja fel. Hello mintát tooaccomplish hello feladat alatt is használhatja. Győződjön meg arról, hogy rendelkezik a megfelelő előtaggal listák beállítása.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -101,13 +101,13 @@ Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az 
 
 
 ## <a name="juniper-mx-series-routers"></a>Juniper MX adatsorozat útválasztók
-Ebben a szakaszban a minták Juniper MX adatsorozat útválasztókkal érvényes.
+Ebben a szakaszban hello minták Juniper MX adatsorozat útválasztókkal érvényes.
 
 ### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1. És alárendelt kapcsolatain konfigurálása
 
 **Dot1Q felületdefiníció**
 
-Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felület az egyetlen VLAN-azonosítót. A VLAN-azonosító minden társviszony-létesítés egyedi. Az IPv4-cím utolsó oktettje mindig lesz páratlan szám.
+Ez a minta nyújt hello alárendelt felületdefiníció egy alárendelt felület az egyetlen VLAN-azonosítót. hello VLAN-azonosító minden társviszony-létesítés egyedi. az IPv4-cím utolsó oktettje hello mindig lesz páratlan szám.
 
     interfaces {
         vlan-tagging;
@@ -124,7 +124,7 @@ Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felüle
 
 **QinQ felületdefiníció**
 
-Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felület egy két virtuális helyi hálózati azonosítóval. A külső VLAN-azonosító (s-címke), ha változatlan marad, a társviszony között. A belső VLAN-azonosító (c-címke) társviszony-létesítés minden egyedi. Az IPv4-cím utolsó oktettje mindig lesz páratlan szám.
+Ez a minta alárendelt felületdefiníció hello két VLAN-azonosítók egy alárendelt felületet biztosít. külső VLAN-azonosító (s-címke), ha a használt marad hello hello azonos közötti összes hello esetében. hello belső a VLAN-azonosító (c-címke) társviszony-létesítés minden egyedi. az IPv4-cím utolsó oktettje hello mindig lesz páratlan szám.
 
     interfaces {
         <Interface_Number> {
@@ -139,7 +139,7 @@ Ez a minta biztosítja a alárendelt felületdefiníció egy alárendelt felüle
     }                           
 
 ### <a name="2-setting-up-ebgp-sessions"></a>2. EBGP munkamenetek beállítása
-Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-létesítéshez. Az alábbi minta egy BGP-munkamenetet a Microsoft telepítési teszi lehetővé. Ha a sub felület használt IPv4-cím volt a.b.c.d, az IP-címet a BGP szomszéd (Microsoft) nem a.b.c.d+1. A BGP szomszéd IPv4-cím utolsó oktettje mindig lesz páros szám.
+Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-létesítéshez. hello minta az alábbi lehetővé teszi a BGP-munkamenetet a Microsoft toosetup. Ha a sub felület használt IPv4-cím hello a.b.c.d volt, akkor hello IP-cím hello BGP szomszéd (Microsoft) a.b.c.d+1 lesz. utolsó oktettje hello hello BGP szomszéd IPv4-cím mindig lesz páros szám.
 
     routing-options {
         autonomous-system <Customer_ASN>;
@@ -154,8 +154,8 @@ Be kell állítania egy BGP-munkamenetet a Microsoft az a minden társviszony-l�
         }                                   
     }
 
-### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3. A BGP-munkameneten keresztül hirdetését előtagok beállítása
-Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az alábbi minta.
+### <a name="3-setting-up-prefixes-toobe-advertised-over-hello-bgp-session"></a>3. Hello BGP keresztüli meghirdetett előtagok toobe beállítása
+Az útválasztó tooadvertise válassza előtagok tooMicrosoft konfigurálhatja. Így az alábbi példa használatával hello teheti meg.
 
     policy-options {
         policy-statement <Policy_Name> {
@@ -180,7 +180,7 @@ Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az 
 
 
 ### <a name="4-route-maps"></a>4. Útvonal-leképezések
-Útvonal-leképezések is használhat, és előtag sorolja fel, a szűrő-előtagok a hálózaton történő propagálása. Az alábbi minta segítségével a feladatnak. Győződjön meg arról, hogy rendelkezik a megfelelő előtaggal listák beállítása.
+Útvonal-leképezések is használhat, és előtag a hálózaton történő propagálása toofilter előtagok sorolja fel. Hello mintát tooaccomplish hello feladat alatt is használhatja. Győződjön meg arról, hogy rendelkezik a megfelelő előtaggal listák beállítása.
 
     policy-options {
         prefix-list MS_Prefixes {
@@ -210,5 +210,5 @@ Az útválasztót Microsoft válassza előtagok hivatkozik. Ehhez használja az 
     }
 
 ## <a name="next-steps"></a>Következő lépések
-További részletek: [ExpressRoute FAQ](expressroute-faqs.md) (ExpressRoute – gyakori kérdések).
+Lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md) további részleteket.
 

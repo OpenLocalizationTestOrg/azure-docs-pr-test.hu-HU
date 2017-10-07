@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions használatával egy kiszolgáló nélküli API létrehozása |} Microsoft Docs"
-description: "Az Azure Functions használatával egy kiszolgáló nélküli API létrehozása"
+title: "az Azure Functions használatával egy kiszolgáló nélküli API aaaCreate |} Microsoft Docs"
+description: "Hogyan toocreate egy kiszolgáló nélküli API-t az Azure Functions használatával"
 services: functions
 author: mattchenderson
 manager: erikre
@@ -11,43 +11,43 @@ ms.topic: tutorial
 ms.date: 05/04/2017
 ms.author: mahender
 ms.custom: mvc
-ms.openlocfilehash: 28056a385b058f7daeca2253ccb304116b49eba0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 877e3b229d5477fc5fec594ccd284fb55d7f3c07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-serverless-api-using-azure-functions"></a>Az Azure Functions használatával egy kiszolgáló nélküli API létrehozása
 
-Ebből az oktatóanyagból megtudhatja, hogyan Azure Functions lehetővé teszi a magas szinten méretezhető API-k létrehozásához. Az Azure Functions számos beépített HTTP eseményindítók és kötések, amely megkönnyíti a különböző nyelveken, beleértve a Node.JS, a C#, és több végpont szerzői gyűjteménye. Ebben az oktatóanyagban testre fogja szabni a konkrét műveletek az API kialakításában kezelni egy HTTP-eseményindítóval. Is előkészítheti a növekvő az API integrálása az Azure Functions proxyk és utánzatait API-k beállítása. Mindez érhető el, a funkciók kiszolgáló nélküli számítási környezet felett, nem kell foglalkoznia az erőforrások skálázás – a API logika csak összpontosíthat.
+Ebből az oktatóanyagból megtudhatja, hogyan Azure Functions lehetővé teszi a toobuild kiválóan méretezhető API-k. Az Azure Functions rendelkezik beépített HTTP eseményindítók és kötések, amelyek révén könnyen tooauthor gyűjteménye a különböző nyelveken, beleértve a Node.JS, a C#, és több végpont. Ebben az oktatóanyagban testre fogja szabni egy HTTP eseményindító toohandle konkrét műveletek az API kialakításában. Is előkészítheti a növekvő az API integrálása az Azure Functions proxyk és utánzatait API-k beállítása. Mindez valósítható meg hello funkciók kiszolgáló nélküli számítási környezet felett, erőforrások méretezésével kapcsolatos tooworry nincs – a API logika csak összpontosíthat.
 
 ## <a name="prerequisites"></a>Előfeltételek 
 
 [!INCLUDE [Previous quickstart note](../../includes/functions-quickstart-previous-topics.md)]
 
-Az eredményül kapott funkció ebben az oktatóanyagban a többi fog történni.
+Ez az oktatóanyag hello részeinek hello eredményül kapott függvény fog történni.
 
-### <a name="sign-in-to-azure"></a>Bejelentkezés az Azure-ba
+### <a name="sign-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Nyissa meg az Azure-portálon. Ehhez jelentkezzen be [https://portal.azure.com](https://portal.azure.com) fel fiókjával.
+Nyissa meg hello Azure-portálon. toodo, jelentkezzen be a túl[https://portal.azure.com](https://portal.azure.com) fel fiókjával.
 
 ## <a name="customize-your-http-function"></a>A HTTP-funkció testreszabása
 
-Alapértelmezés szerint a HTTP-eseményindítóval aktivált függvény HTTP-metódus elfogadására van konfigurálva. Emellett van alapértelmezett URL-cím a `http://<yourapp>.azurewebsites.net/api/<funcname>?code=<functionkey>`. Ha a gyors üzembe helyezés, majd követi `<funcname>` valószínűleg valahogy "HttpTriggerJS1". Ebben a szakaszban módosítani fogja a függvény csak a GET kérelmek elleni megválaszolásához `/api/hello` útvonal helyett. 
+Alapértelmezés szerint a HTTP-eseményindítóval aktivált függvény konfigurált tooaccept HTTP-metódus. Emellett van alapértelmezett URL-cím hello `http://<yourapp>.azurewebsites.net/api/<funcname>?code=<functionkey>`. Ha hello gyors üzembe helyezés, majd követi `<funcname>` valószínűleg valahogy "HttpTriggerJS1". Ebben a szakaszban hello függvény toorespond csak tooGET kéréseket a meghatározott módosítja `/api/hello` útvonal helyett. 
 
-Nyissa meg a függvény az Azure portálon. Válassza ki **integráció** a bal oldali navigációs.
+Keresse meg a hello Azure-portálon tooyour függvényt. Válassza ki **integráció** a bal oldali navigációs hello.
 
 ![Egy HTTP-funkció testreszabása](./media/functions-create-serverless-api/customizing-http.png)
 
-A HTTP-eseményindító beállításokat használják a táblázatban megadott.
+Használja a HTTP-eseményindító beállítások hello táblázatban megadottak szerint.
 
 | Mező | Mintaérték | Leírás |
 |---|---|---|
-| Engedélyezett HTTP-metódusok | A kijelölt metódusok | Meghatározza, hogy mely HTTP-metódus is használható a függvény meghívása |
-| A kijelölt HTTP-metódusok | GET | Lehetővé teszi, hogy csak a kijelölt HTTP metódusok használandó, a függvény meghívása |
-| Útvonal-sablon | hello | Meghatározza, hogy milyen útvonalat használ a függvény meghívása |
+| Engedélyezett HTTP-metódusok | A kijelölt metódusok | Meghatározza, hogy mely HTTP-metódus lehet használt tooinvoke ezt a függvényt |
+| A kijelölt HTTP-metódusok | GET | Lehetővé teszi, hogy csak kijelölt HTTP módszerek toobe tooinvoke e funkció használata |
+| Útvonal-sablon | hello | Meghatározza, hogy milyen útvonal használt tooinvoke ezt a függvényt |
 
-Vegye figyelembe, hogy Ön nem foglal a `/api` kiinduló az útvonalsablonhoz elérési előtagot, mivel ez egy globális beállítás kezeli.
+Vegye figyelembe, hogy Ön nem foglal hello `/api` kiinduló hello útvonalsablonhoz, elérési út előtagot, mivel ez egy globális beállítás kezeli.
 
 Kattintson a **Save** (Mentés) gombra.
 
@@ -55,84 +55,84 @@ A HTTP-funkciók testreszabása többet is megtudhat [Azure Functions HTTP és a
 
 ### <a name="test-your-api"></a>Az API-teszt
 
-Ezt követően tesztelje meg szeretné tekinteni, az új API felület használata a függvénynek.
+A következő tesztelheti a függvény toosee hello új API felület használata.
 
-Lépjen vissza a fejlesztési lapon kattintson a bal oldali navigációs a függvény nevét.
+Keresse meg a visszafelé toohello fejlesztési lap bal oldali navigációs hello hello függvény nevére kattintva.
 
-Kattintson a **függvény URL-cím beszerzése** és másolja az URL-címet. Láthatja, hogy használja a `/api/hello` címre.
+Kattintson a **függvény URL-cím beszerzése** és hello URL-Címének másolása. Láthatja, hogy az általa használt hello `/api/hello` címre.
 
-Másolja az URL-címet egy új böngészőlapon vagy a kívánt REST-ügyfél. Böngészők alapértelmezés szerint fogja használni a GET.
+Hello URL-cím másolása egy új böngészőlapon vagy a kívánt REST-ügyfél. Böngészők alapértelmezés szerint fogja használni a GET.
 
-A funkció futtatásához, és győződjön meg arról, hogy működik. Adja meg a "név" paraméternek a gyors üzembe helyezés kód kielégítéséhez lekérdezési karakterláncként szeretne.
+Hello funkció futtatását, és győződjön meg arról, hogy működik. Szükség lehet tooprovide hello "név" paraméternek meg egy lekérdezési karakterlánc toosatisfy hello gyors üzembe helyezés.
 
-A végpont meghívása a megerősítéséhez, hogy a függvény nem hajtotta végre egy másik HTTP-metódussal is próbálkozhat. Ehhez szüksége lesz egy REST-ügyfél, például a cURL, a Postman vagy a Fiddler használata.
+A HTTP-metódus egy másik tooconfirm hello függvény végrehajtása nem hello-végpont meghívása is próbálkozhat. Ehhez szüksége lesz egy, a többi ügyfél, például cURL, a Postman vagy a Fiddler toouse.
 
 ## <a name="proxies-overview"></a>Proxyk áttekintése
 
-A következő szakaszban az API-proxyn keresztül fog surface. Az Azure Functions proxyk, amely lehetővé teszi a kérelmek továbbítása más erőforrások előzetes verziójú funkciók. Ugyanúgy, mint a HTTP-eseményindítóval, de kódot mikor hajthat végre ahelyett, hogy a végpont neve HTTP végpont meghatározása, megadja a távoli megvalósításának URL-CÍMÉT. Ez lehetővé teszi, hogy több API-forrás írja be az ügyfelek használhatnak könnyen egyetlen API felülete. Ez különösen fontos, ha az API-t, mikroszolgáltatások létrehozására.
+Hello a következő szakaszban az API-proxyn keresztül fog surface. Az Azure Functions proxyk, amely lehetővé teszi tooforward kérelmek tooother erőforrások előzetes verziójú funkciók. Adhat meg egy HTTP-végpont például csak a HTTP-eseményindítóval, de ahelyett kód tooexecute adott végpontra metódus meghívásakor, akkor implementálásához URL-cím tooa távoli. Ez lehetővé teszi több API forrásokból történő egyetlen API felülete, amelyek segítségével az ügyfelek tooconsume toocompose. Ez különösen fontos, ha toobuild mikroszolgáltatások létrehozására, az API-t.
 
-A proxy, mint a HTTP-erőforrás mutathat:
+Egy is proxypont tooany HTTP erőforrás, például:
 - Azure Functions 
 - Az API-alkalmazások [az Azure App Service](https://docs.microsoft.com/azure/app-service/app-service-value-prop-what-is)
 - A docker-tároló [Linux App Service](https://docs.microsoft.com/azure/app-service/app-service-linux-readme)
 - Más üzemeltetett API-k
 
-Proxyk kapcsolatos további információkért lásd: [használata az Azure Functions proxyk (előzetes verzió)].
+toolearn proxykat, kapcsolatos további információkért lásd: [használata az Azure Functions proxyk (előzetes verzió)].
 
 ## <a name="create-your-first-proxy"></a>Az első proxy létrehozása
 
-Ebben a szakaszban egy új proxy, amely az általános API-nak időtúllépést hoz létre. 
+Ez a szakasz hoz létre egy új proxy mely szolgál, egy előtér-tooyour általános API. 
 
-### <a name="setting-up-the-frontend-environment"></a>Az előtér-környezet létrehozása
+### <a name="setting-up-hello-frontend-environment"></a>Hello előtér környezet beállítása
 
-Ismételje meg a [függvény-alkalmazás létrehozása](https://docs.microsoft.com/azure/azure-functions/functions-create-first-azure-function#create-a-function-app) függvény a proxy hoz létre új alkalmazás létrehozása. Az új alkalmazás erre a célra a frontend az API-hoz, és a korábban Szerkesztés függvény alkalmazás erre a célra egy háttér.
+Ismételje meg a hello túl[függvény-alkalmazás létrehozása](https://docs.microsoft.com/azure/azure-functions/functions-create-first-azure-function#create-a-function-app) toocreate egy új funkció alkalmazást a amely hoz létre a proxy. Az új alkalmazás erre a célra hello előtér az API-hoz, és korábban Szerkesztés hello függvény alkalmazás erre a célra egy háttér.
 
-Nyissa meg az új előtér függvény alkalmazás a portálon.
+Keresse meg a tooyour új előtér függvény app hello portálon.
 
-Válassza ki **beállítások**. Majd átváltása **engedélyezése Azure Functions proxyk (előzetes verzió)** "A" számára.
+Válassza ki **beállítások**. Majd átváltása **engedélyezése Azure Functions proxyk (előzetes verzió)** túl "a".
 
 Válassza ki **Platform beállítások** válassza **Alkalmazásbeállítások**.
 
-Görgessen le a **Alkalmazásbeállítások** , és hozzon létre egy új beállítás "HELLO_HOST" kulcs. Állítsa be az értékét, mint a háttéralkalmazás függvény alkalmazáshoz, a gazdagép `<YourApp>.azurewebsites.net`. Ez a korábban kimásolt a HTTP-függvény tesztelése során URL-cím része. Ez a beállítás később a konfigurációban kell hivatkozik.
+Görgessen lefelé, túl**Alkalmazásbeállítások** , és hozzon létre egy új beállítás "HELLO_HOST" kulcs. Állítsa be a háttérkiszolgáló függvény alkalmazáshoz, a érték toohello gazdagépe pl. `<YourApp>.azurewebsites.net`. Ez már korábban átmásolt a HTTP-függvény tesztelése során hello URL-cím része. Ezt a beállítást később hello konfigurációban fog hivatkozni.
 
 > [!NOTE] 
-> Alkalmazásbeállítások a gazdagép konfigurációja a proxy-sablonja környezet függőség megelőzése érdekében ajánlott. Alkalmazásbeállítások használata azt jelenti, hogy a proxy konfigurációs áthelyezheti különböző környezetek között, a környezet-specifikus alkalmazás beállítások lesznek alkalmazva.
+> Alkalmazásbeállítások ajánlottak hello gazdagép konfigurációs tooprevent hello proxy kódolt környezet függőségei. Alkalmazásbeállítások használata azt jelenti, hogy hello proxykonfigurációt áthelyezheti különböző környezetek között, hello környezetfüggő app beállítások lesznek alkalmazva.
 
 Kattintson a **Save** (Mentés) gombra.
 
-### <a name="creating-a-proxy-on-the-frontend"></a>Az előtér egy proxy létrehozása
+### <a name="creating-a-proxy-on-hello-frontend"></a>A proxy hello előtér létrehozása
 
-Lépjen vissza az előtér-függvény alkalmazás a portálon.
+Lépjen vissza tooyour előtér függvény app hello portálon.
 
-A bal oldali navigációs, kattintson a plusz jelre "+" "Proxyk (előzetes verzió)" mellett.
+Hello bal oldali navigációs, kattintson a plusz jelre "+" következő hello túl "Proxyk (előzetes verzió)".
 
 ![A proxy létrehozása](./media/functions-create-serverless-api/creating-proxy.png)
 
-A táblázatban megadott proxybeállításainak használata.
+Proxybeállításainak használata hello táblázatban megadottak szerint.
 
 | Mező | Mintaérték | Leírás |
 |---|---|---|
 | Név | HelloProxy | Rövid név csak olyan felügyeleti |
-| Útvonal-sablon | / api/hello | Meghatározza, hogy milyen útvonalat használ a proxy meghívása |
-| Háttérkiszolgáló URL-címe | https://%HELLO_HOST%/API/hello | Megadja a végpontot, amelyhez a kérés küldése a proxyn keresztül kell lennie |
+| Útvonal-sablon | / api/hello | Meghatározza, hogy milyen útvonal használt tooinvoke a proxy |
+| Háttérkiszolgáló URL-címe | https://%HELLO_HOST%/API/hello | Megadja a hello végpont toowhich hello kérelem küldése a proxyn keresztül kell lennie. |
 
-Vegye figyelembe, hogy proxyk nem biztosít a `/api` alap elérési útja előtag, és ez az útvonalsablonhoz szerepelnie kell.
+Ne feledje, hogy a proxyk nem nyújtanak hello `/api` alap elérési útja előtag és a hello útvonalsablonhoz szerepelnie kell.
 
-A `%HELLO_HOST%` szintaxis használatával a korábban létrehozott Alkalmazásbeállítás hivatkozik. A feloldott URL-címet az eredeti funkciókat mutasson.
+Hello `%HELLO_HOST%` szintaxis használatával a korábban létrehozott hello Alkalmazásbeállítás hivatkozik. hello megoldás URL-címet fog mutatni tooyour eredeti funkciókat.
 
 Kattintson a **Create** (Létrehozás) gombra.
 
-Az új proxy kipróbálhatja a proxykiszolgáló URL-cím másolásával és a vizsgálja, hogy a böngészőben, vagy a kedvenc HTTP-ügyféllel.
+Az új proxy kipróbálhatja hello Proxy URL-cím másolásával és a tesztelés hello böngészőben vagy a kedvenc HTTP-ügyféllel.
 
 ## <a name="create-a-mock-api"></a>Egy utánzatait API létrehozása
 
-A következő szüksége lesz egy proxy utánzatait API a megoldás létrehozásához. Ez lehetővé teszi, hogy folyamatban van, az ügyféloldali fejlesztés anélkül, hogy a háttér teljes végrehajtását. Később a fejlesztési hozzon létre egy új függvény alkalmazást, amely támogatja a logikai és a proxy átirányítása sikerült.
+A proxy toocreate utánzatait API a következő megoldást fogja használni. Ez lehetővé teszi az ügyfél fejlesztési tooprogress, anélkül, hogy teljesen végre hello háttér. Később a fejlesztési hozzon létre egy új függvény alkalmazást, amely támogatja a logikai és a proxy tooit átirányítási sikerült.
 
-Az utánzatait API létrehozásához létrehozunk egy új proxyt a használatával a [App Service-szerkesztő](https://github.com/projectkudu/kudu/wiki/App-Service-Editor). Először keresse meg a függvény app a portálon. Válassza ki **Platform funkciói** és található **App Service-szerkesztő**. A hivatkozásra kattintva az megnyílik az App Service-szerkesztő új ablakban.
+toocreate ez mock API, létre fogunk hozni egy új proxy ezúttal hello [App Service-szerkesztő](https://github.com/projectkudu/kudu/wiki/App-Service-Editor). tooget indult el, keresse meg a tooyour függvény app hello portálon. Válassza ki **Platform funkciói** és található **App Service-szerkesztő**. A hivatkozásra kattintva az megnyílik az App Service-szerkesztő hello új lapon.
 
-Válassza ki `proxies.json` a bal oldali navigációs. Ez az a fájlt, amely az összes a proxyk konfigurációs tárolja. Ha valamelyikét használja a [működik a központi telepítési módszerekkel](https://docs.microsoft.com/azure/azure-functions/functions-continuous-deployment), a fájl megmaradjanak a verziókövetési rendszerrel. Ez a fájl kapcsolatos további információkért lásd: [proxyk speciális konfigurációs](https://docs.microsoft.com/azure/azure-functions/functions-proxies#advanced-configuration).
+Válassza ki `proxies.json` a bal oldali navigációs hello. Ez az hello fájlt, amely az összes a proxyk hello konfigurációs tárolja. Hello használatakor [működik a központi telepítési módszerekkel](https://docs.microsoft.com/azure/azure-functions/functions-continuous-deployment), hello fájl verziókezelő rendszer megmaradjanak. További információ a fájl toolearn lásd: [proxyk speciális konfigurációs](https://docs.microsoft.com/azure/azure-functions/functions-proxies#advanced-configuration).
 
-Ha végrehajtotta eddig, a proxies.json kell a következőhöz hasonló:
+Ha végrehajtotta eddig, a proxies.json hello hasonlóan kell kinéznie:
 
 ```json
 {
@@ -148,7 +148,7 @@ Ha végrehajtotta eddig, a proxies.json kell a következőhöz hasonló:
 }
 ```
 
-Ezután a utánzatait API fogja hozzáadni. Cserélje le a proxies.json fájl a következő:
+Ezután a utánzatait API fogja hozzáadni. Cserélje le a proxies.json fájl hello következő:
 
 ```json
 {
@@ -184,15 +184,15 @@ Ezután a utánzatait API fogja hozzáadni. Cserélje le a proxies.json fájl a 
 }
 ```
 
-Ezzel hozzáad egy új proxy, "GetUserByName", a backendUri tulajdonság nélkül. Helyett egy másik erőforrás, módosítja egy válasz felülbírálás használatával proxyk alapértelmezett válaszát. Kérelem és válasz felülbírálások használhatók a URL-t együtt. Ez akkor különösen hasznos, ha a proxy használatát az ügynökökön egy örökölt rendszerre, ahol előfordulhat, hogy módosítania kell a fejlécek, lekérdezési paraméterek stb. Kérelem és válasz felülbírálások kapcsolatos további információkért lásd: [kérelmeit és válaszait a proxyk módosítása](https://docs.microsoft.com/azure/azure-functions/functions-proxies#a-namemodify-requests-responsesamodifying-requests-and-responses).
+Ezzel hozzáad egy új proxy, "GetUserByName" hello backendUri tulajdonság nélkül. Helyett egy másik erőforrás, módosítja egy válasz felülbírálás használatával proxyk hello alapértelmezett válaszát. Kérelem és válasz felülbírálások használhatók a URL-t együtt. Ez akkor különösen hasznos, ha a proxy használatát az ügynökökön tooa örökölt rendszer, amikor szükség lehet toomodify fejlécek, lekérdezési paraméterek, toolearn stb. További információk a kérelem-válasz felülbírálások, lásd a [kérelmeit és válaszait a proxyk módosítása](https://docs.microsoft.com/azure/azure-functions/functions-proxies#a-namemodify-requests-responsesamodifying-requests-and-responses).
 
-Tesztelje a utánzatait API hívása a `/api/users/{username}` végpont egy böngésző vagy a kedvenc REST-ügyfél használatával. Ügyeljen arra, hogy a csere _{username}_ egy karakterláncértéket, amely egy felhasználónévvel rendelkező.
+Tesztelje az utánzatait API-t hívó hello `/api/users/{username}` végpont egy böngésző vagy a kedvenc REST-ügyfél használatával. Lehet, hogy tooreplace _{username}_ egy karakterláncértéket, amely egy felhasználónévvel rendelkező.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban megtanulta, hogyan állíthatja össze és testreszabása az Azure Functions egy API-t. Is megtanulta, hogyan kell az több API-k, mocks, beleértve a együtt, egyetlen egyesített API felület. Ezek a technológiák használatával ki bármely összetettségi API-k létrehozása minden, a kiszolgáló nélküli számítási modellt a futtatása közben az Azure Functions által biztosított.
+Ebben az oktatóanyagban, megtudta, hogyan toobuild és testreszabása az Azure Functions egy API-t. Is megtanulta, hogyan toobring több API-k, beleértve a mocks, együtt, egy egyesített API felületen. Használhat ezen módszerek toobuild kimenő bármely összetettségi API-k, a kiszolgáló nélküli hello futtatott összes számítási modellt az Azure Functions által biztosított.
 
-Az API-további fejleszt, hasznos lehet a következő hivatkozásokat:
+hello következő hivatkozásokat hasznos lehet, az API-további fejleszt:
 
 - [Az Azure Functions HTTP és a webhook kötések](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook)
 - [használata az Azure Functions proxyk (előzetes verzió)]

@@ -1,6 +1,6 @@
 ---
-title: "TLS kölcsönös hitelesítés beállítása webalkalmazáshoz"
-description: "Útmutató: a webalkalmazás a TLS ügyfél Tanúsítványalapú hitelesítés használatára konfigurálja."
+title: "aaaHow tooConfigure TLS a kölcsönös hitelesítés a webalkalmazás számára"
+description: "Ismerje meg, hogyan tooconfigure a webalkalmazás ügyféloldalának toouse Tanúsítványalapú hitelesítés a TLS."
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: naziml
-ms.openlocfilehash: db69852cffd1ff331ac4a640b04ea4360d00bf75
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8aeb9b35058fac50b8b38f6428207ad4a82d8637
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-tls-mutual-authentication-for-web-app"></a>TLS kölcsönös hitelesítés beállítása webalkalmazáshoz
+# <a name="how-tooconfigure-tls-mutual-authentication-for-web-app"></a>Hogyan tooConfigure TLS a kölcsönös hitelesítés a webalkalmazás számára
 ## <a name="overview"></a>Áttekintés
-Hozzáférés engedélyezése különböző hitelesítési az korlátozhatja az Azure-webalkalmazásban. Egy módja, hogy hitelesítse a használ a tanúsítványt, ha a kérelem a TLS/SSL kapcsolaton keresztül. A mechanizmus TLS kölcsönös hitelesítés vagy ügyféltanúsítvány-hitelesítést, és ez a cikk részletesen ismerteti ügyféltanúsítvány-alapú hitelesítés használatához a webalkalmazás beállítása hogyan nevezzük.
+Korlátozhatja a hozzáférést tooyour Azure-webalkalmazásban különböző hitelesítési az engedélyezésével. Egyirányú toodo ezért nem használ tanúsítványt, a TLS/SSL hello kérés esetén tooauthenticate. Ez az eljárás meghívása TLS kölcsönös hitelesítés vagy ügyféltanúsítvány-alapú hitelesítés, és ez a cikk részletesen ismerteti hogyan toosetup a webes alkalmazás toouse ügyféltanúsítvány-alapú hitelesítés.
 
-> **Megjegyzés:** a webhely HTTP és HTTPS protokollt használó nem fér hozzá, addig nem kap minden ügyfél-tanúsítványt. Így ha az alkalmazás ügyfél-tanúsítványok nem engedélyezze kérelmek az alkalmazás HTTP Protokollon keresztül.
+> **Megjegyzés:** a webhely HTTP és HTTPS protokollt használó nem fér hozzá, addig nem kap minden ügyfél-tanúsítványt. Így ha az alkalmazás ügyfél-tanúsítványok nem engedélyezze kérelmek tooyour alkalmazás HTTP Protokollon keresztül.
 > 
 > 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="configure-web-app-for-client-certificate-authentication"></a>Ügyféltanúsítvány-alapú hitelesítés a webalkalmazás konfigurálása
-Adja hozzá a clientCertEnabled beállítása a webalkalmazás, majd állítsa be true értékre kell Ügyféltanúsítványok megkövetelése a webalkalmazás beállítása. Ez a beállítás már nem érhető el a kezelhetőséget, a portálon keresztül, és a REST API-t kell végrehajtásához használható.
+a webes alkalmazás toorequire ügyféltanúsítványok tooadd van szüksége a webalkalmazás beállítását, majd állítsa be tootrue clientCertEnabled hely hello toosetup. Ez a beállítás már nem érhető el hello kezelési élményt hello portálon keresztül, és a REST API hello szüksége lesz rá használt toobe tooaccomplish.
 
-Használhatja a [ARMClient eszköz](https://github.com/projectkudu/ARMClient) megkönnyítheti a REST API-hívás létrehozható. Az eszköz bejelentkezés után szüksége lesz az alábbi parancsot:
+Használhatja a hello [ARMClient eszköz](https://github.com/projectkudu/ARMClient) toomake azt könnyen toocraft hello REST API-hívás. Hello eszköz bejelentkezés után a következő parancs tooissue hello lesz szüksége:
 
     ARMClient PUT subscriptions/{Subscription Id}/resourcegroups/{Resource Group Name}/providers/Microsoft.Web/sites/{Website Name}?api-version=2015-04-01 @enableclientcert.json -verbose
 
-cseréje mindent megkeresése és a webalkalmazás vonatkozó információkat, és a fájl létrehozásakor a következő nevű enableclientcert.json a következő JSON a tartalom:
+cseréje mindent megkeresése és a webalkalmazás vonatkozó információkat, és a fájl létrehozásakor a következő nevű enableclientcert.json a következő JSON hello tartalom:
 
     {
         "location": "My Web App Location",
@@ -46,19 +46,19 @@ cseréje mindent megkeresése és a webalkalmazás vonatkozó információkat, �
         }
     }
 
-Ügyeljen arra, hogy módosítsa az értéket a "hely" mindig a webalkalmazás helyezkedik pl. északi középső Régiójában vagy nyugati USA stb.
+Győződjön meg arról a webalkalmazás "hely" toowherever toochange hello értékének például északi középső Régiójában, vagy nyugati USA stb.
 
-A tükrözés https://resources.azure.com is használhatja a `clientCertEnabled` tulajdonságot `true`.
+Is használhatja a https://resources.azure.com tooflip hello `clientCertEnabled` tulajdonság túl`true`.
 
-> **Megjegyzés:** ARMClient Powershell futtatja, ha szüksége lesz karakterláncot a @ jel hátsó osztásjelek rendelkező JSON-fájl ".
+> **Megjegyzés:** ARMClient Powershell futtatja, ha szüksége lesz tooescape hello @ jel hello JSON-fájl, a háttérben osztásjelek ".
 > 
 > 
 
-## <a name="accessing-the-client-certificate-from-your-web-app"></a>Az ügyféltanúsítványt a webes alkalmazás elérése
-Ha ASP.NET használ, és állítsa be alkalmazását ügyféltanúsítvány-alapú hitelesítés használatára, a tanúsítvány érhető el a **HttpRequest.ClientCertificate** tulajdonság. Más alkalmazás csomagokat az ügyfél-tanúsítvány az alkalmazás base64-kódolású értéket az "X-ARR-ClientCert" kérelem fejlécében keresztül elérhető lesz. Az alkalmazás hozzon létre egy tanúsítványt az ezt az értéket, és majd a hitelesítés és engedélyezés céljából az alkalmazás használatával.
+## <a name="accessing-hello-client-certificate-from-your-web-app"></a>Hello ügyfél tanúsítvány a a webes alkalmazás elérése
+Ha ASP.NET használ, és konfigurálja az alkalmazás toouse ügyféltanúsítvány-alapú hitelesítés, a hello tanúsítvány hello érhető el **HttpRequest.ClientCertificate** tulajdonság. Más alkalmazás verem hello ügyféltanúsítványt keresztül hello "X-ARR-ClientCert" fejléc base64-kódolású értéket az alkalmazás elérhető lesz. Az alkalmazás hozzon létre egy tanúsítványt az ezt az értéket, és majd a hitelesítés és engedélyezés céljából az alkalmazás használatával.
 
 ## <a name="special-considerations-for-certificate-validation"></a>Különleges szempontok a tanúsítvány érvényesítése
-Az ügyféltanúsítványt, az alkalmazásnak küldött nem halad át egyetlen ellenőrzési az Azure Web Apps platformon. Ez a tanúsítvány érvényesítése feladata a webalkalmazás. Itt található ASP.NET mintakód, amely ellenőrzi a tanúsítvány tulajdonságai hitelesítési célokra.
+hello ügyféltanúsítvány toohello alkalmazás küldött nem halad át egyetlen ellenőrzési hello Azure Web Apps platform. Ez a tanúsítvány érvényesítése feladata hello hello webalkalmazás. Itt található ASP.NET mintakód, amely ellenőrzi a tanúsítvány tulajdonságai hitelesítési célokra.
 
     using System;
     using System.Collections.Specialized;
@@ -81,8 +81,8 @@ Az ügyféltanúsítványt, az alkalmazásnak küldött nem halad át egyetlen e
             public bool isValidCert = false;
 
             //
-            // Read the certificate from the header into an X509Certificate2 object
-            // Display properties of the certificate on the page
+            // Read hello certificate from hello header into an X509Certificate2 object
+            // Display properties of hello certificate on hello page
             //
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -124,13 +124,13 @@ Az ügyféltanúsítványt, az alkalmazásnak küldött nem halad át egyetlen e
             //
             private bool IsValidClientCertificate()
             {
-                // In this example we will only accept the certificate as a valid certificate if all the conditions below are met:
-                // 1. The certificate is not expired and is active for the current time on server.
-                // 2. The subject name of the certificate has the common name nildevecc
-                // 3. The issuer name of the certificate has the common name nildevecc and organization name Microsoft Corp
-                // 4. The thumbprint of the certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
+                // In this example we will only accept hello certificate as a valid certificate if all hello conditions below are met:
+                // 1. hello certificate is not expired and is active for hello current time on server.
+                // 2. hello subject name of hello certificate has hello common name nildevecc
+                // 3. hello issuer name of hello certificate has hello common name nildevecc and organization name Microsoft Corp
+                // 4. hello thumbprint of hello certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
                 //
-                // This example does NOT test that this certificate is chained to a Trusted Root Authority (or revoked) on the server 
+                // This example does NOT test that this certificate is chained tooa Trusted Root Authority (or revoked) on hello server 
                 // and it allows for self signed certificates
                 //
 
@@ -175,7 +175,7 @@ Az ügyféltanúsítványt, az alkalmazásnak küldött nem halad át egyetlen e
                 // 4. Check thumprint of certificate
                 if (String.Compare(certificate.Thumbprint.Trim().ToUpper(), "30757A2E831977D8BD9C8496E4C99AB26CB9622B") != 0) return false;
 
-                // If you also want to test if the certificate chains to a Trusted Root Authority you can uncomment the code below
+                // If you also want tootest if hello certificate chains tooa Trusted Root Authority you can uncomment hello code below
                 //
                 //X509Chain certChain = new X509Chain();
                 //certChain.Build(certificate);

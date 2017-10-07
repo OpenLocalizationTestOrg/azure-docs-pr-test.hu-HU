@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Apps dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan használhatja az Azure App Service Mobile Apps szolgáltatását natív iOS-, Android- vagy Windows-alkalmazás, illetve Xamarin és Cordova segítségével platformfüggetlen alkalmazások készítésére és üzemeltetésére."
+title: "aaaAzure Mobile Apps dokumentációs - oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan Azure App Service toobuild és a gazdagép natív iOS, Android vagy Windows Mobile Apps toouse alkalmazásokat vagy platformfüggetlen alkalmazások Xamarin- vagy Cordova segítségével."
 services: app-service\mobile
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f660922fa2f7d5d21b4e6678233792ad6cb84041
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09b103b274c66f515d9a34bbdcb54cf0ff3a035a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-apps-documentation"></a>A Mobile Apps dokumentációja
 
-Ismerje meg, hogyan használhatja az Azure App Service Mobile Apps szolgáltatását natív iOS-, Android- vagy Windows-alkalmazás, illetve Xamarin és Cordova segítségével platformfüggetlen alkalmazások készítésére. Az oktatóanyagok, videók, ügyféloldali SDK-dokumentációk és egyebek bemutatják, hogyan készíthet és üzemeltethet háttérmodult bármilyen mobilalkalmazáshoz.
+Megtudhatja, hogyan Azure App Service toobuild natív iOS, Android vagy Windows Mobile Apps toouse alkalmazásokat vagy platformfüggetlen alkalmazások Xamarin- vagy Cordova segítségével. Oktatóanyagok, videók, ügyfél SDK-dokumentáció és több megtudhatja, hogyan toobuild és a gazdagép hello bármely mobilalkalmazás a háttér.
 
 <ul class="panelContent cardsFTitle">
     <li>

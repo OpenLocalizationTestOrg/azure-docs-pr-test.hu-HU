@@ -1,6 +1,6 @@
 ---
-title: "Az információkkal dolgozó szakemberek hogyan hozzá B2B együttműködés felhasználók Azure Active Directory? | Microsoft Docs"
-description: "B2B együttműködés lehetővé teszi, hogy az információkkal dolgozó szakemberek a szervezeti felhasználók hozzáadása az Azure AD hozzáférési |} Microsoft Docs"
+title: "aaaHow munkavállalók hozzáadása B2B együttműködés felhasználók tooAzure Active Directory információk elvégezni? | Microsoft Docs"
+description: "B2B együttműködés lehetővé teszi, hogy információkat munkavállalók tooadd felhasználók a saját szervezet tooAzure hozzáférést ad-val |} Microsoft Docs"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: c6ca561d1a02e283c7932f08f53b8dd590208835
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efe9eab852ec93986f9d777f200f8f7dbfd18ad9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-do-information-workers-add-b2b-collaboration-users-to-azure-active-directory"></a>Az információkkal dolgozó szakemberek hogyan hozzá B2B együttműködés felhasználók Azure Active Directory?
+# <a name="how-do-information-workers-add-b2b-collaboration-users-tooazure-active-directory"></a>Hogyan hozzá az információkkal dolgozó szakemberek B2B együttműködés felhasználók tooAzure Active Directory?
 
-Az információkkal dolgozó szakemberek a [alkalmazás hozzáférési Panel](http://myapps.microsoft.com) B2B együttműködés felhasználók hozzáadása a csoportok és az általuk felügyelt alkalmazások.
+Az információkkal dolgozó szakemberek hello [alkalmazás hozzáférési Panel](http://myapps.microsoft.com) tooadd B2B együttműködés felhasználók toogroups és az általuk felügyelt alkalmazások.
 
-## <a name="information-workers-adding-b2b-collaboration-users-to-an-application"></a>Az információkkal dolgozó szakemberek B2B együttműködés felhasználók hozzáadása egy alkalmazáshoz
-Ahogy az alábbi videó az B2B együttműködés felhasználók hozzárendelése az Infomunkás a fiókpartner-szervezet egy alkalmazást:
+## <a name="information-workers-adding-b2b-collaboration-users-tooan-application"></a>Az információkkal dolgozó szakemberek B2B együttműködés felhasználók tooan alkalmazás hozzáadása
+Rendelje hozzá a B2B együttműködés felhasználók tooan alkalmazást az Infomunkás a fiókpartner-szervezet látható módon hello következő videót:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps/Player]
 
-## <a name="information-workers-adding-b2b-collaboration-users-to-a-group"></a>Az információkkal dolgozó szakemberek B2B együttműködés felhasználók felvétele egy csoportba
+## <a name="information-workers-adding-b2b-collaboration-users-tooa-group"></a>Az információkkal dolgozó szakemberek B2B együttműködés felhasználók tooa csoport hozzáadása
 
-Az információkkal dolgozó szakemberek hasonló módon adhat hozzá a B2B együttműködés felhasználók az önkiszolgáló csoportkezelési szolgáltatás engedélyezve van egy hozzárendelt csoportban.
+Az információkkal dolgozó szakemberek hasonló módon adhat hozzá a B2B együttműködés felhasználók hozzárendelt tooan csoportot, amely az önkiszolgáló csoportkezelési szolgáltatás engedélyezve van.
 > [!NOTE]
-> B2B együttműködés felhasználók nem adható hozzá, dinamikus csoportot vagy egy csoportot, amely a helyszíni Active Directoryval van szinkronizálva.
+> Nem adhat hozzá B2B együttműködés felhasználók tooa dinamikus vagy tooa csoport, amely a helyszíni Active Directoryval van szinkronizálva.
 
 
 ## <a name="next-steps"></a>Következő lépések
@@ -43,7 +43,7 @@ Ismerje meg az Azure AD B2B együttműködés további cikkeit:
 
 * [Mi az az Azure AD B2B együttműködés?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Hogyan rendszergazdák Azure Active Directory B2B együttműködés felhasználók hozzá?](active-directory-b2b-admin-add-users.md)
-* [A B2B együttműködés meghívó e-mail elemei](active-directory-b2b-invitation-email.md)
+* [hello B2B együttműködés meghívó e-mail hello elemei](active-directory-b2b-invitation-email.md)
 * [B2B együttműködés meghívó érvényesítési](active-directory-b2b-redemption-experience.md)
 * [Az Azure AD B2B együttműködés licencelés](active-directory-b2b-licensing.md)
 * [Hibaelhárítás az Azure Active Directory B2B együttműködés](active-directory-b2b-troubleshooting.md)

@@ -1,5 +1,5 @@
 ---
-title: "Vizsgálja meg és használati adatok megosztása a interaktív Azure Application Insights-munkafüzetek |} Microsoft docs"
+title: "interaktív Azure Application Insights-munkafüzetek aaaInvestigate és megosztási használati adatok |} Microsoft docs"
 description: "Webes alkalmazása felhasználóit demográfiai elemzése."
 services: application-insights
 documentationcenter: 
@@ -12,25 +12,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: bwren
-ms.openlocfilehash: 75028b4fbda43d90f56690a33c7eb624fce049c8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bdcebe0f97fdad0a0b301df5950dc09698f5a4dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="investigate-and-share-usage-data-with-interactive-workbooks-in-application-insights"></a>Vizsgálja meg és használati adatok megosztása az Application Insightsban interaktív munkafüzetek
 
-Munkafüzetek egyesítése [Azure Application Insights](app-insights-overview.md) adatmegjelenítésekkel, [elemzési lekérdezések](app-insights-analytics.md), és interaktív dokumentumok szövegdobozba. Munkafüzetekhez a ugyanahhoz az Azure-erőforráshoz hozzáféréssel rendelkező más csoport tagjai. Ez azt jelenti, hogy a lekérdezések és a munkafüzet létrehozásához használt funkciók érhetők el a más személy éri el a munkafüzetet, így könnyen vizsgálatát, kiterjesztése, és ellenőrizze a hibákat.
+Munkafüzetek egyesítése [Azure Application Insights](app-insights-overview.md) adatmegjelenítésekkel, [elemzési lekérdezések](app-insights-analytics.md), és interaktív dokumentumok szövegdobozba. Munkafüzetekhez a többi csoport tagjai az access toohello azonos Azure-erőforrás. Ez azt jelenti, hello lekérdezések és -vezérlők használt toocreate munkafüzet elérhető tooother személy éri el az hello munkafüzet, így azok könnyen tooexplore, kiterjesztése, és ellenőrizze a hibákat.
 
 Munkafüzetek hasznosak a helyzetekben, például:
 
-* Az alkalmazás használatát tervezi, amikor a fontos metrikák előzetesen nem tudja: számok felhasználók, adatmegőrzési arányt, átváltási, stb. Egyéb használati elemzőeszközök az Application Insightsban, eltérően munkafüzetek lehetővé teszik, hogy több típusú képi megjelenítések és elemzéseket, szabad formátumú feltárása az ilyen nagyszerű minősítené kombinálni.
-* A csapattal elmagyarázza, hogyan működik-e egy újonnan kiadott funkció, megjelenítő felhasználó álló kulcs kapcsolati és más metrikákkal.
-* Megosztják az eredményeket, egy A / B kísérletezhet az alkalmazás más a csoport tagjai. A kitűzött célokat a kísérleti fázisú funkciókat szövegre ismertetik, majd minden használati metrika és annak ellenőrzésére használ a kísérlet, és törölje a jelet hívás elemek számára, hogy volt-e mindegyik metrikát fölött vagy alatt-célzott Analytics lekérdezés megjelenítése.
-* A jelentéskészítési kimaradás hatását a az alkalmazás adatokat, a szöveg magyarázat és az információt a következő lépései kimaradások elkerülése használati.
+* Hello használata az alkalmazás fel, ha fontos hello metrikák előzetesen nem tudja: számok felhasználók, adatmegőrzési arányt, átváltási, stb. Egyéb használati elemzőeszközök az Application Insightsban, eltérően munkafüzetek lehetővé teszik, hogy több típusú képi megjelenítések és elemzéseket, szabad formátumú feltárása az ilyen nagyszerű minősítené kombinálni.
+* Hogyan működik-e egy újonnan kiadott szolgáltatás tooyour team foglalja össze, megjelenítő felhasználó álló kulcs kapcsolati és más metrikákkal.
+* Megosztás hello eredményei egy A / B kísérletezhet az alkalmazás más a csoport tagjai. Hello hello célokat szöveg kísérletezhet, majd minden egyes használati metrika megjelenítése és Analytics query használják tooevaluate hello kísérletet, és törölje a jelet hívás elemek számára, hogy volt-e mindegyik metrikát fölött vagy alatt-célzott ismertetik.
+* Nem tervezett kimaradás hello hatását Reporting hello használata az alkalmazás adatokat, a szöveg magyarázat és az információt a következő lépéseket tooprevent kimaradások számát a jövőbeli hello.
 
 > [!NOTE]
-> Az Application Insights-erőforrás Lapmegtekintések vagy munkafüzetek használandó egyéni események kell tartalmaznia. [Ismerje meg, hogyan állíthat be az alkalmazás automatikusan az Application Insights JavaScript SDK a lapmegtekintések gyűjtéséhez](app-insights-javascript.md).
+> Az Application Insights-erőforrás Lapmegtekintések vagy egyéni események toouse munkafüzetek kell tartalmaznia. [Ismerje meg, hogyan az alkalmazások toocollect oldalára tooset automatikusan az Application Insights JavaScript SDK hello megtekinti](app-insights-javascript.md).
 > 
 > 
 
@@ -38,23 +38,23 @@ Munkafüzetek hasznosak a helyzetekben, például:
 
 A munkafüzet egy készült szakaszok: függetlenül szerkeszthető használati képi megjelenítéseket, diagramok, táblák, text vagy Analytics lekérdezési eredmények.
 
-A munkafüzet szakasz tartalmának szerkesztéséhez kattintson a **szerkesztése** alatt és a munkafüzet szakasz jobb gomb.
+a munkafüzet szakasz tartalmának megjelenítése tooedit hello kattintson hello **szerkesztése** gombra és toohello sarkában hello munkafüzet szakasz.
 
 ![Application Insights munkafüzetek szakasz szerkesztési vezérlők](./media/app-insights-usage-workbooks/editing-controls.png)
 
-1. Ha elkészült szakasz módosításához kattintson a **végzett szerkesztése** szakasz bal alsó sarkában található.
+1. Ha elkészült szakasz módosításához kattintson a **végzett szerkesztése** hello bal alsó sarkában hello szakaszban található.
 
-2. Szakasz duplikált létrehozásához kattintson a **ebben a szakaszban klónozni** ikonra. Ismétlődő szakaszok létrehozása egy nagy előző ismétlési elvesztése nélkül lekérdezés felépítésének módját.
+2. a szakasz duplikált toocreate kattintson hello **klónozni ebben a szakaszban** ikon. Ismétlődő szakaszok létrehozása egy nagyszerű tooway tooiterate lekérdezés előző ismétlési elvesztése nélkül.
 
-3. Kattintson egy munkafüzet szakaszt áthelyezéséhez a **feljebb** vagy **lejjebb** ikonra.
+3. egy munkafüzet egy másolat toomove kattintson hello **feljebb** vagy **lejjebb** ikon.
 
-4. A szakasz végleges eltávolításához kattintson a **eltávolítása** ikonra.
+4. a szakasz tooremove véglegesen, kattintson a hello **eltávolítása** ikonra.
 
 ## <a name="adding-usage-data-visualization-sections"></a>Használati adatok képi megjelenítés szakaszok hozzáadása
 
-Munkafüzetek beépített használati analytics képi megjelenítések négy típusú kínálnak. Minden ad választ az alkalmazás a használati közös kérdése. Vegye fel a táblázatokat és diagramokat, ezek a szakaszok eltérő, vegye fel az Analytics lekérdezési szakaszok (lásd alább).
+Munkafüzetek beépített használati analytics képi megjelenítések négy típusú kínálnak. Minden ad választ az alkalmazás hello használati közös kérdése. tooadd táblázatokat és diagramokat eltérő a következő négy részeket is vegye fel az elemzés lekérdezés szakaszok (lásd alább).
 
-A felhasználók hozzáadásához munkamenetek, az események vagy az adatmegőrzési szakasz a munkafüzetbe, használja a **felhasználó hozzáadása** vagy más megfelelő gombra a munkafüzet alján, vagy bármely szakasz alján.
+a felhasználók tooadd, munkamenetek, események vagy megőrzési szakasz tooyour munkafüzet, használjon hello **felhasználó hozzáadása** vagy más megfelelő gomb hello munkafüzet hello alján, vagy bármely szakasz hello alján.
 
 ![Felhasználók szakaszban munkafüzetekben](./media/app-insights-usage-workbooks/users-section.png)
 
@@ -64,61 +64,61 @@ A felhasználók hozzáadásához munkamenetek, az események vagy az adatmegőr
 
 **Események** szakaszok választ "hány alkalommal nem felhasználók néhány a lapnak a megtekintésére vagy használja a webhely néhány szolgáltatást?"
 
-A vezérlők és a képi megjelenítések egy készletet minden, a következő három szakasz típusú kínálja:
+Minden, a következő három szakasz típusú vezérlők és a képi megjelenítések azonos készleteinek kínál hello:
 
 * [További tudnivalók a felhasználói munkamenetek és események szakaszok szerkesztése](app-insights-usage-segmentation.md)
-* Váltás a fő diagram, hisztogram rácsok, automatikus insights és minta felhasználók képi megjelenítések használatával a **diagram megjelenítése**, **rácsvonalak megjelenítése**, **megjelenítése Insights**, és **Ezek próbafelhasználók** jelölőnégyzeteket minden szakasz elején.
+* Váltás hello fő diagram, hisztogram rácsok, automatikus insights és minta felhasználók képi megjelenítések hello segítségével **diagram megjelenítése**, **rácsvonalak megjelenítése**, **megjelenítése Insights**, és **Ezek próbafelhasználók** jelölőnégyzeteket minden szakasz hello tetején.
 
 ![A munkafüzet megőrzési szakasz](./media/app-insights-usage-workbooks/retention-section.png)
 
 **Megőrzési** szakaszok választ "Személyek néhány tekint, vagy a használt egyes szolgáltatások egy nap vagy hét, hány visszatért az ezt követő nap vagy hét?"
 
 * [Tudjon meg többet az adatmegőrzési szakaszok szerkesztése](app-insights-usage-retention.md)
-* A választható általános megőrzési diagram használatával váltása a **megjelenítése a teljes megőrzési diagram** jelölőnégyzetet a szakasz tetején.
+* Váltás hello választható általános megőrzési diagram hello segítségével **megjelenítése a teljes megőrzési diagram** hello szakasz hello tetején jelölőnégyzetet.
 
 ## <a name="adding-application-insights-analytics-sections"></a>Application Insights Analytics szakaszok hozzáadása
 
 ![A munkafüzeteket Analytics szakasz](./media/app-insights-usage-workbooks/analytics-section.png)
 
-Az Application Insights Analytics lekérdezésszakaszt adhat hozzá a munkafüzethez a **hozzáadása Analytics lekérdezési** gombra a munkafüzet alján, vagy bármely szakasz alján.
+az Application Insights Analytics lekérdezési szakasz tooyour munkafüzet tooadd hello használata **hozzáadása Analytics lekérdezési** gomb hello munkafüzet hello alján, vagy bármely szakasz hello alján.
 
-Vegyen fel tetszőleges lekérdezések keresztül az Application Insights adatainak munkafüzetek Analytics lekérdezés szakaszok segítségével. Ez azt jelenti, hogy Analytics lekérdezési szakaszok kell lennie a nyissa meg a a felhasználók, a munkamenetek, az események és a megőrzési, például a fent felsorolt négy eltérő a hellyel kapcsolatos kérdése megválaszolásához:
+Vegyen fel tetszőleges lekérdezések keresztül az Application Insights adatainak munkafüzetek Analytics lekérdezés szakaszok segítségével. Ez azt jelenti, hogy Analytics lekérdezési szakaszok kell lennie a Ugrás-toofor bármely hello felhasználók, a munkamenetek, az események és a megőrzési, például a fent felsorolt négy eltérő a hellyel kapcsolatos kérdések megválaszolásával:
 
-* Hány kivételek fejeződött a hely throw idő alatt, csökken a használat során?
-* Mi volt a lapbetöltési idők néhány lap megtekintésének felhasználók terjesztése?
-* Hány felhasználó láthatók a webhely néhány azon lapok készlete, de ez nem valamilyen egyéb lapok? Ez akkor lehet hasznos megértéséhez, ha a felhasználók, akik használni a webhely funkciók különböző részhalmazai fürttel rendelkezik (használja a `join` operátor ezzel a `kind=leftanti` Naplóelemzési lekérdezés nyelvű módosítóval).
+* Hány kivételek fejeződött a hely throw során hello azonos időszak, a használati csökkenése?
+* Mi volt a hello terjesztése lapbetöltési idők néhány lap megtekintésének felhasználók számára?
+* Hány felhasználó láthatók a webhely néhány azon lapok készlete, de ez nem valamilyen egyéb lapok? Ez akkor lehet hasznos toounderstand, ha a felhasználók, akik használni a webhely funkciók különböző részhalmazai fürttel rendelkezik (hello használata `join` hello operátor `kind=leftanti` módosító a hello Log Analytics lekérdezési nyelv).
 
-Használja a [Naplóelemzési lekérdezése nyelvi referencia](https://docs.loganalytics.io/) kapcsolatos lekérdezések írásáról további.
+Használjon hello [Naplóelemzési lekérdezése nyelvi referencia](https://docs.loganalytics.io/) kapcsolatos lekérdezések írásáról további toolearn.
 
 ## <a name="adding-text-and-markdown-sections"></a>Szöveg- és Markdown-szakaszok hozzáadása
 
-Segítséget nyújt a fejlécére kattintva rendezhető, magyarázatot és magyarázatokkal hozzáadása a munkafüzeteket azokat a leírásokat kapcsolja táblázatokat és diagramokat olyan készlete. Szöveg részeiben munkafüzetek támogatása a [Markdown-szintaxis](https://daringfireball.net/projects/markdown/) formázás, például a fejlécére kattintva rendezhető, félkövér, dőlt és felsorolásokat szöveg.
+A fejlécére kattintva rendezhető, magyarázatot és magyarázatokkal tooyour munkafüzetek hozzáadása segíti a táblázatokat és diagramokat olyan készlete kapcsolja be a leírásokat. Szöveg részeiben munkafüzetek támogatja hello [Markdown-szintaxis](https://daringfireball.net/projects/markdown/) formázás, például a fejlécére kattintva rendezhető, félkövér, dőlt és felsorolásokat szöveg.
 
-A munkafüzet szöveges szakaszt hozzáadásához használja a **szöveget** gombra a munkafüzet alján, vagy bármely szakasz alján.
+tooadd szöveg szakasz tooyour munkafüzet, használja a hello **szöveget** gomb hello munkafüzet hello alján, vagy bármely szakasz hello alján.
 
 ## <a name="saving-and-sharing-workbooks-with-your-team"></a>És munkafüzetek megosztása a munkatársaival
 
-Az Application Insights-erőforrást, vagy mentett munkafüzetek a **jelentések** privát, akkor vagy a következő szakasz a **megosztott jelentések** hozzáféréssel rendelkező összes felhasználó számára elérhető szakaszban a Application Insights-erőforrást. Az erőforrás a munkafüzetek megtekintéséhez kattintson a **nyitott** műveletsávon gombra.
+Az Application Insights-erőforrást, vagy hello mentett munkafüzetek **jelentések** titkos tooyou szakaszban vagy hello **megosztott jelentések** hozzáféréssel rendelkező elérhető tooeveryone szakaszban toohello Application Insights-erőforrást. tooview hello erőforrás összes hello munkafüzeteket kattintson hello **nyitott** hello művelet található gombra.
 
-A munkafüzetet, hogy e **jelentések**:
+a munkafüzetet, hogy e tooshare **jelentések**:
 
-1. Kattintson a **nyitott** műveletsávon
-2. Kattintson a "..." gomb melletti meg szeretné osztani a munkafüzet
-3. Kattintson a **megosztott jelentések áthelyezése**.
+1. Kattintson a **nyitott** hello művelet sávon
+2. Kattintson a hello "..." gomb melletti hello munkafüzet tooshare kívánt
+3. Kattintson a **tooShared jelentések áthelyezése**.
 
-A munkafüzet egy hivatkozás, vagy e-mailben megosztásához kattintson **megosztása** műveletsávon. Ne feledje, hogy a hivatkozás címzettjei kell-e az Azure portálon a munkafüzet az erőforráshoz való hozzáférés. Ahhoz, hogy a módosításokat, a címzettnek van szüksége, legalább az erőforrás-közreműködői jogokat.
+Kattintson egy munkafüzet egy hivatkozás, vagy e-mailben, tooshare **megosztás** hello művelet sávon. Ne feledje, hogy hello hivatkozás címzettjei toothis erőforrás hello Azure portál tooview hello munkafüzet kell hozzáférni. toomake módosításokat címzettek kell legalább hello erőforrás-közreműködői jogokat.
 
-PIN-kód egy Azure-irányítópultot munkafüzet mutató hivatkozást:
+a hivatkozás tooa munkafüzet tooan Azure irányítópult toopin:
 
-1. Kattintson a **nyitott** műveletsávon
-2. Kattintson a "..." gombra a munkafüzetet, amelyet szeretne rögzíteni mellett
-3. Kattintson a **rögzítés az irányítópulton**.
-
-## <a name="next-steps"></a>Következő lépések
+1. Kattintson a **nyitott** hello művelet sávon
+2. Kattintson a hello "..." gomb melletti hello munkafüzet toopin kívánt
+3. Kattintson a **PIN-kód toodashboard**.
 
 ## <a name="next-steps"></a>Következő lépések
-- Ahhoz, hogy a használati tapasztalatok, küldésének megkezdése [egyéni események](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) vagy [lapmegtekintés](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
-- Ha egyéni események vagy Lapmegtekintések már küld, megismerkedhet a használati eszközök további, a szolgáltatás használatát a felhasználók.
+
+## <a name="next-steps"></a>Következő lépések
+- tooenable használati észlel, küldésének megkezdése [egyéni események](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) vagy [lapmegtekintés](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
+- Ha már küld egyéni események vagy Lapmegtekintések, így megismerkedhet hello használati eszközök toolearn hogyan felhasználók használhatja a szolgáltatást.
     - [Felhasználók, munkamenetek, események](app-insights-usage-segmentation.md)
     - [Tölcsérek](usage-funnels.md)
     - [Megőrzés](app-insights-usage-retention.md)

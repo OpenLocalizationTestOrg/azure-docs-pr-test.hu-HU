@@ -1,6 +1,6 @@
 ---
-title: "Flask és az Azure Table Storage Azure Python Tools 2.2 for Visual Studio"
-description: "Ismerje meg, hogyan lehet adatokat tároló Azure Table Storage a Flask-webalkalmazás létrehozása a Python Tools for Visual Studio segítségével, és központilag telepítenie kell az Azure App Service Web Apps."
+title: "aaaFlask és az Azure Table Storage Azure Python Tools 2.2 for Visual Studio"
+description: "Ismerje meg, hogyan toouse hello Python Tools Visual Studio toocreate a Flask-webalkalmazás adatokat tároló Azure Table Storage-ban, és telepítse azt tooAzure App Service Web Apps."
 services: app-service\web
 tags: python
 documentationcenter: python
@@ -15,20 +15,20 @@ ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: huvalo
-ms.openlocfilehash: 2e1bc8eebd0b67b965cc70ac4b5dfe03c4720ddf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1a09d4cc78078a00492ba4fe7e2075df96fb0380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="flask-and-azure-table-storage-on-azure-with-python-tools-22-for-visual-studio"></a>Flask és az Azure Table Storage Azure Python Tools 2.2 for Visual Studio
-Ebben az oktatóanyagban fogjuk használni [a Python Tools for Visual Studio] hozhat létre egy egyszerű szavazások webalkalmazás használja a PTVS-minta sablonok egyikét. Ez az oktatóanyag is rendelkezésre áll, mint egy [videó](https://www.youtube.com/watch?v=qUtZWtPwbTk).
+Ebben az oktatóanyagban fogjuk használni [a Python Tools for Visual Studio] toocreate egy egyszerű lekérdezi a web app használatával hello PTVS minta sablonok egyikét. Ez az oktatóanyag is rendelkezésre áll, mint egy [videó](https://www.youtube.com/watch?v=qUtZWtPwbTk).
 
-A szavazási webalkalmazást a tárházához absztrakciós határozza meg, így egyszerűen átválthatja különböző típusú tárházak (a memóriában, Azure Table Storage MongoDB) között.
+hello szavazási webalkalmazást a tárházához absztrakciós határozza meg, így egyszerűen átválthatja különböző típusú tárházak (a memóriában, Azure Table Storage MongoDB) között.
 
-A Microsoft Azure Storage-fiók létrehozása, a webalkalmazás Azure Table Storage használata konfigurálása és közzététele a webalkalmazás a megtanulhatja [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
+A Microsoft megtanulhatja, hogyan toocreate egy Azure Storage fiók, valamint hogyan tooconfigure hello web app toouse Azure Table Storage, és milyen toopublish hello webalkalmazás túl[Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Tekintse meg a [Python fejlesztői központ] további fejlesztését ismertető cikkeket az Azure App Service Web Apps használatával Bottle PTVS, a Flask és a Django webes keretrendszerek, a MongoDB, az Azure Table Storage, a MySQL és a SQL Database szolgáltatás. Az App Service-t tárgyaló jelen cikkben szereplő lépések hasonlóak az [Azure Cloud Services] fejlesztése esetében használtakhoz.
+Lásd: hello [Python fejlesztői központ] további fejlesztését ismertető cikkeket az Azure App Service Web Apps használatával Bottle PTVS, a Flask és a Django webes keretrendszerek, a MongoDB, az Azure Table Storage, a MySQL és a SQL Database szolgáltatás. Amíg ez a cikk foglalkozik az App Service, hello lépések hasonlóak fejlesztésekor [Azure Felhőszolgáltatások].
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Visual Studio 2015
@@ -40,121 +40,121 @@ Tekintse meg a [Python fejlesztői központ] további fejlesztését ismertető 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
-## <a name="create-the-project"></a>A projekt létrehozása
-Ebben a szakaszban létrehozunk egy Visual Studio-projekt mintasablon használatával. Azt a virtuális környezetet hozhat létre, és telepíti a szükséges csomagokat. Majd helyszínekről futtassuk az alkalmazást helyileg az alapértelmezett memórián belüli tárházba.
+## <a name="create-hello-project"></a>Hello projekt létrehozása
+Ebben a szakaszban létrehozunk egy Visual Studio-projekt mintasablon használatával. Azt a virtuális környezetet hozhat létre, és telepíti a szükséges csomagokat. Majd helyszínekről futtassuk hello alkalmazást helyileg hello alapértelmezett memórián belüli tárházba.
 
 1. A Visual Studio felületén válassza a **File** (Fájl), **New Project** (Új projekt) lehetőséget.
-2. A [Python Tools 2.2 for Visual Studio Samples VSIX] projektsablonjai a **Python**, **Példák** elem alatt érhetők el. Válassza ki **szavazások Flask webes projekt** kattintson az OK gombra a projekt létrehozásához.
+2. a hello projektsablonjai hello [Python Tools 2.2 for Visual Studio Samples VSIX] alatt érhetők el **Python**, **minták**. Válassza ki **szavazások Flask webes projekt** , és kattintson az OK toocreate hello projekt.
    
      ![Új projekt párbeszédpanel](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskNewProject.png)
-3. A rendszer fel fogja kérni külső csomagok telepítésére. Válassza az **Install into a virtual environment** (Telepítés virtuális környezetbe) lehetőséget.
+3. Külső csomagok felszólító tooinstall lesz. Válassza az **Install into a virtual environment** (Telepítés virtuális környezetbe) lehetőséget.
    
      ![Az External Packages (Külső csomagok) párbeszédpanel](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskExternalPackages.png)
-4. Alapszintű értelmezőként válassza ki a **Python 2.7** vagy **Python 3.4** alkalmazást.
+4. Válassza ki **Python 2.7** vagy **Python 3.4** , hello alapszintű értelmezőt.
    
      ![Az Add Virtual Environment (Virtuális környezet hozzáadása) párbeszédpanel](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAddVirtualEnv.png)
-5. Az alkalmazás működőképességét az `F5` billentyű lenyomásával ellenőrizze. Alapértelmezés szerint az alkalmazás használja egy memórián belüli tárház, amelyhez nincs szükség beállításra. Minden adat elveszik, amikor a webkiszolgáló leáll.
+5. Győződjön meg arról, hogy működik-e hello alkalmazás billentyűkombináció lenyomásával `F5`. Alapértelmezés szerint a hello alkalmazás használ egy memórián belüli tárház, amelyhez nincs szükség beállításra. Minden adat elvész, amikor hello webkiszolgáló le van állítva.
 6. Kattintson a **létrehozása Sample Polls**, majd kattintson egy szavazásra, és szavazzon.
    
      ![Webböngésző](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskInMemoryBrowser.png)
 
 ## <a name="create-an-azure-storage-account"></a>Az Azure Storage-fiók létrehozása
-Tárolási műveletek használatához Azure-tárfiók kell létrehoznia. Ezeket a lépéseket követve létrehozhat egy tárfiókot.
+toouse tárolási műveletek, egy az Azure storage-fiók szükséges. Ezeket a lépéseket követve létrehozhat egy tárfiókot.
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com/).
-2. Kattintson a **új** a portál bal felső ikonra, majd kattintson a **adatok + tárolás** > **Tárfiók**. Kattintson a **létrehozása**, majd a tárfiók adjon egy egyedi nevet, és hozzon létre egy új [erőforráscsoport](../azure-resource-manager/resource-group-overview.md) hozzá.
+1. Jelentkezzen be a hello [Azure Portal](https://portal.azure.com/).
+2. Kattintson a hello **új** hello felül ikon hello portálon a bal oldali, majd kattintson a **adatok + tárolás** > **Tárfiók**. Kattintson a **létrehozása**, majd hello tárfiók adjon egy egyedi nevet, és hozzon létre egy új [erőforráscsoport](../azure-resource-manager/resource-group-overview.md) hozzá.
    
       ![Gyors létrehozás](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageCreate.png)
    
-    A storage-fiók létrehozásakor a **értesítések** gomb villogjon, egy zöld **sikeres** és a storage-fiók panelje meg nyitva, hogy a létrehozott új erőforráscsoporthoz tartozó megjeleníthető.
-3. Kattintson a **hívóbetűk** részt a storage-fiók panelen. Jegyezze fel a fiók nevét és a key1.
+    Hello tárfiók létrehozásakor hello **értesítések** gomb villogjon, egy zöld **sikeres** és hello tárolási fiók panelje meg nyitva, hogy tartozik-e új erőforrás toohello tooshow csoportjának, létre.
+3. Kattintson a hello **hívóbetűk** hello tárolási fiók panelen részt. Jegyezze fel a hello fióknevet és hello key1.
    
       ![Kulcsok](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageKeys.png)
    
-    Ezt az információt a projekt konfigurálásához a következő szakaszban kell azt.
+    Fel kell az adatokat tooconfigure hello a következő szakaszban a projekthez.
 
-## <a name="configure-the-project"></a>A projekt konfigurálása
-Ebben a szakaszban az imént létrehozott tárfiókot használni, az alkalmazás konfigurálását végezzük el. Megtanulhatja az Azure portálról kapcsolódási beállítások beszerzése. Ezt követően helyileg fogja futtatni az alkalmazást.
+## <a name="configure-hello-project"></a>Hello projekt konfigurálása
+Ebben a szakaszban az alkalmazás toouse hello tárolására imént létrehozott új fiók konfigurálását végezzük el. Megtanulhatja, hogyan tooobtain beállításainak öröklése hello Azure portálon. Ezt követően helyileg fogja futtatni hello alkalmazás.
 
-1. A Visual Studióban, kattintson a jobb gombbal a projekt csomópontjára a Megoldáskezelőben, és válassza ki **tulajdonságok**. Kattintson a **Debug** fülre.
+1. A Visual Studióban, kattintson a jobb gombbal a projekt csomópontjára a Megoldáskezelőben, és válassza ki **tulajdonságok**. Kattintson a hello **Debug** fülre.
    
      ![Hibakeresési Projektbeállítások](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureTableStorageProjectDebugSettings.png)
-2. Állítsa be az alkalmazás által igényelt környezeti változók értékeit **Debug Server parancs**, **környezet**.
+2. Állítsa be a hello alkalmazáshoz szükséges környezeti változók értékeinek hello **Debug Server parancs**, **környezet**.
    
        REPOSITORY_NAME=azuretablestorage
        STORAGE_NAME=<storage account name>
        STORAGE_KEY=<primary access key>
    
-   A környezeti változók állítja amikor Ön **Start Debugging**. Ha azt szeretné, hogy a változók adható meg, ha Ön **indítása nélkül hibakeresés**, állítsa be ugyanazokat az értékeket a **Server parancs futtatása** is.
+   Hello környezeti változók állítja amikor Ön **Start Debugging**. Meg, ha azt szeretné, ha hello változók toobe meg **indítása nélkül hibakeresés**, azonos értékének beállítása hello **Server parancs futtatása** is.
    
-   Azt is megteheti megadhatja a környezeti változók a Windows Vezérlőpulton. Ez a beállítás nagyobb Ha azt szeretné, ne tárolja a hitelesítő adatokat a forráskódban / project fájl. Vegye figyelembe, hogy szüksége lesz az alkalmazás elérhető legyen az új környezet értékek Visual Studio újraindítására.
-3. A kódot, amely megvalósítja az Azure Table Storage tárház van **models/azuretablestorage.py**. Tekintse meg a [dokumentáció] Python a Table szolgáltatás használatáról további információt.
-4. Futtassa az alkalmazást az `F5` billentyű lenyomásával. A létrehozása **létrehozása Sample Polls** és a szavazás során elküldött adatok mintaszavazások Azure Table Storage-ban.
+   Azt is megteheti megadhatja a környezeti változók hello Windows Vezérlőpult használatával. Ez az jobb megoldás, ha szeretné, hogy hitelesítő adatok tárolása a forráskód tooavoid / project fájlt. Vegye figyelembe, hogy szüksége lesz a Visual Studio toorestart hello új környezet értékek toobe toohello elérhető alkalmazás.
+3. hello kódot, amely megvalósítja az hello Azure Table Storage tárház van **models/azuretablestorage.py**. Lásd: hello [dokumentáció] további információt a toouse Table szolgáltatás a Python.
+4. Futtassa az alkalmazást hello `F5`. A létrehozása **létrehozása Sample Polls** és hello szavazás során elküldött adatok mintaszavazások Azure Table Storage-ban.
    
    > [!NOTE]
-   > A Python 2.7 virtuális környezetet a Visual Studio egy kivétel break okozhat.  Nyomja le az `F5` folytatja, a webes projekt betöltésekor.
+   > Visual Studio egy kivétel break hello Python 2.7 virtuális környezet vezethet.  Nyomja le az `F5` toocontinue hello webes projekt betöltésekor.
    > 
    > 
-5. Keresse meg a **kapcsolatos** lapon ellenőrizze, hogy az alkalmazást használ-e a **Azure Table Storage** tárházba.
+5. Keresse meg a toohello **kapcsolatos** lap tooverify, amely hello alkalmazás által használt hello **Azure Table Storage** tárházba.
    
      ![Webböngésző](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureTableStorageAbout.png)
 
-## <a name="explore-the-azure-table-storage"></a>Az Azure Table-tároló tallózása
-Akkor is könnyen megtekintése és szerkesztése a Visual Studio használatával a Cloud Explorer storage-táblákat. Ez a szakasz a Server Explorer a szavazások alkalmazás táblák tartalmának megtekintése használjuk.
+## <a name="explore-hello-azure-table-storage"></a>Hello Azure Table Storage felfedezés
+Könnyen tooview és szerkesztése a Visual Studio használatával a Cloud Explorer storage-táblákat. Ez a szakasz a Server Explorer tooview hello hello szavazások alkalmazás táblák tartalmát fogjuk használni.
 
 > [!NOTE]
-> Ehhez a Microsoft Azure eszközök legyen telepítve, mint a rendelkezésre álló része a [Azure SDK for .NET].
+> Ehhez szükséges a Microsoft Azure eszközök toobe telepítve, amelyek állnak rendelkezésre hello részeként [Azure SDK for .NET].
 > 
 > 
 
 1. Nyissa meg **Cloud Explorer**. Bontsa ki a **Tárfiókok**, a tárfiók, majd **táblák**.
    
      ![Cloud Explorer](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorer.png)
-2. Kattintson duplán arra a a **szavazások** vagy **lehetőségek** táblázatban tekintheti meg a tábla tartalmát egy dokumentumablakra, valamint entitások hozzáadása/eltávolítása vagy módosítása.
+2. Kattintson duplán arra a hello **szavazások** vagy **lehetőségek** tábla tooview hello tartalmát egy dokumentumablakra, valamint hozzáadása/eltávolítása vagy módosítása entitások hello táblájában.
    
      ![Tábla lekérdezés eredményei](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorerTable.png)
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>A webalkalmazás közzététele az Azure App Service szolgáltatásban
-Az Azure .NET SDK egyszerű módot kínál a webalkalmazása az Azure App Service szolgáltatásban történő közzétételére.
+## <a name="publish-hello-web-app-tooazure-app-service"></a>Hello web app tooAzure App Service közzététele
+hello Azure .NET SDK-t biztosít egy egyszerűen toodeploy a webes alkalmazás tooAzure App Service.
 
-1. A **Solution Explorer** (Megoldáskezelő) felületén kattintson a jobb gombbal a projektcsomópontra, majd válassza a **Publish** (Közzététel) lehetőséget.
+1. A **Megoldáskezelőben**jobb gombbal a projektcsomópontra hello, és válassza ki **közzététel**.
    
      ![A Publish Web (Webes közzététel) párbeszédpanel](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonPublishWebSiteDialog.png)
 2. Kattintson a **Microsoft Azure Web Apps** lehetőségre.
-3. A **New** (Új) gombra kattintva hozzon létre egy új webalkalmazást.
-4. Töltse ki a következő mezőket és kattintson a **létrehozása**.
+3. Kattintson a **új** toocreate egy új webalkalmazást.
+4. Töltse ki a következő mezők hello **létrehozása**.
    
    * **A webalkalmazás neve**
    * **App Service-csomag**
    * **Erőforráscsoport**
    * **Régió**
-   * Hagyja változatlanul a **Database server** (Adatbázis-kiszolgáló) **No database** (Nincs adatbázis) beállítását
+   * Hagyja **adatbázis-kiszolgáló** túl beállítása**adatbázis**
 5. Fogadja el az összes többi alapértelmezett értéket, majd kattintson a **Publish** (Közzététel) gombra.
-6. A webböngészőjében automatikusan a közzétett webalkalmazás nyílik meg. Ha tallózással az oldalról, láthatja, hogy az általa használt a **memórián belüli** -tárházban, nem a **Azure Table Storage** tárházba.
+6. A böngésző automatikusan toohello a közzétett webalkalmazás nyílik meg. Ha tallózással toohello oldalról, látni fogja, hogy használja-e hello **memórián belüli** tárház, nem hello **Azure Table Storage** tárházba.
    
-   Ennek oka a környezeti változók nem úgy van beállítva, az Azure App Service Web Apps-példányon a megadott alapértelmezett értékeket használ **settings.py**.
+   Ennek oka hello környezeti változók nem úgy van beállítva, az Azure App Service Web Apps-példányon hello megadott hello alapértelmezett értékeket használ **settings.py**.
 
-## <a name="configure-the-web-apps-instance"></a>Web Apps-példány beállítása
-Ebben a szakaszban a webalkalmazások példány környezeti változók konfigurálását végezzük el.
+## <a name="configure-hello-web-apps-instance"></a>Webalkalmazások példány hello konfigurálása
+Ebben a szakaszban hello webalkalmazások példány környezeti változók konfigurálását végezzük el.
 
-1. A [Azure Portal](https://portal.azure.com), megnyitásához kattintson a webalkalmazása panelén **Tallózás** > **alkalmazásszolgáltatások** > a webes alkalmazás neve.
+1. A [Azure Portal](https://portal.azure.com), megnyitásához hello webalkalmazása panelén **Tallózás** > **alkalmazásszolgáltatások** > a webes alkalmazás neve.
 2. A webalkalmazás panelen kattintson **összes beállítás**, majd kattintson a **Alkalmazásbeállítások**.
-3. Görgessen le a **Alkalmazásbeállítások** szakaszt, és értékeinek beállítása **TÁRHÁZ\_neve**, **tárolási\_neve** és **tárolási\_kulcs** leírtak szerint a **a projekt konfigurálásához** szakasz fenti.
+3. Görgessen lefelé toohello **Alkalmazásbeállítások** szakaszt, és hello értékeinek beállítása **TÁRHÁZ\_neve**, **tárolási\_neve** és  **TÁROLÁSI\_kulcs** hello leírtak **konfigurálása hello projekt** fenti szakaszban.
    
      ![Alkalmazásbeállítások](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png)
-4. Kattintson a **Mentés** gombra. Az értesítéseket, hogy a módosítások alkalmazása megtörtént-e fogadását követően kattintson a **Tallózás** a webes alkalmazás fő paneljén.
-5. A webes alkalmazás megfelelően működik, használatával kell megjelennie a **Azure Table Storage** tárházba.
+4. Kattintson a **Mentés** gombra. Hello értesítéseket, hogy alkalmazása megtörtént-e a hello módosítások fogadását követően kattintson a **Tallózás** hello webes alkalmazás fő paneljén.
+5. Megtekintheti az hello web app működő elvárás hello segítségével **Azure Table Storage** tárházba.
    
    Gratulálunk!
    
      ![Webböngésző](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureBrowser.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Kövesse az alábbi hivatkozásokat tudjon meg többet a Python Tools for Visual Studio, a Flask és az Azure Table Storage.
+Hajtsa végre a Python-eszközökkel kapcsolatos további hivatkozások toolearn a Visual Studio, a Flask és az Azure Table Storage.
 
 * [Python Tools for Visual Studio – dokumentáció]
   * [Webes projektek]
@@ -163,16 +163,16 @@ Kövesse az alábbi hivatkozásokat tudjon meg többet a Python Tools for Visual
 * [Flask-dokumentáció]
 * [Azure Storage]
 * [Pythonhoz készült Azure SDK]
-* [A Table Storage szolgáltatás a Python használata]
+* [Hogyan tooUse hello Table Storage szolgáltatást Python]
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!--Link references-->
 [Python fejlesztői központ]: /develop/python/
-[Azure Cloud Services]: ../cloud-services/cloud-services-python-ptvs.md
+[Azure Felhőszolgáltatások]: ../cloud-services/cloud-services-python-ptvs.md
 [dokumentáció]:../cosmos-db/table-storage-how-to-use-python.md
-[A Table Storage szolgáltatás a Python használata]:../cosmos-db/table-storage-how-to-use-python.md
+[Hogyan tooUse hello Table Storage szolgáltatást Python]:../cosmos-db/table-storage-how-to-use-python.md
 
 <!--External Link references-->
 [Azure Portal]: https://portal.azure.com

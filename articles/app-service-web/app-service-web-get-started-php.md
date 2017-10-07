@@ -1,5 +1,5 @@
 ---
-title: "PHP-webalkalmazás létrehozása az Azure-ban | Microsoft Docs"
+title: "a PHP aaaCreate webalkalmazás az Azure-ban |} Microsoft Docs"
 description: "Percek alatt üzembe helyezheti első Hello World PHP-jét az App Service Web Apps szolgáltatásban."
 services: app-service\web
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.topic: quickstart
 ms.date: 07/21/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 3a78e0b485046ad6228bf4819d3908042c298d1a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8e1022889ca162f8f15ce7435cc9393cc6efef06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-php-web-app-in-azure"></a>PHP-webapp létrehozása az Azure-ban
 
-Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  Ez a gyorsútmutató a PHP-alkalmazás Azure Web Apps szolgáltatásban történő üzembe helyezésén vezeti végig. A Cloud Shellben az [Azure CLI-vel](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) létrehozza a webalkalmazást, a Gittel pedig üzembe helyezi a PHP-mintakódot a webalkalmazásban.
+Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  A gyors üzembe helyezési oktatóanyag bemutatja, hogyan toodeploy egy PHP-alkalmazás tooAzure webalkalmazások. Létrehozhat hello web app használatával hello [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) a felhő rendszerhéjat, és Git toodeploy minta PHP kód toohello webalkalmazás használatát.
 
 ![Az Azure-ban futó mintaalkalmazás]](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
-Az alábbi lépéseket Mac, Windows vagy Linux rendszert futtató gépen is követheti. Az előfeltételek telepítése után a lépések végrehajtása nagyjából öt percet vesz igénybe.
+A lépésekkel hello Mac, a Windows vagy Linux rendszerű gépek használatának alatt. Hello előfeltételek telepítése után tart, körülbelül öt perc toocomplete hello lépéseket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A gyorsútmutató elvégzéséhez:
+toocomplete a gyors üzembe helyezés:
 
 * [A Git telepítése](https://git-scm.com/)
 * [A PHP telepítése](https://php.net)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample-locally"></a>Minta helyi letöltése
+## <a name="download-hello-sample-locally"></a>Helyileg hello minta letöltése
 
-Futtassa a következő parancsokat egy terminálablakban. Ezzel klónozza a mintaalkalmazást a helyi gépre, és a mintakódot tartalmazó könyvtárba lép.
+Egy terminálablakot futtassa a következő parancsok hello. A hello minta alkalmazás tooyour helyi gép klónozását, és keresse meg a toohello directory hello minta kódot tartalmazó.
 
 ```bash
 git clone https://github.com/Azure-Samples/php-docs-hello-world
 cd php-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a>Az alkalmazás futtatása helyben
+## <a name="run-hello-app-locally"></a>Hello alkalmazás helyi futtatása
 
-Az alkalmazás a terminálablak megnyitásával és a `php` parancs használatával helyben futtatható a beépített PHP-webkiszolgáló indításához.
+Hello alkalmazás helyi futtatásához nyisson meg egy terminálablakot, és hello segítségével `php` parancs toolaunch hello beépített PHP webkiszolgáló.
 
 ```bash
 php -S localhost:8080
 ```
 
-Nyisson meg egy webböngészőt, majd keresse meg a mintaalkalmazást a http://localhost:8080. címen.
+Nyisson meg egy webböngészőt, és keresse meg a mintaalkalmazás toohello: 8080.
 
-Az oldalon látható mintaalkalmazáson ekkor a **Hello World!** üzenet jelenik meg.
+Megjelenik a hello **Hello World!** hello lapján megjelenő hello mintaalkalmazás üzenetét.
 
 ![A helyileg futó mintaalkalmazás](media/app-service-web-get-started-php/localhost-hello-world-in-browser.png)
 
-A terminálablakban nyomja le a **Ctrl+C** billentyűkombinációt a webkiszolgálóból történő kilépéshez.
+A Terminálszolgáltatások ablakában, nyomja le az **Ctrl + C** tooexit hello webkiszolgáló.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
@@ -79,11 +79,11 @@ Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 2, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (2/2), 352 bytes | 0 bytes/s, done.
 Total 2 (delta 1), reused 0 (delta 0)
@@ -102,56 +102,56 @@ remote: Ignoring: .git
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
    cc39b1e..25f1805  master -> master
 ```
 
-## <a name="browse-to-the-app-locally"></a>Alkalmazás megkeresése tallózással, helyileg
+## <a name="browse-toohello-app-locally"></a>Keresse meg a helyi toohello alkalmazás
 
-Tallózással keresse meg az üzembe helyezett alkalmazást a webböngésző használatával.
+Keresse meg a webböngésző segítségével toohello telepített alkalmazás.
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-A PHP mintakód az Azure App Service webalkalmazásban fut.
+hello PHP mintakód fut. Ha az Azure App Service web app alkalmazásban.
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
-**Gratulálunk!** Elvégezte az első PHP-webapp üzembe helyezését az App Service-ben.
+**Gratulálunk!** Az első PHP-alkalmazás tooApp szolgáltatás telepítése után.
 
-## <a name="update-locally-and-redeploy-the-code"></a>A kód frissítése helyileg és ismételt üzembe helyezése
+## <a name="update-locally-and-redeploy-hello-code"></a>Frissítés helyben, és telepítse újra a hello kódot
 
-Egy helyi szövegszerkesztő használatával nyissa meg a `index.php` fájlt a PHP-alkalmazáson belül, majd módosítsa kissé annak szövegét a `echo` melletti karakterláncon belül:
+Egy helyi szövegszerkesztőben nyissa meg hello `index.php` hello PHP alkalmazáson belül, és győződjön szöveg egy kis módosítása toohello hello karakterláncon belüli következő túl`echo`:
 
 ```php
 echo "Hello Azure!";
 ```
 
-Mentse a módosításokat a Gitben, majd továbbítsa a kód módosításait az Azure-ba.
+A Git a változtatások véglegesítése a határidő, és majd leküldéses hello kód módosítások tooAzure.
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-Az üzembe helyezés befejezését követően váltson vissza **Az alkalmazás megkeresése tallózással** lépésben megnyitott böngészőablakra, és frissítse az oldalt.
+Központi telepítés befejezése után kapcsoló hello megnyitott hátsó toohello böngészőablakban **Tallózás toohello app** lépést, és a frissítési hello lap.
 
 ![Az Azure-ban futó frissített mintaalkalmazás](media/app-service-web-get-started-php/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>Az új Azure-webapp kezelése
 
-A létrehozott webalkalmazás felügyeletéhez ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>.
+Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toomanage hello létrehozott webalkalmazás.
 
-A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webalkalmazás nevére.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevét.
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-get-started-php/php-docs-hello-world-app-service-list.png)
 
 Megtekintheti a webalkalmazás Áttekintés oldalát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés.
 
 ![Az App Service panel az Azure Portalon](media/app-service-web-get-started-php/php-docs-hello-world-app-service-detail.png)
 
-A bal oldali menü az alkalmazás konfigurálásához biztosít különböző oldalakat. 
+hello bal oldali menü különböző oldalain biztosít az alkalmazás konfigurálását. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

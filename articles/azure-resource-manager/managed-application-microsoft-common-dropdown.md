@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás legördülő felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Common.DropDown felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás legördülő felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Common.DropDown felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: a769e14efbae928b811fa1f1b1c2d4fba3c7692b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c07a48ad66b8e8b7fd8f59561776ecb1fc6224f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcommondropdown-ui-element"></a>Microsoft.Common.DropDown felhasználói felületi elem
 A legördülő lista kijelölési vezérlőt. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
@@ -50,17 +50,17 @@ A legördülő lista kijelölési vezérlőt. Ez az elem használata során [Azu
 ```
 
 ## <a name="remarks"></a>Megjegyzések
-- A címke `constraints.allowedValues` a megjelenített szöveg-e egy elem, és a kimeneti értéket, az elem kiválasztásakor értéke.
-- Ha meg van adva, az alapértelmezett érték lehet egy címke szerepel `constraints.allowedValues`. Ha nincs megadva, az első elem az `constraints.allowedValues` van kiválasztva. Az alapértelmezett érték **null**.
+- hello címkéjét `constraints.allowedValues` hello megjelenített szöveg-e egy elem, és hello elem kiválasztásakor hello kimeneti értéke érvénytelen.
+- Ha meg van adva, a hello alapértelmezett értéket kell lennie egy címke szerepel `constraints.allowedValues`. Ha nincs megadva, az első elem hello `constraints.allowedValues` van kiválasztva. hello alapértelmezett értéke **null**.
 - `constraints.allowedValues`legalább egy elemet kell tartalmaznia.
-- Ez az elem nem támogatja a `constraints.required` tulajdonság. Ez viselkedésének emulációjához, vegyen fel egy elemet, label és értékének `""` (üres karakterlánc) való `constraints.allowedValues`.
+- Ez az elem nem támogatja a hello `constraints.required` tulajdonság. tooemulate ezt a viselkedést, vegyen fel egy elemet egy címke és értékének `""` (üres karakterlánc) túl`constraints.allowedValues`.
 
-## <a name="sample-output"></a>Minta kimenet
+## <a name="sample-output"></a>Példa kimenet
 ```json
 "Bar"
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Application Gateway állapotfigyelési áttekintése |} Microsoft Docs"
-description: "További tudnivalók az Azure alkalmazás átjáró a megfigyelési lehetőségek"
+title: "figyelési áttekintés az Azure Application Gateway aaaHealth |} Microsoft Docs"
+description: "Figyelési képességek az Azure alkalmazás átjáró hello megismerése"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/14/2016
 ms.author: gwallace
-ms.openlocfilehash: 899115d213e626f17e58c2e5f01313f760f9e7f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5091d80394a354ff849ce7ccee8cc9d2fd0456db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-gateway-health-monitoring-overview"></a>Átjáró állapotfigyelő figyelési – áttekintés
 
-Azure Application Gateway alapértelmezés szerint a háttér-készlet összes erőforrások állapotát figyeli, és automatikusan eltávolítja az összes erőforrást, a készlet megfelelő állapotúnak számít. Alkalmazásátjáró továbbra is figyeli a nem megfelelő példányok, és hozzáadja őket a megfelelő háttér-készlet számára, amennyiben az rendelkezésre állására, és állapotteljesítmény válaszolni. Alkalmazásátjáró küldi az állapot-mintavételi csomagjai a meghatározott a háttér-HTTP-beállítások ugyanazt a portot. Ez a konfiguráció biztosítja, hogy a mintavétel ellenőrzi, hogy az ügyfelek akkor használja a háttérrendszerhez való csatlakozáshoz ugyanazt a portot.
+Alapértelmezés szerint az Azure Application Gateway figyeli a hello állapotát a háttér-készletben erőforrásait, és automatikusan eltávolítja az összes erőforrás hello készlet megfelelő állapotúnak számít. Alkalmazásátjáró toomonitor hello sérült példányok folytatódik, és hozzáadja őket biztonsági toohello kifogástalan háttér-készlet, amennyiben azok elérhetővé válnak, és válaszoljon toohealth-vizsgálat. Alkalmazásátjáró küldi hello állapotfigyelő mintavételt a hello ugyanazt a portot definiált hello háttér HTTP-beállítások. Ez a konfiguráció biztosítja, hogy hello mintavételi azonos port, hogy az ügyfelek dolgozna tooconnect toohello háttér hello teszteli.
 
 ![alkalmazás átjáró mintavételi – példa][1]
 
-Mellett alapértelmezett mintavételi állapotfigyelés, testreszabhatja a állapotmintáihoz az alkalmazás követelményeinek megfelelően. Ebben a cikkben alapértelmezett és egyéni állapotteljesítmény tartoznak.
+Továbbá toousing alapértelmezett mintavételi állapotfigyelés, is testreszabhatja hello állapotfigyelő mintavételi toosuit az alkalmazás követelményeinek. Ebben a cikkben alapértelmezett és egyéni állapotteljesítmény tartoznak.
 
 > [!NOTE]
-> Ha Alkalmazásátjáró alhálózat egy NSG-t, porttartományok 65503-65534 meg kell nyitni bejövő forgalom az Alkalmazásátjáró alhálózaton. Ezeket a portokat a háttérrendszer állapotfigyelő API működéséhez szükségesek.
+> Ha Alkalmazásátjáró alhálózat egy NSG-t, porttartományok 65503-65534 meg kell nyitni bejövő forgalom hello Alkalmazásátjáró alhálózaton. Ezeket a portokat hello háttér állapotfigyelő API toowork szükségesek.
 
 ## <a name="default-health-probe"></a>Alapértelmezett állapotmintáihoz
 
-Alkalmazásátjáró automatikusan meghatározza, hogy egy alapértelmezett állapotmintáihoz nem állít be egyéni mintavételi beállításra. A figyelési viselkedés HTTP-kérelem a háttér-készlet konfigurált IP-címeit, így működik. Az alapértelmezett mintavételt a backendhttpsettings osztályhoz vannak konfigurálva, a HTTPS-hez, ha a mintavételi HTTPS PROTOKOLLT használ, valamint a háttérkiszolgálókon állapotának ellenőrzéséhez.
+Alkalmazásátjáró automatikusan meghatározza, hogy egy alapértelmezett állapotmintáihoz nem állít be egyéni mintavételi beállításra. hello viselkedésének figyelése elvégzése egy HTTP-kérelem toohello IP-címek hello háttér-készlet beállítása során. Az alapértelmezett mintavételt hello backendhttpsettings osztályhoz vannak konfigurálva, a HTTPS-hez, ha hello mintavételi használja HTTPS hello háttérkiszolgálókon jól tootest állapotát.
 
-Például: az alkalmazás átjárót háttérkiszolgálók A, B és C használja a 80-as porton, HTTP-hálózati forgalom fogadására konfigurálja. A három kiszolgáló az alapértelmezett állapotfigyelés tesztek 30 másodpercenként kifogástalan HTTP-választ. Rendelkezik a megfelelő HTTP-válasz egy [állapotkód](https://msdn.microsoft.com/library/aa287675.aspx) 200 és 399 között.
+Például: konfigurálhatja az alkalmazás átjáró toouse háttérkiszolgálók A, B és C tooreceive HTTP hálózati forgalom 80-as porton. hello három kiszolgáló hello alapértelmezett állapotfigyelés tesztek 30 másodpercenként kifogástalan HTTP-választ. Rendelkezik a megfelelő HTTP-válasz egy [állapotkód](https://msdn.microsoft.com/library/aa287675.aspx) 200 és 399 között.
 
-Ha a kiszolgáló az alapértelmezett mintavételi ellenőrzése sikertelen, az Alkalmazásátjáró automatikusan eltávolítja a háttér-készlet, és a hálózati forgalom leállítja a kiszolgáló halad. Az alapértelmezett mintavétel továbbra is ellenőrizze a kiszolgáló egy 30 másodpercenként. Amikor a kiszolgáló válaszol sikeresen egy kérést a egy alapértelmezett állapotmintáihoz, kerül ismét kifogástalan a háttér-készlet, és forgalom elindul, a kiszolgáló ismét halad.
+Hello alapértelmezett mintavétel-ellenőrzés sikertelen, A kiszolgáló, ha hello Alkalmazásátjáró automatikusan eltávolítja a háttér-készlet, és a hálózati forgalom leállítja toothis server továbbítására. hello alapértelmezett mintavétel egy 30 másodpercenként továbbra is fennáll toocheck kiszolgáló. A kiszolgáló válaszol sikeresen tooone kérelem érkező egy alapértelmezett állapotmintáihoz, amikor felveszik vissza megfelelő toohello háttér-készlet, valamint a forgalom megkezdődésekor toohello server újra.
 
 ### <a name="default-health-probe-settings"></a>Alapértelmezett állapotfigyelő mintavételi beállításai
 
@@ -47,36 +47,36 @@ Ha a kiszolgáló az alapértelmezett mintavételi ellenőrzése sikertelen, az 
 | A mintavételi URL-címe |http://127.0.0.1:\<port\>/ |URL-címe |
 | időköz |30 |Mintavételi időköz másodpercben |
 | Időtúllépés |30 |Mintavételi időkorlátja másodpercben |
-| Sérült küszöbérték |3 |Mintavételi újrapróbálkozások maximális számát. A háttér-kiszolgálófiók van megjelölve, miután az egymást követő mintavételi hiba száma eléri a sérült küszöbérték. |
+| Sérült küszöbérték |3 |Mintavételi újrapróbálkozások maximális számát. hello háttér-kiszolgáló van megjelölve, miután hello egymást követő mintavételi hiba száma eléri a hello sérült küszöbérték. |
 
 > [!NOTE]
-> A port, a háttér-HTTP-beállítások ugyanazt a portot.
+> hello port van hello azonos port hello háttér HTTP-beállításként.
 
-Az alapértelmezett vizsgálat ellenőrzi, hogy csak az http://127.0.0.1:\<port\> állapot meghatározásához. Ha az állapotfigyelő mintavétel nyissa meg egy egyéni URL-címre, vagy egyéb beállításait módosítani kell, a következő lépésekben leírtaknak egyéni mintavételt kell használnia:
+hello alapértelmezett mintavétel ellenőrzi, hogy csak az http://127.0.0.1:\<port\> toodetermine állapotát. Ha tooconfigure hello állapotfigyelő mintavételi toogo tooa egyéni URL-címhez kell, vagy bármely egyéb beállítások módosítása, a következő lépéseket hello egyéni mintavételt kell használnia:
 
 ## <a name="custom-health-probe"></a>Egyéni állapotmintáihoz
 
-Egyéni mintavételt lehetővé teszik az állapotfigyelés részletesebb vezérlésére. Egyéni mintavételt használata esetén konfigurálhatja a mintavételi időköznek, az URL-cím és elérési útja tesztelése és fogadja el, hogy megsérült a háttér-készlet példányhoz való megjelölése előtt hány hibás válaszokat.
+Egyéni mintavételt toohave hello állapotfigyelés részletesebb szabályozhatják engedélyezése. Egyéni mintavételt használata esetén konfigurálhatja hello mintavétel gyakoriságát, hello URL-cím és az elérési út tootest, hogy hány sikertelen válaszok tooaccept hello háttér-készlet példány sérültként való megjelölése előtt.
 
 ### <a name="custom-health-probe-settings"></a>Egyéni állapotfigyelő mintavételi beállítások
 
-A következő táblázat a definíciók tulajdonságait a egyéni állapotmintáihoz.
+hello következő tábla biztosít jelentésdefiníciókat hello tulajdonságának értéke egy egyéni állapotmintáihoz.
 
 | Mintavételi tulajdonság | Leírás |
 | --- | --- |
-| Név |A mintavétel neve. Ez a név segítségével tekintse meg a mintavétel a háttér-HTTP-beállításait. |
-| Protokoll |A mintavétel küldéséhez használt protokoll. A mintavétel a háttér-HTTP-beállítások között megadott protokollt használ. |
-| Gazdagép |A mintavétel küldendő állomásnevet. Alkalmazandó csak akkor, ha több hely van beállítva az alkalmazás-átjárón, ellenkező esetben használja a "127.0.0.1". Ez az érték eltér a virtuális gép állomásnevét. |
-| Elérési út |A mintavétel relatív elérési útja. Az érvényes elérési utat elindítja a "/". |
-| időköz |Mintavételi időköz másodpercben. Ez az érték pedig az időköz, két egymást követő mintavételek menüpontban között. |
-| Időtúllépés |Mintavételi időtúllépés másodpercben. Egy érvényes válasz nem érkezett meg a megadott időn belül, ha a mintavételi hibás jelölést.  |
-| Sérült küszöbérték |Mintavételi újrapróbálkozások maximális számát. A háttér-kiszolgálófiók van megjelölve, miután az egymást követő mintavételi hiba száma eléri a sérült küszöbérték. |
+| Név |Hello mintavétel neve. Ez a név foglalt toorefer toohello mintavételi a háttér-HTTP-beállítások. |
+| Protokoll |Toosend hello mintavételi használt protokoll. hello mintavételi hello háttér HTTP-beállítások között megadott hello protokollt használja |
+| Gazdagép |Gazdagép neve toosend hello mintavétel. Alkalmazandó csak akkor, ha több hely van beállítva az alkalmazás-átjárón, ellenkező esetben használja a "127.0.0.1". Ez az érték eltér a virtuális gép állomásnevét. |
+| Elérési út |Hello mintavételi relatív elérési út. hello érvényes elérési út elindítja a "/". |
+| időköz |Mintavételi időköz másodpercben. Ez az érték két egymást követő mintavételek menüpontban hello időközét. |
+| Időtúllépés |Mintavételi időtúllépés másodpercben. Ha az időkorláton belül nem érkezik meg egy érvényes válasz, hello mintavételi hibás jelölést.  |
+| Sérült küszöbérték |Mintavételi újrapróbálkozások maximális számát. hello háttér-kiszolgáló van megjelölve, miután hello egymást követő mintavételi hiba száma eléri a hello sérült küszöbérték. |
 
 > [!IMPORTANT]
-> Ha Alkalmazásátjáró egy adott hely van konfigurálva, a gazdagépen alapértelmezés szerint nevét kell megadni a "127.0.0.1", kivéve, ha az egyéni tesztműveleti egyéb konfigurálni.
-> Referenciaként egy egyéni mintavételt küldött \<protokoll\>://\<állomás\>:\<port\>\<elérési\>. A háttér-HTTP-beállítások között megadott használt port válik, ugyanazt a portot.
+> Ha Alkalmazásátjáró egy adott hely van beállítva, alapértelmezett hello állomás által nevét kell megadni a "127.0.0.1", kivéve, ha az egyéni tesztműveleti egyéb konfigurálni.
+> Hivatkozás egy egyéni mintavételt továbbítja a rendszer túl\<protokoll\>://\<állomás\>:\<port\>\<elérési\>. hello használt port lesz hello ugyanazt a portot, a hello háttér HTTP-beállításait.
 
 ## <a name="next-steps"></a>Következő lépések
-Alkalmazásátjáró állapotfigyelés megismerését követően konfigurálhatja a [egyéni állapotmintáihoz](application-gateway-create-probe-portal.md) az Azure portálon vagy egy [egyéni állapotmintáihoz](application-gateway-create-probe-ps.md) PowerShell és az Azure Resource Manager használatával üzembe helyezési modellben.
+Alkalmazásátjáró állapotfigyelés megismerését követően konfigurálhatja a [egyéni állapotmintáihoz](application-gateway-create-probe-portal.md) hello Azure-portálon az vagy egy [egyéni állapotmintáihoz](application-gateway-create-probe-ps.md) PowerShell és a hello Azure Resource Manager használatával üzembe helyezési modellben.
 
 [1]: ./media/application-gateway-probe-overview/appgatewayprobe.png

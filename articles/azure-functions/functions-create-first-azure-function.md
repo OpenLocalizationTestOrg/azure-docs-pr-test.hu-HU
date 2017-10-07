@@ -1,6 +1,6 @@
 ---
-title: "Az első függvény létrehozása az Azure portálon | Microsoft Docs"
-description: "Ismerje meg, hogyan hozhatja létre az első Azure-függvényét kiszolgáló nélküli végrehajtáshoz az Azure Portalon."
+title: "az első függvény eltávolítása hello Azure Portal aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan kiszolgáló nélküli végrehajtási a függvény az első Azure toocreate hello Azure-portálon."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,59 +16,59 @@ ms.workload: na
 ms.date: 08/07/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 3ec1f278f21d89782137625aff200f07f15fd9fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 84283d7d4bc6015061946af4589f9a70ae61f36b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-your-first-function-in-the-azure-portal"></a>Az első függvény létrehozása az Azure portálon
+# <a name="create-your-first-function-in-hello-azure-portal"></a>A hello Azure-portálon az első függvény létrehozása
 
-Az Azure Functions lehetővé teszi a kód végrehajtását kiszolgáló nélküli környezetben anélkül, hogy először létre kellene hoznia egy virtuális gépet vagy közzé kellene tennie egy webalkalmazást. Ebben a témakörben megismerheti, hogyan használhatja a Functions szolgáltatást egy „hello world” függvény létrehozására az Azure Portalon.
+Az Azure Functions lehetővé teszi, hogy a kód egy kiszolgáló nélküli környezetben anélkül, hogy hozzon létre egy virtuális Gépet, vagy tegye közzé a webalkalmazást toofirst hajtható végre. Ebben a témakörben elsajátíthatja toouse működését toocreate hello Azure-portálon a "hello world" függvényt.
 
-![Függvényalkalmazás létrehozása az Azure Portalon](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
+![Függvény-alkalmazás létrehozása az Azure-portálon hello](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
 
 ## <a name="create-a-function-app"></a>Függvényalkalmazás létrehozása
 
-Rendelkeznie kell egy függvényalkalmazással a függvények végrehajtásának biztosításához. A függvényalkalmazás lehetővé teszi, hogy logikai egységbe csoportosítsa a függvényeket az erőforrások egyszerűbb felügyelete, telepítése és megosztása érdekében. 
+Rendelkeznie kell egy függvény app toohost hello a függvények végrehajtásához szükséges. A függvényalkalmazás lehetővé teszi, hogy logikai egységbe csoportosítsa a függvényeket az erőforrások egyszerűbb felügyelete, telepítése és megosztása érdekében. 
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
 [!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
-Ezután létrehozhat egy függvényt az új függvényalkalmazásban.
+A függvény a következő alkalmazásban hello új függvény létrehozása.
 
 ## <a name="create-function"></a>HTTP által aktivált függvény létrehozása
 
-1. Bontsa ki az új függvényalkalmazást, majd kattintson a **Függvények** elem melletti **+** gombra.
+1. Bontsa ki az új függvény alkalmazást, majd kattintson az hello  **+**  gomb melletti túl**funkciók**.
 
-2.  A **Gyors kezdés** lapon kattintson a **WebHook + API** elemre, **válasszon egy nyelvet** a függvény számára, majd kattintson a **Függvény létrehozása** elemre. 
+2.  A hello **gyorsan** lapon jelölje be **WebHook + API**, **válassza ki a nyelvet** a függvény, és kattintson a **Ez a függvény létrehozása** . 
    
-    ![A függvények gyors létrehozása az Azure Portalon.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
+    ![Az Azure-portálon hello Functions gyorsindítójával.](./media/functions-create-first-azure-function/function-app-quickstart-node-webhook.png)
 
-A rendszer létrehoz egy függvényt a választott nyelven a HTTP által indított függvények sablonjának használatával. Az új függvényt egy HTTP-kérelem küldésével futtathatja.
+A következő függvényt egy indított HTTP függvény hello sablonnal a választott nyelven jön létre. HTTP-kérelem küldésével hello új funkció is futtathatja.
 
-## <a name="test-the-function"></a>A függvény tesztelése
+## <a name="test-hello-function"></a>Hello függvény tesztelése
 
 1. Az új függvényben kattintson a **< /> Függvény URL-címének beolvasása** elemre, válassza a **default (Function key)** (alapértelmezett (funkcióbillentyű)) lehetőséget, majd kattintson a **Másolás** gombra. 
 
-    ![A függvény URL-címének másolása az Azure portálról](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
+    ![Hello függvény URL-Címének másolása az Azure-portálon hello](./media/functions-create-first-azure-function/function-app-develop-tab-testing.png)
 
-2. Illessze be a függvény URL-címét a böngésző címsorába. Az URL-címhez fűzze hozzá a `&name=<yourname>` lekérdezési karakterláncot, majd nyomja le az `Enter` billentyűt a billentyűzeten a kérés végrehajtásához. A következőkben egy példa látható az Edge böngészőben a függvény által visszaadott válaszra:
+2. Hello függvény URL-cím illessze be a böngésző címsorába. Hello lekérdezési karakterlánc hozzáfűzése `&name=<yourname>` toothis URL-címet, és nyomja le az hello `Enter` kulcs a billentyűzet tooexecute hello kérésre. hello az alábbiakban látható egy példa az Edge böngészőben hello hello függvény által visszaadott hello választ:
 
-    ![A függvény által visszaadott válasz a böngészőben.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
+    ![Függvény válasz hello böngészőben.](./media/functions-create-first-azure-function/function-app-browser-testing.png)
 
-    A kérelem URL-címe alapértelmezés szerint tartalmazza a függvény HTTP protokollon keresztüli eléréséhez szükséges kulcsot.   
+    hello kérelem URL-cím szükséges, alapértelmezés szerint tooaccess kulcsot tartalmaz, a függvény HTTP Protokollon keresztül.   
 
-3. A függvény futásakor a rendszer nyomkövetési adatok ír a naplókba. Az előző végrehajtás nyomkövetési adatainak megtekintéséhez térjen vissza a függvényhez a portálon, és a **Naplók** elem kibontásához kattintson a képernyő alján található felfelé mutató nyílra. 
+3. A függvény futásakor nyomkövetési adatok írása toohello naplókat. toosee hello nyomkövetési kimenetét hello előző végrehajtási, térjen vissza a tooyour függvény hello portálon, és kattintson a felfelé mutató nyíl hello képernyő tooexpand hello alján hello **naplók**. 
 
-   ![A függvények naplómegtekintője az Azure Portalon.](./media/functions-create-first-azure-function/function-view-logs.png)
+   ![Funkciók viewer bejelentkezés hello Azure-portálon.](./media/functions-create-first-azure-function/function-view-logs.png)
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 

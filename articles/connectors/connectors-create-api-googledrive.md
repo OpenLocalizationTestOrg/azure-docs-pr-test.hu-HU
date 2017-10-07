@@ -1,6 +1,6 @@
 ---
-title: "Adja hozzá a Google meghajtó összekötőt a logic apps |} Microsoft Docs"
-description: "A REST API-paraméterekkel rendelkező Google meghajtó összekötő áttekintése"
+title: "aaaAdd hello Google meghajtó-összekötőt a logic apps |} Microsoft Docs"
+description: "Hello Google meghajtó összekötő REST API-paraméterekkel rendelkező áttekintése"
 services: 
 suite: 
 documentationcenter: 
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c066a10b33e172eb5f16eede43ec407794000c90
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d572cc07462713c3496e2cc3081e1758828bdcde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-google-drive-connector"></a>A Google meghajtó összekötő az első lépései
-Google-meghajtó létrehozása, fájlok, a get sorok és a további csatlakozni. Google-meghajtó a következőket teheti: 
+# <a name="get-started-with-hello-google-drive-connector"></a>Hello Google meghajtó összekötő az első lépései
+TooGoogle meghajtó toocreate fájlok csatlakozni, le a sort, és több. Google-meghajtó a következőket teheti: 
 
-* Az üzleti folyamata, a keresés származó adatok alapján történő létrehozása. 
-* Műveletek segítségével képek keresni, keresse a híreket és még sok más. Ezeket a műveleteket válaszol, és végezze el a kimeneti más műveletek érhető el. Például keresse meg a videót, és Twitter használatával, amely egy Twitter-hírcsatorna a videó utáni.
+* Hozhat létre. az üzleti folyamat kap a keresés hello adatok alapján. 
+* Műveletek toosearch lemezképek, a keresési hello hírek és további használja. Ezeket a műveleteket válaszol, és végezze el hello kimeneti más műveletek érhető el. Például keresse meg a videót, és a videó tooa Twitter-hírcsatornája Twitter toopost használhatja.
 
 Most hozzon létre egy logic app kezdheti, lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-the-connection-to-google-drive"></a>Google-meghajtóra kapcsolat létrehozása
-Ezt az összekötőt a logic apps hozzáadásakor engedélyeznie kell a logic apps a Google-meghajtóról való kapcsolódáshoz.
+## <a name="create-hello-connection-toogoogle-drive"></a>Hello kapcsolat tooGoogle meghajtó létrehozása
+Amikor ez összekötő tooyour a logic apps, engedélyeznie kell a logic apps tooconnect tooyour Google meghajtó.
 
-> [!INCLUDE [Steps to create a connection to googledrive](../../includes/connectors-create-api-googledrive.md)]
+> [!INCLUDE [Steps toocreate a connection toogoogledrive](../../includes/connectors-create-api-googledrive.md)]
 > 
 > 
 
-Miután létrehozta a kapcsolatot, a Google-meghajtó tulajdonságainak, például a mappa elérési útját vagy a fájl nevét adja meg. 
+Hello kapcsolat létrehozása után meg kell adnia hello Google meghajtó tulajdonságai, például a hello mappa elérési útját vagy a fájl neve. 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/googledrive/).
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/googledrive/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza a [API-k lista](apis-list.md).
+Lépjen vissza toohello [API-k lista](apis-list.md).

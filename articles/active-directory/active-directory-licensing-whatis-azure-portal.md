@@ -1,5 +1,5 @@
 ---
-title: "Mi az a csoport-alapú licencelése az Azure Active Directoryban? | Microsoft Docs"
+title: "aaaWhat az Csoportalapú licencelése az Azure Active Directoryban? | Microsoft Docs"
 description: "Azure Active Directory biztonságicsoport-alapú licencelési, hogyan működik és ajánlott eljárások leírása"
 services: active-directory
 keywords: "Az Azure AD-licencelés"
@@ -17,46 +17,46 @@ ms.date: 06/29/2017
 ms.author: curtand
 ms.reviewer: piotrci
 ms.custom: H1Hack27Feb2017;it-pro
-ms.openlocfilehash: 52dd48ce4e4acaf48f31edc51bbb657f8cd249cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11647de6b76022cd2393751fcafc67ce671aeba6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="group-based-licensing-basics-in-azure-active-directory"></a>Csoportalapú licencelés alapjai az Azure Active Directoryban
 
-A Microsoft felhőszolgáltatások, például az Office 365, nagyvállalati mobilitási + biztonsági, Dynamics CRM és egyéb hasonló termékek fizetős szükség van a licenceket. A licencek vannak rendelve ezekhez a szolgáltatásokhoz való hozzáférést igénylő összes felhasználónak. A rendszergazdák licencek kezeléséhez használja a felügyeleti portálokat (Office vagy Azure) és a PowerShell-parancsmagok egyikét. Azure Active Directory (Azure AD) az alkalmazás mögötti infrastruktúra, amely támogatja az Identitáskezelés minden Microsoft-szolgáltatásokhoz. Az Azure AD felhasználók hozzárendelés licencállapotukat kapcsolatos információkat tárolja.
+A Microsoft felhőszolgáltatások, például az Office 365, nagyvállalati mobilitási + biztonsági, Dynamics CRM és egyéb hasonló termékek fizetős szükség van a licenceket. A licencek vannak rendelve tooeach felhasználókat, akiknek toothese szolgáltatást. toomanage licencek, a rendszergazdák egyikével hello felügyeleti portálokat (Office vagy Azure) és a PowerShell-parancsmagokat. Azure Active Directory (Azure AD) egy hello alapul szolgáló infrastruktúra, amely támogatja az Identitáskezelés minden Microsoft-szolgáltatásokhoz. Az Azure AD felhasználók hozzárendelés licencállapotukat kapcsolatos információkat tárolja.
 
-Eddig licencek csak rendelhető, amely tesz, a felügyeleti teendők központjaként felügyelet nehéz egyedi felhasználói szinten. Például hozzáadása vagy eltávolítása a felhasználói licencek szervezeti módosítások szempontjából, például a felhasználók csatlakozni vagy a szervezet, illetve egy részleg alapján rendszergazda gyakran összetett PowerShell-parancsfájlt kell írnia. Ezt a parancsfájlt a felhőszolgáltatásba egyes hívások révén.
+Eddig licencek csak rendelhető tesz, a felügyeleti teendők központjaként felügyelet nehéz hello egyéni felhasználói szinten. Például tooadd, vagy távolítsa el felhasználói licencek alapuló szervezeti módosítások szempontjából, például a felhasználók csatlakozni, vagy hagyja hello szervezet vagy egy osztály, a rendszergazda gyakran összetett PowerShell-parancsfájlt kell írnia. Ez a parancsfájl lehetővé teszi egyes hívások toohello felhőalapú szolgáltatás.
 
-Ezek a kihívások megoldására mostantól az Azure AD tartalmazza a licencelési biztonságicsoport-alapú. Egy vagy több termék licenceket rendelhet egy csoportot. Az Azure AD gondoskodik arról, hogy a licenceket rendelt-e a csoport összes tagja számára. Új tagokat, akik csatlakozzon a csoporthoz rendeli hozzá a szükséges licencekkel. Ha elhagyják a csoport, ezeket a licencek eltávolítását. Ez szükségtelenné teszi a licenckezelést a PowerShell automatizálása a szervezet és a részlegszintű struktúra változásaihoz igazodva felhasználónkénti alapon.
+tooaddress azokat felkéri, most már az Azure AD magában foglalja a licencelési biztonságicsoport-alapú. Egy vagy több termék licencek tooa csoport rendelhet hozzá. Az Azure AD gondoskodik arról, hogy hello licencek hozzárendelésének tooall hello csoport tagjai. Új tagokat, akik hello csoporttagság hello megfelelő licencek vannak rendelve. Hello csoport kilépő, ezeket a licencek eltávolítását. Ezzel a megoldással hello szükséges a Licenckezelés keresztül PowerShell tooreflect módosítások hello szervezet és a részlegszintű struktúra, felhasználónkénti alapon automatizálásához.
 
 ## <a name="features"></a>Szolgáltatások
 
-Az alábbiakban a fő funkcióinak Csoportalapú Licencelés:
+Az alábbiakban hello fő funkcióinak Csoportalapú Licencelés:
 
-- Az Azure AD biztonsági csoporthoz is hozzárendelhető licencek. Biztonsági csoportok lehetnek szinkronizálása a helyszíni, az Azure AD Connect használatával. Biztonsági csoportok közvetlenül az Azure ad-ben (más néven csak felhőalapú csoportok), vagy automatikusan keresztül az Azure AD dinamikus csoport funkciót is létrehozhat.
+- Licencek hozzárendelhetők legyenek tooany biztonsági csoport az Azure ad-ben. Biztonsági csoportok lehetnek szinkronizálása a helyszíni, az Azure AD Connect használatával. Biztonsági csoportok közvetlenül az Azure ad-ben (más néven csak felhőalapú csoportok), vagy automatikusan keresztül hello Azure AD dinamikus csoport funkciót is létrehozhat.
 
-- Ha a termék licence van rendelve egy csoportot, a rendszergazda letilthatja a termékben lévő egy vagy több service-csomagokról. Általában ez történik, ha a szervezete még nem áll készen a termékben szolgáltatás elindítására. Például a rendszergazda előfordulhat, hogy rendelje hozzá az Office 365 részleghez, de ideiglenesen letilthatja a Yammer-szolgáltatást.
+- A termék licence tooa csoport hozzárendelése esetén hello rendszergazda letilthatja egy vagy több hello termékben service-csomagokról. Általában ez történik, amikor hello szervezet még nem áll készen toostart a termékben szolgáltatást használ. Például hello rendszergazda előfordulhat, hogy rendelje hozzá az Office 365 tooa részleg, de ideiglenesen letilthatja az hello Yammer-szolgáltatás.
 
 - Összes Microsoft-felhőszolgáltatás felhasználói szintű licencelési igénylő támogatottak. Ez magában foglalja az összes Office 365 termékek, nagyvállalati mobilitási + biztonsági és Dynamics CRM-hez.
 
-- Csoportalapú licencelési érhető el jelenleg csak [az Azure-portálon](https://portal.azure.com). Ha a felhasználók és csoportok kezelése, például az Office 365 portálra, elsősorban az egyéb felügyeleti portálokat továbbra is megteheti. De csoportok szintjén licencek kezelése az Azure-portálon kell használnia.
+- Csoportalapú licencelési érhető el jelenleg csak [hello Azure-portálon](https://portal.azure.com). Ha a felhasználók és csoportok kezelése, például a hello Office 365 portál, elsősorban az egyéb felügyeleti portálokat így folytathatja az toodo. De hello Azure portál toomanage licencek csoportok szintjén kell használnia.
 
 - Az Azure AD automatikusan kezeli a csoporttagsági változások licenc a módosításokat. Licenc módosítások általában hatékony a tagság megváltoztatása percen belül.
 
-- Egy felhasználó lehet a megadott licenc házirendek több csoport tagja. A felhasználó is néhány licencek közvetlenül hozzárendelt, kívül minden olyan csoportot. Az eredményül kapott felhasználói állapota hozzárendelt termék és a szolgáltatás licenceket.
+- Egy felhasználó lehet a megadott licenc házirendek több csoport tagja. A felhasználó is néhány licencek közvetlenül hozzárendelt, kívül minden olyan csoportot. a felhasználói állapot eredő hello hozzárendelt termék és a szolgáltatás licencek.
 
-- Bizonyos esetekben licencek nem lehet hozzárendelni egy felhasználói. Például lehet, hogy nincs elegendő elérhető licencek a bérlő vagy ütköző szolgáltatásokat lehet, hogy van rendelve egy időben. Rendszergazdák, amely az Azure AD nem tudta teljesen feldolgozni csoport licencek felhasználókról hozzáféréssel rendelkeznek. Majd érvénybe ezen információk alapján kiigazító intézkedéseket.
+- Bizonyos esetekben licencek hozzárendelése tooa felhasználói nem végezhető. Például lehet, hogy nincs elegendő elérhető licencek hello bérlői, vagy ütköző szolgáltatásokat lehet, hogy vannak hozzárendelve, hello azonos idő. A rendszergazdák hozzáférés tooinformation azokról a felhasználókról, amely az Azure AD nem tudta teljesen feldolgozni csoport licencek rendelkeznek. Majd érvénybe ezen információk alapján kiigazító intézkedéseket.
 
-- Nyilvános előzetes egy próbaverziós vagy fizetős előfizetést az Azure AD alapszintű vagy a prémium szintű kiadásai a bérlő használatához szükséges licenc csoport-alapú felügyeleti.
+- Nyilvános előzetes egy próbaverziós vagy fizetős előfizetést Azure AD alapszintű vagy prémium kiadás hello bérlői toouse Csoportalapú Licenckezelés kell megadni.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Más esetekben a Licenckezelés Csoportalapú licenceléssel kapcsolatos további információkért lásd:
+További információ az egyéb forgatókönyvek Licenckezelés Csoportalapú licenceléssel, toolearn lásd:
 
 * [Ismerkedés az Azure Active Directory-licenc](active-directory-licensing-get-started-azure-portal.md)
-* [Licencek hozzárendelése az Azure Active Directory csoport](active-directory-licensing-group-assignment-azure-portal.md)
+* [Az Azure Active Directoryban licencek tooa csoportok átjáróalhálózathoz való hozzárendelése](active-directory-licensing-group-assignment-azure-portal.md)
 * [Majd azonosítani és megoldani az Azure Active Directory csoport licenc problémák](active-directory-licensing-group-problem-resolution-azure-portal.md)
-* [Az Azure Active Directory biztonságicsoport-alapú licencelési egyedi licenccel rendelkező felhasználók áttelepítése](active-directory-licensing-group-migration-azure-portal.md)
+* [Hogyan toomigrate személy licenccel rendelkező felhasználók toogroup alapú licencelése az Azure Active Directoryban](active-directory-licensing-group-migration-azure-portal.md)
 * [Az Azure Active Directory biztonságicsoport-alapú licencelési további helyzeteket is](active-directory-licensing-group-advanced.md)

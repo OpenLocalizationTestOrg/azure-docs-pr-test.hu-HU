@@ -1,6 +1,6 @@
 ---
-title: "Új felhasználók hozzáadása az Azure Active Directoryhoz | Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan vehet fel új felhasználókat, vagy hogyan módosíthatja a felhasználói adatokat az Azure Active Directoryban."
+title: "aaaAdd új felhasználók tooAzure Active Directory |} Microsoft Docs"
+description: "Azt ismerteti, hogyan tooadd új felhasználók, vagy módosítsa a felhasználói adatokat az Azure Active Directoryban."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -17,67 +17,67 @@ ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: ff4b742e772a6062885313e9bb49e55907fe125a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 72f67ad41022fd19fd94c8e1301943b0db1e57bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-new-users-or-users-with-microsoft-accounts-to-azure-active-directory"></a>Új felhasználók vagy a Microsoft-fiókkal rendelkező felhasználók hozzáadása az Azure Active Directory
-Felhasználók hozzáadásával feltöltheti a címtárat adatokkal. Ez a cikk azt ismerteti, hogyan vehet fel új felhasználókat a szervezetben, és hogyan vehet fel Microsoft-fiókkal rendelkező felhasználókat. Az Azure Active Directoryban a más címtárakban lévő felhasználók felvételéről vagy a partnervállalatokban lévő felhasználók felvételéről további információért lásd: [Más címtárakban vagy partnervállalatokban lévő felhasználók felvétele az Azure Active Directoryba](active-directory-create-users-external.md). A hozzáadott felhasználók alapértelmezés szerint nem rendelkeznek rendszergazdai engedélyekkel, de bármikor hozzájuk rendelhet szerepköröket.
+# <a name="add-new-users-or-users-with-microsoft-accounts-tooazure-active-directory"></a>Új felhasználók vagy a Microsoft-fiókok tooAzure Active Directory felhasználók hozzáadása
+Adja hozzá a felhasználók toopopulate a címtárban. Ez a cikk azt ismerteti, hogyan tooadd új felhasználókat a szervezetben, és hogyan tooadd Microsoft-fiókkal rendelkező felhasználók. Az Azure Active Directoryban a más címtárakban lévő felhasználók felvételéről vagy a partnervállalatokban lévő felhasználók felvételéről további információért lásd: [Más címtárakban vagy partnervállalatokban lévő felhasználók felvétele az Azure Active Directoryba](active-directory-create-users-external.md). A hozzáadott felhasználók alapértelmezés szerint nem rendelkeznek rendszergazdai engedélyekkel, de bármikor hozzárendelheti a szerepkörökhöz toothem.
 
 > [!IMPORTANT]
-> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. Szeretne hozzáadni egy felhasználót az Azure AD felügyeleti központban, olvassa el a [új felhasználók hozzáadása az Azure Active Directory](active-directory-users-create-azure-portal.md).
+> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. Hogyan tooadd hello Azure AD felügyeleti központban, felhasználó: a [adja hozzá az új felhasználók tooAzure Active Directory](active-directory-users-create-azure-portal.md).
 
 ## <a name="add-a-user"></a>Felhasználó hozzáadása
-1. Jelentkezzen be a [klasszikus Azure portálra](https://manage.windowsazure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza az **Active Directory** lehetőséget, majd válassza ki a szervezete címtárának nevét.
-3. Válassza a **Felhasználók** lapot, majd a parancssávon válassza a **Felhasználó hozzáadása** parancsot.
-4. A **Felhasználó bemutatása** lap **Felhasználó típusa** területén válassza a következők egyikét:
+1. Jelentkezzen be toohello [a klasszikus Azure portálon](https://manage.windowsazure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **Active Directory**, majd válassza ki a szervezete címtárának nevét hello.
+3. Jelölje be hello **felhasználók** lapot, és ezt követően hello parancssávon válassza **felhasználó hozzáadása**.
+4. A hello **adja meg azt a felhasználó** lap **felhasználó típusa**, a következők közül választhat:
 
    * **Új felhasználó a szervezetben** – egy új felhasználói fiókot ad a címtárhoz.
-   * **Felhasználó meglévő Microsoft-fiókkal** – egy meglévő végfelhasználói Microsoft-fiókot ad a címtárhoz (például egy Outlook-fiókot)
+   * **Egy meglévő Microsoft-fiókkal rendelkező felhasználó** – ad hozzá egy meglévő Microsoft fogyasztói fiók tooyour könyvtár (például egy Outlook-fiókot)
 5. A **Felhasználó típusától** függően írjon be egy felhasználónevet (új felhasználóhoz) vagy e-mail-címet (Microsoft-fiókkal rendelkező felhasználóhoz).
-6. A felhasználói **Profil** oldalon adjon meg egy kereszt- és egy vezetéknevet, egy rövid nevet és egy felhasználói szerepkört a **Szerepkörök** listából. A felhasználói és rendszergazdai szerepkörökről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure AD-ben](active-directory-assign-admin-roles.md). Adja meg, hogy **engedélyezi-e a többtényezős hitelesítést** a felhasználó számára.
-7. Az **Ideiglenes jelszó beszerzése** oldalon válassza a **Létrehozás** lehetőséget.
+6. Hello felhasználó **profil** lapján adja meg az első és utolsó nevét, egy felhasználóbarát nevet és egy felhasználói szerepkört hello **szerepkörök** listája. A felhasználói és rendszergazdai szerepkörökről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure AD-ben](active-directory-assign-admin-roles.md). Adja meg, hogy túl**többtényezős hitelesítés engedélyezése** hello felhasználó számára.
+7. A hello **ideiglenes jelszó beszerzése** lapon jelölje be **létrehozása**.
 
 > [!IMPORTANT]
-> Ha a szervezete több tartományt használ, a következő problémákról kell tudnia a felhasználói fiók hozzáadásakor:
+> Ha szervezete több tartományt használ, a felhasználói fiók hozzáadásakor a következő problémák hello kell tudnia:
 >
-> * Ha azonos egyszerű felhasználónévvel (UPN) szeretne felhasználói fiókokat felvenni több tartományba, **először** adja hozzá például a geoffgrisso@contoso.onmicrosoft.com,  **címet, majd a**  geoffgrisso@contoso.com címet.
-> * **Ne** adja hozzá a geoffgrisso@contoso.com címet a geoffgrisso@contoso.onmicrosoft.com hozzáadása előtt. A sorrend betartása fontos, és nehézkes lehet visszavonni a változásokat.
+> * felhasználói fiókok tooadd hello azonos egyszerű felhasználónév (UPN) tartományokban, **első** hozzáadni, például geoffgrisso@contoso.onmicrosoft.com, **követ** geoffgrisso@contoso.com.
+> * **Ne** adja hozzá a geoffgrisso@contoso.com címet a geoffgrisso@contoso.onmicrosoft.com hozzáadása előtt. Ez a sorrend fontos, és nehézkes tooundo lehet.
 >
 >
 
 ## <a name="change-user-information"></a>Felhasználói adatok módosítása
-Bármely felhasználói attribútumot módosíthat, kivéve az objektumazonosítót.
+Módosíthatja bármely felhasználói attribútumot, kivéve a hello objektum azonosítójával.
 
 1. Nyissa meg a címtárat.
-2. Válassza a **Felhasználók** lapot, majd válassza ki a módosítani kívánt felhasználó megjelenítendő nevét.
+2. Jelölje be hello **felhasználók** fülre, majd jelölje ki hello megjelenített neve a hello toochange kívánt felhasználó.
 3. Végezze el a módosításokat, majd kattintson a **Mentés** parancsra.
 
-Ha az épp módosított felhasználó szinkronizálva van a helyszíni Active Directory szolgáltatással, nem módosíthatja a felhasználó adatait ezzel az eljárással. A felhasználó módosításához használja a helyszíni Active Directory-felügyeleti eszközöket.
+Ha hello épp módosított felhasználó szinkronizálva van a helyszíni Active Directory szolgáltatással, nem módosíthatja hello felhasználó adatait ezzel az eljárással. toochange hello felhasználói, használja a helyszíni Active Directory kezelőeszközöket.
 
 ## <a name="guest-user-management-and-limitations"></a>Vendégfelhasználók kezelése és korlátozásai
-A vendégfiókok másik címtárakban lévő olyan felhasználók, akik meg lettek hívva a címtárába a SharePoint-dokumentumok, alkalmazások vagy más Azure-erőforrások elérése céljából. A címtárban lévő vendégfiókok mögöttes UserType attribútuma „Vendég” beállítású. A normál felhasználók (különösen a címtár tagjai) UserType attribútuma „Tag”.
+A Vendég felhasználókat más címtárakból, akik a meghívott tooyour directory tooaccess SharePoint-dokumentumok, alkalmazások vagy más Azure-erőforrások. A Vendég fiók a könyvtárban van, a mögöttes UserType attribútuma túl "Guest." Normál felhasználók (különösen a címtár tagjai) rendelkezik hello UserType attribútuma "Tag".
 
-A vendégek korlátozott jogosultságokkal rendelkeznek a címtárban. Ezek a jogosultságok korlátozzák a vendégek azon képességét, hogy a címtár más felhasználóinak adatait felderítsék. De a vendégfelhasználók továbbra is kommunikálhatnak azon erőforrásokkal társított felhasználókkal és csoportokkal, amelyeken dolgoznak. A vendégfelhasználók a következőkre képesek:
+A vendégek rendelkeznek korlátozott jogok hello könyvtárban. Ezek a jogosultságok korlátozzák a vendégek toodiscover információt hello címtár más felhasználóinak hello képességét. Azonban vendégfelhasználók továbbra is kommunikálhatnak hello felhasználókhoz és csoportokhoz társított hello erőforrásokat, amelyeken dolgoznak. A vendégfelhasználók a következőkre képesek:
 
-* Azon Azure-előfizetéssel társított felhasználók és csoportok megtekintése, amelyhez hozzá vannak rendelve.
-* Azon csoportok tagjainak megtekintése, amelyekhez tartoznak.
-* A címtárban lévő többi felhasználó megkeresése, ha ismerik a felhasználó teljes e-mail-címét.
-* A megkeresett felhasználók attribútumainak korlátozott megtekintése – ez a megjelenítendő névre, az e-mail-címre, az egyszerű felhasználónévre (UPN-re) és a miniatűr fényképre van korlátozva.
-* A címtárban lévő ellenőrzött tartományok listájának lekérése.
-* Hozzájárulás megadása az alkalmazásoknak, ugyanazon hozzáférést adva nekik, mint a címtár tagjainak.
+* Felhasználók és csoportok társított egy Azure-előfizetés toowhich hozzá vannak rendelve
+* Tekintse meg a csoportok toowhich tartoznak hello tagjai
+* Más felhasználók hello könyvtárban kereshet, ha ismerik hello hello felhasználó teljes e-mail címe
+* Lásd: hello felhasználók megtekintése – korlátozott toodisplay nevét, e-mail címét, egyszerű felhasználónév (UPN) és a miniatűr fényképre attribútumok csak korlátozott számú
+* Hello könyvtárban lévő ellenőrzött tartományok listájának beolvasása
+* Hozzájárulás tooapplications számukra hello ugyanolyan szintű hozzáférése, amely a tagok rendelkeznek a címtárban
 
 ## <a name="set-guest-user-access-policies"></a>A vendégfelhasználók hozzáférési házirendjeinek beállítása
-A címtár **Konfigurálás** lapja tartalmazza a vendégfelhasználók hozzáférés-vezérlésének lehetőségeit. Ezek a lehetőségek csak a klasszikus Azure portálon módosíthatók a címtár globális rendszergazdája által. Jelenleg erre a célra nem létezik PowerShell- vagy API-módszer.
+Hello **konfigurálása** címtár lapján található beállítások toocontrol a vendégfelhasználók hozzáférés. Ezek a lehetőségek csak a klasszikus Azure portálon módosíthatók a címtár globális rendszergazdája által. Jelenleg erre a célra nem létezik PowerShell- vagy API-módszer.
 
-A klasszikus Azure portálon a **Konfigurálás** lap megnyitásához válassza az **Active Directory** lehetőséget, majd jelölje ki a címtár nevét.
+tooopen hello **konfigurálása** lapján hello Azure klasszikus portál, válassza ki **Active Directory**, majd válassza ki a hello hello könyvtár nevét.
 
 ![Konfigurálás lap az Azure Active Directoryban][1]
 
-Ezután szerkesztheti a vendégfelhasználók hozzáférés-vezérlésének lehetőségeit.
+Ezután szerkesztheti a vendégfelhasználók hello beállítások toocontrol hozzáférés.
 
 ![hozzáférés-vezérlési lehetőségek a vendégfelhasználók számára][2]
 

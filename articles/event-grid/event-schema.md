@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Event rács esemény séma"
-description: "Azure Event rácshoz események tartozó tulajdonságait ismerteti."
+title: "aaaAzure esemény rács esemény séma"
+description: "Azure Event rácshoz események tartozó hello tulajdonságait ismerteti."
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,34 +8,34 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: babanisa
-ms.openlocfilehash: 9e3c7b31ef23b29827d7184dc033227685ed92f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 37178a5650b93fd9072d9cff3333aae14b2a2ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-event-schema"></a>Esemény rács esemény séma
 
-A cikkben a tulajdonságok és a séma események. Események áll öt szükséges kapcsolatikarakterlánc-tulajdonságokat és a szükséges **adatok** objektum. A Tulajdonságok megegyeznek az összes esemény bármely közzétevőtől. A **adatok** objektum tartalmaz minden publisher jellemző tulajdonságok. A rendszer témaköröket ezeket a tulajdonságokat vonatkoznak, mint például a tároló- és az Event Hubs az erőforrás-szolgáltató.
+A cikkben hello tulajdonságait és a séma események. Események áll öt szükséges kapcsolatikarakterlánc-tulajdonságokat és a szükséges **adatok** objektum. a rendszer minden közzétételi közös tooall események hello tulajdonságokat. Hello **adatok** objektumot tartalmaz, amelyek az adott tooeach közzétevő. A rendszer témaköröket ezeket a tulajdonságokat adott toohello erőforrás-szolgáltató, például a tároló- és az Event Hubs.
 
-Az események küldhetők Azure esemény rács tömbben, amely több esemény-objektumot is tartalmazhat. Ha csak egyetlen olyan esemény, a tömb hossza 1. 
+Események küldése tooAzure esemény rács a tömb, amely több esemény-objektumot is tartalmazhat. Ha csak egy adott eseményhez, hello tömb hossza 1. 
  
 ## <a name="event-properties"></a>Esemény tulajdonságai
 
-Összes esemény azonos következő felső szintű adatokat tartalmazzák.
+Összes esemény fogja tartalmazni hello azonos következő legfelső szintű adatokat.
 
 | Tulajdonság | Típus | Leírás |
 | -------- | ---- | ----------- |
-| A témakör | Karakterlánc | A forrás teljes erőforrás elérési útja. Ez a mező nincs írható. |
-| Tulajdonos | Karakterlánc | Közzétevő meghatározott elérési útját a esemény tulajdonos. |
-| Esemény típusa | Karakterlánc | Az esemény adatforrás regisztrált esemény típusok egyike. |
-| eventTime | Karakterlánc | Az esemény jön létre az idő alapján a szolgáltató UTC idő szerint. |
-| id | Karakterlánc | Az esemény egyedi azonosítója. |
-| Adatok | Objektum | Eseményadatok jellemző az erőforrás-szolgáltató. |
+| A témakör | Karakterlánc | Teljes körű erőforrást elérési toohello esemény forrását. Ez a mező nincs írható. |
+| Tulajdonos | Karakterlánc | A Publisher megadott elérési út toohello esemény tulajdonos. |
+| Esemény típusa | Karakterlánc | Az esemény adatforrás eseménytípusok hello egyik regisztrálva. |
+| eventTime | Karakterlánc | hello hello esemény jön létre, hello szolgáltató UTC idő alapján. |
+| id | Karakterlánc | Hello esemény egyedi azonosítója. |
+| Adatok | Objektum | Esemény adatok adott toohello erőforrás-szolgáltató. |
 
 ## <a name="available-event-sources"></a>Rendelkezésre álló Eseményforrások
 
-A következő eseményforrások közzé az eseményeket a felhasználásához esemény rács keresztül:
+a következő esemény források hello közzé az eseményeket a felhasználásához esemény rács keresztül:
 
 * Erőforráscsoportok (műveletek)
 * Azure-előfizetések (műveletek)
@@ -126,7 +126,7 @@ Erőforráscsoportok most hozható létre az Azure erőforrás-kezelő felügyel
 
 ## <a name="event-hubs"></a>Event Hubs
 
-Event Hubs események jelenleg csak kibocsátott, amikor egy fájl automatikusan elküld a rögzítése funkció segítségével.
+Event Hubs események jelenleg csak a fájl automatikusan küldött hello rögzítése funkció használata toostorage kibocsátott.
 
 ### <a name="available-event-types"></a>Rendelkezésre álló eseményoszlopok típusok
 
@@ -134,7 +134,7 @@ Event Hubs események jelenleg csak kibocsátott, amikor egy fájl automatikusan
 
 ### <a name="example-event"></a>Példa esemény
 
-Ez a minta az esemény az Event Hubs esemény jelenik meg, ha a rögzítési tárolja a fájlt a séma jeleníti meg. 
+Ez a minta az esemény jelenik meg, ha a rögzítési tárolja a fájlt az Event Hubs esemény hello séma jeleníti meg. 
 
 ```json
 [
@@ -173,7 +173,7 @@ Az Azure Blob Storage a magán előnézetben előfizetési esemény rács való 
 
 ### <a name="example-event"></a>Példa esemény
 
-Ez a minta az esemény következik be, amikor létrejön egy blob storage esemény séma jeleníti meg. 
+Ez a minta az esemény következik be, amikor létrejön egy blob storage esemény hello séma jeleníti meg. 
 
 ```json
 [
@@ -206,11 +206,11 @@ Ez a minta az esemény következik be, amikor létrejön egy blob storage esemé
 
 ## <a name="custom-topics"></a>Egyéni kapcsolatos témakörök
 
-Az egyéni események adatainak hasznos az Ön által megadott, és bármely formátumának helyességét JSON. A legfelső szintű adatok szabványos erőforrás meghatározás eseményként is ugyanazokat a mezőket kell tartalmaznia. Egyéni témakörök események közzétételekor gondolja át az események tárgya útválasztási és szűrés modellezési.
+az egyéni események hello adattartalom az Ön által megadott, és bármely formátumának helyességét JSON. hello felső szintű adatai hello azonos mezők szabványos definiált erőforrás-eseményként kell tartalmaznia. Események toocustom témakörök közzétételekor gondolja át az Útválasztás és szűrés események tooaid hello tárgya modellezési.
 
 ### <a name="example-event"></a>Példa esemény
 
-A következő példa bemutatja egy egyéni témakör esemény:
+hello a következő példa bemutatja egy egyéni témakör esemény:
 ````json
 [
   {
@@ -230,5 +230,5 @@ A következő példa bemutatja egy egyéni témakör esemény:
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Esemény rácshoz ismertetőért lásd: [Mi az az esemény rács?](overview.md)
-* Egy esemény rács előfizetés létrehozásával kapcsolatos további tudnivalókért lásd: [esemény rács előfizetés séma](subscription-creation-schema.md).
+* Egy bevezető tooEvent rács, lásd: [Mi az az esemény rács?](overview.md)
+* toolearn egy esemény rács előfizetés létrehozásával kapcsolatban lásd: [esemény rács előfizetés séma](subscription-creation-schema.md).

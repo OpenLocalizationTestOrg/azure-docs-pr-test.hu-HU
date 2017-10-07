@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CLI szerepköralapú hozzáférés-vezérlés (RBAC) kezelése |} Microsoft Docs"
-description: "Megtudhatja, hogyan kezelheti a szerepköralapú hozzáférés-vezérlést (RBAC) az Azure parancssori felületével, szerepkörök és a szerepkör műveletek listázása és szerepkörök hozzárendelése az előfizetés és az alkalmazás hatókörhöz."
+title: "aaaManage szerepköralapú hozzáférés-vezérlést (RBAC) Azure parancssori felülettel |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage szerepköralapú hozzáférés-vezérlés (RBAC) hello Azure parancssori felület listaelem szerepkörök és a szerepkör műveletek és a szerepkörök hozzárendelése toohello előfizetés és az alkalmazás hatókörök."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,33 +14,33 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: ad644de6d23950e699d99042d27381336626caab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 438418e5f6ee9b98908c9c264d516eb722a4e26d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-the-azure-command-line-interface"></a>Szerepköralapú hozzáférés-vezérlés az Azure parancssori felületével kezelése
+# <a name="manage-role-based-access-control-with-hello-azure-command-line-interface"></a>Szerepköralapú hozzáférés-vezérlés az Azure parancssori felület hello kezelése
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
 
-Szerepköralapú hozzáférés-vezérlést (RBAC) az Azure portálon, és az Azure Resource Manager API segítségével kezelheti az előfizetést és a minden részletre kiterjedő szinten erőforrásokhoz való hozzáférését. Ez a szolgáltatás egyes szerepkörök hozzárendelése el egy adott hatókörhöz szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.
+Hello Azure-portál és az Azure Resource Manager API toomanage hozzáférés tooyour előfizetéshez és a részletes szinten erőforrások szerepköralapú hozzáférés-vezérlést (RBAC) is használhatja. Ez a szolgáltatás egyes szerepkörök toothem egy adott hatókör hozzárendelése szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.
 
-Az Azure parancssori felület (CLI) kezelheti az RBAC használata előtt rendelkeznie kell a következő előfeltételek teljesülését:
+Hello Azure parancssori felület (CLI) toomanage RBAC használata előtt a következő előfeltételek hello kell rendelkeznie:
 
-* Az Azure CLI 0.8.8 verzió vagy újabb. Telepítse a legújabb verziót, és társítsa azt az Azure-előfizetése, [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md).
-* Az Azure Resource Manager az Azure parancssori felület. Ugrás a [az Azure parancssori felület használatával az erőforrás-kezelővel](../xplat-cli-azure-resource-manager.md) további részleteket.
+* Az Azure CLI 0.8.8 verzió vagy újabb. tooinstall hello legújabb verzióját, és rendelje azt az Azure-előfizetéshez, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md).
+* Az Azure Resource Manager az Azure parancssori felület. Nyissa meg túl[Using hello Azure CLI az erőforrás-kezelő hello](../xplat-cli-azure-resource-manager.md) további részleteket.
 
 ## <a name="list-roles"></a>Lista szerepkörök
 ### <a name="list-all-available-roles"></a>Elérhető szerepkörök felsorolása
-Az elérhető szerepkörök listájában, használja:
+toolist elérhető szerepkörök, használja:
 
         azure role list
 
-A következő példa bemutatja a listája *elérhető szerepkörök*.
+hello következő példa bemutatja hello listája *elérhető szerepkörök*.
 
 ```
 azure role list --json | jq '.[] | {"roleName":.properties.roleName, "description":.properties.description}'
@@ -49,11 +49,11 @@ azure role list --json | jq '.[] | {"roleName":.properties.roleName, "descriptio
 ![RBAC Azure - azure szerepkör lista - parancssori képernyőképe](./media/role-based-access-control-manage-access-azure-cli/1-azure-role-list.png)
 
 ### <a name="list-actions-of-a-role"></a>Egy szerepkör lista műveletek
-A műveletek a szerepkörök listájában, használja:
+egy szerepkör toolist hello műveletek használata:
 
     azure role show "<role name>"
 
-A következő példa bemutatja a műveleteket a *közreműködő* és *virtuális gép közreműködő* szerepkörök.
+hello alábbi példa azt mutatja, hello hello műveletek *közreműködő* és *virtuális gép közreműködő* szerepkörök.
 
 ```
 azure role show "contributor" --json | jq '.[] | {"Actions":.properties.permissions[0].actions,"NotActions":properties.permissions[0].notActions}'
@@ -65,11 +65,11 @@ azure role show "virtual machine contributor" --json | jq '.[] | .properties.per
 
 ## <a name="list-access"></a>A hozzáférési lista
 ### <a name="list-role-assignments-effective-on-a-resource-group"></a>Lista szerepkör-hozzárendelések lép az erőforráscsoport
-A szerepkör-hozzárendelések meglévő erőforráscsoport listájában, használja:
+toolist hello szerepkör-hozzárendelések meglévő erőforráscsoport használata:
 
     azure role assignment list --resource-group <resource group name>
 
-A következő példa bemutatja a szerepkör-hozzárendelések a *pharma-értékesítési-projecforcast* csoport.
+hello alábbi példa azt mutatja hello szerepkör-hozzárendelések a hello *pharma-értékesítési-projecforcast* csoport.
 
 ```
 azure role assignment list --resource-group pharma-sales-projecforcast --json | jq '.[] | {"DisplayName":.properties.aADObject.displayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -78,15 +78,15 @@ azure role assignment list --resource-group pharma-sales-projecforcast --json | 
 ![Szerepalapú Azure parancssori - társításának listája azure szerepkör csoport – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
 ### <a name="list-role-assignments-for-a-user"></a>Szerepkör-hozzárendelések listáját egy felhasználó számára
-A szerepkör-hozzárendelések egy adott felhasználó és felhasználói csoportok hozzárendelése listájában, használja:
+toolist hello szerepkör-hozzárendelések egy adott felhasználó és hello hozzárendelések rendelt tooa felhasználói csoportok használata:
 
     azure role assignment list --signInName <user email>
 
-A parancs módosításával csoportok örökölt szerepkör-hozzárendelések is látható:
+Megtekintheti a csoportok hello parancs módosításával örökölt szerepkör-hozzárendelések is:
 
     azure role assignment list --expandPrincipalGroups --signInName <user email>
 
-A következő példa bemutatja a szerepkör-hozzárendeléseket, kapott a  *sameert@aaddemo.com*  felhasználó. Ez magában foglalja, amely közvetlenül a felhasználóhoz rendelt szerepkörök és csoportok öröklődtek szerepkörtől.
+hello alábbi példa azt mutatja, toohello kapott hello szerepkör-hozzárendelések  *sameert@aaddemo.com*  felhasználó. Ez magában foglalja a hozzárendelt közvetlenül toohello felhasználói szerepkörök és csoportok öröklődtek szerepkörtől.
 
 ```
 azure role assignment list --signInName sameert@aaddemo.com --json | jq '.[] | {"DisplayName":.properties.aADObject.DisplayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
@@ -97,89 +97,89 @@ azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.
 ![RBAC Azure - hozzárendelés lista azure szerepkör felhasználó - parancssori képernyőképe](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-2.png)
 
 ## <a name="grant-access"></a>Hozzáférés biztosítása
-Miután azonosította a hozzárendelni kívánt szerepkör hozzáférés biztosításához használja:
+toogrant hozzáférés Miután azonosította, amelyet az tooassign hello szerepkör, használja:
 
     azure role assignment create
 
-### <a name="assign-a-role-to-group-at-the-subscription-scope"></a>Az előfizetési hatókört a csoport szerepkör hozzárendelése
-Rendelhet hozzá egy szerepkört az előfizetés hatókörben egy csoportot, használja:
+### <a name="assign-a-role-toogroup-at-hello-subscription-scope"></a>Egy szerepkör toogroup hello előfizetés hatókör hozzárendelése
+egy szerepkör hello előfizetési hatókört, használja a tooa csoport tooassign:
 
     azure role assignment create --objectId  <group object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-Az alábbi példa a *olvasó* szerepkör *Christine Koch Team* , a *előfizetés* hatókör.
+hello alábbi példa hozzárendel hello *olvasó* szerepkör túl*Christine Koch Team* : hello *előfizetés* hatókör.
 
 ![Szerepalapú Azure parancssori - azure szerepkör-hozzárendelés létrehozása csoport – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-1.png)
 
-### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a>Az alkalmazást az előfizetési hatókört szerepkör hozzárendelése
-Szerepkör hozzárendelése az előfizetési hatókört az alkalmazást, használja:
+### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a>Egy szerepkör tooan alkalmazást hello előfizetés hatókörből
+tooassign hello előfizetési hatókört, használja a szerepkör tooan alkalmazást:
 
     azure role assignment create --objectId  <applications object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-A következő példa engedélyezi a *közreműködő* szerepkört egy *az Azure AD* alkalmazást a kijelölt előfizetésben.
+hello következő példa engedélyezi hello *közreműködő* szerepkör tooan *az Azure AD* alkalmazás hello a kiválasztott előfizetéshez.
 
  ![Szerepalapú Azure parancssori - alkalmazás azure szerepkör-hozzárendelés létrehozása](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-2.png)
 
-### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a>A szerepkör hozzárendelése egy felhasználóhoz a erőforrás csoport hatóköre:
-A szerepkör hozzárendelése egy felhasználóhoz a erőforrás csoport hatókörben, használja:
+### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a>Egy szerepkör tooa felhasználó hello erőforrás csoport hatóköre:
+a szerepkör tooa felhasználók hello erőforrás csoport hatóköre, használja a tooassign:
 
     azure role assignment create --signInName  <user email address> --roleName "<name of role>" --resourceGroup <resource group name>
 
-A következő példa engedélyezi a *virtuális gép közreműködő* szerepkör  *samert@aaddemo.com*  felhasználójának a *Pharma-értékesítési-ProjectForcast* erőforrás csoport hatóköre.
+hello következő példa engedélyezi hello *virtuális gép közreműködő* szerepkör túl *samert@aaddemo.com*  hello felhasználójának *Pharma-értékesítési-ProjectForcast* erőforrás csoport hatóköre.
 
 ![Az RBAC Azure parancssori - azure szerepkör-hozzárendelés létrehozása felhasználó – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-3.png)
 
-### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a>A szerepkör hozzárendelése a erőforrás hatókörben csoporthoz
-A szerepkör hozzárendelése egy csoporthoz az erőforrás-hatókörben, használja:
+### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a>Egy szerepkör tooa csoport hello erőforrás hatókörből hozzárendelése
+egy szerepkör tooa csoport hello erőforrás hatókörben, használjon tooassign:
 
     azure role assignment create --objectId <group id> --role "<name of role>" --resource-name <resource group name> --resource-type <resource group type> --parent <resource group parent> --resource-group <resource group>
 
-A következő példa engedélyezi a *virtuális gép közreműködő* szerepkört egy *az Azure AD* csoporthoz egy *alhálózati*.
+hello következő példa engedélyezi hello *virtuális gép közreműködő* szerepkör tooan *az Azure AD* csoporthoz egy *alhálózati*.
 
 ![Szerepalapú Azure parancssori - azure szerepkör-hozzárendelés létrehozása csoport – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-4.png)
 
 ## <a name="remove-access"></a>Megszünteti a hozzáférést
-Szerepkör-hozzárendelés eltávolításához használja:
+egy szerepkör-hozzárendelés tooremove használja:
 
-    azure role assignment delete --objectId <object id to from which to remove role> --roleName "<role name>"
+    azure role assignment delete --objectId <object id toofrom which tooremove role> --roleName "<role name>"
 
-A következő példában eltávolítjuk a *virtuális gép közreműködő* a szerepkör-hozzárendelés a  *sammert@aaddemo.com*  felhasználó számára a *Pharma-értékesítési-ProjectForcast* erőforrás a csoport.
-A példa a szerepkör-hozzárendelés majd eltávolítja az előfizetésben a csoportból.
+hello következő példában eltávolítjuk hello *virtuális gép közreműködő* hello a szerepkör-hozzárendelés  *sammert@aaddemo.com*  hello felhasználója *Pharma-értékesítési-ProjectForcast* erőforráscsoport.
+hello példa hello szerepkör-hozzárendelés majd eltávolítása egy csoportból hello az előfizetésben.
 
 ![RBAC Azure - azure szerepkör-hozzárendelés törlése - parancssori képernyőképe](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-assignment-delete.png)
 
 ## <a name="create-a-custom-role"></a>Egyéni szerepkör létrehozása
-Segítségével hozhat létre egy egyéni biztonsági szerepkört:
+egy egyéni biztonsági szerepkört, toocreate használja:
 
     azure role create --inputfile <file path>
 
-Az alábbi példa létrehoz egy egyéni biztonsági szerepkört nevű *virtuális gépet üzemeltető*. Az egyéni szerepkör hozzáférést biztosít az összes olvasási műveletek a *Microsoft.Compute*, *Microsoft.Storage*, és *Microsoft.Network* erőforrás-szolgáltatók és engedélyezi a hozzáférést Indítsa el, és indítsa újra a virtuális gépek figyelése. Az egyéni szerepkör két előfizetések használható. A példa egy JSON-fájl bemenetként.
+hello alábbi példa létrehoz egy egyéni biztonsági szerepkört nevű *virtuális gépet üzemeltető*. Az egyéni szerepkör engedélyezi a hozzáférést tooall olvasási műveletek a *Microsoft.Compute*, *Microsoft.Storage*, és *Microsoft.Network* erőforrás-szolgáltatók és biztosít hozzáférést toostart, indítsa újra, és a virtuális gépek figyelése. Az egyéni szerepkör két előfizetések használható. A példa egy JSON-fájl bemenetként.
 
 ![JSON - egyéni szerepkör-definíció – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-1.png)
 
 ![Szerepalapú Azure parancssori - azure szerepkör létrehozása – képernyőfelvétel](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-2.png)
 
 ## <a name="modify-a-custom-role"></a>Egyéni szerepkör módosítása
-Ha módosít egy egyéni biztonsági szerepkört, először az a `azure role show` parancsot a szerepkör-definíció lekéréséhez. A szerepkör-definíciós fájlt, végezze el a szükséges módosításokat. Végül `azure role set` menteni a módosított szerepkör-definíció.
+toomodify egy egyéni biztonsági szerepkört, először az hello `azure role show` tooretrieve szerepkör-definíció parancsot. Ezután ellenőrizze hello szükséges módosításokat toohello szerepkör csomagdefiníciós fájl. Végül `azure role set` toosave hello módosítani a szerepkör-definíció.
 
     azure role set --inputfile <file path>
 
-A következő példakóddal felveheti a *Microsoft.Insights/diagnosticSettings/* művelet a **műveletek**, és az Azure-előfizetés a **AssignableScopes** , a Virtuális gép operátor egyéni biztonsági szerepkört.
+hello következő példakóddal felveheti a hello *Microsoft.Insights/diagnosticSettings/* művelet toohello **műveletek**, és az Azure-előfizetés toohello **AssignableScopes**hello virtuális gépet üzemeltető egyéni szerepkör.
 
 ![JSON - módosítása egyéni szerepkör-definíció – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set-1.png)
 
 ![RBAC Azure - azure szerepkör set - parancssori képernyőképe](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-set2.png)
 
 ## <a name="delete-a-custom-role"></a>Egyéni szerepkör törléséhez
-Egyéni szerepkör törléséhez először használja a `azure role show` parancsot annak meghatározásához, a **azonosító** a szerepkör. Ezt követően a `azure role delete` parancs megadásával a szerepkör törlése a **azonosító**.
+toodelete egy egyéni biztonsági szerepkört, először az hello `azure role show` parancs toodetermine hello **azonosító** hello szerepkör. Ezután használja az hello `azure role delete` parancs toodelete hello szerepkör hello megadásával **azonosító**.
 
-A következő példában eltávolítjuk a *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.
+hello következő példában eltávolítjuk hello *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.
 
 ![Szerepalapú Azure parancssori - azure szerepkör törlésének – képernyőkép](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-delete.png)
 
 ## <a name="list-custom-roles"></a>Egyéni szerepkörök listája
-A szerepkörök, amelyek rendelhető hozzá hatókör kilistázhatja a `azure role list` parancsot.
+toolist hello szerepkörök, amelyek rendelhető hozzá hatókör, használja a hello `azure role list` parancsot.
 
-A következő parancs megjeleníti az összes szerepkör, amely a kijelölt előfizetés kiosztására használható.
+a következő parancs hello hello kiválasztott előfizetésben kiosztására használható összes szerepkörtől sorolja fel.
 
 ```
 azure role list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
@@ -187,7 +187,7 @@ azure role list --json | jq '.[] | {"name":.properties.roleName, type:.propertie
 
 ![RBAC Azure - azure szerepkör lista - parancssori képernyőképe](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list1.png)
 
-A következő példában a *virtuális gépet üzemeltető* egyéni szerepkör nem érhető el a *Production4* előfizetés, mert az adott előfizetéshez nem szerepel a **AssignableScopes** a szerepkör.
+A következő példa hello, hello *virtuális gépet üzemeltető* egyéni szerepkör nem érhető el a hello *Production4* előfizetés mert, hogy az előfizetés nem hello  **AssignableScopes** hello szerepkör.
 
 ```
 azure role list --json | jq '.[] | if .properties.type == "CustomRole" then .properties.roleName else empty end'

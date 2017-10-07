@@ -1,6 +1,6 @@
 ---
-title: "Application Gateway létrehozása, indítása vagy törlése | Microsoft Docs"
-description: "Ez a lap utasításokat tartalmaz egy Azure Application Gateway létrehozásához, konfigurálásához, indításához és törléséhez"
+title: "aaaCreate, indítsa el, vagy meglévő Alkalmazásátjáró törlése |} Microsoft Docs"
+description: "Ezen a lapon útmutatás toocreate, konfigurálása, indítsa el, és az Azure Alkalmazásátjáró törlése"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -15,11 +15,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: c4932096229b1941e0966e7f3e97de39c6931392
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3efef5b49880c9efdafad8b88d4bce5b749b82af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-start-or-delete-an-application-gateway-with-powershell"></a>Application Gateway létrehozása, indítása vagy törlése PowerShell-lel 
 
@@ -30,47 +30,47 @@ ms.lasthandoff: 08/03/2017
 > * [Azure Resource Manager-sablon](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
 
-Az Azure Application Gateway egy 7. rétegbeli terheléselosztó. Feladatátvételt és teljesítményalapú útválasztást biztosít a HTTP-kérelmek számára különböző kiszolgálók között, függetlenül attól, hogy a felhőben vagy a helyszínen vannak. Az Application Gateway számos alkalmazáskézbesítési vezérlőszolgáltatást (ADC) biztosít, beleértve a HTTP-terheléselosztást, a cookie-alapú munkamenet-affinitást, a Secure Sockets Layer (SSL) alapú kiszervezést, az egyéni állapotteszteket, a többhelyes támogatást és még sok mást. A támogatott szolgáltatások teljes listájáért látogasson el [Az Application Gateway áttekintése](application-gateway-introduction.md) című oldalra
+Az Azure Application Gateway egy 7. rétegbeli terheléselosztó. Akár hello felhőalapú vagy helyszíni biztosít feladatátvételt, HTTP-kérelmek teljesítmény-útválasztási különböző kiszolgálók között. Az Application Gateway számos alkalmazáskézbesítési vezérlőszolgáltatást (ADC) biztosít, beleértve a HTTP-terheléselosztást, a cookie-alapú munkamenet-affinitást, a Secure Sockets Layer (SSL) alapú kiszervezést, az egyéni állapotteszteket, a többhelyes támogatást és még sok mást. látogasson el a támogatott funkciók teljes listáját toofind [átjáró – áttekintés](application-gateway-introduction.md)
 
-Ez a cikk részletesen ismerteti a lépéseket, amelyekkel létrehozhat, konfigurálhat, elindíthat és törölhet egy Application Gateway-t.
+Ez a cikk bemutatja, hogyan hello lépéseket toocreate, konfigurálása, indítsa el és Alkalmazásátjáró törlése.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-1. Telepítse az Azure PowerShell-parancsmagok legújabb verzióját a Webplatform-telepítővel. A [Letöltések lap](https://azure.microsoft.com/downloads/) **Windows PowerShell** szakaszából letöltheti és telepítheti a legújabb verziót.
-2. Ha rendelkezik meglévő virtuális hálózattal, válasszon ki egy meglévő üres alhálózatot, vagy hozzon létre egy új alhálózatot a meglévő virtuális hálózatban kizárólag az Application Gateway számára. Nem helyezheti üzembe az Application Gateway szolgáltatást az Application Gateway mögött üzembe helyezni kívánt erőforrásoktól eltérő virtuális hálózaton, kivéve ha a virtuális hálózatok között társviszony van. További információért tekintse meg a [Társviszony létesítése virtuális hálózatok között](../virtual-network/virtual-network-peering-overview.md) című cikket
-3. Ellenőrizze, hogy rendelkezik-e működő virtuális hálózattal és hozzá tartozó érvényes alhálózattal. Győződjön meg arról, hogy egy virtuális gép vagy felhőalapú telepítés sem használja az alhálózatot. Az Application Gateway-nek egyedül kell lennie a virtuális hálózat alhálózatán.
-4. A kiszolgálóknak, amelyeket az Application Gateway használatára konfigurál, már létezniük kell, illetve a virtuális hálózatban vagy hozzárendelt nyilvános/virtuális IP-címmel létrehozott végpontokkal kell rendelkezniük.
+1. Webplatform-telepítő hello segítségével hello hello Azure PowerShell-parancsmagok legújabb verzióját telepítse. Töltse le, és telepítse hello legújabb verziót a hello **Windows PowerShell** hello szakasza [letöltési oldalon](https://azure.microsoft.com/downloads/).
+2. Ha egy meglévő virtuális hálózattal rendelkezik, válasszon egy létező üres alhálózatot, vagy hozzon létre egy új alhálózatot a meglévő virtuális hálózatban kizárólag használatra hello Alkalmazásátjáró által. Nem telepíthet központilag hello alkalmazás átjáró tooa másik virtuális hálózatot hello erőforrások mint szeretné mögött hello Alkalmazásátjáró toodeploy kivéve, ha a vnetben társviszony-létesítés szolgál. több látogasson el az toolearn [Vnetben társviszony-létesítés](../virtual-network/virtual-network-peering-overview.md)
+3. Ellenőrizze, hogy rendelkezik-e működő virtuális hálózattal és hozzá tartozó érvényes alhálózattal. Győződjön meg arról, hogy egyetlen virtuális gépek vagy a felhőben történő alkalmazáshoz hello alhálózat használja. a virtuális hálózati alhálózat hello Alkalmazásátjáró önmagában kell lennie.
+4. hello kiszolgálók toouse hello Alkalmazásátjáró konfigurált léteznie kell, különben a végpontok hello virtuális hálózatban vagy a nyilvános IP-cím/VIP rendelt hozzá.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>Mire van szükség egy Application Gateway létrehozásához?
+## <a name="what-is-required-toocreate-an-application-gateway"></a>Mi az a szükséges toocreate olyan átjárót?
 
-Amikor a `New-AzureApplicationGateway` parancsot használja az Application Gateway létrehozására, a konfigurációk még nincsenek beállítva, és az újonnan létrehozott erőforrást konfigurálni kell egy XML-fájl vagy egy konfigurációs objektum használatával.
+Hello használata esetén `New-AzureApplicationGateway` parancs toocreate hello Alkalmazásátjáró, nem történik meg ezen a ponton, és az újonnan létrehozott hello erőforrás konfigurált XML vagy a konfigurációs objektum használva.
 
-Az értékek a következők:
+hello értékek a következők:
 
-* **Háttér-kiszolgálókészlet:** A háttérkiszolgálók IP-címeinek listája. A listán szereplő IP-címeknek a virtuális hálózat alhálózatához kell tartozniuk, vagy nyilvános/virtuális IP-címnek kell lenniük.
-* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások egy adott készlethez kapcsolódnak, és a készlet minden kiszolgálójára érvényesek.
-* **Előtérbeli port:** Az Application Gateway-en megnyitott nyilvános port. Amikor a forgalom eléri ezt a portot, a port átirányítja az egyik háttérkiszolgálóra.
-* **Figyelő:** A figyelő egy előtérbeli porttal, egy protokollal (Http vagy Https, a kis- és a nagybetűk megkülönböztetésével) és SSL tanúsítványnévvel rendelkezik (SSL-kiszervezés konfigurálásakor).
-* **Szabály:** A szabály összeköti a figyelőt és a háttérkiszolgáló-készletet, és meghatározza, hogy mely háttérkiszolgáló-készletre legyen átirányítva a forgalom, ha elér egy adott figyelőt.
+* **Háttér-kiszolgálófiók készlet:** hello hello háttér-kiszolgálók IP-címek listáját. hello IP-címek felsorolt toohello virtuális hálózati alhálózat vagy kell tartoznia, vagy egy nyilvános IP-cím/VIP kell lennie.
+* **Háttér-kiszolgálókészlet beállításai:** Minden készletnek vannak beállításai, például port, protokoll vagy cookie-alapú affinitás. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók.
+* **Előtér-port:** Ez a port nem hello nyilvános portot, amelyet a hello Alkalmazásátjáró meg van nyitva. Forgalom találatok ezt a portot, és lekérdezi átirányítja tooone hello háttér-kiszolgálók.
+* **Figyelő:** hello figyelő rendelkezik egy előtér-portot, a protokollt (Http vagy Https, ezek az értékek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának-kiszervezés).
+* **Szabály:** hello szabály hello figyelő és hello háttér-kiszolgálófiók alkalmazáskészlet van kötve, és azt határozza meg, mely háttér-kiszolgálófiók készlet hello forgalom irányított toowhen találatok száma a egy adott figyelő.
 
 ## <a name="create-an-application-gateway"></a>Application Gateway létrehozása
 
-Application Gateway létrehozásához tegye a következőket:
+Alkalmazásátjáró toocreate:
 
 1. Egy Application Gateway erőforrás létrehozása.
 2. Hozzon létre egy konfigurációs XML-fájlt vagy konfigurációs objektumot.
-3. Véglegesítse az újonnan létrehozott Application Gateway erőforrás konfigurációját.
+3. Az újonnan létrehozott alkalmazás átjáró erőforrás hello konfigurációs toohello véglegesítése.
 
 > [!NOTE]
-> Ha egy egyéni mintát kell konfigurálnia az Application Gateway számára: [Application Gateway létrehozása egyéni mintákkal a PowerShell használatával](application-gateway-create-probe-classic-ps.md). További információért lásd: [egyéni minták és állapotfigyelés](application-gateway-probe-overview.md).
+> Ha egy egyéni mintavételt tooconfigure az Alkalmazásátjáró van szüksége, tekintse meg [PowerShell használatával hozzon létre olyan átjárót egyéni mintavételt](application-gateway-create-probe-classic-ps.md). További információért lásd: [egyéni minták és állapotfigyelés](application-gateway-probe-overview.md).
 
 ![Példaforgatókönyv][scenario]
 
 ### <a name="create-an-application-gateway-resource"></a>Application Gateway erőforrás létrehozása
 
-Az átjáró létrehozásához használja a `New-AzureApplicationGateway` parancsmagot, és cserélje le az értékeket a saját értékeire. Az átjáró használati díjának felszámolása ekkor még nem kezdődik el. A használati díj felszámolása egy későbbi lépésnél kezdődik, amikor az átjáró sikeresen elindul.
+toocreate hello átjáró használata hello `New-AzureApplicationGateway` hello értékeket cserélje le a saját, a parancsmag. Számlázási hello átjáró nem indul el ezen a ponton. Számlázási egy későbbi lépésben, akkor kezdődik, amikor hello átjáró sikeresen elindult.
 
-Az alábbi példa egy új Application Gatewayt hoz létre egy „testvnet1” nevű virtuális hálózat és egy „subnet-1” nevű alhálózat használatával.
+hello alábbi példa használatával hozza létre az Alkalmazásátjáró nevű, "testvnet1" és "alhálózat-1" nevű alhálózat virtuális hálózat:
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -78,7 +78,7 @@ New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subn
 
 A *Description*, az *InstanceCount* és a *GatewaySize* opcionális paraméterek.
 
-Az átjáró létrehozásának ellenőrzéséhez használhatja a `Get-AzureApplicationGateway` parancsmagot.
+amely átjáró hello toovalidate lett létrehozva, használhatja a hello `Get-AzureApplicationGateway` parancsmag.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -97,21 +97,21 @@ DnsName       :
 ```
 
 > [!NOTE]
-> Az *InstanceCount* alapértelmezett értéke 2, a maximális értéke pedig 10. A *GatewaySize* alapértelmezett értéke Közepes. A Kicsi, Közepes és a Nagy lehetőségek közül választhat.
+> az alapértelmezett érték hello *InstanceCount* 2, maximális értéke 10. az alapértelmezett érték hello *GatewaySize* közepes. A Kicsi, Közepes és a Nagy lehetőségek közül választhat.
 
-A *VirtualIPs* és a *DnsName* paraméterek azért üresek, mert az átjáró még nem indult el. Ezek kitöltése akkor történik, amikor az átjáró futó állapotba kerül.
+*Virtualip értékek* és *DnsName* jelennek meg az üres mert hello átjáró még nem kezdődött meg. Miután hello átjáró fut. hello jön létre.
 
-## <a name="configure-the-application-gateway"></a>Az Application Gateway konfigurálása
+## <a name="configure-hello-application-gateway"></a>Alkalmazásátjáró hello konfigurálása
 
-Az Application Gateway-t egy XML-fájl vagy konfigurációs objektum segítségével konfigurálhatja.
+Hello Alkalmazásátjáró XML- vagy konfiguráció-objektum használatával konfigurálható.
 
-### <a name="configure-the-application-gateway-by-using-xml"></a>Az Application Gateway konfigurálása XML-fájl használatával
+### <a name="configure-hello-application-gateway-by-using-xml"></a>Alkalmazásátjáró hello konfigurálása XML használatával
 
-Az alábbi példában egy XML-fájllal konfigurálja az Application Gateway beállításait, és véglegesíti őket az Application Gateway-erőforráshoz.  
+A következő példa hello egy XML-fájl tooconfigure összes alkalmazás átjáró beállításait használja, és véglegesítse azokat toohello alkalmazás átjáró-erőforráshoz.  
 
 #### <a name="step-1"></a>1. lépés
 
-Másolja az alábbi szöveget a Jegyzettömbbe.
+A következő szöveg tooNotepad hello másolja.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -158,12 +158,12 @@ Másolja az alábbi szöveget a Jegyzettömbbe.
 </ApplicationGatewayConfiguration>
 ```
 
-Szerkessze a zárójelek közötti értékeket a konfigurációs elemeknek megfelelően. Mentse a fájlt .xml kiterjesztéssel.
+Módosíthatja a hello konfigurációs elemek hello zárójelek között hello értékeket. Bővítmény .xml hello fájl mentése.
 
 > [!IMPORTANT]
-> A Http és Https protokollelem különbséget tesz a kis- és a nagybetűk között.
+> hello protokoll Http vagy Https elem kis-és nagybetűket.
 
-Az alábbi példa bemutatja, hogyan használhat egy konfigurációs fájlt az Application Gateway beállítására. A példa elosztja a nyilvános 80-as port HTTP-forgalmának a terhelését, illetve a háttérbeli 80-as portra küldi a két IP-cím közötti hálózati forgalmat.
+hello a következő példa bemutatja, hogyan toouse egy konfigurációs fájl mentése hello Alkalmazásátjáró tooset. hello példa terhelés kiegyensúlyozza a nyilvános port 80-as HTTP-forgalom, és elküldi a hálózati forgalom 80-as port tooback-a befejezési két IP-címre.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -212,24 +212,24 @@ Az alábbi példa bemutatja, hogyan használhat egy konfigurációs fájlt az Ap
 
 #### <a name="step-2"></a>2. lépés
 
-A következő lépésként állítsa be az Application Gateway-t. Használja a `Set-AzureApplicationGatewayConfig` parancsmagot egy konfigurációs XML-fájllal.
+Következő lépésként állítsa hello Alkalmazásátjáró. Használjon hello `Set-AzureApplicationGatewayConfig` parancsmag és egy konfigurációs XML-fájlt.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
-### <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>Az Application Gateway konfigurálása konfigurációs objektum segítségével
+### <a name="configure-hello-application-gateway-by-using-a-configuration-object"></a>Hello Alkalmazásátjáró konfigurációs objektum használatával konfigurálja
 
-Az alábbi példa bemutatja, hogyan konfigurálhatja az Application Gateway-t konfigurációs objektumok segítségével. Minden konfigurációs elemet külön kell konfigurálni, és utána kell hozzáadni egy Application Gateway konfigurációs objektumhoz. A konfigurációs objektum létrehozása után a `Set-AzureApplicationGateway` paranccsal véglegesíti a konfigurációt a korábban létrehozott Application Gateway-erőforráshoz.
+hello a következő példa bemutatja, hogyan tooconfigure hello konfigurációs objektumok használatával az Alkalmazásátjáró. Az összes konfigurációs elemek kell külön-külön konfigurálhatók és ezután tooan átjáró konfigurációs objektum. Hello konfigurációs objektum létrehozása után használhat hello `Set-AzureApplicationGateway` parancs toocommit hello konfigurációs toohello korábban létrehozott alkalmazás átjáró-erőforráshoz.
 
 > [!NOTE]
-> Mielőtt értékeket rendelne a konfigurációs objektumokhoz, deklarálnia kell, hogy a PowerShell milyen típusú objektumot használ a tároláshoz. Az egyéni elemek létrehozásának első sora határozza meg, hogy milyen `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` elemet használ a rendszer.
+> Hozzárendelése egy érték tooeach konfigurációs objektumát, előtt kell toodeclare milyen típusú objektumot PowerShell használja a tároláshoz. hello első sor toocreate hello elemek határozza meg, mi `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` szolgálnak.
 
 #### <a name="step-1"></a>1. lépés
 
 Hozza létre az összes egyedi konfigurációs elemet.
 
-Hozza létre az előtérbeli IP-címet az alábbi példában látható módon.
+Hozzon létre hello előtér-IP, ahogy az alábbi példa hello.
 
 ```powershell
 $fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
@@ -238,7 +238,7 @@ $fip.Type = "Private"
 $fip.StaticIPAddress = "10.0.0.5"
 ```
 
-Hozza létre az előtérbeli portot az alábbi példában látható módon.
+Hozzon létre hello előtér-port, ahogy az alábbi példa hello.
 
 ```powershell
 $fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
@@ -246,9 +246,9 @@ $fep.Name = "fep1"
 $fep.Port = 80
 ```
 
-Hozza létre a háttér-kiszolgálókészletet.
+Hozzon létre hello háttér-kiszolgálókészletet.
 
-Határozza meg a háttérkiszolgáló-készlethez hozzáadni kívánt IP-címeket a következő példában látható módon.
+Adja meg a hello IP-címek hozzáadott toohello háttér-kiszolgálófiók készlet hello a következő példában látható módon.
 
 ```powershell
 $servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
@@ -256,7 +256,7 @@ $servers.Add("10.0.0.1")
 $servers.Add("10.0.0.2")
 ```
 
-Adja hozzá az értékeket a háttérkészlet objektumhoz ($pool) a $server objektum segítségével.
+Hello $server objektum tooadd hello értékek toohello háttér-objektumot ($pool) használja.
 
 ```powershell
 $pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
@@ -264,7 +264,7 @@ $pool.BackendServers = $servers
 $pool.Name = "pool1"
 ```
 
-Hozza létre a háttér-kiszolgálókészlet beállítást.
+Hozzon létre hello háttér-kiszolgálófiók készlet beállítást.
 
 ```powershell
 $setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
@@ -274,7 +274,7 @@ $setting.Port = 80
 $setting.Protocol = "http"
 ```
 
-Hozza létre a figyelőt.
+Hozzon létre hello figyelőt.
 
 ```powershell
 $listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
@@ -285,7 +285,7 @@ $listener.Protocol = "http"
 $listener.SslCert = ""
 ```
 
-Hozza létre a szabályt.
+Hello szabály létrehozása.
 
 ```powershell
 $rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
@@ -298,9 +298,9 @@ $rule.BackendAddressPool = "pool1"
 
 #### <a name="step-2"></a>2. lépés
 
-Rendelje hozzá az összes egyéni konfigurációs elemeket egy Application Gateway konfigurációs objektumhoz ($appgwconfig).
+Rendelje hozzá minden egyes konfigurációs elemek tooan alkalmazás átjáró konfigurációs objektumot ($appgwconfig).
 
-Adja hozzá az előtérbeli IP-címet a konfigurációhoz.
+Adja hozzá a hello előtér-IP-toohello konfigurációja.
 
 ```powershell
 $appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
@@ -308,34 +308,34 @@ $appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.L
 $appgwconfig.FrontendIPConfigurations.Add($fip)
 ```
 
-Adja hozzá az előtérbeli portot a konfigurációhoz.
+Adja hozzá a hello előtér-port toohello konfigurálása.
 
 ```powershell
 $appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
 $appgwconfig.FrontendPorts.Add($fep)
 ```
-Adja hozzá a háttér-kiszolgálókészletet a konfigurációhoz.
+Adja hozzá a hello háttér-kiszolgálófiók alkalmazáskészlet toohello konfigurációját.
 
 ```powershell
 $appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
 $appgwconfig.BackendAddressPools.Add($pool)
 ```
 
-Adja hozzá a háttérkészlet beállításait a konfigurációhoz.
+Adja hozzá a hello háttér-tárolókészlet beállítás toohello konfigurációját.
 
 ```powershell
 $appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
 $appgwconfig.BackendHttpSettingsList.Add($setting)
 ```
 
-Adja hozzá a figyelőt a konfigurációhoz.
+Adja hozzá a hello figyelő toohello konfigurációja.
 
 ```powershell
 $appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
 $appgwconfig.HttpListeners.Add($listener)
 ```
 
-Adja hozzá a szabályt a konfigurációhoz.
+Adja hozzá a hello szabály toohello konfigurálását.
 
 ```powershell
 $appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
@@ -343,28 +343,28 @@ $appgwconfig.HttpLoadBalancingRules.Add($rule)
 ```
 
 ### <a name="step-3"></a>3. lépés
-Véglegesítse a konfigurációs objektumot az Application Gateway-erőforráshoz a `Set-AzureApplicationGatewayConfig` paranccsal.
+Hello konfigurációs objektum toohello alkalmazás átjáró erőforrás véglegesítése használatával `Set-AzureApplicationGatewayConfig`.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 ```
 
-## <a name="start-the-gateway"></a>Az átjáró indítása
+## <a name="start-hello-gateway"></a>Indítsa el a hello átjáró
 
-Az átjáró konfigurálása után indítsa el az átjárót a `Start-AzureApplicationGateway` parancsmaggal. Az Application Gateway használati díjának felszámolása az átjáró sikeres indítása után kezdődik.
+Ha hello átjáró van konfigurálva, a hello `Start-AzureApplicationGateway` parancsmag toostart hello átjáró. Alkalmazásátjáró számlázás megkezdése után hello átjáró sikeresen elindult.
 
 > [!NOTE]
-> A `Start-AzureApplicationGateway` parancsmag futtatása akár 15–20 percet is igénybe vehet.
+> Hello `Start-AzureApplicationGateway` parancsmag is igénybe vehet fel toofinish too15-20 perc.
 
 ```powershell
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a>Az átjáró állapotának ellenőrzése
+## <a name="verify-hello-gateway-status"></a>Hello az átjáró állapotának megerősítése
 
-Ellenőrizze az átjáró állapotát a `Get-AzureApplicationGateway` parancsmaggal. Ha a `Start-AzureApplicationGateway` sikeres volt az előző lépésben, a *State* paraméternél a „Running” (Fut) állapotnak kell szerepelnie, a *Vip* és a *DnsName* paraméternek pedig érvényes bejegyzéssel kell rendelkeznie.
+Használjon hello `Get-AzureApplicationGateway` parancsmag toocheck hello hello átjáró állapotának. Ha `Start-AzureApplicationGateway` hello a korábbi lépésben sikeres *állapot* kell futnia, és *Vip* és *DnsName* érvényes bejegyzést kell rendelkeznie.
 
-Az alábbi példa egy működő Application Gateway-t mutat, amely kész fogadni a `http://<generated-dns-name>.cloudapp.net` felé tartó forgalmat.
+hello alábbi példa azt mutatja, amely akár, nem fut, Alkalmazásátjáró, és készen áll a tootake forgalom szánt `http://<generated-dns-name>.cloudapp.net`.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -384,15 +384,15 @@ Vip           : 138.91.170.26
 DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
-## <a name="delete-the-application-gateway"></a>Application Gateway törlése
+## <a name="delete-hello-application-gateway"></a>Hello Alkalmazásátjáró törlése
 
-Az Application Gateway törlése:
+toodelete hello Alkalmazásátjáró:
 
-1. Állítsa le az átjárót a `Stop-AzureApplicationGateway` parancsmaggal.
-2. Távolítsa el az átjárót a `Remove-AzureApplicationGateway` parancsmaggal.
-3. A `Get-AzureApplicationGateway` parancsmaggal győződjön meg arról, hogy az átjáró el lett távolítva.
+1. Használjon hello `Stop-AzureApplicationGateway` parancsmag toostop hello átjáró.
+2. Használjon hello `Remove-AzureApplicationGateway` parancsmag tooremove hello átjáró.
+3. Győződjön meg arról, hogy hello átjáró el lett távolítva a hello `Get-AzureApplicationGateway` parancsmag.
 
-Az alábbi példa a `Stop-AzureApplicationGateway` parancsmag első sorát mutatja, amelyet a kimenet követ.
+hello alábbi példa bemutatja hello `Stop-AzureApplicationGateway` hello első sor parancsmag hello kimeneti követ.
 
 ```powershell
 Stop-AzureApplicationGateway AppGwTest
@@ -406,7 +406,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-Amint az Application Gateway leállított állapotba kerül, távolítsa el a szolgáltatást a `Remove-AzureApplicationGateway` parancsmaggal.
+Ha hello Alkalmazásátjáró leállított állapotban van, a hello `Remove-AzureApplicationGateway` parancsmag tooremove hello szolgáltatást.
 
 ```powershell
 Remove-AzureApplicationGateway AppGwTest
@@ -420,7 +420,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
-A szolgáltatás eltávolításának ellenőrzéséhez használhatja a `Get-AzureApplicationGateway` parancsmagot. Ez a lépés nem kötelező.
+tooverify, amely hello szolgáltatás el lett távolítva, használhatja a hello `Get-AzureApplicationGateway` parancsmag. Ez a lépés nem kötelező.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -429,15 +429,15 @@ Get-AzureApplicationGateway AppGwTest
 ```
 VERBOSE: 10:52:46 PM - Begin Operation: Get-AzureApplicationGateway
 
-Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
+Get-AzureApplicationGateway : ResourceNotFound: hello gateway does not exist.
 .....
 ```
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha SSL-alapú kiszervezést szeretne konfigurálni: [Application Gateway konfigurálása SSL-alapú kiszervezéshez](application-gateway-ssl.md).
+Ha azt szeretné, hogy az SSL-kiszervezés tooconfigure, [konfigurálása az SSL-kiszervezés Alkalmazásátjáró](application-gateway-ssl.md).
 
-Ha konfigurálni szeretne egy ILB-vel használni kívánt Application Gateway-t: [Application Gateway létrehozása belső terheléselosztóval (ILB)](application-gateway-ilb.md).
+Ha azt szeretné, hogy egy alkalmazás átjáró toouse belső terheléselosztással tooconfigure, [hozzon létre egy alkalmazást egy belső terheléselosztón (ILB)](application-gateway-ilb.md).
 
 Ha további általános információra van szüksége a terheléselosztás beállításaival kapcsolatban:
 

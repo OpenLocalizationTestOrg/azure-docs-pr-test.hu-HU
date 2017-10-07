@@ -1,5 +1,5 @@
 ---
-title: "Linux virtuális gép kiterjesztésű sablonok készítése |} Microsoft Docs"
+title: "Linux virtuális gép kiterjesztésű aaaAuthoring sablonok |} Microsoft Docs"
 description: "További tudnivalók a bővítményekkel Azure Resource Manager sablonok készítése a Linux virtuális gépekhez"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: 8b017306474670bf8dde1440128e16ec35146f24
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b797e442d8706956bbc06c5be611a2b0119055d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authoring-azure-resource-manager-templates-with-linux-vm-extensions"></a>Linux Virtuálisgép-bővítmények az Azure Resource Manager sablonok készítése
 [!INCLUDE [virtual-machines-common-extensions-authoring-templates](../../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
-Az Azure parancssori felület futtassa a következő parancs:
+Az Azure parancssori felület futtassa a következő parancs hello:
 
       Azure VM extension list
 
-Ez a parancs visszaadja a közzétevő neve, a bővítmény neve és a következő verzióra:
+A parancs beolvasása hello közzétevő neve, a bővítmény neve és a következő verzióra:
 
       Publisher                   : Microsoft.Azure.Extensions  
       ExtensionName               : DockerExtension
       Version                     : 1.0
 
-Ezeket a tulajdonságokat a "publisher", "type" és "typeHandlerVersion", illetve a fenti sablon kódrészletet a hozzárendelése.
+A három Tulajdonságok leképezése túl "publisher", "type" és "typeHandlerVersion" rendre a fenti sablon részlet hello.
 
 > [!NOTE]
-> A bővítmény legújabb verzióját használja a legnaprakészebb működtetéséhez mindig javasoljuk.
+> Mindig ajánlott toouse hello legújabb bővítmény verzió tooget hello legtöbb frissített funkcióit.
 > 
 > 
 
-## <a name="identifying-the-schema-for-the-extension-configuration-parameters"></a>A séma kiterjesztése konfigurációs paraméterek azonosítása
-A következő lépés egy bővítmény sablont készít az, hogy azonosítsa a konfigurációs paraméterek biztosítása formátumát. Mindegyik bővítményt a saját paraméterek támogat.
+## <a name="identifying-hello-schema-for-hello-extension-configuration-parameters"></a>Hello séma hello bővítmény konfigurációs paraméterek azonosítása
+hello következő lépés egy bővítmény sablont készít az formátuma tooidentify hello szükséges konfigurációs paramétereket. Mindegyik bővítményt a saját paraméterek támogat.
 
-Nézze meg a minta konfigurációk Linux-bővítmények, kattintson a dokumentációját lásd: [Linux eExtensions minták](extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+a Linux-bővítményeket, minta konfigurációi toolook kattintson hello dokumentációját lásd: [Linux eExtensions minták](extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Tekintse meg a következő egy teljes mértékben teljes sablont a Virtuálisgép-bővítmények.
+Tekintse meg a következő tooget egy teljes mértékben teljes sablont a Virtuálisgép-bővítmények toohello.
 
 [A Linux virtuális gép egyéni parancsprogramok futtatására szolgáló bővítmény](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
 
-A sablont készít, az Azure parancssori felület használatával telepítheti.
+Hello sablont készít, hello Azure parancssori felület használatával telepítheti.
 

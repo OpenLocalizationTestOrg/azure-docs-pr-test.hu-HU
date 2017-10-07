@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Portal áttekintése | Microsoft Docs"
-description: "Ismerje meg, a Microsoft Azure Portalt használatát."
+title: "aaaAzure portál áttekintése |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Microsoft Azure-portálon."
 services: 
 documentationcenter: 
 author: davidwrede
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/16/2015
 ms.author: dwrede
-ms.openlocfilehash: 71820306716c6297085a29f3ceab89b55396bfe6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: feca8b5e26e9cb373c5e8e688173d5856050bb28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-azure-portal-overview"></a>A Microsoft Azure Portal áttekintése
-A Microsoft Azure Portal egy központi felület, ahol kioszthatja és kezelheti az Azure-erőforrásokat.  Ez az oktatóanyag bemutatja a portált, illetve megmutatja, hogyan használhatja néhány főbb funkcióját
+hello Microsoft Azure-portálra egy olyan központi hely, ahol kioszthatja és az Azure erőforrások kezeléséhez.  Ez az oktatóanyag fog megismerkedhet a portál hello és bemutatják, hogyan toouse, ezek némelyike a kulcs képességek:
 
 * Az **univerzális piactéren** a Microsoft és egyéb gyártók által fejlesztett alkalmazások ezrei között válogathat, amelyeket megvásárolhat és/vagy letölthet.
-* Az **egységesített és méretezhető tallózási élménynek** köszönhetően könnyen megtalálhatja a fontos erőforrásokat és végrehajthat különböző felügyeleti műveleteket.
+* A **egységesített és méretezhető tallózási élménynek** így később könnyen toofind hello erőforrások érdeklik, és végrehajthat különböző felügyeleti műveleteket.
 * A **konzisztens felügyeleti oldalak** (vagy panelek) segítségével az Azure számos szolgáltatását kezelheti a beállítások, műveletek, számlázási adatok, állapotfigyelés, használati adatok és sok más információ egységes megjelenítésével.
-* A **személyes élmény** részeként létrehozhat egy testreszabott indítóképernyőt, amely azokat az információkat jeleníti meg, amelyeket látni kíván a bejelentkezéskor.  A csempéket tartalmazó mindegyik felügyeleti panelt testreszabhatja.
+* A **személyes élmény** , amely lehetővé teszi egy testreszabott indítóképernyőt, hogy a mutat be, amelyet meg szeretne toosee, bejelentkezéskor hello létrehozása.  Testreszabhatja a csempéket tartalmazó hello felügyeleti panelt.
   
   ![Az Azure Portal felhasználói felületének bemutatása][UIOrientation]
 
 ## <a name="before-you-get-started"></a>A kezdés előtt
-Érvényes Azure-előfizetéssel kell rendelkeznie az oktatóanyag megtekintéséhez.  Ha még nem rendelkezik ezzel, most [regisztrálhat egy ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/).  Ha rendelkezik előfizetéssel, a portálhoz a <https://portal.azure.com> webhelyen férhet hozzá.
+Szüksége lesz egy érvényes Azure-előfizetés toogo az oktatóanyag teljesítéséhez.  Ha még nem rendelkezik ezzel, most [regisztrálhat egy ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/).  Ha rendelkezik előfizetéssel, végezheti el: hello portál <https://portal.azure.com>.
 
-## <a name="how-to-create-a-resource"></a>Erőforrás létrehozása
-Az Azure Piactéren elemek százait hozhatja létre egyetlen helyen.  Tegyük fel, hogy egy új Windows Server 2012 virtuális gépet kíván létrehozni.  Az +ÚJ felület a belépési pont a piactér kiemelt kategóriáinak gondosan összeválogatott listájához.  Mindegyik kategóriában kiemelt elemeket találhat, valamint egy hivatkozást a teljes piactérre, amely megjeleníti az összes kategóriát és keresést. Az új Windows Server 2012 virtuális gép létrehozásához hajtsa végre a következő műveleteket:  
+## <a name="how-toocreate-a-resource"></a>Hogyan toocreate erőforrás
+Az Azure Piactéren elemek százait hozhatja létre egyetlen helyen.  Tegyük fel, azt szeretné, hogy toocreate egy új Windows Server 2012 virtuális Gépet.  hello + új hub a belépési pont hello piactér kiemelt kategóriáinak gondosan összeválogatott listájához készlete.  Minden egyes kategória kiemelt elemeket találhat egy kis készletét a hivatkozás toohello teljes piactérre, amely megjeleníti az összes kategóriát és keresést együtt. toocreate, hogy új Windows Server 2012 virtuális Gépet, hajtsa végre a következő műveletek hello:  
 
-1. A Windows Server 2012 kiemelt elem, ezért kiválaszthatja a Számítás kategóriából.  
+1. Windows Server 2012-ben megjelent, így választhat hello számítási kategóriát.  
 2. Töltse ki az űrlap néhány alapvető mezőjét.
-3. Kattintson a „Létrehozás” lehetőségre, és a virtuális gép kiépítése azonnal megkezdődik.
+3. Létrehozása"parancsra, és a virtuális gép tooprovision azonnal megkezdődik.
 
-Az értesítési központ riasztást küld, amikor az erőforrás létrejött, majd megnyílik egy felügyeleti panel (az erőforrásokat később is bármikor megkeresheti).
+hello értesítések központ riasztást küld, ha az erőforrás létrejött, és megnyílik egy felügyeleti panel (is bármikor megkeresheti tooresources később).
 
 ![Portálkategóriák][PortalCategories]
 
-## <a name="how-to-find-your-resources"></a>Az erőforrások megkeresése
-A gyakran használt erőforrásokat akármikor rögzítheti a kezdőpulton, azonban előfordulhat, hogy a ritkábban használtakat tallózással kell megkeresnie.  Az alább látható tallózási központ segítségével érheti el az összes erőforrást.  Szűrhet előfizetés alapján, kiválaszthat/átméretezhet oszlopokat, illetve megnyithatja a felügyeleti paneleket az egyes elemekre kattintva.
+## <a name="how-toofind-your-resources"></a>Hogyan toofind az erőforrások
+Tooyour kezdőpulton a gyakran használt erőforrásokat akármikor rögzítheti, de nem gyakrabban toobrowse toosomething szükség lehet.  alább látható tallózási központ hello a módon tooget tooall az erőforrások.  Szűrhet előfizetés, kiválaszthat/átméretezhet oszlopokat, és beállíthatja az egyes elemekre kattintva nyissa meg a toohello felügyeleti panelt.
 
 ![Tallózási központ][BrowseHub]
 
-## <a name="how-to-manage-and-delegate-access-to-a-resource"></a>Erőforrás-elérés kezelése és delegálása
-Ezen a panelen csatlakozhat a virtuális géphez távoli asztali kapcsolattal, ellenőrizhet fontos teljesítménymutatókat, szabályozhatja a hozzáférést a virtuális géphez szerepköralapú hozzáférés-vezérléssel (RBAC), konfigurálhatja a virtuális gépet, illetve végezhet egyéb fontos felügyeleti műveleteket.  A hozzáférés szerepkörön alapuló delegálása fontos a tömeges felügyelethez.  További információkért kattintson [ide](active-directory/role-based-access-control-configure.md). Egy erőforráshoz való hozzáférés delegálásához hajtsa végre a következő műveleteket:
+## <a name="how-toomanage-and-delegate-access-tooa-resource"></a>Hogyan toomanage és a delegált hozzáférés tooa erőforrás
+Ezen a panelen csatlakoztassa toohello virtuális gépet a távoli asztali kapcsolattal, ellenőrizhet fontos teljesítménymutatókat, szabályozhatja a hozzáférést toothis VM szerepköralapú hozzáférés-vezérléssel (RBAC) használata, hello virtuális gép konfigurálása, és egyéb fontos felügyeleti feladatok elvégzésére.  Hozzáférés szerepkörön alapuló delegálása fontos toomanaging léptékben.  Kattintson a [Itt](active-directory/role-based-access-control-configure.md) toolearn további információt. toodelegate tooa erőforrás elérésére, hajtsa végre a következő műveletek hello:
 
-1. Keresse meg az erőforrást.
-2. Kattintson az „Összes beállítás” lehetőségre az Essentials szakaszban.
-3. Kattintson a „Felhasználók” lehetőségre a beállításlistában.
-4. Kattintson a „Hozzáadás” gombra a parancssávon.
+1. Keresse meg a tooyour erőforrás.
+2. Kattintson az "Összes beállítás" hello Essentials szakaszban.
+3. Kattintson a "Felhasználók" hello-beállítások listájáról.
+4. Kattintson a "Hozzáadás" hello parancs sávon.
 5. Válassza ki a felhasználót és a szerepkört.
 
 ![Erőforrás kezelése][ManageResource]
 
-## <a name="how-to-get-help"></a>Segítségkérés
-Ha problémába ütközik, mi szívesen segítünk Önnek.  A portál rendelkezik egy súgó és támogatási oldallal, amely segít a probléma megoldásában.  A [támogatási csomagjától](https://azure.microsoft.com/support/plans/) függően közvetlenül a portálon is létrehozhat támogatási jegyeket.  A támogatási jegy létrehozása után a jegyet a teljes életciklusán keresztül kezelheti a portálon. A súgó és támogatás oldalt a Tallózás -> Súgó + támogatás paranccsal is elérheti.  
+## <a name="how-tooget-help"></a>Hogyan tooget Súgó
+Ha problémába ütközik, mi szívesen segítünk Önnek.  hello portál rendelkezik egy Súgó és támogatási oldallal, amely segít a hello probléma megoldásában.  Attól függően a [támogatási csomag](https://azure.microsoft.com/support/plans/), közvetlenül a hello portálon is létrehozhat támogatási jegyeket.  A támogatási jegy létrehozása után hello életciklusát hello jegyet hello portálon kezelheti. Toohello Súgó és támogatás oldalt tooBrowse -> Súgó + támogatás.  
 
 ![Súgó és támogatás][HelpSupport]
 
 ## <a name="summary"></a>Összefoglalás
 Tekintsük át, hogy mit tudott meg ebből az oktatóanyagból:
 
-* Megtudta, hogyan lehet regisztrálni, előfizetést beszerezni és elérni a portált
-* Megismerte a portál felhasználói felületét, valamint megtudta, hogyan hozhat létre és kereshet meg erőforrásokat
-* Megtudta, hogyan hozhat létre és kereshet meg erőforrásokat
-* Megismerte a felügyeleti panelek struktúráját, illetve a különböző típusú erőforrások egységes kezelésének módját
-* Megtudta, hogyan szabhatja testre a portált, hogy az Önnek fontos információkat helyezze a középpontba
-* Megtudta, hogyan szabályozhatja az erőforrásokhoz való hozzáférést szerepköralapú hozzáférés-vezérléssel (RBAC)
-* Megtudta, hogyan kérhet segítséget és támogatást
+* Megtudta, hogyan toosign, szerezzen be előfizetést, és keresse meg a toohello portál
+* Kapott objektumorientált hello portáljának felhasználói felület és megtanulta, hogyan toocreate, és keresse meg az erőforrások
+* Ön megtanulta, hogyan toocreate egy erőforrást, és keresse meg az erőforrások
+* Hello struktúra vagy felügyeleti panelt, és hogyan a különböző típusú erőforrások egységes kezelésének is megismerte
+* Megtudta, hogyan toocustomize hello portál toobring hello toohello elöl és középen az Ön számára legfontosabb adatokat
+* Megtudta, hogyan toocontrol hozzáférés tooresources szerepkör alapú hozzáférés-(vezérléssel RBAC)
+* Megtudta, hogyan tooget Súgó és támogatás
 
-A Microsoft Azure Portal jelentősen leegyszerűsíti az alkalmazások felépítését és kezelését a felhőben.  A [felügyeleti blog](https://azure.microsoft.com/blog/topics/management/) követésével mindig naprakész maradhat, mivel folyamatosan [figyelünk a visszajelzésekre](https://feedback.azure.com/forums/223579-azure-preview-portal/) és fejlesztjük a portált.  [ScottGu blogja](http://weblogs.asp.net/scottgu) egy másik remek hely, ahol megtalálhatja az összes Azure-hírt.
+hello Microsoft Azure portál jelentősen leegyszerűsíti felépítését és kezelését az alkalmazások hello felhőben.  Vessen egy pillantást hello [felügyeleti blog](https://azure.microsoft.com/blog/topics/management/) tookeep toodate mentése mivel folyamatosan [figyelő toofeedback](https://feedback.azure.com/forums/223579-azure-preview-portal/) és fejlesztjük a portált.  [ScottGu blogja](http://weblogs.asp.net/scottgu) van egy másik remek hely toolook az összes Azure-hírt.
 
 [UIOrientation]: ./media/azure-portal-how-to-use/azure_portal_1.png
 [PortalCategories]: ./media/azure-portal-how-to-use/azure_portal_2.png

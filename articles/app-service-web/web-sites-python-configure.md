@@ -1,5 +1,5 @@
 ---
-title: "Python konfigurálása az Azure App Service Web Apps alkalmazások"
+title: az Azure App Service Web Apps Python aaaConfiguring
 description: "Ez az oktatóanyag leírja a szerzői műveletekhez és az alapszintű webes kiszolgáló átjáró felület (WSGI) kompatibilis Python alkalmazást az Azure App Service Web Apps beállításait."
 services: app-service
 documentationcenter: python
@@ -15,11 +15,11 @@ ms.devlang: python
 ms.topic: article
 ms.date: 02/26/2016
 ms.author: huvalo
-ms.openlocfilehash: 9683a1af13eeff364d3c4714f0b791324fd82659
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00d49fb01491e9adb4b6fededfb95669a8dbd485
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-python-with-azure-app-service-web-apps"></a>Python konfigurálása az Azure App Service Web Apps alkalmazások
 Ez az oktatóanyag ismerteti, szerzői és egy alapszintű Web Server átjáró felület (WSGI) kompatibilis Python alkalmazást beállításának beállítások [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
@@ -27,24 +27,24 @@ Ez az oktatóanyag ismerteti, szerzői és egy alapszintű Web Server átjáró 
 Git üzemelő példányt, például a virtuális környezet és a csomag telepítése a requirements.txt használatával további szolgáltatásait ismerteti.
 
 ## <a name="bottle-django-or-flask"></a>Bottle, a Django vagy Flask?
-Az Azure piactéren a Bottle, a Django és a Flask keretrendszerek sablonjait tartalmazza. Ha az első webalkalmazás az Azure App Service fejleszt, vagy még nem ismeri a Gitet, javasoljuk, hogy ezek az oktatóanyagok, amely részletes utasításokat tartalmaz egy működő alkalmazást a katalógusból Git-telepítés a Windows vagy Mac használatával felépítése egyik kövesse:
+hello Azure piactér hello Bottle, a Django és a Flask keretrendszerek sablonjait tartalmazza. Ha az első webalkalmazás az Azure App Service fejleszt, vagy még nem ismeri a Gitet, javasoljuk, hogy ezek az oktatóanyagok, amely részletes utasításokat tartalmaz egy működő alkalmazást Git központi telepítéssel hello gyűjteményből felépítése egyik kövesse a Windows vagy Mac:
 
 * [Webalkalmazások létrehozása a Bottle](web-sites-python-create-deploy-bottle-app.md)
 * [Webalkalmazások létrehozása a djangóval](web-sites-python-create-deploy-django-app.md)
 * [Webalkalmazások létrehozása a Flask](web-sites-python-create-deploy-flask-app.md)
 
 ## <a name="web-app-creation-on-azure-portal"></a>Webalkalmazás létrehozása az Azure portálon
-Ez az oktatóanyag azt feltételezi, hogy egy meglévő Azure-előfizetés és az Azure portál eléréséhez.
+Ez az oktatóanyag azt feltételezi, hogy egy meglévő Azure előfizetés és a hozzáférés toohello Azure portálon.
 
-Ha még nem rendelkezik egy létező webalkalmazása, létrehozhat egyet a [Azure Portal](https://portal.azure.com).  Kattintson az új gombra a bal felső sarokban, majd **Web + mobil** > **webalkalmazás**.
+Ha még nem rendelkezik egy létező webalkalmazása, létrehozhat egyet a hello [Azure Portal](https://portal.azure.com).  Új gombjára hello hello bal felső sarokban, majd kattintson a **Web + mobil** > **webalkalmazás**.
 
 ## <a name="git-publishing"></a>Git-közzététel
-Konfigurálja az újonnan létrehozott webalkalmazáshoz tartozó Git-közzétételt a [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben) részben megadott utasítások szerint. Ez az oktatóanyag a Git segítségével létrehozására, kezelésére és a Python webalkalmazás közzététele az Azure App Service.
+Az újonnan létrehozott webalkalmazáshoz tartozó Git-közzététel konfigurálása: hello utasításokat követve [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md). Ez az oktatóanyag a Git toocreate használja, kezelése és a Python webes alkalmazás tooAzure App Service közzététele.
 
-Git-közzététel beállítása után a Git-tárház létrehozása, és a webalkalmazás társított. A tárház URL-cím fog megjelenni, és ezentúl segítségével küldje le adatokat a helyi fejlesztési környezetet a felhőben. Git keresztül alkalmazások közzétételét, győződjön meg arról, hogy a Git-ügyfél telepítése, és kövesse az utasításokat, majd a webtartalom-alkalmazás az Azure App Service megadott.
+Git-közzététel beállítása után a Git-tárház létrehozása, és a webalkalmazás társított. hello tárház URL-cím fog megjelenni, és ezentúl hello helyi fejlesztési környezet toohello felhő használt toopush adatait. toopublish alkalmazások keresztül Git, ellenőrizze, hogy egy Git-ügyfél telepítése és használata hello arra vonatkozó útmutatást toopush a webes alkalmazás tartalom tooAzure App Service.
 
 ## <a name="application-overview"></a>Az alkalmazás áttekintése
-A következő szakaszok a következő fájlok jönnek létre. A Git-tárház gyökérkönyvtárában található kerüljön.
+A következő szakaszokban hello hello következő fájlok jönnek létre. Ezek hello hello Git-tárház gyökérkönyvtárában kell helyezni.
 
     app.py
     requirements.txt
@@ -54,7 +54,7 @@ A következő szakaszok a következő fájlok jönnek létre. A Git-tárház gy�
 
 
 ## <a name="wsgi-handler"></a>WSGI kezelő
-WSGI egy Python szabvány szerint [EGP 3333](http://www.python.org/dev/peps/pep-3333/) meghatározása a webkiszolgáló és a Python közötti illesztőfelületet szolgáltasson. Egy egységes felületet biztosít írása a webalkalmazások és -keretrendszerek pythonos környezetekben. Python webes népszerű keretrendszerekre ma használható WSGI. Támogatja az ilyen keretrendszerek; az Azure App Service Web Apps által biztosított Ezenkívül advanced-felhasználók is létrehozható a saját mindaddig, amíg a egyéni kezelő követi az WSGI specification útmutatást.
+WSGI egy Python szabvány szerint [EGP 3333](http://www.python.org/dev/peps/pep-3333/) meghatározása hello webkiszolgáló és a Python közötti illesztőfelületet szolgáltasson. Egy egységes felületet biztosít írása a webalkalmazások és -keretrendszerek pythonos környezetekben. Python webes népszerű keretrendszerekre ma használható WSGI. Támogatja az ilyen keretrendszerek; az Azure App Service Web Apps által biztosított Ezenkívül advanced-felhasználók is létrehozható a saját mindaddig, amíg hello egyéni kezelő a következő hello WSGI specification irányelveket.
 
 Íme egy példa egy `app.py` , amely meghatározza, hogy egy egyéni kezelő:
 
@@ -71,19 +71,19 @@ WSGI egy Python szabvány szerint [EGP 3333](http://www.python.org/dev/peps/pep-
         httpd = make_server('localhost', 5555, wsgi_app)
         httpd.serve_forever()
 
-Az alkalmazást helyileg is futtathatja `python app.py`, majd tallózással `http://localhost:5555` a böngészőben.
+Az alkalmazást helyileg is futtathatja `python app.py`, majd keresse meg a túl`http://localhost:5555` a böngészőben.
 
 ## <a name="virtual-environment"></a>Virtuális környezet
-Bár a fenti példa alkalmazás nincs szükség külső csomagok, valószínű, hogy az alkalmazás néhány szükséges.
+Bár a fenti hello példa alkalmazás nincs szükség külső csomagok, valószínű, hogy az alkalmazás néhány szükséges.
 
-Külső csomagfüggőségek kezelése érdekében a Azure Git-telepítés a virtuális környezetek létrehozását támogatja.
+toohelp kezeléséhez külső csomagfüggőségek, Azure Git-telepítés a virtuális környezetek hello létrehozását támogatja.
 
-Ha az Azure a requirements.txt észlel a tárház gyökérkönyvtárában található, automatikusan létrehoz egy nevű virtuális környezet `env`. Csak az első központi telepítése történik, vagy a telepítést követően a kijelölt Python során futásidejű megváltozott.
+Ha Azure hello legfelső szintű hello tárház a Requirements.txt fájlt észlel, automatikusan létrehoz egy nevű virtuális környezet `env`. Ez csak akkor történik hello első üzemelő példányon, vagy hello után bármely központi telepítése során kiválasztott Python-futtatókörnyezet megváltozott.
 
-Valószínűleg érdemes lehet létrehozni egy helyi fejlesztési virtuális környezetről, de nem adja hozzá a Git-tárházban.
+Toocreate egy helyi fejlesztési virtuális környezetről, valószínűleg érdemes, de nem adja hozzá a Git-tárházban.
 
 ## <a name="package-management"></a>Csomagkezelés
-A requirements.txt fájlban felsorolt csomagok automatikusan települnek a pip használatával a virtuális környezetben. Ez történik, minden üzembe helyezés, de a pip kihagyja a telepítést, ha a csomag már telepítve van.
+A requirements.txt fájlban felsorolt csomagok automatikusan települnek a pip használatával hello virtuális környezetben. Ez történik, minden üzembe helyezés, de a pip kihagyja a telepítést, ha a csomag már telepítve van.
 
 Példa `requirements.txt`:
 
@@ -99,11 +99,11 @@ Példa `runtime.txt`:
 
 
 ## <a name="webconfig"></a>Web.config
-Hozzon létre egy web.config fájlt adhatja meg, hogy a kiszolgáló hogyan kezelje kérelmek lesz szüksége.
+Szüksége lesz egy web.config fájl toospecify toocreate hello kiszolgáló hogyan kezelje a kérelmeket.
 
-Vegye figyelembe, hogy a beállítást, ha egy web.x.y.config fájlt a tárházban, ahol x megfelel a kiválasztott Python-futtatókörnyezet, majd az Azure automatikusan másolatot készít a megfelelő web.config fájlt.
+Vegye figyelembe, hogy ha egy web.x.y.config fájlt a tárházban, ahol x megegyezik hello kijelölt Python-futtatókörnyezet, majd Azure automatikusan másolatot készít a hello megfelelő web.config fájlt.
 
-A következő web.config példák virtuális környezet proxyparancsfájl, amely a következő szakaszban ismertetett támaszkodnak.  Ezek a példában használt WSGI kezelő működnek `app.py` felett.
+hello következő web.config példák használja a virtuális környezet proxyparancsfájl, hello a következő szakaszban ismertetett.  Ezek a működnek hello WSGI kezelő hello példában használt `app.py` felett.
 
 Példa `web.config` Python 2.7-hez:
 
@@ -203,16 +203,16 @@ Példa `web.config` Python 3.4 esetén:
     </configuration>
 
 
-Statikus fájlok kezelik a webkiszolgáló által közvetlenül, Python kódját, javítja a teljesítményt áthaladás nélkül.
+Statikus fájlok végzi hello webkiszolgáló közvetlenül, Python kódját, javítja a teljesítményt áthaladás nélkül.
 
-A fenti példákban a lemezen a statikus fájlokat meg kell felelnie a hely URL-címét. Ez azt jelenti, hogy kérelmet `http://pythonapp.azurewebsites.net/static/site.css` szolgálja ki a fájl a lemezen `\static\site.css`.
+A fenti példák hello hello statikus fájlok lemezen hello helyének meg kell felelnie az hello hely hello URL-címben. Ez azt jelenti, hogy kérelmet `http://pythonapp.azurewebsites.net/static/site.css` szolgálja ki hello fájl a lemezen `\static\site.css`.
 
-`WSGI_ALT_VIRTUALENV_HANDLER`van, amelyben meg kell határoznia a WSGI kezelő. A fenti példákban rendelkezik `app.wsgi_app` , mert a kezelő nevű függvény `wsgi_app` a `app.py` a gyökérmappában.
+`WSGI_ALT_VIRTUALENV_HANDLER`van, amelyben meg kell határoznia hello WSGI kezelő. A fenti példákban hello rendelkezik `app.wsgi_app` mert hello kezelő nevű függvény `wsgi_app` a `app.py` hello gyökérmappában.
 
-`PYTHONPATH`testre szabható, de ha a requirements.txt fájlban megadásával a virtuális környezetben telepíti a függőségek, nem szabad módosítani szeretné azt.
+`PYTHONPATH`testre szabható, de ha a requirements.txt fájlban megadásával hello virtuális környezetben telepíti a függőségek, nem szabad toochange azt.
 
 ## <a name="virtual-environment-proxy"></a>Virtuális környezet Proxy
-A következő parancsfájl beolvasni a WSGI kezelő, illetve aktiválja a virtuális környezet és a naplófájlok hibák szolgál. Általános és módosítások nélkül használható tervezték.
+a következő parancsfájl hello használt tooretrieve hello WSGI kezelő, illetve aktiválja az hello virtuális környezet és a naplófájlok hibák. Tervezett toobe általános és módosítások nélkül használható legyen.
 
 Tartalmát `ptvs_virtualenv_proxy.py`:
 
@@ -220,11 +220,11 @@ Tartalmát `ptvs_virtualenv_proxy.py`:
      #
      # Copyright (c) Microsoft Corporation. 
      #
-     # This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
-     # copy of the license can be found in the License.html file at the root of this distribution. If 
-     # you cannot locate the Apache License, Version 2.0, please send an email to 
-     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing to be bound 
-     # by the terms of the Apache License, Version 2.0.
+     # This source code is subject tooterms and conditions of hello Apache License, Version 2.0. A 
+     # copy of hello license can be found in hello License.html file at hello root of this distribution. If 
+     # you cannot locate hello Apache License, Version 2.0, please send an email too
+     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing toobe bound 
+     # by hello terms of hello Apache License, Version 2.0.
      #
      # You must not remove this notice, or any other, from this software.
      #
@@ -250,7 +250,7 @@ Tartalmát `ptvs_virtualenv_proxy.py`:
             return value.encode(sys.getfilesystemencoding())
 
     def log(txt):
-        """Logs fatal errors to a log file if WSGI_LOG env var is defined"""
+        """Logs fatal errors tooa log file if WSGI_LOG env var is defined"""
         log_file = os.environ.get('WSGI_LOG')
         if log_file:
             f = open(log_file, 'a+')
@@ -350,13 +350,13 @@ Tartalmát `ptvs_virtualenv_proxy.py`:
 [!INCLUDE [web-sites-python-troubleshooting-virtual-environment](../../includes/web-sites-python-troubleshooting-virtual-environment.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-További információ: [Python fejlesztői központban](/develop/python/).
+További információkért lásd: hello [Python fejlesztői központ](/develop/python/).
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 

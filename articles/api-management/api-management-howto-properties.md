@@ -1,6 +1,6 @@
 ---
-title: "Tulajdonságok használata az Azure API-felügyeleti házirendek"
-description: "További tulajdonságok használata az Azure API-felügyeleti házirendek."
+title: "az Azure API-felügyeleti házirendek aaaHow toouse tulajdonságai"
+description: "Megtudhatja, hogyan toouse tulajdonságokat az Azure API-felügyeleti házirendek."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 3b0fe2a300038e13cc488bdb4f50f8be270ea8f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ff096deeb97543b48dcf1f40be9dbfcbcd09542
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-properties-in-azure-api-management-policies"></a>Tulajdonságok használata az Azure API-felügyeleti házirendek
-API-felügyeleti házirendek, amelyek lehetővé teszik a közzétevőt úgy, hogy az API-t konfigurálással működésének módosításához a rendszer hatékony képesség. A házirendek utasítások gyűjteményei, amelyeket az API-k kérelmei és válaszai szerint egymást követően hajtanak végre. Házirend-utasításoknál szövegkonstans értékek, a házirend-kifejezések és a tulajdonságok használatával lehet létrehozni. 
+# <a name="how-toouse-properties-in-azure-api-management-policies"></a>Hogyan toouse tulajdonságokat az Azure API-felügyeleti házirendek
+API-felügyeleti házirendek, amelyek lehetővé teszik a hello publisher toochange hello viselkedését hello API konfigurálással hello rendszer hatékony képesség. Házirendek olyan hello kérésre egymás után végrehajtott utasítások gyűjteménye vagy egy API-t adott válaszokat. Házirend-utasításoknál szövegkonstans értékek, a házirend-kifejezések és a tulajdonságok használatával lehet létrehozni. 
 
-Minden API Management service-példány kulcs/érték párok, a service-példány általános tulajdonságok gyűjteményével rendelkezik. Ezek a Tulajdonságok állandó karakterlánc-értékek összes API konfigurálása és házirendek kezelésére használható. Minden egyes tulajdonsága a következő attribútumokkal rendelkezik.
+Minden API Management szolgáltatáspéldány kulcs/érték párok, amelyek globális toohello szolgáltatáspéldány tulajdonságok gyűjteményével rendelkezik. Ezek a tulajdonságok összes API konfigurálása és házirendek lehet használt toomanage állandó karakterlánc-értékek. Minden egyes tulajdonsága a következő attribútumok hello rendelkezik.
 
 | Attribútum | Típus | Leírás |
 | --- | --- | --- |
-| Név |Karakterlánc |A tulajdonság nevét. Ez előfordulhat, hogy csak betűket, számokat, időszak, kötőjelet tartalmazhat, és aláhúzás karaktereket tartalmazhat. |
-| Érték |Karakterlánc |A tulajdonság értéke. Nem lehet üres vagy csak szóközök állhatnak. |
-| Titkos |Logikai érték |Határozza meg, hogy az érték egy titkos kulcsot, és titkosítani kell, vagy nem. |
-| Címkék |A karakterlánc tömbje |Nem kötelező, hogy címkéket, amikor megadja a tulajdonságlista szűréséhez használható. |
+| Név |Karakterlánc |hello tulajdonság hello neve. Ez előfordulhat, hogy csak betűket, számokat, időszak, kötőjelet tartalmazhat, és aláhúzás karaktereket tartalmazhat. |
+| Érték |Karakterlánc |hello hello tulajdonság értéke. Nem lehet üres vagy csak szóközök állhatnak. |
+| Titkos |Logikai érték |Meghatározza, hogy hello érték titkos kulcs-e, és hogy titkosítani kell-e. |
+| Címkék |A karakterlánc tömbje |Nem kötelező, hogy címkéket, amikor megadja a használt toofilter hello keresésitulajdonság-lista lehet. |
 
-Tulajdonságok konfigurálása a közzétevő portálon a a **tulajdonságok** fülre. A következő példában három tulajdonságainak vannak konfigurálva.
+Van beállítva a hello hello publisher portálról **tulajdonságok** fülre. A következő példa hello három tulajdonságainak vannak konfigurálva.
 
 ![Tulajdonságok][api-management-properties]
 
-A tulajdonság értékek tartalmazhatnak szövegkonstansok és [házirend-kifejezések](https://msdn.microsoft.com/library/azure/dn910913.aspx). A következő táblázat az előző három minta tulajdonságok és attribútumaik. Értékének `ExpressionProperty` egy házirend-kifejezés, amely az aktuális dátum és idő tartalmazó karakterláncot ad vissza. A tulajdonság `ContosoHeaderValue` titkos kulcs, van megjelölve, ezért az értéke nem jelenik meg.
+A tulajdonság értékek tartalmazhatnak szövegkonstansok és [házirend-kifejezések](https://msdn.microsoft.com/library/azure/dn910913.aspx). hello következő táblázatban hello előző három minta tulajdonságok és attribútumaik. hello értékének `ExpressionProperty` a házirend-kifejezést, amely visszaadja a karakterláncot, amely tartalmazza az aktuális dátum és idő hello. hello tulajdonság `ContosoHeaderValue` titkos kulcs, van megjelölve, ezért az értéke nem jelenik meg.
 
 | Név | Érték | Titkos | Címkék |
 | --- | --- | --- | --- |
@@ -44,8 +44,8 @@ A tulajdonság értékek tartalmazhatnak szövegkonstansok és [házirend-kifeje
 | ContosoHeaderValue |•••••••••••••••••••••• |True (Igaz) |Contoso |
 | ExpressionProperty |@(DateTime.Now.ToString()) |False (Hamis) | |
 
-## <a name="to-use-a-property"></a>A tulajdonság
-Egy házirend tulajdonságot használja, helyezze a belül kell használni, például a kettős két tulajdonságnév `{{ContosoHeader}}`, a következő példában látható módon.
+## <a name="toouse-a-property"></a>toouse tulajdonság
+toouse házirend tulajdonság, hely hello tulajdonságnév belül dupla párban kell használni, például `{{ContosoHeader}}`, ahogy az alábbi példa hello.
 
 ```xml
 <set-header name="{{ContosoHeader}}" exists-action="override">
@@ -53,11 +53,11 @@ Egy házirend tulajdonságot használja, helyezze a belül kell használni, pél
 </set-header>
 ```
 
-Ebben a példában `ContosoHeader` a fejléc neveként használatos a `set-header` házirend, és `ContosoHeaderValue` szolgál, hogy a fejléc értékeként. Ez a házirend olyan kérésre vagy válaszra API Management Gateway során kiértékelésekor `{{ContosoHeader}}` és `{{ContosoHeaderValue}}` váltják fel az adott tulajdonságot értékekre.
+Ebben a példában `ContosoHeader` a fejléc neveként hello szolgál egy `set-header` házirend, és `ContosoHeaderValue` , hogy a fejléc értékeként hello szolgál. Ezzel a házirend-kérés vagy válasz toohello API Management az átjáró során kiértékelésekor `{{ContosoHeader}}` és `{{ContosoHeaderValue}}` váltják fel az adott tulajdonságot értékekre.
 
-Tulajdonságok teljes attribútumot vagy elemet értékeket az előző példában látható módon használható, de is lehet beszúrt vagy kombinálva, a következő példában látható módon egy szövegkonstans kifejezés része:`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
+Tulajdonságok teljes attribútumot vagy elemet értékek hello előző példában látható módon használható, de is lehet beszúrt vagy együtt egy szövegkonstans kifejezés része, ahogy az alábbi példa hello:`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
 
-Tulajdonságok házirend kifejezést is tartalmazhat. A következő példában a `ExpressionProperty` szolgál.
+Tulajdonságok házirend kifejezést is tartalmazhat. A következő példa hello, hello `ExpressionProperty` szolgál.
 
 ```xml
 <set-header name="CustomHeader" exists-action="override">
@@ -65,66 +65,66 @@ Tulajdonságok házirend kifejezést is tartalmazhat. A következő példában a
 </set-header>
 ```
 
-Ez a házirend kiértékeléséhez `{{ExpressionProperty}}` értéke helyére: `@(DateTime.Now.ToString())`. Óta egy házirend-kifejezés értéke, a rendszer kiértékeli, és a végrehajtása a házirendet, majd.
+Ez a házirend kiértékeléséhez `{{ExpressionProperty}}` értéke helyére: `@(DateTime.Now.ToString())`. Hello értéke egy házirend-kifejezést, mert hello van kiértékeli, és a végrehajtása a hello házirendet, majd.
 
-A fejlesztői portálra a kimenő tesztelheti egy műveletet, amelynek hatókörében szerepel egy házirend tulajdonságokkal meghívásával. A következő példában egy művelet hívása a két előző példa `set-header` házirendek tulajdonságokkal. Vegye figyelembe, hogy a válasz tartalmazza-e a házirendekkel tulajdonságokkal konfigurált, két egyéni fejléc.
+Tesztelheti a kimenő hello developer portálon egy műveletet, amelynek hatókörében szerepel egy házirend tulajdonságokkal meghívásával. A következő példa hello, egy művelet hívása hello két előző példa `set-header` házirendek tulajdonságokkal. Vegye figyelembe, hogy a hello válasz házirendekkel tulajdonságokkal konfigurált, két egyéni fejléc tartalmazza.
 
 ![Fejlesztői portál][api-management-send-results]
 
-Ha megnézi a [API Inspector nyomkövetési](api-management-howto-api-inspector.md) hívás, amely tartalmazza a két előző minta házirendek tulajdonságokkal rendelkező, lásd: a két `set-header` házirendeket és a tulajdonságértékek beszúrni, valamint a házirend-kifejezés kiértékelése a tulajdonsághoz, amely a házirend-kifejezést tartalmaz.
+Ha megnézzük hello [API Inspector nyomkövetési](api-management-howto-api-inspector.md) hello két korábbi minta szabályzatok tulajdonságait tartalmazó hívásra, lásd: a két hello `set-header` beszúrni, valamint hello házirend-kifejezést hello tulajdonságértékek szabályzatok hello tulajdonság hello házirend-kifejezést tartalmazó kiértékelését.
 
 ![API-Inspector nyomkövetési][api-management-api-inspector-trace]
 
-Vegye figyelembe, hogy közben a tulajdonságértékek házirend-kifejezést tartalmazhat, tulajdonságértékek nem tartalmazhat más tulajdonságok. Ha a szöveg tulajdonság a hivatkozást használja a tulajdonság értéke, például a `Property value text {{MyProperty}}`, hivatkozó tulajdonság nem lehet írni, és tartalmazzák a tulajdonság értékének a lesz.
+Vegye figyelembe, hogy közben a tulajdonságértékek házirend-kifejezést tartalmazhat, tulajdonságértékek nem tartalmazhat más tulajdonságok. Ha a szöveg tulajdonság a hivatkozást használja a tulajdonság értéke, például a `Property value text {{MyProperty}}`, hogy tulajdonsághivatkozás nem lehet írni, és tartalmazzák a hello tulajdonság értéke lesz.
 
-## <a name="to-create-a-property"></a>A tulajdonság létrehozása
-Hozzon létre egy tulajdonságot, kattintson a **tulajdonság hozzáadása** a a **tulajdonságok** fülre.
+## <a name="toocreate-a-property"></a>toocreate tulajdonság
+toocreate tulajdonság, kattintson a **tulajdonság hozzáadása** a hello **tulajdonságok** fülre.
 
 ![Tulajdonság hozzáadása][api-management-properties-add-property-menu]
 
-**Név** és **érték** szükséges érték. Ha ez a tulajdonság értéke egy titkos kulcsot, ellenőrizze a **Ez a titkos kulcs** jelölőnégyzetet. Adja meg egy vagy több választható címkéket a Tulajdonságok rendszerezéséhez számára, és kattintson a **mentése**.
+**Név** és **érték** szükséges érték. Ha ez a tulajdonság értéke egy titkos kulcsot, ellenőrizze a hello **Ez a titkos kulcs** jelölőnégyzetet. Adjon meg egy vagy több választható címkék toohelp való rendszerezését a tulajdonságokat, majd kattintson **mentése**.
 
 ![Tulajdonság hozzáadása][api-management-properties-add-property]
 
-Új tulajdonság mentésekor a rendszer a **tulajdonság keresése** szövegmező a telepítéskor az új tulajdonság nevét, és az új tulajdonság jelenik meg. Megjeleníti az összes tulajdonság, vagy törölje a **tulajdonság keresése** szövegmező, és nyomja le az adja meg.
+Új tulajdonság mentésekor a rendszer hello **tulajdonság keresése** szövegmező hello hello új tulajdonság neve a telepítéskor és hello új tulajdonság jelenik meg. toodisplay összes tulajdonság, törölje a jelet hello **tulajdonság keresése** szövegmező, és nyomja le az adja meg.
 
 ![Tulajdonságok][api-management-properties-property-saved]
 
-A REST API használatával tulajdonság létrehozásáról további információért lásd: [hozzon létre egy tulajdonságot a REST API használatával](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put).
+Hello REST API használatával tulajdonság létrehozásával kapcsolatos további információkért lásd: [hello REST API használatával tulajdonság létrehozása](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put).
 
-## <a name="to-edit-a-property"></a>Tulajdonság módosítása
-A tulajdonság szerkesztéséhez kattintson **szerkesztése** szerkesztése tulajdonság mellett.
+## <a name="tooedit-a-property"></a>tooedit tulajdonság
+egy tulajdonság tooedit kattintson **szerkesztése** hello tulajdonság tooedit mellett.
 
 ![Tulajdonság szerkesztése][api-management-properties-edit]
 
-Végezze el a szükséges módosításokat, és kattintson a **mentése**. Ha módosítja a tulajdonság nevét, a házirendek, amelyek az adott tulajdonsághoz hivatkoznak automatikusan frissülnek az új nevét.
+Végezze el a szükséges módosításokat, és kattintson a **mentése**. Hello tulajdonságnév módosításakor a házirendekben, amelyek az adott tulajdonsághoz hivatkoznak automatikusan frissített toouse hello új nevet.
 
 ![Tulajdonság szerkesztése][api-management-properties-edit-property]
 
-A REST API használatával tulajdonság szerkesztési információkért lásd: [REST API használatával tulajdonság módosítása](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch).
+Hello REST API használatával tulajdonság szerkesztési információkért lásd: [hello REST API használatával tulajdonság módosítása](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch).
 
-## <a name="to-delete-a-property"></a>Egy tulajdonság
-Törölni egy tulajdonságot, kattintson a **törlése** mellett a tulajdonság törlése.
+## <a name="toodelete-a-property"></a>toodelete tulajdonság
+egy tulajdonság toodelete kattintson **törlése** hello tulajdonság toodelete mellett.
 
 ![Tulajdonság törlése][api-management-properties-delete]
 
-Kattintson a **Igen, törölje azt** megerősítéséhez.
+Kattintson a **Igen, törölje azt** tooconfirm.
 
 ![Törlés megerősítése][api-management-delete-confirm]
 
 > [!IMPORTANT]
-> Ha a tulajdonság a házirendek által hivatkozott, nem fog tudni sikeresen törölni mindaddig, amíg az azt használó összes házirendektől távolítsa el a tulajdonságot.
+> Ha hello tulajdonság házirendekben hivatkozik, akkor nem lehet toosuccessfully törlése amíg hello tulajdonság távolít el, az azt használó összes házirendet.
 > 
 > 
 
-A REST API használatával tulajdonság törléséről további információkért lásd: [törölni egy tulajdonságot a REST API használatával](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete).
+Hello REST API használatával tulajdonság törléséről további információkért lásd: [törölni egy tulajdonságot hello REST API használatával](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete).
 
-## <a name="to-search-and-filter-properties"></a>A Keresés és szűrés tulajdonságai
-A **tulajdonságok** lapján található, a Keresés és szűrés lehetőségek közül választhat a tulajdonságainak kezeléséhez. Tulajdonság neve a tulajdonságlista szűréséhez adja meg a kívánt keresőkifejezést a a **tulajdonság keresése** szövegmező. Megjeleníti az összes tulajdonság, vagy törölje a **tulajdonság keresése** szövegmező, és nyomja le az adja meg.
+## <a name="toosearch-and-filter-properties"></a>toosearch és szűrő tulajdonságai
+Hello **tulajdonságok** lapján található, a Keresés és szűrés képességek toohelp kezelheti a tulajdonságokat. toofilter hello keresésitulajdonság-lista tulajdonság nevét, adja meg a kívánt keresőkifejezést hello **tulajdonság keresése** szövegmező. toodisplay összes tulajdonság, törölje a jelet hello **tulajdonság keresése** szövegmező, és nyomja le az adja meg.
 
 ![Keresés][api-management-properties-search]
 
-Címke értékek szerint a tulajdonságlista szűréséhez adja meg egy vagy több címkéket, az a **címkék szűrés** szövegmező. Megjeleníti az összes tulajdonság, vagy törölje a **címkék szűrés** szövegmező, és nyomja le az adja meg.
+toofilter hello keresésitulajdonság-lista által előfizetéscímkék értékeit, adjon meg egy vagy több címke hello **címkék szűrés** szövegmező. toodisplay összes tulajdonság, törölje a jelet hello **címkék szűrés** szövegmező, és nyomja le az adja meg.
 
 ![Szűrés][api-management-properties-filter]
 

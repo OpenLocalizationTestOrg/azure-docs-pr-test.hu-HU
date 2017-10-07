@@ -1,5 +1,5 @@
 ---
-title: "Az Application Insights által használt IP-címek |} Microsoft Docs"
+title: "az Application Insights által használt aaaIP címek |} Microsoft Docs"
 description: "Az Application Insights által igényelt tűzfal kivételek"
 services: application-insights
 documentationcenter: .net
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: bwren
-ms.openlocfilehash: 3bb076c63223fc1567c6b7b25c1a513bbc81ed58
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2c101b8da2ba9594fbff607f4f7551cda80c3c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ip-addresses-used-by-application-insights"></a>Az Application Insights szolgáltatás által használt IP-címek
-A [Azure Application Insights](app-insights-overview.md) szolgáltatás által használt IP-címek száma. Szükség lehet tudja ezeket a címeket, ha a figyelt alkalmazás egy tűzfal mögött található.
+Hello [Azure Application Insights](app-insights-overview.md) szolgáltatás által használt IP-címek száma. Szükség lehet tooknow ezeknél a címeknél Ha hello-alkalmazást, amely figyeli a tűzfal mögött.
 
 > [!NOTE]
-> Bár ezek a címek statikus, akkor lehetséges, hogy fel kell időről időre módosítsa őket.
+> Bár ezek a címek statikus, akkor előfordulhat, hogy fel kell toochange őket a idő tootime.
 > 
 > 
 
 ## <a name="outgoing-ports"></a>Kimenő portok
-Néhány kimenő portok megnyitása a kiszolgáló engedélyezéséhez az Application Insights SDK és/vagy állapotfigyelő adatokat küldeni a portálon kell:
+Néhány kimenő portok a kiszolgáló tűzfal tooallow hello Application Insights SDK és/vagy állapotfigyelő toosend adatok toohello portal tooopen szüksége:
 
 | Cél | URL-CÍME | IP | Portok |
 | --- | --- | --- | --- |
@@ -56,7 +56,7 @@ Néhány kimenő portok megnyitása a kiszolgáló engedélyezéséhez az Applic
 | Összeomlási adatok |GATE.hockeyapp.NET |104.45.136.42 |80, 443 |
 
 ## <a name="availability-tests"></a>Rendelkezésre állási tesztek
-A lista, amelyből címek [webteszt rendelkezésre állási](app-insights-monitor-web-app-availability.md) futnak. Ha szeretné indítani a webes tesztjeinek használatát az alkalmazásnak, de a webkiszolgáló bizonyos ügyfelek szolgáltató korlátozódik, majd kell bejövő forgalom engedélyezése a rendelkezésre állási a teszt kiszolgálók.
+Hello lista, amelyből címek [webteszt rendelkezésre állási](app-insights-monitor-web-app-availability.md) futnak. Ha az alkalmazás kívánt toorun webes tesztjeinek használatát, de a webkiszolgáló korlátozott tooserving adott ügyfeleket, majd toopermit rendelkezésre állási teszt kiszolgálókról érkező bejövő forgalmat fog.
 
 80-as (http) és a 443-as (https), a bejövő forgalmat portok megnyitása (az IP-címek helye szerint vannak csoportosítva) ezeknél a címeknél:
 

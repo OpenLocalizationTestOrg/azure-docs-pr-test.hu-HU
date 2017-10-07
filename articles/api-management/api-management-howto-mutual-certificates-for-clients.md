@@ -1,6 +1,6 @@
 ---
-title: "Biztonságos ügyfél API-k az API Management - Azure API Management tanúsítványhitelesítés |} Microsoft Docs"
-description: "Megtudhatja, hogyan biztosíthat biztonságos hozzáférést a az ügyféltanúsítványok API-k"
+title: "API-k aaaSecure ügyféltanúsítvány-alapú hitelesítés használata az API Management - Azure API Management |} Microsoft Docs"
+description: "Ismerje meg, hogyan férhetnek hozzá a toosecure az ügyféltanúsítványok tooAPIs"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
 ms.author: apimpm
-ms.openlocfilehash: d3d51d0575a6d2dacced931601d48eb1e51a4051
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ff78bda3d429829da79d0dc4d652f19669cc919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-apis-using-client-certificate-authentication-in-api-management"></a>Az API Management tanúsítványhitelesítés biztonságossá tétele a ügyfél API-k
+# <a name="how-toosecure-apis-using-client-certificate-authentication-in-api-management"></a>Hogyan toosecure ügyfél API-k Tanúsítványalapú hitelesítés az API Management
 
-API-kezelés lehetővé teszi a biztonságos hozzáférés a API-k (azaz ügyfél API-kezelés) ügyfél-tanúsítványok használatával. Jelenleg ellenőrizheti a kívánt értékkel ügyféltanúsítvány ujjlenyomata. Ellenőrizheti az ujjlenyomatot, az API Management feltöltött meglévő tanúsítványokkal szemben.  
+API-kezelési hello funkció toosecure hozzáférési tooAPIs (azaz ügyfél tooAPI felügyeleti) biztosítja az ügyféltanúsítványok. Jelenleg a kívánt értékkel ügyféltanúsítvány ujjlenyomata hello ellenőrizheti. Meglévő tanúsítványokkal szemben hello ujjlenyomat feltöltött tooAPI felügyeleti is ellenőrizheti.  
 
-További információ a háttér-szolgáltatás, az API-k (azaz API Management háttér-) ügyfél-tanúsítványok használatával biztonságossá tétele: [Tanúsítványalapú hitelesítés biztonságossá tétele a háttér-szolgáltatásaihoz ügyfél használatával](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+További információ a hozzáférési toohello háttér-szolgáltatás, az API-k az ügyféltanúsítványok (azaz az API Management tooback közötti) biztonságossá tétele: [hogyan toosecure háttér-szolgáltatásaihoz ügyfélprogrammal Tanúsítványalapú hitelesítés](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
 
-## <a name="checking-the-expiration-date"></a>A lejárati dátum ellenőrzése
+## <a name="checking-hello-expiration-date"></a>Ellenőrzési hello lejárati dátuma
 
-Alább házirendek beállítható úgy, hogy ellenőrizze, hogy ha a tanúsítvány lejárt-e:
+Alább házirendeket lehet konfigurált toocheck Ha hello tanúsítvány lejárt:
 
 ```
 <choose>
@@ -39,9 +39,9 @@ Alább házirendek beállítható úgy, hogy ellenőrizze, hogy ha a tanúsítv�
 </choose>
 ```
 
-## <a name="checking-the-issuer-and-subject"></a>A kibocsátó és tulajdonos ellenőrzése
+## <a name="checking-hello-issuer-and-subject"></a>Hello kibocsátó és tulajdonos ellenőrzése
 
-Alább házirendek beállítható úgy, hogy ellenőrizze a kibocsátó és egy ügyfél-tanúsítvány tulajdonosának:
+Alább házirendeket lehet konfigurált toocheck hello kibocsátó és egy ügyfél-tanúsítvány tulajdonosának:
 
 ```
 <choose>
@@ -53,9 +53,9 @@ Alább házirendek beállítható úgy, hogy ellenőrizze a kibocsátó és egy 
 </choose>
 ```
 
-## <a name="checking-the-thumbprint"></a>Az ujjlenyomat ellenőrzése
+## <a name="checking-hello-thumbprint"></a>Hello ujjlenyomat ellenőrzése
 
-Alább házirendek beállítható úgy, hogy ellenőrizze az ügyféltanúsítvány ujjlenyomata:
+Alább házirendeket lehet konfigurált toocheck hello ügyféltanúsítvány ujjlenyomata:
 
 ```
 <choose>
@@ -67,9 +67,9 @@ Alább házirendek beállítható úgy, hogy ellenőrizze az ügyféltanúsítv�
 </choose>
 ```
 
-## <a name="checking-a-thumbprint-against-certificates-uploaded-to-api-management"></a>A tanúsítványokkal szemben ujjlenyomat ellenőrzése fel van töltve az API Management
+## <a name="checking-a-thumbprint-against-certificates-uploaded-tooapi-management"></a>A tanúsítványokkal szemben ujjlenyomat ellenőrzése feltöltött tooAPI felügyeleti
 
-A következő példa bemutatja, hogyan API Management feltöltött tanúsítványokkal szemben ügyféltanúsítvány ujjlenyomata kereséséhez: 
+hello következő példa bemutatja, hogyan toocheck hello tanúsítványokkal szemben ügyféltanúsítvány ujjlenyomata feltöltött tooAPI felügyeleti: 
 
 ```
 <choose>
@@ -84,6 +84,6 @@ A következő példa bemutatja, hogyan API Management feltöltött tanúsítván
 
 ## <a name="next-step"></a>Következő lépés
 
-*  [Tanúsítványalapú hitelesítés biztonságossá tétele a háttér-szolgáltatásaihoz ügyfél használatával](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
-*  [Tanúsítványok feltöltéséről](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
+*  [Hogyan toosecure háttér-szolgáltatásaihoz ügyfélprogrammal Tanúsítványalapú hitelesítés](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+*  [Hogyan tooupload tanúsítványok](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
 

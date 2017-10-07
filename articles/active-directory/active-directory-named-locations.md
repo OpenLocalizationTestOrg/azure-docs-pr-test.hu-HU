@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory helyek nevű |} Microsoft Docs"
-description: "Úgy konfigurálja a helyek nevű, elkerülheti a rendelkezik a szervezete tulajdonában lévő IP-címeket létrehozni a Impossible a vakriasztások utazik és bejelentkezés szokatlan helyekről kockázat eseménytípus."
+title: az Azure Active Directoryban aaaNamed helyek |} Microsoft Docs
+description: "Úgy konfigurálja a helyek nevű, elkerülheti a rendelkező IP hello lehetetlen odautazás tooatypical helyek esemény kockázattípus létrehozni a szervezete tulajdonában lévő címek vakriasztások tömkelegére."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,48 +14,48 @@ ms.topic: article
 ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: ff31ded1d9d60e47e0ae5f01119de78cd7f2df38
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 591e4b94b2ec9d45e20c01711e922f9972e047e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="named-locations-in-azure-active-directory"></a>Az Azure Active Directoryban elnevezett helyek
 
-Az elnevezett helyek szolgáltatás az Azure Active Directory a címkézés megbízható IP-címtartományok a szervezetben. A környezetben, használhatja a észlelését, az adott környezetben elnevezett helyét [kockázati események](active-directory-reporting-risk-events.md). A szolgáltatás segítségével a jelentett vakriasztások számának csökkentése a *Impossible utazik bejelentkezés szokatlan helyekről* eseménytípus kockázatát. 
+A hello nevű helyek szolgáltatás az Azure Active Directory a címkézés megbízható IP-címtartományok a szervezetben. A környezetben, használhatja a hello észlelése hello környezetben elnevezett helyét [kockázati események](active-directory-reporting-risk-events.md). hello funkció csökkenti a hello jelentett téves hello számát *lehetetlen odautazás tooatypical helyek* eseménytípus kockázatát. 
 
 ## <a name="configuration"></a>Konfiguráció
 
-Egy elnevezett hely konfigurálása:
+tooconfigure elnevezett helye:
 
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) globális rendszergazdaként.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) globális rendszergazdaként.
 
-2. Kattintson a bal oldali ablaktáblában **Azure Active Directory**.
+2. Hello bal oldali ablaktáblában kattintson **Azure Active Directory**.
 
-    ![A bal oldali panelen az Azure Active Directory hivatkozás](./media/active-directory-named-locations/01.png)
+    ![hello bal oldali ablaktáblán hello Azure Active Directory-hivatkozás](./media/active-directory-named-locations/01.png)
 
-3. Az a **Azure Active Directory** panelen, a a **biztonsági** kattintson **feltételes hozzáférési**.
+3. A hello **Azure Active Directory** paneljén, hello **biztonsági** kattintson **feltételes hozzáférés**.
 
-    ![A feltételes hozzáférés parancs](./media/active-directory-named-locations/05.png)
-
-
-4. A a **feltételes hozzáférés** panelen, a a **kezelése** kattintson **helyek nevű**.
-
-    ![A nevesített helyek parancs](./media/active-directory-named-locations/06.png)
+    ![Feltételes hozzáférés parancs hello](./media/active-directory-named-locations/05.png)
 
 
-5. Az a **helyek nevű** panelen kattintson a **új helyre**.
+4. A hello **feltételes hozzáférés** paneljén, hello **kezelése** területén kattintson **helyek nevű**.
 
-    ![Az új hely parancs](./media/active-directory-named-locations/07.png)
+    ![hello nevesített helyek parancs](./media/active-directory-named-locations/06.png)
 
 
-6. Az a **új** panelen tegye a következőket:
+5. A hello **helyek nevű** panelen kattintson a **új helyre**.
 
-    ![Az új panel](./media/active-directory-named-locations/08.png)
+    ![Új hely parancs hello](./media/active-directory-named-locations/07.png)
 
-    a. Az a **neve** mezőbe írja be a nevesített hely nevét.
 
-    b. Az a **IP-címtartományok** mezőbe írjon be egy IP-címtartományt. Az IP-címtartomány kell lennie a *Classless Inter-Domain Routing* (CIDR) formátumban.  
+6. A hello **új** panelen a következő hello:
+
+    ![hello új panel](./media/active-directory-named-locations/08.png)
+
+    a. A hello **neve** mezőbe írja be a nevesített hely nevét.
+
+    b. A hello **IP-címtartományok** mezőbe írjon be egy IP-címtartományt. hello IP-címtartomány van szüksége a hello toobe *Classless Inter-Domain Routing* (CIDR) formátumban.  
 
     c. Kattintson a **Create** (Létrehozás) gombra.
 
@@ -63,15 +63,15 @@ Egy elnevezett hely konfigurálása:
 
 ## <a name="what-you-should-know"></a>Tudnivalók
 
-**Tömeges frissítés**: elnevezett helyek tömeges frissíti, frissítése vagy létrehozásakor feltölteni, vagy az IP-címtartományai a CSV-fájl letöltése. Feltöltés a fájlban az IP-címtartományok hozzáadása a listához, a lista felülírja helyett.
+**Tömeges frissítés**: elnevezett helyek tömeges frissíti, frissítése vagy létrehozásakor feltöltheti, vagy az IP-címtartományok hello CSV-fájl letöltése. Feltöltés hello IP-címtartományok helyez toohello fájllista hello helyett hello lista felülírja.
 
-![A feltöltés és letöltés hivatkozások](./media/active-directory-named-locations/09.png)
+![hello hivatkozások le- és feltöltése](./media/active-directory-named-locations/09.png)
 
 
-**Korlátozások**: legfeljebb 60 elnevezett helyek, a hozzájuk rendelt egy IP-címtartomány adhat meg. Ha csak egy elnevezett helyen konfigurálva van, akkor azt legfeljebb 500 IP-címtartományok adhat meg.
+**Korlátozások**: 60 elnevezett helyek, legfeljebb egy IP tartomány hozzárendelt tooeach azok adhat meg. Ha csak egy elnevezett helyen konfigurálva van, adhat meg too500 IP-címtartományok fel azt.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Kockázati események kapcsolatos további információkért lásd: [Azure Active Directory kockázati események](active-directory-reporting-risk-events.md).
+További információ a kockázati eseményekről, toolearn lásd [Azure Active Directory kockázati események](active-directory-reporting-risk-events.md).
 

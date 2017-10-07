@@ -1,6 +1,6 @@
 ---
-title: "Belső terheléselosztó létrehozása – Azure Portal | Microsoft Docs"
-description: "Ismerje meg, hogyan hozható létre belső terheléselosztó a Resource Managerben az Azure Portalon"
+title: "egy belső terheléselosztó - Azure-portálon aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy belső terheléselosztó az erőforrás-kezelőben hello Azure-portál használatával"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 8fbe9d5d04d745de51e0e41516d6c12683c98637
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80124217a84857b542eb41cb814ec97234176dd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-internal-load-balancer-in-the-azure-portal"></a>Belső terheléselosztó létrehozása az Azure Portalon
+# <a name="create-an-internal-load-balancer-in-hello-azure-portal"></a>Hozzon létre egy belső elosztott terhelésű hello Azure-portálon
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](../load-balancer/load-balancer-get-started-ilb-arm-portal.md)
@@ -32,69 +32,69 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](load-balancer-get-started-ilb-classic-ps.md) helyett javasol.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](load-balancer-get-started-ilb-classic-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
 ## <a name="get-started-creating-an-internal-load-balancer-using-azure-portal"></a>Bevezetés belső terheléselosztó Azure Portalon történő létrehozásába
 
-Az alábbi lépések segítségével hozzon létre egy belső terheléselosztót az Azure Portalon.
+Hello lépéseket toocreate belső terheléselosztót követően – hello Azure portál használata.
 
-1. Egy böngészőből keresse fel az [Azure Portalt](http://portal.azure.com), majd jelentkezzen be az Azure-fiókjával.
-2. A képernyő bal felső részében kattintson az **Új** > **Hálózat** > **Terheléselosztó** elemre.
-3. A **Terheléselosztó létrehozása** panelen adja meg a terheléselosztó **nevét**.
+1. Nyisson meg egy böngészőt, keresse meg a toohello [Azure-portálon](http://portal.azure.com), és jelentkezzen be az Azure-fiókjával.
+2. Hello felső bal oldalán üdvözlő képernyőt, kattintson **új** > **hálózati** > **terheléselosztó**.
+3. A hello **létrehozás terheléselosztó** panelen adjon meg egy **neve** a terheléselosztóhoz.
 4. A **Séma** alatt kattintson a **Belső** elemre.
-5. Kattintson a **Virtuális hálózat** elemre, majd válassza ki azt a virtuális hálózatot, amelyben a terheléselosztót szeretné létrehozni.
+5. Kattintson a **virtuális hálózati**, majd válassza ki hello virtuális hálózaton toocreate hello terheléselosztó és.
 
    > [!NOTE]
-   > Ha nem jelenik meg a használni kívánt virtuális hálózat, ellenőrizze a terheléselosztóhoz használt **helyet**, és szükség szerint módosítsa.
+   > Ha azt szeretné, hogy toouse hello virtuális hálózati nem látható, ellenőrizze a hello **hely** hello terheléselosztót használja, és ennek megfelelően módosítsa azt.
 
-6. Kattintson az **Alhálózat** elemre, majd válassza ki azt az alhálózatot, amelyben a terheléselosztót létre szeretné hozni.
-7. Az **IP-cím hozzárendelése** panelen kattintson a **Dinamikus** vagy a **Statikus** elemre attól függően, hogy a terheléselosztó IP-címét rögzítettre (statikus) szeretné-e beállítani vagy sem.
+6. Kattintson a **alhálózati**, majd válassza ki a kívánt toocreate hello terheléselosztó hello alhálózat.
+7. A **IP-cím hozzárendelése**, jelölje be az **dinamikus** vagy **statikus**, attól függően, hogy használni szeretne hello IP-cím hello load balancer toobe rögzített (statikus) vagy sem.
 
    > [!NOTE]
-   > Ha statikus IP-cím használatát választja, akkor meg kell adnia egy címet a terheléselosztó számára.
+   > Ha toouse egy statikus IP-címet, hogy tooprovide hello terheléselosztó címét.
 
-8. Az **Erőforráscsoport** alatt adja meg a terheléselosztó új erőforráscsoportjának a nevét, vagy kattintson a **Meglévő kiválasztása** elemre, és válasszon ki egy meglévő erőforráscsoportot.
-9. Kattintson a **Létrehozás** gombra.
+8. A **erőforráscsoport** adja meg a terheléselosztóhoz hello hello új erőforráscsoport neve, vagy kattintson a **válasszon meglévő** , és válasszon ki egy meglévő erőforráscsoportot.
+9. Kattintson a **Create** (Létrehozás) gombra.
 
 ## <a name="configure-load-balancing-rules"></a>Terheléselosztási szabályok konfigurálása
 
-A terheléselosztó létrehozása után lépjen a terheléselosztó erőforrásához, és konfigurálja.
-A terheléselosztási szabály konfigurálása előtt konfigurálnia kell egy háttér-címkészletet és egy mintavételt.
+Hello után betöltése a terheléselosztó létrehozása, és keresse meg a toohello load balancer erőforrás tooconfigure azt.
+Szüksége tooconfigure először egy háttér címkészletet, és egy mintavételt tartozó terheléselosztási szabályok konfigurálása előtt.
 
 ### <a name="step-1-configure-a-back-end-pool"></a>1. lépés: Háttérkészlet konfigurálása
 
-1. Az Azure Portalon kattintson a **Tallózás** > **Terheléselosztók** elemre, majd kattintson a fent létrehozott terheléselosztóra.
-2. A **Beállítások** panelen kattintson a **Háttérkészletek** elemre.
-3. A **Háttércímkészletek** panelen kattintson a **Hozzáadás** gombra.
-4. A **Háttérkészlet hozzáadása** panelen adja meg a háttérkészlet **nevét**, majd kattintson az **OK** gombra.
+1. Hello Azure-portálon, kattintson **Tallózás** > **Terheléselosztók**, majd kattintson a fenti létrehozott hello terheléselosztóhoz.
+2. A hello **beállítások** panelen kattintson a **háttérkészletek**.
+3. A hello **háttércímkészletek** panelen kattintson a **Hozzáadás**.
+4. A hello **háttérkészlet hozzáadása** panelen adjon meg egy **neve** hello háttérkészlet, és kattintson a **OK**.
 
 ### <a name="step-2-configure-a-probe"></a>2. lépés: Mintavétel konfigurálása
 
-1. Az Azure Portalon kattintson a **Tallózás** > **Terheléselosztók** elemre, majd kattintson a fent létrehozott terheléselosztóra.
-2. A **Beállítások** panelen kattintson a **Mintavételek** elemre.
-3. A **Mintavételek** panelen kattintson a **Hozzáadás** gombra.
-4. A **Mintavétel hozzáadása** panelen adja meg a mintavétel **nevét**.
+1. Hello Azure-portálon, kattintson **Tallózás** > **Terheléselosztók**, majd kattintson a fenti létrehozott hello terheléselosztóhoz.
+2. A hello **beállítások** panelen kattintson a **vizsgálat**.
+3. A hello **vizsgálat** panelen kattintson a **Hozzáadás**.
+4. A hello **Hozzáadás mintavételi** panelen adjon meg egy **neve** hello mintavételhez.
 5. A **Protokoll** alatt válassza ki a **HTTP** (webhelyekhez) vagy a **TCP** (más TCP-alapú alkalmazásokhoz) elemet.
-6. A **Port** alatt adja meg a mintavétel elérésekor használni kívánt portot.
-7. Az **Elérési út** alatt (csak HTTP-mintavételek esetén) adja meg a mintavételként használni kívánt elérési utat.
-8. Az **Időköz** alatt adja meg, hogy milyen gyakran kell mintát venni az alkalmazásból.
-9. A **Nem kifogásolatlan állapot küszöbértéke** alatt adja meg, hogy hány sikertelen kísérlet után kell a háttér virtuális gépet nem megfelelő állapotúként megjelölni.
-10. Mintavétel létrehozásához kattintson az **OK** gombra.
+6. A **Port**, adja meg a hello port toouse hello mintavételi való hozzáféréskor.
+7. A **elérési** (a HTTP mintavételt csak), egy mintavételt hello elérési toouse meg.
+8. A **időköz** adja meg, hogy milyen gyakran tooprobe hello alkalmazás.
+9. A **sérült küszöbérték**, adja meg, hány kísérletet amennyiben nem, mielőtt hello háttér virtuális gép megfelelő állapotúként van megjelölve.
+10. Kattintson a **OK** toocreate mintavétel.
 
 ### <a name="step-3-configure-load-balancing-rules"></a>3. lépés: Terheléselosztási szabályok konfigurálása
 
-1. Az Azure Portalon kattintson a **Tallózás** > **Terheléselosztók** elemre, majd kattintson a fent létrehozott terheléselosztóra.
-2. A **Beállítások** panelen kattintson a **Terheléselosztási szabályok** elemre.
-3. A **Terheléselosztási szabályok** panelen kattintson a **Hozzáadás** gombra.
-4. A **Terheléselosztási szabály hozzáadása** panelen adja meg a szabály **nevét**.
+1. Hello Azure-portálon, kattintson **Tallózás** > **Terheléselosztók**, majd kattintson a fenti létrehozott hello terheléselosztóhoz.
+2. A hello **beállítások** panelen kattintson a **terheléselosztási szabályok**.
+3. A hello **terheléselosztási szabályok** panelen kattintson a **Hozzáadás**.
+4. A hello **terheléselosztási szabály hozzáadása** panelen adjon meg egy **neve** hello szabályhoz.
 5. A **Protokoll** alatt válassza ki a **HTTP** (webhelyekhez) vagy a **TCP** (más TCP-alapú alkalmazásokhoz) elemet.
-6. A **Port** alatt adja meg a port azon ügyfeleit, amelyekhez a terheléselosztóban csatlakozni kell.
-7. A **Háttérport** alatt adja meg a háttérkészletben használni kívánt portot (általában a terheléselosztó portja és a háttérport azonos).
-8. A **Háttérkészlet** alatt válassza ki a fent létrehozott háttérkészletet.
-9. A **Munkamenet megőrzése** alatt válassza ki, hogyan szeretné megőrizni a munkameneteket.
-10. Az **Üresjárat időkorlátja (perc)** alatt adja meg az üresjárati időkorlátot.
+6. A **Port**, adja meg a hello port ügyfelek csatlakozni tooin hello terheléselosztót.
+7. A **háttérportot**, adja meg a hello port toobe hello háttérkészlet használt (általában hello load balancer port és a háttérportnak hello vannak hello ugyanaz).
+8. A **háttérkészlet**, jelölje be a fenti létrehozott hello háttér alkalmazáskészletnek.
+9. A **munkamenet megőrzését**, válassza ki, hogyan szeretné a munkamenetek toopersist.
+10. A **üresjárati időkorlátja (perc)**, adja meg a hello üresjárati időkorlátját.
 11. A **Nem fix IP-cím (közvetlen kiszolgálói válasz)** alatt kattintson a **Letiltva** vagy az **Engedélyezve** elemre.
 12. Kattintson az **OK** gombra.
 

@@ -1,6 +1,6 @@
 ---
-title: "Hitelesítési és engedélyezési az Azure App Service szolgáltatásban |} Microsoft Docs"
-description: "Fogalmi referenciája és áttekintése a hitelesítési / engedélyezési a beállítást, az Azure App Service"
+title: "aaaAuthentication és az engedélyezést az Azure App Service szolgáltatásban |} Microsoft Docs"
+description: "Fogalmi referenciája és áttekintése hello hitelesítési / engedélyezési a beállítást, az Azure App Service"
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,144 +14,144 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/29/2016
 ms.author: mahender
-ms.openlocfilehash: e89ba5613c615c41af93e8f63b3703da8395095c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc2074b16cce47b72b78ea7afeda89dbc4832166
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authentication-and-authorization-in-azure-app-service"></a>Hitelesítés és engedélyezés az Azure App Service-ben
 ## <a name="what-is-app-service-authentication--authorization"></a>Mi az App Service hitelesítés / engedélyezés?
-App Service hitelesítés / engedélyezés olyan szolgáltatás, amely lehetővé teszi a felhasználók bejelentkezni, így nem kell a a háttéralkalmazás kódjának módosítása az alkalmazás. Az alkalmazás védelme és a felhasználói adatok segítségével egyszerűen biztosít.
+App Service hitelesítés / engedélyezés olyan szolgáltatás, amely a felhasználók az alkalmazás toosign lehetőséget nyújt arra, hogy nincs toochange kód a hello háttéralkalmazás. Biztosít egy egyszerűen tooprotect az alkalmazás és a munka felhasználói adatokkal.
 
-App Service az összevont identitás, amelyben egy külső identitásszolgáltatótól tárolja a fiókokat, és hitelesíti a felhasználókat. Az alkalmazás támaszkodik a szolgáltató azonosító adatok, hogy az alkalmazás nem rendelkezik, ez az információ tárolásához. App Service támogatja a beépített öt identitás-szolgáltatóktól: Azure Active Directory, a Facebook, a Google, a Microsoft Account és a Twitter. Az alkalmazás ezen identitás-szolgáltatóktól tetszőleges számú segítségével a felhasználók hogyan bejelentkeznek az lehetőségeket. Bontsa ki a beépített támogatása, hogy egy másik identitásszolgáltató integrálhatja vagy [saját egyéni identitáskezelési megoldás][custom-auth].
+App Service az összevont identitás, amelyben egy külső identitásszolgáltatótól tárolja a fiókokat, és hitelesíti a felhasználókat. hello alkalmazás hello szolgáltató azonosító adatok alapul, így hello az alkalmazás nem rendelkezik toostore Ez az információ. App Service támogat hello kezdő verzióról öt identitás-szolgáltatóktól: Azure Active Directory, a Facebook, a Google, a Microsoft Account és a Twitter. Az alkalmazás használhatja ezeket identitás-szolgáltatóktól tooprovide tetszőleges számú a felhasználók a beállítások hogyan bejelentkeznek az. tooexpand hello beépített támogatást, egy másik identitásszolgáltató integrálhatja vagy [saját egyéni identitáskezelési megoldás][custom-auth].
 
-Ha szeretné máris kipróbálni, tekintse meg az alábbi oktatóanyagok egyikét:
+Ha szeretné máris kipróbálni tooget, tekintse meg a következő oktatóanyagok hello egyikét:
 
-* [Hitelesítés hozzáadása az iOS-alkalmazás] [ iOS] (vagy [Android], [Windows], [Xamarin.iOS], [Xamarin.Android], [Xamarin.Forms], vagy [Cordova])
+* [Hitelesítési tooyour iOS-alkalmazás hozzáadása] [ iOS] (vagy [Android], [Windows], [Xamarin.iOS], [ Xamarin.Android], [Xamarin.Forms], vagy [Cordova])
 * [Az Azure App Service API-alkalmazások felhasználói hitelesítésének][apia-user]
 * [Ismerkedés az Azure App Service - 2. rész][web-getstarted]
 
 ## <a name="how-authentication-works-in-app-service"></a>Az App Service authentication működése
-Hogy a hitelesítés az identitás-szolgáltatóktól egyikének használatával, először az alkalmazás ismernie az identitásszolgáltató konfigurálása. Az identitásszolgáltató azonosítót és titkos kulcsok, az App Service biztosító fog adja meg. Ezzel befejezte a megbízhatósági kapcsolatban, hogy az App Service ellenőrizhesse a felhasználó helyességi feltételek, például a hitelesítési tokenek az identitásszolgáltató által.
+A sorrend tooauthenticate hello identitás-szolgáltatóktól egyikének használatával először tooconfigure hello identity provider tooknow az alkalmazással kapcsolatban. hello identitásszolgáltató azonosítók és titkos kulcsok, hogy megadja a szolgáltatás tooApp majd biztosít. Ezzel befejezte hello megbízhatósági kapcsolatot, hogy az App Service ellenőrizhesse a felhasználó helyességi feltételek, például a hitelesítési tokenek az hello identitásszolgáltatótól.
 
-A felhasználó bejelentkezhet e szolgáltatók egyikének használatával, olyan végponttal, amely képes bejelentkeztetni a felhasználókat, hogy az adott szolgáltató a felhasználó kell átirányítani. Ha használják az ügyfelek a webböngésző, akkor is, amely képes bejelentkeztetni a felhasználókat a végpont összes nem hitelesített felhasználókat automatikusan közvetlen App Service. Ellenkező esetben szüksége lesz az ügyfeleknek a közvetlen `{your App Service base URL}/.auth/login/<provider>`, ahol `<provider>` a következő értékek valamelyike: aad-ben, a facebook, google, a microsoft vagy a twitteren. Mobil és API-forgatókönyvek magyarázatát a cikk későbbi szakaszokban.
+Ezek a szolgáltatók egyikét használva felhasználói toosign, hello felhasználói átirányított tooan végpontot, amely képes bejelentkeztetni a felhasználókat, hogy az adott szolgáltató kell lennie. Ha a felhasználók egy webböngésző használ, akkor is automatikusan közvetlen nem hitelesített felhasználók toohello összes végpontot, amely képes bejelentkeztetni a felhasználókat az App Service. Ellenkező esetben szüksége lesz toodirect az ügyfelek túl`{your App Service base URL}/.auth/login/<provider>`, ahol `<provider>` hello a következő értékek valamelyike: aad-ben, a facebook, google, a microsoft vagy a twitteren. Mobil és API-forgatókönyvek magyarázatát a cikk későbbi szakaszokban.
 
-Az alkalmazás egy webböngészőn keresztül kapcsolatba kerülő felhasználók számára, hogy azok maradjanak hitelesített, akkor keresse meg az alkalmazás cookie fog rendelkezni. A más ügyféltípusok, például Mobiltelefonról, egy JSON webes jogkivonatot (JWT), amely kell megadni a `X-ZUMO-AUTH` fejléc, kap, az ügyfélnek. A Mobile Apps-ügyfél SDK-k fogja kezelni ezt meg. Másik lehetőségként az Azure Active Directory-identitás token vagy a hozzáférési jogkivonat közvetlenül szerepelni fog a `Authorization` fejléc, mint egy [tulajdonosi jogkivonattal](https://tools.ietf.org/html/rfc6750).
+Az alkalmazás egy webböngészőn keresztül kapcsolatba kerülő felhasználók számára, hogy azok maradjanak hitelesített, akkor keresse meg az alkalmazás cookie fog rendelkezni. A más ügyféltípusok, például Mobiltelefonról, egy JSON webes jogkivonatot (JWT), amely kell bemutatni hello `X-ZUMO-AUTH` fejlécet, amelynek kiállítása toohello ügyfél. hello Mobile Apps-ügyfél SDK-k fogja kezelni ezt meg. Másik lehetőségként az Azure Active Directory-identitás token vagy a hozzáférési jogkivonat előfordulhat, hogy közvetlenül szerepelnek hello `Authorization` fejléc, mint egy [tulajdonosi jogkivonattal](https://tools.ietf.org/html/rfc6750).
 
-App Service a kapacitásprofillal szemben érvényesíti a cookie-k vagy a jogkivonatot, amely az alkalmazás bocsát ki a felhasználók hitelesítésére. Ha szeretné korlátozni, ki férhet hozzá az alkalmazás, lásd: a [engedélyezési](#authorization) szakasz a cikk későbbi részében.
+App Service bármilyen cookie-k vagy jogkivonatot állít ki, hogy az alkalmazás tooauthenticate felhasználók fogja ellenőrizni. ki férhet hozzá az alkalmazás toorestrict lásd: hello [engedélyezési](#authorization) szakasz a cikk későbbi részében.
 
 ### <a name="mobile-authentication-with-a-provider-sdk"></a>Mobil hitelesítési szolgáltatóval SDK
-Követően a háttérkiszolgálón minden be van állítva, módosíthatja a mobil ügyfelek App Service bejelentkezni. Kétféleképpen itt:
+Követően hello háttérkiszolgálón minden be van állítva, módosíthatja a mobil ügyfelek toosign App Service-be. Kétféleképpen itt:
 
-* A megadott identitásszolgáltató közzéteszi az azonosságának és dokumentumaikhoz az App Service SDK használja.
-* Egyetlen sor kódot használja, úgy, hogy a felhasználók bejelentkezhetnek a Mobile Apps-ügyfél SDK.
+* Az SDK-val, hogy a megadott identitásszolgáltató közzéteszi tooestablish identitás és dokumentumaikhoz hozzáférés tooApp szolgáltatás.
+* Egyetlen sor kódot használ, így a felhasználók bejelentkezés adott hello Mobile Apps-ügyfél SDK.
 
 > [!TIP]
-> A legtöbb alkalmazás által használandó SDK szolgáltató get egységesebb, amikor a felhasználók bejelentkeznek, frissítési támogatása, és egyéb előnyök, amely meghatározza a szolgáltató.
+> Legtöbb alkalmazást kell használnia, egy szolgáltató SDK tooget egységesebb felhasználók bejelentkezéskor, toouse frissítési támogatása és tooget más előnyöket is nyújt, hogy hello szolgáltató határozza meg.
 > 
 > 
 
-A szolgáltató SDK használatakor felhasználók bejelentkezve is nagyobb mértékben integrálható az alkalmazás futó operációs rendszer számára. Ez is lehetővé teszi a szolgáltató jogkivonat és bizonyos felhasználói adatok az ügyfélen, így sokkal könnyebben graph API-kat használnak, és a felhasználói élmény testreszabásáról. Alkalmanként a blogok és fórumok, megjelenik ez néven az "ügyfél folyamatában" vagy "ügyfél által vezérelt folyamat", mert az ügyfélen kód jelentkezik be a felhasználók és az Ügyfélkód ugyanaz a szolgáltató jogkivonat a hozzáférést.
+SDK-szolgáltató használatára felhasználók bejelentkezhetnek a van futó tooan élmény, amely integrálható szigorúbban hello operációs rendszer hello alkalmazást. Ez is lehetővé teszi a szolgáltató jogkivonat és bizonyos felhasználói adatok hello ügyfélen, amelynek köszönhetően sokkal könnyebben tooconsume graph API-k és hello felhasználói élmény testreszabásáról. Alkalmanként blogok és fórumok, láthatja, hogy a hivatkozott tooas hello "ügyféltanúsítvány-folyamat" vagy "ügyfél által vezérelt folyamat", mert a kód hello ügyfélen jelentkezik be a felhasználók és hello Ügyfélkód tartalmaz tooa szolgáltató jogkivonatot.
 
-A szolgáltató token beszerzését követően kell érvényesítéshez App Service küldendő. App Service érvényesíti a jogkivonatot, miután az App Service egy új App Service-jogkivonatot az ügyfél számára visszaadott hoz létre. A Mobile Apps-ügyfél SDK segédmódszereket kezelése az exchange, és automatikusan csatolja a token összes kérelmet, az alkalmazás háttéralkalmazása rendelkezik. A fejlesztők is, hogy a szolgáltató token mutató hivatkozás Ha így dönt.
+A szolgáltató token beszerzését követően tooApp szolgáltatás érvényesítéshez küldött toobe kell. App Service érvényesíti hello jogkivonatot, miután az App Service egy új App Service-jogkivonat toohello ügyfél visszaadott hoz létre. hello Mobile Apps-ügyfél SDK segítő módszerek toomanage rendelkezik az exchange, és automatikusan csatolja az hello token tooall kérelmek toohello alkalmazás háttér. A fejlesztők is, hogy egy referencia toohello szolgáltató token Ha úgy dönt.
 
 ### <a name="mobile-authentication-without-a-provider-sdk"></a>Mobil hitelesítési szolgáltató SDK nélkül
-Ha nem szeretné, hogy a szolgáltató SDK beállításához, jelentkezzen be az Ön Azure App Service Mobile Apps szolgáltatásának engedélyezheti. A Mobile Apps-ügyfél SDK fog a szolgáltató a webes nézet megnyitásához, és jelentkezzen be a felhasználó. Alkalmanként blogok és fórumok, jelennek meg ezt nevezik a "server folyamat" vagy "kiszolgáló felé irányuló adatfolyam", mert a kiszolgáló a folyamat, amely képes bejelentkeztetni a felhasználókat kezeli, és az ügyfél SDK soha nem megkapja a szolgáltató jogkivonatot.
+Ha nem szeretné, hogy fel a szolgáltató SDK tooset, engedélyezheti a hello Mobile Apps szolgáltatásának, az Azure App Service toosign meg. hello Mobile Apps-ügyfél SDK nyissa meg a webes nézet toohello szolgáltató és hello felhasználói bejelentkezés. Alkalmanként blogok és fórumok, jelennek meg a hivatkozott tooas hello "server folyamat" vagy "kiszolgáló felé irányuló adatfolyam" mert hello kiszolgáló hello folyamat, amely képes bejelentkeztetni a felhasználókat kezeli, és hello ügyfél SDK soha nem kap hello szolgáltató jogkivonat.
 
-Ez a folyamat elindításához kód a hitelesítés az oktatóanyag az egyes platformokon tartalmazza. A folyamat végén az ügyfél SDK az App Service-tokent, és rendelkezik a token automatikusan csatolja az összes kérelmet, az alkalmazás háttéralkalmazása.
+Kód toostart hello hitelesítési oktatóanyag minden platform szerepel ebben az adatfolyamban. Hello folyamat végén hello hello ügyfél SDK rendelkezik az App Service-tokent, és hello lexikális elem automatikusan csatolt tooall kérelmek toohello alkalmazás háttér.
 
 ### <a name="service-to-service-authentication"></a>Szolgáltatások közötti hitelesítés
-Bár a felhasználók hozzáférést biztosíthat az alkalmazás, megbízom a saját API hívása egy másik alkalmazás. Lehet például egy webes alkalmazás egy másik webes alkalmazást egy API-hívás. Ebben a forgatókönyvben segítségével hitelesítő adatokat a szolgáltatás-fiók felhasználói hitelesítő adatok helyett a szolgáltatáshitelesítést egy token. A szolgáltatásfiók is van egy *egyszerű* az Azure Active Directory projector és használó hitelesítés ilyen fiókja is nevezik egy szolgáltatások közötti forgatókönyv.
+Bár adhat a felhasználók hozzáférést tooyour alkalmazás, melyek is a megbízható egy másik alkalmazás toocall saját API. Lehet például egy webes alkalmazás egy másik webes alkalmazást egy API-hívás. Ebben az esetben a hitelesítő adatokat a szolgáltatásfiók felhasználói hitelesítő adatok tooget jogkivonat helyett használ. A szolgáltatásfiók is van egy *egyszerű* az Azure Active Directory projector és használó hitelesítés ilyen fiókja is nevezik egy szolgáltatások közötti forgatókönyv.
 
 > [!IMPORTANT]
 > Mobile apps szolgáltatásban a felhasználói eszközökön futnak, mert mobilalkalmazás tegye *nem* megbízható alkalmazások számít, és ne használja a szolgáltatás egyszerű áramlását. Ehelyett egy felhasználói folyamat, amely korábban ismertetett kell használják.
 > 
 > 
 
-Szolgáltatások közötti forgatókönyvek esetén az App Service megvédheti az alkalmazás Azure Active Directory használatával. A hívó alkalmazás ugyanúgy kell megadni. egy Azure Active Directory szolgáltatás egyszerű engedélyezési jogkivonatot, biztosít az ügyfél-azonosító és ügyfél titkos az Azure Active Directory előállított. Ez a forgatókönyv ASP.NET API-alkalmazások használó példa az oktatóanyag magyarázza [szolgáltatás egyszerű hitelesítési API-alkalmazások][apia-service].
+Szolgáltatások közötti forgatókönyvek esetén az App Service megvédheti az alkalmazás Azure Active Directory használatával. hello hívó alkalmazás csak egy Azure Active Directory szolgáltatás egyszerű engedélyezési jogkivonatot, hello ügyfél-azonosító és az Azure Active Directory titkos ügyfél előállított tooprovide van szüksége. Ez a forgatókönyv ASP.NET API-alkalmazások használó például magyarázza hello oktatóanyagban [szolgáltatás egyszerű hitelesítési API-alkalmazások][apia-service].
 
-Ha azt szeretné, az App Service hitelesítés használatára egy szolgáltatások közötti forgatókönyv kezelésére, ügyféltanúsítványok vagy egyszerű hitelesítést is használhatja. Az Azure-ban ügyfél tanúsítványokkal kapcsolatos további információkért lásd: [hogyan a TLS kölcsönös hitelesítés beállítása a Web Apps](../app-service-web/app-service-web-configure-tls-mutual-auth.md). Egyszerű hitelesítés az ASP.NET kapcsolatos információkért lásd: [hitelesítési szűrők ASP.NET Web API 2](http://www.asp.net/web-api/overview/security/authentication-filters).
+Ha azt szeretné, hogy az App Service hitelesítés toohandle egy szolgáltatások közötti forgatókönyv toouse, ügyféltanúsítványok vagy egyszerű hitelesítést is használhatja. Az Azure-ban ügyfél tanúsítványokkal kapcsolatos további információkért lásd: [hogyan tooConfigure TLS kölcsönös hitelesítést a Web Apps](../app-service-web/app-service-web-configure-tls-mutual-auth.md). Egyszerű hitelesítés az ASP.NET kapcsolatos információkért lásd: [hitelesítési szűrők ASP.NET Web API 2](http://www.asp.net/web-api/overview/security/authentication-filters).
 
-API-alkalmazásba az App Service logic app Service fiókot hitelesítést egy különleges esetben szabványban leírt [az App Service a Logic apps üzemeltetett egyéni API használata](../logic-apps/logic-apps-custom-hosted-api.md).
+Szolgáltatás fiók hitelesítési egy App Service logic app tooan API-alkalmazást a rendszer egy különleges esetben szabványban leírt [az App Service a Logic apps üzemeltetett egyéni API használata](../logic-apps/logic-apps-custom-hosted-api.md).
 
 ## <a name="authorization"></a>Az engedélyezés az App Service működése
-A kérelmek férhetnek hozzá az alkalmazás teljes hozzáféréssel rendelkeznek. App Service hitelesítés / engedélyezés beállítható, hogy az összes, az alábbi viselkedésmódok:
+Az alkalmazáshoz hozzáférő hello kérelmek teljes hozzáféréssel rendelkeznek. App Service hitelesítés / engedélyezés beállítható, hogy a következő viselkedés hello egyik:
 
-* Az alkalmazás eléréséhez csak hitelesített kérések engedélyezése.
+* Csak a hitelesített kérelmek tooreach engedélyezése az alkalmazás.
   
-    Egy böngésző névtelen kérelmet kap, ha az App Service átirányítja a oldal, amely úgy dönt, hogy a felhasználók bejelentkezhetnek az identitásszolgáltató számára. Ha a mobileszközt, a rendszer a visszaadott választ egy HTTP *401 nem engedélyezett* választ.
+    Egy böngészőben névtelen kérelmet kap, ha az App Service átirányítja a úgy dönt, hogy a felhasználók bejelentkezhetnek hello identitásszolgáltató tooa lapját. Ha hello kérelem érkezik egy mobileszközről, hello érkezett válasz HTTP *401 nem engedélyezett* választ.
   
-    Ezzel a beállítással nem kell minden hitelesítési kód írása az alkalmazásban. Ha egyeztetését engedélyezési van szüksége, a kód a felhasználó adatai érhető el.
-* Engedélyezi az összes kérelem eléri az alkalmazást, de hitelesített kérelmek érvényesíti, és adják át a hitelesítési adatok a HTTP-fejlécek.
+    Ezzel a beállítással nincs szükség a toowrite bármely hitelesítési kód minden az alkalmazásban. Ha egyeztetését engedélyezési van szüksége, hello felhasználói adatai elérhető tooyour kód.
+* Az összes kérelem tooreach engedélyezése az alkalmazás, de hitelesített kérelmek ellenőrzése, és adják át a hitelesítési adatokat a hello HTTP-fejlécekben.
   
-    Ez a beállítás eltér az alkalmazás kódjának felhasználását engedélyezési döntésekhez. Kezelési névtelen kérelem nagyobb rugalmasságot biztosít, de írhat kódot kell.
-* Engedélyezi az összes kérelmet az alkalmazás eléréséhez, és nincs a művelet végrehajtása a hitelesítési adatok a kérelmeket.
+    Ez a beállítás eltér az engedélyezési döntések tooyour alkalmazáskód. Kezelési névtelen kérelem nagyobb rugalmasságot biztosít, de van toowrite kódja.
+* Minden kérelmek tooreach engedélyezése az alkalmazás, és nincs a művelet végrehajtása a hitelesítési adatokat hello kérésekben.
   
-    Ez az eset, a hitelesítési / engedélyezési funkció ki van kapcsolva. A hitelesítési és engedélyezési feladatai vannak az alkalmazás kódjában kódon múlik.
+    Ebben az esetben hello hitelesítési / engedélyezési funkció ki van kapcsolva. hitelesítési és engedélyezési hello feladatok teljesen tooyour alkalmazáskód is.
 
-Az előző egyike által vezérelt a **hitelesítetlen kérés esetén elvégzendő művelet** lehetőséget az Azure portálon. Ha úgy dönt, ** jelentkezzen be az *szolgáltatónevet* **, összes kérelmet hitelesíteni kell. **Kérés (intézkedés) engedélyezése** eltér az engedélyezéssel kapcsolatos döntést kell a kódot, de a hitelesítési adatokat továbbra is tartalmazza. Ha azt szeretné, a kód mindent kezelni, letilthatja a hitelesítési / engedélyezési szolgáltatás.
+hello előző viselkedések hello által vezérelt **művelet tootake hitelesítetlen kérés esetén** hello Azure-portálon beállítást. Ha úgy dönt, ** jelentkezzen be az *szolgáltatónevet* **, minden kérésnél hitelesített toobe rendelkezik. **Kérés (intézkedés) engedélyezése** hello engedélyezési döntési tooyour kód eltér, de a hitelesítési adatokat továbbra is tartalmazza. Ha azt szeretné, hogy toohave a kód mindent kezelni, letilthatja a hello hitelesítési / engedélyezési szolgáltatás.
 
 ## <a name="working-with-user-identities-in-your-application"></a>Az alkalmazás felhasználói azonosítók használata
-App Service alkalmazás bizonyos felhasználói információk speciális fejlécek használatával továbbítja. Külső kérelmek letiltása ezek a fejlécek értékét, és csak jelen if App Service hitelesítés / engedélyezés. Néhány példa fejlécek a következők:
+App Service speciális fejlécek segítségével bizonyos felhasználói információk tooyour alkalmazás továbbítja. Külső kérelmek letiltása ezek a fejlécek értékét, és csak jelen if App Service hitelesítés / engedélyezés. Néhány példa fejlécek a következők:
 
 * X-MS-CLIENT-TAG-NEVE
 * AZ X-MS-CLIENT-EGYSZERŰ-ID
 * X-MS-TOKEN-FACEBOOK-ACCESS-TOKEN
 * X-MS-TOKEN-FACEBOOK-EXPIRES-ON
 
-Bármilyen nyelven vagy keretrendszerben írt kódot az ezek a fejlécek kérheti le a szükséges információkat. Az ASP.NET 4.6-alkalmazások esetén a **ClaimsPrincipal** automatikusan állítsa be a megfelelő értékekkel.
+Bármilyen nyelven vagy keretrendszerben írt kódot szükséges információkat az hello érheti el ezeket a fejléceket. Az ASP.NET 4.6 alkalmazásokat hello **ClaimsPrincipal** automatikusan értéke hello megfelelő értékekkel.
 
-Az alkalmazás további felhasználó adatait egy HTTP GET keresztül is beszerezheti a a `/.auth/me` végpont az alkalmazás. Egy érvényes tokent, a kért része egy JSON-adattartalom a használt szolgáltató adatait, az alapul szolgáló szolgáltató token és néhány más információkat ad vissza. A Mobile Apps server SDK-k az adatok segédmódszereket biztosítanak. További információkért lásd: [használata az Azure Mobile Apps Node.js SDK](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#howto-tables-getidentity), és [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#user-info).
+Az alkalmazás további felhasználó adatait egy HTTP GET a hello keresztül is beszerezhető `/.auth/me` végpont az alkalmazás. Egy érvényes tokent, hello kérelemmel része lesz egy JSON-adattartalom használt hello szolgáltató adatait adja vissza, hello alapul szolgáló szolgáltató jogkivonatot, és néhány más információkat. hello Mobile Apps server SDK-k biztosítanak segédmódszereket toowork ezekkel az adatokkal. További információkért lásd: [hogyan toouse hello Azure Mobile Apps Node.js SDK](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#howto-tables-getidentity), és [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#user-info).
 
 ## <a name="documentation-and-additional-resources"></a>Dokumentáció és további források
 ### <a name="identity-providers"></a>Identitás-szolgáltatóktól
-Az alábbi oktatóanyagok bemutatják, hogyan konfigurálhatja a különböző hitelesítésszolgáltatók használandó App Service:
+Hogyan oktatóanyagok megjelenítése a következő hello tooconfigure App toouse különböző hitelesítési szolgáltatók:
 
-* [Az alkalmazás Azure Active Directory bejelentkezési használandó konfigurálása][AAD]
-* [Az alkalmazás használatához Facebook bejelentkezési konfigurálása][Facebook]
-* [Az alkalmazás használatához Google bejelentkezési konfigurálása][Google]
-* [Az alkalmazás használatához Microsoft Account bejelentkezés konfigurálása][MSA]
-* [Az alkalmazás használatához Twitter bejelentkezési konfigurálása][Twitter]
+* [Hogyan tooconfigure app toouse Azure Active Directory bejelentkezési adatait][AAD]
+* [Hogyan tooconfigure app toouse Facebook bejelentkezési adatait][Facebook]
+* [Hogyan tooconfigure app toouse Google bejelentkezési adatait][Google]
+* [Hogyan tooconfigure app toouse Microsoft Account bejelentkezési adatait][MSA]
+* [Hogyan tooconfigure app toouse Twitter bejelentkezési adatait][Twitter]
 
-Ha szeretné használni az azonosítási rendszer eltérő, feltéve, itt is használhatja a [tekintse meg az egyéni hitelesítési támogatás a Mobile Apps .NET Server SDK][custom-auth], a webalkalmazások, mobilalkalmazások vagy API-alkalmazások használható.
+Ha azt szeretné, az azonosítási rendszer toouse eltérő hello azokat, feltéve, itt is használhatja hello [tekintse meg az egyéni hitelesítési támogatás a hello Mobile Apps .NET server SDK][custom-auth], a webalkalmazásokban, amelyekkel Mobile apps szolgáltatásban, vagy API-alkalmazások.
 
 ### <a name="web-applications"></a>Webalkalmazások
-Az alábbi oktatóanyagok bemutatják, hogyan hitelesítés hozzáadása a webalkalmazáshoz:
+oktatóanyag következő hello bemutatják, hogyan tooadd hitelesítési tooa webes alkalmazás:
 
 * [Ismerkedés az Azure App Service - 2. rész][web-getstarted]
 
 ### <a name="mobile-applications"></a>Mobilalkalmazás
-Az alábbi oktatóanyagok bemutatják, hogyan hitelesítés hozzáadása a mobil ügyfelek a kiszolgáló által vezérelt folyamata segítségével:
+a következő oktatóanyagok hello megjelenítése, hogyan tooadd hitelesítési tooyour mobil ügyfelek használatával hello kiszolgáló által vezérelt folyamata:
 
-* [Hitelesítés hozzáadása az iOS-alkalmazás][iOS]
-* [Hitelesítés hozzáadása az Android-alkalmazás][Android]
-* [Hitelesítés hozzáadása a Windows-alkalmazás][Windows]
-* [Hitelesítés hozzáadása a Xamarin.iOS-alkalmazás][Xamarin.iOS]
-* [Hitelesítés hozzáadása Xamarin.Android-alkalmazáshoz][Xamarin.Android]
-* [Hitelesítés hozzáadása a Xamarin.Forms-alkalmazás][Xamarin.Forms]
-* [Hitelesítés hozzáadása a Cordova-alkalmazáshoz][Cordova]
+* [Hitelesítési tooyour iOS-alkalmazás hozzáadása][iOS]
+* [Hitelesítési tooyour Android-alkalmazás hozzáadása][Android]
+* [Hitelesítési tooyour Windows-alkalmazás hozzáadása][Windows]
+* [Hitelesítési tooyour Xamarin.iOS-alkalmazás hozzáadása][Xamarin.iOS]
+* [Hitelesítési tooyour Xamarin.Android-alkalmazás hozzáadása][ Xamarin.Android]
+* [Hitelesítési tooyour Xamarin.Forms-alkalmazás hozzáadása][Xamarin.Forms]
+* [Hitelesítési tooyour Cordova-alkalmazás hozzáadása][Cordova]
 
-Ha azt szeretné, hogy az ügyfél által vezérelt folyamat használata az Azure Active Directory, használja a következőket:
+A következő erőforrások, ha azt szeretné, hogy toouse hello ügyfél által vezérelt folyamata az Azure Active Directory hello használata:
 
-* [Az Active Directory Authentication Library használata iOS-hez][ADAL-iOS]
-* [Használja az Active Directory hitelesítési könyvtár androidhoz][ADAL-Android]
-* [A Windows és a Xamarin használható az Active Directory hitelesítési könyvtár][ADAL-dotnet]
+* [Active Directory Authentication Library hello használata iOS][ADAL-iOS]
+* [Active Directory Authentication Library hello használja Android rendszerhez][ADAL-Android]
+* [Hello Active Directory Authentication Library a Windows és a Xamarin][ADAL-dotnet]
 
-Ha azt szeretné, hogy használják az ügyfél által vezérelt Facebook, használja a következőket:
+A következő erőforrások, ha azt szeretné, hogy toouse hello ügyfél által vezérelt folyamata Facebook hello használata:
 
-* [A Facebook SDK használata iOS-hez](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#facebook-sdk)
+* [Hello Facebook SDK használata iOS-hez](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#facebook-sdk)
 
-Ha azt szeretné, hogy használják az ügyfél által vezérelt Twitter, használja a következőket:
+A következő erőforrások, ha azt szeretné, hogy toouse hello ügyfél által vezérelt folyamata Twitter hello használata:
 
 * [Twitter háló használata iOS-hez](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#twitter-fabric)
 
-Ha azt szeretné, hogy használják az ügyfél által vezérelt Google, használja a következőket:
+A következő erőforrások, ha azt szeretné, hogy toouse hello ügyfél által vezérelt folyamata Google hello használata:
 
-* [A Google-bejelentkezés SDK használata iOS-hez](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#google-sdk)
+* [Google bejelentkezési SDK hello használata iOS-hez](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#google-sdk)
 
 ### <a name="api-applications"></a>API-alkalmazások
-Az alábbi oktatóanyagok bemutatják, miként az API-alkalmazások védelmét:
+Hogyan oktatóanyagok megjelenítése a következő hello tooprotect az API-alkalmazások:
 
 * [Az Azure App Service API-alkalmazások felhasználói hitelesítésének][apia-user]
 * [Az Azure App Service API Apps szolgáltatás egyszerű hitelesítés][apia-service]
@@ -164,7 +164,7 @@ Az alábbi oktatóanyagok bemutatják, miként az API-alkalmazások védelmét:
 [iOS]: ../app-service-mobile/app-service-mobile-ios-get-started-users.md
 [Android]: ../app-service-mobile/app-service-mobile-android-get-started-users.md
 [Xamarin.iOS]: ../app-service-mobile/app-service-mobile-xamarin-ios-get-started-users.md
-[Xamarin.Android]: ../app-service-mobile/app-service-mobile-xamarin-android-get-started-users.md
+[ Xamarin.Android]: ../app-service-mobile/app-service-mobile-xamarin-android-get-started-users.md
 [Xamarin.Forms]: ../app-service-mobile/app-service-mobile-xamarin-forms-get-started-users.md
 [Windows]: ../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-users.md
 [Cordova]: ../app-service-mobile/app-service-mobile-cordova-get-started-users.md

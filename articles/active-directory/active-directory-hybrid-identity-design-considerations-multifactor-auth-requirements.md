@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - többtényezős hitelesítési követelmények meghatározása"
-description: "Feltételes hozzáférés-vezérlést az Azure Active Directory ellenőrzi a megadott feltételek, ha a felhasználó hitelesítése és az alkalmazáshoz való hozzáférés előtt válasszon. Ha ezek a feltételek teljesülnek, a felhasználó hitelesítése és hozzáférni az alkalmazáshoz engedélyezett."
+title: "aaaAzure Active Directory hibrid identitáskezelési elrendezésével kapcsolatos szempontok - többtényezős hitelesítési követelmények meghatározása"
+description: "Feltételes hozzáférés-vezérlést Azure Active Directory ellenőrzi hello megadott feltételek hello felhasználói hitelesítés során, és mielőtt engedélyezi a hozzáférést toohello alkalmazás kiválasztása. Ha ezek a feltételek teljesülnek, hello felhasználó hitelesítése és hozzáférési toohello alkalmazás engedélyezve."
 documentationcenter: 
 services: active-directory
 author: femila
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 5b3a8ce6e4203dfb3700f324e32687dd910118af
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 49fa7b43772fb3a2d6664747477c60a34cddde2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="determine-multi-factor-authentication-requirements-for-your-hybrid-identity-solution"></a>A hibrid identitáskezelési megoldás a többtényezős hitelesítési követelmények meghatározása
-A világ mobilitási, a felhasználói adatokat és alkalmazásokat a felhőben, és egy eszközről ezek az információk védelme vált kiemelkedő.  Minden nap van egy új főcím kapcsolatos biztonsági problémák.  Bár, nem garantálja az ilyen problémák elleni, a többtényezős hitelesítést, ezek a problémák megelőzése érdekében biztonsági további réteget biztosít.
-Indítsa el a multi-factor authentication a szervezetek szükséges követelmények értékelésekor. Ez azt jelenti, hogy mi a szervezet próbál biztonságos.  Ez a kiértékelés fontos, hogy a és a szervezetek felhasználók a multi-factor authentication lehetővé teszi a műszaki követelményeinek meghatározása.
+A világ mobilitási, a felhasználói adatok és alkalmazások hello felhőben, és egy eszközről ezek az információk védelme vált kiemelkedő.  Minden nap van egy új főcím kapcsolatos biztonsági problémák.  Bár nem garantálja az ilyen problémák elleni van, a többtényezős hitelesítés további réteget biztosít biztonsági toohelp megakadályozzák e problémák.
+Indítsa el a multi-factor authentication hello szervezetek szükséges követelmények értékelésekor. Ez azt jelenti, hogy mi az hello szervezet közben toosecure.  Ez a kiértékelés fontos toodefine hello műszaki követelményeiben és hello szervezetek felhasználók a multi-factor authentication.
 
 > [!NOTE]
-> Ha nem ismeri a többtényezős hitelesítés és a hatása, erősen ajánlott, hogy olvassa el a cikk [Mi az Azure multi-factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md) előzetes folytatja a fejezet elolvasása.
+> Ha nem ismeri a többtényezős hitelesítés és a hatása, erősen ajánlott, hogy olvassa el a hello cikk [Mi az Azure multi-factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md) előzetes toocontinue a fejezet elolvasása.
 > 
 > 
 
-Győződjön meg arról, hogy válaszoljon a következő:
+Győződjön meg arról, hogy tooanswer hello következő:
 
-* A vállalat próbál Microsoft-alkalmazások védelmét? 
+* A vállalat próbál toosecure Microsoft-alkalmazások? 
 * Hogyan közzétett ezeket az alkalmazásokat?
-* A vállalat biztosítja a távoli hozzáférés úgy, hogy az alkalmazottak a helyszíni alkalmazások elérésére?
+* A vállalat biztosítja a távelérés tooallow alkalmazottak tooaccess a helyszíni alkalmazások?
 
-Ha igen, milyen típusú távelérési? Is fel kell mérnie, amelyben a felhasználók ezeket az alkalmazásokat elérő található. Ez a kiértékelés egy másik fontos eleme a megfelelő a multi-factor authentication-stratégia meghatározása. Győződjön meg arról, hogy válaszoljon a következő kérdésekre:
+Ha igen, milyen típusú távelérési? Szükség tooevaluate, amelyben hello elérő felhasználók számára az alkalmazások található. Az értékelés egy másik fontos lépés toodefine hello megfelelő a multi-factor authentication stratégia. Győződjön meg arról, hogy tooanswer hello a következő kérdéseket:
 
-* Ha a felhasználók fog található?
+* Hol található a hello felhasználók toobe is?
 * Ezek lehetnek bárhol?
-* Nem a vállalat kíván létesíteni korlátozások a felhasználó földrajzi helye alapján?
+* Nem a vállalat szeretne tooestablish korlátozások toohello felhasználó földrajzi helye szerint?
 
-Ezek a követelmények elsajátítása után fontos is a többtényezős hitelesítést a felhasználói követelmények kiértékeléséhez. Ez a kiértékelés fontos, mert azt határozza meg a multi-factor Authentication hitelesítés terítésével követelményei. Győződjön meg arról, hogy válaszoljon a következő kérdésekre:
+Ezek a követelmények elsajátítása után fontos tooalso értékelje ki a multi-factor authentication hello felhasználói követelmények. Ez a kiértékelés fontos, mert azt határozza meg a multi-factor authentication terítésével hello követelményei. Győződjön meg arról, hogy tooanswer hello a következő kérdéseket:
 
-* A felhasználók a multi-factor authentication tisztában van?
-* Néhány felhasználását lesz szükség a további hitelesítés?  
-  * Ha igen, minden esetben, ha külső hálózatokat vagy férnek hozzá bizonyos alkalmazásokat, vagy más feltételek mellett érkező?
-* A felhasználóinak kell képzési beállítása és valósítja meg a multi-factor authentication?
-* Mik a legfontosabb forgatókönyvek, amely a vállalat lehetővé szeretné tenni a felhasználók a többtényezős hitelesítést?
+* Jártas a hello felhasználók a többtényezős hitelesítés?
+* Néhány felhasználását lesz szükség tooprovide további hitelesítési?  
+  * Ha igen, az összes hello idő, a külső hálózatokat vagy férnek hozzá bizonyos alkalmazásokat, vagy más feltételek mellett?
+* Hello felhasználóinak kell hogyan képzési toosetup és alkalmazzon a multi-factor authentication?
+* Mik azok a hello főbb forgatókönyvek, hogy a vállalat szeretne-e a felhasználóik tooenable többtényezős hitelesítést?
 
-Miután a fenti kérdések megválaszolása, fogja érti, ha nincsenek a helyszíni már megvalósította a multi-factor authentication. Ez a kiértékelés fontos, hogy a és a szervezetek felhasználók a multi-factor authentication lehetővé teszi a műszaki követelményeinek meghatározása. Győződjön meg arról, hogy válaszoljon a következő kérdésekre:
+Hello előző kérdések megválaszolásával után nem tud toounderstand fogja már megvalósította a multi-factor authentication helyszíni esetén. Ez a kiértékelés fontos toodefine hello műszaki követelményeiben és hello szervezetek felhasználók a multi-factor authentication. Győződjön meg arról, hogy tooanswer hello a következő kérdéseket:
 
-* Vállalatának meg kell a multi-factor Authentication szolgáltatás a kiemelt jogosultságú fiókok védelméhez?
-* Vállalatának meg kell ahhoz, hogy az egyes alkalmazás megfelelőségi okokból MFA?
-* Vállalatának meg kell engedélyezéséről az ezen alkalmazás-vagy csak a rendszergazdák az összes jogosult felhasználók számára?
-* Szükség van mindig engedélyezve van az MFA- vagy csak amikor a felhasználók bejelentkeznek a vállalati hálózaton kívül?
+* A vállalatának meg kell tooprotect rendszerjogosultságú fiókok az MFA Használatát?
+* A vállalatának meg kell tooenable MFA egyes alkalmazás megfelelőségi okokból?
+* A vállalatának meg kell tooenable MFA ezen alkalmazás-vagy csak a rendszergazdák az összes jogosult felhasználók számára?
+* Szükség van mindig engedélyezve van az MFA- vagy csak amikor hello felhasználók bejelentkeznek a vállalati hálózaton kívül?
 
 ## <a name="next-steps"></a>Következő lépések
 [A hibrid identitás bevezetési stratégia meghatározása](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md)

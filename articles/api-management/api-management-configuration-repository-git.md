@@ -1,6 +1,6 @@
 ---
-title: "Konfigurálja a használatával a Git - Azure API Management szolgáltatást |} Microsoft Docs"
-description: "Ismerje meg, mentse, és a Git használatával az API Management-konfigurációjának beállítása."
+title: "aaaConfigure a Git - Azure használatával API Management szolgáltatáshoz |} Microsoft Docs"
+description: "Megtudhatja, hogyan toosave és a Git használatával az API Management-konfigurációjának beállítása."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,179 +14,179 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: f5d6bb7ccbf15424e9940ccda2fac668a2af5a57
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef7d4c18f2ea3f5c9b86403349a83aef240f979b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-save-and-configure-your-api-management-service-configuration-using-git"></a>Mentse, és a Git használatával az API Management-konfigurációjának beállítása
+# <a name="how-toosave-and-configure-your-api-management-service-configuration-using-git"></a>Hogyan toosave és a Git használatával az API Management-konfigurációjának beállítása
 > 
 > 
 
-Minden API Management service-példány konfigurációs és a szolgáltatáspéldány metaadatok kapcsolatos adatokat tartalmazó konfigurációs adatbázis tárolja. Is módosítható a szolgáltatáspéldány módosításával a közzétevő portált a megfelelő értéket, PowerShell-parancsmag használatával, vagy a REST API-hívással. Ezek a módszerek mellett is kezelhet, a példány konfigurációjának Git használatával, a szolgáltatás felügyeleti lehetőségeket, mint engedélyezése:
+Minden API Management szolgáltatáspéldány hello konfigurációs és a metaadatok hello szolgáltatáspéldány kapcsolatos információkat tartalmazó konfigurációs adatbázis tárolja. Módosítások elvégzéséhez toohello szolgáltatáspéldány módosításával hello publisher portált a megfelelő értéket, PowerShell-parancsmag használatával, vagy a REST API-hívással. Ezenkívül toothese módszerek is kezelhet, a példány konfigurációjának Git használatával, a szolgáltatás felügyeleti lehetőségeket, mint engedélyezése:
 
 * Konfigurációs rendszerverzió - töltse le, és tárolja a szolgáltatás konfigurációs különböző verziói
-* Konfigurációs módosítások tömeges - módosítja a szolgáltatás konfigurációját a helyi tárházban több részét, és a módosítások a kiszolgáló integrálása egyetlen műveletben
-* Munkafolyamat - és ismerős Git toolchain használja a Git tooling és, amelyek már ismeri a munkafolyamatok
+* Konfigurációs módosítások tömeges - módosítsa a szolgáltatás konfigurációs toomultiple részei a helyi tárház és hello módosítások hátsó toohello server integrálható egy műveletet
+* Jól ismert Git toolchain és munkafolyamat - hello Git tooling és, amelyek már ismeri a munkafolyamatok használni
 
-Az alábbi ábra a különböző módokon konfigurálhatja az API Management szolgáltatáspéldány áttekintését mutatja.
+a következő diagram hello az API Management szolgáltatáspéldány hello különböző módokon tooconfigure áttekintését mutatja.
 
 ![Git konfigurálása][api-management-git-configure]
 
-Amikor módosítja a szolgáltatás a közzétevő portal, PowerShell-parancsmagokkal vagy a REST API-t használó, kezelt a szolgáltatás konfigurációs adatbázis használata a `https://{name}.management.azure-api.net` végpont, a diagram jobb oldalán látható módon. Bal oldalán található a diagram bemutatja, hogyan kezelheti a Git használatával konfigurációjának és a szolgáltatás Git-tárházban található `https://{name}.scm.azure-api.net`.
+Ha módosít tooyour szolgáltatás hello publisher portál, a PowerShell-parancsmagok vagy a hello REST API használatával, a szolgáltatás konfigurációs adatbázist hello kezelt `https://{name}.management.azure-api.net` végpont, hello diagram hello jobb oldalán látható módon. hello bal oldalán található hello diagram bemutatja, hogyan kezelheti a Git használatával konfigurációjának és a szolgáltatás Git-tárházban található `https://{name}.scm.azure-api.net`.
 
-Az alábbi lépések nyújtanak a Git használatával az API Management szolgáltatáspéldány kezelését.
+a lépéseket követve hello nyújt áttekintést a Git használatával az API Management szolgáltatáspéldány kezelése.
 
 1. A szolgáltatás a Git-konfiguráció
-2. A szolgáltatás konfigurációs adatbázis mentse a Git-tárház
-3. A helyi számítógépen a Git-tárház klónozása
-4. A legújabb tárház le a helyi számítógép és a véglegesítési és leküldéses módosításokat visszavonni a tárházban
-5. A módosítások a tárházból üzembe helyezés a szolgáltatás konfigurációs adatbázis
+2. A szolgáltatás konfigurációs adatbázis tooyour Git-tárház mentése
+3. Hello Git tárház tooyour helyi gép klónozása
+4. Hello legújabb tárház tooyour helyi számítógép le, és a véglegesítési és leküldéses módosítások hátsó tooyour tárház lekéréses
+5. A tárházból hello módosítások üzembe helyezés a szolgáltatás konfigurációs adatbázis
 
-Ez a cikk ismerteti, hogyan lehet engedélyezése és a Git segítségével kezelheti a szolgáltatás konfigurációját, és nyújt a fájlok és mappák a Git-tárházban.
+Ez a cikk ismerteti, hogyan tooenable Git toomanage használ a szolgáltatás konfigurációját, és az nyújt a hello fájlok és mappák hello Git-tárházban.
 
 ## <a name="access-git-configuration-in-your-service"></a>A szolgáltatás a Git-konfiguráció
-A közzétevő portál jobb felső sarkában a Git ikon megtekintésével gyorsan megtekintheti a Git konfigurációs állapotát. Ebben a példában az állapotüzenet azt jelzi, amely nincs vannak nem mentett módosításokat a tárházba. Ennek az az oka az API Management szolgáltatás konfigurációs adatbázis még nem lett mentve a tárházba.
+Gyorsan megtekintheti a Git-konfiguráció állapota hello hello publisher portál jobb felső sarkában hello hello Git ikon megtekintésével. Ebben a példában hello állapotüzenet azt jelzi, hogy vannak-e a nem mentett módosítások toohello tárház. Ennek az az oka hello API-kezelés szolgáltatás konfigurációs adatbázis van még nincsenek mentve toohello tárházba.
 
 ![Git állapota][api-management-git-icon-enable]
 
-Megtekintheti, és a Git konfigurációs beállításait, kattintson a Git ikonra, vagy kattintson a **biztonsági** menü, és keresse meg a **konfigurációs tárház** fülre.
+tooview és a Git konfigurációs beállításait, hello Git ikonra, vagy kattintson a hello **biztonsági** menüt, és keresse meg a toohello **konfigurációs tárház** fülre.
 
 ![GIT engedélyezése][api-management-enable-git]
 
 > [!IMPORTANT]
-> Bármely kulcsait, tulajdonságait a tárházban fogja tárolni, és az előzmények marad, amíg meg nem definiált tiltsa le, és engedélyezze újra a Git-hozzáférés. Tulajdonságok adjon meg egy biztonságos helyen kezelhetők a állandó karakterlánc-értékek, többek között a titkos kulcsok, összes API konfigurálása és házirendek, így nem kell közvetlenül a házirend-utasításoknál letölthetők. További információkért lásd: [tulajdonságok használata az Azure API-felügyeleti házirendek](api-management-howto-properties.md).
+> Bármely titkos kulcsok nem definiált tulajdonságok hello tárházban fogja tárolni, és akkor is marad, amíg az előzmények tiltsa le, és engedélyezze újra a Git-hozzáférés. Tulajdonságok adjon meg egy biztonságos hely toomanage állandó karakterlánc-értékek titkos adatait, beleértve a összes API konfigurálása és házirendek, így nem kell toostore közvetlenül a házirend-utasításoknál őket. További információkért lásd: [hogyan toouse tulajdonságokat az Azure API-felügyeleti házirendek](api-management-howto-properties.md).
 > 
 > 
 
-Engedélyezésével vagy letiltásával Git hozzáférés a REST API használatával kapcsolatos tudnivalókért lásd: [engedélyezheti vagy letilthatja a REST API használatával Git hozzáférést](https://msdn.microsoft.com/library/dn781420.aspx#EnableGit).
+Az engedélyezés vagy letiltás hello REST API-t használó Git hozzáférés információkért lásd: [engedélyezheti vagy tilthatja le a REST API hello Git-hozzáférés](https://msdn.microsoft.com/library/dn781420.aspx#EnableGit).
 
-## <a name="to-save-the-service-configuration-to-the-git-repository"></a>A szolgáltatáskonfiguráció a Git-tárházba mentéséhez
-Az első lépéseket, mielőtt a tárház klónozása, hogy a szolgáltatáskonfiguráció a jelenlegi állapotában a tárházba mentéséhez. Kattintson a **mentés konfigurációs tárházba**.
+## <a name="toosave-hello-service-configuration-toohello-git-repository"></a>toosave hello szolgáltatás konfigurációs toohello Git-tárház
+hello első lépéseket, mielőtt hello tárház klónozása toosave hello aktuális állapot hello szolgáltatás konfigurációs toohello tárház. Kattintson a **konfigurációs toorepository mentése**.
 
 ![Konfiguráció mentése][api-management-save-configuration]
 
-Adja meg a kívánt módosításokat a megerősítő képernyőn a, és kattintson a **Ok** mentéséhez.
+Adja meg a kívánt módosításokat a hello visszaigazoló képernyő, és kattintson a **Ok** toosave.
 
 ![Konfiguráció mentése][api-management-save-configuration-confirm]
 
-A konfiguráció mentése után néhány percet, és az állapotot a tárház jelenik meg, beleértve a dátum és idő az utolsó konfigurációváltozás és a szolgáltatás konfigurációját és a tárház között a legutóbbi szinkronizálás.
+Néhány másodpercen belül a program menti a hello konfigurációt, és hello konfiguráció állapota hello tárház megjelennek, például a hello dátum és idő hello utolsó konfigurációváltozás és a legutóbbi szinkronizálás hello hello szolgáltatás konfigurációja és hello között tárház.
 
 ![Konfiguráció állapota][api-management-configuration-status]
 
-Ha a tárház menti a konfigurációt, akkor klónozható.
+Miután hello konfigurációs toohello tárház menti, akkor klónozható.
 
-Információ a REST API használatával a művelet végrehajtása: [véglegesítési konfiguráció pillanatkép-REST API használatával](https://msdn.microsoft.com/library/dn781420.aspx#CommitSnapshot).
+Információ a hello REST API használatával a művelet végrehajtása: [véglegesítési konfiguráció pillanatkép-hello REST API használatával](https://msdn.microsoft.com/library/dn781420.aspx#CommitSnapshot).
 
-## <a name="to-clone-the-repository-to-your-local-machine"></a>Klónozza a tárházat a helyi számítógép számára
-Klónozza a tárházat, kell az URL-cím a tárház, a felhasználónevet és jelszót. A felhasználói nevet és az URL-cím jelennek meg az tetején a **konfigurációs tárház** fülre.
+## <a name="tooclone-hello-repository-tooyour-local-machine"></a>tooclone hello tárház tooyour helyi számítógép
+a tárház tooclone, kell hello URL-cím tooyour tárház, a felhasználónevet és jelszót. hello felhasználói nevét és URL-cím megjelenített hello hello tetején **konfigurációs tárház** fülre.
 
 ![Git-klón][api-management-configuration-git-clone]
 
-A jelszó alján jön létre a **konfigurációs tárház** fülre.
+hello jelszó jön létre hello hello alján **konfigurációs tárház** fülre.
 
 ![Jelszó létrehozása][api-management-generate-password]
 
-Olyan jelszót létrehozni, először győződjön meg róla, hogy a **lejárati** állítsa be a kívánt lejárati dátumát és idejét, és kattintson a **azonosító létrehozása**.
+toogenerate jelszavát, győződjön meg arról, hogy hello **lejárati** toohello szükséges a lejárati dátum és idő beállítása, és kattintson a **azonosító létrehozása**.
 
 ![Jelszó][api-management-password]
 
 > [!IMPORTANT]
-> Jegyezze fel ezt a jelszót. Ha bezárja ezt az oldalt a jelszó nem jelenik meg újra.
+> Jegyezze fel ezt a jelszót. Ha hagyja a lap hello jelszó nem jelenik meg újra.
 > 
 > 
 
-Az alábbi példák a Git Bash eszközt használja [Git for Windows](http://www.git-scm.com/downloads) , de bármely, a ismeri a Git-eszközt is használhatja.
+az eszköz a következő példák használja a Git bash eszközt hello hello [Git for Windows](http://www.git-scm.com/downloads) , de bármely, a ismeri a Git-eszközt is használhatja.
 
-A Git eszköz nyissa meg a kívánt mappa, és futtassa a következő parancsot a helyi számítógépen, a közzétevő portál által szolgáltatott paranccsal git-tárház klónozása.
+Nyissa meg a Git eszköz hello kívánt mappa, és futtassa a következő parancs tooclone hello git tárház tooyour helyi számítógép, hello publisher portál által szolgáltatott hello paranccsal hello.
 
 ```
 git clone https://bugbashdev4.scm.azure-api.net/
 ```
 
-Adja meg a felhasználónevet és jelszót.
+Hello felhasználónevet és jelszót adjon meg.
 
-Ha bármilyen hiba jelentkezik, próbálja meg módosítani a `git clone` parancs tartalmazza a felhasználónevet és jelszót, a következő példában látható módon.
+Ha bármilyen hiba jelentkezik, próbálja meg módosítani a `git clone` parancs tooinclude hello felhasználónevét és jelszavát, ahogy az alábbi példa hello.
 
 ```
 git clone https://username:password@bugbashdev4.scm.azure-api.net/
 ```
 
-Ez biztosítja, hogy a hiba, ha próbálja meg a jelszót a parancs része kódolás URL-címet. Nyissa meg a Visual Studio, és adja ki a következő parancsot a egy gyors módja, ha ehhez a **parancsablakban**. Megnyitásához a **parancsablakban**, nyissa meg a bármely megoldás vagy a projektet a Visual Studio (vagy hozzon létre egy új üres konzolalkalmazást), és válassza a **Windows**, **Immediate** a a **Debug** menü.
+Ez biztosítja, hogy a hiba, ha próbálja hello parancs része hello jelszó kódolás URL-CÍMÉT. Egy gyorsan toodo ez tooopen Visual Studio, és probléma hello következő parancsot a hello **parancsablakban**. tooopen hello **parancsablakban**, nyissa meg a bármely megoldás vagy a projektet a Visual Studio (vagy hozzon létre egy új üres konzolalkalmazást), és válassza a **Windows**, **Immediate** a Hello **Debug** menü.
 
 ```
 ?System.NetWebUtility.UrlEncode("password from publisher portal")
 ```
 
-A kódolt jelszót használhatja a felhasználó nevét és a tárház helye a git parancs összeállításához.
+A felhasználó nevét és a tárház hely tooconstruct hello git parancs együtt kódolású hello jelszó használata.
 
 ```
 git clone https://username:url encoded password@bugbashdev4.scm.azure-api.net/
 ```
 
-Ha a tárház klónozták tekintheti meg és a helyi rendszer használható. További információkért lásd: [fájl- és helyi Git-tárház hivatkozás szerkezeti](#file-and-folder-structure-reference-of-local-git-repository).
+Miután hello tárház klónozták tekintheti meg és a helyi rendszer használható. További információkért lásd: [fájl- és helyi Git-tárház hivatkozás szerkezeti](#file-and-folder-structure-reference-of-local-git-repository).
 
-## <a name="to-update-your-local-repository-with-the-most-current-service-instance-configuration"></a>A helyi tárház frissítheti a legfrissebb példányának konfigurációja
-Ha módosítja az API Management szolgáltatáspéldány publisher portálon vagy REST API használatával, mentenie kell ezeket a módosításokat a tárházba a helyi tárház legújabb módosításainak frissítése előtt. Ehhez kattintson **mentés konfigurációs tárházba** a a **konfigurációs tárház** a közzétevő portál lapot, és hogyan adhat ki az alábbi parancsot a helyi tárházba.
+## <a name="tooupdate-your-local-repository-with-hello-most-current-service-instance-configuration"></a>tooupdate a helyi-tárház hello legfrissebb példányának konfigurációja
+Ha módosítások tooyour API Management service-példány hello publisher portálon vagy a hello REST API használatával, a helyi tárház hello legújabb módosításokkal frissítése előtt mentenie kell a módosítások toohello tárház. toodo, kattintson **konfigurációs toorepository mentése** a hello **konfigurációs tárház** hello publisher portál lapot, és hogyan adhat ki a következő parancs a helyi tárházban hello.
 
 ```
 git pull
 ```
 
-Futtatása előtt `git pull` érdekében, hogy a mappa a helyi tárház. Ha befejezte a `git clone` parancsot, majd módosítsa a könyvtárat a tárház a következő parancs futtatásával.
+Futtatása előtt `git pull` érdekében, hogy hello mappában található a helyi tárház. Ha befejezte a hello `git clone` parancsot, majd meg kell változtatnia hello directory tooyour tárház hello következő parancs futtatásával.
 
 ```
 cd bugbashdev4.scm.azure-api.net/
 ```
 
-## <a name="to-push-changes-from-your-local-repo-to-the-server-repo"></a>Az a helyi tárház változásainak leküldése a kiszolgáló-tárház
-A tárház változásainak leküldése a helyi tárházból a kiszolgáló, meg kell a változtatások véglegesítése a határidő, majd küldje le őket a kiszolgáló tárház. A módosítások véglegesítéséhez, a Git parancs eszköz, a helyi tárház directory váltani, és a következő parancsokat.
+## <a name="toopush-changes-from-your-local-repo-toohello-server-repo"></a>a helyi tárház toohello server tárházból toopush módosítások
+toopush módosítja a helyi tárház toohello server tárházban lévő, a változtatások véglegesítése a határidő és majd küldje le őket toohello server tárház kell. toocommit a módosításokat, a Git parancs eszköz, a helyi tárház, és a következő parancsok probléma hello kapcsoló toohello könyvtár megnyitásához.
 
 ```
 git add --all
 git commit -m "Description of your changes"
 ```
 
-Kiszolgálóra történő leküldésére összes a véglegesíti a, a következő parancsot.
+összes hello véglegesíti toohello kiszolgálón, futtassa toopush hello a következő parancsot.
 
 ```
 git push
 ```
 
-## <a name="to-deploy-any-service-configuration-changes-to-the-api-management-service-instance"></a>A szolgáltatás konfigurációs változásokat az API Management szolgáltatáspéldány központi telepítése
-Ha a helyi módosításokat vannak, és a kiszolgáló tárházba leküldött, az API Management szolgáltatáspéldány telepíthetné őket.
+## <a name="toodeploy-any-service-configuration-changes-toohello-api-management-service-instance"></a>toodeploy bármilyen konfigurációs módosításokat toohello API-kezelés szolgáltatás szolgáltatáspéldány
+Ha a helyi módosítások véglegesítése és megnyomott toohello server tárház, telepíthetők tooyour API Management service-példány.
 
 ![Üzembe helyezés][api-management-configuration-deploy]
 
-Információ a REST API használatával a művelet végrehajtása: [telepítése Git vált, a REST API használatával konfigurációs adatbázis](https://docs.microsoft.com/en-us/rest/api/apimanagement/tenantconfiguration).
+Információ a hello REST API használatával a művelet végrehajtása: [telepítése Git változik hello REST API használatával tooconfiguration adatbázis](https://docs.microsoft.com/en-us/rest/api/apimanagement/tenantconfiguration).
 
 ## <a name="file-and-folder-structure-reference-of-local-git-repository"></a>Fájl- és helyi Git-tárház szerkezete-hivatkozás
-A fájlok és mappák a helyi git-tárházban tartalmaz a szolgáltatáspéldány konfigurációs adatait.
+hello fájlok és mappák hello helyi git-tárházban hello konfigurációs információkat tartalmaznak hello szolgáltatáspéldány.
 
 | Elem | Leírás |
 | --- | --- |
-| Api-felügyeleti gyökérmappa |A szolgáltatáspéldány legfelső szintű konfigurációját tartalmazza |
-| API-k mappa |Az API-k a szolgáltatáspéldány a konfigurációját tartalmazza |
-| csoportok mappa |A szolgáltatáspéldány a csoportok konfigurációját tartalmazza |
-| házirend mappa |A szolgáltatáspéldány házirendjeinek tartalmazza |
-| portalStyles mappa |A fejlesztői portálon a testreszabások a szolgáltatáspéldány a konfigurációját tartalmazza |
-| termékek mappa |A szolgáltatáspéldány a termék konfigurációját tartalmazza |
-| sablonok mappa |Az e-mail sablonok a szolgáltatáspéldány a konfigurációját tartalmazza |
+| Api-felügyeleti gyökérmappa |Hello szolgáltatáspéldány legfelső szintű konfigurációját tartalmazza |
+| API-k mappa |A következő szolgáltatáspéldányba hello hello API-k hello konfigurációját tartalmazza |
+| csoportok mappa |A következő szolgáltatáspéldányba hello hello csoportok hello konfigurációját tartalmazza |
+| házirend mappa |Tartalmazza a hello házirendek hello szolgáltatáspéldány |
+| portalStyles mappa |A szolgáltatáspéldány hello hello developer portálon testreszabások hello konfigurációját tartalmazza |
+| termékek mappa |A következő szolgáltatáspéldányba hello hello termékek hello konfigurációját tartalmazza |
+| sablonok mappa |A következő szolgáltatáspéldányba hello hello e-mail sablonok hello konfigurációját tartalmazza |
 
-Minden mappa tartalmazhat egy vagy több fájlt, és bizonyos esetekben egy vagy több mappát, például egy mappát az egyes API-t, a termék vagy a csoport. A fájlok minden egyes mappákban lévő mappa nevével entitástípus vonatkoznak.
+Minden mappa tartalmazhat egy vagy több fájlt, és bizonyos esetekben egy vagy több mappát, például egy mappát az egyes API-t, a termék vagy a csoport. hello minden mappában található fájlok adott hello mappa neve szerint hello entitástípushoz.
 
 | Fájltípus | Cél |
 | --- | --- |
-| JSON-ban |A megfelelő entitás konfigurációs adatait |
-| HTML |Entitás, gyakran megjelenik a fejlesztői portálon leírása |
+| JSON-ban |Hello megfelelő entitás konfigurációs adatait |
+| HTML |Hello entitás, gyakran hello developer portálon megjelenő leírást |
 | xml |Házirend-utasítások |
 | CSS |A fejlesztői portálon testreszabáshoz stíluslapok |
 
-Ezeket a fájlokat létrehozása, törlése, szerkeszthető, és a helyi fájlrendszerben felügyelt, és a telepített módosítások a az API Management szolgáltatáspéldány.
+Ezeket a fájlokat létrehozása, törlése, szerkeszthető, és a helyi fájlrendszerben felügyelt, és hello módosítások telepített hátsó toohello az API Management szolgáltatáspéldány.
 
 > [!NOTE]
-> A következő entitások nem találhatók a Git-tárházban, és nem lehet konfigurálni a Git használatával.
+> hello következő entitások nem hello Git-tárházban szereplő és nem lehet konfigurálni a Git használatával.
 > 
 > * Felhasználók
 > * Előfizetések
@@ -196,7 +196,7 @@ Ezeket a fájlokat létrehozása, törlése, szerkeszthető, és a helyi fájlre
 > 
 
 ### <a name="root-api-management-folder"></a>Api-felügyeleti gyökérmappa
-A legfelső szintű `api-management` a mappa tartalmaz egy `configuration.json` a szolgáltatáspéldány, a következő formátumban legfelső szintű információkat tartalmazó fájlt.
+hello legfelső szintű `api-management` a mappa tartalmaz egy `configuration.json` hello szolgáltatáspéldány formátuma a következő hello a legfelső szintű információkat tartalmazó fájlt.
 
 ```json
 {
@@ -214,20 +214,20 @@ A legfelső szintű `api-management` a mappa tartalmaz egy `configuration.json` 
 }
 ```
 
-Az első négy beállítások (`RegistrationEnabled`, `UserRegistrationTerms`, `UserRegistrationTermsEnabled`, és `UserRegistrationTermsConsentRequired`) leképezése a következő beállításokat, a a **identitások** lapra a **biztonsági** szakasz.
+első négy beállítások hello (`RegistrationEnabled`, `UserRegistrationTerms`, `UserRegistrationTermsEnabled`, és `UserRegistrationTermsConsentRequired`) hozzárendelését követően beállítások hello toohello **identitások** hello lapján **biztonsági** szakasz.
 
-| Azonosító beállítása | Van leképezve |
+| Azonosító beállítása | A Maps túl|
 | --- | --- |
-| RegistrationEnabled |**A névtelen felhasználók átirányítása bejelentkezési oldal** jelölőnégyzet |
+| RegistrationEnabled |**A névtelen felhasználók toosign oldal átirányítási** jelölőnégyzet |
 | UserRegistrationTerms |**Használati feltételek a felhasználói regisztráció** szövegmező |
 | UserRegistrationTermsEnabled |**Használati feltételek megjelenítése a bejelentkezési lapon** jelölőnégyzet |
 | UserRegistrationTermsConsentRequired |**Hozzájárulás szükséges** jelölőnégyzet |
 
 ![Identitás][api-management-identity-settings]
 
-A következő négy beállítások (`DelegationEnabled`, `DelegationUrl`, `DelegatedSubscriptionEnabled`, és `DelegationValidationKey`) leképezése a következő beállításokat, a a **delegálás** lapra a **biztonsági** szakasz.
+hello a következő négy beállítások (`DelegationEnabled`, `DelegationUrl`, `DelegatedSubscriptionEnabled`, és `DelegationValidationKey`) hozzárendelését követően beállítások hello toohello **delegálás** hello lapján **biztonsági** szakasz.
 
-| Delegálási beállítás | Van leképezve |
+| Delegálási beállítás | A Maps túl|
 | --- | --- |
 | DelegationEnabled |**Delegált bejelentkezési és regisztrációs** jelölőnégyzet |
 | DelegationUrl |**Delegálás végponti URL-cím** szövegmező |
@@ -236,56 +236,56 @@ A következő négy beállítások (`DelegationEnabled`, `DelegationUrl`, `Deleg
 
 ![A delegálási beállításokat][api-management-delegation-settings]
 
-A végső beállítás `$ref-policy`, a globális utasítások házirendfájl a szolgáltatáspéldány van leképezve.
+végső beállítás hello `$ref-policy`, toohello globális utasítások házirendfájl hello szolgáltatáspéldány rendeli.
 
 ### <a name="apis-folder"></a>API-k mappa
-A `apis` mappa tartalmaz egy mappát minden API-nak a szolgáltatáspéldány, amely a következő elemeket tartalmazza.
+Hello `apis` mappa tartalmaz egy mappát az egyes API hello szolgáltatást a példányon, amely tartalmazza a következő elemek hello.
 
-* `apis\<api name>\configuration.json`– Ez a konfiguráció az API-hoz és a háttérkiszolgáló URL-címe és a műveletek tartalmaz információkat. Ez az ugyanazokat az információkat, akkor adja vissza, ha hívása [egy meghatározott API beszerzésének](https://msdn.microsoft.com/library/azure/dn781423.aspx#GetAPI) rendelkező `export=true` a `application/json` formátumban.
-* `apis\<api name>\api.description.html`-Ez az API leírása, megfelel-e a `description` tulajdonsága a [API entitás](https://msdn.microsoft.com/library/azure/dn781423.aspx#EntityProperties).
-* `apis\<api name>\operations\`– Ez a mappa tartalmaz `<operation name>.description.html` fájlokat, a műveletek az API-ban van leképezve. Minden fájl tartalmazza az API-ban, amely egyetlen műveletben leírása a `description` tulajdonsága a [művelet entitás](https://msdn.microsoft.com/library/azure/dn781423.aspx#OperationProperties) a REST API-ban.
+* `apis\<api name>\configuration.json`-Ez hello API hello konfigurációját és hello háttérkiszolgáló URL-címe és hello műveletek tartalmaz információkat. Ez a hello ugyanazokat az információkat, amely akkor tér vissza, ha toocall [egy meghatározott API beszerzésének](https://msdn.microsoft.com/library/azure/dn781423.aspx#GetAPI) rendelkező `export=true` a `application/json` formátumban.
+* `apis\<api name>\api.description.html`-Ez hello hello API leírása és felel meg a toohello `description` hello tulajdonságának [API entitás](https://msdn.microsoft.com/library/azure/dn781423.aspx#EntityProperties).
+* `apis\<api name>\operations\`– Ez a mappa tartalmaz `<operation name>.description.html` fájlok, amelyek kapcsolódnak hello API toohello műveletei. Minden fájl tartalmazza a hello API, amely a beléptetést toohello egyetlen műveletben hello leírása `description` hello tulajdonságának [művelet entitás](https://msdn.microsoft.com/library/azure/dn781423.aspx#OperationProperties) a hello REST API-t.
 
 ### <a name="groups-folder"></a>csoportok mappa
-A `groups` mappa tartalmaz egy mappát az egyes csoportokhoz, a szolgáltatáspéldány definiálva.
+Hello `groups` mappa tartalmaz egy mappát az egyes hello szolgáltatáspéldány definiálva.
 
-* `groups\<group name>\configuration.json`-a csoport beállítani. Ez az ugyanazokat az információkat, akkor adja vissza, ha hívása a [egy adott csoport lekérése](https://msdn.microsoft.com/library/azure/dn776329.aspx#GetGroup) műveletet.
-* `groups\<group name>\description.html`– Ez a csoport leírását, és megfelel-e a `description` tulajdonsága a [entitás csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx#EntityProperties).
+* `groups\<group name>\configuration.json`-hello csoport hello beállítani. Ez a hello ugyanazokat az információkat, amely akkor tér vissza, ha toocall hello [egy adott csoport lekérése](https://msdn.microsoft.com/library/azure/dn776329.aspx#GetGroup) műveletet.
+* `groups\<group name>\description.html`-Ez hello csoport hello leírása és felel meg a toohello `description` hello tulajdonságának [entitás csoport](https://msdn.microsoft.com/library/azure/dn776329.aspx#EntityProperties).
 
 ### <a name="policies-folder"></a>házirend mappa
-A `policies` mappa tartalmazza a szolgáltatáspéldány a házirend-utasításoknál.
+Hello `policies` mappa hello házirend-utasításoknál a szolgáltatáspéldány tartalmazza.
 
 * `policies\global.xml`-a szolgáltatáspéldány globális hatókörben meghatározott házirendek szerint tartalmazza.
 * `policies\apis\<api name>\`-Ha bármely API hatókörből meghatározott házirendek szerint, akkor ebben a mappában találhatók.
-* `policies\apis\<api name>\<operation name>\`mappa - Ha minden házirendet a hatókör művelet van megadva, akkor az a mappában található `<operation name>.xml` fájlok, amelyek a házirend-utasításoknál minden művelethez.
-* `policies\products\`-Ha minden házirendet a termék hatókörben van megadva, ezt tartalmazza ezt a mappát, amelybe `<product name>.xml` fájlokat, a házirend-utasításoknál az egyes termékek van leképezve.
+* `policies\apis\<api name>\<operation name>\`mappa - Ha minden házirendet a hatókör művelet van megadva, akkor az a mappában található `<operation name>.xml` fájlok, amelyek kapcsolódnak a házirend-utasításoknál toohello minden művelethez.
+* `policies\products\`-Ha minden házirendet a termék hatókörben van megadva, ezt tartalmazza ezt a mappát, amelybe `<product name>.xml` fájlok, amelyek az egyes termékek toohello házirend-utasításoknál kapcsolódnak.
 
 ### <a name="portalstyles-folder"></a>portalStyles mappa
-A `portalStyles` mappa tartalmazza a konfigurációs és stílus lapok developer portálon testreszabni a szolgáltatáspéldány.
+Hello `portalStyles` mappa tartalmazza a konfigurációs és stílus lapok developer portálon testreszabni hello szolgáltatáspéldány.
 
-* `portalStyles\configuration.json`-a stíluslapok, a fejlesztői portál által használt nevét tartalmazza,
-* `portalStyles\<style name>.css`-minden `<style name>.css` fájl tartalmazza a fejlesztői portálhoz stílusok (`Preview.css` és `Production.css` alapértelmezés szerint).
+* `portalStyles\configuration.json`-hello fejlesztői portál által használt hello stíluslapok hello nevét tartalmazza
+* `portalStyles\<style name>.css`-minden `<style name>.css` fájl tartalmazza a stílusokat hello fejlesztői portálján (`Preview.css` és `Production.css` alapértelmezés szerint).
 
 ### <a name="products-folder"></a>termékek mappa
-A `products` mappa tartalmaz egy mappát az egyes termékek, a szolgáltatáspéldány definiálva.
+Hello `products` mappa tartalmaz egy mappát az egyes termékek hello szolgáltatáspéldány definiálva.
 
-* `products\<product name>\configuration.json`-a a termék beállítani. Ez az ugyanazokat az információkat, akkor adja vissza, ha hívása a [beolvasni a termék](https://msdn.microsoft.com/library/azure/dn776336.aspx#GetProduct) műveletet.
-* `products\<product name>\product.description.html`– Ez a termék, és megfelel-e a `description` tulajdonsága a [termék entitás](https://msdn.microsoft.com/library/azure/dn776336.aspx#Product) a REST API-ban.
+* `products\<product name>\configuration.json`-hello termék hello beállítani. Ez a hello ugyanazokat az információkat, amely akkor tér vissza, ha toocall hello [beolvasni a termék](https://msdn.microsoft.com/library/azure/dn776336.aspx#GetProduct) műveletet.
+* `products\<product name>\product.description.html`-Ez hello termék hello leírása és toohello megfelel `description` hello tulajdonságának [termék entitás](https://msdn.microsoft.com/library/azure/dn776336.aspx#Product) a hello REST API-t.
 
 ### <a name="templates"></a>sablonok
-A `templates` mappa konfigurációját tartalmazza a [e-mail sablonok](api-management-howto-configure-notifications.md) service-példány.
+Hello `templates` mappa hello konfigurációját tartalmazza [e-mail sablonok](api-management-howto-configure-notifications.md) hello szolgáltatás példányának.
 
-* `<template name>\configuration.json`-az e-mail sablon beállítani.
-* `<template name>\body.html`-Ez az az e-mail sablon szövegtörzsét.
+* `<template name>\configuration.json`-hello e-mail sablon hello beállítani.
+* `<template name>\body.html`-Ez az hello hello e-mail sablon szövegtörzsét.
 
 ## <a name="next-steps"></a>Következő lépések
-Más módokon kezelheti a szolgáltatáspéldány információkért lásd:
+Más módokon toomanage olvashat a szolgáltatáspéldány, lásd:
 
-* A szolgáltatáspéldány, a következő PowerShell-parancsmagok használatával kezelheti.
+* A szolgáltatáspéldány hello a következő PowerShell-parancsmagok használatával kezelése
   * [Szolgáltatások üzembe helyezése – PowerShell-parancsmagok leírása](https://msdn.microsoft.com/library/azure/mt619282.aspx)
   * [Szolgáltatás-felügyelet PowerShell parancsmag-referencia](https://msdn.microsoft.com/library/azure/mt613507.aspx)
-* A szolgáltatáspéldány, a közzétevő portálon kezelése
+* A szolgáltatáspéldány hello publisher portálon kezelése
   * [Az első API kezelése](api-management-get-started.md)
-* A szolgáltatáspéldány, a REST API használatával kezelése
+* A szolgáltatáspéldány hello REST API használatával kezelése
   * [API Management REST API-referencia](https://msdn.microsoft.com/library/azure/dn776326.aspx)
 
 ## <a name="watch-a-video-overview"></a>Áttekintő videó megtekintése

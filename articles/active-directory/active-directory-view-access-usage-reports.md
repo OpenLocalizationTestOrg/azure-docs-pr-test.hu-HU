@@ -1,6 +1,6 @@
 ---
-title: "A hozzáférési és használati jelentések megtekintése |} Microsoft Docs"
-description: "Ismerteti, hogyan betekintést az integritásra és a szervezete címtárát a biztonsági hozzáférési és használati jelentések megtekintése."
+title: "aaaView a hozzáférési és használati jelentések |} Microsoft Docs"
+description: "Ismerteti, hogyan tooview hozzáférési és használati jelentések hello adatintegritási és biztonsági a szervezete címtárának toogain betekintést."
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 038ac79ebf61c6429fbf7ca21eefe9414bcfc03a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c18fd2a327ae8b67f62ce2754f643bdb03514a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-your-access-and-usage-reports"></a>View your access and usage reports (A hozzáférési és használati jelentések megtekintése)
-*Ez a dokumentáció az [Azure Active Directory Reporting-útmutató](active-directory-reporting-guide.md) része.*
+*Ebben a dokumentációban hello része [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).*
 
-Azure Active Directory hozzáférési és használati jelentések segítségével hogy lássák az integritásra és a munkahely címtárában biztonságát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat a vizsgálandó, hogy azok megfelelően megtervezheti kockázatok csökkentésének lehetőségeit.
+Használhatja az Azure Active Directory hozzáférési és használati jelentések toogain láthatósága hello adatintegritási és biztonsági a szervezete címtárát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat, hogy azok megfelelően megtervezheti toomitigate kockázatok vizsgálandó.
 
-Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába sorolva a következőképpen:
+Hello Azure felügyeleti portálon, a jelentések szerint vannak kategóriába sorolva hello a következő módon:
 
-* Az anomáliadetektálási jelentések – jelenleg található a rendellenes eseményeket tartalmazó bejelentkezés. Célunk, ellenőrizze, hogy tisztában legyen ilyen tevékenység, és lehetővé teszik a tudni győződjön meg arról, hogy az esemény gyanúsnak meghatározása.
+* Az anomáliadetektálási jelentések – tartalmazó bejelentkezési eseményeket, hogy észleltünk toobe rendellenes. Célunk toomake tud-e a tevékenység, és lehetővé teszik a toobe képes toomake arról, hogy az esemény gyanúsnak meghatározása.
 * Integrált alkalmazás jelentések – hogyan használja a szervezet a felhőalapú alkalmazások betekintést nyújt. Az Azure Active Directory integrálható a felhőalapú alkalmazások ezer.
-* Hibajelentések – adja meg a külső alkalmazásokba fiókok létesítésekor előforduló hibákat.
+* Hibajelentések – fiókok tooexternal alkalmazások létesítésekor előforduló hibákat adja meg.
 * Eszköz/sign tevékenységek adatai egy adott felhasználó felhasználóspecifikus jelentések – jeleníti meg.
-* Tevékenységi naplóit – tartalmazó belül utolsó 24 órában, legutóbbi 7 nap vagy 30 napnál, valamint csoport tevékenység módosításainak és jelszó alaphelyzetbe állítása és nyilvántartási tevékenység összes naplózott eseményeket rögzíti.
+* Tevékenységi naplóit – tartalmazó feljegyzés hello belül minden naplózott események az utolsó 24 óra, 7 napja, vagy utolsó 30 nap során, valamint csoport tevékenység módosításainak és jelszó alaphelyzetbe állítása és nyilvántartási tevékenység.
 
 > [!NOTE]
-> * Néhány speciális anomáliadetektálási és erőforrás használati jelentések csak érhetők el, ha engedélyezi a [Azure Active Directory Premium](active-directory-get-started-premium.md). Speciális jelentések segítségével hozzáférés a biztonság növelése, reagáljon a lehetséges veszélyforrásokra és eszköz-hozzáférési és az alkalmazás használata analytics eléréséhez.
-> * Az Azure Active Directory Prémium és Alapszintű kiadásai az Azure Active Directory világszerte elérhető példányával érhetők el a kínai ügyfelek számára. Az Azure Active Directory Prémium és Alapszintű kiadásai jelenleg nem támogatottak Kínában a 21Vianet által működtetett Microsoft Azure szolgáltatásban. További információkért lépjen velünk kapcsolatba az [Azure Active Directory fórumán](https://feedback.azure.com/forums/169401-azure-active-directory/).
+> * Néhány speciális anomáliadetektálási és erőforrás használati jelentések csak érhetők el, ha engedélyezi a [Azure Active Directory Premium](active-directory-get-started-premium.md). Speciális jelentések segítségével toopotential fenyegetések hozzáférés biztonság, növelése válaszol, és kérjen hozzáférési tooanalytics a eszköz-hozzáférési és az alkalmazás használata.
+> * Az Azure Active Directory prémium és alapszintű kiadásai érhetők el a kínai ügyfelek számára az Azure Active Directory hello világszerte példányát használja. Az Azure Active Directory prémium és alapszintű kiadásai jelenleg nem támogatottak Kínában a 21Vianet által működtetett hello Microsoft Azure szolgáltatásban. További információkért lépjen velünk kapcsolatba: hello [Azure Active Directory fórumán](https://feedback.azure.com/forums/169401-azure-active-directory/).
 > 
 > 
 
@@ -43,24 +43,24 @@ Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába soro
 | Jelentés | Leírás |
 | --- | --- |
 | **Rendellenes tevékenységet jelentések** | |
-| [Az ismeretlen forrásból származó indított bejelentkezések](active-directory-reporting-sign-ins-from-unknown-sources.md) |Utalhat nyomon követve nélkül bejelentkezni. |
+| [Az ismeretlen forrásból származó indított bejelentkezések](active-directory-reporting-sign-ins-from-unknown-sources.md) |Azt jelezheti a egy kísérlet toosign nélkül nyomon követve. |
 | [Több hiba után indított bejelentkezések](active-directory-reporting-sign-ins-after-multiple-failures.md) |Egy sikeres durva erőszakos támadást is jelezhet. |
-| [Több földrajzi területről indított bejelentkezések](active-directory-reporting-sign-ins-from-multiple-geographies.md) |Azt jelezheti, hogy több felhasználó jelentkezik ugyanazt a fiókot. |
+| [Több földrajzi területről indított bejelentkezések](active-directory-reporting-sign-ins-from-multiple-geographies.md) |Azt jelezheti, hogy több felhasználó jelentkezik hello azonos fiók. |
 | [IP-címekről a gyanús tevékenységeket bejelentkezések](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md) |Azt jelezheti sikeres bejelentkezés tartós behatolás kísérlet után. |
-| [Valószínűleg fertőzött eszközökről indított bejelentkezések](active-directory-reporting-sign-ins-from-possibly-infected-devices.md) |Jelentkezzen be a potenciálisan fertőzött eszközökről kísérlet arra utalhat. |
-| [Szabálytalan bejelentkezési tevékenység](active-directory-reporting-irregular-sign-in-activity.md) |Azt jelezheti rendellenes minták a felhasználói bejelentkezési eseményeket. |
+| [Valószínűleg fertőzött eszközökről indított bejelentkezések](active-directory-reporting-sign-ins-from-possibly-infected-devices.md) |Azt jelezheti egy kísérlet toosign a potenciálisan fertőzött eszközökről. |
+| [Szabálytalan bejelentkezési tevékenység](active-directory-reporting-irregular-sign-in-activity.md) |Azt jelezheti minták bejelentkezési események rendellenes toousers'. |
 | [Szokatlan bejelentkezési tevékenység rendelkező felhasználók](active-directory-reporting-users-with-anomalous-sign-in-activity.md) |Azt jelzi, felhasználók, akiknek a fiókja veszélyben. |
 | Felhasználók, akiknek kiszivárogtak a hitelesítő adatai |Felhasználók, akiknek kiszivárogtak a hitelesítő adatai |
 | **Tevékenység-naplók** | |
 | Ellenőrzési jelentés |A címtárban naplózott események |
 | Jelszó-visszaállítási tevékenység |Jelszó-átállításra, a szervezetben előforduló részletes áttekintést nyújt. |
 | Jelszó-visszaállítási regisztrációs tevékenység |Itt részletes nézet a jelszó alaphelyzetbe állítása a szervezetben előforduló regisztráció. |
-| Önkiszolgáló csoportok tevékenységéről |Az összes naplóz csoport önkiszolgáló tevékenység a könyvtárban |
+| Önkiszolgáló csoportok tevékenységéről |Egy tevékenység napló tooall biztosít a címtárban önkiszolgáló tevékenység csoport |
 | **Integrált alkalmazások** | |
 | Az alkalmazás használatának |Integrálva van a címtár összes SaaS-alkalmazások használatának összegzését biztosít. |
-| Tevékenység-kiépítési |A külső alkalmazások fiókok kiépítéséhez kísérletek előzményeit biztosítja. |
+| Tevékenység-kiépítési |Lehetővé teszi a kísérletek előzményeit tooprovision fiókok tooexternal. |
 | Jelszó-helyettesítő állapota |Részletes áttekintést nyújt az SaaS-alkalmazásokhoz kapcsolódó kulcsváltás állapotának automatikus jelszó. |
-| Alkalmazás-kiépítési hibák |Azt jelzi, hogy az hatással lehet a külső alkalmazásokkal való hozzáférést. |
+| Alkalmazás-kiépítési hibák |Azt jelzi, hogy egy hatás toousers tooexternal alkalmazásokat. |
 | **Rights management** | |
 | RMS-használat |A Rights Management használatának összegzését tartalmazza |
 | Legtöbb aktív RMS-felhasználók |Felsorolja az RMS-védelemmel ellátott fájlok hozzáférő legfelső 1000 aktív felhasználók |
@@ -96,11 +96,11 @@ Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába soro
 | RMS-kompatibilis alkalmazások használatát | | |Csak RMS |
 
 ## <a name="anomalous-activity-reports"></a>Rendellenes tevékenységet jelentések
-<p>Tevékenységjelentések a rendellenes bejelentkezési tevékenységet Office365, Azure felügyeleti portál, Azure AD hozzáférési Panel, Sharepoint online-hoz, a Dynamics CRM Online-hoz és más Microsoft online services gyanús bejelentkezési jelző.</p>
+<p>Tevékenységjelentések jelző gyanús tevékenység tooOffice365, Azure felügyeleti portál, Azure AD hozzáférési Panel, Sharepoint online-hoz, a Dynamics CRM Online és más Microsoft online services bejelentkezési bejelentkezés szokatlan hello.</p>
 
-<p>Az összes ezekre a jelentésekre, kivéve a "Több hibát követő bejelentkezések" jelentés is ez a jelző gyanús <i>összevont</i> bejelentkezések a fentebb említett szolgáltatások, függetlenül az összevonás-szolgáltatóként. </p>
+<p>Az összes ezekre a jelentésekre, kivéve a jelentés "Több hibát követő bejelentkezések" hello is ez a jelző gyanús <i>összevont</i> modulok toohello fent említett szolgáltatások, függetlenül attól, hello összevonás-szolgáltatóként aláírásához. </p>
 
-<p>Az alábbi jelentések érhetők el: </p><ul>
+<p>a következő jelentések hello érhetők el: </p><ul>
 
 <li>[Az ismeretlen forrásból származó indított bejelentkezések](active-directory-reporting-sign-ins-from-unknown-sources.md).</li>
 
@@ -122,7 +122,7 @@ Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába soro
 ### <a name="audit-report"></a>Ellenőrzési jelentés
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Feljegyzés az összes naplózott események az elmúlt 24 óra, 7 napja vagy utolsó 30 nap megjelenik. <br /> További információkért lásd: [Azure Active Directory Auditnaplójának jelentési eseményei](active-directory-reporting-audit-events.md) |Directory > Jelentések lap |
+| Feljegyzés az elmúlt 24 óra, 7 napja vagy utolsó 30 nap hello belül minden naplózott eseményeket jeleníti meg. <br /> További információkért lásd: [Azure Active Directory Auditnaplójának jelentési eseményei](active-directory-reporting-audit-events.md) |Directory > Jelentések lap |
 
 ![Ellenőrzési jelentés](./media/active-directory-view-access-usage-reports/auditReport.PNG)
 
@@ -143,7 +143,7 @@ Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába soro
 ### <a name="self-service-groups-activity"></a>Önkiszolgáló csoportok tevékenységéről
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| A címtár összes tevékenység a felügyelt önkiszolgáló csoportok jeleníti meg. |Directory > felhasználók > <i>felhasználói</i> > eszközök lapon |
+| A címtár összes tevékenység hello önkiszolgáló kezelt csoportok jeleníti meg. |Directory > felhasználók > <i>felhasználói</i> > eszközök lapon |
 
 ![Önkiszolgáló csoportok tevékenységéről](./media/active-directory-view-access-usage-reports/selfServiceGroupsActivity.PNG)
 
@@ -151,29 +151,29 @@ Az Azure felügyeleti portálon, a jelentések szerint vannak kategóriába soro
 ### <a name="application-usage-summary"></a>Alkalmazáshasználat: összegzés
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Ez a jelentés használható, ha azt szeretné, hogy a címtárban SaaS-alkalmazások használatát. Ez a jelentés a felhasználók az alkalmazás a hozzáférési panelen kattintott hányszor alapul. |Directory > Jelentések lap |
+| Ez a jelentés esetén célszerű használni toosee használata az összes hello SaaS-alkalmazásokhoz a címtárban. Ez a jelentés hello hány felhasználó kattintott a hozzáférési Panel hello hello alkalmazás alapul. |Directory > Jelentések lap |
 
-Ez a jelentés tartalmazza a bejelentkezési modulok *összes* alkalmazás, amely a címtár éri el, beleértve az előre integrált Microsoft-alkalmazáshoz.
+Ez a jelentés tartalmaz bejelentkezések túl*összes* alkalmazás, amely a címtár éri el, beleértve az előre integrált Microsoft-alkalmazáshoz.
 
-Előre integrált Microsoft-alkalmazások közé tartoznak az Office 365, Sharepoint, az Azure felügyeleti portálon és mások számára.
+Előre integrált Microsoft-alkalmazások közé tartoznak az Office 365, a Sharepoint, az hello Azure felügyeleti portálon és mások számára.
 
 ![Alkalmazás használatának összegzése](./media/active-directory-view-access-usage-reports/applicationUsage.PNG)
 
 ### <a name="application-usage-detailed"></a>Alkalmazáshasználat: részletes
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Ez a jelentés akkor használja, ha meg szeretné tekinteni, mennyi egy adott SaaS-alkalmazás használatban van. Ez a jelentés a felhasználók az alkalmazás a hozzáférési panelen kattintott hányszor alapul. |Directory > Jelentések lap |
+| Ez a jelentés használja, ha azt szeretné, hogy toosee mennyi egy adott SaaS-alkalmazás használatban van. Ez a jelentés hello hány felhasználó kattintott a hozzáférési Panel hello hello alkalmazás alapul. |Directory > Jelentések lap |
 
 ### <a name="application-dashboard"></a>Alkalmazás irányítópultja
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Ez a jelentés összegző bejelentkezési jelzi az alkalmazásnak a felhasználók a szervezetben, egy adott időszakban modulok. A diagram az irányítópult-oldalon segítségével azonosíthatja a trendeket, hogy az alkalmazás összes használatra. |Directory > alkalmazások > irányítópulton |
+| Ez a jelentés azt jelzi, hogy összesített bejelentkezési modulok toohello alkalmazás által a felhasználók a szervezetben, egy adott időszakban. hello diagram hello irányítópult-oldalon segítségével azonosíthatja a trendeket, hogy az alkalmazás összes használatra. |Directory > alkalmazások > irányítópulton |
 
 ## <a name="error-reports"></a>Hibajelentések
 ### <a name="account-provisioning-errors"></a>Alkalmazás-kiépítési hibák
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Ezzel a figyelheti az SaaS-alkalmazásokhoz az Azure Active Directoryba a fiókok a szinkronizálás során előforduló hibákat. |Directory > Jelentések lap |
+| Használja a toomonitor az SaaS-alkalmazások tooAzure Active Directory fiókok hello szinkronizálás során előforduló hibákról. |Directory > Jelentések lap |
 
 ![Alkalmazás-kiépítési hibák](./media/active-directory-view-access-usage-reports/accountProvisioningErrors.PNG)
 
@@ -181,65 +181,65 @@ Előre integrált Microsoft-alkalmazások közé tartoznak az Office 365, Sharep
 ### <a name="devices"></a>Eszközök
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| Ez a jelentés akkor használja, ha meg szeretné tekinteni az IP-cím és egy adott felhasználó Azure Active Directory elérésére használt eszközök földrajzi elhelyezkedését. |Directory > felhasználók > <i>felhasználói</i> > eszközök lapon |
+| Ez a jelentés használható, ha toosee hello IP-cím és, hogy egy adott felhasználó tooaccess Azure Active Directory használt eszközök földrajzi elhelyezkedését. |Directory > felhasználók > <i>felhasználói</i> > eszközök lapon |
 
 ### <a name="activity"></a>Tevékenység
 | Leírás | A jelentés helyét |
 |:--- |:--- |
-| A bejelentkezési tevékenység egy felhasználó számára látható. A jelentés tartalmaz információkat, például az alkalmazás be van jelentkezve, a használt eszköz, a IP-cím és a hely. Nem gyűjtünk az előzmények a felhasználók számára, hogy jelentkezzen be egy Microsoft-fiókkal. |Directory > felhasználók > <i>felhasználói</i> > Tevékenység lap |
+| Hello bejelentkezési tevékenység egy felhasználó számára látható. hello jelentés tartalmaz információkat, például hello alkalmazás be van jelentkezve, eszköz, IP-cím és helyét. Nem gyűjtünk hello előzmények a felhasználók számára, hogy jelentkezzen be egy Microsoft-fiókkal. |Directory > felhasználók > <i>felhasználói</i> > Tevékenység lap |
 
-#### <a name="sign-in-events-included-in-the-user-activity-report"></a>Jelentkezzen be a felhasználói tevékenység jelentésben szereplő események
-A felhasználói tevékenység jelentés bejelentkezési események csak bizonyos típusú fog megjelenni.
+#### <a name="sign-in-events-included-in-hello-user-activity-report"></a>Jelentkezzen be az esemény (Event) a hello felhasználói tevékenységgel kapcsolatos jelentés
+Bejelentkezési események csak bizonyos típusú felhasználó tevékenységgel kapcsolatos jelentés hello fog megjelenni.
 
 | Esemény típusa | Tartalmaz? |
 | --- | --- |
-| Az indított bejelentkezések a [hozzáférési Panel](http://myapps.microsoft.com/) |Igen |
-| Az indított bejelentkezések a [Azure felügyeleti portálon](https://manage.windowsazure.com/) |Igen |
-| Az indított bejelentkezések a [Microsoft Azure-portálon](https://portal.azure.com/) |Igen |
-| Az indított bejelentkezések a [Office 365 portál](http://portal.office.com/) |Igen |
-| Natív alkalmazás, például az Outlookhoz indított bejelentkezések (lásd a kivételt alább) |Igen |
-| A hozzáférési panelre, például a Salesforce keresztül összevont/kiépített alkalmazásokhoz indított bejelentkezések |Igen |
-| A hozzáférési panelre, például a Twitter keresztül jelszó alapú alkalmazásokhoz indított bejelentkezések |Igen |
-| Egy egyéni üzleti alkalmazást, amely a címtár hozzá lett adva a indított bejelentkezések |Nincs (hamarosan elérhető) |
-| Az Azure AD alkalmazásproxy alkalmazásához, amely hozzá van adva a könyvtár indított bejelentkezések |Nincs (hamarosan elérhető) |
+| Modulok toohello jelentkezzen [hozzáférési Panel](http://myapps.microsoft.com/) |Igen |
+| Modulok toohello jelentkezzen [Azure felügyeleti portálon](https://manage.windowsazure.com/) |Igen |
+| Modulok toohello jelentkezzen [Microsoft Azure-portálon](https://portal.azure.com/) |Igen |
+| Modulok toohello jelentkezzen [Office 365 portál](http://portal.office.com/) |Igen |
+| Modulok tooa natív alkalmazások aláírása, például az Outlookhoz (lásd a kivételt alább) |Igen |
+| Modulok tooa összevont/kiépített alkalmazások hello hozzáférési panelre, például a Salesforce keresztül |Igen |
+| Modulok tooa jelszó-alapú alkalmazások hello hozzáférési panelre, például a Twitter keresztül |Igen |
+| Modulok tooa egyéni üzleti alkalmazások toohello directory hozzáadott |Nincs (hamarosan elérhető) |
+| Modulok tooan Azure AD alkalmazásproxy alkalmazások toohello directory hozzáadott |Nincs (hamarosan elérhető) |
 
-> Megjegyzés: Ebben a jelentésben zaj mennyiségének csökkentése érdekében bejelentkezések által a [Microsoft Online Services bejelentkezési segéd](http://community.office365.com/en-us/w/sso/534.aspx) nem láthatók.
+> Megjegyzés: Ez a jelentés a zaj tooreduce hello mennyisége bejelentkezések által hello [Microsoft Online Services bejelentkezési segéd](http://community.office365.com/en-us/w/sso/534.aspx) nem láthatók.
 > 
 > 
 
-## <a name="things-to-consider-if-you-suspect-security-breach"></a>Megfontolandó szempontok, ha azt gyanítja, biztonsági szabálysértés
-Ha azt gyanítja, hogy egy felhasználói fiókot tulajdonítják el, vagy bármilyen gyanús felhasználói tevékenység, amely azt eredményezheti, hogy a biztonsági sérülése directory adatait a felhőben, érdemes lehet figyelembe venni az alábbi műveletek közül:
+## <a name="things-tooconsider-if-you-suspect-security-breach"></a>Ha azt gyanítja, hogy a biztonsági szabálysértés a dolgot tooconsider
+Ha azt gyanítja, hogy egy felhasználói fiókot tulajdonítják el, vagy bármilyen gyanús felhasználói tevékenység, amely a címtáradatok tooa biztonság megsértése hello felhőben vezethet, érdemes lehet tooconsider hello a következő műveletek egyikét:
 
-* Lépjen kapcsolatba a felhasználó a tevékenység ellenőrzése
-* A felhasználói jelszó alaphelyzetbe állítását
+* Lépjen kapcsolatba a hello felhasználói tooverify hello tevékenység
+* Hello felhasználói jelszó alaphelyzetbe állítása
 * [Többtényezős hitelesítés engedélyezése](../multi-factor-authentication/multi-factor-authentication-get-started.md) a fokozott biztonság
 
 ## <a name="view-or-download-a-report"></a>Megtekintése vagy jelentés letöltése
-1. A klasszikus Azure portálon kattintson **Active Directory**, kattintson a szervezete címtárának nevét, majd **jelentések**.
-2. A jelentések lapon kattintson a jelentés megtekintéséhez és/vagy a letölteni kívánt.
+1. Hello a klasszikus Azure portálon, kattintson **Active Directory**, kattintson a szervezete címtárának hello nevét, majd **jelentések**.
+2. Hello jelentések lapján kattintson a kívánt tooview hello jelentést és/vagy töltse le.
    
    > [!NOTE]
-   > Ha ez az első alkalommal használja az Azure Active Directory jelentéskészítési funkciót, egy üzenetet, amely részt vesz a láthatja. Ha elfogadja, kattintson a pipa ikonra a folytatáshoz.
+   > Ha ez hello első alkalommal használja az Azure Active Directory szolgáltatás reporting hello, megjelenik egy üzenet tooOpt a. Ha elfogadja, kattintson a hello pipa ikon toocontinue.
    > 
    > 
-3. Kattintson a legördülő menü mellett időköz, és válasszon egyet kell használni, amikor ez a jelentés létrehozása a következő alkalommal tartományok:
+3. Kattintson a legördülő menü következő tooInterval hello, majd válassza ki valamelyik hello idő tartományt kell használni, amikor ez a jelentés létrehozása a következő:
    
    * Utolsó 24 órában
    * Az elmúlt 7 napban
    * Az elmúlt 30 napban
-4. Kattintson a pipa ikonra a jelentés futtatásához.
-   * Legfeljebb 1000 esemény jelenik meg a klasszikus Azure portálon.
-5. Szükség esetén kattintson **letöltése** a jelentés letöltéséhez offline megtekintése vagy archiválásra szolgál egy tömörített fájl vesszővel tagolt (CSV) formátumban.
-   * Legfeljebb 75,000 események fognak szerepelni a letöltött fájlt.
-   * Több adat, tekintse meg a [Azure AD jelentéskészítési API](active-directory-reporting-api-getting-started.md).
+4. Kattintson a hello pipa ikon toorun hello jelentés.
+   * Másolatot too1000 események jelenik meg a klasszikus Azure portálon hello.
+5. Szükség esetén kattintson **letöltése** toodownload hello jelentés tooa tömörített vesszővel tagolt (CSV) formátumú fájl offline megjelenítése vagy archiválásra szolgál.
+   * Másolatot too75 000 események fognak szerepelni hello letöltött fájl.
+   * Több adat, tekintse meg a hello [Azure AD jelentéskészítési API](active-directory-reporting-api-getting-started.md).
 
 ## <a name="ignore-an-event"></a>Esemény mellőzése
-Anomáliabiztonsági jelentéseket tekinti meg, ha azt tapasztalhatja, hogy figyelmen kívül hagyhatja láthatók a kapcsolódó jelentések különféle eseményeket. Figyelmen kívül hagyása egy eseményt, egyszerűen jelölje ki a jelentésben az esemény, és kattintson a **figyelmen kívül hagyása**. A **figyelmen kívül hagyása** gomb véglegesen törli a kijelölt esemény a jelentésből, és csak a licenccel rendelkező globális rendszergazdák használható.
+Anomáliabiztonsági jelentéseket tekinti meg, ha azt tapasztalhatja, hogy figyelmen kívül hagyhatja láthatók a kapcsolódó jelentések különféle eseményeket. egy esemény, tooignore egyszerűen jelölje ki a hello esemény hello jelentésben, és kattintson a **figyelmen kívül hagyása**. Hello **figyelmen kívül hagyása** gomb véglegesen eltávolítja a kijelölt esemény hello hello jelentés, és csak a licenccel rendelkező globális rendszergazdák használható.
 
 ## <a name="automatic-email-notifications"></a>Automatikus e-mail értesítések
 A további információ az Azure AD adatszolgáltatási értesítések, tekintse meg [Azure Active Directory jelentéskészítési értesítései](active-directory-reporting-notifications.md).
 
 ## <a name="whats-next"></a>A következő lépések
 * [Bevezetés a Prémium szintű Azure Active Directory használatába](active-directory-get-started-premium.md)
-* [Vállalati arculat megjelenítése a bejelentkezési és a hozzáférési panel oldalon](active-directory-add-company-branding.md)
+* [Vállalati arculat megjelenítése a tooyour bejelentkezés és a hozzáférési Panel oldalon](active-directory-add-company-branding.md)
 

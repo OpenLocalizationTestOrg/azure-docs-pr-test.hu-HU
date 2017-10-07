@@ -1,5 +1,5 @@
 ---
-title: "Gyakorlati tanácsok az Azure Functions |} Microsoft Docs"
+title: "az Azure Functions aaaBest eljárásai |} Microsoft Docs"
 description: "Az Azure Functions ajánlott eljárásairól és mintáiról megismerése."
 services: functions
 documentationcenter: na
@@ -17,69 +17,69 @@ ms.workload: na
 ms.date: 06/13/2017
 ms.author: glenga
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 645a5dd16e72619e7c2470ab8f03098f0fa6c7f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bd3d826b75267a740e355b008943a48f71ebd339
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="optimize-the-performance-and-reliability-of-azure-functions"></a>A teljesítmény-és az Azure Functions megbízhatóság
+# <a name="optimize-hello-performance-and-reliability-of-azure-functions"></a>Hello teljesítmény-és az Azure Functions megbízhatóság
 
-Ez a cikk nyújt útmutatást a jobb teljesítmény és megbízhatóság a függvény alkalmazások. 
+Ez a cikk útmutatást tooimprove hello teljesítményéről és megbízhatóságáról, a függvény alkalmazások tartalmazza. 
 
 
 ## <a name="avoid-long-running-functions"></a>Kerülje a hosszú ideig futó funkciók
 
-Nagyméretű, hosszú futású funkciók váratlan időtúllépési hibákat is okozhat. Egy függvény nagyméretű, sok Node.js függőségek miatt válhat. Függőségek importálását is okozhat váratlan időtúllépések eredményező megnövekedett terhelést alkalommal. Függőségek töltődnek be mindkét explicit és implicit módon. A kód által betöltött egyetlen modul töltődhet saját további modulok.  
+Nagyméretű, hosszú futású funkciók váratlan időtúllépési hibákat is okozhat. Egy függvény nagy toomany Node.js függőségek miatt válhat. Függőségek importálását is okozhat váratlan időtúllépések eredményező megnövekedett terhelést alkalommal. Függőségek töltődnek be mindkét explicit és implicit módon. A kód által betöltött egyetlen modul töltődhet saját további modulok.  
 
-Amikor csak lehetséges, azonosítóterületen nagy funkciók kisebb függvénynek együtt beállítja, hogy a munka, és térjen vissza a gyors válaszok. Például egy webhook vagy a HTTP-eseményindító függvény előfordulhat, hogy egy visszaigazoló választ belül bizonyos; esetében gyakori, a webhookok való egy azonnali válasz igényelnek. A HTTP-eseményindító forgalma átadhatók egy várólista eseményindító függvény által feldolgozandó egy várólistára. Ez a megközelítés lehetővé teszi a tényleges munkát késleltető, és térjen vissza az azonnali válasz.
+Amikor csak lehetséges, azonosítóterületen nagy funkciók kisebb függvénynek együtt beállítja, hogy a munka, és térjen vissza a gyors válaszok. Például egy webhook vagy a HTTP-eseményindító függvény előfordulhat, hogy egy visszaigazoló választ belül bizonyos; gyakori, hogy a webhookok toorequire egy azonnali válasz is. A várólista toobe dolgozza fel a várólista funkció be átadhatók hello HTTP eseményindító hasznos. Ez a megközelítés lehetővé teszi toodefer hello tényleges munka, és térjen vissza az azonnali válasz.
 
 
 ## <a name="cross-function-communication"></a>Kereszt-függvény kommunikáció
 
-Több funkciók integrálása, esetén általában tárüzenetsort közötti kommunikáció függvény használata ajánlott.  A legfőbb oka tárüzenetsort olcsóbb és sokkal könnyebben kiépítéséhez. 
+Több funkciók integrálása, esetén általában a bevált gyakorlat toouse tárüzenetsort a közötti kommunikáció függvény.  hello legfőbb oka tárüzenetsort olcsóbb és sokkal könnyebb tooprovision. 
 
-A tárolási várólistában lévő egyes üzenetek 64 KB méretű korlátozottak. Ha nagyobb üzenetek továbbítani funkciók között van szüksége, az Azure Service Bus várólista üzenet használható méretének legfeljebb 256 KB.
+A tárolási várólistában lévő egyes üzenetek méretének too64 korlátozott KB. Toopass nagyobb üzeneteket funkciók között van szüksége, az Azure Service Bus-üzenetsorba használt toosupport üzenetek méretének mentése too256 KB lehet.
 
 Service Bus-témakörök hasznosak, ha üzenet feldolgozás előtt szűrés van szüksége.
 
-Az Event hubs hasznosak nagy mennyiségű kommunikáció támogatásához.
+Az Event hubs hasznos toosupport nagy mennyiségű kommunikációs.
 
 
-## <a name="write-functions-to-be-stateless"></a>Írást kell lennie az állapot nélküli 
+## <a name="write-functions-toobe-stateless"></a>Állapot nélküli funkciók toobe írása 
 
-Funkciók kell lennie az állapot nélküli és idempotent Ha lehetséges. Az adatok minden szükséges állapotadatokat társítani. Például egy rendelés feldolgozása valószínűleg a hozzárendelt `state` tag. Egy függvény alapján az állapotban, miközben maga a funkció továbbra is az állapot nélküli rendelés feldolgozása sikerült. 
+Funkciók kell lennie az állapot nélküli és idempotent Ha lehetséges. Az adatok minden szükséges állapotadatokat társítani. Például egy rendelés feldolgozása valószínűleg a hozzárendelt `state` tag. A következő függvényt egy sorrendet, miközben maga hello függvény állapot nélküli marad, hogy állapotától függően sikerült feldolgozni. 
 
-Az Idempotent funkciók különösen az időzítő eseményindítók használata ajánlott. Például ha rendelkezik, amelyet feltétlenül naponta egyszer kell futtatni, írják, a nap folyamán bármikor ugyanaz az eredmény való futtatás. A függvény a következő módokon léphet nincs feladata egy adott napon esetén. Emellett egy korábbi futtatás nem sikerült végrehajtani, ha a következő futtatáskor kell átvételéhez, ahol abbahagyta.
+Az Idempotent funkciók különösen az időzítő eseményindítók használata ajánlott. Például ha rendelkezik, amelyet feltétlenül naponta egyszer kell futtatni, írják, hello nap alatt való futtatás hello ugyanazokat az eredményeket. Ha nincs feladata egy adott napon a következő módokon léphet hello függvény. Is előző toocomplete sikertelen, ha következő futtatás hello kell onnan folytathatja az adatgyűjtést, ahol abbahagyta.
 
 
 ## <a name="write-defensive-functions"></a>Defenzív írást
 
-Tegyük fel, a függvény kivételt bármikor sikerült tapasztal. A funkciók tervezése folytathatja a korábbi sikertelen pontokról a következő végrehajtása közben. Vegye figyelembe a következő műveletek van szükség:
+Tegyük fel, a függvény kivételt bármikor sikerült tapasztal. Tervezze meg a függvények hello képességét toocontinue egy előző sikertelen pont hello következő végrehajtása közben. Vegye figyelembe a következő műveletek hello van szükség:
 
 1. A lekérdezés egy db 10 000 soraihoz.
-2. Hozzon létre egy üzenetsor-üzenetet az összes további feldolgozható sorok le a sort.
+2. Hozzon létre egy üzenetsor-üzenetet minden e sorok tooprocess további hello sor le.
  
-Attól függően, hogy hogyan összetett a rendszer, előfordulhat, hogy: helytelen viselkedik érintett alárendelt szolgáltatásokkal hálózati kimaradások vagy a kvóta korlátozza elérte, stb. A függvény bármikor befolyásolhatja mindegyik. Kell terveznie a Funkciók, elő kell készíteni a azt.
+Attól függően, hogy hogyan összetett a rendszer, előfordulhat, hogy: helytelen viselkedik érintett alárendelt szolgáltatásokkal hálózati kimaradások vagy a kvóta korlátozza elérte, stb. A függvény bármikor befolyásolhatja mindegyik. A funkciók toobe az előkészített kell toodesign.
 
 Hogyan reagál a kódját a után 5000 elem beszúrása a várólistára feldolgozásra hiba esetén? Nyomon követheti, hogy befejezte készletben. Ellenkező esetben előfordulhat, hogy be őket újra a következő alkalommal. Ez a munkafolyamat egy súlyos hatása lehet. 
 
-Egy elem már megtörtént a feldolgozása, ha engedélyezi a műveletvégzés a funkciót.
+Ha egy elem már megtörtént a feldolgozása, a függvény toobe lehetővé műveletvégzés.
 
-Használhatja az Azure Functions platform összetevők már foglalt védelmi intézkedések előnyeit. Lásd például: **elhalt üzenetek kezelésének** dokumentációját [Azure Storage Üzenetsorába elindítja a](functions-bindings-storage-queue.md#trigger).
+Használhatja a hello Azure Functions platform összetevők már foglalt védelmi intézkedések előnyeit. Lásd például: **elhalt üzenetek kezelésének** hello dokumentációjában [Azure Storage Üzenetsorába elindítja a](functions-bindings-storage-queue.md#trigger).
  
 
-## <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>Angol szövegben ne keverje függvény ugyanazt az alkalmazást a teszt- és éles kódot
+## <a name="dont-mix-test-and-production-code-in-hello-same-function-app"></a>Nem vegyes teszt termelési kód és a hello azonos függvény alkalmazás
 
-A függvény alkalmazások funkciók osztozik az erőforrásokon. Például a memória van osztva. Egy függvény alkalmazást éles környezetben használata, nem felvétele teszt kapcsolatos funkciók, és erőforrásokat. Éles kód végrehajtása során váratlan terhelést okozhat.
+A függvény alkalmazások funkciók osztozik az erőforrásokon. Például a memória van osztva. Egy függvény alkalmazást éles környezetben használata, ha nem adja hozzá, teszt kapcsolatos funkciók és erőforrások tooit. Éles kód végrehajtása során váratlan terhelést okozhat.
 
-Ügyeljen az éles függvény alkalmazások betöltése. Memória van átlagosan volt az alkalmazás minden függvényt.
+Ügyeljen az éles függvény alkalmazások betöltése. Memória van átlagosan hello alkalmazásban minden függvény volt.
 
-Ha egy megosztott hivatkozott több .NET-es függvényeket, elhelyezi egy közös megosztott mappába. Az alábbi példához hasonló utasítással szerelvény hivatkozik: 
+Ha egy megosztott hivatkozott több .NET-es függvényeket, elhelyezi egy közös megosztott mappába. A következő példa egy utasítás hasonló toohello hivatkozás hello szerelvény: 
 
     #r "..\Shared\MyAssembly.dll". 
 
-Ellenkező esetben egyszerűen véletlenül telepíthető több teszt verziója megegyezik a bináris parancsmagoktól eltérően működő funkciók között.
+Ellenkező esetben is könnyen tooaccidentally hello közötti másképp viselkednek bináris működik több teszt verzió telepítéséhez.
 
 Ne használja az éles kódban részletes naplózás. Rendelkezik egy negatívan befolyásolta a teljesítményt.
 
@@ -87,13 +87,13 @@ Ne használja az éles kódban részletes naplózás. Rendelkezik egy negatívan
 
 ## <a name="use-async-code-but-avoid-blocking-calls"></a>Aszinkron kódot használja, de elkerülni hívások
 
-Aszinkron programozás az ajánlott eljárás. Azonban mindig elkerülése hivatkozik a `Result` vagy tulajdonság hívása `Wait` metódusa egy `Task` példány. Ez a megközelítés szál Erőforrásfogyás vezethet.
+Aszinkron programozás az ajánlott eljárás. Azonban mindig elkerülése hello hivatkozó `Result` vagy tulajdonság hívása `Wait` metódusa egy `Task` példány. Ez a megközelítés toothread Erőforrásfogyás vezethet.
 
 
 [!INCLUDE [HTTP client best practices](../../includes/functions-http-client-best-practices.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd a következőket:
+További információkért tekintse meg a következő erőforrások hello:
 
 Mivel az Azure Functions használ akkor is tisztában kell lennie az App Service-irányelvek Azure App Service-ben.
 * [Minták és gyakorlatok HTTP teljesítményoptimalizálás](https://docs.microsoft.com/azure/architecture/antipatterns/improper-instantiation/)

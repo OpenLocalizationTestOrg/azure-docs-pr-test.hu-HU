@@ -1,6 +1,6 @@
 ---
-title: "Leküldéses értesítések hozzáadása Mobile Apps az Android alkalmazás |} Microsoft Docs"
-description: "Megtudhatja, hogyan küldhet leküldéses értesítéseket az Android-alkalmazás a Mobile Apps segítségével."
+title: "aaaAdd leküldéses értesítések tooyour Android-alkalmazást a Mobile Apps |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Mobile Apps toosend leküldéses értesítések tooyour Android-alkalmazás."
 services: app-service\mobile
 documentationcenter: android
 manager: syntaxc4
@@ -14,29 +14,29 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: glenga
-ms.openlocfilehash: b89e9af55342d5d7473d848956996f846250b4b5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dcfb8463b395904b4bd0bf9bde2f71f259894066
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-push-notifications-to-your-android-app"></a>Leküldéses értesítések Android-alkalmazás hozzáadása
+# <a name="add-push-notifications-tooyour-android-app"></a>Leküldéses értesítések tooyour Android-alkalmazás hozzáadása
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ebben az oktatóanyagban leküldéses értesítések hozzáadása a [Android gyors üzembe helyezési] projektre, hogy egy leküldéses értesítést küld az eszköz minden alkalommal, amikor egy olyan rekordot csatlakoztatva van.
+Ebben az oktatóanyagban leküldéses értesítések toohello hozzáadása [Android gyors üzembe helyezési] projektre, hogy egy leküldéses értesítést küld toohello eszköz minden alkalommal, amikor egy olyan rekordot csatlakoztatva van.
 
-Ha nem használja a letöltött gyors üzembe helyezési projekt, a leküldéses értesítési kiterjesztési csomagot kell. További információkért lásd: [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Ha nem használ hello letöltése – első lépések, leküldéses értesítési kiterjesztési csomagot kell hello. További információkért lásd: [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-A következőkre lesz szüksége:
+Hello a következőkre lesz szüksége:
 
 * Egy IDE, attól függően, hogy a projekt háttér:
 
   * [Android Studio](https://developer.android.com/sdk/index.html) a Node.js háttérből az alkalmazás-e.
   * [A Visual Studio Community 2013](https://go.microsoft.com/fwLink/p/?LinkID=391934) vagy újabb verzióját, ha az alkalmazás a Microsoft .NET-háttérből.
 * Android 2.3-as vagy újabb verzió, a Google-tárház változat 27 vagy újabb és a Google Play-szolgáltatásokra 9.0.2 vagy újabb Firebase Cloud Messaging.
-* Fejezze be a [Android gyors üzembe helyezési].
+* Teljes hello [Android gyors üzembe helyezési].
 
 ## <a name="create-a-project-that-supports-firebase-cloud-messaging"></a>A Firebase Cloud Messaginget támogató projekt létrehozása
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
@@ -44,38 +44,38 @@ A következőkre lesz szüksége:
 ## <a name="configure-a-notification-hub"></a>Egy értesítési központ konfigurálása
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
-## <a name="configure-azure-to-send-push-notifications"></a>Leküldéses értesítések küldéséhez Azure konfigurálása
+## <a name="configure-azure-toosend-push-notifications"></a>Az Azure toosend leküldéses értesítések konfigurálása
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push-for-firebase.md)]
 
-## <a name="enable-push-notifications-for-the-server-project"></a>A kiszolgáló projekt leküldéses értesítések engedélyezése
+## <a name="enable-push-notifications-for-hello-server-project"></a>Engedélyezze a leküldéses értesítéseket hello server projekthez
 [!INCLUDE [app-service-mobile-dotnet-backend-configure-push-google](../../includes/app-service-mobile-dotnet-backend-configure-push-google.md)]
 
-## <a name="add-push-notifications-to-your-app"></a>Leküldéses értesítések hozzáadása az alkalmazáshoz
-Ebben a szakaszban frissíti az ügyfél Android-alkalmazás leküldéses értesítések kezeléséhez.
+## <a name="add-push-notifications-tooyour-app"></a>Leküldéses értesítések tooyour alkalmazás hozzáadása
+Ebben a szakaszban frissíti az ügyfél Android-alkalmazás toohandle leküldéses értesítéseket.
 
 ### <a name="verify-android-sdk-version"></a>Android SDK-verziójának ellenőrzése
 [!INCLUDE [app-service-mobile-verify-android-sdk-version](../../includes/app-service-mobile-verify-android-sdk-version.md)]
 
-A következő lépés, hogy telepítse a Google Play-szolgáltatásokat. Google Cloud Messaging rendelkezik néhány minimális API szintre vonatkozó követelményeinek fejlesztéshez és teszteléshez, amely a **minSdkVersion** tulajdonság a jegyzékben meg kell felelnie.
+A következő lépés tooinstall Google Play-szolgáltatásokra. Google Cloud Messaging rendelkezik néhány minimális API szintre vonatkozó követelményeinek fejlesztéshez és teszteléshez, mely hello **minSdkVersion** tulajdonság hello jegyzékben meg kell felelnie.
 
-Ha egy régebbi eszközzel rendelkező teszteli, tekintse meg [beállítva fel Google Play Services SDK] annak meghatározásához, hogyan alacsony értékre állítja, és állítsa be megfelelően.
+Ha egy régebbi eszközzel rendelkező teszteli, tekintse meg [beállítva fel Google Play Services SDK] toodetermine hogyan alacsony értékre állítja, és állítsa be megfelelően.
 
-### <a name="add-google-play-services-to-the-project"></a>Google Play-szolgáltatások felvétele a projektbe
+### <a name="add-google-play-services-toohello-project"></a>Google Play services toohello projekt hozzáadása
 [!INCLUDE [Add Play Services](../../includes/app-service-mobile-add-google-play-services.md)]
 
 ### <a name="add-code"></a>Adja hozzá a kódot
 [!INCLUDE [app-service-mobile-android-getting-started-with-push](../../includes/app-service-mobile-android-getting-started-with-push.md)]
 
-## <a name="test-the-app-against-the-published-mobile-service"></a>A közzétett mobilszolgáltatás alkalmazás tesztelése
-Az alkalmazás közvetlen csatlakoztatása az USB-kábellel Androidos telefonnal, vagy az emulátorban a virtuális eszköz segítségével tesztelheti.
+## <a name="test-hello-app-against-hello-published-mobile-service"></a>Teszt hello alkalmazás hello mobilszolgáltatás közzététele
+USB-kábellel Androidos telefonnal közvetlenül csatolásával, vagy egy virtuális eszközzel hello emulátorban hello alkalmazást tesztelheti.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy ez az oktatóanyag befejezése fontolja meg valamelyik az alábbi oktatóanyagok folytatása:
+Most, hogy ez az oktatóanyag befejezése vegye figyelembe az alábbi oktatóanyagok hello tooone a folytatása:
 
-* [Hitelesítés hozzáadása az Android-alkalmazás](app-service-mobile-android-get-started-users.md).
-  Útmutató: hitelesítés hozzáadása a todolist gyorsútmutató-projekt az Android támogatott identitásszolgáltató használatával.
+* [Hitelesítési tooyour Android-alkalmazás hozzáadása](app-service-mobile-android-get-started-users.md).
+  Ismerje meg, hogyan tooadd hitelesítési toohello todolist gyors üzembe helyezési projekt támogatott identitásszolgáltató használatával Android rendszeren.
 * [Az Android-alkalmazás kapcsolat nélküli szinkronizálásának engedélyezése](app-service-mobile-android-get-started-offline-data.md).
-  Megtudhatja, hogyan adhat offline támogatást az alkalmazást a Mobile Apps háttérből segítségével. Kapcsolat nélküli szinkronizálás, a felhasználók használhatják a mobilalkalmazás&mdash;megtekintését, hozzáadását és módosítását adatok&mdash;akkor is, ha nincs hálózati kapcsolat.
+  Ismerje meg, hogyan tooadd offline tooyour alkalmazás használatával támogatják a Mobile Apps háttérből. Kapcsolat nélküli szinkronizálás, a felhasználók használhatják a mobilalkalmazás&mdash;megtekintését, hozzáadását és módosítását adatok&mdash;akkor is, ha nincs hálózati kapcsolat.
 
 <!-- URLs -->
 [Android gyors üzembe helyezési]: app-service-mobile-android-get-started.md

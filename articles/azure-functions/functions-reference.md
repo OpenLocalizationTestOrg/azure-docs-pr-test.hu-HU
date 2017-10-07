@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions kidolgozásához |} Microsoft Docs"
-description: "További tudnivalók az Azure Functions fogalmakat és módszereket is, hogy funkciók Azure, az összes programozási nyelveket és kötések kifejlesztésére lesz szükség."
+title: "az Azure Functions fejlesztése aaaGuidance |} Microsoft Docs"
+description: "Ismerje meg, hello Azure Functions elvekről és technikákról, hogy kell-e toodevelop funkciók Azure, az összes programozási nyelveket és kötéseket."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: chrande
-ms.openlocfilehash: 879be48150cfe13e31064475aa637f13f5f5f9d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86d37dae5333f615faafc966e9da6e08e0a6354e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-developers-guide"></a>Az Azure Functions fejlesztői útmutatója
-Az Azure Functions adott funkciókhoz ossza meg néhány alapvető technikai kulcsfogalmak és összetevők, függetlenül a nyelvet, vagy a kötés használja. Ahhoz, hogy belevágjon tanulási egy adott nyelven vagy a kötési adatait, mindenképpen olvassa végig az áttekintés, amely az összes vonatkozik.
+Az Azure Functions adott funkciókhoz ossza meg néhány alapvető technikai kulcsfogalmak és összetevők függetlenül hello nyelvi vagy használata kötelező. Ahhoz, hogy belevágjon tanulási részletek adott tooa megadott nyelv vagy a kötés, lehet, hogy tooread keresztül ez az áttekintés, amely egyiket tooall vonatkozik.
 
-Ez a cikk feltételezi, hogy Ön már elolvasta a [Azure Functions áttekintése](functions-overview.md) és ismeri a [WebJobs SDK fogalmakat, például a JobHost futásidejű, eseményindítók és kötések](../app-service-web/websites-dotnet-webjobs-sdk.md). Az Azure Functions a WebJobs SDK alapul. 
+Ez a cikk feltételezi, hogy Ön már elolvasta hello [Azure Functions áttekintése](functions-overview.md) és ismeri a [WebJobs SDK fogalmak hello JobHost futásidejű, eseményindítók és kötések például](../app-service-web/websites-dotnet-webjobs-sdk.md). Az Azure Functions hello WebJobs SDK alapul. 
 
 ## <a name="function-code"></a>Funkciókódot
-A *függvény* az Azure Functions elsődleges fogalom. Írhat kódot a funkció az Ön által választott nyelven, és mentse a kódot és konfigurációs fájljait ugyanabban a mappában. A konfiguráció elnevezése `function.json`, amely tartalmazza a JSON-konfigurációs adatok. Különböző nyelveket támogatja, és minden nincs optimalizálva az adott nyelv némileg más élményt. 
+A *függvény* hello Azure Functions elsődleges fogalom. Írhat kódot a funkció az Ön által választott nyelven, és mentse hello kódot, és a konfigurációs fájlok hello ugyanabban a mappában. hello konfigurációs nevű `function.json`, amely tartalmazza a JSON-konfigurációs adatok. Különböző nyelveket támogatja, és mindegyiknek egy optimalizált némileg eltérő élmény toowork ajánlott az adott nyelven. 
 
-A function.json fájl határozza meg, a függvénykötés és egyéb konfigurációs beállításokkal. A futtatókörnyezet ezt a fájlt határozza meg a figyelendő események és adja át az adatokat, és vissza adatokat, a függvény végrehajtása használja. A következő egy példa function.json fájl.
+hello function.json fájl határozza meg, hello függvénykötés és egyéb konfigurációs beállításokkal. hello futásidejű használ, a fájl toodetermine hello események toomonitor és hogyan toopass adatok és a visszatérési adatainak függvény végrehajtása. hello az alábbiakban látható egy példa function.json fájlt.
 
 ```json
 {
@@ -47,68 +47,68 @@ A function.json fájl határozza meg, a függvénykötés és egyéb konfigurác
 }
 ```
 
-Állítsa be a `disabled` tulajdonságot `true` megakadályozhatja, hogy a függvény a végrehajtás alatt.
+Set hello `disabled` tulajdonság túl`true` tooprevent hello függvény végrehajtását.
 
-A `bindings` tulajdonság értéke, ahol konfigurálhatja az eseményindítók és kötések is. Minden kötésnek osztja meg néhány általános beállítások és az egyes beállítások, amelyek bizonyos típusú kötés. Minden kötésnek szükséges a következő beállításokat:
+Hello `bindings` tulajdonság értéke, ahol konfigurálhatja az eseményindítók és kötések is. Minden kötésnek osztja meg néhány általános beállítások és az egyes beállítások, amelyek adott tooa bizonyos típusú kötés. Minden kötésnek hello-beállítások a következő szükséges:
 
 | Tulajdonság | Értékek/típusok | Megjegyzések |
 | --- | --- | --- |
 | `type` |Karakterlánc |Kötés típusa. Például: `queueTrigger`. |
-| `direction` |"in" "out" |Azt jelzi, hogy a kötés adatfogadásra a függvénynek vagy adatokat küld a függvény. |
-| `name` |Karakterlánc |A függvény a kötött adatok használt név. C# ez pedig egy argumentum neve; a JavaScript esetén a kulcsot a kulcs/érték listáját. |
+| `direction` |"in" "out" |Azt jelzi, hogy hello kötés hello függvénynek fogadó adatok vagy a küldő adat hello függvényből. |
+| `name` |Karakterlánc |hello neve hello használt adatok kötött hello függvényben. C# ez pedig egy argumentum neve; a JavaScript a következőre hello kulcsot a kulcs/érték listáját. |
 
 ## <a name="function-app"></a>Függvény alkalmazás
-Egy vagy több egyéni függvények felügyelete együtt, amelyet az Azure App Service egy függvény alkalmazást magában foglalja. Összes függvény alkalmazásban funkció ossza meg az árképzési csomagot, a folyamatos üzembe helyezés és a futásidejű verzióját. Több nyelven írt funkciók összes megoszthatja függvény ugyanahhoz az alkalmazáshoz. Egy függvény app gondol rendszerezését és a funkciók együttesen kezelését is. 
+Egy vagy több egyéni függvények felügyelete együtt, amelyet az Azure App Service egy függvény alkalmazást magában foglalja. Az összes olyan függvény app megosztáson hello funkciók hello azonos árképzési terv, a folyamatos üzembe helyezés és a futásidejű verzióját. Több nyelven is írt hello osztoznak funkciók olyan funkciókat alkalmazást. Gondolja át, hogy egy függvény alkalmazást egy módon tooorganize, és a funkciók együttesen kezelése. 
 
 ## <a name="runtime-script-host-and-web-host"></a>Futásidejű (script host és webkiszolgáló)
-A runtime vagy a parancsfájlfuttató, nem az alapul szolgáló WebJobs SDK-állomás eseményeket figyeli, összegyűjti és adatokat küld, és végső soron futtatja a kódot. 
+hello futásidejű vagy parancsfájlfuttató, nem hello mögöttes WebJobs SDK állomás eseményeket figyeli, összegyűjti és adatokat küld, és végső soron futtatja a kódot. 
 
-HTTP-eseményindítók megkönnyítésére is van olyan webes gazdagépet, amely arra tervezték, hogy a parancsfájlfuttató éles forgatókönyvekben elé elhelyezkedik. Két állomás rendelkező segít elkülöníteni a parancsfájlfuttató elölről fejezze be a webkiszolgáló által kezelt forgalom.
+toofacilitate HTTP eseményindítók is van olyan webes gazdagépet, amely tervezett toosit hello parancsfájlfuttató éles forgatókönyvekben elé. Két állomás rendelkező segít tooisolate hello script host alrendszerhez hello előtér forgalom hello webállomását kezeli.
 
 ## <a name="folder-structure"></a>Mappaszerkezet
 [!INCLUDE [functions-folder-structure](../../includes/functions-folder-structure.md)]
 
-Amikor létrehozása a projekt funkciók telepítéséhez függvény alkalmazásokhoz az Azure App Service-ben, a helykódot, a gyökérmappa-szerkezetében is kezelheti. Meglévő eszközök, például a folyamatos integrációt és telepítést, vagy egyéni telepítési parancsfájl ennek transpilation kód vagy deploy idő csomag telepítése.
+Amikor létrehozása egy projektjét, amely telepíti az funkciók tooa függvény alkalmazást az Azure App Service-ben, a helykódot, a gyökérmappa-szerkezetében is kezelheti. Meglévő eszközök, például a folyamatos integrációt és telepítést, vagy egyéni telepítési parancsfájl ennek transpilation kód vagy deploy idő csomag telepítése.
 
 > [!NOTE]
-> Ügyeljen arra, hogy központi telepítése a `host.json` fájlt, és mappák közvetlenül működéséhez a `wwwroot` mappát. Nem tartalmaznak a `wwwroot` mappába a központi telepítés. Ellenkező esetben, végül `wwwroot\wwwroot` mappák. 
+> Győződjön meg arról, hogy toodeploy a `host.json` fájl-és a függvény közvetlenül toohello `wwwroot` mappa. Nem tartalmaznak hello `wwwroot` mappába a központi telepítés. Ellenkező esetben, végül `wwwroot\wwwroot` mappák. 
 > 
 > 
 
-## <a id="fileupdate"></a>Függvények app fájl frissítése
-A függvény szerkesztő beépítve az Azure-portál lehetővé teszi, hogy frissítse a *function.json* fájl- és a kódfájl függvény esetében. Töltse fel, vagy más, mint frissítését *package.json* vagy *project.json* vagy függőségek, akkor használjon más telepítési módszert.
+## <a id="fileupdate"></a>Hogyan tooupdate működni az alkalmazás fájljai
+hello függvény szerkesztő épített hello Azure-portál lehetővé teszi, hogy frissíteni hello *function.json* és hello kód fájl függvény esetében. tooupload vagy más frissítési fájlok, például a *package.json* vagy *project.json* vagy függőségek toouse más központi telepítési módszerekkel van.
 
-Függvény alkalmazások beépített App Service, így minden a [szokásos webes alkalmazásokra mutató elérhető telepítési lehetőségeket](../app-service-web/web-sites-deploy.md) függvény alkalmazások esetében is elérhetők. Az alábbiakban néhány módszer feltöltése vagy függvény alkalmazást frissítőfájlok használható. 
+Függvény a épülnek App Service-ben, az összes hello [központi telepítési beállítások a webalkalmazások rendelkezésre toostandard](../app-service-web/web-sites-deploy.md) függvény alkalmazások esetében is elérhetők. Az alábbiakban néhány módszerek tooupload használhatja, vagy függvény app fájlok frissítése. 
 
-#### <a name="to-use-app-service-editor"></a>App Service-szerkesztő segítségével
-1. Az Azure Functions portálon kattintson **Alkalmazásbeállítások működéséhez**.
-2. Az a **speciális beállítások** kattintson **az App Service-beállítások**.
+#### <a name="toouse-app-service-editor"></a>App Service-szerkesztő toouse
+1. Hello Azure Functions portálon kattintson **Alkalmazásbeállítások működéséhez**.
+2. A hello **speciális beállítások** kattintson **Ugrás tooApp szolgáltatás beállításaira**.
 3. Kattintson a **App Service-szerkesztő** alkalmazás menü NAV alatt **FEJLESZTŐESZKÖZÖK**.
 4. Kattintson a **Ugrás**.
    
-   App Service-szerkesztő betöltése után megjelenik a *host.json* fájl- és függvény mappáit *wwwroot*. 
-5. Nyissa meg a fájlok szerkeszthetők, vagy húzza és eltávolítása a következő fájlok feltöltése a fejlesztési számítógépén.
+   App Service-szerkesztő betöltése után látni fogja a hello *host.json* fájl- és függvény mappáit *wwwroot*. 
+5. A megnyitott fájlok tooedit őket, vagy áthúzása a fejlesztési számítógép tooupload fájlokból.
 
-#### <a name="to-use-the-function-apps-scm-kudu-endpoint"></a>A függvény app SCM (Kudu) végpont használata
+#### <a name="toouse-hello-function-apps-scm-kudu-endpoint"></a>toouse hello függvény app SCM (Kudu) végpont
 1. Nyissa meg: `https://<function_app_name>.scm.azurewebsites.net`.
 2. Kattintson a **konzol Debug > CMD**.
-3. Navigáljon a `D:\home\site\wwwroot\` frissítése *host.json* vagy `D:\home\site\wwwroot\<function_name>` egy függvény fájlok frissítéséhez.
-4. Fogd és vidd egy fájlt szeretne feltölteni a fájlt rácsban a megfelelő mappába. Nincsenek a két területen a fájl rácsban, ha egy fájl elvetné. A *.zip* fájlok, megjelenik egy címkével ellátott "húzzon ide, és csomagolja ki." Minden olyan fájltípus esetében dobja el a fájl rácsban, de a "csomagolja ki" mezőben kívül.
+3. Keresse meg a túl`D:\home\site\wwwroot\` tooupdate *host.json* vagy `D:\home\site\wwwroot\<function_name>` tooupdate egy függvény fájlokat.
+4. Fogd és vidd hello fájl rácsban hello megfelelő mappába tooupload kívánt fájl. Nincsenek a két területen hello fájl rácsban, ha egy fájl elvetné. A *.zip* fájlok, megjelenik egy hello címkével "húzzon ide tooupload és csomagolja ki." Minden olyan fájltípus esetében hello fájl rácsban dobja el, de kívülről hello "csomagolja ki" mezőbe.
 
-<!--NOTE: I've removed documentation on FTP, because it does not sync triggers on the consumption plan --DonnaM -->
+<!--NOTE: I've removed documentation on FTP, because it does not sync triggers on hello consumption plan --DonnaM -->
 
-#### <a name="to-use-continuous-deployment"></a>Folyamatos üzembe helyezés használata
-Kövesse az utasításokat a következő témakör [folyamatos üzembe helyezés az Azure Functions](functions-continuous-deployment.md).
+#### <a name="toouse-continuous-deployment"></a>toouse folyamatos üzembe helyezés
+Hello hello témakörben található utasítások [folyamatos üzembe helyezés az Azure Functions](functions-continuous-deployment.md).
 
 ## <a name="parallel-execution"></a>Párhuzamos végrehajtás
-Több eseményindító események bekövetkezésekor gyorsabb, mint az egyszálas függvény futtatókörnyezettel is dolgozza fel őket, a futtatókörnyezet alkalmazhatja a függvény párhuzamosan több alkalommal.  Ha egy függvény alkalmazás használja a [üzemeltetési terv fogyasztás](functions-scale.md#how-the-consumption-plan-works), a függvény alkalmazás automatikusan sikerült kiterjesztése.  Függvény alkalmazás egyes példányainak hogy az alkalmazás fut-e a felhasználásra vonatkozó üzemeltetési terv vagy szokványos [az alkalmazásszolgáltatási csomag üzemeltetési](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md), előfordulhat, hogy feldolgozni egyidejű függvény meghívásához párhuzamosan több szálat használ.  Maximális száma párhuzamos függvény meghívásához minden függvény alkalmazáspéldány használt eseményindítót, valamint egyéb funkciók, a függvény alkalmazásban által használt erőforrások típusú függ.
+Több eseményindító események bekövetkezésekor gyorsabb, mint az egyszálas függvény futtatókörnyezettel is dolgozza fel őket, hello futásidejű hivatkozhat hello függvény párhuzamosan több alkalommal.  Ha egy függvény alkalmazás hello [üzemeltetési terv fogyasztás](functions-scale.md#how-the-consumption-plan-works), hello függvény alkalmazás automatikusan sikerült kiterjesztése.  Minden példánya hello függvény alkalmazást, és hogy hello alkalmazás fut. hello üzemeltetési terv vagy egy rendszeres felhasználási [az alkalmazásszolgáltatási csomag üzemeltetési](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md), előfordulhat, hogy feldolgozni egyidejű függvény meghívásához párhuzamosan több szálat használ.  hello maximális száma párhuzamos függvény meghívásához minden függvény alkalmazáspéldány attól függően változik, valamint egyéb funkciók hello függvény alkalmazásban használt hello erőforrások használt indítófeltétel típusát hello.
 
 ## <a name="functions-runtime-versioning"></a>Funkciók futásidejű versioning
 
-Konfigurálhatja a funkciók futásidejű használatával verzióját a `FUNCTIONS_EXTENSION_VERSION` Alkalmazásbeállítás. Például a "~ 1" érték azt jelzi, hogy a függvény App 1 fog használni a fő verziószáma. Függvény alkalmazások verzióra, hogy minden új kisebb vannak. A függvény az alkalmazáshoz, a pontos verziójának megtekintéséhez a **beállítások** fülre az Azure portálon.
+Hello verziója hello Functions futtatókörnyezete hello segítségével konfigurálhatja `FUNCTIONS_EXTENSION_VERSION` Alkalmazásbeállítás. Hello "~ 1" érték például azt jelzi, hogy a függvény App 1 fog használni a fő verziószáma. Függvény alkalmazások nem frissített tooeach új alverzió, mivel azok kiadásakor. A függvény App pontos verziójának hello megtekintheti a hello **beállítások** hello Azure Portal lapján.
 
 ## <a name="repositories"></a>Adattárak
-A kód az Azure Functions nyílt forráskódú, és a GitHub-adattárak tárolja:
+az Azure Functions hello kódját nyílt forráskódú, és GitHub-adattárak tárolva:
 
 * [Az Azure Functions futtatókörnyezettel](https://github.com/Azure/azure-webjobs-sdk-script/)
 * [Az Azure Functions portálra](https://github.com/projectkudu/AzureFunctionsPortal)
@@ -125,12 +125,12 @@ Ez az összes támogatott kötések tábla.
 [!INCLUDE [Reporting Issues](../../includes/functions-reporting-issues.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd a következőket:
+További információkért tekintse meg a következő erőforrások hello:
 
 * [Azure Functions – ajánlott eljárások](functions-best-practices.md)
 * [Az Azure Functions C# fejlesztői leírás](functions-reference-csharp.md)
 * [Az Azure Functions F # fejlesztői leírás](functions-reference-fsharp.md)
 * [Az Azure Functions NodeJS fejlesztői leírás](functions-reference-node.md)
 * [Az Azure Functions eseményindítók és kötések](functions-triggers-bindings.md)
-* [Az Azure Functions: Az út](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/) az Azure App Service csapatának blogjában. Hogyan jött létre az Azure Functions előzményeit.
+* [Az Azure Functions: hello út](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/) hello Azure App Service csapatának blogjában. Hogyan jött létre az Azure Functions előzményeit.
 

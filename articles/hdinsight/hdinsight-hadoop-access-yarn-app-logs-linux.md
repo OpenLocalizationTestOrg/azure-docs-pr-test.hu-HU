@@ -1,6 +1,6 @@
 ---
-title: "Linux-alapú HDInsight - Azure bejelentkezik hozzáférést Hadoop YARN alkalmazás |} Microsoft Docs"
-description: "Ismerje meg, hogyan férhet hozzá a YARN alkalmazásnaplók a parancssori és egy webes böngésző használata Linux-alapú HDInsight (Hadoop) fürtön."
+title: "Linux-alapú HDInsight - Azure bejelentkezik aaaAccess Hadoop YARN alkalmazás |} Microsoft Docs"
+description: "Ismerje meg, hogy miként naplózza az tooaccess YARN alkalmazás egy Linux-alapú HDInsight (Hadoop) fürtön parancssori hello és egy webböngésző használatával."
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,71 +16,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: fbbbddc47f24a46eac9bc64d4420ee8429ed4ad1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0bab356e3b97114abbb05712c8e7b21a194f2508
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-yarn-application-logs-on-linux-based-hdinsight"></a>Linux-alapú HDInsight bejelentkezik hozzáférést YARN alkalmazás
 
-Ismerje meg, hogyan férhet hozzá a naplók a YARN (még egy másik erőforrás egyeztető) alkalmazásokhoz az Azure HDInsight Hadoop-fürthöz.
+Ismerje meg, hogyan tooaccess hello naplók a YARN (még egy másik erőforrás egyeztető) alkalmazásokhoz az Azure HDInsight Hadoop-fürthöz.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="YARNTimelineServer"></a>YARN ütemterv kiszolgáló
 
-A [YARN ütemterv Server](http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html) általános információkat nyújt a kész alkalmazások és a keretrendszer-specifikus alkalmazással kapcsolatos adatok két különböző felületeken keresztül. Konkrétan:
+Hello [YARN ütemterv Server](http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html) általános információkat nyújt a kész alkalmazások és a keretrendszer-specifikus alkalmazással kapcsolatos adatok két különböző felületeken keresztül. Konkrétan:
 
 * Tárolása és lekérése általános alkalmazás információk a HDInsight-fürtökön engedélyezett 3.1.1.374 verziójával vagy magasabb volt.
-* A keretrendszer-specifikus információk alkalmazásösszetevő ütemterv kiszolgáló jelenleg nem áll rendelkezésre a HDInsight-fürtökön.
+* hello keretrendszer-specifikus alkalmazás információk hello ütemterv Server összetevője nem érhető el a HDInsight-fürtökön.
 
-Alkalmazások általános információkat tartalmaz a következő típusú adatok:
+Alkalmazások általános információkat tartalmaz a következő típusú adatok hello:
 
-* Az Alkalmazásazonosító, az alkalmazás egyedi azonosítója
-* A felhasználó az alkalmazást
-* Az alkalmazás befejezéséhez kísérletek információk
-* A tárolók kísérel meg adott alkalmazás által használt
+* hello Alkalmazásazonosító, az alkalmazás egyedi azonosítója
+* hello felhasználói hello alkalmazást
+* Információk próbálkozások végrehajtott toocomplete hello alkalmazás
+* minden, az adott alkalmazáshoz az általa által használt hello tárolók
 
 ## <a name="YARNAppsAndLogs"></a>YARN alkalmazások és a naplókat
 
-YARN erőforrás-kezelés az ütemezés/alkalmazásfigyelés leválasztásával több programozási modellek (MapReduce egyik folyamatban) támogatja. YARN használ egy globális *ResourceManager* (RM) worker-csomópontonként *NodeManagers* (NMs), és alkalmazásonként *ApplicationMasters* (AMs). Az alkalmazás kor (Processzor, memória, lemez, hálózati) erőforrások egyezteti az alkalmazás futtatásához a RM a Az erőforrás-kezelő együttműködve biztosítja ezeket az erőforrásokat, amelyek kiadott megadását NMs *tárolók*. A AM felelős a tárolók által a RM rendelt állapotának nyomon követése Az alkalmazás az alkalmazás természetétől függően számos tárolók lehet szükség.
+YARN erőforrás-kezelés az ütemezés/alkalmazásfigyelés leválasztásával több programozási modellek (MapReduce egyik folyamatban) támogatja. YARN használ egy globális *ResourceManager* (RM) worker-csomópontonként *NodeManagers* (NMs), és alkalmazásonként *ApplicationMasters* (AMs). hello alkalmazásonkénti AM egyezteti erőforrások (Processzor, memória, lemez, hálózati) az alkalmazás futtatásához a hello RM Ezeket az erőforrásokat, amelyek kiadott NMs toogrant működik hello RM *tárolók*. hello AM felelős hello rendelve tárolók tooit hello előrehaladását nyomkövetés hello RM szerint Az alkalmazások sok tárolók hello alkalmazás hello jellege függően előfordulhat, hogy igényelnek.
 
-Minden alkalmazás több állhat *alkalmazás kísérletek*. Ha egy alkalmazás sikertelen, akkor előfordulhat, hogy újra megkísérli egy új kísérlet. A tárolóban lévő egyes kísérletek fut. Bizonyos értelemben egy tárolót biztosít a YARN alkalmazások által végzett munka alapvető egysége a környezetben. Egy tároló keretében végrehajtott összes munka a egyetlen munkavégző csomóponton, amelyen a tároló lefoglalt történik. Lásd: [YARN fogalmak] [ YARN-concepts] további referenciaként.
+Minden alkalmazás több állhat *alkalmazás kísérletek*. Ha egy alkalmazás sikertelen, akkor előfordulhat, hogy újra megkísérli egy új kísérlet. A tárolóban lévő egyes kísérletek fut. Bizonyos értelemben tárolója YARN alkalmazás által végzett munka alapvető egysége hello környezetben biztosít. A tároló hello környezetben végrehajtott összes munka történik, mely hello a tároló lett lefoglalva hello egyetlen munkavégző csomóponton. Lásd: [YARN fogalmak] [ YARN-concepts] további referenciaként.
 
-Alkalmazásnaplók (és a társított tároló naplók) kritikusak megoldani a problémát okozó Hadoop-alkalmazások. YARN gyűjtése, összesítése és tárolása az alkalmazásnaplók töltött keretet biztosít a [napló összesítési] [ log-aggregation] szolgáltatás. A napló összesítési szolgáltatás révén elérése során alkalmazásnaplók sokkal kiszámíthatóbb. Naplók von össze az összes tároló, a munkavégző csomópont, és tárolja őket egy összesített naplófájlhoz munkavégző csomópont. A napló tárolja az alapértelmezett fájlrendszer egy alkalmazás befejeződése után. Az alkalmazás használhat több száz vagy ezer tárolók, de egyetlen munkavégző csomóponton futtassa az összes tároló naplókat mindig összesítése egy fájlba. Így nincs csak egyes munkavégző csomópontok az alkalmazás által használt 1 napló. Napló összesítési HDInsight fürtök 3.0-s verzió vagy újabb rendszeren alapértelmezés szerint engedélyezve van. Összesített találhatók a fürt tárolóhelyét alapértelmezett. A következő elérési út a naplók a HDFS elérési útja:
+Alkalmazás naplók (és társított hello tároló naplók) is kritikus megoldani a problémát okozó Hadoop-alkalmazások. YARN töltött keretrendszerében gyűjtése, összesítése és tárolja a hello alkalmazásnaplók [napló összesítési] [ log-aggregation] szolgáltatás. hello napló összesítési szolgáltatás révén elérése során alkalmazásnaplók sokkal kiszámíthatóbb. Naplók von össze az összes tároló, a munkavégző csomópont, és tárolja őket egy összesített naplófájlhoz munkavégző csomópont. hello napló tárolt hello alapértelmezett fájlrendszer egy alkalmazás befejeződése után. Az alkalmazás használhat több száz vagy ezer tárolók, de egyetlen munkavégző csomóponton futtassa az összes tároló naplókat mindig összesített tooa egy fájlból. Így nincs csak egyes munkavégző csomópontok az alkalmazás által használt 1 napló. Napló összesítési HDInsight fürtök 3.0-s verzió vagy újabb rendszeren alapértelmezés szerint engedélyezve van. Összesített naplók hello fürt tárolóhelyét alapértelmezett találhatók. a következő elérési út hello hello HDFS elérési toohello naplók:
 
     /app-logs/<user>/logs/<applicationId>
 
-Az elérési út `user` az alkalmazást elindító felhasználó neve. A `applicationId` egy alkalmazás a YARN RM által hozzárendelt egyedi azonosítója
+Az elérési út hello `user` hello felhasználói hello alkalmazást hello neve. Hello `applicationId` hello hozzárendelt egyedi azonosítója tooan alkalmazás által hello YARN RM
 
-Az összesített naplók nincsenek közvetlenül is olvasható, mivel az oktatóprogram egy [TFile][T-file], [bináris formátum] [ binary-format] indexelik a tárolóban. A YARN erőforrás-kezelő naplók vagy a parancssori eszközök segítségével az alkalmazások vagy a tárolókat érdeklő egyszerű szövegként ezek a naplók megtekintéséhez.
+hello összesített naplók nincsenek közvetlenül is olvasható, mivel az oktatóprogram egy [TFile][T-file], [bináris formátum] [ binary-format] indexelik a tárolóban. Használata YARN erőforrás-kezelő naplózza hello vagy a parancssori eszközök tooview ezek a naplók egyszerű szövegként alkalmazások vagy az egyik fontos tárolók.
 
 ## <a name="yarn-cli-tools"></a>YARN CLI-eszközei
 
-A YARN CLI eszközök használatához először csatlakoznia kell a HDInsight-fürthöz SSH használatával. További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+toouse hello YARN CLI-eszközeit, először kapcsolódnia toohello HDInsight-fürthöz SSH használatával. További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Ezek a naplók egyszerű szövegként tekintheti meg a következő parancsok egyikét futtatja:
+Egyszerű szövegként a naplók hello a következő parancsok futtatásával tekintheti meg:
 
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application>
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application> -containerId <containerId> -nodeAddress <worker-node-address>
 
-Adja meg a &lt;applicationId >, &lt;felhasználói-akik-elindult-az-alkalmazási >, &lt;Tárolóazonosító >, és &lt;worker-csomópont-címe > adatokat, amikor a parancsok futtatásával.
+Adja meg a hello &lt;applicationId >, &lt;felhasználói-akik-elindult-az-alkalmazási >, &lt;Tárolóazonosító >, és &lt;worker-csomópont-címe > adatokat, amikor a parancsok futtatásával.
 
 ## <a name="yarn-resourcemanager-ui"></a>YARN erőforrás-kezelő felhasználói felületen
 
-A YARN erőforrás-kezelő felhasználói felületén a fürt headnode futtatja. Az Ambari webes felhasználói felületen keresztül érhető el. A YARN naplók megtekintéséhez tegye a következőket:
+hello YARN erőforrás-kezelő felhasználói felületén a hello fürt headnode fut. Hello Ambari webes felhasználói felületen keresztül érhető el. Naplózza a következő lépéseket tooview hello YARN használata hello:
 
-1. A böngészőben navigáljon https://CLUSTERNAME.azurehdinsight.net. CLUSTERNAME cserélje le a HDInsight-fürt nevét.
-2. Válassza ki a listáról a bal oldali szolgáltatások **YARN**.
+1. A böngészőben nyissa meg a toohttps://CLUSTERNAME.azurehdinsight.net. CLUSTERNAME cserélje le a HDInsight fürt hello neve.
+2. Hello szolgáltatások hello bal oldali listában jelölje ki **YARN**.
 
     ![Kijelölt yarn szolgáltatás](./media/hdinsight-hadoop-access-yarn-app-logs-linux/yarnservice.png)
-3. Az a **Gyorshivatkozások** legördülő menüben válasszon ki egy központi csomópont, és válassza ki **ResourceManager napló**.
+3. A hello **Gyorshivatkozások** legördülő menüben válasszon ki egy hello központi fürtcsomóponton, és válassza ki **ResourceManager napló**.
 
     ![Yarn Gyorshivatkozások](./media/hdinsight-hadoop-access-yarn-app-logs-linux/yarnquicklinks.png)
 
-    A YARN naplóit hivatkozáslista jelenik meg.
+    Hivatkozások tooYARN naplók listája jelenik meg.
 
 [YARN-timeline-server]:http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html
 [log-aggregation]:http://hortonworks.com/blog/simplifying-user-logs-management-and-access-in-yarn/

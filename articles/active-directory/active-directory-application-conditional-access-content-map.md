@@ -1,6 +1,6 @@
 ---
-title: "Problémák az alkalmazáshoz való feltételes hozzáférés konfigurálása\""
-description: "Problémák az alkalmazáshoz való feltételes hozzáférés konfigurálása\""
+title: "feltételes hozzáférés tooone a alkalmazások konfigurálása aaaProblems\""
+description: "A problémák konfigurálása a feltételes hozzáférés tooone az alkalmazások\""
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,26 +12,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 2de668f38ca836d3a8ab205a2689156349f8f8d0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1b783c096c1ece924133c0d200e4118ebc23e573
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-configuring-conditional-access-to-one-of-my-applications"></a>Problémák az alkalmazáshoz történő feltételes hozzáférés konfigurálásánál
+# <a name="problems-configuring-conditional-access-tooone-of-my-applications"></a>Problémák konfigurálása a feltételes hozzáférés tooone saját alkalmazások
 
 
 ## <a name="ive-set-up-conditional-access-but-something-isnt-working"></a>Létrehoztam a feltételes hozzáférés, de valami nem működik
-  Az alábbi dokumentumok segítenek a kategória a leggyakoribb problémák megoldásához.
+  alább dokumentumok hello segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
   * [A feltételes hozzáférés nem működik, mert az ügyfél nem felelt meg az eszköz regisztrálásához szükséges előfeltételeknek](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [A bérlőt letiltja a rendszer, mert a feltételes hozzáférés szabályzatát nem megfelelően állították be](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access-device-remediation/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Feltételes hozzáférési szabályzatok beállítását tooincorrect miatt bérlői blokkolva van](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access-device-remediation/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 
 
 ## <a name="im-having-problems-setting-up-conditional-access"></a>Problémák feltételes hozzáférés beállítása
-  Az alábbi dokumentumok segítenek a kategória a leggyakoribb problémák megoldásához.
+  alább dokumentumok hello segítségével tooresolve hello ebbe a kategóriába tartozó kapcsolatos leggyakoribb hibák némelyike.
   * [Hogyan és mikor lépnek életbe a vállalati hálózaton kívüli szabályok?](http://aka.ms/calocation/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Hogyan lehet növelni azon eszközök számát, amelyeket a felhasználó az Azure AD-ben regisztrálhat?](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-setup/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Hogyan kell beállítani a feltételes hozzáférést az Exchange Online-ban?](http://aka.ms/csforexchange/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Hogyan kell beállítani a feltételes hozzáférést Windows 7 eszközökön?](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access#device-based-conditional-access/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Hogyan tooincrease hello eszközök száma, hogy a felhasználó engedélyezett tooregister az Azure AD?](https://docs.microsoft.com/azure/active-directory/active-directory-azureadjoin-setup/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Hogyan tooset az Exchange Online feltételes hozzáférés?](http://aka.ms/csforexchange/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+  * [Hogyan tooset be feltételes hozzáférés a Windows 7 eszköz?](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access#device-based-conditional-access/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
   * [Mely alkalmazásokban támogatott a feltételes hozzáférés?](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access-supported-apps/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
 

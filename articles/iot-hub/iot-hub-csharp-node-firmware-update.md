@@ -1,6 +1,6 @@
 ---
-title: "Eszköz belső vezérlőprogram frissítése az Azure IoT Hub (.NET/csomópont) |} Microsoft Docs"
-description: "Hogyan használható az eszközkezelés Azure IoT hub eszköz vezérlőprogram-frissítés kezdeményezése. Az Azure IoT-eszközök SDK for Node.js használatával valósítja meg a szimulált eszköz alkalmazások és az Azure IoT szolgáltatás SDK for .NET egy service-alkalmazást, amely elindítja a belső vezérlőprogram-frissítés végrehajtásához."
+title: "az Azure IoT Hub (.NET/csomópont) aaaDevice vezérlőprogram-frissítés |} Microsoft Docs"
+description: "Hogyan toouse kezelés az Azure IoT Hub tooinitiate egy eszköz belső vezérlőprogram frissítése. Hello Azure IoT-eszközök SDK a Node.js tooimplement a szimulált eszköz alkalmazásának és hello Azure IoT szolgáltatás SDK .NET tooimplement service-alkalmazást, amely elindítja a hello belső vezérlőprogram frissítési használja."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/17/2017
 ms.author: juanpere
-ms.openlocfilehash: c2192328a152e955d182c4a07b391c98a5960964
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d48899651bcd5d67e577c971be0f9453c8f21592
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-device-management-to-initiate-a-device-firmware-update-netnode"></a>Eszközkezelés használja indításához eszköz vezérlőprogram-frissítés (.NET/csomópont)
+# <a name="use-device-management-tooinitiate-a-device-firmware-update-netnode"></a>Használja az eszköz felügyeleti tooinitiate eszköz vezérlőprogram-frissítés (.NET/csomópont)
 [!INCLUDE [iot-hub-selector-firmware-update](../../includes/iot-hub-selector-firmware-update.md)]
 
 ## <a name="introduction"></a>Bevezetés
-Az a [Ismerkedés az eszközkezelés] [ lnk-dm-getstarted] oktatóanyag, megtudhatta, hogyan használható a [eszköz iker] [ lnk-devtwin] és [közvetlen módszerek ] [ lnk-c2dmethod] primitívek távolról az eszköz újraindítását. Ez az oktatóanyag az ugyanazon az IoT-központ primitívek használ, és bemutatja, hogyan hajtsa végre egy végpontok közötti szimulált belső vezérlőprogram-frissítés.  A belső vezérlőprogram frissítési implementációja szerepel ebben a mintában a [málna Pi eszköz megvalósítási minta][lnk-rpi-implementation].
+A hello [Ismerkedés az eszközkezelés] [ lnk-dm-getstarted] az oktatóanyagban megtudhatta, hogyan toouse hello [eszköz iker] [ lnk-devtwin] és [közvetlen módszerek] [ lnk-c2dmethod] primitívek tooremotely eszköz újraindul. A oktatóanyag használja az ugyanazon az IoT-központ primitívek hello, és bemutatja, hogyan toodo egy-végpontok szimulált vezérlőprogram-frissítés.  Ebben a mintában hello belső vezérlőprogram-frissítés végrehajtása során használatos hello [málna Pi eszköz megvalósítási minta][lnk-rpi-implementation].
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* A .NET-Konzolalkalmazás, amely behívja a firmwareUpdate közvetlen módszer a szimulált eszköz alkalmazás keresztül az IoT hub létrehozása.
-* Hozzon létre egy szimulált eszköz alkalmazást, amely egy **firmwareUpdate** közvetlen módszer. Ez a módszer indít el egy többlépcsős folyamat, amely megvárja-e a belső vezérlőprogram lemezképet letölti, letölti a belső vezérlőprogram lemezképet és a belső vezérlőprogram kép végül vonatkozik. A frissítés egyes szakasza alatt az eszköz használatával a jelentésben szereplő tulajdonságok előrehaladásról.
+* Hozzon létre egy .NET-Konzolalkalmazás, amely behívja hello firmwareUpdate közvetlen módszer az IoT hub keresztül hello szimulált eszköz alkalmazásban.
+* Hozzon létre egy szimulált eszköz alkalmazást, amely egy **firmwareUpdate** közvetlen módszer. Ez a módszer indít el egy többlépcsős folyamat, amely toodownload hello belső vezérlőprogram kép vár, hello belső vezérlőprogram lemezképet letölti és végül a hello belső vezérlőprogram kép vonatkozik. Minden egyes hello frissítés szakaszában hello eszköz által használt hello jelentett tulajdonságok tooreport folyamatban van.
 
-Ez az oktatóanyag végén akkor egy Node.js Konzolalkalmazás eszköz és a .NET (C#) háttér-Konzolalkalmazás:
+Ez az oktatóanyag végén hello hogy egy Node.js Konzolalkalmazás eszköz és a .NET (C#) háttér-Konzolalkalmazás:
 
-**dmpatterns_fwupdate_service.js**, amely közvetlen metódus meghívja a szimulált eszköz alkalmazás jeleníti meg a választ, és rendszeres időközönként (minden 500ms) jeleníti meg a frissített jelenteni tulajdonságait.
+**dmpatterns_fwupdate_service.js**, amely meghívja a közvetlen módszer hello szimulált eszköz alkalmazásban jeleníti meg a hello válasz, és rendszeres időközönként (minden 500ms) frissítése megjeleníti hello jelentett tulajdonságok.
 
-**TriggerFWUpdate**, amely kapcsolódik az IoT hub, korábban létrehozott eszköz identitású kap egy firmwareUpdate közvetlen módszer esetén az több államot folyamatot, a belső vezérlőprogram frissítési például szimulálásához: Várakozás a lemezkép letöltése az új lemezkép letöltése, és végül a kép alkalmazása.
+**TriggerFWUpdate**, tooyour IoT-központ köti össze a korábban létrehozott hello eszközidentitás firmwareUpdate közvetlen metódus kap, egy több államot folyamat toosimulate keresztül futtat, a belső vezérlőprogram frissítési többek között: hello lemezkép letöltése, vár hello új lemezképet, és végül alkalmazása hello lemezkép letöltése.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * Visual Studio 2015 vagy Visual Studio 2017.
-* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan telepítse a Node.js-ebben az oktatóanyagban a Windows vagy Linux.
+* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall Node.js ebben az oktatóanyagban a Windows vagy Linux.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
 
-Kövesse a [Ismerkedés az eszközkezelés](iot-hub-csharp-node-device-management-get-started.md) cikk az IoT hub létrehozása, és az IoT-központ kapcsolati karakterláncot.
+Hajtsa végre a hello [Ismerkedés az eszközkezelés](iot-hub-csharp-node-device-management-get-started.md) cikk toocreate az IoT hub és az IoT-központ kapcsolati karakterláncot.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-firmware-update-on-the-device-using-a-direct-method"></a>Indítás, az eszközön, a közvetlen módszer használatával távoli vezérlőprogram-frissítés
-Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely indít el egy távoli belső vezérlőprogram frissítése egy eszközön hoz létre. Az alkalmazás közvetlen módszer előtt használja a frissítés, és az eszköz iker lekérdezések rendszeres időközönként a aktív belső vezérlőprogram frissítése a állapot lekérdezése céljából.
+## <a name="trigger-a-remote-firmware-update-on-hello-device-using-a-direct-method"></a>Indítás, közvetlen metódussal hello eszközön távoli vezérlőprogram-frissítés
+Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely indít el egy távoli belső vezérlőprogram frissítése egy eszközön hoz létre. hello alkalmazása használja-e a közvetlen módszer tooinitiate hello frissítése és által használt eszköz iker lekérdezések tooperiodically hello aktív belső vezérlőprogram frissítése hello állapotának beolvasása.
 
-1. A Visual Studióban adjon hozzá egy Visual C# nyelvű Windows klasszikus asztalialkalmazás-projektet az aktuális megoldáshoz a **Console Application** (Konzolalkalmazás) projektsablonnal. Nevet a projektnek **TriggerFWUpdate**.
+1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt toohello aktuális megoldás hozzáadása hello segítségével **Konzolalkalmazás** projektsablon. Név hello projekt **TriggerFWUpdate**.
 
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][img-createapp]
 
-1. A Megoldáskezelőben kattintson a jobb gombbal a **TriggerFWUpdate** projektre, és kattintson a **NuGet-csomagok kezelése...** .
-1. A **NuGet Package Manager** (NuGet-csomagkezelő) ablakban válassza a **Browse** (Tallózás) lehetőséget, keresse meg a **microsoft.azure.devices** csomagot, válassza a **Install** (Telepítés) lehetőséget a **Microsoft.Azure.Devices** csomag telepítéséhez, és fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **TriggerFWUpdate** projektre, és kattintson a **NuGet-csomagok kezelése...** .
+1. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás**, keressen **microsoft.azure.devices**, jelölje be **telepítése** tooinstall Hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
 
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][img-servicenuget]
-1. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
+1. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-1. Adja hozzá a **Program** osztályhoz a következő mezőket: Cserélje le a több helyőrző értékeket az előző szakaszban és az eszköz azonosítója a központ IoT-központ kapcsolati karakterlánccal.
+1. Adja hozzá a következő mezők toohello hello **Program** osztály. Cserélje le a helyőrző értékeket több hello IoT-központ kapcsolati karakterlánc hello központ hello előző szakaszban létrehozott hello és hello az eszköz azonosítója.
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -73,7 +73,7 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely indít
         static JobClient jobClient;
         static string targetDevice = "{deviceIdForTargetDevice}";
         
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
    
         public static async Task QueryTwinFWUpdateReported()
         {
@@ -81,7 +81,7 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely indít
             Console.WriteLine(twin.Properties.Reported.ToJson());
         }
         
-1. Adja hozzá a **Program** osztályhoz a következő módszert:
+1. Adja hozzá a következő metódus toohello hello **Program** osztály:
 
         public static async Task StartFirmwareUpdate()
         {
@@ -98,38 +98,38 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#), amely indít
             Console.WriteLine("Invoked firmware update on device.");
         }
 
-1. Végül adja a következő sorokat a **Main** metódushoz:
+1. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
    
         registryManager = RegistryManager.CreateFromConnectionString(connString);
         StartFirmwareUpdate().Wait();
         QueryTwinFWUpdateReported().Wait();
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
         
-1. A Solution Explorerben nyissa meg a **állítsa be indítási projektek...**  , és győződjön meg arról, hogy a **művelet** a **TriggerFWUpdate** projekt **Start**.
+1. A Solution Explorer hello, nyissa meg a hello **állítsa be indítási projektek...**  , és győződjön meg arról, hogy hello **művelet** a **TriggerFWUpdate** projekt **Start**.
 
-1. A megoldás felépítéséhez.
+1. Hello megoldás felépítéséhez.
 
 [!INCLUDE [iot-hub-device-firmware-update](../../includes/iot-hub-device-firmware-update.md)]
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
-Most már készen áll az alkalmazások futtatására.
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
+Most már áll készen toorun hello alkalmazásokat.
 
-1. A parancssorban a **manageddevice** mappa, a következő parancsot a rendszer újraindítása közvetlen módszer figyelését.
+1. Parancssorba hello hello **manageddevice** mappa, futtassa a következő parancs toobegin figyeli a hello újraindítás közvetlen módszer hello.
    
     ```
     node dmpatterns_fwupdate_device.js
     ```
-2. A Visual Studióban, kattintson a jobb gombbal a a **TriggerFWUpdate** projectRun a C# konzolalkalmazást, hogy válasszon **Debug** és **Start új példány**.
+2. A Visual Studióban, kattintson a jobb gombbal a hello **TriggerFWUpdate** projectRun toohello C# konzolalkalmazást, jelölje be **Debug** és **Start új példány**.
 
-3. A közvetlen módszer a konzolon eszköz válasz megjelenik.
+3. Hello eszköz válasz toohello közvetlen módszer hello konzolon láthatja.
 
     ![Belső vezérlőprogram frissítése sikeres volt][img-fwupdate]
 
 ## <a name="next-steps"></a>Következő lépések
-Ez az oktatóanyag elindítása egy távoli belső vezérlőprogram frissítése egy eszközön a közvetlen módszer használatával, és a jelentésben szereplő tulajdonságok segítségével nyomon követheti a belső vezérlőprogram frissítése.
+Ebben az oktatóanyagban egy közvetlen módszer tootrigger távoli használt belső vezérlőprogram frissítése egy eszközön, és a használt hello jelentett tulajdonságok toofollow hello hello belső vezérlőprogram frissítése folyamatban van.
 
-Megtudhatja, hogyan terjeszthető ki az IoT-megoldás és az ütemezések metódushívások több eszközön, tekintse meg a [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
+toolearn hogyan tooextend az IoT megoldás és az ütemezések metódus meghívja a több eszközön, tekintse meg a hello [ütemezés és a szórásos feladatok] [ lnk-tutorial-jobs] oktatóanyag.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-firmware-update/servicesdknuget.png

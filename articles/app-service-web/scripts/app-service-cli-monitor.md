@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI parancsfájl minta - figyelő a webes alkalmazás a webkiszolgáló naplóinak |} Microsoft Docs"
+title: "aaaAzure CLI parancsfájl minta - webalkalmazás a webkiszolgáló naplóinak figyelése |} Microsoft Docs"
 description: "Az Azure CLI parancsfájl minta - figyelő a webes alkalmazás a webkiszolgáló naplóinak"
 services: appservice
 documentationcenter: appservice
@@ -16,31 +16,31 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: df4ca5b1270ada849e231ad9608a5b1d2edda8be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 012b800c03af77387bed3d098fae3c96d82aee29
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-a-web-app-with-web-server-logs"></a>A webkiszolgáló naplóinak webes alkalmazás figyelése
 
-Ebben a forgatókönyvben létrehoz egy erőforráscsoport, az app service-csomag, a webes alkalmazás, és konfigurálja a webalkalmazás a webkiszolgáló naplóinak engedélyezése. Tekintse át a naplófájlokat, majd letölti azokat.
+Ebben a forgatókönyvben létrehoz egy erőforráscsoport, az app service-csomag, a web app és hello web app tooenable webkiszolgáló naplóinak konfigurálása. Tekintse át a hello naplófájlokban majd letölti.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/app-service/monitor-with-logs/monitor-with-logs.sh "figyelő naplók")]
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/monitor-with-logs/monitor-with-logs.sh "Monitor Logs")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy erőforráscsoport, a web app és az összes kapcsolódó erőforrások létrehozásához. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate egy erőforráscsoport, a web app és az összes kapcsolódó erőforrások hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -48,10 +48,10 @@ A parancsfájl a következő parancsokat egy erőforráscsoport, a web app és a
 | [az App Service-csomag létrehozása](https://docs.microsoft.com/cli/azure/appservice/plan#create) | App Service-csomag létrehozása. Ez olyan, mintha egy kiszolgálófarmon, az Azure webalkalmazás számára. |
 | [az alkalmazás-kulcs létrehozása](https://docs.microsoft.com/cli/azure/webapp#create) | Létrehoz egy Azure-webalkalmazásban. |
 | [az alkalmazás kulcs naplózási konfiguráció](https://docs.microsoft.com/cli/azure/webapp/log#config) | Mely Azure-webalkalmazás egészen addig megmarad naplók konfigurálja. |
-| [az alkalmazás kulcs naplófájl letöltése](https://docs.microsoft.com/cli/azure/webapp/log#download) | Letölti a naplók az Azure-webalkalmazás a helyi számítógépre. |
+| [az alkalmazás kulcs naplófájl letöltése](https://docs.microsoft.com/cli/azure/webapp/log#download) | Letöltések hello kijelentkezik a hello egy Azure web app tooyour helyi számítógép. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További App Service CLI parancsfájl minták megtalálhatók a [Azure App Service-dokumentáció](../app-service-cli-samples.md).
+További App Service CLI parancsfájl minták hello található [Azure App Service-dokumentáció](../app-service-cli-samples.md).

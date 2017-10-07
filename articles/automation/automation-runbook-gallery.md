@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Automation forgatókönyv- és gyűjtemények |} Microsoft Docs"
-description: "Forgatókönyveit és moduljait a Microsoft és a Közösség érhetők el, telepítése és használata az Azure Automation-környezetben.  Ez a cikk ismerteti, hogyan férhet hozzá ezekhez az erőforrásokhoz, és a runbookok a gyűjteményébe hozzájárulás."
+title: "az Azure Automation aaaRunbook és modul gyűjtemények |} Microsoft Docs"
+description: "Forgatókönyveit és moduljait Microsoft és hello Közösségtől, tooinstall érhetők el, és az Azure Automation-környezetben.  Ez a cikk ismerteti, hogyan férhet hozzá ezen erőforrások és toocontribute a runbookok toohello gyűjteménye."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,61 +14,61 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/14/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 04cfafc9e7a037d915f63723fd0b67a07954460b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10b634460edf66dd7548017e3a2f7111b7125f30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="runbook-and-module-galleries-for-azure-automation"></a>Az Azure Automation forgatókönyv- és minták
-Ahelyett, hogy a saját forgatókönyveit és moduljait létrehozása az Azure Automationben, különféle forgatókönyvekhez, amik már Microsoft és a Közösség által készített végezheti el.  Használja a következő használati helyzetekben módosítás nélkül, vagy használhatja őket a kiindulási pontként, és szerkesztheti azokat az adott igények szerint.
+Ahelyett, hogy a saját forgatókönyveit és moduljait létrehozása az Azure Automationben, különféle forgatókönyvekhez, amik már a Microsoft és hello Közösség által készített végezheti el.  Használja a következő használati helyzetekben módosítás nélkül, vagy használhatja őket a kiindulási pontként, és szerkesztheti azokat az adott igények szerint.
 
-A runbookok kaphat a [forgatókönyvek](#runbooks-in-runbook-gallery) és a modulok a [PowerShell-galériában](#modules-in-powerShell-gallery).  Meg is hozzájárulhat a közösségi ossza meg, hogy a most kialakított forgatókönyvek.
+A runbookok letölthető hello [forgatókönyvek](#runbooks-in-runbook-gallery) és hello modulok [PowerShell-galériában](#modules-in-powerShell-gallery).  Toohello közösségi is hozzájárulhat a most kialakított forgatókönyvek megosztásával.
 
 ## <a name="runbooks-in-runbook-gallery"></a>Runbookok a Runbook-galériában
-A [forgatókönyvek](http://gallery.technet.microsoft.com/scriptcenter/site/search?f\[0\].Type=RootCategory&f\[0\].Value=WindowsAzure&f\[1\].Type=SubCategory&f\[1\].Value=WindowsAzure_automation&f\[1\].Text=Automation) runbookok különféle biztosít a Microsoft és a Közösség, amely az Azure Automation importálhatja. Egy runbook vagy letöltheti a gyűjteményből, amelyen található a [TechNet Script Center](https://gallery.technet.microsoft.com/scriptcenter/site/upload), vagy a runbookok a klasszikus Azure portálon vagy az Azure-portálon gyűjteményből közvetlenül importálhatók.
+Hello [forgatókönyvek](http://gallery.technet.microsoft.com/scriptcenter/site/search?f\[0\].Type=RootCategory&f\[0\].Value=WindowsAzure&f\[1\].Type=SubCategory&f\[1\].Value=WindowsAzure_automation&f\[1\].Text=Automation) runbookok számos biztosít a Microsoft és hello Közösség, amely az Azure Automation importálhatja. Hello lévő hello gyűjteményből vagy letöltheti egy runbook [TechNet Script Center](https://gallery.technet.microsoft.com/scriptcenter/site/upload), akkor közvetlenül importálhatja runbookokat hello gyűjteményből hello a klasszikus Azure portálon vagy az Azure-portálon.
 
-Csak importálhatja a Runbook gyűjteményből közvetlenül a klasszikus Azure portálon vagy az Azure portál használatával. Ez a funkció a Windows PowerShell használatával nem hajtható végre.
+Csak importálhatja közvetlenül gyűjteményből hello Runbook hello a klasszikus Azure portálon vagy az Azure portál használatával. Ez a funkció a Windows PowerShell használatával nem hajtható végre.
 
 > [!NOTE]
-> Ellenőriznie kell, hogy a Runbook-galériából beolvasása, és járjon el körültekintően telepítése, és futtassa azokat éles környezetben a runbook tartalmát. |}
+> Ellenőriznie kell a runbookokat hello forgatókönyvek beszerezni, és járjon el körültekintően telepítése, és futtassa azokat éles környezetben hello tartalmát. |}
 > 
 > 
 
-### <a name="to-import-a-runbook-from-the-runbook-gallery-with-the-azure-classic-portal"></a>Runbook importálása a Runbook-galériából a klasszikus Azure portálon
-1. Az Azure portálon kattintson, **új**, **alkalmazásszolgáltatások**, **Automation**, **Runbook**, **a gyűjtemény**.
-2. Válasszon egy kategóriát, kapcsolódó runbookok megtekintése, és válasszon egy runbookot, a részletek megtekintéséhez. Ha azt szeretné, a runbook választja, kattintson a jobbra mutató nyíl gombra.
+### <a name="tooimport-a-runbook-from-hello-runbook-gallery-with-hello-azure-classic-portal"></a>a klasszikus Azure portálon hello forgatókönyvek hello runbookok tooimport
+1. Hello Azure-portálon a gombra, **új**, **alkalmazásszolgáltatások**, **Automation**, **Runbook**, **a gyűjtemény**.
+2. Válasszon egy kategóriát tooview runbookok kapcsolatos, és válassza ki a runbook tooview hozzá tartozó részletek. Ha azt szeretné, hello runbook választja, gombra hello jobbra mutató nyílra.
    
     ![Runbook-katalógus](media/automation-runbook-gallery/runbook-gallery.png)
-3. Tekintse át a runbook tartalmát, és jegyezze fel a leírásban követelményeit. Amikor elkészült, kattintson a jobbra mutató nyíl gombra.
-4. Adja meg a runbook adatokat, és kattintson a pipa gombra. A program már kitölti a runbook nevével.
-5. A runbook megjelenik a **Runbookok** fülre az Automation-fiókhoz.
+3. Tekintse át a hello runbook hello tartalmát, és bármely követelményekre kell ügyelnie a hello leírás. Amikor elkészült, kattintson a hello jobbra mutató nyíl gombra.
+4. Írja be a hello runbook adatait, majd hello pipa gombra. a program már kitölti hello runbook neve.
+5. hello runbook megjelenik a hello **Runbookok** hello Automation-fiók lapján.
 
-### <a name="to-import-a-runbook-from-the-runbook-gallery-with-the-azure-portal"></a>Runbook importálása a Runbook-galériából és az Azure portál
-1. Az Azure portálon nyissa meg az Automation-fiókját.
-2. Kattintson a **Forgatókönyvek** csempére a forgatókönyvek listájának megnyitásához.
+### <a name="tooimport-a-runbook-from-hello-runbook-gallery-with-hello-azure-portal"></a>tooimport hello forgatókönyvek hello Azure-portálon a runbookok
+1. Hello Azure portál nyissa meg az Automation-fiók.
+2. Kattintson a hello **Runbookok** csempe tooopen hello forgatókönyvek listája.
 3. Kattintson a **Tallózás gyűjtemény** gombra.
    
     ![Keresse meg a gyűjtemény gomb](media/automation-runbook-gallery/browse-gallery-button.png)
-4. Keresse meg a gyűjteményelem szeretne, és válassza ki azt a részletek megtekintéséhez.
+4. Hello gyűjteményelem szeretne, és válassza ki azt a tooview keresse meg a részletes adatait.
    
     ![Keresse meg a gyűjtemény](media/automation-runbook-gallery/browse-gallery.png)
-5. Kattintson a **nézet forráskódú projektként** elem megtekintéséhez a [TechNet Script Center](http://gallery.technet.microsoft.com/).
-6. Szeretne importálni egy elemet, kattintson a részletek megtekintéséhez, és kattintson a **importálása** gombra.
+5. Kattintson a **nézet forráskódú projektként** tooview hello eleme hello [TechNet Script Center](http://gallery.technet.microsoft.com/).
+6. tooimport egy elemet, kattintson rá tooview a részletes adatait, majd a hello **importálási** gombra.
    
     ![Importálás gomb](media/automation-runbook-gallery/gallery-item-detail.png)
-7. Szükség esetén változtassa meg a runbook nevét, és kattintson a **OK** a runbook importálásához.
-8. A runbook megjelenik a **Runbookok** fülre az Automation-fiókhoz.
+7. Szükség esetén módosítsa hello runbook hello nevét, majd kattintson a **OK** tooimport hello runbook.
+8. hello runbook megjelenik a hello **Runbookok** hello Automation-fiók lapján.
 
-### <a name="adding-a-runbook-to-the-runbook-gallery"></a>Egy runbook ad hozzá a runbook gyűjteménye
-A Microsoft javasolja, hogy a runbookok hozzáadni a Runbook gyűjteménye, amelyek úgy gondolja, hogy más ügyfelek számára hasznos lehet.  Hozzáadhat egy runbook által [ismét feltölteni a Script Center](http://gallery.technet.microsoft.com/site/upload) figyelembe véve a következő részletekkel.
+### <a name="adding-a-runbook-toohello-runbook-gallery"></a>Egy runbook toohello runbook gyűjteményelem hozzáadása
+A Microsoft javasolja tooadd runbookok toohello Runbook gyűjteménye, amelyek úgy gondolja, hogy hasznos tooother ügyfelek lenne.  Hozzáadhat egy runbook által [ismét feltölteni a Script Center toohello](http://gallery.technet.microsoft.com/site/upload) figyelembe véve a következő adatok fiók hello.
 
-* Meg kell adnia *Windows Azure* a a **kategória** és *Automation* a a **alkategóriát** is megjelennek a runbook a varázsló.  
-* A feltöltés egyetlen .ps1 vagy .graphrunbook fájlnak kell lennie.  Ha a runbook van szüksége, bármilyen modulok, gyermekforgatókönyvek vagy eszközök, majd sorolja fel azokat a küldése leírása és a runbook megjegyzéseket tartalmazó részét.  Ha több runbook igénylő környezettel rendelkezik, külön-külön feltöltése minden egyes, és az felsorolja a kapcsolódó runbookokat az egyes azok leírásait tartalmazza. Győződjön meg arról, hogy, hogy azok fog megjelenni a ugyanilyen kategóriájú használja ugyanazt a címkét. A felhasználónak kell tudnia, hogy szükség-e más runbookokat leírása olvasható a forgatókönyv működjön.
-* Adja hozzá a következő címke: "GraphicalPS" közzétételekor a **grafikus forgatókönyvnek** (ez nem egy grafikus munkafolyamat). 
-* A leírás használata a PowerShell vagy a PowerShell-munkafolyamati kódrészletet beszúrása **helyezze be a kódját a szakasz** ikonra.
-* Az összegzés feltöltésének fog megjelenni az forgatókönyvek között, így meg kell adni a részletes információk segítségével azonosíthatja a funkciók a runbook felhasználó.
-* A feltöltés egy-három a következő címkék kell hozzárendelni.  A runbook megjelenik a varázsló a a kategóriák, amelyek megfelelnek a címkék.  A listában nem szereplő címkéket a varázsló által figyelmen kívül hagyja. A címke nem adja meg, ha a runbook a kategóriában jelenik meg.
+* Meg kell adnia *Windows Azure* a hello **kategória** és *Automation* a hello **alkategóriát** hello runbook toobe jelenik meg a hello varázslóban.  
+* hello feltöltés egyetlen .ps1 vagy .graphrunbook fájlnak kell lennie.  Ha hello runbook van szüksége, bármilyen modulok, gyermekforgatókönyvek vagy eszközök, majd sorolja fel azokat a hello küldésének hello leírása és a hello runbook hello megjegyzéseket tartalmazó részét.  Ha több runbook igénylő környezettel rendelkezik, majd töltse fel minden egyes külön-külön, és a lista hello nevei hello kapcsolódó runbookok minden azok leírásait tartalmazza. Győződjön meg arról, hogy használja-e azonos címkéket, hogy azok fog megjelenni hello hello ugyanilyen kategóriájú. A felhasználónak kell, hogy más forgatókönyvek állnak-e a szükséges hello forgatókönyv toowork tooread hello leírás tooknow.
+* Adja hozzá a hello címke "GraphicalPS" közzétételekor a **grafikus forgatókönyvnek** (ez nem egy grafikus munkafolyamat). 
+* A PowerShell vagy a PowerShell-munkafolyamati kódrészletet beszúrása hello leírás használatával **helyezze be a kódját a szakasz** ikonra.
+* hello hello feltöltésének összegzés megjelenő hello forgatókönyvek találatok, részletes információkat, amelyek segítségére lesznek a felhasználók azonosítása hello funkció hello runbook kell biztosítania.
+* A következő címkék toohello feltöltés hello egy toothree kell hozzárendelni.  hello runbook hello varázslóban a hello kategóriák, amelyek megfelelnek a címkék jelennek meg.  A listában nem szereplő címkéket hello varázsló figyelmen kívül. Ha nem adja meg a megfelelő címkéket, hello runbook lesz alatt hello feltüntetve más kategóriát.
   
   * Biztonsági mentés
   * Kapacitáskezelés
@@ -81,44 +81,44 @@ A Microsoft javasolja, hogy a runbookok hozzáadni a Runbook gyűjteménye, amel
   * Kiépítés
   * Szervizkiszolgáló
   * Virtuális gép életciklusának kezelésére
-* Automation frissíti a gyűjtemény óránként egyszer, ezért az nem fog a hozzájárulások azonnal.
+* Automatizálási frissíti hello gyűjtemény óránként egyszer, így azonnal nem jelenik meg a hozzájárulások.
 
 ## <a name="modules-in-powershell-gallery"></a>A PowerShell-galériában modulok
-PowerShell-modul a runbookokban használható parancsmagokat tartalmaznak, és az Azure Automationben telepítése meglévő modulok érhetők el a [PowerShell-galériában](http://www.powershellgallery.com).  Indítsa el ezt a tárat, Azure-portálról, és közvetlenül az Azure Automation a telepítést, vagy letöltheti a fájlokat, és manuális telepítése.  A modulok nem telepíthető közvetlenül a klasszikus Azure portálon, de letöltheti azokat mint bármely más modulja a telepítést.
+PowerShell-modul a runbookokban használható parancsmagokat tartalmaznak, és az Azure Automationben telepítése meglévő modulok érhetők el hello [PowerShell-galériában](http://www.powershellgallery.com).  Indítsa el ezt a tárat a hello Azure-portálon, és közvetlenül az Azure Automation a telepítést, vagy letöltheti a fájlokat, és manuális telepítése.  Közvetlenül a klasszikus Azure portálon hello hello modulok nem telepíthető, de letöltheti azokat mint bármely más modulja a telepítést.
 
-### <a name="to-import-a-module-from-the-automation-module-gallery-with-the-azure-portal"></a>Modul importálása Automation-modul galériából és az Azure portál
-1. Az Azure portálon nyissa meg az Automation-fiókját.
-2. Kattintson a **eszközök** csempére kattintva nyissa meg az eszközök listája.
-3. Kattintson a **modulok** csempére kattintva nyissa meg a modulok listáját.
-4. Kattintson a **Tallózás gyűjteménye** gombra és a Tallózás gyűjtemény panel nincs elindítva.
+### <a name="tooimport-a-module-from-hello-automation-module-gallery-with-hello-azure-portal"></a>tooimport hello Azure-portálon az Automation-modul gyűjtemény hello egy modult
+1. Hello Azure portál nyissa meg az Automation-fiók.
+2. Kattintson a hello **eszközök** csempe tooopen hello eszközök listája.
+3. Kattintson a hello **modulok** csempe tooopen hello listájához.
+4. Kattintson a hello **Tallózás gyűjtemény** gombra és hello Tallózás gyűjtemény panel nincs elindítva.
    
     ![A modul gyűjteménye](media/automation-runbook-gallery/modules-blade.png) <br>
-5. A tallózási gyűjtemény panel indítása, miután úgy keresheti meg a következő mezőket:
+5. Hello Tallózás gyűjtemény panel indítása, miután úgy keresheti meg a következő mezők hello:
    
    * A modul neve
    * Címkék
    * Szerző
    * A parancsmag/DSC-erőforrás neve
-6. Keresse meg a modul, amely továbbra is érdekli, és válassza ki azt a részletek megtekintéséhez.  
-   Ha egy adott modult elemezze, további információkat láthat egy hivatkozást a PowerShell-galériában, beleértve a modulban kapcsolatos el a szükséges függőségek, és az összes, a parancsmagok és/vagy a DSC-erőforrások, amely a modul tartalmazza.
+6. A modul is érdekli, és válassza ki azt a tooview keresse meg a részletes adatait.  
+   Amikor egy adott modult elemezze, megtekintheti a hello modul, beleértve a hivatkozás hátsó toohello további információ a PowerShell-galériában el a szükséges függőségek, és minden hello parancsmagok és/vagy modul hello DSC erőforrásokat tartalmaz.
    
     ![PowerShell modul részletei](media/automation-runbook-gallery/gallery-item-details-blade.png) <br>
-7. Közvetlenül az Azure Automation-modul telepítéséhez, kattintson a **importálási** gombra.
+7. tooinstall hello modul közvetlenül az Azure Automation szolgáltatásbeli kattintson hello **importálási** gombra.
    
     ![Importálás modul gombra](media/automation-runbook-gallery/module-import-button.png)
-8. Ha az Importálás gombra kattint, megjelenik a modul neve, amely az importálni kívánt. Ha az összes függősége telepítve van, a **OK** gomb aktív lesz. Ha függőségek hiányzik, azokat importálni, ez a modul importálása előtt szeretné.
-9. Kattintson a **OK** importálja a modult, és a modul panel fog elindulni. Azure Automation importálja a modult, a fiókjához, ha a modul és a parancsmagokkal kapcsolatos metaadatok bontja ki.
+8. Hello Importálás gombra kattintva, látni fogja, hogy a program tooimport kapcsolatos hello modulnév. Ha az összes hello függősége telepítve van, hello **OK** gomb aktív lesz. Ha függőségek hiányzik, akkor tooimport azokat, ez a modul importálása előtt.
+9. Kattintson a **OK** tooimport hello modul, és hello modul panel elindul. Azure Automation importálására a modul tooyour fiókot, ha hello modul és hello parancsmagok metaadatainak bontja ki.
    
     ![Importálás modul panel](media/automation-runbook-gallery/module-import-blade.png)
    
-    Ez eltarthat néhány percig, mivel minden tevékenység kinyerni kell.
-10. Egy értesítés, hogy a modul telepítése történik, és értesítést fog kapni, amikor befejeződött.
-11. A modul az importálása után megjelenik az elérhető tevékenységeket, és használhatja az erőforrásokat a runbookok és a célállapot-konfiguráció.
+    Ez eltarthat néhány percig, mivel az egyes tevékenységek kibontása toobe kell.
+10. Egy értesítést fog kapni, hogy hello modul telepítése és egy értesítést, amikor befejeződött.
+11. Hello modul az importálása után hello elérhető tevékenységeket látni fogja, és a runbookok és a célállapot-konfiguráció erőforrásait is használhatja.
 
 ## <a name="requesting-a-runbook-or-module"></a>A kért egy runbook vagy modul
-Kéréseket küldhet [User Voice](https://feedback.azure.com/forums/246290-azure-automation/).  Ha a szükséges súgó írása egy runbookot, vagy PowerShell kapcsolatos kérdése van, küldéséhez a [fórum](http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=azureautomation&filter=alltypes&sort=lastpostdesc).
+Túl küldhet a kérelmek[User Voice](https://feedback.azure.com/forums/246290-azure-automation/).  Ha kell súgó írása egy runbookot, vagy PowerShell kapcsolatos kérdése van, írjon egy kérdés tooour [fórum](http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=azureautomation&filter=alltypes&sort=lastpostdesc).
 
 ## <a name="next-steps"></a>Következő lépések
-* Első lépésként a runbookokkal, lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
-* Runbookok PowerShell és a PowerShell-munkafolyamatok közötti különbségek ismertetése: [tanulási PowerShell munkafolyamat](automation-powershell-workflow.md)
+* a runbookok, használatába tooget lásd: [létrehozása vagy egy Azure Automation forgatókönyv importálása](automation-creating-importing-runbook.md)
+* toounderstand hello közötti különbségek PowerShell és a PowerShell-munkafolyamati runbookokkal, lásd: [tanulási PowerShell munkafolyamat](automation-powershell-workflow.md)
 
