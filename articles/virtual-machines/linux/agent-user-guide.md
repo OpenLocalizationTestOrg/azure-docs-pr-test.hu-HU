@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux virtuális gép ügynök áttekintése |} Microsoft Docs"
-description: "Megtudhatja, hogyan telepítse és konfigurálja a Linux-ügynök (waagent) a virtuális gép az Azure Fabric Controller kezeléséhez."
+title: "aaaAzure Linux virtuális gép ügynök áttekintése |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooinstall és a Linux-ügynök (waagent) toomanage konfigurálja a virtuális gép Azure Fabric Controller interakció."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -16,20 +16,20 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: szark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 486ad6bb148583a957fb82b7954ff94f853b12cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4e08c84d9205f4db7aae6fd1568ec1f15fba395c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understanding-and-using-the-azure-linux-agent"></a>Megismeréséhez és használatához az Azure Linux ügynök
+# <a name="understanding-and-using-hello-azure-linux-agent"></a>Megismeréséhez és használatához hello Azure Linux ügynök
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="introduction"></a>Bevezetés
-A Microsoft Azure Linux-ügynök (waagent) a Linux és freebsd rendszerű kiépítés és az Azure Fabric Controller interakcióba VM kezeli. A következő funkciókat biztosít a Linux és freebsd rendszerű infrastruktúra-szolgáltatási központi telepítések:
+hello Microsoft Azure Linux ügynök (waagent) a Linux és freebsd rendszerű kiépítés és hello Azure Fabric Controller interakcióba VM kezeli. A következő funkció a Linux és freebsd rendszerű infrastruktúra-szolgáltatási központi telepítések hello tartalmazza:
 
 > [!NOTE]
-> Tekintse meg az Azure Linux ügynök [információs](https://github.com/Azure/WALinuxAgent/blob/master/README.md) további részleteket.
+> Lásd: hello Azure Linux ügynök [információs](https://github.com/Azure/WALinuxAgent/blob/master/README.md) további részleteket.
 > 
 > 
 
@@ -38,43 +38,43 @@ A Microsoft Azure Linux-ügynök (waagent) a Linux és freebsd rendszerű kiép�
   * A felhasználói fiók létrehozása
   * SSH hitelesítési típus konfigurálása
   * Az SSH nyilvános kulcsok és kulcspárok központi telepítését
-  * Beállítás a gazdagép neve
-  * Az állomásnév közzététele a DNS platform
-  * SSH-kulcs ujjlenyomat állomás Reporting a platformra
+  * Beállítás hello gazdagép neve
+  * Közzétételi hello állomás neve toohello platform DNS
+  * Jelentéskészítési SSH állomás kulcs ujjlenyomat toohello platform
   * Erőforrás Lemezkezelés
-  * Formázás és az erőforrás-lemez csatlakoztatása
+  * Formázás és hello erőforrás lemez csatlakoztatása
   * Lapozófájl konfigurálása
 * **Hálózat**
   
-  * Útvonalak való kompatibilitás érdekében platform DHCP-kiszolgálók kezelése
-  * Biztosítja a stabilitását a hálózati kapcsolat neve
+  * Kezeli az útvonalak tooimprove kompatibilitási platform DHCP-kiszolgálókkal
+  * Biztosítja a hello stabilitásának hello a hálózati adapter neve
 * **Kernel**
   
   * Konfigurálja a virtuális NUMA (letiltja a kernel < 2.6.37)
   * Hyper-V entrópia /dev/random a felhasználva
-  * Konfigurálja az SCSI-időtúllépések a legfelső szintű eszköz (amely lehet távoli)
+  * Konfigurálja az SCSI-időtúllépések hello legfelső szintű eszköz (amely lehet távoli)
 * **Diagnosztika**
   
-  * A soros portjára segítségével
+  * Konzol átirányítási toohello soros port
 * **Az SCVMM központi telepítések**
   
-  * Észleli és a VMM-ügynök Linux betöltéséhez, ha a System Center Virtual Machine Manager 2012 R2 környezetben futó
+  * Észleli és hello VMM-ügynök Linux betöltéséhez, ha a System Center Virtual Machine Manager 2012 R2 környezetben futó
 * **Virtuálisgép-bővítmény**
   
-  * Linux virtuális gép (IaaS) szoftver engedélyezéséhez és a konfigurációs automation Microsoft és a partnerei által készített összetevő beszúrása
+  * A Linux virtuális gép (IaaS) tooenable szoftver- és konfigurációs automation Microsoft és a partnerei által készített összetevő beszúrása
   * Virtuálisgép-bővítmény hivatkozási megvalósítása a [https://github.com/Azure/azure-linux-extensions](https://github.com/Azure/azure-linux-extensions)
 
 ## <a name="communication"></a>Kommunikáció
-Az ügynöknek a platformról információáramlás két csatornákon keresztül történnek:
+hello információáramlás hello platform toohello ügynöktől két csatornákon keresztül történnek:
 
-* A rendszerindítás DVD csatolt IaaS telepítésekhez. A DVD-t egy OVF-kompatibilis konfigurációs fájl, amely tartalmazza a tényleges SSH keypairs kivételével az összes kiépítési információkat tartalmaz.
-* A TCP-végpont teszi ki a REST API-t használja a központi telepítés és a topológia konfigurációjával.
+* A rendszerindítás DVD csatolt IaaS telepítésekhez. A DVD-t egy OVF-kompatibilis hello tényleges SSH keypairs kivételével az összes kiépítési információkat tartalmazó konfigurációs fájlt tartalmazza.
+* A TCP-végpont teszi ki a REST API használt tooobtain központi telepítése és topológia konfigurálása.
 
 ## <a name="requirements"></a>Követelmények
-A következő rendszerek lettek tesztelve, és ismert, hogy az Azure Linux ügynök használata:
+hello következő rendszerek lettek tesztelve, és a hello Azure Linux ügynök toowork ismert:
 
 > [!NOTE]
-> Ebben a listában eltérhet a Microsoft Azure platformon támogatott rendszerek hivatalos listáját itt: [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)
+> Ez a lista eltérhet a hello hivatalos a Microsoft Azure Platform hello támogatott rendszerek listáját itt leírt módon: [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)
 > 
 > 
 
@@ -91,7 +91,7 @@ Egyéb támogatott rendszerek:
 
 * Freebsd rendszerű 10 + (Azure Linux ügynök v2.0.10 +)
 
-A Linux-ügynök megfelelő működéséhez néhány rendszer csomag függ:
+hello Linux-ügynök megfelelően egyes rendszer csomagok rendelés toofunction függ:
 
 * Python 2.6 +
 * OpenSSL 1.0 +
@@ -103,9 +103,9 @@ A Linux-ügynök megfelelő működéséhez néhány rendszer csomag függ:
 * Kernel támogatása UDF fájlrendszerek csatlakoztatni.
 
 ## <a name="installation"></a>Telepítés
-A telepítési csomag tárházból egy RPM vagy DEB-csomag telepítését a előnyben részesített lehetőség, telepítése és az Azure Linux ügynök frissítése. Minden a [terjesztési szolgáltatók által támogatott](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) az Azure Linux-ügynök csomagja integrálja a képeket és tárházak találhatók.
+A telepítési csomag tárházból egy RPM vagy DEB-csomag telepítését telepítése és hello Azure Linux ügynök frissítése hello előnyben részesített módja. Minden hello [terjesztési szolgáltatók által támogatott](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) hello Azure Linux ügynök csomag integrálja a képeket és tárházak találhatók.
 
-A dokumentációban találja a [Azure Linux ügynök-tárház a Githubon](https://github.com/Azure/WALinuxAgent) a speciális telepítési lehetőségeket, például a forrás vagy egyéni helyek vagy az előtagok telepítése.
+Tekintse meg a hello toohello dokumentációját [Azure Linux ügynök-tárház a Githubon](https://github.com/Azure/WALinuxAgent) a speciális telepítési lehetőségeket, például a forrás- vagy toocustom helyekről vagy az előtagok telepítése.
 
 ## <a name="command-line-options"></a>Parancssori kapcsolók
 ### <a name="flags"></a>Jelzők
@@ -113,28 +113,28 @@ A dokumentációban találja a [Azure Linux ügynök-tárház a Githubon](https:
 * kényszerített: hagyja ki az egyes parancsok interaktív megerősítése
 
 ### <a name="commands"></a>Parancsok
-* Súgó: a támogatott parancsok és jelzők sorolja fel.
-* deprovision: próbálja meg törölni a rendszer, és lehetővé teszi a megfelelő ismételt üzembe helyezéséhez. Ez a művelet törli a következő:
+* Súgó: hello támogatott parancsok és jelzők sorolja fel.
+* deprovision: tooclean hello rendszer kísérletet, és teszi megfelelő ismételt üzembe helyezéséhez. Ez a művelet törli a hello következő:
   
-  * Az összes SSH állomáskulcsai (ha Provisioning.RegenerateSshHostKeyPair "y", a konfigurációs fájlban)
+  * Az összes SSH állomáskulcsai (ha Provisioning.RegenerateSshHostKeyPair "y" hello konfigurációs fájlban)
   * A /etc/resolv.conf névkiszolgáló-konfiguráció
-  * Gyökér szintű jelszavát a /etc/shadow (ha Provisioning.DeleteRootPassword "y", a konfigurációs fájlban)
+  * Gyökér szintű jelszavát a /etc/shadow (ha Provisioning.DeleteRootPassword "y" hello konfigurációs fájlban)
   * Gyorsítótárazott DHCP-ügyfél bérletek
-  * A localhost.localdomain állomásnév visszaállítása
+  * Alaphelyzetbe állítását gazdagép neve toolocalhost.localdomain
 
 > [!WARNING]
-> Megszüntetés nem garantálható, hogy a lemezkép minden a bizalmas adatok törlődik, és a megfelelő terjesztési.
+> Megszüntetés nem garantálja hello lemezkép nincs bejelölve, az összes bizalmas adatokat, és a megfelelő terjesztési.
 > 
 > 
 
-* deprovision + felhasználói: hajt végre, minden elemet - deprovision (fent) is törli a legutóbbi kiépített felhasználói fiókot (/var/lib/waagent nyert) és az adatok. Ez a paraméter esetén a megszüntetést egy olyanra, amely korábban az Azure-on kiépítés volt, előfordulhat, hogy lehet rögzíteni és újra felhasználni.
-* verzió: waagent-verzió
-* serialconsole: ttyS0 megjelölni LÁRVAJÁRAT konfigurálása (az első soros port) a rendszerindító konzollal. Ez biztosítja, hogy kernel rendszerindítási naplókat a soros port küldött és elérhetővé tenni a hibakereséshez.
-* démon: waagent futtató démon kezeléséhez a platformon. Ennek az argumentumnak a waagent a waagent init parancsfájl van megadva.
+* deprovision + felhasználói: hajt végre, minden elemet - deprovision (fent) is törli a hello (/var/lib/waagent nyert) utolsó kiépített felhasználói fiókot, és az adatok. Ez a paraméter esetén a megszüntetést egy olyanra, amely korábban az Azure-on kiépítés volt, előfordulhat, hogy lehet rögzíteni és újra felhasználni.
+* verzió: waagent hello verzióját jeleníti meg
+* serialconsole: konfigurálja a LÁRVAJÁRAT toomark ttyS0 (hello első soros port) hello rendszerindító konzollal. Ez biztosítja, hogy a kernel rendszerindítási naplóit toothe soros port küldött és elérhetővé tenni a hibakereséshez.
+* démon: waagent futtató hello platform démon toomanage interakció. Az argumentum értéke a megadott toowaagent hello waagent init parancsfájlban.
 * Start: háttérfolyamatként waagent futtatása
 
 ## <a name="configuration"></a>Konfiguráció
-Egy konfigurációs fájl (/ etc/waagent.conf) waagent műveleteit szabályozza. Alább látható egy példa konfigurációs fájlt:
+Egy konfigurációs fájl (/ etc/waagent.conf) vezérlők hello waagent műveleteket. Alább látható egy példa konfigurációs fájlt:
 
     Provisioning.Enabled=y
     Provisioning.DeleteRootPassword=n
@@ -158,16 +158,16 @@ Egy konfigurációs fájl (/ etc/waagent.conf) waagent műveleteit szabályozza.
     HttpProxy.Host=None
     HttpProxy.Port=None
 
-A különböző konfigurációs beállításait ismerteti részletesen. Beállítási lehetőségek állnak a három típusa létezik; Logikai érték, String vagy Integer. "Y" vagy "n" logikai konfigurációs beállításokat adhat meg. A speciális kulcsszó "None" néhány karakterlánc típusú konfigurációs elemet részletes, az alábbi használható.
+hello részletesen ismerteti a különböző konfigurációs beállításait. Beállítási lehetőségek állnak a három típusa létezik; Logikai érték, String vagy Integer. "y" vagy "n" Hello logikai konfigurációs beállításokat adhat meg. hello különleges kulcsszó "None" néhány karakterlánc típusú konfigurációs elemet részletes, az alábbi használható.
 
 **Provisioning.Enabled:**  
 Típus: logikai  
 Alapértelmezett: y
 
-A felhasználó engedélyezhető vagy tiltható le az ügynököt a kiépítési funkciói. Érvényes értékek: "y" vagy "n". Kiépítés le van tiltva, ha a kép SSH-állomás és a felhasználói kulcsok megmaradnak, és a kiépítés API Azure-ban megadott minden beállítás figyelmen kívül hagyja.
+Ez lehetővé teszi, hogy a felhasználó tooenable hello, vagy tiltsa le a hello kiépítés hello ügynök funkcióit. Érvényes értékek: "y" vagy "n". Kiépítés le van tiltva, ha hello kép SSH-állomás és a felhasználói kulcsok megmaradnak, és a hello Azure létesítési API megadott minden beállítás figyelmen kívül hagyja.
 
 > [!NOTE]
-> A `Provisioning.Enabled` "n" Ubuntu felhő lemezképeket inicializálás felhőben történő üzembe helyezéséhez használjon a paraméter alapértelmezett értéke.
+> Hello `Provisioning.Enabled` túl "n" Ubuntu felhő lemezképeket inicializálás felhőben történő üzembe helyezéséhez használjon a paraméter alapértelmezett értéke.
 > 
 > 
 
@@ -175,27 +175,27 @@ A felhasználó engedélyezhető vagy tiltható le az ügynököt a kiépítési
 Típus: logikai  
 Alapértelmezett: n
 
-Ha be van állítva, a/etc/árnyékmásolat fájlban gyökér szintű jelszavát a telepítési folyamat során elvész.
+Ha be van állítva, hello gyökér szintű jelszavát a hello/etc/árnyékmásolat fájl törlése során hello a telepítési folyamatot.
 
 **Provisioning.RegenerateSshHostKeyPair:**  
 Típus: logikai  
 Alapértelmezett: y
 
-Ha be van állítva, az összes SSH állomás kulcspárok (ecdsa, dsa és rsa) a rendszer törli az/etc/ssh/a telepítési folyamat során. És egy egyetlen új kulcspár.
+Ha be van állítva, az összes SSH állomás kulcspárok (ecdsa, dsa és rsa) során hello létesítésének folyamatát kell használnia az/etc/ssh/törlés. És egy egyetlen új kulcspár.
 
-A friss kulcspár titkosítási típus a Provisioning.SshHostKeyPairType bejegyzés által konfigurálható. Vegye figyelembe, hogy néhány terjesztési hozza létre SSH-kulcspár bármely hiányzó titkosítási típusok, az SSH démon (például biztonsági újraindításkor) újraindításakor.
+hello titkosítási hello friss kulcspár alaptípusa hello Provisioning.SshHostKeyPairType bejegyzés által konfigurálható. Vegye figyelembe, hogy néhány terjesztési hozza létre a hiányzó titkosítási típusok SSH-kulcspár, hello SSH démon (például biztonsági újraindításkor) újraindításakor.
 
 **Provisioning.SshHostKeyPairType:**  
 Típus: Karakterlánc  
 Alapértelmezett: rsa
 
-Ez a virtuális gépen az SSH démon által támogatott titkosítási algoritmus típust állítható be. A általában támogatott értékek: "rsa", "dsa" és "ecdsa". Vegye figyelembe, hogy a "putty.exe" a Windows nem támogatja "ecdsa". Úgy Ha azt tervezi, a Windows putty.exe segítségével csatlakozzon a Linux-környezethez, használja az "rsa" vagy "dsa".
+E beállítás tooan titkosítási algoritmus típus hello SSH-démon hello virtuális gép által támogatott. hello általában a támogatott értékek a következők: "rsa", "dsa" és "ecdsa". Vegye figyelembe, hogy a "putty.exe" a Windows nem támogatja "ecdsa". Igen ha azt tervezi, a Windows tooconnect tooa Linux telepítési toouse putty.exe, használja az "rsa" vagy "dsa".
 
 **Provisioning.MonitorHostName:**  
 Típus: logikai  
 Alapértelmezett: y
 
-Ha beállításához waagent ellenőrzi a Linux virtuális gép állomásnevét módosítások (mivel a parancs által visszaadott "állomásnév") és automatikus frissítése a kép, hogy tükrözze a hálózati beállításokat. Ahhoz, hogy a kiszolgálónév-változás leküldése a DNS-kiszolgálók, hálózat a virtuális gép újraindul. Ekkor röviden a Internet kapcsolat megszakadása.
+Ha beállításához waagent ellenőrzi hello Linux virtuális gép állomásnevét módosítások (a hello "állomásnév" parancs által visszaadott) és automatikusan frissíti a hálózati konfiguráció hello hello kép tooreflect hello módosítása. A sorrend toopush hello név toohello DNS-kiszolgálók módosításához hálózatkezelés hello virtuális gép újraindul. Ekkor röviden a Internet kapcsolat megszakadása.
 
 **Provisioning.DecodeCustomData**  
 Típus: logikai  
@@ -229,80 +229,80 @@ Jelszókivonat létrehozásához használt véletlenszerű védőérték hosszá
 Típus: logikai  
 Alapértelmezett: y
 
-Ha beállítása, a erőforrás lemez a platform által biztosított fog kell formázni, waagent által csatlakoztatott, ha a fájlrendszer típusát kérte a felhasználónak a "ResourceDisk.Filesystem" nem "ntfs". Egy olyan partíciót, Linux (83) típusú lesz elérhető a lemezen. Vegye figyelembe, hogy ez a partíció nem lesz formázva Ha sikeresen csatlakoztatva.
+Ha beállításához hello erőforrás lemez hello platform által biztosított fog formázható és hello filesystem "ResourceDisk.Filesystem" hello felhasználó által kért típus "ntfs" csakis által waagent csatlakoztatva. Egy olyan partíciót, Linux (83) típusú hello lemezen rendelkezésre álló fog történni. Vegye figyelembe, hogy ez a partíció nem lesz formázva Ha sikeresen csatlakoztatva.
 
 **ResourceDisk.Filesystem:**  
 Típus: Karakterlánc  
 Alapértelmezett: ext4
 
-Azt határozza meg az erőforrás-lemez a fájlrendszer típusát. A Linux-disztribúció által támogatott értékek eltérők lehetnek. Ha a karakterlánc X, majd mkfs. X a Linux-lemezkép jelen kell lennie. SLES 11 lemezképeket általában használjon "ext3". Freebsd rendszerű lemezképek itt "ufs2" kell használni.
+Azt határozza meg a hello erőforrás lemez hello fájlrendszer típusát. A Linux-disztribúció által támogatott értékek eltérők lehetnek. Ha X, majd mkfs hello karakterlánc. X hello Linux kép jelen kell lennie. SLES 11 lemezképeket általában használjon "ext3". Freebsd rendszerű lemezképek itt "ufs2" kell használni.
 
 **ResourceDisk.MountPoint:**  
 Típus: Karakterlánc  
 Alapértelmezett: / mnt és az erőforrások 
 
-Azt határozza meg az elérési utat, amelyen az erőforrás-lemez csatlakoztatva van. Vegye figyelembe, hogy az erőforrás-lemez egy *ideiglenes* lemezre, és előfordulhat, hogy szerepelnek, ha a virtuális gép van platformelőfizetés.
+Azt határozza meg a hello elérési utat, amelyen hello erőforrás lemez csatlakoztatva van. Vegye figyelembe, hogy hello erőforrás lemez egy *ideiglenes* lemezre, és előfordulhat, hogy üríteni, megszüntetett hello virtuális gép esetén.
 
 **ResourceDisk.MountOptions**  
 Típus: Karakterlánc  
 Alapértelmezett: nincs
 
-A mount -o parancs átadandó lemez csatlakoztatási beállításait adja meg. Például ez az értékek, vesszővel elválasztott listája. "nodev, nosuid". Tekintse meg a részletes mount(8).
+Lemez csatlakoztatási lehetőségek átadott toobe toohello csatlakoztatási -o parancsot határozza meg. Például ez az értékek, vesszővel elválasztott listája. "nodev, nosuid". Tekintse meg a részletes mount(8).
 
 **ResourceDisk.EnableSwap:**  
 Típus: logikai  
 Alapértelmezett: n
 
-Ha beállításához lapozófájl (/ swapfile), az erőforrás lemezen létrehozni, és a rendszer lapozóterület hozzáadni.
+Ha beállításához lapozófájl (/ swapfile) hello erőforrás lemezen jön létre, és toohello rendszer lapozóterület hozzá.
 
 **ResourceDisk.SwapSizeMB:**  
 Típus: egész szám  
 Alapértelmezett: 0
 
-A lapozófájl mérete (MB) mérete.
+hello mérete hello lapozófájl mérete (MB).
 
 **Logs.Verbose:**  
 Típus: logikai  
 Alapértelmezett: n
 
-Ha be van állítva, napló részletességi súlyozott van. Waagent /var/log/waagent.log jelentkezik, és kihasználja a rendszer logrotate elforgatása naplókat.
+Ha be van állítva, napló részletességi súlyozott van. Waagent too/var/log/waagent.log naplózza, és lehetővé teszi a hello logrotate funkció toorotate rendszernaplókat.
 
 **AZ OPERÁCIÓS RENDSZER. EnableRDMA**  
 Típus: logikai  
 Alapértelmezett: n
 
-Ha állítsa be, az ügynök megpróbálja telepíteni, és töltsön be egy RDMA egy rendszermag-illesztőprogramot, amely ugyanolyan verziójúak, mint az alapul szolgáló hardverben belső vezérlőprogramját.
+Amennyiben beállításához hello ügynök fog próbálja tooinstall és töltsön be egy RDMA kernel-illesztőprogram hello belső vezérlőprogramját az alapul szolgáló hardver hello hello verziójának megfelelő.
 
 **AZ OPERÁCIÓS RENDSZER. RootDeviceScsiTimeout:**  
 Típus: egész szám  
 Alapértelmezett: 300
 
-Ez konfigurálja az SCSI-időtúllépés másodpercben az operációs rendszer lemez- és meghajtókon. Ha nincs beállítva, a rendszer alapértelmezett értékeket használják.
+Ez konfigurálja az hello SCSI időtúllépés másodpercben hello OS lemez- és meghajtókon. Ha nincs beállítva, hello rendszer alapértelmezett értékeket használják.
 
 **AZ OPERÁCIÓS RENDSZER. OpensslPath:**  
 Típus: Karakterlánc  
 Alapértelmezett: nincs
 
-Ez egy alternatív elérési utat a titkosítási műveletek használandó bináris openssl megadását is használható.
+Ez lehet használt toospecify egy alternatív elérési utat a hello openssl bináris toouse titkosítási műveletek.
 
 **HttpProxy.Host, HttpProxy.Port**  
 Típus: Karakterlánc  
 Alapértelmezett: nincs
 
-Ha állítsa be, az ügynök fogja használni a proxykiszolgálót az internet eléréséhez. 
+Ha beállításához hello ügynök használni fog a proxy server tooaccess hello internet. 
 
 ## <a name="ubuntu-cloud-images"></a>Ubuntu felhő lemezképek
-Vegye figyelembe, hogy Ubuntu felhő lemezképek használata [felhő inicializálás](https://launchpad.net/ubuntu/+source/cloud-init) számos konfigurációs feladatok végrehajtását, amelyek egyébként volna kezeli az Azure Linux ügynök.  Vegye figyelembe a következő eltérésekkel:
+Vegye figyelembe, hogy Ubuntu felhő lemezképek használata [felhő inicializálás](https://launchpad.net/ubuntu/+source/cloud-init) tooperform számos konfigurációs feladatok, akkor más módon kell kezelnie hello Azure Linux ügynök.  Vegye figyelembe a következő különbségek hello:
 
-* **Provisioning.Enabled** az alapértelmezett érték "n" a telepítési feladatok végrehajtásához használja a felhő inicializálás Ubuntu felhő lemezképeket.
-* A következő konfigurációs paraméterek nem befolyásolják a felhő inicializálás segítségével kezelheti az erőforrás-lemez, és a lapozófájl Ubuntu felhő lemezképek:
+* **Provisioning.Enabled** túl "n" Ubuntu felhő képek feladatok kiépítés felhő inicializálás tooperform használó alapértelmezett értékeket.
+* a következő konfigurációs paraméterek hello nincs hatással a felhő inicializálás toomanage hello erőforrás lemez és a lapozófájl-kapacitás helyet használó Ubuntu felhő képek rendelkezik:
   
   * **ResourceDisk.Format**
   * **ResourceDisk.Filesystem**
   * **ResourceDisk.MountPoint**
   * **ResourceDisk.EnableSwap**
   * **ResourceDisk.SwapSizeMB**
-* Ellenőrizze a lemez erőforrás csatlakoztatási pontjának konfigurálásával és a lapozófájl Ubuntu felhő képek a kiépítés során a következőket:
+* Tekintse meg a következő erőforrások tooconfigure hello erőforrás lemez csatlakoztatási pont hello, és a kiépítés során Ubuntu felhő képek a lapozófájl:
   
   * [Ubuntu Wiki: Lapozófájl-kapacitás-partíciók konfigurálása](http://go.microsoft.com/fwlink/?LinkID=532955&clcid=0x409)
   * [Egyéni adatok hogy Azure virtuális géphez](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)

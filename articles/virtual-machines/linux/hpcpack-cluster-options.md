@@ -1,6 +1,6 @@
 ---
-title: "Linux HPC Pack fürt beállításai a felhőben |} Microsoft Docs"
-description: "További tudnivalók a Microsoft HPC Pack létrehozása és kezelése a Linux nagy teljesítményű számítástechnikai (HPC) fürt Azure felhőben beállítások"
+title: "aaaLinux HPC Pack fürt beállításai hello felhőben |} Microsoft Docs"
+description: "További tudnivalók a Microsoft HPC Pack toocreate beállítások és a Linux nagy teljesítményű számítástechnikai hello Azure-felhőbe (HPC) fürt kezelése"
 services: virtual-machines-linux,cloud-services
 documentationcenter: 
 author: dlepow
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 02/06/2017
 ms.author: danlep
-ms.openlocfilehash: 616006d29149f7f47b03bd127cf3c83ad63a5c39
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 60d093b466f44a0391815842c421c328e8c7a0d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="options-with-hpc-pack-to-create-and-manage-an-hpc-cluster-in-azure-for-linux-workloads"></a>HPC Pack létrehozása és kezelése a Linux-munkaterhelések az Azure-ban HPC-fürt beállítások
+# <a name="options-with-hpc-pack-toocreate-and-manage-an-hpc-cluster-in-azure-for-linux-workloads"></a>A HPC Pack toocreate beállítások és a Linux-munkaterhelések az Azure-ban HPC-fürt kezelése
 [!INCLUDE [virtual-machines-common-hpcpack-cluster-options](../../../includes/virtual-machines-common-hpcpack-cluster-options.md)]
 
-Ez a cikk foglalkozik Linux alkalmazásokat és szolgáltatásokat futtathatnak HPC Pack használatával a beállítások. Módon is futtatásához [Windows HPC-munkaterhelések HPC Pack](../windows/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Ez a cikk beállítások toouse HPC Pack toorun Linux munkaterhelések összpontosít. Módon is futtatásához [Windows HPC-munkaterhelések HPC Pack](../windows/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="run-an-hpc-pack-cluster-in-azure-vms"></a>Az HPC Pack-fürt futtatására az Azure virtuális gépeken
 ### <a name="azure-templates"></a>Azure-sablonok
@@ -33,7 +33,7 @@ Ez a cikk foglalkozik Linux alkalmazásokat és szolgáltatásokat futtathatnak 
 * (Gyors üzembe helyezés) [Linux számítási csomópontok HPC-fürt létrehozása](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster-linux-cn)
 
 ### <a name="powershell-deployment-script"></a>PowerShell telepítési parancsfájlt
-* [Hozzon létre egy Linux HPC-fürtöt a HPC Pack IaaS telepítési parancsfájl](../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [Hozzon létre egy Linux HPC-fürtöt hello HPC Pack IaaS telepítési parancsfájl](../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="tutorials"></a>oktatóanyagokat
 * [Oktatóanyag: Megismerkedés a Linux számítási csomópontok HPC Pack fürtben az Azure-ban](classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -42,10 +42,10 @@ Ez a cikk foglalkozik Linux alkalmazásokat és szolgáltatásokat futtathatnak 
 * [Oktatóanyag: Futtatás csillag-CCM + Microsoft HPC Pack egy Linux RDMA a fürt az Azure-ban](classic/hpcpack-cluster-starccm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="cluster-management"></a>Fürtkezelés
-* [Az Azure-ban HPC Pack fürthöz feladatok elküldéséhez](../windows/hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Küldje el a feladatok tooan HPC Pack fürt az Azure-ban](../windows/hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [HPC Pack feladatok kezelése](https://technet.microsoft.com/library/jj899585.aspx)
 
 ## <a name="create-rdma-clusters-for-mpi-workloads"></a>MPI munkaterhelések RDMA-fürtök létrehozása
 * [Oktatóanyag: Futtatás OpenFOAM Microsoft HPC Pack Azure Linux RDMA fürtön](classic/hpcpack-cluster-openfoam.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [MPI-alkalmazások futtatására Linux RDMA fürt beállítása](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [A Linux RDMA fürt toorun MPI alkalmazások beállítása](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 

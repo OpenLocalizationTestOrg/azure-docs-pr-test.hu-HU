@@ -1,6 +1,6 @@
 ---
-title: "Alapvető infrastruktúra létrehozása az Azure-ban Terraform használatával |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre Azure-erőforrások Terraform használatával"
+title: "aaaCreate Alapinfrastruktúra az Azure-ban Terraform használatával |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate Azure erőforrásokat a Terraform"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: echuvyrov
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 06/14/2017
 ms.author: echuvyrov
-ms.openlocfilehash: aa0926de32dd85f4460bbfa84b7a6007e2199d51
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 52591009ee7cb906402b8bca2ce63794ac7afcc4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-basic-infrastructure-in-azure-by-using-terraform"></a>Alapvető infrastruktúra létrehozása az Azure-ban Terraform használatával
-Ez a cikk ismerteti a lépéseket kell tennie az Azure virtuális gép, és az alapjául szolgáló infrastruktúra kiépítéséhez. Megtudhatja, hogyan Terraform parancsfájlokat írhat és hogyan megjelenítéséhez a módosításokat, mielőtt azokat a felhőalapú infrastruktúrában. Azt is megtudhatja, hogyan hozhat létre az infrastruktúra az Azure-ban Terraform használatával.
+Ez a cikk az Azure virtuális gép, alapul szolgáló infrastruktúra együtt tootake tooprovision kell hello lépéseit ismerteti. Megtudhatja, hogyan toowrite Terraform parancsfájlok és hogyan toovisualize hello előtt változik, hogy azokat a felhőalapú infrastruktúrában. Azt is megtudhatja, hogyan toocreate infrastruktúra az Azure-ban Terraform használatával.
 
-Első lépésként hozzon létre egy \terraform_azure101.tf nevű választott (Visual Studio Code/Sublime/Vim/stb.) a szövegszerkesztőben. A fájl a pontos név nem fontos, mert Terraform fogad paraméterként a mappa neve: a mappában található összes parancsfájl azonnal végrehajtásra kerülhetnek. Illessze be a következő kódot az új fájlban:
+tooget elindult, választott (Visual Studio Code/Sublime/Vim/stb.) a szövegszerkesztőben \terraform_azure101.tf nevű fájl létrehozása. hello pontos hello fájl neve nem fontos, mert Terraform fogad paraméterként hello mappanév: hello mappában található összes parancsfájl azonnal végrehajtásra kerülhetnek. Illessze be a következő hello új fájl hello:
 
 ~~~~
-# Configure the Microsoft Azure Provider
-# NOTE: if you defined these values as environment variables, you do not have to include this block
+# Configure hello Microsoft Azure Provider
+# NOTE: if you defined these values as environment variables, you do not have tooinclude this block
 provider "azurerm" {
   subscription_id = "your_subscription_id_from_script_execution"
   client_id       = "your_appId_from_script_execution"
@@ -42,46 +42,46 @@ resource "azurerm_resource_group" "helloterraform" {
     location = "West US"
 }
 ~~~~
-Az a `provider` szakasz parancsfájl, a parancsfájl egy Azure szolgáltató rendelkezés erőforrások használatának Terraform biztosítják. Értékek ELŐFIZETÉS_AZONOSÍTÓJA, appId, jelszó és tenant_id, megtekinteni a [telepítése és konfigurálása Terraform](terraform-install-configure.md) útmutató. Ha a blokk környezeti változók értékek hozott létre, nem kell is. 
+A hello `provider` hello szakasza parancsfájl közli Terraform toouse egy Azure szolgáltató tooprovision erőforrások hello parancsfájlban. tooget értékek ELŐFIZETÉS_AZONOSÍTÓJA, appId, jelszó és tenant_id, lásd: hello [telepítse és konfigurálja a Terraform](terraform-install-configure.md) útmutató. Ha a blokk környezeti változók hello értékek hozott létre, nem kell tooinclude azt. 
 
-A `azurerm_resource_group` erőforrás utasítja Terraform egy új erőforráscsoport létrehozásához. A cikk későbbi részében Terraform elérhető további erőforrástípusok tekintheti meg.
+Hello `azurerm_resource_group` erőforrás utasítja Terraform toocreate egy új erőforráscsoportot. A cikk későbbi részében Terraform elérhető további erőforrástípusok tekintheti meg.
 
-## <a name="execute-the-script"></a>Futtassa a parancsfájlt
-A parancsfájl mentése után Kilépés a konzol/parancssorba, és írja be a következőt:
+## <a name="execute-hello-script"></a>Hello parancsfájlt
+Hello parancsfájl mentése után toohello konzol/parancssorból való kilépéshez, és írja be a következő hello:
 ```
 terraform init
 ```
- az Azure-Terraform szolgáltató inicializálása. Ezután lépjen be **terraformscripts**, és adja ki a következő parancsot:
+ tooinitialize hello Terraform szolgáltató az Azure-bA. Majd módosítsa a hello túl**terraformscripts**, és probléma hello a következő parancsot:
 ```
 terraform plan
 ```
-Használhatja a `plan` Terraform parancsot, amely ellenőrzi, hogy az erőforrásokat, a parancsfájlok definiált. Összehasonlítja azokat az állapotadatokat Terraform mentette, és majd exportálja a tervezett végrehajtási _nélkül_ ténylegesen létrehozása az Azure-erőforrások. 
+Hello használtuk `plan` Terraform parancsot, amely ellenőrzi, hogy az hello parancsfájlok definiált hello erőforrásokat. Terraform által mentett toohello állapotadatokat összehasonlítja őket, és majd kimenetek hello tervezett végrehajtási _nélkül_ ténylegesen létrehozása az Azure-erőforrások. 
 
-Az előző parancs végrehajtása után kell megjelennie a következő képernyő hasonlót:
+Hello előző parancs végrehajtása után kell megjelennie a következő képernyő hello hasonlót:
 
 ![Terraform terv](./media/terraform/tf_plan2.png)
 
-Ha minden helyes, kiépítése az új erőforráscsoportot az Azure-ban a következő lépések végrehajtásával: 
+Ha minden megfelelő, az új erőforráscsoportot az Azure-ban kiépítése a hello alábbiak végrehajtásával: 
 ```
 terraform apply
 ```
-Az Azure portálon kell megjelennie a nevű új üres erőforráscsoport `terraformtest`. A következő szakaszban hozzáadhat egy virtuális gép és a támogató infrastruktúra, a virtuális gép az erőforráscsoportot.
+Hello Azure-portálon, a kell megjelennie hello üres nevű új erőforráscsoport `terraformtest`. A következő szakasz hello hozzáadhat egy virtuális gépet és annak minden virtuális gép toohello erőforráscsoporthoz támogató infrastruktúra hello.
 
 ## <a name="provision-an-ubuntu-vm-with-terraform"></a>A Terraform Ubuntu virtuális gép kiépítése
-Most kiterjesztése a Terraform parancsfájlt futtató Ubuntu virtuális gép kiépítéséhez szükséges a adatokkal létrehoztunk Önnek. Az erőforrásokat, amelyek a következő szakaszokban kiépítése a következők:
+Létrehoztunk Önnek hello adatokkal, amelyek a szükséges tooprovision hello Terraform parancsfájl most kiterjesztése futtató Ubuntu virtuális gép. a következő részekben hello kiépítése hello erőforrásokat a következők:
 
 * Egyetlen alhálózattal rendelkező hálózat
 * A hálózati kártya 
-* A virtuális gép diagnosztikai tárfiók
+* Hello virtuális gép diagnosztikai tárfiók
 * Egy nyilvános IP-cím
-* A virtuális gép, amely használja az előző erőforrások 
+* A virtuális gép, amely használja az összes hello előző erőforrások 
 
-Az egyes Azure Terraform erőforrások alapos dokumentációjáért lásd: a [Terraform dokumentáció](https://www.terraform.io/docs/providers/azurerm/index.html).
+Az egyes hello Azure Terraform erőforrások alapos dokumentációjáért lásd: hello [Terraform dokumentáció](https://www.terraform.io/docs/providers/azurerm/index.html).
 
-A teljes verzióját a [telepítési parancsfájlban](#complete-terraform-script) is biztosított kényelmét szolgálja.
+hello teljes verzióját hello [telepítési parancsfájlban](#complete-terraform-script) is biztosított kényelmét szolgálja.
 
-### <a name="extend-the-terraform-script"></a>A Terraform parancsfájlt kiterjeszteni
-A következő erőforrások hoztak létre a parancsfájl kiterjesztése: 
+### <a name="extend-hello-terraform-script"></a>Hello Terraform parancsfájl kiterjesztése
+A következő erőforrások hello hoztak létre hello parancsfájl kiterjesztése: 
 ~~~~
 # create a virtual network
 resource "azurerm_virtual_network" "helloterraformnetwork" {
@@ -103,7 +103,7 @@ resource "azurerm_subnet" "helloterraformsubnet" {
     address_prefix = "10.0.2.0/24"
 }
 ~~~~
-A korábbi parancsfájlja létrehozza a virtuális hálózat és egy alhálózatot a virtuális hálózaton belül. Jegyezze fel az "${azurerm_resource_group.helloterraform.name}" a virtuális hálózat és az alhálózati definíció keresztül már létrehozott erőforráscsoport mutató hivatkozást.
+hello előző parancsfájlja létrehozza a virtuális hálózat és egy alhálózatot a virtuális hálózaton belül. Vegye figyelembe a hello hivatkozás toohello erőforráscsoport már hozott létre "${azurerm_resource_group.helloterraform.name}" hello virtuális hálózati és alhálózati definíció hello keresztül.
 
 ~~~~
 # create public IP
@@ -137,7 +137,7 @@ resource "azurerm_network_interface" "helloterraformnic" {
     }
 }
 ~~~~
-Az előző parancsfájl kódtöredékek hozzon létre egy nyilvános IP-cím, és a hálózati adaptert, amely a nyilvános IP-címet használja létrehozni. Vegye figyelembe a subnet_id és public_ip_address_id mutató hivatkozásokat. Terraform megérteni, hogy rendelkezik-e a hálózati adapter egy függőséget az erőforrásokat, amelyek a hálózati illesztő létrehozása előtt kell létrehozni a beépített eszközintelligencia rendelkezik.
+hello előző parancsfájl kódtöredékek hozzon létre egy nyilvános IP-cím és a hálózati adaptert, amely használja a hello nyilvános IP-cím létrehozása. Megjegyzés: hello toosubnet_id és public_ip_address_id hivatkozik. Terraform rendelkezik beépített funkciói toounderstand adott hello hálózati illesztőnek egy függőséget hello erőforrástól függ, hogy hello hello hálózati illesztő létrehozása előtt létre kell toobe.
 
 ~~~~
 # create a random id
@@ -162,7 +162,7 @@ resource "azurerm_storage_account" "helloterraformstorage" {
     }
 }
 ~~~~
-Itt létrehozott egy tárfiókot. Ez a tárfiók, ahol a virtuális gép a diagnosztikai részletek fogja tárolni.
+Itt létrehozott egy tárfiókot. Ez a tárfiók, ahol hello virtuális gép fogja tárolni a diagnosztikai részletek.
 
 ~~~~
 # create virtual machine
@@ -211,23 +211,23 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
     }
 }
 ~~~~
-Végül az előző részlet hoz létre egy virtuális gép, amely már kiépített összes erőforrást használja. -E a virtuálisgép-diagnosztika, a hálózati illesztő – nyilvános IP-cím és alhálózat a megadott tárfiók, és az erőforráscsoport hozott létre. Vegye figyelembe a vm_size tulajdonságot, ha a parancsfájl meghatározza egy Azure Standard DS1v2 Termékváltozat.
+Végezetül hello előző részlet hoz létre egy virtuális gép, amely már kiosztott összes hello erőforrásokat használja. A tárfiók hello virtuálisgép-diagnosztika, a hálózati illesztő – nyilvános IP- és a megadott alhálózat, és hello erőforráscsoportban már létrehozott. Vegye figyelembe a hello vm_size tulajdonság, ahol hello parancsfájl határozza meg az Azure Standard DS1v2 Termékváltozat.
 
-Meg kell adnia a nyilvános SSH-kulcs. Helyezze a nyilvános kulcs értékét a szakasz **... HELYEZZE BE A PROTOKOLL OPENSSH ITT A NYILVÁNOS KULCSOT...**  felett. Használhat egy meglévő ssh kulcs párba, vagy hajtsa végre a [Windows](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows) vagy [Linux/macOS](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys) létrehozni a kulcspárt dokumentációját.
+Nyilvános SSH-kulcs szükséges toosupply áll. Nyilvános kulcs értéke hello helyezzen hello szakasz **... HELYEZZE BE A PROTOKOLL OPENSSH ITT A NYILVÁNOS KULCSOT...**  felett. Használhat egy meglévő ssh kulcs pár, vagy hajtsa végre a hello [Windows](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows) vagy [Linux/macOS](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys) dokumentáció toogenerate hello kulcsból álló kulcspárt.
 
-### <a name="execute-the-script"></a>Futtassa a parancsfájlt
-A teljes parancsfájl mentése, a kilépéshez a konzol/parancssorba, és írja be a következőt:
+### <a name="execute-hello-script"></a>Hello parancsfájlt
+Hello teljes mentett, parancsfájl toohello konzol/parancssorból való kilépéshez, és írja be a következő hello:
 ```
 terraform apply
 ```
-Némi várakozás után az erőforrások, például egy virtuális gép megjelennek a `terraformtest` erőforráscsoportot az Azure portálon.
+Némi várakozás után hello erőforrások, például egy virtuális gép jelennek meg hello `terraformtest` erőforráscsoportja hello Azure-portálon.
 
 ## <a name="complete-terraform-script"></a>Teljes Terraform parancsfájl
 
-Az Ön kényelme érdekében alatt van a teljes Terraform parancsfájlt, hogy az infrastruktúra minden cikkben említett rendelkezések.
+Az Ön kényelme érdekében alatt van hello teljes Terraform parancsfájlt, hogy az összes hello infrastruktúra cikkben említett rendelkezések.
 
 ```
-# Configure the Microsoft Azure Provider
+# Configure hello Microsoft Azure Provider
 provider "azurerm" {
   subscription_id = "XXX"
   client_id       = "XXX"
@@ -362,4 +362,4 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Alapvető infrastruktúra az Azure-ban hozott létre a Terraform használatával. Összetettebb forgatókönyveket, beleértve a példák, amelyek használatát egy terheléselosztó és a virtuális gép skálázása beállítása, lásd: számos [Terraform példák az Azure-](https://github.com/hashicorp/terraform/tree/master/examples). Támogatott Azure szolgáltatók naprakész listáját, tekintse meg a [Terraform dokumentáció](https://www.terraform.io/docs/providers/azurerm/index.html).
+Alapvető infrastruktúra az Azure-ban hozott létre a Terraform használatával. Összetettebb forgatókönyveket, beleértve a példák, amelyek használatát egy terheléselosztó és a virtuális gép skálázása beállítása, lásd: számos [Terraform példák az Azure-](https://github.com/hashicorp/terraform/tree/master/examples). Támogatott Azure szolgáltatók naprakész listáját, lásd: hello [Terraform dokumentáció](https://www.terraform.io/docs/providers/azurerm/index.html).

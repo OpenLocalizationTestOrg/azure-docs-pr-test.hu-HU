@@ -1,6 +1,6 @@
 ---
-title: "Egy Linux virtuális gépek Azure-ban Node.js-alkalmazás központi telepítése"
-description: "Linux virtuális gépek Azure-ban egy Node.js-alkalmazás telepítésének megismerése."
+title: "aaaDeploy egy Node.js-alkalmazás tooLinux virtuális gépek Azure-ban"
+description: "Megtudhatja, hogyan toodeploy a Node.js alkalmazás tooLinux virtuális gépek Azure-ban."
 services: 
 documentationcenter: nodejs
 author: stepro
@@ -16,75 +16,75 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2016
 ms.author: stephpr
-ms.openlocfilehash: d3d9fecfafb9ba422420230716b9c985481d1e24
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e876c8170a06f102f7f32ec7cb930b876647a707
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-nodejs-application-to-linux-virtual-machines-in-azure"></a>Egy Linux virtuális gépek Azure-ban Node.js-alkalmazás központi telepítése
-Ez az oktatóanyag bemutatja, hogyan igénybe vehet egy Node.js-alkalmazást, és telepítse azt az Azure-ban futó Linux virtuális gépek számára. Az oktatóanyag utasításai követhetők bármely olyan operációs rendszeren, amely alkalmas a Node.js futtatására.
+# <a name="deploy-a-nodejs-application-toolinux-virtual-machines-in-azure"></a>A Node.js-alkalmazás tooLinux az Azure virtuális gépek telepítése
+Ez az oktatóanyag bemutatja, hogyan tootake egy Node.js-alkalmazást, és telepítse azt az Azure-ban futó tooLinux virtuális gépek. hello az oktatóanyag utasításai követhetők bármely operációs rendszeren, amely alkalmas a Node.js futtatására.
 
 Megtudhatja, hogyan:
 
 * Elágazás és a klón egy egyszerű teendőlistát Megvalósító alkalmazás; tartalmazó GitHub-tárházat
-* Hozzon létre, és két Linux virtuális gép konfigurálása az Azure-futtatni az alkalmazást;
-* Az alkalmazás többször a webes előtér virtuális gép frissítések küldésével.
+* Hozza létre és konfigurálja a két Linux virtuális gépek Azure toorun hello alkalmazásban;
+* Hello alkalmazás többször frissítések toohello webes előtér virtuális gép küldésével.
 
 > [!NOTE]
-> Az oktatóanyag teljesítéséhez szüksége van GitHub-fiók és a Microsoft Azure-fiók és a Git fejlesztési gépről használhatja.
+> toocomplete ebben az oktatóanyagban GitHub-fiók és a Microsoft Azure-fiókra van szükség, és képes toouse Git fejlesztési gépről hello.
 > 
 > Ha a GitHub-fiók nem rendelkezik, iratkozzon fel a [Itt](https://github.com/join).
 > 
-> Ha nem rendelkezik egy [Microsoft Azure](https://azure.microsoft.com/) fiókja, regisztrálhat egy ingyenes próbaverzióra [Itt](https://azure.microsoft.com/pricing/free-trial/). Ez is végigvezeti a regisztrációs folyamat az egy [Microsoft Account](http://account.microsoft.com) Ha még nem rendelkezik egy. Másik lehetőségként, ha a Visual Studio előfizetői, is [aktiválhatja MSDN előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
+> Ha nem rendelkezik egy [Microsoft Azure](https://azure.microsoft.com/) fiókja, regisztrálhat egy ingyenes próbaverzióra [Itt](https://azure.microsoft.com/pricing/free-trial/). Ez is végigvezeti hello regisztrációs folyamat az egy [Microsoft Account](http://account.microsoft.com) Ha még nem rendelkezik egy. Másik lehetőségként, ha a Visual Studio előfizetői, is [aktiválhatja MSDN előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 > 
-> Ha még nem git a fejlesztői számítógépén, használata Macintosh- vagy Windows-számítógépen, telepítse a git [Itt](http://www.git-scm.com). Ha Linux használ, telepítse a git, legmegfelelőbb mechanizmus használatával, mint `sudo apt-get install git`.
+> Ha még nem git a fejlesztői számítógépén, használata Macintosh- vagy Windows-számítógépen, telepítse a git [Itt](http://www.git-scm.com). Ha Linux használ, telepítse a git használatával, mint hello mechanizmus legmegfelelőbb értéket, `sudo apt-get install git`.
 > 
 > 
 
-## <a name="forking-and-cloning-the-todo-application"></a>Elágazó és a Klónozás a Teendőlista alkalmazás
-Az oktatóprogram során használt Teendőlista alkalmazás megvalósítja a egy egyszerű webes előtér, amely a teendőlista nyomon követi a MongoDB-példány felett. Nyissa meg a Githubon történő bejelentkezés után [Itt](https://github.com/stepro/node-todo) forkolhatja, a kapcsolat használatával jobb felső és az alkalmazás megkeresése. Ez hozzon létre egy tárház nevű fiókjában *accountname*/node-todo.
+## <a name="forking-and-cloning-hello-todo-application"></a>Elágazó és a Klónozás hello Teendőlista alkalmazás
+Az oktatóprogram során használt Teendőlista alkalmazás hello egy egyszerű webes előtér keresztül, amely a teendőlista nyomon követi a MongoDB-példány valósítja meg. Nyissa meg a bejelentkezést követően a tooGitHub [Itt](https://github.com/stepro/node-todo) toofind alkalmazás hello és oszthatja ketté, a jobb felső hello hello-kapcsolat használatával. Ez hozzon létre egy tárház nevű fiókjában *accountname*/node-todo.
 
 Most a fejlesztői gépen klónozza a tárházat:
 
     git clone https://github.com/accountname/node-todo.git
 
-Fogjuk használni a helyi klónozott tárház egy kicsit később a Forráskód módosítása során.
+Fogjuk használni a helyi klónozott tárház hello egy kicsit később változtatások toohello forráskódot.
 
-## <a name="creating-and-configuring-the-linux-virtual-machines"></a>Létrehozása és konfigurálása a Linux virtuális gépek
-Azure Linux virtuális gépek használatával nyers számítás kiváló visszajelzési rendelkezik. Ez az oktatóanyag azt mutatja be hogyan könnyen léptetési két Linux virtuális gépek és a Teendőlista alkalmazás, központi telepítése egyet, majd a MongoDB-példány fut a webes előtér részét.
+## <a name="creating-and-configuring-hello-linux-virtual-machines"></a>Létrehozásához és konfigurálásához hello Linux virtuális gépek
+Azure Linux virtuális gépek használatával nyers számítás kiváló visszajelzési rendelkezik. Ez a része hello oktatóanyag bemutatja, hogyan könnyen léptetési két Linux virtuális gépek és hello Teendőlista alkalmazás toothem, futó hello webes előtér egy és hello más hello a MongoDB-példány telepítése.
 
 ### <a name="creating-virtual-machines"></a>Virtuális gépek létrehozása
-A legegyszerűbben úgy, hogy egy új virtuális gép létrehozása az Azure-ban az Azure portál használatával. Kattintson a [Itt](https://portal.azure.com) jelentkezzen be, majd indítsa el az Azure-portálon a böngészőben. Miután az Azure portál be van töltve, kövesse az alábbi lépéseket:
+hello legegyszerűbb módja toocreate egy új virtuális gépet az Azure-ban toouse hello Azure portálon. Kattintson a [Itt](https://portal.azure.com) a toosign, és indítsa el a webböngésző hello Azure portálon. Azure portál be van töltve, hello befejezést hello a következő lépéseket:
 
-* A "+ új" hivatkozásra;
-* Válassza ki a "Számítási" kategória, és válassza a "Ubuntu Server 14.04 LTS";
-* Válassza ki a "erőforrás-kezelő" üzembe helyezési modellel, és kattintson a "Létrehozás";
-* Töltse ki az alábbi utasításokat követve alapvető:
+* Kattintson a hello "+ új" hivatkozásra;
+* Válassza ki a hello "Számítási" kategória, és válassza a "Ubuntu Server 14.04 LTS";
+* Hello "erőforrás-kezelő" telepítési modell kiválasztása, és kattintson a "Létrehozás";
+* Töltse ki az alábbi utasításokat követve hello alapjai:
   * Adjon meg egy újabb; könnyen azonosítható nevet
   * A jelen oktatóanyag esetében válassza a jelszó-hitelesítés;
   * Hozzon létre egy új erőforráscsoportot azonosítható névvel.
-* A virtuálisgép-méret "A1 szabványos" esetén ésszerű választás ehhez az oktatóanyaghoz.
-* A további beállításokhoz ellenőrizze a lemez típusát "Standard", és fogadja el a többi alapértelmezett értéket.
-* Az összefoglalás lapon létrehozása indítsa.
+* Hello virtuális gép méretét, a "A1 szabványos" akkor ésszerű választani, ehhez az oktatóanyaghoz.
+* A további beállításokhoz győződjön meg arról hello lemez típusa "Standard", és fogadja el az összes többi alapértelmezett hello.
+* Indítsa hello létrehozása hello összefoglaló oldalon.
 
-Hajtsa végre a fenti kétszer létrehozásának folyamata két Linux virtuális gépek, egyet a webes előtér és egyet a MongoDB-példány. A virtuális gépek létrehozását körülbelül 5 – 10 percig tart.
+Hajtsa végre a fenti hello feldolgozása kétszer toocreate két Linux virtuális gépek, egy a hello webes előtér és egy hello MongoDB-példány. Hello virtuális gépek létrehozását körülbelül 5 – 10 percig tart.
 
 ### <a name="assigning-a-dns-entry-for-virtual-machines"></a>A DNS-bejegyzés hozzárendelése a virtuális gépek
-Az Azure-ban létrehozott virtuális gépek csak egy nyilvános IP-címet, például 1.2.3.4 keresztül érhető el alapértelmezés szerint is. Ellenőrizze a gép könnyebben azonosítható DNS-bejegyzések hozzárendelésével.
+Az Azure-ban létrehozott virtuális gépek csak egy nyilvános IP-címet, például 1.2.3.4 keresztül érhető el alapértelmezés szerint is. Most Meggyőződünk hello gépek könnyebben azonosítható DNS-bejegyzések hozzárendelésével.
 
-Miután a portál azt jelzi, hogy létrejöttek-e a virtuális gépek, a bal oldali navigációs sávja a "Virtual machines" hivatkozásra, és keresse meg a gépek. Az egyes gépek:
+Miután hello portal azt jelzi, hogy létrejöttek-e a hello virtuális gépek, kattintson a hello bal oldali navigációs sávja hello "Virtual machines" hivatkozásra, és keresse meg a gépek. Az egyes gépek:
 
-* Keresse meg az alapvető erőforrások lapon, majd kattintson a nyilvános IP-címét;
-* A nyilvános IP-címének konfigurációja a DNS-névcímke meg és mentéséhez.
+* Keresse meg a hello alapvető erőforrások lapon, majd kattintson a hello nyilvános IP-cím;
+* A hello nyilvános IP-címének konfigurációja rendelje hozzá egy DNS-névcímke, és mentse.
 
-A portál biztosítja, hogy rendelkezésre áll-e a megadott név. A konfiguráció mentése, után a virtuális gépek állomás neve hasonlít kell `machinename.region.cloudapp.azure.com`.
+hello portal biztosítja az adott hello néven érhető el. Hello konfigurációjának mentése után a virtuális gépek lesz hasonló állomásnevek túl`machinename.region.cloudapp.azure.com`.
 
-### <a name="connecting-to-the-virtual-machines"></a>A virtuális gépekhez való csatlakozás
-Ha a virtuális gépek kiépített, amilyenek korábban voltak előre konfigurált SSH-n keresztül a távoli kapcsolatok lehetővé tételéhez. Ez az a mechanizmus segítségével a virtuális gépet állíthat be. Használatakor a Windows a fejlesztési, szüksége lesz egy SSH-ügyfél segítségével, ha még nem rendelkezik egy. Egy közös választott, amely letölthető a PuTTY [Itt](http://www.chiark.greenend.org.uk/~sgtatham/putty/). A Macintosh- és Linux operációs rendszer származnak SSH előre telepített verziója.
+### <a name="connecting-toohello-virtual-machines"></a>Csatlakozás a virtuális gépek toohello
+Ha a virtuális gépek kiépített, előre konfigurált tooallow távoli kapcsolatok voltak SSH-n keresztül. Ez a hello mechanizmus tooconfigure hello virtuális gépek használjuk. Ha Windows használ a fejlesztési, ha még nem rendelkezik egy szüksége lesz tooget egy SSH-ügyfél. Egy közös választott, amely letölthető a PuTTY [Itt](http://www.chiark.greenend.org.uk/~sgtatham/putty/). A Macintosh- és Linux operációs rendszer származnak SSH előre telepített verziója.
 
-### <a name="configuring-the-web-frontend-virtual-machine"></a>A webes előtér virtuális gép konfigurálása
-A webes előtér géphez létrehozott, a PuTTY ssh parancssorból vagy a kedvenc SSH eszköz SSH. Egy parancs parancssori futtatásával követ üdvözlő üzenet megjelenik.
+### <a name="configuring-hello-web-frontend-virtual-machine"></a>Hello webes előtér virtuális gép konfigurálása
+SSH toohello webes előtér gép létrehozott, a PuTTY ssh parancssorból vagy a kedvenc SSH eszköz. Egy parancs parancssori futtatásával követ üdvözlő üzenet megjelenik.
 
 Első lépésként most Meggyőződünk arról, hogy a git szoftver, csomópont is telepítve vannak:
 
@@ -92,100 +92,100 @@ Első lépésként most Meggyőződünk arról, hogy a git szoftver, csomópont 
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
     sudo apt-get install -y nodejs
 
-Az alkalmazás webes előtér néhány natív Node.js modulok támaszkodik, mivel azt is telepítenie kell a build tools alapvető készlete:
+Hello alkalmazás webes előtér néhány natív Node.js modulok támaszkodik, mivel tooinstall hello alapvető összeállítási eszközök gyűjteménye is kell:
 
     sudo apt-get install -y build-essential
 
-Végezetül most telepíteni a Node.js-alkalmazás neve *végtelen*, ami segít Node.js server-alkalmazások futtatására:
+Végezetül most telepíteni a Node.js-alkalmazás neve *végtelen*, toorun Node.js kiszolgálóalkalmazások segítségével:
 
     sudo npm install -g forever
 
-Ezek a minden a függőségeket, hogy az alkalmazás webes előtér futtatni, ezért folytassuk, hogy fut a virtuális gépen szükséges. Ehhez először létrehozunk egy operációs rendszer klónja korábban meg ágazik el, így könnyen frissítések közzétételéhez a virtuális gép (oktatóanyag a következőket ismerteti a frissítési forgatókönyv később), és adja meg a tárház ténylegesen végrehajtható verzióját az operációs rendszer klónt majd klónozza a GitHub-tárházban.
+Ezek azok a virtuális gép toobe képes toorun hello alkalmazás webes előtér szükséges összes hello függőségek, így folytassuk, hogy futnak. toodo, először létrehozunk egy operációs rendszer klónja hello GitHub-tárházban korábban meg ágazik el, így könnyen közzéteheti a frissítéseket toohello virtuális gép (oktatóanyag a következőket ismerteti a frissítési forgatókönyv később), és majd klónozni hello operációs rendszer Klónozás tooprovide hello egy verziója az tárház ténylegesen hajt végre.
 
-A (~) kezdőkönyvtára, kezdve a következő parancsokat (cseréje *accountname* a GitHub felhasználói fiók nevével):
+Hello kezdőkönyvtára (~) kiindulva, futtassa a következő parancsok hello (cseréje *accountname* a GitHub felhasználói fiók nevével):
 
     git clone --bare https://github.com/accountname/node-todo.git
     git clone node-todo.git
 
-Most adja meg a csomópont-todo könyvtárat, és futtassa az alábbi parancsokat:
+Most adja meg hello csomópont-todo könyvtárat, és futtassa az alábbi parancsokat:
 
     npm install
     forever start server.js
 
-Az alkalmazás webes előtér innentől kezdve fut, azonban nincs egy további lépést egy webböngészőből próbál hozzáférni az alkalmazáshoz. A létrehozott virtuális gépet egy Azure-erőforrás neve védi egy *hálózati biztonsági csoport*, amely jött létre az Ön, amikor a virtuális gép létesített. Jelenleg ez az erőforrás csak lehetővé teszi a külső kérelmek 22-es portot irányíthatja át a virtuális géphez, amely lehetővé teszi, hogy a gép, de semmi mást SSH-kommunikációhoz. Így megtekintheti a Teendőlista alkalmazás, a 8080-as porton futtatásra van beállítva, amely ezt a portot is kell megnyitását.
+hello alkalmazás webes előtér most már fut, azonban, hogy egy további lépést egy webböngészőből hello alkalmazás eléréséhez. hello létrehozott virtuális gép által védett egy Azure-erőforrás neve egy *hálózati biztonsági csoport*, amely hozták létre, amikor a kiépített hello virtuális gép számára. Ezt az erőforrást jelenleg csak külső kérelmek tooport irányított 22 toobe toohello virtuális gépet, mely lehetővé teszi az SSH-kommunikációhoz hello gép, de semmi mást teszi lehetővé. Ezért a rendelés tooview hello Teendőlista alkalmazás, amely konfigurált toorun a 8080-as porton, ezt a portot is igények toobe megnyitotta a.
 
-Térjen vissza az Azure portálra, és kövesse az alábbi lépéseket:
+Térjen vissza a toohello Azure portálon, és végezze el az alábbi lépésekkel hello:
 
-* Kattintson a "Erőforráscsoportok" a bal oldali navigációs sávja;
-* Válassza ki az erőforrás-csoportot, amely tartalmazza a virtuális gép;
-* Az eredményül kapott erőforrások, jelölje ki a hálózati biztonsági csoport (egy pajzs ikon egy);
-* Válassza a Tulajdonságok "bejövő biztonsági szabályok";
-* Az eszköztáron kattintson a "Hozzáadás";
+* Kattintson a "Erőforráscsoportok" hello bal oldali navigációs sávja;
+* A virtuális gépet; tartalmazó hello erőforráscsoport kiválasztása
+* Hello az erőforrások listájában válassza ki a hello hálózati biztonsági csoportot (hello egy egy pajzs ikon);
+* Hello tulajdonságait válassza a "bejövő biztonsági szabályok";
+* A hello eszköztárában kattintson a "Hozzáadás";
 * Adjon meg egy nevet, például a "alapértelmezett-engedélyezése-teendőlista";
-* A "TCP"; a protokoll beállítása
-* Állítsa be a Célporttartomány "8080";
-* Kattintson az OK gombra, és várja meg a létrehozandó szabály.
+* Hello protokoll túl beállítása "TCP";
+* Állítsa be a hello Célporttartomány túl "8080-as";
+* Kattintson az OK gombra, majd várja meg a létrehozott hello biztonsági szabály toobe.
 
-A biztonsági szabály létrehozása után a Teendőlista alkalmazás nyilvánosan látható az interneten, és tallózással is kikeresheti azt, például, mint az egy URL-cím segítségével:
+A biztonsági szabály létrehozása után hello Teendőlista alkalmazás nyilvánosan látható hello internet, és tallózással is kikeresheti tooit, például, mint az egy URL-cím segítségével:
 
     http://machinename.region.cloudapp.azure.com:8080
 
-Megfigyelheti, hogy annak ellenére, hogy még nincs konfigurálva a MongoDB virtuális gépet, a Teendőlista alkalmazás úgy tűnik, hogy teljesen működőképes. Ez azért, mert a tárházban szoftveresen kötött előre telepített MongoDB-példány használata. Miután a MongoDB-virtuális gép rendelkezik konfigurált, rendszer lépjen vissza és a titkos MongoDB-példány helyett magukat, hogy a Forráskód módosítása.
+Megfigyelheti, hogy annak ellenére, hogy még nincs konfigurálva hello MongoDB virtuális gép, hello Teendőlista alkalmazás teljesen működőképes toobe megjelenik. Ez azért, mert hello forrás tárház szoftveresen kötött toouse előre telepített MongoDB-példány. Miután hello MongoDB virtuális gép rendelkezik konfigurált, rendszer lépjen vissza és módosítása hello forrás kód tooutilize a személyes MongoDB-példány helyett.
 
-### <a name="configuring-the-mongodb-virtual-machine"></a>A MongoDB-virtuális gép konfigurálása
-A második géphez létrehozott, a PuTTY ssh parancssorból vagy a kedvenc SSH eszköz SSH. A MongoDB telepítése után megtekintheti az üdvözlő üzenet és a parancssort, (ezek az utasítások vették [Itt](https://docs.mongodb.org/master/tutorial/install-mongodb-on-ubuntu/)):
+### <a name="configuring-hello-mongodb-virtual-machine"></a>Hello MongoDB virtuális gép konfigurálása
+SSH toohello második gép létrehozott, a PuTTY ssh parancssorból vagy a kedvenc SSH eszköz. A MongoDB telepítése után megtekintheti a hello üdvözlő üzenet és a parancssort, (ezek az utasítások vették [Itt](https://docs.mongodb.org/master/tutorial/install-mongodb-on-ubuntu/)):
 
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
     echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
     sudo apt-get update
     sudo apt-get install -y mongodb-org
 
-Alapértelmezés szerint MongoDB van beállítva, ezért csak elérhető helyileg. Ebben az oktatóanyagban azt konfigurálja MongoDB, a rendszer az elérhető legyen a az alkalmazás virtuális gépről. A sudo a környezetben, nyissa meg a /etc/mongod.conf fájlt, és keresse meg a `# network interfaces` szakasz. Módosítsa a `net.bindIp` konfigurációs érték `0.0.0.0`.
+Alapértelmezés szerint MongoDB van beállítva, ezért csak elérhető helyileg. Ebben az oktatóanyagban azt konfigurálja MongoDB, a rendszer az elérhető legyen a hello alkalmazás virtuális gépről. A sudo a környezetben, nyissa meg hello /etc/mongod.conf fájlt, és keresse meg a hello `# network interfaces` szakasz. Változás hello `net.bindIp` konfigurációs érték túl`0.0.0.0`.
 
 > [!NOTE]
-> Ez a konfiguráció akkor csak ez az oktatóanyag céljából. Az **nem** egy ajánlott biztonsági eljárás, és nem használható üzemi környezetben.
+> Ez a konfiguráció akkor csak ez az oktatóanyag hello alkalmazásában. Az **nem** egy ajánlott biztonsági eljárás, és nem használható üzemi környezetben.
 > 
 > 
 
-Most ellenőrizze, hogy a szolgáltatás el van indítva MongoDB:
+Most már biztosítja hello szolgáltatás el van indítva MongoDB:
 
     sudo service mongod restart
 
-MongoDB porton 27017 alapértelmezés szerint működik. Igen azonos módon, hogy változtatnunk kell, nyissa meg a webes előtér virtuális gépen a 8080-as porton, igazolnia kell nyissa meg a portot 27017 a MongoDB virtuális gépen.
+MongoDB porton 27017 alapértelmezés szerint működik. Így hello a megszokott módon, hogy változtatnunk tooopen hello webes előtér virtuális gépen, a 8080-as port igazolnia kell, hogy tooopen port 27017 hello MongoDB virtuális gépen.
 
-Térjen vissza az Azure portálra, és kövesse az alábbi lépéseket:
+Térjen vissza a toohello Azure portálon, és végezze el az alábbi lépésekkel hello:
 
-* Kattintson a "Erőforráscsoportok" a bal oldali navigációs sávja;
-* Válassza ki az erőforráscsoportot, amely tartalmazza a MongoDB-virtuális gép;
-* Az eredményül kapott erőforrások, jelölje ki a hálózati biztonsági csoport (egy a pajzs ikon) ugyanazzal a névvel, amelyek a MongoDB-virtuális gép; adott
-* Válassza a Tulajdonságok "bejövő biztonsági szabályok";
-* Az eszköztáron kattintson a "Hozzáadás";
+* Kattintson a "Erőforráscsoportok" hello bal oldali navigációs sávja;
+* Hello MongoDB virtuális gépet; tartalmazó hello erőforráscsoport kiválasztása
+* Hello az erőforrások listájában válassza ki az hello hálózati biztonsági csoport (hello egy egy pajzs ikon) rendelkező hello azonos neve, mint toohello MongoDB virtuális gép;
+* Hello tulajdonságait válassza a "bejövő biztonsági szabályok";
+* A hello eszköztárában kattintson a "Hozzáadás";
 * Adjon meg egy nevet, például a "alapértelmezett-engedélyezése-mongo";
-* A "TCP"; a protokoll beállítása
-* Állítsa be a Célporttartomány "27017";
-* Kattintson az OK gombra, és várja meg a létrehozandó szabály.
+* Hello protokoll túl beállítása "TCP";
+* Állítsa be a hello Célporttartomány túl "27017";
+* Kattintson az OK gombra, majd várja meg a létrehozott hello biztonsági szabály toobe.
 
-## <a name="iterating-on-the-todo-application"></a>A Teendőlista alkalmazás a léptetés
-Az eddigi jelenleg két Linux virtuális gépek kiépítése: egyet, hogy fut az alkalmazás webes előtér- és egy, a MongoDB-példány fut. De a probléma merül fel, mert a webes előtér nem használja a kiosztott MongoDB-példány még. Most javíthatja ki, hogy a webes előtér-kód kódolt példány helyett egy környezeti változó használatával frissítése.
+## <a name="iterating-on-hello-todo-application"></a>A Teendőlista alkalmazás hello léptetés
+Az eddigi jelenleg két Linux virtuális gépek kiépítése: futtató hello alkalmazás webes előtér- és egy, a MongoDB-példány fut. De a probléma – hello webes előtér nem ténylegesen használó kiépítve hello MongoDB-példány még. Most javíthatja ki, hogy hello webes előtér kód toouse frissítése kódolt példány helyett egy környezeti változó.
 
-### <a name="changing-the-todo-application"></a>A Teendőlista alkalmazás módosítása
-A fejlesztői számítógépén, ha először klónozása a csomópont-todo tárház, nyissa meg a `node-todo/config/database.js` a kedvenc szerkesztő fájlt, és módosítsa az URL-cím a kódolt érték például `mongodb://...` való `process.env.MONGODB`.
+### <a name="changing-hello-todo-application"></a>Hello Teendőlista alkalmazás módosítása
+A fejlesztői számítógépén, ha először klónozott hello csomópont-todo tárház, nyissa meg a hello `node-todo/config/database.js` a kedvenc szerkesztő fájlt, és módosítsa hello URL-cím hello kódolt értékből például `mongodb://...` túl`process.env.MONGODB`.
 
-A változtatások véglegesítése a határidő, és küldje le a GitHub-főkiszolgáló:
+A változtatások véglegesítése a határidő, és leküldéses toohello GitHub-főkiszolgáló:
 
     git commit -am "Get MongoDB instance from env"
     git push origin master
 
-Sajnos ez nem közzéteheti a módosítást a webes előtér virtuális gépet. Most Meggyőződünk néhány további módosításokat egy egyszerű, de hatékony mechanizmus a frissítések közzétételéhez, így gyorsan figyelheti a változásokat az éles környezetben engedélyezése virtuális gépekhez.
+Sajnos ez nem közzététele hello módosítása toohello webes előtér virtuális gépet. Most Meggyőződünk módosítások toothat néhány további virtuális gépek tooenable egy egyszerű, de hatékony mechanizmus a frissítések közzétételéhez, így gyorsan figyelheti hello hatását hello hello éles környezetben.
 
-### <a name="configuring-the-web-frontend-virtual-machine"></a>A webes előtér virtuális gép konfigurálása
-Előhívja a korábban létrehozott egy operációs rendszer klón a csomópont-todo tárház a webes előtér virtuális gépen. Az elemről kiderül, hogy ez a művelet létrehozott egy új távoli Git, amelyhez a módosítások továbbíthatja. Azonban egyszerűen küldését a ebben a távoli nem elég biztosítják a gyors iterációs modellt, amely a fejlesztők olyan eszközökre vonatkozóan feldolgozása során a rendszer a kódot.
+### <a name="configuring-hello-web-frontend-virtual-machine"></a>Hello webes előtér virtuális gép konfigurálása
+Előhívja a korábban létrehozott egy operációs rendszer Klónozás hello csomópont-todo tárház hello webes előtér virtuális gépen. Az elemről kiderül, hogy ez a művelet létrehozott egy új Git távoli toowhich módosítások továbbíthatja. Azonban egyszerűen küldését toothis távoli nem elég adnak hello gyors iterációs modell, amely a fejlesztők olyan eszközökre vonatkozóan feldolgozása során a rendszer a kódot.
 
-Mi szeretnénk végezhető el, győződjön meg arról, hogy a virtuális gépen a távoli tárházba leküldéses akkor fordul elő, amikor a futó Teendőlista alkalmazás automatikusan frissül. Szerencsére Ez az egyszerű git eléréséhez.
+Mi azt kellene például toobe képes toodo van győződjön meg arról, hogy egy leküldéses toohello távoli tárházba hello a virtuális gép esetén hello futó Teendőlista alkalmazás automatikusan frissül. Szerencsére Ez az egyszerű tooachieve git.
 
-Git egy hurkok, melynek neve adott időpontokban reagálni a tárház végzett műveletek számát mutatja. Ezek megjelennek a rendszerhéj-parancsfájlok használata a tárházban `hooks` mappát. A leginkább megfelelő az automatikus frissítési forgatókönyv hook van a `post-update` esemény.
+Git hurkok, melynek neve adott alkalommal tooreact tooactions hello tárház végzett, a számát mutatja. Ezek vannak megadva a rendszerhéj-parancsfájlok használatával hello tárházban `hooks` mappát. hello hook leginkább megfelelő hello automatikus frissítési forgatókönyv hello `post-update` esemény.
 
-Az SSH-munkamenetet a webes előtér virtuális géphez, így a `~/node-todo.git/hooks` könyvtár, és adja hozzá a tartalmat a következő nevű fájlba `post-update` (cseréje `machinename` és `region` a MongoDB-virtuális gép adatait):
+SSH munkamenet toohello webes előtér virtuális gépen, módosítsa a toohello `~/node-todo.git/hooks` könyvtár, és adja hozzá a következő nevű tartalom tooa fájl hello `post-update` (cseréje `machinename` és `region` a MongoDB-virtuális gép adatait):
 
     #!/bin/bash
 
@@ -195,28 +195,28 @@ Az SSH-munkamenetet a webes előtér virtuális géphez, így a `~/node-todo.git
     cd ~/node-todo && git fetch origin && git pull origin master && npm install && forever start ~/node-todo/server.js
     exec git update-server-info
 
-Győződjön meg arról, ez a fájl végrehajtható, a következő parancs futtatásával:
+Győződjön meg arról, ez a fájl végrehajtható hello a következő parancs futtatásával:
 
     chmod 755 post-update
 
-Ez a parancsfájl biztosítja, hogy az aktuális kiszolgáló alkalmazás le van állítva, a klónozott tárház a kód frissítése, hogy a legújabb, frissített függőségek teljesülnek, és a kiszolgáló újraindítása. Emellett biztosítja, hogy a környezet előkészítése a fogadásához az első alkalmazás frissítése a MongoDB-példány lekérése egy környezeti változó lett konfigurálva.
+Ez a parancsfájl ellenőrzi, hogy hello aktuális kiszolgálóalkalmazás le van állítva, hello klónozott tárház hello kód frissített toohello legújabb, frissített függőségek teljesülnek, és hello kiszolgáló újraindul. Emellett biztosítja hello környezet előkészítése az első alkalmazás frissítés tooget hello MongoDB-példány fogad egy környezeti változó lett konfigurálva.
 
 ### <a name="configuring-your-development-machine"></a>A fejlesztői számítógépén konfigurálása
-Most folytassuk a fejlesztési számítógépén csatlakoztatnia kell a webes előtér virtuális gépet. Ez a más dolga, mint az operációs rendszer tárház hozzáadása a virtuális gépen, mint egy távoli. Ehhez a következő parancsot (cseréje *felhasználói* a webes előtér virtuális gép bejelentkezési névvel és *machinename* és *régió* szükség szerint):
+Most folytassuk a fejlesztési számítógépén toohello webes előtér virtuális gép csatlakoztatva. Ez a lehető legegyszerűbb hello operációs rendszer tárház hozzáadása távoli tárházként hello virtuális gépen. Futtassa a következő parancs toodo hello ez (cseréje *felhasználói* a webes előtér virtuális gép bejelentkezési névvel és *machinename* és *régió* szükség szerint):
 
     git remote add azure user@machinename.region.cloudapp.azure.com:node-todo.git
 
-Mást nem kérdez le engedélyezéséhez szükséges, vagy érvényben közzététel, megváltozik a webes előtér virtuális géphez.
+Ez az összes szükséges tooenable kérdez le, vagy a közzétételi érvényben, toohello webes előtér virtuális gép vált.
 
 ### <a name="publishing-updates"></a>Közzétételi frissítések
-Most közzététele a egy módosítás tett eddig, hogy az alkalmazás saját MongoDB-példány használja:
+Most közzététele hello egy módosítás tett eddig, hogy hello alkalmazás fogja használni a saját MongoDB-példány:
 
     git push azure master
 
-Ez hasonló kimenetnek kell megjelennie:
+Kimeneti hasonló toothis kell megjelennie:
 
     Counting objects: 4, done.
-    Delta compression using up to 4 threads.
+    Delta compression using up too4 threads.
     Compressing objects: 100% (3/3), done.
     Writing objects: 100% (4/4), 406 bytes | 0 bytes/s, done.
     Total 4 (delta 1), reused 0 (delta 0)
@@ -236,27 +236,27 @@ Ez hasonló kimenetnek kell megjelennie:
     remote: warn:    --minUptime not set. Defaulting to: 1000ms
     remote: warn:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
     remote: info:    Forever processing file: /home/username/node-todo/server.js
-    To username@machinename.region.cloudapp.azure.com:node-todo.git
+    toousername@machinename.region.cloudapp.azure.com:node-todo.git
     5f31fd7..5bc7be5  master -> master
 
-Ez a parancs után frissítse az alkalmazást egy webböngészőben. Tudja meg, hogy az itt bemutatott teendőlista üres és a megosztott telepített MongoDB-példány már nem kötött kell lennie.
+Ez a parancs után frissítse hello alkalmazást egy webböngészőben. Képes toosee itt bemutatott hello teendőlista üres, és már nem a megosztott kapcsolt toohello MongoDB-példány telepítve kell lennie.
 
-Az oktatóanyag elvégzéséhez most Meggyőződünk egy másik, több látható módosítása. A fejlesztői számítógépén nyissa meg node-todo/public/index.html a kedvenc szerkesztőjével. Keresse meg a jumbotron fejlécet, és módosítsa a címet a "Vagyok a teendőlista aholic" a "Vagyok a teendőlista-aholic Azure!".
+az oktatóanyagban toocomplete hello most Meggyőződünk egy másik, több látható módosítása. A fejlesztői számítógépén nyissa meg a kedvenc szerkesztőjével hello node-todo/public/index.html fájl. Keresse meg a hello jumbotron fejlécet, és módosítsa a "Vagyok a teendőlista aholic" túl "vagyok a teendőlista-aholic Azure!" hello címet.
 
 Most tegyük véglegesítése:
 
-    git commit -am "Azurify the title"
+    git commit -am "Azurify hello title"
 
-Ez alkalommal, most közzéteheti a módosítást az Azure-bA előtt, hogy a GitHub-tárház biztonsági:
+Ez alkalommal, most közzététele előtt azt tooback toohello GitHub-tárház hello módosítása tooAzure:
 
     git push azure master
 
-Ez a parancs után frissítse a weblapot, és látni fogja a módosításokat. Mivel azok szépen, küldje le a módosítás vissza és a forrás távoli: 
+Ez a parancs után frissítési hello weblapot, és akkor jelenik meg hello módosításokat. Mivel azok szépen, hello módosítás vissza toohello származási távoli leküldéses: 
 
     git push origin master
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk bemutatta, hogyan számára a Node.js-alkalmazás és a központilag telepítenie kell az Azure-ban futó Linux virtuális gépek. Linux virtuális gépek Azure-ban kapcsolatos további információkért lásd: [Bevezetés az Azure-on Linux](/documentation/articles/virtual-machines-linux-introduction/).
+Ez a cikk bemutatta, hogyan tootake egy Node.js-alkalmazást, és telepítse azt az Azure-ban futó tooLinux virtuális gépek. További információ a Linux virtuális gépek Azure-ban toolearn lásd [bemutatása tooLinux Azure](/documentation/articles/virtual-machines-linux-introduction/).
 
-A Node.js-alkalmazásoknak az Azure-on történő fejlesztéséről további információkat a következő témakörben talál: [Node.js fejlesztői központ](/develop/nodejs/).
+További információ toodevelop Node.js-alkalmazások Azure, lásd: hello [Node.js fejlesztői központ](/develop/nodejs/).
 

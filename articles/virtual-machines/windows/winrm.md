@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure virtuális Gépen a Rendszerfelügyeleti webszolgáltatások hozzáférési beállítása |} Microsoft Docs"
-description: "A telepítő a Rendszerfelügyeleti webszolgáltatások hozzáférési használatra a Resource Manager üzembe helyezési modellel létrehozott Azure virtuális gép a."
+title: "a Rendszerfelügyeleti webszolgáltatások hozzáférés beállítása az Azure virtuális gép aaaSet |} Microsoft Docs"
+description: "A telepítő a Rendszerfelügyeleti webszolgáltatások hozzáférési használatra hello Resource Manager üzembe helyezési modellel létrehozott Azure virtuális gép a."
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2016
 ms.author: kasing
-ms.openlocfilehash: 2d6533462400bc1d93d0d3b0227769784e2658a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23d1d3a3065cbd8e4036be085c6d835cae36caae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="setting-up-winrm-access-for-virtual-machines-in-azure-resource-manager"></a>A Rendszerfelügyeleti webszolgáltatások hozzáférés beállítása az Azure Resource Manager virtuális gépekhez
 ## <a name="winrm-in-azure-service-management-vs-azure-resource-manager"></a>A Rendszerfelügyeleti webszolgáltatások az Azure szolgáltatásfelügyelet vs Azure Resource Manager
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-* Az Azure Resource Manager áttekintéséért lásd: a [cikk](../../azure-resource-manager/resource-group-overview.md)
+* Hello Azure Resource Manager áttekintését lásd: a [cikk](../../azure-resource-manager/resource-group-overview.md)
 * Azure Service Management és az Azure Resource Manager közötti különbségek miatt, lásd: a [cikk](../../resource-manager-deployment-model.md)
 
-A kulcs WinRM konfiguráció a két verem közötti különbség hogyan telepíti a tanúsítványt a virtuális Gépen. Az Azure Resource Manager-készletben a tanúsítványok a Key Vault erőforrás-szolgáltató által kezelt erőforrások van modellezve. Ezért a felhasználó adja meg a saját tanúsítványt, és töltse fel azt a kulcstároló virtuális gépen használatához szükséges.
+hello WinRM konfiguráció hello két verem közötti fő különbség hogyan hello tanúsítvány lekérdezi telepítve hello virtuális gép. Hello Azure Resource Manager-készletben hello tanúsítványok hello Key Vault erőforrás-szolgáltató által kezelt erőforrások van modellezve. Ezért hello felhasználói tooprovide saját tanúsítványt kell, és töltse fel tooa Key Vault virtuális gépen használatához.
 
-Az alábbiakban a lépéseket kell tennie egy virtuális gép beállítása a Rendszerfelügyeleti webszolgáltatások kapcsolatban
+Az alábbiakban a Rendszerfelügyeleti webszolgáltatások kapcsolattal rendelkező virtuális gépet tootake tooset kell hello lépéseket
 
 1. Kulcstartó létrehozása
 2. Önaláírt tanúsítvány létrehozása
-3. Key Vault a önaláírt tanúsítvány feltöltése
-4. URL beolvasása a Key Vault az önaláírt tanúsítvány
+3. Az önaláírt tanúsítvány tooKey tároló feltöltése
+4. A Key Vault hello önaláírt tanúsítványt hello URL-cím lekérése
 5. Az önaláírt tanúsítványok URL-CÍMÉRE hivatkozik egy virtuális gép létrehozása közben
 
 ## <a name="step-1-create-a-key-vault"></a>1. lépés:, Hozzon létre egy kulcstartót
-Használhatja az alábbi parancsot a kulcstároló létrehozásához
+Használhatja a hello parancs toocreate hello Key Vault alatt
 
 ```
 New-AzureRmKeyVault -VaultName "<vault-name>" -ResourceGroupName "<rg-name>" -Location "<vault-location>" -EnabledForDeployment -EnabledForTemplateDeployment
@@ -56,16 +56,16 @@ $thumbprint = (New-SelfSignedCertificate -DnsName $certificateName -CertStoreLoc
 
 $cert = (Get-ChildItem -Path cert:\CurrentUser\My\$thumbprint)
 
-$password = Read-Host -Prompt "Please enter the certificate password." -AsSecureString
+$password = Read-Host -Prompt "Please enter hello certificate password." -AsSecureString
 
 Export-PfxCertificate -Cert $cert -FilePath ".\$certificateName.pfx" -Password $password
 ```
 
-## <a name="step-3-upload-your-self-signed-certificate-to-the-key-vault"></a>3. lépés: A Key Vault a önaláírt tanúsítvány feltöltése
-A tanúsítvány feltöltése a Key Vault az 1. lépésben létrehozott, előtt kell a Microsoft.Compute erőforrás-szolgáltató megértenek olyan formátumra alakítja át. Az alábbi PowerShell parancsfájl lehetővé teheti meg, amely
+## <a name="step-3-upload-your-self-signed-certificate-toohello-key-vault"></a>3. lépés: Töltse fel az önaláírt tanúsítvány toohello Key Vault
+Az 1. lépésben feltöltése hello tanúsítvány toohello kulcstároló létrehozása előtt a Microsoft.Compute erőforrás-szolgáltató megértenek formátum hello be kell tooconverted. hello alábbi PowerShell-parancsfájl lehetővé teszi, így tesz, amely
 
 ```
-$fileName = "<Path to the .pfx file>"
+$fileName = "<Path toohello .pfx file>"
 $fileContentBytes = Get-Content $fileName -Encoding Byte
 $fileContentEncoded = [System.Convert]::ToBase64String($fileContentBytes)
 
@@ -84,39 +84,39 @@ $secret = ConvertTo-SecureString -String $jsonEncoded -AsPlainText –Force
 Set-AzureKeyVaultSecret -VaultName "<vault name>" -Name "<secret name>" -SecretValue $secret
 ```
 
-## <a name="step-4-get-the-url-for-your-self-signed-certificate-in-the-key-vault"></a>4. lépés: Az URL-cím beszerzése a Key Vault az önaláírt tanúsítvány
-A Microsoft.Compute erőforrás-szolgáltató a titkos kulcsot belül a Key Vault URL-CÍMÉT kell a virtuális gép kiépítése során. Ez lehetővé teszi a Microsoft.Compute erőforrás-szolgáltató töltse le a titkos kulcsot, és hozzon létre a megfelelő tanúsítványt a virtuális Gépen.
+## <a name="step-4-get-hello-url-for-your-self-signed-certificate-in-hello-key-vault"></a>4. lépés: Hello URL-cím beszerzése a Key Vault hello önaláírt tanúsítvány
+hello Microsoft.Compute erőforrás-szolgáltató URL-cím toohello titkos kulcs hello Key Vault belül kell hello virtuális gép kiépítése során. Ez lehetővé teszi, hogy a hello Microsoft.Compute erőforrás szolgáltató toodownload hello titkos kulcsot, és hozzon létre hello egyenértékű tanúsítvány hello virtuális gép.
 
 > [!NOTE]
-> Az URL-CÍMÉT a titkos kulcsot kell tartalmaznia, valamint a verzió. Egy példa URL-CÍMÉT a következőképpen néz https://contosovault.vault.azure.net:443/titkos kulcsok/contososecret/01h9db0df2cd4300a20ence585a6s7ve alatt
+> hello titkos hello URL-címe tooinclude hello verziója is kell. Egy példa URL-CÍMÉT a következőképpen néz https://contosovault.vault.azure.net:443/titkos kulcsok/contososecret/01h9db0df2cd4300a20ence585a6s7ve alatt
 > 
 > 
 
 #### <a name="templates"></a>Sablonok
-A hivatkozásra kattintva az URL-címet a sablon használatával kaphat az alábbi kód
+Hello hivatkozás toohello URL-CÍMÉT használja az alábbi kód hello hello sablon olvashatók be
 
     "certificateUrl": "[reference(resourceId(resourceGroup().name, 'Microsoft.KeyVault/vaults/secrets', '<vault-name>', '<secret-name>'), '2015-06-01').secretUriWithVersion]"
 
 #### <a name="powershell"></a>PowerShell
-Az URL-cím segítségével is ki az alábbi PowerShell-parancs
+Az URL-cím hello alábbi PowerShell-parancs használatával beszerezheti
 
     $secretURL = (Get-AzureKeyVaultSecret -VaultName "<vault name>" -Name "<secret name>").Id
 
 ## <a name="step-5-reference-your-self-signed-certificates-url-while-creating-a-vm"></a>5. lépés: Az önaláírt tanúsítványok URL-CÍMÉRE hivatkozik egy virtuális gép létrehozása közben
 #### <a name="azure-resource-manager-templates"></a>Az Azure Resource Manager-sablonok
-A sablonok használatával virtuális gépek létrehozásakor, a titkos kulcsok és a Rendszerfelügyeleti webszolgáltatások szakaszát, az alábbi a tanúsítvány lekérdezi hivatkozik:
+A sablonok használatával virtuális gépek létrehozásakor hello titkok és hello winRM szakaszát, az alábbi hello tanúsítvány lekérdezi hivatkozik:
 
     "osProfile": {
           ...
           "secrets": [
             {
               "sourceVault": {
-                "id": "<resource id of the Key Vault containing the secret>"
+                "id": "<resource id of hello Key Vault containing hello secret>"
               },
               "vaultCertificates": [
                 {
-                  "certificateUrl": "<URL for the certificate you got in Step 4>",
-                  "certificateStore": "<Name of the certificate store on the VM>"
+                  "certificateUrl": "<URL for hello certificate you got in Step 4>",
+                  "certificateStore": "<Name of hello certificate store on hello VM>"
                 }
               ]
             }
@@ -130,7 +130,7 @@ A sablonok használatával virtuális gépek létrehozásakor, a titkos kulcsok 
                 },
                 {
                   "protocol": "https",
-                  "certificateUrl": "<URL for the certificate you got in Step 4>"
+                  "certificateUrl": "<URL for hello certificate you got in Step 4>"
                 }
               ]
             },
@@ -138,7 +138,7 @@ A sablonok használatával virtuális gépek létrehozásakor, a titkos kulcsok 
           }
         },
 
-A fenti példa sablonját itt található [201-vm-winrm-keyvault-windows](https://azure.microsoft.com/documentation/templates/201-vm-winrm-keyvault-windows)
+A fenti hello mintasablon itt található [201-vm-winrm-keyvault-windows](https://azure.microsoft.com/documentation/templates/201-vm-winrm-keyvault-windows)
 
 Ez a sablon forráskódja található [GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-winrm-keyvault-windows)
 
@@ -151,16 +151,16 @@ Ez a sablon forráskódja található [GitHub](https://github.com/Azure/azure-qu
     $CertificateStore = "My"
     $vm = Add-AzureRmVMSecret -VM $vm -SourceVaultId $sourceVaultId -CertificateStore $CertificateStore -CertificateUrl $secretURL
 
-## <a name="step-6-connecting-to-the-vm"></a>6. lépés: Csatlakozzon a virtuális Géphez
-Mielőtt az csatlakozna a virtuális gépre lesz szüksége győződjön meg arról, hogy a gép a WinRM Távfelügyelet van konfigurálva. Indítsa el a Powershellt rendszergazdaként, majd hajtsa végre az alábbi parancs futtatásával ellenőrizze, hogy elkészült a beállítással.
+## <a name="step-6-connecting-toohello-vm"></a>6. lépés: Csatlakozás toohello méretű VM
+Mielőtt az csatlakozna toohello VM toomake meg arról, hogy a számítógép úgy van konfigurálva a WinRM Távfelügyelet lesz szüksége. Indítsa el a Powershellt rendszergazdaként, majd hajtsa végre az alábbi parancs toomake meg arról, hogy elkészült a beállítással hello.
 
     Enable-PSRemoting -Force
 
 > [!NOTE]
-> Szükség lehet győződjön meg arról, hogy a WinRM szolgáltatás fut, ha a fenti nem működik. Megteheti, hogy használatával`Get-Service WinRM`
+> Szükség lehet toomake, hello WinRM szolgáltatás fut, ha a fenti hello nem működik. Megteheti, hogy használatával`Get-Service WinRM`
 > 
 > 
 
-Ha a telepítő végzett, csatlakozhat a virtuális gép használja az alábbi parancs
+Ha hello telepítő végzett, a kapcsolódás toohello VM hello alábbi parancs használatával
 
     Enter-PSSession -ConnectionUri https://<public-ip-dns-of-the-vm>:5986 -Credential $cred -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck) -Authentication Negotiate

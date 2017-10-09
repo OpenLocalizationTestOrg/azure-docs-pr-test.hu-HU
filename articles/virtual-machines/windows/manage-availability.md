@@ -1,6 +1,6 @@
 ---
-title: "Windows Azure virtuális gépek rendelkezésre állásának kezelése |} Microsoft Docs"
-description: "Több virtuális gép használata a Windows-alkalmazás az Azure-ban magas rendelkezésre állásának biztosításához"
+title: "Windows-alapú virtuális gépek Azure-ban aaaManage hello rendelkezésre állását |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse több virtuális gépek tooensure magas rendelkezésre állás Windows-alkalmazásait az Azure-ban"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -16,22 +16,22 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 408d030a7c26fea47669a690b0487e0868fbc2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5a7ccdc4a110ea24dd07ee18bd78941fb3aaac11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-availability-of-windows-virtual-machines-in-azure"></a>A Windows Azure virtuális gépek rendelkezésre állásának kezelése 
+# <a name="manage-hello-availability-of-windows-virtual-machines-in-azure"></a>Windows virtuális gépek Azure-ban hello rendelkezésre állásának kezelése 
 
-Ismerje meg, hogy módszereket állíthat be és felügyelhet több virtuális gép magas rendelkezésre állásának a Windows-alkalmazás az Azure-ban. Emellett [Linux virtuális gépek rendelkezésre állásának kezelése](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További módszereket tooset fel, és több virtuális gépek tooensure magas rendelkezésre állás Windows-alkalmazásait az Azure-ban kezelheti. Emellett [hello Linux virtuális gépek rendelkezésre állásának kezelése](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-A létrehozása és a rendelkezésre állási csoportokkal, ha a klasszikus üzembe helyezési modellel útmutatásért lásd: [rendelkezésre állási csoport konfigurálása](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+További tájékoztatást létrehozására, illetve a rendelkezésre állási csoportokkal, ha hello klasszikus üzembe helyezési modellel [hogyan tooConfigure rendelkezésre állási készlet](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-manage-availability](../../../includes/virtual-machines-common-manage-availability.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Hálózati terheléselosztást a virtuális gépek kapcsolatos további információkért lásd: [terheléselosztás virtuális gépek](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+toolearn hálózati terheléselosztást a virtuális gépek kapcsolatos további információkért lásd: [terheléselosztás virtuális gépek](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

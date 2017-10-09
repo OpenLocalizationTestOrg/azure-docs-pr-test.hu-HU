@@ -1,6 +1,6 @@
 ---
-title: "Biztonsági mentése és helyreállítása Azure Linux virtuális géphez az Oracle-adatbázishoz 12c adatbázis |} Microsoft Docs"
-description: "Útmutató: biztonsági mentése és helyreállítása az Oracle-adatbázishoz 12c adatbázis az Azure környezetben."
+title: "egy Azure Linux virtuális gép adatbázis aaaBack mentése és helyreállítása 12c Oracle-adatbázishoz |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooback mentése és helyreállítása az Oracle-adatbázis 12c adatbázis az Azure környezetben."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: v-shiuma
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 5/17/2017
 ms.author: rclaus
-ms.openlocfilehash: 9a2293f13b90e9a4cb11b4169fad969dd622a9a6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68846f4efce5eabdb71cd71772e003838154e93b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-and-recover-an-oracle-database-12c-database-on-an-azure-linux-virtual-machine"></a>Készítsen biztonsági másolatot, és az Azure Linux virtuális gép Oracle-adatbázishoz 12c-adatbázis helyreállítása
 
-Azure CLI segítségével létrehozása és kezelése az Azure-erőforrások parancsot a parancssorba, vagy parancsfájlok használata. Ebben a cikkben az Azure parancssori felület parancsfájlok használjuk az Oracle-adatbázishoz 12c adatbázis Azure piactér gyűjtemény lemezkép telepítéséhez.
+Használja az Azure parancssori felület toocreate és parancsot a parancssorba az Azure erőforrások kezeléséhez, vagy parancsfájlok használata. Ebben a cikkben az Azure parancssori felület parancsfájlok toodeploy az Oracle-adatbázishoz 12c adatbázis Azure piactér gyűjtemény lemezképből használjuk.
 
-Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure parancssori felület. További információkért lásd: a [Azure parancssori felület telepítési útmutató](https://docs.microsoft.com/cli/azure/install-azure-cli).
+Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure parancssori felület. További információkért lásd: hello [Azure parancssori felület telepítési útmutató](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
-## <a name="prepare-the-environment"></a>A környezet előkészítése
+## <a name="prepare-hello-environment"></a>Hello környezet előkészítése
 
 ### <a name="step-1-prerequisites"></a>1. lépés: Előfeltételek
 
-*   A biztonsági mentési és helyreállítási folyamat végrehajtásához először létre kell hoznia egy Linux virtuális Gépet, amely rendelkezik az Oracle-adatbázishoz 12c telepített példánya. A Piactéri lemezképet hozhat létre a virtuális gép neve *Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest*.
+*   tooperform hello biztonsági mentési és helyreállítási folyamata, akkor először létre kell hoznia egy Linux virtuális Gépet, amely rendelkezik az Oracle-adatbázishoz 12c telepített példánya. VM nevű toocreate hello használata hello Piactéri lemezképhez *Oracle: Oracle-adatbázis-Ee:12.1.0.2:latest*.
 
-    Az Oracle-adatbázis létrehozásához, lásd: a [Oracle adatbázis gyors üzembe helyezés létrehozása](https://docs.microsoft.com/azure/virtual-machines/workloads/oracle/oracle-database-quick-create).
+    toolearn hogyan toocreate, Oracle-adatbázishoz: hello [Oracle adatbázis gyors üzembe helyezés létrehozása](https://docs.microsoft.com/azure/virtual-machines/workloads/oracle/oracle-database-quick-create).
 
 
-### <a name="step-2-connect-to-the-vm"></a>2. lépés: Csatlakoztassa a virtuális Gépet
+### <a name="step-2-connect-toohello-vm"></a>2. lépés: Csatlakozás toohello méretű VM
 
-*   Secure Shell (SSH) munkamenetet létrehozni a virtuális gép, használja a következő parancsot. Az IP-cím és a gazdagép neve együtt cserélje le a `publicIpAddress` értéket a virtuális gép számára.
+*   a virtuális gép, a következő parancs használata hello hello Secure Shell (SSH) munkamenet toocreate. Hello IP-cím és a hello állomás neve kombinációja lecserélése hello `publicIpAddress` értéket a virtuális gép számára.
 
     ```bash 
     ssh <publicIpAddress>
     ```
 
-### <a name="step-3-prepare-the-database"></a>3. lépés: Az adatbázis előkészítése
+### <a name="step-3-prepare-hello-database"></a>3. lépés: Hello adatbázis előkészítése
 
 1.  Ez a lépés feltételezi, hogy rendelkezik-e egy egy nevű virtuális gépen futó Oracle-példányok (cdb1) *myVM*.
 
-    Futtassa a *oracle* felügyelő legfelső szintű és a figyelő majd inicializálása:
+    Futtassa a hello *oracle* felügyelő gyökérszintű, majd inicializálása hello figyelő:
 
     ```bash
     $ sudo su - oracle
@@ -58,11 +58,11 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
     Starting /u01/app/oracle/product/12.1.0/dbhome_1/bin/tnslsnr: please wait...
 
     TNSLSNR for Linux: Version 12.1.0.2.0 - Production
-    Log messages written to /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
+    Log messages written too/u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
 
-    Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
-    STATUS of the LISTENER
+    Connecting too(ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+    STATUS of hello LISTENER
     ------------------------
     Alias                     LISTENER
     Version                   TNSLSNR for Linux: Version 12.1.0.2.0 - Production
@@ -74,11 +74,11 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
     Listener Log File         /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening Endpoints Summary...
     (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
-    The listener supports no services
-    The command completed successfully
+    hello listener supports no services
+    hello command completed successfully
     ```
 
-2.  (Választható) Ellenőrizze, hogy az adatbázis archív napló módban van:
+2.  (Választható) Ellenőrizze, hogy hello adatbázis archív napló módban van:
 
     ```bash
     $ sqlplus / as sysdba
@@ -94,16 +94,16 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
     SQL> ALTER DATABASE OPEN;
     SQL> ALTER SYSTEM SWITCH LOGFILE;
     ```
-3.  (Választható) Hozzon létre egy táblát, a véglegesítés teszteléséhez:
+3.  (Választható) Hozzon létre egy tábla tootest hello véglegesítést:
 
     ```bash
     SQL> alter session set "_ORACLE_SCRIPT"=true ;
     Session altered.
     SQL> create user scott identified by tiger;
     User created.
-    SQL> grant create session to scott;
+    SQL> grant create session tooscott;
     Grant succeeded.
-    SQL> grant create table to scott;
+    SQL> grant create table tooscott;
     Grant succeeded.
     SQL> alter user scott quota 100M on users;
     User altered.
@@ -115,7 +115,7 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
     SQL> commit;
     Commit complete.
     ```
-4.  Győződjön meg arról, vagy módosítsa a biztonságimásolat-fájl helye és mérete:
+4.  Győződjön meg arról, vagy módosítsa a hello biztonságimásolat-fájl helye és mérete:
 
     ```bash
     $ sqlplus / as sysdba
@@ -125,7 +125,7 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
     db_recovery_file_dest                string      /u01/app/oracle/fast_recovery_area
     db_recovery_file_dest_size           big integer 4560M
     ```
-5. Oracle Recovery Manager (RMAN) segítségével készítsen biztonsági másolatot az adatbázisról:
+5. Hello adatbázis tooback használata Oracle helyreállítás-kezelő (RMAN):
 
     ```bash
     $ rman target /
@@ -134,11 +134,11 @@ Mielőtt elkezdené, győződjön meg arról, hogy telepítve van-e az Azure par
 
 ### <a name="step-4-application-consistent-backup-for-linux-vms"></a>4. lépés: A Linux virtuális gépek alkalmazáskonzisztens biztonsági mentését
 
-Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szolgáltatása. Hozzon létre, és válassza ki a parancsfájlok végrehajtása előtt és után a virtuális gép pillanatkép (pillanatkép előtti és utáni pillanatkép).
+Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szolgáltatása. Hozzon létre, és válassza ki a parancsfájlok tooexecute előtt és után hello gép pillanatképével (pillanatkép előtti és utáni pillanatkép).
 
-1. A JSON-fájl letöltésére.
+1. Hello JSON-fájl letöltésére.
 
-    Https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig VMSnapshotScriptPluginConfig.json le. A fájl tartalmának keressen a következőhöz hasonló:
+    Https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig VMSnapshotScriptPluginConfig.json le. hello fájl tartalmának hasonló toohello következő keresése:
 
     ```azurecli
     {
@@ -155,7 +155,7 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     }
     ```
 
-2. A /etc/azure mappa létrehozása a virtuális Gépen:
+2. Hello /etc/azure mappa létrehozása a virtuális gép hello:
 
     ```bash
     $ sudo su -
@@ -163,13 +163,13 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     # cd /etc/azure
     ```
 
-3. A JSON-fájl másolása.
+3. Hello JSON-fájl másolása.
 
-    VMSnapshotScriptPluginConfig.json másolása a /etc/azure mappába.
+    VMSnapshotScriptPluginConfig.json toohello /etc/azure mappába másolja.
 
-4. Szerkessze a JSON-fájlt.
+4. Hello JSON-fájl szerkesztése.
 
-    A VMSnapshotScriptPluginConfig.json-fájl szerkesztése a `PreScriptLocation` és `PostScriptlocation` paraméterek. Példa:
+    Hello VMSnapshotScriptPluginConfig.json fájl tooinclude hello szerkesztése `PreScriptLocation` és `PostScriptlocation` paraméterek. Példa:
 
     ```azurecli
     {
@@ -186,7 +186,7 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     }
     ```
 
-5. A pillanatkép előtti és a pillanatkép utáni parancsfájlok létrehozása.
+5. Hello pillanatkép előtti és a pillanatkép utáni parancsfájl-fájlok létrehozása.
 
     Íme egy példa a "cold biztonsági mentéshez" pillanatkép előtti és a pillanatkép utáni parancsfájlok (offline biztonsági másolat, leállítása és újraindítása):
 
@@ -226,7 +226,7 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     su - $ORA_OWNER -c "sqlplus / as sysdba @/etc/azure/post_script.sql" > /etc/azure/pre_script_$v_date.log
     ```
 
-    A /etc/azure/pre_script.sql módosítsa a / a követelmények a fájl tartalmát:
+    A /etc/azure/pre_script.sql módosítsa a hello fájl a követelmények / hello tartalma:
 
     ```bash
     alter tablespace SYSTEM begin backup;
@@ -236,7 +236,7 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     alter system archive log stop;
     ```
 
-    A /etc/azure/post_script.sql módosítsa a / a követelmények a fájl tartalmát:
+    A /etc/azure/post_script.sql módosítsa a hello fájl a követelmények / hello tartalma:
 
     ```bash
     alter tablespace SYSTEM end backup;
@@ -253,9 +253,9 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
     # chmod 700 /etc/azure/post_script.sh
     ```
 
-7. Tesztelje a parancsfájlokat.
+7. Hello parancsfájlok tesztelése.
 
-    Tesztelje a parancsfájlokat, először jelentkezzen be rendszergazdaként. Majd győződjön meg arról, hogy nincsenek-e hibák:
+    tootest hello parancsfájlok, először jelentkezzen be rendszergazdaként. Majd győződjön meg arról, hogy nincsenek-e hibák:
 
     ```bash
     # /etc/azure/pre_script.sh
@@ -265,25 +265,25 @@ Alkalmazáskonzisztens biztonsági mentést az Azure biztonsági mentés új szo
 További információkért lásd: [Linux virtuális gépek alkalmazáskonzisztens biztonsági mentését](https://azure.microsoft.com/en-us/blog/announcing-application-consistent-backup-for-linux-vms-using-azure-backup/).
 
 
-### <a name="step-5-use-azure-recovery-services-vaults-to-back-up-the-vm"></a>5. lépés: Használata Azure Recovery Services-tárolók biztonsági mentése a virtuális gép
+### <a name="step-5-use-azure-recovery-services-vaults-tooback-up-hello-vm"></a>5. lépés: Használata Azure Recovery Services-tárolók tooback hello virtuális gép mentése
 
-1.  Az Azure-portálon a keresse meg a **Recovery Services-tárolók**.
+1.  Az Azure-portálon hello, keressen **Recovery Services-tárolók**.
 
     ![Helyreállítási szolgáltatások tárolók lap](./media/oracle-backup-recovery/recovery_service_01.png)
 
-2.  Az a **Recovery Services-tárolók** panelt, adja hozzá egy új tárolót, kattintson a **Hozzáadás**.
+2.  A hello **Recovery Services-tárolók** tooadd egy új tárolót panelen kattintson a **Hozzáadás**.
 
     ![Helyreállítási szolgáltatások tárolók-weblap hozzáadása](./media/oracle-backup-recovery/recovery_service_02.png)
 
-3.  A folytatáshoz kattintson a **myVault**.
+3.  toocontinue, kattintson a **myVault**.
 
     ![Helyreállítási szolgáltatások tárolók részletességi lap](./media/oracle-backup-recovery/recovery_service_03.png)
 
-4.  Az a **myVault** panelen kattintson a **biztonsági mentés**.
+4.  A hello **myVault** panelen kattintson a **biztonsági mentés**.
 
     ![Helyreállítási szolgáltatások tárolók lap biztonsági mentése](./media/oracle-backup-recovery/recovery_service_04.png)
 
-5.  Az a **biztonsági mentési cél** panelen, használja az alapértelmezett értékekkel rendelkező **Azure** és **virtuális gép**. Kattintson az **OK** gombra.
+5.  A hello **biztonsági mentési cél** panelen hello az alapértelmezett értékek használata **Azure** és **virtuális gép**. Kattintson az **OK** gombra.
 
     ![Helyreállítási szolgáltatások tárolók részletességi lap](./media/oracle-backup-recovery/recovery_service_05.png)
 
@@ -291,37 +291,37 @@ További információkért lásd: [Linux virtuális gépek alkalmazáskonziszten
 
     ![Helyreállítási szolgáltatások tárolók biztonsági mentési házirend Részletek lap](./media/oracle-backup-recovery/recovery_service_06.png)
 
-7.  Az a **válassza ki a virtuális gépek** panelen válassza ki a **myVM1** jelölőnégyzetet, majd kattintson a **OK**. Kattintson a **biztonságimásolat-készítés engedélyezése** gombra.
+7.  A hello **válassza ki a virtuális gépek** panelen, jelölje be hello **myVM1** jelölőnégyzetet, majd kattintson a **OK**. Kattintson a hello **biztonságimásolat-készítés engedélyezése** gombra.
 
-    ![Helyreállítási szolgáltatások tárolók elemeket a biztonsági mentési Részletek lap](./media/oracle-backup-recovery/recovery_service_07.png)
+    ![Helyreállítási szolgáltatások tárolók elemek toohello biztonsági mentési Részletek lap](./media/oracle-backup-recovery/recovery_service_07.png)
 
     > [!IMPORTANT]
-    > Miután rákattintott **biztonságimásolat-készítés engedélyezése**, a biztonsági mentés nem indul el, amíg az ütemezett időpontban lejár. Az azonnali biztonsági másolat beállítása, a következő lépés végrehajtása.
+    > Miután rákattintott **biztonságimásolat-készítés engedélyezése**, hello biztonsági mentési folyamat nem indul el, amíg hello ütemezett időpontban lejár. egy azonnali, teljes biztonsági mentést tooset hello a következő lépésre.
 
-8.  A a **myVault - biztonsági mentés elemek** panel alatt **biztonsági MENTÉSI ELEMSZÁMNÁL**, válassza ki a biztonsági mentési elemek száma.
+8.  A hello **myVault - biztonsági mentés elemek** panelen, a **biztonsági MENTÉSI ELEMSZÁMNÁL**, válassza ki a biztonsági mentési elemszámnál hello.
 
     ![Helyreállítási szolgáltatások tárolók myVault Részletek lap](./media/oracle-backup-recovery/recovery_service_08.png)
 
-9.  Az a **(Azure virtuális gép) biztonsági mentés elemek** panelen, a lap jobb oldalán kattintson a három pont (**...** ) gombra, majd **biztonsági mentés most**.
+9.  A hello **(Azure virtuális gép) biztonsági mentés elemek** panelen hello jobb oldalán található hello, kattintson a hello három pont (**...** ) gombra, majd **biztonsági mentés most**.
 
     ![Helyreállítási szolgáltatások tárolók biztonsági mentés most parancsot.](./media/oracle-backup-recovery/recovery_service_09.png)
 
-10. Kattintson a **biztonsági mentés** gombra. Várja meg a biztonsági mentési folyamat befejezéséhez. Folytassa a [6. lépés: távolítsa el az adatbázisfájlok](#step-6-remove-the-database-files).
+10. Kattintson a hello **biztonsági mentés** gombra. Várjon, amíg hello biztonsági mentési folyamat toofinish. Ezután térjen túl[6. lépés: távolítsa el a hello adatbázisfájlok](#step-6-remove-the-database-files).
 
-    A biztonsági mentési feladat állapotának megtekintéséhez kattintson **feladatok**.
+    tooview hello állapotát hello biztonsági mentési feladat, kattintson az **feladatok**.
 
     ![Helyreállítási szolgáltatások tárolók feladat lap](./media/oracle-backup-recovery/recovery_service_10.png)
 
-    A biztonsági mentési feladat állapotát a következő kép jelenik meg:
+    hello hello biztonsági mentési feladat állapota a következő kép hello jelenik meg:
 
     ![Helyreállítási szolgáltatások tárolók feladat állapotú lap](./media/oracle-backup-recovery/recovery_service_11.png)
 
-11. Az alkalmazáskonzisztens biztonsági mentését címek a naplófájl-e hibák. A naplófájl /var/log/azure/Microsoft.Azure.RecoveryServices.VMSnapshotLinux/1.0.9114.0 helyezkedik el.
+11. Az alkalmazáskonzisztens biztonsági mentését címek hello naplófájl-e hibák. hello naplófájl /var/log/azure/Microsoft.Azure.RecoveryServices.VMSnapshotLinux/1.0.9114.0 helyezkedik el.
 
-### <a name="step-6-remove-the-database-files"></a>6. lépés: Távolítsa el az adatbázis fájljai 
-A cikk későbbi részében megtudhatja, hogyan a helyreállítási folyamat ellenőrzéséhez. A helyreállítási folyamat teszteléséhez előtt el kell távolítania az adatbázisfájlokat.
+### <a name="step-6-remove-hello-database-files"></a>6. lépés: Távolítsa el a hello adatbázisfájlok 
+A cikk későbbi részében megtudhatja, hogyan tootest hello helyreállítási folyamatot. Mielőtt hello helyreállítási folyamat teszteléséhez tooremove hello adatbázisfájlok rendelkezik.
 
-1.  Távolítsa el a táblaterületen és a biztonsági mentési fájlokat:
+1.  Hello táblaterületen és a biztonsági mentés fájljának eltávolítása:
 
     ```bash
     $ sudo su - oracle
@@ -331,7 +331,7 @@ A cikk későbbi részében megtudhatja, hogyan a helyreállítási folyamat ell
     $ rm -rf *
     ```
     
-2.  (Választható) Állítsa le az Oracle-példány:
+2.  (Választható) Állítsa le a hello Oracle-példány:
 
     ```bash
     $ sqlplus / as sysdba
@@ -339,38 +339,38 @@ A cikk későbbi részében megtudhatja, hogyan a helyreállítási folyamat ell
     ORACLE instance shut down.
     ```
 
-## <a name="restore-the-deleted-files-from-the-recovery-services-vaults"></a>A Recovery Services-tárolók a törölt fájlok visszaállítása
-A törölt fájlok visszaállításához kövesse az alábbi lépéseket:
+## <a name="restore-hello-deleted-files-from-hello-recovery-services-vaults"></a>Recovery Services-tárolók hello hello törölt fájlok visszaállítása
+toorestore hello törölt fájlok, teljes hello a következő lépéseket:
 
-1. Az Azure portálon keresse meg a *myVault* Recovery Services-tárolók elemet. A a **áttekintése** panel alatt **elem biztonsági mentését**, válassza ki az elemek száma.
+1. A hello Azure-portálon, keresse meg a hello *myVault* Recovery Services-tárolók elemet. A hello **áttekintése** panelen, a **elem biztonsági mentését**, válassza ki a hello elemek száma.
 
     ![Helyreállítási szolgáltatások tárolók myVault biztonsági másolati elemei](./media/oracle-backup-recovery/recovery_service_12.png)
 
-2. A **biztonsági MENTÉS ELEMSZÁMNÁL**, válassza ki az elemek száma.
+2. A **biztonsági MENTÉS elemek száma**, válassza ki a hello elemek száma.
 
     ![Recovery Services-tárolók Azure virtuális gép biztonsági mentési elemek száma](./media/oracle-backup-recovery/recovery_service_13.png)
 
-3. Az a **myvm1** panelen kattintson a **fájlhelyreállítás (előzetes verzió)**.
+3. A hello **myvm1** panelen kattintson a **fájlhelyreállítás (előzetes verzió)**.
 
-    ![Képernyőfelvétel a Recovery Services-tárolók helyreállítási lapja](./media/oracle-backup-recovery/recovery_service_14.png)
+    ![Képernyőfelvétel a hello Recovery Services-tárolók helyreállítási lapja](./media/oracle-backup-recovery/recovery_service_14.png)
 
-4. Az a **fájlhelyreállítás (előzetes verzió)** ablaktáblán kattintson a **parancsfájl letöltése**. Az ügyfélszámítógépen, majd menti a letöltési (.sh) fájlt egy mappába.
+4. A hello **fájlhelyreállítás (előzetes verzió)** ablaktáblán kattintson a **parancsfájl letöltése**. Ezt követően mentse hello letöltési (.sh) fájl tooa mappában hello ügyfélszámítógépen.
 
     ![Töltse le a parancsfájl mentése beállításai](./media/oracle-backup-recovery/recovery_service_15.png)
 
-5. Másolja a .sh fájlt a virtuális Gépet.
+5. Hello .sh fájl toohello VM másolja.
 
-    A következő példa bemutatja, hogyan biztonságos másolatot (scp) használatát a fájl áthelyezéséhez a virtuális gép parancsot. Akkor is is tartalmának másolása a vágólapra, majd illessze be a tartalom egy új fájlba, amely a virtuális Gépre van beállítva.
+    hello a következő példa bemutatja, hogyan egy biztonságos másolása (scp) parancs toomove toouse hello fájl toohello virtuális gép. Is másolhatja hello tartalma toohello vágólapra, majd a Beillesztés hello tartalmát egy új fájlba, a virtuális gép hello be van állítva.
 
     > [!IMPORTANT]
-    > A következő példában győződjön meg arról, hogy frissíti a IP-cím és a mappa értékek. Az értékek a mappába, a fájl menteni kell társítani.
+    > A következő példa hello győződjön meg arról, hogy a hello IP cím és a mappa értékek frissíteni. hello értékek hello fájl mentési helyének toohello mappát kell társítani.
 
     ```bash
     $ scp Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh <publicIpAddress>:/<folder>
     ```
-6. Módosítsa a fájlt, hogy a legfelső szintű tulajdonában van.
+6. Hello fájl módosítása a hello legfelső szintű tulajdonában van.
 
-    A következő példában módosítja a fájlt, hogy a legfelső szintű tulajdonában van. Ezután módosítsa az engedélyeket.
+    A következő példa hello módosítsa hello fájlt úgy, hogy a tulajdonosa hello legfelső szintű. Ezután módosítsa az engedélyeket.
 
     ```bash 
     $ ssh <publicIpAddress>
@@ -379,24 +379,24 @@ A törölt fájlok visszaállításához kövesse az alábbi lépéseket:
     # chmod 755 /<folder>/Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh
     # /<folder>/Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh
     ```
-    A következő példa bemutatja, lásd az előző parancsfájl futtatása után. Ha van, a folytatás megerősítését kéri, írja be **Y**.
+    hello következő példát talál parancsfájlt hello futtatása után. Amikor felszólítja toocontinue, adja meg **Y**.
 
     ```bash
     Microsoft Azure VM Backup - File Recovery
     ______________________________________________
-    The script requires 'open-iscsi' and 'lshw' to run.
-    Do you want us to install 'open-iscsi' and 'lshw' on this machine?
-    Please press 'Y' to continue with installation, 'N' to abort the operation. : Y
+    hello script requires 'open-iscsi' and 'lshw' toorun.
+    Do you want us tooinstall 'open-iscsi' and 'lshw' on this machine?
+    Please press 'Y' toocontinue with installation, 'N' tooabort hello operation. : Y
     Installing 'open-iscsi'....
     Installing 'lshw'....
 
-    Connecting to recovery point using ISCSI service...
+    Connecting toorecovery point using ISCSI service...
 
     Connection succeeded!
 
-    Please wait while we attach volumes of the recovery point to this machine...
+    Please wait while we attach volumes of hello recovery point toothis machine...
 
-    ************ Volumes of the recovery point and their mount paths on this machine ************
+    ************ Volumes of hello recovery point and their mount paths on this machine ************
 
     Sr.No.  |  Disk  |  Volume  |  MountPath
 
@@ -404,20 +404,20 @@ A törölt fájlok visszaállításához kövesse az alábbi lépéseket:
 
     2)  | /dev/sde  |  /dev/sde2  |  /root/myVM-20170517093913/Volume2
 
-    ************ Open File Explorer to browse for files. ************
+    ************ Open File Explorer toobrowse for files. ************
 
-    After recovery, to remove the disks and close the connection to the recovery point, please click 'Unmount Disks' in step 3 of the portal.
+    After recovery, tooremove hello disks and close hello connection toohello recovery point, please click 'Unmount Disks' in step 3 of hello portal.
 
-    Please enter 'q/Q' to exit...
+    Please enter 'q/Q' tooexit...
     ```
 
-7. A csatlakoztatott kötetek való hozzáférés ellenőrzése.
+7. Hozzáférés toohello csatlakoztatott kötetek ellenőrzése.
 
-    Lépjen ki, írja be a következőt **q**, majd keresse meg a csatlakoztatott kötetek. A felvett kötetek listájának létrehozásához parancsot a parancssorba írja be **df -k**.
+    tooexit, adja meg **q**, majd keresse meg a hello csatlakoztatott kötetek. hello listája hozzáadott kötetek, a parancssorba írja be toocreate **df -k**.
 
-    ![A df -k parancs](./media/oracle-backup-recovery/recovery_service_16.png)
+    ![hello df -k parancs](./media/oracle-backup-recovery/recovery_service_16.png)
 
-8. A következő parancsfájl használata a hiányzó fájlokat másolja vissza a mappák:
+8. A következő parancsfájl toocopy hello hiányzó használata hello fájlok hátsó toohello mappák:
 
     ```bash
     # cd /root/myVM-2017XXXXXXX/Volume2/u01/app/oracle/fast_recovery_area/CDB1/backupset/2017_xx_xx
@@ -429,7 +429,7 @@ A törölt fájlok visszaállításához kövesse az alábbi lépéseket:
     # cd /u01/app/oracle/oradata/cdb1
     # chown oracle:oinstall *.dbf
     ```
-9. A következő parancsfájlban RMAN használatával állítsa helyre az adatbázist:
+9. A következő parancsfájl hello RMAN toorecover hello adatbázis használata:
 
     ```bash
     # sudo su - oracle
@@ -441,93 +441,93 @@ A törölt fájlok visszaállításához kövesse az alábbi lépéseket:
     RMAN> SELECT * FROM scott.scott_table;
     ```
     
-10. A lemez leválasztása.
+10. Hello lemez leválasztása.
 
-    Az Azure portálon a a **fájlhelyreállítás (előzetes verzió)** panelen kattintson a **lemez leválasztása**.
+    Az Azure portál, a hello hello **fájlhelyreállítás (előzetes verzió)** panelen kattintson a **lemez leválasztása**.
 
     ![Válassza le a lemezek parancs](./media/oracle-backup-recovery/recovery_service_17.png)
 
-## <a name="restore-the-entire-vm"></a>Állítsa vissza a teljes méretű VM
+## <a name="restore-hello-entire-vm"></a>Visszaállítás hello teljes méretű VM
 
-Helyett a törölt fájlok visszaállítást végezni a Recovery Services-tárolók, állítsa vissza a teljes virtuális gép.
+Helyett a Recovery Services-tárolók hello hello törölt fájlok visszaállítása során, hogy visszaállíthassa a teljes virtuális gép hello.
 
 ### <a name="step-1-delete-myvm"></a>1. lépés: Delete myVM
 
-*   Az Azure-portálon lépjen a **myVM1** tároló, és válassza ki **törlése**.
+*   A hello Azure-portálon, válassza a toohello **myVM1** tároló, és válassza ki **törlése**.
 
     ![Tároló delete parancs esetében](./media/oracle-backup-recovery/recover_vm_01.png)
 
-### <a name="step-2-recover-the-vm"></a>2. lépés: A virtuális gép helyreállítása
+### <a name="step-2-recover-hello-vm"></a>2. lépés: Hello virtuális gép helyreállítása
 
-1.  Ugrás a **Recovery Services-tárolók**, majd válassza ki **myVault**.
+1.  Nyissa meg túl**Recovery Services-tárolók**, majd válassza ki **myVault**.
 
     ![myVault bejegyzés](./media/oracle-backup-recovery/recover_vm_02.png)
 
-2.  A a **áttekintése** panel alatt **elem biztonsági mentését**, válassza ki az elemek száma.
+2.  A hello **áttekintése** panelen, a **elem biztonsági mentését**, válassza ki a hello elemek száma.
 
     ![Készítsen biztonsági másolatot elemek myVault](./media/oracle-backup-recovery/recover_vm_03.png)
 
-3.  Az a **(Azure virtuális gép) biztonsági mentés elemek** panelen válassza **myvm1**.
+3.  A hello **(Azure virtuális gép) biztonsági mentés elemek** panelen válassza **myvm1**.
 
     ![A helyreállítási virtuális gép lap](./media/oracle-backup-recovery/recover_vm_04.png)
 
-4.  Az a **myvm1** panelen kattintson a három pont (**...** ) gombra, majd **visszaállítani a virtuális gép**.
+4.  A hello **myvm1** paneljén kattintson hello három pont (**...** ) gombra, majd **visszaállítani a virtuális gép**.
 
     ![A restore parancs méretű VM](./media/oracle-backup-recovery/recover_vm_05.png)
 
-5.  Az a **visszaállítási pont kiválasztása** panelen, válassza ki a visszaállítani kívánt cikket, és végül **OK**.
+5.  A hello **visszaállítási pont kiválasztása** panelen, jelölje be hello elem toorestore szeretne, és kattintson **OK**.
 
-    ![Válassza ki a visszaállítási pont](./media/oracle-backup-recovery/recover_vm_06.png)
+    ![Jelölje be hello visszaállítási pont](./media/oracle-backup-recovery/recover_vm_06.png)
 
     Ha engedélyezte az alkalmazáskonzisztens biztonsági mentését, egy függőleges kék színű sáv jelenik meg.
 
-6.  Az a **konfiguráció visszaállítása** panelen válassza ki a virtuális gép nevét, válassza ki az erőforráscsoportot, és kattintson **OK**.
+6.  A hello **konfiguráció visszaállítása** panelen, jelölje be hello virtuális gép nevét, jelölje ki a hello erőforráscsoport, és kattintson **OK**.
 
     ![Állítsa vissza a konfigurációs értékek](./media/oracle-backup-recovery/recover_vm_07.png)
 
-7.  Állítsa helyre a virtuális Gépet, kattintson a **visszaállítása** gombra.
+7.  toorestore hello VM, kattintson a hello **visszaállítása** gombra.
 
-8.  A visszaállítási folyamat állapotának megtekintéséhez kattintson **feladatok**, és kattintson a **biztonsági mentési feladatok**.
+8.  tooview hello állapotát hello visszaállítási folyamat, kattintson az **feladatok**, és kattintson a **biztonsági mentési feladatok**.
 
     ![Biztonsági mentési feladatok állapota parancs](./media/oracle-backup-recovery/recover_vm_08.png)
 
-    Az alábbi ábra a visszaállítási folyamat állapotának megjelenítése:
+    hello következő ábrán látható hello visszaállítási folyamat hello állapotát:
 
-    ![A visszaállítási folyamat állapota](./media/oracle-backup-recovery/recover_vm_09.png)
+    ![Hello visszaállítási folyamat állapota](./media/oracle-backup-recovery/recover_vm_09.png)
 
-### <a name="step-3-set-the-public-ip-address"></a>3. lépés: A nyilvános IP-cím beállítása
-Miután visszaállította a virtuális gép, állítsa be a nyilvános IP-cím.
+### <a name="step-3-set-hello-public-ip-address"></a>3. lépés: Hello nyilvános IP-cím beállítása
+Hello VM helyreáll, után állítsa be hello nyilvános IP-cím.
 
-1.  A keresési mezőbe, írja be a **nyilvános IP-cím**.
+1.  Hello keresési mezőbe, írja be a **nyilvános IP-cím**.
 
     ![Nyilvános IP-címek listája](./media/oracle-backup-recovery/create_ip_00.png)
 
-2.  Az a **nyilvános IP-címek** panelen kattintson a **Hozzáadás**. Az a **nyilvános IP-cím létrehozása** panelen a **neve**, válassza ki a nyilvános IP-név. Az **Erőforráscsoport** területen válassza a **Meglévő használata** lehetőséget. Ezt követően kattintson a **Create** (Létrehozás) gombra.
+2.  A hello **nyilvános IP-címek** panelen kattintson a **Hozzáadás**. A hello **nyilvános IP-cím létrehozása** panelen a **neve**, jelölje be hello nyilvános IP-név. Az **Erőforráscsoport** területen válassza a **Meglévő használata** lehetőséget. Ezt követően kattintson a **Create** (Létrehozás) gombra.
 
     ![IP-cím létrehozása](./media/oracle-backup-recovery/create_ip_01.png)
 
-3.  A nyilvános IP-címet társítani a hálózati illesztő a virtuális gép számára, és adja meg **myVMip**. Kattintson a **társítása**.
+3.  tooassociate hello nyilvános IP-cím hello hálózati csatoló a virtuális gép, hello keresse és jelölje be a **myVMip**. Kattintson a **társítása**.
 
     ![IP-cím hozzárendelése](./media/oracle-backup-recovery/create_ip_02.png)
 
-4.  A **erőforrástípus**, jelölje be **hálózati illesztő**. Válassza ki, hogy az myVM példány által használt hálózati kapcsolat, és kattintson a **OK**.
+4.  A **erőforrástípus**, jelölje be **hálózati illesztő**. Jelölje be, amely hello myVM példány által használt hello hálózati adaptert, és kattintson **OK**.
 
     ![Válassza ki az erőforrás típusa és a hálózati adapter értékek](./media/oracle-backup-recovery/create_ip_03.png)
 
-5.  Keresse meg, és nyissa meg az, hogy van-e legelterjedtebb myVM példányát a portálról. A virtuális Géphez társított IP-cím jelenik meg a myVM **áttekintése** panelen.
+5.  Keresse meg, és nyissa meg a hello példánya, amely van legelterjedtebb myVM hello portálról. hello hello VM társított IP-cím jelenik meg hello myVM **áttekintése** panelen.
 
     ![IP-cím értéke](./media/oracle-backup-recovery/create_ip_04.png)
 
-### <a name="step-4-connect-to-the-vm"></a>4. lépés: Csatlakoztassa a virtuális Gépet
+### <a name="step-4-connect-toohello-vm"></a>4. lépés: Csatlakozás toohello méretű VM
 
-*   Csatlakoztassa a virtuális Gépet, használja a következő parancsfájlt:
+*   tooconnect toohello VM, a következő parancsfájl hello használata:
 
     ```bash 
     ssh <publicIpAddress>
     ```
 
-### <a name="step-5-test-whether-the-database-is-accessible"></a>5. lépés: Az adatbázis elérhető-e tesztelése
-*   Kisegítő lehetőségek teszteléséhez a következő parancsprogram használata:
+### <a name="step-5-test-whether-hello-database-is-accessible"></a>5. lépés: Hello adatbázis elérhető-e tesztelése
+*   tootest kisegítő, a következő parancsfájl használata hello:
 
     ```bash 
     $ sudo su - oracle
@@ -536,10 +536,10 @@ Miután visszaállította a virtuális gép, állítsa be a nyilvános IP-cím.
     ```
 
     > [!IMPORTANT]
-    > Ha az adatbázis **indítási** parancs hibát generál, állítsa helyre az adatbázist, lásd: [6. lépés: az adatbázis használata RMAN](#step-6-optional-use-rman-to-recover-the-database).
+    > Ha hello adatbázis **indítási** parancs létrehoz egy hiba, toorecover hello adatbázis című [6. lépés: használja RMAN toorecover hello adatbázis](#step-6-optional-use-rman-to-recover-the-database).
 
-### <a name="step-6-optional-use-rman-to-recover-the-database"></a>6. lépés: (Nem kötelező) használata RMAN az adatbázis helyreállítása
-*   Állítsa helyre az adatbázist, használja a következő parancsfájlt:
+### <a name="step-6-optional-use-rman-toorecover-hello-database"></a>6. lépés: (Nem kötelező) használata RMAN toorecover hello adatbázis
+*   toorecover hello adatbázis, a következő parancsfájl használata hello:
 
     ```bash
     # sudo su - oracle
@@ -551,11 +551,11 @@ Miután visszaállította a virtuális gép, állítsa be a nyilvános IP-cím.
     RMAN> SELECT * FROM scott.scott_table;
     ```
 
-A biztonsági mentési és helyreállítási az Azure Linux virtuális gép Oracle-adatbázishoz 12c adatbázis most már befejeződött.
+hello biztonsági mentési és helyreállítási hello Oracle-adatbázishoz 12c adatbázis az Azure Linux virtuális gép most már befejeződött.
 
-## <a name="delete-the-vm"></a>A virtuális gép törlése
+## <a name="delete-hello-vm"></a>Hello virtuális gép törlése
 
-Ha már nincs szüksége a virtuális Gépet, a következő paranccsal távolítsa el az erőforráscsoportot, a virtuális gép és az összes kapcsolódó erőforrások:
+Ha a virtuális gép már nem kell hello, használhatja a következő parancs tooremove hello erőforráscsoport, hello VM és minden kapcsolódó erőforrások hello:
 
 ```azurecli
 az group delete --name myResourceGroup

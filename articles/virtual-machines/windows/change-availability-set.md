@@ -1,6 +1,6 @@
 ---
-title: "Módosítsa a virtuális gépek rendelkezésre állási csoport |} Microsoft Docs"
-description: "Megtudhatja, hogyan módosíthatja a rendelkezésre állási csoportot a virtuális gépek Azure PowerShell és a Resource Manager üzembe helyezési modellben."
+title: "a virtuális gépek rendelkezésre állási csoport aaaChange |} Microsoft Docs"
+description: "Ismerje meg, hogyan toochange hello rendelkezésre állási készlet használata az Azure PowerShell és hello Resource Manager üzembe helyezési modellben a virtuális gépek."
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: drewm
-ms.openlocfilehash: d1daa01191480eaeb81727416b2134b00c698dc3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b1cc010a6d4c4883f2e34da9cfca4372aec92cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-availability-set-for-a-windows-vm"></a>A rendelkezésre állási csoportot a Windows virtuális gépek módosítása
-A következő lépések azt ismertetik, hogyan módosíthatja a rendelkezésre állási csoport a virtuális gépek Azure PowerShell használatával. A virtuális gépek csak rendelkezésre állási készlet létrehozásakor lehet hozzáadni. Ahhoz, hogy módosítsa a rendelkezésre állási beállítása, törölje és hozza létre a virtuális gép szükséges. 
+# <a name="change-hello-availability-set-for-a-windows-vm"></a>Hello rendelkezésre állási csoportban, a Windows virtuális gépek módosítása
+hello lépések ismertetik, hogyan toochange hello rendelkezésre állási csoport a virtuális gépek Azure PowerShell használatával. A virtuális gép nem vehető tooan rendelkezésre állási csoport a létrehozásakor. Rendelés toochange hello rendelkezésre állási csoport toodelete kell, és hozza létre újra a virtuális gép hello. 
 
-## <a name="change-the-availability-set-using-powershell"></a>Módosítsa a rendelkezésre állási csoportot a PowerShell használatával
-1. A módosítani kívánt virtuális gépről a következő kulcs adatait rögzíti.
+## <a name="change-hello-availability-set-using-powershell"></a>Módosítsa a hello rendelkezésre állási csoportot a PowerShell használatával
+1. Hello hello VM toobe módosította a következő kulcs adatok rögzítéséhez.
    
-    A virtuális gép neve
+    Hello virtuális gép neve
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <Name-of-resource-group> -Name <name-of-VM>
@@ -41,7 +41,7 @@ A következő lépések azt ismertetik, hogyan módosíthatja a rendelkezésre �
     $vm.HardwareProfile.VmSize
     ```
    
-    Hálózati elsődleges hálózati adapter és a választható hálózati adapterek, ha vannak ilyenek, a virtuális Gépen
+    Hálózati elsődleges hálózati adapter és a választható hálózati adapterek, ha vannak ilyenek, a virtuális gép hello
    
     ```powershell
     $vm.NetworkProfile.NetworkInterfaces[0].Id
@@ -67,17 +67,17 @@ A következő lépések azt ismertetik, hogyan módosíthatja a rendelkezésre �
     ```powershell
     $vm.Extensions
     ```
-2. Törölje a virtuális gép törlése, a lemezek vagy a hálózati adapterek nélkül.
+2. Hello virtuális gép törlése, hello lemezek vagy hello hálózati törlése nélkül.
    
     ```powershell
     Remove-AzureRmVM -ResourceGroupName <resourceGroupName> -Name <vmName> 
     ```
-3. Hozzon létre a rendelkezésre állási csoportot, ha még nem létezik
+3. Hozzon létre hello rendelkezésre állási csoportot, ha még nem létezik
    
     ```powershell
     New-AzureRmAvailabilitySet -ResourceGroupName <resourceGroupName> -Name <availabilitySetName> -Location "<location>" 
     ```
-4. Hozza létre újra a virtuális Gépet az új rendelkezésre állási készlet használata
+4. Hozza létre újra hello hello új rendelkezésre állási csoportot használó virtuális gépek
    
     ```powershell
     $vm2 = New-AzureRmVMConfig -VMName <VM-name> -VMSize <vm-size> -AvailabilitySetId <availability-set-id>
@@ -88,10 +88,10 @@ A következő lépések azt ismertetik, hogyan módosíthatja a rendelkezésre �
    
     New-AzureRmVM -ResourceGroupName <resourceGroupName> -Location <location> -VM <vmConfig>
     ``` 
-5. Az adatlemezek és kiterjesztések hozzáadása. További információkért lásd: [adatlemezt csatolni a virtuális géphez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Resource Manager-sablonok bővítményei](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions). Az adatlemezek és bővítményei a virtuális gép PowerShell vagy az Azure parancssori felület használatával lehet hozzáadni.
+5. Az adatlemezek és kiterjesztések hozzáadása. További információkért lásd: [adatlemez csatolása tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Resource Manager-sablonok bővítményei](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions). Az adatlemezek és bővítmények adhatók toohello VM PowerShell vagy az Azure parancssori felület használatával.
 
 ## <a name="example-script"></a>A példaként megadott parancsfájlt
-A következő parancsfájl egy példát a szükséges információk összegyűjtéséhez. az eredeti virtuális gép törlése, majd újbóli létrehozása egy új rendelkezésre állási csoportot.
+hello következő parancsfájl egy példát biztosít a hello szükséges információk összegyűjtéséhez törlése hello eredeti virtuális gép, és azt, majd újbóli létrehozása egy új rendelkezésre állási csoport.
 
 ```powershell
     #set variables
@@ -103,7 +103,7 @@ A következő parancsfájl egy példát a szükséges információk összegyűjt
     #Get VM Details
     $OriginalVM = get-azurermvm -ResourceGroupName $rg -Name $vmName
 
-    #Output VM details to file
+    #Output VM details toofile
     "VM Name: " | Out-File -FilePath $outFile 
     $OriginalVM.Name | Out-File -FilePath $outFile -Append
 
@@ -127,7 +127,7 @@ A következő parancsfájl egy példát a szükséges információk összegyűjt
     $OriginalVM.StorageProfile.DataDisks | Out-File -FilePath $outFile -Append
     }
 
-    #Remove the original VM
+    #Remove hello original VM
     Remove-AzureRmVM -ResourceGroupName $rg -Name $vmName
 
     #Create new availability set if it does not exist
@@ -136,7 +136,7 @@ A következő parancsfájl egy példát a szükséges információk összegyűjt
     $availset = New-AzureRmAvailabilitySet -ResourceGroupName $rg -Name $newAvailSetName -Location $OriginalVM.Location
     }
 
-    #Create the basic configuration for the replacement VM
+    #Create hello basic configuration for hello replacement VM
     $newVM = New-AzureRmVMConfig -VMName $OriginalVM.Name -VMSize $OriginalVM.HardwareProfile.VmSize -AvailabilitySetId $availSet.Id
     Set-AzureRmVMOSDisk -VM $NewVM -VhdUri $OriginalVM.StorageProfile.OsDisk.Vhd.Uri  -Name $OriginalVM.Name -CreateOption Attach -Windows
 
@@ -150,10 +150,10 @@ A következő parancsfájl egy példát a szükséges információk összegyűjt
         Add-AzureRmVMNetworkInterface -VM $NewVM -Id $nic
     }
 
-    #Create the VM
+    #Create hello VM
     New-AzureRmVM -ResourceGroupName $rg -Location $OriginalVM.Location -VM $NewVM -DisableBginfoExtension
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-További tárhely hozzáadása a virtuális Gépet egy további hozzáadásával [adatlemez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Adja hozzá a további tárhely tooyour VM további hozzáadásával [adatlemez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

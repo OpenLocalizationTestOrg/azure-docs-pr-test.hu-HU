@@ -1,6 +1,6 @@
 ---
-title: "Windows Virtuálisgép-rendszerképek kiválasztása az Azure-ban |} Microsoft Docs"
-description: "Megtudhatja, hogyan használhatja az Azure Powershellt közzétevő, az ajánlat, SKU, és verziója a piactér Virtuálisgép-rendszerképek meghatározásához."
+title: "Windows virtuális gép aaaSelect lemezképek az Azure-ban |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure PowerSHell toodetermine hello közzétevő, az ajánlat, SKU és verziója a piactér Virtuálisgép-lemezképek."
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/12/2017
 ms.author: danlep
-ms.openlocfilehash: 814ae260123c045d4b6766bf4b312f874cd77068
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 752edcd0935f5141832e49503ae800ea0145e219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>Az Azure piactéren az Azure PowerShell Windows Virtuálisgép-lemezképek megkeresése
+# <a name="how-toofind-windows-vm-images-in-hello-azure-marketplace-with-azure-powershell"></a>Hogyan toofind Windows virtuális gép az Azure piactérről az Azure PowerShell hello lemezképek
 
-Ez a témakör ismerteti az Azure PowerShell használata az Azure piactéren Virtuálisgép-rendszerképek kereséséhez. Ezen információk használatával adja meg a Piactéri lemezkép a Windows virtuális gépek létrehozásakor.
+Ez a témakör ismerteti, hogyan toouse Azure PowerShell toofind VM hello Azure piactér a lemezképeket. Ezen információk toospecify Piactéri rendszerkép használja, a Windows virtuális gépek létrehozásakor.
 
-Győződjön meg arról, hogy telepített és konfigurált legújabb [Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
+Győződjön meg arról, hogy telepítve, és hello legújabb konfigurált [Azure PowerShell modul](/powershell/azure/install-azurerm-ps).
 
 
 
@@ -48,44 +48,44 @@ Győződjön meg arról, hogy telepített és konfigurált legújabb [Azure Powe
 ## <a name="find-specific-images"></a>Adott rendszerképek keresése
 
 
-Amikor új virtuális gépet hoz létre az Azure Resource Managerrel, néhány esetben meg kell határoznia egy rendszerképet a következő tulajdonságok kombinációja alapján:
+Amikor egy új virtuális gép létrehozása az Azure Resource Manager eszközzel, bizonyos esetekben van szüksége toospecify lemezkép hello kombinációja hello következő lemezkép tulajdonságai:
 
 * Közzétevő
 * Ajánlat
 * SKU
 
-Például használja ezeket az értékeket a a [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell-parancsmagot, vagy egy erőforrás-sablon, amelyben meg kell adni a virtuális gép létrehozni.
+Például használni ezeket az értékeket hello [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell-parancsmagot, vagy egy erőforrás-sablon, amelyben meg kell adnia a létrehozott virtuális gép toobe hello típusát.
 
-Ha meg kell határoznia ezeket az értékeket, futtathatja a [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), és [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) parancsmag megnyitása a képek. Meghatározhatja, hogy ezeket az értékeket:
+Ha toodetermine kell ezeket az értékeket, futtathatja hello [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), és [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) parancsmagok toonavigate hello képek. Meghatározhatja, hogy ezeket az értékeket:
 
-1. Listázza a rendszerkép-közzétevőket.
+1. Lista hello kép közzétevők.
 2. Listázza egy adott közzétevő ajánlatait.
 3. Listázza egy adott ajánlathoz tartozó termékváltozatokat.
 
-Először listázza a közzétevőket a következő parancsokkal:
+Először listában hello közzétevők a hello a következő parancsokat:
 
 ```powershell
 $locName="<Azure location, such as West US>"
 Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 ```
 
-Adja meg a kiválasztott közzétevő nevét, és futtassa a következő parancsokat:
+Adja meg a kiválasztott közzétevő neve, és futtassa a következő parancsok hello:
 
 ```powershell
 $pubName="<publisher>"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-Adja meg a kiválasztott ajánlat nevét, és futtassa a következő parancsokat:
+Adja meg a kiválasztott ajánlat nevét, és futtassa a következő parancsok hello:
 
 ```powershell
 $offerName="<offer>"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-A kimenetét a `Get-AzureRMVMImageSku` parancsot minden olyan információt, meg kell adnia a kép egy új virtuális gép van.
+Hello hello kimenetét a `Get-AzureRMVMImageSku` parancsot egy új virtuális gép toospecify hello lemezkép szükséges összes hello információt rendelkezik.
 
-Az alábbi egy teljes példa:
+hello következő teljes példa látható:
 
 ```powershell
 $locName="West US"
@@ -111,7 +111,7 @@ Canonical
 ...
 ```
 
-A „MicrosoftWindowsServer” közzétevő esetében:
+Hello "MicrosoftWindowsServer" közzétevő:
 
 ```powershell
 $pubName="MicrosoftWindowsServer"
@@ -128,7 +128,7 @@ WindowsServer
 WindowsServer-HUB
 ```
 
-A „WindowsServer” ajánlat esetében:
+Hello "WindowsServer" szolgáltatásokat:
 
 ```powershell
 $offerName="WindowsServer"
@@ -154,7 +154,7 @@ Skus
 2016-Nano-Server
 ```
 
-Ha a listából kimásolja a kiválasztott termékváltozat nevét, akkor rendelkezésére áll a `Set-AzureRMVMSourceImage` PowerShell-parancsmaghoz vagy egy erőforráscsoport sablonjához szükséges összes információ.
+A listáról, másolja a kiválasztott termékváltozat hello, és rendelkezik az összes hello adatot hello `Set-AzureRMVMSourceImage` PowerShell-parancsmagot, vagy egy erőforrás-sablon.
 
 ## <a name="next-steps"></a>Következő lépések
-Most már kiválaszthatja azt az adott rendszerképet, amelyet használni szeretne. A virtuális gépek gyors létrehozása csak talált, kép információk segítségével: [Windows virtuális gép létrehozása a PowerShell-lel](quick-create-powershell.md).
+Most kiválaszthatja, hogy pontosan hello kép toouse szeretné. toocreate egy virtuális gép hello kép információk, csak talált, amely segítségével gyorsan lásd [Windows virtuális gép létrehozása a PowerShell-lel](quick-create-powershell.md).

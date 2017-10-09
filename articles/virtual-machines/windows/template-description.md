@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager-sablonokban a virtuális gépek |} A Microsoft Azure"
-description: "További tudnivalók hogyan Azure Resource Manager-sablonokban a virtuális gép erőforrás van definiálva."
+title: "az Azure Resource Manager sablon aaaVirtual gépek |} A Microsoft Azure"
+description: "További tudnivalók hogyan hello virtuálisgép-erőforrást az Azure Resource Manager sablon van definiálva."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: davidmu
-ms.openlocfilehash: d9b9121bc5e38396ba4def6c17f9b373c2b48056
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 94adcbe5bf44be72ffc1b920461aed15c4fc025f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="virtual-machines-in-an-azure-resource-manager-template"></a>Az Azure Resource Manager-sablonokban a virtuális gépek
 
-Ez a cikk ismerteti az Azure Resource Manager-sablonokban a virtuális gép aspektusait. Ez a cikk nem alkalmazható a teljes sablont hoz létre virtuális gépet; az adott erőforrás-definíciókban storage-fiókok, a hálózati adapterek, a nyilvános IP-címek és a virtuális hálózatok kell. Hogyan ezekkel az erőforrásokkal együtt definiálható kapcsolatos további információkért tekintse meg a [Resource Manager sablonokhoz](../../azure-resource-manager/resource-manager-template-walkthrough.md).
+Ez a cikk ismerteti az Azure Resource Manager-sablonok, amelyek érvényesek a toovirtual gépek aspektusait. Ez a cikk nem alkalmazható a teljes sablont hoz létre virtuális gépet; az adott erőforrás-definíciókban storage-fiókok, a hálózati adapterek, a nyilvános IP-címek és a virtuális hálózatok kell. Hogyan ezekkel az erőforrásokkal együtt definiálható kapcsolatos további információkért lásd: hello [Resource Manager sablonokhoz](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Nincsenek a sok [a tárban lévő sablonok](https://azure.microsoft.com/documentation/templates/?term=VM) , amelyek tartalmazzák a virtuális gép erőforrásához. Nem minden sablonként szereplő összetevőit itt.
+Nincsenek a sok [hello tárban lévő sablonok](https://azure.microsoft.com/documentation/templates/?term=VM) , amelyek tartalmazzák a hello virtuális gép erőforrásához. Nem minden sablonként szereplő összetevőit itt.
 
 Ez a példa bemutatja a jellemző erőforrás szakaszában megadott számú virtuális gépek létrehozására szolgáló sablont:
 
@@ -145,21 +145,21 @@ Ez a példa bemutatja a jellemző erőforrás szakaszában megadott számú virt
 ``` 
 
 > [!NOTE] 
->Ez a példa egy korábban létrehozott tárfiókot támaszkodik. Ehhez a sablon alapján létrehozhatja a tárfiók. A példa is egy hálózati adapter és a tőle függő erőforrások, akkor lehet a sablonban definiált támaszkodik. A példa nem mutatja be ezeket az erőforrásokat.
+>Ez a példa egy korábban létrehozott tárfiókot támaszkodik. Létrehozhat hello tárfiók hello sablonból telepítésével. hello példa is egy hálózati adapter és a tőle függő erőforrások, akkor lehet hello sablonban definiált támaszkodik. Hello példa nem mutatja be ezeket az erőforrásokat.
 >
 >
 
 ## <a name="api-version"></a>API-verzió
 
-Sablon használatával erőforrások telepítésekor akkor adja meg a használandó API verzióját. A példa bemutatja a virtuálisgép-erőforrás a apiVersion elem használatával:
+Amikor telepít egy sablon használatával erőforrások, toospecify egy verziójával rendelkezik hello API toouse. a példában hello hello virtuálisgép-erőforrás a apiVersion elem használatával:
 
 ```
 "apiVersion": "2016-04-30-preview",
 ```
 
-Az API-t ad meg a sablon a verziószáma mely tulajdonságok meghatározhatja a sablonban. A legújabb API verziót általában ki kell választania sablonok létrehozásakor. A meglévő sablonok eldöntheti, hogy továbbra is az korábbi API-verziót használja, vagy a sablont az új szolgáltatások előnyeinek legújabb verziójának frissítése.
+hello verzióját adja meg, ha a sablonban API hello megadására a hello sablon tulajdonságok hatással van. Általánosságban elmondható választhat hello legújabb API verziót sablonok létrehozásakor. A meglévő sablonok eldöntheti, hogy szeretné, hogy egy korábbi verziójával API toocontinue, vagy a hello legújabb verziója tootake új szolgáltatásainak előnyeit a sablon frissítésére.
 
-Ezek a lehetőségek lekérhesse a legújabb API-verziók használata:
+Ezek a lehetőségek lekérhesse a legújabb API-verziók hello használata:
 
 - REST API - [összes erőforrás-szolgáltatók felsorolása](https://docs.microsoft.com/rest/api/resources/providers#Providers_List)
 - PowerShell - [Get-AzureRmResourceProvider](/powershell/module/azurerm.resources/get-azurermresourceprovider)
@@ -167,7 +167,7 @@ Ezek a lehetőségek lekérhesse a legújabb API-verziók használata:
 
 ## <a name="parameters-and-variables"></a>Paraméterek és változók
 
-[Paraméterek](../../resource-group-authoring-templates.md) megkönnyíti, hogy a sablon értékeket megadni, ha. A Paraméterek szakaszban szerepel a példában:
+[Paraméterek](../../resource-group-authoring-templates.md) könnyítheti meg toospecify értékek hello sablon futtatásakor. A Paraméterek szakaszban hello példa szerepel:
 
 ```        
 "parameters": {
@@ -177,9 +177,9 @@ Ezek a lehetőségek lekérhesse a legújabb API-verziók használata:
 },
 ```
 
-A példa sablon telepítésekor adhatja értékek a nevet és jelszót a rendszergazdai fiók létrehozása minden virtuális gép és a virtuális gépek számát. Lehetősége van a paraméterértékek meghatározásáról sablonnal felügyelt külön fájlban, vagy megadása az értékek, amikor a rendszer kéri.
+Hello példa sablon telepítésekor adhatja értékek hello nevét és hello rendszergazdai fiók jelszavát minden egyes virtuális gépek toocreate a virtuális gép és hello számára. Lehetősége van hello paraméterértékek meghatározásáról hello sablonnal felügyelt külön fájlban, vagy biztosító értékek, amikor a rendszer kéri.
 
-[Változók](../../resource-group-authoring-templates.md) könnyen használt ismételten egész, vagy idővel megváltozhat, hogy a sablonban szereplő értékek beállítása. A változók szakaszban szerepel a példában:
+[Változók](../../resource-group-authoring-templates.md) könnyítheti meg tooset értékeket hello sablonban használt ismételten egész, vagy idővel megváltozhat. A változók szakaszban hello példa szerepel:
 
 ```
 "variables": { 
@@ -212,11 +212,11 @@ A példa sablon telepítésekor adhatja értékek a nevet és jelszót a rendsze
 }, 
 ```
 
-A példa sablon telepítésekor változó a neve és azonosítója a korábban létrehozott tárfiókot használ. Adja meg a beállításokat a diagnosztikai bővítmény változók is használhatók. Használja a [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](../../resource-manager-template-best-practices.md) segítségével eldöntheti, hogy a paraméterek és változók alkalmazása a sablon felépítésének módját.
+Hello példa sablon telepítésekor változók értékeinek hello neve és azonosítója hello korábban létrehozott tárfiókot használ. A változókat is használt tooprovide hello beállítások hello diagnosztikai bővítmény. Használjon hello [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](../../resource-manager-template-best-practices.md) toohelp úgy dönt, hogy hogyan toostructure hello paramétereket és változókat a sablonban.
 
 ## <a name="resource-loops"></a>Erőforrás hurkok
 
-Ha egynél több virtuális gép van szükség az alkalmazás, egy sablon egy másolás elem is használhatja. A választható elem végighalad a virtuális gépek paraméterként megadott számát létrehozása:
+Ha egynél több virtuális gép van szükség az alkalmazás, egy sablon egy másolás elem is használhatja. A választható elem végighalad a virtuális gépek, paraméterként megadott hello száma létrehozása:
 
 ```
 "copy": {
@@ -225,7 +225,7 @@ Ha egynél több virtuális gép van szükség az alkalmazás, egy sablon egy m�
 },
 ```
 
-A példa is, láthatja, hogy ciklusindex használja, ha néhány értéket az erőforrás. Például három példányszám ad meg, ha az operációs rendszer lemezén a következők myOSDisk1, myOSDisk2, és myOSDisk3:
+Figyelje meg, amely ciklusindex hello hello példában használt is, hello erőforrás értékek egyes hello megadása esetén. Például ha példányszámának hello operációs rendszer lemezek három, hello nevek a megadott is myOSDisk1 myOSDisk2 és myOSDisk3:
 
 ```
 "osDisk": { 
@@ -236,11 +236,11 @@ A példa is, láthatja, hogy ciklusindex használja, ha néhány értéket az er
 ```
 
 > [!NOTE] 
->A példa felügyelt lemezt a virtuális gépekhez.
+>A példa felügyelt lemezek hello virtuális gépekhez.
 >
 >
 
-Ne feledje, hogy egy erőforrás hurkot létrehozása a sablonban előfordulhat, hogy a hurok létrehozásakor, vagy más erőforrások eléréséhez használja. Például több virtuális gép nem használható hálózati adaptert, ha a sablon végighalad három virtuális gépek létrehozása azt kell is ismétlése három hálózati adapterek létrehozása. A hálózati adaptert egy virtuális géphez hozzárendelésekor ciklusindex alapján határozza meg azt:
+Ne feledje, hogy egy erőforrás hurkot létre a hello sablon előfordulhat, hogy Ön toouse hello hurok létrehozásakor, vagy más erőforrások eléréséhez. Például a több virtuális gép nem használható hello azonos hálózati adapter, így ha a sablon végighalad végig vezeti a kell is hurok három virtuális gépek létrehozása három hálózati illesztőt. A hálózati illesztő tooa VM hozzárendelésekor hello ciklusindex-e a használt tooidentify azt:
 
 ```
 "networkInterfaces": [ { 
@@ -251,7 +251,7 @@ Ne feledje, hogy egy erőforrás hurkot létrehozása a sablonban előfordulhat,
 
 ## <a name="dependencies"></a>Függőségek
 
-A legtöbb erőforrást megfelelő működéséhez más erőforrások függenek. Virtuális gépek rendelve, a virtuális hálózat és a teendő, hogy kell-e a hálózati adaptert kell lennie. A [dependsOn](../../resource-group-define-dependencies.md) elem segítségével győződjön meg arról, hogy a virtuális gépek létrehozása előtt használható készen áll-e hálózati kapcsolat:
+A legtöbb erőforrások megfelelően egyéb erőforrások toowork függenek. Virtuális gépek virtuális hálózati és, hogy kell-e egy adott hálózati csatoló toodo társítva kell lennie. Hello [dependsOn](../../resource-group-define-dependencies.md) elem használt toomake meg arról, hogy hello hálózati illesztőt készen toobe használt hello virtuális gépek létrehozása előtt:
 
 ```
 "dependsOn": [
@@ -259,9 +259,9 @@ A legtöbb erőforrást megfelelő működéséhez más erőforrások függenek.
 ],
 ```
 
-Erőforrás-kezelő párhuzamosan telepíti, amelyek nem függenek más erőforrás telepített erőforrásokat. Ügyeljen arra, hogy függőségek beállításakor, mert a szükségtelen függőségek megadásával véletlenül lelassíthatja a központi telepítés. Függőségek is láncolt több forrásanyagok segítségével. Például a hálózati illesztő a nyilvános IP-cím és a virtuális hálózati erőforrások függ.
+Erőforrás-kezelő párhuzamosan telepíti, amelyek nem függenek más erőforrás telepített erőforrásokat. Ügyeljen arra, hogy függőségek beállításakor, mert a szükségtelen függőségek megadásával véletlenül lelassíthatja a központi telepítés. Függőségek is láncolt több forrásanyagok segítségével. Például hello hálózati illesztő hello nyilvános IP-címhez és virtuális hálózati erőforrások függ.
 
-Hogyan tudja, hogy szükség-e egy függőséget? Tekintse meg a sablonban beállított értéket. Ha a virtuális gép erőforrás definition mutat, amely ugyanazt a sablont telepítve van egy másik erőforrás eleme, egy függőségi kell. A Példa virtuális gép például egy hálózati profil határozza meg:
+Hogyan tudja, hogy szükség-e egy függőséget? Tekintse meg hello értékeket hello sablont. Ha egy elem hello virtuális gépek erőforrás-definícióban hello üzembe helyezett erőforrás tooanother ugyanazt a sablont, függőség van szüksége. A Példa virtuális gép például egy hálózati profil határozza meg:
 
 ```
 "networkProfile": { 
@@ -272,11 +272,11 @@ Hogyan tudja, hogy szükség-e egy függőséget? Tekintse meg a sablonban beál
 },
 ```
 
-Ez a tulajdonság beállításához a hálózati illesztő léteznie kell. Ezért függőség van szüksége. Szükség függőség beállítása, amikor egy erőforrást (gyermek) egy másik erőforrás (szülő) van meghatározva. Például a diagnosztikai beállításokat és egyéni parancsfájl-kiterjesztés is definiálhatók a virtuális gép gyermek erőforrásként. Amíg nem létezik a virtuális gép nem hozhatók létre. Ezért mindkét erőforrás meg van jelölve, a virtuális gép függ.
+tooset ezt a tulajdonságot, hello hálózati illesztő léteznie kell. Ezért függőség van szüksége. Amikor egy erőforrást (gyermek) van meghatározva egy másik erőforrás (szülő) is kell tooset függőséget. Például hello diagnosztikai beállítások és egyéni parancsfájl-kiterjesztés is definiálhatók, gyermekszintű erőforrása hello virtuális gép. Ezek nem hozható létre, amíg hello virtuális gép is létezik. Ezért mindkét erőforrás van megjelölve függő hello virtuális gépen.
 
 ## <a name="profiles"></a>Profilok
 
-Több profil elemek használt virtuálisgép-erőforrás definiálásakor. Néhány szükséges és választható. Például a hardwareProfile, osProfile, storageProfile és networkProfile elemek szükségesek, de a diagnosticsProfile nem kötelező megadni. Ezeket a profilokat, mint beállításainak megadása:
+Több profil elemek használt virtuálisgép-erőforrás definiálásakor. Néhány szükséges és választható. Például hello hardwareProfile, osProfile, storageProfile és networkProfile elemek szükségesek, de hello diagnosticsProfile nem kötelező megadni. Ezeket a profilokat, mint beállításainak megadása:
    
 - [méret](sizes.md)
 - [név](/architecture/best-practices/naming-conventions) és hitelesítő adatait.
@@ -286,11 +286,11 @@ Több profil elemek használt virtuálisgép-erőforrás definiálásakor. Néh�
 
 ## <a name="disks-and-images"></a>A lemezek és lemezképek
    
-Az Azure, a vhd-fájlok jelenthet [lemezek vagy képeket](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Ha egy vhd-fájlt az operációs rendszernek kell lennie egy adott VM kifejezetten, azt nevezzük lemezt. Ha a vhd-fájlt az operációs rendszer általánosított sok virtuális gép létrehozásához használt, azt nevezzük lemezkép.   
+Az Azure, a vhd-fájlok jelenthet [lemezek vagy képeket](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Amikor hello operációs rendszer egy vhd-fájlt a speciális toobe speciális virtuális Gépet, hivatkozott tooas lemez. Ha a vhd-fájl hello operációs rendszer általánosított toobe használt toocreate sok virtuális gép, hivatkozott tooas lemezkép.   
     
 ### <a name="create-new-virtual-machines-and-new-disks-from-a-platform-image"></a>Hozzon létre új virtuális gépek és az új lemezt, a platformlemezkép
 
-Amikor létrehoz egy virtuális Gépet, határozza meg, milyen operációs rendszer használatához. Az imageReference elem egy új virtuális gép operációs rendszerének azonosítására szolgál. A példa bemutatja, a következő definícióját: a Windows Server operációs rendszert:
+Amikor létrehoz egy virtuális Gépet, határozza meg, milyen operációs rendszer toouse. hello imageReference elem használt toodefine hello operációs rendszer egy új virtuális gép állapota. hello példa bemutatja, a következő definícióját: a Windows Server operációs rendszert:
 
 ```
 "imageReference": { 
@@ -301,7 +301,7 @@ Amikor létrehoz egy virtuális Gépet, határozza meg, milyen operációs rends
 },
 ```
 
-Ha szeretne létrehozni a Linux operációs rendszert, ez a definíció használhatja:
+Ha azt szeretné, hogy a Linux operációs rendszer toocreate, ez a definíció használhatja:
 
 ```
 "imageReference": {
@@ -312,7 +312,7 @@ Ha szeretne létrehozni a Linux operációs rendszert, ez a definíció használ
 },
 ```
 
-Az operációsrendszer-lemez konfigurációs beállításait az osDisk elemhez rendelt. A példa egy új felügyelt lemezes meghatározása a gyorsítótár módban **ReadWrite** , és hogy a lemez létrehozása folyamatban van a egy [platformlemezképet](cli-ps-findimage.md):
+Az operációsrendszer-lemez hello konfigurációs beállítások hello osDisk elemmel van hozzárendelve. hello példa határozza meg egy új felügyelt lemezes rendelkező módú készlet túl gyorsítótárazás hello**ReadWrite** és, hogy hello lemez létrehozása folyamatban van a egy [platformlemezképet](cli-ps-findimage.md):
 
 ```
 "osDisk": { 
@@ -324,7 +324,7 @@ Az operációsrendszer-lemez konfigurációs beállításait az osDisk elemhez r
 
 ### <a name="create-new-virtual-machines-from-existing-managed-disks"></a>Új virtuális gépek létrehozása a meglévő felügyelt lemezekből
 
-Ha azt szeretné, a meglévő lemezt a virtuális gépek létrehozásához, távolítsa el az imageReference, és a osProfile elemek, és a következő lemez beállítások megadása:
+Ha azt szeretné, hogy a meglévő lemezek toocreate virtuális gépeket, hello imageReference és hello osProfile elemek eltávolítása és a következő lemez beállítások megadása:
 
 ```
 "osDisk": { 
@@ -339,7 +339,7 @@ Ha azt szeretné, a meglévő lemezt a virtuális gépek létrehozásához, táv
 
 ### <a name="create-new-virtual-machines-from-a-managed-image"></a>Hozzon létre új virtuális gépek egy felügyelt lemezképből
 
-Ha egy felügyelt képre egy virtuális gép létrehozása, módosítsa az imageReference elem, és a következő lemez beállítások megadása:
+Ha azt szeretné, hogy a virtuális gépek egy felügyelt képre toocreate, hello imageReference elem módosítása, és a következő lemez beállítások megadása:
 
 ```
 "storageProfile": { 
@@ -357,7 +357,7 @@ Ha egy felügyelt képre egy virtuális gép létrehozása, módosítsa az image
 
 ### <a name="attach-data-disks"></a>Adatlemez csatolása
 
-Az adatlemezek opcionálisan a virtuális gépeket adhat hozzá. A [lemezek száma](sizes.md) használt operációsrendszer-lemez méretétől függ. A virtuális gépek Standard_DS1_v2 beállítása méretű a számukra fel adatlemezek maximális számának két. A példában egy felügyelt adatlemezt ad hozzá minden egyes virtuális gép:
+Opcionálisan hozzáadhat adatok lemezek toohello virtuális gépeket. Hello [lemezek száma](sizes.md) hello használt operációsrendszer-lemez méretétől függ. A hello hello virtuális gépek méretét állítsa be a tooStandard_DS1_v2, hello fel őket a rendszer két toohello adatlemezek maximális számát. Hello példában egy felügyelt adatlemez hozzáadott tooeach VM:
 
 ```
 "dataDisks": [
@@ -373,7 +373,7 @@ Az adatlemezek opcionálisan a virtuális gépeket adhat hozzá. A [lemezek szá
 
 ## <a name="extensions"></a>Bővítmények
 
-Bár a [bővítmények](extensions-features.md) külön forrást, szorosan a virtuális gépek vannak társítva. Bővítmények gyermek erőforrásként a virtuális gép vagy egy külön erőforrásként lehet hozzáadni. A példa azt mutatja meg a [diagnosztika bővítmény](extensions-diagnostics-template.md) kíván hozzáadni a virtuális gépek:
+Bár a [bővítmények](extensions-features.md) külön erőforrás, olyan szorosan kapcsolt tooVMs. Bővítmények hello VM gyermek erőforrása, vagy egy külön erőforrás lehet hozzáadni. hello példában hello [diagnosztika bővítmény](extensions-diagnostics-template.md) hozzáadni kívánt toohello virtuális gépek:
 
 ```
 { 
@@ -406,9 +406,9 @@ Bár a [bővítmények](extensions-features.md) külön forrást, szorosan a vir
 },
 ```
 
-A bővítmény erőforrás storageName változó és a diagnosztikai változók használatával adjon meg értékeket. Ha azt szeretné, a bővítmény által gyűjtött adatokat, adhat hozzá további teljesítményszámlálók a wadperfcounters változó. Sikerült meg szeretne adni a diagnosztika adatokat során eltérő tárfiók, mint a Virtuálisgép-lemezek tárolására.
+A bővítmény erőforrás hello storageName változó és a hello diagnosztikai változók tooprovide értékeit használja. Ha azt szeretné, hogy a bővítmény által gyűjtött toochange hello adatokhoz, hozzáadhat további teljesítmény számlálók toohello wadperfcounters változó. Tooput hello diagnosztikai adatokat egy másik tárolóhelyre figyelembe mint hello Virtuálisgép-lemezek tárolására is kiválaszthatják.
 
-Sok kiterjesztések, a virtuális gép telepíthető, de a leghasznosabb valószínűleg a [egyéni parancsprogramok futtatására szolgáló bővítmény](extensions-customscript.md). A példában egy start.ps1 nevű PowerShell-parancsfájl futó minden virtuális gép első indításakor:
+Sok kiterjesztések, a virtuális gép telepíthető, de a leghasznosabb hello valószínűleg hello [egyéni parancsprogramok futtatására szolgáló bővítmény](extensions-customscript.md). Hello példában start.ps1 nevű PowerShell-parancsfájl futtatása az egyes virtuális gépek első indításakor:
 
 ```
 {
@@ -435,26 +435,26 @@ Sok kiterjesztések, a virtuális gép telepíthető, de a leghasznosabb valósz
 }
 ```
 
-A start.ps1 parancsfájl számos konfigurációs feladat érhető el. A példában a virtuális gépek által hozzáadott adatlemezek például nincs inicializálva; Egyéni parancsfájl segítségével azokat. Ha több indítási feladatok elvégzéséhez, a start.ps1 fájl segítségével más PowerShell-parancsfájlok az Azure storage-hívás. A példában PowerShell, de bármely a parancsfájl-kezelési módszer, amely az Ön által használt operációs rendszeren érhető el.
+hello start.ps1 parancsfájl számos konfigurációs feladat érhető el. Például hello adatlemezek hozzáadott virtuális gépek toohello hello példában nincs inicializálva; egy egyéni parancsfájl tooinitialize is használhatja őket. Ha több indítási feladatok toodo, hello start.ps1 fájl toocall más PowerShell parancsfájlokat használhat az Azure-tárfiókba. hello példa PowerShell használ, de bármely Ön által használt hello operációs rendszeren elérhető parancsfájl-kezelési metódus használatával kérheti le.
 
-A telepített bővítmények bővítmények beállításai közül a portálon állapota látható:
+Hello portál hello bővítmények beállítások extensions telepítve hello hello állapota látható:
 
 ![Bővítmény állapotának beolvasása](./media/template-description/virtual-machines-show-extensions.png)
 
-Is kaphat a sémakiterjesztési adatok használatával a **Get-AzureRmVMExtension** PowerShell-parancsot a **virtuálisgép-bővítmény get** Azure CLI 2.0 parancsot, vagy a **sémakiterjesztésiadatokbeolvasása** REST API-T.
+Is kaphat a sémakiterjesztési adatok hello segítségével **Get-AzureRmVMExtension** PowerShell parancsot, hello **virtuálisgép-bővítmény get** Azure CLI 2.0 parancs vagy hello **sémakiterjesztési adatok beolvasása**  REST API-t.
 
 ## <a name="deployments"></a>Központi telepítés
 
-Amikor telepít egy sablont, az Azure erőforrások csoportként telepíteni, és automatikusan hozzárendel egy nevet a központilag telepített csoportban követi nyomon. A központi telepítés neve megegyezik a sablon nevét.
+Egy sablon, egy csoportot, és automatikusan telepített Azure számok hello erőforrások telepítésekor hozzárendel egy név telepített toothis csoport. hello telepítési hello neve van hello ugyanaz, mint a hello sablon hello nevét.
 
-Ha a központi telepítésben lévő erőforrások állapotával fejezetét, használhatja az erőforráscsoport panelről az Azure-portálon:
+Ha fejezetét hello központi telepítésben lévő erőforrások hello állapotával kapcsolatos, hello Azure-portálon hello erőforráscsoport panel is használhatja:
 
 ![Telepítési információk](./media/template-description/virtual-machines-deployment-info.png)
     
-Azt nem ugyanazt a sablont használni erőforrásokat létrehozni vagy frissíteni a meglévő erőforrásokat probléma. Parancsok használatával történő telepítése a sablonok, lehetősége van a tegyük fel például, amely [mód](../../resource-group-template-deploy.md) szeretne használni. A módot is megadni **Complete** vagy **növekményes**. Az alapértelmezett érték a növekményes frissítések végrehajtásához. Használata esetén ügyeljen a **Complete** módban, mert előfordulhat, hogy véletlenül törli az erőforrásokat. Ha a mód beállítása legyen **Complete**, erőforrás-kezelő törlése az erőforráscsoporthoz tartozik, amelyek nincsenek a sablonban lévő erőforrásokat.
+Nincs a probléma toouse hello azonos toocreate sablonerőforrás vagy tooupdate meglévő erőforrásokat. Parancsok toodeploy sablonok használatakor hello lehetőség toosay rendelkezik amely [mód](../../resource-group-template-deploy.md) toouse szeretné. hello mód beállítható tooeither **Complete** vagy **növekményes**. hello alapértelmezés szerint toodo növekményes frissítéseket. Hello használata esetén ügyeljen **Complete** módban, mert előfordulhat, hogy véletlenül törli az erőforrásokat. Beállításakor hello mód túl**Complete**, erőforrás-kezelő törli, amelyek nincsenek hello sablonban hello erőforráscsoportban található erőforrásokat.
 
 ## <a name="next-steps"></a>Következő lépések
 
 - Hozzon létre egy saját sablon használatával [Azure Resource Manager-sablonok készítése](../../resource-group-authoring-templates.md).
-- A létrehozott sablon üzembe helyezése [Windows virtuális gép létrehozása egy Resource Manager sablonnal](ps-template.md).
-- Megtudhatja, hogyan kezelheti a virtuális gépek által létrehozott [létrehozása és kezelése Windows virtuális gépek az Azure PowerShell modulra](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Létrehozott hello sablon üzembe helyezése [Windows virtuális gép létrehozása egy Resource Manager sablonnal](ps-template.md).
+- Ismerje meg, hogyan toomanage hello alapján létrehozott virtuális gépek [létrehozása és kezelése Windows virtuális gépek hello Azure PowerShell modul](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

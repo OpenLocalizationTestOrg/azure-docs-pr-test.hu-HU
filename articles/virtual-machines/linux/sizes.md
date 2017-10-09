@@ -1,6 +1,6 @@
 ---
-title: "Linux virtuális gép méretének az Azure-ban |} Microsoft Docs"
-description: "A Linux virtuális gépek Azure-ban elérhető különböző méretű sorolja fel."
+title: "az Azure-ban méretének aaaLinux VM |} Microsoft Docs"
+description: "Linux virtuális gépek Azure-ban elérhető különböző méretű hello sorolja fel."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: fe7a92901ae25aa99ef71f09c416e6c6ad30d39b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56cbe0a0d7d34def07636edba74c4c699e336012
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sizes-for-linux-virtual-machines-in-azure"></a>Az Azure Linux virtuális gépek méretei
-Ez a cikk ismerteti az elérhető méretek és a beállítások a Linux-alkalmazások és munkafolyamatok futtatásához használhatja az Azure virtuális gépekhez. Telepítési szempontok érdemes figyelembe vennie, amikor arra készül használni ezeket az erőforrásokat is biztosít. Ez a cikk érhető el is [Windows virtuális gépek](../windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Ez a cikk ismerteti hello elérhető méretek, és a Linux-alkalmazások és munkafolyamatok toorun használhatja az Azure virtuális gépek hello beállítások. Amikor arra készül, toouse ezeket az erőforrásokat is biztosít telepítési szempontok toobe tudomást. Ez a cikk érhető el is [Windows virtuális gépek](../windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 
 | Típus                     | Méretek           |    Leírás       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Általános célú](sizes-general.md)          | Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7,  | Kiegyensúlyozott processzor-memória arány. Ideális választás tesztelési-fejlesztési feladatokhoz, kis és közepes méretű adatbázisokhoz, valamint kis és közepes adatforgalmú webkiszolgálókhoz. |
+| [Általános célú](sizes-general.md)          | Dsv3, Dv3, DSv2, Dv2, DS, D, Av2, A0-7,  | Kiegyensúlyozott processzor-memória arány. Tesztelés és fejlesztési kis toomedium adatbázisok és alacsony toomedium forgalom webkiszolgálók ideális. |
 | [Számításra optimalizált](sizes-compute.md)        | FS, F             | Magas processzor-memória arány. Közepes forgalom webkiszolgálók, hálózati berendezésekbe, fürdőbe folyamatok és alkalmazáskiszolgálók jó.        |
-| [Memóriaoptimalizált](sizes-memory.md)         | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Magas memória-CPU aránya. Ideális választás relációs adatbázis-kiszolgálókhoz, közepes és nagy gyorsítótárakhoz és memóriabeli elemzésekhez.                 |
+| [Memóriaoptimalizált](sizes-memory.md)         | Esv3, Ev3, M, GS, G, DSv2, DS, Dv2, D   | Magas memória-CPU aránya. A relációs adatbázis-kiszolgálók, közepes méretű toolarge gyorsítótárak és memórián belüli analytics nagy.                 |
 | [Tárolásra optimalizált](sizes-storage.md)        | Ls                | Magas lemez-adatátviteli és I/O-műveleti jellemzők. Ideális Big Data-, SQL- és NoSQL-adatbázisok esetén.                                                         |
 | [GPU](sizes-gpu.md)            | PORTOK HV, NC            | Speciális virtuális gépekre nagy mennyiségű grafikus megjelenítési és videó szerkesztése szánt. Egy vagy több Feldolgozóegységekkel érhető el.       |
 | [Nagy teljesítményű számítás](sizes-hpc.md) | H, A8-11          | A leggyorsabb és leghatékonyabb processzorral rendelkező virtuális gépeink, választható nagy átviteli sebességű (távoli közvetlen memória-hozzáférést lehetővé tevő) hálózati adapterrel. 
 
 <br>
 
-- A különböző méretű árazással kapcsolatos információkért lásd: [Virtual Machines díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux). 
+- Különböző méretű hello az árazással kapcsolatos információkért lásd: [Virtual Machines díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux). 
 - Az Azure-régiók Virtuálisgép-méretek rendelkezésre állását, lásd: [régiónként rendelkezésre álló termékek](https://azure.microsoft.com/regions/services/).
-- Általános korlátozások az Azure virtuális gépeken futó, olvassa el [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../../azure-subscription-service-limits.md).
+- általános korlátozások toosee Azure virtuális gépeken, lásd: [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../../azure-subscription-service-limits.md).
 - További tudnivalók [Azure számítási egység (ACU)](../windows/acu.md) segíthetnek a számítási teljesítmény összehasonlítása Azure termékváltozatok mentén.
 
 
 ## <a name="rest-api"></a>REST API-n
 
-A lekérdezés REST API-t használ a Virtuálisgép-méretek információkért tekintse át a következőket:
+A Virtuálisgép-méretek hello REST API tooquery használatáról információkért lásd: hello következő:
 
 - [Átméretezéséhez elérhető virtuálisgép-méretek listázása](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-list-sizes-for-resizing)
 - [Az előfizetéshez elérhető virtuálisgép-méretek listázása](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-list-sizes-region)
@@ -57,7 +57,7 @@ További tudnivalók [Azure számítási egység (ACU)](acu.md) segíthetnek a s
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ a különböző Virtuálisgép-méretek érhetők el:
+További tudnivalók hello másik Virtuálisgép-méretek elérhető:
 - [Általános célú](sizes-general.md)
 - [Számításra optimalizált](sizes-compute.md)
 - [Memóriaoptimalizált](sizes-memory.md)

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Compute - Linux diagnosztikai bővítmény |} Microsoft Docs"
-description: "Hogyan konfigurálható az Azure Linux diagnosztikai bővítmény (LAD) gyűjtéséhez és az Azure-ban futó Linux virtuális gépek események naplózása."
+title: "Számítási aaaAzure - Linux diagnosztikai bővítmény |} Microsoft Docs"
+description: "Hogyan tooconfigure hello Azure Linux diagnosztikai bővítmény (LAD) toocollect metrikák eseményeit és Azure-ban futó Linux virtuális gépek."
 services: virtual-machines-linux
 author: jasonzio
 manager: anandram
@@ -9,57 +9,57 @@ ms.tgt_pltfrm: vm-linux
 ms.topic: article
 ms.date: 05/09/2017
 ms.author: jasonzio
-ms.openlocfilehash: 525d706bd709ae72f2dca1c21e06db533ccf32b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2b27ec00a876ded359a75170b407e28c40d8445d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-linux-diagnostic-extension-to-monitor-metrics-and-logs"></a>Linux diagnosztikai kiterjesztésének használatával figyelheti a metrikák és a naplókat
+# <a name="use-linux-diagnostic-extension-toomonitor-metrics-and-logs"></a>Linux diagnosztikai bővítmény toomonitor metrikák és a naplókat
 
-Ez a dokumentum ismerteti a 3.0-s és a Linux-diagnosztikai bővítmény újabb verziója.
+Ez a dokumentum ismerteti a 3.0-s vagy újabb a hello Linux diagnosztikai bővítmény verzió.
 
 > [!IMPORTANT]
 > 2.3-as és a régebbi verziójával kapcsolatos információkért lásd: [Ez a dokumentum](./classic/diagnostic-extension-v2.md).
 
 ## <a name="introduction"></a>Bevezetés
 
-A Linux diagnosztikai bővítmény segít a felhasználói figyelése a Microsoft Azure-on futó Linux virtuális gép állapotát. A következő képességekkel rendelkezik:
+hello Linux diagnosztikai bővítmény segít a felhasználó a figyelő hello a Microsoft Azure-on futó Linux virtuális gépek állapotát. Hello a következő képességekkel rendelkezik:
 
-* Rendszer teljesítménymutatók gyűjti össze a virtuális Gépet, és a megadott tábla kijelölt tárfiókban tárolja azokat.
-* Alkalmazásnapló-események lekéri a syslog, és a megadott tábla kijelölt tárfiókban tárolja azokat.
-* Lehetővé teszi a felhasználók a gyűjtött és a feltöltött adatok metrikák testreszabásához.
-* Lehetővé teszi a felhasználók gyűjtött és a feltöltése események súlyossági szintek és syslog létesítményekben testreszabásához.
-* Lehetővé teszi a felhasználók egy kijelölt tároló táblához megadott naplófájlok feltöltéséhez.
-* Támogatja a metrikákat és naplózási események küldése tetszőleges EventHub-végpontokat és a JSON-formátumú blobot, amely a kijelölt tárfiókot.
+* A virtuális gép hello rendszer teljesítménymutatók gyűjt, és a megadott tábla kijelölt tárfiókban tárolja azokat.
+* Alkalmazásnapló-események lekéri a syslog, és tárolja őket a megadott tábla kijelölt tárfiókot hello.
+* Lehetővé teszi, hogy a felhasználók toocustomize hello adatok metrikák gyűjtött és a feltöltése.
+* Lehetővé teszi a felhasználók toocustomize hello syslog létesítményekben és súlyossági szintek az eseményeket, amelyek gyűjtött és a feltöltése.
+* Lehetővé teszi, hogy a felhasználók tooupload megadott napló fájlok tooa kijelölt tároló tábla.
+* Támogatja a küldés, metrikákat és naplózási események tooarbitrary EventHub végpontok és blobok JSON-formátumú hello kijelölt tárfiókot.
 
 A bővítmény mindkét Azure üzembe helyezési modellel működik.
 
-## <a name="installing-the-extension-in-your-vm"></a>A bővítmény telepítése a virtuális gépen
+## <a name="installing-hello-extension-in-your-vm"></a>A virtuális gép hello-bővítmény telepítése
 
-A bővítmény engedélyezéséhez az Azure PowerShell-parancsmagok, az Azure parancssori felület parancsfájlok vagy Azure központi telepítési sablonok használatával. További információkért lásd: [bővítményeit biztosító funkciókat](./extensions-features.md).
+A bővítmény hello Azure PowerShell-parancsmagok, az Azure parancssori felület parancsfájlok vagy Azure központi telepítési sablonok használatával engedélyezheti. További információkért lásd: [bővítményeit biztosító funkciókat](./extensions-features.md).
 
-Az Azure-portálon engedélyezése és konfigurálása LAD 3.0 nem használható. Ehelyett azt telepíti, és konfigurálja a 2.3 verziója. Az Azure portál diagramok és értesítések működéséhez a bővítmény verzióját is adataival.
+hello Azure-portál nem használt tooenable vagy LAD 3.0 konfigurálása. Ehelyett azt telepíti, és konfigurálja a 2.3 verziója. Az Azure portál diagramok és értesítések működéséhez hello bővítmény verzióját is adataival.
 
 A telepítési utasításokat és egy [letölthető mintakonfiguráció](https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/Diagnostic/tests/lad_2_3_compatible_portal_pub_settings.json) LAD 3.0-s konfigurálása:
 
-* lépéssel rögzítheti és tárolhatja a metrikák LAD 2.3; által biztosított volt
-* fájl rendszer metrikákat, új, 3.0-s LAD; hasznos készlete rögzítése
-* az alapértelmezett syslog gyűjtemény LAD 2.3; által engedélyezett rögzítése
-* Engedélyezze az Azure portál élményét diagramkészítési, és a virtuális gép metrikák riasztást küld.
+* rögzítési és tároló hello metrikák LAD 2.3; által biztosított volt
+* fájl rendszer metrika, új tooLAD 3.0; hasznos készlete rögzítése
+* hello alapértelmezett syslog gyűjtemény LAD 2.3; által engedélyezett rögzítése
+* Engedélyezze a hello Azure portál felhasználói diagramkészítési, és a virtuális gép metrikák riasztást küld.
 
-A letölthető konfigurációja, csak egy példa; Módosítsa a saját igényeinek megfelelően.
+hello letölthető beállítás csak egy példa; Módosítsa ezt a toosuit saját igényeinek.
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-* **Az Azure Linux ügynök 2.2.0 verzió vagy újabb**. A legtöbb Azure virtuális gép Linux gyűjtemény lemezképei 2.2.7 verzióját tartalmazzák, vagy később. Futtatás `/usr/sbin/waagent -version` megerősítéséhez, hogy a virtuális Gépen telepített verzióval. Ha a vendégügynök egy régebbi verzióját a virtuális gép fut, hajtsa végre a [ezeket az utasításokat](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) frissíti.
-* **Azure parancssori felület (CLI)**. [Állítsa be az Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) környezet a számítógépen.
-* A wget parancs, ha már nincs: futtatása `sudo apt-get install wget`.
-* Meglévő Azure-előfizetése és a meglévő tárfiók belül úgy, hogy az adatok tárolásához.
+* **Az Azure Linux ügynök 2.2.0 verzió vagy újabb**. A legtöbb Azure virtuális gép Linux gyűjtemény lemezképei 2.2.7 verzióját tartalmazzák, vagy később. Futtatás `/usr/sbin/waagent -version` tooconfirm hello verziója van telepítve, a virtuális gép hello. Virtuális gép hello hello Vendég ügynök egy régebbi verziója fut, hajtsa végre a [ezeket az utasításokat](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) tooupdate azt.
+* **Azure parancssori felület (CLI)**. [Azure CLI 2.0 hello beállítása](https://docs.microsoft.com/cli/azure/install-azure-cli) környezet a számítógépen.
+* hello wget parancs, ha már nincs: futtatása `sudo apt-get install wget`.
+* Meglévő Azure-előfizetése és a meglévő tárolási fiók belül toostore hello adatokat.
 
 ### <a name="sample-installation"></a>A minta telepítése
 
-Adja meg az első három sorokban a megfelelő paramétereket, majd hajtsa végre ezt a parancsfájlt a legfelső szintű:
+Adja meg helyes paraméterek hello hello első három sort, majd hajtsa végre ezt a parancsfájlt a legfelső szintű:
 
 ```bash
 # Set your Azure VM diagnostic parameters correctly below
@@ -67,60 +67,60 @@ my_resource_group=<your_azure_resource_group_name_containing_your_azure_linux_vm
 my_linux_vm=<your_azure_linux_vm_name>
 my_diagnostic_storage_account=<your_azure_storage_account_for_storing_vm_diagnostic_data>
 
-# Should login to Azure first before anything else
+# Should login tooAzure first before anything else
 az login
 
-# Select the subscription containing the storage account
+# Select hello subscription containing hello storage account
 az account set --subscription <your_azure_subscription_id>
 
-# Download the sample Public settings. (You could also use curl or any web browser)
+# Download hello sample Public settings. (You could also use curl or any web browser)
 wget https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/Diagnostic/tests/lad_2_3_compatible_portal_pub_settings.json -O portal_public_settings.json
 
-# Build the VM resource ID. Replace storage account name and resource ID in the public settings.
+# Build hello VM resource ID. Replace storage account name and resource ID in hello public settings.
 my_vm_resource_id=$(az vm show -g $my_resource_group -n $my_linux_vm --query "id" -o tsv)
 sed -i "s#__DIAGNOSTIC_STORAGE_ACCOUNT__#$my_diagnostic_storage_account#g" portal_public_settings.json
 sed -i "s#__VM_RESOURCE_ID__#$my_vm_resource_id#g" portal_public_settings.json
 
-# Build the protected settings (storage account SAS token)
+# Build hello protected settings (storage account SAS token)
 my_diagnostic_storage_account_sastoken=$(az storage account generate-sas --account-name $my_diagnostic_storage_account --expiry 9999-12-31T23:59Z --permissions wlacu --resource-types co --services bt -o tsv)
 my_lad_protected_settings="{'storageAccountName': '$my_diagnostic_storage_account', 'storageAccountSasToken': '$my_diagnostic_storage_account_sastoken'}"
 
-# Finallly tell Azure to install and enable the extension
+# Finallly tell Azure tooinstall and enable hello extension
 az vm extension set --publisher Microsoft.Azure.Diagnostics --name LinuxDiagnostic --version 3.0 --resource-group $my_resource_group --vm-name $my_linux_vm --protected-settings "${my_lad_protected_settings}" --settings portal_public_settings.json
 ```
 
-A minta konfigurációját, és annak tartalmát, az URL-címe van változhatnak. Töltse le a portálbeállítások JSON-fájlt, és az igényeinek megfelelően. A sablonok vagy automation, hozhat létre egy saját másolat ahelyett, hogy letöltése URL-címet minden alkalommal, amikor használja.
+hello mintakonfiguráció hello URL-címet, és annak tartalmát, amelyek tulajdonos toochange. Töltse le a hello portálbeállítások JSON-fájl egy példányát, és az igényeinek megfelelően. A sablonok vagy automation, hozhat létre egy saját másolat ahelyett, hogy letöltése URL-címet minden alkalommal, amikor használja.
 
-### <a name="updating-the-extension-settings"></a>A bővítmény beállításainak frissítése folyamatban
+### <a name="updating-hello-extension-settings"></a>Hello bővítmény beállításainak frissítése folyamatban
 
-Miután megváltoztatta a védett vagy nyilvános beállításokat, azok a virtuális gép ugyanaz a parancs futtatásával. Ha a változás a a beállításokat, a bővítmény kapja meg a frissített beállításokkal. LAD betölti a konfigurációt, és újraindul saját magát.
+Miután megváltoztatta a védett vagy nyilvános beállításai, telepíteni őket toohello VM futtatásával hello ugyanezt a parancsot. Változás a hello-beállítások, ha frissített hello beállítások toohello bővítmény küldése. LAD hello konfiguráció újratöltése, és újraindítja a saját magát.
 
-### <a name="migration-from-previous-versions-of-the-extension"></a>A bővítmény korábbi verzióiról való áttelepítés
+### <a name="migration-from-previous-versions-of-hello-extension"></a>Hello bővítmény korábbi verzióiról való áttelepítés
 
-A bővítmény legújabb verziója **3.0**. **A régi verziókat (2.x) elavultak, ezért lehet, hogy közzé nem tett, vagy azt követően 2018 július 31**.
+hello hello bővítmény legújabb verziója van **3.0**. **A régi verziókat (2.x) elavultak, ezért lehet, hogy közzé nem tett, vagy azt követően 2018 július 31**.
 
 > [!IMPORTANT]
-> A bővítmény jelentős változásokat a bővítmény konfigurációja vezet be. Egy ilyen módosítás, melyekkel biztonságosabbá teheti a bővítmény; Ennek eredményeképpen visszamenőleges 2.x kompatibilitást sikerült nem kell tartani. A bővítmény Publisher ehhez a kiterjesztéshez is eltér a közzétevő a 2.x verziójához.
+> A bővítmény legfrissebb változtatásokat toohello konfigurációs hello bővítmény vezet be. Egy ilyen módosítás tooimprove hello biztonsági hello bővítmény; Ennek eredményeképpen visszamenőleges 2.x kompatibilitást sikerült nem kell tartani. Hello bővítmény Publisher ehhez a kiterjesztéshez is hello közzétevője hello 2.x verziója eltérő.
 >
-> 2.x át ezt a bővítmény új verzióját, távolítsa el a régi bővítmény (alatt a régi közzétevő neve), majd telepítse a bővítmény 3 verzióját.
+> a 2.x toothis új hello-kiterjesztés verziószámának toomigrate, el kell távolítania hello régi bővítmény (a hello régi közzétevő neve), majd a telepítés 3 hello bővítmény verziója.
 
 Javaslatok:
 
-* Telepítse a bővítmény engedélyezve van az automatikus alverzió frissítését.
-  * A klasszikus telepítési modell virtuális gépek adja meg "3.*" verzióval Azure XPLAT parancssori felületen vagy a Powershellen keresztül bővítmény telepítésekor.
-  * Az Azure Resource Manager telepítési modellhez tartozó virtuális gépek esetén tartalmazhat ""autoUpgradeMinorVersion": true" az a virtuális gép központi telepítési sablont.
+* Telepítse a hello bővítmény engedélyezve van az automatikus alverzió frissítését.
+  * A klasszikus üzembe helyezési modellt virtuális gépeket adja meg a "3.*" hello verzió telepítésekor hello bővítmény Azure XPLAT parancssori felületen vagy a Powershellen keresztül.
+  * Az Azure Resource Manager telepítési modellhez tartozó virtuális gépek esetén tartalmazhat ""autoUpgradeMinorVersion": true" hello VM központi telepítési sablon.
 * A LAD 3.0 új/eltérőek a tárolási fiók használata. Van több kis incompatibilities LAD 2.3 és LAD 3.0 között, amelyek megosztása a problémás fiók:
   * LAD 3.0 tárolja a syslog-események egy táblát, amely egy másik nevet.
-  * A karakterláncok a counterSpecifier `builtin` metrikák LAD 3.0 különböznek.
+  * a karakterláncok hello counterSpecifier `builtin` metrikák LAD 3.0 különböznek.
 
 ## <a name="protected-settings"></a>Védett beállításai
 
-Ez a konfigurációs adatokat bizalmas adatokat, amelyeket védeni kell a nyilvános nézet, például a tároló hitelesítő adatait tartalmazza. Ezek a beállítások továbbítva, és a bővítmény titkosított formában tárolja.
+Ez a konfigurációs adatokat bizalmas adatokat, amelyeket védeni kell a nyilvános nézet, például a tároló hitelesítő adatait tartalmazza. Ezek a beállítások esetén az átvitt tooand hello bővítmény titkosított formában tárolja.
 
 ```json
 {
-    "storageAccountName" : "the storage account to receive data",
-    "storageAccountEndPoint": "the hostname suffix for the cloud for this account",
+    "storageAccountName" : "hello storage account tooreceive data",
+    "storageAccountEndPoint": "hello hostname suffix for hello cloud for this account",
     "storageAccountSasToken": "SAS access token",
     "mdsdHttpProxy": "HTTP proxy settings",
     "sinksConfig": { ... }
@@ -129,22 +129,22 @@ Ez a konfigurációs adatokat bizalmas adatokat, amelyeket védeni kell a nyilv�
 
 Név | Érték
 ---- | -----
-storageAccountName | A tárfiók, amelyben adatot ír a kiegészítő mező neve.
-storageAccountEndPoint | (választható) A végpont a felhőben, amelyben a tárfiók található azonosítása. Ha ez a beállítás hiányzik, LAD az Azure nyilvános felhőjében alapértelmezett `https://core.windows.net`. A Németországi Azure storage-fiók használatához Azure Government vagy Azure Kína, állítsa ezt az értéket ennek megfelelően.
-storageAccountSasToken | Egy [fiók SAS-jogkivonat](https://azure.microsoft.com/blog/sas-update-account-sas-now-supports-all-storage-services/) a Blob és Table szolgáltatásait (`ss='bt'`), tárolók és objektumok alkalmazandó (`srt='co'`), amely hozzáadásához létrehozása, listában frissítése, és írási engedélyekkel (`sp='acluw'`). Tegye *nem* közé tartozik a bevezető kérdőjel (?).
-mdsdHttpProxy | (választható) HTTP-proxyadatok csatlakozni a megadott tárfiók és a végpont a bővítmény engedélyezéséhez szükséges.
-sinksConfig | (választható) Alternatív célhoz, amelyhez metrikákkal és eseményekkel kézbesítése részleteit. A bővítmény által támogatott minden egyes adatokat a fogadó részleteit a következő szakaszok ismertetnek.
+storageAccountName | hello neve, amelyben hello bővítmény adatot ír hello tárfiók.
+storageAccountEndPoint | (választható) hello végpont melyik hello storage-fiókban található hello felhő azonosítása. Ha ez a beállítás hiányzik, LAD alapértelmezés szerint használt érték toohello Azure nyilvános felhőjében `https://core.windows.net`. a tárfiók a Németországi Azure, Azure Government vagy Azure Kína toouse megfelelően állítsa ezt az értéket.
+storageAccountSasToken | Egy [fiók SAS-jogkivonat](https://azure.microsoft.com/blog/sas-update-account-sas-now-supports-all-storage-services/) a Blob és Table szolgáltatásait (`ss='bt'`), megfelelő toocontainers és objektumok (`srt='co'`), amely hozzáadásához létrehozása, listában frissítése, és írási engedélyekkel (`sp='acluw'`). Tegye *nem* hello bevezető kérdőjel (?) tartalmazza.
+mdsdHttpProxy | (választható) HTTP proxy szükséges információkat tooenable hello bővítmény tooconnect toohello megadott tárfiók és végpontot.
+sinksConfig | (választható) Alternatív célok toowhich metrikákkal és eseményekkel részleteit kézbesítése. egyes adatokat fogadó hello bővítmény által támogatott hello részleteit az alábbi hello szakaszok ismertetnek.
 
-A szükséges SAS-jogkivonatot az Azure portálon keresztül egyszerűen állíthat össze.
+Könnyen összeállíthat szükséges hello SAS-jogkivonat hello Azure-portálon keresztül.
 
-1. Válassza ki az általános célú tárfiók, amelybe írni a bővítmény
-1. Válassza a "Megosztott hozzáférési aláírást" a bal oldali menü Beállítások része
-1. Ellenőrizze a megfelelő szakaszait, mint korábban leírt
-1. A "Készítése SAS" gombra.
+1. Válassza ki a kívánt hello bővítmény toowrite hello általános célú tárfiókok fiók toowhich
+1. Válassza a "Megosztás hozzáférési aláírás" hello hello bal oldali menü részéből beállításai
+1. Ellenőrizze az előzőekben leírt hello megfelelő szakaszait
+1. Hello "Készítése SAS" gombra.
 
 ![Kép](./media/diagnostic-extension/make_sas.png)
 
-A generált SAS másolja az storageAccountSasToken mezőjébe; Távolítsa el a bevezető kérdőjel ("?").
+Másolás hello SAS létre hello storageAccountSasToken mezőbe; Távolítsa el a hello bevezető kérdőjel ("?").
 
 ### <a name="sinksconfig"></a>sinksConfig
 
@@ -161,16 +161,16 @@ A generált SAS másolja az storageAccountSasToken mezőjébe; Távolítsa el a 
 },
 ```
 
-Ez a szakasz választható, amelyhez a bővítményt a összegyűjti az adatokat elküldi a további célok meghatározása. A "fogadó" tömb minden további adatokat fogadó egy objektumot tartalmaz. A "type" attribútum meghatározza, hogy az objektum más attribútumokat.
+Ez a szakasz választható toowhich hello bővítmény összegyűjti az hello információkat küld a további célok meghatározása. hello "fogadó" tömb minden további adatokat fogadó egy objektumot tartalmaz. "típus" attribútum meghatározza, hogy hello hello hello objektum a többi attribútumával.
 
 Elem | Érték
 ------- | -----
-név | Ez a gyűjtő részeiben bővítménykonfiguráció hivatkozik karakterlánc.
-type | A múltbeli fogadó típusa. Meghatározza, hogy a többi érték (ha vannak) az ilyen típusú példányok.
+név | Egy karakterláncot toorefer toothis fogadó részeiben hello bővítménykonfiguráció használják.
+type | a fogadó múltbeli hello típusa. Határozza meg, más értékek hello (ha vannak) az ilyen típusú példányok.
 
-A Linux diagnosztikai bővítmény 3.0-s verziója két fogadó-típusokat támogatja: az EventHub és JsonBlob.
+Hello Linux diagnosztikai bővítmény 3.0-s verziója két fogadó-típusokat támogatja: az EventHub és JsonBlob.
 
-#### <a name="the-eventhub-sink"></a>Az EventHub fogadó
+#### <a name="hello-eventhub-sink"></a>hello EventHub fogadó
 
 ```json
 "sink": [
@@ -183,13 +183,13 @@ A Linux diagnosztikai bővítmény 3.0-s verziója két fogadó-típusokat támo
 ]
 ```
 
-A "sasURL" bejegyzés tartalmazza a teljes URL-címet, beleértve a SAS-jogkivonat, az Event Hubs, amelyhez adatokat közzé kell tenni. LAD van szükség, egy olyan házirendet, amely lehetővé teszi, hogy a küldési elnevezési SAS jogcímek. Példa:
+hello "sasURL" bejegyzés hello közzé kell tenni a teljes URL-címet, beleértve a SAS-jogkivonat, hello Eseményközpont toowhich adatokat tartalmazza. LAD egy házirendet, amely lehetővé teszi, hogy a hello küldési jogcím elnevezési Aláírást igényel. Példa:
 
 * Hozzon létre egy Event Hubs-névtér neve`contosohub`
-* Létrehoz egy Eseményközpontot, a névtér neve`syslogmsgs`
-* Az Event Hubs nevű meg megosztott hozzáférési házirend létrehozása `writer` , amely lehetővé teszi, hogy a küldési jogcím
+* Létrehoz egy Eseményközpontot hello névtér neve`syslogmsgs`
+* Megosztott hozzáférési házirend létrehozása a hello nevű Eseményközpont `writer` , hogy lehetővé teszi, hogy hello küldési jogcím
 
-Ha létrehozott egy SAS jó 2018. január 1. az UTC éjfél sasURL érték lehet:
+Ha létrehozott egy SAS jó 2018. január 1. az UTC éjfél hello sasURL érték lehet:
 
 ```url
 https://contosohub.servicebus.windows.net/syslogmsgs?sr=contosohub.servicebus.windows.net%2fsyslogmsgs&sig=xxxxxxxxxxxxxxxxxxxxxxxxx&se=1514764800&skn=writer
@@ -197,7 +197,7 @@ https://contosohub.servicebus.windows.net/syslogmsgs?sr=contosohub.servicebus.wi
 
 További információ a SAS-jogkivonatokat előállító az Event Hubs: [Ez a weblap](../../event-hubs/event-hubs-authentication-and-security-model-overview.md).
 
-#### <a name="the-jsonblob-sink"></a>A JsonBlob fogadó
+#### <a name="hello-jsonblob-sink"></a>hello JsonBlob fogadó
 
 ```json
 "sink": [
@@ -209,28 +209,28 @@ További információ a SAS-jogkivonatokat előállító az Event Hubs: [Ez a we
 ]
 ```
 
-Az Azure-tárfiókba blobok egy JsonBlob fogadó irányítva adatokat tárolja. Minden példánya LAD blob minden fogadó név óránként hoz létre. Minden egyes blob mindig tartalmaz egy szintaktikailag érvényes JSON-tömb objektum. Új bejegyzések i hozzáadódnak a tömb. A tároló neve megegyezik a gyűjtő a blobok tárolja. A blob-tároló neve az Azure storage szabályok vonatkoznak a nevek JsonBlob nyelő: 3 és 63 kisbetűs alfanumerikus ASCII-karaktereket, és kötőjelek között.
+Adatok irányítja a rendszer az Azure-tárfiókba blobok tooa JsonBlob fogadó tárolja. Minden példánya LAD blob minden fogadó név óránként hoz létre. Minden egyes blob mindig tartalmaz egy szintaktikailag érvényes JSON-tömb objektum. Új bejegyzések i kerülnek toohello tömb. Blobok egy azonos nevet, amint hello fogadó hello-tárolóban vannak tárolva. az Azure storage szabályok hello blob tároló nevének alkalmazni JsonBlob nyelő toohello nevek: 3 és 63 kisbetűs alfanumerikus ASCII-karaktereket, és kötőjelek között.
 
 ## <a name="public-settings"></a>Nyilvános beállításai
 
-Ez a struktúra a bővítmény által gyűjtött információk szabályozó beállítások több blokkot tartalmaz. Minden beállítás nem kötelező. Ha megad `ladCfg`, meg kell adni `StorageAccount`.
+Ez a struktúra hello bővítmény által összegyűjtött hello adatokat szabályozó beállítások több blokkot tartalmaz. Minden beállítás nem kötelező. Ha megad `ladCfg`, meg kell adni `StorageAccount`.
 
 ```json
 {
     "ladCfg":  { ... },
     "perfCfg": { ... },
     "fileLogs": { ... },
-    "StorageAccount": "the storage account to receive data",
+    "StorageAccount": "hello storage account tooreceive data",
     "mdsdHttpProxy" : ""
 }
 ```
 
 Elem | Érték
 ------- | -----
-StorageAccount | A tárfiók, amelyben adatot ír a kiegészítő mező neve. A névvel kell lennie, mint a megadott a [beállítások védett](#protected-settings).
-mdsdHttpProxy | (választható) Ugyanaz, mint a a [beállítások védett](#protected-settings). A nyilvános érték felülbírálja a saját értéket, ha beállítása. Helyezze el, amely tartalmazza a titkos kulcs, például a jelszó, a proxybeállításokat a [beállítások védett](#protected-settings).
+StorageAccount | hello neve, amelyben hello bővítmény adatot ír hello tárfiók. Kell azonos hello megadott nevet hello [beállítások védett](#protected-settings).
+mdsdHttpProxy | (választható) Ugyanaz, mint hello [beállítások védett](#protected-settings). hello nyilvános érték felülbírálja hello titkos érték, ha beállítása. Helyezze el, amely tartalmazza a titkos kulcs, például a jelszó, hello proxybeállítások [beállítások védett](#protected-settings).
 
-A fennmaradó összetevőit az alábbi szakaszok részletesen.
+hello maradék összetevőit részletei a következő részekben hello.
 
 ### <a name="ladcfg"></a>ladCfg
 
@@ -246,12 +246,12 @@ A fennmaradó összetevőit az alábbi szakaszok részletesen.
 }
 ```
 
-A választható struktúra vezérlők metrikák és a naplókat a kézbesítési az Azure metrikaszolgáltatás és egyéb adatok összegyűjtése fogadók esetében. Meg kell adnia vagy `performanceCounters` vagy `syslogEvents` vagy mindkettőt. Meg kell adnia a `metrics` struktúra.
+A választható struktúra vezérlők hello gyűjtése metrikák és a naplókat a kézbesítési toohello Azure metrikák szolgáltatás és tooother adatokat fogadók esetében. Meg kell adnia vagy `performanceCounters` vagy `syslogEvents` vagy mindkettőt. Meg kell adnia a hello `metrics` struktúra.
 
 Elem | Érték
 ------- | -----
-eventVolume | (választható) A tárolási tábla belül létrehozott partíciók számát szabályozza. Egyikének kell lennie `"Large"`, `"Medium"`, vagy `"Small"`. Ha nincs megadva, az alapértelmezett érték: `"Medium"`.
-sampleRateInSeconds | (választható) Az alapértelmezett időköz közötti nyers (unaggregated) mérőszámok gyűjteménye. A legkisebb támogatott mintavételi gyakoriság: 15 másodperc. Ha nincs megadva, az alapértelmezett érték: `15`.
+eventVolume | (választható) Vezérlők hello hello tárolási tábla belül létrehozott partíciók száma. Egyikének kell lennie `"Large"`, `"Medium"`, vagy `"Small"`. Ha nincs megadva, hello alapértelmezett értéke `"Medium"`.
+sampleRateInSeconds | (választható) hello alapértelmezett időközétől nyers (unaggregated) mérőszámok gyűjteménye. legkisebb támogatott hello mintavételi gyakoriság: 15 másodperc. Ha nincs megadva, hello alapértelmezett értéke `15`.
 
 #### <a name="metrics"></a>metrics
 
@@ -267,10 +267,10 @@ sampleRateInSeconds | (választható) Az alapértelmezett időköz közötti nye
 
 Elem | Érték
 ------- | -----
-resourceId | A virtuális gép vagy virtuálisgép-méretezési az Azure Resource Manager erőforrás-azonosítója, amelyhez tartozik a virtuális gép beállítása. Ezzel a beállítással lehet is megadott, ha bármely JsonBlob fogadó szerepel-e a konfigurációban.
-scheduledTransferPeriod | A gyakoriság, amellyel összesített adatok gyűjtése le van számított és Azure metrika, százalékban kifejezve van 8601 időt időközönkénti továbbítja. A legkisebb átviteli időtartam 60 másodperc, ez azt jelenti, hogy PT1M. Meg kell adnia legalább egy scheduledTransferPeriod.
+resourceId | hello Azure Resource Manager erőforrás-azonosító hello virtuális gép vagy virtuálisgép-méretezési hello beállítása toowhich hello VM tartozik. Ezzel a beállítással lehet is adni, ha bármely JsonBlob fogadó hello konfigurációban szerepel.
+scheduledTransferPeriod | hello gyakoriság, amellyel összesített adatok gyűjtése le toobe számított, és át tooAzure metrikák van 8601 időt időközönkénti kifejezve. hello legkisebb átviteli időtartam 60 másodperc, ez azt jelenti, hogy PT1M. Meg kell adnia legalább egy scheduledTransferPeriod.
 
-A metrikák performanceCounters szakaszában megadott mintáit összegyűjtött 15 másodpercenként vagy: a minta értékelje az explicit módon definiálva számláló. Ha több scheduledTransferPeriod gyakoriságot jelenik meg (ahogy a példában), minden Összesítés kiszámítása egymástól függetlenül.
+Minták hello performanceCounters szakaszában megadott metrikák gyűjtött 15 másodpercenként hello vagy hello mintavételi gyakoriság hello számláló explicit módon definiálva. Ha több scheduledTransferPeriod gyakoriságot (mint pl. a hello) jelenik meg, minden Összesítés kiszámítása egymástól függetlenül.
 
 #### <a name="performancecounters"></a>performanceCounters
 
@@ -297,40 +297,40 @@ A metrikák performanceCounters szakaszában megadott mintáit összegyűjtött 
 }
 ```
 
-Ez a szakasz választható metrikák gyűjteményét határozza meg. Nyers minták összesítik az egyes [scheduledTransferPeriod](#metrics) ezeket az értékeket létrehozásához:
+Ez a szakasz választható metrikák hello gyűjteményét határozza meg. Nyers minták összesítik az egyes [scheduledTransferPeriod](#metrics) tooproduce ezeket az értékeket:
 
 * témakörök
 * minimális
 * Maximális
 * utolsó összegyűjtött érték
-* a nyers, összesített kiszámítására használt minták száma
+* nyers minták száma használt toocompute hello összesítés
 
 Elem | Érték
 ------- | -----
-fogadók esetében | (választható) Egy vesszővel tagolt listája nyelő mely LAD való küld mérték eredményeit összesíti. Minden felsorolt fogadó összes összesített metrikát kerülnek közzétételre. Lásd: [sinksConfig](#sinksconfig). Példa: `"EHsink1, myjsonsink"`.
-type | A metrika a tényleges szolgáltató azonosítja.
-Osztály | "Számláló", és azonosítja az adott metrika a szolgáltató névtéren belül.
-A számláló | "Class", és azonosítja az adott metrika a szolgáltató névtéren belül.
-counterSpecifier | Az Azure metrikák névtérben adott metrika azonosítja.
-Az állapot | (választható) Kiválasztja az objektum, amelyhez a metrika vonatkozik, vagy az összesítés kiválasztja, hogy az objektum összes példánya között egy adott példányához. További információkért lásd: a [ `builtin` metrikai meghatározásainak](#metrics-supported-by-builtin).
-sampleRate | Beállítja a változási gyakoriság, amellyel ez a mérőszám a nyers minták gyűjtik 8601 intervallum van. Ha nincs megadva, az adatgyűjtési időköz értéke értékével [sampleRateInSeconds](#ladcfg). A legrövidebb támogatott mintavételi gyakoriság: 15 másodperc (PT15S).
-egység | Ezek a karakterláncok egyike lehet: "Count", "Memória", "S", "Százaléka", "CountPerSecond", "BytesPerSecond", "Ezredmásodperces". Határozza meg a metrika egység. Az összegyűjtött adatok fogyasztóinak várhatóan az összegyűjtött adatok értékeket a egység. LAD figyelmen kívül hagyja ezt a mezőt.
-displayName | A címke (a kapcsolódó területi beállításban megadott nyelven) csatolni kell ezeket az adatokat az Azure metrikákat. LAD figyelmen kívül hagyja ezt a mezőt.
+fogadók esetében | (választható) A neveket vesszővel tagolt listája LAD küld összesített metrika eredmények toowhich fogadók esetében. Az összes összesített adatok gyűjtése le felsorolva közzétett tooeach fogadó. Lásd: [sinksConfig](#sinksconfig). Példa: `"EHsink1, myjsonsink"`.
+type | Hello tényleges szolgáltató hello mérőszám azonosítja.
+Osztály | "Számláló", és azonosítja az adott metrika hello hello szolgáltató névtéren belül.
+A számláló | "Class" együtt azonosítja az adott metrika hello hello szolgáltató névtéren belül.
+counterSpecifier | Azonosítja az adott metrika hello hello Azure metrikák névtéren belül.
+Az állapot | (választható) Választja ki egy adott példányához hello objektum toowhich hello metrika vonatkozik, vagy választják ki hello összesítési, hogy az objektum összes példánya között. További információkért lásd: hello [ `builtin` metrikai meghatározásainak](#metrics-supported-by-builtin).
+sampleRate | AZ, hogy beállítja hello gyakoriság, amellyel ez a mérőszám a nyers minták gyűjtik 8601 időközönként. Ha nincs megadva, hello adatgyűjtési időköz értéke hello értékének [sampleRateInSeconds](#ladcfg). hello legrövidebb támogatott mintavételi gyakoriság: 15 másodperc (PT15S).
+egység | Ezek a karakterláncok egyike lehet: "Count", "Memória", "S", "Százaléka", "CountPerSecond", "BytesPerSecond", "Ezredmásodperces". Hello egység hello mérőszám határozza meg. Hello gyűjtött adatok fogyasztók várt hello gyűjtött adatok értékek toomatch a egység. LAD figyelmen kívül hagyja ezt a mezőt.
+displayName | hello (nyelven hello hello társított területi beállítást által megadott) címke toobe csatolt Azure metrikák toothis adatokat. LAD figyelmen kívül hagyja ezt a mezőt.
 
-A counterSpecifier tetszőleges azonosító, amely. Metrikák fogyasztóinak, például az Azure portál diagramkészítési, és counterSpecifier riasztási szolgáltatás, használja a "key" azonosító a metrika példányának vagy egy mértéket. A `builtin` metrika, ajánlott counterSpecifier értékek kezdődő `/builtin/`. Gyűjti a metrika egy adott példányához, azt javasoljuk a példány azonosítója csatolása counterSpecifier értékét. Néhány példa:
+hello counterSpecifier tetszőleges azonosító, amely. A mérőszámok, például az Azure portál diagramkészítési, és a szolgáltatás, riasztás hello fogyasztók hello "kulcsot" azonosító a metrika vagy metrika példányának counterSpecifier használja. A `builtin` metrika, ajánlott counterSpecifier értékek kezdődő `/builtin/`. Gyűjti a metrika egy adott példányához, azt javasoljuk csatlakoztatása hello toohello counterSpecifier értékének hello azonosítója. Néhány példa:
 
 * `/builtin/Processor/PercentIdleTime`-Az összes mag között átlagosan üresjárati idő
-* `/builtin/Disk/FreeSpace(/mnt)`– Szabad terület a /mnt fájlrendszer
+* `/builtin/Disk/FreeSpace(/mnt)`– Hello /mnt FileSystem szabad terület
 * `/builtin/Disk/FreeSpace`– Az összes csatlakoztatott fájlrendszerek között átlagosan szabad terület
 
-LAD és az Azure-portál nem vár a counterSpecifier értéket megfelel a mintának. Hogyan hozható létre counterSpecifier értékek a kell.
+LAD sem hello Azure-portálon vár hello counterSpecifier érték toomatch bármely mintát. Hogyan hozható létre counterSpecifier értékek a kell.
 
-Ha a `performanceCounters`, LAD mindig írja az adatokat az Azure storage-táblázathoz. Lehet írni a JSON-blobok és/vagy az Event Hubs ugyanazokat az adatokat, de nem tiltható le, a tábla adatainak tárolásához. A diagnosztikai bővítmény összes példánya azonos tárfióknév használatára konfigurált, és adja hozzá a metrikák és a naplók végpont ugyanahhoz a táblához. Túl sok virtuális gép tábla partícióra ír, az Azure képes szabályozni a írások ehhez a partícióhoz. A eventVolume beállítás azt eredményezi, 1 (kisméretű), 10 (közepes) keresztül terjedésének vagy 100 (nagy) különböző partíciók bejegyzések. "Közepes" általában elegendő biztosítására a forgalom nem folyamatban van. Az Azure portál Azure metrikák jellemzője diagramok létrehozására vagy riasztásokat kiváltó használja ebben a táblázatban az adatokat. A táblanév: ezek a karakterláncok a kapott:
+Ha a `performanceCounters`, LAD tooa adattábla mindig ír az Azure storage. Akkor is rendelkezik hello azonos tooJSON blobokat és/vagy az Event Hubs írt adatokat, de tárolni tooa adattábla nem tiltható le. Hello konfigurált diagnosztikai bővítmény toouse összes példánya ugyanazt a tárfiókot, nevét és a végpont hozzáadása a metrikák és a naplók toohello hello ugyanabban a táblában. Ha túl sok virtuális gép írás képes szabályozni a tábla partícióra, Azure toohello ír toothat partíció. hello eventVolume okok bejegyzések toobe beállítása 1 (kicsi), 10 (közepes) vagy 100 (nagy) különböző partíciók elosztva. Általában, "Közepes" is elegendő tooensure forgalom nem folyamatban van. hello Azure metrikák szolgáltatása hello Azure-portálon a tábla tooproduce diagramjait vagy tootrigger riasztások hello adatait használja. Ezek a karakterláncok hello összefűzése kell hello nevét:
 
 * `WADMetrics`
-* Az összesített értékek a táblában tárolt "scheduledTransferPeriod"
+* hello "scheduledTransferPeriod" hello összesítve hello táblában tárolt értékek
 * `P10DV2S`
-* Az űrlap "ÉÉÉÉHHNN", amely megváltoztatja minden 10 nap, dátum
+* Hello űrlap "ÉÉÉÉHHNN", amely megváltoztatja minden 10 nap, dátum
 
 Példák `WADMetricsPT1HP10DV2S20170410` és `WADMetricsPT1MP10DV2S20170609`.
 
@@ -347,20 +347,20 @@ Példák `WADMetricsPT1HP10DV2S20170410` és `WADMetricsPT1MP10DV2S20170609`.
 }
 ```
 
-Ez a szakasz választható határozza meg a syslog alkalmazásnapló-események gyűjtése. A szakasz elhagyása esetén syslog-események nem minden rögzíti.
+Ez a szakasz választható határozza meg a syslog naplóeseményeket hello gyűjteménye. Hello szakasz elhagyása esetén syslog-események nem minden rögzíti.
 
-A syslogEventConfiguration gyűjtemény szerepel egy bejegyzés minden egyes csomópontjára syslog-szolgáltatást. Ha minSeverity "NONE" egy adott helyen, vagy az, hogy a létesítmény nem jelenik meg az elem minden, a rendszer rögzíti, hogy a létesítmény származó események.
+hello syslogEventConfiguration gyűjteményben szerepel egy bejegyzés minden egyes csomópontjára syslog-szolgáltatást. Ha minSeverity "NONE" az egy adott létesítményt a személyes, vagy az, hogy a létesítmény nem jelenik meg hello elem minden, az, hogy a létesítmény események nem lesznek rögzítve.
 
 Elem | Érték
 ------- | -----
-fogadók esetében | Egy vesszővel tagolt listája, amelyhez egyedi aktiválási naplót esemény közzé lesz téve nyelő. Minden felsorolt fogadó syslogEventConfiguration korlátozásai megfelelő összes naplózási események kerülnek közzétételre. Példa: "EHforsyslog"
-facilityName | A syslog létesítmény nevét (például a "napló\_felhasználói" vagy "napló\_LOCAL0"). Az "létesítmény" című a [syslog man lap](http://man7.org/linux/man-pages/man3/syslog.3.html) teljes listáját.
-minSeverity | A syslog súlyossági szint (például a "napló\_hiba" vagy "napló\_INFO"). Az "szint" című a [syslog man lap](http://man7.org/linux/man-pages/man3/syslog.3.html) teljes listáját. A bővítmény a létesítmény elérte vagy meghaladta a megadott szint küldött eseményeket rögzíti.
+fogadók esetében | A neveket vesszővel tagolt listája toowhich egyedi aktiválási naplót esemény közzé lesz téve fogadók esetében. Hello korlátozások syslogEventConfiguration a megfelelő összes naplózási eseményt felsorolt közzétett tooeach fogadó. Példa: "EHforsyslog"
+facilityName | A syslog létesítmény nevét (például a "napló\_felhasználói" vagy "napló\_LOCAL0"). Című rész hello "létesítmény" hello [syslog man lap](http://man7.org/linux/man-pages/man3/syslog.3.html) hello teljes listáját.
+minSeverity | A syslog súlyossági szint (például a "napló\_hiba" vagy "napló\_INFO"). Című rész hello "szint" hello [syslog man lap](http://man7.org/linux/man-pages/man3/syslog.3.html) hello teljes listáját. hello kiterjesztés küldött események toohello intézmény rögzíti, vagy a fenti hello megadott szint.
 
-Ha a `syslogEvents`, LAD mindig írja az adatokat az Azure storage-táblázathoz. Lehet írni a JSON-blobok és/vagy az Event Hubs ugyanazokat az adatokat, de nem tiltható le, a tábla adatainak tárolásához. Ez a tábla particionáló működése megegyeznek a `performanceCounters`. A táblanév: ezek a karakterláncok a kapott:
+Ha a `syslogEvents`, LAD tooa adattábla mindig ír az Azure storage. Akkor is rendelkezik hello azonos tooJSON blobokat és/vagy az Event Hubs írt adatokat, de tárolni tooa adattábla nem tiltható le. Ez a táblázat viselkedése particionálás hello van hello megegyeznek a `performanceCounters`. Ezek a karakterláncok hello összefűzése kell hello nevét:
 
 * `LinuxSyslog`
-* Az űrlap "ÉÉÉÉHHNN", amely megváltoztatja minden 10 nap, dátum
+* Hello űrlap "ÉÉÉÉHHNN", amely megváltoztatja minden 10 nap, dátum
 
 Példák `LinuxSyslog20170410` és `LinuxSyslog20170609`.
 
@@ -382,17 +382,17 @@ Ez a szakasz választható szabályozza tetszőleges végrehajtásának [OMI](ht
 
 Elem | Érték
 ------- | -----
-Namespace | (választható) Az OMI névtér belül, amely hajtható végre a lekérdezést. Ha nincs megadva, az alapértelmezett érték: "legfelső szintű/scx", által megvalósított a [a System Center platformfüggetlen szolgáltatók](http://scx.codeplex.com/wikipage?title=xplatproviders&referringTitle=Documentation).
-lekérdezés | Az OMI lekérdezés végrehajtására.
-Tábla | (választható) Az Azure storage tábla, a kijelölt tárfiókban lévő (lásd: [beállítások védett](#protected-settings)).
-gyakoriság | (választható) A lekérdezés végrehajtása között eltelt másodpercek száma. Alapértelmezett értéke 300 (5 percig); minimális érték 15 másodpercre.
-fogadók esetében | (választható) További nyelő, amelyhez metrika eredmények nyers minta közzé kell tenni a neveket vesszővel tagolt listája. Nincs összesítési e nyers minták számított a bővítmény vagy Azure metrikákat.
+Namespace | (választható) hello OMI névtér melyik hello belül lekérdezés kell végrehajtani. Ha nincs megadva, hello alapértelmezett értéke "legfelső szintű/scx", hello által megvalósított [a System Center platformfüggetlen szolgáltatók](http://scx.codeplex.com/wikipage?title=xplatproviders&referringTitle=Documentation).
+lekérdezés | hello OMI lekérdezés toobe végre.
+Tábla | (választható) hello az Azure storage tábla, a kijelölt tárfiókkal hello (lásd: [beállítások védett](#protected-settings)).
+frequency | hello lekérdezés végrehajtása között eltelt másodpercek számát (nem kötelező) hello. Alapértelmezett értéke 300 (5 percig); minimális érték 15 másodpercre.
+fogadók esetében | (választható) További mosdók toowhich nyers minta metrika eredmények neveket vesszővel tagolt listája közzé kell tenni. Nincs összesítési e nyers minták számított hello bővítmény vagy Azure metrikákat.
 
 "Table" vagy "fogadók esetében", vagy mindkettőt, meg kell adni.
 
 ### <a name="filelogs"></a>fileLogs
 
-A rögzítés a naplófájlok szabályozza. LAD új szöveges sort rögzíti, mert a fájlt írás, és írja a táblázat sorainak és/vagy a megadott mosdók (JsonBlob vagy EventHub).
+Vezérlők hello rögzítése a naplófájlok. LAD új szöveges sort rögzíti, az oktatóprogram toohello fájl, és írja őket az tootable sorok és/vagy a megadott mosdók (JsonBlob vagy EventHub).
 
 ```json
 "fileLogs": [
@@ -406,15 +406,15 @@ A rögzítés a naplófájlok szabályozza. LAD új szöveges sort rögzíti, me
 
 Elem | Érték
 ------- | -----
-Fájl | A teljes elérési útja a naplófájl figyelése és rögzítése. A pathname nevet egyetlen fájl; nem egy könyvtár nevet és nem tartalmazhat helyettesítő karaktereket.
-Tábla | (választható) Az Azure storage tábla, a kijelölt tárfiókban (meghatározottak szerint a védett configuration), amelybe a "végéről" a fájl új sorok készültek.
-fogadók esetében | (választható) További nyelő küldött napló sorok a neveket vesszővel tagolt listája.
+Fájl | hello teljes elérési útja hello napló fájl toobe figyelése, és rögzített. hello pathname nevet egyetlen fájl; nem egy könyvtár nevet és nem tartalmazhat helyettesítő karaktereket.
+Tábla | (választható) hello az Azure storage tábla kijelölt hello Storage (ahogy a védett hello configuration), az új sorok hello "kisebb" hello fájl íródtak a fiókot.
+fogadók esetében | (választható) Küldött neve további mosdók toowhich napló vesszővel tagolt listája.
 
 "Table" vagy "fogadók esetében", vagy mindkettőt, meg kell adni.
 
-## <a name="metrics-supported-by-the-builtin-provider"></a>A beépített szolgáltató támogatja a mérőszámok
+## <a name="metrics-supported-by-hello-builtin-provider"></a>Hello beépített szolgáltató támogatja a mérőszámok
 
-A beépített metrika szolgáltató a forrása a metrikák a legérdekesebb a felhasználók széles körét. A metrikák öt széleskörű osztályok sorolhatók:
+hello beépített metrika szolgáltató metrikákat a legérdekesebb tooa széles körét felhasználók forrásaként szolgál. A metrikák öt széleskörű osztályok sorolhatók:
 
 * Processzor
 * Memory (Memória)
@@ -422,27 +422,27 @@ A beépített metrika szolgáltató a forrása a metrikák a legérdekesebb a fe
 * Fájlrendszer
 * Lemez
 
-### <a name="builtin-metrics-for-the-processor-class"></a>a processzor osztály beépített metrikák
+### <a name="builtin-metrics-for-hello-processor-class"></a>a beépített metrikáját hello processzor osztály
 
-A processzor osztály a mérőszámok tájékoztatást ad azokról a virtuális gép processzor kihasználtsága. Százalékos összesítésekor eredménye átlagos összes processzorok között. A virtuális gép két, alapszintű egy alapvető 100 %-os elfoglalt volt, és a másik 100 %-os üresjárati, ha a jelentésben szereplő PercentIdleTime pedig 50. Ha minden core 50 % azonos időszakára vonatkozó elfoglalt volt, a jelentésben szereplő eredmény is pedig 50. A jelentett PercentIdleTime négy alapvető virtuális gép, egy alapvető 100 % foglalt, és a többi üresjárati, 75 lenne.
+hello processzor osztály a mérőszámok tájékoztatást ad azokról a virtuális gép hello processzor kihasználtsága. Százalékos összesítésekor hello eredménye hello átlagos összes processzorok között. A két fő virtuális gép egy alapvető 100 %-os elfoglalt volt, és más hello 100 %-os üresjárati, hello jelez-e PercentIdleTime pedig 50. Ha minden core 50 % foglalt volt hello azonos az az időszak hello jelentett eredmény is pedig 50. Egy négy alapvető virtuális gép, egy alapvető 100 % foglalt és hello üresjárati, mások hello jelentett PercentIdleTime 75 lenne.
 
 A számláló | Jelentése
 ------- | -------
-PercentIdleTime | A összesítési időszakban, hogy a processzorok volt végrehajtása a kernel üresjárati hurok idő százalékos aránya
+PercentIdleTime | Hogy a processzorok volt végrehajtása hello kernel üresjárati hurok hello összesítési időszakban idő százalékos aránya
 PercentProcessorTime | Nem üresjárati szálat idő százalékos aránya
-PercentIOWaitTime | Várakozás az I/O műveletek elvégzéséhez idő százalékos aránya
+PercentIOWaitTime | Várakozás az I/O műveletek toocomplete idő százalékos aránya
 PercentInterruptTime | Hardver vagy szoftver megszakítások, DPC-k (késleltetett eljáráshívások) végrehajtása idő százalékos aránya
-PercentUserTime | Az összesítési időszak alatt nem üresjárati idő a fordított idő százalékos aránya a felhasználó több normál prioritással
-PercentNiceTime | Nem üresjárati időt százalékos süllyesztett (jó) prioritással töltött
-PercentPrivilegedTime | Nem üresjárati időt százalékos töltött védett (kernel) módban
+PercentUserTime | Hello összesítési időszak alatt nem üresjárati idő hello fordított idő százalékos aránya a felhasználó több normál prioritással
+PercentNiceTime | Nem üresjárati idő hello süllyesztett (jó) prioritással töltött százalékos aránya
+PercentPrivilegedTime | Nem üresjárati idő hello védett (kernel) módban töltött százalékos aránya
 
-Az első négy számlálók kell összeg 100 %. Az utolsó három is számlálók összege 100 %; a PercentProcessorTime, PercentIOWaitTime és PercentInterruptTime azok tovább.
+hello első négy számlálók kell összeg too100 %. hello utolsó három teljesítményszámlálók is sum too100 %; Ezek tovább PercentProcessorTime PercentIOWaitTime és PercentInterruptTime hello összege.
 
-Az összes processzor gyűjtődnek egyetlen mérőszám beszerzéséhez beállítása `"condition": "IsAggregate=TRUE"`. Megadott processzorsebességgel rendelkező metrika beszerzése, például egy négy, a második logikai processzor virtuális gép központi, állítsa be `"condition": "Name=\\"1\\""`. A tartományban vannak logikai processzor számok `[0..n-1]`.
+egyetlen mérőszám az összes processzor gyűjtődnek tooobtain beállítása `"condition": "IsAggregate=TRUE"`. megadott processzorsebességgel rendelkező metrika tooobtain hello második logikai processzorral egy négy alapvető VM, mint például beállítása `"condition": "Name=\\"1\\""`. Logikai processzor számok hello tartományban vannak `[0..n-1]`.
 
-### <a name="builtin-metrics-for-the-memory-class"></a>a beépített metrikákat a memória-osztály
+### <a name="builtin-metrics-for-hello-memory-class"></a>a beépített metrikáját hello memória osztály
 
-A memória az osztály a mérőszámok memóriafelhasználás a lapozást, és áttelepíteni a forráskörnyezetból információkat biztosít.
+hello memória osztály a mérőszámok memóriafelhasználás a lapozást, és áttelepíteni a forráskörnyezetból információkat biztosít.
 
 A számláló | Jelentése
 ------- | -------
@@ -452,17 +452,17 @@ UsedMemory | Használatban lévő fizikai memória (MiB)
 PercentUsedMemory | A teljes memória százalékos a használatban lévő fizikai memória
 PagesPerSec | Teljes lapozófájl (olvasás/írás)
 PagesReadPerSec | Lapok olvasni háttértár (lapozófájl programfájlt, leképezett fájlt, stb.)
-PagesWrittenPerSec | Lapok írni a biztonsági tár (lapozófájl, leképezett fájlt, stb.)
+PagesWrittenPerSec | Toobacking írt lapok tárolja (lapozófájl, leképezett fájlt, stb.)
 AvailableSwap | Nem használt lapozóterület (MiB)
 PercentAvailableSwap | Nem használt lapozóterület teljes lapozófájl-kapacitás százalékában
 UsedSwap | Használatban lévő lapozóterület (MiB)
 PercentUsedSwap | Használatban lévő lapozóterület teljes lapozófájl-kapacitás százalékában
 
-Ez az osztály a mérőszámok csak egyetlen példány van. A "feltétel" attribútum nem hasznos beállításokkal rendelkezik, és megadni.
+Ez az osztály a mérőszámok csak egyetlen példány van. hello "feltétel" attribútum nem hasznos beállításokkal rendelkezik, és megadni.
 
-### <a name="builtin-metrics-for-the-network-class"></a>a hálózati osztály beépített metrikák
+### <a name="builtin-metrics-for-hello-network-class"></a>a beépített metrikáját hello hálózati osztály
 
-A hálózati osztály a mérőszámok tevékenységről szolgáltat információkat hálózati az egyes hálózati adaptereken indítása óta. LAD nem biztosít sávszélesség metrikákat, amelyek a gazdagép-metrikák kérhető.
+hello hálózati osztály a mérőszámok tevékenységről szolgáltat információkat hálózati az egyes hálózati adaptereken indítása óta. LAD nem biztosít sávszélesség metrikákat, amelyek a gazdagép-metrikák kérhető.
 
 A számláló | Jelentése
 ------- | -------
@@ -473,13 +473,13 @@ PacketsTransmitted | Rendszerindítás óta küldött csomagok száma összesen
 PacketsReceived | Rendszerindítás óta fogadott csomagok száma összesen
 TotalRxErrors | A fogadási hibák száma indítása óta
 TotalTxErrors | -Küldési hibák száma indítása óta
-TotalCollisions | Rendszerindítás óta a hálózati portok által jelentett ütközések száma
+TotalCollisions | Rendszerindítás óta hello hálózati portok által jelentett ütközések száma
 
- Bár ez az osztály van instanced, LAD nem támogatja az összes hálózati eszköz gyűjtődnek rögzítésével hálózati metrikákat. Állítsa be a metrika egy adott felület esetében eth0, például az beszerzése `"condition": "InstanceID=\\"eth0\\""`.
+ Bár ez az osztály van instanced, LAD nem támogatja az összes hálózati eszköz gyűjtődnek rögzítésével hálózati metrikákat. egy adott illesztő eth0, például metrikáját tooobtain hello beállítása `"condition": "InstanceID=\\"eth0\\""`.
 
-### <a name="builtin-metrics-for-the-filesystem-class"></a>a fájlrendszer osztály beépített metrikák
+### <a name="builtin-metrics-for-hello-filesystem-class"></a>a beépített metrikáját hello Filesystem osztály
 
-A fájlrendszer osztály a mérőszámok filesystem használati információkat biztosít. Abszolút és százalékos értéket jelentett, akkor szokásos felhasználóhoz (nem a legfelső szintű) megjelenik.
+hello Filesystem osztály a mérőszámok filesystem használati információkat biztosít. Abszolút és százalékos értéket jelentett, a megjelenő tooan a szokványos felhasználói (nem a legfelső szintű) lesznek.
 
 A számláló | Jelentése
 ------- | -------
@@ -498,9 +498,9 @@ TransfersPerSecond | Olvasási vagy írási műveletek másodpercenkénti száma
 
 Összesített értékeket fájlrendszerek keresztül érhető el úgy, hogy `"condition": "IsAggregate=True"`. Például egy adott csatlakoztatott fájlrendszer értékei "/ mnt", úgy, hogy szerezhetők `"condition": 'Name="/mnt"'`.
 
-### <a name="builtin-metrics-for-the-disk-class"></a>a lemez osztály beépített metrikák
+### <a name="builtin-metrics-for-hello-disk-class"></a>a beépített metrikáját hello lemez osztály
 
-A lemez osztály a mérőszámok eszköz lemezhasználati információkat biztosít. A statisztikai információk a teljes meghajtót vonatkozik. Ha egy eszközön több fájlrendszereket, az eszköznek a számlálók vannak, gyakorlatilag az összes gyűjtődnek.
+hello lemez osztály a mérőszámok eszköz lemezhasználati információkat biztosít. A statisztikai információk toohello teljes meghajtó alkalmazni. Ha egy eszközön több fájlrendszereket, hello számlálók az eszköznek vannak, gyakorlatilag az összes gyűjtődnek.
 
 A számláló | Jelentése
 ------- | -------
@@ -515,21 +515,21 @@ ReadBytesPerSecond | A másodpercenként beolvasott bájtok száma
 WriteBytesPerSecond | Másodpercenként írt bájtok száma
 BytesPerSecond | Olvassa el és másodpercenként írt bájtok száma
 
-Minden lemezeken összesített értékeket szerezhető be úgy, hogy `"condition": "IsAggregate=True"`. Ahhoz, hogy egy adott eszköz (például/dev/sdf1) adatait, állítsa be `"condition": "Name=\\"/dev/sdf1\\""`.
+Minden lemezeken összesített értékeket szerezhető be úgy, hogy `"condition": "IsAggregate=True"`. beállítás tooget adatokat egy adott eszköz számára (például/dev/sdf1), `"condition": "Name=\\"/dev/sdf1\\""`.
 
 ## <a name="installing-and-configuring-lad-30-via-cli"></a>Telepítése és konfigurálása LAD 3.0 parancssori felület használatával
 
-Ha a védett beállítások PrivateConfig.json fájlban, és a nyilvános konfigurációs adatait a PublicConfig.json, futtassa ezt a parancsot:
+Ha a védett beállítások hello fájlban PrivateConfig.json és a nyilvános konfigurációs adatokat PublicConfig.json, futtassa ezt a parancsot:
 
 ```azurecli
 az vm extension set *resource_group_name* *vm_name* LinuxDiagnostic Microsoft.Azure.Diagnostics '3.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json
 ```
 
-A parancs feltételezi, hogy használja az Azure CLI Azure Resource Manager (arm) módját. LAD konfigurálása a klasszikus üzembe helyezési modell (ASM) virtuális gépeket, váltson "asm" módra (`azure config mode asm`), és hagyja ki ezt a parancsot az erőforráscsoport neve. További információkért lásd: a [platformfüggetlen parancssori felület dokumentáció](https://docs.microsoft.com/azure/xplat-cli-connect).
+hello parancs feltételezi, hogy a hello Azure Resource Manager módot (arm) a hello Azure parancssori felület. tooconfigure LAD a klasszikus üzembe helyezési modell (ASM) virtuális gépeket, váltson túl "asm" mód (`azure config mode asm`), és hagyja ki a hello erőforráscsoport-név hello parancsban. További információkért lásd: hello [platformfüggetlen parancssori felület dokumentáció](https://docs.microsoft.com/azure/xplat-cli-connect).
 
 ## <a name="an-example-lad-30-configuration"></a>Egy példa LAD 3.0 konfiguráció
 
-A fenti definíciók alapján, ez a minta LAD 3.0 bővítménykonfiguráció rövid. Szeretné alkalmazni ezt a mintát a helyzet, akkor érdemes használni a saját tárfiók neve, a fiók SAS-jogkivonat és a EventHubs SAS-tokenje.
+A definíciók, itt meg egy minta LAD 3.0 bővítménykonfiguráció rövid megelőző hello alapján. tooapply ez jelen példában tooyour kell használni a saját tárfióknév, SAS-jogkivonat fiókot, és EventHubs SAS-jogkivonatok.
 
 ### <a name="privateconfigjson"></a>PrivateConfig.json
 
@@ -585,15 +585,15 @@ Ezek a személyes beállítások konfigurálása:
 
 A nyilvános beállítások okozhat a LAD:
 
-* A százalékos processzoridő és használt-terület metrikák feltöltése a `WADMetrics*` tábla
-* Töltse fel üzenetek a syslog létesítmény "user" és a súlyosság "Infó" a `LinuxSyslog*` tábla
-* Töltse fel az elnevezett nyers OMI lekérdezési eredmények (PercentProcessorTime és PercentIdleTime) `LinuxCPU` tábla
-* Töltse fel a fájl sorainak hozzáfűzött `/var/log/myladtestlog` számára a `MyLadTestLog` tábla
+* Töltse fel a százalékos processzoridő és használt-terület toohello `WADMetrics*` tábla
+* Töltse fel a syslog létesítmény "user" és a súlyosság "Infó" toohello üzeneteit `LinuxSyslog*` tábla
+* Töltse fel a nyers OMI lekérdezési eredmények (PercentProcessorTime és PercentIdleTime) toohello nevű `LinuxCPU` tábla
+* Töltse fel a fájl sorainak hozzáfűzött `/var/log/myladtestlog` toohello `MyLadTestLog` tábla
 
 Minden esetben adatokat is feltöltött:
 
-* Az Azure Blob storage (a tároló neve: a JsonBlob fogadó meghatározottak szerint)
-* EventHubs végpont (meghatározottak szerint a EventHubs fogadó)
+* Az Azure Blob storage (a tároló neve: hello JsonBlob fogadó meghatározottak szerint)
+* EventHubs végpont (ahogy a hello EventHubs fogadó)
 
 ```json
 {
@@ -672,35 +672,35 @@ Minden esetben adatokat is feltöltött:
 }
 ```
 
-A `resourceId` konfigurációjában egyeznie kell, hogy a virtuális gép vagy virtuálisgép-méretezési állítsa be.
+Hello `resourceId` hello konfigurációs meg kell egyeznie, hogy hello VM vagy hello virtuálisgép-méretezési állítva.
 
-* Az Azure platform metrikák diagramkészítési és riasztás tudja az erőforrás-azonosítója a virtuális gép dolgozik. Várhatóan a keresési kulcs megtalálta az adatokat a virtuális gép az erőforrás-azonosítója használatával.
-* Azure automatikus skálázás használatakor, az erőforrás-azonosítója az automatikus skálázás konfigurációban meg kell egyeznie az erőforrás-azonosítója LAD használják.
-* Az erőforrás-azonosítója beépített LAD által írt JsonBlobs nevét.
+* Az Azure platform metrikák diagramkészítési és riasztás tudja hello dolgozunk a virtuális gép hello erőforrás-azonosítója. A virtuális gép hello resourceId hello keresési kulcs használatával toofind hello adatok azt vár.
+* Az Azure automatikus skálázás használatakor hello resourceId hello automatikus skálázás konfigurációban meg kell egyeznie hello resourceId LAD használják.
+* hello resourceId beépített LAD által írt JsonBlobs hello nevét.
 
 ## <a name="view-your-data"></a>Az adatok megtekintése
 
-Az Azure portál segítségével teljesítményadatainak megjelenítéséhez, vagy állítson be riasztásokat:
+Hello Azure portál tooview teljesítményadatok, vagy állítson be riasztásokat:
 
 ![Kép](./media/diagnostic-extension/graph_metrics.png)
 
-A `performanceCounters` adatok mindig egy Azure Storage táblázatban vannak tárolva. Az Azure Storage API-k sok nyelvekhez és platformokhoz érhetők el.
+Hello `performanceCounters` adatok mindig egy Azure Storage táblázatban vannak tárolva. Az Azure Storage API-k sok nyelvekhez és platformokhoz érhetők el.
 
-JsonBlob mosdók küldött adatok blobot, amely a nevű tárfiók tárolja a [beállítások védett](#protected-settings). A tárfiókban tárolt adatok bármely Azure Blob Storage API-k használatával is felhasználhatnak.
+TooJsonBlob mosdók küldött adatok blobot, amely a hello nevű hello tárfiók tárolja [beállítások védett](#protected-settings). Hello Blobadatok bármely Azure Blob Storage API-k használatával is felhasználhatnak.
 
-Emellett a felhasználói felület eszközök segítségével érik el az adatokat az Azure Storage:
+Ezenkívül használhatja a felhasználói felület eszközök tooaccess hello adatokat az Azure Storage:
 
 * A Visual Studio Server Explorer.
 * [A Microsoft Azure Tártallózó](https://azurestorageexplorer.codeplex.com/ "Azure Tártallózó").
 
-A Microsoft Azure Tártallózó munkamenet pillanatképe jeleníti meg a létrehozott Azure Storage-táblákat és a tárolók egy megfelelően konfigurált LAD 3.0 bővítmény a teszteléshez használt virtuális Gépen. A kép nem felel meg pontosan a [LAD 3.0 mintakonfiguráció](#an-example-lad-30-configuration).
+A Microsoft Azure Tártallózó munkamenet pillanatképe látható hello az Azure Storage-táblákat és a tárolók jön létre a teszteléshez használt virtuális gép egy megfelelően konfigurált LAD 3.0 bővítménnyel. hello kép nem egyezik pontosan hello [LAD 3.0 mintakonfiguráció](#an-example-lad-30-configuration).
 
 ![Kép](./media/diagnostic-extension/stg_explorer.png)
 
-Tekintse meg a megfelelő [EventHubs dokumentáció](../../event-hubs/event-hubs-what-is-event-hubs.md) megtudhatja, hogyan EventHubs végpont közzétett üzenetek felhasználását.
+Tekintse meg a megfelelő hello [EventHubs dokumentáció](../../event-hubs/event-hubs-what-is-event-hubs.md) toolearn hogyan tooconsume üzenetek közzétett tooan EventHubs végpont.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* A metrika értesítések [Azure figyelő](../../monitoring-and-diagnostics/insights-alerts-portal.md) a gyűjtött metrikáihoz.
+* A metrika értesítések [Azure figyelő](../../monitoring-and-diagnostics/insights-alerts-portal.md) hello metrikáihoz összegyűjtése.
 * Hozzon létre [diagramok figyelési](../../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) a metrikáihoz.
-* Megtudhatja, hogyan [hozzon létre egy virtuálisgép-méretezési csoport](/azure/virtual-machines/linux/tutorial-create-vmss) a mérőszámok segítségével vezérelheti, automatikus skálázást.
+* Ismerje meg, hogyan túl[hozzon létre egy virtuálisgép-méretezési csoport](/azure/virtual-machines/linux/tutorial-create-vmss) használ a metrikák toocontrol automatikus skálázást.

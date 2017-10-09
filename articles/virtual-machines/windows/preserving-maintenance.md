@@ -1,5 +1,5 @@
 ---
-title: "Virtuális gép megőrzi az karbantartási Windows virtuális gépek Azure-ban |} Microsoft Docs"
+title: "aaa VM megóvása karbantartása a Windows-alapú virtuális gépek Azure-ban |} Microsoft Docs"
 description: "A helyszíni virtuális gép áttelepítés megőrzi az frissítések memória."
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: zivr
-ms.openlocfilehash: 8888bafbc3aba24168312b611a9b4fbde25f376d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b798f0afd9d8dc60ca8a78f7cc77435a0ddc76fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vm-preserving-maintenance-with-in-place-vm-migration"></a>Virtuális gép megőrzi az karbantartási a helyszíni virtuális gép áttelepítése
 
-Amíg frissítések többségét üzemeltetett virtuális gépek nincs hatása, vannak esetek, ahol az összetevők vagy a szolgáltatások frissítéseket futó virtuális gépek (nélkül a virtuális gép teljes újraindítás) minimális zavaró tényező eredményez.
+Míg a frissítések többségét hello nincs hatása toohosted virtuális gépeket, vannak esetek, ahol frissítések toocomponents vagy szolgáltatások eredményez-e a minimális zavaró tényező toorunning virtuális gépek (nélkül hello virtuális gép teljes újraindítás).
 
-Ezeket a frissítéseket, amely lehetővé teszi a helyszíni élő áttelepítés, más néven "memória-megőrzi az update" technológiával történik. Amikor frissíti a gazdagép, a virtuális gép el van helyezve egy "felfüggesztett" állapotba kerül, RAM, a memória megőrzi, amíg az üzemeltetési környezet (pl. az alapul szolgáló operációs rendszert) alkalmazza a szükséges frissítések és javítások.
-A virtuális gép majd folytatódik a felfüggesztés 30 másodpercen belül.
-A virtuális gép órája a folytatás után automatikusan szinkronizálódik.
+Ezeket a frissítéseket, amely lehetővé teszi a helyszíni élő áttelepítés, más néven "memória-megőrzi az update" technológiával történik. Hello állomás frissítésekor hello virtuális gép el van helyezve egy "felfüggesztett" állapotba kerül, RAM, hello memóriája megőrzi az üzemeltetési környezet (pl. az alapul szolgáló operációs rendszert) hello hello szükséges frissítések és javítások alkalmazása közben.
+hello virtuális gép majd folytatódik a felfüggesztés 30 másodpercen belül.
+Folytatja a futtatását, miután a hello óra hello virtuális gép automatikus szinkronizálásának engedélyezése.
 
-Nem minden frissítés helyezhető üzembe ezzel a mechanizmussal, de a rövid felfüggesztési időszak miatt a frissítések ilyen telepítése nagymértékben csökkenti a virtuális gépekre gyakorolt hatást.
+Nem minden frissítés is telepíthető a mechanizmussal, de a rövid késleltetés időszak alatt a megadott ezen frissítéseinek telepítéséhez módon jelentősen csökkenti a hatás toovirtual gépek.
 
 Többpéldányos (virtuális gépek rendelkezésre állási csoportba) frissítései alkalmazott frissítési tartományok egyszerre.
 
-Egyes alkalmazások negatív hatással lehet több, mint a többire ezeket a frissítéseket. Valós idejű esemény feldolgozása, médiaadatfolyam vagy átkódolás vagy hálózati forgatókönyvek, magas teljesítmény végző alkalmazások például előfordulhat, hogy nem kell megtervezni, hogy egy 30 másodperces szünet működését. A virtuális gépen futó alkalmazások jövőbeli frissítések többet is megtudhat meghívásával a [ütemezett események](../virtual-machines-scheduled-events.md) API-ja a [Azure metaadat-szolgáltatás](../virtual-machines-instancemetadataservice-overview.md).
+Egyes alkalmazások negatív hatással lehet több, mint a többire ezeket a frissítéseket. Valós idejű esemény feldolgozása, médiaadatfolyam vagy átkódolás vagy hálózati forgatókönyvek, magas teljesítmény végző alkalmazások például nem lehet tervezett tootolerate egy 30 másodperces szünet. A virtuális gépen futó alkalmazások is információ a jövőbeli frissítések hívó hello [ütemezett események](../virtual-machines-scheduled-events.md) hello API-ja [Azure metaadat-szolgáltatás](../virtual-machines-instancemetadataservice-overview.md).

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Resource Manager-sablonok Linux számítási erőforrásokat üzembe helyezi |} Microsoft Docs"
+title: "Linux számítási erőforrások az Azure Resource Manager-sablonok aaaDeploying |} Microsoft Docs"
 description: "Azure virtuális gép DotNet fő oktatóanyag"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c3f9f98079e0c89d1231f9c3e62e82c33ad18236
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bc26805860fed47923d46fc84f357060f68a951
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-architecture-with-azure-resource-manager-templates-for-linux-vms"></a>Linux virtuális gépek Azure Resource Manager-sablonok alkalmazásarchitektúra
 
-Az Azure Resource Manager deployment fejlesztésekor számítási követelmények kell Azure-erőforrások és szolgáltatások kell hozzárendelni. Ha egy alkalmazás több http-végpontokról, egy adatbázist és egy szolgáltatás gyorsítótárazás adatokat tartalmaz, az Azure-erőforrások üzemeltető minden ezeket az összetevőket kell rationalized lehet. Például a zeneáruház mintaalkalmazás virtuális gépen futtatott webalkalmazás, és egy SQL-adatbázis, amely az Azure SQL-adatbázis található. 
+Az Azure Resource Manager deployment fejlesztésekor számítási követelményeinek leképezése toobe tooAzure erőforrásokat és szolgáltatásokat kell. Ha egy alkalmazás több http-végpontokról, egy adatbázist és egy szolgáltatás gyorsítótárazás adatokat tartalmaz, hello Azure-erőforrások, amely ezeket az összetevőket tárolni kell toobe rationalized. Például hello zeneáruház mintaalkalmazás virtuális gépen futtatott webalkalmazás, és egy SQL-adatbázis, amely az Azure SQL-adatbázis található. 
 
-Ez a dokumentum részletesen, hogyan állíthatók be a minta Azure Resource Manager-sablon a zeneáruház számítási erőforrásokat. Minden függőségeket és külön konfigurációt vannak kiemelve. A legjobb használhatóság érdekében előtelepítése a megoldást az Azure-előfizetés és a munkahelyi együtt az Azure Resource Manager-sablon egy példányát. A teljes sablon – itt található [zene tároló központi telepítését, az Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux). 
+Ez a dokumentum részletesen, hogyan hello minta Azure Resource Manager-sablon hello zeneáruház számítási erőforrások vannak konfigurálva. Minden függőségeket és külön konfigurációt vannak kiemelve. Hello legjobb élmény érdekében előtelepítése hello megoldás tooyour Azure-előfizetés és a munka hello Azure Resource Manager-sablon mellett egy példánya. hello teljes sablon – itt található [zene tároló központi telepítését, az Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux). 
 
 ## <a name="virtual-machine"></a>Virtuális gép
-Zene áruházból származó alkalmazás egy webalkalmazást, ahol az ügyfelek és vásárolhat zene tartalmazza. Miközben Számos Azure szolgáltatást, amely a webes alkalmazás, például egy virtuális gép használja. A minta zeneáruház sablont használ, a virtuális gép telepítve van, egy webkiszolgáló telepítése és a zeneáruház webhely telepítése és konfigurálása. Ez a cikk az csak a virtuális gép központi telepítés részleteit. A webalkalmazás-kiszolgáló és az alkalmazás konfigurációja egy újabb cikkben részleteit.
+hello zene áruház-alkalmazás egy webalkalmazást, ahol az ügyfelek és vásárolhat zene tartalmazza. Miközben Számos Azure szolgáltatást, amely a webes alkalmazás, például egy virtuális gép használja. Hello zeneáruház mintasablon használatával, a virtuális gép telepítve van, egy webkiszolgáló telepítése és hello zeneáruház webhely telepítése és konfigurálása. Ez a cikk hello szakét csak a hello virtuális gépek telepítése során részleteit. hello konfigurálása hello webkiszolgáló és hello alkalmazás egy újabb cikkben részleteit.
 
-A virtuális gépek felveheti egy sablont a Visual Studio új erőforrás hozzáadása varázsló használatával, vagy érvényes JSON beszúrása a központi telepítési sablont. Virtuális gépek telepítésekor számos kapcsolódó erőforrások is szükséges. A sablon létrehozása a Visual Studio használatával, ha ezeket az erőforrásokat jön létre. Ha manuálisan hoz létre, a sablon, ezeket az erőforrásokat kell szúrja be, és konfigurálva.
+A virtuális gép tooa sablont hello Visual Studio új erőforrás hozzáadása varázsló, vagy érvényes JSON beszúrása hello központi telepítési sablon használatával lehet hozzáadni. Virtuális gépek telepítésekor számos kapcsolódó erőforrások is szükséges. Ha a Visual Studio toocreate hello sablonnal, ezeket az erőforrásokat jön létre. Ha manuálisan hoz létre, hello sablon, ezeket az erőforrásokat kell toobe szúrja be, és konfigurálva.
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [virtuális gép JSON](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L295).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [virtuális gép JSON](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L295).
 
 ```json
 {
@@ -61,14 +61,14 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
     }
 ```
 
-Amennyiben telepített, a virtuális gép tulajdonságai láthatók az Azure-portálon.
+Amennyiben a telepített, hello Azure-portálon látható a hello virtuálisgép-tulajdonságokat.
 
 ![Virtuális gép](./media/dotnet-core-2-architecture/vm.png)
 
 ## <a name="storage-account"></a>Tárfiók
-Storage-fiókok rendelkezik számos tárolási lehetőségeket és képességeket. A környezet az Azure virtuális gépek a tárfiók tárolja a virtuális merevlemezek a virtuális gép és bármelyik adatlemeznek. A zeneáruház minta magában foglalja a központi telepítésben az egyes virtuális gépek virtuális merevlemez tárolásához egy tárfiókot. 
+Storage-fiókok rendelkezik számos tárolási lehetőségeket és képességeket. Hello környezet Azure virtuális gépek a tárfiók tárolja a hello virtuális merevlemezek hello virtuális gép és bármelyik adatlemeznek. hello zeneáruház minta egy tárolási fiók toohold hello virtuális merevlemez-meghajtóról minden virtuális gép hello telepítési tartalmazza. 
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [Tárfiók](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L109).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [Tárfiók](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L109).
 
 ```json
 {
@@ -85,9 +85,9 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
 }
 ```
 
-A storage-fiók társítása egy virtuális géppel a virtuális gép Resource Manager sablon deklarációjában belül. 
+A storage-fiók társítása a virtuális gépekkel belül hello Resource Manager sablon deklaráció hello virtuális gép. 
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [virtuális gép és a Storage-fiókhoz társításának](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L341).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [virtuális gép és a Storage-fiókhoz társításának](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L341).
 
 ```json
 "osDisk": {
@@ -100,20 +100,20 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
 }
 ```
 
-A központi telepítést követően a tárfiók tekintheti meg az Azure portálon.
+A központi telepítést követően hello tárfiók tekinthető hello Azure-portálon.
 
 ![Tárfiók](./media/dotnet-core-2-architecture/storacct.png)
 
-Kattintson a fiók blob tároló, a virtuális merevlemez-meghajtóról fájl sablonnal telepített virtuális gépek láthatók.
+Kattintson hello fiók tárolóra, hello virtuális merevlemezfájlra hello sablonnal telepített virtuális gépek láthatók.
 
 ![Virtuális merevlemezek](./media/dotnet-core-2-architecture/vhd.png)
 
 További információ az Azure Storage: [Azure Storage-dokumentációt](https://azure.microsoft.com/documentation/services/storage/).
 
 ## <a name="virtual-network"></a>Virtual Network
-Ha egy virtuális géphez szükséges például képes kommunikálni más virtuális gépek és az Azure-erőforrások belső hálózat, a egy Azure virtuális hálózatra szükség.  Virtuális hálózat tegye a virtuális gép elérhetővé az interneten keresztül. Nyilvános egy nyilvános IP-címet, amely ezen részében részletes szükséges.
+Ha egy virtuális géphez szükséges például hello képességét toocommunicate más virtuális gépek és az Azure-erőforrások belső hálózat, a egy Azure virtuális hálózatra szükség.  Virtuális hálózat nem tesz hello virtuális gép keresztül elérhető hello internet. Nyilvános egy nyilvános IP-címet, amely ezen részében részletes szükséges.
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [virtuális hálózat és alhálózat](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L136).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [virtuális hálózat és alhálózat](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L136).
 
 ```json
 {
@@ -148,14 +148,14 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
 }
 ```
 
-Azure-portálról a virtuális hálózati illusztráción láthatóhoz hasonló következő. Figyelje meg, hogy a virtuális hálózat összes virtuális gépet a sablon használatával telepített vannak csatlakoztatva.
+Hello Azure-portálon, a virtuális hálózati hello hello kép a következő tűnik. Figyelje meg, hogy a hello sablonnal telepített összes virtuális gép virtuális hálózathoz csatolt toohello.
 
 ![Virtual Network](./media/dotnet-core-2-architecture/vnet.png)
 
 ## <a name="network-interface"></a>Hálózati adapter
- A hálózati adaptert egy virtuális hálózathoz, pontosabban, hogy definiálva van a virtuális hálózati alhálózat csatlakoztat egy virtuális gépet. 
+ Egy adott hálózati csatoló kapcsolódik a virtuális gép tooa virtuális hálózatra, pontosabban tooa-alhálózatot, amely a virtuális hálózati hello definiálva van. 
 
- Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [hálózati illesztő](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L166).
+ Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [hálózati illesztő](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L166).
 
 ```json
 {
@@ -202,9 +202,9 @@ Azure-portálról a virtuális hálózati illusztráción láthatóhoz hasonló 
 }
 ```
 
-Minden egyes virtuálisgép-erőforrást tartalmaz egy hálózati profilt. A hálózati illesztő a virtuális gépet a profil hozzá rendelve.  
+Minden egyes virtuálisgép-erőforrást tartalmaz egy hálózati profilt. hello hálózati illesztő hello virtuális géppel a profil hozzá rendelve.  
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [virtuális gép hálózati profil](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L350).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [virtuális gép hálózati profil](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L350).
 
 ```json
 "networkProfile": {
@@ -216,18 +216,18 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
 }
 ```
 
-Azure-portálról a hálózati illesztő illusztráción láthatóhoz hasonló következő. A belső IP-cím és a virtuális gép társítása a hálózati illesztő erőforráson tekinthet meg.
+Hello Azure-portálon, a hello hálózati adapter a következő kép hello tűnik. hello belső IP-cím és a virtuális gép társítása hello hello hálózati illesztő erőforráson tekinthet meg.
 
 ![Hálózati adapter](./media/dotnet-core-2-architecture/nic.png)
 
 Azure virtuális hálózatokon lévő további információkért lásd: [Azure Virtual Network dokumentáció](https://azure.microsoft.com/documentation/services/virtual-network/).
 
 ## <a name="azure-sql-database"></a>Azure SQL Database
-Mellett a zeneáruház webhelyet üzemeltető virtuális gép egy Azure SQL-adatbázis központi telepítése a zene tároló adatbázis. Az Azure SQL Database használata itt előnye, hogy nincs szükség a második virtuális gépek csoportja tartalmazza, és a szolgáltatás beépített méretezés és a rendelkezésre állási.
+Ezenkívül tooa virtuálisgép üzemeltetési hello zeneáruház webhely, az Azure SQL Database egy telepített toohost hello zene tároló adatbázis. hello Azure SQL Database használata itt előnye, hogy a virtuális gépek egy második együttesét nincs szükség, és a méretezés és a rendelkezésre állási hello szolgáltatás be van építve.
 
-Azure SQL-adatbázis a Visual Studio új erőforrás hozzáadása varázsló, vagy érvényes JSON beszúrása egy sablon használatával adhatók meg. Az SQL Server-erőforrást tartalmaz egy felhasználónevet és jelszót, amely az SQL-példányon rendszergazdai jogokkal engedélyezett. Emellett egy SQL-tűzfal erőforrás kerül. Alapértelmezés szerint az Azure-ban üzemeltetett alkalmazások képesek csatlakozni az SQL-példányhoz. Ahhoz, hogy külső alkalmazás ilyen egy SQL Server Management studio segítségével csatlakozzon az SQL-példány, a tűzfal kell megadni. Az a zeneáruház bemutató rendben az alapértelmezett konfigurációt. 
+Azure SQL-adatbázis hello Visual Studio új erőforrás hozzáadása varázsló, vagy érvényes JSON beszúrása egy sablon használatával adhatók meg. hello SQL Server-erőforrást tartalmaz egy felhasználónevet és jelszót, amely rendszergazdai jogosultságokkal az SQL-példányában hello engedélyezett. Emellett egy SQL-tűzfal erőforrás kerül. Alapértelmezés szerint az Azure-ban üzemeltetett alkalmazások értékek képes tooconnect hello SQL-példánnyal. tooallow külső alkalmazás ilyen egy SQL Server Management studio tooconnect toohello SQL-példányhoz, hello tűzfal toobe konfigurálni kell. A hello érthetősége hello zeneáruház bemutató hello alapértelmezett konfiguráció rendben. 
 
-Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát belül a Resource Manager-sablon – [Azure SQL Database](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401).
+Kövesse a hivatkozást toosee hello JSON minta belül hello Resource Manager-sablon – [Azure SQL Database](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401).
 
 ```json
 {
@@ -262,7 +262,7 @@ Hajtsa végre az erre a hivatkozásra kattintva tekintse meg a JSON-mintát bel�
 }
 ```
 
-Az SQL server és adatbázis MusicStore, mint az Azure portálon nézetét.
+Egy nézet hello SQL server és MusicStore adatbázis hello Azure-portálon látható módon.
 
 ![SQL Server](./media/dotnet-core-2-architecture/sql.png)
 

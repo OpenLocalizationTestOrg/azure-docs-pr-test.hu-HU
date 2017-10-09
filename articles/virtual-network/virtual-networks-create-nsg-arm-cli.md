@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre a hálózati biztonsági csoport – Azure CLI 2.0 |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre és telepíthet a hálózati biztonsági csoportok az Azure CLI 2.0 használatával."
+title: "hálózati biztonsági csoport – Azure CLI 2.0 aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és hálózati biztonsági csoportok használatával hello Azure CLI 2.0 telepítése."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,36 +16,36 @@ ms.workload: infrastructure-services
 ms.date: 02/17/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8efb3ab66d07875b51f723fed5594bcb477ed025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b1d60676331bf5e2bbbb046c747477be9d3338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-network-security-groups-using-the-azure-cli-20"></a>Hálózati biztonsági csoportok használata az Azure CLI 2.0 létrehozása
+# <a name="create-network-security-groups-using-hello-azure-cli-20"></a>Hálózati biztonsági csoportok használatával hello Azure CLI 2.0 létrehozása
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók 
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat 
 
-A következő CLI-verziók egyikével elvégezheti a feladatot: 
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre: 
 
-- [Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez 
-- [Az Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -erőforrás felügyeleti telepítési modell (Ez a cikk) a következő generációs parancssori felület
+- [Az Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – hello klasszikus és resource management üzembe helyezési modellek számára a parancssori felület 
+- [Az Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell (Ez a cikk)
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-A következő Példaparancsok Azure CLI 2.0 már a fenti forgatókönyv alapján létre egy egyszerű környezetben várható. 
+hello minta Azure CLI 2.0 parancsokat következő várt már a fenti hello forgatókönyv alapján létre egy egyszerű környezetben. 
 
-## <a name="create-the-nsg-for-the-frontend-subnet"></a>Az NSG létrehozása a `FrontEnd` alhálózati
+## <a name="create-hello-nsg-for-hello-frontend-subnet"></a>Hozzon létre a hello NSG hello `FrontEnd` alhálózati
 
-Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapján, kövesse a lépéseket következő.
+az NSG nevű toocreate *NSG-előtér* alapján az előző hello forgatókönyv, hajtsa végre a hello lépéseket következő.
 
-1. Ha még nem még konfigurál, a legutóbbi [Azure CLI 2.0](/cli/azure/install-az-cli2) és való bejelentkezéshez az Azure fiók használatával [az bejelentkezési](/cli/azure/#login). 
+1. Ha még nem még telepít, és hello konfigurálása legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure-fiók használatával jelentkezzen [az bejelentkezési](/cli/azure/#login). 
 
-2. Hozzon létre egy NSG-t használ a [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) parancsot. 
+2. Hozzon létre egy NSG-t használó hello [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) parancsot. 
 
     ```azurecli
     az network nsg create \
@@ -56,11 +56,11 @@ Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapjá
 
     Paraméterek:
    
-   * `--resource-group`: Az erőforráscsoport, ahol létrehozzák az NSG neve. A mi esetünkben *TestRG*.
-   * `--location`: Az azure-régió, ahol létrejön az új NSG. A mi esetünkben *westus*.
-   * `--name`: Az új NSG neve. A mi esetünkben *NSG-előtérbeli*.
+   * `--resource-group`: Hello NSG létrehozási helyének hello erőforráscsoport nevét. A mi esetünkben *TestRG*.
+   * `--location`: Az azure-régió, ahol hello új NSG jön létre. A mi esetünkben *westus*.
+   * `--name`: Hello nevét új NSG. A mi esetünkben *NSG-előtérbeli*.
 
-    A várható kimenete meglehetősen bit, többek között az alapértelmezett szabályok listáját. A következő példa bemutatja az alapértelmezett szabályok használatával egy JMESPATH lekérdezés szűrő a `table` kimeneti formátum:
+    hello várt kimeneti meglehetősen bit, többek között az összes hello alapértelmezett szabályok listáját. hello alábbi példa bemutatja hello alapértelmezett szabályok JMESPATH lekérdezés szűrő használata hello `table` kimeneti formátum:
 
     ```azurecli
     az network nsg show \
@@ -77,16 +77,16 @@ Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapjá
         Allow     Allow inbound traffic from all VMs in VNET              *                Inbound           65000
         Allow     Allow inbound traffic from azure load balancer          *                Inbound           65001
         Deny      Deny all inbound traffic                                *                Inbound           65500
-        Allow     Allow outbound traffic from all VMs to all VMs in VNET  *                Outbound          65000
-        Allow     Allow outbound traffic from all VMs to Internet         *                Outbound          65001
+        Allow     Allow outbound traffic from all VMs tooall VMs in VNET  *                Outbound          65000
+        Allow     Allow outbound traffic from all VMs tooInternet         *                Outbound          65001
         Deny      Deny all outbound traffic                               *                Outbound          65500
 
 
 
-3. Hozzon létre egy szabályt, amely hozzáférést biztosít a 3389-es port (RDP) az internetről a [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) parancsot.
+3. Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 3389-es (RDP) a hello Internet a hello [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) parancsot.
 
     > [!NOTE]
-    > Attól függően, hogy a rendszerhéj használ, előfordulhat, hogy módosítania a `*` az argumentumok, hogy ne bontsa ki a következő argumentum végrehajtása előtt a következő karakter.
+    > Attól függően, hogy hello felületet használ, szükség lehet a toomodify hello `*` karakter hello argumentumok nem tooexpand hello argumentum végrehajtása előtt.
    
     ```azurecli
     az network nsg rule create \
@@ -126,21 +126,21 @@ Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapjá
 
     Paraméterek:
 
-    * `--resource-group testrg`: Az erőforráscsoport használatára. Vegye figyelembe, hogy a rendszer azonban nem.
-    * `--nsg-name NSG-FrontEnd`: A szabály létrehozása zajlik az NSG neve.
-    * `--name rdp-rule`: Az új szabály nevét.
-    * `--access Allow`: A hozzáférési szint a szabály (Megtagadás vagy engedélyezés).
+    * `--resource-group testrg`: hello erőforrás csoport toouse. Vegye figyelembe, hogy a rendszer azonban nem.
+    * `--nsg-name NSG-FrontEnd`: A mely hello-szabály jön létre hello NSG neve.
+    * `--name rdp-rule`: Hello új szabály nevét.
+    * `--access Allow`: A hozzáférési szint hello szabály (Megtagadás vagy engedélyezés).
     * `--protocol Tcp`: A protokoll (Tcp, Udp vagy *).
-    * `--direction Inbound`: A (bejövő vagy kimenő) kapcsolat irányát.
-    * `--priority 100`: A szabály prioritását.
+    * `--direction Inbound`: Irányát (bejövő vagy kimenő) hello kapcsolat.
+    * `--priority 100`: Hello szabály prioritását.
     * `--source-address-prefix Internet`: Forrás címelőtagot CIDR vagy az alapértelmezett címkéket használ.
-    * `--source-port-range "*"`: A portot vagy porttartományt forrás. Az portot, amelyet a kapcsolat megnyitása.
+    * `--source-port-range "*"`: A portot vagy porttartományt forrás. Hello kapcsolatot megnyitó port.
     * `--destination-address-prefix "*"`: Cél címelőtagot CIDR vagy az alapértelmezett címkéket használ.
-    * `--destination-port-range 3389`: A célport vagy porttartomány. Az port, amely megkapja a kapcsolódási kérelmet.
+    * `--destination-port-range 3389`: A célport vagy porttartomány. Az port, amely megkapja a hello kapcsolódási kérelmet.
 
 
 
-4. Hozzon létre egy szabályt, amely engedélyezi a hozzáférést a port a 80-as (HTTP) az internetről **az hálózati nsg-szabály létrehozása** parancsot.
+4. Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 80-as (HTTP) az hello Internet **az hálózati nsg-szabály létrehozása** parancsot.
    
     ```azurecli
     az network nsg rule create \
@@ -178,7 +178,7 @@ Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapjá
     }
     ```
 
-5. Az NSG kötni a **előtér** alhálózat a [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) parancs.
+5. Kötési hello NSG toohello **előtér** hello alhálózat [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) parancsot.
         
     ```azurecli
     az network vnet subnet update \
@@ -231,10 +231,10 @@ Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapjá
     }
     ```
 
-## <a name="create-the-nsg-for-the-backend-subnet"></a>Az NSG létrehozása a `BackEnd` alhálózati
-Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv alapján, kövesse a lépéseket következő.
+## <a name="create-hello-nsg-for-hello-backend-subnet"></a>Hozzon létre a hello NSG hello `BackEnd` alhálózati
+az NSG nevű toocreate *NSG-háttérrendszer* alapján az előző hello forgatókönyv, hajtsa végre a hello lépéseket következő.
 
-1. Hozzon létre a `NSG-BackEnd` az NSG **az hálózati nsg létrehozása**.
+1. Hozzon létre hello `NSG-BackEnd` az NSG **az hálózati nsg létrehozása**.
    
     ```azurecli
     az network nsg create \
@@ -243,9 +243,9 @@ Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv ala
     --location centralus
     ```
    
-    2. lépéshez, előző, mint a várt kimeneti elég nagy, beleértve az alapértelmezett szabályokat.
+    Ahogy az előző, 2. lépés hello várható kimenete túl nagy, beleértve az alapértelmezett szabályokat.
    
-2. Hozzon létre egy szabályt, amely hozzáférést biztosít az 1433-as port (SQL) az a `FrontEnd` alhálózat a **az hálózati nsg-szabály létrehozása** parancsot.
+2. Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 1433-as port (SQL) a hello `FrontEnd` hello alhálózat **az hálózati nsg-szabály létrehozása** parancsot.
    
     ```azurecli
     az network nsg rule create \
@@ -283,7 +283,7 @@ Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv ala
     }
     ```
 
-3. Hozzon létre egy szabályt, amely megtagadja a hozzáférést az Internet használatát az **az hálózati nsg-szabály létrehozása** parancsot.
+3. Hozzon létre egy szabályt, amely megtagadja a hozzáférést toohello Internet használatával hello **az hálózati nsg-szabály létrehozása** parancsot.
    
     ```azurecli
     az network nsg rule create \
@@ -321,7 +321,7 @@ Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv ala
     }
     ```
 
-4. Az NSG kötni a `BackEnd` alhálózati használata a **az hálózati vnet alhálózati set** parancs.
+4. Kötési hello NSG toohello `BackEnd` hello alhálózatot **az hálózati vnet alhálózati set** parancsot.
    
     ```azurecli
     az network vnet subnet update \

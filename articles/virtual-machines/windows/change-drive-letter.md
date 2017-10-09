@@ -1,6 +1,6 @@
 ---
-title: "A d meghajtó, a virtuális gépek adatlemezt |} Microsoft Docs"
-description: "Ismerteti, hogyan módosíthat meghajtóbetűjelet egy Windows virtuális gép számára, hogy a d meghajtó használhatja egy adatmeghajtó."
+title: "Ellenőrizze, hogy a virtuális gépek adatlemezt D: meghajtó hello |} Microsoft Docs"
+description: "Ismerteti, hogyan toochange meghajtó-betűjelek, egy Windows virtuális gép számára, hogy egy adatmeghajtó hello D: meghajtó is használhatja."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: cynthn
-ms.openlocfilehash: 7667175c01be2421bfc3badd83b1d8aaeb29bfde
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43939da1a890ac4049266487951e3889aa0ed9d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-d-drive-as-a-data-drive-on-a-windows-vm"></a>A d meghajtó használata a Windows virtuális gép egy adatmeghajtó
-Ha az alkalmazást kell használni, a D meghajtó adatainak tárolásához, a következő lépések követésével más meghajtóbetűt használ az ideiglenes lemez. Soha ne használja az ideiglenes lemezt, akkor szükség adatok tárolására.
+# <a name="use-hello-d-drive-as-a-data-drive-on-a-windows-vm"></a>Egy adatmeghajtó a virtuális gép Windows hello D: meghajtó használata
+Ha az alkalmazásnak toouse hello D meghajtó toostore adatokat, kövesse ezeket utasításokat toouse meghajtó-betűjelű más hello ideiglenes lemez. Soha ne használja, hogy szükséges-e tookeep hello mennyiségű ideiglenes lemezes toostore adatokat.
 
-Átméretezésekor vagy **Stop (Deallocate)** virtuális gép, ez a virtuális gép egy olyan új hipervizorra elhelyezésének indíthat. A tervezett vagy nem tervezett karbantartási események is kiválthatják az elhelyezést. Ebben a forgatókönyvben a mennyiségű ideiglenes lemezes lesz hozzárendelve az első elérhető meghajtóbetűjelet. Ha az alkalmazás kifejezetten a d meghajtón van, akkor lépések végrehajtásával ideiglenesen helyezze át a pagefile.sys, új adatlemezzel és rendelje hozzá a D betűt, majd helyezze át a pagefile.sys vissza az ideiglenes meghajtón. Művelet befejeződése után Azure nem veszi vissza a d.: Ha a virtuális gép áthelyezése egy másik hipervizor.
+Átméretezésekor vagy **Stop (Deallocate)** virtuális gép, ez indíthatnak hello virtuális gép tooa új hipervizor elhelyezését. A tervezett vagy nem tervezett karbantartási események is kiválthatják az elhelyezést. Ebben a forgatókönyvben a hello mennyiségű ideiglenes lemezes lesz máshoz hozzárendelt toohello első elérhető meghajtóbetűjelet. Ha olyan alkalmazás, amely kifejezetten a hello D: meghajtó szükséges, toofollow szüksége ezen lépéseket tootemporarily áthelyezés hello pagefile.sys, új adatlemezt csatolni, és rendelje hozzá D hello betűt, és a move hello pagefile.sys toohello ideiglenes meghajtó biztonsági. Művelet befejeződése után Azure nem veszi vissza hello D: Ha hello VM áthelyezése tooa különböző hipervizor.
 
-További információ a hogyan Azure az ideiglenes lemezt használ: [az ideiglenes meghajtón a Microsoft Azure virtuális gépeken ismertetése](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+További információ a hogyan Azure hello ideiglenes lemezt használ: [hello ideiglenes meghajtó Microsoft Azure virtuális gépeken ismertetése](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
-## <a name="attach-the-data-disk"></a>Az adatlemez csatolása
-Először a adatlemez csatolása a virtuális gép lesz szüksége. Ehhez a portál használatával lásd: [hogyan csatlakoztathatja az Azure-portálon kezelt adatlemezt](attach-managed-disk-portal.md).
+## <a name="attach-hello-data-disk"></a>Hello adatlemez csatolása
+Első lépésként tooattach hello adatok lemez toohello virtuális gép lesz szüksége. toodo a hello portál használatával, lásd: [hogyan tooattach felügyelt adatok hello Azure-portálon a lemez](attach-managed-disk-portal.md).
 
-## <a name="temporarily-move-pagefilesys-to-c-drive"></a>Ideiglenesen a C meghajtó pagefile.sys áthelyezése
-1. Csatlakozzon a virtuális géphez. 
-2. Kattintson a jobb gombbal a **Start** menüre, majd válassza **rendszer**.
-3. A bal oldali menüben válassza ki a **Speciális rendszerbeállítások**.
-4. Az a **teljesítmény** szakaszban jelölje be **beállítások**.
-5. Válassza ki a **speciális** fülre.
-6. Az a **virtuális memória** szakaszban jelölje be **módosítása**.
-7. Válassza ki a **C** meghajtó, és kattintson a **rendszer kezeli a méretet** majd **beállítása**.
-8. Válassza ki a **D** meghajtó, és kattintson a **nincs lapozófájl** majd **beállítása**.
-9. Az Alkalmaz gombra. Egy, hogy a számítógép újra kell indítani a módosítások érvénybe lépéséhez figyelmeztetés fog megjelenni.
-10. A virtuális gép újraindításához.
+## <a name="temporarily-move-pagefilesys-tooc-drive"></a>Ideiglenesen a pagefile.sys tooC meghajtó áthelyezése
+1. Csatlakoztassa a toohello virtuális gépet. 
+2. Kattintson a jobb gombbal hello **Start** menüre, majd válassza **rendszer**.
+3. Hello bal oldali menüben válasszon ki **Speciális rendszerbeállítások**.
+4. A hello **teljesítmény** szakaszban jelölje be **beállítások**.
+5. Jelölje be hello **speciális** fülre.
+6. A hello **virtuális memória** szakaszban jelölje be **módosítása**.
+7. Jelölje be hello **C** meghajtó, és kattintson a **rendszer kezeli a méretet** , majd **beállítása**.
+8. Jelölje be hello **D** meghajtó, és kattintson a **nincs lapozófájl** , majd **beállítása**.
+9. Az Alkalmaz gombra. Egy hello számítógépen kell toobe hello módosítások tootake ronthatja a újraindul figyelmeztetés fog megjelenni.
+10. Hello virtuális gép újraindításához.
 
-## <a name="change-the-drive-letters"></a>A meghajtó-betűjelek módosítása
-1. Miután a virtuális gép újraindult, jelentkezzen be a virtuális gép újra.
-2. Kattintson a **Start** menü és típus **diskmgmt.msc** és le az ENTER billentyűt. A Lemezkezelés eszköz indul el.
-3. Kattintson a jobb gombbal a **D**, az ideiglenes tárolási meghajtó, és válassza ki **meghajtóbetűjel és elérési utak**.
+## <a name="change-hello-drive-letters"></a>Hello meghajtóbetűjelek módosítása
+1. Egyszer hello a virtuális gép újraindul, jelentkezzen be a virtuális gép toohello.
+2. Kattintson a hello **Start** menüt, és írja be **diskmgmt.msc** és le az ENTER billentyűt. A Lemezkezelés eszköz indul el.
+3. Kattintson a jobb gombbal a **D**, hello ideiglenes tárolási meghajtó, és válassza ki **meghajtóbetűjel és elérési utak**.
 4. A meghajtóbetűjelet, válasszon egy új meghajtót például **T** majd **OK**. 
-5. Kattintson a jobb gombbal az adatok lemezre, és válassza ki **módosítása Meghajtóbetűjel és elérési út**.
+5. Kattintson a jobb gombbal a hello adatok lemezen, és válassza ki **módosítása Meghajtóbetűjel és elérési út**.
 6. A meghajtóbetűjelet, jelölje ki a meghajtót **D** majd **OK**. 
 
-## <a name="move-pagefilesys-back-to-the-temporary-storage-drive"></a>Pagefile.sys helyezze vissza a ideiglenes tárolási meghajtó
-1. Kattintson a jobb gombbal a **Start** menüre, majd válassza **rendszer**
-2. A bal oldali menüben válassza ki a **Speciális rendszerbeállítások**.
-3. Az a **teljesítmény** szakaszban jelölje be **beállítások**.
-4. Válassza ki a **speciális** fülre.
-5. Az a **virtuális memória** szakaszban jelölje be **módosítása**.
-6. Válassza ki az operációs rendszer meghajtót **C** kattintson **nincs lapozófájl** majd **beállítása**.
-7. Jelölje ki az átmeneti tárolási meghajtót **T** , majd **rendszer kezeli a méretet** majd **beállítása**.
-8. Kattintson az **Alkalmaz** gombra. Egy, hogy a számítógép újra kell indítani a módosítások érvénybe lépéséhez figyelmeztetés fog megjelenni.
-9. A virtuális gép újraindításához.
+## <a name="move-pagefilesys-back-toohello-temporary-storage-drive"></a>Pagefile.sys hátsó toohello ideiglenes tárolási meghajtó áthelyezése
+1. Kattintson a jobb gombbal hello **Start** menüre, majd válassza **rendszer**
+2. Hello bal oldali menüben válasszon ki **Speciális rendszerbeállítások**.
+3. A hello **teljesítmény** szakaszban jelölje be **beállítások**.
+4. Jelölje be hello **speciális** fülre.
+5. A hello **virtuális memória** szakaszban jelölje be **módosítása**.
+6. Jelölje ki az operációs rendszer hello meghajtót **C** kattintson **nincs lapozófájl** majd **beállítása**.
+7. Válassza ki a hello ideiglenes tárolási meghajtó **T** , majd **rendszer kezeli a méretet** , majd **beállítása**.
+8. Kattintson az **Alkalmaz** gombra. Egy hello számítógépen kell toobe hello módosítások tootake ronthatja a újraindul figyelmeztetés fog megjelenni.
+9. Hello virtuális gép újraindításához.
 
 ## <a name="next-steps"></a>Következő lépések
-* A tárterület érhető el a virtuális gép által növelhető [adatlemezt csatol további](attach-managed-disk-portal.md).
+* Hello tárolási elérhető tooyour virtuális gép által növelhető [adatlemezt csatol további](attach-managed-disk-portal.md).
 

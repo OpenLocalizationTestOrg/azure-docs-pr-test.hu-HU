@@ -1,6 +1,6 @@
 ---
-title: "Windows virtuális gép létrehozása az Azure-sablon alapján |} Microsoft Docs"
-description: "A Resource Manager-sablon és a PowerShell segítségével egyszerűen hozzon létre egy új Windows virtuális Gépet."
+title: "a Windows virtuális gépek Azure-ban sablonból aaaCreate |} Microsoft Docs"
+description: "A Resource Manager-sablont használ, és PowerShell tooeasily hozzon létre egy új Windows virtuális Gépet."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 07/18/2017
 ms.author: davidmu
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ddab80262fe27c1f5995858ec7de75d7c46df081
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 630111482c7dc046091632e2ed458ac143325d59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-from-a-resource-manager-template"></a>Windows rendszerű virtuális gép létrehozása egy Resource Manager sablon
 
-Ez a cikk bemutatja, hogyan telepítheti az Azure Resource Manager-sablon PowerShell használatával. A sablon az Ön által létrehozott telepít egy új virtuális hálózatot egyetlen alhálózattal Windows Server rendszerű egyetlen virtuális gépet.
+Ez a cikk bemutatja, hogyan toodeploy Azure Resource Manager sablon PowerShell használatával. az Ön által létrehozott hello sablon telepíti a Windows Server rendszert futtató új virtuális hálózatot egyetlen alhálózattal egyetlen virtuális gép.
 
-A virtuálisgép-erőforrás részletes ismertetését lásd: [Azure Resource Manager-sablonokban a virtuális gépek](template-description.md). A sablon összes erőforrásokra vonatkozó további információkért lásd: [Azure Resource Manager sablonokhoz](../../azure-resource-manager/resource-manager-template-walkthrough.md).
+Virtuálisgép-erőforrás hello részletes ismertetését lásd: [Azure Resource Manager-sablonokban a virtuális gépek](template-description.md). A sablon erőforrásainak hello kapcsolatos további információkért lásd: [Azure Resource Manager sablonokhoz](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Öt perc kell vennie a cikkben leírt lépéseket tennie.
+Öt perc toodo hello ebben a cikkben ismertetett visszaállítási lépésekkel kell vennie.
 
 ## <a name="install-azure-powershell"></a>Az Azure PowerShell telepítése
 
-Az Azure PowerShell legfrissebb verziójának telepítésével, a kívánt előfizetés kiválasztásával és a fiókjába való bejelentkezéssel kapcsolatos információkért lásd: [How to install and configure Azure PowerShell](../../powershell-install-configure.md) (Az Azure PowerShell telepítése és konfigurálása).
+Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](../../powershell-install-configure.md) hello Azure PowerShell legújabb verziójának telepítése, az előfizetés kiválasztásával és tooyour fiók bejelentkezés kapcsolatos információkat.
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
@@ -44,17 +44,17 @@ Minden erőforrás kell telepíteni egy [erőforráscsoport](../../azure-resourc
     Get-AzureRmLocation | sort DisplayName | Select DisplayName
     ```
 
-2. Az erőforráscsoport létrehozása a kiválasztott helyen. Ez a példa bemutatja nevű erőforráscsoport **myResourceGroup** a a **USA nyugati régiója** helye:
+2. Hello erőforráscsoport kiválasztott hello a helyen hozza létre. Ez a példa bemutatja nevű erőforráscsoport létrehozása hello **myResourceGroup** a hello **USA nyugati régiója** helye:
 
     ```powershell   
     New-AzureRmResourceGroup -Name "myResourceGroup" -Location "West US"
     ```
 
-## <a name="create-the-files"></a>A fájlok létrehozása
+## <a name="create-hello-files"></a>Hello-fájlok létrehozása
 
-Ebben a lépésben létrehoz egy sablonfájlban, amely telepíti az erőforrások és paraméterfájl, amely megadja az paraméterértékeket a sablonhoz. Is létrehozhat egy engedélyezési fájlt, amely az Azure Resource Manager műveletek végrehajtásához használatos.
+Ebben a lépésben létrehoz egy sablonfájlban hello erőforrások műveletein és paraméterfájl, amely megadja az paraméter értékek toohello sablont. Is létrehozhat egy engedélyezési fájlt, amely használt tooperform Azure Resource Manager műveletek.
 
-1. Hozzon létre egy fájlt *CreateVMTemplate.json* , és ez a JSON-kód felvétele:
+1. Hozzon létre egy fájlt *CreateVMTemplate.json* , és adja hozzá a JSON-kód tooit:
 
     ```json
     {
@@ -159,7 +159,7 @@ Ebben a lépésben létrehoz egy sablonfájlban, amely telepíti az erőforráso
     }
     ```
 
-2. Hozzon létre egy fájlt *Parameters.json* , és ez a JSON-kód felvétele:
+2. Hozzon létre egy fájlt *Parameters.json* , és adja hozzá a JSON-kód tooit:
 
     ```json
     {
@@ -182,18 +182,18 @@ Ebben a lépésben létrehoz egy sablonfájlban, amely telepíti az erőforráso
     New-AzureStorageContainer -Name "templates" -Context $context -Permission Container
     ```
 
-4. A fájlok feltöltése a tárfiókba:
+4. Töltse fel a hello fájlok toohello storage-fiók:
 
     ```powershell
     Set-AzureStorageBlobContent -File "C:\templates\CreateVMTemplate.json" -Context $context -Container "templates"
     Set-AzureStorageBlobContent -File "C:\templates\Parameters.json" -Context $context -Container templates
     ```
 
-    Változás - fájl elérési útját a fájlok tárolási helyét.
+    Változás hello - fájl elérési utak toohello helye hello fájlok tárolásához.
 
-## <a name="create-the-resources"></a>Az erőforrások létrehozása
+## <a name="create-hello-resources"></a>Hello erőforrások létrehozása
 
-A sablon a paraméterek használatával telepítéséhez:
+Hello paraméterek használatával hello sablon üzembe helyezése:
 
 ```powershell
 $templatePath = "https://" + $storageName + ".blob.core.windows.net/templates/CreateVMTemplate.json"
@@ -202,10 +202,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myResourceGroup" -Name "m
 ```
 
 > [!NOTE]
-> Sablonok és a paraméterek a helyi fájlokból is telepítheti. További tudnivalókért lásd: [Azure PowerShell használata az Azure Storage](../../storage/common/storage-powershell-guide-full.md).
+> Sablonok és a paraméterek a helyi fájlokból is telepítheti. több, lásd: toolearn [Azure PowerShell használata az Azure Storage](../../storage/common/storage-powershell-guide-full.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Ha problémák merültek fel a központi telepítést, előfordulhat, hogy vessen egy pillantást [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
-- Megtudhatja, hogyan hozhatja létre és kezelheti a virtuális gép [létrehozása és kezelése Windows virtuális gépek az Azure PowerShell modulra](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Ha problémák merültek fel hello telepítési, előfordulhat, hogy vessen egy pillantást [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
+- Megtudhatja, hogyan toocreate és kezelheti a virtuális gép [létrehozása és kezelése Windows virtuális gépek hello Azure PowerShell modul](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

@@ -1,6 +1,6 @@
 ---
-title: "Nyissa meg a portokat a virtuális gép Azure PowerShell használatával |} Microsoft Docs"
-description: "Megtudhatja, hogyan nyisson meg egy portot / hozzon létre egy végpontot, a Windows virtuális gépre az Azure resource manager rendszerbe állítási mód és az Azure PowerShell használatával"
+title: "aaaOpen portok tooa virtuális gép Azure PowerShell használatával |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooopen port / hozzon létre egy végpont tooyour VM a Windows hello Azure resource manager rendszerbe állítási mód és az Azure PowerShell használatával"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 08/21/2017
 ms.author: iainfou
-ms.openlocfilehash: e818e3b3c707e1471d6f580f8379a277d3575b89
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c1817a0c447ae4ce7a1ce2a1fc6927bedf2dacb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-open-ports-and-endpoints-to-a-vm-in-azure-using-powershell"></a>Portok és egy virtuális géphez végpontok nyitni az Azure PowerShell használatával
+# <a name="how-tooopen-ports-and-endpoints-tooa-vm-in-azure-using-powershell"></a>Hogyan tooopen portokat és végpontot tooa PowerShell használata Azure-ban
 [!INCLUDE [virtual-machines-common-nsg-quickstart](../../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## <a name="quick-commands"></a>Gyors parancsok
-Hozzon létre egy hálózati biztonsági csoport és a hozzáférés-vezérlési lista a szabályokat kell [telepített Azure PowerShell legújabb verziójának](/powershell/azureps-cmdlets-docs). Emellett [elvégzi ezeket a lépéseket az Azure portál használatával](nsg-quickstart-portal.md).
+toocreate egy hálózati biztonsági csoport és a hozzáférés-vezérlési lista szabályok kell [telepített Azure PowerShell legújabb verziójának hello](/powershell/azureps-cmdlets-docs). Emellett [hello Azure-portál használatával a következő lépésekkel](nsg-quickstart-portal.md).
 
-Jelentkezzen be az Azure-fiókjával:
+Jelentkezzen be tooyour Azure-fiók:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-A következő példákban cserélje le a saját értékeit példa paraméterek nevei. Példa paraméter nevekre *myResourceGroup*, *myNetworkSecurityGroup*, és *myVnet*.
+Hello alábbi példák, cserélje le például paraméterek nevei a saját értékeit. Példa paraméter nevekre *myResourceGroup*, *myNetworkSecurityGroup*, és *myVnet*.
 
-Hozzon létre egy szabályt a [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig). Az alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRule* engedélyezéséhez *tcp* porton forgalom *80*:
+Hozzon létre egy szabályt a [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig). hello alábbi példa létrehoz egy nevű szabályt *myNetworkSecurityGroupRule* tooallow *tcp* porton forgalom *80*:
 
 ```powershell
 $httprule = New-AzureRmNetworkSecurityRuleConfig `
@@ -50,7 +50,7 @@ $httprule = New-AzureRmNetworkSecurityRuleConfig `
     -DestinationPortRange 80
 ```
 
-Ezután hozzon létre a hálózati biztonsági csoport [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) , és rendelje hozzá az újonnan létrehozott az alábbiak szerint a HTTP-szabály. Az alábbi példakód létrehozza a hálózati biztonsági csoport nevű *myNetworkSecurityGroup*:
+Ezután hozzon létre a hálózati biztonsági csoport [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) és hozzárendelése hello HTTP szabály újonnan létrehozott az alábbiak szerint. hello alábbi példakód létrehozza a hálózati biztonsági csoport nevű *myNetworkSecurityGroup*:
 
 ```powershell
 $nsg = New-AzureRmNetworkSecurityGroup `
@@ -60,7 +60,7 @@ $nsg = New-AzureRmNetworkSecurityGroup `
     -SecurityRules $httprule
 ```
 
-Most tegyük a hálózati biztonsági csoport hozzárendelése egy alhálózatot. Az alábbi példa hozzárendel egy meglévő virtuális hálózatot nevű *myVnet* a változóhoz *$vnet* rendelkező [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):
+Most tegyük rendelje hozzá a hálózati biztonsági csoport tooa alhálózat. hello alábbi példa hozzárendel egy meglévő virtuális hálózatot nevű *myVnet* toohello változó *$vnet* rendelkező [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork `
@@ -68,7 +68,7 @@ $vnet = Get-AzureRmVirtualNetwork `
     -Name "myVnet"
 ```
 
-A hálózati biztonsági csoporthoz társítandó az alhálózat [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig). Az alábbi példa társítja a nevű alhálózat *mySubnet* a hálózati biztonsági csoporthoz:
+A hálózati biztonsági csoporthoz társítandó az alhálózat [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig). hello alábbi példa társítja nevű hello alhálózati *mySubnet* a hálózati biztonsági csoporthoz:
 
 ```powershell
 $subnetPrefix = $vnet.Subnets|?{$_.Name -eq 'mySubnet'}
@@ -80,7 +80,7 @@ Set-AzureRmVirtualNetworkSubnetConfig `
     -NetworkSecurityGroup $nsg
 ```
 
-Végül frissítse a virtuális hálózaton található [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) ahhoz, hogy a módosítások életbe léptetéséhez:
+Végül frissítse a virtuális hálózaton található [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) ahhoz, hogy a módosítások tootake érvénybe:
 
 ```powershell
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -88,12 +88,12 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 
 ## <a name="more-information-on-network-security-groups"></a>További információ a hálózati biztonsági csoportok
-A gyors parancsok lehetővé teszik, amelyekből megismerheti a forgalom halad a virtuális Gépet. Hálózati biztonsági csoportok számos különleges szolgáltatásait és az erőforrásokhoz való hozzáférés szabályozása részletességgel adja meg. További tudnivalók [itt szabályok létrehozása a hálózati biztonsági csoport és a hozzáférés-vezérlési lista](tutorial-virtual-network.md#manage-internal-traffic).
+hello itt gyors parancsok lehetővé teszik tooget be és a forgalom szereplő tooyour virtuális gép futtatása. Hálózati biztonsági csoportok adja meg, hány különleges szolgáltatásait és részletességgel ellenőrző tooyour erőforrások eléréséhez. További tudnivalók [itt szabályok létrehozása a hálózati biztonsági csoport és a hozzáférés-vezérlési lista](tutorial-virtual-network.md#manage-internal-traffic).
 
-Magas rendelkezésre állású webes alkalmazásokhoz helyezze a virtuális gépek az Azure terheléselosztó mögött. A load balancer osztja el a forgalmat a virtuális gépekhez, a hálózati biztonsági csoport, amely biztosítja a forgalomszűrést végez. További információkért lásd: [betöltése Linux virtuális gépek magas rendelkezésre állású alkalmazás létrehozása az Azure-ban egyenleg](tutorial-load-balancer.md).
+Magas rendelkezésre állású webes alkalmazásokhoz helyezze a virtuális gépek az Azure terheléselosztó mögött. hello terheléselosztó osztja el a forgalmat tooVMs forgalomszűrést végez biztosító hálózati biztonsági csoport. További információkért lásd: [hogyan tooload egyenleg Linux virtuális gépek az Azure toocreate a magas rendelkezésre állású alkalmazások](tutorial-load-balancer.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben a példában létrehozott egy egyszerű szabályt, amely engedélyezi a HTTP-forgalmat. További részletes környezetek létrehozásáról a következő cikkekben találhat:
+Ebben a példában létrehozott egy egyszerű szabályt tooallow HTTP-forgalmat. További részletes környezetek létrehozásáról a következő cikkek hello információt talál:
 
 * [Az Azure Resource Manager áttekintése](../../azure-resource-manager/resource-group-overview.md)
 * [Mi az a hálózati biztonsági csoport (NSG)?](../../virtual-network/virtual-networks-nsg.md)

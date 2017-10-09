@@ -1,6 +1,6 @@
 ---
-title: "Automatikus skálázás HPC Pack fürtcsomópontok |} Microsoft Docs"
-description: "Automatikusan nő, és a számítási fürtcsomópontok HPC Pack az Azure-ban számára zsugorítása"
+title: "HPC Pack fürtcsomópontok aaaAutoscale |} Microsoft Docs"
+description: "Automatikusan növelhető, vagy csökkenthető a számítási fürtcsomópontok HPC Pack az Azure-ban hello számára"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/08/2016
 ms.author: danlep
-ms.openlocfilehash: 0dc0d15c64d8951c3c457df73588c37418a3c8a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bdf55625d337a2bbfe05677682d645a584798d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="automatically-grow-and-shrink-the-hpc-pack-cluster-resources-in-azure-according-to-the-cluster-workload"></a>Automatikusan növelhető, vagy az Azure-ban a HPC Pack fürterőforrások csökkenthető a fürtmunkaterhelés szerint
-Ha az Azure "kapacitásnövelés" csomópontok HPC Pack fürt központi telepítését, vagy a HPC Pack-fürtöt hoz létre az Azure virtuális gépeken, érdemes lehet egy módszerre, amellyel automatikusan nő, és a fürt erőforrásait, például a csomópontok vagy a fürtön a munkaterhelés szerint magok csökkenhet. Ily módon a fürterőforrásokat skálázás lehetővé teszi az Azure-erőforrások hatékonyabban használja, és azok kapcsolatos költségek szabályozását.
+# <a name="automatically-grow-and-shrink-hello-hpc-pack-cluster-resources-in-azure-according-toohello-cluster-workload"></a>Automatikus növekedésének és zsugorítása hello HPC Pack fürterőforrások toohello fürtmunkaterhelés szerint az Azure-ban
+Ha Azure "kapacitásnövelés" csomópontok HPC Pack fürt központi telepítését, vagy az Azure virtuális gépeken HPC Pack-fürtöt hoz létre, érdemes lehet egy módszerre, amellyel automatikusan növekedhet és zsugorítása hello fürt erőforrások, például a csomópontok vagy magok hello fürtön hello munkaterhelés szerint. Ily módon hello fürterőforrások skálázás lehetővé teszi a toouse az Azure-erőforrások hatékonyabban és azok kapcsolatos költségek szabályozását.
 
-Ez a cikk bemutatja, hogy kétféle módszert biztosít a HPC Pack automatikus skálázásra számítási erőforrások:
+Ez a cikk bemutatja, amely HPC Pack tooautoscale számítási erőforrásokat biztosít két módon:
 
-* A HPC Pack fürt tulajdonság **AutoGrowShrink**
+* HPC Pack fürt tulajdonság hello **AutoGrowShrink**
 
-* A **AzureAutoGrowShrink.ps1** HPC PowerShell-parancsfájl
+* Hello **AzureAutoGrowShrink.ps1** HPC PowerShell-parancsfájl
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
 Jelenleg akkor csak automatikusan növelhető vagy csökkenthető a Windows Server operációs rendszert futtató HPC Pack számítási csomópontok.
 
 
-## <a name="set-the-autogrowshrink-cluster-property"></a>A AutoGrowShrink fürt tulajdonsága
+## <a name="set-hello-autogrowshrink-cluster-property"></a>Hello AutoGrowShrink fürt tulajdonságának beállítása
 ### <a name="prerequisites"></a>Előfeltételek
 
-* **HPC Pack 2012 R2 Update 2 vagy újabb rendszerű fürt** -az átjárócsomóponthoz lehet telepítve a helyi vagy egy Azure virtuális gép. Lásd: [HPC Pack hibrid fürt beállítása](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) egy helyszíni átjárócsomópont és az Azure "kapacitásnövelés" csomópontok használatába. Tekintse meg a [HPC Pack IaaS telepítési parancsfájl](hpcpack-cluster-powershell-script.md) való gyorsan HPC Pack-fürt üzembe helyezése az Azure virtuális gépeken.
+* **HPC Pack 2012 R2 Update 2 vagy újabb rendszerű fürt** -hello átjárócsomóponthoz lehet telepítve a helyi vagy egy Azure virtuális gép. Lásd: [HPC Pack hibrid fürt beállítása](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget elindította egy helyszíni átjárócsomópont és az Azure "kapacitásnövelés" csomópont. Lásd: hello [HPC Pack IaaS telepítési parancsfájl](hpcpack-cluster-powershell-script.md) tooquickly HPC Pack-fürt üzembe helyezése az Azure virtuális gépeken.
 
 * **Az Azure (Resource Manager üzembe helyezési modellben) központi csomóponton fürt** - HPC Pack 2016-től kezdődően az Azure Active Directory alkalmazásban tanúsítványhitelesítés szolgál automatikusan növekvő és zsugorítását fürt virtuális gépek használatával telepíthetők. Az Azure Resource Manager. Tanúsítvány konfigurálása az alábbiak szerint:
 
-  1. Fürttelepítésben után egy átjárócsomópontjához által a távoli asztal csatlakozik.
+  1. Fürt telepítést követően csatlakozzon a távoli asztal tooone átjárócsomópont.
 
-  2. Töltse fel az tanúsítványt (PFX formátumban és a titkos kulcs) minden átjárócsomópont és telepítését a Cert: \LocalMachine\My és a Cert: \LocalMachine\Root.
+  2. Hello tanúsítvány (PFX formátumban és a titkos kulcs) tooeach átjárócsomópont feltölteni, majd telepítse tooCert:\LocalMachine\My és a Cert: \LocalMachine\Root.
 
-  3. Indítsa el az Azure Powershellt rendszergazdaként, és egy központi csomópontján a következő parancsokat:
+  3. Indítsa el az Azure Powershellt rendszergazdaként, és futtassa a következő parancsokat egy központi csomóponton hello:
 
     ```powershell
         cd $env:CCP_HOME\bin
@@ -53,19 +53,19 @@ Jelenleg akkor csak automatikusan növelhető vagy csökkenthető a Windows Serv
         Login-AzureRmAccount
     ```
         
-    Ha a fiók több mint egy Azure Active Directory-bérlő vagy az Azure-előfizetés, válassza ki a megfelelő bérlői és az előfizetés a következő parancsot futtathatja:
+    Ha a fiók több mint egy Azure Active Directory-bérlő vagy az Azure-előfizetés, hello következő futtathatja tooselect hello megfelelő bérlői és az előfizetés parancsot:
   
     ```powershell
         Login-AzureRMAccount -TenantId <TenantId> -SubscriptionId <subscriptionId>
     ```     
        
-    A következő parancsot a jelenleg kijelölt bérlői és az előfizetés megtekintése:
+    Futtassa a következő parancs tooview hello hello jelenleg kijelölt a bérlők és az előfizetés:
     
     ```powershell
         Get-AzureRMContext
     ```
 
-  4. Futtassa a következő parancsfájlt
+  4. Futtassa a következő parancsfájl hello
 
     ```powershell
         .\ConfigARMAutoGrowShrinkCert.ps1 -DisplayName “YourHpcPackAppName” -HomePage "https://YourHpcPackAppHomePage" -IdentifierUri "https://YourHpcPackAppUri" -CertificateThumbprint "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" -TenantId xxxxxxxx-xxxxx-xxxxx-xxxxx-xxxxxxxxxxxx
@@ -73,63 +73,63 @@ Jelenleg akkor csak automatikusan növelhető vagy csökkenthető a Windows Serv
 
     Ha
 
-    **DisplayName** -Azure Active alkalmazás megjelenítési neve. Ha az alkalmazás nem létezik, az Azure Active Directoryban létrejön.
+    **DisplayName** -Azure Active alkalmazás megjelenítési neve. Ha hello az alkalmazás nem létezik, az Azure Active Directoryban létrejön.
 
-    **Kezdőlap** – az alkalmazás kezdőlapja. Beállíthatja, hogy egy üres URL-címet, az előző példában látható módon.
+    **Kezdőlap** -hello kezdőlap hello alkalmazás. Beállíthatja, hogy egy üres URL-címet, példa megelőző hello hasonlóan.
 
-    **IdentifierUri** – az alkalmazás azonosítója. Beállíthatja, hogy egy üres URL-címet, az előző példában látható módon.
+    **IdentifierUri** -hello alkalmazás azonosítója. Beállíthatja, hogy egy üres URL-címet, példa megelőző hello hasonlóan.
 
-    **CertificateThumbprint** -1. lépésben a központi csomóponton telepített tanúsítvány ujjlenyomata.
+    **CertificateThumbprint** -hello átjárócsomópont 1. lépésben telepített hello tanúsítvány ujjlenyomata.
 
-    **A TenantId** -Azonosítót az Azure Active Directory-Bérlőazonosítóra. A bérlő azonosítója lekérheti az Azure Active Directory portálon **tulajdonságok** lap.
+    **A TenantId** -Azonosítót az Azure Active Directory-Bérlőazonosítóra. Hello Bérlőazonosító beszerzése hello Azure Active Directory portálon **tulajdonságok** lap.
 
     Ha szeretne többet megtudni **ConfigARMAutoGrowShrinkCert.ps1**- ben futtassa `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`.
 
 
-* **Az Azure (klasszikus üzembe helyezési modellel) központi csomóponton fürt** – Ha a HPC Pack IaaS telepítési parancsfájl segítségével a fürt létrehozása a klasszikus üzembe helyezési modellel, engedélyezze a **AutoGrowShrink** tulajdonság által a fürt a AutoGrowShrink beállítást a fürt konfigurációs fájlban. További információkért tekintse meg a kísérő dokumentáció a [parancsfájl letöltése](https://www.microsoft.com/download/details.aspx?id=44949).
+* **Az Azure (klasszikus üzembe helyezési modellel) központi csomóponton fürt** – Ha hello HPC Pack IaaS telepítési parancsfájl toocreate hello fürtön hello klasszikus üzembe helyezési modellel, engedélyezése hello **AutoGrowShrink** fürt a tulajdonság által a beállításnak a hello AutoGrowShrink hello fürt konfigurációs fájlban. További részletek a dokumentációban hello hello kísérő [parancsfájl letöltése](https://www.microsoft.com/download/details.aspx?id=44949).
 
-    Azt is megteheti, engedélyezi a **AutoGrowShrink** fürt tulajdonság a következő szakaszban leírt HPC PowerShell-parancsok segítségével a fürt telepítése után. Ez az előkészítéséhez végezze el az alábbi lépéseket:
+    Azt is megteheti, engedélyezi az hello **AutoGrowShrink** hello a következő szakaszban leírt fürt tulajdonság HPC PowerShell használatával hello fürt telepítése után a parancsokat. a tooprepare, első teljes hello a következő lépéseket:
 
-  1. Konfigurálása az Azure felügyeleti tanúsítványt, az átjárócsomópont és az Azure-előfizetés. Teszt üzembe helyezés esetén a Microsoft HPC Azure alapértelmezett önaláírt tanúsítványt használjon, az átjárócsomópont telepít HPC Pack, és a tanúsítvány majd feltölteni az Azure-előfizetéshez. Beállítások és a lépéseket, tekintse meg a [TechNet Library útmutatást](https://technet.microsoft.com/library/gg481759.aspx).
+  1. Az Azure felügyeleti tanúsítványt hello átjárócsomópont és a hello Azure-előfizetés konfigurálása Teszt üzembe helyezés esetén hello Microsoft HPC Azure alapértelmezett önaláírt tanúsítványt használjon, HPC Pack hello átjárócsomópont telepít, és majd töltse fel az adott tanúsítvány tooyour Azure-előfizetés. A beállítások és lépéseivel kapcsolatban lásd: hello [TechNet Library útmutatást](https://technet.microsoft.com/library/gg481759.aspx).
 
-  2. Futtatás **regedit** az átjárócsomóponthoz HKLM\SOFTWARE\Micorsoft\HPC\IaasInfo Ugrás, és adjon hozzá egy karakterláncértéket. Állítsa be a nevet a "Ujjlenyomata", és az érték 1. lépésben a tanúsítvány ujjlenyomatára.
+  2. Futtatás **regedit** csomóponton hello központi, nyissa meg tooHKLM\SOFTWARE\Micorsoft\HPC\IaasInfo, és adjon hozzá egy karakterláncértéket. Hello Azonosítónév túl beállítása "Ujjlenyomata", és hello tanúsítvány az 1 érték adatok toohello ujjlenyomata.
 
-### <a name="hpc-powershell-commands-to-set-the-autogrowshrink-property"></a>HPC PowerShell-parancsok futtatásával AutoGrowShrink tulajdonságának beállítása
-Az alábbiakban a HPC PowerShell Példaparancsok beállítása **AutoGrowShrink** és a további paraméterek működését. Lásd: [AutoGrowShrink paraméterek](#AutoGrowShrink-parameters) beállítások teljes listáját az ebben a cikkben később.
+### <a name="hpc-powershell-commands-tooset-hello-autogrowshrink-property"></a>HPC PowerShell parancsok tooset hello AutoGrowShrink tulajdonság
+Az alábbiakban minta HPC PowerShell-parancsok tooset **AutoGrowShrink** és tootune további paramétereket a működését. Lásd: [AutoGrowShrink paraméterek](#AutoGrowShrink-parameters) hello beállítások teljes listáját az ebben a cikkben később.
 
-Futtassa a következő parancsokat, rendszergazdaként HPC PowerShell kell elindítani a fürt átjárócsomópontjából.
+toorun ezeket a parancsokat, indítsa el a HPC PowerShell fürtcsomóponton hello központi rendszergazdaként.
 
-**Ahhoz, hogy a AutoGrowShrink tulajdonság**
+**tooenable hello AutoGrowShrink tulajdonság**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 1
 ```
 
-**A AutoGrowShrink tulajdonság letiltása**
+**toodisable hello AutoGrowShrink tulajdonság**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 0
 ```
 
-**Módosíthatja a igazodás időköz percben**
+**toochange hello nő időköz percben**
 
 ```powershell
 Set-HpcClusterProperty –GrowInterval <interval>
 ```
 
-**Módosíthatja a zsugorítási időköz percben**
+**toochange hello zsugorítása időköz percben**
 
 ```powershell
 Set-HpcClusterProperty –ShrinkInterval <interval>
 ```
 
-**Az aktuális konfigurációja AutoGrowShrink megtekintése**
+**tooview hello aktuális konfigurációja AutoGrowShrink**
 
 ```powershell
 Get-HpcClusterProperty –AutoGrowShrink
 ```
 
-**A csoportok csomópont kizárása AutoGrowShrink**
+**AutoGrowShrink csoportjait tooexclude csomópont**
 
 ```powershell
 Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
@@ -140,53 +140,53 @@ Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
 >
 
 ### <a name="autogrowshrink-parameters"></a>AutoGrowShrink paraméterek
-Az alábbiakban AutoGrowShrink paraméterek használatával módosítható a **Set-HpcClusterProperty** parancsot.
+hello következő AutoGrowShrink paraméterek tartoznak, amelyek még módosíthatók hello segítségével **Set-HpcClusterProperty** parancsot.
 
-* **EnableGrowShrink** -kapcsoló engedélyezheti vagy tilthatja le a **AutoGrowShrink** tulajdonság.
-* **ParamSweepTasksPerCore** -nő, egy alapvető paraméteres ismétlés feladatok száma. Az alapértelmezett érték egy alapvető feladatonként növelése sikertelen volt.
-
-  > [!NOTE]
-  > HPC Pack QFE KB3134307 módosítások **ParamSweepTasksPerCore** való **TasksPerResourceUnit**. A feladat erőforrástípus alapul, és csomópont, szoftvercsatorna vagy core lehet.
-  >
-  >
-* **GrowThreshold** -való automatikus növekedés aszinkron feladatok küszöbértéket. Az alapértelmezett érték 1, ami azt jelenti, hogy ha a sorban álló állapotban, 1 vagy több feladat méretének automatikus növelése csomópontok.
-* **GrowInterval** -időköz percben automatikus növekedés indításához. Az alapértelmezett érték 5 perc.
-* **ShrinkInterval** -időköz percben automatikus zsugorítását indításához. Az alapértelmezett érték 5 perc. |}
-* **ShrinkIdleTimes** -folyamatos ellenőrzések zsugorítása jelzi a csomópontok száma üresjáratban. Az alapértelmezett érték 3-szor. Például ha a **ShrinkInterval** 5 perc, a HPC Pack ellenőrzi, hogy a csomópont tétlen 5 percenként. Ha a csomópontok üresjárati állapotban van, a folyamatos 3 ellenőrzi (15 perc) után, HPC Pack zsugorítja csomóponton.
-* **ExtraNodesGrowRatio** -csomópontok nő a Message Passing Interface (MPI) feladatok további százalékát. Az alapértelmezett értéke 1, ami azt jelenti, hogy HPC Pack növekedésének csomópontok MPI-feladatok 1 %.
-* **GrowByMin** -kapcsoló annak jelzésére, hogy az automatikus növekedésre házirend a feladathoz szükséges minimális erőforrások alapul. Az alapértelmezett értéke false, ami azt jelenti, hogy a HPC Pack növekedésének csomópontok a feladatok a feladatokhoz szükséges erőforrások alapján.
-* **SoaJobGrowThreshold** -küszöbérték bejövő SOA kérelmek indításához az automatikus növelési folyamat. Az alapértelmezett érték: 50000.
+* **EnableGrowShrink** - tooenable kapcsolóhoz, vagy tiltsa le a hello **AutoGrowShrink** tulajdonság.
+* **ParamSweepTasksPerCore** -paraméteres ismétlés száma toogrow egy core feladatok. hello alapértelmezés szerint egy alapvető toogrow feladat.
 
   > [!NOTE]
-  > Ez a paraméter a HPC Pack 2012 R2 Update 3 verziójától kezdve alkalmazható.
+  > HPC Pack QFE KB3134307 módosítások **ParamSweepTasksPerCore** túl**TasksPerResourceUnit**. Hello feladat erőforrástípus alapul, és csomópont, szoftvercsatorna vagy core lehet.
   >
   >
-* **SoaRequestsPerCore** -nő, egy alapvető lekérdezések bejövő SOA száma. Az alapértelmezett érték: 20000.
+* **GrowThreshold** -aszinkron feladatok tootrigger automatikus növekedési küszöbértéket. hello alapértelmezett érték 1, ami azt jelenti, hogy ha az 1, vagy további feladatokat hello aszinkron állapot, a csomópontok méretének automatikus növelése.
+* **GrowInterval** -időköz percben tootrigger automatikus növekedési. hello alapértelmezett érték 5 perc.
+* **ShrinkInterval** -időköz percben tootrigger automatikus zsugorítását. hello alapértelmezett érték 5 perc. |}
+* **ShrinkIdleTimes** -folyamatos ellenőrzés tooshrink tooindicate hello csomópontok száma üresjáratban. hello alapértelmezett érték 3-szor. Például, ha hello **ShrinkInterval** 5 perc, a HPC Pack ellenőrzi, hogy hello csomópont tétlen 5 percenként. Ha hello csomópontok hello üresjárati állapotban után 3 folyamatos ellenőrzi (15 perc), majd HPC Pack zsugorítja csomóponton.
+* **ExtraNodesGrowRatio** -csomópontok toogrow Message Passing Interface (MPI) feladatok további százalékát. hello alapértelmezett értéke 1, ami azt jelenti, hogy HPC Pack növekedésének csomópontok MPI-feladatok 1 %.
+* **GrowByMin** -kapcsoló tooindicate, hogy hello automatikus növekedésre házirend hello hello feladat szükséges minimális erőforrásokat alapul. hello alapértelmezett értéke false, ami azt jelenti, hogy a HPC Pack feladatok hello maximális hello feladatok szükséges erőforrásokat alapján-csomópont növekszik.
+* **SoaJobGrowThreshold** -küszöbértéket bejövő SOA kérelmek tootrigger hello automatikus növelési folyamat. hello alapértelmezett értéke 50000.
 
   > [!NOTE]
   > Ez a paraméter a HPC Pack 2012 R2 Update 3 verziójától kezdve alkalmazható.
   >
-* **ExcludeNodeGroups** – a megadott csomópont csoportokban lévő csomópontok automatikusan növelhető vagy csökkenthető.
+  >
+* **SoaRequestsPerCore** -kérelmek toogrow egy alapvető bejövő SOA száma. hello alapértelmezett értéke 20000.
+
+  > [!NOTE]
+  > Ez a paraméter a HPC Pack 2012 R2 Update 3 verziójától kezdve alkalmazható.
+  >
+* **ExcludeNodeGroups** – hello csomópontjának megadott munkaterület-csoportok nem automatikusan növelhető vagy csökkenthető.
   
   > [!NOTE]
   > Ez a paraméter HPC Pack 2016 verziójától kezdve alkalmazható.
   >
 
 ### <a name="mpi-example"></a>MPI – példa
-Alapértelmezés szerint a HPC Pack 1 % növekedésének MPI-feladatok extra csomópontok (**ExtraNodesGrowRatio** értéke 1). Oka az, hogy MPI több csomópont lehet szükség, és a feladat csak futtatható, amikor készen áll az összes csomópont. Csomópontok Azure indításakor alkalmanként egy csomópont lehet, hogy több időre van szüksége többinél, más csomópontok üresjáratban lehet, miközben a rendszer az adott csomópont kész állapotba hozásához okozó elindításához. További csomópontokat karcsúsításával HPC Pack csökkenti a erőforrás várakozási időt, és potenciálisan menti a költségek. MPI-feladatok (például 10 %-át) extra csomópontok százaléka növeléséhez hasonló parancs futtatása
+Alapértelmezés szerint a HPC Pack 1 % növekedésének MPI-feladatok extra csomópontok (**ExtraNodesGrowRatio** too1 van beállítva). hello oka az, hogy MPI több csomópont lehet szükség, és hello feladat csak futtatható, amikor készen áll az összes csomópont. Ha Azure csomópontok elindul, időnként egy csomópont több idő toostart, mint a többire, más csomópontok toobe üresjárati, miközben az adott csomópont tooget készen áll, amely lehet szükség. További csomópontokat karcsúsításával HPC Pack csökkenti a erőforrás várakozási időt, és potenciálisan menti a költségek. MPI-feladatok (például too10 %), további csomópontokat tooincrease hello százaléka hasonló parancs futtatása
 
     Set-HpcClusterProperty -ExtraNodesGrowRatio 10
 
 ### <a name="soa-example"></a>SOA-példa
-Alapértelmezés szerint **SoaJobGrowThreshold** 50000 értékre van állítva és **SoaRequestsPerCore** 200000 értékre van állítva. Ha egy SOA-feladatok 70000 kérések, egy sorban álló feladat és bejövő kérelmek 70000. Ebben az esetben a HPC Pack növekszik a sorban álló feladat, és a bejövő kéréseket 1 mag, nő (70000-50000) / 20000 = 1 alapvető, így a teljes növekszik a SOA-feladatok 2 magos.
+Alapértelmezés szerint **SoaJobGrowThreshold** too50000 beállítása és **SoaRequestsPerCore** too200000 van beállítva. Ha egy SOA-feladatok 70000 kérések, egy sorban álló feladat és bejövő kérelmek 70000. Ebben az esetben HPC Pack növekszik-e 1 core hello aszinkron feladatot, és a bejövő kéréseket, nő a (70000-50000) / 20000 = 1 alapvető, így a teljes növekszik a SOA-feladatok 2 magos.
 
-## <a name="run-the-azureautogrowshrinkps1-script"></a>A AzureAutoGrowShrink.ps1 parancsprogrammal
+## <a name="run-hello-azureautogrowshrinkps1-script"></a>Hello AzureAutoGrowShrink.ps1 parancsfájl futtatása
 ### <a name="prerequisites"></a>Előfeltételek
 
-* **HPC Pack 2012 R2 Update 1 vagy újabb rendszerű fürt** – a **AzureAutoGrowShrink.ps1** parancsfájl telepítve van a % CCP_HOME % bin mappában. A fürt átjárócsomópontjába lehet telepítve a helyi vagy egy Azure virtuális gép. Lásd: [HPC Pack hibrid fürt beállítása](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) egy helyszíni átjárócsomópont és az Azure "kapacitásnövelés" csomópontok használatába. Tekintse meg a [HPC Pack IaaS telepítési parancsfájl](hpcpack-cluster-powershell-script.md) gyorsan HPC Pack-fürt üzembe helyezése az Azure virtuális gépeken, vagy használjon egy [Azure gyors üzembe helyezés sablon](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/).
-* **Az Azure PowerShell 1.4.0** -a parancsfájl jelenleg ezt a verziót az Azure PowerShell függ.
-* **A fürt az Azure-kapacitásnövelés csomópontok** -futtassa a parancsfájlt egy ügyfélszámítógépen, amelyen telepítve van-e az HPC Pack, vagy a head csomóponton. Ha fut az ügyfélszámítógépeken, győződjön meg arról, hogy megadta-e a változó $env: CCP_SCHEDULER a head csomópontra. Az Azure "kapacitásnövelés" csomópontok hozzá kell adni a fürthöz, de nem telepített állapotban lehetnek.
-* **Az Azure virtuális gépeken (Resource Manager üzembe helyezési modellben) telepített fürt** -a Resource Manager üzembe helyezési modellben telepített Azure virtuális gépek fürtben, a parancsfájl az Azure authentication két módszert támogat: futtatásához az Azure-fiókjával jelentkezzen be a minden alkalommal parancsfájl (futtatásával `Login-AzureRmAccount`, vagy konfigurálja a szolgáltatás egyszerű való hitelesítéshez szükséges tanúsítvány. HPC Pack biztosít a parancsfájl **ConfigARMAutoGrowShrinkCert.ps** egyszerű szolgáltatás létrehozása a tanúsítványt. A parancsfájl létrehoz egy Azure Active Directory (Azure AD) alkalmazás és egy egyszerű szolgáltatást, és a közreműködő szerepkört rendel az egyszerű szolgáltatás. A parancsfájl futtatásához indítsa el az Azure Powershellt rendszergazdaként, és futtassa a következő parancsokat:
+* **HPC Pack 2012 R2 Update 1 vagy újabb rendszerű fürt** – hello **AzureAutoGrowShrink.ps1** parancsfájl hello % CCP_HOME % bin mappájában telepítve van. hello átjárócsomóponthoz lehet telepítve a helyi vagy egy Azure virtuális gép. Lásd: [HPC Pack hibrid fürt beállítása](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget elindította egy helyszíni átjárócsomópont és az Azure "kapacitásnövelés" csomópont. Lásd: hello [HPC Pack IaaS telepítési parancsfájl](hpcpack-cluster-powershell-script.md) tooquickly HPC Pack-fürt üzembe helyezése az Azure virtuális gépeken, vagy használjon egy [Azure gyors üzembe helyezés sablon](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/).
+* **Az Azure PowerShell 1.4.0** -hello parancsfájl jelenleg ezt a verziót az Azure PowerShell függ.
+* **A fürt az Azure-kapacitásnövelés csomópontok** -hello parancsfájlt, vagy egy ügyfélszámítógépen, amelyen telepítve van-e az HPC Pack hello átjárócsomópont futtassa. Ha egy ügyfélszámítógépen fut, győződjön meg arról, beállított hello változó $env: CCP_SCHEDULER toopoint toohello átjárócsomópont. hello Azure "kapacitásnövelés" csomópontok toohello fürt hozzá kell adni, de lehet, hogy azok hello állapot nincs telepítve.
+* **Az Azure virtuális gépeken (Resource Manager üzembe helyezési modellben) telepített fürt** -hello Resource Manager üzembe helyezési modellben telepített Azure virtuális gépek a fürt hello parancsfájl az Azure authentication két módszert támogat: Jelentkezzen be Azure-fiók tooyour toorun hello parancsfájl minden alkalommal (futtatásával `Login-AzureRmAccount`, vagy a szolgáltatás egyszerű tooauthenticate konfigurálása tanúsítvánnyal. HPC Pack hello parancsfájlt tartalmaz **ConfigARMAutoGrowShrinkCert.ps** toocreate tanúsítvánnyal egy egyszerű szolgáltatást. hello parancsfájl létrehoz egy Azure Active Directory (Azure AD) alkalmazás és egy egyszerű szolgáltatást, és hozzárendeli a hello közreműködői szerepkör toohello egyszerű. toorun hello parancsfájl, indítsa el az Azure Powershellt rendszergazdaként, és futtassa a következő parancsok hello:
 
     ```powershell
     cd $env:CCP_HOME\bin
@@ -198,7 +198,7 @@ Alapértelmezés szerint **SoaJobGrowThreshold** 50000 értékre van állítva �
 
     Ha szeretne többet megtudni **ConfigARMAutoGrowShrinkCert.ps1**- ben futtassa `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`,
 
-* **Az Azure virtuális gépeken (klasszikus üzembe helyezési modellel) telepített fürt** -futtassa a parancsfájlt az átjárócsomóponthoz virtuális gép, mert előfeltétel a **Start-HpcIaaSNode.ps1** és **Stop-HpcIaaSNode.ps1** olyan parancsfájlok, hogy telepítve vannak. A parancsfájlok továbbá egy Azure felügyeleti tanúsítvánnyal kell rendelkezniük, vagy közzététele beállításfájl (lásd: [kezelése számítási csomópontok HPC csomagban fürtön, az Azure-ban](hpcpack-cluster-node-manage.md)). Győződjön meg arról, hogy minden a számítási csomópont virtuális gépek kell már felvette a fürthöz. Azok a leállított állapotban lehet.
+* **Az Azure virtuális gépeken (klasszikus üzembe helyezési modellel) telepített fürt** -parancsprogrammal hello hello központi csomóponton virtuális gép, mert hello előfeltétel **Start-HpcIaaSNode.ps1** és **Stop-HpcIaaSNode.ps1**parancsfájlok, hogy telepítve vannak. A parancsfájlok továbbá egy Azure felügyeleti tanúsítvánnyal kell rendelkezniük, vagy közzététele beállításfájl (lásd: [kezelése számítási csomópontok HPC csomagban fürtön, az Azure-ban](hpcpack-cluster-node-manage.md)). Győződjön meg arról, hogy minden számítási csomópont virtuális gépek kell már felvette az toohello fürt hello. A hello Leállítva állapotú lehet.
 
 
 
@@ -218,27 +218,27 @@ AzureAutoGrowShrink.ps1 [-NodeTemplates <String[]>] [-JobTemplates <String[]>] [
 AzureAutoGrowShrink.ps1 -UseLastConfigurations [-ArgFile <String>] [-LogFilePrefix <String>] [<CommonParameters>]
 ```
 ### <a name="parameters"></a>Paraméterek
-* **NodeTemplates** -növelhető vagy csökkenthető a csomópontok hatókörének meghatározásához a csomópont sablonok neve. Ha nincs megadva (az alapértelmezett érték: @()), minden csomópontja a **AzureNodes** csomópontcsoport, a hatókör mikor **NodeType** AzureNodes, és az összes csomópontjának értéke a **ComputeNodes**csomópont csoport, a hatókör mikor **NodeType** ComputeNodes értéke.
-* **JobTemplates** – a feladat sablonok neve a csomópontok nő hatókörének meghatározásához.
-* **A NodeType** -csomópont növelhető vagy csökkenthető a típusát. Támogatott értékek a következők:
+* **NodeTemplates** -hello csomópont sablonok toodefine nevei hello csomópontok toogrow hatóköre hello vagy csökkenthető. Ha nincs megadva (hello alapértelmezett érték: @()), hello összes csomópontjának **AzureNodes** csomópontcsoport, a hatókör mikor **NodeType** értéke AzureNodes, és minden csomópont a hello **ComputeNodes** csomópont csoport, a hatókör mikor **NodeType** ComputeNodes értéke.
+* **JobTemplates** -hello nevei sablonok toodefine hello hatókör hello csomópontok toogrow feladat.
+* **A NodeType** - csomópont toogrow típusú hello vagy csökkenthető. Támogatott értékek a következők:
 
   * **AzureNodes** – Azure PaaS (kapacitásnövelés) csomópontján egy a helyszíni vagy Azure IaaS-fürt.
   * **ComputeNodes** - a számítási csomópont virtuális gépek csak Azure IaaS-fürtben lévő.
 
-* **NumOfQueuedJobsPerNodeToGrow** -szükséges egy csomópont növelése sikertelen volt az aszinkron feladatok száma.
-* **NumOfQueuedJobsToGrowThreshold** -igazodás megkezdéséhez az aszinkron feladatok küszöbérték száma.
-* **NumOfActiveQueuedTasksPerNodeToGrow** – az aktív várólistára nő egy csomópont szükséges feladatok. Ha **NumOfQueuedJobsPerNodeToGrow** van megadva 0,-nál nagyobb értéket a rendszer figyelmen kívül hagyja ezt a paramétert.
-* **NumOfActiveQueuedTasksToGrowThreshold** -igazodás megkezdéséhez aktív aszinkron feladatok küszöbérték száma.
-* **NumOfInitialNodesToGrow** -csomópontok nő, ha a hatókör összes csomópontjának kezdeti minimális száma **nem telepített** vagy **leállítva (Deallocated)**.
-* **GrowCheckIntervalMins** -időköze percben nő ellenőrzései között.
-* **ShrinkCheckIntervalMins** -a időköz percben zsugorítása ellenőrzések között.
-* **ShrinkCheckIdleTimes** -folyamatos száma zsugorítása ellenőrzések (elválasztott **ShrinkCheckIntervalMins**) jelzi, hogy a csomópontok üresjáratban.
-* **UseLastConfigurations** -a korábbi konfigurációkat a argumentum fájlba menti.
-* **ArgFile**-mentse és frissítse a parancsfájl futtatásához használja a argumentum fájl nevét.
-* **LogFilePrefix** -előtag a naplófájl nevét. Egy elérési utat is megadhat. Alapértelmezés szerint a napló írni az aktuális munkakönyvtárban.
+* **NumOfQueuedJobsPerNodeToGrow** -aszinkron feladatok száma szükséges toogrow egy csomópont.
+* **NumOfQueuedJobsToGrowThreshold** -aszinkron feladatok toostart hello hello küszöbérték száma nő folyamat.
+* **NumOfActiveQueuedTasksPerNodeToGrow** -hello aktív aszinkron feladatok száma szükséges toogrow egy csomópont. Ha **NumOfQueuedJobsPerNodeToGrow** van megadva 0,-nál nagyobb értéket a rendszer figyelmen kívül hagyja ezt a paramétert.
+* **NumOfActiveQueuedTasksToGrowThreshold** -aktív aszinkron feladatok toostart hello hello küszöbérték száma nő folyamat.
+* **NumOfInitialNodesToGrow** – hello kezdeti csomópontok toogrow minimális száma, ha minden hello csomópontra hatókörben van **nem telepített** vagy **leállítva (Deallocated)**.
+* **GrowCheckIntervalMins** -hello időköz percben toogrow ellenőrzi.
+* **ShrinkCheckIntervalMins** -hello időköz percben tooshrink ellenőrzi.
+* **ShrinkCheckIdleTimes** -hello folyamatos zsugorítás ellenőrzések száma (elválasztott **ShrinkCheckIntervalMins**) tooindicate hello csomópontok üresjáratban.
+* **UseLastConfigurations** -hello fenti konfiguráció hello argumentum fájlba menti.
+* **ArgFile**– hello hello argumentum használt fájl toosave nevét, és frissítse a hello konfigurációk toorun hello parancsfájl.
+* **LogFilePrefix** -hello előtag hello naplófájl nevét. Egy elérési utat is megadhat. Alapértelmezés szerint a hello napló az aktuális munkakönyvtárban írásbeli toohello.
 
 ### <a name="example-1"></a>1. példa
-A következő példa az alapértelmezett AzureNode sablon növelhető vagy csökkenthető automatikusan telepítik az Azure-kapacitásnövelés csomópontok konfigurál. Ha a csomópontok kezdetben a a **nem telepített** állapotba kerül, legalább 3 csomópontok indulnak el. Ha a várólistán lévő feladatok száma meghaladja a 8, a parancsfájl kezdését csomópontok az aszinkron feladatok aránya meghaladja **NumOfQueuedJobsPerNodeToGrow**. Ha egy csomópont tétlen 3 egymást követő üresjárati idő, le van állítva.
+hello alábbi példa konfigurál hello Azure-kapacitásnövelés csomópontok az alapértelmezett AzureNode sablon toogrow telepítik, és automatikusan csökken. Ha a csomópontok kezdetben hello **nem telepített** állapotba kerül, legalább 3 csomópontok indulnak el. Ha hello aszinkron feladatok száma meghaladja a 8, hello parancsfájl kezdését csomópontok az aszinkron feladatok hello aránya túllépi **NumOfQueuedJobsPerNodeToGrow**. Ha egy csomópont tétlen 3 egymást követő üresjárati idő található toobe, le van állítva.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates @('Default AzureNode
@@ -248,8 +248,8 @@ A következő példa az alapértelmezett AzureNode sablon növelhető vagy csök
 ```
 
 ### <a name="example-2"></a>2. példa
-A következő példa az Azure számítási csomópont növelhető vagy csökkenthető, automatikusan az alapértelmezett Átjárócsomópontján sablonnal telepített virtuális gépek konfigurál.
-A feladat alapértelmezett sablon által konfigurált feladatok a munkaterhelés hatókörének meghatározása a fürtön. Ha a csomópontok kezdetben le van állítva, legalább 5 csomópontok indulnak el. Aktív aszinkron feladatok száma meghaladja a 15, ha a parancsfájl kezdését csomópontokat az aktív aszinkron feladatok aránya meghaladja **NumOfActiveQueuedTasksPerNodeToGrow**. Ha egy csomópont tétlen 10 egymást követő üresjárati idő, le van állítva.
+hello alábbi példa konfigurál hello Azure számítási csomópont virtuális gépek hello alapértelmezett Átjárócsomópontján sablon toogrow telepítik, és automatikusan csökken.
+hello alapértelmezett projekt sablon által konfigurált hello feladatok hello fürtön a munkaterhelés hello hatókörének meghatározása. Ha minden hello csomópont kezdetben le van állítva, legalább 5 csomópontok indulnak el. Hello aktív aszinkron feladatok száma meghaladja a 15, ha hello parancsfájl kezdődik-e a csomópontok, amíg számuk meghaladja a aktív aszinkron feladatok hello aránya túl**NumOfActiveQueuedTasksPerNodeToGrow**. Ha egy csomópont tétlen 10 egymást követő üresjárati idő található toobe, le van állítva.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates 'Default ComputeNode Template' -JobTemplates 'Default' -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 10 -NumOfActiveQueuedTasksToGrowThreshold 15 -NumOfInitialNodesToGrow 5 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 1 -ShrinkCheckIdleTimes 10 -ArgFile 'IaaSVMComputeNodes_Arg.xml' -LogFilePrefix 'IaaSVMComputeNodes_log'

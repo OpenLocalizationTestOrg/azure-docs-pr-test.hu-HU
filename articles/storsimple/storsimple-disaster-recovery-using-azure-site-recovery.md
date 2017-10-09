@@ -1,6 +1,6 @@
 ---
-title: "StorSimple fájlmegosztási vész-Helyreállítási az Azure Site Recovery szolgáltatással automatizálhatja |} Microsoft Docs"
-description: "Ismerteti a lépéseket és ajánlott eljárások a vész-helyreállítási megoldást az üzemeltetett Microsoft Azure StorSimple tároló fájlmegosztások létrehozásához."
+title: "aaaAutomate StorSimple fájlmegosztási vész-Helyreállítási az Azure Site Recovery szolgáltatással |} Microsoft Docs"
+description: "Hello lépéseit és ajánlott eljárások a vész-helyreállítási megoldást az üzemeltetett Microsoft Azure StorSimple tároló fájlmegosztások létrehozásához ismerteti."
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,133 +14,133 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/09/2017
 ms.author: vidarmsft
-ms.openlocfilehash: b4d575587eec1bcf43c33c7faeb8360ec67b5214
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa3e8d4e77ca0f6a7b5f9bbb956a4de12547642e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automated-disaster-recovery-solution-using-azure-site-recovery-for-file-shares-hosted-on-storsimple"></a>Azure Site Recovery segítségével StorSimple üzemeltetett fájlmegosztások automatizált vész-helyreállítási megoldás
 ## <a name="overview"></a>Áttekintés
-A Microsoft Azure StorSimple hibrid felhőalapú tárolási megoldás, amely a strukturálatlan adatok gyakran társított fájlmegosztások bonyolultságára. StorSimple felhőbeli tárhelyét használja a helyszíni megoldás, és automatikusan rétegek adatok kiterjesztése a helyszíni és felhőalapú tárolására között. Az adatvédelem integrálva van a helyi és felhőalapú pillanatfelvételek, nem kell az sprawling tároló-infrastruktúra.
+A Microsoft Azure StorSimple hibrid felhőalapú tárolási megoldás, amely címek hello gyakran társított fájlmegosztások strukturálatlan adatok bonyolultságára. StorSimple felhőbeli tárhelyét használja az hello kiterjesztése a helyszíni megoldás, és automatikusan tiers adatok között a helyszíni és felhőalapú tárolására. Az adatvédelem integrálva van a helyi és felhőalapú pillanatfelvételek, szükségtelenné teszi hello sprawling tároló-infrastruktúra.
 
-[Az Azure Site Recovery](../site-recovery/site-recovery-overview.md) egy Azure-alapú szolgáltatás, amely a vész-helyreállítási képességeket biztosít replikáció, feladatátvétel és helyreállítási virtuális gépek megvalósításában. Az Azure Site Recovery számos replikációs technológia következetesen replikálni, védheti meg és zökkenőmentesen átveheti a virtuális gépek és a privát vagy nyilvános vagy a szolgáltatott felhők alkalmazásokat támogatja.
+[Az Azure Site Recovery](../site-recovery/site-recovery-overview.md) egy Azure-alapú szolgáltatás, amely a vész-helyreállítási képességeket biztosít replikáció, feladatátvétel és helyreállítási virtuális gépek megvalósításában. Az Azure Site Recovery számos olyan replikációs technológiák tooconsistently replikálás támogat, védheti meg és zökkenőmentesen átveheti a virtuális gépek és az alkalmazások tooprivate/nyilvános vagy a szolgáltatott felhők.
 
-Az Azure Site Recovery, a virtuálisgép-replikációt és a StorSimple felhő pillanatképkezelési funkciókat, védelmet biztosíthat a teljes fájl kiszolgálói környezet. Egy becsukódjon egyetlen kattintással segítségével a fájlmegosztások online állapotba az Azure-ban csak néhány perc múlva.
+Az Azure Site Recovery, a virtuálisgép-replikációt és a StorSimple felhő pillanatképkezelési funkciókat, védelmet biztosíthat a hello teljes fájl kiszolgálói környezet. A szüneteltetése hello esetben használhatja a egyetlen kattintással toobring a fájlmegosztások online az Azure-ban csak néhány perc múlva.
 
-Ez a dokumentum részletesen ismerteti, hogyan hozhat létre egy vész-helyreállítási megoldást a StorSimple tárolási üzemeltetett fájlmegosztások és végrehajtani a tervezett, nem tervezett, és feladatátvételi tesztek használ egy kattintással helyreállítási tervet. Lényegében azt illusztrálja, hogyan módosíthatja a helyreállítási terv a StorSimple feladatátvételek során vészhelyreállítási forgatókönyvek engedélyezése az Azure Site Recovery tárolójából. Ismerteti továbbá támogatott konfigurációk és előfeltételek. Jelen dokumentum céljából feltételezzük, hogy jártas az Azure Site Recovery és a StorSimple architektúrák alapjait.
+Ez a dokumentum részletesen ismerteti, hogyan hozhat létre egy vész-helyreállítási megoldást a StorSimple tárolási üzemeltetett fájlmegosztások és végrehajtani a tervezett, nem tervezett, és feladatátvételi tesztek használ egy kattintással helyreállítási tervet. Lényegében azt illusztrálja, hogyan módosítható a helyreállítási terv hello az Azure Site Recovery-tárolóban tooenable StorSimple feladatátvételek során vészhelyreállítási forgatókönyvek. Ismerteti továbbá támogatott konfigurációk és előfeltételek. Jelen dokumentum céljából feltételezzük, hogy jártas Azure Site Recovery és a StorSimple architektúrák hello alapjait.
 
 ## <a name="supported-azure-site-recovery-deployment-options"></a>Támogatott Azure Site Recovery telepítési lehetőségek
-Az ügyfelek fizikai kiszolgálóként vagy virtuális gépek (VM) futó Hyper-V vagy VMware telepíthetők, és majd faragottnak kívül StorSimple tároló kötetekről a fájlmegosztások létrehozását. Az Azure Site Recovery megvédheti a fizikai és virtuális központi telepítések egy másodlagos helyre vagy az Azure-bA. Ez a dokumentum ismerteti az Azure-bA Hyper-V virtuális gép üzemeltetett fájlkiszolgálók esetében a helyreállítási hely és a StorSimple tároló fájlmegosztások vész-Helyreállítási megoldás részletei. Más forgatókönyvekben, ahol a fájlkiszolgáló virtuális gép VMware virtuális gép vagy fizikai gépen hasonlóképpen kell végrehajtani.
+Az ügyfelek fizikai kiszolgálóként vagy virtuális gépek (VM) futó Hyper-V vagy VMware telepíthetők, és majd faragottnak kívül StorSimple tároló kötetekről a fájlmegosztások létrehozását. Az Azure Site Recovery megvédheti mindkét fizikai és virtuális központi telepítések tooeither tooAzure vagy másodlagos hely. Ez a dokumentum ismerteti az Azure virtuális gép futó Hyper-V fájlkiszolgáló hello helyreállítási helyként, és a StorSimple tároló fájlmegosztások vész-Helyreállítási megoldás részletei. Egyéb forgatókönyvek, mely hello fájlkiszolgálón található a virtuális gép van, a VMware virtuális gép vagy fizikai gépen hasonlóképpen kell végrehajtani.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Egy Azure Site Recovery által üzemeltetett StorSimple tároló fájlmegosztások a egy kattintással vész-helyreállítási megoldást Végrehajtási előfeltételei a következők:
+A következő előfeltételek hello egy Azure Site Recovery által üzemeltetett StorSimple tároló fájlmegosztások a egy kattintással vész-helyreállítási megoldást Végrehajtási rendelkezik:
 
 * Helyszíni Hyper-V vagy VMware vagy fizikai gépen futó virtuális gép Windows Server 2012 R2 fájl kiszolgáló
 * StorSimple tárolási helyszíni Eszközkezelési regisztrálva az Azure StorSimple manager
-* StorSimple felhő készülék létrehozása az Azure StorSimple manager (ez is meg kell őrizni, leállítást állapot)
-* A StorSimple tárolóeszközön konfigurált köteteken tárolt fájlmegosztások
+* StorSimple felhő készülék létrehozott hello Azure StorSimple manager (ez is meg kell őrizni, leállítást állapot)
+* Hello készleteiből konfigurált hello StorSimple tárolóeszközön tárolt fájlmegosztások
 * [Az Azure Site Recovery services-tároló](../site-recovery/site-recovery-vmm-to-vmm.md) a Microsoft Azure-előfizetés létrehozása
 
-Emellett, ha Azure a helyreállítási hely, futtassa a [Azure virtuális gép Readiness Assessment eszközt](http://azure.microsoft.com/downloads/vm-readiness-assessment/) a virtuális gépeken, és győződjön meg arról, hogy azok kompatibilis Azure virtuális gépek és az Azure Site Recovery services.
+Emellett, ha Azure a helyreállítási hely, futtassa a hello [Azure virtuális gép Readiness Assessment eszközt](http://azure.microsoft.com/downloads/vm-readiness-assessment/) a virtuális gépek tooensure, hogy kompatibilisek, az Azure virtuális gépek és az Azure Site Recovery services.
 
-(Ami a magasabb költségű) problémákat, győződjön meg arról, hogy hozzon létre a StorSimple felhő készülék, az automation-fiók és a tárolási késés elkerülése érdekében fiók(ok) ugyanabban a régióban.
+tooavoid késési problémák (ami a magasabb költségű), győződjön meg arról, hogy a StorSimple felhő készüléknek, automation-fiók létrehozása, és a tárfiókok hello ugyanabban a régióban.
 
 ## <a name="enable-dr-for-storsimple-file-shares"></a>StorSimple-fájlmegosztások vész-Helyreállítási engedélyezése
-Minden összetevőnek a helyszíni környezet kell befejezni a replikációt és helyreállítási védeni. Ez a szakasz ismerteti, hogyan:
+Minden összetevője hello helyszíni kell védett toobe tooenable befejezni a replikációt és helyreállítási környezetet. Ez a szakasz ismerteti, hogyan:
 
 * (Opcionális) Active Directory és a DNS-replikáció beállítása
-* Azure Site Recovery segítségével a fájlkiszolgáló virtuális gép védelmének engedélyezése
+* Az Azure Site Recovery tooenable protectionben hello fájlkiszolgáló méretű VM
 * A StorSimple-kötetek védelmének engedélyezése
-* A hálózat konfigurálása
+* Hello hálózat konfigurálása
 
 ### <a name="set-up-active-directory-and-dns-replication-optional"></a>(Opcionális) Active Directory és a DNS-replikáció beállítása
-Ha szeretné védeni a gépek futnak az Active Directory és a DNS, hogy elérhetők a vész-Helyreállítási helyen, akkor explicit módon a védelmüket (így a fájlkiszolgálók hitelesítéssel átkapcsolás után érhetők el). Két módon ajánlott az ügyfél helyszíni környezetben összetettsége alapján.
+Ha azt szeretné, tooprotect hello tooexplicitly kell, hogy elérhetők a hello vész-Helyreállítási helyen Active Directory és a DNS rendszert futtató gépek, a védelmüket (így hello fájlkiszolgálók hitelesítéssel átkapcsolás után érhetők el). Két módon ajánlott hello az ügyfél helyszíni környezetben hello összetettsége alapján.
 
 #### <a name="option-1"></a>1. lehetőséget
-Ha az ügyfél egy kis számú alkalmazást, a teljes egyetlen tartományvezérlővel rendelkezik helyszíni hely, és lesz akkor javasoljuk, hogy a tartomány a tartományvezérlő gépet replikálni egy másodlagos Azure Site Recovery-replikációt használ a teljes helyre feladatátvétele a webhely (Ez az a pont-pont és a webhely-Azure alkalmazható).
+Ha hello vevő kis számú alkalmazást, hello teljes egyetlen tartományvezérlővel rendelkezik helyszíni hely és fog kell feladatátadásának hello teljes webhelyet, akkor azt javasoljuk, Azure Site Recovery replikációs tooreplicate hello tartomány a tartományvezérlő számítógép tooa másodlagos hely (Ez az a pont-pont és a webhely-Azure alkalmazható).
 
 #### <a name="option-2"></a>2. lehetőséget
-Ha az ügyfél alkalmazások nagy számú, az Active Directory-erdőt fut, és néhány alkalmazások keresztül egyszerre lesz sikertelen, akkor azt javasoljuk, hogy egy további tartományvezérlőt a vész-Helyreállítási helyen beállítása (vagy egy másodlagos helyre vagy az Azure-ban).
+Ha hello felhasználói alkalmazások nagy számú, az Active Directory-erdőt fut, és néhány alkalmazások keresztül egyszerre lesz sikertelen, akkor azt javasoljuk, hogy egy további tartományvezérlőt hello vész-Helyreállítási helyen beállítása (vagy egy másodlagos helyre vagy az Azure-ban).
 
-Tekintse meg [automatikus vész-Helyreállítási megoldást nyújt az Active Directory és az Azure Site Recovery segítségével DNS](../site-recovery/site-recovery-active-directory.md) utasításokat, ha egy tartományvezérlő elérhetővé tétele a vész-Helyreállítási helyen. Ez a dokumentum további része, a indulunk ki a vész-Helyreállítási helyen rendelkezésre áll egy tartományvezérlő.
+Tekintse meg a túl[automatikus vész-Helyreállítási megoldást nyújt az Active Directory és az Azure Site Recovery segítségével DNS](../site-recovery/site-recovery-active-directory.md) útmutatást, amikor elérhetővé teszi a tartományvezérlő hello vész-Helyreállítási helyen. Ez a dokumentum hátralévő hello indulunk ki hello vész-Helyreállítási helyen rendelkezésre áll egy tartományvezérlő.
 
-### <a name="use-azure-site-recovery-to-enable-protection-of-the-file-server-vm"></a>Azure Site Recovery segítségével a fájlkiszolgáló virtuális gép védelmének engedélyezése
-Ebben a lépésben elő kell készíteni a helyi fájl kiszolgálói környezet létrehozása és előkészítése az Azure Site Recovery-tárolóban és engedélyezi a virtuális gép fájl védelmét.
+### <a name="use-azure-site-recovery-tooenable-protection-of-hello-file-server-vm"></a>Az Azure Site Recovery tooenable protectionben hello fájlkiszolgáló méretű VM
+Ebben a lépésben használatához hello helyszíni fájl kiszolgálói környezet előkészítése, létrehozása és előkészítése az Azure Site Recovery tárolójából, majd engedélyezi hello VM fájl védelmét.
 
-#### <a name="to-prepare-the-on-premises-file-server-environment"></a>A helyi fájl kiszolgálói környezet előkészítése
-1. Állítsa be a **felhasználói fiókok felügyelete** való **nincs értesítés**. Ez azért szükséges, hogy az Azure automation-parancsfájlok segítségével az iSCSI-tárolók csatlakozás után át az Azure Site Recovery sikertelen lesz.
+#### <a name="tooprepare-hello-on-premises-file-server-environment"></a>tooprepare hello helyszíni fájl kiszolgálói környezet
+1. Set hello **felhasználói fiókok felügyelete** túl**nincs értesítés**. Ez azért szükséges, hogy az Azure automation parancsfájlok tooconnect hello iSCSI-tárolók után sikertelen Azure Site Recovery által használható.
 
-   1. Nyomja meg a Windows billentyű + Q, és keresse meg a **UAC**.
+   1. Nyomja le az ENTER hello Windows billentyű + Q, és keresse meg a **UAC**.
    2. Válassza ki **módosítás felhasználói fiókok felügyelete beállításainak**.
-   3. A sáv húzza felfelé **nincs értesítés**.
+   3. Eszközterület-toohello felfelé húzza hello **nincs értesítés**.
    4. Kattintson a **OK** majd **Igen** megjelenésekor.
 
       ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image1.png)
-2. A Virtuálisgép-ügynök telepítése minden egyes, a fájlkiszolgáló virtuális gépeket. Ez azért szükséges, hogy az Azure automation parancsfájlok futtathatók a feladatait át virtuális gépeket.
+2. Virtuálisgép-ügynök hello hello fájlkiszolgáló virtuális gépeket telepíthet. Ez azért szükséges, hogy az Azure automation-parancsfájlok futtathatók a virtuális gépek a feladatátvételt hello.
 
-   1. [Töltse le az ügynököt](http://aka.ms/vmagentwin) való `C:\\Users\\<username>\\Downloads`.
-   2. Nyissa meg a Windows PowerShell rendszergazdai módban (Futtatás rendszergazdaként), és adja meg a letöltési hely navigáljon a következő parancsot:
+   1. [Hello-ügynök letöltése](http://aka.ms/vmagentwin) túl`C:\\Users\\<username>\\Downloads`.
+   2. Nyissa meg a Windows PowerShell rendszergazdai módban (Futtatás rendszergazdaként), és írja be a következő parancs toonavigate toohello letöltési helye hello:
 
       `cd C:\\Users\\<username>\\Downloads\\WindowsAzureVmAgent.2.6.1198.718.rd\_art\_stable.150415-1739.fre.msi`
 
       > [!NOTE]
-      > A fájlnév verziójától függően változhat.
+      > hello fájlnév hello verziójától függően változhatnak.
       >
       >
 3. Kattintson a **Tovább** gombra.
-4. Fogadja el a **feltételeket a szerződés** majd **következő**.
+4. Fogadja el a hello **feltételeket a szerződés** majd **következő**.
 5. Kattintson a **Befejezés** gombra.
-6. StorSimple tárolási kívül faragottnak köteteket használó fájlmegosztásokat létrehozni. További információkért lásd: [kötetek kezelése a StorSimple Manager szolgáltatás segítségével](storsimple-manage-volumes.md).
+6. StorSimple tárolási kívül faragottnak köteteket használó fájlmegosztásokat létrehozni. További információkért lásd: [hello StorSimple Manager szolgáltatás toomanage köteteket](storsimple-manage-volumes.md).
 
-   1. A helyszíni virtuális gépeken, nyomja meg a Windows billentyű + Q, és keresse meg a **iSCSI**.
+   1. A helyszíni virtuális gépeken, nyomja le az ENTER hello Windows billentyű + Q, és keresse meg a **iSCSI**.
    2. Válassza ki **iSCSI-kezdeményező**.
-   3. Válassza ki a **konfigurációs** lapra, és másolja a kezdeményező neve.
-   4. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-   5. Válassza ki a **StorSimple** lapra, és válassza ki a StorSimple Manager szolgáltatás, amely tartalmazza a fizikai eszköz.
-   6. Kötet tárolója létrehozása, és majd a kötetek létrehozása. (Ezek a kötetek szolgálnak a fájl megosztásainak a fájlkiszolgáló virtuális gépeken). Másolja a kezdeményező neve, és adjon nevet a hozzáférés-vezérlési rekordokat, a kötetek létrehozásakor.
-   7. Válassza ki a **konfigurálása** lapra, és vegye figyelembe az IP-cím, az eszköz le.
-   8. A helyszíni virtuális gépeken, navigáljon a **iSCSI-kezdeményező** újra és írja be az IP-cím a gyors csatlakozás szakaszban. Kattintson a **gyors csatlakozás** (az eszköz most kell csatlakoztatni).
-   9. Nyissa meg az Azure portál, és válassza a **kötetek és eszközök** fülre. Kattintson a **automatikus konfigurálása**. Az újonnan létrehozott kötetre kell megjelennie.
-   10. A portálon, válassza ki a **eszközök** fülre, majd jelölje **hozzon létre egy új virtuális eszközt.** (A virtuális eszköz alkalmazva lesznek, ha a feladatátvételt hajt végre). Az új virtuális eszköz további költségek elkerülése érdekében offline állapotban is megmarad. A virtuális eszköz kapcsolat nélküli üzemmódra állítása, keresse fel a **virtuális gépek** a portál szakaszt, és le.
-   11. Lépjen vissza a helyszíni virtuális gépeket, és nyissa meg a Lemezkezelés (nyomja meg a Windows billentyű + X, és válassza ki **Lemezkezelés**).
-   12. Megfigyelheti, hogy néhány további lemezek (attól függően, hogy a létrehozott kötetek száma). Kattintson a jobb gombbal a először egy select **lemez inicializálása**, és válassza ki **OK**. Kattintson a jobb gombbal a **Unallocated** szakaszban jelölje be **új egyszerű kötet**, a meghajtóbetűjelet rendelje hozzá, és a varázsló befejezéséhez.
-   13. Ismételje meg a l. a lemezeket. Most már megtekintheti a lemezeket a **ez PC** a Windows Intézőben.
-   14. Használja a fájl- és tárolási szolgáltatások szerepkör fájlmegosztásokat hozhat létre ezeken a köteteken.
+   3. Jelölje be hello **konfigurációs** fülre, és másolja hello kezdeményező neve.
+   4. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+   5. Jelölje be hello **StorSimple** fülre, majd válassza ki hello StorSimple Manager szolgáltatás, amely tartalmazza a hello fizikai eszköz.
+   6. Kötet tárolója létrehozása, és majd a kötetek létrehozása. (Ezek a kötetek szolgálnak hello fájl megosztásainak hello fájlkiszolgáló virtuális gépeken). Másolja a hello kezdeményező neve, és nevezze el egy megfelelő hozzáférés-vezérlési rekordokat hello a hello kötetek létrehozásakor.
+   7. Jelölje be hello **konfigurálása** lapra, és jegyezze fel a hello eszköz hello IP-címét.
+   8. A helyszíni virtuális gépeken, lépjen a toohello **iSCSI-kezdeményező** újra és írja be a hello IP hello gyors csatlakozás szakasz. Kattintson a **gyors csatlakozás** (hello eszköz most kell csatlakoztatni).
+   9. Nyissa meg hello Azure-portálon, és válassza hello **kötetek és eszközök** fülre. Kattintson a **automatikus konfigurálása**. újonnan létrehozott hello kötet megjelenjen-e.
+   10. Hello portálon, válassza ki a hello **eszközök** fülre, majd jelölje **hozzon létre egy új virtuális eszközt.** (A virtuális eszköz alkalmazva lesznek, ha a feladatátvételt hajt végre). Az új virtuális eszköz is meg kell őrizni, az offline állapotban tooavoid további költségek. tootake hello virtuális eszköz offline állapotban, lépjen toohello **virtuális gépek** hello Portal a szakaszt, és leállítani.
+   11. Lépjen vissza toohello a helyszíni virtuális gépeket, és nyissa meg a Lemezkezelés (nyomja meg a hello Windows billentyű + X, és válassza ki **Lemezkezelés**).
+   12. Megfigyelheti, hogy néhány további lemezek (attól függően, hogy létrehozott kötetek hello száma). Kattintson a jobb gombbal hello első, válassza a **lemez inicializálása**, és válassza ki **OK**. Kattintson a jobb gombbal hello **Unallocated** szakaszban jelölje be **új egyszerű kötet**, rendelje hozzá meghajtóbetűjelhez és hello varázsló befejezéséhez.
+   13. Az összes hello lemez ismételje meg a l. Most már megtekintheti az összes hello lemez **ez PC** a Windows Explorer hello.
+   14. Hello fájl- és tárolási szolgáltatások szerepkör toocreate fájlmegosztások használja ezeken a köteteken.
 
-#### <a name="to-create-and-prepare-an-azure-site-recovery-vault"></a>Létrehozása és előkészítése az Azure Site Recovery-tároló
-Tekintse meg a [Azure Site Recovery dokumentáció](../site-recovery/site-recovery-hyper-v-site-to-azure.md) a fájlkiszolgáló virtuális gép védelmének megkezdéséhez az Azure Site Recovery szolgáltatással.
+#### <a name="toocreate-and-prepare-an-azure-site-recovery-vault"></a>toocreate és készítse elő az Azure Site Recovery-tároló
+Tekintse meg a toohello [Azure Site Recovery dokumentáció](../site-recovery/site-recovery-hyper-v-site-to-azure.md) tooget lépések az Azure Site Recovery védelmének hello fájlkiszolgáló virtuális gép.
 
-#### <a name="to-enable-protection"></a>Engedélyezze a védelmet
-1. Az iSCSI cél(ok) bontja a helyszíni virtuális gépek az Azure Site Recovery segítségével védeni kívánt:
+#### <a name="tooenable-protection"></a>tooenable védelme
+1. Válassza le a hello iSCSI cél(ok) hello a helyszíni virtuális gépek, amelyet az Azure Site Recovery segítségével tooprotect:
 
    1. Nyomja le a Windows billentyű + Q, és keresse meg a **iSCSI**.
    2. Válassza ki **iSCSI-kezdeményező beállítása**.
-   3. Válassza le a korábban csatlakoztatott StorSimple eszközt. Azt is megteheti, megváltoztathatja a fájlkiszolgáló ki néhány percig a védelem engedélyezésekor.
+   3. Válassza le a korábban csatlakoztatott hello StorSimple eszközt. Alternatív megoldásként válthat ki hello fájlkiszolgáló néhány percig a védelem engedélyezésekor.
 
    > [!NOTE]
-   > Ennek hatására a fájlmegosztások átmenetileg nem érhető el.
+   > Ennek hatására hello fájl megosztások toobe átmenetileg nem érhető el.
    >
    >
-2. [A virtuális gép védelmének engedélyezése](../site-recovery/site-recovery-hyper-v-site-to-azure.md) a fájlkiszolgáló virtuális gép az Azure Site Recovery portálról.
-3. A kezdeti szinkronizálás kezdődik, amikor újra csatlakozhat a cél. Nyissa meg az iSCSI-kezdeményezőt a StorSimple eszközt, és kattintson **Connect**.
-4. A szinkronizálás befejeztével, miután a virtuális gép állapota **védett**, válassza ki a virtuális Gépet, jelölje ki a **konfigurálása** lapot, és ennek megfelelően frissíti a virtuális gép hálózati (Ez az a hálózat, amely a sikertelen keresztül Virtuális gép van egy része lesz). Ha a hálózat nem jelenik meg, az azt jelenti, hogy a szinkronizálási továbbra is zajlik.
+2. [A virtuális gép védelmének engedélyezése](../site-recovery/site-recovery-hyper-v-site-to-azure.md) hello fájlkiszolgáló VM hello Azure Site Recovery portálról.
+3. Hello kezdeti szinkronizálás kezdődik, amikor újra hello cél újra. Nyissa meg az iSCSI-kezdeményező toohello, válassza ki a StorSimple eszköz hello, és kattintson **Connect**.
+4. Hello szinkronizálás befejeztével, miután hello hello virtuális gép állapota **védett**, válassza ki a virtuális gép hello, válassza ki a hello **konfigurálása** lapot, és ennek megfelelően frissülnek hello hello VM-hálózata (Ez a hello hálózati a feladatátvételt a virtuális gép van hello fog tartozni). Ha hello hálózati nem jelenik meg, az azt jelenti, hogy hello szinkronizálási van még mindig folyamatban.
 
 ### <a name="enable-protection-of-storsimple-volumes"></a>A StorSimple-kötetek védelmének engedélyezése
-Ha nincs kiválasztva a **engedélyezése ehhez a kötethez alapértelmezett biztonsági mentés** választás, a StorSimple-köteteket, nyissa meg a **biztonsági mentési házirendek** a StorSimple Manager szolgáltatásra, és alkalmas biztonsági mentési házirend létrehozása a köteteket. Ajánlott biztonsági mentések beállítani a helyreállítási időkorlát (RPO), amelyet az alkalmazás megtekintéséhez.
+Ha nincs kiválasztva hello **engedélyezése ehhez a kötethez alapértelmezett biztonsági mentés** választás, hello StorSimple-köteteket, nyissa meg túl**biztonsági mentési házirendek** hello a StorSimple Manager szolgáltatás, és megfelelő biztonsági mentés létrehozása a házirend az összes hello kötet. Azt javasoljuk, hogy állítsa a biztonsági mentések toohello helyreállításipont-célkitűzés (RPO), hogy szeretné-e hello alkalmazás toosee hello gyakoriságát.
 
-### <a name="configure-the-network"></a>A hálózat konfigurálása
-A fájlkiszolgáló virtuális gép, hálózati beállítások konfigurálása a Azure Site Recovery, hogy a Virtuálisgép-hálózatok a feladatátvételt követően a megfelelő vész-Helyreállítási hálózathoz van csatlakoztatva.
+### <a name="configure-hello-network"></a>Hello hálózat konfigurálása
+Hello fájlkiszolgáló virtuális gép, hálózati beállítások konfigurálása a Azure Site Recovery, amelyek a Virtuálisgép-hálózatok hello csatolt toohello megfelelő vész-Helyreállítási hálózati feladatátvételt követően.
 
-Kiválaszthatja a virtuális gép a **replikált elemek** lapján adja meg a hálózati beállításokat a következő ábrán látható módon.
+Hello VM igény szerint a hello **replikált elemek** tooconfigure hello hálózati beállításai lapon a hello a következő ábrán látható módon.
 
 ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image2.png)
 
 ## <a name="create-a-recovery-plan"></a>Helyreállítási terv létrehozása
-Az ASR Szolgáltatásban a fájlmegosztások a feladatátvételi folyamat automatizálása helyreállítási tervet is létrehozhat. A szüneteltetése akkor fordul elő, ha van lehetősége a fájlmegosztások csupán egyetlen kattintással néhány perc múlva. Ahhoz, hogy ezt az automatizálást, szüksége lesz egy Azure automation-fiók.
+Az ASR tooautomate hello feladatátvételi folyamat hello fájlmegosztások helyreállítási tervet is létrehozhat. A szüneteltetése akkor fordul elő, ha van lehetősége hello fájlmegosztások csupán egyetlen kattintással néhány perc múlva. tooenable ezt az automatizálást szüksége lesz egy Azure automation-fiók.
 
-#### <a name="to-create-an-automation-account"></a>Automation-fiók létrehozása
-1. Az Azure-portálon lépjen &gt; **Automation** szakasz.
+#### <a name="toocreate-an-automation-account"></a>toocreate Automation-fiók
+1. Nyissa meg az Azure portál toohello &gt; **Automation** szakasz.
 2. Kattintson a **+ Hozzáadás** gomb, megnyílik a panel alatt.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image11.png)
@@ -148,11 +148,11 @@ Az ASR Szolgáltatásban a fájlmegosztások a feladatátvételi folyamat automa
    * Name,-adja meg az új automation-fiók
    * Előfizetés - előfizetés kiválasztása
    * Resource group - új/válasszon meglévő erőforráscsoport létrehozása
-   * Hely - hely kiválasztásához, legyen az ugyanazon földrajzi vagy régióban, amelyben a StorSimple felhő készüléket és a Storage-fiókok létrejöttek.
+   * Hely - hely kiválasztásához, tartsa hello azonos földrajzi vagy régió mely hello a StorSimple felhő készüléket és a Storage-fiókok létrejöttek.
    * Hozzon létre válassza ki az Azure-beli futtató fiók - **Igen** lehetőséget.
 
-3. Ugrás az Automation-fiókot, kattintson a **Runbookok** &gt; **Tallózás gyűjtemény** rendszerbe való importálás érdekében a szükséges forgatókönyvek az automation-fiók.
-4. Adja hozzá a következő forgatókönyvek található **vész-helyreállítási** címke a gyűjteményben:
+3. Nyissa meg toohello Automation-fiókot, kattintson a **Runbookok** &gt; **Tallózás gyűjtemény** összes hello tooimport szükséges runbookokat hello automation figyelembe.
+4. Adja hozzá a runbookok keresse meg a következő hello **vész-helyreállítási** címke hello gyűjteményben:
 
    * StorSimple-köteteket a teszt feladatátvételi (TFO) után tisztítása
    * Feladatátvételi StorSimple kötettárolók
@@ -162,31 +162,31 @@ Az ASR Szolgáltatásban a fájlmegosztások a feladatátvételi folyamat automa
 
      ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image3.png)
 
-5. A parancsfájlok közzététele kiválasztja a runbook automation-fiók, és kattintson a **szerkesztése** &gt; **közzététel** , majd **Igen** ellenőrzési üzenethez. Ez a lépés után a **Runbookok** lapon fog megjelenni az alábbiak szerint:
+5. Összes hello parancsfájl közzététele hello automation-fiókban hello runbook kiválasztásával, és kattintson a **szerkesztése** &gt; **közzététel** , majd **Igen** toohello ellenőrzése üzenet. Ez a lépés után hello **Runbookok** lapon fog megjelenni az alábbiak szerint:
 
     ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image4.png)
 
-6. Az automation-fiók, jelölje ki a **eszközök** lapon &gt; kattintson **változók** &gt; **változó hozzáadása** , és adja hozzá a következő változókat. Ha szeretné, ezek az eszközök titkosításához. Ezek a változók a helyreállítási terv-specifikus. Ha a helyreállítási terv (amely a következő lépésben létrehoz) neve TestPlan, akkor a változók csal, TestPlan-StorSimRegKey TestPlan-AzureSubscriptionName és így tovább.
+6. Hello automation-fiókban, válassza ki a hello **eszközök** lapon &gt; kattintson **változók** &gt; **változó hozzáadása** , és adja hozzá a következő változók hello. Választhat tooencrypt ezeknek az eszközöknek. Ezek a változók a helyreállítási terv-specifikus. Ha a helyreállítási terv (amely a következő lépésben hello létrehozhat) neve TestPlan, akkor a változók csal, TestPlan-StorSimRegKey TestPlan-AzureSubscriptionName és így tovább.
 
-   * *RecoveryPlanName***- StorSimRegKey**: a StorSimple Manager szolgáltatáshoz a regisztrációs kulccsal.
-   * *RecoveryPlanName***- AzureSubscriptionName**: az Azure-előfizetés nevét.
-   * *RecoveryPlanName***- ResourceName**: a StorSimple-erőforrás, amely rendelkezik a StorSimple-eszköz nevét.
-   * *RecoveryPlanName***- DeviceName**: az eszköz, amelynek a feladatait át szeretné adni.
-   * *RecoveryPlanName***- VolumeContainers**: kötettárolók vesszővel elválasztott karakterlánc volcon1, volcon2, volcon3 az eszközön, amely kell végrehajtani, több mint; például szükség van.
-   * *RecoveryPlanName***- TargetDeviceName**: A StorSimple felhő készüléknek, amelyen a tárolók feladatátvételre van.
-   * *RecoveryPlanName***- TargetDeviceDnsName**: a céleszközt szolgáltatás nevét (Ez megtalálhatók a **virtuális gép** szakasz: a szolgáltatás neve megegyezik a DNS-név).
-   * *RecoveryPlanName***- StorageAccountName**: A tárfiók nevét, amelyben a parancsfájl (melynek futtatnia a sikertelen a virtuális gép) tárolódik. Ez lehet a storage-fiók, amely ideiglenesen tárolja a parancsfájl lemezterületet rendelkezik.
-   * *RecoveryPlanName***- StorageAccountKey**: a fenti storage-fiók elérési kulcsának.
-   * *RecoveryPlanName***- ScriptContainer**: A nevét, a tároló, amelyben a parancsfájl eltárolva a felhőben. Ha a tároló nem létezik, a rendszer létrehozza.
-   * *RecoveryPlanName***- VMGUIDS**: után a virtuális gépek védelméhez, Azure Site Recovery minden virtuális gép egyedi-Azonosítót rendel hozzá, amely a sikertelen részleteit átadó virtuális gép. A VMGUID beszerzéséhez válassza ki a **Recovery Services** fülre, és kattintson **védett elem** &gt; **védelmi csoportok** &gt;  **Gépek** &gt; **tulajdonságok**. Ha több virtuális géphez, majd adja hozzá a GUID egy vesszővel elválasztott karakterlánc.
-   * *RecoveryPlanName***- AutomationAccountName** – a neve, amelyben a runbookokat és az eszközök hozzáadta az automation-fiók.
+   * *RecoveryPlanName***- StorSimRegKey**: hello regisztrációs kulcsot az hello StorSimple Manager szolgáltatás.
+   * *RecoveryPlanName***- AzureSubscriptionName**: hello hello Azure-előfizetés nevét.
+   * *RecoveryPlanName***- ResourceName**: hello hello StorSimple eszköz StorSimple erőforrást hello nevét.
+   * *RecoveryPlanName***- DeviceName**: hello-eszköz toobe átadja a feladatokat.
+   * *RecoveryPlanName***- VolumeContainers**: kötettárolók vesszővel elválasztott karakterlánc megtalálható, amelyeket nem sikerült a több mint, például toobe hello eszköz volcon1, volcon2, volcon3.
+   * *RecoveryPlanName***- TargetDeviceName**: hello StorSimple felhő készülék tárolók mely hello toobe szerepelnek a feladatátvételt.
+   * *RecoveryPlanName***- TargetDeviceDnsName**: hello céleszköz hello szolgáltatás nevét (Ez hello található **virtuális gép** szakasz: hello szolgáltatás neve van hello ugyanaz, mint hello DNS-név).
+   * *RecoveryPlanName***- StorageAccountName**: hello tárfiók mely hello parancsfájlban szereplő neve (amely a hello toorun feladatátadása megtörtént VM) tárolja. A storage-fiók, amely ideiglenesen rendelkezik némi lemezterület toostore hello parancsfájl is lehet.
+   * *RecoveryPlanName***- StorageAccountKey**: hello fent tárfiók hello a hozzáférési kulcsot.
+   * *RecoveryPlanName***- ScriptContainer**: hello tároló mely hello parancsfájl tárolva lesznek hello felhőben hello neve. Ha hello tároló nem létezik, a rendszer létrehozza.
+   * *RecoveryPlanName***- VMGUIDS**: után a virtuális gépek védelméhez, Azure Site Recovery minden virtuális gép egyedi-Azonosítót rendel hozzá, amelyek a virtuális gép a feladatátvételt hello hello részletezi. tooobtain hello VMGUID, jelölje be hello **Recovery Services** fülre, és kattintson **védett elem** &gt; **védelmi csoportok** &gt; **Gépek** &gt; **tulajdonságok**. Ha több virtuális géphez, majd adja hozzá hello GUID egy vesszővel elválasztott karakterlánc.
+   * *RecoveryPlanName***- AutomationAccountName** – hello hello forgatókönyve és eszköze hello hozzáadta, amelyben hello automation-fiók nevét.
 
-  Például, ha a helyreállítási terv neve fileServerpredayRP akkor a **hitelesítő adatok** & **változók** lapon meg kell jelennie az alábbiak szerint az eszközök hozzáadása után.
+  Például akkor, ha hello hello helyreállítási terv neve nem fileServerpredayRP, akkor a **hitelesítő adatok** & **változók** lapon meg kell jelennie az alábbiak szerint az összes hello eszköz hozzáadása után.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image5.png)
 
-7. Lépjen a **Recovery Services** válassza ki azt a korábban létrehozott Azure Site Recovery-tárolóban.
-8. Válassza ki a **helyreállítási tervek (helyreállítás)** parancsát **kezelése** csoportban, és hozzon létre új helyreállítási terv az alábbiak szerint:
+7. Nyissa meg toohello **Recovery Services** szakasz és a korábban létrehozott válassza hello Azure Site Recovery-tárolóban.
+8. Jelölje be hello **helyreállítási tervek (helyreállítás)** parancsát **kezelése** csoportban, és hozzon létre új helyreállítási terv az alábbiak szerint:
 
    a.  Kattintson a **+ a helyreállítás terv** gomb, megnyílik a panel alatt.
 
@@ -194,122 +194,122 @@ Az ASR Szolgáltatásban a fájlmegosztások a feladatátvételi folyamat automa
 
    b.  Adja meg a helyreállítási terv nevét, válassza ki a forrás, a cél és a központi telepítési modell értékeket.
 
-   c.  Válassza ki a virtuális gépeket a védelmi csoportból, a helyreállítási tervben közé tartoznak, és kattintson a kívánt **OK** gombra.
+   c.  Válassza ki a hello virtuális gépek hello védelmi csoportból, amelyet az tooinclude hello helyreállítási tervet, és kattintson a **OK** gombra.
 
-   d.  Jelölje ki azt a korábban létrehozott helyreállítási terv **Testreszabás** gombra kattintva nyissa meg a helyreállítási terv testreszabási nézetet.
+   d.  Jelölje ki azt a korábban létrehozott helyreállítási terv **Testreszabás** tooopen hello helyreállítási terv testreszabási megtekintése gombra.
 
    e.  Kattintson a jobb gombbal **összes csoportok leállítási** kattintson **előtti művelet hozzáadása**.
 
-   f.  Megnyitja Insert művelet panelen, adjon meg egy nevet, válassza ki **elsődleges ügyféloldali** kapcsoló jelölje ki az Automation-fiók (hozzá a runbookok), majd válassza ki, ha a beállítás a **feladatátvételi-StorSimple-kötet-tárolók**  runbook.
+   f.  Megnyitja Insert művelet panelen, adjon meg egy nevet, válassza ki **elsődleges ügyféloldali** ahol toorun lehetőséget, válassza ki az Automation-fiók (hozzá runbookokat hello), és válassza a hello beállítása  **Feladatátvétel-StorSimple-kötet-tárolók** runbook.
 
-   g.  Kattintson a jobb gombbal **csoport 1: Start** kattintson **Hozzáadás védett elemek** lehetőséget, majd válassza ki a virtuális gépeket lehet védetté tenni a helyreállítási tervet, majd kattintson a kívánt **Ok** gombra. Nem kötelező, ha már van kiválasztva a virtuális gépek.
+   g.  Kattintson a jobb gombbal **csoport 1: Start** kattintson **Hozzáadás védett elemek** lehetőséget, majd jelölje ki a hello virtuális gépek, amelyek hello helyreállítási tervet, és kattintson a védett toobe **Ok** gombra. Nem kötelező, ha már van kiválasztva a virtuális gépek.
 
-   h.  Kattintson a jobb gombbal **csoport 1: Start** kattintson **művelet utáni** lehetőséget, majd adja hozzá az alábbi parancsfájlok:
+   h.  Kattintson a jobb gombbal **csoport 1: Start** kattintson **művelet utáni** lehetőséget, majd adja hozzá a következő parancsfájlok összes hello:
 
    * Runbook elindítása-StorSimple-virtuális-készülék
    * Over-StorSimple-kötet-tárolók runbook sikertelen
    * Runbook csatlakoztatási-kötetek-után-feladatátvétel
    * Távolítsa el – egyéni-parancsfájl-kiterjesztés runbook
 
-   i.  Adja hozzá a manuális műveletet a fenti 4 parancsfájlokat ugyanazon **csoport 1: utáni lépéseket** szakasz. Ez a művelet az a pont, ahol ellenőrizheti, hogy minden helyesen működik. Ez a művelet hozzá kell adni a feladatátvételi teszt részeként csak (csak így jelölje be a **feladatátvételi teszt** jelölőnégyzet).
+   i.  A manuális műveletet hozzáadása után ugyanaz a hello parancsfájlok hello fent 4 **csoport 1: utáni lépéseket** szakasz. Ez a művelet akkor hello pontot, amellyel ellenőrizheti, hogy minden helyesen működik. Ez a művelet csak feladatátvételi teszt részeként hozzáadott toobe kell (így csak select hello **feladatátvételi teszt** jelölőnégyzet).
 
-   j.  A manuális műveletet követően adja hozzá a **tisztítás** parancsfájl-ugyanazzal az eljárással, amelyet a más runbookokat használt. **Mentés** a helyreállítási terv.
+   j.  Hello manuális műveletet, miután hozzáadása hello **tisztítás** parancsfájl használatával ugyanazt az eljárást, a hello hello más runbookokat. **Mentés** hello helyreállítási terv.
 
     > [!NOTE]
-    > Feladatátvételi teszt futtatásakor Ellenőrizze minden, a manuális műveletet lépésnél, mert a StorSimple-köteteket a céleszközön kellett lett klónozása törli a karbantartás részeként a manuális művelet befejeződése után.
+    > Feladatátvételi teszt futtatásakor Ellenőrizze minden hello a manuális műveletet lépésben mert kellett lett klónozása hello céleszközön hello StorSimple-köteteket törli a hello karbantartás részeként hello manuális művelet befejeződése után.
     >
 
     ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image7.png)
 
 ## <a name="perform-a-test-failover"></a>Feladatátvételi teszt végrehajtása
-Tekintse meg a [Active Directory vész-Helyreállítási megoldás](../site-recovery/site-recovery-active-directory.md) szempontokról adott Active Directory a feladatátvételi teszt útmutatója. A helyszíni beállítások nem zavarják minden, a teszt feladatátvétel esetén. A StorSimple-köteteket a helyszíni virtuális gép csatlakozó Azure StorSimple felhő készülékre van klónozása. Tesztelési célból egy virtuális Gépet az Azure-ban nem válik, és a klónozott kötetek vannak csatolva a virtuális Gépet.
+Tekintse meg a toohello [Active Directory vész-Helyreállítási megoldás](../site-recovery/site-recovery-active-directory.md) útmutatója a szempontok adott tooActive Directory hello teszt feladatátvétele során. hello helyszíni beállítása nem zavarják minden hello a feladatátvételi teszt esetén. StorSimple-köteteket lenne csatlakoztatva hello toohello a helyszíni virtuális gép klónozott toohello Azure StorSimple felhő készülék. Tesztelési célból egy virtuális Gépet az Azure-ban nem válik, és hello klónozott kötetek csatolt toohello virtuális gép.
 
-#### <a name="to-perform-the-test-failover"></a>A feladatátvételi teszt végrehajtásához.
-1. Az Azure-portálon válassza ki a site recovery-tárolóban.
-2. Kattintson a helyreállítási terv létrehozása a fájlkiszolgáló virtuális gép.
+#### <a name="tooperform-hello-test-failover"></a>tooperform hello feladatátvételi teszthez
+1. Hello Azure-portálon válassza ki a site recovery-tárolóban.
+2. Kattintson a létrehozott hello fájlkiszolgáló VM hello helyreállítási terv.
 3. Kattintson a **feladatátvételi teszt**.
-4. Válassza ki az Azure virtuális hálózat, amelyhez Azure virtuális gépek csatlakoznak feladatátvételt követően.
+4. Válassza ki a hello Azure-beli virtuális hálózat toowhich Azure virtuális gépek csatlakoznak feladatátvételt követően.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image8.png)
-5. A feladatátvételi művelet elindításához kattintson az **OK** gombra. Folyamatban van a virtuális gép tulajdonságainak megnyitásához, vagy a kattintva követheti nyomon a **tesztfeladat feladatátvételt** a tároló neve &gt; **feladatok** &gt; **Site Recovery-feladatok**.
-6. A feladatátvétel befejezése után meg kell tudni a replika Azure machine jelennek meg az Azure-portálon &gt; **virtuális gépek**. Végezheti el az érvényesítést.
-7. Miután az ellenőrzés befejezése után kattintson **érvényesítést teljes**. Ez most a StorSimple-köteteket és a StorSimple felhő készülék leállítás.
-8. Amikor elkészült, kattintson a **karbantartása a feladatátvételi teszt** a a helyreállítási terv. A megjegyzések és mentéséhez a feladatátvételi teszttel kapcsolatos megfigyelések feljegyzéséhez. Ezzel a lépéssel törli a virtuális gép teszt feladatátvétele során létrehozott.
+5. Kattintson a **OK** toobegin hello feladatátvételi. Előrehaladásának parancsával hello VM tooopen tulajdonságát, vagy a hello **tesztfeladat feladatátvételt** a tároló neve &gt; **feladatok** &gt; **SiteRecovery-feladatok**.
+6. Hello feladatátvétel befejezése után meg kell jelennie toosee hello replika Azure machine hello Azure-portálon jelenik meg &gt; **virtuális gépek**. Végezheti el az érvényesítést.
+7. Miután hello érvényesítést végzett, kattintson **érvényesítést teljes**. Ez lesz tisztítás hello StorSimple-köteteket és leállítási hello StorSimple felhő készüléket.
+8. Amikor elkészült, kattintson a **karbantartása a feladatátvételi teszt** a hello helyreállítási terv. Megjegyzések rekord, és mentse el hello kapcsolatos megfigyelések feljegyzéséhez a feladatátvételi teszt. Ezzel a lépéssel törli a hello virtuális gép teszt feladatátvétele során létrehozott.
 
 ## <a name="perform-a-planned-failover"></a>Végezzen el egy tervezett feladatátvételt
-   Egy tervezett feladatátvétel során a helyszíni fájlkiszolgáló virtuális gép van leállítása és a StorSimple eszköz kötetnek a biztonsági mentési pillanatképet készít felhő. A StorSimple-köteteket feladatátvétel történt a virtuális eszközhöz, a replika virtuális Gépre az Azure-on nem válik, és a kötetek vannak csatolva a virtuális gép.
+   Egy tervezett feladatátvétel során a helyszíni hello fájlkiszolgáló VM szabályosan leállítása és a StorSimple eszköz hello kötetek biztonsági mentési pillanatképet készít felhő. StorSimple-köteteket hello toohello virtuális eszköz, a replika virtuális gép állapotba kerül a Azure-feladatátvétel történt és hello kötetek csatolt toohello virtuális gép.
 
-#### <a name="to-perform-a-planned-failover"></a>A tervezett feladatátvétel végrehajtása
-1. Válassza ki az Azure-portálon **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** készült a a fájlkiszolgáló virtuális gép.
-2. A helyreállítási terv paneljén kattintson **további** &gt; **tervezett feladatátvétel**.
+#### <a name="tooperform-a-planned-failover"></a>a tervezett feladatátvétel tooperform
+1. Hello Azure-portálon, válassza ki **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** létre hello fájlkiszolgáló virtuális gép.
+2. Hello helyreállítási terv paneljén kattintson **további** &gt; **tervezett feladatátvétel**.  
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image9.png)
-3. Az a **tervezett feladatátvétel megerősítése** panelen válassza ki a forrás és a célhelyek és válassza ki a cél hálózati, és kattintson a pipa ikonra a feladatátvételi folyamat ✓.
-4. A replika virtuális gépek létrehozása után is a Függőben állapotba. Kattintson a **véglegesítési** a feladatátvétel véglegesítésének.
-5. Replikáció befejezése után a virtuális gépek indítása a másodlagos helyen.
+3. A hello **tervezett feladatátvétel megerősítése** panelen válassza ki a hello forrás és a célhelyek és válassza ki a cél hálózati, és kattintson a hello négyzet ikon ✓ toostart hello feladatátvételi folyamat.
+4. A replika virtuális gépek létrehozása után is a Függőben állapotba. Kattintson a **véglegesítése** toocommit hello feladatátvételi.
+5. Replikáció befejezése után hello virtuális gépek indítása hello másodlagos helyen.
 
 ## <a name="perform-a-failover"></a>Végezzen el egy feladatátvételt
-Egy nem tervezett feladatátvétel során a StorSimple-köteteket feladatátvétel történt a virtuális eszközhöz, a replika virtuális gép a Azure kerül, és a kötetek vannak csatolva a virtuális gép.
+Egy nem tervezett feladatátvétel során toohello virtuális eszköz, a replika VM kerül a Azure-feladatátvétel történt hello StorSimple-köteteket és hello kötetek csatolt toohello virtuális gép.
 
-#### <a name="to-perform-a-failover"></a>A feladatátvétel végrehajtásához
-1. Válassza ki az Azure-portálon **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** készült a a fájlkiszolgáló virtuális gép.
-2. A helyreállítási terv paneljén kattintson **további** &gt; **feladatátvételi**.
-3. Az a **megerősítéséhez feladatátvétel** panelen válassza ki az adatforrást, és a cél helyét.
-4. Válassza ki **virtuális gépek leállítása és a legfrissebb adatok szinkronizálása** adhatja meg, hogy a Site Recovery próbálkozzon az állítsa le a védett virtuális gépet, és szinkronizálja az adatokat, hogy a legújabb adatok átvétele fog megtörténni.
-5. A feladatátvétel után a virtuális gép állapot függőben van. Kattintson a **véglegesítési** a feladatátvétel véglegesítésének.
+#### <a name="tooperform-a-failover"></a>a feladatátvétel tooperform
+1. Hello Azure-portálon, válassza ki **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** létre hello fájlkiszolgáló virtuális gép.
+2. Hello helyreállítási terv paneljén kattintson **további** &gt; **feladatátvételi**.  
+3. A hello **megerősítéséhez feladatátvétel** panelen hello forrás kiválasztása, és a cél helyét.
+4. Válassza ki **virtuális gépek leállítása és hello legfrissebb adatok szinkronizálása** toospecify, hogy a Site Recovery próbálja tooshut le hello védett virtuális gépet és szinkronizálás hello hello hello adatok legújabb verziója lesz a feladatátvételt.
+5. Hello feladatátvétel után hello virtuális gép állapota függőben van. Kattintson a **véglegesítése** toocommit hello feladatátvételi.
 
 
 ## <a name="perform-a-failback"></a>A feladat-visszavételt végrehajtani
-A feladat-visszavétel során StorSimple kötettárolók vannak feladatátvételt vissza a fizikai eszköz után biztonsági másolatból történik.
+A feladat-visszavétel során StorSimple kötettárolók feladatátvétel történt hátsó toohello fizikai eszköz után a biztonsági mentés történik.
 
-#### <a name="to-perform-a-failback"></a>A feladat-visszavétel végrehajtására.
-1. Válassza ki az Azure-portálon **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** készült a a fájlkiszolgáló virtuális gép.
-2. A helyreállítási terv paneljén kattintson **további** &gt; **tervezett feladatátvétel**.
-3. Válassza ki a forrás és cél helyét, válassza ki a megfelelő adatszinkronizálási és a virtuális gép létrehozásának beállításai.
-4. Kattintson a **OK** gombra kattintva indítsa el a feladatátvételi folyamat.
+#### <a name="tooperform-a-failback"></a>a feladat-visszavétel tooperform
+1. Hello Azure-portálon, válassza ki **helyreállítási szolgáltatások** tároló &gt; **helyreállítási tervek (helyreállítás)** &gt; **recoveryplan_name** létre hello fájlkiszolgáló virtuális gép.
+2. Hello helyreállítási terv paneljén kattintson **további** &gt; **tervezett feladatátvétel**.  
+3. Válassza ki a hello forrása és célja helyek, a megfelelő adatszinkronizálási válassza hello és a virtuális gép létrehozásának beállításai.
+4. Kattintson a **OK** toostart hello feladat-visszavétel folyamat gombra.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image10.png)
 
 ## <a name="best-practices"></a>Ajánlott eljárások
 ### <a name="capacity-planning-and-readiness-assessment"></a>A kapacitás tervezésével és a készültségi értékelés
 #### <a name="hyper-v-site"></a>Hyper-V-hely
-Használja a [felhasználói kapacitás planner eszköz](http://www.microsoft.com/download/details.aspx?id=39057) a kiszolgáló, a tároló és a hálózati infrastruktúra, a Hyper-V replika környezetének megtervezéséhez.
+Használjon hello [felhasználói kapacitás planner eszköz](http://www.microsoft.com/download/details.aspx?id=39057) toodesign hello server, a tároló és a hálózati infrastruktúra, a Hyper-V replika környezetnek.
 
 #### <a name="azure"></a>Azure
-Futtathatja a [Azure virtuális gép Readiness Assessment eszközt](http://azure.microsoft.com/downloads/vm-readiness-assessment/) annak érdekében, hogy azok kompatibilis Azure virtuális gépek és az Azure Site Recovery Services virtuális gépeken. A Készültségfelmérő eszköz ellenőrzi a Virtuálisgép-konfigurációk, és figyelmeztetést küld, ha a konfiguráció nem kompatibilisek az Azure-ral. Például kapcsolatos figyelmeztetés Ha a C: meghajtó 127 GB-nál nagyobb.
+Hello futtatása [Azure virtuális gép Readiness Assessment eszközt](http://azure.microsoft.com/downloads/vm-readiness-assessment/) a virtuális gépek tooensure, hogy kompatibilisek, az Azure virtuális gépek és az Azure Site Recovery Services. hello Készültségfelmérő eszköz ellenőrzi a Virtuálisgép-konfigurációk, és figyelmeztetést küld, ha a konfiguráció nem kompatibilisek az Azure-ral. Például kapcsolatos figyelmeztetés Ha a C: meghajtó 127 GB-nál nagyobb.
 
 Kapacitástervezés alkotják, legalább két fontos folyamat:
 
-* Leképezés a helyszíni Hyper-V virtuális gépek Azure virtuális gép méretét (például A6, A7, A8 és a9-es).
-* Annak meghatározása, hogy a szükséges internetes sávszélességet.
+* Leképezési helyszíni Hyper-V virtuális gépek tooAzure Virtuálisgép-méretek (például A6, A7, A8 és a9-es).
+* Internetes sávszélesség hello meghatározása szükséges.
 
 ## <a name="limitations"></a>Korlátozások
-* Jelenleg csak az 1 StorSimple eszköz feladatátvételre (az egyetlen StorSimple felhő készülék). A forgatókönyv egy fájlkiszolgáló több StorSimple eszközt magában foglaló jelenleg nem támogatott.
-* Ha a virtuális gépek védelmének engedélyezésekor hibaüzenetet kap, győződjön meg arról, hogy az iSCSI-tárolók kapcsolat bontása.
-* Egy biztonsági mentési házirendek kötettárolók átnyúlva miatt csoportban minden kötettárolók átvétele fog megtörténni együtt.
-* A kiválasztott kötet tárolókban lévő összes kötet átvétele fog megtörténni.
-* Hozzáadott akár 64 TB-nál nagyobb kötetek nem lehet feladatokat átvenni, mert egy egyetlen StorSimple felhő készülék maximális kapacitása 64 TB-ot.
-* Ha a tervezett/nem tervezett feladatátvétel sikertelen lesz, és a virtuális gépek jönnek létre az Azure-ban, majd üríti a virtuális gépeket. Ehelyett hajtsa végre egy feladat-visszavételre. Ha törli a virtuális gépek majd a helyszíni virtuális gépek nem kapcsolható be újra.
-* Egy feladatátvétel után Ha nem láthatók a köteteket, nyissa meg a virtuális gépek, nyissa meg a Lemezkezelés, ellenőrizze újra a lemezeket, és majd kapcsolásuk.
-* Bizonyos esetekben a vész-Helyreállítási hely meghajtóbetűjeleket eltérhet a betűk helyszíni. Ilyen esetben szüksége lesz a feladatátvétel befejezése után manuálisan hárítsa el a problémát.
-* Többtényezős hitelesítés az Azure hitelesítő adatokat, amelyeket is meg kell adni az automation-fiók eszközként le kell tiltani. A hitelesítés nem le van tiltva, ha parancsfájlok nem használhatók automatikus futtatását, és a helyreállítási terv sikertelen lesz.
-* Feladatátvételi feladat időtúllépése: A StorSimple parancsfájl időtúllépést okoz, ha kötettárolók feladatátvételének az Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc) több időt vesz igénybe.
-* Biztonsági mentési feladat időtúllépése: A StorSimple parancsfájl végrehajtásának időkorlátja, ha a kötetek biztonsági mentését az Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc) több időt vesz igénybe.
+* Jelenleg csak az 1 StorSimple eszköz feladatátvételre (tooa egyetlen StorSimple felhő készülék). egy fájlkiszolgáló több StorSimple eszközt magában foglaló hello forgatókönyv jelenleg nem támogatott.
+* Ha a virtuális gépek védelmének engedélyezésekor hibaüzenetet kap, győződjön meg arról, hogy a kapcsolat bontása hello iSCSI-tárolók.
+* Az összes, egy biztonsági mentési házirendek kötettárolók átnyúlva miatt csoportban hello kötet tároló átvétele fog megtörténni együtt.
+* Minden kiválasztott hello kötettárolók hello kötet átvétele fog megtörténni.
+* Toomore egyezzen, mint 64 TB-ot nem sikertelen keresztül, mert egy egyetlen StorSimple felhő készülék hello maximális kapacitását 64 TB-os köteteket.
+* Ha hello tervezett/nem tervezett feladatátvétel sikertelen lesz, és hello virtuális gépek jönnek létre az Azure-ban, majd végezzen nem tisztítása hello virtuális gépeket. Ehelyett hajtsa végre egy feladat-visszavételre. Ha törli a hello virtuális gépek majd hello a helyszíni virtuális gépek újra nem kapcsolható be.
+* Egy feladatátvétel után Ha nem sikerül toosee hello köteteket, nyissa meg toohello virtuális gépeket, nyissa meg a Lemezkezelés, hello lemezek újraellenőrzése és majd kapcsolásuk.
+* Bizonyos esetekben hello meghajtóbetűjelek hello vész-Helyreállítási hely eltérhet hello betűket helyszíni. Ilyen esetben szüksége lesz toomanually megfelelő hello probléma hello feladatátvétel befejezése után.
+* A multi-factor authentication hello Azure automation-fiók hello eszközként megadott hitelesítő le kell tiltani. A hitelesítés nem le van tiltva, ha a parancsfájlok nem engedélyezett toorun automatikusan, és hello helyreállítási terv sikertelen lesz.
+* Feladatátvételi feladat időtúllépése: hello StorSimple parancsfájl időtúllépést okoz, ha kötettárolók hello feladatátvétele hello Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc) több időt vesz igénybe.
+* Biztonsági mentési feladat időtúllépése: hello StorSimple parancsfájlt időtúllépés Ha hello biztonsági mentése a kötetek hello Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc) több időt vesz igénybe.
 
   > [!IMPORTANT]
-  > A biztonsági mentés futtassa manuálisan az Azure-portálon, és futtassa újra a helyreállítási terv.
+  > Futtassa manuálisan hello biztonsági mentés hello Azure-portálon, és futtassa újból a hello helyreállítási terv.
 
-* Klónozza a feladat időtúllépése: A StorSimple parancsfájlt időtúllépés történik, ha tovább tart a kötetek klónozása mint az Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc).
-* Szinkronizálási hiba ideje: A StorSimple parancsfájlok hibák meg arról, hogy a biztonsági mentése sikertelen volt-e annak ellenére, hogy a biztonsági mentés sikeres, a portálon. Ennek oka lehet, hogy a StorSimple készülék idő nincs szinkronban az aktuális idő időzónája lehet.
-
-  > [!IMPORTANT]
-  > A készülék idő az aktuális idő időzónája szinkronizálása.
-
-* Készülék feladatátvételi hiba: A StorSimple parancsfájl meghiúsulhat, ha van egy készülék feladatátvételt, ha a fut-e a helyreállítási terv.
+* Klónozza a feladat időtúllépése: hello StorSimple parancsfájlt időtúllépés történik, ha tovább tart a kötetek klónozása hello mint hello Azure Site Recovery felső határ az egyes parancsfájl (jelenleg 120 perc).
+* Szinkronizálási hiba ideje: hello StorSimple parancsfájlok hibák meg arról, hogy hello biztonsági mentése sikertelen volt-e annak ellenére, hogy hello biztonsági mentés sikeres hello portálon. Ennek oka lehet, hogy hello StorSimple készülék idő lehet szinkronban hello hello időzónában aktuális idő.
 
   > [!IMPORTANT]
-  > Futtassa újra a helyreállítási terv, a készülék feladatátvételi befejeződése után.
+  > Hello készülék szinkronizáláskor hello az aktuális idő hello időzónában.
+
+* Készülék feladatátvételi hiba: hello StorSimple parancsfájl sikertelen lehet, ha van egy készülék feladatátvételt, ha a hello helyreállítási terv fut-e.
+
+  > [!IMPORTANT]
+  > Futtassa újra a hello helyreállítási terv hello készülék feladatátvételi befejeződése után.
 
 
 ## <a name="summary"></a>Összefoglalás
-Azure Site Recovery segítségével, a fájlkiszolgáló virtuális gép teljes automatizált vészhelyreállítási tervet hozhat létre a StorSimple tárolón tárolt fájlmegosztások rendelkező. Bárhonnan másodpercen belül is kezdeményezhető a feladatátvétel esetén a megszakítás és az az alkalmazás lépéseivel néhány perc múlva.
+Azure Site Recovery segítségével, a fájlkiszolgáló virtuális gép teljes automatizált vészhelyreállítási tervet hozhat létre a StorSimple tárolón tárolt fájlmegosztások rendelkező. Hello feladatátvételi bárhonnan másodpercen belül is kezdeményezhető a hello eseményeket, a szüneteltetése és hello alkalmazás első lépéseivel, néhány perc múlva.

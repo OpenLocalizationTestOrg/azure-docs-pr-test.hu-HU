@@ -1,6 +1,6 @@
 ---
-title: "Azure virtuális gépek vész-helyreállítási eljárással |} Microsoft Docs"
-description: "Ismerje meg, mi a teendő arra az esetre, ha egy Azure szolgáltatás megszűnésének hatással van az Azure virtuális gépeken."
+title: "Azure virtuális gépek aaaDisaster helyreállítási forgatókönyvek |} Microsoft Docs"
+description: "Ismerje meg, milyen toodo, hogy az Azure szolgáltatás megszűnésének hatással van az Azure virtuális gépek hello eseményben."
 services: virtual-machines
 documentationcenter: 
 author: kmouss
@@ -15,35 +15,35 @@ ms.topic: article
 ms.date: 05/31/2017
 ms.author: kmouss;aglick
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fb986a41e33501ee71c93a48457ac4114e33c671
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 839c6f9c51a7f35b48ef3636bc346eef332bb06d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-to-do-in-the-event-that-an-azure-service-disruption-impacts-azure-vms"></a>Mi a teendő arra az esetre, ha egy Azure szolgáltatás megszűnésének hatással van az Azure virtuális gépeken
-A Microsoft dolgozunk merevlemez győződjön meg arról, hogy a szolgáltatások mindig rendelkezésre álló újból. Kényszeríti a befolyásolható néha hatással velünk, hogy a nem tervezett szolgáltatás megszakadása miatt.
+# <a name="what-toodo-in-hello-event-that-an-azure-service-disruption-impacts-azure-vms"></a>Milyen toodo hello esemény, hogy az Azure szolgáltatás megszűnésének befolyásolja-e az Azure virtuális gépeken
+A Microsoft dolgozunk rögzített toomake meg arról, hogy a szolgáltatások mindig elérhető tooyou újból. Kényszeríti a befolyásolható néha hatással velünk, hogy a nem tervezett szolgáltatás megszakadása miatt.
 
-A Microsoft egy szolgáltatási szint szerződés (SLA) biztosít hasznos üzemidő és csatlakozási kötelezettségvállalást a hozzá tartozó szolgáltatások. Az SLA-t az egyes Azure-szolgáltatások található [Azure szolgáltatói szerződések](https://azure.microsoft.com/support/legal/sla/).
+A Microsoft egy szolgáltatási szint szerződés (SLA) biztosít hasznos üzemidő és csatlakozási kötelezettségvállalást a hozzá tartozó szolgáltatások. az egyes Azure-szolgáltatások SLA hello található [Azure szolgáltatói szerződések](https://azure.microsoft.com/support/legal/sla/).
 
 Azure már számos beépített platform szolgáltatást, amely támogatja a magas rendelkezésre állású alkalmazások. További információk a szolgáltatásokról, olvassa el a [vész-helyreállítási és magas rendelkezésre állás a Azure-alkalmazások](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
-Ez a cikk egy valódi katasztrófa utáni helyreállítása vonatkozik, amikor egy teljes régió kimaradás jelentős természeti katasztrófa vagy a széles körű szolgáltatás megszakítás miatt. Ezek ritkán fordul elő eseményeket, de előbb elő kell készítenie az, hogy van-e egy teljes terület kimaradás lehetőséget. Ha egy teljes terület a szolgáltatás szüneteltetése, a helyileg redundáns másolatait az adatok akkor ideiglenesen nem érhető el. Ha engedélyezett a georeplikáció, az Azure Storage blobs és táblák három további másolatot tárol egy másik régióban. Teljes regionális kimaradás vagy az elsődleges régióban nincs helyreállítható katasztrófa esetén, Azure amelyek összes DNS-bejegyzéseket, a georeplikált régióban.
+Ez a cikk ismerteti a valódi katasztrófa utáni helyreállítás, amikor egy teljes régió megfelelő toomajor természeti katasztrófa vagy szélesebb körben szolgáltatáskiesést kimaradás. Ezek ritkán fordul elő eseményeket, de előbb elő kell készítenie az, hogy van-e egy teljes terület kimaradás hello lehetőségét. Ha egy teljes terület a szolgáltatás szüneteltetése, hello helyileg redundáns másolatok adatait szeretné ideiglenesen nem érhető el. Ha engedélyezett a georeplikáció, az Azure Storage blobs és táblák három további másolatot tárol egy másik régióban. Azure hello esemény teljes regionális kimaradás vagy egy olyan vészhelyzet esetén milyen hello elsődleges régió nincs helyreállítható, amelyek az összes hello DNS bejegyzés toohello georeplikált régióban.
 
-Segítséget az ilyen ritka események kezelésére, az Azure virtuális gépek esetén a szolgáltatás szüneteltetése a teljes régió, ahol a virtuális gép az Azure-alkalmazás központi telepítése a következő útmutatást nyújtunk.
+kezeli az ilyen ritka események toohelp, nyújtunk útmutató az Azure virtuális gépek hello esetében a szolgáltatás szüneteltetése hello teljes régió, ahol a virtuális gép az Azure-alkalmazás központi telepítése a következő hello.
 
 ## <a name="option-1-initiate-a-failover-by-using-azure-site-recovery"></a>1. lehetőség: A feladatátvétel kezdeményezése Azure Site Recovery segítségével
-Azure Site Recovery konfigurálhatja a virtuális gépek, így helyreállíthatja az alkalmazás, függetlenül attól, hogy az egyetlen kattintással perc alatt. Azure-régió, az Ön által választott képes replikálni, és párosított régiók sincs korlátozva. Elkezdheti által [a virtuális gépek replikálásához](https://aka.ms/a2a-getting-started). Is [helyreállítási terv létrehozása](../site-recovery/site-recovery-create-recovery-plans.md) , hogy a teljes feladatátvételi folyamat automatizálható az alkalmazás. Is [a feladatátvételi tesztek](../site-recovery/site-recovery-test-failover-to-azure.md) előre éles alkalmazásokban vagy a folyamatban lévő replikáció befolyásolása nélkül. Egy elsődleges régió becsukódjon most [kezdeményezzen feladatátvételt](../site-recovery/site-recovery-failover.md) , és az alkalmazás cél régióban.
+Azure Site Recovery konfigurálhatja a virtuális gépek, így helyreállíthatja az alkalmazás, függetlenül attól, hogy az egyetlen kattintással perc alatt. Az Ön által választott tooAzure régió, és nem korlátozott toopaired régiók replikálhatja. Elkezdheti által [a virtuális gépek replikálásához](https://aka.ms/a2a-getting-started). Is [helyreállítási terv létrehozása](../site-recovery/site-recovery-create-recovery-plans.md) , hogy az alkalmazás hello teljes feladatátvételi folyamat automatizálható. Is [a feladatátvételi tesztek](../site-recovery/site-recovery-test-failover-to-azure.md) előre éles alkalmazás vagy hello folyamatban lévő replikáció befolyásolása nélkül. A elsődleges régió szüneteltetése hello esetben most [kezdeményezzen feladatátvételt](../site-recovery/site-recovery-failover.md) , és az alkalmazás cél régióban.
 
 
 ## <a name="option-2-wait-for-recovery"></a>2. lehetőség: Várjon, amíg a helyreállítás
-Ebben az esetben a letöltés intézkedés nem szükséges. Tudja, hogy jelenleg dolgozunk gondossággal szolgáltatás rendelkezésre állása visszaállítására. A szolgáltatás jelenlegi állapota tekintheti meg a [Azure az állapotjelző irányítópulthoz](https://azure.microsoft.com/status/).
+Ebben az esetben a letöltés intézkedés nem szükséges. Ismerje meg, hogy jelenleg dolgozunk gondossággal toorestore szolgáltatás rendelkezésre állása. A szolgáltatás jelenlegi állapota hello tekintheti meg a [Azure az állapotjelző irányítópulthoz](https://azure.microsoft.com/status/).
 
-Ez a lehetőség ajánlott, ha nem állított be Azure Site Recovery, írásvédett georedundáns tárolás vagy a megszakítás előtt georedundáns tárolást. Ha állított be georedundáns tárolás vagy írásvédett georedundáns tárolás a tárfiók a virtuális gép virtuális merevlemezek (VHD) tároló, keresse meg az alapjául szolgáló lemezképhez virtuális merevlemez helyreállítása, és próbálkozzon, egy új virtuális gép kiépítése. Ez a beállítás nem előnyben részesített nem garantálja az adatok szinkronizálását, mert. Ezért ezt a beállítást nem biztos, hogy működni.
+Ez az hello legjobb lehetőség, ha nem állított be Azure Site Recovery, írásvédett georedundáns tárolás vagy georedundáns tárolás előzetes toohello megszakítása. Állított be georedundáns tárolás vagy írásvédett georedundáns tárolás hello tárfiók a virtuális gép virtuális merevlemezek (VHD) tároló, ha toorecover hello alapjául szolgáló lemezképhez VHD keresse meg, és próbálja tooprovision belőle egy új virtuális Gépet. Ez a beállítás nem előnyben részesített nem garantálja az adatok szinkronizálását, mert. Ezért ezt a beállítást nem garantált toowork.
 
 
 > [!NOTE]
-> Vegye figyelembe, hogy nem tudja befolyásolni bármely ezt a folyamatot, és akkor történik a régió kiterjedő szolgáltatás üzemzavarokhoz vezethet. Ebből kifolyólag kell is használ, más alkalmazás-specifikus biztonsági stratégiák a legmagasabb rendelkezésre állásának eléréséhez. További információkért lásd [vész-helyreállítási adatok stratégiák](https://docs.microsoft.com/azure/architecture/resiliency/disaster-recovery-azure-applications#data-strategies-for-disaster-recovery).
+> Vegye figyelembe, hogy nem tudja befolyásolni bármely ezt a folyamatot, és akkor történik a régió kiterjedő szolgáltatás üzemzavarokhoz vezethet. Ebből kifolyólag kell is használ, más alkalmazás-specifikus biztonsági mentési stratégia tooachieve hello legmagasabb rendelkezésre állási szintet. További információkért lásd: hello szakasz a [vész-helyreállítási adatok stratégiák](https://docs.microsoft.com/azure/architecture/resiliency/disaster-recovery-azure-applications#data-strategies-for-disaster-recovery).
 >
 >
 
@@ -51,9 +51,9 @@ Ez a lehetőség ajánlott, ha nem állított be Azure Site Recovery, írásvéd
 
 - Start [védelme az Azure virtuális gépeken futó alkalmazások](https://aka.ms/a2a-getting-started) Azure Site Recovery segítségével
 
-- A vész-helyreállítási és a magas rendelkezésre állási stratégiájának megvalósításához kapcsolatos további információkért lásd: [vész-helyreállítási és magas rendelkezésre állás a Azure-alkalmazások](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
+- További információk hogyan tooimplement vész-helyreállítási és magas rendelkezésre állási stratégiájának: toolearn [vész-helyreállítási és magas rendelkezésre állás a Azure-alkalmazások](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
-- A felhő platform képességei részletes műszaki megértése elkészítéséhez lásd [Azure rugalmassági műszaki útmutatót](../resiliency/resiliency-technical-guidance.md).
+- a felhő platform képességei, részletes műszaki megértése toodevelop lásd [Azure rugalmassági műszaki útmutatót](../resiliency/resiliency-technical-guidance.md).
 
 
-- Ha utasításokat ne törölje a jelet, vagy ha szeretné, hogy a Microsoft az Ön nevében műveletek végrehajtásához, forduljon a [ügyfél-támogatási](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+- Ha hello utasítások nem egyértelmű, vagy ha azt szeretné, hogy a Microsoft toodo hello műveletek az Ön nevében, forduljon a [ügyfél-támogatási](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).

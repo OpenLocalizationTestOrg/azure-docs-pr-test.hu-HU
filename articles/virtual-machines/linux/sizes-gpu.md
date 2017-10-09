@@ -1,6 +1,6 @@
 ---
-title: "Azure Linux virtuális gép méretének - GPU |} Microsoft Docs"
-description: "A különböző GPU listák az Azure-ban a Linux virtuális gépekhez elérhető méretek optimalizált."
+title: "Linux virtuális gép aaaAzure méretének - GPU |} Microsoft Docs"
+description: "Hello optimalizált GPU mérete eltér az Azure-ban a Linux virtuális gépekhez elérhető sorolja fel."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: 5c9bf89feba519147b07f2810fe4da882664e89e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e98f720499be37df4048aeb513aa4f6b187b7335
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="gpu-linux-vm-sizes"></a>GPU Linux Virtuálisgép-méretek
 
@@ -34,7 +34,7 @@ Illesztőprogram telepítése és ellenőrzési lépések, tekintse meg [N-serie
 
 [!INCLUDE [virtual-machines-n-series-considerations](../../../includes/virtual-machines-n-series-considerations.md)]
 
-* Nem ajánlott, hogy telepítése X kiszolgáló vagy a más rendszerekkel, az Ubuntu NC virtuális gépeken futó nouveau illesztőprogramot használja. NVIDIA GPU-illesztőprogramok a telepítés előtt tiltsa le a nouveau illesztőprogramot kell.  
+* Nem ajánlott, hogy telepítése X kiszolgáló vagy a más rendszerekkel, amely az Ubuntu NC virtuális gépeken futó hello nouveau illesztőprogramot használja. NVIDIA GPU illesztőprogramok telepítése előtt toodisable hello nouveau illesztőprogram szükséges.  
 
 ## <a name="other-sizes"></a>Más méretek
 - [Általános célú](sizes-general.md)

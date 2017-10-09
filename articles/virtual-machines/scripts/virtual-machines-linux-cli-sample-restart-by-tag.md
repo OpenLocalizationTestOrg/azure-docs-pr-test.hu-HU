@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI parancsfájl minta - újraindítás virtuális gépek |} Microsoft Docs"
+title: "Indítsa újra a virtuális gépek CLI parancsfájl minta - aaaAzure |} Microsoft Docs"
 description: "Az Azure CLI parancsfájl minta - újraindítás virtuális gépek kódcímke és -azonosító szerint"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: allclark
 ms.custom: mvc
-ms.openlocfilehash: 4d0fe95287c91a4b656904f9007ceaaf866e155f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1ae07bd1d2be906553bef817385a4a333a10eca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restart-vms"></a>Indítsa újra a virtuális gépek
 
@@ -28,53 +28,53 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-Ez a példa bemutatja a több módon néhány virtuális gépeket, és újra kell indítania őket.
+A következő példában látható módon tooget néhány egyes virtuális gépek, és indítsa újra őket.
 
-Az első újraindítja a virtuális gépek erőforráscsoportban.
+hello minden hello virtuális gép első újraindítása hello erőforráscsoportban.
 
 ```bash
 az vm restart --ids $(az vm list --resource-group myResourceGroup --query "[].id" -o tsv)
 ```
 
-A második lekérdezi a címkézett virtuális gépek `az resouce list` és -szűrők erőforrást, amely virtuális gépeket, és újraindítja a virtuális gépek.
+hello második lekérdezi hello címkézett használó virtuális gépek `az resouce list` szűrők toohello erőforrások virtuális gépek láthatók, és újraindítja a virtuális gépek.
 
 ```bash
 az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Microsoft.Compute/virtualMachines'].id" -o tsv)
 ```
 
-Ez a minta a rendszerhéjakba működik. Az Azure parancssori felület parancsfájlok futtatásához a Windows-ügyfelén beállítások, lásd: [futtatása az Azure parancssori felület a Windows](../windows/cli-options.md).
+Ez a minta a rendszerhéjakba működik. Az Azure parancssori felület parancsfájlok futtatásához a Windows-ügyfelén beállítások, lásd: [a Windows hello Azure CLI-t futtató](../windows/cli-options.md).
 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-A minta három parancsfájlok rendelkezik.
-Az első címtárra látja el a virtuális gépek.
-Használ a no-wait, a parancsot úgy kell létrehozni minden virtuális gép várakozás nélkül adja vissza.
-A második a virtuális gép teljesen kiépített vár.
-A harmadik parancsfájl újraindul összes virtuális gépet, melyeket a kiosztott, és végül csak a címkézett virtuális gépeket.
+hello minta három parancsfájlok rendelkezik.
+hello először egy kiosztja hello a virtuális gépeket.
+Használ hello no-wait, hello parancs minden virtuális gép toobe kiépített várakozás nélkül adja vissza.
+hello második megvárja-e a hello virtuális gépek toobe teljesen kiépítve.
+hello harmadik parancsfájl hello virtuális gépeinek kiépített újraindul, és majd csak hello címkézett virtuális gépeket.
 
-### <a name="provision-the-vms"></a>A virtuális gépek kiépítése
+### <a name="provision-hello-vms"></a>Virtuális gépek hello kiépítése
 
-Ezt a parancsfájlt hoz létre egy erőforráscsoportot, és ezután hoz létre három virtuális gépek újraindítására.
+Ez a parancsfájl létrehoz egy erőforráscsoport, és három virtuális gépek toorestart létrehozza majd.
 Kettő címkével rendelkeznek.
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "a virtuális gépek kiépítése")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Provision hello VMs")]
 
 ### <a name="wait"></a>Várakozás
 
-. A szkript ellenőrzi az üzembe helyezési állapotát minden 20 másodperc kiépített összes három virtuális gépet, vagy egyiket kiépítése sikertelen.
+A hello előkészítési állapotát minden 20 másodperc kiépített összes három virtuális gépet, vagy egyiket tooprovision sikertelen lesz. a szkript ellenőrzi.
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "várja meg a virtuális gépeket érvénytelennek")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Wait for hello VMs toobe provisioned")]
 
-### <a name="restart-the-vms"></a>Indítsa újra a virtuális gépek
+### <a name="restart-hello-vms"></a>Indítsa újra a hello virtuális gépek
 
-Ezt a parancsfájlt a virtuális gépek újraindítja az erőforráscsoporthoz tartozik, és azt csak a címkézett virtuális gépek újraindítja.
+Ezt a parancsfájlt minden hello virtuális gép újraindul hello erőforráscsoportban, és majd csak címkézett hello VMs újraindul.
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "indítsa újra a virtuális gépek címke szerint")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Restart VMs by tag")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, a virtuális gépek és az összes kapcsolódó erőforrások.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoportok, a virtuális gépek és az összes kapcsolódó erőforrások.
 
 ```azurecli-interactive 
 az group delete -n myResourceGroup --no-wait --yes
@@ -82,19 +82,19 @@ az group delete -n myResourceGroup --no-wait --yes
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy erőforráscsoport, virtuális gép, a rendelkezésre állási csoporthoz, terheléselosztó és minden kapcsolódó erőforrások létrehozásához. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate erőforráscsoport, a virtuális gép, a rendelkezésre állási csoport, a terheléselosztó és a minden kapcsolódó erőforrások hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
 | [az csoport létrehozása](https://docs.microsoft.com/cli/azure/group#create) | Az összes erőforrás tároló erőforrás csoportot hoz létre. |
-| [az virtuális gép létrehozása](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | A virtuális gépeket hoz létre.  |
-| [az vm listája](https://docs.microsoft.com/cli/azure/vm#list) | A használt `--query` annak érdekében, hogy a virtuális gépek törlődnek, az újraindítás előtt, majd a virtuális gépek későbbi újraindítása azonosítóinak beszerzését. |
-| [az erőforrások listája](https://docs.microsoft.com/cli/azure/vm#list) | A használt `--query` a címke használata virtuális gépek azonosítóinak beszerzését. |
-| [az a virtuális gép újraindítása](https://docs.microsoft.com/cli/azure/vm#list) | Újraindítja a virtuális gépeket. |
+| [az virtuális gép létrehozása](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | Létrehozza a hello virtuális gépeket.  |
+| [az vm listája](https://docs.microsoft.com/cli/azure/vm#list) | A használt `--query` tooensure hello virtuális gépek kiépített őket újraindítása előtt, és ezután tooget hello hello virtuális gépek toorestart azonosítói őket. |
+| [az erőforrások listája](https://docs.microsoft.com/cli/azure/vm#list) | A használt `--query` tooget hello azonosítók hello virtuális gépek hello címke használata. |
+| [az a virtuális gép újraindítása](https://docs.microsoft.com/cli/azure/vm#list) | Hello virtuális gépek újraindul. |
 | [az csoport törlése](https://docs.microsoft.com/cli/azure/vm/extension#set) | Egy olyan erőforráscsoport, beleértve az összes beágyazott erőforrások törlése. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További virtuális gép CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További virtuális gép CLI parancsfájl minták hello található [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

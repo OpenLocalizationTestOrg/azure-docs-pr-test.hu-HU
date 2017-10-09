@@ -1,6 +1,6 @@
 ---
-title: "Az Azure alárendelt beépülő modul használata Hudson folyamatos integrációt |} Microsoft Docs"
-description: "Ismerteti, hogyan használható az Azure alárendelt beépülő modul Hudson folyamatos integrációt."
+title: "aaaHow toouse hello Azure alárendelt Hudson folyamatos integrációt beépülő modul |} Microsoft Docs"
+description: "Ismerteti, hogyan toouse hello Azure alárendelt Hudson folyamatos integrációt beépülő modul."
 services: virtual-machines-linux
 documentationcenter: 
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c11b59f8ea432075b147a391de4b7bd3331e639e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cd6e67ad71c208aa56746aa8b70ba507da20bee9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a>Az Azure alárendelt beépülő modul használata Hudson folyamatos integrációt
-Az Azure alárendelt Hudson beépülő modul lehetővé teszi, hogy hozzon létre az alárendelt csomópontok az Azure-on, amikor fut elosztott alkot.
+# <a name="how-toouse-hello-azure-slave-plug-in-with-hudson-continuous-integration"></a>Hogyan toouse hello Azure alárendelt Hudson folyamatos integrációt beépülő modul
+hello Azure alárendelt Hudson beépülő modul lehetővé teszi tooprovision alárendelt csomópontok Azure amikor fut elosztott alkot.
 
-## <a name="install-the-azure-slave-plug-in"></a>Az Azure alárendelt beépülő modul telepítése
-1. Hudson irányítópultján kattintson **kezelése Hudson**.
-2. Az a **kezelése Hudson** lapján kattintson a **kezelése beépülő modulok**.
-3. Kattintson a **elérhető** fülre.
-4. Kattintson a **keresési** és típus **Azure** vonatkozó beépülő modulokhoz-lista korlátozását.
+## <a name="install-hello-azure-slave-plug-in"></a>Hello Azure alárendelt beépülő modul telepítése
+1. Hello Hudson irányítópultot, kattintson **kezelése Hudson**.
+2. A hello **kezelése Hudson** lapján kattintson a **kezelése beépülő modulok**.
+3. Kattintson a hello **elérhető** fülre.
+4. Kattintson a **keresési** és típus **Azure** toolimit hello lista toorelevant beépülő modulok.
    
-    Ha úgy dönt, ha az elérhető beépülő modulok listáját megtalálja az Azure alárendelt a beépülő modul a **kiszolgálófürt-felügyelet és az elosztott Build** szakasz a **mások** lapon.
-5. Jelölje be a **Azure alárendelt beépülő modul**.
+    Ha úgy dönt, hogy tooscroll keresztül elérhető beépülő modulok hello listája, megtalálja hello Azure alárendelt hello a beépülő modul **kiszolgálófürt-felügyelet és az elosztott Build** hello című **mások** lapon.
+5. Válassza ki a hello jelölőnégyzetét **Azure alárendelt beépülő modul**.
 6. Kattintson az **Install** (Telepítés) gombra.
 7. Indítsa újra a Hudson.
 
-Most, hogy a beépülő modul telepítve van, a következő lépések lenne, az Azure-előfizetés profillal beállíthatja a beépülő modult, és az alárendelt csomópont a virtuális gép létrehozásához használt sablon létrehozása.
+Most, hogy hello beépülő modul telepítve van, akkor hello lépések tooconfigure hello beépülő modul, az Azure-előfizetés profil és a toocreate hello VM hello az alárendelt csomópont létrehozásakor használt sablon lenne.
 
-## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a>Az előfizetés profillal az Azure alárendelt beépülő modul konfigurálása
-Egy előfizetés profilt is hívják közzétételi beállítások, a biztonságos hitelesítő adatok, és további információkra szüksége lesz a fejlesztési környezetet az Azure-ral működni tartalmazó XML-fájl. Az Azure alárendelt beépülő modul konfigurálásához lesz szüksége:
+## <a name="configure-hello-azure-slave-plug-in-with-your-subscription-profile"></a>Az előfizetés profillal hello Azure alárendelt beépülő modul konfigurálása
+Egy előfizetés profilt is hivatkozott tooas közzétételi beállítások, egy XML-fájl, amely tartalmazza a biztonságos hitelesítő adatok, és néhány további információ a fejlesztési környezetet az Azure-ral toowork lesz szüksége. tooconfigure hello Azure alárendelt beépülő modult, lesz szüksége:
 
 * Az előfizetés-azonosítóval
 * Az előfizetéshez tartozó felügyeleti tanúsítvány
@@ -63,56 +63,56 @@ Ezek itt található: a [előfizetés profil]. Az alábbiakban az előfizetés p
 
     </PublishData>
 
-Miután az előfizetés profil, kövesse az alábbi lépéseket az Azure alárendelt beépülő modul konfigurálása.
+Miután az előfizetés profil, hajtsa végre az ezen lépések tooconfigure hello Azure alárendelt beépülő modul.
 
-1. Hudson irányítópultján kattintson **kezelése Hudson**.
+1. Hello Hudson irányítópultot, kattintson **kezelése Hudson**.
 2. Kattintson a **rendszer konfigurálása**.
-3. Görgessen lefelé a lapon található a **felhő** szakasz.
+3. Görgessen lefelé hello lap toofind hello **felhő** szakasz.
 4. Kattintson a **adja hozzá az új felhő > Microsoft Azure**.
    
     ![új felhőalapú hozzáadása][add new cloud]
    
-    Ez azt mutatja majd a mezők ahol meg kell adnia az előfizetés részletei.
+    Ez azt mutatja majd hello mezők tooenter kell az előfizetés részletei.
    
     ![profil konfigurálása][configure profile]
-5. Az előfizetési azonosító és felügyeleti tanúsítvány a előfizetés profilból másolással illessze be őket a megfelelő mezőket.
+5. Hello előfizetési azonosító és felügyeleti tanúsítvány a előfizetés profilból másolással illessze be őket a hello megfelelő mezőket.
    
-    Az előfizetési azonosító és felügyeleti tanúsítvány másolásakor **nem** értékek tegye idézőjelek közé tartozik.
+    Hello előfizetési azonosító és felügyeleti tanúsítvány, másolásakor **nem** hello idézőjelek között, tegye a hello értékeket tartalmazza.
 6. Kattintson a **ellenőrizze konfigurációs**.
-7. Ha a konfiguráció ellenőrzése sikeresen befejeződött, kattintson **mentése**.
+7. Hello konfiguráció sikeres ellenőrzését követően kattintson **mentése**.
 
-## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a>Beállítása virtuálisgép-sablont az Azure alárendelt beépülő modul
-Virtuálisgép-sablon a paraméterek, a beépülő modul segítségével létrehozhat egy alárendelt csomópont az Azure-határozza meg. A következő lépések azt fogja kell sablon létrehozása egy Ubuntu virtuális gép számára.
+## <a name="set-up-a-virtual-machine-template-for-hello-azure-slave-plug-in"></a>Beépülő modul hello Azure alárendelt virtuálisgép-sablon beállítása
+A virtuális gép sablon meghatározza hello hello beépülő modul egy alárendelt csomópont toocreate fogja használni az Azure-on. Az alábbi lépésekkel hello azt fogja kell sablon létrehozása egy Ubuntu virtuális gép számára.
 
-1. Hudson irányítópultján kattintson **kezelése Hudson**.
+1. Hello Hudson irányítópultot, kattintson **kezelése Hudson**.
 2. Kattintson a **rendszer konfigurálása**.
-3. Görgessen lefelé a lapon található a **felhő** szakasz.
-4. Belül a **felhő** területen található **Azure virtuálisgép-sablon hozzáadása** , és kattintson a **Hozzáadás** gombra.
+3. Görgessen lefelé hello lap toofind hello **felhő** szakasz.
+4. Hello belül **felhő** területen található **Azure virtuálisgép-sablon hozzáadása** hello kattintson **Hozzáadás** gombra.
    
     ![Virtuálisgép-sablon hozzáadása][add vm template]
-5. Adja meg a felhőalapú szolgáltatás nevét a **neve** mező. Ha a megadott név egy meglévő felhőszolgáltatáshoz hivatkozik, a virtuális gép lesz üzembe helyezve, hogy a szolgáltatásban. Ellenkező esetben az Azure létrehoz egy új.
-6. Az a **leírás** mezőben adja meg a létrehozandó sablon leírását. Ezek az információk csak dokumentációs célokat szolgál, és nem szerepel a virtuális gép kiépítése.
-7. Az a **címkék** mezőbe írja be **linux**. Ez a címke alapján határozza meg a sablon létrehozásakor és való hivatkozáshoz a sablon, egy Hudson feladat létrehozásakor ezt követően használható.
-8. Válasszon ki egy régiót, ahol a virtuális gép létrejön.
-9. Válassza ki a megfelelő Virtuálisgép-méretet.
-10. Adjon meg egy tárfiókot, ahol a virtuális gép létrejön. Győződjön meg arról, hogy a felhőszolgáltatás fogja használni és ugyanabban a régióban van. Ha a létrehozandó új tárhelyre, akkor ezt a mezőt üresen hagyhatja.
-11. Megőrzési időtartama percben, mielőtt Hudson törli az inaktív alárendelt határozza meg. Adja meg ezt az alapértelmezett értéket 60.
-12. A **használati**, válassza ki azt a megfelelő állapotot, ha ez az alárendelt csomópont fogja használni. Most, válassza ki a **használata a lehető legnagyobb mértékben csomópont**.
+5. Adja meg a felhőszolgáltatás neve hello **neve** mező. Ha hello nevét adja meg, hogy a meglévő felhőalapú szolgáltatás tooan utal, hello VM lesznek üzembe helyezve, hogy a szolgáltatásban. Ellenkező esetben az Azure létrehoz egy új.
+6. A hello **leírás** mezőbe írja be a létrehozandó hello sablon leírását. Ezek az információk csak dokumentációs célokat szolgál, és nem szerepel a virtuális gép kiépítése.
+7. A hello **címkék** mezőbe írja be **linux**. Ez a címke használt tooidentify hello sablon létrehozásakor és ezt követően használt tooreference hello sablon Hudson feladat létrehozásakor.
+8. Válasszon ki egy régiót, ahol a virtuális gép hello létrejön.
+9. Válassza ki a megfelelő hello Virtuálisgép-méretet.
+10. Adjon meg egy tárfiókot, ahol a virtuális gép hello létrejön. Győződjön meg arról, hogy hello ugyanabban a régióban hello felhőalapú szolgáltatást fogja használni. Ha azt szeretné, hogy a létrehozott új tárolási toobe, akkor ezt a mezőt üresen hagyhatja.
+11. Megőrzési idő megadja perc elteltével Hudson törli az inaktív alárendelt hello számát. Adja meg ezt az alapértelmezett értéket hello 60.
+12. A **használati**, válassza ki hello megfelelő feltétel, ha ez az alárendelt csomópont fogja használni. Most, válassza ki a **használata a lehető legnagyobb mértékben csomópont**.
     
-     Ezen a ponton az űrlap ez némileg hasonló lenne:
+     Ezen a ponton az űrlap némileg hasonló toothis jelenne meg:
     
      ![sablon config][template config]
-13. A **kép termékcsalád vagy azonosító** meg kell adnia, hogy milyen rendszerkép lesz telepítve a virtuális Gépet. Válassza ki a lemezkép termékcsaládok listáját, vagy adjon meg egyéni lemezképet.
+13. A **kép termékcsalád vagy azonosító** rendelkezik toospecify milyen rendszerkép lesz telepítve a virtuális Gépet. Válassza ki a lemezkép termékcsaládok listáját, vagy adjon meg egyéni lemezképet.
     
-     Ha azt szeretné kiválasztani a lemezkép-családok listája, adja meg a lemezkép csomagcsalád nevének (kis-és nagybetűket) karaktert. Például írja be **U** Ubuntu Server családok listája megjelenik. Után válassza ki a listából, a Jenkins fogja használni, hogy az operációs rendszer lemezkép legújabb verzióját, ha a virtuális gép kiépítésétől.
+     Ha azt szeretné, hogy a lemezkép-családok listája tooselect, adja meg a hello első karakterének (kis-és nagybetűket) hello kép csomagcsalád nevét. Például írja be **U** Ubuntu Server családok listája megjelenik. Miután hello listából válassza ki a Jenkins fogja használni hello legújabb verzióját, hogy az operációs rendszer lemezkép, amikor a virtuális gép kiépítésétől.
     
      ![Az operációs rendszer termékcsalád listája][OS family list]
     
-     Ha a használni kívánt egyéni lemezképet, adja meg az egyéni lemezkép nevét. Egyéni rendszerkép neve nem jelennek meg listáját, így kell győződjön meg arról, hogy a neve helyesen van-e megadva.    
+     Ha rendelkezik, amelyet toouse helyette egyéni kép, adja meg az egyéni lemezkép hello nevét. Egyéni rendszerkép neve nem láthatók listáját, hogy rendelkezik, amelyek neve hello tooensure megfelelően van-e megadva.    
     
-     Ebben az oktatóanyagban írja be a következőt **U** Ubuntu lemezképek listáját és kiválasztása **Ubuntu Server 14.04 LTS**.
+     Ebben az oktatóanyagban írja be a következőt **U** Ubuntu lemezképeihez, és válassza ki listája toobring **Ubuntu Server 14.04 LTS**.
 14. A **indítsa el a metódus**, jelölje be **SSH**.
-15. Az alábbi parancsfájl másolja és illessze be a **Init parancsfájl** mező.
+15. Az alábbi parancsfájl hello másolja és illessze be a hello **Init parancsfájl** mező.
     
          # Install Java
     
@@ -136,22 +136,22 @@ Virtuálisgép-sablon a paraméterek, a beépülő modul segítségével létreh
     
          sudo apt-get install -y ant
     
-     A **Init parancsfájl** végrehajtja a virtuális gép létrehozása után. Ebben a példában a parancsfájl telepíti, Java, a git és az telepítsenek.
-16. Az a **felhasználónév** és **jelszó** mezők, adja meg az előnyben részesített értékeket rendel a virtuális Gépen lévő rendszergazdai fiók.
-17. Kattintson a **sablon ellenőrzése** ellenőrzése, ha a megadott paraméterek érvényesek.
+     Hello **Init parancsfájl** hello virtuális gép létrehozása után a rendszer hajtja majd végre. Ebben a példában a hello parancsfájl telepíti a Java, a git és az telepítsenek.
+16. A hello **felhasználónév** és **jelszó** mezőkben adja meg a kívánt értékeket hello rendszergazdai fiók, amely a virtuális gép létrejön.
+17. Kattintson a **sablon ellenőrzése** toocheck, ha a megadott hello paraméterek érvényesek.
 18. Kattintson a **Mentés** gombra.
 
 ## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a>Egy alárendelt csomópont az Azure-on futó Hudson feladat létrehozása
 Ebben a szakaszban egy alárendelt csomópont az Azure-on futó Hudson feladat csak létrehozunk.
 
-1. Hudson irányítópultján kattintson **új feladat**.
-2. Adja meg a létrehozandó feladat nevét.
-3. Válassza ki a feladattípus **egy ingyenes stílusú szoftver feladat létrehozása**.
+1. Hello Hudson irányítópultot, kattintson **új feladat**.
+2. Adja meg a létrehozandó hello feladat nevét.
+3. Hello feladattípus, válassza a **egy ingyenes stílusú szoftver feladat létrehozása**.
 4. Kattintson az **OK** gombra.
-5. A feladat konfigurálása lapon válassza ki a **korlátozása, amelyben ez a projekt futtathatók**.
-6. Válassza ki **csomópont és a felirat menü** válassza **linux** (azt meg ezt a címkét a virtuális gép sablon létrehozásakor az előző szakaszban).
-7. A a **Build** területen kattintson **Hozzáadás összeállítása lépés** válassza **hajtható végre a rendszerhéj**.
-8. Szerkessze a következő parancsfájl cseréje **{a githubon fióknevet}**, **{a projekt neve}**, és **{projektkönyvtárban}** a megfelelő értékeket, és illessze be a szerkesztett a szöveg területen megjelenő parancsfájl.
+5. Hello feladat konfigurálása lapon válassza ki a **korlátozása, amelyben ez a projekt futtathatók**.
+6. Válassza ki **csomópont és a felirat menü** válassza **linux** (azt meg ezt a címkét az előző szakaszban hello hello virtuálisgép-sablon létrehozásakor).
+7. A hello **Build** területen kattintson **Hozzáadás összeállítása lépés** válassza **hajtható végre a rendszerhéj**.
+8. A következő parancsfájlt, hogy hello szerkesztése **{a githubon fióknevet}**, **{a projekt neve}**, és **{projektkönyvtárban}** a megfelelő értékeket, és illessze be a hello parancsfájl hello szöveg területen megjelenő szerkeszteni.
    
         # Clone from git repo
    
@@ -169,7 +169,7 @@ Ebben a szakaszban egy alárendelt csomópont az Azure-on futó Hudson feladat c
    
         fi
    
-        # change directory to project
+        # change directory tooproject
    
         cd $currentDir/{your project directory}
    
@@ -177,16 +177,16 @@ Ebben a szakaszban egy alárendelt csomópont az Azure-on futó Hudson feladat c
    
         ant
 9. Kattintson a **Mentés** gombra.
-10. A Hudson irányítópult, keresse meg az imént létrehozott feladat, majd kattintson a a **build ütemezése** ikonra.
+10. A hello Hudson irányítópult, újonnan létrehozott hello feladat keresése, majd kattintson a hello **build ütemezése** ikonra.
 
-Hudson majd hozható létre az előző szakaszban létrehozott sablon használatával az alárendelt csomópont, és futtassa a parancsfájlt a feladathoz build lépésben megadott.
+Hudson majd egy alárendelt csomópont hello előző szakaszban létrehozott hello sablonnal létrehozása, és ehhez a feladathoz hello build lépésben megadott hello parancsfájlt.
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból].
 
 <!-- URL List -->
 
-[Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
+[Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
 [előfizetés profil]: http://go.microsoft.com/fwlink/?LinkID=396395
 
 <!-- IMG List -->

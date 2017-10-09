@@ -1,6 +1,6 @@
 ---
-title: "Automatikus oszlopszélesség egy Windows Azure-ban a PowerShell használatával |} Microsoft Docs"
-description: "A Resource Manager üzembe helyezési modellel, az Azure Powershell létrehozott Windows virtuális gépek méretét."
+title: aaaUse PowerShell tooresize egy Windows Azure-ban |} Microsoft Docs
+description: "A Windows hello Resource Manager üzembe helyezési modellel, az Azure Powershell használatával létrehozott virtuális gépek méretét."
 services: virtual-machines-windows
 documentationcenter: 
 author: Drewm3
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/19/2016
 ms.author: drewm
-ms.openlocfilehash: 742efd1496de9ce76b1e5636297ef30f546bd108
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a4a80f3bc99911e4f1a095f0ce63aca00fa50694
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resize-a-windows-vm"></a>A Windows virtuális gép átméretezése
-Ez a cikk bemutatja, hogyan méretezze át egy Windows virtuális Gépet, a Resource Manager üzembe helyezési modellel Azure Powershell használatával létrehozni.
+Ez a cikk bemutatja, hogyan tooresize egy Windows virtuális gép létrehozása hello Resource Manager üzembe helyezési modellel Azure Powershell használatával.
 
-Miután létrehozta a virtuális gép (VM), méretezhető a virtuális gép felfelé vagy lefelé a Virtuálisgép-méretet módosításával. Néhány esetben először a virtuális gép kell felszabadítani. Ez akkor fordulhat elő, ha új mérete nem érhető el a virtuális gép jelenleg üzemeltető hardver fürt.
+Miután létrehozta a virtuális gép (VM), méretezhető hello VM felfelé vagy lefelé hello Virtuálisgép-méretet módosításával. Néhány esetben először hello VM kell felszabadítani. Ez akkor fordulhat elő, ha hello új mérete nem érhető el a virtuális gép hello jelenleg üzemeltető hello hardver fürt.
 
 ## <a name="resize-a-windows-vm-not-in-an-availability-set"></a>Egy Windows virtuális gép nem a rendelkezésre állási csoportok átméretezése
-1. A hardver fürt, ahol a virtuális gép tárolása elérhető Virtuálisgép-méretek listázása. 
+1. Ahol hello virtuális gép tárolása hello hardver fürtön elérhető hello Virtuálisgép-méretek listázása. 
    
     ```powershell
     Get-AzureRmVMSize -ResourceGroupName <resourceGroupName> -VMName <vmName> 
     ```
-2. Ha a kívánt méretet, a következő parancsokat a virtuális gép átméretezésével. Ha nem jelenik meg a kívánt méretet, folytassa a 3. lépésre.
+2. Ha hello szükséges méret szerepel, futtassa a következő parancsok tooresize hello VM hello. Ha hello szükséges méret nem szerepel a listában, nyissa meg toostep 3.
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <resourceGroupName> -VMName <vmName>
     $vm.HardwareProfile.VmSize = "<newVMsize>"
     Update-AzureRmVM -VM $vm -ResourceGroupName <resourceGroupName>
     ```
-3. Ha a kívánt méretet nem szerepel, a következő parancsokat a virtuális gép felszabadítása méretezze át, és indítsa újra a virtuális Gépet.
+3. Ha hello szükséges méret nem szerepel a listában, futtassa a következő parancsok toodeallocate hello VM, méretezze át, és indítsa újra a virtuális gép hello hello.
    
     ```powershell
     $rgname = "<resourceGroupName>"
@@ -52,27 +52,27 @@ Miután létrehozta a virtuális gép (VM), méretezhető a virtuális gép felf
     ```
 
 > [!WARNING]
-> A virtuális Géphez rendelt dinamikus IP-címek a virtuális gép felszabadítása kiadását. Az operációsrendszer- és adatlemezek, nem érintettek. 
+> Virtuális gép hello felszabadítása dinamikus IP-címek hozzárendelése a virtuális gép toohello kiadását. az operációs rendszer hello és adatlemezek nem érintettek. 
 > 
 > 
 
 ## <a name="resize-a-windows-vm-in-an-availability-set"></a>Egy Windows virtuális gép rendelkezésre állási csoportba átméretezése
-Ha egy virtuális gép rendelkezésre állási csoportba új mérete nem érhető el a virtuális Gépet tartalmazó hardver fürtön, majd a rendelkezésre állási csoport virtuális gépeinek kell átméretezni a virtuális gép felszabadítása. Is szükség lehet frissíteni a rendelkezésre állási csoportban, miután egy virtuális gép át lett méretezve más virtuális gépek méretét. A virtuális gépek rendelkezésre állási csoportba átméretezéséhez hajtsa végre az alábbi lépéseket.
+Ha hello új egy rendelkezésre állási csoportot a virtuális gép mérete nem érhető el a hello hardver fürt hello tartalmazó virtuális gép, majd hello rendelkezésre állási csoport virtuális gépeinek kell toobe tooresize hello virtuális gép felszabadítása. Előfordulhat, hogy szükség tooupdate hello méretétől, más virtuális gépek hello rendelkezésre állási csoportban, miután egy virtuális gép át lett méretezve. tooresize a virtuális gépek rendelkezésre állási csoportba, hajtsa végre a lépéseket követve hello.
 
-1. A hardver fürt, ahol a virtuális gép tárolása elérhető Virtuálisgép-méretek listázása.
+1. Ahol hello virtuális gép tárolása hello hardver fürtön elérhető hello Virtuálisgép-méretek listázása.
    
     ```powershell
     Get-AzureRmVMSize -ResourceGroupName <resourceGroupName> -VMName <vmName>
     ```
-2. Ha a kívánt méretet, a következő parancsokat a virtuális gép átméretezésével. Ha nem szerepel, folytassa a 3.
+2. Ha hello szükséges méret szerepel, futtassa a következő parancsok tooresize hello VM hello. Ha nem szerepel, folytassa a toostep 3.
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <resourceGroupName> -VMName <vmName>
     $vm.HardwareProfile.VmSize = "<newVmSize>"
     Update-AzureRmVM -VM $vm -ResourceGroupName <resourceGroupName>
     ```
-3. Ha nem jelenik meg a kívánt méretet, folytassa a következő lépéseket a rendelkezésre állási csoport virtuális gépeinek felszabadítani, méretezze át a virtuális gépek és újra kell indítania őket.
-4. Állítsa le a rendelkezésre állási csoportot az összes virtuális gépet.
+3. Hello szükséges méret nem szerepel a listában, folytassa a következő lépéseket toodeallocate hello hello rendelkezésre állási csoport virtuális gépeinek, méretezze át a virtuális gépek és újra kell indítania őket.
+4. Állítsa le virtuális gépeinek hello rendelkezésre állási csoportot.
    
    ```powershell
    $rg = "<resourceGroupName>"
@@ -84,7 +84,7 @@ Ha egy virtuális gép rendelkezésre állási csoportba új mérete nem érhet�
      Stop-AzureRmVM -ResourceGroupName $rg -Name $vmName -Force
    } 
    ```
-5. Automatikus oszlopszélesség, és indítsa újra a virtuális gépek a rendelkezésre állási csoport.
+5. Átméretezése, és indítsa újra a hello virtuális gépek hello rendelkezésre állási készlet.
    
    ```powershell
    $rg = "<resourceGroupName>"

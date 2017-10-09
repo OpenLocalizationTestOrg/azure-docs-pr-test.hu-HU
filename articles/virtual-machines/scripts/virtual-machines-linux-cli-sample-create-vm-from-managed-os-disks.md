@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI-parancsfájlt minta - virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával |} Microsoft Docs"
+title: "aaaAzure CLI parancsfájl minta - virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával |} Microsoft Docs"
 description: "Az Azure CLI-parancsfájlt minta - virtuális gép létrehozása az operációs rendszer lemezeként felügyelt lemezes csatolásával"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: ramankum
 ms.custom: mvc
-ms.openlocfilehash: 18eefee869b243b35d4426c226eff5f48cd490a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 71fc5c6a577c64b913cfa35e99b2b9b75dea0c31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-machine-using-an-existing-managed-os-disk-with-cli"></a>Hozzon létre egy virtuális gép egy meglévő felügyelt operációsrendszer-lemez a parancssori felület használatával
 
@@ -35,11 +35,11 @@ Ez a parancsfájl által az operációs rendszer lemezeként felügyelt meglév�
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-machine/create-vm-attach-existing-managed-os-disk/create-vm-attach-existing-managed-os-disk.sh "VM hozzon létre egy felügyelt lemezről")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-attach-existing-managed-os-disk/create-vm-attach-existing-managed-os-disk.sh "Create VM from a managed disk")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A következő parancsot az erőforráscsoport, virtuális gép és az összes kapcsolódó erőforrások eltávolítása.
+Futtassa a következő parancs tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások hello.
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
@@ -47,14 +47,14 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat a felügyelt lemezes tulajdonságait, egy felügyelt lemezt csatolni a új virtuális gép, és hozzon létre egy virtuális Gépet. A parancs adott dokumentáció tábla mutató összes elemére.
+A parancsfájl a következő parancsok felügyelt tooget lemez tulajdonságai hello, egy felügyelt lemezes tooa csatolása új virtuális Gépet, és hozzon létre egy virtuális Gépet. Minden elem hello tábla hivatkozások toocommand adott dokumentációjában.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az lemez megjelenítése](https://docs.microsoft.com/cli/azure/disk#show) | Lekérdezi a felügyelt lemezes tulajdonságok lemez neve és az erőforráscsoport-név használatával. ID tulajdonságának használatával felügyelt lemezes csatolható egy új virtuális géphez |
+| [az lemez megjelenítése](https://docs.microsoft.com/cli/azure/disk#show) | Lekérdezi a felügyelt lemezes tulajdonságok lemez neve és az erőforráscsoport-név használatával. Azonosító tulajdonsága használt tooattach egy felügyelt lemezes tooa új virtuális gép |
 | [az virtuális gép létrehozása](https://docs.microsoft.com/cli/azure/vm#create) | A virtuális gépek a felügyelt operációsrendszer-lemez létrehozása |
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További virtuális gép CLI parancsfájl minták megtalálhatók a [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+További virtuális gép CLI parancsfájl minták hello található [Azure Linux virtuális dokumentációját](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

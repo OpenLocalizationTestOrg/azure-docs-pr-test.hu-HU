@@ -1,6 +1,6 @@
 ---
-title: "Kiválasztja a felhasználónevet Linux |} Microsoft Docs"
-description: "Megtudhatja, hogyan válassza ki a felhasználói neveket Linux virtuális gép az Azure-ban."
+title: "Linux felhasználónevek aaaSelecting |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooselect felhasználó nevét, a Linux virtuális gép az Azure-ban."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 1874d72e5f88816036667932371ff28704d186c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c65e2ac46f40bb8c9d74cccbaf248a070c0fa6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="selecting-user-names-for-linux-on-azure"></a>Felhasználónevek kiválasztása Azure-ban futtatott Linux esetén
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Amikor egy Linux virtuális gépet az Azure később használatával jelentkezzen be a virtuális gép nem legfelső szintű felhasználó nevét kell megadnia. Úgy is dönthet, az új felhasználó nevét, vagy ha a beállítás a klasszikus Azure portálon elfogadhatja az alapértelmezett neve "azureuser".
+Amikor egy Linux virtuális gépet az Azure később használható toolog hello VM a nem rendszergazda felhasználó hello nevét kell megadnia. Úgy is dönthet, hello hello új felhasználó nevét, vagy ha a beállítás a klasszikus Azure portálon hello elfogadhatja hello alapértelmezett neve "azureuser".
 
-A legtöbb esetben ez a felhasználó nem létezik az alapjául szolgáló lemezképhez, és létrehozza a telepítési folyamat során. Ha a felhasználó létezik a virtuális gép alapjául szolgáló lemezképhez, majd az Azure Linux ügynök egyszerűen állítja be a jelszót és/vagy SSH-kulcs az adott felhasználó, amikor a virtuális gép létrehozása a megadott adatok alapján.
+A legtöbb esetben ez a felhasználó nem található a hello alapjául szolgáló lemezképhez, és hello kiépítési folyamat során jön létre. Ha alapszintű hello Virtuálisgép-lemezkép hello létezik, akkor hello Azure Linux ügynök egyszerűen konfigurál hello jelszó vagy SSH-kulcs az adott felhasználó hello hello virtuális gép létrehozásakor a megadott adatok alapján.
 
-**Azonban**, Linux, amely nem használható felhasználónevek álló készletet határoz meg. Az üzembe helyezési folyamat fog **sikertelen** Ha kiépítéséhez Linux virtuális gép egy meglévő rendszer felhasználó, amelyet a 0 – 99 UID rendelkező felhasználóként. Tipikus példája a `root` felhasználó, amelynek UID 0.
+**Azonban**, Linux, amely nem használható felhasználónevek álló készletet határoz meg. kiépítési folyamat lesz hello **sikertelen** Ha tooprovision Linux virtuális gép egy meglévő rendszer felhasználó, amelyet a 0 – 99 UID rendelkező felhasználóként. Tipikus példája hello `root` felhasználó, amelynek UID 0.
 
 * További információ: [Linux Standard Base - felhasználói azonosító tartományok](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-A CentOS és Ubuntu, hogy azt ne használja az Azure-on Linux virtuális gépek kiépítése közös beépített rendszer felhasználók listáját a következő: A lista létrehozási csak egy példa, olvassa el a dokumentációt a annak érdekében, hogy úgy dönt, a felhasználónév nem ütközik egy meglévő rendszer felhasználó.
+hello CentOS és Ubuntu, hogy azt ne használja az Azure-on Linux virtuális gépek kiépítése közös beépített rendszer felhasználók listája látható. A lista létrehozási csak egy példa, toohello dokumentáció a részletek a telepítési tooensure úgy dönt, nem ütközik egy meglévő felhasználóval rendszer hello felhasználónévhez.
 
 ## <a name="centos"></a>CentOS
 * abrt
