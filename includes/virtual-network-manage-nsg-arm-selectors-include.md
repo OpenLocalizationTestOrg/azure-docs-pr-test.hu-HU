@@ -1,0 +1,4 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="63f38-101">Portál</span><span class="sxs-lookup"><span data-stu-id="63f38-101">Portal</span></span>](../articles/virtual-network/virtual-network-manage-nsg-arm-portal.md)
+> * [<span data-ttu-id="63f38-102">PowerShell</span><span class="sxs-lookup"><span data-stu-id="63f38-102">PowerShell</span></span>](../articles/virtual-network/virtual-network-manage-nsg-arm-ps.md)
+> * [<span data-ttu-id="63f38-103">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="63f38-103">Azure CLI</span></span>](../articles/virtual-network/virtual-network-manage-nsg-arm-cli.md)

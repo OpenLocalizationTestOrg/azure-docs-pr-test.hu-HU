@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> <span data-ttu-id="4e3e2-101">Előfordulhat, hogy az eszközazonosító látható az ügyfélszolgálat számára és a hibaelhárításhoz gyűjtött naplókban, ezért ügyeljen arra, hogy az elnevezésekor ne adjon meg bizalmas adatokat.</span><span class="sxs-lookup"><span data-stu-id="4e3e2-101">The device ID may be visible in the logs collected for customer support and troubleshooting, so make sure to avoid any sensitive information while naming it.</span></span>
+> <span data-ttu-id="6c976-101">hello eszköz azonosító esetleg mások is láthatják hello naplókban összegyűjtött ügyfél-támogatási és hibaelhárítási, ezért győződjön meg arról, hogy tooavoid elnevezése során bizalmas információk.</span><span class="sxs-lookup"><span data-stu-id="6c976-101">hello device ID may be visible in hello logs collected for customer support and troubleshooting, so make sure tooavoid any sensitive information while naming it.</span></span>
 >

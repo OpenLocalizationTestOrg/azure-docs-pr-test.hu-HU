@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Time Series Insights dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan futtathat IoT-elemzést a felhőben teljes körűen felügyelt eseményfeldolgozással. Valós időben elemezhet például alkalmazásokból, érzékelőkből, eszközökből származó adatokat."
+title: "aaaAzure idő adatsorozat Insights dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorun IoT elemzés hello a felhő teljes körűen felügyelt esemény feldolgozása. Valós időben elemezhet például alkalmazásokból, érzékelőkből, eszközökből származó adatokat."
 services: time-series-insights
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/13/2017
 ms.author: carolz
-ms.openlocfilehash: d22a3f0484da78d03dbe8411e74eb408185b1f30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2301d20aa2fb685279e2efc657ffcd41571af0c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-time-series-insights-documentation"></a>Az Azure Time Series Insights dokumentációja 
  
-Ismerje meg, hogyan állíthatja be a Time Series Insights-környezetet, és hogyan elemezheti IoT-megoldásai és összekapcsolt eszközei idősoradatait. A dokumentációban megtalálja az előfeltételeket, az útmutatókat, az API-referenciákat és a többi dokumentációt, amelyek segítségével néhány perc után elkezdheti a termék használatát. 
+Ismerje meg, hogyan tooset idő adatsorozat Insights környezet felfedezése és idő adatsorozat elemezhetik az IoT-megoldások vagy dolgot csatlakoztatva. Dokumentáció közös hello Előfeltételek, hogyan, API hivatkozik, és más dokumentáció toohelp meg tooget percben elindult. 
  
 <ul class="panelContent cardsFTitle"> 
     <li> 

@@ -1,0 +1,5 @@
+> [!IMPORTANT]
+> <span data-ttu-id="e5193-101">Az átjáró alhálózatok használatakor ne társítása egy hálózati biztonsági csoport (NSG) toohello átjáró-alhálózatot.</span><span class="sxs-lookup"><span data-stu-id="e5193-101">When working with gateway subnets, avoid associating a network security group (NSG) toohello gateway subnet.</span></span> <span data-ttu-id="e5193-102">A hálózati biztonsági csoport toothis alhálózati társítása, előfordulhat, hogy a VPN-átjáró toostop, az elvárt módon működik.</span><span class="sxs-lookup"><span data-stu-id="e5193-102">Associating a network security group toothis subnet may cause your VPN gateway toostop functioning as expected.</span></span> <span data-ttu-id="e5193-103">A hálózati biztonsági csoportokkal kapcsolatos további információért tekintse meg a [Mi az a hálózati biztonsági csoport?](../articles/virtual-network/virtual-networks-nsg.md) című cikket.</span><span class="sxs-lookup"><span data-stu-id="e5193-103">For more information about network security groups, see [What is a network security group?](../articles/virtual-network/virtual-networks-nsg.md)</span></span>
+> 
+> 
+

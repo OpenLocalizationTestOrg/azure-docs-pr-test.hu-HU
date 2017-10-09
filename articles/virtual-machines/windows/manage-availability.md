@@ -1,6 +1,6 @@
 ---
-title: "Windows Azure virtuális gépek rendelkezésre állásának kezelése |} Microsoft Docs"
-description: "Több virtuális gép használata a Windows-alkalmazás az Azure-ban magas rendelkezésre állásának biztosításához"
+title: "Windows-alapú virtuális gépek Azure-ban aaaManage hello rendelkezésre állását |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse több virtuális gépek tooensure magas rendelkezésre állás Windows-alkalmazásait az Azure-ban"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -16,22 +16,22 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 408d030a7c26fea47669a690b0487e0868fbc2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5a7ccdc4a110ea24dd07ee18bd78941fb3aaac11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-the-availability-of-windows-virtual-machines-in-azure"></a><span data-ttu-id="eb96c-103">A Windows Azure virtuális gépek rendelkezésre állásának kezelése</span><span class="sxs-lookup"><span data-stu-id="eb96c-103">Manage the availability of Windows virtual machines in Azure</span></span> 
+# <a name="manage-hello-availability-of-windows-virtual-machines-in-azure"></a><span data-ttu-id="85514-103">Windows virtuális gépek Azure-ban hello rendelkezésre állásának kezelése</span><span class="sxs-lookup"><span data-stu-id="85514-103">Manage hello availability of Windows virtual machines in Azure</span></span> 
 
-<span data-ttu-id="eb96c-104">Ismerje meg, hogy módszereket állíthat be és felügyelhet több virtuális gép magas rendelkezésre állásának a Windows-alkalmazás az Azure-ban.</span><span class="sxs-lookup"><span data-stu-id="eb96c-104">Learn ways to set up and manage multiple virtual machines to ensure high availability for your Windows application in Azure.</span></span> <span data-ttu-id="eb96c-105">Emellett [Linux virtuális gépek rendelkezésre állásának kezelése](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="eb96c-105">You can also [manage the availability of Linux virtual machines](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="85514-104">További módszereket tooset fel, és több virtuális gépek tooensure magas rendelkezésre állás Windows-alkalmazásait az Azure-ban kezelheti.</span><span class="sxs-lookup"><span data-stu-id="85514-104">Learn ways tooset up and manage multiple virtual machines tooensure high availability for your Windows application in Azure.</span></span> <span data-ttu-id="85514-105">Emellett [hello Linux virtuális gépek rendelkezésre állásának kezelése](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="85514-105">You can also [manage hello availability of Linux virtual machines](../linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-<span data-ttu-id="eb96c-106">A létrehozása és a rendelkezésre állási csoportokkal, ha a klasszikus üzembe helyezési modellel útmutatásért lásd: [rendelkezésre állási csoport konfigurálása](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="eb96c-106">For instructions on creating and using availability sets when using the classic deployment model, see [How to Configure an Availability Set](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
+<span data-ttu-id="85514-106">További tájékoztatást létrehozására, illetve a rendelkezésre állási csoportokkal, ha hello klasszikus üzembe helyezési modellel [hogyan tooConfigure rendelkezésre állási készlet](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="85514-106">For instructions on creating and using availability sets when using hello classic deployment model, see [How tooConfigure an Availability Set](classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).</span></span>
 
 [!INCLUDE [virtual-machines-common-manage-availability](../../../includes/virtual-machines-common-manage-availability.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="eb96c-107">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="eb96c-107">Next steps</span></span>
-<span data-ttu-id="eb96c-108">Hálózati terheléselosztást a virtuális gépek kapcsolatos további információkért lásd: [terheléselosztás virtuális gépek](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="eb96c-108">To learn more about load balancing your virtual machines, see [Load Balancing virtual machines](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="85514-107">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="85514-107">Next steps</span></span>
+<span data-ttu-id="85514-108">toolearn hálózati terheléselosztást a virtuális gépek kapcsolatos további információkért lásd: [terheléselosztás virtuális gépek](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="85514-108">toolearn more about load balancing your virtual machines, see [Load Balancing virtual machines](tutorial-load-balancer.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 

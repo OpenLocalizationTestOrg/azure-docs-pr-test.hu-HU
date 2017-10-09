@@ -1,0 +1,78 @@
+---
+title: "aaaSQL adatbázis alkalmazás fejlesztői áttekintés |} Microsoft Docs"
+description: "Információ érhető el kapcsolat szalagtárak és ajánlott eljárások az adatbázis tooSQL csatlakozó alkalmazásokat."
+services: sql-database
+documentationcenter: 
+author: stevestein
+manager: jhubbard
+editor: genemi
+ms.assetid: 67c02204-d1bd-4622-acce-92115a7cde03
+ms.service: sql-database
+ms.custom: develop apps
+ms.workload: data-management
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: sstein
+ms.openlocfilehash: 17f04db600828f90c42c750c9abdb92cfa4ca817
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="sql-database-application-development-overview"></a><span data-ttu-id="07b5d-103">SQL-adatbázis alkalmazások fejlesztői áttekintés</span><span class="sxs-lookup"><span data-stu-id="07b5d-103">SQL Database application development overview</span></span>
+<span data-ttu-id="07b5d-104">Ez a cikk végigvezeti a hello alapvető szempontot, amelyek egy fejlesztő célszerű tisztában lennie a kód tooconnect tooAzure SQL-adatbázis írásakor.</span><span class="sxs-lookup"><span data-stu-id="07b5d-104">This article walks through hello basic considerations that a developer should be aware of when writing code tooconnect tooAzure SQL Database.</span></span>
+
+> [!TIP]
+> <span data-ttu-id="07b5d-105">Egy oktatóanyag megjelenítő, hogyan toocreate egy kiszolgálót, hozzon létre egy kiszolgáló-alapú tűzfal kiszolgáló tulajdonságainak megtekintése, SQL Server Management Studio eszközben lekérdezés hello master adatbázis használatával csatlakozzon, hozzon létre egy adatbázist és egy üres adatbázist, lekérdezési adatbázis tulajdonságai, csatlakozás az SQL Server Management Studio eszközt, és lekérdezés hello mintaadatbázis, lásd: [első lépéseket ismertető oktatóanyagban](sql-database-get-started-portal.md).</span><span class="sxs-lookup"><span data-stu-id="07b5d-105">For a tutorial showing you how toocreate a server, create a server-based firewall, view server properties, connect using SQL Server Management Studio, query hello master database, create a sample database and a blank database, query database properties, connect using SQL Server Management Studio, and query hello sample database, see [Get Started Tutorial](sql-database-get-started-portal.md).</span></span>
+>
+
+## <a name="language-and-platform"></a><span data-ttu-id="07b5d-106">Nyelv és platform</span><span class="sxs-lookup"><span data-stu-id="07b5d-106">Language and platform</span></span>
+<span data-ttu-id="07b5d-107">Különböző programozási nyelvekhez és platformokhoz érhetők el kódminták.</span><span class="sxs-lookup"><span data-stu-id="07b5d-107">There are code samples available for various programming languages and platforms.</span></span> <span data-ttu-id="07b5d-108">Található hivatkozások toohello kód minták:</span><span class="sxs-lookup"><span data-stu-id="07b5d-108">You can find links toohello code samples at:</span></span> 
+
+* <span data-ttu-id="07b5d-109">További információ: [Adatkapcsolattárak az SQL Database-hez és az SQL Serverhez](sql-database-libraries.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-109">More Information: [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)</span></span>
+
+## <a name="tools"></a><span data-ttu-id="07b5d-110">Eszközök</span><span class="sxs-lookup"><span data-stu-id="07b5d-110">Tools</span></span> 
+<span data-ttu-id="07b5d-111">Használhat olyan nyílt forráskódú eszközöket is, mint például a [Cheetah](https://github.com/wunderlist/cheetah), az [sql-cli](https://www.npmjs.com/package/sql-cli) és a [VS Code](https://code.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="07b5d-111">You can leverage open source tools like [cheetah](https://github.com/wunderlist/cheetah), [sql-cli](https://www.npmjs.com/package/sql-cli), [VS Code](https://code.visualstudio.com/).</span></span> <span data-ttu-id="07b5d-112">Ezen kívül az Azure SQL Database olyan Microsoft-eszközöket is támogat, mint például a [Visual Studio](https://www.visualstudio.com/downloads/) és az [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx).</span><span class="sxs-lookup"><span data-stu-id="07b5d-112">Additionally, Azure SQL Database works with Microsoft tools like [Visual Studio](https://www.visualstudio.com/downloads/) and  [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx).</span></span>  <span data-ttu-id="07b5d-113">Hello Azure felügyeleti portálján PowerShell, is használható, és a REST API-k segítségével további termelékenység kapnak.</span><span class="sxs-lookup"><span data-stu-id="07b5d-113">You can also use hello Azure Management Portal, PowerShell, and REST APIs help you gain additional productivity.</span></span>
+
+## <a name="resource-limitations"></a><span data-ttu-id="07b5d-114">Erőforrás-korlátozások</span><span class="sxs-lookup"><span data-stu-id="07b5d-114">Resource limitations</span></span>
+<span data-ttu-id="07b5d-115">Az Azure SQL Database kezeli hello erőforrások elérhető tooa adatbázist két különböző mechanizmusok alapján: erőforrások irányítás és kényszerítési a határértékeket.</span><span class="sxs-lookup"><span data-stu-id="07b5d-115">Azure SQL Database manages hello resources available tooa database using two different mechanisms: Resources Governance and Enforcement of Limits.</span></span>
+
+* <span data-ttu-id="07b5d-116">További információ: [Azure SQL Database erőforrás-korlátozások](sql-database-resource-limits.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-116">More Information: [Azure SQL Database resource limits](sql-database-resource-limits.md)</span></span>
+
+## <a name="security"></a><span data-ttu-id="07b5d-117">Biztonság</span><span class="sxs-lookup"><span data-stu-id="07b5d-117">Security</span></span>
+<span data-ttu-id="07b5d-118">Az Azure SQL Database erőforrásokat biztosít a hozzáférés korlátozásához, az adatok védelméhez és a tevékenységek monitorozásához az SQL Database-adatbázisokban.</span><span class="sxs-lookup"><span data-stu-id="07b5d-118">Azure SQL Database provides resources for limiting access, protecting data, and monitoring activities on a SQL Database.</span></span>
+
+* <span data-ttu-id="07b5d-119">Bővebb információ: [Az SQL Database-adatbázis védelme](sql-database-security-overview.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-119">More Information: [Securing your SQL Database](sql-database-security-overview.md)</span></span>
+
+## <a name="authentication"></a><span data-ttu-id="07b5d-120">Authentication</span><span class="sxs-lookup"><span data-stu-id="07b5d-120">Authentication</span></span>
+* <span data-ttu-id="07b5d-121">Az Azure SQL Database az SQL Server-alapú és az [Azure Active Directory-alapú](sql-database-aad-authentication.md) hitelesítést használó felhasználókat és bejelentkezéseket is támogatja.</span><span class="sxs-lookup"><span data-stu-id="07b5d-121">Azure SQL Database supports both SQL Server authentication users and logins, as well as [Azure Active Directory authentication](sql-database-aad-authentication.md) users and logins.</span></span>
+* <span data-ttu-id="07b5d-122">Egy adott adatbázis helyett mulasztó toohello toospecify kell *fő* adatbázis.</span><span class="sxs-lookup"><span data-stu-id="07b5d-122">You need toospecify a particular database, instead of defaulting toohello *master* database.</span></span>
+* <span data-ttu-id="07b5d-123">Nem használhatja a Transact-SQL hello **használata myDatabaseName;** utasítás SQL-adatbázis tooswitch tooanother adatbázison.</span><span class="sxs-lookup"><span data-stu-id="07b5d-123">You cannot use hello Transact-SQL **USE myDatabaseName;** statement on SQL Database tooswitch tooanother database.</span></span>
+* <span data-ttu-id="07b5d-124">További információ: [Az SQL Database biztonsága: adatbázis-hozzáférés és a bejelentkezési biztonság felügyelete](sql-database-manage-logins.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-124">More information: [SQL Database security: Manage database access and login security](sql-database-manage-logins.md)</span></span>
+
+## <a name="resiliency"></a><span data-ttu-id="07b5d-125">Resiliency</span><span class="sxs-lookup"><span data-stu-id="07b5d-125">Resiliency</span></span>
+<span data-ttu-id="07b5d-126">Amikor egy átmeneti hiba akkor fordul elő, tooSQL adatbázis kapcsolódás közben, a kódot újra kell hello hívás.</span><span class="sxs-lookup"><span data-stu-id="07b5d-126">When a transient error occurs while connecting tooSQL Database, your code should retry hello call.</span></span>  <span data-ttu-id="07b5d-127">Azt ajánljuk, újrapróbálkozási logika leállítási logika használja, így azt nem ne terhelje tovább hello SQL-adatbázis az újrapróbálkozás egyszerre több ügyfélnek.</span><span class="sxs-lookup"><span data-stu-id="07b5d-127">We recommend that retry logic use backoff logic, so that it does not overwhelm hello SQL Database with multiple clients retrying simultaneously.</span></span>
+
+* <span data-ttu-id="07b5d-128">Kódminták: mintakódok, mely újrapróbálkozási logika, lásd: hello nyelvű-példák: [adatkapcsolattárak SQL Database és SQL Server](sql-database-libraries.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-128">Code samples:  For code samples that illustrate retry logic, see samples for hello language of your choice at: [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)</span></span>
+* <span data-ttu-id="07b5d-129">További információ: [Az SQL Database-ügyfélprogramok hibaüzenetei](sql-database-develop-error-messages.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-129">More information: [Error messages for SQL Database client programs](sql-database-develop-error-messages.md)</span></span>
+
+## <a name="managing-connections"></a><span data-ttu-id="07b5d-130">Kapcsolatok kezelése</span><span class="sxs-lookup"><span data-stu-id="07b5d-130">Managing connections</span></span>
+* <span data-ttu-id="07b5d-131">Az ügyfél kapcsolat logikájában felülbírálása hello alapértelmezett időkorlát toobe 30 másodperc.</span><span class="sxs-lookup"><span data-stu-id="07b5d-131">In your client connection logic, override hello default timeout toobe 30 seconds.</span></span>  <span data-ttu-id="07b5d-132">hello alapértelmezett 15 másodperc érték túl rövid a kapcsolatok függő hello internet.</span><span class="sxs-lookup"><span data-stu-id="07b5d-132">hello default of 15 seconds is too short for connections that depend on hello internet.</span></span>
+* <span data-ttu-id="07b5d-133">Ha használ egy [kapcsolatkészlet](http://msdn.microsoft.com/library/8xx3tyca.aspx), lehet, hogy tooclose hello kapcsolat hello azonnali, a program nem aktívan használja, és nem arra készül, tooreuse azt.</span><span class="sxs-lookup"><span data-stu-id="07b5d-133">If you are using a [connection pool](http://msdn.microsoft.com/library/8xx3tyca.aspx), be sure tooclose hello connection hello instant your program is not actively using it, and is not preparing tooreuse it.</span></span>
+
+## <a name="network-considerations"></a><span data-ttu-id="07b5d-134">Hálózati kapcsolatos szempontok</span><span class="sxs-lookup"><span data-stu-id="07b5d-134">Network considerations</span></span>
+* <span data-ttu-id="07b5d-135">Hello számítógépen, amelyen az ügyfélprogram hello tűzfala lehetővé teszi a 1433-as port kimenő TCP-kommunikáció biztosítása.</span><span class="sxs-lookup"><span data-stu-id="07b5d-135">On hello computer that hosts your client program, ensure hello firewall allows outgoing TCP communication on port 1433.</span></span>  <span data-ttu-id="07b5d-136">További információk: [Az Azure SQL Database tűzfalának konfigurálása](sql-database-configure-firewall-settings.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-136">More information: [Configure an Azure SQL Database firewall](sql-database-configure-firewall-settings.md)</span></span>
+* <span data-ttu-id="07b5d-137">Ha az ügyfélprogram tooSQL adatbázis csatlakozik, amíg az ügyfél egy Azure virtuális gépen (VM) fut, nyissa meg bizonyos porttartományok hello virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="07b5d-137">If your client program connects tooSQL Database while your client runs on an Azure virtual machine (VM), you must open certain port ranges on hello VM.</span></span> <span data-ttu-id="07b5d-138">További információ: [portok túl az 1433-as ADO.NET 4.5 és az SQL-adatbázis](sql-database-develop-direct-route-ports-adonet-v12.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-138">More information: [Ports beyond 1433 for ADO.NET 4.5 and SQL Database](sql-database-develop-direct-route-ports-adonet-v12.md)</span></span>
+* <span data-ttu-id="07b5d-139">Ügyfél kapcsolatok tooAzure SQL-adatbázis néha hello proxy megkerülése és hello adatbázis közvetlenül kommunikál.</span><span class="sxs-lookup"><span data-stu-id="07b5d-139">Client connections tooAzure SQL Database sometimes bypass hello proxy and interact directly with hello database.</span></span> <span data-ttu-id="07b5d-140">Ekkor válnak fontossá az 1433-astól különböző portok.</span><span class="sxs-lookup"><span data-stu-id="07b5d-140">Ports other than 1433 become important.</span></span> <span data-ttu-id="07b5d-141">További információ [Azure SQL adatbázis-kapcsolat architektúra](sql-database-connectivity-architecture.md) és [kívüli ADO.NET 4.5 és az SQL-adatbázis 1433-as portokon](sql-database-develop-direct-route-ports-adonet-v12.md).</span><span class="sxs-lookup"><span data-stu-id="07b5d-141">For more information, [Azure SQL Database connectivity architecture](sql-database-connectivity-architecture.md) and [Ports beyond 1433 for ADO.NET 4.5 and SQL Database](sql-database-develop-direct-route-ports-adonet-v12.md).</span></span>
+
+## <a name="data-sharding-with-elastic-scale"></a><span data-ttu-id="07b5d-142">A rugalmas bővítést adatok horizontális</span><span class="sxs-lookup"><span data-stu-id="07b5d-142">Data sharding with elastic scale</span></span>
+<span data-ttu-id="07b5d-143">Rugalmasan méretezhető egyszerűbben hello a Méretezés (és).</span><span class="sxs-lookup"><span data-stu-id="07b5d-143">Elastic Scale simplifies hello process of scaling out (and in).</span></span> 
+
+* [<span data-ttu-id="07b5d-144">Tervezési minták az Azure SQL Database-t használó több-bérlős SaaS-alkalmazásokhoz</span><span class="sxs-lookup"><span data-stu-id="07b5d-144">Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database</span></span>](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* [<span data-ttu-id="07b5d-145">Adatfüggő útválasztás</span><span class="sxs-lookup"><span data-stu-id="07b5d-145">Data dependent routing</span></span>](sql-database-elastic-scale-data-dependent-routing.md)
+* [<span data-ttu-id="07b5d-146">Ismerkedés az Azure SQL Database rugalmas méretezési funkciójának előzetes verziójával</span><span class="sxs-lookup"><span data-stu-id="07b5d-146">Get Started with Azure SQL Database Elastic Scale Preview</span></span>](sql-database-elastic-scale-get-started.md)
+
+## <a name="next-steps"></a><span data-ttu-id="07b5d-147">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="07b5d-147">Next steps</span></span>
+<span data-ttu-id="07b5d-148">Fedezze fel az összes hello [képességek SQL-adatbázis](sql-database-technical-overview.md)</span><span class="sxs-lookup"><span data-stu-id="07b5d-148">Explore all hello [capabilities of SQL Database](sql-database-technical-overview.md)</span></span>

@@ -1,5 +1,5 @@
 ---
-title: "Oracle-adatbázishoz egy Azure virtuális gép létrehozása |} Microsoft Docs"
+title: "Oracle-adatbázishoz egy Azure virtuális gép aaaCreate |} Microsoft Docs"
 description: "Gyorsan karban lehessen az Oracle-adatbázishoz 12c adatbázis mentése és az Azure környezetben futó."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/17/2017
 ms.author: rclaus
-ms.openlocfilehash: 8683b016c4db2c66fb1dd994405b70c3d137a7fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83205154c3275d5f57b46c8acfb0cb4e5c68a412
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-oracle-database-in-an-azure-vm"></a><span data-ttu-id="c3132-103">Oracle-adatbázishoz egy Azure virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3132-103">Create an Oracle Database in an Azure VM</span></span>
+# <a name="create-an-oracle-database-in-an-azure-vm"></a><span data-ttu-id="356df-103">Oracle-adatbázishoz egy Azure virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="356df-103">Create an Oracle Database in an Azure VM</span></span>
 
-<span data-ttu-id="c3132-104">Ez az útmutató részletek központi telepítése az Azure virtuális gépként az Azure parancssori felület használatával a [Oracle piactér gyűjtemény kép](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) létrehozásához 12 c Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="c3132-104">This guide details using the Azure CLI to deploy an Azure virtual machine from the [Oracle marketplace gallery image](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) in order to create an Oracle 12c database.</span></span> <span data-ttu-id="c3132-105">Ha a kiszolgáló van telepítve, kapcsolódni fog SSH-kapcsolaton keresztül az Oracle-adatbázishoz való konfigurálásához.</span><span class="sxs-lookup"><span data-stu-id="c3132-105">Once the server is deployed, you will connect via SSH in order to configure the Oracle database.</span></span> 
+<span data-ttu-id="356df-104">Ez az útmutató részletek hello Azure CLI toodeploy hello az Azure virtuális gép használata [Oracle piactér gyűjtemény kép](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) a rendezés toocreate 12 c Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="356df-104">This guide details using hello Azure CLI toodeploy an Azure virtual machine from hello [Oracle marketplace gallery image](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) in order toocreate an Oracle 12c database.</span></span> <span data-ttu-id="356df-105">Miután hello kiszolgáló van telepítve, kapcsolódni fog SSH-kapcsolaton keresztül a rendelés tooconfigure hello Oracle-adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="356df-105">Once hello server is deployed, you will connect via SSH in order tooconfigure hello Oracle database.</span></span> 
 
-<span data-ttu-id="c3132-106">Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="c3132-106">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
+<span data-ttu-id="356df-106">Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="356df-106">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="c3132-107">Ha a CLI helyi telepítését és használatát választja, akkor ehhez a gyorsútmutatóhoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség.</span><span class="sxs-lookup"><span data-stu-id="c3132-107">If you choose to install and use the CLI locally, this quickstart requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="c3132-108">A verzió azonosításához futtassa a következőt: `az --version`.</span><span class="sxs-lookup"><span data-stu-id="c3132-108">Run `az --version` to find the version.</span></span> <span data-ttu-id="c3132-109">Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="c3132-109">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="356df-107">Ha Ön tooinstall kiválasztása és hello CLI helyileg, a gyors üzembe helyezés van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb.</span><span class="sxs-lookup"><span data-stu-id="356df-107">If you choose tooinstall and use hello CLI locally, this quickstart requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="356df-108">Futtatás `az --version` toofind hello verziója.</span><span class="sxs-lookup"><span data-stu-id="356df-108">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="356df-109">Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="356df-109">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span>
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="c3132-110">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="c3132-110">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="356df-110">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="356df-110">Create a resource group</span></span>
 
-<span data-ttu-id="c3132-111">Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="c3132-111">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="c3132-112">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="c3132-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
+<span data-ttu-id="356df-111">Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="356df-111">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> <span data-ttu-id="356df-112">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="356df-112">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
 
-<span data-ttu-id="c3132-113">A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot az *eastus* helyen.</span><span class="sxs-lookup"><span data-stu-id="c3132-113">The following example creates a resource group named *myResourceGroup* in the *eastus* location.</span></span>
+<span data-ttu-id="356df-113">hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helyét.</span><span class="sxs-lookup"><span data-stu-id="356df-113">hello following example creates a resource group named *myResourceGroup* in hello *eastus* location.</span></span>
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
-## <a name="create-virtual-machine"></a><span data-ttu-id="c3132-114">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3132-114">Create virtual machine</span></span>
+## <a name="create-virtual-machine"></a><span data-ttu-id="356df-114">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="356df-114">Create virtual machine</span></span>
 
-<span data-ttu-id="c3132-115">Hozzon létre egy virtuális gépet (VM), használja a [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="c3132-115">To create a virtual machine (VM), use the [az vm create](/cli/azure/vm#create) command.</span></span> 
+<span data-ttu-id="356df-115">egy virtuális gép (VM) toocreate hello használata [az virtuális gép létrehozása](/cli/azure/vm#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="356df-115">toocreate a virtual machine (VM), use hello [az vm create](/cli/azure/vm#create) command.</span></span> 
 
-<span data-ttu-id="c3132-116">Az alábbi példa egy `myVM` nevű virtuális gépet hoz létre.</span><span class="sxs-lookup"><span data-stu-id="c3132-116">The following example creates a VM named `myVM`.</span></span> <span data-ttu-id="c3132-117">SSH-kulcsok, azt is hoz létre, ha még nem léteznek a kulcs alapértelmezett helye.</span><span class="sxs-lookup"><span data-stu-id="c3132-117">It also creates SSH keys, if they do not already exist in a default key location.</span></span> <span data-ttu-id="c3132-118">Ha konkrét kulcsokat szeretné használni, használja az `--ssh-key-value` beállítást.</span><span class="sxs-lookup"><span data-stu-id="c3132-118">To use a specific set of keys, use the `--ssh-key-value` option.</span></span>  
+<span data-ttu-id="356df-116">hello alábbi példakód létrehozza a virtuális gépek nevű `myVM`.</span><span class="sxs-lookup"><span data-stu-id="356df-116">hello following example creates a VM named `myVM`.</span></span> <span data-ttu-id="356df-117">SSH-kulcsok, azt is hoz létre, ha még nem léteznek a kulcs alapértelmezett helye.</span><span class="sxs-lookup"><span data-stu-id="356df-117">It also creates SSH keys, if they do not already exist in a default key location.</span></span> <span data-ttu-id="356df-118">toouse egy adott kulcsok beállításához használja a hello `--ssh-key-value` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="356df-118">toouse a specific set of keys, use hello `--ssh-key-value` option.</span></span>  
 
 ```azurecli-interactive 
 az vm create \
@@ -56,7 +56,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="c3132-119">A virtuális gép létrehozása után a Azure CLI-t az alábbi példához hasonló információkat jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="c3132-119">After you create the VM, Azure CLI displays information similar to the following example.</span></span> <span data-ttu-id="c3132-120">Vegye figyelembe a következő `publicIpAddress`.</span><span class="sxs-lookup"><span data-stu-id="c3132-120">Note the value for `publicIpAddress`.</span></span> <span data-ttu-id="c3132-121">Ez a cím a virtuális gép elérésére használhat.</span><span class="sxs-lookup"><span data-stu-id="c3132-121">You use this address to access the VM.</span></span>
+<span data-ttu-id="356df-119">Hello virtuális gép létrehozása után az Azure CLI információkat a következő példa hasonló toohello jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="356df-119">After you create hello VM, Azure CLI displays information similar toohello following example.</span></span> <span data-ttu-id="356df-120">Jegyezze fel a hello értékét `publicIpAddress`.</span><span class="sxs-lookup"><span data-stu-id="356df-120">Note hello value for `publicIpAddress`.</span></span> <span data-ttu-id="356df-121">A cím tooaccess hello virtuális gép használja.</span><span class="sxs-lookup"><span data-stu-id="356df-121">You use this address tooaccess hello VM.</span></span>
 
 ```azurecli
 {
@@ -71,26 +71,26 @@ az vm create \
 }
 ```
 
-## <a name="connect-to-the-vm"></a><span data-ttu-id="c3132-122">Kapcsolódás a virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="c3132-122">Connect to the VM</span></span>
+## <a name="connect-toohello-vm"></a><span data-ttu-id="356df-122">Csatlakozás a virtuális gép toohello</span><span class="sxs-lookup"><span data-stu-id="356df-122">Connect toohello VM</span></span>
 
-<span data-ttu-id="c3132-123">A virtuális gép SSH-munkamenetet létrehozni, használja a következő parancsot.</span><span class="sxs-lookup"><span data-stu-id="c3132-123">To create an SSH session with the VM, use the following command.</span></span> <span data-ttu-id="c3132-124">Cserélje le az IP-cím a `publicIpAddress` értéket a virtuális gép számára.</span><span class="sxs-lookup"><span data-stu-id="c3132-124">Replace the IP address with the `publicIpAddress` value for your VM.</span></span>
+<span data-ttu-id="356df-123">az SSH-munkamenetet a virtuális gép, hello toocreate hello a következő parancsot használja.</span><span class="sxs-lookup"><span data-stu-id="356df-123">toocreate an SSH session with hello VM, use hello following command.</span></span> <span data-ttu-id="356df-124">Cserélje le hello IP-cím hello `publicIpAddress` értéket a virtuális gép számára.</span><span class="sxs-lookup"><span data-stu-id="356df-124">Replace hello IP address with hello `publicIpAddress` value for your VM.</span></span>
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-## <a name="create-the-database"></a><span data-ttu-id="c3132-125">Az adatbázis létrehozása</span><span class="sxs-lookup"><span data-stu-id="c3132-125">Create the database</span></span>
+## <a name="create-hello-database"></a><span data-ttu-id="356df-125">Hello adatbázis létrehozása</span><span class="sxs-lookup"><span data-stu-id="356df-125">Create hello database</span></span>
 
-<span data-ttu-id="c3132-126">Az Oracle szoftver már telepítve van a Piactéri lemezképhez.</span><span class="sxs-lookup"><span data-stu-id="c3132-126">The Oracle software is already installed on the Marketplace image.</span></span> <span data-ttu-id="c3132-127">Hozzon létre egy adatbázist az alábbiak szerint.</span><span class="sxs-lookup"><span data-stu-id="c3132-127">Create a sample database as follows.</span></span> 
+<span data-ttu-id="356df-126">hello Piactéri lemezképhez hello Oracle szoftver már telepítve van.</span><span class="sxs-lookup"><span data-stu-id="356df-126">hello Oracle software is already installed on hello Marketplace image.</span></span> <span data-ttu-id="356df-127">Hozzon létre egy adatbázist az alábbiak szerint.</span><span class="sxs-lookup"><span data-stu-id="356df-127">Create a sample database as follows.</span></span> 
 
-1.  <span data-ttu-id="c3132-128">Váltás a *oracle* felügyelő, majd a naplózás a figyelő inicializálása:</span><span class="sxs-lookup"><span data-stu-id="c3132-128">Switch to the *oracle* superuser, then initialize the listener for logging:</span></span>
+1.  <span data-ttu-id="356df-128">Váltás toohello *oracle* felügyelő, majd a naplózás inicializálásakor hello figyelő:</span><span class="sxs-lookup"><span data-stu-id="356df-128">Switch toohello *oracle* superuser, then initialize hello listener for logging:</span></span>
 
     ```bash
     $ sudo su - oracle
     $ lsnrctl start
     ```
 
-    <span data-ttu-id="c3132-129">A kimenet a következő példához hasonló:</span><span class="sxs-lookup"><span data-stu-id="c3132-129">The output is similar to the following:</span></span>
+    <span data-ttu-id="356df-129">hello hasonló toohello következő kimenete:</span><span class="sxs-lookup"><span data-stu-id="356df-129">hello output is similar toohello following:</span></span>
 
     ```bash
     Copyright (c) 1991, 2014, Oracle.  All rights reserved.
@@ -98,11 +98,11 @@ ssh <publicIpAddress>
     Starting /u01/app/oracle/product/12.1.0/dbhome_1/bin/tnslsnr: please wait...
 
     TNSLSNR for Linux: Version 12.1.0.2.0 - Production
-    Log messages written to /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
+    Log messages written too/u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
 
-    Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
-    STATUS of the LISTENER
+    Connecting too(ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+    STATUS of hello LISTENER
     ------------------------
     Alias                     LISTENER
     Version                   TNSLSNR for Linux: Version 12.1.0.2.0 - Production
@@ -114,11 +114,11 @@ ssh <publicIpAddress>
     Listener Log File         /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening Endpoints Summary...
     (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
-    The listener supports no services
-    The command completed successfully
+    hello listener supports no services
+    hello command completed successfully
     ```
 
-2.  <span data-ttu-id="c3132-130">Az adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="c3132-130">Create the database:</span></span>
+2.  <span data-ttu-id="356df-130">hello adatbázis létrehozása:</span><span class="sxs-lookup"><span data-stu-id="356df-130">Create hello database:</span></span>
 
     ```bash
     dbca -silent \
@@ -140,17 +140,17 @@ ssh <publicIpAddress>
            -ignorePreReqs
     ```
 
-    <span data-ttu-id="c3132-131">Az adatbázis létrehozása néhány percet vesz igénybe.</span><span class="sxs-lookup"><span data-stu-id="c3132-131">It takes a few minutes to create the database.</span></span>
+    <span data-ttu-id="356df-131">Néhány perc toocreate hello adatbázis vesz igénybe.</span><span class="sxs-lookup"><span data-stu-id="356df-131">It takes a few minutes toocreate hello database.</span></span>
 
-3. <span data-ttu-id="c3132-132">Oracle változók megadása</span><span class="sxs-lookup"><span data-stu-id="c3132-132">Set Oracle variables</span></span>
+3. <span data-ttu-id="356df-132">Oracle változók megadása</span><span class="sxs-lookup"><span data-stu-id="356df-132">Set Oracle variables</span></span>
 
-<span data-ttu-id="c3132-133">Csatlakozás előtt be kell állítani a két környezeti változók: *ORACLE_HOME* és *ORACLE_SID*.</span><span class="sxs-lookup"><span data-stu-id="c3132-133">Before you connect, you need to set two environment variables: *ORACLE_HOME* and *ORACLE_SID*.</span></span>
+<span data-ttu-id="356df-133">Csatlakozás előtt van szüksége a két tooset környezeti változók: *ORACLE_HOME* és *ORACLE_SID*.</span><span class="sxs-lookup"><span data-stu-id="356df-133">Before you connect, you need tooset two environment variables: *ORACLE_HOME* and *ORACLE_SID*.</span></span>
 
 ```bash
 ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
 ORACLE_SID=cdb1; export ORACLE_SID
 ```
-<span data-ttu-id="c3132-134">ORACLE_HOME és ORACLE_SID változók .bashrc fájl adhat hozzá.</span><span class="sxs-lookup"><span data-stu-id="c3132-134">You also can add ORACLE_HOME and ORACLE_SID variables to the .bashrc file.</span></span> <span data-ttu-id="c3132-135">Ez szeretné menteni a környezeti változók a későbbi bejelentkezések.</span><span class="sxs-lookup"><span data-stu-id="c3132-135">This would save the environment variables for future sign-ins.</span></span> <span data-ttu-id="c3132-136">Győződjön meg arról, a következő utasításokat lettek hozzáadva a `~/.bashrc` a választott szerkesztővel fájlt.</span><span class="sxs-lookup"><span data-stu-id="c3132-136">Confirm the following statements have been added to the `~/.bashrc` file using editor of your choice.</span></span>
+<span data-ttu-id="356df-134">ORACLE_HOME és ORACLE_SID változók toohello .bashrc fájl is adhat hozzá.</span><span class="sxs-lookup"><span data-stu-id="356df-134">You also can add ORACLE_HOME and ORACLE_SID variables toohello .bashrc file.</span></span> <span data-ttu-id="356df-135">A környezeti változók hello a későbbi bejelentkezések volna mentse. Erősítse meg a következő hello utasítás hozzá vannak adva toohello `~/.bashrc` a választott szerkesztővel fájlt.</span><span class="sxs-lookup"><span data-stu-id="356df-135">This would save hello environment variables for future sign-ins. Confirm hello following statements have been added toohello `~/.bashrc` file using editor of your choice.</span></span>
 
 ```bash
 # Add ORACLE_HOME. 
@@ -159,29 +159,29 @@ export ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1
 export ORACLE_SID=cdb1 
 ```
 
-## <a name="oracle-em-express-connectivity"></a><span data-ttu-id="c3132-137">Oracle EM Express kapcsolat</span><span class="sxs-lookup"><span data-stu-id="c3132-137">Oracle EM Express connectivity</span></span>
+## <a name="oracle-em-express-connectivity"></a><span data-ttu-id="356df-136">Oracle EM Express kapcsolat</span><span class="sxs-lookup"><span data-stu-id="356df-136">Oracle EM Express connectivity</span></span>
 
-<span data-ttu-id="c3132-138">A grafikus felhasználói felület segítségével megismerkedhet az adatbázist, és állítsa be az Oracle EM Express felügyeleti eszköz.</span><span class="sxs-lookup"><span data-stu-id="c3132-138">For a GUI management tool that you can use to explore the database, set up Oracle EM Express.</span></span> <span data-ttu-id="c3132-139">Szeretne csatlakozni az Oracle EM Express, az Oracle port először meg kell adnia.</span><span class="sxs-lookup"><span data-stu-id="c3132-139">To connect to Oracle EM Express, you must first set up the port in Oracle.</span></span> 
+<span data-ttu-id="356df-137">Grafikus felügyeleti eszköz használható tooexplore hello adatbázis, az Oracle EM Express beállítása.</span><span class="sxs-lookup"><span data-stu-id="356df-137">For a GUI management tool that you can use tooexplore hello database, set up Oracle EM Express.</span></span> <span data-ttu-id="356df-138">tooconnect tooOracle EM Express, először be kell állítania az Oracle hello port.</span><span class="sxs-lookup"><span data-stu-id="356df-138">tooconnect tooOracle EM Express, you must first set up hello port in Oracle.</span></span> 
 
-1. <span data-ttu-id="c3132-140">Kapcsolódás saját adatbázishoz sqlplus használatával:</span><span class="sxs-lookup"><span data-stu-id="c3132-140">Connect to your database using sqlplus:</span></span>
+1. <span data-ttu-id="356df-139">Csatlakozás tooyour adatbázist sqlplus használatával:</span><span class="sxs-lookup"><span data-stu-id="356df-139">Connect tooyour database using sqlplus:</span></span>
 
     ```bash
     sqlplus / as sysdba
     ```
 
-2. <span data-ttu-id="c3132-141">A csatlakozás után állítsa be a port 5502 EM Express</span><span class="sxs-lookup"><span data-stu-id="c3132-141">Once connected, set the port 5502 for EM Express</span></span>
+2. <span data-ttu-id="356df-140">A csatlakozás után a EM expressz hello port 5502 beállítása</span><span class="sxs-lookup"><span data-stu-id="356df-140">Once connected, set hello port 5502 for EM Express</span></span>
 
     ```bash
     exec DBMS_XDB_CONFIG.SETHTTPSPORT(5502);
     ```
 
-3. <span data-ttu-id="c3132-142">Nyissa meg a tároló PDB1, ha nem már megnyitott, de az első ellenőrizze az állapotát:</span><span class="sxs-lookup"><span data-stu-id="c3132-142">Open the container PDB1 if not already opened, but first check the status:</span></span>
+3. <span data-ttu-id="356df-141">Nyissa meg hello tároló PDB1, ha nem már megnyitott, de az első hello állapotát:</span><span class="sxs-lookup"><span data-stu-id="356df-141">Open hello container PDB1 if not already opened, but first check hello status:</span></span>
 
     ```bash
     select con_id, name, open_mode from v$pdbs;
     ```
 
-    <span data-ttu-id="c3132-143">A kimenet a következő példához hasonló:</span><span class="sxs-lookup"><span data-stu-id="c3132-143">The output is similar to the following:</span></span>
+    <span data-ttu-id="356df-142">hello hasonló toohello következő kimenete:</span><span class="sxs-lookup"><span data-stu-id="356df-142">hello output is similar toohello following:</span></span>
 
     ```bash
       CON_ID NAME                           OPEN_MODE 
@@ -190,69 +190,69 @@ export ORACLE_SID=cdb1
       3           PDB1                      MOUNT
     ```
 
-4. <span data-ttu-id="c3132-144">Ha a OPEN_MODE `PDB1` nincs OLVASÁSI ÍRNI, majd a PDB1 nyissa meg a következőket parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="c3132-144">If the OPEN_MODE for `PDB1` is not READ WRITE, then run the followings commands to open PDB1:</span></span>
+4. <span data-ttu-id="356df-143">Ha a OPEN_MODE hello `PDB1` nincs OLVASÁSI ÍRNI, majd futtassa a hello következőket parancsok tooopen PDB1:</span><span class="sxs-lookup"><span data-stu-id="356df-143">If hello OPEN_MODE for `PDB1` is not READ WRITE, then run hello followings commands tooopen PDB1:</span></span>
 
    ```bash
     alter session set container=pdb1;
     alter database open;
    ```
 
-<span data-ttu-id="c3132-145">Önnek kell beírnia `quit` sqlplus munkamenet és típus befejezéséhez `exit` oracle felhasználó kijelentkezik.</span><span class="sxs-lookup"><span data-stu-id="c3132-145">You need to type `quit` to end the sqlplus session and type `exit` to logout of the oracle user.</span></span>
+<span data-ttu-id="356df-144">Tootype kell `quit` tooend hello sqlplus munkamenet és típus `exit` toologout hello oracle felhasználó.</span><span class="sxs-lookup"><span data-stu-id="356df-144">You need tootype `quit` tooend hello sqlplus session and type `exit` toologout of hello oracle user.</span></span>
 
-## <a name="automate-database-startup-and-shutdown"></a><span data-ttu-id="c3132-146">Adatbázis indítási és leállítási automatizálásához</span><span class="sxs-lookup"><span data-stu-id="c3132-146">Automate database startup and shutdown</span></span>
+## <a name="automate-database-startup-and-shutdown"></a><span data-ttu-id="356df-145">Adatbázis indítási és leállítási automatizálásához</span><span class="sxs-lookup"><span data-stu-id="356df-145">Automate database startup and shutdown</span></span>
 
-<span data-ttu-id="c3132-147">Alapértelmezés szerint az Oracle-adatbázishoz nem indul el automatikusan a virtuális gép újraindításakor.</span><span class="sxs-lookup"><span data-stu-id="c3132-147">The Oracle database by default doesn't automatically start when you restart the VM.</span></span> <span data-ttu-id="c3132-148">Az Oracle-adatbázishoz be automatikus indításra, először jelentkezzen be rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="c3132-148">To set up the Oracle database to start automatically, first sign in as root.</span></span> <span data-ttu-id="c3132-149">Ezt követően létrehozása, és egyes rendszer fájlok frissítése.</span><span class="sxs-lookup"><span data-stu-id="c3132-149">Then, create and update some system files.</span></span>
+<span data-ttu-id="356df-146">Oracle-adatbázishoz hello alapértelmezés szerint automatikusan hello VM újraindításakor nem indul el.</span><span class="sxs-lookup"><span data-stu-id="356df-146">hello Oracle database by default doesn't automatically start when you restart hello VM.</span></span> <span data-ttu-id="356df-147">tooset hello Oracle adatbázis toostart fel automatikusan, először bejelentkezik rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="356df-147">tooset up hello Oracle database toostart automatically, first sign in as root.</span></span> <span data-ttu-id="356df-148">Ezt követően létrehozása, és egyes rendszer fájlok frissítése.</span><span class="sxs-lookup"><span data-stu-id="356df-148">Then, create and update some system files.</span></span>
 
-1. <span data-ttu-id="c3132-150">Jelentkezzen a legfelső szintű</span><span class="sxs-lookup"><span data-stu-id="c3132-150">Sign on as root</span></span>
+1. <span data-ttu-id="356df-149">Jelentkezzen a legfelső szintű</span><span class="sxs-lookup"><span data-stu-id="356df-149">Sign on as root</span></span>
     ```bash
     sudo su -
     ```
 
-2.  <span data-ttu-id="c3132-151">A kedvenc szerkesztővel szerkessze a fájlt `/etc/oratab` , és módosítsa az alapértelmezett `N` való `Y`:</span><span class="sxs-lookup"><span data-stu-id="c3132-151">Using your favorite editor, edit the file `/etc/oratab` and change the default `N` to `Y`:</span></span>
+2.  <span data-ttu-id="356df-150">A kedvenc szerkesztővel szerkessze a hello fájlt `/etc/oratab` , és módosítsa a hello alapértelmezett `N` túl`Y`:</span><span class="sxs-lookup"><span data-stu-id="356df-150">Using your favorite editor, edit hello file `/etc/oratab` and change hello default `N` too`Y`:</span></span>
 
     ```bash
     cdb1:/u01/app/oracle/product/12.1.0/dbhome_1:Y
     ```
 
-3.  <span data-ttu-id="c3132-152">Hozzon létre egy fájlt `/etc/init.d/dbora` , majd illessze be az alábbiakat:</span><span class="sxs-lookup"><span data-stu-id="c3132-152">Create a file named `/etc/init.d/dbora` and paste the following contents:</span></span>
+3.  <span data-ttu-id="356df-151">Hozzon létre egy fájlt `/etc/init.d/dbora` és a Beillesztés hello a következő tartalmát:</span><span class="sxs-lookup"><span data-stu-id="356df-151">Create a file named `/etc/init.d/dbora` and paste hello following contents:</span></span>
 
     ```
     #!/bin/sh
     # chkconfig: 345 99 10
     # Description: Oracle auto start-stop script.
     #
-    # Set ORA_HOME to be equivalent to $ORACLE_HOME.
+    # Set ORA_HOME toobe equivalent too$ORACLE_HOME.
     ORA_HOME=/u01/app/oracle/product/12.1.0/dbhome_1
     ORA_OWNER=oracle
 
     case "$1" in
     'start')
-        # Start the Oracle databases:
-        # The following command assumes that the Oracle sign-in
-        # will not prompt the user for any values.
+        # Start hello Oracle databases:
+        # hello following command assumes that hello Oracle sign-in
+        # will not prompt hello user for any values.
         # Remove "&" if you don't want startup as a background process.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbstart $ORA_HOME" &
         touch /var/lock/subsys/dbora
         ;;
 
     'stop')
-        # Stop the Oracle databases:
-        # The following command assumes that the Oracle sign-in
-        # will not prompt the user for any values.
+        # Stop hello Oracle databases:
+        # hello following command assumes that hello Oracle sign-in
+        # will not prompt hello user for any values.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbshut $ORA_HOME" &
         rm -f /var/lock/subsys/dbora
         ;;
     esac
     ```
 
-4.  <span data-ttu-id="c3132-153">A fájlok engedélyeinek módosítása *chmod* az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="c3132-153">Change permissions on files with *chmod* as follows:</span></span>
+4.  <span data-ttu-id="356df-152">A fájlok engedélyeinek módosítása *chmod* az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="356df-152">Change permissions on files with *chmod* as follows:</span></span>
 
     ```bash
     chgrp dba /etc/init.d/dbora
     chmod 750 /etc/init.d/dbora
     ```
 
-5.  <span data-ttu-id="c3132-154">Indítási és leállítási szimbolikus hivatkozásokat hoz létre a a következőképpen:</span><span class="sxs-lookup"><span data-stu-id="c3132-154">Create symbolic links for startup and shutdown as follows:</span></span>
+5.  <span data-ttu-id="356df-153">Indítási és leállítási szimbolikus hivatkozásokat hoz létre a a következőképpen:</span><span class="sxs-lookup"><span data-stu-id="356df-153">Create symbolic links for startup and shutdown as follows:</span></span>
 
     ```bash
     ln -s /etc/init.d/dbora /etc/rc.d/rc0.d/K01dbora
@@ -260,17 +260,17 @@ export ORACLE_SID=cdb1
     ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
     ```
 
-6.  <span data-ttu-id="c3132-155">A módosítások ellenőrzéséhez indítsa újra a virtuális Gépet:</span><span class="sxs-lookup"><span data-stu-id="c3132-155">To test your changes, restart the VM:</span></span>
+6.  <span data-ttu-id="356df-154">tootest a módosításokat, indítsa újra a virtuális gép hello:</span><span class="sxs-lookup"><span data-stu-id="356df-154">tootest your changes, restart hello VM:</span></span>
 
     ```bash
     reboot
     ```
 
-## <a name="open-ports-for-connectivity"></a><span data-ttu-id="c3132-156">A hálózati kapcsolatot megnyitott portok</span><span class="sxs-lookup"><span data-stu-id="c3132-156">Open ports for connectivity</span></span>
+## <a name="open-ports-for-connectivity"></a><span data-ttu-id="356df-155">A hálózati kapcsolatot megnyitott portok</span><span class="sxs-lookup"><span data-stu-id="356df-155">Open ports for connectivity</span></span>
 
-<span data-ttu-id="c3132-157">Az utolsó feladat be nem konfigurálhatja az egyes külső végpontok száma.</span><span class="sxs-lookup"><span data-stu-id="c3132-157">The final task is to configure some external endpoints.</span></span> <span data-ttu-id="c3132-158">Az Azure hálózati biztonsági csoport, amely védi a virtuális gép beállításához lépjen ki az SSH-munkamenetet a virtuális gép (kell rendelkeznie lett kezdődött SSH kívül ha újraindítás az előző lépésben).</span><span class="sxs-lookup"><span data-stu-id="c3132-158">To set up the Azure Network Security Group that protects the VM, first exit your SSH session in the VM (should have been kicked out of SSH when rebooting in previous step).</span></span> 
+<span data-ttu-id="356df-156">hello végső feladat tooconfigure van néhány külső végpontok száma.</span><span class="sxs-lookup"><span data-stu-id="356df-156">hello final task is tooconfigure some external endpoints.</span></span> <span data-ttu-id="356df-157">másolatot tooset hello Azure hálózati biztonsági csoportot, amely védi a virtuális gép hello, először lépjen ki a virtuális gép (kell rendelkeznie lett kezdődött SSH kívül ha újraindítás az előző lépésben) hello az SSH-munkamenetet.</span><span class="sxs-lookup"><span data-stu-id="356df-157">tooset up hello Azure Network Security Group that protects hello VM, first exit your SSH session in hello VM (should have been kicked out of SSH when rebooting in previous step).</span></span> 
 
-1.  <span data-ttu-id="c3132-159">Nyissa meg a végpont, amelyekkel távolról fér hozzá az Oracle-adatbázishoz, hozzon létre egy hálózati biztonsági csoport szabály [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="c3132-159">To open the endpoint that you use to access the Oracle database remotely, create a Network Security Group rule with [az network nsg rule create](/cli/azure/network/nsg/rule#create) as follows:</span></span> 
+1.  <span data-ttu-id="356df-158">tooopen hello végpont tooaccess hello Oracle-adatbázishoz távolról, használja a hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="356df-158">tooopen hello endpoint that you use tooaccess hello Oracle database remotely, create a Network Security Group rule with [az network nsg rule create](/cli/azure/network/nsg/rule#create) as follows:</span></span> 
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -282,7 +282,7 @@ export ORACLE_SID=cdb1
         --destination-port-range 1521
     ```
 
-2.  <span data-ttu-id="c3132-160">Nyissa meg a végpont Oracle EM Express távoli eléréséhez használt, hozzon létre egy hálózati biztonsági csoport szabály [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="c3132-160">To open the endpoint that you use to access Oracle EM Express remotely, create a Network Security Group rule with [az network nsg rule create](/cli/azure/network/nsg/rule#create) as follows:</span></span>
+2.  <span data-ttu-id="356df-159">tooopen hello végpont Oracle EM Express tooaccess távolról, használja a hálózati biztonsági csoport szabály létrehozása [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="356df-159">tooopen hello endpoint that you use tooaccess Oracle EM Express remotely, create a Network Security Group rule with [az network nsg rule create](/cli/azure/network/nsg/rule#create) as follows:</span></span>
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -294,7 +294,7 @@ export ORACLE_SID=cdb1
         --destination-port-range 5502
     ```
 
-3. <span data-ttu-id="c3132-161">Ha szükséges, szerezze be a nyilvános IP-címet a virtuális gép újra [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="c3132-161">If needed, obtain the public IP address of your VM again with [az network public-ip show](/cli/azure/network/public-ip#show) as follows:</span></span>
+3. <span data-ttu-id="356df-160">Szükség esetén hello nyilvános IP-címet a virtuális gép újra az beszerzése [az hálózati nyilvános ip-megjelenítése](/cli/azure/network/public-ip#show) az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="356df-160">If needed, obtain hello public IP address of your VM again with [az network public-ip show](/cli/azure/network/public-ip#show) as follows:</span></span>
 
     ```azurecli-interactive
     az network public-ip show \
@@ -304,26 +304,26 @@ export ORACLE_SID=cdb1
         --output tsv
     ```
 
-4.  <span data-ttu-id="c3132-162">Csatlakoztassa a böngésző EM Express.</span><span class="sxs-lookup"><span data-stu-id="c3132-162">Connect EM Express from your browser.</span></span> <span data-ttu-id="c3132-163">Ügyeljen arra, hogy a böngésző kompatibilis EM expressz (Flash esetén):</span><span class="sxs-lookup"><span data-stu-id="c3132-163">Make sure your browser is compatible with EM Express (Flash install is required):</span></span> 
+4.  <span data-ttu-id="356df-161">Csatlakoztassa a böngésző EM Express.</span><span class="sxs-lookup"><span data-stu-id="356df-161">Connect EM Express from your browser.</span></span> <span data-ttu-id="356df-162">Ügyeljen arra, hogy a böngésző kompatibilis EM expressz (Flash esetén):</span><span class="sxs-lookup"><span data-stu-id="356df-162">Make sure your browser is compatible with EM Express (Flash install is required):</span></span> 
 
     ```
     https://<VM ip address or hostname>:5502/em
     ```
 
-<span data-ttu-id="c3132-164">A bejelentkezhet a **SYS** fiókot, és ellenőrizze a **SYSDBA csoport szerint** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="c3132-164">You can log in by using the **SYS** account, and check the **as sysdba** checkbox.</span></span> <span data-ttu-id="c3132-165">A jelszó használata **OraPasswd1** telepítése során beállított.</span><span class="sxs-lookup"><span data-stu-id="c3132-165">Use the password **OraPasswd1** that you set during installation.</span></span> 
+<span data-ttu-id="356df-163">Hello segítségével bejelentkezhet **SYS** fiókot, és ellenőrizze a hello **SYSDBA csoport szerint** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="356df-163">You can log in by using hello **SYS** account, and check hello **as sysdba** checkbox.</span></span> <span data-ttu-id="356df-164">Használjon hello jelszó **OraPasswd1** telepítése során beállított.</span><span class="sxs-lookup"><span data-stu-id="356df-164">Use hello password **OraPasswd1** that you set during installation.</span></span> 
 
-![Az Oracle OEM Express bejelentkezési oldalát bemutató képernyőkép](./media/oracle-quick-start/oracle_oem_express_login.png)
+![Képernyőfelvétel a hello Oracle OEM Express bejelentkezési oldal](./media/oracle-quick-start/oracle_oem_express_login.png)
 
-## <a name="clean-up-resources"></a><span data-ttu-id="c3132-167">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="c3132-167">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="356df-166">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="356df-166">Clean up resources</span></span>
 
-<span data-ttu-id="c3132-168">Miután befejezte az első Oracle adatbázis Azure felfedezése és a virtuális gép már nem szükséges, használhatja a [az csoport törlése](/cli/azure/group#delete) parancsot a távolítsa el az erőforráscsoportot, a virtuális gép, és minden kapcsolódó erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="c3132-168">Once you have finished exploring your first Oracle database on Azure and the VM is no longer needed, you can use the [az group delete](/cli/azure/group#delete) command to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="356df-167">Miután befejezte az első Oracle adatbázis fel az Azure-on, és hello virtuális gép már nem szükséges, használhatja a hello [az csoport törlése](/cli/azure/group#delete) tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások parancsot.</span><span class="sxs-lookup"><span data-stu-id="356df-167">Once you have finished exploring your first Oracle database on Azure and hello VM is no longer needed, you can use hello [az group delete](/cli/azure/group#delete) command tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="c3132-169">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c3132-169">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="356df-168">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="356df-168">Next steps</span></span>
 
-<span data-ttu-id="c3132-170">Tudnivalók más [Oracle megoldások Azure](oracle-considerations.md).</span><span class="sxs-lookup"><span data-stu-id="c3132-170">Learn about other [Oracle solutions on Azure](oracle-considerations.md).</span></span> 
+<span data-ttu-id="356df-169">Tudnivalók más [Oracle megoldások Azure](oracle-considerations.md).</span><span class="sxs-lookup"><span data-stu-id="356df-169">Learn about other [Oracle solutions on Azure](oracle-considerations.md).</span></span> 
 
-<span data-ttu-id="c3132-171">Próbálja meg a [telepítése és konfigurálása Oracle automatikus tárhely-kezelés](configure-oracle-asm.md) oktatóanyag.</span><span class="sxs-lookup"><span data-stu-id="c3132-171">Try the [Installing and Configuring Oracle Automated Storage Management](configure-oracle-asm.md) tutorial.</span></span>
+<span data-ttu-id="356df-170">Próbálja meg hello [telepítése és konfigurálása Oracle automatikus tárhely-kezelés](configure-oracle-asm.md) oktatóanyag.</span><span class="sxs-lookup"><span data-stu-id="356df-170">Try hello [Installing and Configuring Oracle Automated Storage Management](configure-oracle-asm.md) tutorial.</span></span>

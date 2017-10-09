@@ -1,0 +1,11 @@
+<span data-ttu-id="a08c6-101">Azure App Service Mobile Apps szolgáltatása hello használ [Azure Notification Hubs] toosend leküldéses értesítések, úgy kívánja beállítani egy értesítési központot a mobilalkalmazás számára.</span><span class="sxs-lookup"><span data-stu-id="a08c6-101">hello Mobile Apps feature of Azure App Service uses [Azure Notification Hubs] toosend pushes, so you will be configuring a notification hub for your mobile app.</span></span>
+
+1. <span data-ttu-id="a08c6-102">A hello [Azure-portálon], lépjen túl**alkalmazásszolgáltatások**, és kattintson az alkalmazás háttér.</span><span class="sxs-lookup"><span data-stu-id="a08c6-102">In hello [Azure portal], go too**App Services**, and then click your app back end.</span></span> <span data-ttu-id="a08c6-103">A **beállítások**, kattintson a **leküldéses**.</span><span class="sxs-lookup"><span data-stu-id="a08c6-103">Under **Settings**, click **Push**.</span></span>
+2. <span data-ttu-id="a08c6-104">Kattintson a **Connect** tooadd egy értesítési központ erőforrás toohello alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="a08c6-104">Click **Connect** tooadd a notification hub resource toohello app.</span></span> <span data-ttu-id="a08c6-105">Létrehoz egy központot, vagy csatlakozzon egy létező tooan.</span><span class="sxs-lookup"><span data-stu-id="a08c6-105">You can either create a hub or connect tooan existing one.</span></span>
+
+    ![](./media/app-service-mobile-create-notification-hub/configure-hub-flow.png)
+
+<span data-ttu-id="a08c6-106">Most már csatlakozott egy értesítési központ tooyour Mobile Apps háttér-projektet.</span><span class="sxs-lookup"><span data-stu-id="a08c6-106">Now you have connected a notification hub tooyour Mobile Apps back-end project.</span></span> <span data-ttu-id="a08c6-107">A notification hub tooconnect tooa platform notification system (PNS) toopush toodevices később konfigurál majd.</span><span class="sxs-lookup"><span data-stu-id="a08c6-107">Later you will configure this notification hub tooconnect tooa platform notification system (PNS) toopush toodevices.</span></span>
+
+[Azure-portálon]: https://portal.azure.com/
+[Azure Notification Hubs]: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-push-notification-overview/

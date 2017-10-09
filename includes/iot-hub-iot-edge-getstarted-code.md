@@ -1,6 +1,6 @@
-## <a name="typical-output"></a><span data-ttu-id="64baf-101">Tipikus kimenet</span><span class="sxs-lookup"><span data-stu-id="64baf-101">Typical output</span></span>
+## <a name="typical-output"></a><span data-ttu-id="0599c-101">Tipikus kimenet</span><span class="sxs-lookup"><span data-stu-id="0599c-101">Typical output</span></span>
 
-<span data-ttu-id="64baf-102">A következő példa bemutatja a kimeneti által a Hello World PéldaAlkalmazás ír a naplófájlba.</span><span class="sxs-lookup"><span data-stu-id="64baf-102">The following example shows the output written to the log file by the Hello World sample.</span></span> <span data-ttu-id="64baf-103">A kimenet az olvashatóság érdekében formázva van:</span><span class="sxs-lookup"><span data-stu-id="64baf-103">The output is formatted for legibility:</span></span>
+<span data-ttu-id="0599c-102">hello következő példa bemutatja toohello naplófájl írták hello Hello World PéldaAlkalmazás hello kimeneti.</span><span class="sxs-lookup"><span data-stu-id="0599c-102">hello following example shows hello output written toohello log file by hello Hello World sample.</span></span> <span data-ttu-id="0599c-103">hello kimeneti olvashatóságát van formázva:</span><span class="sxs-lookup"><span data-stu-id="0599c-103">hello output is formatted for legibility:</span></span>
 
 ```json
 [{
@@ -30,15 +30,15 @@
 }]
 ```
 
-## <a name="code-snippets"></a><span data-ttu-id="64baf-104">Kódrészletek</span><span class="sxs-lookup"><span data-stu-id="64baf-104">Code snippets</span></span>
+## <a name="code-snippets"></a><span data-ttu-id="0599c-104">Kódrészletek</span><span class="sxs-lookup"><span data-stu-id="0599c-104">Code snippets</span></span>
 
-<span data-ttu-id="64baf-105">Ez a szakasz a hello\_world minta kódjának néhány szakaszát tárgyalja.</span><span class="sxs-lookup"><span data-stu-id="64baf-105">This section discusses some key sections of the code in the hello\_world sample.</span></span>
+<span data-ttu-id="0599c-105">Ez a szakasz ismerteti, amelyek néhány hello hello hello kód legfontosabb részeit\_world PéldaAlkalmazás.</span><span class="sxs-lookup"><span data-stu-id="0599c-105">This section discusses some key sections of hello code in hello hello\_world sample.</span></span>
 
-### <a name="iot-edge-gateway-creation"></a><span data-ttu-id="64baf-106">Az IoT-peremhálózati átjáró létrehozása</span><span class="sxs-lookup"><span data-stu-id="64baf-106">IoT Edge gateway creation</span></span>
+### <a name="iot-edge-gateway-creation"></a><span data-ttu-id="0599c-106">Az IoT-peremhálózati átjáró létrehozása</span><span class="sxs-lookup"><span data-stu-id="0599c-106">IoT Edge gateway creation</span></span>
 
-<span data-ttu-id="64baf-107">Meg kell valósítani egy *átjáró folyamat*.</span><span class="sxs-lookup"><span data-stu-id="64baf-107">You must implement a *gateway process*.</span></span> <span data-ttu-id="64baf-108">A program hoz létre a belső infrastruktúra (broker), az IoT-Edge modulok betölti és konfigurálja az átjáró folyamat.</span><span class="sxs-lookup"><span data-stu-id="64baf-108">This program creates the internal infrastructure (the broker), loads the IoT Edge modules, and configures the gateway process.</span></span> <span data-ttu-id="64baf-109">Az IoT Edge-ben megtalálható a **Gateway\_Create\_From\_JSON** függvény, amellyel elindíthat egy átjárót a JSON-fájlokból.</span><span class="sxs-lookup"><span data-stu-id="64baf-109">IoT Edge provides the **Gateway\_Create\_From\_JSON** function to enable you to bootstrap a gateway from a JSON file.</span></span> <span data-ttu-id="64baf-110">Használatához a **átjáró\_létrehozása\_a\_JSON** működik, adja át az elérési út egy JSON-fájl, amely meghatározza az IoT-Edge modulok betöltése.</span><span class="sxs-lookup"><span data-stu-id="64baf-110">To use the **Gateway\_Create\_From\_JSON** function, pass it the path to a JSON file that specifies the IoT Edge modules to load.</span></span>
+<span data-ttu-id="0599c-107">Meg kell valósítani egy *átjáró folyamat*.</span><span class="sxs-lookup"><span data-stu-id="0599c-107">You must implement a *gateway process*.</span></span> <span data-ttu-id="0599c-108">A program hello belső infrastruktúra (hello broker) hoz létre, hello IoT peremhálózati modulok betölti és hello átjáró folyamat konfigurálja.</span><span class="sxs-lookup"><span data-stu-id="0599c-108">This program creates hello internal infrastructure (hello broker), loads hello IoT Edge modules, and configures hello gateway process.</span></span> <span data-ttu-id="0599c-109">IoT peremhálózati biztosít hello **átjáró\_létrehozása\_a\_JSON** tooenable működéséhez toobootstrap egy átjáró egy JSON-fájlból.</span><span class="sxs-lookup"><span data-stu-id="0599c-109">IoT Edge provides hello **Gateway\_Create\_From\_JSON** function tooenable you toobootstrap a gateway from a JSON file.</span></span> <span data-ttu-id="0599c-110">toouse hello **átjáró\_létrehozása\_a\_JSON** működik, hello elérési tooa JSON-fájl, amely meghatározza a hello IoT peremhálózati modulok tooload adja át.</span><span class="sxs-lookup"><span data-stu-id="0599c-110">toouse hello **Gateway\_Create\_From\_JSON** function, pass it hello path tooa JSON file that specifies hello IoT Edge modules tooload.</span></span>
 
-<span data-ttu-id="64baf-111">A kód találhat meg az átjáró folyamatot a *Hello World* a minta a [main.c] [ lnk-main-c] fájlt.</span><span class="sxs-lookup"><span data-stu-id="64baf-111">You can find the code for the gateway process in the *Hello World* sample in the [main.c][lnk-main-c] file.</span></span> <span data-ttu-id="64baf-112">Az olvashatóság érdekében a következő részlet az átjáró folyamatkódjának rövidített verzióját mutatja.</span><span class="sxs-lookup"><span data-stu-id="64baf-112">For legibility, the following snippet shows an abbreviated version of the gateway process code.</span></span> <span data-ttu-id="64baf-113">Ez a példaprogram létrehoz egy átjárót, majd megvárja, amíg a felhasználó lenyomja az **ENTER** billentyűt, mielőtt lebontja az átjárót.</span><span class="sxs-lookup"><span data-stu-id="64baf-113">This example program creates a gateway and then waits for the user to press the **ENTER** key before it tears down the gateway.</span></span>
+<span data-ttu-id="0599c-111">Hello kód hello átjáró folyamat hello található *Hello World* hello a minta [main.c] [ lnk-main-c] fájlt.</span><span class="sxs-lookup"><span data-stu-id="0599c-111">You can find hello code for hello gateway process in hello *Hello World* sample in hello [main.c][lnk-main-c] file.</span></span> <span data-ttu-id="0599c-112">A olvashatóságát, hello alábbi kódrészletben láthatja, egy rövidített hello átjáró folyamat kód.</span><span class="sxs-lookup"><span data-stu-id="0599c-112">For legibility, hello following snippet shows an abbreviated version of hello gateway process code.</span></span> <span data-ttu-id="0599c-113">Ez például a program létrehoz egy átjárót, majd vár hello felhasználói toopress hello **ENTER** kulcs, mielőtt azt kiváltó hello átjáró le.</span><span class="sxs-lookup"><span data-stu-id="0599c-113">This example program creates a gateway and then waits for hello user toopress hello **ENTER** key before it tears down hello gateway.</span></span>
 
 ```c
 int main(int argc, char** argv)
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     GATEWAY_HANDLE gateway;
     if ((gateway = Gateway_Create_From_JSON(argv[1])) == NULL)
     {
-        printf("failed to create the gateway from JSON\n");
+        printf("failed toocreate hello gateway from JSON\n");
     }
     else
     {
@@ -59,16 +59,16 @@ int main(int argc, char** argv)
 }
 ```
 
-<span data-ttu-id="64baf-114">A JSON-beállítások fájl IoT peremhálózati modulok betöltése és a modulok közötti kapcsolatok listáját tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="64baf-114">The JSON settings file contains a list of IoT Edge modules to load and the links between the modules.</span></span> <span data-ttu-id="64baf-115">Minden egyes IoT peremhálózati modul a: kell megadnia.</span><span class="sxs-lookup"><span data-stu-id="64baf-115">Each IoT Edge module must specify a:</span></span>
+<span data-ttu-id="0599c-114">hello JSON beállításfájl IoT peremhálózati modulok tooload és hello hivatkozások között hello modulok listáját tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="0599c-114">hello JSON settings file contains a list of IoT Edge modules tooload and hello links between hello modules.</span></span> <span data-ttu-id="0599c-115">Minden egyes IoT peremhálózati modul a: kell megadnia.</span><span class="sxs-lookup"><span data-stu-id="0599c-115">Each IoT Edge module must specify a:</span></span>
 
-* <span data-ttu-id="64baf-116">**name**: a modul egyedi neve.</span><span class="sxs-lookup"><span data-stu-id="64baf-116">**name**: a unique name for the module.</span></span>
-* <span data-ttu-id="64baf-117">**loader**: olyan betöltő, amely képes a kívánt modul betöltésére.</span><span class="sxs-lookup"><span data-stu-id="64baf-117">**loader**: a loader that knows how to load the desired module.</span></span> <span data-ttu-id="64baf-118">A betöltők a különböző modultípusok betöltésére szolgáló bővítménypontok.</span><span class="sxs-lookup"><span data-stu-id="64baf-118">Loaders are an extension point for loading different types of modules.</span></span> <span data-ttu-id="64baf-119">IoT peremhálózati betöltők számára biztosít a natív C, Node.js, Java és .NET írt modulok.</span><span class="sxs-lookup"><span data-stu-id="64baf-119">IoT Edge provides loaders for use with modules written in native C, Node.js, Java, and .NET.</span></span> <span data-ttu-id="64baf-120">A Hello World PéldaAlkalmazás csak használja a natív C betöltő, mert ez a példa a modulok c nyelven írt dinamikus függvénytárak Különböző nyelveken írt IoT peremhálózati modulok használatával kapcsolatos további információkért lásd: a [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), vagy [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) minták.</span><span class="sxs-lookup"><span data-stu-id="64baf-120">The Hello World sample only uses the native C loader because all the modules in this sample are dynamic libraries written in C. For more information about how to use IoT Edge modules written in different languages, see the [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), or [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) samples.</span></span>
-    * <span data-ttu-id="64baf-121">**név**: a modul betöltéséhez betöltő nevét.</span><span class="sxs-lookup"><span data-stu-id="64baf-121">**name**: the name of the loader used to load the module.</span></span>
-    * <span data-ttu-id="64baf-122">**entrypoint**: a modult tartalmazó könyvtár elérési útja.</span><span class="sxs-lookup"><span data-stu-id="64baf-122">**entrypoint**: the path to the library containing the module.</span></span> <span data-ttu-id="64baf-123">Linux rendszeren ez a könyvtár egy .so fájl, Windows rendszeren pedig egy .dll fájl.</span><span class="sxs-lookup"><span data-stu-id="64baf-123">On Linux this library is a .so file, on Windows this library is a .dll file.</span></span> <span data-ttu-id="64baf-124">A belépési pont a használt betöltőtípustól függ.</span><span class="sxs-lookup"><span data-stu-id="64baf-124">The entry point is specific to the type of loader being used.</span></span> <span data-ttu-id="64baf-125">A Node.js betöltő belépési pont egy .js kiterjesztésű fájl.</span><span class="sxs-lookup"><span data-stu-id="64baf-125">The Node.js loader entry point is a .js file.</span></span> <span data-ttu-id="64baf-126">A Java-betöltő belépési pont, egy classpath és az osztályhoz nevet.</span><span class="sxs-lookup"><span data-stu-id="64baf-126">The Java loader entry point is a classpath and a class name.</span></span> <span data-ttu-id="64baf-127">A .NET-betöltő belépési pont, egy szerelvény és osztály nevét.</span><span class="sxs-lookup"><span data-stu-id="64baf-127">The .NET loader entry point is an assembly name and a class name.</span></span>
+* <span data-ttu-id="0599c-116">**név**: hello modul egyedi nevét.</span><span class="sxs-lookup"><span data-stu-id="0599c-116">**name**: a unique name for hello module.</span></span>
+* <span data-ttu-id="0599c-117">**betöltési**: a betöltési, hogy ismeri a hogyan tooload hello szükséges modul.</span><span class="sxs-lookup"><span data-stu-id="0599c-117">**loader**: a loader that knows how tooload hello desired module.</span></span> <span data-ttu-id="0599c-118">A betöltők a különböző modultípusok betöltésére szolgáló bővítménypontok.</span><span class="sxs-lookup"><span data-stu-id="0599c-118">Loaders are an extension point for loading different types of modules.</span></span> <span data-ttu-id="0599c-119">IoT peremhálózati betöltők számára biztosít a natív C, Node.js, Java és .NET írt modulok.</span><span class="sxs-lookup"><span data-stu-id="0599c-119">IoT Edge provides loaders for use with modules written in native C, Node.js, Java, and .NET.</span></span> <span data-ttu-id="0599c-120">hello Hello World PéldaAlkalmazás csak használ hello natív C betöltő, mert ez a példa minden hello modul c nyelven írt dinamikus függvénytárak További információ toouse IoT peremhálózati modulok különböző nyelveken írt: hello [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), vagy [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) minták.</span><span class="sxs-lookup"><span data-stu-id="0599c-120">hello Hello World sample only uses hello native C loader because all hello modules in this sample are dynamic libraries written in C. For more information about how toouse IoT Edge modules written in different languages, see hello [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), or [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) samples.</span></span>
+    * <span data-ttu-id="0599c-121">**név**: használt tooload hello modul hello betöltő hello neve.</span><span class="sxs-lookup"><span data-stu-id="0599c-121">**name**: hello name of hello loader used tooload hello module.</span></span>
+    * <span data-ttu-id="0599c-122">**EntryPoint**: hello hello modul tartalmazó elérési út toohello függvénytárra.</span><span class="sxs-lookup"><span data-stu-id="0599c-122">**entrypoint**: hello path toohello library containing hello module.</span></span> <span data-ttu-id="0599c-123">Linux rendszeren ez a könyvtár egy .so fájl, Windows rendszeren pedig egy .dll fájl.</span><span class="sxs-lookup"><span data-stu-id="0599c-123">On Linux this library is a .so file, on Windows this library is a .dll file.</span></span> <span data-ttu-id="0599c-124">hello belépési pont egy adott toohello típusú betöltő használja.</span><span class="sxs-lookup"><span data-stu-id="0599c-124">hello entry point is specific toohello type of loader being used.</span></span> <span data-ttu-id="0599c-125">hello Node.js betöltő belépési pont egy olyan .js kiterjesztésű fájl.</span><span class="sxs-lookup"><span data-stu-id="0599c-125">hello Node.js loader entry point is a .js file.</span></span> <span data-ttu-id="0599c-126">hello Java betöltő belépési pont, egy classpath és az osztályhoz nevet.</span><span class="sxs-lookup"><span data-stu-id="0599c-126">hello Java loader entry point is a classpath and a class name.</span></span> <span data-ttu-id="0599c-127">hello .NET betöltő belépési pont, egy szerelvény és osztály nevét.</span><span class="sxs-lookup"><span data-stu-id="0599c-127">hello .NET loader entry point is an assembly name and a class name.</span></span>
 
-* <span data-ttu-id="64baf-128">**args**: a modul által igényelt konfigurációs információk.</span><span class="sxs-lookup"><span data-stu-id="64baf-128">**args**: any configuration information the module needs.</span></span>
+* <span data-ttu-id="0599c-128">**argumentum**: a konfigurációs információk hello modulok kell.</span><span class="sxs-lookup"><span data-stu-id="0599c-128">**args**: any configuration information hello module needs.</span></span>
 
-<span data-ttu-id="64baf-129">A következő kód bemutatja, meg kell adnia az IoT-él a Hello World PéldaAlkalmazás lehetővé tevő modulokat Linux használt JSON.</span><span class="sxs-lookup"><span data-stu-id="64baf-129">The following code shows the JSON used to declare all the IoT Edge modules for the Hello World sample on Linux.</span></span> <span data-ttu-id="64baf-130">A modul kialakításától függ, hogy egy modulnak szüksége van-e argumentumokra.</span><span class="sxs-lookup"><span data-stu-id="64baf-130">Whether a module requires any arguments depends on the design of the module.</span></span> <span data-ttu-id="64baf-131">Ebben a példában a naplózómodul a kimeneti fájl elérési útját használja argumentumként, a hello\_world modul pedig nem rendelkezik argumentumokkal.</span><span class="sxs-lookup"><span data-stu-id="64baf-131">In this example, the logger module takes an argument that is the path to the output file and the hello\_world module has no arguments.</span></span>
+<span data-ttu-id="0599c-129">a következő kód bemutatja hello használt JSON toodeclare összes hello hello hello Hello World PéldaAlkalmazás Linux IoT peremhálózati modulokat.</span><span class="sxs-lookup"><span data-stu-id="0599c-129">hello following code shows hello JSON used toodeclare all hello IoT Edge modules for hello Hello World sample on Linux.</span></span> <span data-ttu-id="0599c-130">Hello tervezési hello modul függ, hogy szükség van-e a modul az argumentumai.</span><span class="sxs-lookup"><span data-stu-id="0599c-130">Whether a module requires any arguments depends on hello design of hello module.</span></span> <span data-ttu-id="0599c-131">Ebben a példában hello naplózó modul függvény olyan argumentumot, hello elérési toohello kimeneti fájljának és hello hello\_globális modulnak argumentum nélkül.</span><span class="sxs-lookup"><span data-stu-id="0599c-131">In this example, hello logger module takes an argument that is hello path toohello output file and hello hello\_world module has no arguments.</span></span>
 
 ```json
 "modules" :
@@ -96,14 +96,14 @@ int main(int argc, char** argv)
 ]
 ```
 
-<span data-ttu-id="64baf-132">A JSON-fájl is tartalmazza a modulok közötti hivatkozásokat, amelyeket a rendszer átad a közvetítőnek.</span><span class="sxs-lookup"><span data-stu-id="64baf-132">The JSON file also contains the links between the modules that are passed to the broker.</span></span> <span data-ttu-id="64baf-133">Egy hivatkozás két tulajdonsággal rendelkezik:</span><span class="sxs-lookup"><span data-stu-id="64baf-133">A link has two properties:</span></span>
+<span data-ttu-id="0599c-132">hello JSON-fájlt a hello modulok toohello broker átadott között hello hivatkozásokat is tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="0599c-132">hello JSON file also contains hello links between hello modules that are passed toohello broker.</span></span> <span data-ttu-id="0599c-133">Egy hivatkozás két tulajdonsággal rendelkezik:</span><span class="sxs-lookup"><span data-stu-id="0599c-133">A link has two properties:</span></span>
 
-* <span data-ttu-id="64baf-134">**forrás**: egy modul nevét a `modules` területen vagy `\*`.</span><span class="sxs-lookup"><span data-stu-id="64baf-134">**source**: a module name from the `modules` section, or `\*`.</span></span>
-* <span data-ttu-id="64baf-135">**sink**: modulnév a `modules` szakaszból.</span><span class="sxs-lookup"><span data-stu-id="64baf-135">**sink**: a module name from the `modules` section.</span></span>
+* <span data-ttu-id="0599c-134">**forrás**: egy modul nevét a hello `modules` területen vagy `\*`.</span><span class="sxs-lookup"><span data-stu-id="0599c-134">**source**: a module name from hello `modules` section, or `\*`.</span></span>
+* <span data-ttu-id="0599c-135">**a fogadó**: egy modul nevét a hello `modules` szakasz.</span><span class="sxs-lookup"><span data-stu-id="0599c-135">**sink**: a module name from hello `modules` section.</span></span>
 
-<span data-ttu-id="64baf-136">Minden hivatkozás meghatároz egy üzenetútvonalat és irányt.</span><span class="sxs-lookup"><span data-stu-id="64baf-136">Each link defines a message route and direction.</span></span> <span data-ttu-id="64baf-137">Érkező üzenetek a **forrás** modul szállítják ki a **fogadó** modul.</span><span class="sxs-lookup"><span data-stu-id="64baf-137">Messages from the **source** module are delivered to the **sink** module.</span></span> <span data-ttu-id="64baf-138">Beállíthatja a **forrás** modul `\*`, amely azt jelzi, hogy a **fogadó** modult a modulok üzeneteket fogad.</span><span class="sxs-lookup"><span data-stu-id="64baf-138">You can set the **source** module to `\*`, which indicates that the **sink** module receives messages from any module.</span></span>
+<span data-ttu-id="0599c-136">Minden hivatkozás meghatároz egy üzenetútvonalat és irányt.</span><span class="sxs-lookup"><span data-stu-id="0599c-136">Each link defines a message route and direction.</span></span> <span data-ttu-id="0599c-137">Hello üzeneteit **forrás** modul érkeznek toohello **fogadó** modul.</span><span class="sxs-lookup"><span data-stu-id="0599c-137">Messages from hello **source** module are delivered toohello **sink** module.</span></span> <span data-ttu-id="0599c-138">Beállíthatja a hello **forrás** modul túl`\*`, ami azt jelenti, hogy hello **fogadó** modult a modulok üzeneteket fogad.</span><span class="sxs-lookup"><span data-stu-id="0599c-138">You can set hello **source** module too`\*`, which indicates that hello **sink** module receives messages from any module.</span></span>
 
-<span data-ttu-id="64baf-139">A következő kód a Linuxon a hello\_world minta moduljai közötti hivatkozások konfigurálásához használt JSON-beállításfájlt mutatja be.</span><span class="sxs-lookup"><span data-stu-id="64baf-139">The following code shows the JSON used to configure links between the modules used in the hello\_world sample on Linux.</span></span> <span data-ttu-id="64baf-140">A `hello_world` modul által létrehozott összes üzenetet a `logger` modul használja.</span><span class="sxs-lookup"><span data-stu-id="64baf-140">Every message produced by the `hello_world` module is consumed by the `logger` module.</span></span>
+<span data-ttu-id="0599c-139">hello következő kód bemutatja, hello JSON használt tooconfigure hivatkozások hello hello használt hello modulok között\_world PéldaAlkalmazás Linux rendszeren.</span><span class="sxs-lookup"><span data-stu-id="0599c-139">hello following code shows hello JSON used tooconfigure links between hello modules used in hello hello\_world sample on Linux.</span></span> <span data-ttu-id="0599c-140">Minden üzenet hello által előállított `hello_world` modul hello által felhasznált `logger` modul.</span><span class="sxs-lookup"><span data-stu-id="0599c-140">Every message produced by hello `hello_world` module is consumed by hello `logger` module.</span></span>
 
 ```json
 "links":
@@ -115,9 +115,9 @@ int main(int argc, char** argv)
 ]
 ```
 
-### <a name="helloworld-module-message-publishing"></a><span data-ttu-id="64baf-141">A hello\_world modul üzenet-közzététele</span><span class="sxs-lookup"><span data-stu-id="64baf-141">Hello\_world module message publishing</span></span>
+### <a name="helloworld-module-message-publishing"></a><span data-ttu-id="0599c-141">A hello\_world modul üzenet-közzététele</span><span class="sxs-lookup"><span data-stu-id="0599c-141">Hello\_world module message publishing</span></span>
 
-<span data-ttu-id="64baf-142">A hello\_world modul által használt kódot felhasználhatja ahhoz, hogy közzétegye a [„hello_world.c”][lnk-helloworld-c] fájlban lévő üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="64baf-142">You can find the code used by the hello\_world module to publish messages in the ['hello_world.c'][lnk-helloworld-c] file.</span></span> <span data-ttu-id="64baf-143">Az alábbi részletben a kód egy módosított verziója látható, hozzáfűzött megjegyzésekkel és – az olvashatóság érdekében – kevesebb hibakezelési kóddal:</span><span class="sxs-lookup"><span data-stu-id="64baf-143">The following snippet shows an amended version of the code with comments added and some error handling code removed for legibility:</span></span>
+<span data-ttu-id="0599c-142">Hello hello által használt hello kód található\_hello world modul toopublish üzenetek ["hello_world.c"] [ lnk-helloworld-c] fájlt.</span><span class="sxs-lookup"><span data-stu-id="0599c-142">You can find hello code used by hello hello\_world module toopublish messages in hello ['hello_world.c'][lnk-helloworld-c] file.</span></span> <span data-ttu-id="0599c-143">hello alábbi kódrészletben láthatja hello kód egy módosított verziója hozzáadott megjegyzésekkel és néhány hibakezelési olvashatóságát eltávolítani kódot:</span><span class="sxs-lookup"><span data-stu-id="0599c-143">hello following snippet shows an amended version of hello code with comments added and some error handling code removed for legibility:</span></span>
 
 ```c
 int helloWorldThread(void *param)
@@ -128,18 +128,18 @@ int helloWorldThread(void *param)
     MAP_HANDLE propertiesMap = Map_Create(NULL);
 
     // add a property named "helloWorld" with a value of "from Azure IoT
-    // Gateway SDK simple sample!" to a set of message properties that
-    // will be appended to the message before publishing it. 
+    // Gateway SDK simple sample!" tooa set of message properties that
+    // will be appended toohello message before publishing it. 
     Map_AddOrUpdate(propertiesMap, "helloWorld", "from Azure IoT Gateway SDK simple sample!")
 
-    // set the content for the message
+    // set hello content for hello message
     msgConfig.size = strlen(HELLOWORLD_MESSAGE);
     msgConfig.source = HELLOWORLD_MESSAGE;
 
-    // set the properties for the message
+    // set hello properties for hello message
     msgConfig.sourceProperties = propertiesMap;
 
-    // create a message based on the msgConfig structure
+    // create a message based on hello msgConfig structure
     MESSAGE_HANDLE helloWorldMessage = Message_Create(&msgConfig);
 
     while (1)
@@ -147,11 +147,11 @@ int helloWorldThread(void *param)
         if (handleData->stopThread)
         {
             (void)Unlock(handleData->lockHandle);
-            break; /*gets out of the thread*/
+            break; /*gets out of hello thread*/
         }
         else
         {
-            // publish the message to the broker
+            // publish hello message toohello broker
             (void)Broker_Publish(handleData->brokerHandle, helloWorldMessage);
             (void)Unlock(handleData->lockHandle);
         }
@@ -165,9 +165,9 @@ int helloWorldThread(void *param)
 }
 ```
 
-### <a name="helloworld-module-message-processing"></a><span data-ttu-id="64baf-144">A hello\_world modul üzenetfeldolgozása</span><span class="sxs-lookup"><span data-stu-id="64baf-144">Hello\_world module message processing</span></span>
+### <a name="helloworld-module-message-processing"></a><span data-ttu-id="0599c-144">A hello\_world modul üzenetfeldolgozása</span><span class="sxs-lookup"><span data-stu-id="0599c-144">Hello\_world module message processing</span></span>
 
-<span data-ttu-id="64baf-145">A hello\_globális modul soha nem dolgozza fel a más IoT peremhálózati modulok közzététele az átvitelszervező-kezelési üzenetek.</span><span class="sxs-lookup"><span data-stu-id="64baf-145">The hello\_world module never processes messages that other IoT Edge modules publish to the broker.</span></span> <span data-ttu-id="64baf-146">A hello\_world modulban ezért az üzenet-visszahívás megvalósítása művelet nélküli függvény.</span><span class="sxs-lookup"><span data-stu-id="64baf-146">Therefore, the implementation of the message callback in the hello\_world module is a no-op function.</span></span>
+<span data-ttu-id="0599c-145">hello hello\_globális modul soha nem dolgozza fel, hogy más IoT peremhálózati modulok közzé toohello broker üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="0599c-145">hello hello\_world module never processes messages that other IoT Edge modules publish toohello broker.</span></span> <span data-ttu-id="0599c-146">Hello üzenet visszahívási hello hello a megvalósítása ezért hello\_globális modul műveletvégzés feladata.</span><span class="sxs-lookup"><span data-stu-id="0599c-146">Therefore, hello implementation of hello message callback in hello hello\_world module is a no-op function.</span></span>
 
 ```c
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -176,11 +176,11 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 }
 ```
 
-### <a name="logger-module-message-publishing-and-processing"></a><span data-ttu-id="64baf-147">A naplózómodul üzenet-közzététele és -feldolgozása</span><span class="sxs-lookup"><span data-stu-id="64baf-147">Logger module message publishing and processing</span></span>
+### <a name="logger-module-message-publishing-and-processing"></a><span data-ttu-id="0599c-147">A naplózómodul üzenet-közzététele és -feldolgozása</span><span class="sxs-lookup"><span data-stu-id="0599c-147">Logger module message publishing and processing</span></span>
 
-<span data-ttu-id="64baf-148">A naplózó modul üzeneteket fogad a közvetítőtől, és egy fájlba írja őket.</span><span class="sxs-lookup"><span data-stu-id="64baf-148">The logger module receives messages from the broker and writes them to a file.</span></span> <span data-ttu-id="64baf-149">Soha nem tesz közzé üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="64baf-149">It never publishes any messages.</span></span> <span data-ttu-id="64baf-150">A naplózó modul kódja ezért soha nem hívja meg a **Broker_Publish** függvényt.</span><span class="sxs-lookup"><span data-stu-id="64baf-150">Therefore, the code of the logger module never calls the **Broker_Publish** function.</span></span>
+<span data-ttu-id="0599c-148">hello naplózó modul hello broker üzeneteket fogad, és írja őket tooa fájlt.</span><span class="sxs-lookup"><span data-stu-id="0599c-148">hello logger module receives messages from hello broker and writes them tooa file.</span></span> <span data-ttu-id="0599c-149">Soha nem tesz közzé üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="0599c-149">It never publishes any messages.</span></span> <span data-ttu-id="0599c-150">Ezért hello naplózó modul hello kód soha nem hívja a hello **Broker_Publish** függvény.</span><span class="sxs-lookup"><span data-stu-id="0599c-150">Therefore, hello code of hello logger module never calls hello **Broker_Publish** function.</span></span>
 
-<span data-ttu-id="64baf-151">A **Logger_Receive** működni a [logger.c] [ lnk-logger-c] fájl a visszahívást a broker hív meg a tranzakciónaplókat tartalmazó modulra üzenetek továbbítására.</span><span class="sxs-lookup"><span data-stu-id="64baf-151">The **Logger_Receive** function in the [logger.c][lnk-logger-c] file is the callback the broker invokes to deliver messages to the logger module.</span></span> <span data-ttu-id="64baf-152">Az alábbi részletben egy módosított verzió látható, hozzáfűzött megjegyzésekkel és – az olvashatóság érdekében – kevesebb hibakezelési kóddal:</span><span class="sxs-lookup"><span data-stu-id="64baf-152">The following snippet shows an amended version with comments added and some error handling code removed for legibility:</span></span>
+<span data-ttu-id="0599c-151">Hello **Logger_Receive** hello függvényt [logger.c] [ lnk-logger-c] fájl hello visszahívási hello broker toodeliver üzenetek toohello naplózó modul hív meg.</span><span class="sxs-lookup"><span data-stu-id="0599c-151">hello **Logger_Receive** function in hello [logger.c][lnk-logger-c] file is hello callback hello broker invokes toodeliver messages toohello logger module.</span></span> <span data-ttu-id="0599c-152">hello alábbi kódrészletben láthatja módosított változat hozzáadott megjegyzésekkel és néhány hibakezelési olvashatóságát eltávolítani kódot:</span><span class="sxs-lookup"><span data-stu-id="0599c-152">hello following snippet shows an amended version with comments added and some error handling code removed for legibility:</span></span>
 
 ```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -190,40 +190,40 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
     struct tm* t = localtime(&temp);
     char timetemp[80] = { 0 };
 
-    // Get the message properties from the message
+    // Get hello message properties from hello message
     CONSTMAP_HANDLE originalProperties = Message_GetProperties(messageHandle); 
     MAP_HANDLE propertiesAsMap = ConstMap_CloneWriteable(originalProperties);
 
-    // Convert the collection of properties into a JSON string
+    // Convert hello collection of properties into a JSON string
     STRING_HANDLE jsonProperties = Map_ToJSON(propertiesAsMap);
 
-    //  base64 encode the message content
+    //  base64 encode hello message content
     const CONSTBUFFER * content = Message_GetContent(messageHandle);
     STRING_HANDLE contentAsJSON = Base64_Encode_Bytes(content->buffer, content->size);
 
-    // Start the construction of the final string to be logged by adding
-    // the timestamp
+    // Start hello construction of hello final string toobe logged by adding
+    // hello timestamp
     STRING_HANDLE jsonToBeAppended = STRING_construct(",{\"time\":\"");
     STRING_concat(jsonToBeAppended, timetemp);
 
-    // Add the message properties
+    // Add hello message properties
     STRING_concat(jsonToBeAppended, "\",\"properties\":"); 
     STRING_concat_with_STRING(jsonToBeAppended, jsonProperties);
 
-    // Add the content
+    // Add hello content
     STRING_concat(jsonToBeAppended, ",\"content\":\"");
     STRING_concat_with_STRING(jsonToBeAppended, contentAsJSON);
     STRING_concat(jsonToBeAppended, "\"}]");
 
-    // Write the formatted string
+    // Write hello formatted string
     LOGGER_HANDLE_DATA *handleData = (LOGGER_HANDLE_DATA *)moduleHandle;
     addJSONString(handleData->fout, STRING_c_str(jsonToBeAppended);
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="64baf-153">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="64baf-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0599c-153">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="0599c-153">Next steps</span></span>
 
-<span data-ttu-id="64baf-154">Ebben a cikkben egy egyszerű, a naplófájlba írja az üzenetek IoT peremhálózati átjáró futtatta.</span><span class="sxs-lookup"><span data-stu-id="64baf-154">In this article, you ran a simple IoT Edge gateway that writes messages to a log file.</span></span> <span data-ttu-id="64baf-155">Futtasson egy mintát, amely üzeneteket küld az IoT-központ, lásd: [IoT peremhálózati – eszközről a felhőbe üzeneteket küldeni egy szimulált eszköz használata Linux] [ lnk-gateway-simulated-linux] vagy [IoT peremhálózati – az eszköz-felhő üzenetek küldése egy a Windows, a szimulált eszköz][lnk-gateway-simulated-windows].</span><span class="sxs-lookup"><span data-stu-id="64baf-155">To run a sample that sends messages to IoT Hub, see [IoT Edge – send device-to-cloud messages with a simulated device using Linux][lnk-gateway-simulated-linux] or [IoT Edge – send device-to-cloud messages with a simulated device using Windows][lnk-gateway-simulated-windows].</span></span>
+<span data-ttu-id="0599c-154">Ebben a cikkben egy egyszerű IoT átjáró írja az üzenetek tooa naplófájl futtatta.</span><span class="sxs-lookup"><span data-stu-id="0599c-154">In this article, you ran a simple IoT Edge gateway that writes messages tooa log file.</span></span> <span data-ttu-id="0599c-155">toorun egy minta által küldött üzenetek tooIoT Hub, lásd: [IoT peremhálózati – eszközről a felhőbe üzeneteket küldeni egy szimulált eszköz használata Linux] [ lnk-gateway-simulated-linux] vagy [IoT peremhálózati – az eszköz-felhő üzenetek küldése egy a Windows, a szimulált eszköz][lnk-gateway-simulated-windows].</span><span class="sxs-lookup"><span data-stu-id="0599c-155">toorun a sample that sends messages tooIoT Hub, see [IoT Edge – send device-to-cloud messages with a simulated device using Linux][lnk-gateway-simulated-linux] or [IoT Edge – send device-to-cloud messages with a simulated device using Windows][lnk-gateway-simulated-windows].</span></span>
 
 
 <!-- Links -->

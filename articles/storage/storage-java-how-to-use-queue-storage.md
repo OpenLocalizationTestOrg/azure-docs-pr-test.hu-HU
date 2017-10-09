@@ -1,6 +1,6 @@
 ---
-title: "A Java a Queue storage használata |} Microsoft Docs"
-description: "Útmutató az Azure Queue szolgáltatás segítségével hozza létre, és törli az üzenetsorok, és helyezze, get, és törli az üzenetet. A Java nyelven írt minták."
+title: a Queue storage a Java aaaHow toouse |} Microsoft Docs
+description: "Ismerje meg, hogyan toouse hello Azure Queue szolgáltatás toocreate és a delete várólisták és a Beszúrás, get, és törli az üzenetet. A Java nyelven írt minták."
 services: storage
 documentationcenter: java
 author: robinsh
@@ -14,52 +14,52 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 03faea986221453d1862ff0f0d6d1ec21f92f3bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2d5211ec5b6454f7dbc126aad4ba9950df13661
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-java"></a><span data-ttu-id="12bcb-104">How to use Queue Storage from Java (A Queue Storage használata Javával)</span><span class="sxs-lookup"><span data-stu-id="12bcb-104">How to use Queue storage from Java</span></span>
+# <a name="how-toouse-queue-storage-from-java"></a><span data-ttu-id="78079-104">Hogyan toouse a Queue storage a Javával</span><span class="sxs-lookup"><span data-stu-id="78079-104">How toouse Queue storage from Java</span></span>
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-check-out-samples-java](../../includes/storage-check-out-samples-java.md)]
 
-## <a name="overview"></a><span data-ttu-id="12bcb-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="12bcb-105">Overview</span></span>
-<span data-ttu-id="12bcb-106">Ez az útmutató bemutatja, hogyan hajthat végre a szolgáltatást az Azure Queue storage szolgáltatást használó általános forgatókönyvhöz.</span><span class="sxs-lookup"><span data-stu-id="12bcb-106">This guide will show you how to perform common scenarios using the Azure Queue storage service.</span></span> <span data-ttu-id="12bcb-107">A mintákat a Java és -felhasználási nyelven íródtak a [Azure Storage SDK for Java][Azure Storage SDK for Java].</span><span class="sxs-lookup"><span data-stu-id="12bcb-107">The samples are written in Java and use the [Azure Storage SDK for Java][Azure Storage SDK for Java].</span></span> <span data-ttu-id="12bcb-108">Az ismertetett forgatókönyvek **beszúrása**, **megtekintésekor**, **első**, és **törlése** üzenetek várólistára, valamint **létrehozása** és **törlése** várólisták.</span><span class="sxs-lookup"><span data-stu-id="12bcb-108">The scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating** and **deleting** queues.</span></span> <span data-ttu-id="12bcb-109">A várólisták további információkért lásd: a [további lépések](#Next-Steps) szakasz.</span><span class="sxs-lookup"><span data-stu-id="12bcb-109">For more information on queues, see the [Next steps](#Next-Steps) section.</span></span>
+## <a name="overview"></a><span data-ttu-id="78079-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="78079-105">Overview</span></span>
+<span data-ttu-id="78079-106">Ez az útmutató bemutatja, hogyan tooperform szolgáltatást használó általános forgatókönyvhöz hello Azure Queue storage szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="78079-106">This guide will show you how tooperform common scenarios using hello Azure Queue storage service.</span></span> <span data-ttu-id="78079-107">hello minták Java nyelven íródtak, és használja a hello [Azure Storage SDK for Java][Azure Storage SDK for Java].</span><span class="sxs-lookup"><span data-stu-id="78079-107">hello samples are written in Java and use hello [Azure Storage SDK for Java][Azure Storage SDK for Java].</span></span> <span data-ttu-id="78079-108">hello tárgyalt forgatókönyvekben szerepel a **beszúrása**, **megtekintésekor**, **első**, és **törlése** üzenetek, várólista, valamint  **létrehozás** és **törlése** várólisták.</span><span class="sxs-lookup"><span data-stu-id="78079-108">hello scenarios covered include **inserting**, **peeking**, **getting**, and **deleting** queue messages, as well as **creating** and **deleting** queues.</span></span> <span data-ttu-id="78079-109">A várólisták további információkért lásd: hello [további lépések](#Next-Steps) szakasz.</span><span class="sxs-lookup"><span data-stu-id="78079-109">For more information on queues, see hello [Next steps](#Next-Steps) section.</span></span>
 
-<span data-ttu-id="12bcb-110">Megjegyzés: Az SDK nem elérhető a fejlesztők számára, akik Azure Storage Android-eszközökön.</span><span class="sxs-lookup"><span data-stu-id="12bcb-110">Note: An SDK is available for developers who are using Azure Storage on Android devices.</span></span> <span data-ttu-id="12bcb-111">További információkért lásd: a [Azure Storage SDK for Android][Azure Storage SDK for Android].</span><span class="sxs-lookup"><span data-stu-id="12bcb-111">For more information, see the [Azure Storage SDK for Android][Azure Storage SDK for Android].</span></span>
+<span data-ttu-id="78079-110">Megjegyzés: Az SDK nem elérhető a fejlesztők számára, akik Azure Storage Android-eszközökön.</span><span class="sxs-lookup"><span data-stu-id="78079-110">Note: An SDK is available for developers who are using Azure Storage on Android devices.</span></span> <span data-ttu-id="78079-111">További információkért lásd: hello [Azure Storage SDK for Android][Azure Storage SDK for Android].</span><span class="sxs-lookup"><span data-stu-id="78079-111">For more information, see hello [Azure Storage SDK for Android][Azure Storage SDK for Android].</span></span>
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-java-application"></a><span data-ttu-id="12bcb-112">Java-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="12bcb-112">Create a Java application</span></span>
-<span data-ttu-id="12bcb-113">Ez az útmutató a tárolási szolgáltatásokkal, amelyek helyben, vagy a webes szerepkör vagy a feldolgozói szerepkör az Azure-ban futó belül Java-alkalmazások futtatása fogja használni.</span><span class="sxs-lookup"><span data-stu-id="12bcb-113">In this guide, you will use storage features which can be run within a Java application locally, or in code running within a web role or worker role in Azure.</span></span>
+## <a name="create-a-java-application"></a><span data-ttu-id="78079-112">Java-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="78079-112">Create a Java application</span></span>
+<span data-ttu-id="78079-113">Ez az útmutató a tárolási szolgáltatásokkal, amelyek helyben, vagy a webes szerepkör vagy a feldolgozói szerepkör az Azure-ban futó belül Java-alkalmazások futtatása fogja használni.</span><span class="sxs-lookup"><span data-stu-id="78079-113">In this guide, you will use storage features which can be run within a Java application locally, or in code running within a web role or worker role in Azure.</span></span>
 
-<span data-ttu-id="12bcb-114">Ehhez szüksége lesz a Java fejlesztői készlet (JDK) telepítése, és hozzon létre egy Azure storage-fiókot az Azure-előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="12bcb-114">To do so, you will need to install the Java Development Kit (JDK) and create an Azure storage account in your Azure subscription.</span></span> <span data-ttu-id="12bcb-115">Ha ezzel végzett, akkor győződjön meg arról, hogy a fejlesztési rendszer megfelel-e a minimális követelményeit és függőségeit, amelyek szerepelnek a [Azure Storage SDK for Java] [ Azure Storage SDK for Java] GitHub tárházából.</span><span class="sxs-lookup"><span data-stu-id="12bcb-115">Once you have done so, you will need to verify that your development system meets the minimum requirements and dependencies which are listed in the [Azure Storage SDK for Java][Azure Storage SDK for Java] repository on GitHub.</span></span> <span data-ttu-id="12bcb-116">Ha a rendszer megfelel ezeknek a követelményeknek, akkor is kövesse letöltése és telepítése az Azure Storage szalagtárak Java ebből a rendszeren.</span><span class="sxs-lookup"><span data-stu-id="12bcb-116">If your system meets those requirements, you can follow the instructions for downloading and installing the Azure Storage Libraries for Java on your system from that repository.</span></span> <span data-ttu-id="12bcb-117">Ezek a feladatok befejezése után lesz ebben a cikkben a példák használó Java-alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="12bcb-117">Once you have completed those tasks, you will be able to create a Java application which uses the examples in this article.</span></span>
+<span data-ttu-id="78079-114">toodo tooinstall kell tehát hello Java fejlesztői készlet (JDK), és hozzon létre egy Azure storage-fiókot az Azure-előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="78079-114">toodo so, you will need tooinstall hello Java Development Kit (JDK) and create an Azure storage account in your Azure subscription.</span></span> <span data-ttu-id="78079-115">Ha ezzel végzett, szüksége lesz a fejlesztői rendszerhez megfelelő hello minimális követelményeit és függőségeit, amelyek hello vannak felsorolva tooverify [Azure Storage SDK for Java] [ Azure Storage SDK for Java] GitHub tárházából.</span><span class="sxs-lookup"><span data-stu-id="78079-115">Once you have done so, you will need tooverify that your development system meets hello minimum requirements and dependencies which are listed in hello [Azure Storage SDK for Java][Azure Storage SDK for Java] repository on GitHub.</span></span> <span data-ttu-id="78079-116">Ha a rendszer megfelel ezeknek a követelményeknek, letöltése és telepítése hello Azure Storage-könyvtárakban Java ebből a rendszeren hello utasításokat kövesse.</span><span class="sxs-lookup"><span data-stu-id="78079-116">If your system meets those requirements, you can follow hello instructions for downloading and installing hello Azure Storage Libraries for Java on your system from that repository.</span></span> <span data-ttu-id="78079-117">E feladatok befejezése után fog tudni toocreate ebben a cikkben hello példák használó Java-alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="78079-117">Once you have completed those tasks, you will be able toocreate a Java application which uses hello examples in this article.</span></span>
 
-## <a name="configure-your-application-to-access-queue-storage"></a><span data-ttu-id="12bcb-118">Állítsa be az alkalmazását, a queue storage eléréséhez</span><span class="sxs-lookup"><span data-stu-id="12bcb-118">Configure your application to access queue storage</span></span>
-<span data-ttu-id="12bcb-119">Vegye fel a következő importálási utasításokat a felső részén a Java-fájlt, amelyre az Azure storage API-k várólisták eléréséhez használható:</span><span class="sxs-lookup"><span data-stu-id="12bcb-119">Add the following import statements to the top of the Java file where you want to use Azure storage APIs to access queues:</span></span>
+## <a name="configure-your-application-tooaccess-queue-storage"></a><span data-ttu-id="78079-118">Az alkalmazás tooaccess várólista-tároló konfigurálása</span><span class="sxs-lookup"><span data-stu-id="78079-118">Configure your application tooaccess queue storage</span></span>
+<span data-ttu-id="78079-119">Adja hozzá a következő importálási utasítások toohello felső részén hello Java fájl toouse az Azure storage API-k tooaccess várólisták hello:</span><span class="sxs-lookup"><span data-stu-id="78079-119">Add hello following import statements toohello top of hello Java file where you want toouse Azure storage APIs tooaccess queues:</span></span>
 
 ```java
-// Include the following imports to use queue APIs.
+// Include hello following imports toouse queue APIs.
 import com.microsoft.azure.storage.*;
 import com.microsoft.azure.storage.queue.*;
 ```
 
-## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="12bcb-120">Egy Azure storage kapcsolati karakterlánc beállítása</span><span class="sxs-lookup"><span data-stu-id="12bcb-120">Setup an Azure storage connection string</span></span>
-<span data-ttu-id="12bcb-121">Egy Azure storage-ügyfél egy tárolási kapcsolati karakterlánc végpontok és adatok szolgáltatások eléréséhez szükséges hitelesítő adatok tárolására használ.</span><span class="sxs-lookup"><span data-stu-id="12bcb-121">An Azure storage client uses a storage connection string to store endpoints and credentials for accessing data management services.</span></span> <span data-ttu-id="12bcb-122">Ha egy ügyfél-alkalmazás fut, meg kell adnia a tárolási kapcsolati karakterlánc a következő formátumban a tárfiók nevével, és a tárfiók elsődleges elérési kulcs szerepel az [Azure Portal](https://portal.azure.com) a a *AccountName* és *AccountKey* értékek.</span><span class="sxs-lookup"><span data-stu-id="12bcb-122">When running in a client application, you must provide the storage connection string in the following format, using the name of your storage account and the Primary access key for the storage account listed in the [Azure Portal](https://portal.azure.com) for the *AccountName* and *AccountKey* values.</span></span> <span data-ttu-id="12bcb-123">Ez a példa bemutatja, hogyan deklarálhatnak ahhoz, hogy a kapcsolati karakterlánc statikus mezőben:</span><span class="sxs-lookup"><span data-stu-id="12bcb-123">This example shows how you can declare a static field to hold the connection string:</span></span>
+## <a name="setup-an-azure-storage-connection-string"></a><span data-ttu-id="78079-120">Egy Azure storage kapcsolati karakterlánc beállítása</span><span class="sxs-lookup"><span data-stu-id="78079-120">Setup an Azure storage connection string</span></span>
+<span data-ttu-id="78079-121">Egy Azure storage-ügyfél egy tárolási kapcsolati karakterlánc toostore végpontok használ, és adatok felügyeleti szolgáltatások eléréséhez szükséges hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="78079-121">An Azure storage client uses a storage connection string toostore endpoints and credentials for accessing data management services.</span></span> <span data-ttu-id="78079-122">Ha egy ügyfél-alkalmazás fut, adja meg a hello tárolási kapcsolati karakterlánc formátuma a következő, a tárfiók nevére hello segítségével hello majd hello felsorolt hello tárfiók elsődleges elérési kulcsát hello [Azure Portal](https://portal.azure.com)a hello *AccountName* és *AccountKey* értékeket.</span><span class="sxs-lookup"><span data-stu-id="78079-122">When running in a client application, you must provide hello storage connection string in hello following format, using hello name of your storage account and hello Primary access key for hello storage account listed in hello [Azure Portal](https://portal.azure.com) for hello *AccountName* and *AccountKey* values.</span></span> <span data-ttu-id="78079-123">Ez a példa bemutatja, hogyan deklarálhatnak statikus mező toohold hello kapcsolati karakterláncot:</span><span class="sxs-lookup"><span data-stu-id="78079-123">This example shows how you can declare a static field toohold hello connection string:</span></span>
 
 ```java
-// Define the connection-string with your values.
+// Define hello connection-string with your values.
 public static final String storageConnectionString =
     "DefaultEndpointsProtocol=http;" +
     "AccountName=your_storage_account;" +
     "AccountKey=your_storage_account_key";
 ```
 
-<span data-ttu-id="12bcb-124">Egy alkalmazás fut, a Microsoft Azure-ban a szerepkörön belüli, az ezt a karakterláncot tárolhatja a konfigurációs fájlban, *ServiceConfiguration.cscfg*, és hívja érhető el a **RoleEnvironment.getConfigurationSettings** metódust.</span><span class="sxs-lookup"><span data-stu-id="12bcb-124">In an application running within a role in Microsoft Azure, this string can be stored in the service configuration file, *ServiceConfiguration.cscfg*, and can be accessed with a call to the **RoleEnvironment.getConfigurationSettings** method.</span></span> <span data-ttu-id="12bcb-125">Íme egy példa a kapcsolati karakterlánc beolvasása egy **beállítás** nevű elem *StorageConnectionString* a konfigurációs fájlban:</span><span class="sxs-lookup"><span data-stu-id="12bcb-125">Here's an example of getting the connection string from a **Setting** element named *StorageConnectionString* in the service configuration file:</span></span>
+<span data-ttu-id="78079-124">Egy alkalmazás fut, a Microsoft Azure-ban a szerepkörön belüli, az ezt a karakterláncot tárolhatja hello szolgáltatás konfigurációs fájljában, *ServiceConfiguration.cscfg*, és egy hívás toohello az elérhető  **RoleEnvironment.getConfigurationSettings** metódust.</span><span class="sxs-lookup"><span data-stu-id="78079-124">In an application running within a role in Microsoft Azure, this string can be stored in hello service configuration file, *ServiceConfiguration.cscfg*, and can be accessed with a call toohello **RoleEnvironment.getConfigurationSettings** method.</span></span> <span data-ttu-id="78079-125">Íme egy példa a hello kapcsolati karakterláncának beolvasása egy **beállítás** nevű elem *StorageConnectionString* hello szolgáltatás konfigurációs fájljában:</span><span class="sxs-lookup"><span data-stu-id="78079-125">Here's an example of getting hello connection string from a **Setting** element named *StorageConnectionString* in hello service configuration file:</span></span>
 
 ```java
 // Retrieve storage account from connection-string.
@@ -67,12 +67,12 @@ String storageConnectionString =
     RoleEnvironment.getConfigurationSettings().get("StorageConnectionString");
 ```
 
-<span data-ttu-id="12bcb-126">A következő minták azt feltételezik, hogy használt két módszer közül egyik beolvasni a tárolási kapcsolati karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="12bcb-126">The following samples assume that you have used one of these two methods to get the storage connection string.</span></span>
+<span data-ttu-id="78079-126">hello következő mintákat feltételezik használt egyik alábbi két módszer tooget hello tárolási kapcsolati karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="78079-126">hello following samples assume that you have used one of these two methods tooget hello storage connection string.</span></span>
 
-## <a name="how-to-create-a-queue"></a><span data-ttu-id="12bcb-127">Útmutató: a várólista létrehozása</span><span class="sxs-lookup"><span data-stu-id="12bcb-127">How to: Create a queue</span></span>
-<span data-ttu-id="12bcb-128">A **CloudQueueClient** objektum lehetővé teszi a várólisták hivatkozási objektumok beolvasása.</span><span class="sxs-lookup"><span data-stu-id="12bcb-128">A **CloudQueueClient** object lets you get reference objects for queues.</span></span> <span data-ttu-id="12bcb-129">Az alábbi kód létrehoz egy **CloudQueueClient** objektum.</span><span class="sxs-lookup"><span data-stu-id="12bcb-129">The following code creates a **CloudQueueClient** object.</span></span> <span data-ttu-id="12bcb-130">(Megjegyzés: további módon létrehozásához **CloudStorageAccount** objektumok; további információkért lásd: **CloudStorageAccount** a a [Azure Storage ügyfél SDK-dokumentáció].)</span><span class="sxs-lookup"><span data-stu-id="12bcb-130">(Note: There are additional ways to create **CloudStorageAccount** objects; for more information, see **CloudStorageAccount** in the [Azure Storage Client SDK Reference].)</span></span>
+## <a name="how-to-create-a-queue"></a><span data-ttu-id="78079-127">Útmutató: a várólista létrehozása</span><span class="sxs-lookup"><span data-stu-id="78079-127">How to: Create a queue</span></span>
+<span data-ttu-id="78079-128">A **CloudQueueClient** objektum lehetővé teszi a várólisták hivatkozási objektumok beolvasása.</span><span class="sxs-lookup"><span data-stu-id="78079-128">A **CloudQueueClient** object lets you get reference objects for queues.</span></span> <span data-ttu-id="78079-129">hello alábbi kód létrehoz egy **CloudQueueClient** objektum.</span><span class="sxs-lookup"><span data-stu-id="78079-129">hello following code creates a **CloudQueueClient** object.</span></span> <span data-ttu-id="78079-130">(Megjegyzés: vannak további lehetőségek toocreate **CloudStorageAccount** objektumok; további információkért lásd: **CloudStorageAccount** a hello [Azure Storage-ügyfél SDK-dokumentáció].)</span><span class="sxs-lookup"><span data-stu-id="78079-130">(Note: There are additional ways toocreate **CloudStorageAccount** objects; for more information, see **CloudStorageAccount** in hello [Azure Storage Client SDK Reference].)</span></span>
 
-<span data-ttu-id="12bcb-131">Használja a **CloudQueueClient** hivatkozás a használni kívánt várólista-objektum.</span><span class="sxs-lookup"><span data-stu-id="12bcb-131">Use the **CloudQueueClient** object to get a reference to the queue you want to use.</span></span> <span data-ttu-id="12bcb-132">A várólista hozhat létre, ha még nem létezik.</span><span class="sxs-lookup"><span data-stu-id="12bcb-132">You can create the queue if it doesn't exist.</span></span>
+<span data-ttu-id="78079-131">Használjon hello **CloudQueueClient** tooget toouse kívánt referencia toohello várólista-objektum.</span><span class="sxs-lookup"><span data-stu-id="78079-131">Use hello **CloudQueueClient** object tooget a reference toohello queue you want toouse.</span></span> <span data-ttu-id="78079-132">Hello várólista hozhat létre, ha még nem létezik.</span><span class="sxs-lookup"><span data-stu-id="78079-132">You can create hello queue if it doesn't exist.</span></span>
 
 ```java
 try
@@ -81,24 +81,24 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-   // Create the queue client.
+   // Create hello queue client.
    CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-   // Retrieve a reference to a queue.
+   // Retrieve a reference tooa queue.
    CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-   // Create the queue if it doesn't already exist.
+   // Create hello queue if it doesn't already exist.
    queue.createIfNotExists();
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-add-a-message-to-a-queue"></a><span data-ttu-id="12bcb-133">Útmutató: üzenet várólista hozzáadása</span><span class="sxs-lookup"><span data-stu-id="12bcb-133">How to: Add a message to a queue</span></span>
-<span data-ttu-id="12bcb-134">Ha üzenetet szeretne beszúrni egy létező üzenetsorba, először hozzon létre egy **CloudQueueMessage** elemet.</span><span class="sxs-lookup"><span data-stu-id="12bcb-134">To insert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="12bcb-135">Ezután hívja a **addMessage** metódust.</span><span class="sxs-lookup"><span data-stu-id="12bcb-135">Next, call the **addMessage** method.</span></span> <span data-ttu-id="12bcb-136">A **CloudQueueMessage** is létrehozható egy karakterláncból (UTF-8 formátumban), illetve egy bájttömböt.</span><span class="sxs-lookup"><span data-stu-id="12bcb-136">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a byte array.</span></span> <span data-ttu-id="12bcb-137">Itt található kód létrehoz egy üzenetsort (Ha még nem létezik), és szúrja be a "Hello, World" üzenet.</span><span class="sxs-lookup"><span data-stu-id="12bcb-137">Here is code which creates a queue (if it doesn't exist) and inserts the message "Hello, World".</span></span>
+## <a name="how-to-add-a-message-tooa-queue"></a><span data-ttu-id="78079-133">Útmutató: egy üzenetsor tooa hozzáadása</span><span class="sxs-lookup"><span data-stu-id="78079-133">How to: Add a message tooa queue</span></span>
+<span data-ttu-id="78079-134">tooinsert egy létező üzenetsorba, az üzenet először létre kell hoznia egy új **CloudQueueMessage**.</span><span class="sxs-lookup"><span data-stu-id="78079-134">tooinsert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="78079-135">Ezután hívja hello **addMessage** metódust.</span><span class="sxs-lookup"><span data-stu-id="78079-135">Next, call hello **addMessage** method.</span></span> <span data-ttu-id="78079-136">A **CloudQueueMessage** is létrehozható egy karakterláncból (UTF-8 formátumban), illetve egy bájttömböt.</span><span class="sxs-lookup"><span data-stu-id="78079-136">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a byte array.</span></span> <span data-ttu-id="78079-137">Íme, amely létrehoz egy üzenetsort (Ha még nem létezik) és a Beszúrás üdvözlőüzenetére "Hello, World" code.</span><span class="sxs-lookup"><span data-stu-id="78079-137">Here is code which creates a queue (if it doesn't exist) and inserts hello message "Hello, World".</span></span>
 
 ```java
 try
@@ -107,28 +107,28 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Create the queue if it doesn't already exist.
+    // Create hello queue if it doesn't already exist.
     queue.createIfNotExists();
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     CloudQueueMessage message = new CloudQueueMessage("Hello, World");
     queue.addMessage(message);
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a><span data-ttu-id="12bcb-138">Útmutató: a következő üzenet megtekintése</span><span class="sxs-lookup"><span data-stu-id="12bcb-138">How to: Peek at the next message</span></span>
-<span data-ttu-id="12bcb-139">Is bepillanthat, hogy egy sor elején található üzenetbe anélkül, hogy eltávolítaná az üzenetsorból meghívásával **peekMessage**.</span><span class="sxs-lookup"><span data-stu-id="12bcb-139">You can peek at the message in the front of a queue without removing it from the queue by calling **peekMessage**.</span></span>
+## <a name="how-to-peek-at-hello-next-message"></a><span data-ttu-id="78079-138">Hogyan: betekintés a következő köszönőüzenetei</span><span class="sxs-lookup"><span data-stu-id="78079-138">How to: Peek at hello next message</span></span>
+<span data-ttu-id="78079-139">Eltávolítása hello meghívásával anélkül is bepillanthat hello betekintés a várólista elejére hello **peekMessage**.</span><span class="sxs-lookup"><span data-stu-id="78079-139">You can peek at hello message in hello front of a queue without removing it from hello queue by calling **peekMessage**.</span></span>
 
 ```java
 try
@@ -137,16 +137,16 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Peek at the next message.
+    // Peek at hello next message.
     CloudQueueMessage peekedMessage = queue.peekMessage();
 
-    // Output the message value.
+    // Output hello message value.
     if (peekedMessage != null)
     {
       System.out.println(peekedMessage.getMessageContentAsString());
@@ -154,15 +154,15 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a><span data-ttu-id="12bcb-140">Útmutató: az üzenetsorban található üzenet tartalmának módosítása</span><span class="sxs-lookup"><span data-stu-id="12bcb-140">How to: Change the contents of a queued message</span></span>
-<span data-ttu-id="12bcb-141">Egy üzenetet tartalmát helyben, az üzenetsorban módosíthatja.</span><span class="sxs-lookup"><span data-stu-id="12bcb-141">You can change the contents of a message in-place in the queue.</span></span> <span data-ttu-id="12bcb-142">Ha az üzenet munkafeladatot jelöl, ezzel a funkcióval frissítheti a munkafeladat állapotát.</span><span class="sxs-lookup"><span data-stu-id="12bcb-142">If the message represents a work task, you could use this feature to update the status of the work task.</span></span> <span data-ttu-id="12bcb-143">Az alábbi kód frissíti az üzenetsorban található üzenetet az új tartalommal, és a láthatósági időkorlátot további 60 másodperccel bővíti.</span><span class="sxs-lookup"><span data-stu-id="12bcb-143">The following code updates the queue message with new contents, and sets the visibility timeout to extend another 60 seconds.</span></span> <span data-ttu-id="12bcb-144">Elmenti az üzenethez társított feladat állapotát, és az ügyfél számára további egy percet biztosít az üzenet használatának folytatására.</span><span class="sxs-lookup"><span data-stu-id="12bcb-144">This saves the state of work associated with the message, and gives the client another minute to continue working on the message.</span></span> <span data-ttu-id="12bcb-145">Ezzel a technikával többlépéses munkafolyamatokat is nyomon követhet az üzenetsor üzenetein anélkül, hogy újra kéne kezdenie, ha a folyamat valamelyik lépése hardver- vagy szoftverhiba miatt meghiúsul.</span><span class="sxs-lookup"><span data-stu-id="12bcb-145">You could use this technique to track multi-step workflows on queue messages, without having to start over from the beginning if a processing step fails due to hardware or software failure.</span></span> <span data-ttu-id="12bcb-146">A rendszer általában nyilvántartja az újrapróbálkozások számát, és ha az üzenettel *n* alkalomnál többször próbálkoznak, akkor törlődik.</span><span class="sxs-lookup"><span data-stu-id="12bcb-146">Typically, you would keep a retry count as well, and if the message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="12bcb-147">Ez védelmet biztosít az ellen, hogy egy üzenetet minden feldolgozásakor kiváltson egy alkalmazáshibát.</span><span class="sxs-lookup"><span data-stu-id="12bcb-147">This protects against a message that triggers an application error each time it is processed.</span></span>
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a><span data-ttu-id="78079-140">Hogyan: hello aszinkron üzenet tartalmának módosítása</span><span class="sxs-lookup"><span data-stu-id="78079-140">How to: Change hello contents of a queued message</span></span>
+<span data-ttu-id="78079-141">Módosíthatja egy üzenet helyben hello várólista hello tartalmát.</span><span class="sxs-lookup"><span data-stu-id="78079-141">You can change hello contents of a message in-place in hello queue.</span></span> <span data-ttu-id="78079-142">Üdvözlőüzenetére jelöl, használhatja a munkafeladat hello szolgáltatás tooupdate hello állapotának.</span><span class="sxs-lookup"><span data-stu-id="78079-142">If hello message represents a work task, you could use this feature tooupdate hello status of hello work task.</span></span> <span data-ttu-id="78079-143">a következő kód hello hello üzenetsor frissíti az új tartalommal, és a készletek hello látható időtúllépés tooextend további 60 másodperccel.</span><span class="sxs-lookup"><span data-stu-id="78079-143">hello following code updates hello queue message with new contents, and sets hello visibility timeout tooextend another 60 seconds.</span></span> <span data-ttu-id="78079-144">Hello üdvözlőüzenetére társított feladat állapotát menti, és lehetőséget ad a hello ügyfél üdvözlőüzenetére dolgozik egy másik perces toocontinue.</span><span class="sxs-lookup"><span data-stu-id="78079-144">This saves hello state of work associated with hello message, and gives hello client another minute toocontinue working on hello message.</span></span> <span data-ttu-id="78079-145">Ez a módszer tootrack többlépéses munkafolyamatokat üzenetsor üzenetein anélkül, hogy toostart keresztül hello kezdődően, ha a folyamat valamelyik lépése toohardware-vagy szoftverhiba miatt nem használható.</span><span class="sxs-lookup"><span data-stu-id="78079-145">You could use this technique tootrack multi-step workflows on queue messages, without having toostart over from hello beginning if a processing step fails due toohardware or software failure.</span></span> <span data-ttu-id="78079-146">Általában tartja az újrapróbálkozások számát is, és ha hello üzenetet a rendszer ismét megkísérli több mint  *n*  időpontokat, akkor törlődik.</span><span class="sxs-lookup"><span data-stu-id="78079-146">Typically, you would keep a retry count as well, and if hello message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="78079-147">Ez védelmet biztosít az ellen, hogy egy üzenetet minden feldolgozásakor kiváltson egy alkalmazáshibát.</span><span class="sxs-lookup"><span data-stu-id="78079-147">This protects against a message that triggers an application error each time it is processed.</span></span>
 
-<span data-ttu-id="12bcb-148">A következő kód a minta keresésre a várólistában lévő üzenetek, megkeresi az első üzenet, amely a "Hello, World" megegyezik a tartalomhoz, majd módosítja a tartalom üzenet, és kilép.</span><span class="sxs-lookup"><span data-stu-id="12bcb-148">The following code sample searches through the queue of messages, locates the first message that matches "Hello, World" for the content, then modifies the message content and exits.</span></span>
+<span data-ttu-id="78079-148">hello következő kód a minta keresések hello üzenetsorukat keresztül, megkeresi a hello első üzenetet, amely megfelel a "Hello, World" hello tartalom, majd módosítja a tartalom üdvözlőüzenetére kilép.</span><span class="sxs-lookup"><span data-stu-id="78079-148">hello following code sample searches through hello queue of messages, locates hello first message that matches "Hello, World" for hello content, then modifies hello message content and exits.</span></span>
 
 ```java
 try
@@ -171,28 +171,28 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // The maximum number of messages that can be retrieved is 32.
+    // hello maximum number of messages that can be retrieved is 32.
     final int MAX_NUMBER_OF_MESSAGES_TO_PEEK = 32;
 
-    // Loop through the messages in the queue.
+    // Loop through hello messages in hello queue.
     for (CloudQueueMessage message : queue.retrieveMessages(MAX_NUMBER_OF_MESSAGES_TO_PEEK,1,null,null))
     {
         // Check for a specific string.
         if (message.getMessageContentAsString().equals("Hello, World"))
         {
-            // Modify the content of the first matching message.
+            // Modify hello content of hello first matching message.
             message.setMessageContent("Updated contents.");
-            // Set it to be visible in 30 seconds.
+            // Set it toobe visible in 30 seconds.
             EnumSet<MessageUpdateFields> updateFields =
                 EnumSet.of(MessageUpdateFields.CONTENT,
                 MessageUpdateFields.VISIBILITY);
-            // Update the message.
+            // Update hello message.
             queue.updateMessage(message, 30, updateFields, null, null);
             break;
         }
@@ -200,12 +200,12 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-<span data-ttu-id="12bcb-149">A következő példakód azt is megteheti, csak az első látható üzenet a várólistában frissíti.</span><span class="sxs-lookup"><span data-stu-id="12bcb-149">Alternatively, the following code sample updates just the first visible message on the queue.</span></span>
+<span data-ttu-id="78079-149">Azt is megteheti hello következő példakód frissíti csak első látható üdvözlőüzenetére hello várólistán.</span><span class="sxs-lookup"><span data-stu-id="78079-149">Alternatively, hello following code sample updates just hello first visible message on hello queue.</span></span>
 
 ```java
 try
@@ -214,36 +214,36 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve the first visible message in the queue.
+    // Retrieve hello first visible message in hello queue.
     CloudQueueMessage message = queue.retrieveMessage();
 
     if (message != null)
     {
-        // Modify the message content.
+        // Modify hello message content.
         message.setMessageContent("Updated contents.");
-        // Set it to be visible in 60 seconds.
+        // Set it toobe visible in 60 seconds.
         EnumSet<MessageUpdateFields> updateFields =
             EnumSet.of(MessageUpdateFields.CONTENT,
             MessageUpdateFields.VISIBILITY);
-        // Update the message.
+        // Update hello message.
         queue.updateMessage(message, 60, updateFields, null, null);
     }
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-get-the-queue-length"></a><span data-ttu-id="12bcb-150">Útmutató: az üzenetsor hosszának lekérése</span><span class="sxs-lookup"><span data-stu-id="12bcb-150">How to: Get the queue length</span></span>
-<span data-ttu-id="12bcb-151">Megbecsülheti egy üzenetsorban található üzenetek számát.</span><span class="sxs-lookup"><span data-stu-id="12bcb-151">You can get an estimate of the number of messages in a queue.</span></span> <span data-ttu-id="12bcb-152">A **downloadAttributes** módszert kéri a Queue szolgáltatás több aktuális értékhez, beleértve az üzenetek számának vannak a várólistán lévő számát.</span><span class="sxs-lookup"><span data-stu-id="12bcb-152">The **downloadAttributes** method asks the Queue service for several current values, including a count of how many messages are in a queue.</span></span> <span data-ttu-id="12bcb-153">A szám nem csak hozzávetőleges, mert az üzenetek hozzáadására vagy törlődik, miután a Queue szolgáltatás válaszol a kérésre.</span><span class="sxs-lookup"><span data-stu-id="12bcb-153">The count is only approximate because messages can be added or removed after the Queue service responds to your request.</span></span> <span data-ttu-id="12bcb-154">A **getApproximateMessageCount** metódus hívása által lekért legutóbbi értéket ad vissza **downloadAttributes**, a Queue szolgáltatás hívása nélkül.</span><span class="sxs-lookup"><span data-stu-id="12bcb-154">The **getApproximateMessageCount** method returns the last value retrieved by the call to **downloadAttributes**, without calling the Queue service.</span></span>
+## <a name="how-to-get-hello-queue-length"></a><span data-ttu-id="78079-150">Hogyan: hello várólista hosszának lekérése</span><span class="sxs-lookup"><span data-stu-id="78079-150">How to: Get hello queue length</span></span>
+<span data-ttu-id="78079-151">A várólistában lévő üzenetek hello számának becslése kérheti le.</span><span class="sxs-lookup"><span data-stu-id="78079-151">You can get an estimate of hello number of messages in a queue.</span></span> <span data-ttu-id="78079-152">Hello **downloadAttributes** módszert kéri hello Queue szolgáltatás több aktuális értékhez, beleértve az üzenetek számának vannak a várólistán lévő számát.</span><span class="sxs-lookup"><span data-stu-id="78079-152">hello **downloadAttributes** method asks hello Queue service for several current values, including a count of how many messages are in a queue.</span></span> <span data-ttu-id="78079-153">hello száma nem csak hozzávetőleges, mert az üzenetek hozzáadására vagy törlődik, miután hello Queue szolgáltatás válaszol-e tooyour kérelmet.</span><span class="sxs-lookup"><span data-stu-id="78079-153">hello count is only approximate because messages can be added or removed after hello Queue service responds tooyour request.</span></span> <span data-ttu-id="78079-154">Hello **getApproximateMessageCount** metódus visszaadja hello által lekért legutóbbi értéket hello hívás túl**downloadAttributes**, hello Queue szolgáltatás hívása nélkül.</span><span class="sxs-lookup"><span data-stu-id="78079-154">hello **getApproximateMessageCount** method returns hello last value retrieved by hello call too**downloadAttributes**, without calling hello Queue service.</span></span>
 
 ```java
 try
@@ -252,30 +252,30 @@ try
     CloudStorageAccount storageAccount =
        CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-   // Download the approximate message count from the server.
+   // Download hello approximate message count from hello server.
     queue.downloadAttributes();
 
-    // Retrieve the newly cached approximate message count.
+    // Retrieve hello newly cached approximate message count.
     long cachedMessageCount = queue.getApproximateMessageCount();
 
-    // Display the queue length.
+    // Display hello queue length.
     System.out.println(String.format("Queue length: %d", cachedMessageCount));
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-dequeue-the-next-message"></a><span data-ttu-id="12bcb-155">Útmutató: a következő üzenet created</span><span class="sxs-lookup"><span data-stu-id="12bcb-155">How to: Dequeue the next message</span></span>
-<span data-ttu-id="12bcb-156">A kód dequeues egy üzenetet az üzenetsorból két lépésben.</span><span class="sxs-lookup"><span data-stu-id="12bcb-156">Your code dequeues a message from a queue in two steps.</span></span> <span data-ttu-id="12bcb-157">A hívás esetén **retrieveMessage**, a következő üzenetet kap a sorhoz.</span><span class="sxs-lookup"><span data-stu-id="12bcb-157">When you call **retrieveMessage**, you get the next message in a queue.</span></span> <span data-ttu-id="12bcb-158">Az üzenet **retrieveMessage** ebből a várólistából üzeneteket olvasó többi kód láthatatlanná válik.</span><span class="sxs-lookup"><span data-stu-id="12bcb-158">A message returned from **retrieveMessage** becomes invisible to any other code reading messages from this queue.</span></span> <span data-ttu-id="12bcb-159">Alapértelmezés szerint az üzenet 30 másodpercig marad láthatatlan.</span><span class="sxs-lookup"><span data-stu-id="12bcb-159">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="12bcb-160">Szeretné távolítani az üzenetet az üzenetsorból, meg kell is hívni **deleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="12bcb-160">To finish removing the message from the queue, you must also call **deleteMessage**.</span></span> <span data-ttu-id="12bcb-161">Az üzenetek kétlépéses eltávolítása lehetővé teszi, hogy ha a kód hardver- vagy szoftverhiba miatt nem tud feldolgozni egy üzenetet, a kód egy másik példánya megkaphassa ugyanazt az üzenetet, és újra megpróbálkozhasson a feldolgozásával.</span><span class="sxs-lookup"><span data-stu-id="12bcb-161">This two-step process of removing a message assures that if your code fails to process a message due to hardware or software failure, another instance of your code can get the same message and try again.</span></span> <span data-ttu-id="12bcb-162">A kód hívások **deleteMessage** jobb gombbal az üzenet feldolgozása után.</span><span class="sxs-lookup"><span data-stu-id="12bcb-162">Your code calls **deleteMessage** right after the message has been processed.</span></span>
+## <a name="how-to-dequeue-hello-next-message"></a><span data-ttu-id="78079-155">Hogyan: hello a következő üzenetet created</span><span class="sxs-lookup"><span data-stu-id="78079-155">How to: Dequeue hello next message</span></span>
+<span data-ttu-id="78079-156">A kód dequeues egy üzenetet az üzenetsorból két lépésben.</span><span class="sxs-lookup"><span data-stu-id="78079-156">Your code dequeues a message from a queue in two steps.</span></span> <span data-ttu-id="78079-157">A hívás esetén **retrieveMessage**, a sorhoz hello a következő üzenetet kapott.</span><span class="sxs-lookup"><span data-stu-id="78079-157">When you call **retrieveMessage**, you get hello next message in a queue.</span></span> <span data-ttu-id="78079-158">Az üzenet **retrieveMessage** láthatatlan tooany ebből a várólistából üzeneteket olvasó többi kód válik.</span><span class="sxs-lookup"><span data-stu-id="78079-158">A message returned from **retrieveMessage** becomes invisible tooany other code reading messages from this queue.</span></span> <span data-ttu-id="78079-159">Alapértelmezés szerint az üzenet 30 másodpercig marad láthatatlan.</span><span class="sxs-lookup"><span data-stu-id="78079-159">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="78079-160">toofinish eltávolításakor üdvözlőüzenetére hello üzenetsorból, meg kell is hívni **deleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="78079-160">toofinish removing hello message from hello queue, you must also call **deleteMessage**.</span></span> <span data-ttu-id="78079-161">A kétlépéses folyamat eltávolításával előállított üzenet biztosítja, hogy a kód meghibásodásakor tooprocess miatt toohardware vagy szoftver-hiba, a kód egy másik példánya üzenet kérheti le hello ugyanazt az üzenetet, és próbálkozzon újra.</span><span class="sxs-lookup"><span data-stu-id="78079-161">This two-step process of removing a message assures that if your code fails tooprocess a message due toohardware or software failure, another instance of your code can get hello same message and try again.</span></span> <span data-ttu-id="78079-162">A kód hívások **deleteMessage** jobb gombbal az üdvözlő üzenet feldolgozása után.</span><span class="sxs-lookup"><span data-stu-id="78079-162">Your code calls **deleteMessage** right after hello message has been processed.</span></span>
 
 ```java
 try
@@ -284,32 +284,32 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve the first visible message in the queue.
+    // Retrieve hello first visible message in hello queue.
     CloudQueueMessage retrievedMessage = queue.retrieveMessage();
 
     if (retrievedMessage != null)
     {
-        // Process the message in less than 30 seconds, and then delete the message.
+        // Process hello message in less than 30 seconds, and then delete hello message.
         queue.deleteMessage(retrievedMessage);
     }
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="additional-options-for-dequeuing-messages"></a><span data-ttu-id="12bcb-163">További beállítások üzenetmozgatót üzenetek</span><span class="sxs-lookup"><span data-stu-id="12bcb-163">Additional options for dequeuing messages</span></span>
-<span data-ttu-id="12bcb-164">Két módon szabhatja testre az üzenetek lekérését egy üzenetsorból.</span><span class="sxs-lookup"><span data-stu-id="12bcb-164">There are two ways you can customize message retrieval from a queue.</span></span> <span data-ttu-id="12bcb-165">Az első lehetőség az üzenetkötegek (legfeljebb 32) lekérése.</span><span class="sxs-lookup"><span data-stu-id="12bcb-165">First, you can get a batch of messages (up to 32).</span></span> <span data-ttu-id="12bcb-166">A második lehetőség az, hogy beállít egy hosszabb vagy rövidebb láthatatlansági időkorlátot, így a kódnak lehetősége van hosszabb vagy rövidebb idő alatt teljesen feldolgozni az egyes üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="12bcb-166">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time to fully process each message.</span></span>
+## <a name="additional-options-for-dequeuing-messages"></a><span data-ttu-id="78079-163">További beállítások üzenetmozgatót üzenetek</span><span class="sxs-lookup"><span data-stu-id="78079-163">Additional options for dequeuing messages</span></span>
+<span data-ttu-id="78079-164">Két módon szabhatja testre az üzenetek lekérését egy üzenetsorból.</span><span class="sxs-lookup"><span data-stu-id="78079-164">There are two ways you can customize message retrieval from a queue.</span></span> <span data-ttu-id="78079-165">Először is kaphat az üzenetkötegek (felfelé too32).</span><span class="sxs-lookup"><span data-stu-id="78079-165">First, you can get a batch of messages (up too32).</span></span> <span data-ttu-id="78079-166">Második beállíthat egy hosszabb vagy rövidebb láthatatlansági időkorlátot, így a kódnak több vagy kevesebb idő toofully feldolgozni az egyes üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="78079-166">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time toofully process each message.</span></span>
 
-<span data-ttu-id="12bcb-167">Az alábbi példakód a **retrieveMessages** metódus használatával kérje le a 20 üzenetet egy hívásban.</span><span class="sxs-lookup"><span data-stu-id="12bcb-167">The following code example uses the **retrieveMessages** method to get 20 messages in one call.</span></span> <span data-ttu-id="12bcb-168">Ezután minden üzenetet használatával feldolgozza a **a** hurok.</span><span class="sxs-lookup"><span data-stu-id="12bcb-168">Then it processes each message using a **for** loop.</span></span> <span data-ttu-id="12bcb-169">Azt is meghatározza a láthatatlansági időkorlátot minden üzenethez öt percre (300 másodperc).</span><span class="sxs-lookup"><span data-stu-id="12bcb-169">It also sets the invisibility timeout to five minutes (300 seconds) for each message.</span></span> <span data-ttu-id="12bcb-170">Vegye figyelembe, hogy az öt perc elindítja az összes üzenet egyszerre, így ha öt perc telt hívása **retrieveMessages**, nem törölt üzenetek újra láthatóvá válnak.</span><span class="sxs-lookup"><span data-stu-id="12bcb-170">Note that the five minutes starts for all messages at the same time, so when five minutes have passed since the call to **retrieveMessages**, any messages which have not been deleted will become visible again.</span></span>
+<span data-ttu-id="78079-167">hello alábbi példakód hello **retrieveMessages** metódus tooget 20 üzenetek egy hívásban.</span><span class="sxs-lookup"><span data-stu-id="78079-167">hello following code example uses hello **retrieveMessages** method tooget 20 messages in one call.</span></span> <span data-ttu-id="78079-168">Ezután minden üzenetet használatával feldolgozza a **a** hurok.</span><span class="sxs-lookup"><span data-stu-id="78079-168">Then it processes each message using a **for** loop.</span></span> <span data-ttu-id="78079-169">Beállítja a hello láthatatlansági időtúllépés toofive perc (300 másodperc) minden egyes üzenet esetében is.</span><span class="sxs-lookup"><span data-stu-id="78079-169">It also sets hello invisibility timeout toofive minutes (300 seconds) for each message.</span></span> <span data-ttu-id="78079-170">Ugyanaz a hello üzenetek vegye figyelembe, hogy hello öt perc elindítja az összes idő, így ha öt perc telt túl hello hívás**retrieveMessages**, nem törölt üzenetek újra láthatóvá válnak.</span><span class="sxs-lookup"><span data-stu-id="78079-170">Note that hello five minutes starts for all messages at hello same time, so when five minutes have passed since hello call too**retrieveMessages**, any messages which have not been deleted will become visible again.</span></span>
 
 ```java
 try
@@ -318,13 +318,13 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Retrieve 20 messages from the queue with a visibility timeout of 300 seconds.
+    // Retrieve 20 messages from hello queue with a visibility timeout of 300 seconds.
     for (CloudQueueMessage message : queue.retrieveMessages(20, 300, null, null)) {
         // Do processing for all messages in less than 5 minutes,
         // deleting each message after processing.
@@ -333,13 +333,13 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-list-the-queues"></a><span data-ttu-id="12bcb-171">Útmutató: a várólisták felsorolása</span><span class="sxs-lookup"><span data-stu-id="12bcb-171">How to: List the queues</span></span>
-<span data-ttu-id="12bcb-172">Az aktuális várólisták listájának beszerzése, hívja meg a **CloudQueueClient.listQueues()** metódus, amely visszaadható gyűjteménye **CloudQueue** objektumok.</span><span class="sxs-lookup"><span data-stu-id="12bcb-172">To obtain a list of the current queues, call the **CloudQueueClient.listQueues()** method, which will return a collection of **CloudQueue** objects.</span></span>
+## <a name="how-to-list-hello-queues"></a><span data-ttu-id="78079-171">Hogyan: hello várólisták felsorolása</span><span class="sxs-lookup"><span data-stu-id="78079-171">How to: List hello queues</span></span>
+<span data-ttu-id="78079-172">hello aktuális várólisták, hívás hello listája tooobtain **CloudQueueClient.listQueues()** metódus, amely visszaadható gyűjteménye **CloudQueue** objektumok.</span><span class="sxs-lookup"><span data-stu-id="78079-172">tooobtain a list of hello current queues, call hello **CloudQueueClient.listQueues()** method, which will return a collection of **CloudQueue** objects.</span></span>
 
 ```java
 try
@@ -348,11 +348,11 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient =
         storageAccount.createCloudQueueClient();
 
-    // Loop through the collection of queues.
+    // Loop through hello collection of queues.
     for (CloudQueue queue : queueClient.listQueues())
     {
         // Output each queue name.
@@ -361,13 +361,13 @@ try
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="how-to-delete-a-queue"></a><span data-ttu-id="12bcb-173">Útmutató: a várólista törlése</span><span class="sxs-lookup"><span data-stu-id="12bcb-173">How to: Delete a queue</span></span>
-<span data-ttu-id="12bcb-174">Egy üzenetsor és a benne tárolt összes üzenet törléséhez hívja meg a **deleteIfExists** metódust a **CloudQueue** objektum.</span><span class="sxs-lookup"><span data-stu-id="12bcb-174">To delete a queue and all the messages contained in it, call the **deleteIfExists** method on the **CloudQueue** object.</span></span>
+## <a name="how-to-delete-a-queue"></a><span data-ttu-id="78079-173">Útmutató: a várólista törlése</span><span class="sxs-lookup"><span data-stu-id="78079-173">How to: Delete a queue</span></span>
+<span data-ttu-id="78079-174">toodelete várólista és köszönőüzenetei minden benne tárolt, hívás hello **deleteIfExists** hello metódusa **CloudQueue** objektum.</span><span class="sxs-lookup"><span data-stu-id="78079-174">toodelete a queue and all hello messages contained in it, call hello **deleteIfExists** method on hello **CloudQueue** object.</span></span>
 
 ```java
 try
@@ -376,33 +376,33 @@ try
     CloudStorageAccount storageAccount =
         CloudStorageAccount.parse(storageConnectionString);
 
-    // Create the queue client.
+    // Create hello queue client.
     CloudQueueClient queueClient = storageAccount.createCloudQueueClient();
 
-    // Retrieve a reference to a queue.
+    // Retrieve a reference tooa queue.
     CloudQueue queue = queueClient.getQueueReference("myqueue");
 
-    // Delete the queue if it exists.
+    // Delete hello queue if it exists.
     queue.deleteIfExists();
 }
 catch (Exception e)
 {
-    // Output the stack trace.
+    // Output hello stack trace.
     e.printStackTrace();
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="12bcb-175">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="12bcb-175">Next steps</span></span>
-<span data-ttu-id="12bcb-176">Most, hogy megismerte a queue storage alapjait, az alábbi hivatkozásokból tájékozódhat az összetettebb tárolási feladatok elvégzéséről.</span><span class="sxs-lookup"><span data-stu-id="12bcb-176">Now that you've learned the basics of queue storage, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="78079-175">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="78079-175">Next steps</span></span>
+<span data-ttu-id="78079-176">Most, hogy megismerte a queue storage alapjait hello, kövesse az összetettebb tárolási feladatok elvégzéséről kapcsolatos alábbi hivatkozások toolearn.</span><span class="sxs-lookup"><span data-stu-id="78079-176">Now that you've learned hello basics of queue storage, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="12bcb-177">[Az Azure Storage Java SDK][Azure Storage SDK for Java]</span><span class="sxs-lookup"><span data-stu-id="12bcb-177">[Azure Storage SDK for Java][Azure Storage SDK for Java]</span></span>
-* <span data-ttu-id="12bcb-178">[Az Azure Storage ügyfél SDK-dokumentáció][Azure Storage ügyfél SDK-dokumentáció]</span><span class="sxs-lookup"><span data-stu-id="12bcb-178">[Azure Storage Client SDK Reference][Azure Storage Client SDK Reference]</span></span>
-* <span data-ttu-id="12bcb-179">[Az Azure Storage szolgáltatások REST API-ja][Azure Storage Services REST API]</span><span class="sxs-lookup"><span data-stu-id="12bcb-179">[Azure Storage Services REST API][Azure Storage Services REST API]</span></span>
-* <span data-ttu-id="12bcb-180">[Az Azure Storage csapat blogja][Azure Storage Team Blog]</span><span class="sxs-lookup"><span data-stu-id="12bcb-180">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
+* <span data-ttu-id="78079-177">[Az Azure Storage Java SDK][Azure Storage SDK for Java]</span><span class="sxs-lookup"><span data-stu-id="78079-177">[Azure Storage SDK for Java][Azure Storage SDK for Java]</span></span>
+* <span data-ttu-id="78079-178">[Az Azure Storage ügyfél SDK-dokumentáció][Azure Storage-ügyfél SDK-dokumentáció]</span><span class="sxs-lookup"><span data-stu-id="78079-178">[Azure Storage Client SDK Reference][Azure Storage Client SDK Reference]</span></span>
+* <span data-ttu-id="78079-179">[Az Azure Storage szolgáltatások REST API-ja][Azure Storage Services REST API]</span><span class="sxs-lookup"><span data-stu-id="78079-179">[Azure Storage Services REST API][Azure Storage Services REST API]</span></span>
+* <span data-ttu-id="78079-180">[Az Azure Storage csapat blogja][Azure Storage Team Blog]</span><span class="sxs-lookup"><span data-stu-id="78079-180">[Azure Storage Team Blog][Azure Storage Team Blog]</span></span>
 
 [Azure SDK for Java]: http://go.microsoft.com/fwlink/?LinkID=525671
 [Azure Storage SDK for Java]: https://github.com/azure/azure-storage-java
 [Azure Storage SDK for Android]: https://github.com/azure/azure-storage-android
-<span data-ttu-id="12bcb-181">[Azure Storage ügyfél SDK-dokumentáció]: http://dl.windowsazure.com/storage/javadoc/</span><span class="sxs-lookup"><span data-stu-id="12bcb-181">[Azure Storage Client SDK Reference]: http://dl.windowsazure.com/storage/javadoc/</span></span>
+[Azure Storage-ügyfél SDK-dokumentáció]: http://dl.windowsazure.com/storage/javadoc/
 [Azure Storage Services REST API]: https://msdn.microsoft.com/library/azure/dd179355.aspx
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/

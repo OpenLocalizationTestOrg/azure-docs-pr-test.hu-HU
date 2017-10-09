@@ -1,0 +1,8 @@
+<span data-ttu-id="214b5-101">hello Azure Resource Manager és az Azure erőforráscsoport-sablonok használatával csak a következő korlátozások hello vonatkozik.</span><span class="sxs-lookup"><span data-stu-id="214b5-101">hello following limits apply when using hello Azure Resource Manager and Azure Resource Groups only.</span></span>
+
+| <span data-ttu-id="214b5-102">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="214b5-102">Resource</span></span> | <span data-ttu-id="214b5-103">Alapértelmezett korlát</span><span class="sxs-lookup"><span data-stu-id="214b5-103">Default Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="214b5-104">Tárolási fiók felügyeleti műveletek (olvasni.)</span><span class="sxs-lookup"><span data-stu-id="214b5-104">Storage account management operations (read)</span></span> |<span data-ttu-id="214b5-105">800 / 5 perc</span><span class="sxs-lookup"><span data-stu-id="214b5-105">800 per 5 minutes</span></span> |
+| <span data-ttu-id="214b5-106">Tárolási fiókkezelési műveletekhez (írás)</span><span class="sxs-lookup"><span data-stu-id="214b5-106">Storage account management operations (write)</span></span> |<span data-ttu-id="214b5-107">óránként 200</span><span class="sxs-lookup"><span data-stu-id="214b5-107">200 per hour</span></span> |
+| <span data-ttu-id="214b5-108">Tárolási fiókkezelési műveletekhez (lista)</span><span class="sxs-lookup"><span data-stu-id="214b5-108">Storage account management operations (list)</span></span> |<span data-ttu-id="214b5-109">100 / 5 perc</span><span class="sxs-lookup"><span data-stu-id="214b5-109">100 per 5 minutes</span></span> |
+

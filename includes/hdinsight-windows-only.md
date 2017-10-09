@@ -1,5 +1,5 @@
 > [!NOTE]
-> <span data-ttu-id="2761f-101">A jelen dokumentumban szereplő információk csak a Windows-alapú HDInsight-fürtök vonatkozik.</span><span class="sxs-lookup"><span data-stu-id="2761f-101">The information in this document only applies to Windows-based HDInsight clusters.</span></span>
+> <span data-ttu-id="84dfa-101">a dokumentumban szereplő információk hello tooWindows-alapú HDInsight-fürtök csak érvényes.</span><span class="sxs-lookup"><span data-stu-id="84dfa-101">hello information in this document only applies tooWindows-based HDInsight clusters.</span></span>
 > 
 > 
 

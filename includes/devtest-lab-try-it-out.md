@@ -1,0 +1,7 @@
+## <a name="get-started-with-azure-devtest-labs"></a><span data-ttu-id="6d59a-101">Bevezetés az Azure DevTest Labs használatába</span><span class="sxs-lookup"><span data-stu-id="6d59a-101">Get started with Azure DevTest Labs</span></span>
+<span data-ttu-id="6d59a-102">Új tooAzure?</span><span class="sxs-lookup"><span data-stu-id="6d59a-102">New tooAzure?</span></span> [<span data-ttu-id="6d59a-103">Hozzon létre egy ingyenes Azure-fiókot</span><span class="sxs-lookup"><span data-stu-id="6d59a-103">Create a free Azure account</span></span>](https://azure.microsoft.com/free)
+
+<span data-ttu-id="6d59a-104">Már használja az Azure-t?</span><span class="sxs-lookup"><span data-stu-id="6d59a-104">Already on Azure?</span></span> <span data-ttu-id="6d59a-105">Kattintson a következő gombra toocreate a DevTest Labs szolgáltatásban labor hello!</span><span class="sxs-lookup"><span data-stu-id="6d59a-105">Click hello following button toocreate a lab in DevTest Labs!</span></span>
+
+<span data-ttu-id="6d59a-106">[![Percek alatt elsajátíthatja az Azure DevTest Labs használatát](./media/devtest-lab-try-it-out/get-started.png)](http://go.microsoft.com/fwlink/?LinkID=627034&clcid=0x409)</span><span class="sxs-lookup"><span data-stu-id="6d59a-106">[![Get started with Azure DevTest Labs in minutes](./media/devtest-lab-try-it-out/get-started.png)](http://go.microsoft.com/fwlink/?LinkID=627034&clcid=0x409)</span></span>
+

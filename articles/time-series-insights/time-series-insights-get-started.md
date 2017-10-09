@@ -1,6 +1,6 @@
 ---
-title: "Azure Time Series Insights-környezet létrehozása | Microsoft Docs"
-description: "Ez az oktatóanyag bemutatja, hogyan hozhat létre Time Series-környezetet, hogyan csatlakoztathatja egy eseményforráshoz és kezdheti elemezni az eseményadatokat percek alatt."
+title: "egy Azure idő adatsorozat Insights környezet aaaCreate |} Microsoft Docs"
+description: "Ebből az oktatóanyagból megtudhatja, hogyan toocreate adatsorozat környezet, csatlakoztassa tooan eseményforrás, és a eseményadatok tooanalyze kész percben."
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: omravi
-ms.openlocfilehash: eb710795916a2d7beea75a6408a0982fb4dc8750
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7120fc9a6e4d4a4972f8cb37e4d9945cfb746fd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-new-time-series-insights-environment-in-the-azure-portal"></a><span data-ttu-id="1cb93-103">Új Time Series Insights-környezet létrehozása az Azure Portalon</span><span class="sxs-lookup"><span data-stu-id="1cb93-103">Create a new Time Series Insights environment in the Azure portal</span></span>
+# <a name="create-a-new-time-series-insights-environment-in-hello-azure-portal"></a><span data-ttu-id="9ee5e-103">Hozzon létre egy új idő adatsorozat Insights környezetben hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="9ee5e-103">Create a new Time Series Insights environment in hello Azure portal</span></span>
 
-<span data-ttu-id="1cb93-104">A Time Series Insights-környezet egy Azure-erőforrás bejövő adatforgalmi és tárolási kapacitással.</span><span class="sxs-lookup"><span data-stu-id="1cb93-104">Time Series Insights environment is an Azure resource with ingress and storage capacity.</span></span> <span data-ttu-id="1cb93-105">Az ügyfelek az Azure Portalon hozhatnak létre környezeteket a szükséges kapacitással.</span><span class="sxs-lookup"><span data-stu-id="1cb93-105">Customers provision environments via the Azure portal with the required capacity.</span></span>
+<span data-ttu-id="9ee5e-104">A Time Series Insights-környezet egy Azure-erőforrás bejövő adatforgalmi és tárolási kapacitással.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-104">Time Series Insights environment is an Azure resource with ingress and storage capacity.</span></span> <span data-ttu-id="9ee5e-105">Az ügyfelek hello szükséges kapacitással rendelkező környezetek hello Azure-portálon keresztül kiépítéséhez.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-105">Customers provision environments via hello Azure portal with hello required capacity.</span></span>
 
-## <a name="steps-to-create-the-environment"></a><span data-ttu-id="1cb93-106">A környezet létrehozásának lépései</span><span class="sxs-lookup"><span data-stu-id="1cb93-106">Steps to create the environment</span></span>
+## <a name="steps-toocreate-hello-environment"></a><span data-ttu-id="9ee5e-106">Lépéseket toocreate hello környezet</span><span class="sxs-lookup"><span data-stu-id="9ee5e-106">Steps toocreate hello environment</span></span>
 
-<span data-ttu-id="1cb93-107">A környezet létrehozásához kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="1cb93-107">Follow these steps to create your environment:</span></span>
+<span data-ttu-id="9ee5e-107">Kövesse ezeket a lépéseket toocreate a környezetben:</span><span class="sxs-lookup"><span data-stu-id="9ee5e-107">Follow these steps toocreate your environment:</span></span>
 
-1.  <span data-ttu-id="1cb93-108">Jelentkezzen be az [Azure Portal](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="1cb93-108">Sign in to the [Azure portal](https://portal.azure.com).</span></span>
-2.  <span data-ttu-id="1cb93-109">Kattintson a plusz jelre („+”) a bal felső sarokban.</span><span class="sxs-lookup"><span data-stu-id="1cb93-109">Click the plus sign (“+”) in the top left corner.</span></span>
-3.  <span data-ttu-id="1cb93-110">A keresőmezőben keressen a „Time Series Insights” kifejezésre.</span><span class="sxs-lookup"><span data-stu-id="1cb93-110">Search for “Time Series Insights” in the search box.</span></span>
+1.  <span data-ttu-id="9ee5e-108">Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="9ee5e-108">Sign in toohello [Azure portal](https://portal.azure.com).</span></span>
+2.  <span data-ttu-id="9ee5e-109">Kattintson a bal sarok hello felső hello plusz jel ("+").</span><span class="sxs-lookup"><span data-stu-id="9ee5e-109">Click hello plus sign (“+”) in hello top left corner.</span></span>
+3.  <span data-ttu-id="9ee5e-110">Keresse meg a "Idő adatsorozat Insights" hello Keresés mezőbe.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-110">Search for “Time Series Insights” in hello search box.</span></span>
 
-  ![A Time Series Insights-környezet létrehozása](media/get-started/getstarted-create-environment1.png)
+  ![Hello idő adatsorozat Insights környezet létrehozása](media/get-started/getstarted-create-environment1.png)
 
-4.  <span data-ttu-id="1cb93-112">Válassza a „Time Series Insights” elemet, és kattintson a „Létrehozás” lehetőségre.</span><span class="sxs-lookup"><span data-stu-id="1cb93-112">Select “Time Series Insights”, click “Create”.</span></span>
+4.  <span data-ttu-id="9ee5e-112">Válassza a „Time Series Insights” elemet, és kattintson a „Létrehozás” lehetőségre.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-112">Select “Time Series Insights”, click “Create”.</span></span>
 
-  ![A Time Series Insights-erőforráscsoport létrehozása](media/get-started/getstarted-create-environment2.png)
+  ![Hello idő adatsorozat Insights erőforráscsoport létrehozása](media/get-started/getstarted-create-environment2.png)
 
-5.  <span data-ttu-id="1cb93-114">Adja meg a környezet nevét.</span><span class="sxs-lookup"><span data-stu-id="1cb93-114">Specify environment name.</span></span> <span data-ttu-id="1cb93-115">Ez a név jelöli majd a környezetet a [Time Series Explorerben](https://insights.timeseries.azure.com).</span><span class="sxs-lookup"><span data-stu-id="1cb93-115">This name will represent the environment in [time series explorer](https://insights.timeseries.azure.com).</span></span>
-6.  <span data-ttu-id="1cb93-116">Válasszon egy előfizetést.</span><span class="sxs-lookup"><span data-stu-id="1cb93-116">Select a subscription.</span></span> <span data-ttu-id="1cb93-117">Azt az előfizetést válassza, amely tartalmazza az eseményforrást.</span><span class="sxs-lookup"><span data-stu-id="1cb93-117">Choose one that contains your event source.</span></span> <span data-ttu-id="1cb93-118">A Time Series Insights képes automatikusan észlelni az azonos előfizetésben lévő Azure IoT Hub- és Event Hub-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="1cb93-118">Time Series Insights can auto-detect Azure IoT Hub and Event Hub resources existing in the same subscription.</span></span>
-7.  <span data-ttu-id="1cb93-119">Válasszon ki vagy hozzon létre egy erőforráscsoportot.</span><span class="sxs-lookup"><span data-stu-id="1cb93-119">Select or create a resource group.</span></span> <span data-ttu-id="1cb93-120">Az erőforráscsoport olyan Azure-erőforrások gyűjteménye, amelyeket együtt használnak.</span><span class="sxs-lookup"><span data-stu-id="1cb93-120">A resource group is a collection of Azure resources used together.</span></span>
-8.  <span data-ttu-id="1cb93-121">Válasszon egy üzemeltetési helyet.</span><span class="sxs-lookup"><span data-stu-id="1cb93-121">Select a hosting location.</span></span> <span data-ttu-id="1cb93-122">Annak érdekében, hogy az adatokat ne kelljen egyik adatközpontból a másikba mozgatni, olyan helyet válasszon, amely tartalmazza az eseményforrást.</span><span class="sxs-lookup"><span data-stu-id="1cb93-122">To avoid moving data across data centers, choose location that contains your event source.</span></span>
-9.  <span data-ttu-id="1cb93-123">Válasszon tarifacsomagot.</span><span class="sxs-lookup"><span data-stu-id="1cb93-123">Select a pricing tier.</span></span>
-10. <span data-ttu-id="1cb93-124">Válassza ki a kapacitást.</span><span class="sxs-lookup"><span data-stu-id="1cb93-124">Select capacity.</span></span> <span data-ttu-id="1cb93-125">A környezet kapacitása a létrehozást követően módosítható.</span><span class="sxs-lookup"><span data-stu-id="1cb93-125">You can change capacity of an environment after creation.</span></span>
-11. <span data-ttu-id="1cb93-126">Hozza létre a környezetet.</span><span class="sxs-lookup"><span data-stu-id="1cb93-126">Create your environment.</span></span> <span data-ttu-id="1cb93-127">A környezetet rögzítheti az irányítópulton, így a bejelentkezés után könnyen elérheti.</span><span class="sxs-lookup"><span data-stu-id="1cb93-127">You can also pin your environment to the dashboard for easy access whenever you sign in.</span></span>
+5.  <span data-ttu-id="9ee5e-114">Adja meg a környezet nevét.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-114">Specify environment name.</span></span> <span data-ttu-id="9ee5e-115">Ez a név jelöli hello környezet [idő adatsorozat explorer](https://insights.timeseries.azure.com).</span><span class="sxs-lookup"><span data-stu-id="9ee5e-115">This name will represent hello environment in [time series explorer](https://insights.timeseries.azure.com).</span></span>
+6.  <span data-ttu-id="9ee5e-116">Válasszon egy előfizetést.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-116">Select a subscription.</span></span> <span data-ttu-id="9ee5e-117">Azt az előfizetést válassza, amely tartalmazza az eseményforrást.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-117">Choose one that contains your event source.</span></span> <span data-ttu-id="9ee5e-118">Idő adatsorozat Insights is automatikus észlelésű Azure IoT-központot, és a meglévő Eseményközpont erőforrások hello ugyanahhoz az előfizetéshez.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-118">Time Series Insights can auto-detect Azure IoT Hub and Event Hub resources existing in hello same subscription.</span></span>
+7.  <span data-ttu-id="9ee5e-119">Válasszon ki vagy hozzon létre egy erőforráscsoportot.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-119">Select or create a resource group.</span></span> <span data-ttu-id="9ee5e-120">Az erőforráscsoport olyan Azure-erőforrások gyűjteménye, amelyeket együtt használnak.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-120">A resource group is a collection of Azure resources used together.</span></span>
+8.  <span data-ttu-id="9ee5e-121">Válasszon egy üzemeltetési helyet.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-121">Select a hosting location.</span></span> <span data-ttu-id="9ee5e-122">tooavoid áthelyezése az adatok között adatközpontok, válassza ki az esemény forrását tartalmazó helyet.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-122">tooavoid moving data across data centers, choose location that contains your event source.</span></span>
+9.  <span data-ttu-id="9ee5e-123">Válasszon tarifacsomagot.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-123">Select a pricing tier.</span></span>
+10. <span data-ttu-id="9ee5e-124">Válassza ki a kapacitást.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-124">Select capacity.</span></span> <span data-ttu-id="9ee5e-125">A környezet kapacitása a létrehozást követően módosítható.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-125">You can change capacity of an environment after creation.</span></span>
+11. <span data-ttu-id="9ee5e-126">Hozza létre a környezetet.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-126">Create your environment.</span></span> <span data-ttu-id="9ee5e-127">Egyszerűen hozzáférhetnek a környezeti toohello irányítópult is rögzítheti, amikor bejelentkezik.</span><span class="sxs-lookup"><span data-stu-id="9ee5e-127">You can also pin your environment toohello dashboard for easy access whenever you sign in.</span></span>
 
-  ![A Time Series Insights rögzítése az irányítópulton](media/get-started/getstarted-create-environment3.png)
+  ![Hello idő adatsorozat Insights PIN-kód toodashboard létrehozása](media/get-started/getstarted-create-environment3.png)
 
-## <a name="next-steps"></a><span data-ttu-id="1cb93-129">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1cb93-129">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9ee5e-129">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9ee5e-129">Next steps</span></span>
 
-* <span data-ttu-id="1cb93-130">[Adathozzáférési házirendek meghatározása](time-series-insights-data-access.md) a környezet eléréséhez a [Time Series Insights portálon](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="1cb93-130">[Define data access policies](time-series-insights-data-access.md) to access your environment in [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>
-* [<span data-ttu-id="1cb93-131">Eseményforrás létrehozása</span><span class="sxs-lookup"><span data-stu-id="1cb93-131">Create an event source</span></span>](time-series-insights-add-event-source.md)
-* <span data-ttu-id="1cb93-132">[Események küldése](time-series-insights-send-events.md) az eseményforrásnak</span><span class="sxs-lookup"><span data-stu-id="1cb93-132">[Send events](time-series-insights-send-events.md) to the event source</span></span>
+* <span data-ttu-id="9ee5e-130">[Adja meg az adat-hozzáférési házirendjeit](time-series-insights-data-access.md) tooaccess a környezet [idő adatsorozat Insights portálon találja meg](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="9ee5e-130">[Define data access policies](time-series-insights-data-access.md) tooaccess your environment in [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>
+* [<span data-ttu-id="9ee5e-131">Eseményforrás létrehozása</span><span class="sxs-lookup"><span data-stu-id="9ee5e-131">Create an event source</span></span>](time-series-insights-add-event-source.md)
+* <span data-ttu-id="9ee5e-132">[Események küldése](time-series-insights-send-events.md) toohello eseményforrás</span><span class="sxs-lookup"><span data-stu-id="9ee5e-132">[Send events](time-series-insights-send-events.md) toohello event source</span></span>

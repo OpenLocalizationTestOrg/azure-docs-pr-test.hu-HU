@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric fordított proxy diagnosztika |} Microsoft Docs"
-description: "Megtudhatja, hogyan figyelése és diagnosztizálása a fordított proxy kérelem feldolgozását."
+title: "a Service Fabric aaaAzure fordított proxy diagnosztika |} Microsoft Docs"
+description: "Megtudhatja, hogyan toomonitor és diagnosztizálását hello fordított proxy kérelem feldolgozását."
 services: service-fabric
 documentationcenter: .net
 author: kavyako
@@ -13,34 +13,34 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/08/2017
 ms.author: kavyako
-ms.openlocfilehash: 3bc631606afbc93d5bca94f4955fd2ef816fa9fd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9687b9688dc26ba619cbdfab1b1f49a3035345c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-diagnose-request-processing-at-the-reverse-proxy"></a><span data-ttu-id="d81c6-103">Figyelése és diagnosztizálása kérelem feldolgozását a fordított proxy</span><span class="sxs-lookup"><span data-stu-id="d81c6-103">Monitor and diagnose request processing at the reverse proxy</span></span>
+# <a name="monitor-and-diagnose-request-processing-at-hello-reverse-proxy"></a><span data-ttu-id="07293-103">Figyelése és diagnosztizálása kérelem feldolgozását hello fordított proxy</span><span class="sxs-lookup"><span data-stu-id="07293-103">Monitor and diagnose request processing at hello reverse proxy</span></span>
 
-<span data-ttu-id="d81c6-104">A Service Fabric 5.7 kiadástól kezdve, fordított proxy események állnak rendelkezésre a következő gyűjtemény számára.</span><span class="sxs-lookup"><span data-stu-id="d81c6-104">Starting with the 5.7 release of Service Fabric, reverse proxy events are available for collection.</span></span> <span data-ttu-id="d81c6-105">Az események két csatorna, egyet a kérelem feldolgozása sikertelen a fordított proxy és a bejegyzéseket a sikeres és a sikertelen kérelmek részletes eseményeket tartalmazó második csatorna kapcsolatos hibaeseményeket csak érhetők el.</span><span class="sxs-lookup"><span data-stu-id="d81c6-105">The events are available in two channels, one with only error events related to request processing failure at the reverse proxy and second channel containing verbose events with entries for both successful and failed requests.</span></span>
+<span data-ttu-id="07293-104">A Service Fabric hello 5.7 kiadástól kezdve, fordított proxy események állnak rendelkezésre a gyűjteményhez.</span><span class="sxs-lookup"><span data-stu-id="07293-104">Starting with hello 5.7 release of Service Fabric, reverse proxy events are available for collection.</span></span> <span data-ttu-id="07293-105">hello események állnak rendelkezésre a két csatornák toorequest feldolgozási hiba hello fordított proxy és a bejegyzéseket a sikeres és a sikertelen kérelmek részletes eseményeket tartalmazó második csatorna kapcsolatos hibaesemények csak egyet.</span><span class="sxs-lookup"><span data-stu-id="07293-105">hello events are available in two channels, one with only error events related toorequest processing failure at hello reverse proxy and second channel containing verbose events with entries for both successful and failed requests.</span></span>
 
-<span data-ttu-id="d81c6-106">Tekintse meg [fordított proxy eseményeinek gyűjtése](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) ahhoz, hogy ezeknek a csatornáknak a helyi és az Azure Service Fabric-fürtök gyűjtését eseményekről.</span><span class="sxs-lookup"><span data-stu-id="d81c6-106">Refer to [Collect reverse proxy events](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) to enable collecting events from these channels in local and Azure Service Fabric clusters.</span></span>
+<span data-ttu-id="07293-106">Tekintse meg a túl[fordított proxy eseményeinek gyűjtése](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) tooenable ezeknek a csatornáknak a helyi és az Azure Service Fabric-fürtök az események gyűjtése.</span><span class="sxs-lookup"><span data-stu-id="07293-106">Refer too[Collect reverse proxy events](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events) tooenable collecting events from these channels in local and Azure Service Fabric clusters.</span></span>
 
-## <a name="troubleshoot-using-diagnostics-logs"></a><span data-ttu-id="d81c6-107">Diagnosztikai naplók segítségével hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="d81c6-107">Troubleshoot using diagnostics logs</span></span>
-<span data-ttu-id="d81c6-108">Íme néhány példa a találkozhat egy általános hiba naplók értelmezése:</span><span class="sxs-lookup"><span data-stu-id="d81c6-108">Here are some examples on how to interpret the common failure logs that one can encounter:</span></span>
+## <a name="troubleshoot-using-diagnostics-logs"></a><span data-ttu-id="07293-107">Diagnosztikai naplók segítségével hibaelhárítása</span><span class="sxs-lookup"><span data-stu-id="07293-107">Troubleshoot using diagnostics logs</span></span>
+<span data-ttu-id="07293-108">Íme néhány példa a hogyan toointerpret hello közös hiba naplókat, hogy egy találkozhat:</span><span class="sxs-lookup"><span data-stu-id="07293-108">Here are some examples on how toointerpret hello common failure logs that one can encounter:</span></span>
 
-1. <span data-ttu-id="d81c6-109">Fordított proxy válasz állapotkódja 504 (Timeout) adja vissza.</span><span class="sxs-lookup"><span data-stu-id="d81c6-109">Reverse proxy returns response status code 504 (Timeout).</span></span>
+1. <span data-ttu-id="07293-109">Fordított proxy válasz állapotkódja 504 (Timeout) adja vissza.</span><span class="sxs-lookup"><span data-stu-id="07293-109">Reverse proxy returns response status code 504 (Timeout).</span></span>
 
-    <span data-ttu-id="d81c6-110">Több ok miatt a szolgáltatás válaszolni a kérés megadott időn belül nem lehet.</span><span class="sxs-lookup"><span data-stu-id="d81c6-110">One reason could be due to the service failing to reply within the request timeout period.</span></span>
-<span data-ttu-id="d81c6-111">Az első esemény naplók alatt a fordított proxy fogadja a kérelem részletes adatait.</span><span class="sxs-lookup"><span data-stu-id="d81c6-111">The first event below logs the details of the request received at the reverse proxy.</span></span> <span data-ttu-id="d81c6-112">A második esemény azt jelzi, hogy a kérelem-továbbítást a szolgáltatás, miközben miatt "belső hiba = ERROR_WINHTTP_TIMEOUT"</span><span class="sxs-lookup"><span data-stu-id="d81c6-112">The second event indicates that the request failed while forwarding to service, due to "internal error = ERROR_WINHTTP_TIMEOUT"</span></span> 
+    <span data-ttu-id="07293-110">Egyik oka toohello szolgáltatás leállása tooreply oka lehet hello kérelem időkorláton belül.</span><span class="sxs-lookup"><span data-stu-id="07293-110">One reason could be due toohello service failing tooreply within hello request timeout period.</span></span>
+<span data-ttu-id="07293-111">hello első eseményt naplózza a hello kérelem érkezett: hello fordított proxy hello részleteit.</span><span class="sxs-lookup"><span data-stu-id="07293-111">hello first event below logs hello details of hello request received at hello reverse proxy.</span></span> <span data-ttu-id="07293-112">hello második esemény azt jelzi, hogy hello kérelem sikertelen volt továbbítási tooservice, miközben kellő túl "belső hiba = ERROR_WINHTTP_TIMEOUT"</span><span class="sxs-lookup"><span data-stu-id="07293-112">hello second event indicates that hello request failed while forwarding tooservice, due too"internal error = ERROR_WINHTTP_TIMEOUT"</span></span> 
 
-    <span data-ttu-id="d81c6-113">A tartalom tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="d81c6-113">The payload includes:</span></span>
+    <span data-ttu-id="07293-113">hello hasznos tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="07293-113">hello payload includes:</span></span>
 
-    *  <span data-ttu-id="d81c6-114">**traceId**: A GUID egy kérelemhez tartozó összes esemény összefüggéseket használható.</span><span class="sxs-lookup"><span data-stu-id="d81c6-114">**traceId**: This GUID can be used to correlate all the events corresponding to a single request.</span></span> <span data-ttu-id="d81c6-115">Az az alábbi két esemény, a traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, úgy, hogy a kérésben tartoznak.</span><span class="sxs-lookup"><span data-stu-id="d81c6-115">In the below two events, the traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, implying they belong to the same request.</span></span>
-    *  <span data-ttu-id="d81c6-116">**requestUrl**: az URL-cím (fordított proxy URL-cím), amelyhez a kérés lett elküldve.</span><span class="sxs-lookup"><span data-stu-id="d81c6-116">**requestUrl**: The URL (Reverse proxy URL) to which the request was sent.</span></span>
-    *  <span data-ttu-id="d81c6-117">**művelet**: HTTP-műveletet.</span><span class="sxs-lookup"><span data-stu-id="d81c6-117">**verb**: HTTP verb.</span></span>
-    *  <span data-ttu-id="d81c6-118">**remoteAddress**: a kérést küldő ügyfél címe.</span><span class="sxs-lookup"><span data-stu-id="d81c6-118">**remoteAddress**: Address of client sending the request.</span></span>
-    *  <span data-ttu-id="d81c6-119">**resolvedServiceUrl**: végpont URL-címét, amelyhez a bejövő kérelem lett feloldva.</span><span class="sxs-lookup"><span data-stu-id="d81c6-119">**resolvedServiceUrl**: Service endpoint URL to which the incoming request was resolved.</span></span> 
-    *  <span data-ttu-id="d81c6-120">**Hiba részletei**: a hibával kapcsolatos további információkat.</span><span class="sxs-lookup"><span data-stu-id="d81c6-120">**errorDetails**: Additional information about the failure.</span></span>
+    *  <span data-ttu-id="07293-114">**traceId**: A GUID lehet használt toocorrelate tooa egy kérelemhez tartozó összes hello eseményt.</span><span class="sxs-lookup"><span data-stu-id="07293-114">**traceId**: This GUID can be used toocorrelate all hello events corresponding tooa single request.</span></span> <span data-ttu-id="07293-115">Hello alább két esemény, a hello traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, ami azt jelenti, toohello tartoznak egyazon kérelemben.</span><span class="sxs-lookup"><span data-stu-id="07293-115">In hello below two events, hello traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**, implying they belong toohello same request.</span></span>
+    *  <span data-ttu-id="07293-116">**requestUrl**: hello URL-címe (fordított proxy URL-cím) toowhich hello kérés elküldése megtörtént.</span><span class="sxs-lookup"><span data-stu-id="07293-116">**requestUrl**: hello URL (Reverse proxy URL) toowhich hello request was sent.</span></span>
+    *  <span data-ttu-id="07293-117">**művelet**: HTTP-műveletet.</span><span class="sxs-lookup"><span data-stu-id="07293-117">**verb**: HTTP verb.</span></span>
+    *  <span data-ttu-id="07293-118">**remoteAddress**: hello kérést küldő ügyfél címe.</span><span class="sxs-lookup"><span data-stu-id="07293-118">**remoteAddress**: Address of client sending hello request.</span></span>
+    *  <span data-ttu-id="07293-119">**resolvedServiceUrl**: szolgáltatási végpont URL-cím toowhich hello bejövő kérelem lett feloldva.</span><span class="sxs-lookup"><span data-stu-id="07293-119">**resolvedServiceUrl**: Service endpoint URL toowhich hello incoming request was resolved.</span></span> 
+    *  <span data-ttu-id="07293-120">**Hiba részletei**: hello hibával kapcsolatos további információkat.</span><span class="sxs-lookup"><span data-stu-id="07293-120">**errorDetails**: Additional information about hello failure.</span></span>
 
     ```
     {
@@ -67,7 +67,7 @@ ms.lasthandoff: 08/18/2017
     {
       "Timestamp": "2017-07-20T16:00:01.3173605-07:00",
       ...
-      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request to service: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
+      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request tooservice: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
       ...
       "Payload": {
         "traceId": "2f87b722-e254-4ac2-a802-fd315c1a0271",
@@ -79,17 +79,17 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-2. <span data-ttu-id="d81c6-121">Fordított proxy válasz állapotkódja 404-es (nem található) adja vissza.</span><span class="sxs-lookup"><span data-stu-id="d81c6-121">Reverse proxy returns response status code 404 (Not Found).</span></span> 
+2. <span data-ttu-id="07293-121">Fordított proxy válasz állapotkódja 404-es (nem található) adja vissza.</span><span class="sxs-lookup"><span data-stu-id="07293-121">Reverse proxy returns response status code 404 (Not Found).</span></span> 
     
-    <span data-ttu-id="d81c6-122">Íme egy példa esemény, fordított proxy ahol adja vissza a 404-es a mivel az nem található a megfelelő szolgáltatásvégpontot.</span><span class="sxs-lookup"><span data-stu-id="d81c6-122">Here is an example event where reverse proxy returns 404 since it failed to find the matching service endpoint.</span></span>
-    <span data-ttu-id="d81c6-123">A tartalom itt egyik fontos a rendszer:</span><span class="sxs-lookup"><span data-stu-id="d81c6-123">The payload  entries of interest here are:</span></span>
-    *  <span data-ttu-id="d81c6-124">**processRequestPhase**: azt jelzi, a fázis, a hiba történt, amikor a kérelem feldolgozása közben ***TryGetEndpoint*** Egytényezős</span><span class="sxs-lookup"><span data-stu-id="d81c6-124">**processRequestPhase**: Indicates the phase during request processing when the failure occurred, ***TryGetEndpoint*** i.e</span></span> <span data-ttu-id="d81c6-125">a szolgáltatásvégpont továbbítania beolvasása közben.</span><span class="sxs-lookup"><span data-stu-id="d81c6-125">while trying to fetch the service endpoint to forward to.</span></span> 
-    *  <span data-ttu-id="d81c6-126">**Hiba részletei**: a végpont keresési feltételek sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="d81c6-126">**errorDetails**: Lists the endpoint search criteria.</span></span> <span data-ttu-id="d81c6-127">Itt láthatja, hogy a listenerName megadott = **FrontEndListener** mivel a replika végpontlistát csak figyelő, amelynek a neve tartalmaz **OldListener**.</span><span class="sxs-lookup"><span data-stu-id="d81c6-127">Here you can see that the listenerName specified = **FrontEndListener** whereas the replica endpoint list only contains a listener with the name **OldListener**.</span></span>
+    <span data-ttu-id="07293-122">Íme egy példa esemény, fordított proxy ahol adja vissza a 404-es a óta toofind hello megfelelő szolgáltatási végpont nem sikerült.</span><span class="sxs-lookup"><span data-stu-id="07293-122">Here is an example event where reverse proxy returns 404 since it failed toofind hello matching service endpoint.</span></span>
+    <span data-ttu-id="07293-123">hello hasznos itt egyik fontos a rendszer:</span><span class="sxs-lookup"><span data-stu-id="07293-123">hello payload  entries of interest here are:</span></span>
+    *  <span data-ttu-id="07293-124">**processRequestPhase**: azt jelzi, hello fázis hello hiba történt, amikor a kérelem feldolgozása közben ***TryGetEndpoint*** Egytényezős</span><span class="sxs-lookup"><span data-stu-id="07293-124">**processRequestPhase**: Indicates hello phase during request processing when hello failure occurred, ***TryGetEndpoint*** i.e</span></span> <span data-ttu-id="07293-125">miközben közben toofetch hello szolgáltatás végpont tooforward számára.</span><span class="sxs-lookup"><span data-stu-id="07293-125">while trying toofetch hello service endpoint tooforward to.</span></span> 
+    *  <span data-ttu-id="07293-126">**Hiba részletei**: hello végpont keresési feltételek sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="07293-126">**errorDetails**: Lists hello endpoint search criteria.</span></span> <span data-ttu-id="07293-127">Itt láthatja, hogy a megadott hello listenerName = **FrontEndListener** mivel hello replika végpont lista csak tartalmaz egy figyelő hello nevű **OldListener**.</span><span class="sxs-lookup"><span data-stu-id="07293-127">Here you can see that hello listenerName specified = **FrontEndListener** whereas hello replica endpoint list only contains a listener with hello name **OldListener**.</span></span>
     
     ```
     {
       ...
-      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward to service: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
+      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward tooservice: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
       "ProcessId": 57696,
       "Level": "Warning",
       "EventName": "ReverseProxy",
@@ -102,21 +102,21 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    <span data-ttu-id="d81c6-128">Ha fordított proxy 404 adhat vissza egy másik példa van nem található: ApplicationGateway\Http konfigurációs paraméter **SecureOnlyMode** a fordított proxykiszolgálón igaz értékre kell állítani a figyelést **HTTPS**, azonban a replika végpontok összes nem biztonságos (HTTP-figyelő).</span><span class="sxs-lookup"><span data-stu-id="d81c6-128">Another example where reverse proxy can return 404 Not Found is: ApplicationGateway\Http configuration parameter **SecureOnlyMode** is set to true with the reverse proxy listening on **HTTPS**, however all of the replica endpoints are unsecure (listening on HTTP).</span></span>
-    <span data-ttu-id="d81c6-129">Fordított proxy beolvasása 404, mert nem található a végpont figyel a következőn való továbbítja a kérelmet HTTPS.</span><span class="sxs-lookup"><span data-stu-id="d81c6-129">Reverse proxy returns 404 since it cannot find an endpoint listening on HTTPS to forward the request.</span></span> <span data-ttu-id="d81c6-130">A paraméterek elemzése, abban az esetben, ha a probléma szűkítéséhez segítségével hasznos:</span><span class="sxs-lookup"><span data-stu-id="d81c6-130">Analyzing the parameters in the event payload helps to narrow down the issue:</span></span>
+    <span data-ttu-id="07293-128">Ha fordított proxy 404 adhat vissza egy másik példa van nem található: ApplicationGateway\Http konfigurációs paraméter **SecureOnlyMode** hello fordított proxy a figyelést a következő tootrue beállított **HTTPS**, azonban hello replika végpontok összes nem biztonságos (HTTP-figyelő).</span><span class="sxs-lookup"><span data-stu-id="07293-128">Another example where reverse proxy can return 404 Not Found is: ApplicationGateway\Http configuration parameter **SecureOnlyMode** is set tootrue with hello reverse proxy listening on **HTTPS**, however all of hello replica endpoints are unsecure (listening on HTTP).</span></span>
+    <span data-ttu-id="07293-129">Fordított proxy beolvasása 404, mivel figyeli a HTTPS-tooforward hello kérést a végpont nem található.</span><span class="sxs-lookup"><span data-stu-id="07293-129">Reverse proxy returns 404 since it cannot find an endpoint listening on HTTPS tooforward hello request.</span></span> <span data-ttu-id="07293-130">Hello eseménytartalom hello paramétereiben elemzésével segít toonarrow hello probléma le:</span><span class="sxs-lookup"><span data-stu-id="07293-130">Analyzing hello parameters in hello event payload helps toonarrow down hello issue:</span></span>
     
     ```
         "errorDetails": "SecureOnlyMode = true, gateway protocol = https, listenerName = NewListener, replica endpoint = {\"Endpoints\":{\"OldListener\":\"Http:\/\/localhost:8491\/LocationApp\/\", \"NewListener\":\"Http:\/\/localhost:8492\/LocationApp\/\"}}"
     ```
 
-3. <span data-ttu-id="d81c6-131">A fordított proxykiszolgálóhoz kérelem időtúllépési hiba miatt sikertelen.</span><span class="sxs-lookup"><span data-stu-id="d81c6-131">Request to the reverse proxy fails with a timeout error.</span></span> 
-    <span data-ttu-id="d81c6-132">Az eseménynaplók esemény tartalmaznak, a kérelem érkezett adatokkal (itt nem látható).</span><span class="sxs-lookup"><span data-stu-id="d81c6-132">The event logs contain an event with the received request details (not shown here).</span></span>
-    <span data-ttu-id="d81c6-133">A következő esemény jeleníti meg, hogy a 404-es állapotkóddal válaszolt a szolgáltatás és a fordított proxy indít újra feloldani.</span><span class="sxs-lookup"><span data-stu-id="d81c6-133">The next event shows that the service responded with a 404 status code and reverse proxy initiates a re-resolve.</span></span> 
+3. <span data-ttu-id="07293-131">Kérelem toohello fordított proxy időtúllépési hiba miatt sikertelen.</span><span class="sxs-lookup"><span data-stu-id="07293-131">Request toohello reverse proxy fails with a timeout error.</span></span> 
+    <span data-ttu-id="07293-132">hello eseménynaplók tartalmazhatnak esemény érkezett hello szolgáltatáskérés részleteinek (itt nem látható).</span><span class="sxs-lookup"><span data-stu-id="07293-132">hello event logs contain an event with hello received request details (not shown here).</span></span>
+    <span data-ttu-id="07293-133">hello következő esemény jeleníti meg, hogy a 404-es állapotkóddal válaszolt hello szolgáltatást és a fordított proxy indít újra feloldani.</span><span class="sxs-lookup"><span data-stu-id="07293-133">hello next event shows that hello service responded with a 404 status code and reverse proxy initiates a re-resolve.</span></span> 
 
     ```
     {
       ...
-      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request to service returned: status code = 404, status description = , Reresolving ",
+      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request tooservice returned: status code = 404, status description = , Reresolving ",
       "Payload": {
         "traceId": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e",
         "statusCode": 404,
@@ -132,11 +132,11 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    <span data-ttu-id="d81c6-134">Gyűjtött összes eseményt, amikor a vonat események megjelenítése minden ki, és előre kísérlet megjelenik.</span><span class="sxs-lookup"><span data-stu-id="d81c6-134">When collecting all the events, you see a train of events showing every resolve and forward attempt.</span></span>
-    <span data-ttu-id="d81c6-135">Az adatsorozat utolsó esemény jeleníti meg, a kérelem feldolgozása sikertelen volt egy időkorlát együtt sikeres feloldása kísérletek száma.</span><span class="sxs-lookup"><span data-stu-id="d81c6-135">The last event in the series shows the request processing has failed with a timeout, along with the number of successful resolve attempts.</span></span>
+    <span data-ttu-id="07293-134">Minden hello események gyűjtése, amikor a vonat minden ki, és előre kísérlet megjelenítő események láthatja.</span><span class="sxs-lookup"><span data-stu-id="07293-134">When collecting all hello events, you see a train of events showing every resolve and forward attempt.</span></span>
+    <span data-ttu-id="07293-135">hello utolsó esemény hello sorozat bemutatja hello kérelem feldolgozása sikertelen volt egy időkorlát együtt hello sikeres feloldása kísérletek száma.</span><span class="sxs-lookup"><span data-stu-id="07293-135">hello last event in hello series shows hello request processing has failed with a timeout, along with hello number of successful resolve attempts.</span></span>
     
     > [!NOTE]
-    > <span data-ttu-id="d81c6-136">Javasoljuk, hogy alapértelmezés szerint le van tiltva a részletes csatorna eseménygyűjtés tartani, és engedélyezze a hibaelhárításhoz szükséges alapon.</span><span class="sxs-lookup"><span data-stu-id="d81c6-136">It is recommended to keep the  verbose channel event collection disabled by default and enable it for troubleshooting on a need basis.</span></span>
+    > <span data-ttu-id="07293-136">Ajánlott tookeep hello részletes csatorna eseménygyűjtés alapértelmezés szerint le van tiltva, és engedélyezze a hibaelhárításhoz szükséges alapon.</span><span class="sxs-lookup"><span data-stu-id="07293-136">It is recommended tookeep hello  verbose channel event collection disabled by default and enable it for troubleshooting on a need basis.</span></span>
 
     ```
     {
@@ -155,18 +155,18 @@ ms.lasthandoff: 08/18/2017
     }
     ```
     
-    <span data-ttu-id="d81c6-137">Gyűjtemény csak a kritikus hiba/események engedélyezve van, megjelenik egy esemény részleteit az időkorlát és a feloldás kísérletek száma.</span><span class="sxs-lookup"><span data-stu-id="d81c6-137">If collection is enabled for critical/error events only, you see one event with details about the timeout and the number of resolve attempts.</span></span> 
+    <span data-ttu-id="07293-137">Gyűjtemény csak a kritikus hiba/események engedélyezve van, megjelenik egy esemény részleteit hello időtúllépés és hello resolve kísérletek száma.</span><span class="sxs-lookup"><span data-stu-id="07293-137">If collection is enabled for critical/error events only, you see one event with details about hello timeout and hello number of resolve attempts.</span></span> 
     
-    <span data-ttu-id="d81c6-138">Ha a szolgáltatás visszaküldi a 404 állapotkódot a felhasználó, azt kell csatolni kell egy "X-ServiceFabric" fejlécet.</span><span class="sxs-lookup"><span data-stu-id="d81c6-138">If the service intends to send a 404 status code back to the user, it should be accompanied by an "X-ServiceFabric" header.</span></span> <span data-ttu-id="d81c6-139">Miután úgy javította ki ez, jelenik meg, hogy fordított proxy állapotkód továbbítja az ügyfélnek.</span><span class="sxs-lookup"><span data-stu-id="d81c6-139">After fixing this, you will see that reverse proxy forwards the status code back to the client.</span></span>  
+    <span data-ttu-id="07293-138">Ha hello szolgáltatás toosend a 404-es állapot kód hátsó toohello felhasználó, azt kell csatolni kell egy "X-ServiceFabric" fejlécet.</span><span class="sxs-lookup"><span data-stu-id="07293-138">If hello service intends toosend a 404 status code back toohello user, it should be accompanied by an "X-ServiceFabric" header.</span></span> <span data-ttu-id="07293-139">Miután úgy javította ki ez, látni fogja, hogy fordított proxy továbbítást hello állapot kód hátsó toohello ügyfél.</span><span class="sxs-lookup"><span data-stu-id="07293-139">After fixing this, you will see that reverse proxy forwards hello status code back toohello client.</span></span>  
 
-4. <span data-ttu-id="d81c6-140">Olyan esetekben, amikor az ügyfél a kérés megszakadt.</span><span class="sxs-lookup"><span data-stu-id="d81c6-140">Cases when the client has disconnected the request.</span></span>
+4. <span data-ttu-id="07293-140">Olyan esetekben, amikor a hello ügyfélkapcsolat megszakadt hello kérelem.</span><span class="sxs-lookup"><span data-stu-id="07293-140">Cases when hello client has disconnected hello request.</span></span>
 
-    <span data-ttu-id="d81c6-141">Az alábbi esemény rögzítése Ha fordított proxy továbbító ügyfél válasz, azonban az ügyfél kapcsolata megszakad:</span><span class="sxs-lookup"><span data-stu-id="d81c6-141">The below event is recorded when reverse proxy is forwarding the response to client but the client disconnects:</span></span>
+    <span data-ttu-id="07293-141">hello alatt esemény jön létre, amikor fordított proxy továbbító hello válasz tooclient, de hello ügyfél bontja a kapcsolatot:</span><span class="sxs-lookup"><span data-stu-id="07293-141">hello below event is recorded when reverse proxy is forwarding hello response tooclient but hello client disconnects:</span></span>
 
     ```
     {
       ...
-      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable to send response to client: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
+      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable toosend response tooclient: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
       "ProcessId": 57696,
       "Level": "Warning",
       ...
@@ -181,10 +181,10 @@ ms.lasthandoff: 08/18/2017
     ```
 
 > [!NOTE]
-> <span data-ttu-id="d81c6-142">A websocket-kérelem feldolgozásra kapcsolatos események nem jelenleg bejelentkezett.</span><span class="sxs-lookup"><span data-stu-id="d81c6-142">Events related to websocket request processing are not currently logged.</span></span> <span data-ttu-id="d81c6-143">Ez a következő kiadásban lesz hozzáadva.</span><span class="sxs-lookup"><span data-stu-id="d81c6-143">This will be added in the next release.</span></span>
+> <span data-ttu-id="07293-142">Események kapcsolódó toowebsocket kérelemfeldolgozás nem jelenleg bejelentkezett.</span><span class="sxs-lookup"><span data-stu-id="07293-142">Events related toowebsocket request processing are not currently logged.</span></span> <span data-ttu-id="07293-143">Ez a következő verzióra hello lesz hozzáadva.</span><span class="sxs-lookup"><span data-stu-id="07293-143">This will be added in hello next release.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="d81c6-144">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d81c6-144">Next steps</span></span>
-* <span data-ttu-id="d81c6-145">[Esemény összesítésére és az adatgyűjtést, a Windows Azure diagnosztikai](service-fabric-diagnostics-event-aggregation-wad.md) naplógyűjtést Azure fürtök engedélyezéséhez.</span><span class="sxs-lookup"><span data-stu-id="d81c6-145">[Event aggregation and collection using Windows Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) for enabling log collection in Azure clusters.</span></span>
-* <span data-ttu-id="d81c6-146">Service Fabric-események megtekintése a Visual Studio: [figyelése és diagnosztizálása helyileg](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span><span class="sxs-lookup"><span data-stu-id="d81c6-146">To view Service Fabric events in Visual Studio, see [Monitor and diagnose locally](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span></span>
-* <span data-ttu-id="d81c6-147">Tekintse meg [fordított proxy konfigurálása a biztonságos szolgáltatásokhoz](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) az Azure Resource Manager sablon minták konfigurálása biztonságos különböző szolgáltatástanúsítvány fordított proxy ellenőrzési beállítások.</span><span class="sxs-lookup"><span data-stu-id="d81c6-147">Refer to [Configure reverse proxy to connect to secure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) for Azure Resource Manager template samples to configure secure reverse proxy with the different service certificate validation options.</span></span>
-* <span data-ttu-id="d81c6-148">Olvasási [Service Fabric fordított proxy](service-fabric-reverseproxy.md) további.</span><span class="sxs-lookup"><span data-stu-id="d81c6-148">Read [Service Fabric reverse proxy](service-fabric-reverseproxy.md) to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="07293-144">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="07293-144">Next steps</span></span>
+* <span data-ttu-id="07293-145">[Esemény összesítésére és az adatgyűjtést, a Windows Azure diagnosztikai](service-fabric-diagnostics-event-aggregation-wad.md) naplógyűjtést Azure fürtök engedélyezéséhez.</span><span class="sxs-lookup"><span data-stu-id="07293-145">[Event aggregation and collection using Windows Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) for enabling log collection in Azure clusters.</span></span>
+* <span data-ttu-id="07293-146">tooview Service Fabric események a Visual Studio alkalmazásban, lásd: [figyelése és diagnosztizálása helyileg](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span><span class="sxs-lookup"><span data-stu-id="07293-146">tooview Service Fabric events in Visual Studio, see [Monitor and diagnose locally](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).</span></span>
+* <span data-ttu-id="07293-147">Tekintse meg a túl[fordított proxy tooconnect toosecure szolgáltatások konfigurálása](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) az Azure Resource Manager-sablon minták tooconfigure biztonságos fordított proxy hello eltérő tanúsítvány érvényesítése beállításokkal.</span><span class="sxs-lookup"><span data-stu-id="07293-147">Refer too[Configure reverse proxy tooconnect toosecure services](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services) for Azure Resource Manager template samples tooconfigure secure reverse proxy with hello different service certificate validation options.</span></span>
+* <span data-ttu-id="07293-148">Olvasási [Service Fabric fordított proxy](service-fabric-reverseproxy.md) további toolearn.</span><span class="sxs-lookup"><span data-stu-id="07293-148">Read [Service Fabric reverse proxy](service-fabric-reverseproxy.md) toolearn more.</span></span>

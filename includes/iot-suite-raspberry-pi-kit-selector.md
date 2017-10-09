@@ -1,0 +1,7 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="9aed8-101">C a szimulált telemetriai adat</span><span class="sxs-lookup"><span data-stu-id="9aed8-101">C with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-simulator.md)
+> * [<span data-ttu-id="9aed8-102">C a valódi érzékelő</span><span class="sxs-lookup"><span data-stu-id="9aed8-102">C with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-basic.md)
+> * [<span data-ttu-id="9aed8-103">C valósítja meg a belső vezérlőprogram frissítése</span><span class="sxs-lookup"><span data-stu-id="9aed8-103">C implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-advanced.md)
+> * [<span data-ttu-id="9aed8-104">A szimulált telemetriai node.js</span><span class="sxs-lookup"><span data-stu-id="9aed8-104">Node.js with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
+> * [<span data-ttu-id="9aed8-105">A valós érzékelő node.js</span><span class="sxs-lookup"><span data-stu-id="9aed8-105">Node.js with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-basic.md)
+> * [<span data-ttu-id="9aed8-106">NODE.js valósítja meg a belső vezérlőprogram frissítése</span><span class="sxs-lookup"><span data-stu-id="9aed8-106">Node.js implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-advanced.md)

@@ -2,7 +2,7 @@
 
 
 
-<span data-ttu-id="7aae3-101">Csak meg kell adnia a tulajdonságait sablon értesítéseket küld, amikor a mi esetünkben küldünk a tulajdonságkészletbe honosított verziója az aktuális híreket tartalmazó példány:</span><span class="sxs-lookup"><span data-stu-id="7aae3-101">When you send template notifications you only need to provide a set of properties, in our case we will send the set of properties containing the localized version of the current news, for instance:</span></span>
+<span data-ttu-id="8fef7-101">Csak akkor kell tooprovide tulajdonságait sablon értesítéseket küld, amikor a mi esetünkben küldünk hello tulajdonságkészletbe hello hello aktuális híreket, honosított verzióját tartalmazó példány:</span><span class="sxs-lookup"><span data-stu-id="8fef7-101">When you send template notifications you only need tooprovide a set of properties, in our case we will send hello set of properties containing hello localized version of hello current news, for instance:</span></span>
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@
     }
 
 
-<span data-ttu-id="7aae3-102">Ez a szakasz bemutatja, hogyan küldhetők értesítések egy konzolalkalmazás használatával</span><span class="sxs-lookup"><span data-stu-id="7aae3-102">This section shows how to send notifications using a console app</span></span>
+<span data-ttu-id="8fef7-102">Ez a szakasz bemutatja, hogyan toosend értesítések egy konzolalkalmazás használatával</span><span class="sxs-lookup"><span data-stu-id="8fef7-102">This section shows how toosend notifications using a console app</span></span>
 
-<span data-ttu-id="7aae3-103">A befoglalt kódot közzéteszi Windows áruház és az iOS-eszközökre, mivel a háttérkiszolgálón is szórási bármely, a támogatott eszközök.</span><span class="sxs-lookup"><span data-stu-id="7aae3-103">The included code broadcasts to both Windows Store and iOS devices, since the backend can broadcast to any of the supported devices.</span></span>
+<span data-ttu-id="8fef7-103">mivel hello háttér terjesztéshez tooany hello támogatott eszközök hello kód szórás tooboth Windows áruház és az iOS-eszközök esetén tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="8fef7-103">hello included code broadcasts tooboth Windows Store and iOS devices, since hello backend can broadcast tooany of hello supported devices.</span></span>
 
-### <a name="to-send-notifications-using-a-c-console-app"></a><span data-ttu-id="7aae3-104">Egy C# Konzolalkalmazás használatával az értesítések küldéséhez</span><span class="sxs-lookup"><span data-stu-id="7aae3-104">To send notifications using a C# console app</span></span>
-<span data-ttu-id="7aae3-105">Módosítsa a `SendTemplateNotificationAsync` módszer a korábban létrehozott kódot a következő konzol alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="7aae3-105">Modify the `SendTemplateNotificationAsync` method in the console app you previously created with the following code.</span></span> <span data-ttu-id="7aae3-106">Figyelje meg, hogyan ebben az esetben nincs szükség a különböző területi beállításokhoz és platformokra több értesítések küldéséhez.</span><span class="sxs-lookup"><span data-stu-id="7aae3-106">Notice how in this case there is no need to send multiple notifications for different locales and platforms.</span></span>
+### <a name="toosend-notifications-using-a-c-console-app"></a><span data-ttu-id="8fef7-104">toosend értesítéseket egy C# Konzolalkalmazás</span><span class="sxs-lookup"><span data-stu-id="8fef7-104">toosend notifications using a C# console app</span></span>
+<span data-ttu-id="8fef7-105">Módosítsa a hello `SendTemplateNotificationAsync` hello a következő kódot a korábban létrehozott hello Konzolalkalmazás metódust.</span><span class="sxs-lookup"><span data-stu-id="8fef7-105">Modify hello `SendTemplateNotificationAsync` method in hello console app you previously created with hello following code.</span></span> <span data-ttu-id="8fef7-106">Figyelje meg, hogyan ebben az esetben nincs nincs szükség toosend különböző területi beállításokhoz és platformok több értesítés is érkezett.</span><span class="sxs-lookup"><span data-stu-id="8fef7-106">Notice how in this case there is no need toosend multiple notifications for different locales and platforms.</span></span>
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@
         }
 
 
-<span data-ttu-id="7aae3-107">Vegye figyelembe, hogy a egyszerű hívás fog továbbítani az honosított adat híreket, **összes** az eszközök, függetlenül a platform, az értesítési központ hoz létre, és kézbesíti az összes eszközt egy adott előfizetni a megfelelő natív forgalma címke.</span><span class="sxs-lookup"><span data-stu-id="7aae3-107">Note that this simple call will deliver the localized piece of news to **all** your devices, irrespective of the platform, as your Notification Hub builds and delivers the correct native payload to all the devices subscribed to a specific tag.</span></span>
+<span data-ttu-id="8fef7-107">Vegye figyelembe, hogy a egyszerű hívás funkció hírek hello honosított adat túl**összes** hello platform, függetlenül az eszközök az értesítési központ hoz létre, és kézbesíti hello megfelelő natív hasznos tooall hello eszközök előfizetve tooa adott címke.</span><span class="sxs-lookup"><span data-stu-id="8fef7-107">Note that this simple call will deliver hello localized piece of news too**all** your devices, irrespective of hello platform, as your Notification Hub builds and delivers hello correct native payload tooall hello devices subscribed tooa specific tag.</span></span>
 
-### <a name="sending-the-notification-with-mobile-services"></a><span data-ttu-id="7aae3-108">A Mobile Services értesítés küldése</span><span class="sxs-lookup"><span data-stu-id="7aae3-108">Sending the notification with Mobile Services</span></span>
-<span data-ttu-id="7aae3-109">A Mobile Service ütemező a következő parancsfájlt használhatja:</span><span class="sxs-lookup"><span data-stu-id="7aae3-109">In your Mobile Service scheduler, you can use the following script:</span></span>
+### <a name="sending-hello-notification-with-mobile-services"></a><span data-ttu-id="8fef7-108">A Mobile Services hello értesítés küldése</span><span class="sxs-lookup"><span data-stu-id="8fef7-108">Sending hello notification with Mobile Services</span></span>
+<span data-ttu-id="8fef7-109">A Mobile Service ütemező a következő parancsfájl hello is használhatja:</span><span class="sxs-lookup"><span data-stu-id="8fef7-109">In your Mobile Service scheduler, you can use hello following script:</span></span>
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

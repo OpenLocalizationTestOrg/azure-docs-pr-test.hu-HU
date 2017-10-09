@@ -1,0 +1,2 @@
+>[!Note]
+> <span data-ttu-id="95994-101">Azt javasoljuk, hogy helyileg fejlesztésekor egy Azure Storage-fiókot használja.</span><span class="sxs-lookup"><span data-stu-id="95994-101">We recommend that you use an Azure Storage account when developing locally.</span></span> <span data-ttu-id="95994-102">Hello Azure Storage Emulator használata nem támogatott az Azure Functions eszközök által.</span><span class="sxs-lookup"><span data-stu-id="95994-102">Use of hello Azure Storage Emulator is not supported by Azure Functions tools.</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre a hálózati biztonsági csoport – Azure CLI 2.0 |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre és telepíthet a hálózati biztonsági csoportok az Azure CLI 2.0 használatával."
+title: "hálózati biztonsági csoport – Azure CLI 2.0 aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és hálózati biztonsági csoportok használatával hello Azure CLI 2.0 telepítése."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,36 +16,36 @@ ms.workload: infrastructure-services
 ms.date: 02/17/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8efb3ab66d07875b51f723fed5594bcb477ed025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b1d60676331bf5e2bbbb046c747477be9d3338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-network-security-groups-using-the-azure-cli-20"></a><span data-ttu-id="322fa-103">Hálózati biztonsági csoportok használata az Azure CLI 2.0 létrehozása</span><span class="sxs-lookup"><span data-stu-id="322fa-103">Create network security groups using the Azure CLI 2.0</span></span>
+# <a name="create-network-security-groups-using-hello-azure-cli-20"></a><span data-ttu-id="29161-103">Hálózati biztonsági csoportok használatával hello Azure CLI 2.0 létrehozása</span><span class="sxs-lookup"><span data-stu-id="29161-103">Create network security groups using hello Azure CLI 2.0</span></span>
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="322fa-104">A feladat befejezéséhez használható CLI-verziók</span><span class="sxs-lookup"><span data-stu-id="322fa-104">CLI versions to complete the task</span></span> 
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="29161-104">Parancssori felület verziók toocomplete hello feladat</span><span class="sxs-lookup"><span data-stu-id="29161-104">CLI versions toocomplete hello task</span></span> 
 
-<span data-ttu-id="322fa-105">A következő CLI-verziók egyikével elvégezheti a feladatot:</span><span class="sxs-lookup"><span data-stu-id="322fa-105">You can complete the task using one of the following CLI versions:</span></span> 
+<span data-ttu-id="29161-105">Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:</span><span class="sxs-lookup"><span data-stu-id="29161-105">You can complete hello task using one of hello following CLI versions:</span></span> 
 
-- <span data-ttu-id="322fa-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez</span><span class="sxs-lookup"><span data-stu-id="322fa-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – our CLI for the classic and resource management deployment models</span></span> 
-- <span data-ttu-id="322fa-107">[Az Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -erőforrás felügyeleti telepítési modell (Ez a cikk) a következő generációs parancssori felület</span><span class="sxs-lookup"><span data-stu-id="322fa-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - our next generation CLI for the resource management deployment model (this article)</span></span>
+- <span data-ttu-id="29161-106">[Az Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – hello klasszikus és resource management üzembe helyezési modellek számára a parancssori felület</span><span class="sxs-lookup"><span data-stu-id="29161-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – our CLI for hello classic and resource management deployment models</span></span> 
+- <span data-ttu-id="29161-107">[Az Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell (Ez a cikk)</span><span class="sxs-lookup"><span data-stu-id="29161-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - our next generation CLI for hello resource management deployment model (this article)</span></span>
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-<span data-ttu-id="322fa-108">A következő Példaparancsok Azure CLI 2.0 már a fenti forgatókönyv alapján létre egy egyszerű környezetben várható.</span><span class="sxs-lookup"><span data-stu-id="322fa-108">The sample Azure CLI 2.0 commands following expect a simple environment already created based on the scenario preceding.</span></span> 
+<span data-ttu-id="29161-108">hello minta Azure CLI 2.0 parancsokat következő várt már a fenti hello forgatókönyv alapján létre egy egyszerű környezetben.</span><span class="sxs-lookup"><span data-stu-id="29161-108">hello sample Azure CLI 2.0 commands following expect a simple environment already created based on hello scenario preceding.</span></span> 
 
-## <a name="create-the-nsg-for-the-frontend-subnet"></a><span data-ttu-id="322fa-109">Az NSG létrehozása a `FrontEnd` alhálózati</span><span class="sxs-lookup"><span data-stu-id="322fa-109">Create the NSG for the `FrontEnd` subnet</span></span>
+## <a name="create-hello-nsg-for-hello-frontend-subnet"></a><span data-ttu-id="29161-109">Hozzon létre a hello NSG hello `FrontEnd` alhálózati</span><span class="sxs-lookup"><span data-stu-id="29161-109">Create hello NSG for hello `FrontEnd` subnet</span></span>
 
-<span data-ttu-id="322fa-110">Az NSG nevű létrehozásához *NSG-előtérbeli* a fenti forgatókönyv alapján, kövesse a lépéseket következő.</span><span class="sxs-lookup"><span data-stu-id="322fa-110">To create an NSG named *NSG-FrontEnd* based on the scenario preceding, follow the steps following.</span></span>
+<span data-ttu-id="29161-110">az NSG nevű toocreate *NSG-előtér* alapján az előző hello forgatókönyv, hajtsa végre a hello lépéseket következő.</span><span class="sxs-lookup"><span data-stu-id="29161-110">toocreate an NSG named *NSG-FrontEnd* based on hello scenario preceding, follow hello steps following.</span></span>
 
-1. <span data-ttu-id="322fa-111">Ha még nem még konfigurál, a legutóbbi [Azure CLI 2.0](/cli/azure/install-az-cli2) és való bejelentkezéshez az Azure fiók használatával [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="322fa-111">If you haven't yet, install and configure the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in to an Azure account using [az login](/cli/azure/#login).</span></span> 
+1. <span data-ttu-id="29161-111">Ha még nem még telepít, és hello konfigurálása legújabb [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure-fiók használatával jelentkezzen [az bejelentkezési](/cli/azure/#login).</span><span class="sxs-lookup"><span data-stu-id="29161-111">If you haven't yet, install and configure hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in tooan Azure account using [az login](/cli/azure/#login).</span></span> 
 
-2. <span data-ttu-id="322fa-112">Hozzon létre egy NSG-t használ a [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="322fa-112">Create an NSG using the [az network nsg create](/cli/azure/network/nsg#create) command.</span></span> 
+2. <span data-ttu-id="29161-112">Hozzon létre egy NSG-t használó hello [az hálózati nsg létrehozása](/cli/azure/network/nsg#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-112">Create an NSG using hello [az network nsg create](/cli/azure/network/nsg#create) command.</span></span> 
 
     ```azurecli
     az network nsg create \
@@ -54,13 +54,13 @@ ms.lasthandoff: 07/11/2017
     --location centralus 
     ```
 
-    <span data-ttu-id="322fa-113">Paraméterek:</span><span class="sxs-lookup"><span data-stu-id="322fa-113">Parameters:</span></span>
+    <span data-ttu-id="29161-113">Paraméterek:</span><span class="sxs-lookup"><span data-stu-id="29161-113">Parameters:</span></span>
    
-   * <span data-ttu-id="322fa-114">`--resource-group`: Az erőforráscsoport, ahol létrehozzák az NSG neve.</span><span class="sxs-lookup"><span data-stu-id="322fa-114">`--resource-group`: Name of the resource group where the NSG is created.</span></span> <span data-ttu-id="322fa-115">A mi esetünkben *TestRG*.</span><span class="sxs-lookup"><span data-stu-id="322fa-115">For our scenario, *TestRG*.</span></span>
-   * <span data-ttu-id="322fa-116">`--location`: Az azure-régió, ahol létrejön az új NSG.</span><span class="sxs-lookup"><span data-stu-id="322fa-116">`--location`: Azure region where the new NSG is created.</span></span> <span data-ttu-id="322fa-117">A mi esetünkben *westus*.</span><span class="sxs-lookup"><span data-stu-id="322fa-117">For our scenario, *westus*.</span></span>
-   * <span data-ttu-id="322fa-118">`--name`: Az új NSG neve.</span><span class="sxs-lookup"><span data-stu-id="322fa-118">`--name`: Name for the new NSG.</span></span> <span data-ttu-id="322fa-119">A mi esetünkben *NSG-előtérbeli*.</span><span class="sxs-lookup"><span data-stu-id="322fa-119">For our scenario, *NSG-FrontEnd*.</span></span>
+   * <span data-ttu-id="29161-114">`--resource-group`: Hello NSG létrehozási helyének hello erőforráscsoport nevét.</span><span class="sxs-lookup"><span data-stu-id="29161-114">`--resource-group`: Name of hello resource group where hello NSG is created.</span></span> <span data-ttu-id="29161-115">A mi esetünkben *TestRG*.</span><span class="sxs-lookup"><span data-stu-id="29161-115">For our scenario, *TestRG*.</span></span>
+   * <span data-ttu-id="29161-116">`--location`: Az azure-régió, ahol hello új NSG jön létre.</span><span class="sxs-lookup"><span data-stu-id="29161-116">`--location`: Azure region where hello new NSG is created.</span></span> <span data-ttu-id="29161-117">A mi esetünkben *westus*.</span><span class="sxs-lookup"><span data-stu-id="29161-117">For our scenario, *westus*.</span></span>
+   * <span data-ttu-id="29161-118">`--name`: Hello nevét új NSG.</span><span class="sxs-lookup"><span data-stu-id="29161-118">`--name`: Name for hello new NSG.</span></span> <span data-ttu-id="29161-119">A mi esetünkben *NSG-előtérbeli*.</span><span class="sxs-lookup"><span data-stu-id="29161-119">For our scenario, *NSG-FrontEnd*.</span></span>
 
-    <span data-ttu-id="322fa-120">A várható kimenete meglehetősen bit, többek között az alapértelmezett szabályok listáját.</span><span class="sxs-lookup"><span data-stu-id="322fa-120">The expected output is quite a bit of information including a list of all the default rules.</span></span> <span data-ttu-id="322fa-121">A következő példa bemutatja az alapértelmezett szabályok használatával egy JMESPATH lekérdezés szűrő a `table` kimeneti formátum:</span><span class="sxs-lookup"><span data-stu-id="322fa-121">The following example shows the default rules using a JMESPATH query filter with the `table` output format:</span></span>
+    <span data-ttu-id="29161-120">hello várt kimeneti meglehetősen bit, többek között az összes hello alapértelmezett szabályok listáját.</span><span class="sxs-lookup"><span data-stu-id="29161-120">hello expected output is quite a bit of information including a list of all hello default rules.</span></span> <span data-ttu-id="29161-121">hello alábbi példa bemutatja hello alapértelmezett szabályok JMESPATH lekérdezés szűrő használata hello `table` kimeneti formátum:</span><span class="sxs-lookup"><span data-stu-id="29161-121">hello following example shows hello default rules using a JMESPATH query filter with hello `table` output format:</span></span>
 
     ```azurecli
     az network nsg show \
@@ -70,23 +70,23 @@ ms.lasthandoff: 07/11/2017
     -o table
     ```
    
-   <span data-ttu-id="322fa-122">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="322fa-122">Output:</span></span>
+   <span data-ttu-id="29161-122">Kimenet:</span><span class="sxs-lookup"><span data-stu-id="29161-122">Output:</span></span>
 
         Access    Desc                                                    DestPortRange    Direction      Priority
         
         Allow     Allow inbound traffic from all VMs in VNET              *                Inbound           65000
         Allow     Allow inbound traffic from azure load balancer          *                Inbound           65001
         Deny      Deny all inbound traffic                                *                Inbound           65500
-        Allow     Allow outbound traffic from all VMs to all VMs in VNET  *                Outbound          65000
-        Allow     Allow outbound traffic from all VMs to Internet         *                Outbound          65001
+        Allow     Allow outbound traffic from all VMs tooall VMs in VNET  *                Outbound          65000
+        Allow     Allow outbound traffic from all VMs tooInternet         *                Outbound          65001
         Deny      Deny all outbound traffic                               *                Outbound          65500
 
 
 
-3. <span data-ttu-id="322fa-123">Hozzon létre egy szabályt, amely hozzáférést biztosít a 3389-es port (RDP) az internetről a [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="322fa-123">Create a rule that allows access to port 3389 (RDP) from the Internet with the [az network nsg rule create](/cli/azure/network/nsg/rule#create) command.</span></span>
+3. <span data-ttu-id="29161-123">Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 3389-es (RDP) a hello Internet a hello [az hálózati nsg-szabály létrehozása](/cli/azure/network/nsg/rule#create) parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-123">Create a rule that allows access tooport 3389 (RDP) from hello Internet with hello [az network nsg rule create](/cli/azure/network/nsg/rule#create) command.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="322fa-124">Attól függően, hogy a rendszerhéj használ, előfordulhat, hogy módosítania a `*` az argumentumok, hogy ne bontsa ki a következő argumentum végrehajtása előtt a következő karakter.</span><span class="sxs-lookup"><span data-stu-id="322fa-124">Depending on the shell you are using, you might need to modify the `*` character in the arguments following so as not to expand the argument before execution.</span></span>
+    > <span data-ttu-id="29161-124">Attól függően, hogy hello felületet használ, szükség lehet a toomodify hello `*` karakter hello argumentumok nem tooexpand hello argumentum végrehajtása előtt.</span><span class="sxs-lookup"><span data-stu-id="29161-124">Depending on hello shell you are using, you might need toomodify hello `*` character in hello arguments following so as not tooexpand hello argument before execution.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 3389
     ```
    
-    <span data-ttu-id="322fa-125">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="322fa-125">Expected output:</span></span>
+    <span data-ttu-id="29161-125">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="29161-125">Expected output:</span></span>
    
     ```json
     {
@@ -124,23 +124,23 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="322fa-126">Paraméterek:</span><span class="sxs-lookup"><span data-stu-id="322fa-126">Parameters:</span></span>
+    <span data-ttu-id="29161-126">Paraméterek:</span><span class="sxs-lookup"><span data-stu-id="29161-126">Parameters:</span></span>
 
-    * <span data-ttu-id="322fa-127">`--resource-group testrg`: Az erőforráscsoport használatára.</span><span class="sxs-lookup"><span data-stu-id="322fa-127">`--resource-group testrg`: The resource group to use.</span></span> <span data-ttu-id="322fa-128">Vegye figyelembe, hogy a rendszer azonban nem.</span><span class="sxs-lookup"><span data-stu-id="322fa-128">Note that it is case-insensitive.</span></span>
-    * <span data-ttu-id="322fa-129">`--nsg-name NSG-FrontEnd`: A szabály létrehozása zajlik az NSG neve.</span><span class="sxs-lookup"><span data-stu-id="322fa-129">`--nsg-name NSG-FrontEnd`: Name of the NSG in which the rule is created.</span></span>
-    * <span data-ttu-id="322fa-130">`--name rdp-rule`: Az új szabály nevét.</span><span class="sxs-lookup"><span data-stu-id="322fa-130">`--name rdp-rule`: Name for the new rule.</span></span>
-    * <span data-ttu-id="322fa-131">`--access Allow`: A hozzáférési szint a szabály (Megtagadás vagy engedélyezés).</span><span class="sxs-lookup"><span data-stu-id="322fa-131">`--access Allow`: Access level for the rule (Deny or Allow).</span></span>
-    * <span data-ttu-id="322fa-132">`--protocol Tcp`: A protokoll (Tcp, Udp vagy *).</span><span class="sxs-lookup"><span data-stu-id="322fa-132">`--protocol Tcp`: Protocol (Tcp, Udp, or *).</span></span>
-    * <span data-ttu-id="322fa-133">`--direction Inbound`: A (bejövő vagy kimenő) kapcsolat irányát.</span><span class="sxs-lookup"><span data-stu-id="322fa-133">`--direction Inbound`: Direction of the connection (Inbound or Outbound).</span></span>
-    * <span data-ttu-id="322fa-134">`--priority 100`: A szabály prioritását.</span><span class="sxs-lookup"><span data-stu-id="322fa-134">`--priority 100`: Priority for the rule.</span></span>
-    * <span data-ttu-id="322fa-135">`--source-address-prefix Internet`: Forrás címelőtagot CIDR vagy az alapértelmezett címkéket használ.</span><span class="sxs-lookup"><span data-stu-id="322fa-135">`--source-address-prefix Internet`: Source address prefix in CIDR or using default tags.</span></span>
-    * <span data-ttu-id="322fa-136">`--source-port-range "*"`: A portot vagy porttartományt forrás.</span><span class="sxs-lookup"><span data-stu-id="322fa-136">`--source-port-range "*"`: Source port or port range.</span></span> <span data-ttu-id="322fa-137">Az portot, amelyet a kapcsolat megnyitása.</span><span class="sxs-lookup"><span data-stu-id="322fa-137">Port that opened the connection.</span></span>
-    * <span data-ttu-id="322fa-138">`--destination-address-prefix "*"`: Cél címelőtagot CIDR vagy az alapértelmezett címkéket használ.</span><span class="sxs-lookup"><span data-stu-id="322fa-138">`--destination-address-prefix "*"`: Destination address prefix in CIDR or using default tags.</span></span>
-    * <span data-ttu-id="322fa-139">`--destination-port-range 3389`: A célport vagy porttartomány.</span><span class="sxs-lookup"><span data-stu-id="322fa-139">`--destination-port-range 3389`: Destination port or port range.</span></span> <span data-ttu-id="322fa-140">Az port, amely megkapja a kapcsolódási kérelmet.</span><span class="sxs-lookup"><span data-stu-id="322fa-140">Port that receives the connection request.</span></span>
+    * <span data-ttu-id="29161-127">`--resource-group testrg`: hello erőforrás csoport toouse.</span><span class="sxs-lookup"><span data-stu-id="29161-127">`--resource-group testrg`: hello resource group toouse.</span></span> <span data-ttu-id="29161-128">Vegye figyelembe, hogy a rendszer azonban nem.</span><span class="sxs-lookup"><span data-stu-id="29161-128">Note that it is case-insensitive.</span></span>
+    * <span data-ttu-id="29161-129">`--nsg-name NSG-FrontEnd`: A mely hello-szabály jön létre hello NSG neve.</span><span class="sxs-lookup"><span data-stu-id="29161-129">`--nsg-name NSG-FrontEnd`: Name of hello NSG in which hello rule is created.</span></span>
+    * <span data-ttu-id="29161-130">`--name rdp-rule`: Hello új szabály nevét.</span><span class="sxs-lookup"><span data-stu-id="29161-130">`--name rdp-rule`: Name for hello new rule.</span></span>
+    * <span data-ttu-id="29161-131">`--access Allow`: A hozzáférési szint hello szabály (Megtagadás vagy engedélyezés).</span><span class="sxs-lookup"><span data-stu-id="29161-131">`--access Allow`: Access level for hello rule (Deny or Allow).</span></span>
+    * <span data-ttu-id="29161-132">`--protocol Tcp`: A protokoll (Tcp, Udp vagy *).</span><span class="sxs-lookup"><span data-stu-id="29161-132">`--protocol Tcp`: Protocol (Tcp, Udp, or *).</span></span>
+    * <span data-ttu-id="29161-133">`--direction Inbound`: Irányát (bejövő vagy kimenő) hello kapcsolat.</span><span class="sxs-lookup"><span data-stu-id="29161-133">`--direction Inbound`: Direction of hello connection (Inbound or Outbound).</span></span>
+    * <span data-ttu-id="29161-134">`--priority 100`: Hello szabály prioritását.</span><span class="sxs-lookup"><span data-stu-id="29161-134">`--priority 100`: Priority for hello rule.</span></span>
+    * <span data-ttu-id="29161-135">`--source-address-prefix Internet`: Forrás címelőtagot CIDR vagy az alapértelmezett címkéket használ.</span><span class="sxs-lookup"><span data-stu-id="29161-135">`--source-address-prefix Internet`: Source address prefix in CIDR or using default tags.</span></span>
+    * <span data-ttu-id="29161-136">`--source-port-range "*"`: A portot vagy porttartományt forrás.</span><span class="sxs-lookup"><span data-stu-id="29161-136">`--source-port-range "*"`: Source port or port range.</span></span> <span data-ttu-id="29161-137">Hello kapcsolatot megnyitó port.</span><span class="sxs-lookup"><span data-stu-id="29161-137">Port that opened hello connection.</span></span>
+    * <span data-ttu-id="29161-138">`--destination-address-prefix "*"`: Cél címelőtagot CIDR vagy az alapértelmezett címkéket használ.</span><span class="sxs-lookup"><span data-stu-id="29161-138">`--destination-address-prefix "*"`: Destination address prefix in CIDR or using default tags.</span></span>
+    * <span data-ttu-id="29161-139">`--destination-port-range 3389`: A célport vagy porttartomány.</span><span class="sxs-lookup"><span data-stu-id="29161-139">`--destination-port-range 3389`: Destination port or port range.</span></span> <span data-ttu-id="29161-140">Az port, amely megkapja a hello kapcsolódási kérelmet.</span><span class="sxs-lookup"><span data-stu-id="29161-140">Port that receives hello connection request.</span></span>
 
 
 
-4. <span data-ttu-id="322fa-141">Hozzon létre egy szabályt, amely engedélyezi a hozzáférést a port a 80-as (HTTP) az internetről **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="322fa-141">Create a rule that allows access to port 80 (HTTP) from the Internet **az network nsg rule create** command.</span></span>
+4. <span data-ttu-id="29161-141">Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 80-as (HTTP) az hello Internet **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-141">Create a rule that allows access tooport 80 (HTTP) from hello Internet **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -157,7 +157,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 80
     ```
    
-    <span data-ttu-id="322fa-142">Várt putput:</span><span class="sxs-lookup"><span data-stu-id="322fa-142">Expected putput:</span></span>
+    <span data-ttu-id="29161-142">Várt putput:</span><span class="sxs-lookup"><span data-stu-id="29161-142">Expected putput:</span></span>
    
     ```json
     {
@@ -178,7 +178,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. <span data-ttu-id="322fa-143">Az NSG kötni a **előtér** alhálózat a [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) parancs.</span><span class="sxs-lookup"><span data-stu-id="322fa-143">Bind the NSG to the **FrontEnd** subnet with the [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) command.</span></span>
+5. <span data-ttu-id="29161-143">Kötési hello NSG toohello **előtér** hello alhálózat [az hálózati vnet alhálózati frissítés](/cli/azure/network/vnet/subnet#update) parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-143">Bind hello NSG toohello **FrontEnd** subnet with hello [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) command.</span></span>
         
     ```azurecli
     az network vnet subnet update \
@@ -188,7 +188,7 @@ ms.lasthandoff: 07/11/2017
     --network-security-group NSG-FrontEnd
     ```
    
-    <span data-ttu-id="322fa-144">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="322fa-144">Expected output:</span></span>
+    <span data-ttu-id="29161-144">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="29161-144">Expected output:</span></span>
    
     ```json
     {
@@ -231,10 +231,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="create-the-nsg-for-the-backend-subnet"></a><span data-ttu-id="322fa-145">Az NSG létrehozása a `BackEnd` alhálózati</span><span class="sxs-lookup"><span data-stu-id="322fa-145">Create the NSG for the `BackEnd` subnet</span></span>
-<span data-ttu-id="322fa-146">Az NSG nevű létrehozásához *NSG-háttérrendszer* a fenti forgatókönyv alapján, kövesse a lépéseket következő.</span><span class="sxs-lookup"><span data-stu-id="322fa-146">To create an NSG named *NSG-BackEnd* based on the scenario preceding, follow the steps following.</span></span>
+## <a name="create-hello-nsg-for-hello-backend-subnet"></a><span data-ttu-id="29161-145">Hozzon létre a hello NSG hello `BackEnd` alhálózati</span><span class="sxs-lookup"><span data-stu-id="29161-145">Create hello NSG for hello `BackEnd` subnet</span></span>
+<span data-ttu-id="29161-146">az NSG nevű toocreate *NSG-háttérrendszer* alapján az előző hello forgatókönyv, hajtsa végre a hello lépéseket következő.</span><span class="sxs-lookup"><span data-stu-id="29161-146">toocreate an NSG named *NSG-BackEnd* based on hello scenario preceding, follow hello steps following.</span></span>
 
-1. <span data-ttu-id="322fa-147">Hozzon létre a `NSG-BackEnd` az NSG **az hálózati nsg létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="322fa-147">Create the `NSG-BackEnd` NSG with **az network nsg create**.</span></span>
+1. <span data-ttu-id="29161-147">Hozzon létre hello `NSG-BackEnd` az NSG **az hálózati nsg létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="29161-147">Create hello `NSG-BackEnd` NSG with **az network nsg create**.</span></span>
    
     ```azurecli
     az network nsg create \
@@ -243,9 +243,9 @@ ms.lasthandoff: 07/11/2017
     --location centralus
     ```
    
-    <span data-ttu-id="322fa-148">2. lépéshez, előző, mint a várt kimeneti elég nagy, beleértve az alapértelmezett szabályokat.</span><span class="sxs-lookup"><span data-stu-id="322fa-148">As in step 2, preceding, the expected output is quite large, including default rules.</span></span>
+    <span data-ttu-id="29161-148">Ahogy az előző, 2. lépés hello várható kimenete túl nagy, beleértve az alapértelmezett szabályokat.</span><span class="sxs-lookup"><span data-stu-id="29161-148">As in step 2, preceding, hello expected output is quite large, including default rules.</span></span>
    
-2. <span data-ttu-id="322fa-149">Hozzon létre egy szabályt, amely hozzáférést biztosít az 1433-as port (SQL) az a `FrontEnd` alhálózat a **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="322fa-149">Create a rule that allows access to port 1433 (SQL) from the `FrontEnd` subnet with the **az network nsg rule create** command.</span></span>
+2. <span data-ttu-id="29161-149">Hozzon létre egy szabályt, amely lehetővé teszi, hogy a hozzáférés tooport 1433-as port (SQL) a hello `FrontEnd` hello alhálózat **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-149">Create a rule that allows access tooport 1433 (SQL) from hello `FrontEnd` subnet with hello **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -262,7 +262,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 1433
     ```
    
-    <span data-ttu-id="322fa-150">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="322fa-150">Expected output:</span></span>
+    <span data-ttu-id="29161-150">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="29161-150">Expected output:</span></span>
 
     ```json  
     {
@@ -283,7 +283,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-3. <span data-ttu-id="322fa-151">Hozzon létre egy szabályt, amely megtagadja a hozzáférést az Internet használatát az **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="322fa-151">Create a rule that denies access to the Internet using the **az network nsg rule create** command.</span></span>
+3. <span data-ttu-id="29161-151">Hozzon létre egy szabályt, amely megtagadja a hozzáférést toohello Internet használatával hello **az hálózati nsg-szabály létrehozása** parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-151">Create a rule that denies access toohello Internet using hello **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -300,7 +300,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range "*"
     ```
    
-    <span data-ttu-id="322fa-152">Várt putput:</span><span class="sxs-lookup"><span data-stu-id="322fa-152">Expected putput:</span></span>
+    <span data-ttu-id="29161-152">Várt putput:</span><span class="sxs-lookup"><span data-stu-id="29161-152">Expected putput:</span></span>
    
     ```json
     {
@@ -321,7 +321,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-4. <span data-ttu-id="322fa-153">Az NSG kötni a `BackEnd` alhálózati használata a **az hálózati vnet alhálózati set** parancs.</span><span class="sxs-lookup"><span data-stu-id="322fa-153">Bind the NSG to the `BackEnd` subnet using the **az network vnet subnet set** command.</span></span>
+4. <span data-ttu-id="29161-153">Kötési hello NSG toohello `BackEnd` hello alhálózatot **az hálózati vnet alhálózati set** parancsot.</span><span class="sxs-lookup"><span data-stu-id="29161-153">Bind hello NSG toohello `BackEnd` subnet using hello **az network vnet subnet set** command.</span></span>
    
     ```azurecli
     az network vnet subnet update \
@@ -331,7 +331,7 @@ ms.lasthandoff: 07/11/2017
     --network-security-group NSG-BackEnd
     ```
    
-    <span data-ttu-id="322fa-154">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="322fa-154">Expected output:</span></span>
+    <span data-ttu-id="29161-154">Várt kimenet:</span><span class="sxs-lookup"><span data-stu-id="29161-154">Expected output:</span></span>
    
     ```json
     {

@@ -1,6 +1,6 @@
 ---
-title: "Azure gyors üzembe helyezés – Windows VM CLI létrehozása | Microsoft Docs"
-description: "Gyorsan megismerheti a Windows rendszerű virtuális gép Azure parancssori felülettel való létrehozásának módját."
+title: "gyors üzembe helyezés – aaaAzure létrehozása a Windows virtuális gép parancssori Felülettel |} Microsoft Docs"
+description: "A Windows hello Azure CLI virtuális gépek gyors megtudhatja, toocreate."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,45 +16,45 @@ ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: fcb2f1389b3434d0d2e3145217e54ceb2326b969
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 029bdecec219b12b80b958ceeedda214f1b13149
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-virtual-machine-with-the-azure-cli"></a><span data-ttu-id="f93ad-103">Windowsos virtuális gép létrehozása az Azure parancssori felülettel</span><span class="sxs-lookup"><span data-stu-id="f93ad-103">Create a Windows virtual machine with the Azure CLI</span></span>
+# <a name="create-a-windows-virtual-machine-with-hello-azure-cli"></a><span data-ttu-id="16fc8-103">Hozzon létre egy Windows rendszerű virtuális gép hello Azure parancssori felület</span><span class="sxs-lookup"><span data-stu-id="16fc8-103">Create a Windows virtual machine with hello Azure CLI</span></span>
 
-<span data-ttu-id="f93ad-104">Az Azure CLI az Azure-erőforrások parancssorból vagy szkriptekkel történő létrehozására és kezelésére használható.</span><span class="sxs-lookup"><span data-stu-id="f93ad-104">The Azure CLI is used to create and manage Azure resources from the command line or in scripts.</span></span> <span data-ttu-id="f93ad-105">Ez az útmutató részletesen bemutatja, hogyan lehet egy Windows Server 2016-ot futtató virtuális gépet az Azure CLI-vel üzembe helyezni.</span><span class="sxs-lookup"><span data-stu-id="f93ad-105">This guide details using the Azure CLI to deploy a virtual machine running Windows Server 2016.</span></span> <span data-ttu-id="f93ad-106">Az üzembe helyezés végeztével csatlakozunk a kiszolgálóhoz, és telepítjük az IIS-t.</span><span class="sxs-lookup"><span data-stu-id="f93ad-106">Once deployment is complete, we connect to the server and install IIS.</span></span>
+<span data-ttu-id="16fc8-104">hello Azure CLI használt toocreate és hello parancssorból vagy parancsfájlokban Azure-erőforrások kezeléséhez.</span><span class="sxs-lookup"><span data-stu-id="16fc8-104">hello Azure CLI is used toocreate and manage Azure resources from hello command line or in scripts.</span></span> <span data-ttu-id="16fc8-105">Ez az útmutató adatokat hello Azure CLI toodeploy Windows Server 2016 rendszert futtató virtuális gépek használata.</span><span class="sxs-lookup"><span data-stu-id="16fc8-105">This guide details using hello Azure CLI toodeploy a virtual machine running Windows Server 2016.</span></span> <span data-ttu-id="16fc8-106">Központi telepítés befejezése után azt csatlakoztassa toohello a kiszolgálót, és telepítse az IIS.</span><span class="sxs-lookup"><span data-stu-id="16fc8-106">Once deployment is complete, we connect toohello server and install IIS.</span></span>
 
-<span data-ttu-id="f93ad-107">Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="f93ad-107">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
+<span data-ttu-id="16fc8-107">Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.</span><span class="sxs-lookup"><span data-stu-id="16fc8-107">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="f93ad-108">Ha a CLI helyi telepítését és használatát választja, akkor ehhez a gyorsútmutatóhoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség.</span><span class="sxs-lookup"><span data-stu-id="f93ad-108">If you choose to install and use the CLI locally, this quickstart requires that you are running the Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="f93ad-109">A verzió azonosításához futtassa a következőt: `az --version`.</span><span class="sxs-lookup"><span data-stu-id="f93ad-109">Run `az --version` to find the version.</span></span> <span data-ttu-id="f93ad-110">Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="f93ad-110">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="16fc8-108">Ha Ön tooinstall kiválasztása és hello CLI helyileg, a gyors üzembe helyezés van szükség, hogy verzióját hello Azure CLI 2.0.4 vagy újabb.</span><span class="sxs-lookup"><span data-stu-id="16fc8-108">If you choose tooinstall and use hello CLI locally, this quickstart requires that you are running hello Azure CLI version 2.0.4 or later.</span></span> <span data-ttu-id="16fc8-109">Futtatás `az --version` toofind hello verziója.</span><span class="sxs-lookup"><span data-stu-id="16fc8-109">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="16fc8-110">Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="16fc8-110">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="f93ad-111">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="f93ad-111">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="16fc8-111">Hozzon létre egy erőforráscsoportot</span><span class="sxs-lookup"><span data-stu-id="16fc8-111">Create a resource group</span></span>
 
-<span data-ttu-id="f93ad-112">Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="f93ad-112">Create a resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="f93ad-113">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="f93ad-113">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
+<span data-ttu-id="16fc8-112">Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="16fc8-112">Create a resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="16fc8-113">Az Azure-erőforráscsoport olyan logikai tároló, amelybe a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="16fc8-113">An Azure resource group is a logical container into which Azure resources are deployed and managed.</span></span> 
 
-<span data-ttu-id="f93ad-114">A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot az *eastus* helyen.</span><span class="sxs-lookup"><span data-stu-id="f93ad-114">The following example creates a resource group named *myResourceGroup* in the *eastus* location.</span></span>
+<span data-ttu-id="16fc8-114">hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *eastus* helyét.</span><span class="sxs-lookup"><span data-stu-id="16fc8-114">hello following example creates a resource group named *myResourceGroup* in hello *eastus* location.</span></span>
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
 
-## <a name="create-virtual-machine"></a><span data-ttu-id="f93ad-115">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="f93ad-115">Create virtual machine</span></span>
+## <a name="create-virtual-machine"></a><span data-ttu-id="16fc8-115">Virtuális gép létrehozása</span><span class="sxs-lookup"><span data-stu-id="16fc8-115">Create virtual machine</span></span>
 
-<span data-ttu-id="f93ad-116">Hozzon létre egy virtuális gépet az [az vm create](/cli/azure/vm#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="f93ad-116">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> 
+<span data-ttu-id="16fc8-116">Hozzon létre egy virtuális gépet az [az vm create](/cli/azure/vm#create) paranccsal.</span><span class="sxs-lookup"><span data-stu-id="16fc8-116">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> 
 
-<span data-ttu-id="f93ad-117">Az alábbi példában egy *myVM* nevű virtuális gépet hoz létre.</span><span class="sxs-lookup"><span data-stu-id="f93ad-117">The following example creates a VM named *myVM*.</span></span> <span data-ttu-id="f93ad-118">Ez a példa az *azureuser* rendszergazdanevet és a *myPassword12* jelszót használja.</span><span class="sxs-lookup"><span data-stu-id="f93ad-118">This example uses *azureuser* for an administrative user name and *myPassword12* as the password.</span></span> <span data-ttu-id="f93ad-119">Az értékeket módosítsa a környezetének megfelelően.</span><span class="sxs-lookup"><span data-stu-id="f93ad-119">Update these values to something appropriate to your environment.</span></span> <span data-ttu-id="f93ad-120">Ezekre az értékekre akkor van szükség, amikor kapcsolódik a virtuális géphez.</span><span class="sxs-lookup"><span data-stu-id="f93ad-120">These values are needed when creating a connection with the virtual machine.</span></span>
+<span data-ttu-id="16fc8-117">hello alábbi példakód létrehozza a virtuális gépek nevű *myVM*.</span><span class="sxs-lookup"><span data-stu-id="16fc8-117">hello following example creates a VM named *myVM*.</span></span> <span data-ttu-id="16fc8-118">Ez a példa *azureuser* egy rendszergazda felhasználó neve és *myPassword12* hello jelszóként.</span><span class="sxs-lookup"><span data-stu-id="16fc8-118">This example uses *azureuser* for an administrative user name and *myPassword12* as hello password.</span></span> <span data-ttu-id="16fc8-119">Ezen értékek toosomething megfelelő tooyour környezet frissítése.</span><span class="sxs-lookup"><span data-stu-id="16fc8-119">Update these values toosomething appropriate tooyour environment.</span></span> <span data-ttu-id="16fc8-120">Ezeket az értékeket a kapcsolat létrehozásakor hello virtuális géppel van szükség.</span><span class="sxs-lookup"><span data-stu-id="16fc8-120">These values are needed when creating a connection with hello virtual machine.</span></span>
 
 ```azurecli-interactive 
 az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter --admin-username azureuser --admin-password myPassword12
 ```
 
-<span data-ttu-id="f93ad-121">A virtuális gép létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg.</span><span class="sxs-lookup"><span data-stu-id="f93ad-121">When the VM has been created, the Azure CLI shows information similar to the following example.</span></span> <span data-ttu-id="f93ad-122">Jegyezze fel a `publicIpAaddress` értékét.</span><span class="sxs-lookup"><span data-stu-id="f93ad-122">Take note of the `publicIpAaddress`.</span></span> <span data-ttu-id="f93ad-123">Ez a cím használható a virtuális gép eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="f93ad-123">This address is used to access the VM.</span></span>
+<span data-ttu-id="16fc8-121">Hello virtuális gép létrehozásakor a hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="16fc8-121">When hello VM has been created, hello Azure CLI shows information similar toohello following example.</span></span> <span data-ttu-id="16fc8-122">Jegyezze fel a hello `publicIpAaddress`.</span><span class="sxs-lookup"><span data-stu-id="16fc8-122">Take note of hello `publicIpAaddress`.</span></span> <span data-ttu-id="16fc8-123">Ez a cím használt tooaccess hello virtuális gép.</span><span class="sxs-lookup"><span data-stu-id="16fc8-123">This address is used tooaccess hello VM.</span></span>
 
 ```azurecli-interactive 
 {
@@ -69,48 +69,48 @@ az vm create --resource-group myResourceGroup --name myVM --image win2016datacen
 }
 ```
 
-## <a name="open-port-80-for-web-traffic"></a><span data-ttu-id="f93ad-124">A 80-as port megnyitása a webes adatforgalom számára</span><span class="sxs-lookup"><span data-stu-id="f93ad-124">Open port 80 for web traffic</span></span> 
+## <a name="open-port-80-for-web-traffic"></a><span data-ttu-id="16fc8-124">A 80-as port megnyitása a webes adatforgalom számára</span><span class="sxs-lookup"><span data-stu-id="16fc8-124">Open port 80 for web traffic</span></span> 
 
-<span data-ttu-id="f93ad-125">Alapértelmezés szerint kizárólag RDP-kapcsolatok engedélyezettek az Azure-ban üzembe helyezett, Windows rendszerű virtuális gépeken.</span><span class="sxs-lookup"><span data-stu-id="f93ad-125">By default only RDP connections are allowed in to Windows virtual machines deployed in Azure.</span></span> <span data-ttu-id="f93ad-126">Ha ez a virtuális gép webkiszolgáló lesz, meg kell nyitnia a 80-as portot az internet irányából.</span><span class="sxs-lookup"><span data-stu-id="f93ad-126">If this VM is going to be a webserver, you need to open port 80 from the Internet.</span></span> <span data-ttu-id="f93ad-127">A kívánt port megnyitásához használja az [az vm open-port](/cli/azure/vm#open-port) parancsot.</span><span class="sxs-lookup"><span data-stu-id="f93ad-127">Use the [az vm open-port](/cli/azure/vm#open-port) command to open the desired port.</span></span>  
+<span data-ttu-id="16fc8-125">Alapértelmezés szerint csak az RDP-kapcsolatok tooWindows virtuális gépek Azure szolgáltatásba telepített engedélyezettek.</span><span class="sxs-lookup"><span data-stu-id="16fc8-125">By default only RDP connections are allowed in tooWindows virtual machines deployed in Azure.</span></span> <span data-ttu-id="16fc8-126">Ha a virtuális gép lesz egy webkiszolgáló toobe, kell tooopen hello Internet a 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="16fc8-126">If this VM is going toobe a webserver, you need tooopen port 80 from hello Internet.</span></span> <span data-ttu-id="16fc8-127">Használjon hello [az vm-port megnyitása](/cli/azure/vm#open-port) parancs tooopen hello port szükséges.</span><span class="sxs-lookup"><span data-stu-id="16fc8-127">Use hello [az vm open-port](/cli/azure/vm#open-port) command tooopen hello desired port.</span></span>  
  
  ```azurecli-interactive  
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
 ```
 
 
-## <a name="connect-to-virtual-machine"></a><span data-ttu-id="f93ad-128">Csatlakozás virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="f93ad-128">Connect to virtual machine</span></span>
+## <a name="connect-toovirtual-machine"></a><span data-ttu-id="16fc8-128">Csatlakoztassa a gépet toovirtual</span><span class="sxs-lookup"><span data-stu-id="16fc8-128">Connect toovirtual machine</span></span>
 
-<span data-ttu-id="f93ad-129">Használja az alábbi parancsot egy távoli asztali kapcsolat létrehozásához a virtuális géppel.</span><span class="sxs-lookup"><span data-stu-id="f93ad-129">Use the following command to create a remote desktop session with the virtual machine.</span></span> <span data-ttu-id="f93ad-130">Cserélje le az IP-címet a virtuális gépe nyilvános IP-címére.</span><span class="sxs-lookup"><span data-stu-id="f93ad-130">Replace the IP address with the public IP address of your virtual machine.</span></span> <span data-ttu-id="f93ad-131">Ha a rendszer erre kéri, adja meg a virtuális gép létrehozásakor használt hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="f93ad-131">When prompted, enter the credentials used when creating the virtual machine.</span></span>
+<span data-ttu-id="16fc8-129">Használjon hello következő parancsot a toocreate egy távoli asztali munkamenet hello virtuális géppel.</span><span class="sxs-lookup"><span data-stu-id="16fc8-129">Use hello following command toocreate a remote desktop session with hello virtual machine.</span></span> <span data-ttu-id="16fc8-130">Hello IP-cím cserélje le a virtuális gép hello nyilvános IP-címe.</span><span class="sxs-lookup"><span data-stu-id="16fc8-130">Replace hello IP address with hello public IP address of your virtual machine.</span></span> <span data-ttu-id="16fc8-131">Amikor a rendszer kéri, adja meg a hello virtuális gép létrehozásakor használt hello hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="16fc8-131">When prompted, enter hello credentials used when creating hello virtual machine.</span></span>
 
 ```bash 
 mstsc /v:<Public IP Address>
 ```
 
-## <a name="install-iis-using-powershell"></a><span data-ttu-id="f93ad-132">Az IIS telepítése a PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="f93ad-132">Install IIS using PowerShell</span></span>
+## <a name="install-iis-using-powershell"></a><span data-ttu-id="16fc8-132">Az IIS telepítése a PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="16fc8-132">Install IIS using PowerShell</span></span>
 
-<span data-ttu-id="f93ad-133">Miután bejelentkezett az Azure-beli virtuális gépre, egyetlen PowerShell-utasítással telepítheti az IIS-t, és engedélyezheti, hogy a helyi tűzfalszabály átengedje a webforgalmat.</span><span class="sxs-lookup"><span data-stu-id="f93ad-133">Now that you have logged in to the Azure VM, you can use a single line of PowerShell to install IIS and enable the local firewall rule to allow web traffic.</span></span> <span data-ttu-id="f93ad-134">Nyisson meg egy PowerShell-parancssort, és futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="f93ad-134">Open a PowerShell prompt and run the following command:</span></span>
+<span data-ttu-id="16fc8-133">Most, hogy az Azure virtuális gép toohello már bejelentkezett, használjon PowerShell tooinstall IIS egysoros, és hello helyi tűzfal szabály tooallow webes forgalom engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="16fc8-133">Now that you have logged in toohello Azure VM, you can use a single line of PowerShell tooinstall IIS and enable hello local firewall rule tooallow web traffic.</span></span> <span data-ttu-id="16fc8-134">Nyisson meg egy PowerShell-parancssorba, és futtassa a következő parancs hello:</span><span class="sxs-lookup"><span data-stu-id="16fc8-134">Open a PowerShell prompt and run hello following command:</span></span>
 
 ```powershell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 
-## <a name="view-the-iis-welcome-page"></a><span data-ttu-id="f93ad-135">Az IIS kezdőlapjának megtekintése</span><span class="sxs-lookup"><span data-stu-id="f93ad-135">View the IIS welcome page</span></span>
+## <a name="view-hello-iis-welcome-page"></a><span data-ttu-id="16fc8-135">Nézet hello IIS-kezdőlap</span><span class="sxs-lookup"><span data-stu-id="16fc8-135">View hello IIS welcome page</span></span>
 
-<span data-ttu-id="f93ad-136">Miután az IIS telepítve lett, és a 80-as port meg van nyitva a virtuális gépen az internet irányából, egy tetszőleges böngésző használatával megtekintheti az alapértelmezett IIS-kezdőlapot.</span><span class="sxs-lookup"><span data-stu-id="f93ad-136">With IIS installed and port 80 now open on your VM from the Internet, you can use a web browser of your choice to view the default IIS welcome page.</span></span> <span data-ttu-id="f93ad-137">Ügyeljen arra, hogy az alapértelmezett oldalt a fentebb dokumentált nyilvános IP-cím használatával keresse fel.</span><span class="sxs-lookup"><span data-stu-id="f93ad-137">Be sure to use the public IP address you documented above to visit the default page.</span></span> 
+<span data-ttu-id="16fc8-136">A telepített IIS-t, és most nyissa meg a virtuális gép hello Internet a 80-as porton az a choice tooview hello alapértelmezett IIS üdvözlőlap webböngésző is használhatja.</span><span class="sxs-lookup"><span data-stu-id="16fc8-136">With IIS installed and port 80 now open on your VM from hello Internet, you can use a web browser of your choice tooview hello default IIS welcome page.</span></span> <span data-ttu-id="16fc8-137">Lehet, hogy toouse hello nyilvános IP-cím feletti toovisit hello alapértelmezett oldal részletes ismertetését lásd.</span><span class="sxs-lookup"><span data-stu-id="16fc8-137">Be sure toouse hello public IP address you documented above toovisit hello default page.</span></span> 
 
 ![Alapértelmezett IIS-webhely](./media/quick-create-powershell/default-iis-website.png) 
 
-## <a name="clean-up-resources"></a><span data-ttu-id="f93ad-139">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="f93ad-139">Clean up resources</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="16fc8-139">Az erőforrások eltávolítása</span><span class="sxs-lookup"><span data-stu-id="16fc8-139">Clean up resources</span></span>
 
-<span data-ttu-id="f93ad-140">Ha már nincs rá szükség, a [az group delete](/cli/azure/group#delete) paranccsal eltávolítható az erőforráscsoport, a virtuális gép és az összes kapcsolódó erőforrás.</span><span class="sxs-lookup"><span data-stu-id="f93ad-140">When no longer needed, you can use the [az group delete](/cli/azure/group#delete) command to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="16fc8-140">Ha már nincs szükség, használhatja a hello [az csoport törlése](/cli/azure/group#delete) tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások parancsot.</span><span class="sxs-lookup"><span data-stu-id="16fc8-140">When no longer needed, you can use hello [az group delete](/cli/azure/group#delete) command tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="f93ad-141">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="f93ad-141">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="16fc8-141">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="16fc8-141">Next steps</span></span>
 
-<span data-ttu-id="f93ad-142">Ebben a rövid útmutatóban üzembe helyezett egy egyszerű virtuális gépet, egy hálózati biztonsági csoport szabályát, valamint telepített egy webkiszolgálót.</span><span class="sxs-lookup"><span data-stu-id="f93ad-142">In this quick start, you’ve deployed a simple virtual machine, a network security group rule, and installed a web server.</span></span> <span data-ttu-id="f93ad-143">Ha bővebb információra van szüksége az Azure-alapú virtuális gépekkel kapcsolatban, lépjen tovább a Windows rendszerű virtuális gépekről szóló oktatóanyagra.</span><span class="sxs-lookup"><span data-stu-id="f93ad-143">To learn more about Azure virtual machines, continue to the tutorial for Windows VMs.</span></span>
+<span data-ttu-id="16fc8-142">Ebben a rövid útmutatóban üzembe helyezett egy egyszerű virtuális gépet, egy hálózati biztonsági csoport szabályát, valamint telepített egy webkiszolgálót.</span><span class="sxs-lookup"><span data-stu-id="16fc8-142">In this quick start, you’ve deployed a simple virtual machine, a network security group rule, and installed a web server.</span></span> <span data-ttu-id="16fc8-143">További információ az Azure virtuális gépeken, toolearn toohello oktatóanyag Windows virtuális gépek továbbra is.</span><span class="sxs-lookup"><span data-stu-id="16fc8-143">toolearn more about Azure virtual machines, continue toohello tutorial for Windows VMs.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="f93ad-144">Windowsos virtuális gépek az Azure-ban – oktatóanyagok</span><span class="sxs-lookup"><span data-stu-id="f93ad-144">Azure Windows virtual machine tutorials</span></span>](./tutorial-manage-vm.md)
+> [<span data-ttu-id="16fc8-144">Windowsos virtuális gépek az Azure-ban – oktatóanyagok</span><span class="sxs-lookup"><span data-stu-id="16fc8-144">Azure Windows virtual machine tutorials</span></span>](./tutorial-manage-vm.md)

@@ -1,0 +1,26 @@
+### <a name="prerequisites"></a><span data-ttu-id="e392b-101">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="e392b-101">Prerequisites</span></span>
+* <span data-ttu-id="e392b-102">A Twilio-fiókja</span><span class="sxs-lookup"><span data-stu-id="e392b-102">A Twilio account</span></span>
+* <span data-ttu-id="e392b-103">Ellenőrzött Twilio-telefonszámot, amelyet a SMS fogadására</span><span class="sxs-lookup"><span data-stu-id="e392b-103">A verified Twilio phone number that can receive SMS</span></span>
+* <span data-ttu-id="e392b-104">Az SMS küldő ellenőrzött Twilio telefonszám rendelve</span><span class="sxs-lookup"><span data-stu-id="e392b-104">A verified Twilio phone number that can send SMS</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="e392b-105">Ha a Twilio-próbafiókra használ, csak elküldheti SMS túl**ellenőrzése** telefonszámokat.</span><span class="sxs-lookup"><span data-stu-id="e392b-105">If you are using a Twilio trial account, you can only send SMS too**verified** phone numbers.</span></span>  
+> 
+> 
+
+<span data-ttu-id="e392b-106">A Twilio-fiókját a logikai alkalmazás használata előtt engedélyeznie kell a hello Logic app tooconnect tooyour Twilio-fiókja.</span><span class="sxs-lookup"><span data-stu-id="e392b-106">Before you can use your Twilio account in a Logic app, you must authorize hello Logic app tooconnect tooyour Twilio account.</span></span> <span data-ttu-id="e392b-107">Szerencsére ehhez egyszerűen a a logikai alkalmazásban a hello Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="e392b-107">Fortunately, you can do this easily from within your Logic app on hello Azure Portal.</span></span> 
+
+<span data-ttu-id="e392b-108">Az alábbiakban hello lépéseket tooauthorize a Logic app tooconnect tooyour Twilio-fiókja:</span><span class="sxs-lookup"><span data-stu-id="e392b-108">Here are hello steps tooauthorize your Logic app tooconnect tooyour Twilio account:</span></span>
+
+1. <span data-ttu-id="e392b-109">toocreate egy kapcsolat tooTwilio hello Logic app Designer kiválasztása **megjelenítése Microsoft felügyelt API-k** hello a legördülő listából, majd adja meg *Twilio* hello Keresés mezőbe.</span><span class="sxs-lookup"><span data-stu-id="e392b-109">toocreate a connection tooTwilio, in hello Logic app designer, select **Show Microsoft managed APIs** in hello drop down list then enter *Twilio* in hello search box.</span></span> <span data-ttu-id="e392b-110">Hello eseményindító vagy lesz, például a toouse művelet kiválasztása:</span><span class="sxs-lookup"><span data-stu-id="e392b-110">Select hello trigger or action you'll like toouse:</span></span>  
+   ![](./media/connectors-create-api-twilio/twilio-0.png)
+2. <span data-ttu-id="e392b-111">A kapcsolatok tooTwilio előtt még nem hozott létre, ha a Twilio hitelesítő adatokat felszólító tooprovide fogja lekérni.</span><span class="sxs-lookup"><span data-stu-id="e392b-111">If you haven't created any connections tooTwilio before, you'll get prompted tooprovide your Twilio credentials.</span></span> <span data-ttu-id="e392b-112">Ezeket a hitelesítő adatokat kell használt tooauthorize a Logic app tooconnect számára, és a Twilio-fiókja adatainak eléréséhez:</span><span class="sxs-lookup"><span data-stu-id="e392b-112">These credentials will be used tooauthorize your Logic app tooconnect to, and access your Twilio account's data:</span></span>  
+   ![](./media/connectors-create-api-twilio/twilio-1.png)  
+3. <span data-ttu-id="e392b-113">Szüksége lesz a hello **Twilio fiókazonosító** és **Twilio hozzáférési jogkivonat** a Twilio hello irányítópultról, jelentkezzen be tooyour Twilio-fiókja most toograb két adatot:</span><span class="sxs-lookup"><span data-stu-id="e392b-113">You'll need hello **Twilio account id** and **Twilio access token**  from hello dashboard in Twilio, so log in tooyour Twilio account now toograb these two pieces of information:</span></span>  
+   ![](./media/connectors-create-api-twilio/twilio-2.png)  
+4. <span data-ttu-id="e392b-114">Twilio és a Logic apps használjon különböző neveket tooidentify két adatot.</span><span class="sxs-lookup"><span data-stu-id="e392b-114">Twilio and Logic apps use different names tooidentify these two pieces of infomation.</span></span> <span data-ttu-id="e392b-115">Itt látható, hogyan kell társítani őket toohello Logic apps párbeszédpanel:![](./media/connectors-create-api-twilio/twilio-3.png)</span><span class="sxs-lookup"><span data-stu-id="e392b-115">Here is how you must map them toohello Logic apps dialog: ![](./media/connectors-create-api-twilio/twilio-3.png)</span></span>  
+5. <span data-ttu-id="e392b-116">Jelölje be hello **hozható létre kapcsolat** gombra:</span><span class="sxs-lookup"><span data-stu-id="e392b-116">Select hello **Create connection** button:</span></span>  
+   ![](./media/connectors-create-api-twilio/twilio-4.png)
+6. <span data-ttu-id="e392b-117">Figyelje meg hello kapcsolat létrejött, és most a Logic Apps alkalmazást az egyéb hello szabad tooproceed szükséges lépések:</span><span class="sxs-lookup"><span data-stu-id="e392b-117">Notice hello connection has been created and you are now free tooproceed with hello other steps in your Logic app:</span></span>  
+   ![](./media/connectors-create-api-twilio/twilio-5.png)
+

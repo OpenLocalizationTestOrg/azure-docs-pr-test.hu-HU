@@ -1,6 +1,6 @@
 ---
-title: "Telepítse az ASP.NET Core Linux Docker-tároló egy távoli Docker gazdagépen |} Microsoft Docs"
-description: "Útmutató: az ASP.NET Core webalkalmazás telepítése az az Azure Docker fogadó Linux virtuális gép futó Docker-tároló Docker Visual Studio eszközök segítségével"
+title: "az ASP.NET Core Linux Docker tároló tooa távoli Docker-gazdagépen aaaDeploy |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Visual Studio eszközök Docker toodeploy az ASP.NET Core web app tooa Docker-tároló egy Azure Docker fogadó Linux virtuális gépen"
 services: azure-container-service
 documentationcenter: .net
 author: mlearned
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 4a87ee69f23779bf4f6f5db40bc05edbcfc7668d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27b0c6420628c73220200bc071b47a4cd89fff58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-an-aspnet-container-to-a-remote-docker-host"></a><span data-ttu-id="84431-103">Telepítse az ASP.NET-tároló egy távoli Docker gazdagépen</span><span class="sxs-lookup"><span data-stu-id="84431-103">Deploy an ASP.NET container to a remote Docker host</span></span>
-## <a name="overview"></a><span data-ttu-id="84431-104">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="84431-104">Overview</span></span>
-<span data-ttu-id="84431-105">Docker olyan egyszerűsített tároló, virtuális géphez, amely állomás alkalmazások és szolgáltatások segítségével bizonyos értelemben hasonló.</span><span class="sxs-lookup"><span data-stu-id="84431-105">Docker is a lightweight container engine, similar in some ways to a virtual machine, which you can use to host applications and services.</span></span>
-<span data-ttu-id="84431-106">Ez az oktatóanyag bemutatja, hogyan használja a [Docker Visual Studio eszközök](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) bővítmény ASP.NET Core alkalmazás egy Docker-állomáshoz az Azure PowerShell használatával történő telepítése.</span><span class="sxs-lookup"><span data-stu-id="84431-106">This tutorial walks you through using the [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) extension to deploy an ASP.NET Core app to a Docker host on Azure using PowerShell.</span></span>
+# <a name="deploy-an-aspnet-container-tooa-remote-docker-host"></a><span data-ttu-id="1ddb3-103">Az ASP.NET tároló tooa távoli Docker gazdagép telepítése</span><span class="sxs-lookup"><span data-stu-id="1ddb3-103">Deploy an ASP.NET container tooa remote Docker host</span></span>
+## <a name="overview"></a><span data-ttu-id="1ddb3-104">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="1ddb3-104">Overview</span></span>
+<span data-ttu-id="1ddb3-105">Docker olyan egyszerűsített tárolóban, az egyes módszereket tooa virtuális gépet, mely akkor is hasonló toohost alkalmazások és szolgáltatások használatát.</span><span class="sxs-lookup"><span data-stu-id="1ddb3-105">Docker is a lightweight container engine, similar in some ways tooa virtual machine, which you can use toohost applications and services.</span></span>
+<span data-ttu-id="1ddb3-106">Ez az oktatóanyag bemutatja, hogyan hello segítségével [Docker Visual Studio eszközök](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) bővítmény toodeploy egy ASP.NET Core app tooa Docker-állomás az Azure PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="1ddb3-106">This tutorial walks you through using hello [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) extension toodeploy an ASP.NET Core app tooa Docker host on Azure using PowerShell.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="84431-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="84431-107">Prerequisites</span></span>
-<span data-ttu-id="84431-108">A következő szükséges az oktatóanyag elvégzéséhez:</span><span class="sxs-lookup"><span data-stu-id="84431-108">The following is required to complete this tutorial:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="1ddb3-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="1ddb3-107">Prerequisites</span></span>
+<span data-ttu-id="1ddb3-108">hello következő van szükség toocomplete Ez az oktatóanyag:</span><span class="sxs-lookup"><span data-stu-id="1ddb3-108">hello following is required toocomplete this tutorial:</span></span>
 
-* <span data-ttu-id="84431-109">Hozzon létre egy Azure Docker állomás virtuális gép leírtak [docker-gép használata az Azure-ral](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="84431-109">Create an Azure Docker Host VM as described in [How to use docker-machine with Azure](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
-* <span data-ttu-id="84431-110">Telepítse a legújabb verzióját [Visual Studio](https://www.visualstudio.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="84431-110">Install the latest version of [Visual Studio](https://www.visualstudio.com/downloads/)</span></span>
-* <span data-ttu-id="84431-111">Töltse le a [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)</span><span class="sxs-lookup"><span data-stu-id="84431-111">Download the [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)</span></span>
-* <span data-ttu-id="84431-112">Telepítés [Windows Docker](https://docs.docker.com/docker-for-windows/install/)</span><span class="sxs-lookup"><span data-stu-id="84431-112">Install [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)</span></span>
+* <span data-ttu-id="1ddb3-109">Hozzon létre egy Azure Docker állomás virtuális gép leírtak [hogyan toouse docker-gép az Azure-ral](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="1ddb3-109">Create an Azure Docker Host VM as described in [How toouse docker-machine with Azure](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+* <span data-ttu-id="1ddb3-110">Telepítse a legújabb változatát hello [Visual Studio](https://www.visualstudio.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="1ddb3-110">Install hello latest version of [Visual Studio](https://www.visualstudio.com/downloads/)</span></span>
+* <span data-ttu-id="1ddb3-111">Töltse le a hello [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)</span><span class="sxs-lookup"><span data-stu-id="1ddb3-111">Download hello [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)</span></span>
+* <span data-ttu-id="1ddb3-112">Telepítés [Windows Docker](https://docs.docker.com/docker-for-windows/install/)</span><span class="sxs-lookup"><span data-stu-id="1ddb3-112">Install [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)</span></span>
 
-## <a name="1-create-an-aspnet-core-web-app"></a><span data-ttu-id="84431-113">1. Az ASP.NET Core webalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="84431-113">1. Create an ASP.NET Core web app</span></span>
-<span data-ttu-id="84431-114">A következő lépések végigvezetik egy egyszerű ASP.NET Core alkalmazást ebben az oktatóanyagban használt létrehozása.</span><span class="sxs-lookup"><span data-stu-id="84431-114">The following steps guide you through creating a basic ASP.NET Core app that will be used in this tutorial.</span></span>
+## <a name="1-create-an-aspnet-core-web-app"></a><span data-ttu-id="1ddb3-113">1. Az ASP.NET Core webalkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="1ddb3-113">1. Create an ASP.NET Core web app</span></span>
+<span data-ttu-id="1ddb3-114">hello következő lépések végigvezetik egy egyszerű ASP.NET Core alkalmazást ebben az oktatóanyagban használt létrehozása.</span><span class="sxs-lookup"><span data-stu-id="1ddb3-114">hello following steps guide you through creating a basic ASP.NET Core app that will be used in this tutorial.</span></span>
 
 [!INCLUDE [create-aspnet5-app](../includes/create-aspnet5-app.md)]
 
-## <a name="2-add-docker-support"></a><span data-ttu-id="84431-115">2. Adja hozzá a Docker-támogatás</span><span class="sxs-lookup"><span data-stu-id="84431-115">2. Add Docker support</span></span>
+## <a name="2-add-docker-support"></a><span data-ttu-id="1ddb3-115">2. Adja hozzá a Docker-támogatás</span><span class="sxs-lookup"><span data-stu-id="1ddb3-115">2. Add Docker support</span></span>
 [!INCLUDE [create-aspnet5-app](../includes/vs-azure-tools-docker-add-docker-support.md)]
 
-## <a name="3-use-the-dockertaskps1-powershell-script"></a><span data-ttu-id="84431-116">3. A DockerTask.ps1 PowerShell-parancsfájl</span><span class="sxs-lookup"><span data-stu-id="84431-116">3. Use the DockerTask.ps1 PowerShell Script</span></span>
-1. <span data-ttu-id="84431-117">Nyisson meg egy PowerShell-parancssorba, hogy a projekt gyökérkönyvtárában.</span><span class="sxs-lookup"><span data-stu-id="84431-117">Open a PowerShell prompt to the root directory of your project.</span></span> 
+## <a name="3-use-hello-dockertaskps1-powershell-script"></a><span data-ttu-id="1ddb3-116">3. Hello DockerTask.ps1 PowerShell-parancsfájl használata</span><span class="sxs-lookup"><span data-stu-id="1ddb3-116">3. Use hello DockerTask.ps1 PowerShell Script</span></span>
+1. <span data-ttu-id="1ddb3-117">Nyissa meg a projekt PowerShell Rákérdezés toohello gyökérkönyvtár.</span><span class="sxs-lookup"><span data-stu-id="1ddb3-117">Open a PowerShell prompt toohello root directory of your project.</span></span> 
    
    ```
    PS C:\Src\WebApplication1>
    ```
-2. <span data-ttu-id="84431-118">Ellenőrizze a távoli gazdagépen fut-e.</span><span class="sxs-lookup"><span data-stu-id="84431-118">Validate the remote host is running.</span></span> <span data-ttu-id="84431-119">Megtekintheti az állapot fut =</span><span class="sxs-lookup"><span data-stu-id="84431-119">You should see state = Running</span></span> 
+2. <span data-ttu-id="1ddb3-118">Érvényesítése hello távoli gazdagépen fut-e.</span><span class="sxs-lookup"><span data-stu-id="1ddb3-118">Validate hello remote host is running.</span></span> <span data-ttu-id="1ddb3-119">Megtekintheti az állapot fut =</span><span class="sxs-lookup"><span data-stu-id="1ddb3-119">You should see state = Running</span></span> 
    
    ```
    docker-machine ls
@@ -55,7 +55,7 @@ ms.lasthandoff: 07/11/2017
    MyDockerHost -        azure    Running   tcp://xxx.xxx.xxx.xxx:2376         v1.10.3
    ```
    
-3. <span data-ttu-id="84431-120">Létrehozására az alkalmazás - Build paraméter</span><span class="sxs-lookup"><span data-stu-id="84431-120">Build the app using the -Build parameter</span></span>
+3. <span data-ttu-id="1ddb3-120">Build hello alkalmazás használatával hello - Build paraméter</span><span class="sxs-lookup"><span data-stu-id="1ddb3-120">Build hello app using hello -Build parameter</span></span>
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release -Machine mydockerhost
@@ -66,7 +66,7 @@ ms.lasthandoff: 07/11/2017
    > ```  
    > 
    > 
-4. <span data-ttu-id="84431-121">Futtassa az alkalmazást, használja a - Futtatás paraméter</span><span class="sxs-lookup"><span data-stu-id="84431-121">Run the app, using the -Run parameter</span></span>
+4. <span data-ttu-id="1ddb3-121">Hello alkalmazás használatával hello - Futtatás paraméter</span><span class="sxs-lookup"><span data-stu-id="1ddb3-121">Run hello app, using hello -Run parameter</span></span>
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release -Machine mydockerhost
@@ -78,7 +78,7 @@ ms.lasthandoff: 07/11/2017
    > 
    > 
    
-   <span data-ttu-id="84431-122">Miután befejeződött a docker, az alábbihoz hasonló eredményeket kell megjelennie:</span><span class="sxs-lookup"><span data-stu-id="84431-122">Once docker completes, you should see results similar to the following:</span></span>
+   <span data-ttu-id="1ddb3-122">Miután befejeződött a docker, eredmények hasonló toohello következő kell megjelennie:</span><span class="sxs-lookup"><span data-stu-id="1ddb3-122">Once docker completes, you should see results similar toohello following:</span></span>
    
    ![Az alkalmazás megtekintéséhez][3]
 

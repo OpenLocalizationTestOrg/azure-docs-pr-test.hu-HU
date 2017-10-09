@@ -1,35 +1,35 @@
-## <a name="install-the-prerequisites"></a><span data-ttu-id="256ce-101">Az előfeltételek telepítése</span><span class="sxs-lookup"><span data-stu-id="256ce-101">Install the prerequisites</span></span>
+## <a name="install-hello-prerequisites"></a><span data-ttu-id="cd83c-101">Hello előfeltételek telepítése</span><span class="sxs-lookup"><span data-stu-id="cd83c-101">Install hello prerequisites</span></span>
 
-<span data-ttu-id="256ce-102">A jelen oktatóanyagban szereplő lépések azt feltételezik, Ubuntu Linux futtatja.</span><span class="sxs-lookup"><span data-stu-id="256ce-102">The steps in this tutorial assume you are running Ubuntu Linux.</span></span>
+<span data-ttu-id="cd83c-102">Ebben az oktatóanyagban hello lépések azt feltételezik, Ubuntu Linux futtatja.</span><span class="sxs-lookup"><span data-stu-id="cd83c-102">hello steps in this tutorial assume you are running Ubuntu Linux.</span></span>
 
-<span data-ttu-id="256ce-103">Nyisson meg egy kezelőfelületet, és az előfeltételként szükséges csomagok telepítése a következő parancsokat:</span><span class="sxs-lookup"><span data-stu-id="256ce-103">Open a shell and run the following commands to install the prerequisite packages:</span></span>
+<span data-ttu-id="cd83c-103">Nyisson meg egy kezelőfelületet, és futtassa a következő parancsok tooinstall hello csomagokat hello:</span><span class="sxs-lookup"><span data-stu-id="cd83c-103">Open a shell and run hello following commands tooinstall hello prerequisite packages:</span></span>
 
 ```bash
 sudo apt-get update
 sudo apt-get install curl build-essential libcurl4-openssl-dev git cmake libssl-dev uuid-dev valgrind libglib2.0-dev libtool autoconf
 ```
 
-<span data-ttu-id="256ce-104">A rendszerhéj, az Azure IoT peremhálózati GitHub-tárházban, a helyi számítógép klónozása a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="256ce-104">In the shell, run the following command to clone the Azure IoT Edge GitHub repository to your local machine:</span></span>
+<span data-ttu-id="cd83c-104">A hello rendszerhéjában futtassa a következő parancs tooclone hello Azure IoT peremhálózati GitHub tárház tooyour helyi számítógép hello:</span><span class="sxs-lookup"><span data-stu-id="cd83c-104">In hello shell, run hello following command tooclone hello Azure IoT Edge GitHub repository tooyour local machine:</span></span>
 
 ```bash
 git clone https://github.com/Azure/iot-edge.git
 ```
 
-## <a name="how-to-build-the-sample"></a><span data-ttu-id="256ce-105">A minta létrehozása</span><span class="sxs-lookup"><span data-stu-id="256ce-105">How to build the sample</span></span>
+## <a name="how-toobuild-hello-sample"></a><span data-ttu-id="cd83c-105">Hogyan toobuild hello minta</span><span class="sxs-lookup"><span data-stu-id="cd83c-105">How toobuild hello sample</span></span>
 
-<span data-ttu-id="256ce-106">Most már lefordíthatja az IoT él futásidejű és minták a helyi számítógépen:</span><span class="sxs-lookup"><span data-stu-id="256ce-106">You can now build the IoT Edge runtime and samples on your local machine:</span></span>
+<span data-ttu-id="cd83c-106">Most már lefordíthatja hello IoT peremhálózati futásidejű és minták a helyi számítógépen:</span><span class="sxs-lookup"><span data-stu-id="cd83c-106">You can now build hello IoT Edge runtime and samples on your local machine:</span></span>
 
-1. <span data-ttu-id="256ce-107">Nyisson meg egy rendszerhéjat.</span><span class="sxs-lookup"><span data-stu-id="256ce-107">Open a shell.</span></span>
+1. <span data-ttu-id="cd83c-107">Nyisson meg egy rendszerhéjat.</span><span class="sxs-lookup"><span data-stu-id="cd83c-107">Open a shell.</span></span>
 
-1. <span data-ttu-id="256ce-108">Az **iot-edge** adattár helyi példányában lépjen a gyökérmappába.</span><span class="sxs-lookup"><span data-stu-id="256ce-108">Navigate to the root folder in your local copy of the **iot-edge** repository.</span></span>
+1. <span data-ttu-id="cd83c-108">Keresse meg a helyi példányát hello toohello gyökérmappáját **iot-edge** tárházba.</span><span class="sxs-lookup"><span data-stu-id="cd83c-108">Navigate toohello root folder in your local copy of hello **iot-edge** repository.</span></span>
 
-1. <span data-ttu-id="256ce-109">A build parancsfájl futtatása a következőképpen:</span><span class="sxs-lookup"><span data-stu-id="256ce-109">Run the build script as follows:</span></span>
+1. <span data-ttu-id="cd83c-109">A build parancsfájl futtatása a következőképpen:</span><span class="sxs-lookup"><span data-stu-id="cd83c-109">Run the build script as follows:</span></span>
 
     ```sh
     tools/build.sh --disable-native-remote-modules
     ```
 
-<span data-ttu-id="256ce-110">Ez a szkript a **cmake** segédprogramot használja a **build** nevű mappa létrehozásához az **iot-edge** adattár helyi példányának gyökérmappájában, valamint a makefile előállításához.</span><span class="sxs-lookup"><span data-stu-id="256ce-110">This script uses the **cmake** utility to create a folder called **build** in the root folder of your local copy of the **iot-edge** repository and generate a makefile.</span></span> <span data-ttu-id="256ce-111">Ezt követően a szkript felépíti a megoldást, és kihagyja az egységteszteket és a teljes körű teszteket.</span><span class="sxs-lookup"><span data-stu-id="256ce-111">The script then builds the solution, skipping unit tests and end to end tests.</span></span> <span data-ttu-id="256ce-112">Build a egység tesztek futtatása, és adja hozzá szeretné a `--run-unittests` paraméter.</span><span class="sxs-lookup"><span data-stu-id="256ce-112">If you want to build and run the unit tests, add the `--run-unittests` parameter.</span></span> <span data-ttu-id="256ce-113">Ha szeretne build és a végpontok közötti tesztek, vegye fel a `--run-e2e-tests`.</span><span class="sxs-lookup"><span data-stu-id="256ce-113">If you want to build and run the end to end tests, add the `--run-e2e-tests`.</span></span>
+<span data-ttu-id="cd83c-110">A parancsfájl a a **cmake** segédprogram toocreate egy mappa neve a **build** hello gyökérmappában található azon a helyi másolat készítése a **iot-edge** tárház és egy makefile készítése.</span><span class="sxs-lookup"><span data-stu-id="cd83c-110">This script uses the **cmake** utility toocreate a folder called **build** in hello root folder of your local copy of the **iot-edge** repository and generate a makefile.</span></span> <span data-ttu-id="cd83c-111">hello parancsfájl majd összeállít hello megoldás egység tesztek és a záró tooend tesztek kihagyása.</span><span class="sxs-lookup"><span data-stu-id="cd83c-111">hello script then builds hello solution, skipping unit tests and end tooend tests.</span></span> <span data-ttu-id="cd83c-112">Ha szeretné, hogy toobuild, és hello egység tesztek futtatása, vegye fel a hello `--run-unittests` paraméter.</span><span class="sxs-lookup"><span data-stu-id="cd83c-112">If you want toobuild and run hello unit tests, add hello `--run-unittests` parameter.</span></span> <span data-ttu-id="cd83c-113">Ha szeretné, hogy toobuild, és hello end tooend tesztek futtatása, vegye fel a hello `--run-e2e-tests`.</span><span class="sxs-lookup"><span data-stu-id="cd83c-113">If you want toobuild and run hello end tooend tests, add hello `--run-e2e-tests`.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="256ce-114">A **build.sh** szkript minden futtatásakor törli, majd újra létrehozza a **build** mappát az **iot-edge** adattár helyi példányának gyökérmappájában.</span><span class="sxs-lookup"><span data-stu-id="256ce-114">Every time you run the **build.sh** script, it deletes and then recreates the **build** folder in the root folder of your local copy of the **iot-edge** repository.</span></span>
+> <span data-ttu-id="cd83c-114">Minden alkalommal, amikor hello **build.sh** parancsfájl, törli és állítja helyre hello **build** hello gyökérmappájában lévő mappának hello helyi példány **iot-edge** tárházba.</span><span class="sxs-lookup"><span data-stu-id="cd83c-114">Every time you run hello **build.sh** script, it deletes and then recreates hello **build** folder in hello root folder of your local copy of hello **iot-edge** repository.</span></span>

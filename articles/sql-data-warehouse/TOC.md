@@ -89,7 +89,7 @@
 ### oktatóanyagokat
 #### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 
-### Útmutatók
+### Hogyan-tooguides
 #### [Mintaadatok](sql-data-warehouse-load-sample-databases.md)
 #### [Azure Data Lake Store](sql-data-warehouse-load-from-azure-data-lake-store.md)
 #### [BCP](sql-data-warehouse-load-with-bcp.md)
@@ -106,7 +106,7 @@
 ### [Séma áttelepítése](sql-data-warehouse-migrate-schema.md)
 ### [Kód áttelepítése](sql-data-warehouse-migrate-code.md)
 ### [Adatok áttelepítése](sql-data-warehouse-migrate-data.md)
-### [Áttelepítés a Premium Storage-ba](sql-data-warehouse-migrate-to-premium-storage.md)
+### [Toopremium tároló áttelepítése](sql-data-warehouse-migrate-to-premium-storage.md)
 
 ## Számítások kezelése
 

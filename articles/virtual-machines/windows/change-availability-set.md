@@ -1,6 +1,6 @@
 ---
-title: "Módosítsa a virtuális gépek rendelkezésre állási csoport |} Microsoft Docs"
-description: "Megtudhatja, hogyan módosíthatja a rendelkezésre állási csoportot a virtuális gépek Azure PowerShell és a Resource Manager üzembe helyezési modellben."
+title: "a virtuális gépek rendelkezésre állási csoport aaaChange |} Microsoft Docs"
+description: "Ismerje meg, hogyan toochange hello rendelkezésre állási készlet használata az Azure PowerShell és hello Resource Manager üzembe helyezési modellben a virtuális gépek."
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: drewm
-ms.openlocfilehash: d1daa01191480eaeb81727416b2134b00c698dc3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b1cc010a6d4c4883f2e34da9cfca4372aec92cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-availability-set-for-a-windows-vm"></a><span data-ttu-id="44a99-103">A rendelkezésre állási csoportot a Windows virtuális gépek módosítása</span><span class="sxs-lookup"><span data-stu-id="44a99-103">Change the availability set for a Windows VM</span></span>
-<span data-ttu-id="44a99-104">A következő lépések azt ismertetik, hogyan módosíthatja a rendelkezésre állási csoport a virtuális gépek Azure PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="44a99-104">The following steps describe how to change the availability set of a VM using Azure PowerShell.</span></span> <span data-ttu-id="44a99-105">A virtuális gépek csak rendelkezésre állási készlet létrehozásakor lehet hozzáadni.</span><span class="sxs-lookup"><span data-stu-id="44a99-105">A VM can only be added to an availability set when it is created.</span></span> <span data-ttu-id="44a99-106">Ahhoz, hogy módosítsa a rendelkezésre állási beállítása, törölje és hozza létre a virtuális gép szükséges.</span><span class="sxs-lookup"><span data-stu-id="44a99-106">In order to change the availability set, you need to delete and recreate the virtual machine.</span></span> 
+# <a name="change-hello-availability-set-for-a-windows-vm"></a><span data-ttu-id="6db5c-103">Hello rendelkezésre állási csoportban, a Windows virtuális gépek módosítása</span><span class="sxs-lookup"><span data-stu-id="6db5c-103">Change hello availability set for a Windows VM</span></span>
+<span data-ttu-id="6db5c-104">hello lépések ismertetik, hogyan toochange hello rendelkezésre állási csoport a virtuális gépek Azure PowerShell használatával.</span><span class="sxs-lookup"><span data-stu-id="6db5c-104">hello following steps describe how toochange hello availability set of a VM using Azure PowerShell.</span></span> <span data-ttu-id="6db5c-105">A virtuális gép nem vehető tooan rendelkezésre állási csoport a létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="6db5c-105">A VM can only be added tooan availability set when it is created.</span></span> <span data-ttu-id="6db5c-106">Rendelés toochange hello rendelkezésre állási csoport toodelete kell, és hozza létre újra a virtuális gép hello.</span><span class="sxs-lookup"><span data-stu-id="6db5c-106">In order toochange hello availability set, you need toodelete and recreate hello virtual machine.</span></span> 
 
-## <a name="change-the-availability-set-using-powershell"></a><span data-ttu-id="44a99-107">Módosítsa a rendelkezésre állási csoportot a PowerShell használatával</span><span class="sxs-lookup"><span data-stu-id="44a99-107">Change the availability set using PowerShell</span></span>
-1. <span data-ttu-id="44a99-108">A módosítani kívánt virtuális gépről a következő kulcs adatait rögzíti.</span><span class="sxs-lookup"><span data-stu-id="44a99-108">Capture the following key details from the VM to be modified.</span></span>
+## <a name="change-hello-availability-set-using-powershell"></a><span data-ttu-id="6db5c-107">Módosítsa a hello rendelkezésre állási csoportot a PowerShell használatával</span><span class="sxs-lookup"><span data-stu-id="6db5c-107">Change hello availability set using PowerShell</span></span>
+1. <span data-ttu-id="6db5c-108">Hello hello VM toobe módosította a következő kulcs adatok rögzítéséhez.</span><span class="sxs-lookup"><span data-stu-id="6db5c-108">Capture hello following key details from hello VM toobe modified.</span></span>
    
-    <span data-ttu-id="44a99-109">A virtuális gép neve</span><span class="sxs-lookup"><span data-stu-id="44a99-109">Name of the VM</span></span>
+    <span data-ttu-id="6db5c-109">Hello virtuális gép neve</span><span class="sxs-lookup"><span data-stu-id="6db5c-109">Name of hello VM</span></span>
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <Name-of-resource-group> -Name <name-of-VM>
     $vm.Name
     ```
    
-    <span data-ttu-id="44a99-110">Virtuálisgép-mérettel</span><span class="sxs-lookup"><span data-stu-id="44a99-110">VM Size</span></span>
+    <span data-ttu-id="6db5c-110">Virtuálisgép-mérettel</span><span class="sxs-lookup"><span data-stu-id="6db5c-110">VM Size</span></span>
    
     ```powershell
     $vm.HardwareProfile.VmSize
     ```
    
-    <span data-ttu-id="44a99-111">Hálózati elsődleges hálózati adapter és a választható hálózati adapterek, ha vannak ilyenek, a virtuális Gépen</span><span class="sxs-lookup"><span data-stu-id="44a99-111">Network primary network interface and optional network interfaces if they exist on the VM</span></span>
+    <span data-ttu-id="6db5c-111">Hálózati elsődleges hálózati adapter és a választható hálózati adapterek, ha vannak ilyenek, a virtuális gép hello</span><span class="sxs-lookup"><span data-stu-id="6db5c-111">Network primary network interface and optional network interfaces if they exist on hello VM</span></span>
    
     ```powershell
     $vm.NetworkProfile.NetworkInterfaces[0].Id
     ```
    
-    <span data-ttu-id="44a99-112">Az operációsrendszer-lemez profil</span><span class="sxs-lookup"><span data-stu-id="44a99-112">OS Disk Profile</span></span>
+    <span data-ttu-id="6db5c-112">Az operációsrendszer-lemez profil</span><span class="sxs-lookup"><span data-stu-id="6db5c-112">OS Disk Profile</span></span>
    
     ```powershell
     $vm.StorageProfile.OsDisk.OsType
@@ -55,29 +55,29 @@ ms.lasthandoff: 08/18/2017
     $vm.StorageProfile.OsDisk.Vhd.Uri
     ```
    
-    <span data-ttu-id="44a99-113">Minden egyes adatlemez lemez profilok</span><span class="sxs-lookup"><span data-stu-id="44a99-113">Disk profiles for each data disk</span></span> 
+    <span data-ttu-id="6db5c-113">Minden egyes adatlemez lemez profilok</span><span class="sxs-lookup"><span data-stu-id="6db5c-113">Disk profiles for each data disk</span></span> 
    
     ```powershell
     $vm.StorageProfile.DataDisks[<index>].Lun
     $vm.StorageProfile.DataDisks[<index>].Vhd.Uri
     ```
    
-    <span data-ttu-id="44a99-114">Virtuálisgép-bővítmény</span><span class="sxs-lookup"><span data-stu-id="44a99-114">VM extensions installed</span></span> 
+    <span data-ttu-id="6db5c-114">Virtuálisgép-bővítmény</span><span class="sxs-lookup"><span data-stu-id="6db5c-114">VM extensions installed</span></span> 
    
     ```powershell
     $vm.Extensions
     ```
-2. <span data-ttu-id="44a99-115">Törölje a virtuális gép törlése, a lemezek vagy a hálózati adapterek nélkül.</span><span class="sxs-lookup"><span data-stu-id="44a99-115">Delete the VM without deleting any of the disks or the network interfaces.</span></span>
+2. <span data-ttu-id="6db5c-115">Hello virtuális gép törlése, hello lemezek vagy hello hálózati törlése nélkül.</span><span class="sxs-lookup"><span data-stu-id="6db5c-115">Delete hello VM without deleting any of hello disks or hello network interfaces.</span></span>
    
     ```powershell
     Remove-AzureRmVM -ResourceGroupName <resourceGroupName> -Name <vmName> 
     ```
-3. <span data-ttu-id="44a99-116">Hozzon létre a rendelkezésre állási csoportot, ha még nem létezik</span><span class="sxs-lookup"><span data-stu-id="44a99-116">Create the availability set if it does not already exist</span></span>
+3. <span data-ttu-id="6db5c-116">Hozzon létre hello rendelkezésre állási csoportot, ha még nem létezik</span><span class="sxs-lookup"><span data-stu-id="6db5c-116">Create hello availability set if it does not already exist</span></span>
    
     ```powershell
     New-AzureRmAvailabilitySet -ResourceGroupName <resourceGroupName> -Name <availabilitySetName> -Location "<location>" 
     ```
-4. <span data-ttu-id="44a99-117">Hozza létre újra a virtuális Gépet az új rendelkezésre állási készlet használata</span><span class="sxs-lookup"><span data-stu-id="44a99-117">Recreate the VM using the new availability set</span></span>
+4. <span data-ttu-id="6db5c-117">Hozza létre újra hello hello új rendelkezésre állási csoportot használó virtuális gépek</span><span class="sxs-lookup"><span data-stu-id="6db5c-117">Recreate hello VM using hello new availability set</span></span>
    
     ```powershell
     $vm2 = New-AzureRmVMConfig -VMName <VM-name> -VMSize <vm-size> -AvailabilitySetId <availability-set-id>
@@ -88,10 +88,10 @@ ms.lasthandoff: 08/18/2017
    
     New-AzureRmVM -ResourceGroupName <resourceGroupName> -Location <location> -VM <vmConfig>
     ``` 
-5. <span data-ttu-id="44a99-118">Az adatlemezek és kiterjesztések hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="44a99-118">Add data disks and extensions.</span></span> <span data-ttu-id="44a99-119">További információkért lásd: [adatlemezt csatolni a virtuális géphez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Resource Manager-sablonok bővítményei](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span><span class="sxs-lookup"><span data-stu-id="44a99-119">For more information, see [Attach Data Disk to VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) and [Extensions in Resource Manager templates](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span></span> <span data-ttu-id="44a99-120">Az adatlemezek és bővítményei a virtuális gép PowerShell vagy az Azure parancssori felület használatával lehet hozzáadni.</span><span class="sxs-lookup"><span data-stu-id="44a99-120">Data disks and extensions can be added to the VM using PowerShell or Azure CLI.</span></span>
+5. <span data-ttu-id="6db5c-118">Az adatlemezek és kiterjesztések hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="6db5c-118">Add data disks and extensions.</span></span> <span data-ttu-id="6db5c-119">További információkért lásd: [adatlemez csatolása tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Resource Manager-sablonok bővítményei](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span><span class="sxs-lookup"><span data-stu-id="6db5c-119">For more information, see [Attach Data Disk tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) and [Extensions in Resource Manager templates](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span></span> <span data-ttu-id="6db5c-120">Az adatlemezek és bővítmények adhatók toohello VM PowerShell vagy az Azure parancssori felület használatával.</span><span class="sxs-lookup"><span data-stu-id="6db5c-120">Data disks and extensions can be added toohello VM using PowerShell or Azure CLI.</span></span>
 
-## <a name="example-script"></a><span data-ttu-id="44a99-121">A példaként megadott parancsfájlt</span><span class="sxs-lookup"><span data-stu-id="44a99-121">Example Script</span></span>
-<span data-ttu-id="44a99-122">A következő parancsfájl egy példát a szükséges információk összegyűjtéséhez. az eredeti virtuális gép törlése, majd újbóli létrehozása egy új rendelkezésre állási csoportot.</span><span class="sxs-lookup"><span data-stu-id="44a99-122">The following script provides an example of gathering the required information, deleting the original VM and then recreating it in a new availability set.</span></span>
+## <a name="example-script"></a><span data-ttu-id="6db5c-121">A példaként megadott parancsfájlt</span><span class="sxs-lookup"><span data-stu-id="6db5c-121">Example Script</span></span>
+<span data-ttu-id="6db5c-122">hello következő parancsfájl egy példát biztosít a hello szükséges információk összegyűjtéséhez törlése hello eredeti virtuális gép, és azt, majd újbóli létrehozása egy új rendelkezésre állási csoport.</span><span class="sxs-lookup"><span data-stu-id="6db5c-122">hello following script provides an example of gathering hello required information, deleting hello original VM and then recreating it in a new availability set.</span></span>
 
 ```powershell
     #set variables
@@ -103,7 +103,7 @@ ms.lasthandoff: 08/18/2017
     #Get VM Details
     $OriginalVM = get-azurermvm -ResourceGroupName $rg -Name $vmName
 
-    #Output VM details to file
+    #Output VM details toofile
     "VM Name: " | Out-File -FilePath $outFile 
     $OriginalVM.Name | Out-File -FilePath $outFile -Append
 
@@ -127,7 +127,7 @@ ms.lasthandoff: 08/18/2017
     $OriginalVM.StorageProfile.DataDisks | Out-File -FilePath $outFile -Append
     }
 
-    #Remove the original VM
+    #Remove hello original VM
     Remove-AzureRmVM -ResourceGroupName $rg -Name $vmName
 
     #Create new availability set if it does not exist
@@ -136,7 +136,7 @@ ms.lasthandoff: 08/18/2017
     $availset = New-AzureRmAvailabilitySet -ResourceGroupName $rg -Name $newAvailSetName -Location $OriginalVM.Location
     }
 
-    #Create the basic configuration for the replacement VM
+    #Create hello basic configuration for hello replacement VM
     $newVM = New-AzureRmVMConfig -VMName $OriginalVM.Name -VMSize $OriginalVM.HardwareProfile.VmSize -AvailabilitySetId $availSet.Id
     Set-AzureRmVMOSDisk -VM $NewVM -VhdUri $OriginalVM.StorageProfile.OsDisk.Vhd.Uri  -Name $OriginalVM.Name -CreateOption Attach -Windows
 
@@ -150,10 +150,10 @@ ms.lasthandoff: 08/18/2017
         Add-AzureRmVMNetworkInterface -VM $NewVM -Id $nic
     }
 
-    #Create the VM
+    #Create hello VM
     New-AzureRmVM -ResourceGroupName $rg -Location $OriginalVM.Location -VM $NewVM -DisableBginfoExtension
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="44a99-123">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="44a99-123">Next steps</span></span>
-<span data-ttu-id="44a99-124">További tárhely hozzáadása a virtuális Gépet egy további hozzáadásával [adatlemez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="44a99-124">Add additional storage to your VM by adding an additional [data disk](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6db5c-123">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="6db5c-123">Next steps</span></span>
+<span data-ttu-id="6db5c-124">Adja hozzá a további tárhely tooyour VM további hozzáadásával [adatlemez](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="6db5c-124">Add additional storage tooyour VM by adding an additional [data disk](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 

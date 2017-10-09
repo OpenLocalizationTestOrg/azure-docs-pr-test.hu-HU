@@ -1,6 +1,6 @@
 ---
-title: "Migrálás a Java SDK-ból a Mavenbe – Régi Azure Service Fabric Java-alkalmazások frissítése a Maven használatára | Microsoft Docs"
-description: "Frissítse a még a Service Fabric Java SDK-t használó régebbi Java-alkalmazásokat, hogy a Service Fabric Java-függőségeiket a Mavenből kérjék le. A beállítás elvégzését követően a régebbi Java-alkalmazások fel tudnak majd épülni."
+title: "a Java SDK tooMaven - aaaMigrate régi Azure Service Fabric Java-alkalmazások toouse Maven frissítése |} Microsoft Docs"
+description: "Frissítés hello régebbi Java-alkalmazások toouse hello Service Fabric Java SDK, amellyel a Maven toofetch Service Fabric Java függőségek. A telepítés befejezése után a régebbi Java-alkalmazások lenne képes toobuild."
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: saysa
-ms.openlocfilehash: 2123c5f26d77045bd22af56a844fdbf222930e7b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11b979facd7b3865141a6d3a035a6021dd06ca0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="update-your-previous-java-service-fabric-application-to-fetch-java-libraries-from-maven"></a><span data-ttu-id="df5dc-104">Korábbi Java Service Fabric-alkalmazások frissítése a Java-kódtárak a Mavenből történő lekérésére</span><span class="sxs-lookup"><span data-stu-id="df5dc-104">Update your previous Java Service Fabric application to fetch Java libraries from Maven</span></span>
-<span data-ttu-id="df5dc-105">Nemrégiben áthelyeztük a Service Fabric Java bináris fájlokat a Service Fabric Java SDK-ból a Mavenen futó tárakba.</span><span class="sxs-lookup"><span data-stu-id="df5dc-105">We have recently moved Service Fabric Java binaries from the Service Fabric Java SDK to Maven hosting.</span></span> <span data-ttu-id="df5dc-106">A **mavencentral** paranccsal mostantól lekérheti a legújabb Service Fabric Java-függőségeket.</span><span class="sxs-lookup"><span data-stu-id="df5dc-106">Now you can use **mavencentral** to fetch the latest Service Fabric Java dependencies.</span></span> <span data-ttu-id="df5dc-107">Ennek a gyors üzembehelyezési útmutatónak a segítségével Yeoman-sablonok vagy az Eclipse használatával frissítheti a korábban a Service Fabric Java SDK-val való használatra létrehozott meglévő Java-alkalmazásait, hogy a Maven-alapú build kompatibilis legyen azokkal.</span><span class="sxs-lookup"><span data-stu-id="df5dc-107">This quick-start helps you update your existing Java applications, which you earlier created to be used with Service Fabric Java SDK, using either Yeoman template or Eclipse, to be compatible with the Maven based build.</span></span>
+# <a name="update-your-previous-java-service-fabric-application-toofetch-java-libraries-from-maven"></a><span data-ttu-id="d6d47-104">Az előző Java Service Fabric application toofetch Java-könyvtárakat a Maven frissítése</span><span class="sxs-lookup"><span data-stu-id="d6d47-104">Update your previous Java Service Fabric application toofetch Java libraries from Maven</span></span>
+<span data-ttu-id="d6d47-105">A hello Service Fabric Java SDK tooMaven üzemeltető nemrég került át Service Fabric Java bináris fájljait.</span><span class="sxs-lookup"><span data-stu-id="d6d47-105">We have recently moved Service Fabric Java binaries from hello Service Fabric Java SDK tooMaven hosting.</span></span> <span data-ttu-id="d6d47-106">Mostantól a **mavencentral** toofetch hello legújabb Service Fabric Java függőségek.</span><span class="sxs-lookup"><span data-stu-id="d6d47-106">Now you can use **mavencentral** toofetch hello latest Service Fabric Java dependencies.</span></span> <span data-ttu-id="d6d47-107">A gyors üzembe helyezési segítségével frissíti a meglévő Java-alkalmazások, amelyek korábban létrehozott toobe használt sablon vagy Eclipse toobe kompatibilis hello alapú Maven build a Service Fabric Java SDK, vagy Yeoman használatával.</span><span class="sxs-lookup"><span data-stu-id="d6d47-107">This quick-start helps you update your existing Java applications, which you earlier created toobe used with Service Fabric Java SDK, using either Yeoman template or Eclipse, toobe compatible with hello Maven based build.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="df5dc-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="df5dc-108">Prerequisites</span></span>
-1. <span data-ttu-id="df5dc-109">Először is el kell távolítania a meglévő Java SDK-t.</span><span class="sxs-lookup"><span data-stu-id="df5dc-109">First you need to uninstall the existing Java SDK.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d6d47-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="d6d47-108">Prerequisites</span></span>
+1. <span data-ttu-id="d6d47-109">Először meg kell toouninstall meglévő Java SDK hello.</span><span class="sxs-lookup"><span data-stu-id="d6d47-109">First you need toouninstall hello existing Java SDK.</span></span>
 
   ```bash
   sudo dpkg -r servicefabricsdkjava
   ```
-2. <span data-ttu-id="df5dc-110">Telepítse a legújabb Service Fabric parancssori felületet az [itt](service-fabric-cli.md) leírt lépések végrehajtásával.</span><span class="sxs-lookup"><span data-stu-id="df5dc-110">Install the latest Service Fabric CLI following the steps mentioned [here](service-fabric-cli.md).</span></span>
+2. <span data-ttu-id="d6d47-110">Telepítés hello legújabb Service Fabric CLI következő hello leírt lépéseket [Itt](service-fabric-cli.md).</span><span class="sxs-lookup"><span data-stu-id="d6d47-110">Install hello latest Service Fabric CLI following hello steps mentioned [here](service-fabric-cli.md).</span></span>
 
-3. <span data-ttu-id="df5dc-111">A Service Fabric Java-alkalmazások létrehozásához és szerkesztéséhez mindenképp telepíteni kell a JDK 1.8-at és a Gradle-t.</span><span class="sxs-lookup"><span data-stu-id="df5dc-111">To build and work on the Service Fabric Java applications, you need to ensure that you have JDK 1.8 and Gradle installed.</span></span> <span data-ttu-id="df5dc-112">Ha a JDK 1.8 (openjdk-8-jdk) és a Gradle még nincsenek telepítve, a következő futtatásával telepítheti azokat –</span><span class="sxs-lookup"><span data-stu-id="df5dc-112">If not yet installed, you can run the following to install JDK 1.8 (openjdk-8-jdk) and Gradle -</span></span>
+3. <span data-ttu-id="d6d47-111">toobuild és hello Service Fabric Java-alkalmazások dolgoznak, van szüksége, hogy Ön JDK 1.8 Gradle telepítve és tooensure.</span><span class="sxs-lookup"><span data-stu-id="d6d47-111">toobuild and work on hello Service Fabric Java applications, you need tooensure that you have JDK 1.8 and Gradle installed.</span></span> <span data-ttu-id="d6d47-112">Ha még nincs telepítve, futtatható következő tooinstall hello JDK 1.8 (openjdk-8-jdk) és a Gradle -</span><span class="sxs-lookup"><span data-stu-id="d6d47-112">If not yet installed, you can run hello following tooinstall JDK 1.8 (openjdk-8-jdk) and Gradle -</span></span>
 
  ```bash
  sudo apt-get install openjdk-8-jdk-headless
  sudo apt-get install gradle
  ```
-4. <span data-ttu-id="df5dc-113">Az [itt](service-fabric-application-lifecycle-sfctl.md) leírt lépések végrehajtásával frissítse az alkalmazás telepítési/eltávolítási szkriptjeit, hogy azok az új Service Fabric parancssori felületet használják.</span><span class="sxs-lookup"><span data-stu-id="df5dc-113">Update the install/uninstall scripts of your application to use the new Service Fabric CLI following the steps mentioned [here](service-fabric-application-lifecycle-sfctl.md).</span></span> <span data-ttu-id="df5dc-114">Referenciaként tekintse meg az első lépéseket bemutató [példákat](https://github.com/Azure-Samples/service-fabric-java-getting-started).</span><span class="sxs-lookup"><span data-stu-id="df5dc-114">You can refer to our getting-started [examples](https://github.com/Azure-Samples/service-fabric-java-getting-started) for reference.</span></span>
+4. <span data-ttu-id="d6d47-113">Frissítés hello telepítési/eltávolítási parancsfájlok, az alkalmazás toouse hello új Service Fabric CLI említett hello lépések [Itt](service-fabric-application-lifecycle-sfctl.md).</span><span class="sxs-lookup"><span data-stu-id="d6d47-113">Update hello install/uninstall scripts of your application toouse hello new Service Fabric CLI following hello steps mentioned [here](service-fabric-application-lifecycle-sfctl.md).</span></span> <span data-ttu-id="d6d47-114">Olvassa el a kezdeti lépések tooour [példák](https://github.com/Azure-Samples/service-fabric-java-getting-started) referenciaként.</span><span class="sxs-lookup"><span data-stu-id="d6d47-114">You can refer tooour getting-started [examples](https://github.com/Azure-Samples/service-fabric-java-getting-started) for reference.</span></span>
 
 >[!TIP]
-> <span data-ttu-id="df5dc-115">A Service Fabric Java SDK eltávolítása után a Yeoman nem fog működni.</span><span class="sxs-lookup"><span data-stu-id="df5dc-115">After uninstalling the Service Fabric Java SDK, Yeoman will not work.</span></span> <span data-ttu-id="df5dc-116">Az [itt](service-fabric-create-your-first-linux-application-with-java.md) leírt előfeltételeket követve helyezze üzembe a Service Fabric Yeoman Java-sablongenerátort.</span><span class="sxs-lookup"><span data-stu-id="df5dc-116">Follow the Prerequisites mentioned [here](service-fabric-create-your-first-linux-application-with-java.md) to have Service Fabric Yeoman Java template generator up and working.</span></span>
+> <span data-ttu-id="d6d47-115">Service Fabric Java SDK hello az Eltávolítás után Yeoman nem fog működni.</span><span class="sxs-lookup"><span data-stu-id="d6d47-115">After uninstalling hello Service Fabric Java SDK, Yeoman will not work.</span></span> <span data-ttu-id="d6d47-116">Hajtsa végre az említett hello Előfeltételek [Itt](service-fabric-create-your-first-linux-application-with-java.md) toohave Service Fabric Yeoman Java sablon generátor mentése, valamint működik.</span><span class="sxs-lookup"><span data-stu-id="d6d47-116">Follow hello Prerequisites mentioned [here](service-fabric-create-your-first-linux-application-with-java.md) toohave Service Fabric Yeoman Java template generator up and working.</span></span>
 
-## <a name="service-fabric-java-libraries-on-maven"></a><span data-ttu-id="df5dc-117">Service Fabric Java-kódtárak a Mavenben</span><span class="sxs-lookup"><span data-stu-id="df5dc-117">Service Fabric Java libraries on Maven</span></span>
-<span data-ttu-id="df5dc-118">A Service Fabric Java-kódtárak a Mavenben üzemelnek.</span><span class="sxs-lookup"><span data-stu-id="df5dc-118">Service Fabric Java libraries have been hosted in Maven.</span></span> <span data-ttu-id="df5dc-119">A függőségeket a projektek ``pom.xml`` vagy ``build.gradle`` fájljában adhatja hozzá a **mavenCentral** Service Fabric Java-kódtárainak használatához.</span><span class="sxs-lookup"><span data-stu-id="df5dc-119">You can add the dependencies in the ``pom.xml`` or ``build.gradle`` of your projects to use Service Fabric Java libraries from **mavenCentral**.</span></span>
+## <a name="service-fabric-java-libraries-on-maven"></a><span data-ttu-id="d6d47-117">Service Fabric Java-kódtárak a Mavenben</span><span class="sxs-lookup"><span data-stu-id="d6d47-117">Service Fabric Java libraries on Maven</span></span>
+<span data-ttu-id="d6d47-118">A Service Fabric Java-kódtárak a Mavenben üzemelnek.</span><span class="sxs-lookup"><span data-stu-id="d6d47-118">Service Fabric Java libraries have been hosted in Maven.</span></span> <span data-ttu-id="d6d47-119">Hello függőségek hello adhat hozzá ``pom.xml`` vagy ``build.gradle`` a projektek toouse Service Fabric Java szalagtárak a **mavenCentral**.</span><span class="sxs-lookup"><span data-stu-id="d6d47-119">You can add hello dependencies in hello ``pom.xml`` or ``build.gradle`` of your projects toouse Service Fabric Java libraries from **mavenCentral**.</span></span>
 
-### <a name="actors"></a><span data-ttu-id="df5dc-120">Aktorok</span><span class="sxs-lookup"><span data-stu-id="df5dc-120">Actors</span></span>
+### <a name="actors"></a><span data-ttu-id="d6d47-120">Aktorok</span><span class="sxs-lookup"><span data-stu-id="d6d47-120">Actors</span></span>
 
-<span data-ttu-id="df5dc-121">A Service Fabric Reliable Actor támogatása az alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="df5dc-121">Service Fabric Reliable Actor support for your application.</span></span>
+<span data-ttu-id="d6d47-121">A Service Fabric Reliable Actor támogatása az alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="d6d47-121">Service Fabric Reliable Actor support for your application.</span></span>
 
   ```XML
   <dependency>
@@ -66,9 +66,9 @@ ms.lasthandoff: 08/29/2017
   }
   ```
 
-### <a name="services"></a><span data-ttu-id="df5dc-122">Szolgáltatások</span><span class="sxs-lookup"><span data-stu-id="df5dc-122">Services</span></span>
+### <a name="services"></a><span data-ttu-id="d6d47-122">Szolgáltatások</span><span class="sxs-lookup"><span data-stu-id="d6d47-122">Services</span></span>
 
-<span data-ttu-id="df5dc-123">A Service Fabric állapotmentes szolgáltatás támogatása az alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="df5dc-123">Service Fabric Stateless Service support for your application.</span></span>
+<span data-ttu-id="d6d47-123">A Service Fabric állapotmentes szolgáltatás támogatása az alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="d6d47-123">Service Fabric Stateless Service support for your application.</span></span>
 
   ```XML
   <dependency>
@@ -87,10 +87,10 @@ ms.lasthandoff: 08/29/2017
   }
   ```
 
-### <a name="others"></a><span data-ttu-id="df5dc-124">Egyéb</span><span class="sxs-lookup"><span data-stu-id="df5dc-124">Others</span></span>
-#### <a name="transport"></a><span data-ttu-id="df5dc-125">Átvitel</span><span class="sxs-lookup"><span data-stu-id="df5dc-125">Transport</span></span>
+### <a name="others"></a><span data-ttu-id="d6d47-124">Egyéb</span><span class="sxs-lookup"><span data-stu-id="d6d47-124">Others</span></span>
+#### <a name="transport"></a><span data-ttu-id="d6d47-125">Átvitel</span><span class="sxs-lookup"><span data-stu-id="d6d47-125">Transport</span></span>
 
-<span data-ttu-id="df5dc-126">Az átviteli réteg támogatása a Service Fabric Java-alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="df5dc-126">Transport layer support for Service Fabric Java application.</span></span> <span data-ttu-id="df5dc-127">Ezt a függőséget nem kell kifejezetten hozzáadnia a Reliable Actor- vagy Service-alkalmazásaihoz, hacsak a programozást nem az átviteli réteg szintjén végzi.</span><span class="sxs-lookup"><span data-stu-id="df5dc-127">You do not need to explicitly add this dependency to your Reliable Actor or Service applications, unless you program at the transport layer.</span></span>
+<span data-ttu-id="d6d47-126">Az átviteli réteg támogatása a Service Fabric Java-alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="d6d47-126">Transport layer support for Service Fabric Java application.</span></span> <span data-ttu-id="d6d47-127">Nem kell tooexplicitly adja hozzá a függőség tooyour megbízható szereplő vagy szolgáltatásalkalmazások, kivéve, ha hello a szállítási rétegben a programot.</span><span class="sxs-lookup"><span data-stu-id="d6d47-127">You do not need tooexplicitly add this dependency tooyour Reliable Actor or Service applications, unless you program at hello transport layer.</span></span>
 
   ```XML
   <dependency>
@@ -109,9 +109,9 @@ ms.lasthandoff: 08/29/2017
   }
   ```
 
-#### <a name="fabric-support"></a><span data-ttu-id="df5dc-128">Fabric-támogatás</span><span class="sxs-lookup"><span data-stu-id="df5dc-128">Fabric support</span></span>
+#### <a name="fabric-support"></a><span data-ttu-id="d6d47-128">Fabric-támogatás</span><span class="sxs-lookup"><span data-stu-id="d6d47-128">Fabric support</span></span>
 
-<span data-ttu-id="df5dc-129">A natív Service Fabric-futtatókörnyezettel kommunikáló Service Fabric rendszerszintű támogatása.</span><span class="sxs-lookup"><span data-stu-id="df5dc-129">System level support for Service Fabric, which talks to native Service Fabric runtime.</span></span> <span data-ttu-id="df5dc-130">Ezt a függőséget nem kell kifejezetten hozzáadnia a Reliable Actor- vagy Service-alkalmazásaihoz.</span><span class="sxs-lookup"><span data-stu-id="df5dc-130">You do not need to explicitly add this dependency to your Reliable Actor or Service applications.</span></span> <span data-ttu-id="df5dc-131">A rendszer automatikusan lekéri azt a Mavenből a fent említett további függőségek hozzáadásakor.</span><span class="sxs-lookup"><span data-stu-id="df5dc-131">This gets fetched automatically from Maven, when you include the other dependencies above.</span></span>
+<span data-ttu-id="d6d47-129">Rendszer szintű támogatás a Service Fabric, amely toonative Service Fabric-futtatókörnyezet-kiszolgálóhoz.</span><span class="sxs-lookup"><span data-stu-id="d6d47-129">System level support for Service Fabric, which talks toonative Service Fabric runtime.</span></span> <span data-ttu-id="d6d47-130">Nem kell tooexplicitly hozzáadása a megbízható szereplő függőségi tooyour vagy szolgáltatásalkalmazás.</span><span class="sxs-lookup"><span data-stu-id="d6d47-130">You do not need tooexplicitly add this dependency tooyour Reliable Actor or Service applications.</span></span> <span data-ttu-id="d6d47-131">Ez lekérdezi automatikusan lekérni a Maven, amikor felveszi hello más függőségeket.</span><span class="sxs-lookup"><span data-stu-id="d6d47-131">This gets fetched automatically from Maven, when you include hello other dependencies above.</span></span>
 
   ```XML
   <dependency>
@@ -131,9 +131,9 @@ ms.lasthandoff: 08/29/2017
   ```
 
 
-## <a name="migrating-service-fabric-stateless-service"></a><span data-ttu-id="df5dc-132">A Service Fabric állapotmentes szolgáltatás migrálása</span><span class="sxs-lookup"><span data-stu-id="df5dc-132">Migrating Service Fabric Stateless Service</span></span>
+## <a name="migrating-service-fabric-stateless-service"></a><span data-ttu-id="d6d47-132">A Service Fabric állapotmentes szolgáltatás migrálása</span><span class="sxs-lookup"><span data-stu-id="d6d47-132">Migrating Service Fabric Stateless Service</span></span>
 
-<span data-ttu-id="df5dc-133">A meglévő Service Fabric állapotmentes Java-szolgáltatás a Mavenből lekért Service Fabric-függőségek használatával való létrehozásához frissítenie kell a ``build.gradle`` fájlt a szolgáltatásban.</span><span class="sxs-lookup"><span data-stu-id="df5dc-133">To be able to build your existing Service Fabric stateless Java service using Service Fabric dependencies fetched from Maven, you need to update the ``build.gradle`` file inside the Service.</span></span> <span data-ttu-id="df5dc-134">Korábban ez az alábbihoz hasonló volt –</span><span class="sxs-lookup"><span data-stu-id="df5dc-134">Previously it used to be like as follows -</span></span>
+<span data-ttu-id="d6d47-133">toobe képes toobuild tooupdate hello kell a meglévő Service Fabric állapotmentes Java szolgáltatást a Service Fabric-függőségek Maven a lehívott használatával, ``build.gradle`` belüli hello szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="d6d47-133">toobe able toobuild your existing Service Fabric stateless Java service using Service Fabric dependencies fetched from Maven, you need tooupdate hello ``build.gradle`` file inside hello Service.</span></span> <span data-ttu-id="d6d47-134">Korábban használt toobe például a következőképpen-</span><span class="sxs-lookup"><span data-stu-id="d6d47-134">Previously it used toobe like as follows -</span></span>
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -166,7 +166,7 @@ task copyDeps <<{
     }
 }
 ```
-<span data-ttu-id="df5dc-135">Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –</span><span class="sxs-lookup"><span data-stu-id="df5dc-135">Now, to fetch the dependencies from Maven, the **updated** ``build.gradle`` would have the corresponding parts as follows -</span></span>
+<span data-ttu-id="d6d47-135">Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében</span><span class="sxs-lookup"><span data-stu-id="d6d47-135">Now, toofetch hello dependencies from Maven, hello **updated** ``build.gradle`` would have hello corresponding parts as follows -</span></span>
 ```
 repositories {
         mavenCentral()
@@ -219,20 +219,20 @@ task copyDeps <<{
     }
 }
 ```
-<span data-ttu-id="df5dc-136">Általánosságban véve, ha szeretne átfogó képet kapni arról, hogy a felépítési szkriptek hogyan néznek ki egy Service Fabric állapotmentes Java-szolgáltatásban, tekintse meg az első lépéseket bemutató példáinkban szereplő bármelyik mintát.</span><span class="sxs-lookup"><span data-stu-id="df5dc-136">In general, to get an overall idea about how the build script would look like for a Service Fabric stateless Java service, you can refer to any sample from our getting-started examples.</span></span> <span data-ttu-id="df5dc-137">Itt van például a [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) az EchoServer-mintához.</span><span class="sxs-lookup"><span data-stu-id="df5dc-137">Here is the [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) for the EchoServer sample.</span></span>
+<span data-ttu-id="d6d47-136">Általában tooget átfogó képet arról, hogyan hello build script alábbihoz hasonlóan fog kinézni a Service Fabric állapotmentes Java szolgáltatás számára, olvassa el a tooany minta az első lépéseket példákban.</span><span class="sxs-lookup"><span data-stu-id="d6d47-136">In general, tooget an overall idea about how hello build script would look like for a Service Fabric stateless Java service, you can refer tooany sample from our getting-started examples.</span></span> <span data-ttu-id="d6d47-137">Íme hello [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) hello EchoServer minta.</span><span class="sxs-lookup"><span data-stu-id="d6d47-137">Here is hello [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) for hello EchoServer sample.</span></span>
 
-## <a name="migrating-service-fabric-actor-service"></a><span data-ttu-id="df5dc-138">A Service Fabric aktorszolgáltatás migrálása</span><span class="sxs-lookup"><span data-stu-id="df5dc-138">Migrating Service Fabric Actor Service</span></span>
+## <a name="migrating-service-fabric-actor-service"></a><span data-ttu-id="d6d47-138">A Service Fabric aktorszolgáltatás migrálása</span><span class="sxs-lookup"><span data-stu-id="d6d47-138">Migrating Service Fabric Actor Service</span></span>
 
-<span data-ttu-id="df5dc-139">A meglévő Service Fabric-aktor Java-alkalmazás a Mavenből lekért Service Fabric-függőségek használatával való létrehozásához frissítenie kell a ``build.gradle`` fájlt az illesztőcsomagban és a Service csomagban.</span><span class="sxs-lookup"><span data-stu-id="df5dc-139">To be able to build your existing Service Fabric Actor Java application using Service Fabric dependencies fetched from Maven, you need to update the ``build.gradle`` file inside the interface package and in the Service package.</span></span> <span data-ttu-id="df5dc-140">Ha TestClient csomaggal is rendelkezik, azt is frissítenie kell.</span><span class="sxs-lookup"><span data-stu-id="df5dc-140">If you have a TestClient package, you need to update that as well.</span></span> <span data-ttu-id="df5dc-141">Tehát például a ``Myactor`` aktor esetében az alábbi helyeken kell frissítést végeznie –</span><span class="sxs-lookup"><span data-stu-id="df5dc-141">So, for your actor ``Myactor``, the following would be the places where you need to update -</span></span>
+<span data-ttu-id="d6d47-139">toobe képes toobuild tooupdate hello kell a meglévő Service Fabric szereplő Java-alkalmazások használatával a Service Fabric-függőségek Maven a lehívott, ``build.gradle`` fájl belül hello felületet, és a hello szolgáltatás csomagban.</span><span class="sxs-lookup"><span data-stu-id="d6d47-139">toobe able toobuild your existing Service Fabric Actor Java application using Service Fabric dependencies fetched from Maven, you need tooupdate hello ``build.gradle`` file inside hello interface package and in hello Service package.</span></span> <span data-ttu-id="d6d47-140">Ha TestClient csomaggal rendelkezik, akkor tooupdate is, amely.</span><span class="sxs-lookup"><span data-stu-id="d6d47-140">If you have a TestClient package, you need tooupdate that as well.</span></span> <span data-ttu-id="d6d47-141">Igen, a aktor ``Myactor``, hello következő lenne tooupdate - kell hello helyek</span><span class="sxs-lookup"><span data-stu-id="d6d47-141">So, for your actor ``Myactor``, hello following would be hello places where you need tooupdate -</span></span>
 ```
 ./Myactor/build.gradle
 ./MyactorInterface/build.gradle
 ./MyactorTestClient/build.gradle
 ```
 
-#### <a name="updating-build-script-for-the-interface-project"></a><span data-ttu-id="df5dc-142">Az illesztőprojekt felépítési szkriptjének frissítése</span><span class="sxs-lookup"><span data-stu-id="df5dc-142">Updating build script for the interface project</span></span>
+#### <a name="updating-build-script-for-hello-interface-project"></a><span data-ttu-id="d6d47-142">Build script hello felület projekt frissítése</span><span class="sxs-lookup"><span data-stu-id="d6d47-142">Updating build script for hello interface project</span></span>
 
-<span data-ttu-id="df5dc-143">Korábban ez az alábbihoz hasonló volt –</span><span class="sxs-lookup"><span data-stu-id="df5dc-143">Previously it used to be like as follows -</span></span>
+<span data-ttu-id="d6d47-143">Korábban használt toobe például a következőképpen-</span><span class="sxs-lookup"><span data-stu-id="d6d47-143">Previously it used toobe like as follows -</span></span>
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -240,7 +240,7 @@ dependencies {
 .
 .
 ```
-<span data-ttu-id="df5dc-144">Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –</span><span class="sxs-lookup"><span data-stu-id="df5dc-144">Now, to fetch the dependencies from Maven, the **updated** ``build.gradle`` would have the corresponding parts as follows -</span></span>
+<span data-ttu-id="d6d47-144">Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében</span><span class="sxs-lookup"><span data-stu-id="d6d47-144">Now, toofetch hello dependencies from Maven, hello **updated** ``build.gradle`` would have hello corresponding parts as follows -</span></span>
 ```
 repositories {
     mavenCentral()
@@ -271,9 +271,9 @@ compileJava.dependsOn(explodeDeps)
 .
 ```
 
-#### <a name="updating-build-script-for-the-actor-project"></a><span data-ttu-id="df5dc-145">Az aktorprojekt felépítési szkriptjének frissítése</span><span class="sxs-lookup"><span data-stu-id="df5dc-145">Updating build script for the actor project</span></span>
+#### <a name="updating-build-script-for-hello-actor-project"></a><span data-ttu-id="d6d47-145">Build script hello szereplő projekt frissítése</span><span class="sxs-lookup"><span data-stu-id="d6d47-145">Updating build script for hello actor project</span></span>
 
-<span data-ttu-id="df5dc-146">Korábban ez az alábbihoz hasonló volt –</span><span class="sxs-lookup"><span data-stu-id="df5dc-146">Previously it used to be like as follows -</span></span>
+<span data-ttu-id="d6d47-146">Korábban használt toobe például a következőképpen-</span><span class="sxs-lookup"><span data-stu-id="d6d47-146">Previously it used toobe like as follows -</span></span>
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -312,7 +312,7 @@ task copyDeps<< {
     }
 }
 ```
-<span data-ttu-id="df5dc-147">Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –</span><span class="sxs-lookup"><span data-stu-id="df5dc-147">Now, to fetch the dependencies from Maven, the **updated** ``build.gradle`` would have the corresponding parts as follows -</span></span>
+<span data-ttu-id="d6d47-147">Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében</span><span class="sxs-lookup"><span data-stu-id="d6d47-147">Now, toofetch hello dependencies from Maven, hello **updated** ``build.gradle`` would have hello corresponding parts as follows -</span></span>
 ```
 repositories {
     mavenCentral()
@@ -370,9 +370,9 @@ task copyDeps<< {
 }
 ```
 
-#### <a name="updating-build-script-for-the-test-client-project"></a><span data-ttu-id="df5dc-148">A tesztügyfélprojekt felépítési szkriptjének frissítése</span><span class="sxs-lookup"><span data-stu-id="df5dc-148">Updating build script for the test client project</span></span>
+#### <a name="updating-build-script-for-hello-test-client-project"></a><span data-ttu-id="d6d47-148">Build script hello teszt ügyfél projekt frissítése</span><span class="sxs-lookup"><span data-stu-id="d6d47-148">Updating build script for hello test client project</span></span>
 
-<span data-ttu-id="df5dc-149">Ezek a módosítások hasonlóak az előző szakasz, azaz az aktorprojekt esetében leírt módosításokhoz.</span><span class="sxs-lookup"><span data-stu-id="df5dc-149">Changes here are similar to the changes discussed in previous section, that is, the actor project.</span></span> <span data-ttu-id="df5dc-150">Korábban a Gradle-szkript az alábbihoz hasonló volt –</span><span class="sxs-lookup"><span data-stu-id="df5dc-150">Previously the Gradle script used to be like as follows -</span></span>
+<span data-ttu-id="d6d47-149">Változás az előző szakaszban, ez azt jelenti, hogy a hello szereplő projekt tárgyalt hasonló toohello módosítások.</span><span class="sxs-lookup"><span data-stu-id="d6d47-149">Changes here are similar toohello changes discussed in previous section, that is, hello actor project.</span></span> <span data-ttu-id="d6d47-150">Korábban a gradle-lel használt parancsfájl toobe, például az alábbiak szerint - hello</span><span class="sxs-lookup"><span data-stu-id="d6d47-150">Previously hello Gradle script used toobe like as follows -</span></span>
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -412,7 +412,7 @@ task copyDeps<< {
         }
 }
 ```
-<span data-ttu-id="df5dc-151">Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –</span><span class="sxs-lookup"><span data-stu-id="df5dc-151">Now, to fetch the dependencies from Maven, the **updated** ``build.gradle`` would have the corresponding parts as follows -</span></span>
+<span data-ttu-id="d6d47-151">Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében</span><span class="sxs-lookup"><span data-stu-id="d6d47-151">Now, toofetch hello dependencies from Maven, hello **updated** ``build.gradle`` would have hello corresponding parts as follows -</span></span>
 ```
 repositories {
     mavenCentral()
@@ -472,8 +472,8 @@ task copyDeps<< {
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="df5dc-152">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="df5dc-152">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d6d47-152">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d6d47-152">Next steps</span></span>
 
-* [<span data-ttu-id="df5dc-153">Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren Yeoman használatával</span><span class="sxs-lookup"><span data-stu-id="df5dc-153">Create and deploy your first Service Fabric Java application on Linux by using Yeoman</span></span>](service-fabric-create-your-first-linux-application-with-java.md)
-* [<span data-ttu-id="df5dc-154">Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren az Eclipse Service Fabric beépülő modul használatával</span><span class="sxs-lookup"><span data-stu-id="df5dc-154">Create and deploy your first Service Fabric Java application on Linux by using Service Fabric Plugin for Eclipse</span></span>](service-fabric-get-started-eclipse.md)
-* [<span data-ttu-id="df5dc-155">Service Fabric-fürtök használata a Service Fabric parancssori felületén</span><span class="sxs-lookup"><span data-stu-id="df5dc-155">Interact with Service Fabric clusters using the Service Fabric CLI</span></span>](service-fabric-cli.md)
+* [<span data-ttu-id="d6d47-153">Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren Yeoman használatával</span><span class="sxs-lookup"><span data-stu-id="d6d47-153">Create and deploy your first Service Fabric Java application on Linux by using Yeoman</span></span>](service-fabric-create-your-first-linux-application-with-java.md)
+* [<span data-ttu-id="d6d47-154">Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren az Eclipse Service Fabric beépülő modul használatával</span><span class="sxs-lookup"><span data-stu-id="d6d47-154">Create and deploy your first Service Fabric Java application on Linux by using Service Fabric Plugin for Eclipse</span></span>](service-fabric-get-started-eclipse.md)
+* [<span data-ttu-id="d6d47-155">Kommunikál a Service Fabric-fürtök hello Service Fabric parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="d6d47-155">Interact with Service Fabric clusters using hello Service Fabric CLI</span></span>](service-fabric-cli.md)

@@ -1,17 +1,17 @@
-<span data-ttu-id="10989-101">Győződjön meg róla, hogy már létrehozott egy Service Bus-névteret, az [itt][namespace-how-to] ismertetettek szerint.</span><span class="sxs-lookup"><span data-stu-id="10989-101">Please ensure that you have already created a Service Bus namespace, as shown [here][namespace-how-to].</span></span>
+<span data-ttu-id="ea2e6-101">Győződjön meg róla, hogy már létrehozott egy Service Bus-névteret, az [itt][namespace-how-to] ismertetettek szerint.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-101">Please ensure that you have already created a Service Bus namespace, as shown [here][namespace-how-to].</span></span>
 
-1. <span data-ttu-id="10989-102">Jelentkezzen be az [Azure Portalra][azure-portal].</span><span class="sxs-lookup"><span data-stu-id="10989-102">Log on to the [Azure portal][azure-portal].</span></span>
-2. <span data-ttu-id="10989-103">A portál bal oldali navigációs panelén kattintson a **Service Bus** elemre (ha nem lát **Service Bus** elemet, kattintson a **További szolgáltatások** lehetőségre).</span><span class="sxs-lookup"><span data-stu-id="10989-103">In the left navigation pane of the portal, click **Service Bus** (if you don't see **Service Bus**, click **More services**).</span></span>
-3. <span data-ttu-id="10989-104">Kattintson a névtérre, amelyben az üzenetsort létre kívánja hozni.</span><span class="sxs-lookup"><span data-stu-id="10989-104">Click the namespace in which you would like to create the queue.</span></span> <span data-ttu-id="10989-105">Ebben az esetben ez az **nstest1**.</span><span class="sxs-lookup"><span data-stu-id="10989-105">In this case, it is **nstest1**.</span></span>
+1. <span data-ttu-id="ea2e6-102">Jelentkezzen be toohello [Azure-portálon][azure-portal].</span><span class="sxs-lookup"><span data-stu-id="ea2e6-102">Log on toohello [Azure portal][azure-portal].</span></span>
+2. <span data-ttu-id="ea2e6-103">Hello portal hello bal oldali navigációs ablaktábláján kattintson **Service Bus** (Ha nem lát **Service Bus**, kattintson a **további szolgáltatások**).</span><span class="sxs-lookup"><span data-stu-id="ea2e6-103">In hello left navigation pane of hello portal, click **Service Bus** (if you don't see **Service Bus**, click **More services**).</span></span>
+3. <span data-ttu-id="ea2e6-104">Kattintson a hello névtérre, amelyben szeretné toocreate hello várólista.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-104">Click hello namespace in which you would like toocreate hello queue.</span></span> <span data-ttu-id="ea2e6-105">Ebben az esetben ez az **nstest1**.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-105">In this case, it is **nstest1**.</span></span>
    
     ![Üzenetsor létrehozása][createqueue1]
-4. <span data-ttu-id="10989-107">A **Service Bus-névtér** panelen kattintson az **Üzenetsorok**, majd az **Üzenetsor hozzáadása** elemre.</span><span class="sxs-lookup"><span data-stu-id="10989-107">In the **Service Bus namespace** blade, select **Queues**, then click **Add queue**.</span></span>
+4. <span data-ttu-id="ea2e6-107">A hello **Service Bus-névtér** panelen válassza **várólisták**, majd kattintson a **Hozzáadás várólista**.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-107">In hello **Service Bus namespace** blade, select **Queues**, then click **Add queue**.</span></span>
    
     ![Üzenetsorok kiválasztása][createqueue2]
-5. <span data-ttu-id="10989-109">Adjon meg egy nevet az **Üzenetsor neve** mezőben, a többi érték alapértelmezését pedig ne módosítsa.</span><span class="sxs-lookup"><span data-stu-id="10989-109">Enter the **Queue Name** and leave the other values with their defaults.</span></span>
+5. <span data-ttu-id="ea2e6-109">Adja meg a hello **Üzenetsornév** és egyéb értékek hello hagyja az alapértelmezett értékekkel.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-109">Enter hello **Queue Name** and leave hello other values with their defaults.</span></span>
    
     ![Új kiválasztása][createqueue3]
-6. <span data-ttu-id="10989-111">Kattintson a panel alján található **Létrehozás** gombra.</span><span class="sxs-lookup"><span data-stu-id="10989-111">At the bottom of the blade, click **Create**.</span></span>
+6. <span data-ttu-id="ea2e6-111">Hello hello panel alsó részén, kattintson a **létrehozása**.</span><span class="sxs-lookup"><span data-stu-id="ea2e6-111">At hello bottom of hello blade, click **Create**.</span></span>
 
 [createqueue1]: ./media/service-bus-create-queue-portal/create-queue1.png
 [createqueue2]: ./media/service-bus-create-queue-portal/create-queue2.png

@@ -1,0 +1,3 @@
+| <span data-ttu-id="a0a31-101">Erőforrás</span><span class="sxs-lookup"><span data-stu-id="a0a31-101">Resource</span></span> | <span data-ttu-id="a0a31-102">Alapértelmezett korlát</span><span class="sxs-lookup"><span data-stu-id="a0a31-102">Default Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="a0a31-103">Tárolócsoportok száma [előfizetésenként](../articles/billing-buy-sign-up-azure-subscription.md)</span><span class="sxs-lookup"><span data-stu-id="a0a31-103">Container groups per [subscription](../articles/billing-buy-sign-up-azure-subscription.md)</span></span> | <span data-ttu-id="a0a31-104">20</span><span class="sxs-lookup"><span data-stu-id="a0a31-104">20</span></span> |

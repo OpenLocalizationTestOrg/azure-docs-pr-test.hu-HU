@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - alkalmazás tanúsítvány hozzáadása a fürthöz |} Microsoft Docs"
-description: "Az Azure PowerShell-parancsfájl minták – az alkalmazás tanúsítványának felvétele a Service Fabric-fürt."
+title: "PowerShell parancsfájl minta - aaaAzure alkalmazás cert tooa fürt hozzáadása |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minták – az alkalmazás tanúsítvány tooa Service Fabric-fürt hozzáadása."
 services: service-fabric
 documentationcenter: 
 author: rwike77
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/20/2017
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 9ccd6bb0458bc03e52103fa70cad26bd6bf98bd5
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: aba62598e2e4775012f89b5070bef5e61aec64f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-an-application-certificate-to-a-service-fabric-cluster"></a><span data-ttu-id="d5be6-103">Az alkalmazás tanúsítványának felvétele a Service Fabric-fürt</span><span class="sxs-lookup"><span data-stu-id="d5be6-103">Add an application certificate to a Service Fabric cluster</span></span>
+# <a name="add-an-application-certificate-tooa-service-fabric-cluster"></a><span data-ttu-id="bcf45-103">Az alkalmazás tanúsítvány tooa Service Fabric-fürt hozzáadása</span><span class="sxs-lookup"><span data-stu-id="bcf45-103">Add an application certificate tooa Service Fabric cluster</span></span>
 
-<span data-ttu-id="d5be6-104">Ez a parancsfájlpélda létrehoz egy önaláírt tanúsítványt a megadott Azure-tárolóban, és a Service Fabric-fürt összes csomópontjára telepíti azt.</span><span class="sxs-lookup"><span data-stu-id="d5be6-104">This sample script creates a self-signed certificate in the specified Azure key vault and installs it to all nodes of the Service Fabric cluster.</span></span> <span data-ttu-id="d5be6-105">A tanúsítvány is letölti egy helyi mappába.</span><span class="sxs-lookup"><span data-stu-id="d5be6-105">The certificate also downloads to a local folder.</span></span> <span data-ttu-id="d5be6-106">A letöltött tanúsítvány neve megegyezik a key vault a tanúsítvány neve.</span><span class="sxs-lookup"><span data-stu-id="d5be6-106">The name of the downloaded certificate is the same as the name of the certificate in the key vault.</span></span> <span data-ttu-id="d5be6-107">A paraméterek testreszabása, igény szerint.</span><span class="sxs-lookup"><span data-stu-id="d5be6-107">Customize the parameters as needed.</span></span>
+<span data-ttu-id="bcf45-104">Ez a parancsfájlpélda hoz létre egy önaláírt tanúsítványt hello megadott az Azure key vault, és telepíti azt tooall hello Service Fabric-fürt csomópontja.</span><span class="sxs-lookup"><span data-stu-id="bcf45-104">This sample script creates a self-signed certificate in hello specified Azure key vault and installs it tooall nodes of hello Service Fabric cluster.</span></span> <span data-ttu-id="bcf45-105">hello tanúsítvány is letölti tooa helyi mappát.</span><span class="sxs-lookup"><span data-stu-id="bcf45-105">hello certificate also downloads tooa local folder.</span></span> <span data-ttu-id="bcf45-106">hello letöltött tanúsítvány hello neve van hello ugyanaz, mint a key vaultban hello hello tanúsítvány hello neve.</span><span class="sxs-lookup"><span data-stu-id="bcf45-106">hello name of hello downloaded certificate is hello same as hello name of hello certificate in hello key vault.</span></span> <span data-ttu-id="bcf45-107">Hello paraméterek testreszabása, igény szerint.</span><span class="sxs-lookup"><span data-stu-id="bcf45-107">Customize hello parameters as needed.</span></span>
 
-<span data-ttu-id="d5be6-108">Szükség esetén telepítse az Azure PowerShell található utasítás használatával a [Azure PowerShell útmutató](/powershell/azure/overview) , majd futtassa `Login-AzureRmAccount` kapcsolat létrehozása az Azure-ral.</span><span class="sxs-lookup"><span data-stu-id="d5be6-108">If needed, install the Azure PowerShell using the instruction found in the [Azure PowerShell guide](/powershell/azure/overview) and then run `Login-AzureRmAccount` to create a connection with Azure.</span></span> 
+<span data-ttu-id="bcf45-108">Szükség esetén telepítse az Azure PowerShell használatával hello utasítás található hello hello [Azure PowerShell útmutató](/powershell/azure/overview) , majd futtassa `Login-AzureRmAccount` toocreate Azure kapcsolatot.</span><span class="sxs-lookup"><span data-stu-id="bcf45-108">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](/powershell/azure/overview) and then run `Login-AzureRmAccount` toocreate a connection with Azure.</span></span> 
 
-## <a name="sample-script"></a><span data-ttu-id="d5be6-109">Mintaparancsfájl</span><span class="sxs-lookup"><span data-stu-id="d5be6-109">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="bcf45-109">Mintaparancsfájl</span><span class="sxs-lookup"><span data-stu-id="bcf45-109">Sample script</span></span>
 
-<span data-ttu-id="d5be6-110">[!code-powershell[fő](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "egy alkalmazás-tanúsítvány hozzáadása a fürthöz")]</span><span class="sxs-lookup"><span data-stu-id="d5be6-110">[!code-powershell[main](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "Add an application certificate to a cluster")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "Add an application certificate tooa cluster")]
 
-## <a name="script-explanation"></a><span data-ttu-id="d5be6-111">Parancsfájl ismertetése</span><span class="sxs-lookup"><span data-stu-id="d5be6-111">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="bcf45-110">Parancsfájl ismertetése</span><span class="sxs-lookup"><span data-stu-id="bcf45-110">Script explanation</span></span>
 
-<span data-ttu-id="d5be6-112">Ezt a parancsfájlt az alábbi parancsokat használja: minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="d5be6-112">This script uses the following commands: Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="bcf45-111">A parancsfájl a következő parancsok hello: hello tábla minden egyes parancsa toocommand adott dokumentáció hivatkozásokat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="bcf45-111">This script uses hello following commands: Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="d5be6-113">Parancs</span><span class="sxs-lookup"><span data-stu-id="d5be6-113">Command</span></span> | <span data-ttu-id="d5be6-114">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="d5be6-114">Notes</span></span> |
+| <span data-ttu-id="bcf45-112">Parancs</span><span class="sxs-lookup"><span data-stu-id="bcf45-112">Command</span></span> | <span data-ttu-id="bcf45-113">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="bcf45-113">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="d5be6-115">Adja hozzá AzureRmServiceFabricApplicationCertificate</span><span class="sxs-lookup"><span data-stu-id="d5be6-115">Add-AzureRmServiceFabricApplicationCertificate</span></span>](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | <span data-ttu-id="d5be6-116">Új alkalmazás tanúsítvány hozzáadása a virtuálisgép-méretezési csoport a fürtöt alkotó.</span><span class="sxs-lookup"><span data-stu-id="d5be6-116">Add a new application certificate to the virtual machine scale set that make up the cluster.</span></span>  |
+| [<span data-ttu-id="bcf45-114">Adja hozzá AzureRmServiceFabricApplicationCertificate</span><span class="sxs-lookup"><span data-stu-id="bcf45-114">Add-AzureRmServiceFabricApplicationCertificate</span></span>](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | <span data-ttu-id="bcf45-115">Adjon hozzá egy új alkalmazás tanúsítvány toohello virtuálisgép-méretezési hello fürtöt alkotó.</span><span class="sxs-lookup"><span data-stu-id="bcf45-115">Add a new application certificate toohello virtual machine scale set that make up hello cluster.</span></span>  |
 
-## <a name="next-steps"></a><span data-ttu-id="d5be6-117">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d5be6-117">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="bcf45-116">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="bcf45-116">Next steps</span></span>
 
-<span data-ttu-id="d5be6-118">Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="d5be6-118">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="bcf45-117">Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="bcf45-117">For more information on hello Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="d5be6-119">Azure Service Fabric további Azure Powershell-példák találhatók a [Azure PowerShell-példák](../service-fabric-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="d5be6-119">Additional Azure Powershell samples for Azure Service Fabric can be found in the [Azure PowerShell samples](../service-fabric-powershell-samples.md).</span></span>
+<span data-ttu-id="bcf45-118">Azure Service Fabric további Azure Powershell-példák találhatók hello [Azure PowerShell-példák](../service-fabric-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="bcf45-118">Additional Azure Powershell samples for Azure Service Fabric can be found in hello [Azure PowerShell samples](../service-fabric-powershell-samples.md).</span></span>

@@ -1,0 +1,7 @@
+
+1. <span data-ttu-id="87cc6-101">A hello [Azure-portálon](https://portal.azure.com/), kattintson a **összes tallózása** > **alkalmazásszolgáltatások**, és kattintson a Mobile Apps háttér.</span><span class="sxs-lookup"><span data-stu-id="87cc6-101">In hello [Azure portal](https://portal.azure.com/), click **Browse All** > **App Services**, and click your Mobile Apps back end.</span></span> <span data-ttu-id="87cc6-102">A **beállítások**, kattintson a **App Service leküldéses**, majd kattintson az értesítési központ nevére.</span><span class="sxs-lookup"><span data-stu-id="87cc6-102">Under **Settings**, click **App Service Push**, and then click your notification hub name.</span></span>
+2. <span data-ttu-id="87cc6-103">Nyissa meg túl**Windows (WNS)**, adja meg a hello **biztonsági kulcs** (titkos) és **csomag biztonsági AZONOSÍTÓJÁT** hello Live Services webhely kapott, és kattintson  **Mentés**.</span><span class="sxs-lookup"><span data-stu-id="87cc6-103">Go too**Windows (WNS)**, enter hello **Security key** (client secret) and **Package SID** that you obtained from hello Live Services site, and then click **Save**.</span></span>
+
+    ![Hello portálon hello WNS kulcs beállítása](./media/app-service-mobile-configure-wns/mobile-push-wns-credentials.png)
+
+<span data-ttu-id="87cc6-105">A háttér már konfigurált toouse WNS toosend leküldéses értesítéseket.</span><span class="sxs-lookup"><span data-stu-id="87cc6-105">Your back end is now configured toouse WNS toosend push notifications.</span></span>

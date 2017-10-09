@@ -1,0 +1,16 @@
+<span data-ttu-id="e7af9-101">Itt hogyan toouse hello **Service Bus - üzenet fogadásakor a sorhoz** indul el egy logic app munkafolyamat tooinitiate, ha egy új cikk tooa Service Bus-üzenetsorba küldött.</span><span class="sxs-lookup"><span data-stu-id="e7af9-101">Here's how toouse hello **Service Bus - When a message is received in a queue** trigger tooinitiate a logic app workflow when a new item is sent tooa Service Bus queue.</span></span>  
+
+> [!NOTE]
+> <span data-ttu-id="e7af9-102">A Service Bus kapcsolati karakterlánc be felszólító toosign lesz, ha még nem hozott létre a kapcsolat tooService busz.</span><span class="sxs-lookup"><span data-stu-id="e7af9-102">You will be prompted toosign in with your Service Bus connection string if you have not already created a connection tooService Bus.</span></span>  
+> 
+> 
+
+1. <span data-ttu-id="e7af9-103">Hello logic apps designer hello keresési mezőjébe írja be a **service bus**.</span><span class="sxs-lookup"><span data-stu-id="e7af9-103">In hello search box on hello logic apps designer, enter **service bus**.</span></span> <span data-ttu-id="e7af9-104">Válassza ki hello **Service Bus - üzenet fogadásakor a sorhoz** eseményindító.</span><span class="sxs-lookup"><span data-stu-id="e7af9-104">Then select hello **Service Bus - When a message is received in a queue** trigger.</span></span>  
+   <span data-ttu-id="e7af9-105">![A Service Bus eseményindító kép 1](./media/connectors-create-api-servicebus/trigger-1.png)</span><span class="sxs-lookup"><span data-stu-id="e7af9-105">![Service Bus trigger image 1](./media/connectors-create-api-servicebus/trigger-1.png)</span></span>   
+2. <span data-ttu-id="e7af9-106">Hello **amikor egy üzenet jelenik meg a sorhoz** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="e7af9-106">hello **When a message is received in a queue** dialog box is displayed.</span></span>  
+   <span data-ttu-id="e7af9-107">![A Service Bus eseményindító kép 2](./media/connectors-create-api-servicebus/trigger-2.png)</span><span class="sxs-lookup"><span data-stu-id="e7af9-107">![Service Bus trigger image 2](./media/connectors-create-api-servicebus/trigger-2.png)</span></span>   
+3. <span data-ttu-id="e7af9-108">Adja meg azt szeretné, hogy hello eseményindító toomonitor Service Bus-üzenetsorba hello hello nevét.</span><span class="sxs-lookup"><span data-stu-id="e7af9-108">Enter hello name of hello Service Bus queue you would like hello trigger toomonitor.</span></span>   
+   ![A Service Bus eseményindító kép 3](./media/connectors-create-api-servicebus/trigger-3.png)   
+
+<span data-ttu-id="e7af9-110">Ezen a ponton a Logic Apps alkalmazást az eseményindító van konfigurálva.</span><span class="sxs-lookup"><span data-stu-id="e7af9-110">At this point, your logic app has been configured with a trigger.</span></span> <span data-ttu-id="e7af9-111">Új elem a kiválasztott hello várólista fogadásakor hello eseményindító megkezdődik hello futását más eseményindítók és műveletek hello munkafolyamatban.</span><span class="sxs-lookup"><span data-stu-id="e7af9-111">When a new item is received in hello queue you selected, hello trigger will begin a run of hello other triggers and actions in hello workflow.</span></span>    
+

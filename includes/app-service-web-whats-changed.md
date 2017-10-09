@@ -1,0 +1,3 @@
+## <a name="whats-changed"></a><span data-ttu-id="15228-101">A változások</span><span class="sxs-lookup"><span data-stu-id="15228-101">What's changed</span></span>
+* <span data-ttu-id="15228-102">Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)</span><span class="sxs-lookup"><span data-stu-id="15228-102">For a guide toohello change from Websites tooApp Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)</span></span>
+
