@@ -1,6 +1,6 @@
 ---
-title: "A SendGrid e-mail szolgáltatás (.NET) használatával |} Microsoft Docs"
-description: "Megtudhatja, hogyan küldjön e-maileket a SendGrid e-mail szolgáltatás az Azure-on. A Kódminták C# nyelven íródtak, és a .NET API-t használja."
+title: "aaaHow toouse hello SendGrid e-mail szolgáltatás (.NET) |} Microsoft Docs"
+description: "Megtudhatja, hogyan küldjön e-maileket hello SendGrid e-mail szolgáltatás az Azure-on. Kódminták C# és -felhasználási hello .NET API-t."
 services: app-service-web
 documentationcenter: .net
 author: thinkingserious
@@ -14,66 +14,66 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/15/2017
 ms.author: dx@sendgrid.com
-ms.openlocfilehash: b3a48b3c838763b022a18e55817ec7455fe94c85
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3d77bb67898b991c7293e6b9086b263f6bcb755
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-send-email-using-sendgrid-with-azure"></a><span data-ttu-id="1694b-104">Hogyan e-mailek küldése SendGrid az Azure-ral</span><span class="sxs-lookup"><span data-stu-id="1694b-104">How to Send Email Using SendGrid with Azure</span></span>
-## <a name="overview"></a><span data-ttu-id="1694b-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="1694b-105">Overview</span></span>
-<span data-ttu-id="1694b-106">Ez az útmutató bemutatja, hogyan Azure a SendGrid e-mail szolgáltatás közös programozási feladatok elvégzéséhez.</span><span class="sxs-lookup"><span data-stu-id="1694b-106">This guide demonstrates how to perform common programming tasks with the SendGrid email service on Azure.</span></span> <span data-ttu-id="1694b-107">A Kódminták C nyelven íródtak\# és támogatja a .NET-szabvány 1.3.</span><span class="sxs-lookup"><span data-stu-id="1694b-107">The samples are written in C\# and supports .NET Standard 1.3.</span></span> <span data-ttu-id="1694b-108">Az ismertetett forgatókönyvek hozhat létre, e-mailek, e-mailek küldéséhez, hozzáadása a mellékleteket, és különböző mail engedélyezése és nyomon követési beállítások közé tartozik.</span><span class="sxs-lookup"><span data-stu-id="1694b-108">The scenarios covered include constructing email, sending email, adding attachments, and enabling various mail and tracking settings.</span></span> <span data-ttu-id="1694b-109">A SendGrid és e-mailek küldéséhez további információkért lásd: a [további lépések] [ Next steps] szakasz.</span><span class="sxs-lookup"><span data-stu-id="1694b-109">For more information on SendGrid and sending email, see the [Next steps][Next steps] section.</span></span>
+# <a name="how-toosend-email-using-sendgrid-with-azure"></a><span data-ttu-id="5ad4b-104">Hogyan tooSend E-mail használatával SendGrid az Azure-ral</span><span class="sxs-lookup"><span data-stu-id="5ad4b-104">How tooSend Email Using SendGrid with Azure</span></span>
+## <a name="overview"></a><span data-ttu-id="5ad4b-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="5ad4b-105">Overview</span></span>
+<span data-ttu-id="5ad4b-106">Ez az útmutató ismerteti, hogyan tooperform leggyakoribb programozási feladatok a sendgrid e-mail szolgáltatás az Azure-on.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-106">This guide demonstrates how tooperform common programming tasks with the SendGrid email service on Azure.</span></span> <span data-ttu-id="5ad4b-107">hello minták C nyelven íródtak\# és támogatja a .NET-szabvány 1.3.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-107">hello samples are written in C\# and supports .NET Standard 1.3.</span></span> <span data-ttu-id="5ad4b-108">hello ismertetett forgatókönyvek hozhat létre, e-mailek, e-mailek küldéséhez, hozzáadása a mellékleteket, és különböző mail engedélyezése és nyomon követési beállítások közé tartozik.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-108">hello scenarios covered include constructing email, sending email, adding attachments, and enabling various mail and tracking settings.</span></span> <span data-ttu-id="5ad4b-109">A SendGrid és e-mailek küldéséhez további információkért lásd: hello [további lépések] [ Next steps] szakasz.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-109">For more information on SendGrid and sending email, see hello [Next steps][Next steps] section.</span></span>
 
-## <a name="what-is-the-sendgrid-email-service"></a><span data-ttu-id="1694b-110">Mi az a SendGrid E-mail szolgáltatás?</span><span class="sxs-lookup"><span data-stu-id="1694b-110">What is the SendGrid Email Service?</span></span>
-<span data-ttu-id="1694b-111">SendGrid van egy [felhőalapú szolgáltatás] biztosít megbízható [tranzakciós e-mailben kézbesítésre], a méretezhetőség és a valós idejű elemzési rugalmas API-k, amelyek egyéni integrációs könnyedén együtt.</span><span class="sxs-lookup"><span data-stu-id="1694b-111">SendGrid is a [cloud-based email service] that provides reliable [transactional email delivery], scalability, and real-time analytics along with flexible APIs that make custom integration easy.</span></span> <span data-ttu-id="1694b-112">Közös SendGrid használati esetek a következők:</span><span class="sxs-lookup"><span data-stu-id="1694b-112">Common SendGrid use cases include:</span></span>
+## <a name="what-is-hello-sendgrid-email-service"></a><span data-ttu-id="5ad4b-110">Mi az az üdvözlő E-mail szolgáltatás SendGrid?</span><span class="sxs-lookup"><span data-stu-id="5ad4b-110">What is hello SendGrid Email Service?</span></span>
+<span data-ttu-id="5ad4b-111">SendGrid van egy [felhőalapú szolgáltatás] biztosít megbízható [tranzakciós e-mailben kézbesítésre], a méretezhetőség és a valós idejű elemzési rugalmas API-k, amelyek egyéni integrációs könnyedén együtt.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-111">SendGrid is a [cloud-based email service] that provides reliable [transactional email delivery], scalability, and real-time analytics along with flexible APIs that make custom integration easy.</span></span> <span data-ttu-id="5ad4b-112">Közös SendGrid használati esetek a következők:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-112">Common SendGrid use cases include:</span></span>
 
-* <span data-ttu-id="1694b-113">Az ügyfelek automatikusan küldése visszaigazolások vagy beszerzési visszaigazolások.</span><span class="sxs-lookup"><span data-stu-id="1694b-113">Automatically sending receipts or purchase confirmations to customers.</span></span>
-* <span data-ttu-id="1694b-114">Az ügyfelek havi szórólapok és előléptetések terjesztési felügyelete sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="1694b-114">Administering distribution lists for sending customers monthly fliers and promotions.</span></span>
-* <span data-ttu-id="1694b-115">Többek között a letiltott e-mailek és az ügyfél engagement valós idejű metrikáját gyűjtése.</span><span class="sxs-lookup"><span data-stu-id="1694b-115">Collecting real-time metrics for things like blocked email and customer engagement.</span></span>
-* <span data-ttu-id="1694b-116">Továbbító ügyfél lekérdezések.</span><span class="sxs-lookup"><span data-stu-id="1694b-116">Forwarding customer inquiries.</span></span>
-* <span data-ttu-id="1694b-117">A bejövő e-mailek feldolgozása.</span><span class="sxs-lookup"><span data-stu-id="1694b-117">Processing incoming emails.</span></span>
+* <span data-ttu-id="5ad4b-113">Visszaigazolások vagy beszerzési visszaigazolások toocustomers automatikus küldése.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-113">Automatically sending receipts or purchase confirmations toocustomers.</span></span>
+* <span data-ttu-id="5ad4b-114">Az ügyfelek havi szórólapok és előléptetések terjesztési felügyelete sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-114">Administering distribution lists for sending customers monthly fliers and promotions.</span></span>
+* <span data-ttu-id="5ad4b-115">Többek között a letiltott e-mailek és az ügyfél engagement valós idejű metrikáját gyűjtése.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-115">Collecting real-time metrics for things like blocked email and customer engagement.</span></span>
+* <span data-ttu-id="5ad4b-116">Továbbító ügyfél lekérdezések.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-116">Forwarding customer inquiries.</span></span>
+* <span data-ttu-id="5ad4b-117">A bejövő e-mailek feldolgozása.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-117">Processing incoming emails.</span></span>
 
-<span data-ttu-id="1694b-118">További információkért látogasson el a [https://sendgrid.com](https://sendgrid.com) vagy SendGrid tartozó [C# könyvtár] [ sendgrid-csharp] GitHub-tárház.</span><span class="sxs-lookup"><span data-stu-id="1694b-118">For more information, visit [https://sendgrid.com](https://sendgrid.com) or SendGrid's [C# library][sendgrid-csharp] GitHub repo.</span></span>
+<span data-ttu-id="5ad4b-118">További információkért látogasson el a [https://sendgrid.com](https://sendgrid.com) vagy SendGrid tartozó [C# könyvtár] [ sendgrid-csharp] GitHub-tárház.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-118">For more information, visit [https://sendgrid.com](https://sendgrid.com) or SendGrid's [C# library][sendgrid-csharp] GitHub repo.</span></span>
 
-## <a name="create-a-sendgrid-account"></a><span data-ttu-id="1694b-119">A SendGrid-fiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="1694b-119">Create a SendGrid Account</span></span>
+## <a name="create-a-sendgrid-account"></a><span data-ttu-id="5ad4b-119">A SendGrid-fiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="5ad4b-119">Create a SendGrid Account</span></span>
 [!INCLUDE [sendgrid-sign-up](../../includes/sendgrid-sign-up.md)]
 
-## <a name="reference-the-sendgrid-net-class-library"></a><span data-ttu-id="1694b-120">A SendGrid .NET osztálytár referencia</span><span class="sxs-lookup"><span data-stu-id="1694b-120">Reference the SendGrid .NET Class Library</span></span>
-<span data-ttu-id="1694b-121">A [SendGrid NuGet-csomag](https://www.nuget.org/packages/Sendgrid) a legegyszerűbb módja a SendGrid API beszerzésének, és konfigurálja az alkalmazás összes függőségét.</span><span class="sxs-lookup"><span data-stu-id="1694b-121">The [SendGrid NuGet package](https://www.nuget.org/packages/Sendgrid) is the easiest way to get the SendGrid API and to configure your application with all dependencies.</span></span> <span data-ttu-id="1694b-122">NuGet Microsoft Visual Studio 2015-höz mellékelt Visual Studio bővítménye, és fölött, amely megkönnyíti a telepítése és frissítése, kódtárak és eszközök.</span><span class="sxs-lookup"><span data-stu-id="1694b-122">NuGet is a Visual Studio extension included with Microsoft Visual Studio 2015 and above that makes it easy to install and update libraries and tools.</span></span>
+## <a name="reference-hello-sendgrid-net-class-library"></a><span data-ttu-id="5ad4b-120">Hivatkozás hello SendGrid .NET Class Library</span><span class="sxs-lookup"><span data-stu-id="5ad4b-120">Reference hello SendGrid .NET Class Library</span></span>
+<span data-ttu-id="5ad4b-121">Hello [SendGrid NuGet-csomag](https://www.nuget.org/packages/Sendgrid) hello legegyszerűbb módja tooget hello SendGrid API és tooconfigure van az alkalmazás összes függőségét.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-121">hello [SendGrid NuGet package](https://www.nuget.org/packages/Sendgrid) is hello easiest way tooget hello SendGrid API and tooconfigure your application with all dependencies.</span></span> <span data-ttu-id="5ad4b-122">NuGet egy Visual Studio bővítmény a Microsoft Visual Studio 2015-öt és a fent, amely segítségével könnyen tooinstall és frissítés kódtárak és eszközök.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-122">NuGet is a Visual Studio extension included with Microsoft Visual Studio 2015 and above that makes it easy tooinstall and update libraries and tools.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1694b-123">NuGet Ha futtatja a Visual Studio Visual Studio 2015-nél korábbi verziójának telepítéséhez látogasson el a [http://www.nuget.org](http://www.nuget.org), és kattintson a **NuGet telepítése** gombra.</span><span class="sxs-lookup"><span data-stu-id="1694b-123">To install NuGet if you are running a version of Visual Studio earlier than Visual Studio 2015, visit [http://www.nuget.org](http://www.nuget.org), and click the **Install NuGet** button.</span></span>
+> <span data-ttu-id="5ad4b-123">tooinstall NuGet Ha futtatja a Visual Studio verziója korábbi, mint a Visual Studio 2015-öt, látogasson el [http://www.nuget.org](http://www.nuget.org), és kattintson a hello **NuGet telepítése** gombra.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-123">tooinstall NuGet if you are running a version of Visual Studio earlier than Visual Studio 2015, visit [http://www.nuget.org](http://www.nuget.org), and click hello **Install NuGet** button.</span></span>
 >
 >
 
-<span data-ttu-id="1694b-124">A SendGrid NuGet-csomagot az alkalmazás telepítéséhez tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="1694b-124">To install the SendGrid NuGet package in your application, do the following:</span></span>
+<span data-ttu-id="5ad4b-124">az alkalmazás SendGrid NuGet-csomagot tooinstall hello hello a következő:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-124">tooinstall hello SendGrid NuGet package in your application, do hello following:</span></span>
 
-1. <span data-ttu-id="1694b-125">Kattintson a **új projekt** válassza ki a **sablon**.</span><span class="sxs-lookup"><span data-stu-id="1694b-125">Click on **New Project** and select a **Template**.</span></span>
+1. <span data-ttu-id="5ad4b-125">Kattintson a **új projekt** válassza ki a **sablon**.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-125">Click on **New Project** and select a **Template**.</span></span>
 
    ![Új projekt létrehozása][create-new-project]
-2. <span data-ttu-id="1694b-127">A **Megoldáskezelőben**, kattintson a jobb gombbal **hivatkozások**, majd kattintson a **NuGet-csomagok kezelése**.</span><span class="sxs-lookup"><span data-stu-id="1694b-127">In **Solution Explorer**, right-click **References**, then click **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="5ad4b-127">A **Megoldáskezelőben**, kattintson a jobb gombbal **hivatkozások**, majd kattintson a **NuGet-csomagok kezelése**.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-127">In **Solution Explorer**, right-click **References**, then click **Manage NuGet Packages**.</span></span>
 
    ![SendGrid NuGet-csomag][SendGrid-NuGet-package]
-3. <span data-ttu-id="1694b-129">Keresse meg **SendGrid** válassza ki a **SendGrid** elem az eredménylistában.</span><span class="sxs-lookup"><span data-stu-id="1694b-129">Search for **SendGrid** and select the **SendGrid** item in the results list.</span></span>
-4. <span data-ttu-id="1694b-130">Válassza ki a Nuget-csomag stabil legújabb verzióját kell lennie a hálózatiobjektum-modellje dolgozni a verzió legördülő listából, és az ebben a cikkben egy API-k.</span><span class="sxs-lookup"><span data-stu-id="1694b-130">Select the latest stable version of the Nuget package from the version dropdown to be able to work with the object model and APIs demonstrated in this article.</span></span>
+3. <span data-ttu-id="5ad4b-129">Keresse meg **SendGrid** és select hello **SendGrid** elem az eredménylistában.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-129">Search for **SendGrid** and select hello **SendGrid** item in the results list.</span></span>
+4. <span data-ttu-id="5ad4b-130">Hello verzió legördülő toobe képes toowork hello hálózatiobjektum-modellje és API-k, a cikkben bemutatott hello legújabb stabil verziójának hello Nuget-csomag kiválasztása</span><span class="sxs-lookup"><span data-stu-id="5ad4b-130">Select hello latest stable version of hello Nuget package from hello version dropdown toobe able toowork with hello object model and APIs demonstrated in this article.</span></span>
 
    ![SendGrid csomag][sendgrid-package]
-5. <span data-ttu-id="1694b-132">Kattintson a **telepítése** a telepítés befejezéséhez, és zárja be ezt a párbeszédpanelt.</span><span class="sxs-lookup"><span data-stu-id="1694b-132">Click **Install** to complete the installation, and then close this dialog.</span></span>
+5. <span data-ttu-id="5ad4b-132">Kattintson a **telepítése** toocomplete hello telepítését, és zárja be ezt a párbeszédpanelt.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-132">Click **Install** toocomplete hello installation, and then close this dialog.</span></span>
 
-<span data-ttu-id="1694b-133">SendGrid tartozó .NET osztálytár nevezik **SendGrid**.</span><span class="sxs-lookup"><span data-stu-id="1694b-133">SendGrid's .NET class library is called **SendGrid**.</span></span> <span data-ttu-id="1694b-134">A következő névterek tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="1694b-134">It contains the following namespaces:</span></span>
+<span data-ttu-id="5ad4b-133">SendGrid tartozó .NET osztálytár nevezik **SendGrid**.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-133">SendGrid's .NET class library is called **SendGrid**.</span></span> <span data-ttu-id="5ad4b-134">A következő névterek hello tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-134">It contains hello following namespaces:</span></span>
 
-* <span data-ttu-id="1694b-135">**SendGrid** SendGrid tartozó API való kommunikációhoz.</span><span class="sxs-lookup"><span data-stu-id="1694b-135">**SendGrid** for communicating with SendGrid’s API.</span></span>
-* <span data-ttu-id="1694b-136">**SendGrid.Helpers.Mail** segítő módszerek könnyen hozzanak létre az e-mailek küldése megadott SendGridMessage objektumokat.</span><span class="sxs-lookup"><span data-stu-id="1694b-136">**SendGrid.Helpers.Mail** for helper methods to easily create SendGridMessage objects that specify how to send emails.</span></span>
+* <span data-ttu-id="5ad4b-135">**SendGrid** SendGrid tartozó API való kommunikációhoz.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-135">**SendGrid** for communicating with SendGrid’s API.</span></span>
+* <span data-ttu-id="5ad4b-136">**SendGrid.Helpers.Mail** segítő módszerek tooeasily adja meg, hogyan toosend e-mailt küld SendGridMessage objektumokat hozzon létre.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-136">**SendGrid.Helpers.Mail** for helper methods tooeasily create SendGridMessage objects that specify how toosend emails.</span></span>
 
-<span data-ttu-id="1694b-137">A következő kód névtér-deklarációk hozzáadása bármely kívánja programon keresztüli eléréséhez a SendGrid e-mail szolgáltatás C#-fájl elejéhez.</span><span class="sxs-lookup"><span data-stu-id="1694b-137">Add the following code namespace declarations to the top of any C# file in which you want to programmatically access the SendGrid email service.</span></span>
+<span data-ttu-id="5ad4b-137">Adja hozzá a következő kód névtér nyilatkozatok toohello felső bármely C# fájl tooprogrammatically hello SendGrid e-mail szolgáltatás kívánt hello.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-137">Add hello following code namespace declarations toohello top of any C# file in which you want tooprogrammatically access hello SendGrid email service.</span></span>
 
     using SendGrid;
     using SendGrid.Helpers.Mail;
 
-## <a name="how-to-create-an-email"></a><span data-ttu-id="1694b-138">Hogyan: hozzon létre egy e-mailt</span><span class="sxs-lookup"><span data-stu-id="1694b-138">How to: Create an Email</span></span>
-<span data-ttu-id="1694b-139">Használja a **SendGridMessage** objektum e-mailt létrehozni.</span><span class="sxs-lookup"><span data-stu-id="1694b-139">Use the **SendGridMessage** object to create an email message.</span></span> <span data-ttu-id="1694b-140">Az üzenet-objektum létrehozása után beállíthatja a tulajdonságokat és metódusokat, beleértve az e-mailt olyasvalaki, az e-mail címzettjét, és a tárgy és törzs az e-mailek.</span><span class="sxs-lookup"><span data-stu-id="1694b-140">Once the message object is created, you can set properties and methods, including the email sender, the email recipient, and the subject and body of the email.</span></span>
+## <a name="how-to-create-an-email"></a><span data-ttu-id="5ad4b-138">Hogyan: hozzon létre egy e-mailt</span><span class="sxs-lookup"><span data-stu-id="5ad4b-138">How to: Create an Email</span></span>
+<span data-ttu-id="5ad4b-139">Használjon hello **SendGridMessage** objektum toocreate e-mailt.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-139">Use hello **SendGridMessage** object toocreate an email message.</span></span> <span data-ttu-id="5ad4b-140">Hello üzenet objektum létrehozása után beállíthatja a tulajdonságokat és metódusokat, beleértve az üdvözlő e-mailt olyasvalaki, hello e-mail címzettje, és hello tulajdonos üdvözlő e-mail törzsét.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-140">Once hello message object is created, you can set properties and methods, including hello email sender, hello email recipient, and hello subject and body of hello email.</span></span>
 
-<span data-ttu-id="1694b-141">A következő példa bemutatja, hogyan hozhat létre teljesen ki van töltve e-mail objektumot:</span><span class="sxs-lookup"><span data-stu-id="1694b-141">The following example demonstrates how to create a fully populated email object:</span></span>
+<span data-ttu-id="5ad4b-141">hello következő példa bemutatja, hogyan toocreate egy teljes mértékben ki van töltve e-mail objektum:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-141">hello following example demonstrates how toocreate a fully populated email object:</span></span>
 
     var msg = new SendGridMessage();
 
@@ -87,28 +87,28 @@ ms.lasthandoff: 08/18/2017
     };
     msg.AddTos(recipients);
 
-    msg.SetSubject("Testing the SendGrid C# Library");
+    msg.SetSubject("Testing hello SendGrid C# Library");
 
     msg.AddContent(MimeType.Text, "Hello World plain text!");
     msg.AddContent(MimeType.Html, "<p>Hello World!</p>");
 
-<span data-ttu-id="1694b-142">Minden olyan tulajdonságok és módszerek által támogatott további információt a **SendGrid** írja be, lásd: [sendgrid-c Sharp] [ sendgrid-csharp] a Githubon.</span><span class="sxs-lookup"><span data-stu-id="1694b-142">For more information on all properties and methods supported by the **SendGrid** type, see [sendgrid-csharp][sendgrid-csharp] on GitHub.</span></span>
+<span data-ttu-id="5ad4b-142">Minden olyan tulajdonságok és módszerek által támogatott további információt a **SendGrid** írja be, lásd: [sendgrid-c Sharp] [ sendgrid-csharp] a Githubon.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-142">For more information on all properties and methods supported by the **SendGrid** type, see [sendgrid-csharp][sendgrid-csharp] on GitHub.</span></span>
 
-## <a name="how-to-send-an-email"></a><span data-ttu-id="1694b-143">Útmutató: az e-mailek küldése</span><span class="sxs-lookup"><span data-stu-id="1694b-143">How to: Send an Email</span></span>
-<span data-ttu-id="1694b-144">Miután létrehozta az e-mailt, elküldheti azt a SendGrid tartozó API-val.</span><span class="sxs-lookup"><span data-stu-id="1694b-144">After creating an email message, you can send it using SendGrid's API.</span></span> <span data-ttu-id="1694b-145">Másik megoldásként használhat [. NET meg a szalagtár beépített][NET-library].</span><span class="sxs-lookup"><span data-stu-id="1694b-145">Alternatively, you may use [.NET's built in library][NET-library].</span></span>
+## <a name="how-to-send-an-email"></a><span data-ttu-id="5ad4b-143">Útmutató: az e-mailek küldése</span><span class="sxs-lookup"><span data-stu-id="5ad4b-143">How to: Send an Email</span></span>
+<span data-ttu-id="5ad4b-144">Miután létrehozta az e-mailt, elküldheti azt a SendGrid tartozó API-val.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-144">After creating an email message, you can send it using SendGrid's API.</span></span> <span data-ttu-id="5ad4b-145">Másik megoldásként használhat [. NET meg a szalagtár beépített][NET-library].</span><span class="sxs-lookup"><span data-stu-id="5ad4b-145">Alternatively, you may use [.NET's built in library][NET-library].</span></span>
 
-<span data-ttu-id="1694b-146">E-mailek küldéséhez, hogy megadnia a SendGrid API-kulcs szükséges.</span><span class="sxs-lookup"><span data-stu-id="1694b-146">Sending email requires that you supply your SendGrid API Key.</span></span> <span data-ttu-id="1694b-147">Ha API-kulcsokat konfigurálásával kapcsolatos részletek van szüksége, látogasson el a SendGrid tartozó API-kulcsokat [dokumentáció][documentation].</span><span class="sxs-lookup"><span data-stu-id="1694b-147">If you need details about how to configure API Keys, please visit SendGrid's API Keys [documentation][documentation].</span></span>
+<span data-ttu-id="5ad4b-146">E-mailek küldéséhez, hogy megadnia a SendGrid API-kulcs szükséges.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-146">Sending email requires that you supply your SendGrid API Key.</span></span> <span data-ttu-id="5ad4b-147">Ha részletes tájékoztatást kell tooconfigure API-kulcsokat, látogasson el a SendGrid tartozó API-kulcsokat [dokumentáció][documentation].</span><span class="sxs-lookup"><span data-stu-id="5ad4b-147">If you need details about how tooconfigure API Keys, please visit SendGrid's API Keys [documentation][documentation].</span></span>
 
-<span data-ttu-id="1694b-148">Az Azure portálon kattintson az alkalmazás beállításait, és vegye fel a kulcs/érték párok az alkalmazásbeállítások tárolhatjuk ezeket a hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="1694b-148">You may store these credentials via your Azure Portal by clicking Application settings and adding the key/value pairs under App settings.</span></span>
+<span data-ttu-id="5ad4b-148">Ezeket a hitelesítő adatokat az Azure portálon gombra az alkalmazásbeállítások és hozzáadását hello kulcs/érték párok az alkalmazásbeállítások tárolhatjuk.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-148">You may store these credentials via your Azure Portal by clicking Application settings and adding hello key/value pairs under App settings.</span></span>
 
  ![Az Azure alkalmazás beállításai][azure_app_settings]
 
- <span data-ttu-id="1694b-150">Majd hogy a hozzáférés az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="1694b-150">Then, you may access them as follows:</span></span>
+ <span data-ttu-id="5ad4b-150">Majd hogy a hozzáférés az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-150">Then, you may access them as follows:</span></span>
 
     var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
     var client = new SendGridClient(apiKey);
 
-<span data-ttu-id="1694b-151">A következő példák bemutatják, hogyan küldhető a webes API-val.</span><span class="sxs-lookup"><span data-stu-id="1694b-151">The following examples show how to send a message using the Web API.</span></span>
+<span data-ttu-id="5ad4b-151">hello a következő példák bemutatják, hogyan egy üzenet használatával toosend hello Web API.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-151">hello following examples show how toosend a message using hello Web API.</span></span>
 
     using System;
     using System.Threading.Tasks;
@@ -131,7 +131,7 @@ ms.lasthandoff: 08/18/2017
                 var msg = new SendGridMessage()
                 {
                     From = new EmailAddress("test@example.com", "DX Team"),
-                    Subject = "Hello World from the SendGrid CSharp SDK!",
+                    Subject = "Hello World from hello SendGrid CSharp SDK!",
                     PlainTextContent = "Hello, Email!",
                     HtmlContent = "<strong>Hello, Email!</strong>"
                 };
@@ -141,8 +141,8 @@ ms.lasthandoff: 08/18/2017
         }
     }
 
-## <a name="how-to-add-an-attachment"></a><span data-ttu-id="1694b-152">Hogyan: hozzá mellékletet</span><span class="sxs-lookup"><span data-stu-id="1694b-152">How to: Add an attachment</span></span>
-<span data-ttu-id="1694b-153">Mellékletek meghívásával adhatók hozzá egy üzenetet a **AddAttachment** metódus és minimálisan megadása a fájl nevét és a Base64-kódolású tartalmat kíván csatolni.</span><span class="sxs-lookup"><span data-stu-id="1694b-153">Attachments can be added to a message by calling the **AddAttachment** method and minimally specifying the file name and Base64 encoded content you want to attach.</span></span> <span data-ttu-id="1694b-154">A metódus hívása után minden fájlt csatolni szeretné vagy segítségével megadhat több mellékletet a **AddAttachments** metódust.</span><span class="sxs-lookup"><span data-stu-id="1694b-154">You can include multiple attachments by calling this method once for each file you wish to attach or by using the **AddAttachments** method.</span></span> <span data-ttu-id="1694b-155">A következő példa bemutatja, egy üzenet melléklet hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="1694b-155">The following example demonstrates adding an attachment to a message:</span></span>
+## <a name="how-to-add-an-attachment"></a><span data-ttu-id="5ad4b-152">Hogyan: hozzá mellékletet</span><span class="sxs-lookup"><span data-stu-id="5ad4b-152">How to: Add an attachment</span></span>
+<span data-ttu-id="5ad4b-153">Mellékletek adható tooa üzenet hívó hello **AddAttachment** metódus és a minimálisan megadó hello fájl nevét és a Base64-kódolású tartalom szeretné tooattach.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-153">Attachments can be added tooa message by calling hello **AddAttachment** method and minimally specifying hello file name and Base64 encoded content you want tooattach.</span></span> <span data-ttu-id="5ad4b-154">A metódus meghívása után a fájl tooattach kívánja vagy hello segítségével megadhat több mellékletek **AddAttachments** metódust.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-154">You can include multiple attachments by calling this method once for each file you wish tooattach or by using hello **AddAttachments** method.</span></span> <span data-ttu-id="5ad4b-155">hello a következő példa bemutatja, hogy egy mellékletet tooa üzenet hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-155">hello following example demonstrates adding an attachment tooa message:</span></span>
 
     var banner2 = new Attachment()
     {
@@ -154,39 +154,39 @@ ms.lasthandoff: 08/18/2017
     };
     msg.AddAttachment(banner2);
 
-## <a name="how-to-use-mail-settings-to-enable-footers-tracking-and-analytics"></a><span data-ttu-id="1694b-156">Hogyan: láblécben, nyomon követési és elemzés engedélyezése levelezési beállítások használatával</span><span class="sxs-lookup"><span data-stu-id="1694b-156">How to: Use mail settings to enable footers, tracking, and analytics</span></span>
-<span data-ttu-id="1694b-157">SendGrid a levelezési beállításokat és a nyomon követési beállítások további e-mail funkciókat biztosítja.</span><span class="sxs-lookup"><span data-stu-id="1694b-157">SendGrid provides additional email functionality through the use of mail settings and tracking settings.</span></span> <span data-ttu-id="1694b-158">Ezek a beállítások is hozzáadhatók az e-mailt adott funkciónak például kattintson nyomon követése, Google analytics, követési előfizetés, stb.</span><span class="sxs-lookup"><span data-stu-id="1694b-158">These settings can be added to an email message to enable specific functionality such as click tracking, Google analytics, subscription tracking, and so on.</span></span> <span data-ttu-id="1694b-159">Alkalmazások teljes listáját lásd: a [beállítások dokumentáció][settings-documentation].</span><span class="sxs-lookup"><span data-stu-id="1694b-159">For a full list of apps, see the [Settings Documentation][settings-documentation].</span></span>
+## <a name="how-to-use-mail-settings-tooenable-footers-tracking-and-analytics"></a><span data-ttu-id="5ad4b-156">Útmutató: e-mail beállítások tooenable láblécben, nyomon követési és analytics</span><span class="sxs-lookup"><span data-stu-id="5ad4b-156">How to: Use mail settings tooenable footers, tracking, and analytics</span></span>
+<span data-ttu-id="5ad4b-157">SendGrid a levelezési beállításokat és a nyomon követési beállítások hello használata további e-mail funkciókat biztosítja.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-157">SendGrid provides additional email functionality through hello use of mail settings and tracking settings.</span></span> <span data-ttu-id="5ad4b-158">Ezek a beállítások is hozzáadhatók a tooan e-mail üzenet tooenable adott funkciók, például kattintson nyomon követése, Google analytics, előfizetés nyomon követése és stb.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-158">These settings can be added tooan email message tooenable specific functionality such as click tracking, Google analytics, subscription tracking, and so on.</span></span> <span data-ttu-id="5ad4b-159">Alkalmazások teljes listáját lásd: hello [beállítások dokumentáció][settings-documentation].</span><span class="sxs-lookup"><span data-stu-id="5ad4b-159">For a full list of apps, see hello [Settings Documentation][settings-documentation].</span></span>
 
-<span data-ttu-id="1694b-160">Alkalmazások alkalmazhatók **SendGrid** e-mailek részeként megvalósított metódusok használata a **SendGridMessage** osztály.</span><span class="sxs-lookup"><span data-stu-id="1694b-160">Apps can be applied to **SendGrid** email messages using methods implemented as part of the **SendGridMessage** class.</span></span> <span data-ttu-id="1694b-161">Az alábbi példák bemutatják, a láblécben, majd kattintson a szűrő nyomon követése:</span><span class="sxs-lookup"><span data-stu-id="1694b-161">The following examples demonstrate the footer and click tracking filters:</span></span>
+<span data-ttu-id="5ad4b-160">Alkalmazások túl alkalmazható**SendGrid** e-mailek hello részeként megvalósított metódusok használatával **SendGridMessage** osztály.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-160">Apps can be applied too**SendGrid** email messages using methods implemented as part of hello **SendGridMessage** class.</span></span> <span data-ttu-id="5ad4b-161">hello alábbi példák bemutatják, hello élőláb, majd kattintson szűrők nyomon követése:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-161">hello following examples demonstrate hello footer and click tracking filters:</span></span>
 
-<span data-ttu-id="1694b-162">Az alábbi példák bemutatják, a láblécben, majd kattintson a szűrő nyomon követése:</span><span class="sxs-lookup"><span data-stu-id="1694b-162">The following examples demonstrate the footer and click tracking filters:</span></span>
+<span data-ttu-id="5ad4b-162">hello alábbi példák bemutatják, hello élőláb, majd kattintson szűrők nyomon követése:</span><span class="sxs-lookup"><span data-stu-id="5ad4b-162">hello following examples demonstrate hello footer and click tracking filters:</span></span>
 
-### <a name="footer-settings"></a><span data-ttu-id="1694b-163">Élőláb beállításai</span><span class="sxs-lookup"><span data-stu-id="1694b-163">Footer settings</span></span>
+### <a name="footer-settings"></a><span data-ttu-id="5ad4b-163">Élőláb beállításai</span><span class="sxs-lookup"><span data-stu-id="5ad4b-163">Footer settings</span></span>
     msg.SetFooterSetting(
                          true,
                          "Some Footer HTML",
                          "<strong>Some Footer Text</strong>");
 
-### <a name="click-tracking"></a><span data-ttu-id="1694b-164">Kattintson a nyomon követése</span><span class="sxs-lookup"><span data-stu-id="1694b-164">Click tracking</span></span>
+### <a name="click-tracking"></a><span data-ttu-id="5ad4b-164">Kattintson a nyomon követése</span><span class="sxs-lookup"><span data-stu-id="5ad4b-164">Click tracking</span></span>
     msg.SetClickTracking(true);
 
-## <a name="how-to-use-additional-sendgrid-services"></a><span data-ttu-id="1694b-165">Útmutató: további SendGrid szolgáltatásokkal</span><span class="sxs-lookup"><span data-stu-id="1694b-165">How to: Use Additional SendGrid Services</span></span>
-<span data-ttu-id="1694b-166">SendGrid több API-k és webhookokkal, amelyek segítségével kihasználhatja az Azure alkalmazáson belül további funkciókat kínál.</span><span class="sxs-lookup"><span data-stu-id="1694b-166">SendGrid offers several APIs and webhooks that you can use to leverage additional functionality within your Azure application.</span></span> <span data-ttu-id="1694b-167">További részletekért lásd: a [SendGrid API-referencia][SendGrid API documentation].</span><span class="sxs-lookup"><span data-stu-id="1694b-167">For more details, see the [SendGrid API Reference][SendGrid API documentation].</span></span>
+## <a name="how-to-use-additional-sendgrid-services"></a><span data-ttu-id="5ad4b-165">Útmutató: további SendGrid szolgáltatásokkal</span><span class="sxs-lookup"><span data-stu-id="5ad4b-165">How to: Use Additional SendGrid Services</span></span>
+<span data-ttu-id="5ad4b-166">SendGrid több API-k és webhookokkal, használhatja az Azure alkalmazáson belül tooleverage további funkciókat kínál.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-166">SendGrid offers several APIs and webhooks that you can use tooleverage additional functionality within your Azure application.</span></span> <span data-ttu-id="5ad4b-167">További részletekért lásd: hello [SendGrid API-referencia][SendGrid API documentation].</span><span class="sxs-lookup"><span data-stu-id="5ad4b-167">For more details, see hello [SendGrid API Reference][SendGrid API documentation].</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="1694b-168">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1694b-168">Next steps</span></span>
-<span data-ttu-id="1694b-169">Most, hogy megismerte a SendGrid E-mail szolgáltatás alapjait, az alábbi hivatkozásokból további.</span><span class="sxs-lookup"><span data-stu-id="1694b-169">Now that you've learned the basics of the SendGrid Email service, follow these links to learn more.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5ad4b-168">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5ad4b-168">Next steps</span></span>
+<span data-ttu-id="5ad4b-169">Most, hogy megismerte a SendGrid E-mail szolgáltatás hello hello alapjait, kövesse a további hivatkozások toolearn.</span><span class="sxs-lookup"><span data-stu-id="5ad4b-169">Now that you've learned hello basics of hello SendGrid Email service, follow these links toolearn more.</span></span>
 
-* <span data-ttu-id="1694b-170">SendGrid C\# könyvtár tárház: [sendgrid-c Sharp][sendgrid-csharp]</span><span class="sxs-lookup"><span data-stu-id="1694b-170">SendGrid C\# library repo: [sendgrid-csharp][sendgrid-csharp]</span></span>
-* <span data-ttu-id="1694b-171">SendGrid API dokumentációjának: <https://sendgrid.com/docs></span><span class="sxs-lookup"><span data-stu-id="1694b-171">SendGrid API documentation: <https://sendgrid.com/docs></span></span>
+* <span data-ttu-id="5ad4b-170">SendGrid C\# könyvtár tárház: [sendgrid-c Sharp][sendgrid-csharp]</span><span class="sxs-lookup"><span data-stu-id="5ad4b-170">SendGrid C\# library repo: [sendgrid-csharp][sendgrid-csharp]</span></span>
+* <span data-ttu-id="5ad4b-171">SendGrid API dokumentációjának: <https://sendgrid.com/docs></span><span class="sxs-lookup"><span data-stu-id="5ad4b-171">SendGrid API documentation: <https://sendgrid.com/docs></span></span>
 
 [Next steps]: #next-steps
-[What is the SendGrid Email Service?]: #whatis
+[What is hello SendGrid Email Service?]: #whatis
 [Create a SendGrid Account]: #createaccount
-[Reference the SendGrid .NET Class Library]: #reference
+[Reference hello SendGrid .NET Class Library]: #reference
 [How to: Create an Email]: #createemail
 [How to: Send an Email]: #sendemail
 [How to: Add an Attachment]: #addattachment
-[How to: Use Filters to Enable Footers, Tracking, and Analytics]: #usefilters
+[How to: Use Filters tooEnable Footers, Tracking, and Analytics]: #usefilters
 [How to: Use Additional SendGrid Services]: #useservices
 
 [create-new-project]: ./media/sendgrid-dotnet-how-to-send-email/new-project.png
@@ -201,6 +201,6 @@ ms.lasthandoff: 08/18/2017
 [documentation]: https://sendgrid.com/docs/Classroom/Send/api_keys.html
 [settings-documentation]: https://sendgrid.com/docs/API_Reference/SMTP_API/apps.html
 
-<span data-ttu-id="1694b-172">[felhőalapú szolgáltatás]: https://sendgrid.com/solutions</span><span class="sxs-lookup"><span data-stu-id="1694b-172">[cloud-based email service]: https://sendgrid.com/solutions</span></span>
-<span data-ttu-id="1694b-173">[tranzakciós e-mailben kézbesítésre]: https://sendgrid.com/use-cases/transactional-email</span><span class="sxs-lookup"><span data-stu-id="1694b-173">[transactional email delivery]: https://sendgrid.com/use-cases/transactional-email</span></span>
+[felhőalapú szolgáltatás]: https://sendgrid.com/solutions
+[tranzakciós e-mailben kézbesítésre]: https://sendgrid.com/use-cases/transactional-email
 

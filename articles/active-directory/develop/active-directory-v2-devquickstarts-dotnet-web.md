@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD v2.0 .NET web app bejelentkezési első lépések |} Microsoft Docs"
-description: "Hogyan hozhat létre egy .NET MVC webalkalmazás, mely aláírja a felhasználók be mindkét személyes Microsoft-Account és a munkahelyi vagy iskolai fiókját."
+title: "aaaAzure AD v2.0 .NET web app bejelentkezési első lépések |} Microsoft Docs"
+description: "Hogyan toobuild .NET MVC webes alkalmazás, amely bejelentkezik felhasználók mindkét személyes Microsoft Account és munkahelyi vagy iskolai fiókját."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ba5bdf7daba6086b70aec54ebe25d4445fa708c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 241e9c90bd752fbecc3696ce4f1bed3f9772189d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-net-mvc-web-app"></a><span data-ttu-id="2edb8-103">Bejelentkezés hozzáadása egy .NET MVC webalkalmazás</span><span class="sxs-lookup"><span data-stu-id="2edb8-103">Add sign-in to an .NET MVC web app</span></span>
-<span data-ttu-id="2edb8-104">A v2.0-végponttal támogatja a személyes Microsoft-fiókot is a webes alkalmazásokhoz való hitelesítés és a munkahelyi vagy iskolai fiókok gyorsan is hozzáadhat.</span><span class="sxs-lookup"><span data-stu-id="2edb8-104">With the v2.0 endpoint, you can quickly add authentication to your web apps with support for both personal Microsoft accounts and work or school accounts.</span></span>  <span data-ttu-id="2edb8-105">Az ASP.NET web apps Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.</span><span class="sxs-lookup"><span data-stu-id="2edb8-105">In ASP.NET web apps, you can accomplish this using Microsoft's OWIN middleware included in .NET Framework 4.5.</span></span>
+# <a name="add-sign-in-tooan-net-mvc-web-app"></a><span data-ttu-id="b1ec2-103">Bejelentkezési tooan .NET MVC webalkalmazás hozzáadása</span><span class="sxs-lookup"><span data-stu-id="b1ec2-103">Add sign-in tooan .NET MVC web app</span></span>
+<span data-ttu-id="b1ec2-104">Hello v2.0-végponttal gyorsan hitelesítési tooyour webalkalmazások támogatja a személyes Microsoft-fiókot is, valamint a munkahelyi vagy iskolai fiókokat is hozzáadhat.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-104">With hello v2.0 endpoint, you can quickly add authentication tooyour web apps with support for both personal Microsoft accounts and work or school accounts.</span></span>  <span data-ttu-id="b1ec2-105">Az ASP.NET web apps Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-105">In ASP.NET web apps, you can accomplish this using Microsoft's OWIN middleware included in .NET Framework 4.5.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="2edb8-106">Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják a v2.0-végponttól.</span><span class="sxs-lookup"><span data-stu-id="2edb8-106">Not all Azure Active Directory scenarios & features are supported by the v2.0 endpoint.</span></span>  <span data-ttu-id="2edb8-107">Annak meghatározásához, ha a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).</span><span class="sxs-lookup"><span data-stu-id="2edb8-107">To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
+> <span data-ttu-id="b1ec2-106">Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják hello v2.0-végponttól.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-106">Not all Azure Active Directory scenarios & features are supported by hello v2.0 endpoint.</span></span>  <span data-ttu-id="b1ec2-107">toodetermine használatát hello v2.0-végpontra, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).</span><span class="sxs-lookup"><span data-stu-id="b1ec2-107">toodetermine if you should use hello v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).</span></span>
 >
 >
 
- <span data-ttu-id="2edb8-108">Itt azt fogja létrehozni egy webes alkalmazás OWIN beléptetni a felhasználót, a felhasználói információkat jelenítsen meg, és jelentkezzen ki az alkalmazásból a felhasználó által.</span><span class="sxs-lookup"><span data-stu-id="2edb8-108">Here we'll build an web app that uses OWIN to sign the user in, display some information about the user, and sign the user out of the app.</span></span>
+ <span data-ttu-id="b1ec2-108">Itt azt fogja hozza létre egy webes alkalmazás megjelenítési az OWIN toosign hello felhasználói használó hello felhasználói adatait, és bejelentkezési hello felhasználói hello alkalmazásból.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-108">Here we'll build an web app that uses OWIN toosign hello user in, display some information about hello user, and sign hello user out of hello app.</span></span>
 
-## <a name="download"></a><span data-ttu-id="2edb8-109">Letöltés</span><span class="sxs-lookup"><span data-stu-id="2edb8-109">Download</span></span>
-<span data-ttu-id="2edb8-110">Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).</span><span class="sxs-lookup"><span data-stu-id="2edb8-110">The code for this tutorial is maintained [on GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).</span></span>  <span data-ttu-id="2edb8-111">Követéséhez is [töltse le az alkalmazás vázát egy .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) vagy klónozza a vázat:</span><span class="sxs-lookup"><span data-stu-id="2edb8-111">To follow along, you can [download the app's skeleton as a .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) or clone the skeleton:</span></span>
+## <a name="download"></a><span data-ttu-id="b1ec2-109">Letöltés</span><span class="sxs-lookup"><span data-stu-id="b1ec2-109">Download</span></span>
+<span data-ttu-id="b1ec2-110">az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).</span><span class="sxs-lookup"><span data-stu-id="b1ec2-110">hello code for this tutorial is maintained [on GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).</span></span>  <span data-ttu-id="b1ec2-111">toofollow mellett, akkor [töltse le a .zip hello alkalmazás vázát](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) vagy a Klónozás hello vázat:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-111">toofollow along, you can [download hello app's skeleton as a .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) or clone hello skeleton:</span></span>
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
-<span data-ttu-id="2edb8-112">A kész alkalmazásról, valamint az oktatóanyag végén valósul meg.</span><span class="sxs-lookup"><span data-stu-id="2edb8-112">The completed app is provided at the end of this tutorial as well.</span></span>
+<span data-ttu-id="b1ec2-112">hello végén, valamint az oktatóanyag befejezése hello app valósul meg.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-112">hello completed app is provided at hello end of this tutorial as well.</span></span>
 
-## <a name="register-an-app"></a><span data-ttu-id="2edb8-113">Alkalmazás regisztrálása</span><span class="sxs-lookup"><span data-stu-id="2edb8-113">Register an app</span></span>
-<span data-ttu-id="2edb8-114">Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).</span><span class="sxs-lookup"><span data-stu-id="2edb8-114">Create a new app at [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="2edb8-115">Győződjön meg arról, hogy:</span><span class="sxs-lookup"><span data-stu-id="2edb8-115">Make sure to:</span></span>
+## <a name="register-an-app"></a><span data-ttu-id="b1ec2-113">Alkalmazás regisztrálása</span><span class="sxs-lookup"><span data-stu-id="b1ec2-113">Register an app</span></span>
+<span data-ttu-id="b1ec2-114">Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).</span><span class="sxs-lookup"><span data-stu-id="b1ec2-114">Create a new app at [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), or follow these [detailed steps](active-directory-v2-app-registration.md).</span></span>  <span data-ttu-id="b1ec2-115">Győződjön meg arról, hogy:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-115">Make sure to:</span></span>
 
-* <span data-ttu-id="2edb8-116">Másolja le a **alkalmazásazonosító** be az alkalmazáshoz hozzárendelt szüksége lehet rájuk hamarosan.</span><span class="sxs-lookup"><span data-stu-id="2edb8-116">Copy down the **Application Id** assigned to your app, you'll need it soon.</span></span>
-* <span data-ttu-id="2edb8-117">Adja hozzá a **webes** platform az alkalmazásra vonatkozóan.</span><span class="sxs-lookup"><span data-stu-id="2edb8-117">Add the **Web** platform for your app.</span></span>
-* <span data-ttu-id="2edb8-118">Adja meg a megfelelő **átirányítási URI-**.</span><span class="sxs-lookup"><span data-stu-id="2edb8-118">Enter the correct **Redirect URI**.</span></span> <span data-ttu-id="2edb8-119">Az Azure ad Szolgáltatásba, ahol hitelesítési válaszok legyenek irányítva – ehhez az oktatóanyaghoz az alapértelmezett érték jelzi az átirányítási uri `https://localhost:44326/`.</span><span class="sxs-lookup"><span data-stu-id="2edb8-119">The redirect uri indicates to Azure AD where authentication responses should be directed - the default for this tutorial is `https://localhost:44326/`.</span></span>
+* <span data-ttu-id="b1ec2-116">Másolja le hello **alkalmazásazonosító** tooyour app hozzárendelve, szüksége lehet rájuk hamarosan.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-116">Copy down hello **Application Id** assigned tooyour app, you'll need it soon.</span></span>
+* <span data-ttu-id="b1ec2-117">Adja hozzá a hello **webes** platform az alkalmazásra vonatkozóan.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-117">Add hello **Web** platform for your app.</span></span>
+* <span data-ttu-id="b1ec2-118">Adja meg a megfelelő hello **átirányítási URI-**.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-118">Enter hello correct **Redirect URI**.</span></span> <span data-ttu-id="b1ec2-119">hello átirányítási uri azt jelzi, ha hitelesítési válaszok legyenek irányítva – hello ebben az oktatóanyagban alapértelmezés szerint AD tooAzure `https://localhost:44326/`.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-119">hello redirect uri indicates tooAzure AD where authentication responses should be directed - hello default for this tutorial is `https://localhost:44326/`.</span></span>
 
-## <a name="install--configure-owin-authentication"></a><span data-ttu-id="2edb8-120">Telepítse és konfigurálja az OWIN hitelesítést</span><span class="sxs-lookup"><span data-stu-id="2edb8-120">Install & configure OWIN authentication</span></span>
-<span data-ttu-id="2edb8-121">Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Connect hitelesítési protokoll használatára.</span><span class="sxs-lookup"><span data-stu-id="2edb8-121">Here, we'll configure the OWIN middleware to use the OpenID Connect authentication protocol.</span></span>  <span data-ttu-id="2edb8-122">OWIN be- és kijelentkezési kérések kiállítása, a felhasználói munkamenet kezelésére, és többek között a felhasználó adatai használható.</span><span class="sxs-lookup"><span data-stu-id="2edb8-122">OWIN will be used to issue sign-in and sign-out requests, manage the user's session, and get information about the user, amongst other things.</span></span>
+## <a name="install--configure-owin-authentication"></a><span data-ttu-id="b1ec2-120">Telepítse és konfigurálja az OWIN hitelesítést</span><span class="sxs-lookup"><span data-stu-id="b1ec2-120">Install & configure OWIN authentication</span></span>
+<span data-ttu-id="b1ec2-121">Itt konfigurálását végezzük el hello OWIN köztes toouse hello OpenID Connect hitelesítési protokoll.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-121">Here, we'll configure hello OWIN middleware toouse hello OpenID Connect authentication protocol.</span></span>  <span data-ttu-id="b1ec2-122">OWIN kell használt tooissue be- és kijelentkezési kérések, hello felhasználói munkamenet kezeli, és többek között a hello felhasználó adatainak beolvasása.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-122">OWIN will be used tooissue sign-in and sign-out requests, manage hello user's session, and get information about hello user, amongst other things.</span></span>
 
-1. <span data-ttu-id="2edb8-123">Első lépésként nyissa meg a `web.config` fájlt a projekt gyökérkönyvtárában, és adja meg az alkalmazás konfigurációs értékeit a `<appSettings>` szakasz.</span><span class="sxs-lookup"><span data-stu-id="2edb8-123">To begin, open the `web.config` file in the root of the project, and enter your app's configuration values in the `<appSettings>` section.</span></span>
+1. <span data-ttu-id="b1ec2-123">toobegin, nyissa meg hello `web.config` hello projekt gyökerében hello fájlt, és adja meg az alkalmazás konfigurációs értékeit hello `<appSettings>` szakasz.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-123">toobegin, open hello `web.config` file in hello root of hello project, and enter your app's configuration values in hello `<appSettings>` section.</span></span>
 
-  * <span data-ttu-id="2edb8-124">A `ida:ClientId` van a **alkalmazásazonosító** az alkalmazáshoz a regisztrációs portálon rendelt.</span><span class="sxs-lookup"><span data-stu-id="2edb8-124">The `ida:ClientId` is the **Application Id** assigned to your app in the registration portal.</span></span>
-  * <span data-ttu-id="2edb8-125">A `ida:RedirectUri` van a **átirányítási Uri-** a portálon megadott.</span><span class="sxs-lookup"><span data-stu-id="2edb8-125">The `ida:RedirectUri` is the **Redirect Uri** you entered in the portal.</span></span>
+  * <span data-ttu-id="b1ec2-124">Hello `ida:ClientId` hello van **alkalmazásazonosító** tooyour app hello regisztrációs portálon rendelt.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-124">hello `ida:ClientId` is hello **Application Id** assigned tooyour app in hello registration portal.</span></span>
+  * <span data-ttu-id="b1ec2-125">Hello `ida:RedirectUri` hello van **átirányítási Uri-** hello portálon megadott.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-125">hello `ida:RedirectUri` is hello **Redirect Uri** you entered in hello portal.</span></span>
 
-2. <span data-ttu-id="2edb8-126">Ezt követően az OWIN köztes NuGet-csomagok hozzáadása a projekthez, a Csomagkezelő konzol használatával.</span><span class="sxs-lookup"><span data-stu-id="2edb8-126">Next, add the OWIN middleware NuGet packages to the project using the Package Manager Console.</span></span>
+2. <span data-ttu-id="b1ec2-126">Ezután adja hozzá a hello OWIN köztes NuGet csomagjainak toohello projekt hello Csomagkezelő konzol használatával.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-126">Next, add hello OWIN middleware NuGet packages toohello project using hello Package Manager Console.</span></span>
 
         ```
         PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -61,8 +61,8 @@ ms.lasthandoff: 07/11/2017
         PM> Install-Package Microsoft.Owin.Host.SystemWeb
         ```  
 
-3. <span data-ttu-id="2edb8-127">Adja hozzá a "OWIN indítási osztály" a projekt neve `Startup.cs` jobb kattintson a projektre--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.</span><span class="sxs-lookup"><span data-stu-id="2edb8-127">Add an "OWIN Startup Class" to the project called `Startup.cs`  Right click on the project --> **Add** --> **New Item** --> Search for "OWIN".</span></span>  <span data-ttu-id="2edb8-128">Az OWIN közbenső szoftver meghívja a `Configuration(...)` metódust az alkalmazás indulásakor.</span><span class="sxs-lookup"><span data-stu-id="2edb8-128">The OWIN middleware will invoke the `Configuration(...)` method when your app starts.</span></span>
-4. <span data-ttu-id="2edb8-129">Módosítsa az osztálydeklaráció való `public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.</span><span class="sxs-lookup"><span data-stu-id="2edb8-129">Change the class declaration to `public partial class Startup` - we've already implemented part of this class for you in another file.</span></span>  <span data-ttu-id="2edb8-130">Az a `Configuration(...)` metódus hívása ConfigureAuth(...) hitelesítés a webalkalmazás beállítása legyen</span><span class="sxs-lookup"><span data-stu-id="2edb8-130">In the `Configuration(...)` method, make a call to ConfigureAuth(...) to set up authentication for your web app</span></span>  
+3. <span data-ttu-id="b1ec2-127">Az "OWIN indítási osztály" toohello projektet nevezik Hozzáadás `Startup.cs` jobb hello projektben kattintson--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-127">Add an "OWIN Startup Class" toohello project called `Startup.cs`  Right click on hello project --> **Add** --> **New Item** --> Search for "OWIN".</span></span>  <span data-ttu-id="b1ec2-128">hello OWIN köztes által aktivált hello `Configuration(...)` módszer az alkalmazás indításakor.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-128">hello OWIN middleware will invoke hello `Configuration(...)` method when your app starts.</span></span>
+4. <span data-ttu-id="b1ec2-129">Hello osztálydeklaráció túl módosítása`public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-129">Change hello class declaration too`public partial class Startup` - we've already implemented part of this class for you in another file.</span></span>  <span data-ttu-id="b1ec2-130">A hello `Configuration(...)` módszert, győződjön meg a hívás tooConfigureAuth(...) tooset hitelesítés a webalkalmazás</span><span class="sxs-lookup"><span data-stu-id="b1ec2-130">In hello `Configuration(...)` method, make a call tooConfigureAuth(...) tooset up authentication for your web app</span></span>  
 
         ```C#
         [assembly: OwinStartup(typeof(Startup))]
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/11/2017
         }
         ```
 
-5. <span data-ttu-id="2edb8-131">Nyissa meg a fájlt `App_Start\Startup.Auth.cs` és megvalósítását a `ConfigureAuth(...)` metódust.</span><span class="sxs-lookup"><span data-stu-id="2edb8-131">Open the file `App_Start\Startup.Auth.cs` and implement the `ConfigureAuth(...)` method.</span></span>  <span data-ttu-id="2edb8-132">Megadja a paraméterek `OpenIdConnectAuthenticationOptions` koordináták az alkalmazás az Azure AD kommunikálni fog szolgálni.</span><span class="sxs-lookup"><span data-stu-id="2edb8-132">The parameters you provide in `OpenIdConnectAuthenticationOptions` will serve as coordinates for your app to communicate with Azure AD.</span></span>  <span data-ttu-id="2edb8-133">Biztosítani kell a Cookie-hitelesítés beállítása – az OpenID Connect köztes alatt a magában foglalja az cookie-kat használ.</span><span class="sxs-lookup"><span data-stu-id="2edb8-133">You'll also need to set up Cookie Authentication - the OpenID Connect middleware uses cookies underneath the covers.</span></span>
+5. <span data-ttu-id="b1ec2-131">Nyissa meg hello fájl `App_Start\Startup.Auth.cs` és valósíthatnak meg hello `ConfigureAuth(...)` metódust.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-131">Open hello file `App_Start\Startup.Auth.cs` and implement hello `ConfigureAuth(...)` method.</span></span>  <span data-ttu-id="b1ec2-132">Megadja a paraméterek hello `OpenIdConnectAuthenticationOptions` erre a célra az Azure ad alkalmazás toocommunicate koordinátáit.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-132">hello parameters you provide in `OpenIdConnectAuthenticationOptions` will serve as coordinates for your app toocommunicate with Azure AD.</span></span>  <span data-ttu-id="b1ec2-133">Azt is el kell készíteni, hitelesítési cookie-k tooset – hello OpenID Connect köztes hello magában foglalja az alatta lévő cookie-kat használ.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-133">You'll also need tooset up Cookie Authentication - hello OpenID Connect middleware uses cookies underneath hello covers.</span></span>
 
         ```C#
         public void ConfigureAuth(IAppBuilder app)
@@ -91,9 +91,9 @@ ms.lasthandoff: 07/11/2017
                              app.UseOpenIdConnectAuthentication(
                                      new OpenIdConnectAuthenticationOptions
                                      {
-                                             // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
-                                             // The `Scope` describes the permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
-                                             // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
+                                             // hello `Authority` represents hello v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
+                                             // hello `Scope` describes hello permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
+                                             // In a real application you could use issuer validation for additional checks, like making sure hello user's organization has signed up for your app, for instance.
         
                                              ClientId = clientId,
                                              Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0"),
@@ -113,10 +113,10 @@ ms.lasthandoff: 07/11/2017
                      }
         ```
 
-## <a name="send-authentication-requests"></a><span data-ttu-id="2edb8-134">Hitelesítési kérések küldése</span><span class="sxs-lookup"><span data-stu-id="2edb8-134">Send authentication requests</span></span>
-<span data-ttu-id="2edb8-135">Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési protokoll használatával a v2.0-végponttal való kommunikációhoz.</span><span class="sxs-lookup"><span data-stu-id="2edb8-135">Your app is now properly configured to communicate with the v2.0 endpoint using the OpenID Connect authentication protocol.</span></span>  <span data-ttu-id="2edb8-136">OWIN rendelkezik végrehajtott összes hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartása a felhasználói munkamenet ugly részletes megvagyunk.</span><span class="sxs-lookup"><span data-stu-id="2edb8-136">OWIN has taken care of all of the ugly details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session.</span></span>  <span data-ttu-id="2edb8-137">Most már kell biztosítani a felhasználóknak a be-és kijelentkezés úgy.</span><span class="sxs-lookup"><span data-stu-id="2edb8-137">All that remains is to give your users a way to sign in and sign out.</span></span>
+## <a name="send-authentication-requests"></a><span data-ttu-id="b1ec2-134">Hitelesítési kérések küldése</span><span class="sxs-lookup"><span data-stu-id="b1ec2-134">Send authentication requests</span></span>
+<span data-ttu-id="b1ec2-135">Az alkalmazás már megfelelően konfigurált toocommunicate hello v2.0-végponttal hello OpenID Connect hitelesítési protokoll használatával.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-135">Your app is now properly configured toocommunicate with hello v2.0 endpoint using hello OpenID Connect authentication protocol.</span></span>  <span data-ttu-id="b1ec2-136">OWIN rendelkezik végrehajtott összes hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartásáról a felhasználói munkamenet ugly részleteit hello megvagyunk.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-136">OWIN has taken care of all of hello ugly details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session.</span></span>  <span data-ttu-id="b1ec2-137">Hogy továbbra is van toogive a felhasználók egy a módon toosign és kijelentkezett.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-137">All that remains is toogive your users a way toosign in and sign out.</span></span>
 
-- <span data-ttu-id="2edb8-138">Használhatja a tartományvezérlőket, hogy a felhasználó bejelentkezik egy bizonyos lap elérése előtt kötelező címkék engedélyezik.</span><span class="sxs-lookup"><span data-stu-id="2edb8-138">You can use authorize tags in your controllers to require that user signs in before accessing a certain page.</span></span>  <span data-ttu-id="2edb8-139">Nyissa meg `Controllers\HomeController.cs`, és adja hozzá a `[Authorize]` címke a jogi tudnivalók megjelenítése Névjegy vezérlőhöz.</span><span class="sxs-lookup"><span data-stu-id="2edb8-139">Open `Controllers\HomeController.cs`, and add the `[Authorize]` tag to the About controller.</span></span>
+- <span data-ttu-id="b1ec2-138">Használható címkék engedélyezik a tartományvezérlők toorequire az, hogy a felhasználó jelentkezik be egy bizonyos lap elérése előtt.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-138">You can use authorize tags in your controllers toorequire that user signs in before accessing a certain page.</span></span>  <span data-ttu-id="b1ec2-139">Nyissa meg `Controllers\HomeController.cs`, és adja hozzá a hello `[Authorize]` toohello vezérlő vonatkozó címke.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-139">Open `Controllers\HomeController.cs`, and add hello `[Authorize]` tag toohello About controller.</span></span>
         
         ```C#
         [Authorize]
@@ -125,7 +125,7 @@ ms.lasthandoff: 07/11/2017
           ...
         ```
 
-- <span data-ttu-id="2edb8-140">OWIN segítségével közvetlenül kiadni a kód a érkező hitelesítési kéréseket.</span><span class="sxs-lookup"><span data-stu-id="2edb8-140">You can also use OWIN to directly issue authentication requests from within your code.</span></span>  <span data-ttu-id="2edb8-141">Nyissa meg `Controllers\AccountController.cs`.</span><span class="sxs-lookup"><span data-stu-id="2edb8-141">Open `Controllers\AccountController.cs`.</span></span>  <span data-ttu-id="2edb8-142">A SignIn() és SignOut() műveletek adja a challenge OpenID Connect és kijelentkezési kérések ki.</span><span class="sxs-lookup"><span data-stu-id="2edb8-142">In the SignIn() and SignOut() actions, issue OpenID Connect challenge and sign-out requests, respectively.</span></span>
+- <span data-ttu-id="b1ec2-140">OWIN toodirectly probléma a érkező hitelesítési kéréseket a kód is használható.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-140">You can also use OWIN toodirectly issue authentication requests from within your code.</span></span>  <span data-ttu-id="b1ec2-141">Nyissa meg `Controllers\AccountController.cs`.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-141">Open `Controllers\AccountController.cs`.</span></span>  <span data-ttu-id="b1ec2-142">Hello SignIn() és SignOut() műveleteket adja a challenge OpenID Connect és kijelentkezési kérések ki.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-142">In hello SignIn() and SignOut() actions, issue OpenID Connect challenge and sign-out requests, respectively.</span></span>
 
         ```C#
         public void SignIn()
@@ -137,7 +137,7 @@ ms.lasthandoff: 07/11/2017
             }
         }
         
-        // BUGBUG: Ending a session with the v2.0 endpoint is not yet supported.  Here, we just end the session with the web app.  
+        // BUGBUG: Ending a session with hello v2.0 endpoint is not yet supported.  Here, we just end hello session with hello web app.  
         public void SignOut()
         {
             // Send an OpenID Connect sign-out request.
@@ -146,7 +146,7 @@ ms.lasthandoff: 07/11/2017
         }
         ```
 
-- <span data-ttu-id="2edb8-143">Most, nyissa meg a `Views\Shared\_LoginPartial.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2edb8-143">Now, open `Views\Shared\_LoginPartial.cshtml`.</span></span>  <span data-ttu-id="2edb8-144">Ez az amelyen megjelenítése a felhasználónak az alkalmazás be- és kijelentkezési hivatkozások, és nyomtassa ki a nézetben a felhasználó nevét.</span><span class="sxs-lookup"><span data-stu-id="2edb8-144">This is where you'll show the user your app's sign-in and sign-out links, and print out the user's name in a view.</span></span>
+- <span data-ttu-id="b1ec2-143">Most, nyissa meg a `Views\Shared\_LoginPartial.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-143">Now, open `Views\Shared\_LoginPartial.cshtml`.</span></span>  <span data-ttu-id="b1ec2-144">Ez az amelyen hello felhasználói megjelenítése az alkalmazáshoz be- és kijelentkezési hivatkozásokat, és nyomtassa ki hello felhasználónév nézetben.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-144">This is where you'll show hello user your app's sign-in and sign-out links, and print out hello user's name in a view.</span></span>
 
         ```HTML
         @if (Request.IsAuthenticated)
@@ -155,7 +155,7 @@ ms.lasthandoff: 07/11/2017
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text">
         
-                        @*The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves.*@
+                        @*hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves.*@
         
                         Hello, @(System.Security.Claims.ClaimsPrincipal.Current.FindFirst("preferred_username").Value)!
                     </li>
@@ -173,10 +173,10 @@ ms.lasthandoff: 07/11/2017
         }
         ```
 
-## <a name="display-user-information"></a><span data-ttu-id="2edb8-145">Felhasználói adatok megjelenítése</span><span class="sxs-lookup"><span data-stu-id="2edb8-145">Display user information</span></span>
-<span data-ttu-id="2edb8-146">Az OpenID Connect felhasználók hitelesítésekor a v2.0-végpontra egy id_token az alkalmazást, a jogcímeket vagy helyességi feltételek a felhasználóról tartalmaz adja vissza.</span><span class="sxs-lookup"><span data-stu-id="2edb8-146">When authenticating users with OpenID Connect, the v2.0 endpoint returns an id_token to the app that contains claims, or assertions about the user.</span></span>  <span data-ttu-id="2edb8-147">Ezeket a jogcímeket segítségével szabja személyre az alkalmazást:</span><span class="sxs-lookup"><span data-stu-id="2edb8-147">You can use these claims to personalize your app:</span></span>
+## <a name="display-user-information"></a><span data-ttu-id="b1ec2-145">Felhasználói adatok megjelenítése</span><span class="sxs-lookup"><span data-stu-id="b1ec2-145">Display user information</span></span>
+<span data-ttu-id="b1ec2-146">Az OpenID Connect felhasználók hitelesítésekor hello v2.0-végponttal, amely tartalmazza a jogcímeket vagy helyességi feltételek hello felhasználóról id_token toohello alkalmazás adja vissza.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-146">When authenticating users with OpenID Connect, hello v2.0 endpoint returns an id_token toohello app that contains claims, or assertions about hello user.</span></span>  <span data-ttu-id="b1ec2-147">A jogcímek toopersonalize az alkalmazás használhatja:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-147">You can use these claims toopersonalize your app:</span></span>
 
-- <span data-ttu-id="2edb8-148">Nyissa meg az `Controllers\HomeController.cs` fájlt.</span><span class="sxs-lookup"><span data-stu-id="2edb8-148">Open the `Controllers\HomeController.cs` file.</span></span>  <span data-ttu-id="2edb8-149">A felhasználói jogcímek, a vezérlők keresztül érheti el a `ClaimsPrincipal.Current` rendszerbiztonsági objektumot.</span><span class="sxs-lookup"><span data-stu-id="2edb8-149">You can access the user's claims in your controllers via the `ClaimsPrincipal.Current` security principal object.</span></span>
+- <span data-ttu-id="b1ec2-148">Nyissa meg hello `Controllers\HomeController.cs` fájlt.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-148">Open hello `Controllers\HomeController.cs` file.</span></span>  <span data-ttu-id="b1ec2-149">A tartományvezérlők keresztül hello keresztül elérhető hello felhasználói jogcímek `ClaimsPrincipal.Current` rendszerbiztonsági objektumot.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-149">You can access hello user's claims in your controllers via hello `ClaimsPrincipal.Current` security principal object.</span></span>
 
         ```C#
         [Authorize]
@@ -184,36 +184,36 @@ ms.lasthandoff: 07/11/2017
         {
             ViewBag.Name = ClaimsPrincipal.Current.FindFirst("name").Value;
         
-            // The object ID claim will only be emitted for work or school accounts at this time.
+            // hello object ID claim will only be emitted for work or school accounts at this time.
             Claim oid = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier");
             ViewBag.ObjectId = oid == null ? string.Empty : oid.Value;
         
-            // The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves
+            // hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves
             ViewBag.Username = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
         
-            // The subject or nameidentifier claim can be used to uniquely identify the user
+            // hello subject or nameidentifier claim can be used toouniquely identify hello user
             ViewBag.Subject = ClaimsPrincipal.Current.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
         
             return View();
         }
         ```
 
-## <a name="run"></a><span data-ttu-id="2edb8-150">Futtassa a következőt:</span><span class="sxs-lookup"><span data-stu-id="2edb8-150">Run</span></span>
-<span data-ttu-id="2edb8-151">Végül felépítéséhez és az alkalmazás futtatása!</span><span class="sxs-lookup"><span data-stu-id="2edb8-151">Finally, build and run your app!</span></span>   <span data-ttu-id="2edb8-152">Jelentkezzen be személyes Microsoft-Account vagy a munkahelyi vagy iskolai fiókkal, és figyelje meg, hogyan jelenik meg a felső navigációs sáv a felhasználó identitását.</span><span class="sxs-lookup"><span data-stu-id="2edb8-152">Sign in with either a personal Microsoft Account or a work or school account, and notice how the user's identity is reflected in the top navigation bar.</span></span>  <span data-ttu-id="2edb8-153">Most már rendelkezik egy webalkalmazást, amely képes hitelesíteni a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók iparági szabványos protokollok használatával biztonságossá.</span><span class="sxs-lookup"><span data-stu-id="2edb8-153">You now have a web app secured using industry standard protocols that can authenticate users with both their personal and work/school accounts.</span></span>
+## <a name="run"></a><span data-ttu-id="b1ec2-150">Futtassa a következőt:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-150">Run</span></span>
+<span data-ttu-id="b1ec2-151">Végül felépítéséhez és az alkalmazás futtatása!</span><span class="sxs-lookup"><span data-stu-id="b1ec2-151">Finally, build and run your app!</span></span>   <span data-ttu-id="b1ec2-152">Jelentkezzen be személyes Microsoft-Account vagy a munkahelyi vagy iskolai fiókkal, és figyelje meg, hogyan hello felhasználói identitás hello felső navigációs sáv megjelenik.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-152">Sign in with either a personal Microsoft Account or a work or school account, and notice how hello user's identity is reflected in hello top navigation bar.</span></span>  <span data-ttu-id="b1ec2-153">Most már rendelkezik egy webalkalmazást, amely képes hitelesíteni a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók iparági szabványos protokollok használatával biztonságossá.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-153">You now have a web app secured using industry standard protocols that can authenticate users with both their personal and work/school accounts.</span></span>
 
-<span data-ttu-id="2edb8-154">Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:</span><span class="sxs-lookup"><span data-stu-id="2edb8-154">For reference, the completed sample (without your configuration values) [is provided as a .zip here](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), or you can clone it from GitHub:</span></span>
+<span data-ttu-id="b1ec2-154">Referenciaként hello befejeződött (a konfigurációs értékek nélkül) minta [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-154">For reference, hello completed sample (without your configuration values) [is provided as a .zip here](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), or you can clone it from GitHub:</span></span>
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
-## <a name="next-steps"></a><span data-ttu-id="2edb8-155">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="2edb8-155">Next steps</span></span>
-<span data-ttu-id="2edb8-156">Ön most már továbbléphet az összetettebb témákra.</span><span class="sxs-lookup"><span data-stu-id="2edb8-156">You can now move onto more advanced topics.</span></span>  <span data-ttu-id="2edb8-157">Előfordulhat, hogy ki szeretné próbálni:</span><span class="sxs-lookup"><span data-stu-id="2edb8-157">You may want to try:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b1ec2-155">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="b1ec2-155">Next steps</span></span>
+<span data-ttu-id="b1ec2-156">Ön most már továbbléphet az összetettebb témákra.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-156">You can now move onto more advanced topics.</span></span>  <span data-ttu-id="b1ec2-157">Érdemes lehet tootry:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-157">You may want tootry:</span></span>
 
-[<span data-ttu-id="2edb8-158">A Web API-t biztonságossá a a v2.0-végpontra >></span><span class="sxs-lookup"><span data-stu-id="2edb8-158">Secure a Web API with the the v2.0 endpoint >></span></span>](active-directory-devquickstarts-webapi-dotnet.md)
+[<span data-ttu-id="b1ec2-158">A Web API-t hello hello v2.0-végponttól biztonságos >></span><span class="sxs-lookup"><span data-stu-id="b1ec2-158">Secure a Web API with hello hello v2.0 endpoint >></span></span>](active-directory-devquickstarts-webapi-dotnet.md)
 
-<span data-ttu-id="2edb8-159">További forrásokért tekintse meg:</span><span class="sxs-lookup"><span data-stu-id="2edb8-159">For additional resources, check out:</span></span>
+<span data-ttu-id="b1ec2-159">További forrásokért tekintse meg:</span><span class="sxs-lookup"><span data-stu-id="b1ec2-159">For additional resources, check out:</span></span>
 
-* [<span data-ttu-id="2edb8-160">A v2.0 – útmutató fejlesztőknek >></span><span class="sxs-lookup"><span data-stu-id="2edb8-160">The v2.0 developer guide >></span></span>](active-directory-appmodel-v2-overview.md)
-* [<span data-ttu-id="2edb8-161">StackOverflow "azure-active-directory" címke >></span><span class="sxs-lookup"><span data-stu-id="2edb8-161">StackOverflow "azure-active-directory" tag >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+* [<span data-ttu-id="b1ec2-160">hello v2.0 – útmutató fejlesztőknek >></span><span class="sxs-lookup"><span data-stu-id="b1ec2-160">hello v2.0 developer guide >></span></span>](active-directory-appmodel-v2-overview.md)
+* [<span data-ttu-id="b1ec2-161">StackOverflow "azure-active-directory" címke >></span><span class="sxs-lookup"><span data-stu-id="b1ec2-161">StackOverflow "azure-active-directory" tag >></span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
-## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="2edb8-162">Biztonsági frissítések termékeinkhez</span><span class="sxs-lookup"><span data-stu-id="2edb8-162">Get security updates for our products</span></span>
-<span data-ttu-id="2edb8-163">Javasoljuk, hogy kérjen értesítést a bekövetkező biztonsági incidensekről. Látogasson el [erre a lapra](https://technet.microsoft.com/security/dd252948), és fizessen elő a biztonsági tanácsadói riasztásokra.</span><span class="sxs-lookup"><span data-stu-id="2edb8-163">We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.</span></span>
+## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="b1ec2-162">Biztonsági frissítések termékeinkhez</span><span class="sxs-lookup"><span data-stu-id="b1ec2-162">Get security updates for our products</span></span>
+<span data-ttu-id="b1ec2-163">Javasoljuk, tooget értesítést a bekövetkező biztonsági incidensekről ellátogatva [ezen a lapon](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.</span><span class="sxs-lookup"><span data-stu-id="b1ec2-163">We encourage you tooget notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing tooSecurity Advisory Alerts.</span></span>

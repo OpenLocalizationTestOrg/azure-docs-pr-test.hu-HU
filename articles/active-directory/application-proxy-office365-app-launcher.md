@@ -1,6 +1,6 @@
 ---
-title: "Közzétett alkalmazások egyéni kezdőlapját beállítása az Azure AD-alkalmazásproxy használatával |} Microsoft Docs"
-description: "Ismerteti az alapvető tudnivalók az Azure AD-alkalmazásproxy-összekötő"
+title: "közzétett alkalmazások az Azure AD-alkalmazásproxy használatával egyéni kezdőlapját aaaSet |} Microsoft Docs"
+description: "Magában foglalja az hello alapvető tudnivalók az Azure AD-alkalmazásproxy-összekötő"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,85 +15,85 @@ ms.date: 08/17/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9069166259265f5d2b43043b75039e239f397f6c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5bb695e904d285c3b440520f107c7bf63ba5cac9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="set-a-custom-home-page-for-published-apps-by-using-azure-ad-application-proxy"></a><span data-ttu-id="926e2-103">Közzétett alkalmazások egyéni kezdőlapját beállítása az Azure AD-alkalmazásproxy használatával</span><span class="sxs-lookup"><span data-stu-id="926e2-103">Set a custom home page for published apps by using Azure AD Application Proxy</span></span>
+# <a name="set-a-custom-home-page-for-published-apps-by-using-azure-ad-application-proxy"></a><span data-ttu-id="49ba7-103">Közzétett alkalmazások egyéni kezdőlapját beállítása az Azure AD-alkalmazásproxy használatával</span><span class="sxs-lookup"><span data-stu-id="49ba7-103">Set a custom home page for published apps by using Azure AD Application Proxy</span></span>
 
-<span data-ttu-id="926e2-104">A cikk ismerteti a felhasználók számára egy egyéni kezdőlap közvetlen alkalmazások konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="926e2-104">This article discusses how to configure apps to direct users to a custom home page.</span></span> <span data-ttu-id="926e2-105">Amikor közzétesz egy alkalmazást az alkalmazásproxy, be kell állítani egy belső URL-Címeket de időnként nem a lapon, a felhasználók először kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="926e2-105">When you publish an application with Application Proxy, you set an internal URL but sometimes that's not the page your users should see first.</span></span> <span data-ttu-id="926e2-106">Egy egyéni kezdőlap beállításáról, hogy a felhasználók Ugrás a jobb oldalon, az alkalmazások az Azure Active Directory-hozzáférési panelre vagy az Office 365 alkalmazás indító elérésekor.</span><span class="sxs-lookup"><span data-stu-id="926e2-106">Set a custom home page so that your users go to the right page when they access the apps from the Azure Active Directory Access Panel or the Office 365 app launcher.</span></span>
+<span data-ttu-id="49ba7-104">Ez a cikk azt ismerteti, hogyan tooconfigure alkalmazások toodirect felhasználók tooa egyéni kezdőlapján.</span><span class="sxs-lookup"><span data-stu-id="49ba7-104">This article discusses how tooconfigure apps toodirect users tooa custom home page.</span></span> <span data-ttu-id="49ba7-105">Amikor közzétesz egy alkalmazást a Proxy, egy belső URL-Címének beállítása, de egyes esetekben a rendszer hello lapot a felhasználók először kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="49ba7-105">When you publish an application with Application Proxy, you set an internal URL but sometimes that's not hello page your users should see first.</span></span> <span data-ttu-id="49ba7-106">Egy egyéni kezdőlap beállításáról, hogy a felhasználók toohello jobb oldal nyissa meg a hello Azure Active Directory hozzáférési Panel vagy Office 365 hello alkalmazás indító hello alkalmazások elérésekor.</span><span class="sxs-lookup"><span data-stu-id="49ba7-106">Set a custom home page so that your users go toohello right page when they access hello apps from hello Azure Active Directory Access Panel or hello Office 365 app launcher.</span></span>
 
-<span data-ttu-id="926e2-107">Amikor a felhasználók indítsa el az alkalmazást, azokat a legfelső szintű tartomány URL-címet a közzétett alkalmazás alapértelmezés szerint van irányítva.</span><span class="sxs-lookup"><span data-stu-id="926e2-107">When users launch the app, they're directed by default to the root domain URL for the published app.</span></span> <span data-ttu-id="926e2-108">Általában be van állítva az kezdőlapja a kezdőlap URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="926e2-108">The landing page is typically set as the home page URL.</span></span> <span data-ttu-id="926e2-109">Az Azure AD PowerShell modul segítségével egyéni kezdőlap URL-címek megadása, ha azt szeretné, hogy a felhasználók számára az alkalmazáson belül egy adott lap meg.</span><span class="sxs-lookup"><span data-stu-id="926e2-109">Use the Azure AD PowerShell module to define custom home page URLs when you want app users to land on a specific page within the app.</span></span> 
+<span data-ttu-id="49ba7-107">Amikor felhasználók hello alkalmazást, akkor még útmutatása alapján alapértelmezett toohello legfelső szintű tartomány URL-hello közzétett alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="49ba7-107">When users launch hello app, they're directed by default toohello root domain URL for hello published app.</span></span> <span data-ttu-id="49ba7-108">általában be van állítva az hello kezdőlapja hello kezdőlap URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="49ba7-108">hello landing page is typically set as hello home page URL.</span></span> <span data-ttu-id="49ba7-109">Hello Azure AD PowerShell modul toodefine egyéni kezdőlap URL-címek használja, ha azt szeretné, hogy app felhasználók tooland hello alkalmazáson belül egy adott oldalon.</span><span class="sxs-lookup"><span data-stu-id="49ba7-109">Use hello Azure AD PowerShell module toodefine custom home page URLs when you want app users tooland on a specific page within hello app.</span></span> 
 
-<span data-ttu-id="926e2-110">Példa:</span><span class="sxs-lookup"><span data-stu-id="926e2-110">For example:</span></span>
-- <span data-ttu-id="926e2-111">A vállalati hálózaton belüli felhasználók Ugrás *https://ExpenseApp/login/login.aspx* jelentkezzen be, és az alkalmazás eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="926e2-111">Inside your corporate network, users go to *https://ExpenseApp/login/login.aspx* to sign in and access your app.</span></span>
-- <span data-ttu-id="926e2-112">Mivel más eszközök, például alkalmazásproxy a mappaszerkezet legfelső szintjén hozzáférésre van szüksége a lemezképeket, tesz közzé az alkalmazást *https://ExpenseApp* az belső URL-címet.</span><span class="sxs-lookup"><span data-stu-id="926e2-112">Because you have other assets like images that Application Proxy needs to access at the top level of the folder structure, you publish the app with *https://ExpenseApp* as the internal URL.</span></span>
-- <span data-ttu-id="926e2-113">Az alapértelmezett külső URL-címe *https://ExpenseApp-contoso.msappproxy.net*, amely nem veszi a felhasználókat, hogy a bejelentkezési oldalon.</span><span class="sxs-lookup"><span data-stu-id="926e2-113">The default external URL is *https://ExpenseApp-contoso.msappproxy.net*, which doesn't take your users to the sign in page.</span></span>  
-- <span data-ttu-id="926e2-114">Állítsa be *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* az kezdőlap URL-címet kell biztosítani a felhasználóknak zökkenőmentes élményt.</span><span class="sxs-lookup"><span data-stu-id="926e2-114">Set *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* as the home page URL to give your users a seamless experience.</span></span> 
+<span data-ttu-id="49ba7-110">Példa:</span><span class="sxs-lookup"><span data-stu-id="49ba7-110">For example:</span></span>
+- <span data-ttu-id="49ba7-111">A vállalati hálózaton belüli felhasználók nyissa meg túl*https://ExpenseApp/login/login.aspx* a toosign és az alkalmazás eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="49ba7-111">Inside your corporate network, users go too*https://ExpenseApp/login/login.aspx* toosign in and access your app.</span></span>
+- <span data-ttu-id="49ba7-112">Mivel más eszközök, például, hogy az alkalmazásproxy kell hello felső szintjén hello mappaszerkezet tooaccess képek, hello alkalmazás közzététele *https://ExpenseApp* hello belső URL-cím szerint.</span><span class="sxs-lookup"><span data-stu-id="49ba7-112">Because you have other assets like images that Application Proxy needs tooaccess at hello top level of hello folder structure, you publish hello app with *https://ExpenseApp* as hello internal URL.</span></span>
+- <span data-ttu-id="49ba7-113">külső URL-cím alapértelmezett hello *https://ExpenseApp-contoso.msappproxy.net*, amely nem veszi a felhasználók toohello bejelentkezési oldalán.</span><span class="sxs-lookup"><span data-stu-id="49ba7-113">hello default external URL is *https://ExpenseApp-contoso.msappproxy.net*, which doesn't take your users toohello sign in page.</span></span>  
+- <span data-ttu-id="49ba7-114">Állítsa be *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* , hello kezdőlap URL-cím toogive a felhasználók zökkenőmentes élményt.</span><span class="sxs-lookup"><span data-stu-id="49ba7-114">Set *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* as hello home page URL toogive your users a seamless experience.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="926e2-115">Amikor a felhasználók hozzáférést adhat közzétett alkalmazások, az alkalmazások jelennek meg a [Azure AD hozzáférési Panel](active-directory-saas-access-panel-introduction.md) és a [Office 365 alkalmazás indító](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).</span><span class="sxs-lookup"><span data-stu-id="926e2-115">When you give users access to published apps, the apps are displayed in the [Azure AD Access Panel](active-directory-saas-access-panel-introduction.md) and the [Office 365 app launcher](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).</span></span>
+><span data-ttu-id="49ba7-115">Amikor a felhasználók hozzáférést toopublished alkalmazásokat adni, hello jelennek meg a hello alkalmazások [Azure AD hozzáférési Panel](active-directory-saas-access-panel-introduction.md) és hello [Office 365 alkalmazás indító](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).</span><span class="sxs-lookup"><span data-stu-id="49ba7-115">When you give users access toopublished apps, hello apps are displayed in hello [Azure AD Access Panel](active-directory-saas-access-panel-introduction.md) and hello [Office 365 app launcher](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).</span></span>
 
-## <a name="before-you-start"></a><span data-ttu-id="926e2-116">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="926e2-116">Before you start</span></span>
+## <a name="before-you-start"></a><span data-ttu-id="49ba7-116">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="49ba7-116">Before you start</span></span>
 
-<span data-ttu-id="926e2-117">Mielőtt a kezdőlap URL-Címének beállításához vegye figyelembe az alábbi követelményeknek:</span><span class="sxs-lookup"><span data-stu-id="926e2-117">Before you set the home page URL, keep in mind the following requirements:</span></span>
+<span data-ttu-id="49ba7-117">Hello kezdőlap URL-Címének beállítása előtt tartsa szem előtt tartva hello követelményeknek:</span><span class="sxs-lookup"><span data-stu-id="49ba7-117">Before you set hello home page URL, keep in mind hello following requirements:</span></span>
 
-* <span data-ttu-id="926e2-118">Győződjön meg arról, hogy a megadott elérési út egy altartomány elérési útját a legfelső szintű tartomány URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="926e2-118">Ensure that the path you specify is a subdomain path of the root domain URL.</span></span>
+* <span data-ttu-id="49ba7-118">Győződjön meg arról, hogy hello megadott elérési út egy altartomány elérési utat az hello legfelső szintű tartomány URL-cím.</span><span class="sxs-lookup"><span data-stu-id="49ba7-118">Ensure that hello path you specify is a subdomain path of hello root domain URL.</span></span>
 
-  <span data-ttu-id="926e2-119">Ha a legfelső szintű tartományi URL-CÍMÉT, például https://apps.contoso.com/app1/, a kezdőlap URL-címet, konfigurálnia kell kezdődnie https://apps.contoso.com/app1/.</span><span class="sxs-lookup"><span data-stu-id="926e2-119">If the root-domain URL is, for example, https://apps.contoso.com/app1/, the home page URL that you configure must start with https://apps.contoso.com/app1/.</span></span>
+  <span data-ttu-id="49ba7-119">Ha hello gyökértartomány URL-CÍMÉT, például https://apps.contoso.com/app1/, hello kezdőlap URL-címet meg kell kezdődnie https://apps.contoso.com/app1/.</span><span class="sxs-lookup"><span data-stu-id="49ba7-119">If hello root-domain URL is, for example, https://apps.contoso.com/app1/, hello home page URL that you configure must start with https://apps.contoso.com/app1/.</span></span>
 
-* <span data-ttu-id="926e2-120">Ha módosítja a közzétett alkalmazáshoz, a módosítás lehet, hogy állítsa vissza a kezdőlap URL-címet.</span><span class="sxs-lookup"><span data-stu-id="926e2-120">If you make a change to the published app, the change might reset the value of the home page URL.</span></span> <span data-ttu-id="926e2-121">Ha a jövőben frissíti az alkalmazás, inkább újbóli ellenőrzéséhez és, ha szükséges, frissítse a kezdőlap URL-címe.</span><span class="sxs-lookup"><span data-stu-id="926e2-121">When you update the app in the future, you should recheck and, if necessary, update the home page URL.</span></span>
+* <span data-ttu-id="49ba7-120">Ha olyan módosítást toohello közzétett alkalmazás, hello módosítása előfordulhat, hogy alaphelyzetbe hello értékének hello kezdőlap URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="49ba7-120">If you make a change toohello published app, hello change might reset hello value of hello home page URL.</span></span> <span data-ttu-id="49ba7-121">A jövőbeli hello hello alkalmazás frissítésekor kell újbóli ellenőrzéséhez és, ha szükséges, frissítse a hello kezdőlap URL-címe.</span><span class="sxs-lookup"><span data-stu-id="49ba7-121">When you update hello app in hello future, you should recheck and, if necessary, update hello home page URL.</span></span>
 
-## <a name="change-the-home-page-in-the-azure-portal"></a><span data-ttu-id="926e2-122">Módosítsa a kezdőlap, az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="926e2-122">Change the home page in the Azure portal</span></span>
+## <a name="change-hello-home-page-in-hello-azure-portal"></a><span data-ttu-id="49ba7-122">Hello kezdőlap módosítása a hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="49ba7-122">Change hello home page in hello Azure portal</span></span>
 
-1. <span data-ttu-id="926e2-123">Jelentkezzen be az [Azure Portal](https://portal.azure.com) felületére rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="926e2-123">Sign in to the [Azure portal](https://portal.azure.com) as an administrator.</span></span>
-2. <span data-ttu-id="926e2-124">Navigáljon a **Azure Active Directory** > **App regisztrációk** , és válassza ki az alkalmazást a listából.</span><span class="sxs-lookup"><span data-stu-id="926e2-124">Navigate to **Azure Active Directory** > **App registrations** and choose your application from the list.</span></span> 
-3. <span data-ttu-id="926e2-125">Válassza ki **tulajdonságok** beállításai közül.</span><span class="sxs-lookup"><span data-stu-id="926e2-125">Select **Properties** from the settings.</span></span>
-4. <span data-ttu-id="926e2-126">Frissítés a **Kezdőlap** mező az új elérési úttal.</span><span class="sxs-lookup"><span data-stu-id="926e2-126">Update the **Home page URL** field with your new path.</span></span> 
+1. <span data-ttu-id="49ba7-123">Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="49ba7-123">Sign in toohello [Azure portal](https://portal.azure.com) as an administrator.</span></span>
+2. <span data-ttu-id="49ba7-124">Keresse meg a túl**Azure Active Directory** > **App regisztrációk** , és válassza ki az alkalmazás hello listáról.</span><span class="sxs-lookup"><span data-stu-id="49ba7-124">Navigate too**Azure Active Directory** > **App registrations** and choose your application from hello list.</span></span> 
+3. <span data-ttu-id="49ba7-125">Válassza ki **tulajdonságok** hello beállításai közül.</span><span class="sxs-lookup"><span data-stu-id="49ba7-125">Select **Properties** from hello settings.</span></span>
+4. <span data-ttu-id="49ba7-126">Frissítés hello **Kezdőlap** mező az új elérési úttal.</span><span class="sxs-lookup"><span data-stu-id="49ba7-126">Update hello **Home page URL** field with your new path.</span></span> 
 
    ![Új kezdőlap URL-Címének megadása](./media/application-proxy-office365-app-launcher/homepage.png)
 
-5. <span data-ttu-id="926e2-128">Válassza ki **mentése**</span><span class="sxs-lookup"><span data-stu-id="926e2-128">Select **Save**</span></span>
+5. <span data-ttu-id="49ba7-128">Válassza ki **mentése**</span><span class="sxs-lookup"><span data-stu-id="49ba7-128">Select **Save**</span></span>
 
-## <a name="change-the-home-page-with-powershell"></a><span data-ttu-id="926e2-129">Módosítsa a kezdőlap a PowerShell használatával</span><span class="sxs-lookup"><span data-stu-id="926e2-129">Change the home page with PowerShell</span></span>
+## <a name="change-hello-home-page-with-powershell"></a><span data-ttu-id="49ba7-129">Hello kezdőlap módosítása a Powershellel</span><span class="sxs-lookup"><span data-stu-id="49ba7-129">Change hello home page with PowerShell</span></span>
 
-### <a name="install-the-azure-ad-powershell-module"></a><span data-ttu-id="926e2-130">Az Azure AD PowerShell modul telepítése</span><span class="sxs-lookup"><span data-stu-id="926e2-130">Install the Azure AD PowerShell module</span></span>
+### <a name="install-hello-azure-ad-powershell-module"></a><span data-ttu-id="49ba7-130">Hello Azure AD PowerShell modul telepítése</span><span class="sxs-lookup"><span data-stu-id="49ba7-130">Install hello Azure AD PowerShell module</span></span>
 
-<span data-ttu-id="926e2-131">Mielőtt egy egyéni kezdőlap URL-Címének megadása PowerShell segítségével, telepítse az Azure AD PowerShell modult.</span><span class="sxs-lookup"><span data-stu-id="926e2-131">Before you define a custom home page URL by using PowerShell, install the Azure AD PowerShell module.</span></span> <span data-ttu-id="926e2-132">A csomagot a programot letöltheti a [PowerShell-galériában](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), amely használja, a Graph API-végpont.</span><span class="sxs-lookup"><span data-stu-id="926e2-132">You can download the package from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), which uses the Graph API endpoint.</span></span> 
+<span data-ttu-id="49ba7-131">Egy egyéni kezdőlap URL-Címének megadása PowerShell segítségével, előtt telepítse az hello Azure AD PowerShell modult.</span><span class="sxs-lookup"><span data-stu-id="49ba7-131">Before you define a custom home page URL by using PowerShell, install hello Azure AD PowerShell module.</span></span> <span data-ttu-id="49ba7-132">Hello csomag letölthető hello [PowerShell-galériában](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), mely által használt hello Graph API-végpont.</span><span class="sxs-lookup"><span data-stu-id="49ba7-132">You can download hello package from hello [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), which uses hello Graph API endpoint.</span></span> 
 
-<span data-ttu-id="926e2-133">A csomag telepítéséhez kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="926e2-133">To install the package, follow these steps:</span></span>
+<span data-ttu-id="49ba7-133">tooinstall hello csomag, kövesse az alábbi lépéseket:</span><span class="sxs-lookup"><span data-stu-id="49ba7-133">tooinstall hello package, follow these steps:</span></span>
 
-1. <span data-ttu-id="926e2-134">Nyissa meg a standard PowerShell-ablakot, és futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="926e2-134">Open a standard PowerShell window, and then run the following command:</span></span>
+1. <span data-ttu-id="49ba7-134">Nyissa meg a standard PowerShell-ablakot, és futtassa a parancsot a következő hello:</span><span class="sxs-lookup"><span data-stu-id="49ba7-134">Open a standard PowerShell window, and then run hello following command:</span></span>
 
     ```
      Install-Module -Name AzureAD
     ```
-    <span data-ttu-id="926e2-135">Ha a parancs fut, a nem rendszergazda, használja a `-scope currentuser` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="926e2-135">If you're running the command as a non-admin, use the `-scope currentuser` option.</span></span>
-2. <span data-ttu-id="926e2-136">Válassza ki a telepítés során **Y** Nuget.org két csomagok telepítését. Mindkét csomagot szükség.</span><span class="sxs-lookup"><span data-stu-id="926e2-136">During the installation, select **Y** to install two packages from Nuget.org. Both packages are required.</span></span> 
+    <span data-ttu-id="49ba7-135">Ha hello parancsot futtatja, a nem rendszergazda, akkor hello `-scope currentuser` lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="49ba7-135">If you're running hello command as a non-admin, use hello `-scope currentuser` option.</span></span>
+2. <span data-ttu-id="49ba7-136">Hello a telepítés során válassza **Y** tooinstall két Nuget.org a csomagokat. Mindkét csomagot szükség.</span><span class="sxs-lookup"><span data-stu-id="49ba7-136">During hello installation, select **Y** tooinstall two packages from Nuget.org. Both packages are required.</span></span> 
 
-### <a name="find-the-objectid-of-the-app"></a><span data-ttu-id="926e2-137">Az alkalmazás ObjectID keresése</span><span class="sxs-lookup"><span data-stu-id="926e2-137">Find the ObjectID of the app</span></span>
+### <a name="find-hello-objectid-of-hello-app"></a><span data-ttu-id="49ba7-137">Hello ObjectID hello alkalmazás keresése</span><span class="sxs-lookup"><span data-stu-id="49ba7-137">Find hello ObjectID of hello app</span></span>
 
-<span data-ttu-id="926e2-138">Szerezze be az alkalmazás ObjectID, majd keresse meg az alkalmazás által a kezdőlap.</span><span class="sxs-lookup"><span data-stu-id="926e2-138">Obtain the ObjectID of the app, and then search for the app by its home page.</span></span>
+<span data-ttu-id="49ba7-138">Hello ObjectID hello alkalmazás beszerzése, és keressen a hello alkalmazás által a kezdőlap.</span><span class="sxs-lookup"><span data-stu-id="49ba7-138">Obtain hello ObjectID of hello app, and then search for hello app by its home page.</span></span>
 
-1. <span data-ttu-id="926e2-139">Nyissa meg a Powershellt, és importálja az Azure AD-modullal.</span><span class="sxs-lookup"><span data-stu-id="926e2-139">Open PowerShell and import the Azure AD module.</span></span>
+1. <span data-ttu-id="49ba7-139">Nyissa meg a Powershellt, és az Azure AD hello modul importálásához.</span><span class="sxs-lookup"><span data-stu-id="49ba7-139">Open PowerShell and import hello Azure AD module.</span></span>
 
     ```
     Import-Module AzureAD
     ```
 
-2. <span data-ttu-id="926e2-140">Jelentkezzen be az Azure AD-modullal a bérlői rendszergazda felhasználóként.</span><span class="sxs-lookup"><span data-stu-id="926e2-140">Sign in to the Azure AD module as the tenant administrator.</span></span>
+2. <span data-ttu-id="49ba7-140">Jelentkezzen be toohello az Azure AD-modullal hello bérlői rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="49ba7-140">Sign in toohello Azure AD module as hello tenant administrator.</span></span>
 
     ```
     Connect-AzureAD
     ```
-3. <span data-ttu-id="926e2-141">Megkeresheti az alkalmazást, a kezdőlap URL-címe alapján.</span><span class="sxs-lookup"><span data-stu-id="926e2-141">Find the app based on its home page URL.</span></span> <span data-ttu-id="926e2-142">Az URL-címet az található a portál a **Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="926e2-142">You can find the URL in the portal by going to **Azure Active Directory** > **Enterprise applications** > **All applications**.</span></span> <span data-ttu-id="926e2-143">Ez a példa *sharepoint-iddemo*.</span><span class="sxs-lookup"><span data-stu-id="926e2-143">This example uses *sharepoint-iddemo*.</span></span>
+3. <span data-ttu-id="49ba7-141">A kezdőlap URL-címe alapján hello alkalmazás megkereséséhez.</span><span class="sxs-lookup"><span data-stu-id="49ba7-141">Find hello app based on its home page URL.</span></span> <span data-ttu-id="49ba7-142">Hello URL-címet az található hello portal túl címen**Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="49ba7-142">You can find hello URL in hello portal by going too**Azure Active Directory** > **Enterprise applications** > **All applications**.</span></span> <span data-ttu-id="49ba7-143">Ez a példa *sharepoint-iddemo*.</span><span class="sxs-lookup"><span data-stu-id="49ba7-143">This example uses *sharepoint-iddemo*.</span></span>
 
     ```
     Get-AzureADApplication | where { $_.Homepage -like “sharepoint-iddemo” } | fl DisplayName, Homepage, ObjectID
     ```
-4. <span data-ttu-id="926e2-144">Az itt látható egy hasonló eredményt kapja meg.</span><span class="sxs-lookup"><span data-stu-id="926e2-144">You should get a result that's similar to the one shown here.</span></span> <span data-ttu-id="926e2-145">Másolja a ObjectID globálisan egyedi Azonosítót a következő szakaszban található.</span><span class="sxs-lookup"><span data-stu-id="926e2-145">Copy the ObjectID GUID to use in the next section.</span></span>
+4. <span data-ttu-id="49ba7-144">Amely hasonló toohello itt látható egy eredményt kapja meg.</span><span class="sxs-lookup"><span data-stu-id="49ba7-144">You should get a result that's similar toohello one shown here.</span></span> <span data-ttu-id="49ba7-145">Másolja a hello ObjectID GUID toouse hello a következő szakaszban.</span><span class="sxs-lookup"><span data-stu-id="49ba7-145">Copy hello ObjectID GUID toouse in hello next section.</span></span>
 
     ```
     DisplayName : SharePoint
@@ -101,44 +101,44 @@ ms.lasthandoff: 08/29/2017
     ObjectId    : 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
-### <a name="update-the-home-page-url"></a><span data-ttu-id="926e2-146">A kezdőlap URL-Címének frissítése</span><span class="sxs-lookup"><span data-stu-id="926e2-146">Update the home page URL</span></span>
+### <a name="update-hello-home-page-url"></a><span data-ttu-id="49ba7-146">Hello kezdőlap URL-Címének frissítése</span><span class="sxs-lookup"><span data-stu-id="49ba7-146">Update hello home page URL</span></span>
 
-<span data-ttu-id="926e2-147">A ugyanazon PowerShell-modul az 1. lépésben használt hajtsa végre a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="926e2-147">In the same PowerShell module that you used for step 1, perform the following steps:</span></span>
+<span data-ttu-id="49ba7-147">1. lépésben használt ugyanazon PowerShell-modul hello elvégezni hello a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="49ba7-147">In hello same PowerShell module that you used for step 1, perform hello following steps:</span></span>
 
-1. <span data-ttu-id="926e2-148">Győződjön meg arról, hogy rendelkezik a megfelelő alkalmazást, és cserélje le *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* rendelkező, az előző lépésben másolt objektumazonosító.</span><span class="sxs-lookup"><span data-stu-id="926e2-148">Confirm that you have the correct app, and replace *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* with the ObjectID that you copied in the preceding step.</span></span>
+1. <span data-ttu-id="49ba7-148">Győződjön meg arról, hogy rendelkezik-e hello javítsa ki az alkalmazást, és cserélje le *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* a hello ObjectID hello az előző lépésben másolt.</span><span class="sxs-lookup"><span data-stu-id="49ba7-148">Confirm that you have hello correct app, and replace *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* with hello ObjectID that you copied in hello preceding step.</span></span>
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4.
     ```
 
- <span data-ttu-id="926e2-149">Most, hogy az alkalmazás megerősítését készen áll a kezdőlap, az alábbiak szerint frissítse.</span><span class="sxs-lookup"><span data-stu-id="926e2-149">Now that you've confirmed the app, you're ready to update the home page, as follows.</span></span>
+ <span data-ttu-id="49ba7-149">Most, hogy hello app megerősítését most készen áll a tooupdate hello kezdőlap, az alábbiak szerint.</span><span class="sxs-lookup"><span data-stu-id="49ba7-149">Now that you've confirmed hello app, you're ready tooupdate hello home page, as follows.</span></span>
 
-2. <span data-ttu-id="926e2-150">Hozzon létre egy üres alkalmazásobjektum ahhoz, hogy engedélyezni szeretné a módosításokat.</span><span class="sxs-lookup"><span data-stu-id="926e2-150">Create a blank application object to hold the changes that you want to make.</span></span> <span data-ttu-id="926e2-151">Ez a változó a frissíteni kívánt értékeket tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="926e2-151">This variable holds the values that you want to update.</span></span> <span data-ttu-id="926e2-152">Ezt a lépést nem jön létre.</span><span class="sxs-lookup"><span data-stu-id="926e2-152">Nothing is created in this step.</span></span>
+2. <span data-ttu-id="49ba7-150">Hozzon létre egy üres alkalmazás objektum toohold, amelyet az toomake hello módosításokat.</span><span class="sxs-lookup"><span data-stu-id="49ba7-150">Create a blank application object toohold hello changes that you want toomake.</span></span> <span data-ttu-id="49ba7-151">Ezt a változót, amelyet az tooupdate hello értékeket tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="49ba7-151">This variable holds hello values that you want tooupdate.</span></span> <span data-ttu-id="49ba7-152">Ezt a lépést nem jön létre.</span><span class="sxs-lookup"><span data-stu-id="49ba7-152">Nothing is created in this step.</span></span>
 
     ```
     $appnew = New-Object “Microsoft.Open.AzureAD.Model.Application”
     ```
 
-3. <span data-ttu-id="926e2-153">A kezdőlap URL-Címének beállítása a kívánt értékre.</span><span class="sxs-lookup"><span data-stu-id="926e2-153">Set the home page URL to the value that you want.</span></span> <span data-ttu-id="926e2-154">Az érték lehet egy altartomány elérési utat a közzétett alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="926e2-154">The value must be a subdomain path of the published app.</span></span> <span data-ttu-id="926e2-155">Például, ha módosítja a kezdőlap URL-CÍMÉT *https://sharepoint-iddemo.msappproxy.net/* való *https://sharepoint-iddemo.msappproxy.net/hybrid/*, az alkalmazásaik felhasználóit közvetlenül Ugrás az egyéni webhelyre.</span><span class="sxs-lookup"><span data-stu-id="926e2-155">For example, if you change the home page URL from *https://sharepoint-iddemo.msappproxy.net/* to *https://sharepoint-iddemo.msappproxy.net/hybrid/*, app users go directly to the custom home page.</span></span>
+3. <span data-ttu-id="49ba7-153">Hello kezdőlap URL-cím toohello érték, amelyet állítható be.</span><span class="sxs-lookup"><span data-stu-id="49ba7-153">Set hello home page URL toohello value that you want.</span></span> <span data-ttu-id="49ba7-154">hello érték lehet egy altartomány hello közzétett alkalmazás elérési útját.</span><span class="sxs-lookup"><span data-stu-id="49ba7-154">hello value must be a subdomain path of hello published app.</span></span> <span data-ttu-id="49ba7-155">Például, ha módosítja hello kezdőlap URL-CÍMÉT *https://sharepoint-iddemo.msappproxy.net/* túl*https://sharepoint-iddemo.msappproxy.net/hybrid/*, az alkalmazásaik felhasználóit lépjen közvetlenül toohello egyéni Kezdőlap.</span><span class="sxs-lookup"><span data-stu-id="49ba7-155">For example, if you change hello home page URL from *https://sharepoint-iddemo.msappproxy.net/* too*https://sharepoint-iddemo.msappproxy.net/hybrid/*, app users go directly toohello custom home page.</span></span>
 
     ```
     $homepage = “https://sharepoint-iddemo.msappproxy.net/hybrid/”
     ```
-4. <span data-ttu-id="926e2-156">A frissítéshez a GUID azonosítója (ObjectID) használatával "1. lépés: az alkalmazás ObjectID található."</span><span class="sxs-lookup"><span data-stu-id="926e2-156">Make the update by using the GUID (ObjectID) that you copied in "Step 1: Find the ObjectID of the app."</span></span>
+4. <span data-ttu-id="49ba7-156">Ellenőrizze a frissítés hello hello GUID azonosítója (ObjectID) a használatával "1. lépés: keresés hello hello alkalmazás ObjectID."</span><span class="sxs-lookup"><span data-stu-id="49ba7-156">Make hello update by using hello GUID (ObjectID) that you copied in "Step 1: Find hello ObjectID of hello app."</span></span>
 
     ```
     Set-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4 -Homepage $homepage
     ```
-5. <span data-ttu-id="926e2-157">Győződjön meg arról, hogy sikeres volt-e a módosítást, indítsa újra az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="926e2-157">To confirm that the change was successful, restart the app.</span></span>
+5. <span data-ttu-id="49ba7-157">tooconfirm, hogy hello módosítása sikeres volt, indítsa újra a hello alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="49ba7-157">tooconfirm that hello change was successful, restart hello app.</span></span>
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
 >[!NOTE]
-><span data-ttu-id="926e2-158">Az alkalmazás végzett módosításokat előfordulhat, hogy alaphelyzetbe állítja a kezdőlap URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="926e2-158">Any changes that you make to the app might reset the home page URL.</span></span> <span data-ttu-id="926e2-159">Ha alaphelyzetbe állítja a kezdőlap URL-CÍMÉT, ismételje meg a 2.</span><span class="sxs-lookup"><span data-stu-id="926e2-159">If your home page URL resets, repeat step 2.</span></span>
+><span data-ttu-id="49ba7-158">Bármely végrehajtott változtatásokat toohello app előfordulhat, hogy alaphelyzetbe hello kezdőlap URL-címe.</span><span class="sxs-lookup"><span data-stu-id="49ba7-158">Any changes that you make toohello app might reset hello home page URL.</span></span> <span data-ttu-id="49ba7-159">Ha alaphelyzetbe állítja a kezdőlap URL-CÍMÉT, ismételje meg a 2.</span><span class="sxs-lookup"><span data-stu-id="49ba7-159">If your home page URL resets, repeat step 2.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="926e2-160">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="926e2-160">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="49ba7-160">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="49ba7-160">Next steps</span></span>
 
-- [<span data-ttu-id="926e2-161">Az Azure AD alkalmazásproxy SharePoint távoli hozzáférés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="926e2-161">Enable remote access to SharePoint with Azure AD Application Proxy</span></span>](application-proxy-enable-remote-access-sharepoint.md)
-- [<span data-ttu-id="926e2-162">Alkalmazásproxy engedélyezése az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="926e2-162">Enable Application Proxy in the Azure portal</span></span>](active-directory-application-proxy-enable.md)
+- [<span data-ttu-id="49ba7-161">Távelérés tooSharePoint az Azure AD alkalmazásproxy engedélyezése</span><span class="sxs-lookup"><span data-stu-id="49ba7-161">Enable remote access tooSharePoint with Azure AD Application Proxy</span></span>](application-proxy-enable-remote-access-sharepoint.md)
+- [<span data-ttu-id="49ba7-162">Alkalmazásproxy engedélyezése az Azure-portálon hello</span><span class="sxs-lookup"><span data-stu-id="49ba7-162">Enable Application Proxy in hello Azure portal</span></span>](active-directory-application-proxy-enable.md)
