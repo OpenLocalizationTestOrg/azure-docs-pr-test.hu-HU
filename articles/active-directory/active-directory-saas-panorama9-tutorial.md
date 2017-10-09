@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Panorama9 |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Panorama9 között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Panorama9 között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,242 +13,242 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: jeedes
-ms.openlocfilehash: 934c0743464fd32398071aa3d07f7af76fdf7e3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 548fb6434d920e076db98a0193f8dfdf8a958a91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-panorama9"></a><span data-ttu-id="dd92f-103">Oktatóanyag: Azure Active Directoryval integrált Panorama9</span><span class="sxs-lookup"><span data-stu-id="dd92f-103">Tutorial: Azure Active Directory integration with Panorama9</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-panorama9"></a><span data-ttu-id="bf015-103">Oktatóanyag: Azure Active Directoryval integrált Panorama9</span><span class="sxs-lookup"><span data-stu-id="bf015-103">Tutorial: Azure Active Directory integration with Panorama9</span></span>
 
-<span data-ttu-id="dd92f-104">Ebben az oktatóanyagban elsajátíthatja Panorama9 integrálása az Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="dd92f-104">In this tutorial, you learn how to integrate Panorama9 with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="bf015-104">Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Panorama9 az Azure Active Directoryval (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="bf015-104">In this tutorial, you learn how toointegrate Panorama9 with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="dd92f-105">Panorama9 integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:</span><span class="sxs-lookup"><span data-stu-id="dd92f-105">Integrating Panorama9 with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="bf015-105">Panorama9 integrálása az Azure AD lehetővé teszi a következő előnyöket hello:</span><span class="sxs-lookup"><span data-stu-id="bf015-105">Integrating Panorama9 with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="dd92f-106">Megadhatja a Panorama9 hozzáféréssel rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="dd92f-106">You can control in Azure AD who has access to Panorama9</span></span>
-- <span data-ttu-id="dd92f-107">Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Panorama9 (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="dd92f-107">You can enable your users to automatically get signed-on to Panorama9 (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="dd92f-108">Kezelheti a fiókokat, egy központi helyen – az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="dd92f-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="bf015-106">Megadhatja a hozzáférés tooPanorama9 rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="bf015-106">You can control in Azure AD who has access tooPanorama9</span></span>
+- <span data-ttu-id="bf015-107">Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooPanorama9 (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="bf015-107">You can enable your users tooautomatically get signed-on tooPanorama9 (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="bf015-108">Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="bf015-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="dd92f-109">Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="dd92f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="bf015-109">Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="bf015-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="dd92f-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="dd92f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="bf015-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="bf015-110">Prerequisites</span></span>
 
-<span data-ttu-id="dd92f-111">Konfigurálása az Azure AD-integrációs Panorama9, a következőkre van szükség:</span><span class="sxs-lookup"><span data-stu-id="dd92f-111">To configure Azure AD integration with Panorama9, you need the following items:</span></span>
+<span data-ttu-id="bf015-111">az Azure AD integrálása Panorama9 tooconfigure, kell a következő elemek hello:</span><span class="sxs-lookup"><span data-stu-id="bf015-111">tooconfigure Azure AD integration with Panorama9, you need hello following items:</span></span>
 
-- <span data-ttu-id="dd92f-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="dd92f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="dd92f-113">Egy Panorama9 egyszeri bejelentkezés engedélyezve van az előfizetés</span><span class="sxs-lookup"><span data-stu-id="dd92f-113">A Panorama9 single sign-on enabled subscription</span></span>
+- <span data-ttu-id="bf015-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="bf015-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="bf015-113">Egy Panorama9 egyszeri bejelentkezés engedélyezve van az előfizetés</span><span class="sxs-lookup"><span data-stu-id="bf015-113">A Panorama9 single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="dd92f-114">Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.</span><span class="sxs-lookup"><span data-stu-id="dd92f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="bf015-114">tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.</span><span class="sxs-lookup"><span data-stu-id="bf015-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="dd92f-115">Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:</span><span class="sxs-lookup"><span data-stu-id="dd92f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="bf015-115">Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:</span><span class="sxs-lookup"><span data-stu-id="bf015-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="dd92f-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="dd92f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="dd92f-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="dd92f-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="bf015-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="bf015-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="bf015-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="bf015-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="dd92f-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="dd92f-118">Scenario description</span></span>
-<span data-ttu-id="dd92f-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="dd92f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="dd92f-120">Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="dd92f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="bf015-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="bf015-118">Scenario description</span></span>
+<span data-ttu-id="bf015-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="bf015-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="bf015-120">Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="bf015-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="dd92f-121">A gyűjteményből Panorama9 hozzáadása</span><span class="sxs-lookup"><span data-stu-id="dd92f-121">Adding Panorama9 from the gallery</span></span>
-2. <span data-ttu-id="dd92f-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="dd92f-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="bf015-121">Hello gyűjteményből Panorama9 hozzáadása</span><span class="sxs-lookup"><span data-stu-id="bf015-121">Adding Panorama9 from hello gallery</span></span>
+2. <span data-ttu-id="bf015-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="bf015-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-panorama9-from-the-gallery"></a><span data-ttu-id="dd92f-123">A gyűjteményből Panorama9 hozzáadása</span><span class="sxs-lookup"><span data-stu-id="dd92f-123">Adding Panorama9 from the gallery</span></span>
-<span data-ttu-id="dd92f-124">Az Azure AD integrálása a Panorama9 konfigurálásához kell hozzáadnia Panorama9 a gyűjteményből a felügyelt SaaS-alkalmazások listájára.</span><span class="sxs-lookup"><span data-stu-id="dd92f-124">To configure the integration of Panorama9 into Azure AD, you need to add Panorama9 from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-panorama9-from-hello-gallery"></a><span data-ttu-id="bf015-123">Hello gyűjteményből Panorama9 hozzáadása</span><span class="sxs-lookup"><span data-stu-id="bf015-123">Adding Panorama9 from hello gallery</span></span>
+<span data-ttu-id="bf015-124">tooconfigure hello integrációja Panorama9 az Azure AD-be, meg kell tooadd Panorama9 hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.</span><span class="sxs-lookup"><span data-stu-id="bf015-124">tooconfigure hello integration of Panorama9 into Azure AD, you need tooadd Panorama9 from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="dd92f-125">**A gyűjteményből Panorama9 hozzáadásához hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="dd92f-125">**To add Panorama9 from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="bf015-125">**tooadd Panorama9 hello gyűjteményből, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="bf015-125">**tooadd Panorama9 from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dd92f-126">Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="bf015-126">A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="bf015-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="dd92f-128">Navigáljon a **vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="dd92f-129">Ezután lépjen **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="bf015-128">Keresse meg a túl**vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="bf015-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="bf015-129">Keresse meg a túl**összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="bf015-129">Then go too**All applications**.</span></span>
 
     ![Alkalmazások][2]
     
-3. <span data-ttu-id="dd92f-131">Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="bf015-131">Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.</span><span class="sxs-lookup"><span data-stu-id="bf015-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Alkalmazások][3]
 
-4. <span data-ttu-id="dd92f-133">Írja be a keresőmezőbe, **Panorama9**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-133">In the search box, type **Panorama9**.</span></span>
+4. <span data-ttu-id="bf015-133">Hello keresési mezőbe, írja be a **Panorama9**.</span><span class="sxs-lookup"><span data-stu-id="bf015-133">In hello search box, type **Panorama9**.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_search.png)
 
-5. <span data-ttu-id="dd92f-135">Az eredmények panelen válassza ki a **Panorama9**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="dd92f-135">In the results panel, select **Panorama9**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="bf015-135">A hello eredmények panelen válassza ki a **Panorama9**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.</span><span class="sxs-lookup"><span data-stu-id="bf015-135">In hello results panel, select **Panorama9**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="dd92f-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="dd92f-137">Configuring and testing Azure AD single sign-on</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="bf015-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="bf015-137">Configuring and testing Azure AD single sign-on</span></span>
 
-<span data-ttu-id="dd92f-138">Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Panorama9</span><span class="sxs-lookup"><span data-stu-id="dd92f-138">In this section, you configure and test Azure AD single sign-on with Panorama9 based on a test user called "Britta Simon."</span></span>
+<span data-ttu-id="bf015-138">Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Panorama9</span><span class="sxs-lookup"><span data-stu-id="bf015-138">In this section, you configure and test Azure AD single sign-on with Panorama9 based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="dd92f-139">Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Panorama9 a felhasználó Azure AD-ben.</span><span class="sxs-lookup"><span data-stu-id="dd92f-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Panorama9 is to a user in Azure AD.</span></span> <span data-ttu-id="dd92f-140">Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Panorama9 közötti kapcsolat kapcsolatot kell létrehozni.</span><span class="sxs-lookup"><span data-stu-id="dd92f-140">In other words, a link relationship between an Azure AD user and the related user in Panorama9 needs to be established.</span></span>
+<span data-ttu-id="bf015-139">Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Panorama9 tooa felhasználó az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="bf015-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Panorama9 is tooa user in Azure AD.</span></span> <span data-ttu-id="bf015-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Panorama9 közötti kapcsolat kapcsolatot kell létrehozni toobe.</span><span class="sxs-lookup"><span data-stu-id="bf015-140">In other words, a link relationship between an Azure AD user and hello related user in Panorama9 needs toobe established.</span></span>
 
-<span data-ttu-id="dd92f-141">Panorama9, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.</span><span class="sxs-lookup"><span data-stu-id="dd92f-141">In Panorama9, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="bf015-141">Panorama9, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.</span><span class="sxs-lookup"><span data-stu-id="bf015-141">In Panorama9, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="dd92f-142">Az Azure AD egyszeri bejelentkezést a Panorama9 tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:</span><span class="sxs-lookup"><span data-stu-id="dd92f-142">To configure and test Azure AD single sign-on with Panorama9, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="bf015-142">tooconfigure és az Azure AD az egyszeri bejelentkezés Panorama9-teszthez, a következő építőelemeket toocomplete hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="bf015-142">tooconfigure and test Azure AD single sign-on with Panorama9, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="dd92f-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="dd92f-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="dd92f-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.</span><span class="sxs-lookup"><span data-stu-id="dd92f-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="dd92f-145">**[Panorama9 tesztfelhasználó létrehozása](#creating-a-panorama9-test-user)**  - való Britta Simon valami Panorama9, amely csatolva van a felhasználó az Azure AD-ábrázolását.</span><span class="sxs-lookup"><span data-stu-id="dd92f-145">**[Creating a Panorama9 test user](#creating-a-panorama9-test-user)** - to have a counterpart of Britta Simon in Panorama9 that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="dd92f-146">**[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="dd92f-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="dd92f-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="dd92f-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="bf015-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="bf015-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="bf015-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="bf015-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="bf015-145">**[Panorama9 tesztfelhasználó létrehozása](#creating-a-panorama9-test-user)**  -toohave egy megfelelője a Britta Simon a Panorama9, amely a felhasználó csatolt toohello az Azure AD ábrázolása.</span><span class="sxs-lookup"><span data-stu-id="bf015-145">**[Creating a Panorama9 test user](#creating-a-panorama9-test-user)** - toohave a counterpart of Britta Simon in Panorama9 that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="bf015-146">**[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="bf015-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="bf015-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.</span><span class="sxs-lookup"><span data-stu-id="bf015-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="dd92f-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="dd92f-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="bf015-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="bf015-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="dd92f-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Panorama9 alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="dd92f-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Panorama9 application.</span></span>
+<span data-ttu-id="bf015-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Panorama9 alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="bf015-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Panorama9 application.</span></span>
 
-<span data-ttu-id="dd92f-150">**Konfigurálása az Azure AD az egyszeri bejelentkezés Panorama9, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="dd92f-150">**To configure Azure AD single sign-on with Panorama9, perform the following steps:**</span></span>
+<span data-ttu-id="bf015-150">**az Azure AD tooconfigure egyszeri bejelentkezést a Panorama9, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="bf015-150">**tooconfigure Azure AD single sign-on with Panorama9, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dd92f-151">Az Azure portálon a a **Panorama9** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-151">In the Azure portal, on the **Panorama9** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="bf015-151">Az Azure portál, a hello hello **Panorama9** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="bf015-151">In hello Azure portal, on hello **Panorama9** application integration page, click **Single sign-on**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. <span data-ttu-id="dd92f-153">Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="dd92f-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="bf015-153">A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="bf015-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_samlbase.png)
 
-3. <span data-ttu-id="dd92f-155">Az a **Panorama9 tartomány és az URL-címek** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="dd92f-155">On the **Panorama9 Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="bf015-155">A hello **Panorama9 tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="bf015-155">On hello **Panorama9 Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_url.png)
 
-    <span data-ttu-id="dd92f-157">a.</span><span class="sxs-lookup"><span data-stu-id="dd92f-157">a.</span></span> <span data-ttu-id="dd92f-158">Az a **bejelentkezési URL-cím** szövegmező, adja meg az URL-címet:`https://dashboard.panorama9.com/saml/access/3262`</span><span class="sxs-lookup"><span data-stu-id="dd92f-158">In the **Sign-on URL** textbox, type a URL as: `https://dashboard.panorama9.com/saml/access/3262`</span></span>
+    <span data-ttu-id="bf015-157">a.</span><span class="sxs-lookup"><span data-stu-id="bf015-157">a.</span></span> <span data-ttu-id="bf015-158">A hello **bejelentkezési URL-cím** szövegmező, adja meg az URL-címet:`https://dashboard.panorama9.com/saml/access/3262`</span><span class="sxs-lookup"><span data-stu-id="bf015-158">In hello **Sign-on URL** textbox, type a URL as: `https://dashboard.panorama9.com/saml/access/3262`</span></span>
 
-    <span data-ttu-id="dd92f-159">b.</span><span class="sxs-lookup"><span data-stu-id="dd92f-159">b.</span></span> <span data-ttu-id="dd92f-160">Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`http://www.panorama9.com/saml20/<tenant-name>`</span><span class="sxs-lookup"><span data-stu-id="dd92f-160">In the **Identifier** textbox, type a URL using the following pattern: `http://www.panorama9.com/saml20/<tenant-name>`</span></span>
+    <span data-ttu-id="bf015-159">b.</span><span class="sxs-lookup"><span data-stu-id="bf015-159">b.</span></span> <span data-ttu-id="bf015-160">A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`http://www.panorama9.com/saml20/<tenant-name>`</span><span class="sxs-lookup"><span data-stu-id="bf015-160">In hello **Identifier** textbox, type a URL using hello following pattern: `http://www.panorama9.com/saml20/<tenant-name>`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="dd92f-161">Ezek az értékek nincsenek valós.</span><span class="sxs-lookup"><span data-stu-id="dd92f-161">These values are not real.</span></span> <span data-ttu-id="dd92f-162">Frissítheti ezeket az értékeket a tényleges bejelentkezési URL-cím és azonosítója.</span><span class="sxs-lookup"><span data-stu-id="dd92f-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="dd92f-163">Ügyfél [Panorama9 ügyfél-támogatási csoport](https://support.panorama9.com) beolvasni ezeket az értékeket.</span><span class="sxs-lookup"><span data-stu-id="dd92f-163">Contact [Panorama9 Client support team](https://support.panorama9.com) to get these values.</span></span> 
+    > <span data-ttu-id="bf015-161">Ezek az értékek nincsenek valós.</span><span class="sxs-lookup"><span data-stu-id="bf015-161">These values are not real.</span></span> <span data-ttu-id="bf015-162">Frissítse a bejelentkezési URL-cím és azonosító a hello tényleges értékek.</span><span class="sxs-lookup"><span data-stu-id="bf015-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="bf015-163">Ügyfél [Panorama9 ügyfél-támogatási csoport](https://support.panorama9.com) tooget ezeket az értékeket.</span><span class="sxs-lookup"><span data-stu-id="bf015-163">Contact [Panorama9 Client support team](https://support.panorama9.com) tooget these values.</span></span> 
  
-4. <span data-ttu-id="dd92f-164">Az a **SAML-aláíró tanúsítványa** szakaszban, másolja a **UJJLENYOMAT** tanúsítvány értékét.</span><span class="sxs-lookup"><span data-stu-id="dd92f-164">On the **SAML Signing Certificate** section, copy the **THUMBPRINT** value of certificate.</span></span>
+4. <span data-ttu-id="bf015-164">A hello **SAML-aláíró tanúsítványa** szakaszban, a Másolás hello **UJJLENYOMAT** tanúsítvány értékét.</span><span class="sxs-lookup"><span data-stu-id="bf015-164">On hello **SAML Signing Certificate** section, copy hello **THUMBPRINT** value of certificate.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_certificate.png) 
 
-5. <span data-ttu-id="dd92f-166">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="bf015-166">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="bf015-166">Click **Save** button.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="dd92f-168">A a **Panorama9 konfigurációs** kattintson **konfigurálása Panorama9** megnyitásához **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="dd92f-168">On the **Panorama9 Configuration** section, click **Configure Panorama9** to open **Configure sign-on** window.</span></span> <span data-ttu-id="dd92f-169">Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="dd92f-169">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="bf015-168">A hello **Panorama9 konfigurációs** kattintson **konfigurálása Panorama9** tooopen **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="bf015-168">On hello **Panorama9 Configuration** section, click **Configure Panorama9** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="bf015-169">Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="bf015-169">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_configure.png) 
 
-5. <span data-ttu-id="dd92f-171">Egy másik webes böngészőablakban jelentkezzen be a Panorama9 vállalati webhely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="dd92f-171">In a different web browser window, log into your Panorama9 company site as an administrator.</span></span>
+5. <span data-ttu-id="bf015-171">Egy másik webes böngészőablakban jelentkezzen be a Panorama9 vállalati webhely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="bf015-171">In a different web browser window, log into your Panorama9 company site as an administrator.</span></span>
 
-6. <span data-ttu-id="dd92f-172">A felső eszköztáron kattintson **kezelése**, és kattintson a **bővítmények**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-172">In the toolbar on the top, click **Manage**, and then click **Extensions**.</span></span>
+6. <span data-ttu-id="bf015-172">Hello hello felső eszköztárán kattintson **kezelése**, és kattintson a **bővítmények**.</span><span class="sxs-lookup"><span data-stu-id="bf015-172">In hello toolbar on hello top, click **Manage**, and then click **Extensions**.</span></span>
    
-   <span data-ttu-id="dd92f-173">![Bővítmények](./media/active-directory-saas-panorama9-tutorial/ic790023.png "bővítmények")</span><span class="sxs-lookup"><span data-stu-id="dd92f-173">![Extensions](./media/active-directory-saas-panorama9-tutorial/ic790023.png "Extensions")</span></span>
-7. <span data-ttu-id="dd92f-174">Az a **bővítmények** párbeszédpanel, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-174">On the **Extensions** dialog, click **Single Sign-On**.</span></span>
+   <span data-ttu-id="bf015-173">![Bővítmények](./media/active-directory-saas-panorama9-tutorial/ic790023.png "bővítmények")</span><span class="sxs-lookup"><span data-stu-id="bf015-173">![Extensions](./media/active-directory-saas-panorama9-tutorial/ic790023.png "Extensions")</span></span>
+7. <span data-ttu-id="bf015-174">A hello **bővítmények** párbeszédpanel, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="bf015-174">On hello **Extensions** dialog, click **Single Sign-On**.</span></span>
    
-   <span data-ttu-id="dd92f-175">![Egyszeri bejelentkezés](./media/active-directory-saas-panorama9-tutorial/ic790024.png "egyszeri bejelentkezés")</span><span class="sxs-lookup"><span data-stu-id="dd92f-175">![Single Sign-On](./media/active-directory-saas-panorama9-tutorial/ic790024.png "Single Sign-On")</span></span>
-8. <span data-ttu-id="dd92f-176">Az a **beállítások** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="dd92f-176">In the **Settings** section, perform the following steps:</span></span>
+   <span data-ttu-id="bf015-175">![Egyszeri bejelentkezés](./media/active-directory-saas-panorama9-tutorial/ic790024.png "egyszeri bejelentkezés")</span><span class="sxs-lookup"><span data-stu-id="bf015-175">![Single Sign-On](./media/active-directory-saas-panorama9-tutorial/ic790024.png "Single Sign-On")</span></span>
+8. <span data-ttu-id="bf015-176">A hello **beállítások** csoportjában hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="bf015-176">In hello **Settings** section, perform hello following steps:</span></span>
    
-   <span data-ttu-id="dd92f-177">![Beállítások](./media/active-directory-saas-panorama9-tutorial/ic790025.png "beállítások")</span><span class="sxs-lookup"><span data-stu-id="dd92f-177">![Settings](./media/active-directory-saas-panorama9-tutorial/ic790025.png "Settings")</span></span>
+   <span data-ttu-id="bf015-177">![Beállítások](./media/active-directory-saas-panorama9-tutorial/ic790025.png "beállítások")</span><span class="sxs-lookup"><span data-stu-id="bf015-177">![Settings](./media/active-directory-saas-panorama9-tutorial/ic790025.png "Settings")</span></span>
    
-    <span data-ttu-id="dd92f-178">a.</span><span class="sxs-lookup"><span data-stu-id="dd92f-178">a.</span></span> <span data-ttu-id="dd92f-179">A **identitási szolgáltató URL-cím** szövegmezőhöz illessze be az értékét **egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="dd92f-179">In **Identity provider URL** textbox, paste the value of **Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="bf015-178">a.</span><span class="sxs-lookup"><span data-stu-id="bf015-178">a.</span></span> <span data-ttu-id="bf015-179">A **identitási szolgáltató URL-cím** szövegmezőhöz Beillesztés hello értékének **egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="bf015-179">In **Identity provider URL** textbox, paste hello value of **Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
    
-    <span data-ttu-id="dd92f-180">b.</span><span class="sxs-lookup"><span data-stu-id="dd92f-180">b.</span></span> <span data-ttu-id="dd92f-181">A **tanúsítvány-ujjlenyomat** szövegmező, illessze be a **ujjlenyomat** tanúsítványt, amely az Azure-portálon másolta értékét.</span><span class="sxs-lookup"><span data-stu-id="dd92f-181">In **Certificate fingerprint** textbox, paste the **Thumbprint** value of certificate, which you have copied from Azure portal.</span></span>    
+    <span data-ttu-id="bf015-180">b.</span><span class="sxs-lookup"><span data-stu-id="bf015-180">b.</span></span> <span data-ttu-id="bf015-181">A **tanúsítvány-ujjlenyomat** szövegmezőhöz Beillesztés hello **ujjlenyomat** tanúsítványt, amely az Azure-portálon másolta értékét.</span><span class="sxs-lookup"><span data-stu-id="bf015-181">In **Certificate fingerprint** textbox, paste hello **Thumbprint** value of certificate, which you have copied from Azure portal.</span></span>    
          
-9. <span data-ttu-id="dd92f-182">Kattintson a **Save** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-182">Click **Save**.</span></span>
+9. <span data-ttu-id="bf015-182">Kattintson a **Save** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="bf015-182">Click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="dd92f-183">Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!</span><span class="sxs-lookup"><span data-stu-id="dd92f-183">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="dd92f-184">Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján.</span><span class="sxs-lookup"><span data-stu-id="dd92f-184">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="dd92f-185">További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="dd92f-185">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="bf015-183">Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!</span><span class="sxs-lookup"><span data-stu-id="bf015-183">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="bf015-184">Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján.</span><span class="sxs-lookup"><span data-stu-id="bf015-184">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="bf015-185">További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="bf015-185">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="dd92f-186">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="dd92f-186">Creating an Azure AD test user</span></span>
-<span data-ttu-id="dd92f-187">Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.</span><span class="sxs-lookup"><span data-stu-id="dd92f-187">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="bf015-186">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="bf015-186">Creating an Azure AD test user</span></span>
+<span data-ttu-id="bf015-187">hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.</span><span class="sxs-lookup"><span data-stu-id="bf015-187">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-<span data-ttu-id="dd92f-189">**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="dd92f-189">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="bf015-189">**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**</span><span class="sxs-lookup"><span data-stu-id="bf015-189">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dd92f-190">Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-190">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="bf015-190">A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="bf015-190">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="dd92f-192">Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-192">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="bf015-192">toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="bf015-192">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="dd92f-194">Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.</span><span class="sxs-lookup"><span data-stu-id="dd92f-194">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="bf015-194">tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="bf015-194">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="dd92f-196">Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="dd92f-196">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="bf015-196">A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="bf015-196">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-panorama9-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="dd92f-198">a.</span><span class="sxs-lookup"><span data-stu-id="dd92f-198">a.</span></span> <span data-ttu-id="dd92f-199">Az a **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-199">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="bf015-198">a.</span><span class="sxs-lookup"><span data-stu-id="bf015-198">a.</span></span> <span data-ttu-id="bf015-199">A hello **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="bf015-199">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="dd92f-200">b.</span><span class="sxs-lookup"><span data-stu-id="dd92f-200">b.</span></span> <span data-ttu-id="dd92f-201">Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="dd92f-201">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="bf015-200">b.</span><span class="sxs-lookup"><span data-stu-id="bf015-200">b.</span></span> <span data-ttu-id="bf015-201">A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="bf015-201">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="dd92f-202">c.</span><span class="sxs-lookup"><span data-stu-id="dd92f-202">c.</span></span> <span data-ttu-id="dd92f-203">Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-203">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="bf015-202">c.</span><span class="sxs-lookup"><span data-stu-id="bf015-202">c.</span></span> <span data-ttu-id="bf015-203">Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="bf015-203">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="dd92f-204">d.</span><span class="sxs-lookup"><span data-stu-id="dd92f-204">d.</span></span> <span data-ttu-id="dd92f-205">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-205">Click **Create**.</span></span>
+    <span data-ttu-id="bf015-204">d.</span><span class="sxs-lookup"><span data-stu-id="bf015-204">d.</span></span> <span data-ttu-id="bf015-205">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="bf015-205">Click **Create**.</span></span>
  
-### <a name="creating-a-panorama9-test-user"></a><span data-ttu-id="dd92f-206">Panorama9 tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="dd92f-206">Creating a Panorama9 test user</span></span>
+### <a name="creating-a-panorama9-test-user"></a><span data-ttu-id="bf015-206">Panorama9 tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="bf015-206">Creating a Panorama9 test user</span></span>
 
-<span data-ttu-id="dd92f-207">Ahhoz, hogy az Azure AD-felhasználók Panorama9 bejelentkezni, akkor ki kell építenie Panorama9 be.</span><span class="sxs-lookup"><span data-stu-id="dd92f-207">In order to enable Azure AD users to log into Panorama9, they must be provisioned into Panorama9.</span></span>  
+<span data-ttu-id="bf015-207">A sorrend tooenable az Azure AD felhasználók toolog Panorama9 be azok ki kell építenie Panorama9 be.</span><span class="sxs-lookup"><span data-stu-id="bf015-207">In order tooenable Azure AD users toolog into Panorama9, they must be provisioned into Panorama9.</span></span>  
 
-<span data-ttu-id="dd92f-208">Panorama9, ha egy kézi tevékenység.</span><span class="sxs-lookup"><span data-stu-id="dd92f-208">In the case of Panorama9, provisioning is a manual task.</span></span>
+<span data-ttu-id="bf015-208">Panorama9 hello esetben egy kézi tevékenység.</span><span class="sxs-lookup"><span data-stu-id="bf015-208">In hello case of Panorama9, provisioning is a manual task.</span></span>
 
-<span data-ttu-id="dd92f-209">**Adja meg a felhasználók átadása, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="dd92f-209">**To configure user provisioning, perform the following steps:**</span></span>
+<span data-ttu-id="bf015-209">**tooconfigure felhasználók átadásához, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="bf015-209">**tooconfigure user provisioning, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dd92f-210">Jelentkezzen be a **Panorama9** vállalati hely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="dd92f-210">Log in to your **Panorama9** company site as an administrator.</span></span>
+1. <span data-ttu-id="bf015-210">Jelentkezzen be tooyour **Panorama9** vállalati hely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="bf015-210">Log in tooyour **Panorama9** company site as an administrator.</span></span>
 
-2. <span data-ttu-id="dd92f-211">Kattintson a felső menüben **kezelése**, és kattintson a **felhasználók**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-211">In the menu on the top, click **Manage**, and then click **Users**.</span></span>
+2. <span data-ttu-id="bf015-211">Hello hello felső menüben kattintson a **kezelése**, és kattintson a **felhasználók**.</span><span class="sxs-lookup"><span data-stu-id="bf015-211">In hello menu on hello top, click **Manage**, and then click **Users**.</span></span>
    
-  <span data-ttu-id="dd92f-212">![Felhasználók](./media/active-directory-saas-panorama9-tutorial/ic790027.png "felhasználók")</span><span class="sxs-lookup"><span data-stu-id="dd92f-212">![Users](./media/active-directory-saas-panorama9-tutorial/ic790027.png "Users")</span></span>
+  <span data-ttu-id="bf015-212">![Felhasználók](./media/active-directory-saas-panorama9-tutorial/ic790027.png "felhasználók")</span><span class="sxs-lookup"><span data-stu-id="bf015-212">![Users](./media/active-directory-saas-panorama9-tutorial/ic790027.png "Users")</span></span>
 
-3. <span data-ttu-id="dd92f-213">A felhasználók szakaszban kattintson  **+**  új felhasználó hozzáadásához.</span><span class="sxs-lookup"><span data-stu-id="dd92f-213">In the Users section, Click **+** to add new user.</span></span>
+3. <span data-ttu-id="bf015-213">A felhasználók szakaszban hello, kattintson  **+**  tooadd új felhasználó.</span><span class="sxs-lookup"><span data-stu-id="bf015-213">In hello Users section, Click **+** tooadd new user.</span></span>
 
- <span data-ttu-id="dd92f-214">![Felhasználók](./media/active-directory-saas-panorama9-tutorial/ic790028.png "felhasználók")</span><span class="sxs-lookup"><span data-stu-id="dd92f-214">![Users](./media/active-directory-saas-panorama9-tutorial/ic790028.png "Users")</span></span>
+ <span data-ttu-id="bf015-214">![Felhasználók](./media/active-directory-saas-panorama9-tutorial/ic790028.png "felhasználók")</span><span class="sxs-lookup"><span data-stu-id="bf015-214">![Users](./media/active-directory-saas-panorama9-tutorial/ic790028.png "Users")</span></span>
 
-4. <span data-ttu-id="dd92f-215">Keresse meg a felhasználói adatok, írja be a felhasználó e-mail címe az egy érvényes Azure Active Directory szeretne kiépíteni a **E-mail** szövegmező.</span><span class="sxs-lookup"><span data-stu-id="dd92f-215">Go to the User data section, type the email address of a valid Azure Active Directory user you want to provision into the **Email** textbox.</span></span>
+4. <span data-ttu-id="bf015-215">Felhasználói adatok szakasz toohello lépjen típus hello e-mail címe egy érvényes Azure Active Directory felhasználó tooprovision hello történő **E-mail** szövegmező.</span><span class="sxs-lookup"><span data-stu-id="bf015-215">Go toohello User data section, type hello email address of a valid Azure Active Directory user you want tooprovision into hello **Email** textbox.</span></span>
 
-5. <span data-ttu-id="dd92f-216">A felhasználók szakaszban kattintson tudomást **mentése**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-216">Come to the Users section, Click **Save**.</span></span>
+5. <span data-ttu-id="bf015-216">Felhasználók szakaszban kattintson toohello származnak **mentése**.</span><span class="sxs-lookup"><span data-stu-id="bf015-216">Come toohello Users section, Click **Save**.</span></span>
    
 > [!NOTE]
-    > <span data-ttu-id="dd92f-217">Az Azure Active Directory fióktulajdonos kap egy e-mailt, és a következő hivatkozás a fiók megerősítéséhez, mielőtt aktívvá válik.</span><span class="sxs-lookup"><span data-stu-id="dd92f-217">The Azure Active Directory account holder receives an email and follows a link to confirm their account before it becomes active.</span></span>
+    > <span data-ttu-id="bf015-217">hello Azure Active Directory fióktulajdonos kap egy e-mailt legyen és megfeleljen a fiókjuk egy hivatkozás tooconfirm mielőtt aktívvá válik.</span><span class="sxs-lookup"><span data-stu-id="bf015-217">hello Azure Active Directory account holder receives an email and follows a link tooconfirm their account before it becomes active.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="dd92f-218">Az Azure AD-teszt felhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="dd92f-218">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="bf015-218">Az Azure AD hello tesztfelhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="bf015-218">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="dd92f-219">Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Panorama9 Azure egyszeri bejelentkezéshez használandó.</span><span class="sxs-lookup"><span data-stu-id="dd92f-219">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Panorama9.</span></span>
+<span data-ttu-id="bf015-219">Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooPanorama9 megadásával engedélyeznie.</span><span class="sxs-lookup"><span data-stu-id="bf015-219">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooPanorama9.</span></span>
 
 ![Felhasználó hozzárendelése][200] 
 
-<span data-ttu-id="dd92f-221">**Britta Simon hozzárendelése Panorama9, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="dd92f-221">**To assign Britta Simon to Panorama9, perform the following steps:**</span></span>
+<span data-ttu-id="bf015-221">**tooassign Britta Simon tooPanorama9, hajtsa végre a következő lépéseket hello:**</span><span class="sxs-lookup"><span data-stu-id="bf015-221">**tooassign Britta Simon tooPanorama9, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="dd92f-222">Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-222">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="bf015-222">A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="bf015-222">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Felhasználó hozzárendelése][201] 
 
-2. <span data-ttu-id="dd92f-224">Az alkalmazások listában válassza ki a **Panorama9**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-224">In the applications list, select **Panorama9**.</span></span>
+2. <span data-ttu-id="bf015-224">Hello alkalmazások listában válassza ki a **Panorama9**.</span><span class="sxs-lookup"><span data-stu-id="bf015-224">In hello applications list, select **Panorama9**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-panorama9-tutorial/tutorial_panorama9_app.png) 
 
-3. <span data-ttu-id="dd92f-226">A bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="dd92f-226">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="bf015-226">Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="bf015-226">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Felhasználó hozzárendelése][202] 
 
-4. <span data-ttu-id="dd92f-228">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="dd92f-228">Click **Add** button.</span></span> <span data-ttu-id="dd92f-229">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="dd92f-229">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="bf015-228">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="bf015-228">Click **Add** button.</span></span> <span data-ttu-id="bf015-229">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="bf015-229">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Felhasználó hozzárendelése][203]
 
-5. <span data-ttu-id="dd92f-231">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="dd92f-231">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="bf015-231">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="bf015-231">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="dd92f-232">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="dd92f-232">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="bf015-232">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="bf015-232">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="dd92f-233">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="dd92f-233">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="bf015-233">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="bf015-233">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="dd92f-234">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="dd92f-234">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="bf015-234">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="bf015-234">Testing single sign-on</span></span>
 
-<span data-ttu-id="dd92f-235">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.</span><span class="sxs-lookup"><span data-stu-id="dd92f-235">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="bf015-235">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="bf015-235">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="dd92f-236">Ha a hozzáférési panelen Panorama9 csempére kattint, akkor kell beolvasása automatikusan bejelentkezett Panorama9 alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="dd92f-236">When you click the Panorama9 tile in the Access Panel, you should get automatically signed-on to Panorama9 application.</span></span>
-<span data-ttu-id="dd92f-237">A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="dd92f-237">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="bf015-236">Ha a hozzáférési Panel hello hello Panorama9 csempe gombra kattint, automatikusan bejelentkezett tooPanorama9 alkalmazás szerezheti be.</span><span class="sxs-lookup"><span data-stu-id="bf015-236">When you click hello Panorama9 tile in hello Access Panel, you should get automatically signed-on tooPanorama9 application.</span></span>
+<span data-ttu-id="bf015-237">További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="bf015-237">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="dd92f-238">További források</span><span class="sxs-lookup"><span data-stu-id="dd92f-238">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="bf015-238">További források</span><span class="sxs-lookup"><span data-stu-id="bf015-238">Additional resources</span></span>
 
-* [<span data-ttu-id="dd92f-239">Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása</span><span class="sxs-lookup"><span data-stu-id="dd92f-239">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="dd92f-240">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="dd92f-240">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="bf015-239">Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="bf015-239">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="bf015-240">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="bf015-240">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

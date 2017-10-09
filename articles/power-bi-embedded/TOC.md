@@ -12,7 +12,7 @@
 ### [Gyakori forgatókönyvek](power-bi-embedded-scenarios.md)
 
 ## Kezelés
-### [Kapcsolódás adatforráshoz](power-bi-embedded-connect-datasource.md)
+### [Tooa adatforrás csatlakoztatása](power-bi-embedded-connect-datasource.md)
 ### [Power BI-jelentés beágyazása](power-bi-embedded-embed-report.md)
 ### [Jelentések kezelése](power-bi-embedded-interact-with-reports.md)
 ### [Új jelentés létrehozása adatkészletből](power-bi-embedded-create-report-from-dataset.md)

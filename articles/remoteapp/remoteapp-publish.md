@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazások közzététele az Azure Remoteappban |} Microsoft Docs"
-description: "Ismerje meg, hogyan tehet közzé alkalmazásokat és erőforrásokat az Azure Remoteappban."
+title: "aaaPublish egy alkalmazást az Azure Remoteappban |} Microsoft Docs"
+description: "Megtudhatja, hogyan toopublish alkalmazásokat és erőforrásokat az Azure Remoteappban."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4565fa498dbadd0601004c73bfee5171efe1fad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7d92187e9ed999ac79554c9bb61f56a8eceeb31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-publish-an-app-in-remoteapp"></a><span data-ttu-id="d5b5f-103">Hogyan alkalmazás közzététele a Remoteappben</span><span class="sxs-lookup"><span data-stu-id="d5b5f-103">How to publish an app in RemoteApp</span></span>
+# <a name="how-toopublish-an-app-in-remoteapp"></a><span data-ttu-id="84fb9-103">Hogyan toopublish RemoteApp alkalmazás</span><span class="sxs-lookup"><span data-stu-id="84fb9-103">How toopublish an app in RemoteApp</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="d5b5f-104">Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="d5b5f-105">A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).</span><span class="sxs-lookup"><span data-stu-id="d5b5f-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> <span data-ttu-id="84fb9-104">Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik.</span><span class="sxs-lookup"><span data-stu-id="84fb9-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="84fb9-105">Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.</span><span class="sxs-lookup"><span data-stu-id="84fb9-105">Read hello [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
 > 
 > 
 
-<span data-ttu-id="d5b5f-106">A RemoteApp-gyűjtemény létrehozása után, vagy közzé kell tenni az alkalmazások a felhasználók az elérhetővé tenni kívánt erőforrások.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-106">After you create your RemoteApp collection, you need to publish the apps or resources that you want to make available for your users.</span></span> <span data-ttu-id="d5b5f-107">Az előfizetéshez mellékelt sablon rendszerképek csak néhány alapértelmezett - megosztása az alkalmazások által közzétett alkalmazásokat, meg kell közzétesszük őket.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-107">The template images provided with your subscription only have a few apps published by default - to share the other apps, you need to publish them.</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="d5b5f-108">Szüksége frissítheti az alkalmazásokat?</span><span class="sxs-lookup"><span data-stu-id="d5b5f-108">Do you need to update an app?</span></span> <span data-ttu-id="d5b5f-109">Kell [a lemezképek](remoteapp-update.md) első.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-109">You'll need to [update the image](remoteapp-update.md) first.</span></span>
-> 
-> 
-
-<span data-ttu-id="d5b5f-110">Az a **közzétételi** a portálon lapra, majd **közzététel**.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-110">On the **Publishing** tab in the portal, click **Publish**.</span></span> <span data-ttu-id="d5b5f-111">A sablon lemezképe származó is hozzáadhat egy alkalmazást vagy **Start** menüben, vagy adjon meg az elérési útját, ahol az alkalmazás telepítve van a sablon lemezképe.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-111">You can either add an app from your template image's **Start** menu or provide the path to where the app is installed on the template image.</span></span> <span data-ttu-id="d5b5f-112">Ha úgy dönt, hogy adja hozzá a **Start** menüben válassza ki az alkalmazás közzététele a listából.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-112">If you choose to add from the **Start** menu, choose the app to publish from the list.</span></span> <span data-ttu-id="d5b5f-113">Ha arra, hogy az alkalmazás elérési útja, írja be egy nevet az alkalmazás és az elérési út az alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-113">If you choose to provide the path to the app, enter a name for the app and the path to the app.</span></span> <span data-ttu-id="d5b5f-114">Ahelyett, hogy az elérési út – például "% systemdrive %" változókkal "c:\".</span><span class="sxs-lookup"><span data-stu-id="d5b5f-114">Use variables in the path - for example, "%systemdrive%" instead of "c:\".</span></span>
+<span data-ttu-id="84fb9-106">A RemoteApp-gyűjtemény létrehozása után kell toopublish hello alkalmazásokhoz és erőforrásokhoz, amelyet az toomake érhető el a felhasználók számára.</span><span class="sxs-lookup"><span data-stu-id="84fb9-106">After you create your RemoteApp collection, you need toopublish hello apps or resources that you want toomake available for your users.</span></span> <span data-ttu-id="84fb9-107">hello az előfizetéskor megadott sablonrendszerképek csak néhány alkalmazásokkal rendelkeznek alapértelmezett - által közzétett tooshare hello más alkalmazásokat, toopublish kell őket.</span><span class="sxs-lookup"><span data-stu-id="84fb9-107">hello template images provided with your subscription only have a few apps published by default - tooshare hello other apps, you need toopublish them.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d5b5f-115">Ha hozzá szeretne adni az alkalmazását a **Start** menü kell rendelkeznie *adott alkalmazást felvette a **Start** a sablon rendszerképre menü.*</span><span class="sxs-lookup"><span data-stu-id="d5b5f-115">If you want to add your app from the **Start** menu, you need to have *added that app to the **Start** menu on your template image.*</span></span> <span data-ttu-id="d5b5f-116">Ellenkező esetben RemoteApp csak jelenik meg, mi *van* a a **Start** menüt, és keverendő lesz.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-116">Otherwise, RemoteApp will only see what *is* on the **Start** menu, and you will be confused.</span></span> 
+> <span data-ttu-id="84fb9-108">Kell-e egy alkalmazás tooupdate?</span><span class="sxs-lookup"><span data-stu-id="84fb9-108">Do you need tooupdate an app?</span></span> <span data-ttu-id="84fb9-109">Szüksége lesz túl[frissítés hello kép](remoteapp-update.md) első.</span><span class="sxs-lookup"><span data-stu-id="84fb9-109">You'll need too[update hello image](remoteapp-update.md) first.</span></span>
 > 
-> <span data-ttu-id="d5b5f-117">Győződjön meg arról, hogy az alkalmazás megtalálható a **Start** menü helyezhető el egy helyi fájl - **.lnk** – a %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs mappában található.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-117">To make sure your app is in the **Start** menu, place a shortcut file - **.lnk** - inside the %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
 > 
-> <span data-ttu-id="d5b5f-118">Ha az alkalmazás hozzáadása elfelejtette a **Start** a sablon létrehozásakor menüben válassza az alkalmazásnak az elérési út hozzáadása.</span><span class="sxs-lookup"><span data-stu-id="d5b5f-118">If you forgot to add the app to the **Start** menu when you created the template, choose to add the path to the app.</span></span> <span data-ttu-id="d5b5f-119">(Vagy az hozza létre újra a sablon lemezképe, de a Ez meglehetősen egy kicsit nagyobb munkahelyi.)</span><span class="sxs-lookup"><span data-stu-id="d5b5f-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
+
+<span data-ttu-id="84fb9-110">A hello **közzétételi** hello portálon lapra, majd **közzététel**.</span><span class="sxs-lookup"><span data-stu-id="84fb9-110">On hello **Publishing** tab in hello portal, click **Publish**.</span></span> <span data-ttu-id="84fb9-111">A sablon lemezképe származó is hozzáadhat egy alkalmazást vagy **Start** menü, vagy adjon meg hello sablonlemezkép hello elérési toowhere hello alkalmazást telepítette.</span><span class="sxs-lookup"><span data-stu-id="84fb9-111">You can either add an app from your template image's **Start** menu or provide hello path toowhere hello app is installed on hello template image.</span></span> <span data-ttu-id="84fb9-112">Ha tooadd választhat hello **Start** menü hello app toopublish választ hello listáról.</span><span class="sxs-lookup"><span data-stu-id="84fb9-112">If you choose tooadd from hello **Start** menu, choose hello app toopublish from hello list.</span></span> <span data-ttu-id="84fb9-113">Ha úgy dönt, hogy tooprovide hello elérési toohello alkalmazást, adja meg a hello alkalmazás és hello elérési toohello alkalmazás nevét.</span><span class="sxs-lookup"><span data-stu-id="84fb9-113">If you choose tooprovide hello path toohello app, enter a name for hello app and hello path toohello app.</span></span> <span data-ttu-id="84fb9-114">A változókkal hello elérési út – például "% systemdrive %" helyett "c:\".</span><span class="sxs-lookup"><span data-stu-id="84fb9-114">Use variables in hello path - for example, "%systemdrive%" instead of "c:\".</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="84fb9-115">Ha azt szeretné, tooadd hello az alkalmazását **Start** menü toohave kell *hozzá az adott alkalmazás toohello **Start** a sablon rendszerképre menü.*</span><span class="sxs-lookup"><span data-stu-id="84fb9-115">If you want tooadd your app from hello **Start** menu, you need toohave *added that app toohello **Start** menu on your template image.*</span></span> <span data-ttu-id="84fb9-116">Ellenkező esetben RemoteApp csak jelenik meg, mi *van* a hello **Start** menüt, és keverendő lesz.</span><span class="sxs-lookup"><span data-stu-id="84fb9-116">Otherwise, RemoteApp will only see what *is* on hello **Start** menu, and you will be confused.</span></span> 
+> 
+> <span data-ttu-id="84fb9-117">toomake meg arról, hogy az alkalmazás megtalálható hello **Start** menü helyezhető el egy helyi fájl - **.lnk** – hello %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs mappában található.</span><span class="sxs-lookup"><span data-stu-id="84fb9-117">toomake sure your app is in hello **Start** menu, place a shortcut file - **.lnk** - inside hello %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
+> 
+> <span data-ttu-id="84fb9-118">Ha elfelejtette tooadd hello app toohello **Start** menü hello sablon létrehozásakor válassza ki a tooadd hello elérési toohello alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="84fb9-118">If you forgot tooadd hello app toohello **Start** menu when you created hello template, choose tooadd hello path toohello app.</span></span> <span data-ttu-id="84fb9-119">(Vagy az hozza létre újra a sablon lemezképe, de a Ez meglehetősen egy kicsit nagyobb munkahelyi.)</span><span class="sxs-lookup"><span data-stu-id="84fb9-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Services telemetriai konfigurálása a .NET |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan használható az Azure Media Services telemetriai .NET SDK használatával."
+title: Azure Media Services .NET telemetriai adatok aaaConfiguring |} Microsoft Docs
+description: "Ez a cikk bemutatja, hogyan toouse hello Azure Media Services telemetriai .NET SDK használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="84f21-103">A .NET Azure Media Services telemetriai konfigurálása</span><span class="sxs-lookup"><span data-stu-id="84f21-103">Configuring Azure Media Services telemetry with .NET</span></span>
+# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="2bf74-103">A .NET Azure Media Services telemetriai konfigurálása</span><span class="sxs-lookup"><span data-stu-id="2bf74-103">Configuring Azure Media Services telemetry with .NET</span></span>
 
-<span data-ttu-id="84f21-104">Ez a témakör általános lépéseket, amelyek lehet, hogy a .NET SDK használatával Azure Media Services (AMS) telemetriai konfigurálásakor.</span><span class="sxs-lookup"><span data-stu-id="84f21-104">This topic describes general steps that you might take when configuring the Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
+<span data-ttu-id="2bf74-104">Ez a témakör általános lépéseket, amelyek esetleg hello Azure Media Services (AMS) telemetriai .NET SDK használatával konfigurálásakor.</span><span class="sxs-lookup"><span data-stu-id="2bf74-104">This topic describes general steps that you might take when configuring hello Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="84f21-105">Mi részletes leírását az AMS telemetriai adatok és hogyan szokásokra is, lásd: a [áttekintése](media-services-telemetry-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="84f21-105">For the detailed explanation of what is AMS telemetry and how to consume it, see the [overview](media-services-telemetry-overview.md) topic.</span></span>
+><span data-ttu-id="2bf74-105">A hello részletesen ismerteti, mit AMS telemetriai adatokat, és hogyan tooconsume, lásd: hello [áttekintése](media-services-telemetry-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="2bf74-105">For hello detailed explanation of what is AMS telemetry and how tooconsume it, see hello [overview](media-services-telemetry-overview.md) topic.</span></span>
 
-<span data-ttu-id="84f21-106">Használatba vehetné a telemetriai adatokat a következő módszerek valamelyikével:</span><span class="sxs-lookup"><span data-stu-id="84f21-106">You can consume telemetry data in one of the following ways:</span></span>
+<span data-ttu-id="2bf74-106">Használatba vehetné a telemetriai adatokat a következő módokon hello egyikében:</span><span class="sxs-lookup"><span data-stu-id="2bf74-106">You can consume telemetry data in one of hello following ways:</span></span>
 
-- <span data-ttu-id="84f21-107">Olvassa el az adatokat közvetlenül az Azure Table Storage (pl. tárhely SDK használatával).</span><span class="sxs-lookup"><span data-stu-id="84f21-107">Read data directly from Azure Table Storage (e.g. using the Storage SDK).</span></span> <span data-ttu-id="84f21-108">A telemetriai adatokat tároló tábla ismertetését lásd: a **telemetriai adatokat fel** a [ez](https://msdn.microsoft.com/library/mt742089.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="84f21-108">For the description of telemetry storage tables, see the **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
+- <span data-ttu-id="2bf74-107">Olvassa el az adatokat közvetlenül az Azure Table Storage (pl. a hello Storage szolgáltatás SDK használatával).</span><span class="sxs-lookup"><span data-stu-id="2bf74-107">Read data directly from Azure Table Storage (e.g. using hello Storage SDK).</span></span> <span data-ttu-id="2bf74-108">Telemetriai adatok tárolási táblák hello ismertetését lásd: hello **telemetriai adatokat fel** a [ez](https://msdn.microsoft.com/library/mt742089.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="2bf74-108">For hello description of telemetry storage tables, see hello **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
 
-<span data-ttu-id="84f21-109">Vagy</span><span class="sxs-lookup"><span data-stu-id="84f21-109">Or</span></span>
+<span data-ttu-id="2bf74-109">Vagy</span><span class="sxs-lookup"><span data-stu-id="2bf74-109">Or</span></span>
 
-- <span data-ttu-id="84f21-110">Használja a támogatási szolgálathoz a Media Services .NET SDK tárolási adatok olvasásához.</span><span class="sxs-lookup"><span data-stu-id="84f21-110">Use the support in the Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="84f21-111">Ez a témakör bemutatja a telemetriai adatokat a megadott AMS-fiók engedélyezése és az Azure Media Services .NET SDK használatával metrikák lekérdezése.</span><span class="sxs-lookup"><span data-stu-id="84f21-111">This topic shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+- <span data-ttu-id="2bf74-110">Hello-támogatás a Media Services .NET SDK hello tárolási adatok olvasásához.</span><span class="sxs-lookup"><span data-stu-id="2bf74-110">Use hello support in hello Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="2bf74-111">Ez a témakör bemutatja, hogyan tooenable telemetriai adat hello megadott AMS-fiók, és hogyan tooquery hello metrikák használatával hello Azure Media Services .NET SDK-t.</span><span class="sxs-lookup"><span data-stu-id="2bf74-111">This topic shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
-## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="84f21-112">Telemetria a Media Services-fiók konfigurálása</span><span class="sxs-lookup"><span data-stu-id="84f21-112">Configuring telemetry for a Media Services account</span></span>
+## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="2bf74-112">Telemetria a Media Services-fiók konfigurálása</span><span class="sxs-lookup"><span data-stu-id="2bf74-112">Configuring telemetry for a Media Services account</span></span>
 
-<span data-ttu-id="84f21-113">A következő lépésekre van szükség telemetriai engedélyezése:</span><span class="sxs-lookup"><span data-stu-id="84f21-113">The following steps are needed to enable telemetry:</span></span>
+<span data-ttu-id="2bf74-113">hello következő lépésekre szükséges tooenable telemetriai:</span><span class="sxs-lookup"><span data-stu-id="2bf74-113">hello following steps are needed tooenable telemetry:</span></span>
 
-- <span data-ttu-id="84f21-114">A Media Services-fiókhoz csatolva a tárfiók hitelesítő adatainak lekérése.</span><span class="sxs-lookup"><span data-stu-id="84f21-114">Get the credentials of the storage account attached to the Media Services account.</span></span> 
-- <span data-ttu-id="84f21-115">Az értesítési végpont létrehozásához **EndPointType** beállítása **AzureTable** és a tárolási tábla mutató endPointAddress.</span><span class="sxs-lookup"><span data-stu-id="84f21-115">Create a Notification Endpoint with **EndPointType** set to **AzureTable** and endPointAddress pointing to the storage table.</span></span>
+- <span data-ttu-id="2bf74-114">Hello hello tárolási kapcsolódó számla toohello Media Services-fiók hitelesítő adatainak beolvasása.</span><span class="sxs-lookup"><span data-stu-id="2bf74-114">Get hello credentials of hello storage account attached toohello Media Services account.</span></span> 
+- <span data-ttu-id="2bf74-115">Az értesítési végpont létrehozásához **EndPointType** túl beállítása**AzureTable** és endPointAddress toohello tárolási tábla mutat.</span><span class="sxs-lookup"><span data-stu-id="2bf74-115">Create a Notification Endpoint with **EndPointType** set too**AzureTable** and endPointAddress pointing toohello storage table.</span></span>
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- <span data-ttu-id="84f21-116">Figyelési konfiguráció létrehozása a figyelni kívánt szolgáltatások beállításait.</span><span class="sxs-lookup"><span data-stu-id="84f21-116">Create a monitoring configuration settings for the services you want to monitor.</span></span> <span data-ttu-id="84f21-117">Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat.</span><span class="sxs-lookup"><span data-stu-id="84f21-117">No more than one monitoring configuration settings is allowed.</span></span> 
+- <span data-ttu-id="2bf74-116">Figyelési konfiguráció létrehozása beállítások hello szolgáltatási azt szeretné, hogy toomonitor.</span><span class="sxs-lookup"><span data-stu-id="2bf74-116">Create a monitoring configuration settings for hello services you want toomonitor.</span></span> <span data-ttu-id="2bf74-117">Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat.</span><span class="sxs-lookup"><span data-stu-id="2bf74-117">No more than one monitoring configuration settings is allowed.</span></span> 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -56,21 +56,21 @@ ms.lasthandoff: 08/29/2017
                 new ComponentMonitoringSetting(MonitoringComponent.StreamingEndpoint, MonitoringLevel.Normal)
             });
 
-## <a name="consuming-telemetry-information"></a><span data-ttu-id="84f21-118">Telemetria információk felhasználása</span><span class="sxs-lookup"><span data-stu-id="84f21-118">Consuming telemetry information</span></span>
+## <a name="consuming-telemetry-information"></a><span data-ttu-id="2bf74-118">Telemetria információk felhasználása</span><span class="sxs-lookup"><span data-stu-id="2bf74-118">Consuming telemetry information</span></span>
 
-<span data-ttu-id="84f21-119">További információ a fogyasztó telemetriai adatokat: [ez](media-services-telemetry-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="84f21-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
+<span data-ttu-id="2bf74-119">További információ a fogyasztó telemetriai adatokat: [ez](media-services-telemetry-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="2bf74-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="84f21-120">Egy Visual Studio-projekt létrehozása és konfigurálása</span><span class="sxs-lookup"><span data-stu-id="84f21-120">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="2bf74-120">Egy Visual Studio-projekt létrehozása és konfigurálása</span><span class="sxs-lookup"><span data-stu-id="2bf74-120">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="84f21-121">Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint.</span><span class="sxs-lookup"><span data-stu-id="84f21-121">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+1. <span data-ttu-id="2bf74-121">A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="2bf74-121">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-2. <span data-ttu-id="84f21-122">Adja hozzá a következő elem **appSettings** az app.config fájlban meghatározott:</span><span class="sxs-lookup"><span data-stu-id="84f21-122">Add the following element to **appSettings** defined in your app.config file:</span></span>
+2. <span data-ttu-id="2bf74-122">Adja hozzá a következő elem túl hello**appSettings** az app.config fájlban meghatározott:</span><span class="sxs-lookup"><span data-stu-id="2bf74-122">Add hello following element too**appSettings** defined in your app.config file:</span></span>
 
     <add key="StorageAccountName" value="storage_name" />
  
-## <a name="example"></a><span data-ttu-id="84f21-123">Példa</span><span class="sxs-lookup"><span data-stu-id="84f21-123">Example</span></span>  
+## <a name="example"></a><span data-ttu-id="2bf74-123">Példa</span><span class="sxs-lookup"><span data-stu-id="2bf74-123">Example</span></span>  
     
-<span data-ttu-id="84f21-124">A következő példa bemutatja, telemetriai adatokat a megadott AMS-fiók engedélyezése és az Azure Media Services .NET SDK használatával metrikák lekérdezése.</span><span class="sxs-lookup"><span data-stu-id="84f21-124">The following example shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+<span data-ttu-id="2bf74-124">hello a következő példa bemutatja, hogyan tooenable telemetriai adat hello megadott AMS-fiók, és hogyan tooquery hello metrikák használatával hello Azure Media Services .NET SDK.</span><span class="sxs-lookup"><span data-stu-id="2bf74-124">hello following example shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/29/2017
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))
@@ -210,10 +210,10 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-steps"></a><span data-ttu-id="84f21-125">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="84f21-125">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2bf74-125">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="2bf74-125">Next steps</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="84f21-126">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="84f21-126">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="2bf74-126">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="2bf74-126">Provide feedback</span></span>
 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

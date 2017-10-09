@@ -1,6 +1,6 @@
 ---
-title: "A probléma az alkalmazásproxy-alkalmazás létrehozása |} Microsoft Docs"
-description: "Alkalmazásproxy-alkalmazások létrehozása az Azure AD felügyeleti portál kapcsolatos problémák elhárítása"
+title: "Az alkalmazásproxy-alkalmazás létrehozása aaaProblem |} Microsoft Docs"
+description: "Hogyan tootroubleshoot problémák létrehozása alkalmazásproxy alkalmazások hello Azure AD felügyeleti portál"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fe56f56162ba7186f1b660a5b44fcef38f1dee9d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 24fab83c38a49a9e5754854acf2f9711e374e559
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problem-creating-an-application-proxy-application"></a><span data-ttu-id="23fb4-103">A probléma az alkalmazásproxy-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="23fb4-103">Problem creating an Application Proxy application</span></span> 
+# <a name="problem-creating-an-application-proxy-application"></a><span data-ttu-id="af080-103">A probléma az alkalmazásproxy-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="af080-103">Problem creating an Application Proxy application</span></span> 
 
-<span data-ttu-id="23fb4-104">Az alábbiakban néhány gyakori problémákat személyek arcfelismerési egy új application proxy alkalmazás létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="23fb4-104">Below are some of the common issues people face when creating a new application proxy application.</span></span>
+<span data-ttu-id="af080-104">Az alábbiakban néhány gyakori problémákat hello személyek arcfelismerési egy új application proxy alkalmazás létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="af080-104">Below are some of hello common issues people face when creating a new application proxy application.</span></span>
 
-## <a name="recommended-documents"></a><span data-ttu-id="23fb4-105">Ajánlott dokumentumok</span><span class="sxs-lookup"><span data-stu-id="23fb4-105">Recommended documents</span></span> 
+## <a name="recommended-documents"></a><span data-ttu-id="af080-105">Ajánlott dokumentumok</span><span class="sxs-lookup"><span data-stu-id="af080-105">Recommended documents</span></span> 
 
-<span data-ttu-id="23fb4-106">A felügyeleti portálon keresztül alkalmazásproxy alkalmazás létrehozásával kapcsolatos további tudnivalókért lásd: [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span><span class="sxs-lookup"><span data-stu-id="23fb4-106">To learn more about creating an Application Proxy application through the Admin Portal, see [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span></span>
+<span data-ttu-id="af080-106">További információ az alkalmazásproxy alkalmazások hello felügyeleti portálon keresztül létrehozására toolearn lásd: [alkalmazások közzététele az Azure AD-alkalmazásproxy használatával](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span><span class="sxs-lookup"><span data-stu-id="af080-106">toolearn more about creating an Application Proxy application through hello Admin Portal, see [Publish applications using Azure AD Application Proxy](https://docs.microsoft.com/azure/active-directory/application-proxy-publish-azure-portal).</span></span>
 
-<span data-ttu-id="23fb4-107">Ha a dokumentum lépéseit követi, és az alkalmazás létrehozásakor hiba lépett fel kap, tekintse meg információt a hiba részletes adatait, és javaslatokat arról, hogyan javítsa ki az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="23fb4-107">If you are following the steps in that document and are getting an error creating the application, see the error details for information and suggestions for how to fix the application.</span></span> <span data-ttu-id="23fb4-108">A legtöbb hiba üzenetekben javasolt javítás.</span><span class="sxs-lookup"><span data-stu-id="23fb4-108">Most error messages include a suggested fix.</span></span> 
+<span data-ttu-id="af080-107">Ha hello dokumentum lépéseit követi, és kihozhatják hello alkalmazás létrehozásakor hiba lépett fel, tekintse meg a hello hiba részletes információkat, és hogyan toofix hello alkalmazás javaslatokat.</span><span class="sxs-lookup"><span data-stu-id="af080-107">If you are following hello steps in that document and are getting an error creating hello application, see hello error details for information and suggestions for how toofix hello application.</span></span> <span data-ttu-id="af080-108">A legtöbb hiba üzenetekben javasolt javítás.</span><span class="sxs-lookup"><span data-stu-id="af080-108">Most error messages include a suggested fix.</span></span> 
 
-## <a name="specific-things-to-check"></a><span data-ttu-id="23fb4-109">Adott ellenőrizze az alábbiakat</span><span class="sxs-lookup"><span data-stu-id="23fb4-109">Specific things to check</span></span>
+## <a name="specific-things-toocheck"></a><span data-ttu-id="af080-109">Konkrét dolgot toocheck</span><span class="sxs-lookup"><span data-stu-id="af080-109">Specific things toocheck</span></span>
 
-<span data-ttu-id="23fb4-110">Gyakori hibák elkerülése érdekében győződjön meg arról:</span><span class="sxs-lookup"><span data-stu-id="23fb4-110">To avoid common errors, verify:</span></span>
+<span data-ttu-id="af080-110">tooavoid gyakori hibákat, ellenőrizze, hogy:</span><span class="sxs-lookup"><span data-stu-id="af080-110">tooavoid common errors, verify:</span></span>
 
--   <span data-ttu-id="23fb4-111">Alkalmazásproxy alkalmazás létrehozása engedéllyel rendelkező rendszergazdáknak</span><span class="sxs-lookup"><span data-stu-id="23fb4-111">You are an administrator with permission to create an Application Proxy application</span></span>
+-   <span data-ttu-id="af080-111">Az engedély toocreate proxyval alkalmazás rendszergazda</span><span class="sxs-lookup"><span data-stu-id="af080-111">You are an administrator with permission toocreate an Application Proxy application</span></span>
 
--   <span data-ttu-id="23fb4-112">A belső URL-címe egyedi:</span><span class="sxs-lookup"><span data-stu-id="23fb4-112">The internal URL is unique</span></span>
+-   <span data-ttu-id="af080-112">hello belső URL-címe egyedi:</span><span class="sxs-lookup"><span data-stu-id="af080-112">hello internal URL is unique</span></span>
 
--   <span data-ttu-id="23fb4-113">A külső URL-címe egyedi:</span><span class="sxs-lookup"><span data-stu-id="23fb4-113">The external URL is unique</span></span>
+-   <span data-ttu-id="af080-113">hello külső URL-címe egyedi:</span><span class="sxs-lookup"><span data-stu-id="af080-113">hello external URL is unique</span></span>
 
--   <span data-ttu-id="23fb4-114">Az URL-címének http vagy https kezdődnie, és végén a "/"</span><span class="sxs-lookup"><span data-stu-id="23fb4-114">The URLs start with http or https, and end with a “/”</span></span>
+-   <span data-ttu-id="af080-114">hello http vagy https URL-címek kezdődik, és a szöveg végén a "/"</span><span class="sxs-lookup"><span data-stu-id="af080-114">hello URLs start with http or https, and end with a “/”</span></span>
 
--   <span data-ttu-id="23fb4-115">Az URL-cím a tartomány neve és IP-cím nem kell lennie.</span><span class="sxs-lookup"><span data-stu-id="23fb4-115">The URL should be a domain name and not an IP address</span></span>
+-   <span data-ttu-id="af080-115">hello URL-cím a tartomány neve és IP-cím nem kell lennie.</span><span class="sxs-lookup"><span data-stu-id="af080-115">hello URL should be a domain name and not an IP address</span></span>
 
-<span data-ttu-id="23fb4-116">A jobb felső sarokban a hibaüzenet a következő megjelenjen-e az alkalmazás létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="23fb4-116">The error message should display in the top right corner when you create the application.</span></span> <span data-ttu-id="23fb4-117">Igény szerint kiválaszthatja az értesítés ikonra a hibaüzenetekben talál.</span><span class="sxs-lookup"><span data-stu-id="23fb4-117">You can also select the notification icon to see the error messages.</span></span>
+<span data-ttu-id="af080-116">hello hibaüzenet jelenik meg hello jobb felső sarokban található hello alkalmazás létrehozásakor.</span><span class="sxs-lookup"><span data-stu-id="af080-116">hello error message should display in hello top right corner when you create hello application.</span></span> <span data-ttu-id="af080-117">Ehelyett választhatja hello értesítési ikon toosee hello hibaüzenetek.</span><span class="sxs-lookup"><span data-stu-id="af080-117">You can also select hello notification icon toosee hello error messages.</span></span>
 
    ![Értesítési üzenet](./media/application-proxy-config-problem/error-message.png)
 
-## <a name="next-steps"></a><span data-ttu-id="23fb4-119">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="23fb4-119">Next steps</span></span>
-[<span data-ttu-id="23fb4-120">Alkalmazásproxy engedélyezése az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="23fb4-120">Enable Application Proxy in the Azure portal</span></span>](active-directory-application-proxy-enable.md)
+## <a name="next-steps"></a><span data-ttu-id="af080-119">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="af080-119">Next steps</span></span>
+[<span data-ttu-id="af080-120">Alkalmazásproxy engedélyezése az Azure-portálon hello</span><span class="sxs-lookup"><span data-stu-id="af080-120">Enable Application Proxy in hello Azure portal</span></span>](active-directory-application-proxy-enable.md)

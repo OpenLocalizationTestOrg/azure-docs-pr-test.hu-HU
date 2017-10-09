@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Scheduler dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan ütemezhet és hívhat meg feladatokat a Scheduler használatával, például az alkalmazásműveleteket és a rutinkarbantartási feladatokat. Oktatóanyagok, API-referenciák és egyebek."
+title: "aaaAzure Feladatütemező dokumentációja – oktatóanyagok API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Feladatütemező tooschedule és invoke például ismétlődő alkalmazás műveletek és rutin karbantartási feladatok. Oktatóanyagok, API-referenciák és egyebek."
 services: scheduler
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4883e5689a639259ec1c0bcd31e1016f85af5d66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9e67fc813939c31bb3cd38215293c98babe3838
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-documentation"></a>A Scheduler dokumentációja
 
-Ismerje meg, hogyan ütemezheti és hívhatja meg automatikusan a felhőbeli ismétlődő feladatokat a Scheduler használatával. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan ütemezheti és figyelheti a feladatokat, például az alkalmazásműveleteket és a rutinkarbantartási feladatokat.
+Megtudhatja, hogyan toouse Feladatütemező tooschedule, és automatikusan meghívja az ismétlődő feladatok hello felhőben. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan tooschedule és figyelője feladatai például ismétlődő alkalmazás műveletek és rutin karbantartás.
 
 <ul class="panelContent cardsFTitle">
     <li>

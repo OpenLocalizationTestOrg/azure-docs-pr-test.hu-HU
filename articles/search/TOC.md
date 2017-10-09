@@ -29,8 +29,8 @@
 
 ## Fejlesztés
 ### [API-verziók](search-api-versions.md)
-### [Az SDK frissítése](search-dotnet-sdk-migration.md)
-### [A REST API frissítése](search-api-migration.md)
+### [Frissítési hello SDK](search-dotnet-sdk-migration.md)
+### [Frissítési hello REST API-n](search-api-migration.md)
 ### [Összetett adattípusok modellezése](search-howto-complex-data-types.md)
 ### [Egyidejű frissítések kezelése](search-howto-concurrency.md)
 ### [Kódminták](https://azure.microsoft.com/resources/samples/?service=search)
@@ -50,7 +50,7 @@
 ### [Azure Cosmos DB-indexelő](search-howto-index-documentdb.md)
 ### [CSV-blobok indexelése](search-howto-index-csv-blobs.md)
 ### [JSON-blobok indexelése](search-howto-index-json-blobs.md)
-### [Az indexelő az Azure virtuális gépen futó SQL Serverhez való csatlakozásának konfigurálása](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
+### [Az indexelő kapcsolatok tooSQL kiszolgáló konfigurálása Azure virtuális gépen](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 ### [Mezőleképezések az indexelőkben](search-indexer-field-mappings.md)
 ##  Keresés
 ### [A teljes szöveges keresés működése](search-lucene-query-architecture.md)

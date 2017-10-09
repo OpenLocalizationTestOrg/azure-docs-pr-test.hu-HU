@@ -1,6 +1,6 @@
 ---
-title: "Fájl feltöltése az Azure CLI-vel (az.py) IoT-központ konfigurálása |} Microsoft Docs"
-description: "Hogyan fileuploads az Azure IoT hubhoz a platformok közötti Azure CLI 2.0 (az.py) használatával konfigurálható."
+title: "aaaConfigure fájl feltöltése tooIoT Azure CLI-vel (az.py) Hub |} Microsoft Docs"
+description: "Hogyan tooconfigure fileuploads tooAzure IoT-központ használatával hello platformfüggetlen Azure CLI 2.0 (az.py)."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: a9af26d7ebacf5513952786621aaa92f64be263b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 390113df2d96df9833b6aa383ed66805528614a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-iot-hub-file-uploads-using-azure-cli"></a><span data-ttu-id="986d6-103">Konfigurálja az IoT-központ fájlfeltöltések Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="986d6-103">Configure IoT Hub file uploads using Azure CLI</span></span>
+# <a name="configure-iot-hub-file-uploads-using-azure-cli"></a><span data-ttu-id="75325-103">Konfigurálja az IoT-központ fájlfeltöltések Azure parancssori felület használatával</span><span class="sxs-lookup"><span data-stu-id="75325-103">Configure IoT Hub file uploads using Azure CLI</span></span>
 
 [!INCLUDE [iot-hub-file-upload-selector](../../includes/iot-hub-file-upload-selector.md)]
 
-<span data-ttu-id="986d6-104">Használatához a [feltöltés funkció fájlt az IoT-központ][lnk-upload], először társítania kell egy Azure Storage-fiókot az IoT hub.</span><span class="sxs-lookup"><span data-stu-id="986d6-104">To use the [file upload functionality in IoT Hub][lnk-upload], you must first associate an Azure Storage account with your IoT hub.</span></span> <span data-ttu-id="986d6-105">Meglévő tárfiók használata, vagy hozzon létre egy újat.</span><span class="sxs-lookup"><span data-stu-id="986d6-105">You can use an existing storage account or create a new one.</span></span>
+<span data-ttu-id="75325-104">toouse hello [feltöltés funkció fájlt az IoT-központ][lnk-upload], először társítania kell egy Azure Storage-fiókot az IoT hub.</span><span class="sxs-lookup"><span data-stu-id="75325-104">toouse hello [file upload functionality in IoT Hub][lnk-upload], you must first associate an Azure Storage account with your IoT hub.</span></span> <span data-ttu-id="75325-105">Meglévő tárfiók használata, vagy hozzon létre egy újat.</span><span class="sxs-lookup"><span data-stu-id="75325-105">You can use an existing storage account or create a new one.</span></span>
 
-<span data-ttu-id="986d6-106">Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:</span><span class="sxs-lookup"><span data-stu-id="986d6-106">To complete this tutorial, you need the following:</span></span>
+<span data-ttu-id="75325-106">toocomplete ebben az oktatóanyagban a következő hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="75325-106">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="986d6-107">Aktív Azure-fiók.</span><span class="sxs-lookup"><span data-stu-id="986d6-107">An active Azure account.</span></span> <span data-ttu-id="986d6-108">Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].</span><span class="sxs-lookup"><span data-stu-id="986d6-108">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
-* <span data-ttu-id="986d6-109">[Az Azure CLI 2.0][lnk-CLI-install].</span><span class="sxs-lookup"><span data-stu-id="986d6-109">[Azure CLI 2.0][lnk-CLI-install].</span></span>
-* <span data-ttu-id="986d6-110">Az Azure IoT-központ.</span><span class="sxs-lookup"><span data-stu-id="986d6-110">An Azure IoT hub.</span></span> <span data-ttu-id="986d6-111">Ha még nem rendelkezik az IoT-központ, használhatja a `az iot hub create` [parancs] [ lnk-cli-create-iothub] hozzon létre egyet, vagy a portál használatával [létrehoz egy IoT-központot] [lnk-portal-hub].</span><span class="sxs-lookup"><span data-stu-id="986d6-111">If you don't have an IoT hub, you can use the `az iot hub create` [command][lnk-cli-create-iothub] to create one or use the portal to [Create an IoT hub][lnk-portal-hub].</span></span>
-* <span data-ttu-id="986d6-112">Egy Azure Storage-fiókot.</span><span class="sxs-lookup"><span data-stu-id="986d6-112">An Azure Storage account.</span></span> <span data-ttu-id="986d6-113">Ha egy Azure Storage-fiók nem rendelkezik, használhatja a [Azure CLI 2.0 - storage-fiókok kezelése] [ lnk-manage-storage] hozzon létre egyet, vagy használja a portál [hozzon létre egy tárfiókot][lnk-portal-storage].</span><span class="sxs-lookup"><span data-stu-id="986d6-113">If you don't have an Azure Storage account, you can use the [Azure CLI 2.0 - Manage storage accounts][lnk-manage-storage] to create one or use the portal to [Create a storage account][lnk-portal-storage].</span></span>
+* <span data-ttu-id="75325-107">Aktív Azure-fiók.</span><span class="sxs-lookup"><span data-stu-id="75325-107">An active Azure account.</span></span> <span data-ttu-id="75325-108">Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].</span><span class="sxs-lookup"><span data-stu-id="75325-108">If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.</span></span>
+* <span data-ttu-id="75325-109">[Az Azure CLI 2.0][lnk-CLI-install].</span><span class="sxs-lookup"><span data-stu-id="75325-109">[Azure CLI 2.0][lnk-CLI-install].</span></span>
+* <span data-ttu-id="75325-110">Az Azure IoT-központ.</span><span class="sxs-lookup"><span data-stu-id="75325-110">An Azure IoT hub.</span></span> <span data-ttu-id="75325-111">Ha nem rendelkezik az IoT-központ, használhatja a hello `az iot hub create` [parancs] [ lnk-cli-create-iothub] láthatóak, illetve egy toocreate hello portal túl [létrehoz egy IoT-központot] [lnk-portal-hub].</span><span class="sxs-lookup"><span data-stu-id="75325-111">If you don't have an IoT hub, you can use hello `az iot hub create` [command][lnk-cli-create-iothub] toocreate one or use hello portal too[Create an IoT hub][lnk-portal-hub].</span></span>
+* <span data-ttu-id="75325-112">Egy Azure Storage-fiókot.</span><span class="sxs-lookup"><span data-stu-id="75325-112">An Azure Storage account.</span></span> <span data-ttu-id="75325-113">Ha egy Azure Storage-fiók nem rendelkezik, használhatja a hello [Azure CLI 2.0 - storage-fiókok kezelése] [ lnk-manage-storage] láthatóak, illetve egy toocreate hello portal túl[hozzon létre egy tárfiókot] [lnk-portal-storage].</span><span class="sxs-lookup"><span data-stu-id="75325-113">If you don't have an Azure Storage account, you can use hello [Azure CLI 2.0 - Manage storage accounts][lnk-manage-storage] toocreate one or use hello portal too[Create a storage account][lnk-portal-storage].</span></span>
 
-## <a name="sign-in-and-set-your-azure-account"></a><span data-ttu-id="986d6-114">Jelentkezzen be, és állítsa be az Azure-fiókjával</span><span class="sxs-lookup"><span data-stu-id="986d6-114">Sign in and set your Azure account</span></span>
+## <a name="sign-in-and-set-your-azure-account"></a><span data-ttu-id="75325-114">Jelentkezzen be, és állítsa be az Azure-fiókjával</span><span class="sxs-lookup"><span data-stu-id="75325-114">Sign in and set your Azure account</span></span>
 
-<span data-ttu-id="986d6-115">Jelentkezzen be az Azure-fiókjával, és jelölje ki az előfizetését.</span><span class="sxs-lookup"><span data-stu-id="986d6-115">Sign in to your Azure account and select your subscription.</span></span>
+<span data-ttu-id="75325-115">Jelentkezzen be Azure-fiók tooyour, és jelölje ki az előfizetését.</span><span class="sxs-lookup"><span data-stu-id="75325-115">Sign in tooyour Azure account and select your subscription.</span></span>
 
-1. <span data-ttu-id="986d6-116">A parancssorban futtassa a [bejelentkezési parancs][lnk-login-command]:</span><span class="sxs-lookup"><span data-stu-id="986d6-116">At the command prompt, run the [login command][lnk-login-command]:</span></span>
+1. <span data-ttu-id="75325-116">Hello parancssorban futtassa a hello [bejelentkezési parancs][lnk-login-command]:</span><span class="sxs-lookup"><span data-stu-id="75325-116">At hello command prompt, run hello [login command][lnk-login-command]:</span></span>
 
     ```azurecli
     az login
     ```
 
-    <span data-ttu-id="986d6-117">Kövesse az utasításokat a hitelesítést a kódot, és jelentkezzen be az Azure-fiókjával webböngészőn keresztül.</span><span class="sxs-lookup"><span data-stu-id="986d6-117">Follow the instructions to authenticate using the code and sign in to your Azure account through a web browser.</span></span>
+    <span data-ttu-id="75325-117">Hajtsa végre a hello utasításokat tooauthenticate hello kód használatával, és jelentkezzen be Azure-fiók egy webböngészőn keresztül tooyour.</span><span class="sxs-lookup"><span data-stu-id="75325-117">Follow hello instructions tooauthenticate using hello code and sign in tooyour Azure account through a web browser.</span></span>
 
-1. <span data-ttu-id="986d6-118">Ha több Azure-előfizetéssel rendelkezik, az Azure-bA bejelentkezés engedélyezi a hozzáférést az Azure fiókokhoz tartozó hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="986d6-118">If you have multiple Azure subscriptions, signing in to Azure grants you access to all the Azure accounts associated with your credentials.</span></span> <span data-ttu-id="986d6-119">Használja a következő [paranccsal listát készíthet az Azure-fiókra] [ lnk-az-account-command] elérhető lesz szükség:</span><span class="sxs-lookup"><span data-stu-id="986d6-119">Use the following [command to list the Azure accounts][lnk-az-account-command] available for you to use:</span></span>
+1. <span data-ttu-id="75325-118">Ha több Azure-előfizetéssel rendelkezik, birtokában tooall hozzáférhet tooAzure bejelentkezés hello a hitelesítő adatok társított Azure-fiókra.</span><span class="sxs-lookup"><span data-stu-id="75325-118">If you have multiple Azure subscriptions, signing in tooAzure grants you access tooall hello Azure accounts associated with your credentials.</span></span> <span data-ttu-id="75325-119">Hello következő [parancs toolist hello Azure-fiókra] [ lnk-az-account-command] meg toouse érhető el:</span><span class="sxs-lookup"><span data-stu-id="75325-119">Use hello following [command toolist hello Azure accounts][lnk-az-account-command] available for you toouse:</span></span>
 
     ```azurecli
     az account list
     ```
 
-    <span data-ttu-id="986d6-120">Az alábbi parancs segítségével válassza ki, hogy az IoT hub létrehozására szolgáló parancsok futtatásához használni kívánt előfizetést.</span><span class="sxs-lookup"><span data-stu-id="986d6-120">Use the following command to select subscription that you want to use to run the commands to create your IoT hub.</span></span> <span data-ttu-id="986d6-121">Az előfizetés neve vagy azonosítója is használhatja, ha az előző parancs kimenetében:</span><span class="sxs-lookup"><span data-stu-id="986d6-121">You can use either the subscription name or ID from the output of the previous command:</span></span>
+    <span data-ttu-id="75325-120">A következő parancs tooselect előfizetést, amelyet toouse toorun hello parancsok toocreate az IoT hub hello használata.</span><span class="sxs-lookup"><span data-stu-id="75325-120">Use hello following command tooselect subscription that you want toouse toorun hello commands toocreate your IoT hub.</span></span> <span data-ttu-id="75325-121">Hello előfizetés név vagy azonosító hello kimenetből hello előző parancs használható:</span><span class="sxs-lookup"><span data-stu-id="75325-121">You can use either hello subscription name or ID from hello output of hello previous command:</span></span>
 
     ```azurecli
     az account set --subscription {your subscription name or id}
     ```
 
-## <a name="retrieve-your-storage-account-details"></a><span data-ttu-id="986d6-122">A tárfiókadatok beolvasása</span><span class="sxs-lookup"><span data-stu-id="986d6-122">Retrieve your storage account details</span></span>
+## <a name="retrieve-your-storage-account-details"></a><span data-ttu-id="75325-122">A tárfiókadatok beolvasása</span><span class="sxs-lookup"><span data-stu-id="75325-122">Retrieve your storage account details</span></span>
 
-<span data-ttu-id="986d6-123">A következő lépések feltételezik, hogy a tárolási fiók használata a **erőforrás-kezelő** telepítési modell, és nem a **klasszikus** üzembe helyezési modellben.</span><span class="sxs-lookup"><span data-stu-id="986d6-123">The following steps assume that you created your storage account using the **Resource Manager** deployment model, and not the **Classic** deployment model.</span></span>
+<span data-ttu-id="75325-123">hello következő lépések feltételezik, hogy a storage-fiókra hello **erőforrás-kezelő** üzembe helyezési modellt, és nem hello **klasszikus** üzembe helyezési modellben.</span><span class="sxs-lookup"><span data-stu-id="75325-123">hello following steps assume that you created your storage account using hello **Resource Manager** deployment model, and not hello **Classic** deployment model.</span></span>
 
-<span data-ttu-id="986d6-124">Fájlfeltöltéseket adott területen működő eszközök konfigurálásához szükséges a kapcsolati karakterlánc egy Azure storage-fiókot.</span><span class="sxs-lookup"><span data-stu-id="986d6-124">To configure file uploads from your devices, you need the connection string for an Azure storage account.</span></span> <span data-ttu-id="986d6-125">A tárfiók ugyanahhoz az előfizetéshez, mint az IoT hub kell lennie.</span><span class="sxs-lookup"><span data-stu-id="986d6-125">The storage account must be in the same subscription as your IoT hub.</span></span> <span data-ttu-id="986d6-126">A tárfiók a blob-tároló neve is kell.</span><span class="sxs-lookup"><span data-stu-id="986d6-126">You also need the name of a blob container in the storage account.</span></span> <span data-ttu-id="986d6-127">A következő paranccsal lekérni a tárfiók kulcsait:</span><span class="sxs-lookup"><span data-stu-id="986d6-127">Use the following command to retrieve your storage account keys:</span></span>
+<span data-ttu-id="75325-124">tooconfigure fájlfeltöltések az eszközökről, hello kapcsolati karakterlánc egy Azure storage-fiók szükséges.</span><span class="sxs-lookup"><span data-stu-id="75325-124">tooconfigure file uploads from your devices, you need hello connection string for an Azure storage account.</span></span> <span data-ttu-id="75325-125">hello tárfiók hello kell lennie az IoT hub tárolóként ugyanazt az előfizetést.</span><span class="sxs-lookup"><span data-stu-id="75325-125">hello storage account must be in hello same subscription as your IoT hub.</span></span> <span data-ttu-id="75325-126">Meg kell hello tárfiók a blob-tároló hello nevét is.</span><span class="sxs-lookup"><span data-stu-id="75325-126">You also need hello name of a blob container in hello storage account.</span></span> <span data-ttu-id="75325-127">A következő parancs tooretrieve hello használja a tárfiók kulcsait:</span><span class="sxs-lookup"><span data-stu-id="75325-127">Use hello following command tooretrieve your storage account keys:</span></span>
 
 ```azurecli
 az storage account show-connection-string --name {your storage account name} --resource-group {your storage account resource group}
 ```
 
-<span data-ttu-id="986d6-128">Jegyezze fel a **connectionString** érték.</span><span class="sxs-lookup"><span data-stu-id="986d6-128">Make a note of the **connectionString** value.</span></span> <span data-ttu-id="986d6-129">A következő lépésekben van szükség.</span><span class="sxs-lookup"><span data-stu-id="986d6-129">You need it in the following steps.</span></span>
+<span data-ttu-id="75325-128">Jegyezze fel a hello **connectionString** érték.</span><span class="sxs-lookup"><span data-stu-id="75325-128">Make a note of hello **connectionString** value.</span></span> <span data-ttu-id="75325-129">Az alábbi lépésekkel hello van szükség.</span><span class="sxs-lookup"><span data-stu-id="75325-129">You need it in hello following steps.</span></span>
 
-<span data-ttu-id="986d6-130">Meglévő blob tároló használata a fájl feltöltéshez, vagy hozzon létre újat:</span><span class="sxs-lookup"><span data-stu-id="986d6-130">You can either use an existing blob container for your file uploads or create new one:</span></span>
+<span data-ttu-id="75325-130">Meglévő blob tároló használata a fájl feltöltéshez, vagy hozzon létre újat:</span><span class="sxs-lookup"><span data-stu-id="75325-130">You can either use an existing blob container for your file uploads or create new one:</span></span>
 
-* <span data-ttu-id="986d6-131">A meglévő blob tárolók a tárfiókban lévő listájában, használja a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="986d6-131">To list the existing blob containers in your storage account, use the following command:</span></span>
+* <span data-ttu-id="75325-131">toolist hello meglévő blob tárolók tárfiókba, a következő parancs hello használata:</span><span class="sxs-lookup"><span data-stu-id="75325-131">toolist hello existing blob containers in your storage account, use hello following command:</span></span>
 
     ```azurecli
     az storage container list --connection-string "{your storage account connection string}"
     ```
 
-* <span data-ttu-id="986d6-132">A tárfiók a blob-tároló létrehozásához használja a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="986d6-132">To create a blob container in your storage account, use the following command:</span></span>
+* <span data-ttu-id="75325-132">a blob-tároló tárfiókba, a következő parancs használata hello toocreate:</span><span class="sxs-lookup"><span data-stu-id="75325-132">toocreate a blob container in your storage account, use hello following command:</span></span>
 
     ```azurecli
     az storage container create --name {container name} --connection-string "{your storage account connection string}"
     ```
 
-## <a name="file-upload"></a><span data-ttu-id="986d6-133">Fájl feltöltése</span><span class="sxs-lookup"><span data-stu-id="986d6-133">File upload</span></span>
+## <a name="file-upload"></a><span data-ttu-id="75325-133">Fájl feltöltése</span><span class="sxs-lookup"><span data-stu-id="75325-133">File upload</span></span>
 
-<span data-ttu-id="986d6-134">Mostantól konfigurálhatja az IoT hub engedélyezése [fájl feltöltése funkció] [ lnk-upload] a tárfiókadatok használatával.</span><span class="sxs-lookup"><span data-stu-id="986d6-134">You can now configure your IoT hub to enable [file upload functionality][lnk-upload] using your storage account details.</span></span>
+<span data-ttu-id="75325-134">Mostantól konfigurálhatja az IoT hub tooenable [fájl feltöltése funkció] [ lnk-upload] a tárfiókadatok használatával.</span><span class="sxs-lookup"><span data-stu-id="75325-134">You can now configure your IoT hub tooenable [file upload functionality][lnk-upload] using your storage account details.</span></span>
 
-<span data-ttu-id="986d6-135">A konfiguráció szükséges a következő értékeket:</span><span class="sxs-lookup"><span data-stu-id="986d6-135">The configuration requires the following values:</span></span>
+<span data-ttu-id="75325-135">hello konfigurációjában szerepelnie kell a következő értékek hello:</span><span class="sxs-lookup"><span data-stu-id="75325-135">hello configuration requires hello following values:</span></span>
 
-<span data-ttu-id="986d6-136">**A tároló**: egy blob tároló, az Azure-tárfiók az IoT hub társítja a jelenlegi Azure-előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="986d6-136">**Storage container**: A blob container in an Azure storage account in your current Azure subscription to associate with your IoT hub.</span></span> <span data-ttu-id="986d6-137">A szükséges tárfiók adatait az előző szakaszban leírt lekért.</span><span class="sxs-lookup"><span data-stu-id="986d6-137">You retrieved the necessary storage account information in the preceding section.</span></span> <span data-ttu-id="986d6-138">Az IoT-központ automatikusan létrehozza a SAS URI-azonosítók eszközöket használja, ha ezek a fájlok feltöltése a blob tároló írási engedéllyel rendelkező.</span><span class="sxs-lookup"><span data-stu-id="986d6-138">IoT Hub automatically generates SAS URIs with write permissions to this blob container for devices to use when they upload files.</span></span>
+<span data-ttu-id="75325-136">**A tároló**: egy blob tároló, az a jelenlegi Azure-előfizetés tooassociate az IoT hubbal egy Azure storage-fiókot.</span><span class="sxs-lookup"><span data-stu-id="75325-136">**Storage container**: A blob container in an Azure storage account in your current Azure subscription tooassociate with your IoT hub.</span></span> <span data-ttu-id="75325-137">Hello szükséges tárfiók adatait az előző szakaszban hello lekért.</span><span class="sxs-lookup"><span data-stu-id="75325-137">You retrieved hello necessary storage account information in hello preceding section.</span></span> <span data-ttu-id="75325-138">Ezek a fájlok feltöltése az IoT-központ automatikusan létrehozza SAS URI-azonosítók az írási engedélyek toothis blob tároló eszközök toouse.</span><span class="sxs-lookup"><span data-stu-id="75325-138">IoT Hub automatically generates SAS URIs with write permissions toothis blob container for devices toouse when they upload files.</span></span>
 
-<span data-ttu-id="986d6-139">**A feltöltött fájlok értesítéseket**: engedélyezheti vagy tilthatja le a fájl feltöltése értesítések.</span><span class="sxs-lookup"><span data-stu-id="986d6-139">**Receive notifications for uploaded files**: Enable or disable file upload notifications.</span></span>
+<span data-ttu-id="75325-139">**A feltöltött fájlok értesítéseket**: engedélyezheti vagy tilthatja le a fájl feltöltése értesítések.</span><span class="sxs-lookup"><span data-stu-id="75325-139">**Receive notifications for uploaded files**: Enable or disable file upload notifications.</span></span>
 
-<span data-ttu-id="986d6-140">**SAS-élettartam**: Ez a beállítás akkor a idő élettartamát az az eszközt az IoT-központ által visszaadott SAS URI-azonosítók.</span><span class="sxs-lookup"><span data-stu-id="986d6-140">**SAS TTL**: This setting is the time-to-live of the SAS URIs returned to the device by IoT Hub.</span></span> <span data-ttu-id="986d6-141">Alapértelmezés szerint egyórás beállítva.</span><span class="sxs-lookup"><span data-stu-id="986d6-141">Set to one hour by default.</span></span>
+<span data-ttu-id="75325-140">**SAS-élettartam**: Ez a beállítás akkor idő élettartamát a SAS URI-azonosítók toohello eszköz vissza az IoT-központ hello hello.</span><span class="sxs-lookup"><span data-stu-id="75325-140">**SAS TTL**: This setting is hello time-to-live of hello SAS URIs returned toohello device by IoT Hub.</span></span> <span data-ttu-id="75325-141">Alapértelmezés szerint tooone óra beállítva.</span><span class="sxs-lookup"><span data-stu-id="75325-141">Set tooone hour by default.</span></span>
 
-<span data-ttu-id="986d6-142">**Az értesítési beállítások alapértelmezett élettartam**: az idő TTL-fájl feltöltése értesítési, előtt lejárt.</span><span class="sxs-lookup"><span data-stu-id="986d6-142">**File notification settings default TTL**: The time-to-live of a file upload notification before it is expired.</span></span> <span data-ttu-id="986d6-143">Alapértelmezés szerint egy nap beállítva.</span><span class="sxs-lookup"><span data-stu-id="986d6-143">Set to one day by default.</span></span>
+<span data-ttu-id="75325-142">**Az értesítési beállítások alapértelmezett élettartam**: hello idő TTL fájl feltöltése értesítés előtt lejárt.</span><span class="sxs-lookup"><span data-stu-id="75325-142">**File notification settings default TTL**: hello time-to-live of a file upload notification before it is expired.</span></span> <span data-ttu-id="75325-143">Alapértelmezés szerint tooone nap meg.</span><span class="sxs-lookup"><span data-stu-id="75325-143">Set tooone day by default.</span></span>
 
-<span data-ttu-id="986d6-144">**Értesítési maximális száma fájl**: A szám, ahányszor az IoT Hub megpróbál egy fájl feltöltése értesítést.</span><span class="sxs-lookup"><span data-stu-id="986d6-144">**File notification maximum delivery count**: The number of times the IoT Hub attempts to deliver a file upload notification.</span></span> <span data-ttu-id="986d6-145">Alapértelmezés szerint 10-re állítva.</span><span class="sxs-lookup"><span data-stu-id="986d6-145">Set to 10 by default.</span></span>
+<span data-ttu-id="75325-144">**Értesítési maximális száma fájl**: hello számú alkalommal fordult elő az IoT-központ kísérletek toodeliver fájl feltöltése értesítést hello.</span><span class="sxs-lookup"><span data-stu-id="75325-144">**File notification maximum delivery count**: hello number of times hello IoT Hub attempts toodeliver a file upload notification.</span></span> <span data-ttu-id="75325-145">Alapértelmezés szerint too10 beállítva.</span><span class="sxs-lookup"><span data-stu-id="75325-145">Set too10 by default.</span></span>
 
-<span data-ttu-id="986d6-146">A következő Azure CLI-parancsok segítségével beállításainak megadása a fájl feltöltése az IoT hub:</span><span class="sxs-lookup"><span data-stu-id="986d6-146">Use the following Azure CLI commands to configure the file upload settings on your IoT hub:</span></span>
+<span data-ttu-id="75325-146">Az Azure parancssori felület parancsok tooconfigure hello fájl feltöltési beállításokat követően az IoT hub hello használata:</span><span class="sxs-lookup"><span data-stu-id="75325-146">Use hello following Azure CLI commands tooconfigure hello file upload settings on your IoT hub:</span></span>
 
-<span data-ttu-id="986d6-147">A bash rendszerhéjat használja:</span><span class="sxs-lookup"><span data-stu-id="986d6-147">In a bash shell use:</span></span>
+<span data-ttu-id="75325-147">A bash rendszerhéjat használja:</span><span class="sxs-lookup"><span data-stu-id="75325-147">In a bash shell use:</span></span>
 
 ```azurecli
 az iot hub update --name {your iot hub name} --set properties.storageEndpoints.'$default'.connectionString="{your storage account connection string}"
@@ -113,7 +113,7 @@ az iot hub update --name {your iot hub name} --set properties.messagingEndpoints
 az iot hub update --name {your iot hub name} --set properties.messagingEndpoints.fileNotifications.ttlAsIso8601=PT1H0M0S
 ```
 
-<span data-ttu-id="986d6-148">A Windows-parancssort használja:</span><span class="sxs-lookup"><span data-stu-id="986d6-148">At a Windows command prompt use:</span></span>
+<span data-ttu-id="75325-148">A Windows-parancssort használja:</span><span class="sxs-lookup"><span data-stu-id="75325-148">At a Windows command prompt use:</span></span>
 
 ```azurecli
 az iot hub update --name {your iot hub name} --set "properties.storageEndpoints.$default.connectionString="{your storage account connection string}""
@@ -125,27 +125,27 @@ az iot hub update --name {your iot hub name} --set properties.messagingEndpoints
 az iot hub update --name {your iot hub name} --set properties.messagingEndpoints.fileNotifications.ttlAsIso8601=PT1H0M0S
 ```
 
-<span data-ttu-id="986d6-149">A fájl feltöltése konfigurációs az IoT hub, a következő parancsot a tekintheti meg:</span><span class="sxs-lookup"><span data-stu-id="986d6-149">You can review the file upload configuration on your IoT hub using the following command:</span></span>
+<span data-ttu-id="75325-149">Hello fájlok feltöltése konfigurálása a az IoT hub hello a következő parancs használatával tekintheti meg:</span><span class="sxs-lookup"><span data-stu-id="75325-149">You can review hello file upload configuration on your IoT hub using hello following command:</span></span>
 
 ```azurecli
 az iot hub show --name {your iot hub name}
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="986d6-150">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="986d6-150">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="75325-150">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="75325-150">Next steps</span></span>
 
-<span data-ttu-id="986d6-151">Az IoT-központ a fájl feltöltése képességeivel kapcsolatos további információk: [egy eszközről tölt fel][lnk-upload].</span><span class="sxs-lookup"><span data-stu-id="986d6-151">For more information about the file upload capabilities of IoT Hub, see [Upload files from a device][lnk-upload].</span></span>
+<span data-ttu-id="75325-151">Az IoT-központ hello fájl feltöltése képességeivel kapcsolatos további információkért lásd: [egy eszközről tölt fel][lnk-upload].</span><span class="sxs-lookup"><span data-stu-id="75325-151">For more information about hello file upload capabilities of IoT Hub, see [Upload files from a device][lnk-upload].</span></span>
 
-<span data-ttu-id="986d6-152">Az alábbi hivatkozásokból tudhat meg többet az Azure IoT Hub kezelése:</span><span class="sxs-lookup"><span data-stu-id="986d6-152">Follow these links to learn more about managing Azure IoT Hub:</span></span>
+<span data-ttu-id="75325-152">Kövesse az alábbi hivatkozások toolearn Azure IoT Hub kezelésével kapcsolatos további:</span><span class="sxs-lookup"><span data-stu-id="75325-152">Follow these links toolearn more about managing Azure IoT Hub:</span></span>
 
-* <span data-ttu-id="986d6-153">[Tömeges az IoT-eszközök kezelése][lnk-bulk]</span><span class="sxs-lookup"><span data-stu-id="986d6-153">[Bulk manage IoT devices][lnk-bulk]</span></span>
-* <span data-ttu-id="986d6-154">[Az IoT-központ metrikák][lnk-metrics]</span><span class="sxs-lookup"><span data-stu-id="986d6-154">[IoT Hub metrics][lnk-metrics]</span></span>
-* <span data-ttu-id="986d6-155">[Figyelési műveletek][lnk-monitor]</span><span class="sxs-lookup"><span data-stu-id="986d6-155">[Operations monitoring][lnk-monitor]</span></span>
+* <span data-ttu-id="75325-153">[Tömeges az IoT-eszközök kezelése][lnk-bulk]</span><span class="sxs-lookup"><span data-stu-id="75325-153">[Bulk manage IoT devices][lnk-bulk]</span></span>
+* <span data-ttu-id="75325-154">[Az IoT-központ metrikák][lnk-metrics]</span><span class="sxs-lookup"><span data-stu-id="75325-154">[IoT Hub metrics][lnk-metrics]</span></span>
+* <span data-ttu-id="75325-155">[Figyelési műveletek][lnk-monitor]</span><span class="sxs-lookup"><span data-stu-id="75325-155">[Operations monitoring][lnk-monitor]</span></span>
 
-<span data-ttu-id="986d6-156">Az IoT-központ képességeit további megismeréséhez lásd:</span><span class="sxs-lookup"><span data-stu-id="986d6-156">To further explore the capabilities of IoT Hub, see:</span></span>
+<span data-ttu-id="75325-156">toofurther megismerkedhet az IoT-központ hello képességeit, lásd:</span><span class="sxs-lookup"><span data-stu-id="75325-156">toofurther explore hello capabilities of IoT Hub, see:</span></span>
 
-* <span data-ttu-id="986d6-157">[IoT Hub fejlesztői útmutató][lnk-devguide]</span><span class="sxs-lookup"><span data-stu-id="986d6-157">[IoT Hub developer guide][lnk-devguide]</span></span>
-* <span data-ttu-id="986d6-158">[Egy eszköz szimulálva IoT oldala][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="986d6-158">[Simulating a device with IoT Edge][lnk-iotedge]</span></span>
-* <span data-ttu-id="986d6-159">[Az IoT-megoldásból az alapoktól biztonságos mentése][lnk-securing]</span><span class="sxs-lookup"><span data-stu-id="986d6-159">[Secure your IoT solution from the ground up][lnk-securing]</span></span>
+* <span data-ttu-id="75325-157">[IoT Hub fejlesztői útmutató][lnk-devguide]</span><span class="sxs-lookup"><span data-stu-id="75325-157">[IoT Hub developer guide][lnk-devguide]</span></span>
+* <span data-ttu-id="75325-158">[Egy eszköz szimulálva IoT oldala][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="75325-158">[Simulating a device with IoT Edge][lnk-iotedge]</span></span>
+* <span data-ttu-id="75325-159">[Az IoT-megoldásból hello szabad a biztonságos][lnk-securing]</span><span class="sxs-lookup"><span data-stu-id="75325-159">[Secure your IoT solution from hello ground up][lnk-securing]</span></span>
 
 [13]: ./media/iot-hub-configure-file-upload/file-upload-settings.png
 [14]: ./media/iot-hub-configure-file-upload/file-upload-container-selection.png

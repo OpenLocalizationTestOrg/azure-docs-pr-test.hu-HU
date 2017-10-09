@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás az Azure IoT - 4. lecke Raspberry Pi (C): alkalmazás módosítása |} Microsoft Docs"
-description: "A LED be- és kikapcsolását viselkedésének módosítása az üzenetek testreszabhatók."
+title: "Connect Raspberry pi (C) tooAzure IoT - lecke 4: alkalmazás módosítása |} Microsoft Docs"
+description: "Hello üzenetek toochange hello LED tartozó be- és kikapcsolását viselkedés testreszabása."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b1e441b20e161f4a03d4c2c300b21aca4fedb2a2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4739c4e9a58b4b0fe964b5c3c81e5918982099f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a><span data-ttu-id="5aad3-104">A be- és kikapcsolása a LED viselkedését módosítása</span><span class="sxs-lookup"><span data-stu-id="5aad3-104">Change the on and off behavior of the LED</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="5aad3-105">Mit fog</span><span class="sxs-lookup"><span data-stu-id="5aad3-105">What you will do</span></span>
-<span data-ttu-id="5aad3-106">A LED be- és kikapcsolását viselkedésének módosítása az üzenetek testreszabhatók.</span><span class="sxs-lookup"><span data-stu-id="5aad3-106">Customize the messages to change the LED’s on and off behavior.</span></span> <span data-ttu-id="5aad3-107">Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="5aad3-107">If you have any problems, look for solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a><span data-ttu-id="a177d-104">Hello be- és kikapcsolását hello LED viselkedésének módosítása</span><span class="sxs-lookup"><span data-stu-id="a177d-104">Change hello on and off behavior of hello LED</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="a177d-105">Mit fog</span><span class="sxs-lookup"><span data-stu-id="a177d-105">What you will do</span></span>
+<span data-ttu-id="a177d-106">Hello üzenetek toochange hello LED tartozó be- és kikapcsolását viselkedés testreszabása.</span><span class="sxs-lookup"><span data-stu-id="a177d-106">Customize hello messages toochange hello LED’s on and off behavior.</span></span> <span data-ttu-id="a177d-107">Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="a177d-107">If you have any problems, look for solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="5aad3-108">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="5aad3-108">What you will learn</span></span>
-<span data-ttu-id="5aad3-109">További Node.js funkciók segítségével módosíthatja a LED be- és kikapcsolását viselkedését.</span><span class="sxs-lookup"><span data-stu-id="5aad3-109">Use additional Node.js functions to change the LED’s on and off behavior.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="a177d-108">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="a177d-108">What you will learn</span></span>
+<span data-ttu-id="a177d-109">További Node.js funkciók toochange LED tartozó be- és kikapcsolását viselkedés hello használata.</span><span class="sxs-lookup"><span data-stu-id="a177d-109">Use additional Node.js functions toochange hello LED’s on and off behavior.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="5aad3-110">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="5aad3-110">What you need</span></span>
-<span data-ttu-id="5aad3-111">Sikeresen végrehajtotta [futtassa a mintaalkalmazást a felhőből az eszközre küldött üzenetek fogadására málna Pi](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).</span><span class="sxs-lookup"><span data-stu-id="5aad3-111">You must have successfully completed [Run a sample application on Raspberry Pi to receive cloud to device messages](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="a177d-110">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="a177d-110">What you need</span></span>
+<span data-ttu-id="a177d-111">Sikeresen végrehajtotta [toodevice üzenetek futtassa a mintaalkalmazást málna Pi tooreceive felhő](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).</span><span class="sxs-lookup"><span data-stu-id="a177d-111">You must have successfully completed [Run a sample application on Raspberry Pi tooreceive cloud toodevice messages](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md).</span></span>
 
-## <a name="add-functions-to-mainc-and-gulpfilejs"></a><span data-ttu-id="5aad3-112">Funkciók hozzáadása main.c és gulpfile.js</span><span class="sxs-lookup"><span data-stu-id="5aad3-112">Add functions to main.c and gulpfile.js</span></span>
-1. <span data-ttu-id="5aad3-113">Nyissa meg a Visual Studio Code a mintaalkalmazást a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="5aad3-113">Open the sample application in Visual Studio code by running the following commands:</span></span>
+## <a name="add-functions-toomainc-and-gulpfilejs"></a><span data-ttu-id="a177d-112">Funkciók toomain.c és gulpfile.js hozzáadása</span><span class="sxs-lookup"><span data-stu-id="a177d-112">Add functions toomain.c and gulpfile.js</span></span>
+1. <span data-ttu-id="a177d-113">Nyissa meg a Visual Studio Code hello mintaalkalmazás hello a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="a177d-113">Open hello sample application in Visual Studio code by running hello following commands:</span></span>
 
    ```bash
    cd Lesson4
    code .
    ```
-2. <span data-ttu-id="5aad3-114">Nyissa meg a `main.c` fájlt, és adja hozzá a következő funkciók blinkLED() függvény után:</span><span class="sxs-lookup"><span data-stu-id="5aad3-114">Open the `main.c` file, and then add the following functions after blinkLED() function:</span></span>
+2. <span data-ttu-id="a177d-114">Nyissa meg hello `main.c` fájlt, és adja hozzá a következő funkciók blinkLED() függvény után hello:</span><span class="sxs-lookup"><span data-stu-id="a177d-114">Open hello `main.c` file, and then add hello following functions after blinkLED() function:</span></span>
 
    ```c
    static void turnOnLED()
@@ -55,7 +55,7 @@ ms.lasthandoff: 07/11/2017
    ```
 
    ![a hozzáadott funkciók Main.c fájl](media/iot-hub-raspberry-pi-lessons/lesson4/updated_app_c.png)
-3. <span data-ttu-id="5aad3-116">Adja hozzá a következő feltételek előtt az alapértelmezett a `if` blokkolja a `receiveMessageCallback` függvény:</span><span class="sxs-lookup"><span data-stu-id="5aad3-116">Add the following conditions before the default one in the `if` block of the `receiveMessageCallback` function:</span></span>
+3. <span data-ttu-id="a177d-116">Adja hozzá a hello alapértelmezett kikötéseket követő hello hello `if` hello adatblokk `receiveMessageCallback` függvény:</span><span class="sxs-lookup"><span data-stu-id="a177d-116">Add hello following conditions before hello default one in hello `if` block of hello `receiveMessageCallback` function:</span></span>
 
    ```c
    else if (0 == strcmp((const char*)value, "\"on\""))
@@ -68,8 +68,8 @@ ms.lasthandoff: 07/11/2017
    }
    ```
 
-   <span data-ttu-id="5aad3-117">Most már konfigurálta az válaszolni üzenetekben további információkat a mintaalkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="5aad3-117">Now you’ve configured the sample application to respond to more instructions through messages.</span></span> <span data-ttu-id="5aad3-118">Az "on" utasítás bekapcsolja a LED-jét, és az "off" utasítás kikapcsolja a LED-jét.</span><span class="sxs-lookup"><span data-stu-id="5aad3-118">The "on" instruction turns on the LED, and the "off" instruction turns off the LED.</span></span>
-4. <span data-ttu-id="5aad3-119">Nyissa meg a gulpfile.js fájlt, és adja hozzá az új függvény előtt a függvény `sendMessage`:</span><span class="sxs-lookup"><span data-stu-id="5aad3-119">Open the gulpfile.js file, and then add a new function before the function `sendMessage`:</span></span>
+   <span data-ttu-id="a177d-117">Most már konfigurálta az hello alkalmazás toorespond toomore vonatkozó példautasításokat üzenetekben.</span><span class="sxs-lookup"><span data-stu-id="a177d-117">Now you’ve configured hello sample application toorespond toomore instructions through messages.</span></span> <span data-ttu-id="a177d-118">hello "on" utasítás bekapcsolja a hello LED-jét, és hello "off" utasítás kikapcsolása hello LED-jét.</span><span class="sxs-lookup"><span data-stu-id="a177d-118">hello "on" instruction turns on hello LED, and hello "off" instruction turns off hello LED.</span></span>
+4. <span data-ttu-id="a177d-119">Nyissa meg a hello gulpfile.js fájlt, és adja hozzá a hello függvény előtt egy új funkció `sendMessage`:</span><span class="sxs-lookup"><span data-stu-id="a177d-119">Open hello gulpfile.js file, and then add a new function before hello function `sendMessage`:</span></span>
 
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -84,25 +84,25 @@ ms.lasthandoff: 07/11/2017
    ```
 
    ![A hozzáadott funkcióval Gulpfile.js fájl](media/iot-hub-raspberry-pi-lessons/lesson4/updated_gulpfile_c.png)
-5. <span data-ttu-id="5aad3-121">Az a `sendMessage` működik, cserélje le a sor `var message = buildMessage(sentMessageCount);` a új sorral a következő kódrészletben látható:</span><span class="sxs-lookup"><span data-stu-id="5aad3-121">In the `sendMessage` function, replace the line `var message = buildMessage(sentMessageCount);` with the new line shown in the following snippet:</span></span>
+5. <span data-ttu-id="a177d-121">A hello `sendMessage` működik, cserélje le a hello sor `var message = buildMessage(sentMessageCount);` hello új sorral hello a következő kódrészletben látható:</span><span class="sxs-lookup"><span data-stu-id="a177d-121">In hello `sendMessage` function, replace hello line `var message = buildMessage(sentMessageCount);` with hello new line shown in hello following snippet:</span></span>
 
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. <span data-ttu-id="5aad3-122">A módosítások mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="5aad3-122">Save all the changes.</span></span>
+6. <span data-ttu-id="a177d-122">Minden hello módosítások mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="a177d-122">Save all hello changes.</span></span>
 
-### <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="5aad3-123">Regisztrálhat és futtathat a mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="5aad3-123">Deploy and run the sample application</span></span>
-<span data-ttu-id="5aad3-124">Telepíthet, és futtassa a mintaalkalmazást a Pi a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="5aad3-124">Deploy and run the sample application on Pi by running the following command:</span></span>
+### <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="a177d-123">Regisztrálhat és futtathat hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="a177d-123">Deploy and run hello sample application</span></span>
+<span data-ttu-id="a177d-124">Központi telepítése, és futtassa a mintaalkalmazást hello Pi hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="a177d-124">Deploy and run hello sample application on Pi by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-<span data-ttu-id="5aad3-125">A két másodpercen bekapcsolása LED-jét, és ezután kapcsolja ki a másik két másodpercen kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="5aad3-125">You should see the LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="5aad3-126">Az utolsó "stop" üzenet leállítja a mintaalkalmazás futtatását.</span><span class="sxs-lookup"><span data-stu-id="5aad3-126">The last "stop" message stops the sample application from running.</span></span>
+<span data-ttu-id="a177d-125">Két másodpercen bekapcsolása hello LED-jét, és ezután kapcsolja ki a másik két másodpercen kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="a177d-125">You should see hello LED turn on for two seconds, and then turn off for another two seconds.</span></span> <span data-ttu-id="a177d-126">utolsó "stop" üdvözlőüzenetére hello mintaalkalmazás futtatását leáll.</span><span class="sxs-lookup"><span data-stu-id="a177d-126">hello last "stop" message stops hello sample application from running.</span></span>
 
 ![Mintaalkalmazást a be- és kikapcsolását üzenetek](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_on_and_off_c.png)
 
-<span data-ttu-id="5aad3-128">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="5aad3-128">Congratulations!</span></span> <span data-ttu-id="5aad3-129">Sikeresen testre szabta az IoT hub-a-pi tartományban küldött állapotüzenetek.</span><span class="sxs-lookup"><span data-stu-id="5aad3-129">You’ve successfully customized the messages that are sent to Pi from your IoT hub.</span></span>
+<span data-ttu-id="a177d-128">Gratulálunk!</span><span class="sxs-lookup"><span data-stu-id="a177d-128">Congratulations!</span></span> <span data-ttu-id="a177d-129">Sikeresen testre szabta az IoT hub tooPi küldi hello üzeneteket.</span><span class="sxs-lookup"><span data-stu-id="a177d-129">You’ve successfully customized hello messages that are sent tooPi from your IoT hub.</span></span>
 
-### <a name="summary"></a><span data-ttu-id="5aad3-130">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="5aad3-130">Summary</span></span>
-<span data-ttu-id="5aad3-131">Ez nem kötelező a szakasz bemutatja, hogyan kell az üzenetek testreszabhatók, hogy a mintaalkalmazás képes kezelni a be és ki a LED viselkedését eltérő módon.</span><span class="sxs-lookup"><span data-stu-id="5aad3-131">This optional section demonstrates how to customize messages so that the sample application can control the on and off behavior of the LED in a different way.</span></span>
+### <a name="summary"></a><span data-ttu-id="a177d-130">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="a177d-130">Summary</span></span>
+<span data-ttu-id="a177d-131">A választható szakasz azt mutatja be, hogyan toocustomize üzenetek, hogy hello mintaalkalmazás eltérő módon szabályozhatja hello be- és kikapcsolását hello LED viselkedését.</span><span class="sxs-lookup"><span data-stu-id="a177d-131">This optional section demonstrates how toocustomize messages so that hello sample application can control hello on and off behavior of hello LED in a different way.</span></span>

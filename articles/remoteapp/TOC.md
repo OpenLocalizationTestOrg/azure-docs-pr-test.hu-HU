@@ -25,15 +25,15 @@
 # Útmutató
 
 ## [Felhasználói adatok áttelepítése az Azure RemoteApp-ből](remoteapp-migrate.md)
-## [Migrálás a MyCloudIT-re](remoteapp-migrate-mycloudit.md)
-## [Áttelepítés a Citrix XenApp Essentials rendszerbe](remoteapp-migrate-citrix.md)
+## [TooMyCloudIT áttelepítése](remoteapp-migrate-mycloudit.md)
+## [Telepítse át a tooCitrix XenApp alapjai](remoteapp-migrate-citrix.md)
 ## RemoteApp-gyűjtemény létrehozása
 ### [Melyik gyűjteményre van szüksége?](remoteapp-collections.md)
 ### [Felhőalapú gyűjtemény létrehozása](remoteapp-create-cloud-deployment.md)
 ### [Hibrid gyűjtemény létrehozása](remoteapp-create-hybrid-deployment.md)
 ### [A gyűjtemény frissítése](remoteapp-update.md)
 ### [RemoteApp-rendszerkép létrehozása](remoteapp-imageoptions.md)
-### [Mit tartalmaz a sablonrendszerkép?](remoteapp-images.md)
+### [Mi az a sablon lemezképe hello?](remoteapp-images.md)
 ### [A rendszerképre vonatkozó követelmények](remoteapp-imagereqs.md)
 ### [Rendszerkép feltöltése](remoteapp-uploadimage.md)
 ### [Rendszerkép létrehozása Azure virtuális gépből](remoteapp-image-on-azurevm.md)
@@ -41,13 +41,13 @@
 ### [A virtuális hálózat megtervezése](remoteapp-planvnet.md)
 ### [Port- és URL-adatok](remoteapp-ports.md)
 ### [Virtuális hálózat ellenőrzése](remoteapp-vnet.md)
-### [Áttelepítés Azure virtuális hálózatba](remoteapp-migratevnet.md)
+### [Azure virtuális hálózat tooan áttelepítése](remoteapp-migratevnet.md)
 ## Alkalmazások közzététele
-### [Útmutató alkalmazások közzétételéhez](remoteapp-publish.md)
+### [Hogyan toopublish alkalmazás](remoteapp-publish.md)
 ## Felhasználók kezelése
-### [Útmutató felhasználók hozzáadásához](remoteapp-user.md)
+### [Hogyan tooadd felhasználók](remoteapp-user.md)
 ### [Az Active Directory konfigurálása](remoteapp-ad.md)
-### [Az Azure AD-bérlő megváltoztatása](remoteapp-changetenant.md)
+### [Hello Azure AD-bérlő módosítása](remoteapp-changetenant.md)
 ### [Office 365 felhasználói fiókok](remoteapp-o365user.md)
 ### [Adatok védelme](remoteapp-secureaccess.md)
 ### [Felhasználói adatok](remoteapp-upd.md)

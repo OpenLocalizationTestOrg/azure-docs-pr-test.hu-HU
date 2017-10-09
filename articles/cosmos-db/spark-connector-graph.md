@@ -15,47 +15,47 @@ ms.devlang: gremlin
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: khdang
-ms.openlocfilehash: 27c4d945e418b130c68cfde845571eb93658101e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0be5c9b12cdba4a428c809d00e1e68785a9ec1ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a><span data-ttu-id="fbfb0-103">Azure Cosmos DB: Graph elemzés végrehajtása a Spark és Apache TinkerPop Gremlin használatával</span><span class="sxs-lookup"><span data-stu-id="fbfb0-103">Azure Cosmos DB: Perform graph analytics by using Spark and Apache TinkerPop Gremlin</span></span>
+# <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a><span data-ttu-id="0c226-103">Azure Cosmos DB: Graph elemzés végrehajtása a Spark és Apache TinkerPop Gremlin használatával</span><span class="sxs-lookup"><span data-stu-id="0c226-103">Azure Cosmos DB: Perform graph analytics by using Spark and Apache TinkerPop Gremlin</span></span>
 
-<span data-ttu-id="fbfb0-104">[Az Azure Cosmos DB](introduction.md) Microsoft globálisan elosztott, több modellre adatbázis-szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-104">[Azure Cosmos DB](introduction.md) is the globally distributed, multi-model database service from Microsoft.</span></span> <span data-ttu-id="fbfb0-105">Hozzon létre, és a dokumentum, a kulcs/érték és a graph-adatbázisok mindegyike kihasználhassa a globális terjesztési és vízszintes méretű képességek Azure Cosmos DB középpontjában lekérdezése.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-105">You can create and query document, key/value, and graph databases, all of which benefit from the global-distribution and horizontal-scale capabilities at the core of Azure Cosmos DB.</span></span> <span data-ttu-id="fbfb0-106">Az Azure Cosmos DB támogatja az online tranzakció-feldolgozási (OLTP) graph használó munkaterhelések [Apache TinkerPop Gremlin](graph-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-106">Azure Cosmos DB supports online transaction processing (OLTP) graph workloads that use [Apache TinkerPop Gremlin](graph-introduction.md).</span></span>
+<span data-ttu-id="0c226-104">[Az Azure Cosmos DB](introduction.md) van globálisan elosztott, több modellre adatbázis-szolgáltatás a Microsoft hello.</span><span class="sxs-lookup"><span data-stu-id="0c226-104">[Azure Cosmos DB](introduction.md) is hello globally distributed, multi-model database service from Microsoft.</span></span> <span data-ttu-id="0c226-105">Hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és vízszintes méretű képességekről az Azure-Cosmos adatbázis hello core lekérdezése.</span><span class="sxs-lookup"><span data-stu-id="0c226-105">You can create and query document, key/value, and graph databases, all of which benefit from hello global-distribution and horizontal-scale capabilities at hello core of Azure Cosmos DB.</span></span> <span data-ttu-id="0c226-106">Az Azure Cosmos DB támogatja az online tranzakció-feldolgozási (OLTP) graph használó munkaterhelések [Apache TinkerPop Gremlin](graph-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="0c226-106">Azure Cosmos DB supports online transaction processing (OLTP) graph workloads that use [Apache TinkerPop Gremlin](graph-introduction.md).</span></span>
 
-<span data-ttu-id="fbfb0-107">[Spark](http://spark.apache.org/) Apache szoftver Foundation projekt, amely az általános célú online analitikus feldolgozási (OLAP) adatok feldolgozási összpontosít.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-107">[Spark](http://spark.apache.org/) is an Apache Software Foundation project that's focused on general-purpose online analytical processing (OLAP) data processing.</span></span> <span data-ttu-id="fbfb0-108">Spark hibrid a memória vagy lemez-alapú elosztott számítási modellt biztosít a Hadoop-MapReduce-modell hasonló.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-108">Spark provides a hybrid in-memory/disk-based distributed computing model that is similar to the Hadoop MapReduce model.</span></span> <span data-ttu-id="fbfb0-109">A felhőbeli Apache Spark on segítségével telepíthet [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-109">You can deploy Apache Spark in the cloud by using [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span></span>
+<span data-ttu-id="0c226-107">[Spark](http://spark.apache.org/) Apache szoftver Foundation projekt, amely az általános célú online analitikus feldolgozási (OLAP) adatok feldolgozási összpontosít.</span><span class="sxs-lookup"><span data-stu-id="0c226-107">[Spark](http://spark.apache.org/) is an Apache Software Foundation project that's focused on general-purpose online analytical processing (OLAP) data processing.</span></span> <span data-ttu-id="0c226-108">Spark hibrid a memória vagy lemez-alapú elosztott számítási modellt biztosít, amely hasonló toohello Hadoop MapReduce modell.</span><span class="sxs-lookup"><span data-stu-id="0c226-108">Spark provides a hybrid in-memory/disk-based distributed computing model that is similar toohello Hadoop MapReduce model.</span></span> <span data-ttu-id="0c226-109">Az Apache Spark on hello felhő segítségével telepíthet [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span><span class="sxs-lookup"><span data-stu-id="0c226-109">You can deploy Apache Spark in hello cloud by using [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).</span></span>
 
-<span data-ttu-id="fbfb0-110">Azure Cosmos DB és Spark kombinálásával végezheti el az OLTP és OLAP munkaterhelések Gremlin használatakor.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-110">By combining Azure Cosmos DB and Spark, you can perform both OLTP and OLAP workloads when you use Gremlin.</span></span> <span data-ttu-id="fbfb0-111">A gyors üzembe helyezési cikk bemutatja, hogyan Azure Cosmos DB Gremlin lekérdezéseinek futtatásához egy Azure HDInsight Spark-fürtön.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-111">This quick-start article demonstrates how to run Gremlin queries against Azure Cosmos DB on an Azure HDInsight Spark cluster.</span></span>
+<span data-ttu-id="0c226-110">Azure Cosmos DB és Spark kombinálásával végezheti el az OLTP és OLAP munkaterhelések Gremlin használatakor.</span><span class="sxs-lookup"><span data-stu-id="0c226-110">By combining Azure Cosmos DB and Spark, you can perform both OLTP and OLAP workloads when you use Gremlin.</span></span> <span data-ttu-id="0c226-111">Ez gyors üzembe helyezési a cikk bemutatja, hogyan toorun Gremlin lekérdezi szemben Azure Cosmos DB egy Azure HDInsight Spark-fürtön.</span><span class="sxs-lookup"><span data-stu-id="0c226-111">This quick-start article demonstrates how toorun Gremlin queries against Azure Cosmos DB on an Azure HDInsight Spark cluster.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="fbfb0-112">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="fbfb0-112">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="0c226-112">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="0c226-112">Prerequisites</span></span>
 
-<span data-ttu-id="fbfb0-113">Mielőtt futtathatná ezt a mintát, rendelkeznie kell a következő előfeltételekkel:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-113">Before you can run this sample, you must have the following prerequisites:</span></span>
-* <span data-ttu-id="fbfb0-114">Az Azure HDInsight Spark-fürt 2.0</span><span class="sxs-lookup"><span data-stu-id="fbfb0-114">Azure HDInsight Spark cluster 2.0</span></span>
-* <span data-ttu-id="fbfb0-115">JDK 1.8 + (Ha még nem rendelkezik JDK, futtassa `apt-get install default-jdk`.)</span><span class="sxs-lookup"><span data-stu-id="fbfb0-115">JDK 1.8+ (If you don't have JDK, run `apt-get install default-jdk`.)</span></span>
-* <span data-ttu-id="fbfb0-116">Maven (Ha még nem rendelkezik Maven, `apt-get install maven`.)</span><span class="sxs-lookup"><span data-stu-id="fbfb0-116">Maven (If you don't have Maven, run `apt-get install maven`.)</span></span>
-* <span data-ttu-id="fbfb0-117">Azure-előfizetés ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span><span class="sxs-lookup"><span data-stu-id="fbfb0-117">An Azure subscription ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span></span>
+<span data-ttu-id="0c226-113">Ez a minta futtatásához, a következő előfeltételek hello kell rendelkeznie:</span><span class="sxs-lookup"><span data-stu-id="0c226-113">Before you can run this sample, you must have hello following prerequisites:</span></span>
+* <span data-ttu-id="0c226-114">Az Azure HDInsight Spark-fürt 2.0</span><span class="sxs-lookup"><span data-stu-id="0c226-114">Azure HDInsight Spark cluster 2.0</span></span>
+* <span data-ttu-id="0c226-115">JDK 1.8 + (Ha még nem rendelkezik JDK, futtassa `apt-get install default-jdk`.)</span><span class="sxs-lookup"><span data-stu-id="0c226-115">JDK 1.8+ (If you don't have JDK, run `apt-get install default-jdk`.)</span></span>
+* <span data-ttu-id="0c226-116">Maven (Ha még nem rendelkezik Maven, `apt-get install maven`.)</span><span class="sxs-lookup"><span data-stu-id="0c226-116">Maven (If you don't have Maven, run `apt-get install maven`.)</span></span>
+* <span data-ttu-id="0c226-117">Azure-előfizetés ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span><span class="sxs-lookup"><span data-stu-id="0c226-117">An Azure subscription ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])</span></span>
 
-<span data-ttu-id="fbfb0-118">Egy Azure HDInsight Spark-fürt beállításával kapcsolatos információkért lásd: [kiépítés HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-118">For information about how to set up an Azure HDInsight Spark cluster, see [Provisioning HDInsight clusters](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span></span>
+<span data-ttu-id="0c226-118">További információ mentése az Azure HDInsight Spark-fürt tooset lásd [kiépítés HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span><span class="sxs-lookup"><span data-stu-id="0c226-118">For information about how tooset up an Azure HDInsight Spark cluster, see [Provisioning HDInsight clusters](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).</span></span>
 
-## <a name="create-an-azure-cosmos-db-database-account"></a><span data-ttu-id="fbfb0-119">Egy Azure Cosmos DB adatbázisfiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-119">Create an Azure Cosmos DB database account</span></span>
+## <a name="create-an-azure-cosmos-db-database-account"></a><span data-ttu-id="0c226-119">Egy Azure Cosmos DB adatbázisfiók létrehozása</span><span class="sxs-lookup"><span data-stu-id="0c226-119">Create an Azure Cosmos DB database account</span></span>
 
-<span data-ttu-id="fbfb0-120">Először hozzon létre egy adatbázis-fiók a Graph API-t a következő módon:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-120">First, create a database account with the Graph API by doing the following:</span></span>
+<span data-ttu-id="0c226-120">Először hozzon létre egy adatbázis-fiók hello Graph API hello következő tevékenységek végrehajtásával:</span><span class="sxs-lookup"><span data-stu-id="0c226-120">First, create a database account with hello Graph API by doing hello following:</span></span>
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
-## <a name="add-a-collection"></a><span data-ttu-id="fbfb0-121">Gyűjtemény hozzáadása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-121">Add a collection</span></span>
+## <a name="add-a-collection"></a><span data-ttu-id="0c226-121">Gyűjtemény hozzáadása</span><span class="sxs-lookup"><span data-stu-id="0c226-121">Add a collection</span></span>
 
 [!INCLUDE [cosmos-db-create-collection](../../includes/cosmos-db-create-collection.md)]
 
-## <a name="get-apache-tinkerpop"></a><span data-ttu-id="fbfb0-122">Apache TinkerPop beolvasása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-122">Get Apache TinkerPop</span></span>
+## <a name="get-apache-tinkerpop"></a><span data-ttu-id="0c226-122">Apache TinkerPop beolvasása</span><span class="sxs-lookup"><span data-stu-id="0c226-122">Get Apache TinkerPop</span></span>
 
-<span data-ttu-id="fbfb0-123">Apache TinkerPop érhető el a következő módon:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-123">Get Apache TinkerPop by doing the following:</span></span>
+<span data-ttu-id="0c226-123">Töltse le az Apache TinkerPop hello következő tevékenységek végrehajtásával:</span><span class="sxs-lookup"><span data-stu-id="0c226-123">Get Apache TinkerPop by doing hello following:</span></span>
 
-1. <span data-ttu-id="fbfb0-124">A fő csomópontra a HDInsight-fürt távoli `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-124">Remote to the master node of the HDInsight cluster `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span></span>
+1. <span data-ttu-id="0c226-124">Távoli toohello főcsomópont hello HDInsight-fürt `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span><span class="sxs-lookup"><span data-stu-id="0c226-124">Remote toohello master node of hello HDInsight cluster `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.</span></span>
 
-2. <span data-ttu-id="fbfb0-125">Klónozza a TinkerPop3 forráskódot, összeállítani, helyileg, és telepítse Maven-gyorsítótárba.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-125">Clone the TinkerPop3 source code, build it locally, and install it to Maven cache.</span></span>
+2. <span data-ttu-id="0c226-125">Klónozza hello TinkerPop3 forráskódját, összeállítani, helyileg, és telepítse tooMaven gyorsítótár.</span><span class="sxs-lookup"><span data-stu-id="0c226-125">Clone hello TinkerPop3 source code, build it locally, and install it tooMaven cache.</span></span>
 
     ```bash
     git clone https://github.com/apache/tinkerpop.git
@@ -63,11 +63,11 @@ ms.lasthandoff: 07/11/2017
     mvn clean install
     ```
 
-3. <span data-ttu-id="fbfb0-126">A Spark-Gremlin beépülő modul telepítése</span><span class="sxs-lookup"><span data-stu-id="fbfb0-126">Install the Spark-Gremlin plug-in</span></span> 
+3. <span data-ttu-id="0c226-126">Hello Spark-Gremlin beépülő modul telepítése</span><span class="sxs-lookup"><span data-stu-id="0c226-126">Install hello Spark-Gremlin plug-in</span></span> 
 
-    <span data-ttu-id="fbfb0-127">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-127">a.</span></span> <span data-ttu-id="fbfb0-128">A telepítés, a beépülő modul szőlőmust kezeli.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-128">The installation of the plug-in is handled by Grape.</span></span> <span data-ttu-id="fbfb0-129">A tárolóhelyekkel kapcsolatos információi szőlőmust, hogy letölthesse a beépülő modult és annak függőségeit feltöltéséhez.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-129">Populate the repositories information for Grape so it can download the plug-in and its dependencies.</span></span> 
+    <span data-ttu-id="0c226-127">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-127">a.</span></span> <span data-ttu-id="0c226-128">hello beépülő modul telepítésének hello szőlőmust kezeli.</span><span class="sxs-lookup"><span data-stu-id="0c226-128">hello installation of hello plug-in is handled by Grape.</span></span> <span data-ttu-id="0c226-129">Feltöltése szőlőmust hello adattárak adatait, hogy letölthesse hello beépülő modult és annak függőségeit.</span><span class="sxs-lookup"><span data-stu-id="0c226-129">Populate hello repositories information for Grape so it can download hello plug-in and its dependencies.</span></span> 
 
-      <span data-ttu-id="fbfb0-130">A szőlőmust konfigurációs fájl létrehozása, ha nincs jelen az `~/.groovy/grapeConfig.xml`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-130">Create the grape configuration file if it's not present at `~/.groovy/grapeConfig.xml`.</span></span> <span data-ttu-id="fbfb0-131">A következő beállításokkal:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-131">Use the following settings:</span></span>
+      <span data-ttu-id="0c226-130">Hello szőlőmust konfigurációs fájl létrehozása, ha nincs jelen az `~/.groovy/grapeConfig.xml`.</span><span class="sxs-lookup"><span data-stu-id="0c226-130">Create hello grape configuration file if it's not present at `~/.groovy/grapeConfig.xml`.</span></span> <span data-ttu-id="0c226-131">A következő beállítások hello használata:</span><span class="sxs-lookup"><span data-stu-id="0c226-131">Use hello following settings:</span></span>
 
     ```xml
     <ivysettings>
@@ -89,9 +89,9 @@ ms.lasthandoff: 07/11/2017
     </ivysettings>
     ``` 
 
-    <span data-ttu-id="fbfb0-132">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-132">b.</span></span> <span data-ttu-id="fbfb0-133">Indítsa el a Gremlin konzol `bin/gremlin.sh`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-133">Start Gremlin console `bin/gremlin.sh`.</span></span>
+    <span data-ttu-id="0c226-132">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-132">b.</span></span> <span data-ttu-id="0c226-133">Indítsa el a Gremlin konzol `bin/gremlin.sh`.</span><span class="sxs-lookup"><span data-stu-id="0c226-133">Start Gremlin console `bin/gremlin.sh`.</span></span>
         
-    <span data-ttu-id="fbfb0-134">c.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-134">c.</span></span> <span data-ttu-id="fbfb0-135">A Spark-Gremlin beépülő modul telepítése verziójával 3.3.0-SNAPSHOT, amely az előző lépésben parancsfájlkezelő:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-135">Install the Spark-Gremlin plug-in with version 3.3.0-SNAPSHOT, which you built in the previous steps:</span></span>
+    <span data-ttu-id="0c226-134">c.</span><span class="sxs-lookup"><span data-stu-id="0c226-134">c.</span></span> <span data-ttu-id="0c226-135">Hello Spark-Gremlin beépülő modul telepítése verziójával 3.3.0-SNAPSHOT, amely a korábbi lépésekben hello parancsfájlkezelő:</span><span class="sxs-lookup"><span data-stu-id="0c226-135">Install hello Spark-Gremlin plug-in with version 3.3.0-SNAPSHOT, which you built in hello previous steps:</span></span>
 
     ```bash
     $ bin/gremlin.sh
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     plugin activated: tinkerpop.utilities
     plugin activated: tinkerpop.tinkergraph
     gremlin> :install org.apache.tinkerpop spark-gremlin 3.3.0-SNAPSHOT
-    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart the console to use [tinkerpop.spark]
+    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart hello console toouse [tinkerpop.spark]
     gremlin> :q
     $ bin/gremlin.sh
 
@@ -117,17 +117,17 @@ ms.lasthandoff: 07/11/2017
     ==>tinkerpop.spark activated
     ```
 
-4. <span data-ttu-id="fbfb0-136">Ellenőrizze, hogy `Hadoop-Gremlin` , aktivált `:plugin list`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-136">Check to see whether `Hadoop-Gremlin` is activated with `:plugin list`.</span></span> <span data-ttu-id="fbfb0-137">Ez a beépülő modul, mert azt sikerült zavarják a Spark-Gremlin beépülő modul letiltása `:plugin unuse tinkerpop.hadoop`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-137">Disable this plug-in, because it could interfere with the Spark-Gremlin plug-in `:plugin unuse tinkerpop.hadoop`.</span></span>
+4. <span data-ttu-id="0c226-136">Ellenőrizze hogy toosee `Hadoop-Gremlin` , aktivált `:plugin list`.</span><span class="sxs-lookup"><span data-stu-id="0c226-136">Check toosee whether `Hadoop-Gremlin` is activated with `:plugin list`.</span></span> <span data-ttu-id="0c226-137">Ez a beépülő modul, mert azt sikerült zavarják a Spark-Gremlin hello beépülő modul letiltása `:plugin unuse tinkerpop.hadoop`.</span><span class="sxs-lookup"><span data-stu-id="0c226-137">Disable this plug-in, because it could interfere with hello Spark-Gremlin plug-in `:plugin unuse tinkerpop.hadoop`.</span></span>
 
-## <a name="prepare-tinkerpop3-dependencies"></a><span data-ttu-id="fbfb0-138">Készítse elő a TinkerPop3 függőségek</span><span class="sxs-lookup"><span data-stu-id="fbfb0-138">Prepare TinkerPop3 dependencies</span></span>
+## <a name="prepare-tinkerpop3-dependencies"></a><span data-ttu-id="0c226-138">Készítse elő a TinkerPop3 függőségek</span><span class="sxs-lookup"><span data-stu-id="0c226-138">Prepare TinkerPop3 dependencies</span></span>
 
-<span data-ttu-id="fbfb0-139">Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes jar-függőség a célkönyvtár a Spark- és a Hadoop.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-139">When you built TinkerPop3 in the previous step, the process also pulled all jar dependencies for Spark and Hadoop in the target directory.</span></span> <span data-ttu-id="fbfb0-140">Használja a JAR-fájlok, amelyek előre HDI együtt vannak telepítve, és lekéréses a további függőségek csak szükség szerint kivételével.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-140">Use the jars that are pre-installed with HDI, and pull in additional dependencies only as necessary.</span></span>
+<span data-ttu-id="0c226-139">Amikor hello előző lépésben a TinkerPop3 beépített, hello folyamat is lekért összes jar-függőség hello célkönyvtár a forráskönyvtárban a Spark- és a Hadoop.</span><span class="sxs-lookup"><span data-stu-id="0c226-139">When you built TinkerPop3 in hello previous step, hello process also pulled all jar dependencies for Spark and Hadoop in hello target directory.</span></span> <span data-ttu-id="0c226-140">Hello JAR-fájlok kivételével, amely előre HDI együtt vannak telepítve, és lekéréses a további függőségek csak szükség szerint használja.</span><span class="sxs-lookup"><span data-stu-id="0c226-140">Use hello jars that are pre-installed with HDI, and pull in additional dependencies only as necessary.</span></span>
 
-1. <span data-ttu-id="fbfb0-141">Keresse fel a Gremlin konzol tároló könyvtár: `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-141">Go to the Gremlin Console target directory at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span></span> 
+1. <span data-ttu-id="0c226-141">Nyissa meg toohello Gremlin konzol tároló könyvtár: `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span><span class="sxs-lookup"><span data-stu-id="0c226-141">Go toohello Gremlin Console target directory at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`.</span></span> 
 
-2. <span data-ttu-id="fbfb0-142">Helyezze át az összes JAR-fájlok kivételével a `ext/` való `lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-142">Move all jars under `ext/` to `lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span></span>
+2. <span data-ttu-id="0c226-142">Helyezze át az összes JAR-fájlok kivételével a `ext/` túl`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span><span class="sxs-lookup"><span data-stu-id="0c226-142">Move all jars under `ext/` too`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.</span></span>
 
-3. <span data-ttu-id="fbfb0-143">Távolítsa el a szalagtárak jar összes `lib/` , amelyek nem a következők:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-143">Remove all jar libraries under `lib/` that are not in the following list:</span></span>
+3. <span data-ttu-id="0c226-143">Távolítsa el a szalagtárak jar összes `lib/` , hogy nem a hello következő listán:</span><span class="sxs-lookup"><span data-stu-id="0c226-143">Remove all jar libraries under `lib/` that are not in hello following list:</span></span>
 
     ```bash
     # TinkerPop3
@@ -174,15 +174,15 @@ ms.lasthandoff: 07/11/2017
     xml-apis-1.3.04.jar                        
     ```
 
-## <a name="get-the-azure-cosmos-db-spark-connector"></a><span data-ttu-id="fbfb0-144">Az Azure Cosmos DB Spark-összekötő beolvasása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-144">Get the Azure Cosmos DB Spark connector</span></span>
+## <a name="get-hello-azure-cosmos-db-spark-connector"></a><span data-ttu-id="0c226-144">Hello Azure Cosmos DB Spark összekötő beolvasása</span><span class="sxs-lookup"><span data-stu-id="0c226-144">Get hello Azure Cosmos DB Spark connector</span></span>
 
-1. <span data-ttu-id="fbfb0-145">Az Azure Cosmos DB Spark-összekötő beolvasása `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` és Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` a [Azure Cosmos DB Spark-összekötő a Githubon](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-145">Get the Azure Cosmos DB Spark connector `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` and Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` from [Azure Cosmos DB Spark Connector on GitHub](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span></span>
+1. <span data-ttu-id="0c226-145">Első hello Azure Cosmos DB Spark összekötő `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` és Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` a [Azure Cosmos DB Spark-összekötő a Githubon](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span><span class="sxs-lookup"><span data-stu-id="0c226-145">Get hello Azure Cosmos DB Spark connector `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` and Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` from [Azure Cosmos DB Spark Connector on GitHub](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).</span></span>
 
-2. <span data-ttu-id="fbfb0-146">Másik lehetőségként hozhat létre, helyileg.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-146">Alternatively, you can build it locally.</span></span> <span data-ttu-id="fbfb0-147">A Spark-Gremlin legújabb verzióját a következővel történt 1.6.1-es Spark, és nem kompatibilis a 2.0.2, Spark az Azure Cosmos DB Spark-összekötő jelenleg használt, mert a legújabb TinkerPop3 kód lefordításához, és manuálisan telepíti a JAR-fájlok kivételével.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-147">Because the latest version of Spark-Gremlin was built with Spark 1.6.1 and is not compatible with Spark 2.0.2, which is currently used in the Azure Cosmos DB Spark connector, you can build the latest TinkerPop3 code and install the jars manually.</span></span> <span data-ttu-id="fbfb0-148">Tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-148">Do the following:</span></span>
+2. <span data-ttu-id="0c226-146">Másik lehetőségként hozhat létre, helyileg.</span><span class="sxs-lookup"><span data-stu-id="0c226-146">Alternatively, you can build it locally.</span></span> <span data-ttu-id="0c226-147">Mivel hello legújabb verzióját a Spark-Gremlin 1.6.1-es Spark a következővel történt, és nem kompatibilis a hello Azure Cosmos DB Spark Connector jelenleg használt 2.0.2, Spark hello legújabb TinkerPop3 kód létrehozhatja és manuális telepítése hello JAR-fájlok kivételével.</span><span class="sxs-lookup"><span data-stu-id="0c226-147">Because hello latest version of Spark-Gremlin was built with Spark 1.6.1 and is not compatible with Spark 2.0.2, which is currently used in hello Azure Cosmos DB Spark connector, you can build hello latest TinkerPop3 code and install hello jars manually.</span></span> <span data-ttu-id="0c226-148">A következő hello:</span><span class="sxs-lookup"><span data-stu-id="0c226-148">Do hello following:</span></span>
 
-    <span data-ttu-id="fbfb0-149">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-149">a.</span></span> <span data-ttu-id="fbfb0-150">Az Azure Cosmos DB Spark-összekötő klónozását.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-150">Clone the Azure Cosmos DB Spark connector.</span></span>
+    <span data-ttu-id="0c226-149">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-149">a.</span></span> <span data-ttu-id="0c226-150">Hello Azure Cosmos DB Spark összekötő klónozását.</span><span class="sxs-lookup"><span data-stu-id="0c226-150">Clone hello Azure Cosmos DB Spark connector.</span></span>
 
-    <span data-ttu-id="fbfb0-151">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-151">b.</span></span> <span data-ttu-id="fbfb0-152">Build TinkerPop3 (a korábbi lépésekben tette meg).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-152">Build TinkerPop3 (already done in previous steps).</span></span> <span data-ttu-id="fbfb0-153">Telepítse az összes TinkerPop 3.3.0-SNAPSHOT JAR-fájlok kivételével helyileg.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-153">Install all TinkerPop 3.3.0-SNAPSHOT jars locally.</span></span>
+    <span data-ttu-id="0c226-151">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-151">b.</span></span> <span data-ttu-id="0c226-152">Build TinkerPop3 (a korábbi lépésekben tette meg).</span><span class="sxs-lookup"><span data-stu-id="0c226-152">Build TinkerPop3 (already done in previous steps).</span></span> <span data-ttu-id="0c226-153">Telepítse az összes TinkerPop 3.3.0-SNAPSHOT JAR-fájlok kivételével helyileg.</span><span class="sxs-lookup"><span data-stu-id="0c226-153">Install all TinkerPop 3.3.0-SNAPSHOT jars locally.</span></span>
 
     ```bash
     mvn install:install-file -Dfile="gremlin-core-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=gremlin-core -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar
@@ -193,9 +193,9 @@ ms.lasthandoff: 07/11/2017
     mvn install:install-file -Dfile="tinkergraph-gremlin-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=tinkergraph-gremlin -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar`
     ```
 
-    <span data-ttu-id="fbfb0-154">c.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-154">c.</span></span> <span data-ttu-id="fbfb0-155">Frissítés `tinkerpop.version` `azure-documentdb-spark/pom.xml` való `3.3.0-SNAPSHOT`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-155">Update `tinkerpop.version` `azure-documentdb-spark/pom.xml` to `3.3.0-SNAPSHOT`.</span></span>
+    <span data-ttu-id="0c226-154">c.</span><span class="sxs-lookup"><span data-stu-id="0c226-154">c.</span></span> <span data-ttu-id="0c226-155">Frissítés `tinkerpop.version` `azure-documentdb-spark/pom.xml` túl`3.3.0-SNAPSHOT`.</span><span class="sxs-lookup"><span data-stu-id="0c226-155">Update `tinkerpop.version` `azure-documentdb-spark/pom.xml` too`3.3.0-SNAPSHOT`.</span></span>
     
-    <span data-ttu-id="fbfb0-156">d.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-156">d.</span></span> <span data-ttu-id="fbfb0-157">A Maven build.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-157">Build with Maven.</span></span> <span data-ttu-id="fbfb0-158">A szükséges JAR-fájlok kivételével kerülnek `target` és `target/alternateLocation`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-158">The needed jars are placed in `target` and `target/alternateLocation`.</span></span>
+    <span data-ttu-id="0c226-156">d.</span><span class="sxs-lookup"><span data-stu-id="0c226-156">d.</span></span> <span data-ttu-id="0c226-157">A Maven build.</span><span class="sxs-lookup"><span data-stu-id="0c226-157">Build with Maven.</span></span> <span data-ttu-id="0c226-158">hello szükséges JAR-fájlok kivételével kerülnek `target` és `target/alternateLocation`.</span><span class="sxs-lookup"><span data-stu-id="0c226-158">hello needed jars are placed in `target` and `target/alternateLocation`.</span></span>
 
     ```bash
     git clone https://github.com/Azure/azure-cosmosdb-spark.git
@@ -203,7 +203,7 @@ ms.lasthandoff: 07/11/2017
     mvn clean package
     ```
 
-3. <span data-ttu-id="fbfb0-159">Másolja a korábban említett JAR-fájlok kivételével egy helyi, ~ / azure-documentdb-spark:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-159">Copy the previously mentioned jars to a local directory at ~/azure-documentdb-spark:</span></span>
+3. <span data-ttu-id="0c226-159">Másolás hello azt már korábban említettük JAR-fájlok kivételével tooa helyi könyvtárat ~ / azure-documentdb-spark:</span><span class="sxs-lookup"><span data-stu-id="0c226-159">Copy hello previously mentioned jars tooa local directory at ~/azure-documentdb-spark:</span></span>
 
     ```bash
     $ azure-documentdb-spark:
@@ -212,22 +212,22 @@ ms.lasthandoff: 07/11/2017
     cp target/alternateLocation/azure-documentdb-1.10.0.jar ~/azure-documentdb-spark
     ```
 
-## <a name="distribute-the-dependencies-to-the-spark-worker-nodes"></a><span data-ttu-id="fbfb0-160">A Spark munkavégző csomópontokhoz függőségek terjesztése</span><span class="sxs-lookup"><span data-stu-id="fbfb0-160">Distribute the dependencies to the Spark worker nodes</span></span> 
+## <a name="distribute-hello-dependencies-toohello-spark-worker-nodes"></a><span data-ttu-id="0c226-160">Hello függőségek toohello Spark munkavégző csomópontokhoz terjesztése</span><span class="sxs-lookup"><span data-stu-id="0c226-160">Distribute hello dependencies toohello Spark worker nodes</span></span> 
 
-1. <span data-ttu-id="fbfb0-161">Mivel az graph adatok átalakítása TinkerPop3 függ, el kell juttatnia minden Spark munkavégző csomópontokhoz kapcsolódó függőségek.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-161">Because the transformation of graph data depends on TinkerPop3, you must distribute the related dependencies to all Spark worker nodes.</span></span>
+1. <span data-ttu-id="0c226-161">Mivel Diagramadatok hello átalakítása TinkerPop3 függ, el kell juttatnia hello kapcsolódó függőségek tooall Spark munkavégző csomópontokhoz.</span><span class="sxs-lookup"><span data-stu-id="0c226-161">Because hello transformation of graph data depends on TinkerPop3, you must distribute hello related dependencies tooall Spark worker nodes.</span></span>
 
-2. <span data-ttu-id="fbfb0-162">Másolja a korábban említett Gremlin függőségek, a CosmosDB Spark összekötő jar és CosmosDB Java SDK a feldolgozó csomópontok a következő módon:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-162">Copy the previously mentioned Gremlin dependencies, the CosmosDB Spark connector jar, and CosmosDB Java SDK to the worker nodes by doing the following:</span></span>
+2. <span data-ttu-id="0c226-162">Másolás hello azt már korábban említettük Gremlin függőségek, hello CosmosDB Spark összekötő jar és CosmosDB Java SDK toohello munkavégző csomópontokhoz hello következő tevékenységek végrehajtásával:</span><span class="sxs-lookup"><span data-stu-id="0c226-162">Copy hello previously mentioned Gremlin dependencies, hello CosmosDB Spark connector jar, and CosmosDB Java SDK toohello worker nodes by doing hello following:</span></span>
 
-    <span data-ttu-id="fbfb0-163">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-163">a.</span></span> <span data-ttu-id="fbfb0-164">Másolja az összes a JAR-fájlok kivételével az `~/azure-documentdb-spark`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-164">Copy all the jars into `~/azure-documentdb-spark`.</span></span>
+    <span data-ttu-id="0c226-163">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-163">a.</span></span> <span data-ttu-id="0c226-164">Másolja az összes hello üveg `~/azure-documentdb-spark`.</span><span class="sxs-lookup"><span data-stu-id="0c226-164">Copy all hello jars into `~/azure-documentdb-spark`.</span></span>
 
     ```bash
     $ /home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone:
     cp lib/* ~/azure-documentdb-spark
     ```
 
-    <span data-ttu-id="fbfb0-165">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-165">b.</span></span> <span data-ttu-id="fbfb0-166">A Spark feldolgozó csomópontjaihoz, amely az Ambari irányítópultján a listájának lekérdezése a `Spark2 Clients` listájában a `Spark2` szakasz.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-166">Get the list of all Spark worker nodes, which you can find on Ambari Dashboard, in the `Spark2 Clients` list in the `Spark2` section.</span></span>
+    <span data-ttu-id="0c226-165">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-165">b.</span></span> <span data-ttu-id="0c226-166">Spark feldolgozó csomópontjaihoz, amely az hello az Ambari irányítópultján található hello listáját `Spark2 Clients` hello listájában `Spark2` szakasz.</span><span class="sxs-lookup"><span data-stu-id="0c226-166">Get hello list of all Spark worker nodes, which you can find on Ambari Dashboard, in hello `Spark2 Clients` list in hello `Spark2` section.</span></span>
 
-    <span data-ttu-id="fbfb0-167">c.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-167">c.</span></span> <span data-ttu-id="fbfb0-168">A csomópontok másolja könyvtárhoz.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-168">Copy that directory to each of the nodes.</span></span>
+    <span data-ttu-id="0c226-167">c.</span><span class="sxs-lookup"><span data-stu-id="0c226-167">c.</span></span> <span data-ttu-id="0c226-168">Másolja az adott könyvtár tooeach hello csomópontok.</span><span class="sxs-lookup"><span data-stu-id="0c226-168">Copy that directory tooeach of hello nodes.</span></span>
 
     ```bash
     scp -r ~/azure-documentdb-spark sshuser@wn0-cosmos:/home/sshuser
@@ -235,19 +235,19 @@ ms.lasthandoff: 07/11/2017
     ...
     ```
     
-## <a name="set-up-the-environment-variables"></a><span data-ttu-id="fbfb0-169">A környezeti változók beállítása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-169">Set up the environment variables</span></span>
+## <a name="set-up-hello-environment-variables"></a><span data-ttu-id="0c226-169">Hello környezeti változók beállítása</span><span class="sxs-lookup"><span data-stu-id="0c226-169">Set up hello environment variables</span></span>
 
-1. <span data-ttu-id="fbfb0-170">A Spark-fürt HDP verziója található.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-170">Find the HDP version of the Spark cluster.</span></span> <span data-ttu-id="fbfb0-171">A címtár-név alapján `/usr/hdp/` (például 2.5.4.2-7).</span><span class="sxs-lookup"><span data-stu-id="fbfb0-171">It is the directory name under `/usr/hdp/` (for example, 2.5.4.2-7).</span></span>
+1. <span data-ttu-id="0c226-170">Hello Spark-fürt hello HDP verziója található.</span><span class="sxs-lookup"><span data-stu-id="0c226-170">Find hello HDP version of hello Spark cluster.</span></span> <span data-ttu-id="0c226-171">Hello directory név alapján `/usr/hdp/` (például 2.5.4.2-7).</span><span class="sxs-lookup"><span data-stu-id="0c226-171">It is hello directory name under `/usr/hdp/` (for example, 2.5.4.2-7).</span></span>
 
-2. <span data-ttu-id="fbfb0-172">Állítsa be az összes csomópont hdp.version.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-172">Set hdp.version for all nodes.</span></span> <span data-ttu-id="fbfb0-173">Ambari irányítópulton Ugrás **YARN szakasz** > **Configs** > **speciális**, majd tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-173">In Ambari Dashboard, go to **YARN section** > **Configs** > **Advanced**, and then do the following:</span></span> 
+2. <span data-ttu-id="0c226-172">Állítsa be az összes csomópont hdp.version.</span><span class="sxs-lookup"><span data-stu-id="0c226-172">Set hdp.version for all nodes.</span></span> <span data-ttu-id="0c226-173">Ambari irányítópult megtekintéséhez lépjen túl**YARN szakasz** > **Configs** > **speciális**, és ezután hello a következő:</span><span class="sxs-lookup"><span data-stu-id="0c226-173">In Ambari Dashboard, go too**YARN section** > **Configs** > **Advanced**, and then do hello following:</span></span> 
  
-    <span data-ttu-id="fbfb0-174">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-174">a.</span></span> <span data-ttu-id="fbfb0-175">A `Custom yarn-site`, adja hozzá az új tulajdonság `hdp.version` a fő csomóponton levő HDP verzió értékét.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-175">In `Custom yarn-site`, add a new property `hdp.version` with the value of the HDP version on the master node.</span></span> 
+    <span data-ttu-id="0c226-174">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-174">a.</span></span> <span data-ttu-id="0c226-175">A `Custom yarn-site`, adja hozzá az új tulajdonság `hdp.version` hello értékű hello HDP verzió hello fő csomóponton.</span><span class="sxs-lookup"><span data-stu-id="0c226-175">In `Custom yarn-site`, add a new property `hdp.version` with hello value of hello HDP version on hello master node.</span></span> 
      
-    <span data-ttu-id="fbfb0-176">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-176">b.</span></span> <span data-ttu-id="fbfb0-177">A konfigurációk mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-177">Save the configurations.</span></span> <span data-ttu-id="fbfb0-178">Nincsenek figyelmeztetések, amely figyelmen kívül hagyhatja.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-178">There are warnings, which you can ignore.</span></span> 
+    <span data-ttu-id="0c226-176">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-176">b.</span></span> <span data-ttu-id="0c226-177">Hello konfigurációk mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="0c226-177">Save hello configurations.</span></span> <span data-ttu-id="0c226-178">Nincsenek figyelmeztetések, amely figyelmen kívül hagyhatja.</span><span class="sxs-lookup"><span data-stu-id="0c226-178">There are warnings, which you can ignore.</span></span> 
      
-    <span data-ttu-id="fbfb0-179">c.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-179">c.</span></span> <span data-ttu-id="fbfb0-180">Az értesítési ikonok jelzik, indítsa újra a YARN és az Oozie-szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-180">Restart the YARN and Oozie services as the notification icons indicate.</span></span>
+    <span data-ttu-id="0c226-179">c.</span><span class="sxs-lookup"><span data-stu-id="0c226-179">c.</span></span> <span data-ttu-id="0c226-180">Hello YARN és az Oozie szolgáltatások újraindításának hello értesítési ikonok jelzik.</span><span class="sxs-lookup"><span data-stu-id="0c226-180">Restart hello YARN and Oozie services as hello notification icons indicate.</span></span>
 
-3. <span data-ttu-id="fbfb0-181">Állítsa be az alábbi környezeti változókat a fő csomóponton (cserélje le az értékeket szükség szerint):</span><span class="sxs-lookup"><span data-stu-id="fbfb0-181">Set the following environment variables on the master node (replace the values as appropriate):</span></span>
+3. <span data-ttu-id="0c226-181">Környezeti változók hello fő csomóponton (a név felülírandó hello értékeket szükség szerint) a következő set hello:</span><span class="sxs-lookup"><span data-stu-id="0c226-181">Set hello following environment variables on hello master node (replace hello values as appropriate):</span></span>
 
     ```bash
     export HADOOP_GREMLIN_LIBS=/home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/ext/spark-gremlin/lib
@@ -256,9 +256,9 @@ ms.lasthandoff: 07/11/2017
     export HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
     ```
 
-## <a name="prepare-the-graph-configuration"></a><span data-ttu-id="fbfb0-182">Készítse elő a graph-konfiguráció</span><span class="sxs-lookup"><span data-stu-id="fbfb0-182">Prepare the graph configuration</span></span>
+## <a name="prepare-hello-graph-configuration"></a><span data-ttu-id="0c226-182">Hello graph konfigurációs előkészítése</span><span class="sxs-lookup"><span data-stu-id="0c226-182">Prepare hello graph configuration</span></span>
 
-1. <span data-ttu-id="fbfb0-183">Egy konfigurációs fájl létrehozása az Azure Cosmos DB kapcsolódási paraméterek és a Spark-beállításokkal, és hogy a `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-183">Create a configuration file with the Azure Cosmos DB connection parameters and Spark settings, and put it at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span></span>
+1. <span data-ttu-id="0c226-183">Egy konfigurációs fájl létrehozása hello Azure Cosmos DB kapcsolódási paraméterek és beállítások Spark, és helyezze a `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span><span class="sxs-lookup"><span data-stu-id="0c226-183">Create a configuration file with hello Azure Cosmos DB connection parameters and Spark settings, and put it at `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.</span></span>
 
     ```
     gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
@@ -278,7 +278,7 @@ ms.lasthandoff: 07/11/2017
     spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
     gremlin.spark.persistContext=true
 
-    # Classpath for the driver and executors
+    # Classpath for hello driver and executors
     spark.driver.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     spark.executor.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     
@@ -294,9 +294,9 @@ ms.lasthandoff: 07/11/2017
     spark.documentdb.preferredRegions=FILLIN
     ```
 
-2. <span data-ttu-id="fbfb0-184">Frissítés a `spark.driver.extraClassPath` és `spark.executor.extraClassPath` tartalmazza a JAR-fájlok, amelyek ebben az esetben terjesztve az előző lépésben kivételével könyvtárának `/home/sshuser/azure-documentdb-spark/*`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-184">Update the `spark.driver.extraClassPath` and `spark.executor.extraClassPath` to include the directory of the jars that you distributed in the previous step, in this case `/home/sshuser/azure-documentdb-spark/*`.</span></span>
+2. <span data-ttu-id="0c226-184">Frissítés hello `spark.driver.extraClassPath` és `spark.executor.extraClassPath` tooinclude hello könyvtárában hello JAR-fájlok kivételével, amelyek ebben az esetben elosztott hello a korábbi lépésben `/home/sshuser/azure-documentdb-spark/*`.</span><span class="sxs-lookup"><span data-stu-id="0c226-184">Update hello `spark.driver.extraClassPath` and `spark.executor.extraClassPath` tooinclude hello directory of hello jars that you distributed in hello previous step, in this case `/home/sshuser/azure-documentdb-spark/*`.</span></span>
 
-3. <span data-ttu-id="fbfb0-185">Azure Cosmos DB adja meg a következő adatokat:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-185">Provide the following details for Azure Cosmos DB:</span></span>
+3. <span data-ttu-id="0c226-185">Adja meg a következő adatok az Azure Cosmos DB hello:</span><span class="sxs-lookup"><span data-stu-id="0c226-185">Provide hello following details for Azure Cosmos DB:</span></span>
 
     ```
     spark.documentdb.Endpoint=https://FILLIN.documents.azure.com:443/
@@ -307,10 +307,10 @@ ms.lasthandoff: 07/11/2017
     #spark.documentdb.preferredRegions=West\ US;West\ US\ 2
     ```
    
-## <a name="load-the-tinkerpop-graph-and-save-it-to-azure-cosmos-db"></a><span data-ttu-id="fbfb0-186">A TinkerPop graph betölteni, és mentse azt az Azure Cosmos-Adatbázishoz</span><span class="sxs-lookup"><span data-stu-id="fbfb0-186">Load the TinkerPop graph, and save it to Azure Cosmos DB</span></span>
-<span data-ttu-id="fbfb0-187">Bemutatják, hogyan lehet egy grafikonon megőrizni az Azure Cosmos DB, ebben a példában a használja a TinkerPop TinkerPop modern graph előre definiált.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-187">To demonstrate how to persist a graph into Azure Cosmos DB, this example uses the TinkerPop predefined TinkerPop modern graph.</span></span> <span data-ttu-id="fbfb0-188">A grafikon Kryo formátumban tárolja, és a TinkerPop tárház találhatók.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-188">The graph is stored in Kryo format, and it's provided in the TinkerPop repository.</span></span>
+## <a name="load-hello-tinkerpop-graph-and-save-it-tooazure-cosmos-db"></a><span data-ttu-id="0c226-186">Hello TinkerPop graph betölteni, és mentse azt tooAzure Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="0c226-186">Load hello TinkerPop graph, and save it tooAzure Cosmos DB</span></span>
+<span data-ttu-id="0c226-187">toodemonstrate hogyan toopersist be Azure Cosmos DB, ebben a példában használt hello TinkerPop grafikon előre definiált TinkerPop modern grafikon.</span><span class="sxs-lookup"><span data-stu-id="0c226-187">toodemonstrate how toopersist a graph into Azure Cosmos DB, this example uses hello TinkerPop predefined TinkerPop modern graph.</span></span> <span data-ttu-id="0c226-188">hello graph Kryo formátumban tárolja, és hello TinkerPop tárház találhatók.</span><span class="sxs-lookup"><span data-stu-id="0c226-188">hello graph is stored in Kryo format, and it's provided in hello TinkerPop repository.</span></span>
 
-1. <span data-ttu-id="fbfb0-189">Mert Gremlin YARN módban futnak, meg kell nyitnia a Diagramadatok a Hadoop-fájlrendszer érhető el.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-189">Because you are running Gremlin in YARN mode, you must make the graph data available in the Hadoop file system.</span></span> <span data-ttu-id="fbfb0-190">Az alábbi parancsokkal könyvtár és a helyi graph fájl másolása.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-190">Use the following commands to make a directory and copy the local graph file into it.</span></span> 
+1. <span data-ttu-id="0c226-189">Mivel Gremlin YARN módban futtatja, meg kell nyitnia hello Diagramadatok hello Hadoop-fájlrendszer érhető el.</span><span class="sxs-lookup"><span data-stu-id="0c226-189">Because you are running Gremlin in YARN mode, you must make hello graph data available in hello Hadoop file system.</span></span> <span data-ttu-id="0c226-190">Használjon hello következő parancsokat toomake könyvtár és hello helyi graph fájl másolása bele.</span><span class="sxs-lookup"><span data-stu-id="0c226-190">Use hello following commands toomake a directory and copy hello local graph file into it.</span></span> 
 
     ```bash
     $ tinkerpop:
@@ -318,18 +318,18 @@ ms.lasthandoff: 07/11/2017
     hadoop fs -copyFromLocal ~/tinkerpop/data/tinkerpop-modern.kryo /graphData/tinkerpop-modern.kryo
     ```
 
-2. <span data-ttu-id="fbfb0-191">Ideiglenesen frissítése a `gremlin-spark.properties` használandó `GryoInputFormat` olvasni a diagramon.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-191">Temporarily update the `gremlin-spark.properties` file to use `GryoInputFormat` to read the graph.</span></span> <span data-ttu-id="fbfb0-192">Is utalhat `inputLocation` a könyvtárként hoz létre, mint a következőket:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-192">Also indicate `inputLocation` as the directory you create, as in the following:</span></span>
+2. <span data-ttu-id="0c226-191">Ideiglenesen frissítése hello `gremlin-spark.properties` toouse fájl `GryoInputFormat` tooread hello grafikon.</span><span class="sxs-lookup"><span data-stu-id="0c226-191">Temporarily update hello `gremlin-spark.properties` file toouse `GryoInputFormat` tooread hello graph.</span></span> <span data-ttu-id="0c226-192">Is utalhat `inputLocation` hello könyvtár hoz létre, mint hello következő:</span><span class="sxs-lookup"><span data-stu-id="0c226-192">Also indicate `inputLocation` as hello directory you create, as in hello following:</span></span>
 
     ```
     gremlin.hadoop.graphReader=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoInputFormat
     gremlin.hadoop.inputLocation=/graphData/tinkerpop-modern.kryo
     ```
 
-3. <span data-ttu-id="fbfb0-193">Indítsa el az Gremlin konzolját, és hozza létre az megőrizni az adatokat a konfigurált Azure Cosmos DB gyűjteményhez a következő számítási lépéseket:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-193">Start Gremlin Console, and then create the following computation steps to persist data to the configured Azure Cosmos DB collection:</span></span>  
+3. <span data-ttu-id="0c226-193">Indítsa el Gremlin konzolt, és hozzon létre a következő számítási lépéseket toopersist toohello konfigurált Azure Cosmos DB adatgyűjtés hello:</span><span class="sxs-lookup"><span data-stu-id="0c226-193">Start Gremlin Console, and then create hello following computation steps toopersist data toohello configured Azure Cosmos DB collection:</span></span>  
 
-    <span data-ttu-id="fbfb0-194">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-194">a.</span></span> <span data-ttu-id="fbfb0-195">A grafikon létrehozása `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-195">Create the graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span></span>
+    <span data-ttu-id="0c226-194">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-194">a.</span></span> <span data-ttu-id="0c226-195">Hozzon létre hello graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span><span class="sxs-lookup"><span data-stu-id="0c226-195">Create hello graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.</span></span>
 
-    <span data-ttu-id="fbfb0-196">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-196">b.</span></span> <span data-ttu-id="fbfb0-197">Használja a SparkGraphComputer írásra `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-197">Use SparkGraphComputer for writing `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span></span>
+    <span data-ttu-id="0c226-196">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-196">b.</span></span> <span data-ttu-id="0c226-197">Használja a SparkGraphComputer írásra `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span><span class="sxs-lookup"><span data-stu-id="0c226-197">Use SparkGraphComputer for writing `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.</span></span>
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -346,25 +346,25 @@ ms.lasthandoff: 07/11/2017
     ==>result[hadoopgraph[documentdbinputrdd->documentdboutputrdd],memory[size:1]]
     ```
 
-4. <span data-ttu-id="fbfb0-198">Az adatkezelő ellenőrizheti, hogy az adatokat az Azure Cosmos Adatbázishoz nincs megőrizve.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-198">From Data Explorer, you can verify that the data has been persisted to Azure Cosmos DB.</span></span>
+4. <span data-ttu-id="0c226-198">Data Explorer ellenőrizheti, hogy korábban már hello megőrzött tooAzure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="0c226-198">From Data Explorer, you can verify that hello data has been persisted tooAzure Cosmos DB.</span></span>
 
-## <a name="load-the-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a><span data-ttu-id="fbfb0-199">A grafikon betöltése az Azure Cosmos-Adatbázisból, és Gremlin lekérdezések futtatása</span><span class="sxs-lookup"><span data-stu-id="fbfb0-199">Load the graph from Azure Cosmos DB, and run Gremlin queries</span></span>
+## <a name="load-hello-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a><span data-ttu-id="0c226-199">Hello graph betöltése az Azure Cosmos-Adatbázisból, és Gremlin lekérdezések futtatása</span><span class="sxs-lookup"><span data-stu-id="0c226-199">Load hello graph from Azure Cosmos DB, and run Gremlin queries</span></span>
 
-1. <span data-ttu-id="fbfb0-200">A grafikon betöltéséhez szerkesztése `gremlin-spark.properties` beállítása `graphReader` való `DocumentDBInputRDD`:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-200">To load the graph, edit `gremlin-spark.properties` to set `graphReader` to `DocumentDBInputRDD`:</span></span>
+1. <span data-ttu-id="0c226-200">tooload hello graph-szerkesztése `gremlin-spark.properties` tooset `graphReader` túl`DocumentDBInputRDD`:</span><span class="sxs-lookup"><span data-stu-id="0c226-200">tooload hello graph, edit `gremlin-spark.properties` tooset `graphReader` too`DocumentDBInputRDD`:</span></span>
 
     ```
     gremlin.hadoop.graphReader=com.microsoft.azure.documentdb.spark.gremlin.DocumentDBInputRDD
     ```
 
-2. <span data-ttu-id="fbfb0-201">A grafikon betöltése, haladnak át az adatokat és Gremlin lekérdezéseket futtathat vele a következő módon:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-201">Load the graph, traverse the data, and run Gremlin queries with it by doing the following:</span></span>
+2. <span data-ttu-id="0c226-201">Betöltési hello diagramot, haladnak át hello adatok, lekérdezések és futtatása Gremlin vele hello következő tevékenységek végrehajtásával:</span><span class="sxs-lookup"><span data-stu-id="0c226-201">Load hello graph, traverse hello data, and run Gremlin queries with it by doing hello following:</span></span>
 
-    <span data-ttu-id="fbfb0-202">a.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-202">a.</span></span> <span data-ttu-id="fbfb0-203">Indítsa el a Gremlin konzolt `bin/gremlin.sh`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-203">Start the Gremlin Console `bin/gremlin.sh`.</span></span>
+    <span data-ttu-id="0c226-202">a.</span><span class="sxs-lookup"><span data-stu-id="0c226-202">a.</span></span> <span data-ttu-id="0c226-203">Indítsa el a hello Gremlin konzol `bin/gremlin.sh`.</span><span class="sxs-lookup"><span data-stu-id="0c226-203">Start hello Gremlin Console `bin/gremlin.sh`.</span></span>
 
-    <span data-ttu-id="fbfb0-204">b.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-204">b.</span></span> <span data-ttu-id="fbfb0-205">Hozzon létre a diagramon a konfigurációs `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-205">Create the graph with the configuration `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span></span>
+    <span data-ttu-id="0c226-204">b.</span><span class="sxs-lookup"><span data-stu-id="0c226-204">b.</span></span> <span data-ttu-id="0c226-205">Hozzon létre hello graph hello konfigurációs `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span><span class="sxs-lookup"><span data-stu-id="0c226-205">Create hello graph with hello configuration `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.</span></span>
 
-    <span data-ttu-id="fbfb0-206">c.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-206">c.</span></span> <span data-ttu-id="fbfb0-207">Hozzon létre egy grafikonon átjárás SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-207">Create a graph traversal with SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span></span>
+    <span data-ttu-id="0c226-206">c.</span><span class="sxs-lookup"><span data-stu-id="0c226-206">c.</span></span> <span data-ttu-id="0c226-207">Hozzon létre egy grafikonon átjárás SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span><span class="sxs-lookup"><span data-stu-id="0c226-207">Create a graph traversal with SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.</span></span>
 
-    <span data-ttu-id="fbfb0-208">d.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-208">d.</span></span> <span data-ttu-id="fbfb0-209">A következő Gremlin graph lekérdezések futtatása:</span><span class="sxs-lookup"><span data-stu-id="fbfb0-209">Run the following Gremlin graph queries:</span></span>
+    <span data-ttu-id="0c226-208">d.</span><span class="sxs-lookup"><span data-stu-id="0c226-208">d.</span></span> <span data-ttu-id="0c226-209">Futtassa a következő Gremlin graph lekérdezések hello:</span><span class="sxs-lookup"><span data-stu-id="0c226-209">Run hello following Gremlin graph queries:</span></span>
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -397,11 +397,11 @@ ms.lasthandoff: 07/11/2017
     ```
 
 > [!NOTE]
-> <span data-ttu-id="fbfb0-210">Részletesebb naplózás, állítsa be a napló szintjén lévő `conf/log4j-console.properties` részletesebb szintjét.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-210">To see more detailed logging, set the log level in `conf/log4j-console.properties` to a more verbose level.</span></span>
+> <span data-ttu-id="0c226-210">toosee részletesebb naplózás, hello naplózási szintjének beállítása az `conf/log4j-console.properties` tooa részletesebb szintjét.</span><span class="sxs-lookup"><span data-stu-id="0c226-210">toosee more detailed logging, set hello log level in `conf/log4j-console.properties` tooa more verbose level.</span></span>
 >
 
-## <a name="next-steps"></a><span data-ttu-id="fbfb0-211">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="fbfb0-211">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0c226-211">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="0c226-211">Next steps</span></span>
 
-<span data-ttu-id="fbfb0-212">A gyors üzembe helyezési cikkben Azure Cosmos DB és Spark kombinálásával diagramjait munkavégzés hogy megismerte.</span><span class="sxs-lookup"><span data-stu-id="fbfb0-212">In this quick-start article, you've learned how to work with graphs by combining Azure Cosmos DB and Spark.</span></span>
+<span data-ttu-id="0c226-212">A gyors üzembe helyezési cikkben hogy megismerte hogyan toowork rendelkező Azure Cosmos DB és Spark kombinálásával grafikonokon.</span><span class="sxs-lookup"><span data-stu-id="0c226-212">In this quick-start article, you've learned how toowork with graphs by combining Azure Cosmos DB and Spark.</span></span>
 
 > [!div class="nextstepaction"]

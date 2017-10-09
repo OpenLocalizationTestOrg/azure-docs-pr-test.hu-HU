@@ -1,12 +1,12 @@
 ---
-title: "Az Azure IoT - lecke 3 Connect Intel Edison (C): üzenetek küldése |} Microsoft Docs"
-description: "Regisztrálhat és futtathat a mintaalkalmazás, amely üzeneteket küld az IoT hub és a LED villogjon Intel Edison számára."
+title: "Connect Intel Edison (C) tooAzure IoT - lecke 3: üzenetek küldése |} Microsoft Docs"
+description: "Regisztrálhat és futtathat egy minta alkalmazás tooIntel Edison, amely tooyour IoT-központ üzeneteket küld, és villogjon-hello LED-jét."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "IOT felhőalapú szolgáltatás, arduino adatok felhőbe küldése"
+keywords: "az IOT felhőalapú szolgáltatás, arduino küldése adatok toocloud"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-intel-edison-kit-c-get-started
 ms.assetid: 12672b64-795a-4dfc-86fd-df53ed3eeef7
@@ -17,60 +17,60 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: d104618ebb37a19c83f161beceb5c71bc89bbb56
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 83615335027cc792b89d3894578fc3f7a55e5c37
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-a-sample-application-to-send-device-to-cloud-messages"></a><span data-ttu-id="8e750-104">Futtassa a mintaalkalmazást eszközről a felhőbe üzenetek küldése</span><span class="sxs-lookup"><span data-stu-id="8e750-104">Run a sample application to send device-to-cloud messages</span></span>
-## <a name="what-you-will-do"></a><span data-ttu-id="8e750-105">Mit fog</span><span class="sxs-lookup"><span data-stu-id="8e750-105">What you will do</span></span>
-<span data-ttu-id="8e750-106">Ez a cikk bemutatja, hogyan helyezhet üzembe és futtassa a mintaalkalmazást, amely üzeneteket küld az IoT hub Intel Edison.</span><span class="sxs-lookup"><span data-stu-id="8e750-106">This article will show you how to deploy and run a sample application on Intel Edison that sends messages to your IoT hub.</span></span> <span data-ttu-id="8e750-107">Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="8e750-107">If you have any problems, look for solutions on the [troubleshooting page][troubleshooting].</span></span>
+# <a name="run-a-sample-application-toosend-device-to-cloud-messages"></a><span data-ttu-id="940dd-104">Futtassa egy minta alkalmazás toosend eszközről a felhőbe üzenetek</span><span class="sxs-lookup"><span data-stu-id="940dd-104">Run a sample application toosend device-to-cloud messages</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="940dd-105">Mit fog</span><span class="sxs-lookup"><span data-stu-id="940dd-105">What you will do</span></span>
+<span data-ttu-id="940dd-106">Ez a cikk bemutatja, hogyan toodeploy, és futtassa a mintaalkalmazást az Intel Edison által küldött üzenetek tooyour IoT-központot.</span><span class="sxs-lookup"><span data-stu-id="940dd-106">This article will show you how toodeploy and run a sample application on Intel Edison that sends messages tooyour IoT hub.</span></span> <span data-ttu-id="940dd-107">Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshooting].</span><span class="sxs-lookup"><span data-stu-id="940dd-107">If you have any problems, look for solutions on hello [troubleshooting page][troubleshooting].</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="8e750-108">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="8e750-108">What you will learn</span></span>
-<span data-ttu-id="8e750-109">Megtudhatja, hogyan telepítheti, és futtassa a mintaalkalmazást C Edison gulp eszközzel.</span><span class="sxs-lookup"><span data-stu-id="8e750-109">You will learn how to use the gulp tool to deploy and run the sample C application on Edison.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="940dd-108">Amiről tanulni fog</span><span class="sxs-lookup"><span data-stu-id="940dd-108">What you will learn</span></span>
+<span data-ttu-id="940dd-109">Megtudhatja, hogyan toouse hello gulp eszköz toodeploy lesz, és C mintaalkalmazás hello futtatnak Edison.</span><span class="sxs-lookup"><span data-stu-id="940dd-109">You will learn how toouse hello gulp tool toodeploy and run hello sample C application on Edison.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="8e750-110">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="8e750-110">What you need</span></span>
-* <span data-ttu-id="8e750-111">Ez a feladat indítása előtt sikeresen végrehajtotta [hozzon létre egy Azure függvény alkalmazást és egy tárfiókot, feldolgozást és tárolást IoT hub üzenetek][process-and-store-iot-hub-messages].</span><span class="sxs-lookup"><span data-stu-id="8e750-111">Before you start this task, you must have successfully completed [Create an Azure function app and a storage account to process and store IoT hub messages][process-and-store-iot-hub-messages].</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="940dd-110">Mi szükséges</span><span class="sxs-lookup"><span data-stu-id="940dd-110">What you need</span></span>
+* <span data-ttu-id="940dd-111">Ez a feladat indítása előtt sikeresen végrehajtotta [hozzon létre egy Azure függvény alkalmazás és a tárolási fiók tooprocess és a tároló IoT-központ üzenetek][process-and-store-iot-hub-messages].</span><span class="sxs-lookup"><span data-stu-id="940dd-111">Before you start this task, you must have successfully completed [Create an Azure function app and a storage account tooprocess and store IoT hub messages][process-and-store-iot-hub-messages].</span></span>
 
-## <a name="get-your-iot-hub-and-device-connection-strings"></a><span data-ttu-id="8e750-112">Az IoT hub és az eszköz kapcsolati karakterláncok beolvasása</span><span class="sxs-lookup"><span data-stu-id="8e750-112">Get your IoT hub and device connection strings</span></span>
-<span data-ttu-id="8e750-113">Az eszköz kapcsolati karakterláncát Edison csatlakozni az IoT hub szolgál.</span><span class="sxs-lookup"><span data-stu-id="8e750-113">The device connection string is used to connect Edison to your IoT hub.</span></span> <span data-ttu-id="8e750-114">Az IoT hub kapcsolati karakterlánc az IoT hub csatlakozni az eszközidentitást az IoT hub Edison jelölő szolgál.</span><span class="sxs-lookup"><span data-stu-id="8e750-114">The IoT hub connection string is used to connect your IoT hub to the device identity that represents Edison in the IoT hub.</span></span>
+## <a name="get-your-iot-hub-and-device-connection-strings"></a><span data-ttu-id="940dd-112">Az IoT hub és az eszköz kapcsolati karakterláncok beolvasása</span><span class="sxs-lookup"><span data-stu-id="940dd-112">Get your IoT hub and device connection strings</span></span>
+<span data-ttu-id="940dd-113">hello eszköz kapcsolati karakterlánca használt tooconnect Edison tooyour IoT-központot.</span><span class="sxs-lookup"><span data-stu-id="940dd-113">hello device connection string is used tooconnect Edison tooyour IoT hub.</span></span> <span data-ttu-id="940dd-114">az IoT hub kapcsolati karakterlánc hello használt tooconnect az IoT hub toohello eszközidentitás hello IoT-központ Edison jelölő van.</span><span class="sxs-lookup"><span data-stu-id="940dd-114">hello IoT hub connection string is used tooconnect your IoT hub toohello device identity that represents Edison in hello IoT hub.</span></span>
 
-* <span data-ttu-id="8e750-115">Az erőforráscsoport az IoT hub listán a következő Azure CLI parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="8e750-115">List all your IoT hubs in your resource group by running the following Azure CLI command:</span></span>
+* <span data-ttu-id="940dd-115">Az erőforráscsoport az IoT hub listában hello Azure CLI parancs a következő futtatásával:</span><span class="sxs-lookup"><span data-stu-id="940dd-115">List all your IoT hubs in your resource group by running hello following Azure CLI command:</span></span>
 
 ```bash
 az iot hub list -g iot-sample --query [].name
 ```
 
-<span data-ttu-id="8e750-116">Használjon `iot-sample` értékeként `{resource group name}` Ha az érték nem módosítható.</span><span class="sxs-lookup"><span data-stu-id="8e750-116">Use `iot-sample` as the value of `{resource group name}` if you didn't change the value.</span></span>
+<span data-ttu-id="940dd-116">Használjon `iot-sample` hello értékeként `{resource group name}` Ha hello érték nem módosítható.</span><span class="sxs-lookup"><span data-stu-id="940dd-116">Use `iot-sample` as hello value of `{resource group name}` if you didn't change hello value.</span></span>
 
-* <span data-ttu-id="8e750-117">Az IoT hub kapcsolati karakterlánc lekéréséhez futtassa a következő Azure CLI-parancsot:</span><span class="sxs-lookup"><span data-stu-id="8e750-117">Get the IoT hub connection string by running the following Azure CLI command:</span></span>
+* <span data-ttu-id="940dd-117">Hello IoT hub kapcsolati karakterlánc lekéréséhez futtassa a következő parancs az Azure parancssori felület hello:</span><span class="sxs-lookup"><span data-stu-id="940dd-117">Get hello IoT hub connection string by running hello following Azure CLI command:</span></span>
 
 ```bash
 az iot hub show-connection-string --name {my hub name}
 ```
 
-<span data-ttu-id="8e750-118">`{my hub name}`az Ön által megadott nevét az IoT hub létrehozása, és ha a Edison regisztrálva van.</span><span class="sxs-lookup"><span data-stu-id="8e750-118">`{my hub name}` is the name that you specified when you created your IoT hub and registered Edison.</span></span>
+<span data-ttu-id="940dd-118">`{my hub name}`Ez az IoT hub létrehozása, és ha a Edison regisztrált megadott hello név.</span><span class="sxs-lookup"><span data-stu-id="940dd-118">`{my hub name}` is hello name that you specified when you created your IoT hub and registered Edison.</span></span>
 
-* <span data-ttu-id="8e750-119">Az eszköz kapcsolati karakterlánc lekéréséhez futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="8e750-119">Get the device connection string by running the following command:</span></span>
+* <span data-ttu-id="940dd-119">Hello eszköz kapcsolati karakterlánc beolvasása hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="940dd-119">Get hello device connection string by running hello following command:</span></span>
 
 ```bash
 az iot device show-connection-string --hub-name {my hub name} --device-id myinteledison
 ```
 
-<span data-ttu-id="8e750-120">Használjon `myinteledison` értékeként `{device id}` Ha az érték nem módosítható.</span><span class="sxs-lookup"><span data-stu-id="8e750-120">Use `myinteledison` as the value of `{device id}` if you didn't change the value.</span></span>
+<span data-ttu-id="940dd-120">Használjon `myinteledison` hello értékeként `{device id}` Ha hello érték nem módosítható.</span><span class="sxs-lookup"><span data-stu-id="940dd-120">Use `myinteledison` as hello value of `{device id}` if you didn't change hello value.</span></span>
 
-## <a name="configure-the-device-connection"></a><span data-ttu-id="8e750-121">Az eszköz kapcsolat konfigurálása</span><span class="sxs-lookup"><span data-stu-id="8e750-121">Configure the device connection</span></span>
-1. <span data-ttu-id="8e750-122">A konfigurációs fájl inicializálása a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="8e750-122">Initialize the configuration file by running the following commands:</span></span>
+## <a name="configure-hello-device-connection"></a><span data-ttu-id="940dd-121">Hello eszköz kapcsolat konfigurálása</span><span class="sxs-lookup"><span data-stu-id="940dd-121">Configure hello device connection</span></span>
+1. <span data-ttu-id="940dd-122">Hello konfigurációs fájl inicializálása hello a következő parancsok futtatásával:</span><span class="sxs-lookup"><span data-stu-id="940dd-122">Initialize hello configuration file by running hello following commands:</span></span>
 
    ```bash
    npm install
    gulp init
    ```
    > [!NOTE]
-   > <span data-ttu-id="8e750-123">Futtatás **gulp az install-eszközök** és, ha még nem meg lecke 1.</span><span class="sxs-lookup"><span data-stu-id="8e750-123">Run **gulp install-tools** as well, if you haven't done it in Lesson 1.</span></span>
+   > <span data-ttu-id="940dd-123">Futtatás **gulp az install-eszközök** és, ha még nem meg lecke 1.</span><span class="sxs-lookup"><span data-stu-id="940dd-123">Run **gulp install-tools** as well, if you haven't done it in Lesson 1.</span></span>
 
-2. <span data-ttu-id="8e750-124">Nyissa meg az eszköz konfigurációs fájlját `config-edison.json` a Visual Studio Code a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="8e750-124">Open the device configuration file `config-edison.json` in Visual Studio Code by running the following command:</span></span>
+2. <span data-ttu-id="940dd-124">Nyissa meg hello eszköz konfigurációs fájl `config-edison.json` a Visual Studio Code hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="940dd-124">Open hello device configuration file `config-edison.json` in Visual Studio Code by running hello following command:</span></span>
 
    ```bash
    # For Windows command prompt
@@ -82,32 +82,32 @@ az iot device show-connection-string --hub-name {my hub name} --device-id myinte
 
    ![Config.JSON](media/iot-hub-intel-edison-lessons/lesson3/config.png)
 
-3. <span data-ttu-id="8e750-126">Ellenőrizze a következő cserékhez a `config-edison.json` fájlt:</span><span class="sxs-lookup"><span data-stu-id="8e750-126">Make the following replacements in the `config-edison.json` file:</span></span>
+3. <span data-ttu-id="940dd-126">Ellenőrizze a következő cserékhez a hello hello `config-edison.json` fájlt:</span><span class="sxs-lookup"><span data-stu-id="940dd-126">Make hello following replacements in hello `config-edison.json` file:</span></span>
 
-   * <span data-ttu-id="8e750-127">Cserélje le **[eszköz állomásnév vagy IP-címe]** az eszköz konfigurálása során az lefelé megjelölt eszköz IP-címmel.</span><span class="sxs-lookup"><span data-stu-id="8e750-127">Replace **[device hostname or IP address]** with the device IP address you marked down when you configured your device.</span></span>
-   * <span data-ttu-id="8e750-128">Cserélje le **[IoT eszköz kapcsolati karakterlánc]** rendelkező a `device connection string` beszerzett.</span><span class="sxs-lookup"><span data-stu-id="8e750-128">Replace **[IoT device connection string]** with the `device connection string` you obtained.</span></span>
-   * <span data-ttu-id="8e750-129">Cserélje le **[IoT hub kapcsolati karakterlánc]** rendelkező a `iot hub connection string` beszerzett.</span><span class="sxs-lookup"><span data-stu-id="8e750-129">Replace **[IoT hub connection string]** with the `iot hub connection string` you obtained.</span></span>
+   * <span data-ttu-id="940dd-127">Cserélje le **[eszköz állomásnév vagy IP-címe]** hello eszköz IP-cím az eszköz konfigurálása során az lefelé jelölésű.</span><span class="sxs-lookup"><span data-stu-id="940dd-127">Replace **[device hostname or IP address]** with hello device IP address you marked down when you configured your device.</span></span>
+   * <span data-ttu-id="940dd-128">Cserélje le **[IoT eszköz kapcsolati karakterlánc]** a hello `device connection string` beszerzett.</span><span class="sxs-lookup"><span data-stu-id="940dd-128">Replace **[IoT device connection string]** with hello `device connection string` you obtained.</span></span>
+   * <span data-ttu-id="940dd-129">Cserélje le **[IoT hub kapcsolati karakterlánc]** a hello `iot hub connection string` beszerzett.</span><span class="sxs-lookup"><span data-stu-id="940dd-129">Replace **[IoT hub connection string]** with hello `iot hub connection string` you obtained.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="8e750-130">Nem kell `azure_storage_connection_string` ebben a cikkben.</span><span class="sxs-lookup"><span data-stu-id="8e750-130">You don't need `azure_storage_connection_string` in this article.</span></span> <span data-ttu-id="8e750-131">Tartsa a jelenlegi állapotában.</span><span class="sxs-lookup"><span data-stu-id="8e750-131">Keep it as is.</span></span>
+   > <span data-ttu-id="940dd-130">Nem kell `azure_storage_connection_string` ebben a cikkben.</span><span class="sxs-lookup"><span data-stu-id="940dd-130">You don't need `azure_storage_connection_string` in this article.</span></span> <span data-ttu-id="940dd-131">Tartsa a jelenlegi állapotában.</span><span class="sxs-lookup"><span data-stu-id="940dd-131">Keep it as is.</span></span>
 
-## <a name="deploy-and-run-the-sample-application"></a><span data-ttu-id="8e750-132">Regisztrálhat és futtathat a mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="8e750-132">Deploy and run the sample application</span></span>
-<span data-ttu-id="8e750-133">Telepíthet, és futtassa a mintaalkalmazást a Edison a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="8e750-133">Deploy and run the sample application on Edison by running the following command:</span></span>
+## <a name="deploy-and-run-hello-sample-application"></a><span data-ttu-id="940dd-132">Regisztrálhat és futtathat hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="940dd-132">Deploy and run hello sample application</span></span>
+<span data-ttu-id="940dd-133">Központi telepítése, és futtassa a mintaalkalmazást hello Edison hello a következő parancs futtatásával:</span><span class="sxs-lookup"><span data-stu-id="940dd-133">Deploy and run hello sample application on Edison by running hello following command:</span></span>
 
 ```bash
 gulp deploy && gulp run
 ```
 
-## <a name="verify-that-the-sample-application-works"></a><span data-ttu-id="8e750-134">Győződjön meg arról, hogy működik-e a mintaalkalmazáshoz</span><span class="sxs-lookup"><span data-stu-id="8e750-134">Verify that the sample application works</span></span>
-<span data-ttu-id="8e750-135">Két másodpercenként villogó Edison kapcsolódó LED kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="8e750-135">You should see the LED that is connected to Edison blinking every two seconds.</span></span> <span data-ttu-id="8e750-136">Minden alkalommal, amikor a LED villogjon, a mintaalkalmazást az IoT hub üzenetet küld, és ellenőrzi, hogy az üzenet már sikeresen elküldte az IoT hub.</span><span class="sxs-lookup"><span data-stu-id="8e750-136">Every time the LED blinks, the sample application sends a message to your IoT hub and verifies that the message has been successfully sent to your IoT hub.</span></span> <span data-ttu-id="8e750-137">Emellett minden üzenetet az IoT-központ fogadja a konzolablakban nyomtatása.</span><span class="sxs-lookup"><span data-stu-id="8e750-137">In addition, each message received by the IoT hub is printed in the console window.</span></span> <span data-ttu-id="8e750-138">A mintaalkalmazás automatikusan 20 üzenetek elküldése után leáll.</span><span class="sxs-lookup"><span data-stu-id="8e750-138">The sample application terminates automatically after sending 20 messages.</span></span>
+## <a name="verify-that-hello-sample-application-works"></a><span data-ttu-id="940dd-134">Győződjön meg arról, hogy működik-e hello mintaalkalmazás</span><span class="sxs-lookup"><span data-stu-id="940dd-134">Verify that hello sample application works</span></span>
+<span data-ttu-id="940dd-135">Hello LED-jét, amely két másodpercenként villogó csatlakoztatott tooEdison kell megjelennie.</span><span class="sxs-lookup"><span data-stu-id="940dd-135">You should see hello LED that is connected tooEdison blinking every two seconds.</span></span> <span data-ttu-id="940dd-136">Minden alkalommal, amikor villogjon-hello LED-jét, hello mintaalkalmazás üzenet tooyour IoT-központ küld, és ellenőrzi, hogy hello üzenet elküldése megtörtént tooyour IoT-központ.</span><span class="sxs-lookup"><span data-stu-id="940dd-136">Every time hello LED blinks, hello sample application sends a message tooyour IoT hub and verifies that hello message has been successfully sent tooyour IoT hub.</span></span> <span data-ttu-id="940dd-137">Emellett minden egyes hello IoT-központ által fogadott üzenet nyomtatása hello console ablakban.</span><span class="sxs-lookup"><span data-stu-id="940dd-137">In addition, each message received by hello IoT hub is printed in hello console window.</span></span> <span data-ttu-id="940dd-138">hello mintaalkalmazás automatikusan 20 üzenetek elküldése után leáll.</span><span class="sxs-lookup"><span data-stu-id="940dd-138">hello sample application terminates automatically after sending 20 messages.</span></span>
 
 ![A mintaalkalmazás küldött és fogadott üzenetek][sample-application-with-sent-and-received-messages]
 
-## <a name="summary"></a><span data-ttu-id="8e750-140">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="8e750-140">Summary</span></span>
-<span data-ttu-id="8e750-141">Már telepített, és futtassa a villogási új mintaalkalmazást az eszközről a felhőbe üzeneteket küldhet az IoT hub Edison.</span><span class="sxs-lookup"><span data-stu-id="8e750-141">You've deployed and run the new blink sample application on Edison to send device-to-cloud messages to your IoT hub.</span></span> <span data-ttu-id="8e750-142">Az üzenetek most szerint a tárfiók írás figyelje.</span><span class="sxs-lookup"><span data-stu-id="8e750-142">You now monitor your messages as they are written to the storage account.</span></span>
+## <a name="summary"></a><span data-ttu-id="940dd-140">Összefoglalás</span><span class="sxs-lookup"><span data-stu-id="940dd-140">Summary</span></span>
+<span data-ttu-id="940dd-141">Már telepített, és új villogási mintaalkalmazás hello futtatnak Edison toosend eszköz a felhőbe küldött üzeneteket tooyour IoT-központot.</span><span class="sxs-lookup"><span data-stu-id="940dd-141">You've deployed and run hello new blink sample application on Edison toosend device-to-cloud messages tooyour IoT hub.</span></span> <span data-ttu-id="940dd-142">Az üzenetek most szerint toohello tárfiók írás figyelje.</span><span class="sxs-lookup"><span data-stu-id="940dd-142">You now monitor your messages as they are written toohello storage account.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8e750-143">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="8e750-143">Next steps</span></span>
-<span data-ttu-id="8e750-144">[Az Azure Storage megőrzött üzenetek olvasása][read-messages-persisted-in-azure-storage]</span><span class="sxs-lookup"><span data-stu-id="8e750-144">[Read messages persisted in Azure Storage][read-messages-persisted-in-azure-storage]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="940dd-143">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="940dd-143">Next steps</span></span>
+<span data-ttu-id="940dd-144">[Az Azure Storage megőrzött üzenetek olvasása][read-messages-persisted-in-azure-storage]</span><span class="sxs-lookup"><span data-stu-id="940dd-144">[Read messages persisted in Azure Storage][read-messages-persisted-in-azure-storage]</span></span>
 <!-- Images and links -->
 
 [troubleshooting]: iot-hub-intel-edison-kit-c-troubleshooting.md

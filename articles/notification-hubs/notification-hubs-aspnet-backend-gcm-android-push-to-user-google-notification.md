@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel Android rendszerhez"
-description: "Megtudhatja, hogyan küldhetők leküldéses értesítések az Azure-ban a felhasználók számára. Androidhoz készült Java nyelven írt mintakódok"
+title: "Notification Hubs – felhasználók értesítése Android aaaAzure .NET-háttérrendszerrel"
+description: "Ismerje meg, toosend a leküldéses értesítések toousers az Azure-ban. Androidhoz készült Java nyelven írt mintakódok"
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,32 +14,32 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="43380-104">Az Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="43380-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
+# <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a><span data-ttu-id="27f24-104">Az Azure Notification Hubs – felhasználók értesítése .NET-háttérrendszerrel Android rendszerhez</span><span class="sxs-lookup"><span data-stu-id="27f24-104">Azure Notification Hubs Notify Users for Android with .NET backend</span></span>
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
-## <a name="overview"></a><span data-ttu-id="43380-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="43380-105">Overview</span></span>
-<span data-ttu-id="43380-106">Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűsíti a leküldéses értesítések mobil platformokhoz fogyasztói, valamint a vállalati alkalmazások eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="43380-106">Push notification support in Azure enables you to access an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies the implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="43380-107">Az oktatóanyag bemutatja, hogyan küldhetők az Azure Notification Hubs használatával leküldéses értesítések adott alkalmazásfelhasználónak, meghatározott eszközre.</span><span class="sxs-lookup"><span data-stu-id="43380-107">This tutorial shows you how to use Azure Notification Hubs to send push notifications to a specific app user on a specific device.</span></span> <span data-ttu-id="43380-108">ASP.NET WebAPI háttérrendszerből használt hitelesíti az ügyfeleket, és értesítéseket, ahogy az az útmutató témakör [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="43380-108">An ASP.NET WebAPI backend is used to authenticate clients and to generate notifications, as shown in the guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="43380-109">Ez az oktatóanyag épít, a létrehozott értesítési központot a [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.</span><span class="sxs-lookup"><span data-stu-id="43380-109">This tutorial builds on the notification hub that you created in the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
+## <a name="overview"></a><span data-ttu-id="27f24-105">Áttekintés</span><span class="sxs-lookup"><span data-stu-id="27f24-105">Overview</span></span>
+<span data-ttu-id="27f24-106">Leküldéses értesítési támogatás az Azure-ban lehetővé teszi tooaccess egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűbb a leküldéses értesítések a mobile fogyasztói, valamint a vállalati alkalmazások hello végrehajtása platformok.</span><span class="sxs-lookup"><span data-stu-id="27f24-106">Push notification support in Azure enables you tooaccess an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies hello implementation of push notifications for both consumer and enterprise applications for mobile platforms.</span></span> <span data-ttu-id="27f24-107">Ez az oktatóanyag toouse Azure Notification Hubs toosend a leküldéses értesítések tooa adott alkalmazás felhasználói az adott eszközön.</span><span class="sxs-lookup"><span data-stu-id="27f24-107">This tutorial shows you how toouse Azure Notification Hubs toosend push notifications tooa specific app user on a specific device.</span></span> <span data-ttu-id="27f24-108">ASP.NET WebAPI háttérrendszerből használt tooauthenticate ügyfelek és toogenerate értesítéseket, ahogy hello útmutatást a témakör az [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="27f24-108">An ASP.NET WebAPI backend is used tooauthenticate clients and toogenerate notifications, as shown in hello guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="27f24-109">Ez az oktatóanyag épít, hello hello létrehozott értesítési központot [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.</span><span class="sxs-lookup"><span data-stu-id="27f24-109">This tutorial builds on hello notification hub that you created in hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="43380-110">Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="43380-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
+> <span data-ttu-id="27f24-110">Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="27f24-110">This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).</span></span>
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-the-android-project"></a><span data-ttu-id="43380-111">Az Android-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="43380-111">Create the Android Project</span></span>
-<span data-ttu-id="43380-112">A következő lépés, ha az Android-alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="43380-112">The next step is to create the Android application.</span></span>
+## <a name="create-hello-android-project"></a><span data-ttu-id="27f24-111">Hello Android-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="27f24-111">Create hello Android Project</span></span>
+<span data-ttu-id="27f24-112">következő lépés hello toocreate hello Android-alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="27f24-112">hello next step is toocreate hello Android application.</span></span>
 
-1. <span data-ttu-id="43380-113">Kövesse a [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag létrehozásához, és állítsa be alkalmazását annak leküldéses értesítéseket a gcm-től.</span><span class="sxs-lookup"><span data-stu-id="43380-113">Follow the [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial to create and configure your app to receive push notifications from GCM.</span></span>
-2. <span data-ttu-id="43380-114">Nyissa meg a **res/layout/activity_main.xml** fájlt, cserélje le a következő tartalom definíciókkal.</span><span class="sxs-lookup"><span data-stu-id="43380-114">Open your **res/layout/activity_main.xml** file, replace the with the following content definitions.</span></span>
+1. <span data-ttu-id="27f24-113">Hajtsa végre a hello [Ismerkedés a Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag toocreate, és konfigurálja az alkalmazás tooreceive leküldéses értesítéseket a gcm-től.</span><span class="sxs-lookup"><span data-stu-id="27f24-113">Follow hello [Getting Started with Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial toocreate and configure your app tooreceive push notifications from GCM.</span></span>
+2. <span data-ttu-id="27f24-114">Nyissa meg a **res/layout/activity_main.xml** fájlt, hello cserélje le a következő tartalom definíciók hello.</span><span class="sxs-lookup"><span data-stu-id="27f24-114">Open your **res/layout/activity_main.xml** file, replace hello with hello following content definitions.</span></span>
    
-    <span data-ttu-id="43380-115">Ez biztosítja, hogy új EditText vezérlők felhasználóként van bejelentkezve.</span><span class="sxs-lookup"><span data-stu-id="43380-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="43380-116">Is mező a rendszer ad hozzá egy felhasználónév tag, értesítést küldünk része lesz:</span><span class="sxs-lookup"><span data-stu-id="43380-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
+    <span data-ttu-id="27f24-115">Ez biztosítja, hogy új EditText vezérlők felhasználóként van bejelentkezve.</span><span class="sxs-lookup"><span data-stu-id="27f24-115">This adds new EditText controls for logging in as a user.</span></span> <span data-ttu-id="27f24-116">Is mező a rendszer ad hozzá egy felhasználónév tag, értesítést küldünk része lesz:</span><span class="sxs-lookup"><span data-stu-id="27f24-116">Also a field is added for a username tag that will be part of notifications you send:</span></span>
    
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -122,7 +122,7 @@ ms.lasthandoff: 07/11/2017
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. <span data-ttu-id="43380-117">Nyissa meg a **res/values/strings.xml** fájlt, és cserélje le a `send_button` definícióját a következő sorokat, amely definiálja újra a karakterláncot a `send_button` , és adja hozzá a más vezérlők karakterláncok:</span><span class="sxs-lookup"><span data-stu-id="43380-117">Open your **res/values/strings.xml** file and replace the `send_button` definition with the following lines that redefine the string for the `send_button` and add strings for the other controls:</span></span>
+3. <span data-ttu-id="27f24-117">Nyissa meg a **res/values/strings.xml** fájlt, és cserélje le a hello `send_button` hello következőre definition sorok hello az újradefiniálás hello karakterláncokat `send_button` és hello karakterláncok más vezérlők hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="27f24-117">Open your **res/values/strings.xml** file and replace hello `send_button` definition with hello following lines that redefine hello string for hello `send_button` and add strings for hello other controls:</span></span>
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -132,10 +132,10 @@ ms.lasthandoff: 07/11/2017
             Recipient username tag
         </string>
    
-    <span data-ttu-id="43380-118">A main_activity.xml grafikus elrendezés most példához hasonló:</span><span class="sxs-lookup"><span data-stu-id="43380-118">Your main_activity.xml graphical layout should now look like this:</span></span>
+    <span data-ttu-id="27f24-118">A main_activity.xml grafikus elrendezés most példához hasonló:</span><span class="sxs-lookup"><span data-stu-id="27f24-118">Your main_activity.xml graphical layout should now look like this:</span></span>
    
     ![][A1]
-4. <span data-ttu-id="43380-119">Hozzon létre egy új osztályt **RegisterClient** azonos csomagban található a `MainActivity` osztály.</span><span class="sxs-lookup"><span data-stu-id="43380-119">Create a new class named **RegisterClient** in the same package as your `MainActivity` class.</span></span> <span data-ttu-id="43380-120">Az alábbi kódot használja az új osztály fájl.</span><span class="sxs-lookup"><span data-stu-id="43380-120">Use the code below for the new class file.</span></span>
+4. <span data-ttu-id="27f24-119">Hozzon létre egy új osztályt **RegisterClient** a hello azonos csomag a `MainActivity` osztály.</span><span class="sxs-lookup"><span data-stu-id="27f24-119">Create a new class named **RegisterClient** in hello same package as your `MainActivity` class.</span></span> <span data-ttu-id="27f24-120">Használja az alábbi hello kódot hello új osztály fájl.</span><span class="sxs-lookup"><span data-stu-id="27f24-120">Use hello code below for hello new class file.</span></span>
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ ms.lasthandoff: 07/11/2017
             }
         }
    
-    <span data-ttu-id="43380-121">Ez az összetevő valósítja meg a REST-hívások lépjen kapcsolatba a háttéralkalmazás regisztrálhat a leküldéses értesítések szükséges.</span><span class="sxs-lookup"><span data-stu-id="43380-121">This component implements the REST calls required to contact the app backend, in order to register for push notifications.</span></span> <span data-ttu-id="43380-122">Helyileg tárolja a *registrationIds* hozta létre az értesítési központnak a [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="43380-122">It also locally stores the *registrationIds* created by the Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="43380-123">Vegye figyelembe, hogy használja-e egy helyi storage-ban tárolt kattintva engedélyezési jogkivonatot a **jelentkezzen be** gombra.</span><span class="sxs-lookup"><span data-stu-id="43380-123">Note that it uses an authorization token stored in local storage when you click the **Log in** button.</span></span>
-5. <span data-ttu-id="43380-124">Az a `MainActivity` osztály távolítsa el, vagy a privát mezője megjegyzéssé `NotificationHub`, és a mező felvétele a `RegisterClient` osztály és az ASP.NET-háttérrendszerből végpont karakterláncnak.</span><span class="sxs-lookup"><span data-stu-id="43380-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for the `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="43380-125">Ügyeljen arra, hogy a csere `<Enter Your Backend Endpoint>` az a korábban beszerzett a tényleges háttér-végpontot.</span><span class="sxs-lookup"><span data-stu-id="43380-125">Be sure to replace `<Enter Your Backend Endpoint>` with the your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="43380-126">Például: `http://mybackend.azurewebsites.net`.</span><span class="sxs-lookup"><span data-stu-id="43380-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
+    <span data-ttu-id="27f24-121">Ez az összetevő hello REST hívások szükséges toocontact hello háttéralkalmazás, a rendelés tooregister a leküldéses értesítések valósítja meg.</span><span class="sxs-lookup"><span data-stu-id="27f24-121">This component implements hello REST calls required toocontact hello app backend, in order tooregister for push notifications.</span></span> <span data-ttu-id="27f24-122">Helyileg tárolja a hello *registrationIds* hello által létrehozott értesítési központot, ahogy az az [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span><span class="sxs-lookup"><span data-stu-id="27f24-122">It also locally stores hello *registrationIds* created by hello Notification Hub as detailed in [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).</span></span> <span data-ttu-id="27f24-123">Vegye figyelembe, hogy használja-e egy engedélyezési jogkivonatot hello kattintva helyi storage-ban tárolt **jelentkezzen be** gombra.</span><span class="sxs-lookup"><span data-stu-id="27f24-123">Note that it uses an authorization token stored in local storage when you click hello **Log in** button.</span></span>
+5. <span data-ttu-id="27f24-124">Az a `MainActivity` osztály távolítsa el, vagy a privát mezője megjegyzéssé `NotificationHub`, és hello mező felvétele `RegisterClient` osztály és az ASP.NET-háttérrendszerből végpont karakterláncnak.</span><span class="sxs-lookup"><span data-stu-id="27f24-124">In your `MainActivity` class remove or comment out your private field for `NotificationHub`, and add a field for hello `RegisterClient` class and a string for your ASP.NET backend's endpoint.</span></span> <span data-ttu-id="27f24-125">Lehet, hogy tooreplace `<Enter Your Backend Endpoint>` a hello a tényleges háttér-végpontot szerezte be korábban.</span><span class="sxs-lookup"><span data-stu-id="27f24-125">Be sure tooreplace `<Enter Your Backend Endpoint>` with hello your actual backend endpoint obtained previously.</span></span> <span data-ttu-id="27f24-126">Például: `http://mybackend.azurewebsites.net`.</span><span class="sxs-lookup"><span data-stu-id="27f24-126">For example, `http://mybackend.azurewebsites.net`.</span></span>
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. <span data-ttu-id="43380-127">Az a `MainActivity` osztály a a `onCreate` metódus, távolítsa el vagy megjegyzéssé inicializálása a `hub` mező, és a hívást a `registerWithNotificationHubs` metódus.</span><span class="sxs-lookup"><span data-stu-id="43380-127">In your `MainActivity` class, in the `onCreate` method, remove or comment out the initialization of the `hub` field and the call to the `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="43380-128">Majd adja hozzá a kódot példányának inicializálása a `RegisterClient` osztály.</span><span class="sxs-lookup"><span data-stu-id="43380-128">Then add code to initialize an instance of the `RegisterClient` class.</span></span> <span data-ttu-id="43380-129">A metódus a következő sorokat kell tartalmaznia:</span><span class="sxs-lookup"><span data-stu-id="43380-129">The method should contain the following lines:</span></span>
+1. <span data-ttu-id="27f24-127">Az a `MainActivity` osztály hello `onCreate` módszer, távolítsa el vagy hello hello inicializálása megjegyzéssé `hub` mező és hello hívás toohello `registerWithNotificationHubs` metódus.</span><span class="sxs-lookup"><span data-stu-id="27f24-127">In your `MainActivity` class, in hello `onCreate` method, remove or comment out hello initialization of hello `hub` field and hello call toohello `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="27f24-128">Majd adja hozzá a kódot tooinitialize hello példányának `RegisterClient` osztály.</span><span class="sxs-lookup"><span data-stu-id="27f24-128">Then add code tooinitialize an instance of hello `RegisterClient` class.</span></span> <span data-ttu-id="27f24-129">hello metódus hello a következő sorokat kell tartalmaznia:</span><span class="sxs-lookup"><span data-stu-id="27f24-129">hello method should contain hello following lines:</span></span>
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ ms.lasthandoff: 07/11/2017
    
             setContentView(R.layout.activity_main);
         }
-2. <span data-ttu-id="43380-130">Az a `MainActivity` osztály, törlése vagy a teljes megjegyzéssé `registerWithNotificationHubs` metódust.</span><span class="sxs-lookup"><span data-stu-id="43380-130">In your `MainActivity` class, delete or comment out the entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="43380-131">Ez az oktatóanyag nem használható.</span><span class="sxs-lookup"><span data-stu-id="43380-131">It will not be used in this tutorial.</span></span>
-3. <span data-ttu-id="43380-132">Adja hozzá a következő `import` utasítást, hogy a **MainActivity.java** fájlt.</span><span class="sxs-lookup"><span data-stu-id="43380-132">Add the following `import` statements to your **MainActivity.java** file.</span></span>
+2. <span data-ttu-id="27f24-130">Az a `MainActivity` osztály, törölje vagy teljes hello megjegyzéssé `registerWithNotificationHubs` metódust.</span><span class="sxs-lookup"><span data-stu-id="27f24-130">In your `MainActivity` class, delete or comment out hello entire `registerWithNotificationHubs` method.</span></span> <span data-ttu-id="27f24-131">Ez az oktatóanyag nem használható.</span><span class="sxs-lookup"><span data-stu-id="27f24-131">It will not be used in this tutorial.</span></span>
+3. <span data-ttu-id="27f24-132">Adja hozzá a következő hello `import` utasítások tooyour **MainActivity.java** fájlt.</span><span class="sxs-lookup"><span data-stu-id="27f24-132">Add hello following `import` statements tooyour **MainActivity.java** file.</span></span>
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ ms.lasthandoff: 07/11/2017
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. <span data-ttu-id="43380-133">Adja hozzá az alábbi módszerek kezelni a **jelentkezzen be** gombra kattintson esemény és leküldéses értesítések küldése.</span><span class="sxs-lookup"><span data-stu-id="43380-133">Then, add the following methods to handle the **Log in** button click event and sending push notifications.</span></span>
+4. <span data-ttu-id="27f24-133">Adja hozzá a következő módszerek toohandle hello hello **jelentkezzen be** gombra kattintson esemény és leküldéses értesítések küldése.</span><span class="sxs-lookup"><span data-stu-id="27f24-133">Then, add hello following methods toohandle hello **Log in** button click event and sending push notifications.</span></span>
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ ms.lasthandoff: 07/11/2017
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to register", e.getMessage());
+                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ ms.lasthandoff: 07/11/2017
         }
    
         /**
-         * This method calls the ASP.NET WebAPI backend to send the notification message
-         * to the platform notification service based on the pns parameter.
+         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
+         * toohello platform notification service based on hello pns parameter.
          *
-         * @param pns     The platform notification service to send the notification message to. Must
-         *                be one of the following ("wns", "gcm", "apns").
-         * @param userTag The tag for the user who will receive the notification message. This string
+         * @param pns     hello platform notification service toosend hello notification message to. Must
+         *                be one of hello following ("wns", "gcm", "apns").
+         * @param userTag hello tag for hello user who will receive hello notification message. This string
          *                must not contain spaces or special characters.
-         * @param message The notification message string. This string must include the double quotes
-         *                to be used as JSON content.
+         * @param message hello notification message string. This string must include hello double quotes
+         *                toobe used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ ms.lasthandoff: 07/11/2017
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ ms.lasthandoff: 07/11/2017
             }.execute(null, null, null);
         }
 
-    <span data-ttu-id="43380-134">A `login` kezelő-a **jelentkezzen be** gomb létrehoz egy egyszerű hitelesítés lexikális elem: a bemeneti felhasználónevét és jelszavát (vegye figyelembe, hogy a hitelesítési sémát használja bármely jogkivonat jelképez) használatával, majd használja `RegisterClient` számára a háttér hívja a regisztrációhoz.</span><span class="sxs-lookup"><span data-stu-id="43380-134">The `login` handler for the **Log in** button generates a basic authentication token using on the input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` to call the backend for registration.</span></span>
+    <span data-ttu-id="27f24-134">Hello `login` hello kezelője **jelentkezzen be** gomb létrehoz egy alapszintű hitelesítési jogkivonat használatával hello bemeneti felhasználónevét és jelszavát (vegye figyelembe, hogy a hitelesítési sémát használja bármely jogkivonat jelképez), majd használja `RegisterClient`toocall hello háttér regisztrációjához.</span><span class="sxs-lookup"><span data-stu-id="27f24-134">hello `login` handler for hello **Log in** button generates a basic authentication token using on hello input username and password (note that this represents any token your authentication scheme uses), then it uses `RegisterClient` toocall hello backend for registration.</span></span>
 
-    <span data-ttu-id="43380-135">A `sendPush` metódus meghívja a háttérkiszolgálón való biztonságos értesítést a felhasználót a felhasználói kód alapján.</span><span class="sxs-lookup"><span data-stu-id="43380-135">The `sendPush` method calls the backend to trigger a secure notification to the user based on the user tag.</span></span> <span data-ttu-id="43380-136">A platform notification szolgáltatáshoz `sendPush` célok függ a `pns` az átadott karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="43380-136">The platform notification service that `sendPush` targets depends on the `pns` string passed in.</span></span>
+    <span data-ttu-id="27f24-135">Hello `sendPush` metódushívások hello háttér tootrigger egy biztonságos értesítési toohello felhasználó hello felhasználói kód alapján.</span><span class="sxs-lookup"><span data-stu-id="27f24-135">hello `sendPush` method calls hello backend tootrigger a secure notification toohello user based on hello user tag.</span></span> <span data-ttu-id="27f24-136">hello platform notification szolgáltatáshoz `sendPush` célok függ hello `pns` az átadott karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="27f24-136">hello platform notification service that `sendPush` targets depends on hello `pns` string passed in.</span></span>
 
-1. <span data-ttu-id="43380-137">Az a `MainActivity` osztály, frissítse a `sendNotificationButtonOnClick` metódust kell meghívni a `sendPush` metódust használ a felhasználó kiválasztott platform értesítési szolgáltatások az alábbiak szerint.</span><span class="sxs-lookup"><span data-stu-id="43380-137">In your `MainActivity` class, update the `sendNotificationButtonOnClick` method to call the `sendPush` method with the user's selected platform notification services as follows.</span></span>
+1. <span data-ttu-id="27f24-137">Az a `MainActivity` osztály, a frissítés hello `sendNotificationButtonOnClick` metódus toocall hello `sendPush` jelölni platform értesítési szolgáltatások hello felhasználóval módszert az alábbiak szerint.</span><span class="sxs-lookup"><span data-stu-id="27f24-137">In your `MainActivity` class, update hello `sendNotificationButtonOnClick` method toocall hello `sendPush` method with hello user's selected platform notification services as follows.</span></span>
    
        /**
-        * Send Notification button click handler. This method sends the push notification
-        * message to each platform selected.
+        * Send Notification button click handler. This method sends hello push notification
+        * message tooeach platform selected.
         *
-        * @param v The view
+        * @param v hello view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ ms.lasthandoff: 07/11/2017
            }
        }
 
-## <a name="run-the-application"></a><span data-ttu-id="43380-138">Futtassa az alkalmazást</span><span class="sxs-lookup"><span data-stu-id="43380-138">Run the Application</span></span>
-1. <span data-ttu-id="43380-139">Futtassa az alkalmazást egy eszközön vagy az emulátor Android Studio segítségével.</span><span class="sxs-lookup"><span data-stu-id="43380-139">Run the application on a device or an emulator using Android Studio.</span></span>
-2. <span data-ttu-id="43380-140">Az Android-alkalmazás adja meg egy felhasználónevet és jelszót.</span><span class="sxs-lookup"><span data-stu-id="43380-140">In the Android app, enter a username and password.</span></span> <span data-ttu-id="43380-141">Mindkét legyen ugyanaz a karakterláncértéke, és azok nem tartalmazhat szóközt vagy speciális karaktereket.</span><span class="sxs-lookup"><span data-stu-id="43380-141">They must both be the same string value and they must not contain spaces or special characters.</span></span>
-3. <span data-ttu-id="43380-142">Kattintson az Android-alkalmazás **jelentkezzen be**.</span><span class="sxs-lookup"><span data-stu-id="43380-142">In the Android app, click **Log in**.</span></span> <span data-ttu-id="43380-143">Várjon, amíg egy bejelentési üzenet **naplózva a és a regisztrált**.</span><span class="sxs-lookup"><span data-stu-id="43380-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="43380-144">Ez lehetővé teszi a **értesítés küldése** gombra.</span><span class="sxs-lookup"><span data-stu-id="43380-144">This will enable the **Send Notification** button.</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="27f24-138">Hello alkalmazás futtatása</span><span class="sxs-lookup"><span data-stu-id="27f24-138">Run hello Application</span></span>
+1. <span data-ttu-id="27f24-139">Egy eszköz vagy az Android Studio segítségével emulátor hello alkalmazás futtatható.</span><span class="sxs-lookup"><span data-stu-id="27f24-139">Run hello application on a device or an emulator using Android Studio.</span></span>
+2. <span data-ttu-id="27f24-140">A hello Android-alkalmazás írja be a felhasználónevet és jelszót.</span><span class="sxs-lookup"><span data-stu-id="27f24-140">In hello Android app, enter a username and password.</span></span> <span data-ttu-id="27f24-141">Mindkét kell hello azonos karakterláncértéket, és nem a szóközt vagy speciális karaktereket kell tartalmaznia.</span><span class="sxs-lookup"><span data-stu-id="27f24-141">They must both be hello same string value and they must not contain spaces or special characters.</span></span>
+3. <span data-ttu-id="27f24-142">Hello Android-alkalmazás, kattintson **jelentkezzen be**.</span><span class="sxs-lookup"><span data-stu-id="27f24-142">In hello Android app, click **Log in**.</span></span> <span data-ttu-id="27f24-143">Várjon, amíg egy bejelentési üzenet **naplózva a és a regisztrált**.</span><span class="sxs-lookup"><span data-stu-id="27f24-143">Wait for a toast message that states **Logged in and registered**.</span></span> <span data-ttu-id="27f24-144">Ez lehetővé teszi a hello **értesítés küldése** gombra.</span><span class="sxs-lookup"><span data-stu-id="27f24-144">This will enable hello **Send Notification** button.</span></span>
    
     ![][A2]
-4. <span data-ttu-id="43380-145">Kattintson a váltógomb gombok esetében minden platform engedélyezése az alkalmazás futtatása, és a felhasználó regisztrált.</span><span class="sxs-lookup"><span data-stu-id="43380-145">Click the toggle buttons to enable all platforms where you have ran the app and registered a user.</span></span>
-5. <span data-ttu-id="43380-146">Adja meg a felhasználó nevét, akik szintén megkapják az értesítési üzenet.</span><span class="sxs-lookup"><span data-stu-id="43380-146">Enter the user's name that will receive the notification message.</span></span> <span data-ttu-id="43380-147">Az értesítések a céleszközökön meg regisztrálni kell, hogy a felhasználó.</span><span class="sxs-lookup"><span data-stu-id="43380-147">That user must be registered for notifications on the target devices.</span></span>
-6. <span data-ttu-id="43380-148">Adja meg a felhasználó számára a leküldéses értesítési üzenet fogadása az üzenetet.</span><span class="sxs-lookup"><span data-stu-id="43380-148">Enter a message for the user to receive as a push notification message.</span></span>
-7. <span data-ttu-id="43380-149">Kattintson a **értesítésküldés**.</span><span class="sxs-lookup"><span data-stu-id="43380-149">Click **Send Notification**.</span></span>  <span data-ttu-id="43380-150">Minden eszköz, amely rendelkezik a megfelelő felhasználónév címkével regisztráció a leküldéses értesítést fog kapni.</span><span class="sxs-lookup"><span data-stu-id="43380-150">Each device that has a registration with the matching username tag will receive the push notification.</span></span>
+4. <span data-ttu-id="27f24-145">Kattintson a hello váltása gombok tooenable esetében minden platform hello app futott, és a felhasználó regisztrált.</span><span class="sxs-lookup"><span data-stu-id="27f24-145">Click hello toggle buttons tooenable all platforms where you have ran hello app and registered a user.</span></span>
+5. <span data-ttu-id="27f24-146">Adja meg a hello felhasználónevet hello értesítési üzenetet fog kapni.</span><span class="sxs-lookup"><span data-stu-id="27f24-146">Enter hello user's name that will receive hello notification message.</span></span> <span data-ttu-id="27f24-147">Az értesítések hello céleszközökön meg regisztrálni kell, hogy a felhasználó.</span><span class="sxs-lookup"><span data-stu-id="27f24-147">That user must be registered for notifications on hello target devices.</span></span>
+6. <span data-ttu-id="27f24-148">Adjon meg egy üzenetet hello felhasználói tooreceive egy leküldéses értesítési üzenetet.</span><span class="sxs-lookup"><span data-stu-id="27f24-148">Enter a message for hello user tooreceive as a push notification message.</span></span>
+7. <span data-ttu-id="27f24-149">Kattintson a **értesítésküldés**.</span><span class="sxs-lookup"><span data-stu-id="27f24-149">Click **Send Notification**.</span></span>  <span data-ttu-id="27f24-150">Minden eszköz, amely rendelkezik egy regisztrációs hello megfelelő felhasználónév címkével ellátott hello leküldéses értesítést fog kapni.</span><span class="sxs-lookup"><span data-stu-id="27f24-150">Each device that has a registration with hello matching username tag will receive hello push notification.</span></span>
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

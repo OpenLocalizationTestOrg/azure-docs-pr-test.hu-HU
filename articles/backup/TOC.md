@@ -14,26 +14,26 @@
 ### Telepítés vagy frissítés
 #### [Azure Backup Server számítási feladatainak előkészítése az Azure Portalon](backup-azure-microsoft-azure-backup.md)
 #### [Azure Backup Server számítási feladatainak előkészítése a klasszikus portálon](backup-azure-microsoft-azure-backup-classic.md)
-#### [Tárterület hozzáadása az Azure Backup Serverhez](backup-mabs-add-storage.md)
-#### [Azure Backup Server frissítése a 2-es verzióra](backup-mabs-upgrade-to-v2.md)
+#### [Adja hozzá a tárolási tooAzure kiszolgáló biztonsági mentése](backup-mabs-add-storage.md)
+#### [Az Azure Backup Server toov.2 frissítése](backup-mabs-upgrade-to-v2.md)
 #### [Az Azure Backup Server felügyelet nélküli telepítése](backup-mabs-unattended-install.md)
 ### Számítási feladatok védelme
-#### [VMware-kiszolgáló biztonsági mentése az Azure Backup Server használatával](backup-azure-backup-server-vmware.md)
-#### [Az Exchange biztonsági mentése az Azure Backup Server használatával](backup-azure-exchange-mabs.md)
-#### [SharePoint-farm biztonsági mentése az Azure Backup Server használatával](backup-azure-backup-sharepoint-mabs.md)
-#### [Az SQL biztonsági mentése az Azure Backup Server használatával](backup-azure-sql-mabs.md)
+#### [Használja a VMware-kiszolgáló Azure Backup Server tooback](backup-azure-backup-server-vmware.md)
+#### [Használja az Azure Backup Server tooback Exchange mentése](backup-azure-exchange-mabs.md)
+#### [Azure Backup Server tooback elhasználja a SharePoint-farm.](backup-azure-backup-sharepoint-mabs.md)
+#### [Használja az Azure Backup Server tooback SQL mentése](backup-azure-sql-mabs.md)
 #### [A rendszer állapotának védelme és operációs rendszer nélküli helyreállítás](backup-mabs-system-state-and-bmr.md)
 ### [Adatok helyreállítása az Azure Backup Serverről](backup-azure-alternate-dpm-server.md)
 
 ## Azure-beli virtuális gépek
-### A virtuális gép előkészítése
+### Hello virtuális gép előkészítése
 #### [A Resource Managerrel üzembe helyezett virtuális gépek előkészítése](backup-azure-arm-vms-prepare.md)
 #### [Linux virtuális gépek alkalmazáskonzisztens biztonsági mentései](backup-azure-linux-app-consistent.md)
 #### [Az Azure-beli virtuális gépek előkészítése](backup-azure-vms-prepare.md)
 ### A környezet megtervezése
 #### [Virtuális gépek biztonsági mentési infrastruktúrájának tervezése](backup-azure-vms-introduction.md)
 ### Virtuális gépek biztonsági mentése
-#### [Azure-beli virtuális gépek biztonsági mentése Recovery Services-tárolóba](backup-azure-arm-vms.md)
+#### [Az Azure virtuális gépek biztonsági mentése tooa Recovery Services tároló](backup-azure-arm-vms.md)
 #### [Titkosított virtuális gépek biztonsági mentése](backup-azure-vms-encryption.md)
 #### [Azure-beli virtuális gépek biztonsági mentése](backup-azure-vms.md)
 ### Virtuális gépek kezelése és monitorozása
@@ -55,10 +55,10 @@
 ## Data Protection Manager
 ### [A DPM számítási feladatainak előkészítése az Azure Portalon](backup-azure-dpm-introduction.md)
 ### [A DPM számítási feladatainak előkészítése a klasszikus portálon](backup-azure-dpm-introduction-classic.md)
-### [A System Center DPM használata Exchange-kiszolgálók biztonsági mentéséhez](backup-azure-backup-exchange-server.md)
-### [Adatok helyreállítása egy másik DPM-kiszolgálóra](backup-azure-alternate-dpm-server.md)
-### [A DPM használata az SQL Server számítási feladatainak biztonsági mentéséhez](backup-azure-backup-sql.md)
-### [A DPM használata SharePoint-farmok biztonsági mentéséhez](backup-azure-backup-sharepoint.md)
+### [Használja a System Center DPM tooback Exchange-kiszolgáló](backup-azure-backup-exchange-server.md)
+### [Adatok tooan másodlagos DPM-kiszolgáló helyreállítása](backup-azure-alternate-dpm-server.md)
+### [SQL Server számítási feladatait mentése a DPM tooback használata](backup-azure-backup-sql.md)
+### [A DPM tooback felhasználásra a SharePoint-farm.](backup-azure-backup-sharepoint.md)
 
 ## A PowerShell használata
 ### [Azure-beli virtuális gépek az Azure Portalon](backup-azure-vms-automation.md)
@@ -77,23 +77,23 @@
 ## Windows Server
 ### [Windows Serveren lévő fájlok és mappák biztonsági mentése](backup-configure-vault.md)
 ### [A Windows Server rendszerállapotának biztonsági mentése](backup-azure-system-state.md)
-### [Azure-beli fájlok helyreállítása Windows Serverre](backup-azure-restore-windows-server.md)
+### [A kiszolgáló Azure tooWindows fájlok helyreállítása](backup-azure-restore-windows-server.md)
 ### [A Windows Server rendszerállapotának visszaállítása](backup-azure-restore-system-state.md)
 ### [Recovery Services-tárolók figyelése és kezelése](backup-azure-manage-windows-server.md)
-### Biztonsági mentés és visszaállítás a klasszikus portállal
-#### [Klasszikus üzemi modellt használó Windows Server](backup-configure-vault-classic.md)
-#### [Backup-tárolók kezelése a klasszikus üzemi modellel](backup-azure-manage-windows-server-classic.md)
-#### [Fájlok helyreállítása a Windows-kiszolgálóra a klasszikus üzemi modell használatával](backup-azure-restore-windows-server-classic.md)
+### Biztonsági mentése és visszaállítása hello klasszikus portál használatával
+#### [Windows Server hello klasszikus telepítési modell segítségével](backup-configure-vault-classic.md)
+#### [Hello klasszikus üzembe helyezési modellt használó biztonsági mentési tárolók kezelése](backup-azure-manage-windows-server-classic.md)
+#### [Fájlok tooa Windows Server helyreállítása hello klasszikus telepítési modell segítségével](backup-azure-restore-windows-server-classic.md)
 
 ## Recovery Services-tároló
 ### [A Recovery Services-tárolók áttekintése](backup-azure-recovery-services-vault-overview.md)
-### [Backup tároló frissítése Recovery Services-tárolóra](backup-azure-upgrade-backup-to-recovery-services.md)
+### [A biztonsági mentési tároló tooRecovery Services-tároló frissítése](backup-azure-upgrade-backup-to-recovery-services.md)
 ### [Recovery Services-tároló törlése](backup-azure-delete-vault.md)
 
 ## Hibaelhárítás
 ### [Azure-beli virtuális gép biztonsági mentésével kapcsolatos problémák az Azure Portalon](backup-azure-vms-troubleshoot.md)
 ### [Azure-beli virtuális gép biztonsági mentésével kapcsolatos problémák a klasszikus portálon](backup-azure-vms-troubleshoot-classic.md)
-### [Azure-beli virtuális gép mentése sikertelen: nem sikerült kommunikálni a virtuálisgép-ügynökkel a pillanatkép-állapot lekérése érdekében – a virtuális gép részfeladat időtúllépést okozott](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
+### [Az Azure virtuális gép biztonsági mentése sikertelen: nem tudott kommunikálni a Virtuálisgép-ügynök hello pillanatkép állapot - pillanatkép VM sub feladat időtúllépésbe került.](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
 ### [Az Azure Backup-fájlok és -mappák lassú biztonsági mentése](backup-azure-troubleshoot-slow-backup-performance-issue.md)
 ### [Az Azure Backup Server hibaelhárítása](backup-azure-mabs-troubleshoot.md)
 

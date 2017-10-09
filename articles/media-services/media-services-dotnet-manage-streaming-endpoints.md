@@ -1,6 +1,6 @@
 ---
-title: "Adatfolyam-végpontokat kezelheti a .NET SDK-val. | Microsoft Docs"
-description: "Ez a témakör azt ismerteti, hogyan adatfolyam-végpontokat kezelheti a az Azure-portálon."
+title: "adatfolyam-végpontok .NET SDK-val aaaManage. | Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan toomanage streamvégpontok a hello Azure-portálon."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 2f4f464f8604b6f453d6b50b736c6a3a889a3408
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30c092a8ebf4e2b2902392f4cf98f46d812ccdbc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-streaming-endpoints-with-net-sdk"></a><span data-ttu-id="06ba0-104">.NET SDK-val adatfolyam-továbbítási végpontok kezelése</span><span class="sxs-lookup"><span data-stu-id="06ba0-104">Manage streaming endpoints with .NET SDK</span></span>
+# <a name="manage-streaming-endpoints-with-net-sdk"></a><span data-ttu-id="6190a-104">.NET SDK-val adatfolyam-továbbítási végpontok kezelése</span><span class="sxs-lookup"><span data-stu-id="6190a-104">Manage streaming endpoints with .NET SDK</span></span>
 
 >[!NOTE]
-><span data-ttu-id="06ba0-105">Mindenképpen tekintse át a [áttekintése](media-services-streaming-endpoints-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="06ba0-105">Make sure to review the [overview](media-services-streaming-endpoints-overview.md) topic.</span></span> <span data-ttu-id="06ba0-106">Ezenkívül tekintse át a [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).</span><span class="sxs-lookup"><span data-stu-id="06ba0-106">Also, review [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).</span></span>
+><span data-ttu-id="6190a-105">Győződjön meg arról, hogy tooreview hello [áttekintése](media-services-streaming-endpoints-overview.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="6190a-105">Make sure tooreview hello [overview](media-services-streaming-endpoints-overview.md) topic.</span></span> <span data-ttu-id="6190a-106">Ezenkívül tekintse át a [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).</span><span class="sxs-lookup"><span data-stu-id="6190a-106">Also, review [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).</span></span>
 
-<span data-ttu-id="06ba0-107">Ebben a témakörben a kód bemutatja, hogyan hajtsa végre a következő feladatokat az Azure Media Services .NET SDK használatával:</span><span class="sxs-lookup"><span data-stu-id="06ba0-107">The code in this topic shows how to do the following tasks using the Azure Media Services .NET SDK:</span></span>
+<span data-ttu-id="6190a-107">Ebben a témakörben hello kód bemutatja, hogyan toodo hello a következő feladatok segítségével hello Azure Media Services .NET SDK:</span><span class="sxs-lookup"><span data-stu-id="6190a-107">hello code in this topic shows how toodo hello following tasks using hello Azure Media Services .NET SDK:</span></span>
 
-- <span data-ttu-id="06ba0-108">Vizsgálja meg az alapértelmezett streamvégpontból.</span><span class="sxs-lookup"><span data-stu-id="06ba0-108">Examine the default streaming endpoint.</span></span>
-- <span data-ttu-id="06ba0-109">Új streamvégpont létrehozása/felvétele.</span><span class="sxs-lookup"><span data-stu-id="06ba0-109">Create/add new streaming endpoint.</span></span>
+- <span data-ttu-id="6190a-108">Vizsgálja meg a hello alapértelmezett streamvégpontra.</span><span class="sxs-lookup"><span data-stu-id="6190a-108">Examine hello default streaming endpoint.</span></span>
+- <span data-ttu-id="6190a-109">Új streamvégpont létrehozása/felvétele.</span><span class="sxs-lookup"><span data-stu-id="6190a-109">Create/add new streaming endpoint.</span></span>
 
-    <span data-ttu-id="06ba0-110">Érdemes több adatfolyam-továbbítási végpontok is, ha azt tervezi, hogy a különböző tartalomtovábbító vagy a CDN és a közvetlen hozzáférést.</span><span class="sxs-lookup"><span data-stu-id="06ba0-110">You might want to have multiple streaming endpoints if you plan to have different CDNs or a CDN and direct access.</span></span>
+    <span data-ttu-id="6190a-110">Érdemes lehet toohave több adatfolyam-továbbítási végpontok Ha azt tervezi, hogy toohave különböző tartalomtovábbító vagy a CDN és a közvetlen hozzáférést.</span><span class="sxs-lookup"><span data-stu-id="6190a-110">You might want toohave multiple streaming endpoints if you plan toohave different CDNs or a CDN and direct access.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="06ba0-111">Csak számlázása, amikor a Streamvégpontot futó állapotban van.</span><span class="sxs-lookup"><span data-stu-id="06ba0-111">You are only billed when your Streaming Endpoint is in running state.</span></span>
+    > <span data-ttu-id="6190a-111">Csak számlázása, amikor a Streamvégpontot futó állapotban van.</span><span class="sxs-lookup"><span data-stu-id="6190a-111">You are only billed when your Streaming Endpoint is in running state.</span></span>
     
-- <span data-ttu-id="06ba0-112">Az adatfolyam-továbbítási végpontjának frissítése.</span><span class="sxs-lookup"><span data-stu-id="06ba0-112">Update the streaming endpoint.</span></span>
+- <span data-ttu-id="6190a-112">Adatfolyam-továbbítási végpontra hello frissítése.</span><span class="sxs-lookup"><span data-stu-id="6190a-112">Update hello streaming endpoint.</span></span>
     
-    <span data-ttu-id="06ba0-113">Ellenőrizze, hogy Update() függvény.</span><span class="sxs-lookup"><span data-stu-id="06ba0-113">Make sure to call the Update() function.</span></span>
+    <span data-ttu-id="6190a-113">Győződjön meg arról, hogy toocall hello Update() függvény.</span><span class="sxs-lookup"><span data-stu-id="6190a-113">Make sure toocall hello Update() function.</span></span>
 
-- <span data-ttu-id="06ba0-114">Az adatfolyam-továbbítási végpontjának törlése.</span><span class="sxs-lookup"><span data-stu-id="06ba0-114">Delete the streaming endpoint.</span></span>
+- <span data-ttu-id="6190a-114">Adatfolyam-továbbítási végpontra hello törlése.</span><span class="sxs-lookup"><span data-stu-id="6190a-114">Delete hello streaming endpoint.</span></span>
 
     >[!NOTE]
-    ><span data-ttu-id="06ba0-115">Az alapértelmezett streamvégpontból nem lehet törölni.</span><span class="sxs-lookup"><span data-stu-id="06ba0-115">The default streaming endpoint cannot be deleted.</span></span>
+    ><span data-ttu-id="6190a-115">hello alapértelmezett streamvégpontból nem lehet törölni.</span><span class="sxs-lookup"><span data-stu-id="6190a-115">hello default streaming endpoint cannot be deleted.</span></span>
 
-<span data-ttu-id="06ba0-116">A streamvégpont méretezése kapcsolatos információkért lásd: [ez](media-services-portal-scale-streaming-endpoints.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="06ba0-116">For information about how to scale the streaming endpoint, see [this](media-services-portal-scale-streaming-endpoints.md) topic.</span></span>
+<span data-ttu-id="6190a-116">Hogyan tooscale hello streamvégpont kapcsolatos információkért lásd: [ez](media-services-portal-scale-streaming-endpoints.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="6190a-116">For information about how tooscale hello streaming endpoint, see [this](media-services-portal-scale-streaming-endpoints.md) topic.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="06ba0-117">Egy Visual Studio-projekt létrehozása és konfigurálása</span><span class="sxs-lookup"><span data-stu-id="06ba0-117">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="6190a-117">Egy Visual Studio-projekt létrehozása és konfigurálása</span><span class="sxs-lookup"><span data-stu-id="6190a-117">Create and configure a Visual Studio project</span></span>
 
-<span data-ttu-id="06ba0-118">Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint.</span><span class="sxs-lookup"><span data-stu-id="06ba0-118">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+<span data-ttu-id="6190a-118">A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="6190a-118">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-## <a name="add-code-that-manages-streaming-endpoints"></a><span data-ttu-id="06ba0-119">Adja hozzá a kódot, amely adatfolyam-továbbítási végpontok kezelése</span><span class="sxs-lookup"><span data-stu-id="06ba0-119">Add code that manages streaming endpoints</span></span>
+## <a name="add-code-that-manages-streaming-endpoints"></a><span data-ttu-id="6190a-119">Adja hozzá a kódot, amely adatfolyam-továbbítási végpontok kezelése</span><span class="sxs-lookup"><span data-stu-id="6190a-119">Add code that manages streaming endpoints</span></span>
     
-<span data-ttu-id="06ba0-120">Cserélje le a Program.cs lévő kódot az alábbi kódra:</span><span class="sxs-lookup"><span data-stu-id="06ba0-120">Replace the code in the Program.cs with the following code:</span></span>
+<span data-ttu-id="6190a-120">Cserélje le a hello Program.cs hello kód hello a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="6190a-120">Replace hello code in hello Program.cs with hello following code:</span></span>
 
     using System;
     using System.Configuration;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -132,11 +132,11 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-steps"></a><span data-ttu-id="06ba0-121">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="06ba0-121">Next steps</span></span>
-<span data-ttu-id="06ba0-122">Tekintse át a Media Services képzési terveket.</span><span class="sxs-lookup"><span data-stu-id="06ba0-122">Review Media Services learning paths.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6190a-121">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="6190a-121">Next steps</span></span>
+<span data-ttu-id="6190a-122">Tekintse át a Media Services képzési terveket.</span><span class="sxs-lookup"><span data-stu-id="6190a-122">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="06ba0-123">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="06ba0-123">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="6190a-123">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="6190a-123">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

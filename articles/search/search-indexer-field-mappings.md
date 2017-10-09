@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Search indexelők mező hozzárendelések"
-description: "Konfigurálja a fiókot használja a mezőnevek és az adatok felelősséget Azure keresési indexelő mező leképezései"
+title: "az Azure Search indexelők aaaField hozzárendelések"
+description: "Azure keresési indexelő mező hozzárendelések tooaccount mező nevét és az adatok felelősséget különbségeit konfigurálása"
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,31 +14,31 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/27/2016
 ms.author: eugenesh
-ms.openlocfilehash: 57e91f070d9a42882a56e708f12b1ce238ed9191
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 009d5dbc12cb9e8d9cfd3e8042e907ca88399ad7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="field-mappings-in-azure-search-indexers"></a>Az Azure Search indexelők mező hozzárendelések
-Azure keresési indexelő használatához alkalmanként található saját kezűleg olyan esetekben, ahol a bemeneti adatok nem teljesen felel meg a sémának a cél index. Ezekben az esetekben használható **hozzárendelések mezőben** az adatok átalakítására be a kívánt alakot.
+Azure keresési indexelő használatához alkalmanként található saját kezűleg olyan esetekben, ahol a bemeneti adatok nem elég egyezik meg a célként megadott index hello séma. Ezekben az esetekben használható **hozzárendelések mezőben** tootransform a hello adatimportáláshoz szükséges alakú.
 
 Bizonyos esetekben, ahol mező hozzárendelések hasznosak:
 
-* Az adatforrás rendelkezik egy mező `_id`, de Azure Search aláhúzásjellel kezdődő mezőnevek nem engedélyezi. A mező leképezéseket "átnevezése" mező teszi lehetővé.
-* Az azonos adatok forrás adatokhoz, például több mezőt feltöltéséhez, mert különböző elemzőkkel mezőkhöz alkalmazni kívánt szeretné. Mező hozzárendelések lehetővé teszik, hogy a "ágaztassa" egy adatforrás mezője.
-* Meg kell Base64 kódolása vagy az adatok dekódolására. Mező hozzárendelések támogatja több **funkciók leképezési**, többek között a következőket funkciók a Base64 kódolási és dekódolási.   
+* Az adatforrás rendelkezik egy mező `_id`, de Azure Search aláhúzásjellel kezdődő mezőnevek nem engedélyezi. Egy mező hozzárendelése lehetővé teszi, hogy túl "" mező átnevezése.
+* Azt szeretné, hogy több mezőjének hello tárgymutató hello toopopulate ugyanazon adatforrás-adatok, például szeretné tooapply különböző elemzőkkel toothose mezőket. Mező hozzárendelések lehetővé teszik, hogy a "ágaztassa" egy adatforrás mezője.
+* TooBase64 kell kódolni, vagy az adatok dekódolására. Mező hozzárendelések támogatja több **funkciók leképezési**, többek között a következőket funkciók a Base64 kódolási és dekódolási.   
 
 ## <a name="setting-up-field-mappings"></a>Mezők leképezésének beállítása
-Egy új indexelő használatával létrehozásakor mező leképezéseket adhat hozzá a [létrehozása indexelő](https://msdn.microsoft.com/library/azure/dn946899.aspx) API. A mező leképezése egy indexelő indexelő használatával kezelheti a [frissítés indexelő](https://msdn.microsoft.com/library/azure/dn946892.aspx) API.
+Mező leképezéseket adhat hozzá, amikor hoz létre egy új indexelő hello segítségével [létrehozása indexelő](https://msdn.microsoft.com/library/azure/dn946899.aspx) API. Kezelheti az indexelési indexelő hello segítségével mező leképezése [frissítés indexelő](https://msdn.microsoft.com/library/azure/dn946892.aspx) API.
 
 A mező leképezéseket 3 részből áll:
 
 1. A `sourceFieldName`, amely jelzi, hogy egy mező az adatforrásban. E tulajdonság megadása kötelező.
-2. Egy nem kötelező `targetFieldName`, amely jelöli az search-index mező. Ha nincs megadva, ahogy az adatforrás neve szolgál.
-3. Egy nem kötelező `mappingFunction`, amely alakíthatja át az adatokat több egyikének használatával, előre definiált funkciók. A funkciók teljes listája [alatt](#mappingFunctions).
+2. Egy nem kötelező `targetFieldName`, amely jelöli az search-index mező. Ha nincs megadva, hello nevükkel hello adatforrás használja.
+3. Egy nem kötelező `mappingFunction`, amely alakíthatja át az adatokat több egyikének használatával, előre definiált funkciók. hello funkciók teljes listája [alatt](#mappingFunctions).
 
-Mezők hozzárendelések hozzáadódnak a `fieldMappings` tömb az indexelő-definícióban.
+Mezők leképezéseket ad hozzá toohello `fieldMappings` hello indexelő definition tömbhöz.
 
 Például ez hogyan úgy tud megfelelni mezőnevek különbségek:
 
@@ -65,7 +65,7 @@ Az indexelő rendelkezhet több mező leképezést. Ha például az alábbiakban
 ```
 
 > [!NOTE]
-> Az Azure Search nem betűérzékeny összehasonlító mező leképezései mező és függvény nevek feloldására használ. Ez kényelmes (nincs beolvasandó minden a kis-és jobb oldali), de azt jelenti, hogy az adatforrás vagy az index nem térnek el egymástól csak eset mezőket.  
+> Az Azure Search tooresolve hello mező és függvények nevei nem betűérzékeny összehasonlító mező leképezései használja. Ez kényelmes (nincs tooget összes hello kis-és jobb oldali), de azt jelenti, hogy az adatforrás vagy az index nem térnek el egymástól csak eset mezőket.  
 >
 >
 
@@ -82,10 +82,10 @@ Ezek a függvények jelenleg támogatottak:
 <a name="base64EncodeFunction"></a>
 
 ### <a name="base64encode"></a>base64Encode
-Hajt végre *URL-cím szálbiztos* Base64 kódolást a bemeneti karakterlánc. Feltételezi, hogy a bemeneti UTF-8 kódolású.
+Hajt végre *URL-cím szálbiztos* Base64 kódolást hello a bemeneti karakterlánc. Feltételezi, hogy hello bemeneti UTF-8 kódolású.
 
 #### <a name="sample-use-case"></a>Példa használati eset
-Egy Azure Search dokumentum kulcs csak a biztonságos URL-cím karakterek jelenhetnek meg (mivel az ügyfelek kell lennie arra, hogy a dokumentum a keresési API-t, például használata). Ha az adatok URL-cím nem biztonságos karaktereket tartalmaz, és töltse fel adatokkal a keresési index kulcsmező használandó, a függvény használható.   
+Csak biztonságos URL-cím karakterek megjelenhet egy Azure Search-dokumentum kulcsot (mivel az ügyfelek képesek tooaddress hello dokumentum hello keresési API-t, például kell lennie). Ha az adatok URL-cím nem biztonságos karaktereket tartalmaz, és azt szeretné, hogy toouse azt toopopulate egy kulcsmező az search-index használja ezt a funkciót.   
 
 #### <a name="example"></a>Példa
 ```JSON
@@ -101,10 +101,10 @@ Egy Azure Search dokumentum kulcs csak a biztonságos URL-cím karakterek jelenh
 <a name="base64DecodeFunction"></a>
 
 ### <a name="base64decode"></a>base64Decode
-Elvégzi a Base64 dekódolás a bemeneti karakterlánc. A bemeneti feltételezett, hogy egy *URL-cím szálbiztos* Base64 kódolású karakterlánc.
+Elvégzi a Base64 dekódolás hello bemeneti karakterlánc. hello bemeneti feltételezett tooa *URL-cím szálbiztos* Base64 kódolású karakterlánc.
 
 #### <a name="sample-use-case"></a>Példa használati eset
-A BLOB egyéni metaadat értékeknek kell lenniük ASCII-kódolású. Base64 kódolás használatával tetszőleges Unicode karakterláncok blob egyéni metaadatokban képviseli. Azonban ahhoz, hogy a keresés kifejező, a funkció használata kapcsolja be a kódolt adatok vissza "rendszeres" karakterláncok azokat a keresési index való feltöltésekor.  
+A BLOB egyéni metaadat értékeknek kell lenniük ASCII-kódolású. A blob egyéni metaadat Base64 kódolás toorepresent tetszőleges Unicode karakterláncok is használhatja. Azonban toomake keresési értelmezhető, is használhatja a függvény tooturn hello kódolású adatokat vissza "rendszeres" karakterláncot az search-index való feltöltésekor.  
 
 #### <a name="example"></a>Példa
 ```JSON
@@ -120,16 +120,16 @@ A BLOB egyéni metaadat értékeknek kell lenniük ASCII-kódolású. Base64 kó
 <a name="extractTokenAtPositionFunction"></a>
 
 ### <a name="extracttokenatposition"></a>extractTokenAtPosition
-Felosztja a mezőnek a megadott elválasztó használatával, és a token szerzi az eredményül kapott felosztása a megadott helyen.
+Hello segítségével mezőnek a megadott elválasztó és kivételezések hello token a elágazást hello hello eredményül kapott felosztása a megadott pozíciónál.
 
-Például, ha a bemeneti `Jane Doe`, a `delimiter` van `" "`(hely) és a `position` 0, az eredmény `Jane`; Ha a `position` 1, az eredmény `Doe`. Ha a pozíció hivatkozik egy jogkivonatot, amely nem létezik, egy hibaüzenetet küld.
+Például ha hello bemeneti érték `Jane Doe`, hello `delimiter` van `" "`(hely) és hello `position` 0, hello eredmény `Jane`; Ha hello `position` 1, hello eredmény `Doe`. Ha hello pozíció utal tooa jogkivonatot, amely nem létezik, egy hibaüzenetet küld.
 
 #### <a name="sample-use-case"></a>Példa használati eset
-Az adatforrás tartalmaz egy `PersonName` mező, és szeretné index, két külön `FirstName` és `LastName` mezőket. Ez a funkció segítségével ossza fel a bemeneti az elválasztó karakter a szóköz karakter használatával.
+Az adatforrás tartalmaz egy `PersonName` mező, és azt szeretné, tooindex, két külön `FirstName` és `LastName` mezők. A függvény toosplit hello bemeneti elválasztó hello hello szóköz karakter használatát is használhatja.
 
 #### <a name="parameters"></a>Paraméterek
-* `delimiter`: a felosztásának eredménye a bemeneti karakterlánc az elválasztóelemként használt karakterlánc.
-* `position`: az egész nulláról indulva számolt helyzetét a jogkivonat után a bemeneti karakterlánc van szétosztva kiválasztásához.    
+* `delimiter`: a karakterlánc toouse, ha a felosztás hello a bemeneti karakterlánc hello elválasztójelként.
+* `position`: az egész nulláról indulva számolt helyzetét a token toopick hello után hello bemeneti karakterlánc van szétosztva.    
 
 #### <a name="example"></a>Példa
 ```JSON
@@ -150,12 +150,12 @@ Az adatforrás tartalmaz egy `PersonName` mező, és szeretné index, két kül�
 <a name="jsonArrayToStringCollectionFunction"></a>
 
 ### <a name="jsonarraytostringcollection"></a>jsonArrayToStringCollection
-Átalakítja az formázott JSON-tömb karakterláncok való feltöltéséhez használt karakterlánc-tömbben karakterlánc egy `Collection(Edm.String)` mező mellett az index.
+Egy JSON-tömb karakterláncok lehet használt toopopulate karakterlánc tömbbe formátumú karakterlánc átalakítások egy `Collection(Edm.String)` hello index mezőbe.
 
-Például, ha a bemeneti karakterlánc `["red", "white", "blue"]`, majd a cél mezőben típusú `Collection(Edm.String)` tölti fel a következő három érték `red`, `white` és `blue`. A JSON-tömbök karakterlánc nem értelmezhető bemeneti értékeket egy hibaüzenetet küld.
+Például ha hello bemeneti karakterlánc nem `["red", "white", "blue"]`, majd hello célmező típusú `Collection(Edm.String)` tölti fel a három hello értékek `red`, `white` és `blue`. A JSON-tömbök karakterlánc nem értelmezhető bemeneti értékeket egy hibaüzenetet küld.
 
 #### <a name="sample-use-case"></a>Példa használati eset
-Az Azure SQL-adatbázis nem rendelkezik olyan beépített adattípusú, amely leképezhető természetes `Collection(Edm.String)` az Azure Search mezőket. Gyűjtemény karakterláncmezőket feltöltése, a forrásadatok JSON karakterlánc tömbként formázása, és ezzel a funkcióval.
+Az Azure SQL-adatbázis nem rendelkezik beépített adattípus, amely természetes leképezhető túl`Collection(Edm.String)` az Azure Search mezőket. toopopulate karakterlánc-gyűjtemény mezők, a forrásadatok JSON karakterlánc tömbként formázása, és ezzel a funkcióval.
 
 #### <a name="example"></a>Példa
 ```JSON
@@ -166,4 +166,4 @@ Az Azure SQL-adatbázis nem rendelkezik olyan beépített adattípusú, amely le
 ```
 
 ## <a name="help-us-make-azure-search-better"></a>Segítsen az Azure Search továbbfejlesztésében
-Ha a szolgáltatás-kérelmek vagy ötleteket javításai, lépjen kapcsolatba velünk a a [UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search/).
+Ha a szolgáltatás-kérelmek vagy ötleteket javításai, lépjen kapcsolatba a toous a [UserVoice webhelyén](https://feedback.azure.com/forums/263029-azure-search/).

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions az Event Hubs kötések |} Microsoft Docs"
-description: "Azure Event Hubs kötések az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók Event Hubs kötések |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Azure Event Hubs kötések Azure Functions."
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,55 +16,55 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/20/2017
 ms.author: wesmc
-ms.openlocfilehash: 19021bef8b7156b3049f43b0275c0ed0c6b22514
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e864f032ad5ac58d318c9843c3844b5642733a70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-event-hubs-bindings"></a><span data-ttu-id="da46e-104">Az Azure Functions az Event Hubs kötések</span><span class="sxs-lookup"><span data-stu-id="da46e-104">Azure Functions Event Hubs bindings</span></span>
+# <a name="azure-functions-event-hubs-bindings"></a><span data-ttu-id="1dde1-104">Az Azure Functions az Event Hubs kötések</span><span class="sxs-lookup"><span data-stu-id="1dde1-104">Azure Functions Event Hubs bindings</span></span>
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-<span data-ttu-id="da46e-105">Ez a cikk azt ismerteti, hogyan konfigurálhatja és használhatja [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) Azure Functions kötéseit.</span><span class="sxs-lookup"><span data-stu-id="da46e-105">This article explains how to configure and use [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) bindings for Azure Functions.</span></span>
-<span data-ttu-id="da46e-106">Az Azure Functions támogatja indítható el, és az Event Hubs kötései kimeneti.</span><span class="sxs-lookup"><span data-stu-id="da46e-106">Azure Functions supports trigger and output bindings for Event Hubs.</span></span>
+<span data-ttu-id="1dde1-105">Ez a cikk azt ismerteti, hogyan tooconfigure és [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) Azure Functions kötéseit.</span><span class="sxs-lookup"><span data-stu-id="1dde1-105">This article explains how tooconfigure and use [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) bindings for Azure Functions.</span></span>
+<span data-ttu-id="1dde1-106">Az Azure Functions támogatja indítható el, és az Event Hubs kötései kimeneti.</span><span class="sxs-lookup"><span data-stu-id="1dde1-106">Azure Functions supports trigger and output bindings for Event Hubs.</span></span>
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-<span data-ttu-id="da46e-107">Ha most ismerkedik az Azure Event Hubs, tekintse meg a [Event Hubs – áttekintés](../event-hubs/event-hubs-what-is-event-hubs.md).</span><span class="sxs-lookup"><span data-stu-id="da46e-107">If you are new to Azure Event Hubs, see the [Event Hubs overview](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
+<span data-ttu-id="1dde1-107">Ha új tooAzure Event Hubs, lásd: hello [Event Hubs – áttekintés](../event-hubs/event-hubs-what-is-event-hubs.md).</span><span class="sxs-lookup"><span data-stu-id="1dde1-107">If you are new tooAzure Event Hubs, see hello [Event Hubs overview](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
 
 <a name="trigger"></a>
 
-## <a name="event-hub-trigger"></a><span data-ttu-id="da46e-108">Hub eseményindító</span><span class="sxs-lookup"><span data-stu-id="da46e-108">Event hub trigger</span></span>
-<span data-ttu-id="da46e-109">Az Event Hubs eseményindító segítségével egy event hub eseményfelhasználó küldött esemény válaszolni.</span><span class="sxs-lookup"><span data-stu-id="da46e-109">Use the Event Hubs trigger to respond to an event sent to an event hub event stream.</span></span> <span data-ttu-id="da46e-110">Az event hubs az eseményindító beállítása olvasási hozzáféréssel kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="da46e-110">You must have read access to the event hub to set up the trigger.</span></span>
+## <a name="event-hub-trigger"></a><span data-ttu-id="1dde1-108">Hub eseményindító</span><span class="sxs-lookup"><span data-stu-id="1dde1-108">Event hub trigger</span></span>
+<span data-ttu-id="1dde1-109">Használjon hello Event Hubs tooan event hub eseményfelhasználó küldött toorespond tooan esemény következik be.</span><span class="sxs-lookup"><span data-stu-id="1dde1-109">Use hello Event Hubs trigger toorespond tooan event sent tooan event hub event stream.</span></span> <span data-ttu-id="1dde1-110">Olvasási hozzáférés toohello event hub tooset hello trigger mentése kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="1dde1-110">You must have read access toohello event hub tooset up hello trigger.</span></span>
 
-<span data-ttu-id="da46e-111">Az Event Hubs függvény eseményindító használja a következő JSON-objektum a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="da46e-111">The Event Hubs function trigger uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="1dde1-111">hello Event Hubs függvény eseményindító használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="1dde1-111">hello Event Hubs function trigger uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of the event hub>",
-    "consumerGroup": "Consumer group to use - see below",
+    "path": "<Name of hello event hub>",
+    "consumerGroup": "Consumer group toouse - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-<span data-ttu-id="da46e-112">`consumerGroup`egy nem kötelező tulajdonság beállításához használja a [fogyasztói csoportot](../event-hubs/event-hubs-features.md#event-consumers) használt események központban előfizetni.</span><span class="sxs-lookup"><span data-stu-id="da46e-112">`consumerGroup` is an optional property used to set the [consumer group](../event-hubs/event-hubs-features.md#event-consumers) used to subscribe to events in the hub.</span></span> <span data-ttu-id="da46e-113">Ha nincs megadva, a `$Default` fogyasztói csoportot használja.</span><span class="sxs-lookup"><span data-stu-id="da46e-113">If omitted, the `$Default` consumer group is used.</span></span>  
-<span data-ttu-id="da46e-114">`connection`egy Alkalmazásbeállítás, amely tartalmazza a kapcsolati karakterláncot az event hubs névtér nevének kell lennie.</span><span class="sxs-lookup"><span data-stu-id="da46e-114">`connection` must be the name of an app setting that contains the connection string to the event hub's namespace.</span></span>
-<span data-ttu-id="da46e-115">Másolja a kapcsolati karakterláncot kattintva a **kapcsolatadatok** gombra kattint, az a *névtér*, nem magát az eseményközpontba.</span><span class="sxs-lookup"><span data-stu-id="da46e-115">Copy this connection string by clicking the **Connection Information** button for the *namespace*, not the event hub itself.</span></span> <span data-ttu-id="da46e-116">Ez a kapcsolati karakterlánc kell rendelkeznie legalább olvasási engedéllyel az eseményindítót.</span><span class="sxs-lookup"><span data-stu-id="da46e-116">This connection string must have at least read permissions to activate the trigger.</span></span>
+<span data-ttu-id="1dde1-112">`consumerGroup`van egy nem kötelező tulajdonság használt tooset hello [fogyasztói csoportot](../event-hubs/event-hubs-features.md#event-consumers) toosubscribe tooevents használt hello központban.</span><span class="sxs-lookup"><span data-stu-id="1dde1-112">`consumerGroup` is an optional property used tooset hello [consumer group](../event-hubs/event-hubs-features.md#event-consumers) used toosubscribe tooevents in hello hub.</span></span> <span data-ttu-id="1dde1-113">Ha nincs megadva, hello `$Default` fogyasztói csoportot használja.</span><span class="sxs-lookup"><span data-stu-id="1dde1-113">If omitted, hello `$Default` consumer group is used.</span></span>  
+<span data-ttu-id="1dde1-114">`connection`hello kapcsolati karakterlánc toohello event hub névtér tartalmazó Alkalmazásbeállítás hello nevének kell lennie.</span><span class="sxs-lookup"><span data-stu-id="1dde1-114">`connection` must be hello name of an app setting that contains hello connection string toohello event hub's namespace.</span></span>
+<span data-ttu-id="1dde1-115">Másolja a kapcsolati karakterláncot hello kattintva **kapcsolatadatok** hello gombra *névtér*, nem hello eseményközpont magát.</span><span class="sxs-lookup"><span data-stu-id="1dde1-115">Copy this connection string by clicking hello **Connection Information** button for hello *namespace*, not hello event hub itself.</span></span> <span data-ttu-id="1dde1-116">Ez a kapcsolati karakterlánc rendelkeznie kell legalább olvasási engedélyek tooactivate hello eseményindító.</span><span class="sxs-lookup"><span data-stu-id="1dde1-116">This connection string must have at least read permissions tooactivate hello trigger.</span></span>
 
-<span data-ttu-id="da46e-117">[További beállítások](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) egy host.json fájlban, és további Event Hubs eseményindítók megadható.</span><span class="sxs-lookup"><span data-stu-id="da46e-117">[Additional settings](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) can be provided in a host.json file to further fine tune Event Hubs triggers.</span></span>  
+<span data-ttu-id="1dde1-117">[További beállítások](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) megadott egy host.json a fájl toofurther finom Event Hubs eseményindítók hangolására lehet.</span><span class="sxs-lookup"><span data-stu-id="1dde1-117">[Additional settings](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) can be provided in a host.json file toofurther fine tune Event Hubs triggers.</span></span>  
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a><span data-ttu-id="da46e-118">Eseményindító kihasználtsága</span><span class="sxs-lookup"><span data-stu-id="da46e-118">Trigger usage</span></span>
-<span data-ttu-id="da46e-119">Az Event Hubs funkció aktiválása esetén az üzenet, amely elindítja az átad a függvény egy karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="da46e-119">When an Event Hubs trigger function is triggered, the message that triggers it is passed into the function as a string.</span></span>
+## <a name="trigger-usage"></a><span data-ttu-id="1dde1-118">Eseményindító kihasználtsága</span><span class="sxs-lookup"><span data-stu-id="1dde1-118">Trigger usage</span></span>
+<span data-ttu-id="1dde1-119">Az Event Hubs funkció aktiválása esetén, amely elindítja az üdvözlőüzenetére átad a hello függvény egy karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="1dde1-119">When an Event Hubs trigger function is triggered, hello message that triggers it is passed into hello function as a string.</span></span>
 
 <a name="triggersample"></a>
 
-## <a name="trigger-sample"></a><span data-ttu-id="da46e-120">Eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="da46e-120">Trigger sample</span></span>
-<span data-ttu-id="da46e-121">Tegyük fel, hogy a következő Event Hubs trigger a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="da46e-121">Suppose you have the following Event Hubs trigger in the `bindings` array of function.json:</span></span>
+## <a name="trigger-sample"></a><span data-ttu-id="1dde1-120">Eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-120">Trigger sample</span></span>
+<span data-ttu-id="1dde1-121">Tegyük fel, hogy rendelkezik a következő Event Hubs trigger hello hello `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="1dde1-121">Suppose you have hello following Event Hubs trigger in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -76,15 +76,15 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="da46e-122">Tekintse meg a nyelvspecifikus mintát, amelyre bejelentkezik az eseményindító hub üzenet törzsét.</span><span class="sxs-lookup"><span data-stu-id="da46e-122">See the language-specific sample that logs the message body of the event hub trigger.</span></span>
+<span data-ttu-id="1dde1-122">Lásd: hello nyelvspecifikus minta, amelyre bejelentkezik hello hub eseményindító hello üzenet törzsét.</span><span class="sxs-lookup"><span data-stu-id="1dde1-122">See hello language-specific sample that logs hello message body of hello event hub trigger.</span></span>
 
-* [<span data-ttu-id="da46e-123">C#</span><span class="sxs-lookup"><span data-stu-id="da46e-123">C#</span></span>](#triggercsharp)
-* [<span data-ttu-id="da46e-124">F#</span><span class="sxs-lookup"><span data-stu-id="da46e-124">F#</span></span>](#triggerfsharp)
-* [<span data-ttu-id="da46e-125">Node.js</span><span class="sxs-lookup"><span data-stu-id="da46e-125">Node.js</span></span>](#triggernodejs)
+* [<span data-ttu-id="1dde1-123">C#</span><span class="sxs-lookup"><span data-stu-id="1dde1-123">C#</span></span>](#triggercsharp)
+* [<span data-ttu-id="1dde1-124">F#</span><span class="sxs-lookup"><span data-stu-id="1dde1-124">F#</span></span>](#triggerfsharp)
+* [<span data-ttu-id="1dde1-125">Node.js</span><span class="sxs-lookup"><span data-stu-id="1dde1-125">Node.js</span></span>](#triggernodejs)
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a><span data-ttu-id="da46e-126">A C# eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="da46e-126">Trigger sample in C#</span></span> #
+### <a name="trigger-sample-in-c"></a><span data-ttu-id="1dde1-126">A C# eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-126">Trigger sample in C#</span></span> #
 
 ```cs
 using System;
@@ -95,7 +95,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-<span data-ttu-id="da46e-127">Az esemény akkor is jelentkezhet egy [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) objektum, amely hozzáférést biztosít az esemény-metaadatok.</span><span class="sxs-lookup"><span data-stu-id="da46e-127">You can also receive the event as an [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) object, which gives you access to the event metadata.</span></span>
+<span data-ttu-id="1dde1-127">Akkor is jelentkezhet hello esemény egy [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) objektum, amely lehetővé teszi az éri toohello esemény metaadatait.</span><span class="sxs-lookup"><span data-stu-id="1dde1-127">You can also receive hello event as an [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) object, which gives you access toohello event metadata.</span></span>
 
 ```cs
 #r "Microsoft.ServiceBus"
@@ -108,7 +108,7 @@ public static void Run(EventData myEventHubMessage, TraceWriter log)
 }
 ```
 
-<span data-ttu-id="da46e-128">Események fogadásához egy kötegben, módosítsa a metódus-aláírás `string[]` vagy `EventData[]`.</span><span class="sxs-lookup"><span data-stu-id="da46e-128">To receive events in a batch, change the method signature to `string[]` or `EventData[]`.</span></span>
+<span data-ttu-id="1dde1-128">tooreceive események kötegekben, módosítsa a hello metódus-aláírás túl`string[]` vagy `EventData[]`.</span><span class="sxs-lookup"><span data-stu-id="1dde1-128">tooreceive events in a batch, change hello method signature too`string[]` or `EventData[]`.</span></span>
 
 ```cs
 public static void Run(string[] eventHubMessages, TraceWriter log)
@@ -122,7 +122,7 @@ public static void Run(string[] eventHubMessages, TraceWriter log)
 
 <a name="triggerfsharp"></a>
 
-### <a name="trigger-sample-in-f"></a><span data-ttu-id="da46e-129">Az F # eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="da46e-129">Trigger sample in F#</span></span> #
+### <a name="trigger-sample-in-f"></a><span data-ttu-id="1dde1-129">Az F # eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-129">Trigger sample in F#</span></span> #
 
 ```fsharp
 let Run(myEventHubMessage: string, log: TraceWriter) =
@@ -131,7 +131,7 @@ let Run(myEventHubMessage: string, log: TraceWriter) =
 
 <a name="triggernodejs"></a>
 
-### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="da46e-130">A node.js eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="da46e-130">Trigger sample in Node.js</span></span>
+### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="1dde1-130">A node.js eseményindító minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-130">Trigger sample in Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myEventHubMessage) {
@@ -142,10 +142,10 @@ module.exports = function (context, myEventHubMessage) {
 
 <a name="output"></a>
 
-## <a name="event-hubs-output-binding"></a><span data-ttu-id="da46e-131">Az Event Hubs kimeneti kötése</span><span class="sxs-lookup"><span data-stu-id="da46e-131">Event Hubs output binding</span></span>
-<span data-ttu-id="da46e-132">Az Event Hubs kimeneti kötése beírni az eseményeket az event hub eseményfelhasználó használja.</span><span class="sxs-lookup"><span data-stu-id="da46e-132">Use the Event Hubs output binding to write events to an event hub event stream.</span></span> <span data-ttu-id="da46e-133">Események írhat az eseményközpontba a küldési engedéllyel kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="da46e-133">You must have send permission to an event hub to write events to it.</span></span>
+## <a name="event-hubs-output-binding"></a><span data-ttu-id="1dde1-131">Az Event Hubs kimeneti kötése</span><span class="sxs-lookup"><span data-stu-id="1dde1-131">Event Hubs output binding</span></span>
+<span data-ttu-id="1dde1-132">Az Event Hubs használja hello kimeneti kötés toowrite események tooan event hub eseménystreambe.</span><span class="sxs-lookup"><span data-stu-id="1dde1-132">Use hello Event Hubs output binding toowrite events tooan event hub event stream.</span></span> <span data-ttu-id="1dde1-133">Küldési engedéllyel tooan event hub toowrite események tooit kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="1dde1-133">You must have send permission tooan event hub toowrite events tooit.</span></span>
 
-<span data-ttu-id="da46e-134">A kimeneti kötés használja a következő JSON-objektum a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="da46e-134">The output binding uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="1dde1-134">hello kimeneti kötés használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="1dde1-134">hello output binding uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -157,22 +157,22 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-<span data-ttu-id="da46e-135">`connection`egy Alkalmazásbeállítás, amely tartalmazza a kapcsolati karakterláncot az event hubs névtér nevének kell lennie.</span><span class="sxs-lookup"><span data-stu-id="da46e-135">`connection` must be the name of an app setting that contains the connection string to the event hub's namespace.</span></span>
-<span data-ttu-id="da46e-136">Másolja a kapcsolati karakterláncot kattintva a **kapcsolatadatok** gombra kattint, az a *névtér*, nem magát az eseményközpontba.</span><span class="sxs-lookup"><span data-stu-id="da46e-136">Copy this connection string by clicking the **Connection Information** button for the *namespace*, not the event hub itself.</span></span> <span data-ttu-id="da46e-137">Ez a kapcsolati karakterlánc az üzenetet küldeni az eseménystream küldési engedéllyel kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="da46e-137">This connection string must have send permissions to send the message to the event stream.</span></span>
+<span data-ttu-id="1dde1-135">`connection`hello kapcsolati karakterlánc toohello event hub névtér tartalmazó Alkalmazásbeállítás hello nevének kell lennie.</span><span class="sxs-lookup"><span data-stu-id="1dde1-135">`connection` must be hello name of an app setting that contains hello connection string toohello event hub's namespace.</span></span>
+<span data-ttu-id="1dde1-136">Másolja a kapcsolati karakterláncot hello kattintva **kapcsolatadatok** hello gombra *névtér*, nem hello eseményközpont magát.</span><span class="sxs-lookup"><span data-stu-id="1dde1-136">Copy this connection string by clicking hello **Connection Information** button for hello *namespace*, not hello event hub itself.</span></span> <span data-ttu-id="1dde1-137">Ez a kapcsolati karakterlánc küldési engedéllyel toosend hello üzenet toohello eseményfelhasználó kell rendelkeznie.</span><span class="sxs-lookup"><span data-stu-id="1dde1-137">This connection string must have send permissions toosend hello message toohello event stream.</span></span>
 
-## <a name="output-usage"></a><span data-ttu-id="da46e-138">Kimeneti használata</span><span class="sxs-lookup"><span data-stu-id="da46e-138">Output usage</span></span>
-<span data-ttu-id="da46e-139">Ez a szakasz bemutatja, hogyan használható az Event Hubs kimeneti a funkciókódot kötelező.</span><span class="sxs-lookup"><span data-stu-id="da46e-139">This section shows you how to use your Event Hubs output binding in your function code.</span></span>
+## <a name="output-usage"></a><span data-ttu-id="1dde1-138">Kimeneti használata</span><span class="sxs-lookup"><span data-stu-id="1dde1-138">Output usage</span></span>
+<span data-ttu-id="1dde1-139">Ez a szakasz bemutatja, hogyan toouse az Eseményközpontok kimeneti kötelező a funkciókódot.</span><span class="sxs-lookup"><span data-stu-id="1dde1-139">This section shows you how toouse your Event Hubs output binding in your function code.</span></span>
 
-<span data-ttu-id="da46e-140">A következő paraméter típusú kimenetre küldheti a konfigurált eseményközpontba üzenetek:</span><span class="sxs-lookup"><span data-stu-id="da46e-140">You can output messages to the configured event hub with the following parameter types:</span></span>
+<span data-ttu-id="1dde1-140">A következő paraméter típusa hello a kimenetre küldheti üzenetek konfigurált toohello eseményközpont:</span><span class="sxs-lookup"><span data-stu-id="1dde1-140">You can output messages toohello configured event hub with hello following parameter types:</span></span>
 
 * `out string`
-* <span data-ttu-id="da46e-141">`ICollector<string>`(a kimeneti több üzenetek)</span><span class="sxs-lookup"><span data-stu-id="da46e-141">`ICollector<string>` (to output multiple messages)</span></span>
-* <span data-ttu-id="da46e-142">`IAsyncCollector<string>`(aszinkron verzióját `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="da46e-142">`IAsyncCollector<string>` (async version of `ICollector<T>`)</span></span>
+* <span data-ttu-id="1dde1-141">`ICollector<string>`(toooutput több üzenetek)</span><span class="sxs-lookup"><span data-stu-id="1dde1-141">`ICollector<string>` (toooutput multiple messages)</span></span>
+* <span data-ttu-id="1dde1-142">`IAsyncCollector<string>`(aszinkron verzióját `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="1dde1-142">`IAsyncCollector<string>` (async version of `ICollector<T>`)</span></span>
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a><span data-ttu-id="da46e-143">Minta kimenet</span><span class="sxs-lookup"><span data-stu-id="da46e-143">Output sample</span></span>
-<span data-ttu-id="da46e-144">Tegyük fel, hogy a következő Event Hubs kimeneti kötések a `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="da46e-144">Suppose you have the following Event Hubs output binding in the `bindings` array of function.json:</span></span>
+## <a name="output-sample"></a><span data-ttu-id="1dde1-143">Minta kimenet</span><span class="sxs-lookup"><span data-stu-id="1dde1-143">Output sample</span></span>
+<span data-ttu-id="1dde1-144">Tegyük fel, hogy rendelkezik hello következő Event Hubs kimeneti hello kötések `bindings` function.json tömbje:</span><span class="sxs-lookup"><span data-stu-id="1dde1-144">Suppose you have hello following Event Hubs output binding in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -184,15 +184,15 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-<span data-ttu-id="da46e-145">Tekintse meg a nyelvspecifikus mintát, amely egy eseményt ír a még akkor is, az adatfolyam.</span><span class="sxs-lookup"><span data-stu-id="da46e-145">See the language-specific sample that writes an event to the even stream.</span></span>
+<span data-ttu-id="1dde1-145">Lásd: hello nyelvspecifikus minta egy toohello még akkor is, eseményfelhasználó írja.</span><span class="sxs-lookup"><span data-stu-id="1dde1-145">See hello language-specific sample that writes an event toohello even stream.</span></span>
 
-* [<span data-ttu-id="da46e-146">C#</span><span class="sxs-lookup"><span data-stu-id="da46e-146">C#</span></span>](#outcsharp)
-* [<span data-ttu-id="da46e-147">F#</span><span class="sxs-lookup"><span data-stu-id="da46e-147">F#</span></span>](#outfsharp)
-* [<span data-ttu-id="da46e-148">Node.js</span><span class="sxs-lookup"><span data-stu-id="da46e-148">Node.js</span></span>](#outnodejs)
+* [<span data-ttu-id="1dde1-146">C#</span><span class="sxs-lookup"><span data-stu-id="1dde1-146">C#</span></span>](#outcsharp)
+* [<span data-ttu-id="1dde1-147">F#</span><span class="sxs-lookup"><span data-stu-id="1dde1-147">F#</span></span>](#outfsharp)
+* [<span data-ttu-id="1dde1-148">Node.js</span><span class="sxs-lookup"><span data-stu-id="1dde1-148">Node.js</span></span>](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a><span data-ttu-id="da46e-149">A C# kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="da46e-149">Output sample in C#</span></span> #
+### <a name="output-sample-in-c"></a><span data-ttu-id="1dde1-149">A C# kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-149">Output sample in C#</span></span> #
 
 ```cs
 using System;
@@ -205,7 +205,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
-<span data-ttu-id="da46e-150">Vagy, hozzon létre több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="da46e-150">Or, to create multiple messages:</span></span>
+<span data-ttu-id="1dde1-150">Vagy toocreate több üzenetet:</span><span class="sxs-lookup"><span data-stu-id="1dde1-150">Or, toocreate multiple messages:</span></span>
 
 ```cs
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
@@ -219,7 +219,7 @@ public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessa
 
 <a name="outfsharp"></a>
 
-### <a name="output-sample-in-f"></a><span data-ttu-id="da46e-151">Az F # kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="da46e-151">Output sample in F#</span></span> #
+### <a name="output-sample-in-f"></a><span data-ttu-id="1dde1-151">Az F # kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-151">Output sample in F#</span></span> #
 
 ```fsharp
 let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
@@ -230,7 +230,7 @@ let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWrit
 
 <a name="outnodejs"></a>
 
-### <a name="output-sample-for-nodejs"></a><span data-ttu-id="da46e-152">A Node.js kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="da46e-152">Output sample for Node.js</span></span>
+### <a name="output-sample-for-nodejs"></a><span data-ttu-id="1dde1-152">A Node.js kimeneti minta</span><span class="sxs-lookup"><span data-stu-id="1dde1-152">Output sample for Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -241,7 +241,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-<span data-ttu-id="da46e-153">Vagy több üzenetet küldeni.</span><span class="sxs-lookup"><span data-stu-id="da46e-153">Or, to send multiple messages,</span></span>
+<span data-ttu-id="1dde1-153">Vagy toosend több üzenetet</span><span class="sxs-lookup"><span data-stu-id="1dde1-153">Or, toosend multiple messages,</span></span>
 
 ```javascript
 module.exports = function(context) {
@@ -256,5 +256,5 @@ module.exports = function(context) {
 };
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="da46e-154">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="da46e-154">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1dde1-154">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="1dde1-154">Next steps</span></span>
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]

@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Lake data tudományos forgatókönyvek U-SQL használatával |} Microsoft Docs"
-description: "Ismerteti az Azure Data Lake prediktív elemzési ehhez a U-SQL használatával példákat."
+title: "a Data Lake data tudományos forgatókönyvek U-SQL használatával aaaAzure |} Microsoft Docs"
+description: "Példák, amelyek hello bízná az U-SQL Azure Data Lake toodo prediktív elemzési használja."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: 118fd5167e67b8259cde8b6e672be325a41a842d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cbee841ae9b207f48a1d80e18e02471d6c482ecd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-data-lake-data-science-walkthroughs-using-u-sql"></a><span data-ttu-id="120a7-103">Azure Data Lake data tudományos forgatókönyvek U-SQL használatával</span><span class="sxs-lookup"><span data-stu-id="120a7-103">Azure Data Lake data science walkthroughs using U-SQL</span></span>
+# <a name="azure-data-lake-data-science-walkthroughs-using-u-sql"></a><span data-ttu-id="9804d-103">Azure Data Lake data tudományos forgatókönyvek U-SQL használatával</span><span class="sxs-lookup"><span data-stu-id="9804d-103">Azure Data Lake data science walkthroughs using U-SQL</span></span>
 
-<span data-ttu-id="120a7-104">Ezek a forgatókönyvek az Azure Data Lake U-SQL prediktív elemzési kell használni.</span><span class="sxs-lookup"><span data-stu-id="120a7-104">These walkthroughs use U-SQL with Azure Data Lake to do predictive analytics.</span></span> <span data-ttu-id="120a7-105">Ezek leírt lépések az adatok tudományos folyamatban.</span><span class="sxs-lookup"><span data-stu-id="120a7-105">They follow the steps outlined in the Team Data Science Process.</span></span> <span data-ttu-id="120a7-106">Az Team tudományos folyamat áttekintését lásd: [adatok tudományos folyamat](data-science-process-overview.md).</span><span class="sxs-lookup"><span data-stu-id="120a7-106">For an overview of the Team Data Science Process, see [Data Science Process](data-science-process-overview.md).</span></span> <span data-ttu-id="120a7-107">Megismerkedhet az Azure Data Lake, lásd: [az Azure Data Lake Store áttekintése](../data-lake-store/data-lake-store-overview.md).</span><span class="sxs-lookup"><span data-stu-id="120a7-107">For an introduction to Azure Data Lake, see [Overview of Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md).</span></span>
+<span data-ttu-id="9804d-104">Ezek a forgatókönyvek az Azure Data Lake toodo prediktív elemzési U-SQL használja.</span><span class="sxs-lookup"><span data-stu-id="9804d-104">These walkthroughs use U-SQL with Azure Data Lake toodo predictive analytics.</span></span> <span data-ttu-id="9804d-105">Hello Team adatok tudományos folyamat leírt hello lépéseket követik.</span><span class="sxs-lookup"><span data-stu-id="9804d-105">They follow hello steps outlined in hello Team Data Science Process.</span></span> <span data-ttu-id="9804d-106">Hello Team adatok tudományos folyamat áttekintését lásd: [adatok tudományos folyamat](data-science-process-overview.md).</span><span class="sxs-lookup"><span data-stu-id="9804d-106">For an overview of hello Team Data Science Process, see [Data Science Process](data-science-process-overview.md).</span></span> <span data-ttu-id="9804d-107">Egy bevezető tooAzure Data Lake, lásd: [az Azure Data Lake Store áttekintése](../data-lake-store/data-lake-store-overview.md).</span><span class="sxs-lookup"><span data-stu-id="9804d-107">For an introduction tooAzure Data Lake, see [Overview of Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md).</span></span>
 
-<span data-ttu-id="120a7-108">További adatok tudományos forgatókönyvek, amelyek az Team tudományos folyamat végrehajtása szerint vannak csoportosítva a **platform** használnak:</span><span class="sxs-lookup"><span data-stu-id="120a7-108">Additional data science walkthroughs that execute the Team Data Science Process are grouped by the **platform** that they use:</span></span> 
+<span data-ttu-id="9804d-108">További adatok tudományos forgatókönyvek, amelyek hello Team adatok tudományos folyamat végrehajtása hello szerint vannak csoportosítva **platform** használnak:</span><span class="sxs-lookup"><span data-stu-id="9804d-108">Additional data science walkthroughs that execute hello Team Data Science Process are grouped by hello **platform** that they use:</span></span> 
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
 
-## <a name="predict-taxi-tips-using-u-sql-with-azure-data-lake"></a><span data-ttu-id="120a7-109">U-SQL használatával az Azure Data Lake taxi tippek előrejelzése</span><span class="sxs-lookup"><span data-stu-id="120a7-109">Predict taxi tips using U-SQL with Azure Data Lake</span></span>
+## <a name="predict-taxi-tips-using-u-sql-with-azure-data-lake"></a><span data-ttu-id="9804d-109">U-SQL használatával az Azure Data Lake taxi tippek előrejelzése</span><span class="sxs-lookup"><span data-stu-id="9804d-109">Predict taxi tips using U-SQL with Azure Data Lake</span></span>
 
-<span data-ttu-id="120a7-110">A [használata Azure Data Lake adattudomány](machine-learning-data-science-process-data-lake-walkthrough.md) forgatókönyv bemutatja, hogyan kell az adatok feltárása használni az Azure Data Lake és bináris fájlosztályozási feladatokhoz a következőt: a minta taxiköltség adatkészlet-e tipp: az ügyfél fizeti előrejelzése céljából.</span><span class="sxs-lookup"><span data-stu-id="120a7-110">The [Use Azure Data Lake for data science](machine-learning-data-science-process-data-lake-walkthrough.md) walkthrough shows how to use Azure Data Lake to do data exploration and binary classification tasks on a sample of the NYC taxi dataset to predict whether or not a tip is paid by a customer.</span></span> 
+<span data-ttu-id="9804d-110">Hello [használata Azure Data Lake adattudomány](machine-learning-data-science-process-data-lake-walkthrough.md) a bemutató ismerteti, hogyan toouse Azure Data Lake toodo adatok feltárása és a bináris osztályozási feladatok hello NYC mintát taxiköltség-e a dataset toopredict tipp: az ügyfél fizeti-e.</span><span class="sxs-lookup"><span data-stu-id="9804d-110">hello [Use Azure Data Lake for data science](machine-learning-data-science-process-data-lake-walkthrough.md) walkthrough shows how toouse Azure Data Lake toodo data exploration and binary classification tasks on a sample of hello NYC taxi dataset toopredict whether or not a tip is paid by a customer.</span></span> 
 
 
-## <a name="next-steps"></a><span data-ttu-id="120a7-111">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="120a7-111">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9804d-111">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="9804d-111">Next steps</span></span>
 
-<span data-ttu-id="120a7-112">A fő összetevőből épül fel az Team tudományos folyamat tárgyalását lásd: [Team adatok tudományos folyamat áttekintése](data-science-process-overview.md).</span><span class="sxs-lookup"><span data-stu-id="120a7-112">For a discussion of the key components that comprise the Team Data Science Process, see [Team Data Science Process overview](data-science-process-overview.md).</span></span>
+<span data-ttu-id="9804d-112">Hello fő összetevőből épül fel hello Team adatok tudományos folyamat tárgyalását lásd: [Team adatok tudományos folyamat áttekintése](data-science-process-overview.md).</span><span class="sxs-lookup"><span data-stu-id="9804d-112">For a discussion of hello key components that comprise hello Team Data Science Process, see [Team Data Science Process overview](data-science-process-overview.md).</span></span>
 
-<span data-ttu-id="120a7-113">A csoport az tudományos folyamata életciklussal, amely segítségével az adatok tudományos projektek szerkezeti tárgyalását lásd: [Team adatok tudományos folyamat életciklus](data-science-process-lifecycle.md).</span><span class="sxs-lookup"><span data-stu-id="120a7-113">For a discussion of the Team Data Science Process lifecycle that you can use to structure your data science projects, see [Team Data Science Process lifecycle](data-science-process-lifecycle.md).</span></span> <span data-ttu-id="120a7-114">Az életciklus kezdetétől a végéig, projektek általában követve azok végrehajtásakor, lépéseit mutatja be.</span><span class="sxs-lookup"><span data-stu-id="120a7-114">The lifecycle outlines the steps, from start to finish, that projects usually follow when they are executed.</span></span> 
+<span data-ttu-id="9804d-113">Hello Team adatok tudományos folyamat életciklus használható toostructure leírását a tudományos projektek, lásd: [Team adatok tudományos folyamat életciklus](data-science-process-lifecycle.md).</span><span class="sxs-lookup"><span data-stu-id="9804d-113">For a discussion of hello Team Data Science Process lifecycle that you can use toostructure your data science projects, see [Team Data Science Process lifecycle](data-science-process-lifecycle.md).</span></span> <span data-ttu-id="9804d-114">hello életciklus hello lépéseit, a start toofinish, amelyek projektek általában végrehajtás sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="9804d-114">hello lifecycle outlines hello steps, from start toofinish, that projects usually follow when they are executed.</span></span> 

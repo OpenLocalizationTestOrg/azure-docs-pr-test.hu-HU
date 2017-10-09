@@ -1,6 +1,6 @@
 ---
-title: "Windows Áruházbeli alkalmazás oktatóanyag Streaming sima |} Microsoft Docs"
-description: "Útmutató az Azure Media Services segítségével hozzon létre egy C# Windows Áruházbeli alkalmazást a lejátszás Smooth Stream XML MediaElement vezérlőt tartalom."
+title: "aaaSmooth Streaming Windows Áruházbeli alkalmazás oktatóanyag |} Microsoft Docs"
+description: "Ismerje meg, hogyan szabályozza a toouse Azure Media Services toocreate egy C# Windows Áruházbeli alkalmazással rendelkező XML MediaElement a tooplayback Smooth Stream tartalmát."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: juliako
-ms.openlocfilehash: c9bb3b1915543fea3561cb309f55c4e8a74ded6d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b02aa2c7f68fe22a23ea846d72fdd23bfba2b19c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-build-a-smooth-streaming-windows-store-application"></a><span data-ttu-id="97adf-103">Egy Smooth Streaming Windows áruház-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-103">How to Build a Smooth Streaming Windows Store Application</span></span>
+# <a name="how-toobuild-a-smooth-streaming-windows-store-application"></a><span data-ttu-id="04c57-103">Hogyan tooBuild Smooth Streaming Windows Áruházbeli alkalmazás</span><span class="sxs-lookup"><span data-stu-id="04c57-103">How tooBuild a Smooth Streaming Windows Store Application</span></span>
 
-<span data-ttu-id="97adf-104">A Smooth Streaming ügyfél SDK a Windows 8 lehetővé teszi, hogy a fejlesztők számára a Windows Áruházbeli alkalmazások játszhatja igény szerinti és élő Smooth Streaming tartalmát.</span><span class="sxs-lookup"><span data-stu-id="97adf-104">The Smooth Streaming Client SDK for Windows 8 enables developers to build Windows Store applications that can play on-demand and live Smooth Streaming content.</span></span> <span data-ttu-id="97adf-105">Tartalom Smooth Streaming alapvető lejátszását, mellett az SDK-t is biztosít gazdag jellegzetességeket, például Microsoft PlayReady védelmi, minőségi korlátozást, Live DVR, hangadatfolyam váltás, figyeli a állapot frissítéseket (például a minőségi megváltozik) és hibaesemények, és így tovább.</span><span class="sxs-lookup"><span data-stu-id="97adf-105">In addition to the basic playback of Smooth Streaming content, the SDK also provides rich features like Microsoft PlayReady protection, quality level restriction, Live DVR, audio stream switching, listening for status updates (such as quality level changes) and error events, and so on.</span></span> <span data-ttu-id="97adf-106">A támogatott szolgáltatás további információkért lásd: a [kibocsátási megjegyzéseket](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes).</span><span class="sxs-lookup"><span data-stu-id="97adf-106">For more information of the supported features, see the [release notes](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes).</span></span> <span data-ttu-id="97adf-107">További információkért lásd: [Player keretrendszer Windows 8](http://playerframework.codeplex.com/).</span><span class="sxs-lookup"><span data-stu-id="97adf-107">For more information, see [Player Framework for Windows 8](http://playerframework.codeplex.com/).</span></span> 
+<span data-ttu-id="04c57-104">hello Smooth Streaming ügyfél SDK a Windows 8 lehetővé teszi, hogy a fejlesztők toobuild Windows Áruházbeli alkalmazásokat, amelyek játszhatja igény szerinti és élő Smooth Streaming tartalmát.</span><span class="sxs-lookup"><span data-stu-id="04c57-104">hello Smooth Streaming Client SDK for Windows 8 enables developers toobuild Windows Store applications that can play on-demand and live Smooth Streaming content.</span></span> <span data-ttu-id="04c57-105">Ezenkívül toohello Smooth Streaming is tartalom, hello SDK alapvető lejátszását gazdag olyan funkciókat biztosít, például a Microsoft PlayReady védelmi, minőségi korlátozást, Live DVR, hangadatfolyam váltás, állapot frissítéseket (például a minőségi megváltozik a figyeli ) és a hibaesemények, és így tovább.</span><span class="sxs-lookup"><span data-stu-id="04c57-105">In addition toohello basic playback of Smooth Streaming content, hello SDK also provides rich features like Microsoft PlayReady protection, quality level restriction, Live DVR, audio stream switching, listening for status updates (such as quality level changes) and error events, and so on.</span></span> <span data-ttu-id="04c57-106">Hello támogatott szolgáltatások további információkért lásd: hello [kibocsátási megjegyzéseket](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes).</span><span class="sxs-lookup"><span data-stu-id="04c57-106">For more information of hello supported features, see hello [release notes](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes).</span></span> <span data-ttu-id="04c57-107">További információkért lásd: [Player keretrendszer Windows 8](http://playerframework.codeplex.com/).</span><span class="sxs-lookup"><span data-stu-id="04c57-107">For more information, see [Player Framework for Windows 8](http://playerframework.codeplex.com/).</span></span> 
 
-<span data-ttu-id="97adf-108">Ez az oktatóanyag során négy tapasztalatokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="97adf-108">This tutorial contains four lessons:</span></span>
+<span data-ttu-id="04c57-108">Ez az oktatóanyag során négy tapasztalatokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="04c57-108">This tutorial contains four lessons:</span></span>
 
-1. <span data-ttu-id="97adf-109">Alapszintű zökkenőmentes adatfolyam áruház-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-109">Create a Basic Smooth Streaming Store Application</span></span>
-2. <span data-ttu-id="97adf-110">A csúszka sávjának Media végrehajtási vezérlésére hozzáadása</span><span class="sxs-lookup"><span data-stu-id="97adf-110">Add a Slider Bar to Control the Media Progress</span></span>
-3. <span data-ttu-id="97adf-111">Válassza ki a Smooth Streaming adatfolyamok</span><span class="sxs-lookup"><span data-stu-id="97adf-111">Select Smooth Streaming Streams</span></span>
-4. <span data-ttu-id="97adf-112">Válassza ki a Smooth Streaming nyomon követi</span><span class="sxs-lookup"><span data-stu-id="97adf-112">Select Smooth Streaming Tracks</span></span>
+1. <span data-ttu-id="04c57-109">Alapszintű zökkenőmentes adatfolyam áruház-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="04c57-109">Create a Basic Smooth Streaming Store Application</span></span>
+2. <span data-ttu-id="04c57-110">A csúszka tooControl hello Media folyamatjelző sáv hozzáadása</span><span class="sxs-lookup"><span data-stu-id="04c57-110">Add a Slider Bar tooControl hello Media Progress</span></span>
+3. <span data-ttu-id="04c57-111">Válassza ki a Smooth Streaming adatfolyamok</span><span class="sxs-lookup"><span data-stu-id="04c57-111">Select Smooth Streaming Streams</span></span>
+4. <span data-ttu-id="04c57-112">Válassza ki a Smooth Streaming nyomon követi</span><span class="sxs-lookup"><span data-stu-id="04c57-112">Select Smooth Streaming Tracks</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="97adf-113">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="97adf-113">Prerequisites</span></span>
-* <span data-ttu-id="97adf-114">Windows 8 rendszeren futó 32 bites vagy 64 bites.</span><span class="sxs-lookup"><span data-stu-id="97adf-114">Windows 8 32-bit or 64-bit.</span></span> <span data-ttu-id="97adf-115">Beszerezheti [Windows 8 Enterprise Evaluation](http://msdn.microsoft.com/evalcenter/jj554510.aspx) msdn.</span><span class="sxs-lookup"><span data-stu-id="97adf-115">You can get [Windows 8 Enterprise Evaluation](http://msdn.microsoft.com/evalcenter/jj554510.aspx) from MSDN.</span></span>
-* <span data-ttu-id="97adf-116">A Visual Studio 2012 vagy Visual Studio Express 2012 (vagy újabb verzió).</span><span class="sxs-lookup"><span data-stu-id="97adf-116">Visual Studio 2012 or Visual Studio Express 2012 (or a later version).</span></span> <span data-ttu-id="97adf-117">A próbaverzió a kaphat [Itt](http://www.microsoft.com/visualstudio/11/downloads).</span><span class="sxs-lookup"><span data-stu-id="97adf-117">You can get the trial version from [here](http://www.microsoft.com/visualstudio/11/downloads).</span></span>
-* <span data-ttu-id="97adf-118">[Microsoft Smooth Streaming ügyfél SDK a Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home).</span><span class="sxs-lookup"><span data-stu-id="97adf-118">[Microsoft Smooth Streaming Client SDK for Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home).</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="04c57-113">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="04c57-113">Prerequisites</span></span>
+* <span data-ttu-id="04c57-114">Windows 8 rendszeren futó 32 bites vagy 64 bites.</span><span class="sxs-lookup"><span data-stu-id="04c57-114">Windows 8 32-bit or 64-bit.</span></span> <span data-ttu-id="04c57-115">Beszerezheti [Windows 8 Enterprise Evaluation](http://msdn.microsoft.com/evalcenter/jj554510.aspx) msdn.</span><span class="sxs-lookup"><span data-stu-id="04c57-115">You can get [Windows 8 Enterprise Evaluation](http://msdn.microsoft.com/evalcenter/jj554510.aspx) from MSDN.</span></span>
+* <span data-ttu-id="04c57-116">A Visual Studio 2012 vagy Visual Studio Express 2012 (vagy újabb verzió).</span><span class="sxs-lookup"><span data-stu-id="04c57-116">Visual Studio 2012 or Visual Studio Express 2012 (or a later version).</span></span> <span data-ttu-id="04c57-117">Beszerezheti a hello próbaverzióját [Itt](http://www.microsoft.com/visualstudio/11/downloads).</span><span class="sxs-lookup"><span data-stu-id="04c57-117">You can get hello trial version from [here](http://www.microsoft.com/visualstudio/11/downloads).</span></span>
+* <span data-ttu-id="04c57-118">[Microsoft Smooth Streaming ügyfél SDK a Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home).</span><span class="sxs-lookup"><span data-stu-id="04c57-118">[Microsoft Smooth Streaming Client SDK for Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home).</span></span>
 
-<span data-ttu-id="97adf-119">A kész megoldást az egyes letölthető MSDN fejlesztői mintakódok (Kódgalériából):</span><span class="sxs-lookup"><span data-stu-id="97adf-119">The completed solution for each lesson can be downloaded from MSDN Developer Code Samples (Code Gallery):</span></span> 
+<span data-ttu-id="04c57-119">az egyes befejeződött hello megoldás letölthető MSDN fejlesztői mintakódok (Kódgalériából):</span><span class="sxs-lookup"><span data-stu-id="04c57-119">hello completed solution for each lesson can be downloaded from MSDN Developer Code Samples (Code Gallery):</span></span> 
 
-* <span data-ttu-id="97adf-120">[1 rész](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) – egy egyszerű Windows 8 Smooth Streaming Media Player</span><span class="sxs-lookup"><span data-stu-id="97adf-120">[Lesson 1](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) - A Simple Windows 8 Smooth Streaming Media Player,</span></span> 
-* <span data-ttu-id="97adf-121">[2 rész](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) – egy egyszerű Windows 8 Smooth Streaming Media Player a csúszka a vezérlő,</span><span class="sxs-lookup"><span data-stu-id="97adf-121">[Lesson 2](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) - A Simple Windows 8 Smooth Streaming Media Player with a Slider Bar Control,</span></span> 
-* <span data-ttu-id="97adf-122">[3 rész](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) – A Windows 8 Smooth Streaming Media Player adatfolyam választás</span><span class="sxs-lookup"><span data-stu-id="97adf-122">[Lesson 3](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) - A Windows 8 Smooth Streaming Media Player with Stream Selection,</span></span>  
-* <span data-ttu-id="97adf-123">[Rész 4](http://code.msdn.microsoft.com/A-Windows-8-Smooth-aa9e4907) – A Windows 8 Smooth Streaming Media Player követése választás.</span><span class="sxs-lookup"><span data-stu-id="97adf-123">[Lesson 4](http://code.msdn.microsoft.com/A-Windows-8-Smooth-aa9e4907)  - A Windows 8 Smooth Streaming Media Player with Track Selection.</span></span>
+* <span data-ttu-id="04c57-120">[1 rész](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) – egy egyszerű Windows 8 Smooth Streaming Media Player</span><span class="sxs-lookup"><span data-stu-id="04c57-120">[Lesson 1](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) - A Simple Windows 8 Smooth Streaming Media Player,</span></span> 
+* <span data-ttu-id="04c57-121">[2 rész](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) – egy egyszerű Windows 8 Smooth Streaming Media Player a csúszka a vezérlő,</span><span class="sxs-lookup"><span data-stu-id="04c57-121">[Lesson 2](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) - A Simple Windows 8 Smooth Streaming Media Player with a Slider Bar Control,</span></span> 
+* <span data-ttu-id="04c57-122">[3 rész](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) – A Windows 8 Smooth Streaming Media Player adatfolyam választás</span><span class="sxs-lookup"><span data-stu-id="04c57-122">[Lesson 3](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) - A Windows 8 Smooth Streaming Media Player with Stream Selection,</span></span>  
+* <span data-ttu-id="04c57-123">[Rész 4](http://code.msdn.microsoft.com/A-Windows-8-Smooth-aa9e4907) – A Windows 8 Smooth Streaming Media Player követése választás.</span><span class="sxs-lookup"><span data-stu-id="04c57-123">[Lesson 4](http://code.msdn.microsoft.com/A-Windows-8-Smooth-aa9e4907)  - A Windows 8 Smooth Streaming Media Player with Track Selection.</span></span>
 
-## <a name="lesson-1-create-a-basic-smooth-streaming-store-application"></a><span data-ttu-id="97adf-124">1. lecke: Alapvető zökkenőmentes adatfolyam áruház-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-124">Lesson 1: Create a Basic Smooth Streaming Store Application</span></span>
+## <a name="lesson-1-create-a-basic-smooth-streaming-store-application"></a><span data-ttu-id="04c57-124">1. lecke: Alapvető zökkenőmentes adatfolyam áruház-alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="04c57-124">Lesson 1: Create a Basic Smooth Streaming Store Application</span></span>
 
-<span data-ttu-id="97adf-125">Ez a lecke hoz létre a Windows Áruházbeli alkalmazások számára, hogy Smooth Stream egy MediaElement Control tartalom.</span><span class="sxs-lookup"><span data-stu-id="97adf-125">In this lesson, you will create a Windows Store application with a MediaElement control to play Smooth Stream content.</span></span>  <span data-ttu-id="97adf-126">A futó alkalmazások néz ki:</span><span class="sxs-lookup"><span data-stu-id="97adf-126">The running application looks like:</span></span>
+<span data-ttu-id="04c57-125">Ez a lecke hoz létre egy Windows Áruházbeli alkalmazással rendelkező MediaElement vezérlő tooplay Smooth Stream tartalom.</span><span class="sxs-lookup"><span data-stu-id="04c57-125">In this lesson, you will create a Windows Store application with a MediaElement control tooplay Smooth Stream content.</span></span>  <span data-ttu-id="04c57-126">hello futó alkalmazás néz ki:</span><span class="sxs-lookup"><span data-stu-id="04c57-126">hello running application looks like:</span></span>
 
 ![Példa a Smooth Streaming Windows Áruházbeli alkalmazás][PlayerApplication]
 
-<span data-ttu-id="97adf-128">További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejlesztése kiváló alkalmazások a Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx).</span><span class="sxs-lookup"><span data-stu-id="97adf-128">For more information on developing Windows Store application, see [Develop Great Apps for Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx).</span></span> <span data-ttu-id="97adf-129">Ez a lecke az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="97adf-129">This lesson contains the following procedures:</span></span>
+<span data-ttu-id="04c57-128">További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejlesztése kiváló alkalmazások a Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx).</span><span class="sxs-lookup"><span data-stu-id="04c57-128">For more information on developing Windows Store application, see [Develop Great Apps for Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx).</span></span> <span data-ttu-id="04c57-129">Ez a lecke hello az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="04c57-129">This lesson contains hello following procedures:</span></span>
 
-1. <span data-ttu-id="97adf-130">Windows áruház-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-130">Create a Windows Store project</span></span>
-2. <span data-ttu-id="97adf-131">A felhasználói felület (XAML) tervezése</span><span class="sxs-lookup"><span data-stu-id="97adf-131">Design the user interface (XAML)</span></span>
-3. <span data-ttu-id="97adf-132">Módosítsa a fájl mögötti kódban</span><span class="sxs-lookup"><span data-stu-id="97adf-132">Modify the code behind file</span></span>
-4. <span data-ttu-id="97adf-133">Fordítsa le, és az alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="97adf-133">Compile and test the application</span></span>
+1. <span data-ttu-id="04c57-130">Windows áruház-projekt létrehozása</span><span class="sxs-lookup"><span data-stu-id="04c57-130">Create a Windows Store project</span></span>
+2. <span data-ttu-id="04c57-131">Tervezési hello felhasználói felület (XAML)</span><span class="sxs-lookup"><span data-stu-id="04c57-131">Design hello user interface (XAML)</span></span>
+3. <span data-ttu-id="04c57-132">Módosítsa a fájl mögötti kódban hello</span><span class="sxs-lookup"><span data-stu-id="04c57-132">Modify hello code behind file</span></span>
+4. <span data-ttu-id="04c57-133">Fordítsa le és hello alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="04c57-133">Compile and test hello application</span></span>
 
-<span data-ttu-id="97adf-134">**A Windows áruház-projekt létrehozása**</span><span class="sxs-lookup"><span data-stu-id="97adf-134">**To create a Windows Store project**</span></span>
+<span data-ttu-id="04c57-134">**a Windows áruház projekt toocreate**</span><span class="sxs-lookup"><span data-stu-id="04c57-134">**toocreate a Windows Store project**</span></span>
 
-1. <span data-ttu-id="97adf-135">Visual Studio 2012 vagy újabb fut.</span><span class="sxs-lookup"><span data-stu-id="97adf-135">Run Visual Studio 2012 or later.</span></span>
-2. <span data-ttu-id="97adf-136">Kattintson a **File** (Fájl) menüben a **New** (Új), majd a **Project** (Projekt) elemre.</span><span class="sxs-lookup"><span data-stu-id="97adf-136">From the **FILE** menu, click **New**, and then click **Project**.</span></span>
-3. <span data-ttu-id="97adf-137">Új projekt párbeszédpanelen írja be vagy válassza ki a következő értékeket:</span><span class="sxs-lookup"><span data-stu-id="97adf-137">From the New Project dialog, type or select  the following values:</span></span>
+1. <span data-ttu-id="04c57-135">Visual Studio 2012 vagy újabb fut.</span><span class="sxs-lookup"><span data-stu-id="04c57-135">Run Visual Studio 2012 or later.</span></span>
+2. <span data-ttu-id="04c57-136">A hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.</span><span class="sxs-lookup"><span data-stu-id="04c57-136">From hello **FILE** menu, click **New**, and then click **Project**.</span></span>
+3. <span data-ttu-id="04c57-137">Hello új projekt párbeszédpanel ha típusa, vagy jelölje be a következő hello értékeket:</span><span class="sxs-lookup"><span data-stu-id="04c57-137">From hello New Project dialog, type or select  hello following values:</span></span>
 
-| <span data-ttu-id="97adf-138">Név</span><span class="sxs-lookup"><span data-stu-id="97adf-138">Name</span></span> | <span data-ttu-id="97adf-139">Érték</span><span class="sxs-lookup"><span data-stu-id="97adf-139">Value</span></span> |
+| <span data-ttu-id="04c57-138">Név</span><span class="sxs-lookup"><span data-stu-id="04c57-138">Name</span></span> | <span data-ttu-id="04c57-139">Érték</span><span class="sxs-lookup"><span data-stu-id="04c57-139">Value</span></span> |
 | --- | --- |
-| <span data-ttu-id="97adf-140">Sablon csoport</span><span class="sxs-lookup"><span data-stu-id="97adf-140">Template group</span></span> |<span data-ttu-id="97adf-141">Telepített/sablonok/Visual C# / Windows Áruházbeli</span><span class="sxs-lookup"><span data-stu-id="97adf-141">Installed/Templates/Visual C#/Windows Store</span></span> |
-| <span data-ttu-id="97adf-142">Sablon</span><span class="sxs-lookup"><span data-stu-id="97adf-142">Template</span></span> |<span data-ttu-id="97adf-143">Üres alkalmazás (XAML)</span><span class="sxs-lookup"><span data-stu-id="97adf-143">Blank App (XAML)</span></span> |
-| <span data-ttu-id="97adf-144">Név</span><span class="sxs-lookup"><span data-stu-id="97adf-144">Name</span></span> |<span data-ttu-id="97adf-145">SSPlayer</span><span class="sxs-lookup"><span data-stu-id="97adf-145">SSPlayer</span></span> |
-| <span data-ttu-id="97adf-146">Hely</span><span class="sxs-lookup"><span data-stu-id="97adf-146">Location</span></span> |<span data-ttu-id="97adf-147">C:\SSTutorials</span><span class="sxs-lookup"><span data-stu-id="97adf-147">C:\SSTutorials</span></span> |
-| <span data-ttu-id="97adf-148">Megoldás neve</span><span class="sxs-lookup"><span data-stu-id="97adf-148">Solution Name</span></span> |<span data-ttu-id="97adf-149">SSPlayer</span><span class="sxs-lookup"><span data-stu-id="97adf-149">SSPlayer</span></span> |
-| <span data-ttu-id="97adf-150">A megoldáshoz könyvtár létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-150">Create directory for solution</span></span> |<span data-ttu-id="97adf-151">(kiválasztva)</span><span class="sxs-lookup"><span data-stu-id="97adf-151">(selected)</span></span> |
+| <span data-ttu-id="04c57-140">Sablon csoport</span><span class="sxs-lookup"><span data-stu-id="04c57-140">Template group</span></span> |<span data-ttu-id="04c57-141">Telepített/sablonok/Visual C# / Windows Áruházbeli</span><span class="sxs-lookup"><span data-stu-id="04c57-141">Installed/Templates/Visual C#/Windows Store</span></span> |
+| <span data-ttu-id="04c57-142">Sablon</span><span class="sxs-lookup"><span data-stu-id="04c57-142">Template</span></span> |<span data-ttu-id="04c57-143">Üres alkalmazás (XAML)</span><span class="sxs-lookup"><span data-stu-id="04c57-143">Blank App (XAML)</span></span> |
+| <span data-ttu-id="04c57-144">Név</span><span class="sxs-lookup"><span data-stu-id="04c57-144">Name</span></span> |<span data-ttu-id="04c57-145">SSPlayer</span><span class="sxs-lookup"><span data-stu-id="04c57-145">SSPlayer</span></span> |
+| <span data-ttu-id="04c57-146">Hely</span><span class="sxs-lookup"><span data-stu-id="04c57-146">Location</span></span> |<span data-ttu-id="04c57-147">C:\SSTutorials</span><span class="sxs-lookup"><span data-stu-id="04c57-147">C:\SSTutorials</span></span> |
+| <span data-ttu-id="04c57-148">Megoldás neve</span><span class="sxs-lookup"><span data-stu-id="04c57-148">Solution Name</span></span> |<span data-ttu-id="04c57-149">SSPlayer</span><span class="sxs-lookup"><span data-stu-id="04c57-149">SSPlayer</span></span> |
+| <span data-ttu-id="04c57-150">A megoldáshoz könyvtár létrehozása</span><span class="sxs-lookup"><span data-stu-id="04c57-150">Create directory for solution</span></span> |<span data-ttu-id="04c57-151">(kiválasztva)</span><span class="sxs-lookup"><span data-stu-id="04c57-151">(selected)</span></span> |
 
-1. <span data-ttu-id="97adf-152">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="97adf-152">Click **OK**.</span></span>
+1. <span data-ttu-id="04c57-152">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="04c57-152">Click **OK**.</span></span>
 
-<span data-ttu-id="97adf-153">**A Smooth Streaming ügyfél SDK mutató hivatkozás hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="97adf-153">**To add a reference to the Smooth Streaming Client SDK**</span></span>
+<span data-ttu-id="04c57-153">**egy hivatkozási toohello Smooth Streaming ügyfél SDK tooadd**</span><span class="sxs-lookup"><span data-stu-id="04c57-153">**tooadd a reference toohello Smooth Streaming Client SDK**</span></span>
 
-1. <span data-ttu-id="97adf-154">A Megoldáskezelőben kattintson a jobb gombbal **SSPlayer**, és kattintson a **hivatkozás hozzáadása**.</span><span class="sxs-lookup"><span data-stu-id="97adf-154">From Solution Explorer, right-click **SSPlayer**, and then click **Add Reference**.</span></span>
-2. <span data-ttu-id="97adf-155">Írja be vagy válassza ki az alábbi értékeket:</span><span class="sxs-lookup"><span data-stu-id="97adf-155">Type or select the following values:</span></span>
+1. <span data-ttu-id="04c57-154">A Megoldáskezelőben kattintson a jobb gombbal **SSPlayer**, és kattintson a **hivatkozás hozzáadása**.</span><span class="sxs-lookup"><span data-stu-id="04c57-154">From Solution Explorer, right-click **SSPlayer**, and then click **Add Reference**.</span></span>
+2. <span data-ttu-id="04c57-155">Írja be vagy válassza ki a következő értékek hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-155">Type or select hello following values:</span></span>
 
-| <span data-ttu-id="97adf-156">Név</span><span class="sxs-lookup"><span data-stu-id="97adf-156">Name</span></span> | <span data-ttu-id="97adf-157">Érték</span><span class="sxs-lookup"><span data-stu-id="97adf-157">Value</span></span> |
+| <span data-ttu-id="04c57-156">Név</span><span class="sxs-lookup"><span data-stu-id="04c57-156">Name</span></span> | <span data-ttu-id="04c57-157">Érték</span><span class="sxs-lookup"><span data-stu-id="04c57-157">Value</span></span> |
 | --- | --- |
-| <span data-ttu-id="97adf-158">Referencia-csoport</span><span class="sxs-lookup"><span data-stu-id="97adf-158">Reference group</span></span> |<span data-ttu-id="97adf-159">Windows/bővítmények</span><span class="sxs-lookup"><span data-stu-id="97adf-159">Windows/Extensions</span></span> |
-| <span data-ttu-id="97adf-160">Referencia</span><span class="sxs-lookup"><span data-stu-id="97adf-160">Reference</span></span> |<span data-ttu-id="97adf-161">Válassza ki a Microsoft Smooth Streaming ügyfél SDK a Windows 8 és a Microsoft Visual C++ futásidejű csomag</span><span class="sxs-lookup"><span data-stu-id="97adf-161">Select Microsoft Smooth Streaming Client SDK for Windows 8 and Microsoft Visual C++ Runtime Package</span></span> |
+| <span data-ttu-id="04c57-158">Referencia-csoport</span><span class="sxs-lookup"><span data-stu-id="04c57-158">Reference group</span></span> |<span data-ttu-id="04c57-159">Windows/bővítmények</span><span class="sxs-lookup"><span data-stu-id="04c57-159">Windows/Extensions</span></span> |
+| <span data-ttu-id="04c57-160">Referencia</span><span class="sxs-lookup"><span data-stu-id="04c57-160">Reference</span></span> |<span data-ttu-id="04c57-161">Válassza ki a Microsoft Smooth Streaming ügyfél SDK a Windows 8 és a Microsoft Visual C++ futásidejű csomag</span><span class="sxs-lookup"><span data-stu-id="04c57-161">Select Microsoft Smooth Streaming Client SDK for Windows 8 and Microsoft Visual C++ Runtime Package</span></span> |
 
-1. <span data-ttu-id="97adf-162">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="97adf-162">Click **OK**.</span></span> 
+1. <span data-ttu-id="04c57-162">Kattintson az **OK** gombra.</span><span class="sxs-lookup"><span data-stu-id="04c57-162">Click **OK**.</span></span> 
 
-<span data-ttu-id="97adf-163">Miután hozzáadta a hivatkozásokat, ki kell választania a megcélzott platform (x64 vagy x86), Any CPU platform konfiguráció hozzáadása hivatkozások fog működni.</span><span class="sxs-lookup"><span data-stu-id="97adf-163">After adding the references, you must select the targeted platform (x64 or x86), adding references will not work for Any CPU platform configuration.</span></span>  <span data-ttu-id="97adf-164">A megoldáskezelőben látni fogja, sárga figyelmeztető megjelölés ezek hozzá hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="97adf-164">In solution explorer, you will see yellow warning mark for these added references.</span></span>
+<span data-ttu-id="04c57-163">A felvett hello hivatkozik, hello megcélzott platform (x64 vagy x86) ki kell választania, Any CPU platform konfiguráció hozzáadása hivatkozások fog működni.</span><span class="sxs-lookup"><span data-stu-id="04c57-163">After adding hello references, you must select hello targeted platform (x64 or x86), adding references will not work for Any CPU platform configuration.</span></span>  <span data-ttu-id="04c57-164">A megoldáskezelőben látni fogja, sárga figyelmeztető megjelölés ezek hozzá hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="04c57-164">In solution explorer, you will see yellow warning mark for these added references.</span></span>
 
-<span data-ttu-id="97adf-165">**Megtervezheti a player felhasználói felülete**</span><span class="sxs-lookup"><span data-stu-id="97adf-165">**To design the player user interface**</span></span>
+<span data-ttu-id="04c57-165">**toodesign hello player felhasználói felülete**</span><span class="sxs-lookup"><span data-stu-id="04c57-165">**toodesign hello player user interface**</span></span>
 
-1. <span data-ttu-id="97adf-166">A Megoldáskezelőben kattintson duplán **MainPage.xaml** való megnyitásához a tervezési nézetben.</span><span class="sxs-lookup"><span data-stu-id="97adf-166">From Solution Explorer, double click **MainPage.xaml** to open it in the design view.</span></span>
-2. <span data-ttu-id="97adf-167">Keresse meg a  **&lt;rács&gt;**  és  **&lt;/Grid&gt;**  az XAML-fájlt, és a két címkék között az alábbi kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-167">Locate the **&lt;Grid&gt;** and **&lt;/Grid&gt;**  tags the XAML file, and paste the following code between the two tags:</span></span>
+1. <span data-ttu-id="04c57-166">A Megoldáskezelőben kattintson duplán **MainPage.xaml** tooopen azt hello kialakításában megtekintése.</span><span class="sxs-lookup"><span data-stu-id="04c57-166">From Solution Explorer, double click **MainPage.xaml** tooopen it in hello design view.</span></span>
+2. <span data-ttu-id="04c57-167">Keresse meg a hello  **&lt;rács&gt;**  és  **&lt;/Grid&gt;**  címkék hello XAML-fájl, és a Beillesztés hello következő kódot a két hello címkék között:</span><span class="sxs-lookup"><span data-stu-id="04c57-167">Locate hello **&lt;Grid&gt;** and **&lt;/Grid&gt;**  tags hello XAML file, and paste hello following code between hello two tags:</span></span>
 
          <Grid.RowDefinitions>
 
@@ -135,27 +135,27 @@ ms.lasthandoff: 08/29/2017
             <TextBox x:Name="txtStatus" FontSize="10" Width="700" VerticalAlignment="Center"/>
          </StackPanel>
    
-   <span data-ttu-id="97adf-168">A MediaElement vezérlő lejátszás adathordozó segítségével.</span><span class="sxs-lookup"><span data-stu-id="97adf-168">The MediaElement control is used to playback media.</span></span> <span data-ttu-id="97adf-169">A csúszka sliderProgress nevű media végrehajtási vezérlésére használható a következő lecke.</span><span class="sxs-lookup"><span data-stu-id="97adf-169">The slider control named sliderProgress will be used in the next lesson to control the media progress.</span></span>
-3. <span data-ttu-id="97adf-170">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-170">Press **CTRL+S** to save the file.</span></span>
+   <span data-ttu-id="04c57-168">hello MediaElement vezérlő használt tooplayback media.</span><span class="sxs-lookup"><span data-stu-id="04c57-168">hello MediaElement control is used tooplayback media.</span></span> <span data-ttu-id="04c57-169">hello csúszkavezérlő sliderProgress nevű folyamatban hello következő lecke toocontrol hello adathordozó használható.</span><span class="sxs-lookup"><span data-stu-id="04c57-169">hello slider control named sliderProgress will be used in hello next lesson toocontrol hello media progress.</span></span>
+3. <span data-ttu-id="04c57-170">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-170">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-171">A MediaElement vezérlő nem támogatja a Smooth Streaming tartalom out-of-box.</span><span class="sxs-lookup"><span data-stu-id="97adf-171">The MediaElement control does not support Smooth Streaming content out-of-box.</span></span> <span data-ttu-id="97adf-172">A Smooth Streaming támogatását engedélyezi, regisztrálnia kell a Smooth Streaming bájtos-adatfolyam kezelő kiterjesztésű és MIME-típus.</span><span class="sxs-lookup"><span data-stu-id="97adf-172">To enable the Smooth Streaming support, you must register the Smooth Streaming byte-stream handler by file name extension and MIME type.</span></span>  <span data-ttu-id="97adf-173">Regisztrálásához a MediaExtensionManager.RegisterByteStremHandler módszer használatával a Windows.Media névtér.</span><span class="sxs-lookup"><span data-stu-id="97adf-173">To register, you use the MediaExtensionManager.RegisterByteStremHandler method of the Windows.Media namespace.</span></span>
+<span data-ttu-id="04c57-171">hello MediaElement vezérlő nem támogatja a Smooth Streaming tartalom out-of-box.</span><span class="sxs-lookup"><span data-stu-id="04c57-171">hello MediaElement control does not support Smooth Streaming content out-of-box.</span></span> <span data-ttu-id="04c57-172">tooenable hello Smooth Streaming támogatást, regisztrálnia kell a Smooth Streaming bájtos-adatfolyam hello kezelő kiterjesztésű és MIME-típus.</span><span class="sxs-lookup"><span data-stu-id="04c57-172">tooenable hello Smooth Streaming support, you must register hello Smooth Streaming byte-stream handler by file name extension and MIME type.</span></span>  <span data-ttu-id="04c57-173">tooregister, hello Windows.Media névtér hello MediaExtensionManager.RegisterByteStremHandler módszert használja.</span><span class="sxs-lookup"><span data-stu-id="04c57-173">tooregister, you use hello MediaExtensionManager.RegisterByteStremHandler method of hello Windows.Media namespace.</span></span>
 
-<span data-ttu-id="97adf-174">Az XAML-fájl, a néhány eseménykezelők vezérlők társítva.</span><span class="sxs-lookup"><span data-stu-id="97adf-174">In this XAML file, some event handlers are associated with the controls.</span></span>  <span data-ttu-id="97adf-175">Meg kell adnia azokat eseménykezelők.</span><span class="sxs-lookup"><span data-stu-id="97adf-175">You must define those event handlers.</span></span>
+<span data-ttu-id="04c57-174">Az XAML-fájl az egyes eseménykezelők társított hello vezérlők.</span><span class="sxs-lookup"><span data-stu-id="04c57-174">In this XAML file, some event handlers are associated with hello controls.</span></span>  <span data-ttu-id="04c57-175">Meg kell adnia azokat eseménykezelők.</span><span class="sxs-lookup"><span data-stu-id="04c57-175">You must define those event handlers.</span></span>
 
-<span data-ttu-id="97adf-176">**A fájl mögötti kódban módosítása**</span><span class="sxs-lookup"><span data-stu-id="97adf-176">**To modify the code behind file**</span></span>
+<span data-ttu-id="04c57-176">**toomodify hello fájl mögötti kódban**</span><span class="sxs-lookup"><span data-stu-id="04c57-176">**toomodify hello code behind file**</span></span>
 
-1. <span data-ttu-id="97adf-177">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-177">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-178">A fájl felső részén adja hozzá a következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="97adf-178">At the top of the file, add the following using statement:</span></span>
+1. <span data-ttu-id="04c57-177">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-177">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-178">Hello fájl hello tetején adja hozzá a hello következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="04c57-178">At hello top of hello file, add hello following using statement:</span></span>
    
         using Windows.Media;
-3. <span data-ttu-id="97adf-179">Elején a **MainPage** osztályban adja hozzá a következő adatelem:</span><span class="sxs-lookup"><span data-stu-id="97adf-179">At the beginning of the **MainPage** class, add the following data member:</span></span>
+3. <span data-ttu-id="04c57-179">Hello hello elején **MainPage** osztály, adja hozzá a következő adatelem hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-179">At hello beginning of hello **MainPage** class, add hello following data member:</span></span>
    
          private MediaExtensionManager extensions = new MediaExtensionManager();
-4. <span data-ttu-id="97adf-180">Végén a **MainPage** konstruktor, adja hozzá a következő sort:</span><span class="sxs-lookup"><span data-stu-id="97adf-180">At the end of the **MainPage** constructor, add the following two lines:</span></span>
+4. <span data-ttu-id="04c57-180">Hello hello végén **MainPage** konstruktor, adja hozzá az alábbi két hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-180">At hello end of hello **MainPage** constructor, add hello following two lines:</span></span>
    
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "text/xml");
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "application/vnd.ms-sstr+xml");
-5. <span data-ttu-id="97adf-181">Végén a **MainPage** osztály, az alábbi kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-181">At the end of the **MainPage** class, paste the following code:</span></span>
+5. <span data-ttu-id="04c57-181">Hello hello végén **MainPage** osztály, illessze be a kódját a következő hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-181">At hello end of hello **MainPage** class, paste hello following code:</span></span>
    
          # region UI Button Click Events
          private void btnPlay_Click(object sender, RoutedEventArgs e)
@@ -182,7 +182,7 @@ ms.lasthandoff: 08/29/2017
          }
          else
          {
-             txtStatus.Text = "Click the Play button to play the media source.";
+             txtStatus.Text = "Click hello Play button tooplay hello media source.";
          }
          }
          private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -194,68 +194,68 @@ ms.lasthandoff: 08/29/2017
          private void sliderProgress_PointerPressed(object sender, PointerRoutedEventArgs e)
          {
 
-         txtStatus.Text = "Seek to position " + sliderProgress.Value;
+         txtStatus.Text = "Seek tooposition " + sliderProgress.Value;
          mediaElement.Position = new TimeSpan(0, 0, (int)(sliderProgress.Value));
          }
          # endregion
 
-<span data-ttu-id="97adf-182">A sliderProgress_PointerPressed eseménykezelő itt van definiálva.</span><span class="sxs-lookup"><span data-stu-id="97adf-182">The sliderProgress_PointerPressed event handler is defined here.</span></span>  <span data-ttu-id="97adf-183">Nincsenek további munkálatok ehhez működéséhez, ez az oktatóanyag következő lecke tárgyalja.</span><span class="sxs-lookup"><span data-stu-id="97adf-183">There are more works to do to get it working, which will be covered in the next lesson of this tutorial.</span></span>
-6. <span data-ttu-id="97adf-184">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-184">Press **CTRL+S** to save the file.</span></span>
+<span data-ttu-id="04c57-182">hello sliderProgress_PointerPressed eseménykezelő itt van definiálva.</span><span class="sxs-lookup"><span data-stu-id="04c57-182">hello sliderProgress_PointerPressed event handler is defined here.</span></span>  <span data-ttu-id="04c57-183">Nincsenek további works toodo tooget akkor működik, amelyek szerepelnek hello a jelen oktatóanyag következő lecke.</span><span class="sxs-lookup"><span data-stu-id="04c57-183">There are more works toodo tooget it working, which will be covered in hello next lesson of this tutorial.</span></span>
+6. <span data-ttu-id="04c57-184">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-184">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-185">A kész fájl mögötti kódban kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="97adf-185">The finished the code behind file shall look like this:</span></span>
+<span data-ttu-id="04c57-185">hello végzett hello fájl mögötti kódban kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="04c57-185">hello finished hello code behind file shall look like this:</span></span>
 
 ![A Visual Studio, Smooth Streaming Windows Áruházbeli alkalmazás Codeview][CodeViewPic]
 
-<span data-ttu-id="97adf-187">**Fordításához és az alkalmazás tesztelése**</span><span class="sxs-lookup"><span data-stu-id="97adf-187">**To compile and test the application**</span></span>
+<span data-ttu-id="04c57-187">**toocompile és tesztelési hello alkalmazás**</span><span class="sxs-lookup"><span data-stu-id="04c57-187">**toocompile and test hello application**</span></span>
 
-1. <span data-ttu-id="97adf-188">Az a **BUILD** menüben kattintson a **Configuration Manager**.</span><span class="sxs-lookup"><span data-stu-id="97adf-188">From the **BUILD** menu, click **Configuration Manager**.</span></span>
-2. <span data-ttu-id="97adf-189">Változás **aktív megoldás platform** a fejlesztői platform kereséséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-189">Change **Active solution platform** to match your development platform.</span></span>
-3. <span data-ttu-id="97adf-190">Nyomja le az **F6** összeállítani a projektet.</span><span class="sxs-lookup"><span data-stu-id="97adf-190">Press **F6** to compile the project.</span></span> 
-4. <span data-ttu-id="97adf-191">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="97adf-191">Press **F5** to run the application.</span></span>
-5. <span data-ttu-id="97adf-192">A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="97adf-192">At the top of the application, you can either use the default Smooth Streaming URL or enter a different one.</span></span> 
-6. <span data-ttu-id="97adf-193">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="97adf-193">Click **Set Source**.</span></span> <span data-ttu-id="97adf-194">Mivel **automatikus lejátszása** engedélyezve van alapértelmezés szerint az adathordozót kell lejátszása automatikusan.</span><span class="sxs-lookup"><span data-stu-id="97adf-194">Because **Auto Play** is enabled by default, the media shall play automatically.</span></span>  <span data-ttu-id="97adf-195">Az adathordozó segítségével szabályozhatja a **lejátszása**, **szünet** és **leállítása** gombok.</span><span class="sxs-lookup"><span data-stu-id="97adf-195">You can control the media using the **Play**, **Pause** and **Stop** buttons.</span></span>  <span data-ttu-id="97adf-196">A függőleges csúszkát media kötet szabályozhatja.</span><span class="sxs-lookup"><span data-stu-id="97adf-196">You can control the media volume using the vertical slider.</span></span>  <span data-ttu-id="97adf-197">Azonban a vízszintes csúszkát media végrehajtási szabályozásának teljesen még nem használható.</span><span class="sxs-lookup"><span data-stu-id="97adf-197">However the horizontal slider for controlling the media progress is not fully implemented yet.</span></span> 
+1. <span data-ttu-id="04c57-188">A hello **BUILD** menüben kattintson a **Configuration Manager**.</span><span class="sxs-lookup"><span data-stu-id="04c57-188">From hello **BUILD** menu, click **Configuration Manager**.</span></span>
+2. <span data-ttu-id="04c57-189">Változás **aktív megoldás platform** toomatch a fejlesztői platform.</span><span class="sxs-lookup"><span data-stu-id="04c57-189">Change **Active solution platform** toomatch your development platform.</span></span>
+3. <span data-ttu-id="04c57-190">Nyomja le az **F6** toocompile hello projekt.</span><span class="sxs-lookup"><span data-stu-id="04c57-190">Press **F6** toocompile hello project.</span></span> 
+4. <span data-ttu-id="04c57-191">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="04c57-191">Press **F5** toorun hello application.</span></span>
+5. <span data-ttu-id="04c57-192">Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="04c57-192">At hello top of hello application, you can either use hello default Smooth Streaming URL or enter a different one.</span></span> 
+6. <span data-ttu-id="04c57-193">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="04c57-193">Click **Set Source**.</span></span> <span data-ttu-id="04c57-194">Mivel **automatikus lejátszása** media automatikusan játszik hello alapértelmezés szerint engedélyezve van.</span><span class="sxs-lookup"><span data-stu-id="04c57-194">Because **Auto Play** is enabled by default, hello media shall play automatically.</span></span>  <span data-ttu-id="04c57-195">Hello media hello segítségével szabályozhatja **lejátszása**, **szünet** és **leállítása** gombokat.</span><span class="sxs-lookup"><span data-stu-id="04c57-195">You can control hello media using hello **Play**, **Pause** and **Stop** buttons.</span></span>  <span data-ttu-id="04c57-196">Hello media kötet hello függőleges csúszka segítségével szabályozhatja.</span><span class="sxs-lookup"><span data-stu-id="04c57-196">You can control hello media volume using hello vertical slider.</span></span>  <span data-ttu-id="04c57-197">Azonban hello vízszintes csúszkán szabályozása hello media folyamatban teljesen még nincs implementálva.</span><span class="sxs-lookup"><span data-stu-id="04c57-197">However hello horizontal slider for controlling hello media progress is not fully implemented yet.</span></span> 
 
-<span data-ttu-id="97adf-198">Lesson1 befejeződött.</span><span class="sxs-lookup"><span data-stu-id="97adf-198">You have completed lesson1.</span></span>  <span data-ttu-id="97adf-199">Ez a lecke Smooth Streaming tartalmak lejátszásához MediaElement vezérlőelem segítségével.</span><span class="sxs-lookup"><span data-stu-id="97adf-199">In this lesson, you use a MediaElement control to playback Smooth Streaming content.</span></span>  <span data-ttu-id="97adf-200">A következő lecke adhat egy csúszkát a Smooth Streaming tartalom állapotának vezérlésére.</span><span class="sxs-lookup"><span data-stu-id="97adf-200">In the next lesson, you will add a slider to control the progress of the Smooth Streaming content.</span></span>
+<span data-ttu-id="04c57-198">Lesson1 befejeződött.</span><span class="sxs-lookup"><span data-stu-id="04c57-198">You have completed lesson1.</span></span>  <span data-ttu-id="04c57-199">Ez a lecke egy MediaElement vezérlő tooplayback Smooth Streaming tartalmat használ.</span><span class="sxs-lookup"><span data-stu-id="04c57-199">In this lesson, you use a MediaElement control tooplayback Smooth Streaming content.</span></span>  <span data-ttu-id="04c57-200">Hello a következő leckében adhat egy Smooth Streaming tartalom hello csúszkát toocontrol hello előrehaladását.</span><span class="sxs-lookup"><span data-stu-id="04c57-200">In hello next lesson, you will add a slider toocontrol hello progress of hello Smooth Streaming content.</span></span>
 
-## <a name="lesson-2-add-a-slider-bar-to-control-the-media-progress"></a><span data-ttu-id="97adf-201">2. lecke: Hozzáadása egy csúszkát a szabályozhatja a Media folyamatban</span><span class="sxs-lookup"><span data-stu-id="97adf-201">Lesson 2: Add a Slider Bar to Control the Media Progress</span></span>
+## <a name="lesson-2-add-a-slider-bar-toocontrol-hello-media-progress"></a><span data-ttu-id="04c57-201">2. lecke: Egy csúszkát tooControl hello Media folyamatjelző sáv hozzáadása</span><span class="sxs-lookup"><span data-stu-id="04c57-201">Lesson 2: Add a Slider Bar tooControl hello Media Progress</span></span>
 
-<span data-ttu-id="97adf-202">1. lecke egy Windows Áruházbeli alkalmazással egy MediaElement XAML-vezérléssel lejátszásához médiatartalom Smooth Streaming létrehozott.</span><span class="sxs-lookup"><span data-stu-id="97adf-202">In lesson 1, you created a Windows Store application with a MediaElement XAML control to playback Smooth Streaming media content.</span></span>  <span data-ttu-id="97adf-203">Néhány alapvető adathordozó funkciók, például a start, stop, várjon származik.</span><span class="sxs-lookup"><span data-stu-id="97adf-203">It comes some basic media functions like start, stop and pause.</span></span>  <span data-ttu-id="97adf-204">Ez a lecke a csúszka sávjának fog hozzáadni az alkalmazáshoz.</span><span class="sxs-lookup"><span data-stu-id="97adf-204">In this lesson, you will add a slider bar control to the application.</span></span>
+<span data-ttu-id="04c57-202">1. lecke a Windows Áruházbeli alkalmazások egy MediaElement XAML vezérlő tooplayback médiatartalom Smooth Streaming segítségével létrehozott.</span><span class="sxs-lookup"><span data-stu-id="04c57-202">In lesson 1, you created a Windows Store application with a MediaElement XAML control tooplayback Smooth Streaming media content.</span></span>  <span data-ttu-id="04c57-203">Néhány alapvető adathordozó funkciók, például a start, stop, várjon származik.</span><span class="sxs-lookup"><span data-stu-id="04c57-203">It comes some basic media functions like start, stop and pause.</span></span>  <span data-ttu-id="04c57-204">Ez a lecke adhat a csúszka sávjának vezérlő toohello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="04c57-204">In this lesson, you will add a slider bar control toohello application.</span></span>
 
-<span data-ttu-id="97adf-205">Ebben az oktatóanyagban egy időzítő segítségével frissítse a csúszka helyzete a MediaElement vezérlő aktuális helyzete alapján.</span><span class="sxs-lookup"><span data-stu-id="97adf-205">In this tutorial, we will use a timer to update the slider position based on the current position of the MediaElement control.</span></span>  <span data-ttu-id="97adf-206">A csúszka kezdő és záró idő is élő tartalmak esetén frissítésre szorulnak.</span><span class="sxs-lookup"><span data-stu-id="97adf-206">The slider start and end time also need to be updated in case of live content.</span></span>  <span data-ttu-id="97adf-207">Ez jobban kezelhető az adaptív forrás frissítés esemény.</span><span class="sxs-lookup"><span data-stu-id="97adf-207">This can be better handled in the adaptive source update event.</span></span>
+<span data-ttu-id="04c57-205">Ebben az oktatóanyagban egy időzítő tooupdate hello csúszka helyzete hello MediaElement vezérlő aktuális helyzete hello alapján használjuk.</span><span class="sxs-lookup"><span data-stu-id="04c57-205">In this tutorial, we will use a timer tooupdate hello slider position based on hello current position of hello MediaElement control.</span></span>  <span data-ttu-id="04c57-206">hello csúszkát indítsa el, és a Befejezés időpontja is élő tartalmak esetén frissíteni kell toobe.</span><span class="sxs-lookup"><span data-stu-id="04c57-206">hello slider start and end time also need toobe updated in case of live content.</span></span>  <span data-ttu-id="04c57-207">Ez jobban kezelhető hello adaptív forrás frissítés esemény.</span><span class="sxs-lookup"><span data-stu-id="04c57-207">This can be better handled in hello adaptive source update event.</span></span>
 
-<span data-ttu-id="97adf-208">Források olyan objektumok, amelyek hozhat létre a media adatokat.</span><span class="sxs-lookup"><span data-stu-id="97adf-208">Media sources are objects that generate media data.</span></span>  <span data-ttu-id="97adf-209">A forrás-feloldó URL-címe vagy bájtos adatfolyam vesz igénybe, és létrehozza a megfelelő médiaforrást az adott tartalmakra vonatkozóan.</span><span class="sxs-lookup"><span data-stu-id="97adf-209">The source resolver takes a URL or byte stream and creates the appropriate media source for that content.</span></span>  <span data-ttu-id="97adf-210">A forrás-feloldó szabványos módja a források létrehozásához az alkalmazásokhoz.</span><span class="sxs-lookup"><span data-stu-id="97adf-210">The source resolver is the standard way for the applications to create media sources.</span></span> 
+<span data-ttu-id="04c57-208">Források olyan objektumok, amelyek hozhat létre a media adatokat.</span><span class="sxs-lookup"><span data-stu-id="04c57-208">Media sources are objects that generate media data.</span></span>  <span data-ttu-id="04c57-209">hello forrás feloldó egy URL-címe vagy bájtos adatfolyam vesz igénybe, és létrehozza a hello megfelelő médiaforrást az adott tartalomhoz.</span><span class="sxs-lookup"><span data-stu-id="04c57-209">hello source resolver takes a URL or byte stream and creates hello appropriate media source for that content.</span></span>  <span data-ttu-id="04c57-210">hello forrás feloldó hello alkalmazások toocreate források hello általános esetben.</span><span class="sxs-lookup"><span data-stu-id="04c57-210">hello source resolver is hello standard way for hello applications toocreate media sources.</span></span> 
 
-<span data-ttu-id="97adf-211">Ez a lecke az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="97adf-211">This lesson contains the following procedures:</span></span>
+<span data-ttu-id="04c57-211">Ez a lecke hello az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="04c57-211">This lesson contains hello following procedures:</span></span>
 
-1. <span data-ttu-id="97adf-212">Regisztrálja a Smooth Streaming-kezelő</span><span class="sxs-lookup"><span data-stu-id="97adf-212">Register the Smooth Streaming handler</span></span> 
-2. <span data-ttu-id="97adf-213">Az adaptív forrás manager szintű eseménykezelőinek hozzáadása</span><span class="sxs-lookup"><span data-stu-id="97adf-213">Add the adaptive source manager level event handlers</span></span>
-3. <span data-ttu-id="97adf-214">Az adaptív forrás eseménykezelőinek hozzáadása</span><span class="sxs-lookup"><span data-stu-id="97adf-214">Add the adaptive source level event handlers</span></span>
-4. <span data-ttu-id="97adf-215">Az eseménykezelők MediaElement hozzáadása</span><span class="sxs-lookup"><span data-stu-id="97adf-215">Add MediaElement event handlers</span></span>
-5. <span data-ttu-id="97adf-216">Adja hozzá a csúszka kapcsolódó vonalkódja</span><span class="sxs-lookup"><span data-stu-id="97adf-216">Add slider bar related code</span></span>
-6. <span data-ttu-id="97adf-217">Fordítsa le, és az alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="97adf-217">Compile and test the application</span></span>
+1. <span data-ttu-id="04c57-212">Hello Smooth Streaming kezelő regisztrálása</span><span class="sxs-lookup"><span data-stu-id="04c57-212">Register hello Smooth Streaming handler</span></span> 
+2. <span data-ttu-id="04c57-213">Hello adaptív forrás manager szintű eseménykezelőinek hozzáadása</span><span class="sxs-lookup"><span data-stu-id="04c57-213">Add hello adaptive source manager level event handlers</span></span>
+3. <span data-ttu-id="04c57-214">Hello adaptív forrás szintű eseménykezelőinek hozzáadása</span><span class="sxs-lookup"><span data-stu-id="04c57-214">Add hello adaptive source level event handlers</span></span>
+4. <span data-ttu-id="04c57-215">Az eseménykezelők MediaElement hozzáadása</span><span class="sxs-lookup"><span data-stu-id="04c57-215">Add MediaElement event handlers</span></span>
+5. <span data-ttu-id="04c57-216">Adja hozzá a csúszka kapcsolódó vonalkódja</span><span class="sxs-lookup"><span data-stu-id="04c57-216">Add slider bar related code</span></span>
+6. <span data-ttu-id="04c57-217">Fordítsa le és hello alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="04c57-217">Compile and test hello application</span></span>
 
-<span data-ttu-id="97adf-218">**A Smooth Streaming bájtos-adatfolyam kezelő regisztrálja, és adja át a propertyset**</span><span class="sxs-lookup"><span data-stu-id="97adf-218">**To register the Smooth Streaming byte-stream handler and pass the propertyset**</span></span>
+<span data-ttu-id="04c57-218">**tooregister hello Smooth Streaming bájtos-adatfolyam-kezelő és pass hello propertyset**</span><span class="sxs-lookup"><span data-stu-id="04c57-218">**tooregister hello Smooth Streaming byte-stream handler and pass hello propertyset**</span></span>
 
-1. <span data-ttu-id="97adf-219">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-219">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-220">A fájl elején adja hozzá a következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="97adf-220">At the beginning of the file, add the following using statement:</span></span>
+1. <span data-ttu-id="04c57-219">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-219">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-220">Elején hello hello fájlt, adja hozzá a hello következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="04c57-220">At hello beginning of hello file, add hello following using statement:</span></span>
 
         using Microsoft.Media.AdaptiveStreaming;
-3. <span data-ttu-id="97adf-221">A MainPage osztály elején a következő adatok tagok hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="97adf-221">At the beginning of the MainPage class, add the following data members:</span></span>
+3. <span data-ttu-id="04c57-221">Elején hello hello MainPage osztály, adja hozzá a következő adattagok hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-221">At hello beginning of hello MainPage class, add hello following data members:</span></span>
 
          private Windows.Foundation.Collections.PropertySet propertySet = new Windows.Foundation.Collections.PropertySet();             
          private IAdaptiveSourceManager adaptiveSourceManager;
-4. <span data-ttu-id="97adf-222">Belül a **MainPage** konstruktor, után az alábbi kódot a **ez. Components(); inicializálása**  vonal- és a regisztrációs kód az előző leckében sorok:</span><span class="sxs-lookup"><span data-stu-id="97adf-222">Inside the **MainPage** constructor, add the following code after the **this.Initialize Components();** line and the registration code lines written in the previous lesson:</span></span>
+4. <span data-ttu-id="04c57-222">Belső hello **MainPage** konstruktor, adja hozzá a következő kód után hello hello **ez. Components(); inicializálása**  vonal- és hello regisztrációs kód sorok hello előző lecke:</span><span class="sxs-lookup"><span data-stu-id="04c57-222">Inside hello **MainPage** constructor, add hello following code after hello **this.Initialize Components();** line and hello registration code lines written in hello previous lesson:</span></span>
 
-        // Gets the default instance of AdaptiveSourceManager which manages Smooth 
+        // Gets hello default instance of AdaptiveSourceManager which manages Smooth 
         //Streaming media sources.
         adaptiveSourceManager = AdaptiveSourceManager.GetDefault();
-        // Sets property key value to AdaptiveSourceManager default instance.
+        // Sets property key value tooAdaptiveSourceManager default instance.
         // {A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}" must be hardcoded.
         propertySet["{A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}"] = adaptiveSourceManager;
-5. <span data-ttu-id="97adf-223">Belül a **MainPage** konstruktor, módosítsa a két RegisterByteStreamHandler módszerek hozzáadása az oda-paraméterek:</span><span class="sxs-lookup"><span data-stu-id="97adf-223">Inside the **MainPage** constructor, modify the two RegisterByteStreamHandler methods to add the forth parameters:</span></span>
+5. <span data-ttu-id="04c57-223">Belső hello **MainPage** konstruktor, módosítsa a két hello RegisterByteStreamHandler módszerek tooadd hello oda-paramétereket:</span><span class="sxs-lookup"><span data-stu-id="04c57-223">Inside hello **MainPage** constructor, modify hello two RegisterByteStreamHandler methods tooadd hello forth parameters:</span></span>
 
          // Registers Smooth Streaming byte-stream handler for ".ism" extension and, 
-         // "text/xml" and "application/vnd.ms-ss" mime-types and pass the propertyset. 
+         // "text/xml" and "application/vnd.ms-ss" mime-types and pass hello propertyset. 
          // http://*.ism/manifest URI resources will be resolved by Byte-stream handler.
          extensions.RegisterByteStreamHandler(
 
@@ -269,15 +269,15 @@ ms.lasthandoff: 08/29/2017
             ".ism", 
             "application/vnd.ms-sstr+xml", 
          propertySet);
-6. <span data-ttu-id="97adf-224">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-224">Press **CTRL+S** to save the file.</span></span>
+6. <span data-ttu-id="04c57-224">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-224">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-225">**Az adaptív forrás manager szintű eseménykezelő**</span><span class="sxs-lookup"><span data-stu-id="97adf-225">**To add the adaptive source manager level event handler**</span></span>
+<span data-ttu-id="04c57-225">**tooadd hello adaptív forrás manager szintű eseménykezelő**</span><span class="sxs-lookup"><span data-stu-id="04c57-225">**tooadd hello adaptive source manager level event handler**</span></span>
 
-1. <span data-ttu-id="97adf-226">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-226">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-227">Belül a **MainPage** osztályban adja hozzá a következő adatelem:</span><span class="sxs-lookup"><span data-stu-id="97adf-227">Inside the **MainPage** class, add the following data member:</span></span>
+1. <span data-ttu-id="04c57-226">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-226">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-227">Belső hello **MainPage** osztály, adja hozzá a következő adatelem hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-227">Inside hello **MainPage** class, add hello following data member:</span></span>
    
-     <span data-ttu-id="97adf-228">személyes AdaptiveSource adaptiveSource = null;</span><span class="sxs-lookup"><span data-stu-id="97adf-228">private AdaptiveSource adaptiveSource = null;</span></span>
-3. <span data-ttu-id="97adf-229">Végén a **MainPage** osztályban adja hozzá a következő eseménykezelő:</span><span class="sxs-lookup"><span data-stu-id="97adf-229">At the end of the **MainPage** class, add the following event handler:</span></span>
+     <span data-ttu-id="04c57-228">személyes AdaptiveSource adaptiveSource = null;</span><span class="sxs-lookup"><span data-stu-id="04c57-228">private AdaptiveSource adaptiveSource = null;</span></span>
+3. <span data-ttu-id="04c57-229">Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelő hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-229">At hello end of hello **MainPage** class, add hello following event handler:</span></span>
    
          # region Adaptive Source Manager Level Events
          private void mediaElement_AdaptiveSourceOpened(AdaptiveSource sender, AdaptiveSourceOpenedEventArgs args)
@@ -287,19 +287,19 @@ ms.lasthandoff: 08/29/2017
          }
 
          # endregion Adaptive Source Manager Level Events
-4. <span data-ttu-id="97adf-230">Végén a **MainPage** konstruktor, adja hozzá a következő sort az adaptív forrás open esemény előfizetni:</span><span class="sxs-lookup"><span data-stu-id="97adf-230">At the end of the **MainPage** constructor, add the following line to subscribe to the adaptive source open event:</span></span>
+4. <span data-ttu-id="04c57-230">Hello hello végén **MainPage** konstruktor, adja hozzá a következő sor toosubscribe toohello adaptív forrás open esemény hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-230">At hello end of hello **MainPage** constructor, add hello following line toosubscribe toohello adaptive source open event:</span></span>
    
          adaptiveSourceManager.AdaptiveSourceOpenedEvent += 
            new AdaptiveSourceOpenedEventHandler(mediaElement_AdaptiveSourceOpened);
-5. <span data-ttu-id="97adf-231">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-231">Press **CTRL+S** to save the file.</span></span>
+5. <span data-ttu-id="04c57-231">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-231">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-232">**Adaptív forrás szintű eseménykezelők hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="97adf-232">**To add adaptive source level event handlers**</span></span>
+<span data-ttu-id="04c57-232">**tooadd adaptív forrás szintű eseménykezelők**</span><span class="sxs-lookup"><span data-stu-id="04c57-232">**tooadd adaptive source level event handlers**</span></span>
 
-1. <span data-ttu-id="97adf-233">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-233">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-234">Belül a **MainPage** osztályban adja hozzá a következő adatelem:</span><span class="sxs-lookup"><span data-stu-id="97adf-234">Inside the **MainPage** class, add the following data member:</span></span>
+1. <span data-ttu-id="04c57-233">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-233">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-234">Belső hello **MainPage** osztály, adja hozzá a következő adatelem hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-234">Inside hello **MainPage** class, add hello following data member:</span></span>
    
-     <span data-ttu-id="97adf-235">személyes AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   személyes jegyzék manifestObject;</span><span class="sxs-lookup"><span data-stu-id="97adf-235">private AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   private Manifest manifestObject;</span></span>
-3. <span data-ttu-id="97adf-236">Végén a **MainPage** osztályban adja hozzá a következő eseménykezelők:</span><span class="sxs-lookup"><span data-stu-id="97adf-236">At the end of the **MainPage** class, add the following event handlers:</span></span>
+     <span data-ttu-id="04c57-235">személyes AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   személyes jegyzék manifestObject;</span><span class="sxs-lookup"><span data-stu-id="04c57-235">private AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   private Manifest manifestObject;</span></span>
+3. <span data-ttu-id="04c57-236">Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelők hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-236">At hello end of hello **MainPage** class, add hello following event handlers:</span></span>
 
          # region Adaptive Source Level Events
          private void mediaElement_ManifestReady(AdaptiveSource sender, ManifestReadyEventArgs args)
@@ -322,7 +322,7 @@ ms.lasthandoff: 08/29/2017
          }
 
          # endregion Adaptive Source Level Events
-4. <span data-ttu-id="97adf-237">Végén a **mediaElement AdaptiveSourceOpened** módszer, adja hozzá a következő kódot az események előfizetni:</span><span class="sxs-lookup"><span data-stu-id="97adf-237">At the end of the **mediaElement AdaptiveSourceOpened** method, add the following code to subscribe to the events:</span></span>
+4. <span data-ttu-id="04c57-237">Hello hello végén **mediaElement AdaptiveSourceOpened** módszer, adja hozzá a következő kód toosubscribe toohello események hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-237">At hello end of hello **mediaElement AdaptiveSourceOpened** method, add hello following code toosubscribe toohello events:</span></span>
    
          adaptiveSource.ManifestReadyEvent +=
 
@@ -333,14 +333,14 @@ ms.lasthandoff: 08/29/2017
          adaptiveSource.AdaptiveSourceFailedEvent += 
 
             mediaElement_AdaptiveSourceFailed;
-5. <span data-ttu-id="97adf-238">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-238">Press **CTRL+S** to save the file.</span></span>
+5. <span data-ttu-id="04c57-238">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-238">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-239">Az azonos események adaptív forrás Manager szinten is, amely az alkalmazásban lévő összes adathordozót elemére közös funkciók kezelésére használható érhetők el.</span><span class="sxs-lookup"><span data-stu-id="97adf-239">The same events are available on Adaptive Source manger level as well, which can be used for handling functionality common to all media elements in the app.</span></span> <span data-ttu-id="97adf-240">Minden egyes AdaptiveSource saját eseményeket is tartalmazza, és minden AdaptiveSource események átkerül a AdaptiveSourceManager.</span><span class="sxs-lookup"><span data-stu-id="97adf-240">Each AdaptiveSource includes its own events and all AdaptiveSource events will be cascaded under AdaptiveSourceManager.</span></span>
+<span data-ttu-id="04c57-239">hello azonos események állnak rendelkezésre adaptív forrás Manager szinten is, amely funkció közös tooall media elemek hello alkalmazásban kezelésére használható.</span><span class="sxs-lookup"><span data-stu-id="04c57-239">hello same events are available on Adaptive Source manger level as well, which can be used for handling functionality common tooall media elements in hello app.</span></span> <span data-ttu-id="04c57-240">Minden egyes AdaptiveSource saját eseményeket is tartalmazza, és minden AdaptiveSource események átkerül a AdaptiveSourceManager.</span><span class="sxs-lookup"><span data-stu-id="04c57-240">Each AdaptiveSource includes its own events and all AdaptiveSource events will be cascaded under AdaptiveSourceManager.</span></span>
 
-<span data-ttu-id="97adf-241">**Media elem eseménykezelők hozzáadása**</span><span class="sxs-lookup"><span data-stu-id="97adf-241">**To add Media Element event handlers**</span></span>
+<span data-ttu-id="04c57-241">**tooadd Media elem eseménykezelők**</span><span class="sxs-lookup"><span data-stu-id="04c57-241">**tooadd Media Element event handlers**</span></span>
 
-1. <span data-ttu-id="97adf-242">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-242">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-243">Végén a **MainPage** osztályban adja hozzá a következő eseménykezelők:</span><span class="sxs-lookup"><span data-stu-id="97adf-243">At the end of the **MainPage** class, add the following event handlers:</span></span>
+1. <span data-ttu-id="04c57-242">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-242">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-243">Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelők hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-243">At hello end of hello **MainPage** class, add hello following event handlers:</span></span>
 
          # region Media Element Event Handlers
          private void MediaOpened(object sender, RoutedEventArgs e)
@@ -362,29 +362,29 @@ ms.lasthandoff: 08/29/2017
          }
 
          # endregion Media Element Event Handlers
-3. <span data-ttu-id="97adf-244">Végén a **MainPage** konstruktor aláírása az azokhoz az eseményekhez, adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-244">At the end of the **MainPage** constructor, add the following code to subscript to the events:</span></span>
+3. <span data-ttu-id="04c57-244">Hello hello végén **MainPage** konstruktor, adja hozzá a következő kód toosubscript toohello események hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-244">At hello end of hello **MainPage** constructor, add hello following code toosubscript toohello events:</span></span>
 
          mediaElement.MediaOpened += MediaOpened;
          mediaElement.MediaEnded += MediaEnded;
          mediaElement.MediaFailed += MediaFailed;
-4. <span data-ttu-id="97adf-245">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-245">Press **CTRL+S** to save the file.</span></span>
+4. <span data-ttu-id="04c57-245">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-245">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-246">**Adja hozzá a csúszka sávjának kapcsolódó kódot**</span><span class="sxs-lookup"><span data-stu-id="97adf-246">**To add slider bar related code**</span></span>
+<span data-ttu-id="04c57-246">**kapcsolódó vonalkód tooadd csúszka**</span><span class="sxs-lookup"><span data-stu-id="04c57-246">**tooadd slider bar related code**</span></span>
 
-1. <span data-ttu-id="97adf-247">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-247">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-248">A fájl elején adja hozzá a következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="97adf-248">At the beginning of the file, add the following using statement:</span></span>
+1. <span data-ttu-id="04c57-247">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-247">From Solution Explorer, right click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-248">Elején hello hello fájlt, adja hozzá a hello következő using utasítást:</span><span class="sxs-lookup"><span data-stu-id="04c57-248">At hello beginning of hello file, add hello following using statement:</span></span>
       
         using Windows.UI.Core;
-3. <span data-ttu-id="97adf-249">Belül a **MainPage** osztályban adja hozzá a következő Adattagok:</span><span class="sxs-lookup"><span data-stu-id="97adf-249">Inside the **MainPage** class, add the following data members:</span></span>
+3. <span data-ttu-id="04c57-249">Belső hello **MainPage** osztály, adja hozzá a következő adattagok hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-249">Inside hello **MainPage** class, add hello following data members:</span></span>
    
          public static CoreDispatcher _dispatcher;
          private DispatcherTimer sliderPositionUpdateDispatcher;
-4. <span data-ttu-id="97adf-250">Végén a **MainPage** konstruktor, adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-250">At the end of the **MainPage** constructor, add the following code:</span></span>
+4. <span data-ttu-id="04c57-250">Hello hello végén **MainPage** konstruktor, adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-250">At hello end of hello **MainPage** constructor, add hello following code:</span></span>
    
          _dispatcher = Window.Current.Dispatcher;
          PointerEventHandler pointerpressedhandler = new PointerEventHandler(sliderProgress_PointerPressed);
          sliderProgress.AddHandler(Control.PointerPressedEvent, pointerpressedhandler, true);    
-5. <span data-ttu-id="97adf-251">Végén a **MainPage** osztály, adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-251">At the end of the **MainPage** class, add the following code:</span></span>
+5. <span data-ttu-id="04c57-251">Hello hello végén **MainPage** osztály, adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-251">At hello end of hello **MainPage** class, add hello following code:</span></span>
 
          # region sliderMediaPlayer
          private double SliderFrequency(TimeSpan timevalue)
@@ -469,7 +469,7 @@ ms.lasthandoff: 08/29/2017
          # endregion sliderMediaPlayer
       
 >[!NOTE]
-><span data-ttu-id="97adf-252">Módosíthatja a felhasználói felület szálán nem UI-szálból CoreDispatcher szolgál.</span><span class="sxs-lookup"><span data-stu-id="97adf-252">CoreDispatcher is used to make changes to the UI thread from non UI Thread.</span></span> <span data-ttu-id="97adf-253">Esetén a dispatcher száltól szűk többé kíván frissíteni a felhasználói felületi elem által megadott kézbesítő használhat fejlesztői.</span><span class="sxs-lookup"><span data-stu-id="97adf-253">In case of bottleneck on dispatcher thread, developer can choose to use dispatcher provided by UI-element he/she intends to update.</span></span>  <span data-ttu-id="97adf-254">Példa:</span><span class="sxs-lookup"><span data-stu-id="97adf-254">For example:</span></span>
+><span data-ttu-id="04c57-252">CoreDispatcher toohello felhasználói felület szálából nem UI-szálból használt toomake módosítások.</span><span class="sxs-lookup"><span data-stu-id="04c57-252">CoreDispatcher is used toomake changes toohello UI thread from non UI Thread.</span></span> <span data-ttu-id="04c57-253">Esetén a dispatcher száltól szűk keresztmetszet fejlesztői választható UI-elemet által biztosított toouse kézbesítő többé tooupdate százalékát.</span><span class="sxs-lookup"><span data-stu-id="04c57-253">In case of bottleneck on dispatcher thread, developer can choose toouse dispatcher provided by UI-element he/she intends tooupdate.</span></span>  <span data-ttu-id="04c57-254">Példa:</span><span class="sxs-lookup"><span data-stu-id="04c57-254">For example:</span></span>
    
          await sliderProgress.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { TimeSpan 
 
@@ -477,38 +477,38 @@ ms.lasthandoff: 08/29/2017
          double absvalue  = (int)Math.Round(timespan.TotalSeconds, MidpointRounding.AwayFromZero); 
 
          sliderProgress.Maximum = absvalue; }); 
-6. <span data-ttu-id="97adf-255">Végén a **mediaElement_AdaptiveSourceStatusUpdated** módszer, adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-255">At the end of the **mediaElement_AdaptiveSourceStatusUpdated** method, add the following code:</span></span>
+6. <span data-ttu-id="04c57-255">Hello hello végén **mediaElement_AdaptiveSourceStatusUpdated** módszer, adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-255">At hello end of hello **mediaElement_AdaptiveSourceStatusUpdated** method, add hello following code:</span></span>
 
          setSliderStartTime(args.StartTime);
          setSliderEndTime(args.EndTime);
-7. <span data-ttu-id="97adf-256">Végén a **MediaOpened** módszer, adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-256">At the end of the **MediaOpened** method, add the following code:</span></span>
+7. <span data-ttu-id="04c57-256">Hello hello végén **MediaOpened** módszer, adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-256">At hello end of hello **MediaOpened** method, add hello following code:</span></span>
 
          sliderProgress.StepFrequency = SliderFrequency(mediaElement.NaturalDuration.TimeSpan);
          sliderProgress.Width = mediaElement.Width;
          setupTimer();
-8. <span data-ttu-id="97adf-257">Nyomja le az **CTRL + S** fájl mentéséhez.</span><span class="sxs-lookup"><span data-stu-id="97adf-257">Press **CTRL+S** to save the file.</span></span>
+8. <span data-ttu-id="04c57-257">Nyomja le az **CTRL + S** toosave hello fájlt.</span><span class="sxs-lookup"><span data-stu-id="04c57-257">Press **CTRL+S** toosave hello file.</span></span>
 
-<span data-ttu-id="97adf-258">**Fordításához és az alkalmazás tesztelése**</span><span class="sxs-lookup"><span data-stu-id="97adf-258">**To compile and test the application**</span></span>
+<span data-ttu-id="04c57-258">**toocompile és tesztelési hello alkalmazás**</span><span class="sxs-lookup"><span data-stu-id="04c57-258">**toocompile and test hello application**</span></span>
 
-1. <span data-ttu-id="97adf-259">Nyomja le az **F6** összeállítani a projektet.</span><span class="sxs-lookup"><span data-stu-id="97adf-259">Press **F6** to compile the project.</span></span> 
-2. <span data-ttu-id="97adf-260">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="97adf-260">Press **F5** to run the application.</span></span>
-3. <span data-ttu-id="97adf-261">A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="97adf-261">At the top of the application, you can either use the default Smooth Streaming URL or enter a different one.</span></span> 
-4. <span data-ttu-id="97adf-262">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="97adf-262">Click **Set Source**.</span></span> 
-5. <span data-ttu-id="97adf-263">A csúszka sávjának tesztelése.</span><span class="sxs-lookup"><span data-stu-id="97adf-263">Test the slider bar.</span></span>
+1. <span data-ttu-id="04c57-259">Nyomja le az **F6** toocompile hello projekt.</span><span class="sxs-lookup"><span data-stu-id="04c57-259">Press **F6** toocompile hello project.</span></span> 
+2. <span data-ttu-id="04c57-260">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="04c57-260">Press **F5** toorun hello application.</span></span>
+3. <span data-ttu-id="04c57-261">Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="04c57-261">At hello top of hello application, you can either use hello default Smooth Streaming URL or enter a different one.</span></span> 
+4. <span data-ttu-id="04c57-262">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="04c57-262">Click **Set Source**.</span></span> 
+5. <span data-ttu-id="04c57-263">Teszt hello csúszka.</span><span class="sxs-lookup"><span data-stu-id="04c57-263">Test hello slider bar.</span></span>
 
-<span data-ttu-id="97adf-264">2. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="97adf-264">You have completed lesson 2.</span></span>  <span data-ttu-id="97adf-265">Ez a lecke hozzáadott alkalmazás egy csúszkát.</span><span class="sxs-lookup"><span data-stu-id="97adf-265">In this lesson you added a slider to application.</span></span> 
+<span data-ttu-id="04c57-264">2. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="04c57-264">You have completed lesson 2.</span></span>  <span data-ttu-id="04c57-265">Ez a lecke hozzáadott egy csúszkát tooapplication.</span><span class="sxs-lookup"><span data-stu-id="04c57-265">In this lesson you added a slider tooapplication.</span></span> 
 
-## <a name="lesson-3-select-smooth-streaming-streams"></a><span data-ttu-id="97adf-266">3. lecke: Válassza ki a Smooth Streaming adatfolyamok</span><span class="sxs-lookup"><span data-stu-id="97adf-266">Lesson 3: Select Smooth Streaming Streams</span></span>
-<span data-ttu-id="97adf-267">Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetnek a tartalomátvitelre kezelésére képes.</span><span class="sxs-lookup"><span data-stu-id="97adf-267">Smooth Streaming is capable to stream content with multiple language audio tracks that are selectable by the viewers.</span></span>  <span data-ttu-id="97adf-268">Ez a lecke teszi lehetővé megjelenítők adatfolyamok kiválasztásához.</span><span class="sxs-lookup"><span data-stu-id="97adf-268">In this lesson, you will enable viewers to select streams.</span></span> <span data-ttu-id="97adf-269">Ez a lecke az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="97adf-269">This lesson contains the following procedures:</span></span>
+## <a name="lesson-3-select-smooth-streaming-streams"></a><span data-ttu-id="04c57-266">3. lecke: Válassza ki a Smooth Streaming adatfolyamok</span><span class="sxs-lookup"><span data-stu-id="04c57-266">Lesson 3: Select Smooth Streaming Streams</span></span>
+<span data-ttu-id="04c57-267">Smooth Streaming több nyelv zeneszámok, amelyek választható hello hozzáférhetnek a toostream képes-e.</span><span class="sxs-lookup"><span data-stu-id="04c57-267">Smooth Streaming is capable toostream content with multiple language audio tracks that are selectable by hello viewers.</span></span>  <span data-ttu-id="04c57-268">Ez a lecke teszi lehetővé megjelenítők tooselect adatfolyamokat.</span><span class="sxs-lookup"><span data-stu-id="04c57-268">In this lesson, you will enable viewers tooselect streams.</span></span> <span data-ttu-id="04c57-269">Ez a lecke hello az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="04c57-269">This lesson contains hello following procedures:</span></span>
 
-1. <span data-ttu-id="97adf-270">Az XAML-fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="97adf-270">Modify the XAML file</span></span>
-2. <span data-ttu-id="97adf-271">A kód behand fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="97adf-271">Modify the code behand file</span></span>
-3. <span data-ttu-id="97adf-272">Fordítsa le, és az alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="97adf-272">Compile and test the application</span></span>
+1. <span data-ttu-id="04c57-270">Hello XAML-fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="04c57-270">Modify hello XAML file</span></span>
+2. <span data-ttu-id="04c57-271">Hello kód behand fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="04c57-271">Modify hello code behand file</span></span>
+3. <span data-ttu-id="04c57-272">Fordítsa le és hello alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="04c57-272">Compile and test hello application</span></span>
 
-<span data-ttu-id="97adf-273">**Az XAML-fájl módosítása**</span><span class="sxs-lookup"><span data-stu-id="97adf-273">**To modify the XAML file**</span></span>
+<span data-ttu-id="04c57-273">**toomodify hello XAML-fájl**</span><span class="sxs-lookup"><span data-stu-id="04c57-273">**toomodify hello XAML file**</span></span>
 
-1. <span data-ttu-id="97adf-274">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.</span><span class="sxs-lookup"><span data-stu-id="97adf-274">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Designer**.</span></span>
-2. <span data-ttu-id="97adf-275">Keresse meg &lt;Grid.RowDefinitions&gt;, és módosítja a RowDefinitions, azok a következőhöz hasonló:</span><span class="sxs-lookup"><span data-stu-id="97adf-275">Locate &lt;Grid.RowDefinitions&gt;, and modify the RowDefinitions so they looks like:</span></span>
+1. <span data-ttu-id="04c57-274">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.</span><span class="sxs-lookup"><span data-stu-id="04c57-274">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Designer**.</span></span>
+2. <span data-ttu-id="04c57-275">Keresse meg &lt;Grid.RowDefinitions&gt;, és módosítja a hello RowDefinitions, azok a következőhöz hasonló:</span><span class="sxs-lookup"><span data-stu-id="04c57-275">Locate &lt;Grid.RowDefinitions&gt;, and modify hello RowDefinitions so they looks like:</span></span>
    
          <Grid.RowDefinitions>            
             <RowDefinition Height="20"/>
@@ -517,7 +517,7 @@ ms.lasthandoff: 08/29/2017
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
          </Grid.RowDefinitions>
-3. <span data-ttu-id="97adf-276">Belül a &lt;rács&gt;&lt;/Grid&gt; címkék, adja hozzá a listbox vezérlő megadásához, így a felhasználók a rendelkezésre álló adatfolyamok listájának, és válassza ki az adatfolyamokat a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="97adf-276">Inside the &lt;Grid&gt;&lt;/Grid&gt; tags, add the following code to define a listbox control, so users can see the list of available streams, and select streams:</span></span>
+3. <span data-ttu-id="04c57-276">Belső hello &lt;rács&gt;&lt;/Grid&gt; címkék hozzáadása hello következő kódot toodefine egy listbox vezérlőt, így a felhasználók elérhető adatfolyamok hello tartalmazó lista, és válassza ki az adatfolyamok:</span><span class="sxs-lookup"><span data-stu-id="04c57-276">Inside hello &lt;Grid&gt;&lt;/Grid&gt; tags, add hello following code toodefine a listbox control, so users can see hello list of available streams, and select streams:</span></span>
 
          <Grid Name="gridStreamAndBitrateSelection" Grid.Row="3">
             <Grid.RowDefinitions>
@@ -542,12 +542,12 @@ ms.lasthandoff: 08/29/2017
                 </ListBox>
             </StackPanel>
          </Grid>
-4. <span data-ttu-id="97adf-277">Nyomja le az **CTRL + S** menti a módosításokat.</span><span class="sxs-lookup"><span data-stu-id="97adf-277">Press **CTRL+S** to save the changes.</span></span>
+4. <span data-ttu-id="04c57-277">Nyomja le az **CTRL + S** toosave hello módosításokat.</span><span class="sxs-lookup"><span data-stu-id="04c57-277">Press **CTRL+S** toosave hello changes.</span></span>
 
-<span data-ttu-id="97adf-278">**A fájl mögötti kódban módosítása**</span><span class="sxs-lookup"><span data-stu-id="97adf-278">**To modify the code behind file**</span></span>
+<span data-ttu-id="04c57-278">**toomodify hello fájl mögötti kódban**</span><span class="sxs-lookup"><span data-stu-id="04c57-278">**toomodify hello code behind file**</span></span>
 
-1. <span data-ttu-id="97adf-279">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-279">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-280">Az SSPlayer névtéren belül adjon meg egy új osztályt:</span><span class="sxs-lookup"><span data-stu-id="97adf-280">Inside the SSPlayer namespace, add a new class:</span></span>
+1. <span data-ttu-id="04c57-279">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-279">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-280">Hello SSPlayer névtéren belül adjon meg egy új osztályt:</span><span class="sxs-lookup"><span data-stu-id="04c57-280">Inside hello SSPlayer namespace, add a new class:</span></span>
    
         #region class Stream
    
@@ -574,7 +574,7 @@ ms.lasthandoff: 08/29/2017
                 get { return isCheckedValue; }
                 set
                 {
-                    // mMke the video stream always checked.
+                    // mMke hello video stream always checked.
                     if (stream.Type == MediaStreamType.Video)
                     {
                         isCheckedValue = true;
@@ -593,21 +593,21 @@ ms.lasthandoff: 08/29/2017
             }
         }
         #endregion class Stream
-3. <span data-ttu-id="97adf-281">A MainPage osztály elején adja hozzá a következő változó definíciók:</span><span class="sxs-lookup"><span data-stu-id="97adf-281">At the beginning of the MainPage class, add the following variable definitions:</span></span>
+3. <span data-ttu-id="04c57-281">A hello MainPage osztály hello elején adja hozzá a következő változó definíciók hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-281">At hello beginning of hello MainPage class, add hello following variable definitions:</span></span>
    
          private List<Stream> availableStreams;
          private List<Stream> availableAudioStreams;
          private List<Stream> availableTextStreams;
          private List<Stream> availableVideoStreams;
-4. <span data-ttu-id="97adf-282">Az MainPage osztály adja hozzá a következő régióban:</span><span class="sxs-lookup"><span data-stu-id="97adf-282">Inside the MainPage class, add the following region:</span></span>
+4. <span data-ttu-id="04c57-282">Belül hello MainPage osztály adja hozzá a következő régióban hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-282">Inside hello MainPage class, add hello following region:</span></span>
    
         #region stream selection
         ///<summary>
-        ///Functionality to select streams from IManifestStream available streams
+        ///Functionality tooselect streams from IManifestStream available streams
         /// </summary>
    
-        // This function is called from the mediaElement_ManifestReady event handler 
-        // to retrieve the streams and populate them to the local data members.
+        // This function is called from hello mediaElement_ManifestReady event handler 
+        // tooretrieve hello streams and populate them toohello local data members.
         public void getStreams(Manifest manifestObject)
         {
             availableStreams = new List<Stream>();
@@ -622,7 +622,7 @@ ms.lasthandoff: 08/29/2017
                     Stream newStream = new Stream(manifestObject.AvailableStreams[i]);
                     newStream.isChecked = false;
    
-                    //populate the stream lists based on the types
+                    //populate hello stream lists based on hello types
                     availableStreams.Add(newStream);
    
                     switch (newStream.ManifestStream.Type)
@@ -638,7 +638,7 @@ ms.lasthandoff: 08/29/2017
                             break;
                     }
    
-                    // Select the default selected streams from the manifest.
+                    // Select hello default selected streams from hello manifest.
                     for (int j = 0; j<manifestObject.SelectedStreams.Count; j++)
                     {
                         string selectedStreamName = manifestObject.SelectedStreams[j].Name;
@@ -656,12 +656,12 @@ ms.lasthandoff: 08/29/2017
             }
         }
    
-        // This function set the list box ItemSource
+        // This function set hello list box ItemSource
         private async void refreshAvailableStreamsListBoxItemSource()
         {
             try
             {
-                //update the stream check box list on the UI
+                //update hello stream check box list on hello UI
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableStreams.ItemsSource = availableStreams; });
             }
@@ -687,7 +687,7 @@ ms.lasthandoff: 08/29/2017
                 }
             }
    
-            // Select the frist video stream from the list if no video stream is selected
+            // Select hello frist video stream from hello list if no video stream is selected
             if (!isOneVideoSelected)
             {
                 availableVideoStreams[0].isChecked = true;
@@ -701,11 +701,11 @@ ms.lasthandoff: 08/29/2017
                 {
                     selectedStreams.Add(availableAudioStreams[j].ManifestStream);
                     isOneAudioSelected = true;
-                    txtStatus.Text = "The audio stream is changed to " + availableAudioStreams[j].ManifestStream.Name;
+                    txtStatus.Text = "hello audio stream is changed too" + availableAudioStreams[j].ManifestStream.Name;
                 }
             }
    
-            // Select the frist audio stream from the list if no audio steam is selected.
+            // Select hello frist audio stream from hello list if no audio steam is selected.
             if (!isOneAudioSelected)
             {
                 availableAudioStreams[0].isChecked = true;
@@ -736,46 +736,46 @@ ms.lasthandoff: 08/29/2017
             }
         }
         #endregion stream selection
-5. <span data-ttu-id="97adf-283">Keresse meg a mediaElement_ManifestReady metódust, az alábbi kódot a függvény végén hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="97adf-283">Locate the mediaElement_ManifestReady method, append the following code at the end of the function:</span></span>
+5. <span data-ttu-id="04c57-283">Keresse meg a hello mediaElement_ManifestReady metódus, a következő kódot a hello végén hello függvény hello hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="04c57-283">Locate hello mediaElement_ManifestReady method, append hello following code at hello end of hello function:</span></span>
    
         getStreams(manifestObject);
         refreshAvailableStreamsListBoxItemSource();
    
-    <span data-ttu-id="97adf-284">Amikor készen áll a MediaElement jegyzék, a kódot a rendelkezésre álló adatfolyamok listájának lekérése, tölti fel a felhasználói felület listát a listában.</span><span class="sxs-lookup"><span data-stu-id="97adf-284">So when MediaElement manifest is ready, the code gets a list of the available streams, and populates the UI list box with the list.</span></span>
-6. <span data-ttu-id="97adf-285">Az MainPage osztály keresse meg a felhasználói felület gombok események régió parancsára, és adja hozzá az a következő függvény definíciójának:</span><span class="sxs-lookup"><span data-stu-id="97adf-285">Inside the MainPage class, locate the UI buttons click events region, and then add the following function definition:</span></span>
+    <span data-ttu-id="04c57-284">Ezért MediaElement jegyzékfájl készen áll, amikor hello kód hello elérhető adatfolyamok listájának lekérése, tölti fel hello felhasználói felület lista hello listájával.</span><span class="sxs-lookup"><span data-stu-id="04c57-284">So when MediaElement manifest is ready, hello code gets a list of hello available streams, and populates hello UI list box with hello list.</span></span>
+6. <span data-ttu-id="04c57-285">Hello MainPage osztály, belül található hello UI gombokat események régió kattintson, és adja hozzá a következő függvény definíciójának hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-285">Inside hello MainPage class, locate hello UI buttons click events region, and then add hello following function definition:</span></span>
    
         private void btnChangeStream_Click(object sender, RoutedEventArgs e)
         {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
    
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
    
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
         }
 
-<span data-ttu-id="97adf-286">**Fordításához és az alkalmazás tesztelése**</span><span class="sxs-lookup"><span data-stu-id="97adf-286">**To compile and test the application**</span></span>
+<span data-ttu-id="04c57-286">**toocompile és tesztelési hello alkalmazás**</span><span class="sxs-lookup"><span data-stu-id="04c57-286">**toocompile and test hello application**</span></span>
 
-1. <span data-ttu-id="97adf-287">Nyomja le az **F6** összeállítani a projektet.</span><span class="sxs-lookup"><span data-stu-id="97adf-287">Press **F6** to compile the project.</span></span> 
-2. <span data-ttu-id="97adf-288">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="97adf-288">Press **F5** to run the application.</span></span>
-3. <span data-ttu-id="97adf-289">A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="97adf-289">At the top of the application, you can either use the default Smooth Streaming URL or enter a different one.</span></span> 
-4. <span data-ttu-id="97adf-290">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="97adf-290">Click **Set Source**.</span></span> 
-5. <span data-ttu-id="97adf-291">Az alapértelmezett nyelv a audio_eng.</span><span class="sxs-lookup"><span data-stu-id="97adf-291">The default language is audio_eng.</span></span> <span data-ttu-id="97adf-292">Próbálja audio_eng és audio_es közötti váltáshoz.</span><span class="sxs-lookup"><span data-stu-id="97adf-292">Try to switch between audio_eng and audio_es.</span></span> <span data-ttu-id="97adf-293">Everytime, egy új adatfolyam választja, a Küldés gombra kell kattintania.</span><span class="sxs-lookup"><span data-stu-id="97adf-293">Everytime, you select a new stream, you must click the Submit button.</span></span>
+1. <span data-ttu-id="04c57-287">Nyomja le az **F6** toocompile hello projekt.</span><span class="sxs-lookup"><span data-stu-id="04c57-287">Press **F6** toocompile hello project.</span></span> 
+2. <span data-ttu-id="04c57-288">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="04c57-288">Press **F5** toorun hello application.</span></span>
+3. <span data-ttu-id="04c57-289">Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="04c57-289">At hello top of hello application, you can either use hello default Smooth Streaming URL or enter a different one.</span></span> 
+4. <span data-ttu-id="04c57-290">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="04c57-290">Click **Set Source**.</span></span> 
+5. <span data-ttu-id="04c57-291">hello alapértelmezett nyelv a audio_eng.</span><span class="sxs-lookup"><span data-stu-id="04c57-291">hello default language is audio_eng.</span></span> <span data-ttu-id="04c57-292">Próbálja meg tooswitch audio_eng és audio_es között.</span><span class="sxs-lookup"><span data-stu-id="04c57-292">Try tooswitch between audio_eng and audio_es.</span></span> <span data-ttu-id="04c57-293">Everytime, válasszon egy új adatfolyam, hello Elküldés gombra kell kattintania.</span><span class="sxs-lookup"><span data-stu-id="04c57-293">Everytime, you select a new stream, you must click hello Submit button.</span></span>
 
-<span data-ttu-id="97adf-294">3. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="97adf-294">You have completed lesson 3.</span></span>  <span data-ttu-id="97adf-295">Ez a lecke adja hozzá a képességet az adatfolyamok válassza.</span><span class="sxs-lookup"><span data-stu-id="97adf-295">In this lesson, you add the functionality to choose streams.</span></span>
+<span data-ttu-id="04c57-294">3. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="04c57-294">You have completed lesson 3.</span></span>  <span data-ttu-id="04c57-295">Ez a lecke hello funkció toochoose adatfolyamok adja hozzá.</span><span class="sxs-lookup"><span data-stu-id="04c57-295">In this lesson, you add hello functionality toochoose streams.</span></span>
 
-## <a name="lesson-4-select-smooth-streaming-tracks"></a><span data-ttu-id="97adf-296">4. lecke: Válassza ki a Smooth Streaming nyomon követi</span><span class="sxs-lookup"><span data-stu-id="97adf-296">Lesson 4: Select Smooth Streaming Tracks</span></span>
-<span data-ttu-id="97adf-297">Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket (átviteli sebességek) és a megoldások kódolású több videó fájlokat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="97adf-297">A Smooth Streaming presentation can contain multiple video files encoded with different quality levels (bit rates) and resolutions.</span></span> <span data-ttu-id="97adf-298">Ez a lecke teszi lehetővé felhasználóknak, hogy nyomon követi.</span><span class="sxs-lookup"><span data-stu-id="97adf-298">In this lesson, you will enable users to select tracks.</span></span> <span data-ttu-id="97adf-299">Ez a lecke az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="97adf-299">This lesson contains the following procedures:</span></span>
+## <a name="lesson-4-select-smooth-streaming-tracks"></a><span data-ttu-id="04c57-296">4. lecke: Válassza ki a Smooth Streaming nyomon követi</span><span class="sxs-lookup"><span data-stu-id="04c57-296">Lesson 4: Select Smooth Streaming Tracks</span></span>
+<span data-ttu-id="04c57-297">Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket (átviteli sebességek) és a megoldások kódolású több videó fájlokat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="04c57-297">A Smooth Streaming presentation can contain multiple video files encoded with different quality levels (bit rates) and resolutions.</span></span> <span data-ttu-id="04c57-298">Ez a lecke lehetővé teszi felhasználók tooselect követi nyomon.</span><span class="sxs-lookup"><span data-stu-id="04c57-298">In this lesson, you will enable users tooselect tracks.</span></span> <span data-ttu-id="04c57-299">Ez a lecke hello az alábbi eljárásokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="04c57-299">This lesson contains hello following procedures:</span></span>
 
-1. <span data-ttu-id="97adf-300">Az XAML-fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="97adf-300">Modify the XAML file</span></span>
-2. <span data-ttu-id="97adf-301">A kód behand fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="97adf-301">Modify the code behand file</span></span>
-3. <span data-ttu-id="97adf-302">Fordítsa le, és az alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="97adf-302">Compile and test the application</span></span>
+1. <span data-ttu-id="04c57-300">Hello XAML-fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="04c57-300">Modify hello XAML file</span></span>
+2. <span data-ttu-id="04c57-301">Hello kód behand fájl módosítása</span><span class="sxs-lookup"><span data-stu-id="04c57-301">Modify hello code behand file</span></span>
+3. <span data-ttu-id="04c57-302">Fordítsa le és hello alkalmazás tesztelése</span><span class="sxs-lookup"><span data-stu-id="04c57-302">Compile and test hello application</span></span>
 
-<span data-ttu-id="97adf-303">**Az XAML-fájl módosítása**</span><span class="sxs-lookup"><span data-stu-id="97adf-303">**To modify the XAML file**</span></span>
+<span data-ttu-id="04c57-303">**toomodify hello XAML-fájl**</span><span class="sxs-lookup"><span data-stu-id="04c57-303">**toomodify hello XAML file**</span></span>
 
-1. <span data-ttu-id="97adf-304">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.</span><span class="sxs-lookup"><span data-stu-id="97adf-304">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Designer**.</span></span>
-2. <span data-ttu-id="97adf-305">Keresse meg a &lt;rács&gt; nevű címke **gridStreamAndBitrateSelection**, a következő kódot a címke végén hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="97adf-305">Locate the &lt;Grid&gt; tag with the name **gridStreamAndBitrateSelection**, append the following code at the end of the tag:</span></span>
+1. <span data-ttu-id="04c57-304">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.</span><span class="sxs-lookup"><span data-stu-id="04c57-304">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Designer**.</span></span>
+2. <span data-ttu-id="04c57-305">Keresse meg a hello &lt;rács&gt; hello nevű címke **gridStreamAndBitrateSelection**, a következő kód hello címke hello végén hello hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="04c57-305">Locate hello &lt;Grid&gt; tag with hello name **gridStreamAndBitrateSelection**, append hello following code at hello end of hello tag:</span></span>
    
          <StackPanel Name="spBitRateSelection" Grid.Row="1" Grid.Column="1">
          <StackPanel Orientation="Horizontal">
@@ -791,12 +791,12 @@ ms.lasthandoff: 08/29/2017
              </ListBox.ItemTemplate>
          </ListBox>
          </StackPanel>
-3. <span data-ttu-id="97adf-306">Nyomja le az **CTRL + S** helykiszolgálójához módosítások mentése</span><span class="sxs-lookup"><span data-stu-id="97adf-306">Press **CTRL+S** to save he changes</span></span>
+3. <span data-ttu-id="04c57-306">Nyomja le az **CTRL + S** toosave ő változik</span><span class="sxs-lookup"><span data-stu-id="04c57-306">Press **CTRL+S** toosave he changes</span></span>
 
-<span data-ttu-id="97adf-307">**A fájl mögötti kódban módosítása**</span><span class="sxs-lookup"><span data-stu-id="97adf-307">**To modify the code behind file**</span></span>
+<span data-ttu-id="04c57-307">**toomodify hello fájl mögötti kódban**</span><span class="sxs-lookup"><span data-stu-id="04c57-307">**toomodify hello code behind file**</span></span>
 
-1. <span data-ttu-id="97adf-308">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="97adf-308">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
-2. <span data-ttu-id="97adf-309">Az SSPlayer névtéren belül adjon meg egy új osztályt:</span><span class="sxs-lookup"><span data-stu-id="97adf-309">Inside the SSPlayer namespace, add a new class:</span></span>
+1. <span data-ttu-id="04c57-308">A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.</span><span class="sxs-lookup"><span data-stu-id="04c57-308">From Solution Explorer, right-click **MainPage.xaml**, and then click **View Code**.</span></span>
+2. <span data-ttu-id="04c57-309">Hello SSPlayer névtéren belül adjon meg egy új osztályt:</span><span class="sxs-lookup"><span data-stu-id="04c57-309">Inside hello SSPlayer namespace, add a new class:</span></span>
    
         #region class Track
         public class Track
@@ -834,17 +834,17 @@ ms.lasthandoff: 08/29/2017
             //public Track() { }
         }
         #endregion class Track
-3. <span data-ttu-id="97adf-310">A MainPage osztály elején adja hozzá a következő változó definíciók:</span><span class="sxs-lookup"><span data-stu-id="97adf-310">At the beginning of the MainPage class, add the following variable definitions:</span></span>
+3. <span data-ttu-id="04c57-310">A hello MainPage osztály hello elején adja hozzá a következő változó definíciók hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-310">At hello beginning of hello MainPage class, add hello following variable definitions:</span></span>
    
         private List<Track> availableTracks;
-4. <span data-ttu-id="97adf-311">Az MainPage osztály adja hozzá a következő régióban:</span><span class="sxs-lookup"><span data-stu-id="97adf-311">Inside the MainPage class, add the following region:</span></span>
+4. <span data-ttu-id="04c57-311">Belül hello MainPage osztály adja hozzá a következő régióban hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-311">Inside hello MainPage class, add hello following region:</span></span>
    
         #region track selection
         /// <summary>
-        /// Functionality to select video streams
+        /// Functionality tooselect video streams
         /// </summary>
    
-        /// This Function gets the tracks for the selected video stream
+        /// This Function gets hello tracks for hello selected video stream
         public void getTracks(Manifest manifestObject)
         {
             availableTracks = new List<Track>();
@@ -878,7 +878,7 @@ ms.lasthandoff: 08/29/2017
             }
         }
    
-        // This function gets the video stream that is playing
+        // This function gets hello video stream that is playing
         private IManifestStream getVideoStream()
         {
             IManifestStream videoStream = null;
@@ -893,12 +893,12 @@ ms.lasthandoff: 08/29/2017
             return videoStream;
         }
    
-        // This function set the UI list box control ItemSource
+        // This function set hello UI list box control ItemSource
         private async void refreshAvailableTracksListBoxItemSource()
         {
             try
             {
-                // Update the track check box list on the UI 
+                // Update hello track check box list on hello UI 
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableVideoTracks.ItemsSource = availableTracks; });
             }
@@ -908,7 +908,7 @@ ms.lasthandoff: 08/29/2017
             }        
         }
    
-        // This function creates a list of the selected tracks.
+        // This function creates a list of hello selected tracks.
         private void createSelectedTracksList(List<IManifestTrack> selectedTracks)
         {
             // Create a list of selected tracks
@@ -921,7 +921,7 @@ ms.lasthandoff: 08/29/2017
             }
         }
    
-        // This function selects the tracks based on user selection 
+        // This function selects hello tracks based on user selection 
         private void changeTracks(List<IManifestTrack> selectedTracks)
         {
             IManifestStream videoStream = getVideoStream();
@@ -935,42 +935,42 @@ ms.lasthandoff: 08/29/2017
             }
         }
         #endregion track selection
-5. <span data-ttu-id="97adf-312">Keresse meg a mediaElement_ManifestReady metódust, az alábbi kódot a függvény végén hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="97adf-312">Locate the mediaElement_ManifestReady method, append the following code at the end of the function:</span></span>
+5. <span data-ttu-id="04c57-312">Keresse meg a hello mediaElement_ManifestReady metódus, a következő kódot a hello végén hello függvény hello hozzáfűzése:</span><span class="sxs-lookup"><span data-stu-id="04c57-312">Locate hello mediaElement_ManifestReady method, append hello following code at hello end of hello function:</span></span>
    
          getTracks(manifestObject);
          refreshAvailableTracksListBoxItemSource();
-6. <span data-ttu-id="97adf-313">Az MainPage osztály keresse meg a felhasználói felület gombok események régió parancsára, és adja hozzá az a következő függvény definíciójának:</span><span class="sxs-lookup"><span data-stu-id="97adf-313">Inside the MainPage class, locate the UI buttons click events region, and then add the following function definition:</span></span>
+6. <span data-ttu-id="04c57-313">Hello MainPage osztály, belül található hello UI gombokat események régió kattintson, és adja hozzá a következő függvény definíciójának hello:</span><span class="sxs-lookup"><span data-stu-id="04c57-313">Inside hello MainPage class, locate hello UI buttons click events region, and then add hello following function definition:</span></span>
    
          private void btnChangeStream_Click(object sender, RoutedEventArgs e)
          {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
 
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
 
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
          }
 
-<span data-ttu-id="97adf-314">**Fordításához és az alkalmazás tesztelése**</span><span class="sxs-lookup"><span data-stu-id="97adf-314">**To compile and test the application**</span></span>
+<span data-ttu-id="04c57-314">**toocompile és tesztelési hello alkalmazás**</span><span class="sxs-lookup"><span data-stu-id="04c57-314">**toocompile and test hello application**</span></span>
 
-1. <span data-ttu-id="97adf-315">Nyomja le az **F6** összeállítani a projektet.</span><span class="sxs-lookup"><span data-stu-id="97adf-315">Press **F6** to compile the project.</span></span> 
-2. <span data-ttu-id="97adf-316">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="97adf-316">Press **F5** to run the application.</span></span>
-3. <span data-ttu-id="97adf-317">A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="97adf-317">At the top of the application, you can either use the default Smooth Streaming URL or enter a different one.</span></span> 
-4. <span data-ttu-id="97adf-318">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="97adf-318">Click **Set Source**.</span></span> 
-5. <span data-ttu-id="97adf-319">Alapértelmezés szerint a nyomon követi a video-adatfolyammá alakítja az összes kijelölt.</span><span class="sxs-lookup"><span data-stu-id="97adf-319">By default, all of the tracks of the video stream are selected.</span></span> <span data-ttu-id="97adf-320">A átviteli sebesség módosítások kísérletezhet, jelölje ki a legalacsonyabb átviteli sebesség, és válassza ki a legnagyobb átviteli sebességet.</span><span class="sxs-lookup"><span data-stu-id="97adf-320">To experiment the bit rate changes, you can select the lowest bit rate available, and then select the highest bit rate available.</span></span> <span data-ttu-id="97adf-321">Minden egyes módosítása után kattintson a küldés.</span><span class="sxs-lookup"><span data-stu-id="97adf-321">You must click Submit after each change.</span></span>  <span data-ttu-id="97adf-322">A jó minőségű módosításokat is láthatják.</span><span class="sxs-lookup"><span data-stu-id="97adf-322">You can see the video quality changes.</span></span>
+1. <span data-ttu-id="04c57-315">Nyomja le az **F6** toocompile hello projekt.</span><span class="sxs-lookup"><span data-stu-id="04c57-315">Press **F6** toocompile hello project.</span></span> 
+2. <span data-ttu-id="04c57-316">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="04c57-316">Press **F5** toorun hello application.</span></span>
+3. <span data-ttu-id="04c57-317">Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik.</span><span class="sxs-lookup"><span data-stu-id="04c57-317">At hello top of hello application, you can either use hello default Smooth Streaming URL or enter a different one.</span></span> 
+4. <span data-ttu-id="04c57-318">Kattintson a **forrás beállítása**.</span><span class="sxs-lookup"><span data-stu-id="04c57-318">Click **Set Source**.</span></span> 
+5. <span data-ttu-id="04c57-319">Alapértelmezés szerint összes hello nyomon követi a hello video-adatfolyammá alakítja ki van jelölve.</span><span class="sxs-lookup"><span data-stu-id="04c57-319">By default, all of hello tracks of hello video stream are selected.</span></span> <span data-ttu-id="04c57-320">tooexperiment hello bit arány módosításokat, válassza ki a hello legalacsonyabb átviteli sebesség érhető el, és válassza a hello legnagyobb átviteli sebesség érhető el.</span><span class="sxs-lookup"><span data-stu-id="04c57-320">tooexperiment hello bit rate changes, you can select hello lowest bit rate available, and then select hello highest bit rate available.</span></span> <span data-ttu-id="04c57-321">Minden egyes módosítása után kattintson a küldés.</span><span class="sxs-lookup"><span data-stu-id="04c57-321">You must click Submit after each change.</span></span>  <span data-ttu-id="04c57-322">Hello videominőséget módosításokat is láthatják.</span><span class="sxs-lookup"><span data-stu-id="04c57-322">You can see hello video quality changes.</span></span>
 
-<span data-ttu-id="97adf-323">4. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="97adf-323">You have completed lesson 4.</span></span>  <span data-ttu-id="97adf-324">Ez a lecke adja hozzá a Funkciók kiválasztása nyomon követi.</span><span class="sxs-lookup"><span data-stu-id="97adf-324">In this lesson, you add the functionality to choose tracks.</span></span>
+<span data-ttu-id="04c57-323">4. lecke befejeződött.</span><span class="sxs-lookup"><span data-stu-id="04c57-323">You have completed lesson 4.</span></span>  <span data-ttu-id="04c57-324">Ez a lecke hozzáadása hello funkció toochoose követi nyomon.</span><span class="sxs-lookup"><span data-stu-id="04c57-324">In this lesson, you add hello functionality toochoose tracks.</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="97adf-325">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="97adf-325">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="04c57-325">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="04c57-325">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="97adf-326">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="97adf-326">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="04c57-326">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="04c57-326">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="other-resources"></a><span data-ttu-id="97adf-327">Egyéb erőforrások:</span><span class="sxs-lookup"><span data-stu-id="97adf-327">Other Resources:</span></span>
-* [<span data-ttu-id="97adf-328">A speciális funkciók Smooth Streaming Windows 8 JavaScript alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="97adf-328">How to build a Smooth Streaming Windows 8 JavaScript application with advanced features</span></span>](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
-* [<span data-ttu-id="97adf-329">Zökkenőmentes adatfolyam műszaki áttekintése</span><span class="sxs-lookup"><span data-stu-id="97adf-329">Smooth Streaming Technical Overview</span></span>](http://www.iis.net/learn/media/on-demand-smooth-streaming/smooth-streaming-technical-overview)
+## <a name="other-resources"></a><span data-ttu-id="04c57-327">Egyéb erőforrások:</span><span class="sxs-lookup"><span data-stu-id="04c57-327">Other Resources:</span></span>
+* [<span data-ttu-id="04c57-328">Hogyan toobuild egy Smooth Streaming Windows 8 JavaScript-alkalmazást, az összetett funkciók</span><span class="sxs-lookup"><span data-stu-id="04c57-328">How toobuild a Smooth Streaming Windows 8 JavaScript application with advanced features</span></span>](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
+* [<span data-ttu-id="04c57-329">Zökkenőmentes adatfolyam műszaki áttekintése</span><span class="sxs-lookup"><span data-stu-id="04c57-329">Smooth Streaming Technical Overview</span></span>](http://www.iis.net/learn/media/on-demand-smooth-streaming/smooth-streaming-technical-overview)
 
 [PlayerApplication]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-1.png
 [CodeViewPic]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-2.png

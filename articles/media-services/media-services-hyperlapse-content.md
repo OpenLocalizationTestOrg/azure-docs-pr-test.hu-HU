@@ -1,6 +1,6 @@
 ---
-title: "Médiafájlok feldolgozása az Azure Media hyperlapse használatával |} Microsoft Docs"
-description: "Az Azure Media Hyperlapse zökkenőmentes idő letelt videók első, aki vagy művelet – kamera tartalmat hoz létre. Ez a témakör bemutatja, hogyan Media Indexer használatára."
+title: "az Azure Media Hyperlapse médiafájlok aaaHyperlapse |} Microsoft Docs"
+description: "Az Azure Media Hyperlapse zökkenőmentes idő letelt videók első, aki vagy művelet – kamera tartalmat hoz létre. Ez a témakör bemutatja, hogyan toouse Media Indexer."
 services: media-services
 documentationcenter: 
 author: asolanki
@@ -14,39 +14,39 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: adsolank
-ms.openlocfilehash: 02f634c2af04b6b372642ab0e6a17a5d29f16450
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85bb07206d0ca2f5b2fd0767e6ed4904195d3ab6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a><span data-ttu-id="7a187-104">Médiafájlok feldolgozása az Azure Media hyperlapse használatával</span><span class="sxs-lookup"><span data-stu-id="7a187-104">Hyperlapse Media Files with Azure Media Hyperlapse</span></span>
-<span data-ttu-id="7a187-105">Az Azure Media Hyperlapse egy Media processzor (MP), amely zökkenőmentes idő letelt videók hoz első, aki vagy művelet – kamera tartalomról.</span><span class="sxs-lookup"><span data-stu-id="7a187-105">Azure Media Hyperlapse is a Media Processor (MP) that creates smooth time-lapsed videos from first-person or action-camera content.</span></span>  <span data-ttu-id="7a187-106">A felhő alapú testvérének [Microsoft Research asztali Hyperlapse Pro és Hyperlapse Mobile phone-alapú](http://aka.ms/hyperlapse), az Azure Media Services Microsoft Hyperlapse használja az Azure Media Services Media feldolgozása a jelentős mértékű vízszintes skálázása és parallelize platform tömeges Hyperlapse feldolgozása.</span><span class="sxs-lookup"><span data-stu-id="7a187-106">The cloud-based sibling to [Microsoft Research's desktop Hyperlapse Pro and phone-based Hyperlapse Mobile](http://aka.ms/hyperlapse), Microsoft Hyperlapse for Azure Media Services utilizes the massive scale of the Azure Media Services Media Processing platform to horizontally scale and parallelize bulk Hyperlapse processing.</span></span>
+# <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a><span data-ttu-id="d2014-104">Médiafájlok feldolgozása az Azure Media hyperlapse használatával</span><span class="sxs-lookup"><span data-stu-id="d2014-104">Hyperlapse Media Files with Azure Media Hyperlapse</span></span>
+<span data-ttu-id="d2014-105">Az Azure Media Hyperlapse egy Media processzor (MP), amely zökkenőmentes idő letelt videók hoz első, aki vagy művelet – kamera tartalomról.</span><span class="sxs-lookup"><span data-stu-id="d2014-105">Azure Media Hyperlapse is a Media Processor (MP) that creates smooth time-lapsed videos from first-person or action-camera content.</span></span>  <span data-ttu-id="d2014-106">felhőalapú testvér túl hello[Microsoft Research asztali Hyperlapse Pro és Hyperlapse Mobile phone-alapú](http://aka.ms/hyperlapse), az Azure Media Services Microsoft Hyperlapse hello jelentős mértékű az Azure Media Services Media hello használja A platform toohorizontally feldolgozási méretezhető és tömeges parallelize Hyperlapse feldolgozása.</span><span class="sxs-lookup"><span data-stu-id="d2014-106">hello cloud-based sibling too[Microsoft Research's desktop Hyperlapse Pro and phone-based Hyperlapse Mobile](http://aka.ms/hyperlapse), Microsoft Hyperlapse for Azure Media Services utilizes hello massive scale of hello Azure Media Services Media Processing platform toohorizontally scale and parallelize bulk Hyperlapse processing.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="7a187-107">Microsoft Hyperlapse legmegfelelőbb első, aki a tartalomhoz a mozgóátlag fényképezőgép célja.</span><span class="sxs-lookup"><span data-stu-id="7a187-107">Microsoft Hyperlapse is designed to work best on first-person content with a moving camera.</span></span>  <span data-ttu-id="7a187-108">Bár továbbra is-kamerák felvételei is működik, a teljesítmény és az Azure Media Hyperlapse Media processzor-minőségi nem garantálható tartalmat más típusú.</span><span class="sxs-lookup"><span data-stu-id="7a187-108">Although still-camera footage can still work, the performance and quality of the Azure Media Hyperlapse Media Processor cannot be guaranteed for other types of content.</span></span>  <span data-ttu-id="7a187-109">További információk a Microsoft Hyperlapse az Azure Media Services, és tekintse meg néhány Mintavideók, tekintse meg a [bevezető blogbejegyzés](http://aka.ms/azurehyperlapseblog) a nyilvános előzetes verziójához.</span><span class="sxs-lookup"><span data-stu-id="7a187-109">To learn more about Microsoft Hyperlapse for Azure Media Services and see some example videos, check out the [introductory blog post](http://aka.ms/azurehyperlapseblog) from the public preview.</span></span>
+> <span data-ttu-id="d2014-107">Microsoft Hyperlapse tervezett toowork ajánlott a mozgóátlag fényképezőgép az első, aki a tartalomhoz.</span><span class="sxs-lookup"><span data-stu-id="d2014-107">Microsoft Hyperlapse is designed toowork best on first-person content with a moving camera.</span></span>  <span data-ttu-id="d2014-108">Bár továbbra is-kamerák felvételei is működik, hello teljesítményének és minőségének hello Azure Media Hyperlapse Media processzor nem garantálható tartalmat más típusú.</span><span class="sxs-lookup"><span data-stu-id="d2014-108">Although still-camera footage can still work, hello performance and quality of hello Azure Media Hyperlapse Media Processor cannot be guaranteed for other types of content.</span></span>  <span data-ttu-id="d2014-109">További információk az Azure Media Services Microsoft Hyperlapse toolearn és néhány Mintavideók megtekintéséhez tekintse meg a hello [bevezető blogbejegyzés](http://aka.ms/azurehyperlapseblog) a hello nyilvános előzetes verziójához.</span><span class="sxs-lookup"><span data-stu-id="d2014-109">toolearn more about Microsoft Hyperlapse for Azure Media Services and see some example videos, check out hello [introductory blog post](http://aka.ms/azurehyperlapseblog) from hello public preview.</span></span>
 > 
 > 
 
-<span data-ttu-id="7a187-110">Egy Azure Media Hyperlapse feladat végrehajtásához szükséges, adjon meg egy MP4, MOV vagy WMV objektumfájlt együtt, amely meghatározza, melyik keretek videó idő letelt konfigurációs fájlt, és milyen sebességgel (pl. első 10 000 keretet 2 x).</span><span class="sxs-lookup"><span data-stu-id="7a187-110">An Azure Media Hyperlapse job takes as input an MP4, MOV, or WMV asset file along with a configuration file that specifies which frames of video should be time-lapsed and to what speed (e.g. first 10,000 frames at 2x).</span></span>  <span data-ttu-id="7a187-111">Az eredménye egy stabil és az idő letelt verzióinak a bemeneti videó.</span><span class="sxs-lookup"><span data-stu-id="7a187-111">The output is a stabilized and time-lapsed rendition of the input video.</span></span>
+<span data-ttu-id="d2014-110">Egy Azure Media Hyperlapse feladat végrehajtásához szükséges, adjon meg egy MP4, MOV vagy WMV objektumfájlt egy konfigurációs fájl, amely meghatározza, melyik keretek videó idő letelt és toowhat sebesség együtt (pl. első 10 000 keretet 2 x).</span><span class="sxs-lookup"><span data-stu-id="d2014-110">An Azure Media Hyperlapse job takes as input an MP4, MOV, or WMV asset file along with a configuration file that specifies which frames of video should be time-lapsed and toowhat speed (e.g. first 10,000 frames at 2x).</span></span>  <span data-ttu-id="d2014-111">hello eredménye egy stabil és az idő letelt verzióinak hello bemeneti videó.</span><span class="sxs-lookup"><span data-stu-id="d2014-111">hello output is a stabilized and time-lapsed rendition of hello input video.</span></span>
 
-<span data-ttu-id="7a187-112">A legújabb Azure Media Hyperlapse frissítéseket, lásd: [Media Services blogok](https://azure.microsoft.com/blog/topics/media-services/).</span><span class="sxs-lookup"><span data-stu-id="7a187-112">For the latest Azure Media Hyperlapse updates, see [Media Services blogs](https://azure.microsoft.com/blog/topics/media-services/).</span></span>
+<span data-ttu-id="d2014-112">Lásd: hello Azure Media Hyperlapse legújabb [Media Services blogok](https://azure.microsoft.com/blog/topics/media-services/).</span><span class="sxs-lookup"><span data-stu-id="d2014-112">For hello latest Azure Media Hyperlapse updates, see [Media Services blogs](https://azure.microsoft.com/blog/topics/media-services/).</span></span>
 
-## <a name="hyperlapse-an-asset"></a><span data-ttu-id="7a187-113">Hyperlapse egy eszköz</span><span class="sxs-lookup"><span data-stu-id="7a187-113">Hyperlapse an asset</span></span>
-<span data-ttu-id="7a187-114">Először szüksége lesz Azure Media Services töltse fel a kívánt bemeneti fájl.</span><span class="sxs-lookup"><span data-stu-id="7a187-114">First you will need to upload your desired input file to Azure Media Services.</span></span>  <span data-ttu-id="7a187-115">Adminisztrációjával kapcsolatos feltöltését és kielégíteni tartalomkezelési fogalmak kapcsolatos további tudnivalókért olvassa el a [tartalomkezelési cikk](media-services-portal-vod-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="7a187-115">To learn more about the concepts involved with uploading and managing content, read the [content management article](media-services-portal-vod-get-started.md).</span></span>
+## <a name="hyperlapse-an-asset"></a><span data-ttu-id="d2014-113">Hyperlapse egy eszköz</span><span class="sxs-lookup"><span data-stu-id="d2014-113">Hyperlapse an asset</span></span>
+<span data-ttu-id="d2014-114">Először be kell tooupload a kívánt bemeneti fájl tooAzure Media Services.</span><span class="sxs-lookup"><span data-stu-id="d2014-114">First you will need tooupload your desired input file tooAzure Media Services.</span></span>  <span data-ttu-id="d2014-115">További részletek toolearn hello fogalmakat feltöltése és tartalomkezelés, olvassa el a hello [tartalomkezelési cikk](media-services-portal-vod-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="d2014-115">toolearn more about hello concepts involved with uploading and managing content, read hello [content management article](media-services-portal-vod-get-started.md).</span></span>
 
-### <span data-ttu-id="7a187-116"><a id="configuration"></a>Hyperlapse konfigurációs beállításkészlet</span><span class="sxs-lookup"><span data-stu-id="7a187-116"><a id="configuration"></a>Configuration Preset for Hyperlapse</span></span>
-<span data-ttu-id="7a187-117">Ha a tartalom a Media Services-fiókját, szüksége lesz a konfigurációs készlet létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="7a187-117">Once your content is in your Media Services account, you will need to construct your configuration preset.</span></span>  <span data-ttu-id="7a187-118">Az alábbi táblázat ismerteti a felhasználó által megadott mezőket:</span><span class="sxs-lookup"><span data-stu-id="7a187-118">The following table explains the user-specified fields:</span></span>
+### <span data-ttu-id="d2014-116"><a id="configuration"></a>Hyperlapse konfigurációs beállításkészlet</span><span class="sxs-lookup"><span data-stu-id="d2014-116"><a id="configuration"></a>Configuration Preset for Hyperlapse</span></span>
+<span data-ttu-id="d2014-117">Ha a tartalom a Media Services-fiókját, szüksége lesz a konfigurációs készlet tooconstruct.</span><span class="sxs-lookup"><span data-stu-id="d2014-117">Once your content is in your Media Services account, you will need tooconstruct your configuration preset.</span></span>  <span data-ttu-id="d2014-118">a következő táblázat hello hello felhasználó által megadott mezőket ismerteti:</span><span class="sxs-lookup"><span data-stu-id="d2014-118">hello following table explains hello user-specified fields:</span></span>
 
-| <span data-ttu-id="7a187-119">Mező</span><span class="sxs-lookup"><span data-stu-id="7a187-119">Field</span></span> | <span data-ttu-id="7a187-120">Leírás</span><span class="sxs-lookup"><span data-stu-id="7a187-120">Description</span></span> |
+| <span data-ttu-id="d2014-119">Mező</span><span class="sxs-lookup"><span data-stu-id="d2014-119">Field</span></span> | <span data-ttu-id="d2014-120">Leírás</span><span class="sxs-lookup"><span data-stu-id="d2014-120">Description</span></span> |
 | --- | --- |
-| <span data-ttu-id="7a187-121">StartFrame</span><span class="sxs-lookup"><span data-stu-id="7a187-121">StartFrame</span></span> |<span data-ttu-id="7a187-122">A keret, amelyre a Microsoft Hyperlapse feldolgozási el kell kezdődnie.</span><span class="sxs-lookup"><span data-stu-id="7a187-122">The frame upon which the Microsoft Hyperlapse processing should begin.</span></span> |
-| <span data-ttu-id="7a187-123">NumFrames</span><span class="sxs-lookup"><span data-stu-id="7a187-123">NumFrames</span></span> |<span data-ttu-id="7a187-124">Keretek feldolgozni száma</span><span class="sxs-lookup"><span data-stu-id="7a187-124">The number of frames to process</span></span> |
-| <span data-ttu-id="7a187-125">Gyorsaság</span><span class="sxs-lookup"><span data-stu-id="7a187-125">Speed</span></span> |<span data-ttu-id="7a187-126">A tényező, amellyel a bemeneti videó felgyorsítása érdekében.</span><span class="sxs-lookup"><span data-stu-id="7a187-126">The factor with which to speed up the input video.</span></span> |
+| <span data-ttu-id="d2014-121">StartFrame</span><span class="sxs-lookup"><span data-stu-id="d2014-121">StartFrame</span></span> |<span data-ttu-id="d2014-122">hello keret, mely hello Microsoft Hyperlapse feldolgozási el kell kezdődnie.</span><span class="sxs-lookup"><span data-stu-id="d2014-122">hello frame upon which hello Microsoft Hyperlapse processing should begin.</span></span> |
+| <span data-ttu-id="d2014-123">NumFrames</span><span class="sxs-lookup"><span data-stu-id="d2014-123">NumFrames</span></span> |<span data-ttu-id="d2014-124">keretek tooprocess hello száma</span><span class="sxs-lookup"><span data-stu-id="d2014-124">hello number of frames tooprocess</span></span> |
+| <span data-ttu-id="d2014-125">Gyorsaság</span><span class="sxs-lookup"><span data-stu-id="d2014-125">Speed</span></span> |<span data-ttu-id="d2014-126">hello tényező, mely toospeed hello bemeneti videó fel.</span><span class="sxs-lookup"><span data-stu-id="d2014-126">hello factor with which toospeed up hello input video.</span></span> |
 
-<span data-ttu-id="7a187-127">A következő egy példa egy szabványos konfigurációs fájl XML- és a JSON:</span><span class="sxs-lookup"><span data-stu-id="7a187-127">The following is an example of a conformant configuration file in XML and JSON:</span></span>
+<span data-ttu-id="d2014-127">hello az alábbiakban látható egy példa egy szabványos konfigurációs fájl XML- és a JSON:</span><span class="sxs-lookup"><span data-stu-id="d2014-127">hello following is an example of a conformant configuration file in XML and JSON:</span></span>
 
-<span data-ttu-id="7a187-128">**XML-készletet:**</span><span class="sxs-lookup"><span data-stu-id="7a187-128">**XML preset:**</span></span>
+<span data-ttu-id="d2014-128">**XML-készletet:**</span><span class="sxs-lookup"><span data-stu-id="d2014-128">**XML preset:**</span></span>
 
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -58,7 +58,7 @@ ms.lasthandoff: 07/11/2017
         </Options>
     </Preset>
 
-<span data-ttu-id="7a187-129">**JSON-készletet:**</span><span class="sxs-lookup"><span data-stu-id="7a187-129">**JSON preset:**</span></span>
+<span data-ttu-id="d2014-129">**JSON-készletet:**</span><span class="sxs-lookup"><span data-stu-id="d2014-129">**JSON preset:**</span></span>
 
     {
         "Version":1.0,
@@ -74,14 +74,14 @@ ms.lasthandoff: 07/11/2017
         }
     }
 
-### <span data-ttu-id="7a187-130"><a id="sample_code"></a>Microsoft Hyperlapse az AMS .NET SDK-val</span><span class="sxs-lookup"><span data-stu-id="7a187-130"><a id="sample_code"></a> Microsoft Hyperlapse with the AMS .NET SDK</span></span>
-<span data-ttu-id="7a187-131">A következő metódus feltölt egy médiafájlt eszközként, és létrehoz egy feladatot az Azure Media Hyperlapse Media processzorral rendelkező.</span><span class="sxs-lookup"><span data-stu-id="7a187-131">The following method uploads a media file as an asset and creates a job with the Azure Media Hyperlapse Media Processor.</span></span>
+### <span data-ttu-id="d2014-130"><a id="sample_code"></a>Az AMS .NET SDK hello Microsoft Hyperlapse</span><span class="sxs-lookup"><span data-stu-id="d2014-130"><a id="sample_code"></a> Microsoft Hyperlapse with hello AMS .NET SDK</span></span>
+<span data-ttu-id="d2014-131">hello következő metódus feltölt egy médiafájlt eszközként, és létrehoz egy feladatot az Azure Media Hyperlapse Media processzor hello.</span><span class="sxs-lookup"><span data-stu-id="d2014-131">hello following method uploads a media file as an asset and creates a job with hello Azure Media Hyperlapse Media Processor.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="7a187-132">Egy CloudMediaContext már rendelkezik a neve "context" a kód működéséhez a hatókörben.</span><span class="sxs-lookup"><span data-stu-id="7a187-132">You should already have a CloudMediaContext in scope with the name "context" for this code to work.</span></span>  <span data-ttu-id="7a187-133">Ezzel kapcsolatos további tudnivalókért olvassa el a [tartalomkezelési cikk](media-services-dotnet-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="7a187-133">To learn more about this, read the [content management article](media-services-dotnet-get-started.md).</span></span>
+> <span data-ttu-id="d2014-132">Már rendelkezik a egy CloudMediaContext ez kód toowork a hello neve "context" hatókörébe.</span><span class="sxs-lookup"><span data-stu-id="d2014-132">You should already have a CloudMediaContext in scope with hello name "context" for this code toowork.</span></span>  <span data-ttu-id="d2014-133">További információk a, olvasási hello toolearn [tartalomkezelési cikk](media-services-dotnet-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="d2014-133">toolearn more about this, read hello [content management article](media-services-dotnet-get-started.md).</span></span>
 > 
 > [!NOTE]
-> <span data-ttu-id="7a187-134">A karakterlánc-argumentum "hyperConfig" kellene lennie a szabványos konfigurációs készlet JSON vagy XML fent leírt módon.</span><span class="sxs-lookup"><span data-stu-id="7a187-134">The string argument "hyperConfig" is expected to be a conformant configuration preset in either JSON or XML as described above.</span></span>
+> <span data-ttu-id="d2014-134">hello karakterlánc "hyperConfig" argumentum egy szabványos konfigurációs készlet JSON vagy a fent leírt módon XML várt toobe.</span><span class="sxs-lookup"><span data-stu-id="d2014-134">hello string argument "hyperConfig" is expected toobe a conformant configuration preset in either JSON or XML as described above.</span></span>
 > 
 > 
 
@@ -148,7 +148,7 @@ ms.lasthandoff: 07/11/2017
                                                  CancellationToken.None);
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)
@@ -198,19 +198,19 @@ ms.lasthandoff: 07/11/2017
         return processor;
     }
 
-### <span data-ttu-id="7a187-135"><a id="file_types"></a>Támogatott fájltípusok</span><span class="sxs-lookup"><span data-stu-id="7a187-135"><a id="file_types"></a>Supported File types</span></span>
-* <span data-ttu-id="7a187-136">MP4</span><span class="sxs-lookup"><span data-stu-id="7a187-136">MP4</span></span>
-* <span data-ttu-id="7a187-137">MOV</span><span class="sxs-lookup"><span data-stu-id="7a187-137">MOV</span></span>
-* <span data-ttu-id="7a187-138">WMV</span><span class="sxs-lookup"><span data-stu-id="7a187-138">WMV</span></span>
+### <span data-ttu-id="d2014-135"><a id="file_types"></a>Támogatott fájltípusok</span><span class="sxs-lookup"><span data-stu-id="d2014-135"><a id="file_types"></a>Supported File types</span></span>
+* <span data-ttu-id="d2014-136">MP4</span><span class="sxs-lookup"><span data-stu-id="d2014-136">MP4</span></span>
+* <span data-ttu-id="d2014-137">MOV</span><span class="sxs-lookup"><span data-stu-id="d2014-137">MOV</span></span>
+* <span data-ttu-id="d2014-138">WMV</span><span class="sxs-lookup"><span data-stu-id="d2014-138">WMV</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="7a187-139">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="7a187-139">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="d2014-139">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="d2014-139">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="7a187-140">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="7a187-140">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="d2014-140">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="d2014-140">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="related-links"></a><span data-ttu-id="7a187-141">Kapcsolódó hivatkozások</span><span class="sxs-lookup"><span data-stu-id="7a187-141">Related links</span></span>
-[<span data-ttu-id="7a187-142">Azure Media Services elemző áttekintése</span><span class="sxs-lookup"><span data-stu-id="7a187-142">Azure Media Services Analytics Overview</span></span>](media-services-analytics-overview.md)
+## <a name="related-links"></a><span data-ttu-id="d2014-141">Kapcsolódó hivatkozások</span><span class="sxs-lookup"><span data-stu-id="d2014-141">Related links</span></span>
+[<span data-ttu-id="d2014-142">Azure Media Services elemző áttekintése</span><span class="sxs-lookup"><span data-stu-id="d2014-142">Azure Media Services Analytics Overview</span></span>](media-services-analytics-overview.md)
 
-[<span data-ttu-id="7a187-143">Az Azure Médiaelemzés bemutatók</span><span class="sxs-lookup"><span data-stu-id="7a187-143">Azure Media Analytics demos</span></span>](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+[<span data-ttu-id="d2014-143">Az Azure Médiaelemzés bemutatók</span><span class="sxs-lookup"><span data-stu-id="d2014-143">Azure Media Analytics demos</span></span>](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 

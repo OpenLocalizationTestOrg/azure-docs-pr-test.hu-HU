@@ -1,6 +1,6 @@
 ---
-title: "Adatok lekérése az Azure Naplóelemzés Python-parancsfájl |} Microsoft Docs"
-description: "A napló Analytics napló Search API lehetővé teszi, hogy az adatok lekérése a Naplóelemzési munkaterület bármely REST API-ügyfél.  A cikkben egy minta Python-parancsfájl, a napló Search API használatával."
+title: "aaaPython parancsfájl tooretrieve adatokat az Azure Naplóelemzés |} Microsoft Docs"
+description: "hello napló Analytics napló Search API lehetővé teszi, hogy a REST API-ügyfél a Naplóelemzési munkaterület tooretrieve adatait.  A cikkben egy minta Python-parancsfájl hello napló keresése API használatával."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,22 +13,22 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/28/2017
 ms.author: bwren
-ms.openlocfilehash: 56d7c6dc648a01e7b0efc167cb65c94bac5468ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a45693b04cd388301b859e7186ca671786d0229e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retrieve-data-from-log-analytics-with-a-python-script"></a><span data-ttu-id="99a26-104">Log Analytics egy Python-parancsfájl adatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="99a26-104">Retrieve data from Log Analytics with a Python script</span></span>
-<span data-ttu-id="99a26-105">A [napló Analytics napló Search API](log-analytics-log-search-api.md) lehetővé teszi az adatok lekérése a Naplóelemzési munkaterület bármely REST API-ügyfél.</span><span class="sxs-lookup"><span data-stu-id="99a26-105">The [Log Analytics Log Search API](log-analytics-log-search-api.md) allows any REST API client to retrieve data from a Log Analytics workspace.</span></span>  <span data-ttu-id="99a26-106">Ez a cikk egy minta Python-parancsfájl, amely a napló Analytics napló keresési API mutatja be.</span><span class="sxs-lookup"><span data-stu-id="99a26-106">This article presents a sample Python script that uses the Log Analytics Log Search API.</span></span>  
+# <a name="retrieve-data-from-log-analytics-with-a-python-script"></a><span data-ttu-id="def66-104">Log Analytics egy Python-parancsfájl adatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="def66-104">Retrieve data from Log Analytics with a Python script</span></span>
+<span data-ttu-id="def66-105">Hello [napló Analytics napló Search API](log-analytics-log-search-api.md) lehetővé teszi, hogy a REST API-ügyfél a Naplóelemzési munkaterület tooretrieve adatait.</span><span class="sxs-lookup"><span data-stu-id="def66-105">hello [Log Analytics Log Search API](log-analytics-log-search-api.md) allows any REST API client tooretrieve data from a Log Analytics workspace.</span></span>  <span data-ttu-id="def66-106">Ez a cikk a Python mintaparancsfájl hello napló Analytics napló keresési API-t használó mutatja be.</span><span class="sxs-lookup"><span data-stu-id="def66-106">This article presents a sample Python script that uses hello Log Analytics Log Search API.</span></span>  
 
-## <a name="authentication"></a><span data-ttu-id="99a26-107">Authentication</span><span class="sxs-lookup"><span data-stu-id="99a26-107">Authentication</span></span>
-<span data-ttu-id="99a26-108">A parancsfájl egy egyszerű szolgáltatást az Azure Active Directoryban, hogy a munkaterület hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="99a26-108">This script uses a service principal in Azure Active Directory to authenticate to the workspace.</span></span>  <span data-ttu-id="99a26-109">Szolgáltatásnevekről engedélyezése, hogy a szolgáltatás egy fiók hitelesítéséhez, még akkor is, ha az ügyfél nem rendelkezik a fióknév kérelem ügyfélalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="99a26-109">Service principals allow a client application to request that the service authenticate an account even if the client does not have the account name.</span></span> <span data-ttu-id="99a26-110">A parancsfájl futtatása előtt létre kell hoznia egy egyszerű szolgáltatás használata a folyamatban levő [használata portálon hozzon létre egy Azure Active Directory erőforrásokat elérő alkalmazás és szolgáltatás egyszerű](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="99a26-110">Before running this script, you must create a service principal using the process at [Use portal to create an Azure Active Directory application and service principal that can access resources](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span>  <span data-ttu-id="99a26-111">Adja meg az Alkalmazásazonosítót, a bérlő azonosítója és a hitelesítési kulcs a parancsfájl lesz szüksége.</span><span class="sxs-lookup"><span data-stu-id="99a26-111">You'll need to provide the Application ID, Tenant ID, and Authentication Key to the script.</span></span> 
+## <a name="authentication"></a><span data-ttu-id="def66-107">Authentication</span><span class="sxs-lookup"><span data-stu-id="def66-107">Authentication</span></span>
+<span data-ttu-id="def66-108">A parancsfájl egy egyszerű Azure Active Directory tooauthenticate toohello munkaterületen.</span><span class="sxs-lookup"><span data-stu-id="def66-108">This script uses a service principal in Azure Active Directory tooauthenticate toohello workspace.</span></span>  <span data-ttu-id="def66-109">Szolgáltatásnevekről engedélyezte az ügyfél, amely hello szolgáltatás alkalmazás toorequest egy fiók hitelesítéséhez, még akkor is, ha hello ügyfél nem rendelkezik hello fióknevet.</span><span class="sxs-lookup"><span data-stu-id="def66-109">Service principals allow a client application toorequest that hello service authenticate an account even if hello client does not have hello account name.</span></span> <span data-ttu-id="def66-110">A parancsfájl futtatása előtt létre kell hoznia egy egyszerű szolgáltatás használatával hello folyamatot [portál toocreate használja az Azure Active Directory-alkalmazást és egy egyszerű szolgáltatást, amely erőforrások eléréséhez](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="def66-110">Before running this script, you must create a service principal using hello process at [Use portal toocreate an Azure Active Directory application and service principal that can access resources](../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span>  <span data-ttu-id="def66-111">Tooprovide hello Alkalmazásazonosító, a bérlő azonosítója és a hitelesítési kulcs toohello parancsfájl lesz szüksége.</span><span class="sxs-lookup"><span data-stu-id="def66-111">You'll need tooprovide hello Application ID, Tenant ID, and Authentication Key toohello script.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="99a26-112">Ha Ön [hozzon létre egy Azure Automation-fiók](../automation/automation-create-standalone-account.md), egyszerű szolgáltatás létrehozása, amely lehetővé teszi a parancsfájl használata.</span><span class="sxs-lookup"><span data-stu-id="99a26-112">When you [create an Azure Automation account](../automation/automation-create-standalone-account.md), a service principal is created that is suitable to use with this script.</span></span>  <span data-ttu-id="99a26-113">Ha már rendelkezik egy Azure Automation által létrehozott egyszerű szolgáltatást, akkor el tudja azt használni létrehozása helyett egy új, bár előfordulhat, hogy kell [hitelesítési kulcs létrehozása](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) Ha az még nincs.</span><span class="sxs-lookup"><span data-stu-id="99a26-113">If you already have a service principal created by Azure Automation then you should be able to use it instead of creating a new one, although you may need to [create an authentication key](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) if it doesn't already have one.</span></span>
+> <span data-ttu-id="def66-112">Ha Ön [hozzon létre egy Azure Automation-fiók](../automation/automation-create-standalone-account.md), egyszerű szolgáltatás létrehozása, amely megfelelő toouse ezzel a parancsprogrammal.</span><span class="sxs-lookup"><span data-stu-id="def66-112">When you [create an Azure Automation account](../automation/automation-create-standalone-account.md), a service principal is created that is suitable toouse with this script.</span></span>  <span data-ttu-id="def66-113">Ha már rendelkezik egy Azure Automation által létrehozott egyszerű, akkor meg kell tudni toouse létrehozása helyett egy új, bár előfordulhat, hogy túl kell azt[hitelesítési kulcs létrehozása](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) Ha az még nincs.</span><span class="sxs-lookup"><span data-stu-id="def66-113">If you already have a service principal created by Azure Automation then you should be able toouse it instead of creating a new one, although you may need too[create an authentication key](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) if it doesn't already have one.</span></span>
 
-## <a name="script"></a><span data-ttu-id="99a26-114">Szkript</span><span class="sxs-lookup"><span data-stu-id="99a26-114">Script</span></span>
+## <a name="script"></a><span data-ttu-id="def66-114">Szkript</span><span class="sxs-lookup"><span data-stu-id="def66-114">Script</span></span>
 ``` python
 import adal
 import requests
@@ -40,7 +40,7 @@ from pprint import pprint
 resource_group = 'xxxxxxxx'
 workspace = 'xxxxxxxx'
 
-# Details of query.  Modify these to your requirements.
+# Details of query.  Modify these tooyour requirements.
 query = "Type=Event"
 end_time = datetime.datetime.utcnow()
 start_time = end_time - datetime.timedelta(hours=24)
@@ -61,7 +61,7 @@ context = adal.AuthenticationContext('https://login.microsoftonline.com/' + tena
 token_response = context.acquire_token_with_client_credentials('https://management.core.windows.net/', application_id, application_key)
 access_token = token_response.get('accessToken')
 
-# Add token to header
+# Add token tooheader
 headers = {
     "Authorization": 'Bearer ' + access_token,
     "Content-Type":'application/json'
@@ -90,7 +90,7 @@ response = requests.post(uri,json=search_params,headers=headers)
 # Response of 200 if successful
 if response.status_code == 200:
 
-    # Parse the response to get the ID and status
+    # Parse hello response tooget hello ID and status
     data = response.json()
     search_id = data["id"].split("/")
     id = search_id[len(search_id)-1]
@@ -99,12 +99,12 @@ if response.status_code == 200:
     # If status is pending, then keep checking until complete
     while status == "Pending":
 
-        # Build URL to get search from ID and send request
+        # Build URL tooget search from ID and send request
         uri_search = uri_search + '/' + id
         uri = uri_search + '?' + uri_api
         response = requests.get(uri,headers=headers)
 
-        # Parse the response to get the status
+        # Parse hello response tooget hello status
         data = response.json()
         status = data["__metadata"]["Status"]
 
@@ -118,5 +118,5 @@ print ("Total records:" + str(data["__metadata"]["total"]))
 print ("Returned top:" + str(data["__metadata"]["top"]))
 pprint (data["value"])
 ```
-## <a name="next-steps"></a><span data-ttu-id="99a26-115">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="99a26-115">Next steps</span></span>
-- <span data-ttu-id="99a26-116">További információ a [napló Analytics napló Search API](log-analytics-log-search-api.md).</span><span class="sxs-lookup"><span data-stu-id="99a26-116">Learn more about the [Log Analytics Log Search API](log-analytics-log-search-api.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="def66-115">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="def66-115">Next steps</span></span>
+- <span data-ttu-id="def66-116">További tudnivalók hello [napló Analytics napló Search API](log-analytics-log-search-api.md).</span><span class="sxs-lookup"><span data-stu-id="def66-116">Learn more about hello [Log Analytics Log Search API](log-analytics-log-search-api.md).</span></span>

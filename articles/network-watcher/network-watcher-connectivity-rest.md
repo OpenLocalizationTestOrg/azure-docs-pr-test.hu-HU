@@ -1,6 +1,6 @@
 ---
-title: "Ellenőrizze a kapcsolatot az Azure hálózati figyelőt - Azure-portál |} Microsoft Docs"
-description: "Ez a lap ismerteti, hogyan ellenőrizze a kapcsolatot a hálózati figyelőt az Azure-portálon"
+title: "Azure hálózati figyelőt - Azure-portálon aaaCheck kapcsolatot |} Microsoft Docs"
+description: "Ez a lap azt ismerteti, hogyan toocheck kapcsolatot a hálózati figyelőt hello Azure-portálon"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,55 +13,55 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: gwallace
-ms.openlocfilehash: ca62bea581acb59d3c3c0b8a204cc9d42de2b27f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8560011906fcce46d31556fc52cbfa671e8e653a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a><span data-ttu-id="10bec-103">Ellenőrizze a kapcsolatot az Azure hálózati figyelőt az Azure portál használatával</span><span class="sxs-lookup"><span data-stu-id="10bec-103">Check connectivity with Azure Network Watcher using the Azure portal</span></span>
+# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a><span data-ttu-id="29e25-103">Ellenőrizze a kapcsolatot az Azure hálózati figyelőt hello Azure-portál használatával</span><span class="sxs-lookup"><span data-stu-id="29e25-103">Check connectivity with Azure Network Watcher using hello Azure portal</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="10bec-104">Portal</span><span class="sxs-lookup"><span data-stu-id="10bec-104">Portal</span></span>](network-watcher-connectivity-portal.md)
-> - [<span data-ttu-id="10bec-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="10bec-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
-> - [<span data-ttu-id="10bec-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="10bec-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
-> - [<span data-ttu-id="10bec-107">Az Azure REST API-n</span><span class="sxs-lookup"><span data-stu-id="10bec-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
+> - [<span data-ttu-id="29e25-104">Portál</span><span class="sxs-lookup"><span data-stu-id="29e25-104">Portal</span></span>](network-watcher-connectivity-portal.md)
+> - [<span data-ttu-id="29e25-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="29e25-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
+> - [<span data-ttu-id="29e25-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="29e25-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
+> - [<span data-ttu-id="29e25-107">Az Azure REST API-n</span><span class="sxs-lookup"><span data-stu-id="29e25-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
 
-<span data-ttu-id="10bec-108">Megtudhatja, hogyan ellenőrizheti, ha egy közvetlen TCP-kapcsolatot a virtuális gép egy adott végpont is hozható létre kapcsolat használatára.</span><span class="sxs-lookup"><span data-stu-id="10bec-108">Learn how to use connectivity to verify if a direct TCP connection from a virtual machine to a given endpoint can be established.</span></span>
+<span data-ttu-id="29e25-108">Ismerje meg, hogyan hozhatók létre a toouse kapcsolat tooverify, ha egy virtuális gép tooa megadott végpont a közvetlen TCP-kapcsolatot.</span><span class="sxs-lookup"><span data-stu-id="29e25-108">Learn how toouse connectivity tooverify if a direct TCP connection from a virtual machine tooa given endpoint can be established.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="10bec-109">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="10bec-109">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="29e25-109">Előkészületek</span><span class="sxs-lookup"><span data-stu-id="29e25-109">Before you begin</span></span>
 
-<span data-ttu-id="10bec-110">Ez a cikk feltételezi, hogy rendelkezik-e a következőket:</span><span class="sxs-lookup"><span data-stu-id="10bec-110">This article assumes you have the following resources:</span></span>
+<span data-ttu-id="29e25-110">Ez a cikk feltételezi, hogy rendelkezik-e a következő erőforrások hello:</span><span class="sxs-lookup"><span data-stu-id="29e25-110">This article assumes you have hello following resources:</span></span>
 
-* <span data-ttu-id="10bec-111">Ellenőrizze a kapcsolatot szeretne hálózati figyelőt régióban példánya.</span><span class="sxs-lookup"><span data-stu-id="10bec-111">An instance of Network Watcher in the region you want to check connectivity.</span></span>
+* <span data-ttu-id="29e25-111">Egy példány toocheck kapcsolat kívánt hálózati figyelőt hello régióban.</span><span class="sxs-lookup"><span data-stu-id="29e25-111">An instance of Network Watcher in hello region you want toocheck connectivity.</span></span>
 
-* <span data-ttu-id="10bec-112">Ellenőrizze a kapcsolatot a virtuális gépeket.</span><span class="sxs-lookup"><span data-stu-id="10bec-112">Virtual machines to check connectivity with.</span></span>
+* <span data-ttu-id="29e25-112">Virtuális gépek toocheck kapcsolattal.</span><span class="sxs-lookup"><span data-stu-id="29e25-112">Virtual machines toocheck connectivity with.</span></span>
 
-<span data-ttu-id="10bec-113">A PowerShell használatával REST API hívása ARMclient szolgál.</span><span class="sxs-lookup"><span data-stu-id="10bec-113">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="10bec-114">ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient).</span><span class="sxs-lookup"><span data-stu-id="10bec-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient).</span></span>
+<span data-ttu-id="29e25-113">ARMclient használt toocall hello REST API használatával PowerShell.</span><span class="sxs-lookup"><span data-stu-id="29e25-113">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="29e25-114">ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient).</span><span class="sxs-lookup"><span data-stu-id="29e25-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient).</span></span>
 
-<span data-ttu-id="10bec-115">Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.</span><span class="sxs-lookup"><span data-stu-id="10bec-115">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="29e25-115">Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.</span><span class="sxs-lookup"><span data-stu-id="29e25-115">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="10bec-116">Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="10bec-116">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="10bec-117">A bővítmény telepítése a Windows virtuális gép a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="10bec-117">For installing the extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
+> <span data-ttu-id="29e25-116">Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`.</span><span class="sxs-lookup"><span data-stu-id="29e25-116">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="29e25-117">A virtuális gép Windows hello-bővítmény telepítése a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="29e25-117">For installing hello extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
 
-## <a name="register-the-preview-capability"></a><span data-ttu-id="10bec-118">Regisztrálja a előzetes funkció</span><span class="sxs-lookup"><span data-stu-id="10bec-118">Register the preview capability</span></span>
+## <a name="register-hello-preview-capability"></a><span data-ttu-id="29e25-118">Hello előzetes funkció regisztrálása</span><span class="sxs-lookup"><span data-stu-id="29e25-118">Register hello preview capability</span></span>
 
-<span data-ttu-id="10bec-119">Kapcsolat ellenőrzése jelenleg nyilvános előzetes verziójában, regisztrálni kell a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="10bec-119">Connectivity check is currently in public preview, to use this feature it needs to be registered.</span></span> <span data-ttu-id="10bec-120">Ehhez futtassa a következő PowerShell-példa:</span><span class="sxs-lookup"><span data-stu-id="10bec-120">To do this, run the following PowerShell sample:</span></span>
+<span data-ttu-id="29e25-119">Kapcsolat ellenőrzése jelenleg toouse nyilvános előzetes verziójában ez a szolgáltatás toobe regisztrálni kell.</span><span class="sxs-lookup"><span data-stu-id="29e25-119">Connectivity check is currently in public preview, toouse this feature it needs toobe registered.</span></span> <span data-ttu-id="29e25-120">toodo e, futtassa a következő PowerShell-példa hello:</span><span class="sxs-lookup"><span data-stu-id="29e25-120">toodo this, run hello following PowerShell sample:</span></span>
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-<span data-ttu-id="10bec-121">Ellenőrizze a regisztráció sikeres volt-e, futtassa a következő Powershell-példa:</span><span class="sxs-lookup"><span data-stu-id="10bec-121">To verify the registration was successful, run the following Powershell sample:</span></span>
+<span data-ttu-id="29e25-121">tooverify hello a regisztráció sikeres volt, futtassa a következő Powershell-példa hello:</span><span class="sxs-lookup"><span data-stu-id="29e25-121">tooverify hello registration was successful, run hello following Powershell sample:</span></span>
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-<span data-ttu-id="10bec-122">Ha a szolgáltatás megfelelően lett-e regisztrálva, a kimeneti meg kell felelnie a következő:</span><span class="sxs-lookup"><span data-stu-id="10bec-122">If the feature was properly registered, the output should match the following:</span></span>
+<span data-ttu-id="29e25-122">Hello szolgáltatás megfelelően lett-e regisztrálva, ha hello kimeneti meg kell felelnie a következő hello:</span><span class="sxs-lookup"><span data-stu-id="29e25-122">If hello feature was properly registered, hello output should match hello following:</span></span>
 
 ```
 FeatureName                             ProviderName      RegistrationState
@@ -69,22 +69,22 @@ FeatureName                             ProviderName      RegistrationState
 AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
 ```
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="10bec-123">Jelentkezzen be ARMClient</span><span class="sxs-lookup"><span data-stu-id="10bec-123">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="29e25-123">Jelentkezzen be ARMClient</span><span class="sxs-lookup"><span data-stu-id="29e25-123">Log in with ARMClient</span></span>
 
-<span data-ttu-id="10bec-124">Jelentkezzen be a Azure hitelesítő adataival armclient.</span><span class="sxs-lookup"><span data-stu-id="10bec-124">Log in to armclient with your Azure credentials.</span></span>
+<span data-ttu-id="29e25-124">Jelentkezzen be a Azure hitelesítő adataival tooarmclient.</span><span class="sxs-lookup"><span data-stu-id="29e25-124">Log in tooarmclient with your Azure credentials.</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="10bec-125">A virtuális gép beolvasása</span><span class="sxs-lookup"><span data-stu-id="10bec-125">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="29e25-125">A virtuális gép beolvasása</span><span class="sxs-lookup"><span data-stu-id="29e25-125">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="10bec-126">Futtassa a következő parancsfájl egy virtuális gép visszaállítására.</span><span class="sxs-lookup"><span data-stu-id="10bec-126">Run the following script to return a virtual machine.</span></span> <span data-ttu-id="10bec-127">Ezek az információk szükségesek a kapcsolat futtatásához.</span><span class="sxs-lookup"><span data-stu-id="10bec-127">This information is needed for running connectivity.</span></span> 
+<span data-ttu-id="29e25-126">A következő parancsfájl tooreturn hello egy virtuális gép futtatásához.</span><span class="sxs-lookup"><span data-stu-id="29e25-126">Run hello following script tooreturn a virtual machine.</span></span> <span data-ttu-id="29e25-127">Ezek az információk szükségesek a kapcsolat futtatásához.</span><span class="sxs-lookup"><span data-stu-id="29e25-127">This information is needed for running connectivity.</span></span> 
 
-<span data-ttu-id="10bec-128">A következő kódot a következő változó igényeihez értékek:</span><span class="sxs-lookup"><span data-stu-id="10bec-128">The following code needs values for the following variables:</span></span>
+<span data-ttu-id="29e25-128">a következő kód hello értékeket a következő változók hello szüksége van:</span><span class="sxs-lookup"><span data-stu-id="29e25-128">hello following code needs values for hello following variables:</span></span>
 
-- <span data-ttu-id="10bec-129">**a subscriptionId** -az előfizetés-azonosító használata.</span><span class="sxs-lookup"><span data-stu-id="10bec-129">**subscriptionId** - The subscription ID to use.</span></span>
-- <span data-ttu-id="10bec-130">**resourceGroupName** -virtuális gépeket tartalmazó erőforráscsoport nevét.</span><span class="sxs-lookup"><span data-stu-id="10bec-130">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+- <span data-ttu-id="29e25-129">**a subscriptionId** -előfizetési azonosító toouse hello.</span><span class="sxs-lookup"><span data-stu-id="29e25-129">**subscriptionId** - hello subscription ID toouse.</span></span>
+- <span data-ttu-id="29e25-130">**resourceGroupName** – hello virtuális gépeket tartalmazó erőforráscsoport nevét.</span><span class="sxs-lookup"><span data-stu-id="29e25-130">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -93,7 +93,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="10bec-131">A virtuális gép Azonosítóját a következő kimeneti használják a következő példa:</span><span class="sxs-lookup"><span data-stu-id="10bec-131">From the following output, the ID of the virtual machine is used in the following example:</span></span>
+<span data-ttu-id="29e25-131">Hello következő kimeneti, hello virtuális gép hello azonosítója szerepel a következő példa hello:</span><span class="sxs-lookup"><span data-stu-id="29e25-131">From hello following output, hello ID of hello virtual machine is used in hello following example:</span></span>
 
 ```json
 ...
@@ -108,11 +108,11 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 }
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a><span data-ttu-id="10bec-132">Ellenőrizze a kapcsolatot a virtuális géphez</span><span class="sxs-lookup"><span data-stu-id="10bec-132">Check connectivity to a virtual machine</span></span>
+## <a name="check-connectivity-tooa-virtual-machine"></a><span data-ttu-id="29e25-132">Ellenőrizze a kapcsolat tooa virtuális gép</span><span class="sxs-lookup"><span data-stu-id="29e25-132">Check connectivity tooa virtual machine</span></span>
 
-<span data-ttu-id="10bec-133">Ebben a példában a cél virtuális gép kapcsolatát ellenőrzi a 80-as porton keresztül.</span><span class="sxs-lookup"><span data-stu-id="10bec-133">This example checks connectivity to a destination virtual machine over port 80.</span></span>
+<span data-ttu-id="29e25-133">Ebben a példában kapcsolat tooa cél virtuális gép ellenőrzi a 80-as porton keresztül.</span><span class="sxs-lookup"><span data-stu-id="29e25-133">This example checks connectivity tooa destination virtual machine over port 80.</span></span>
 
-### <a name="example"></a><span data-ttu-id="10bec-134">Példa</span><span class="sxs-lookup"><span data-stu-id="10bec-134">Example</span></span>
+### <a name="example"></a><span data-ttu-id="29e25-134">Példa</span><span class="sxs-lookup"><span data-stu-id="29e25-134">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -137,11 +137,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="10bec-135">Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:</span><span class="sxs-lookup"><span data-stu-id="10bec-135">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="29e25-135">Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:</span><span class="sxs-lookup"><span data-stu-id="29e25-135">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="10bec-136">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="10bec-136">**Important Values**</span></span>
+<span data-ttu-id="29e25-136">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="29e25-136">**Important Values**</span></span>
 
-* <span data-ttu-id="10bec-137">**Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI</span><span class="sxs-lookup"><span data-stu-id="10bec-137">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="29e25-137">**Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.</span><span class="sxs-lookup"><span data-stu-id="29e25-137">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -160,9 +160,9 @@ Date: Fri, 02 Jun 2017 20:21:16 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="10bec-138">Válasz</span><span class="sxs-lookup"><span data-stu-id="10bec-138">Response</span></span>
+### <a name="response"></a><span data-ttu-id="29e25-138">Válasz</span><span class="sxs-lookup"><span data-stu-id="29e25-138">Response</span></span>
 
-<span data-ttu-id="10bec-139">Az előző példában a rendszer a következő választ.</span><span class="sxs-lookup"><span data-stu-id="10bec-139">The following response is from the previous example.</span></span>  <span data-ttu-id="10bec-140">A válaszban a `ConnectionStatus` van **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="10bec-140">In this response, the `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="10bec-141">Láthatja, hogy a mintavételt küldése sikertelen.</span><span class="sxs-lookup"><span data-stu-id="10bec-141">You can see that all the probes sent failed.</span></span> <span data-ttu-id="10bec-142">A kapcsolat a felhasználó által konfigurált miatt a virtuális készülék meghiúsult `NetworkSecurityRule` nevű **UserRule_Port80**, beállítva, hogy a bejövő forgalom blokkolása a 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="10bec-142">The connectivity failed at the virtual appliance due to a user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured to block incoming traffic on port 80.</span></span> <span data-ttu-id="10bec-143">Ezek az információk segítségével kutatás kapcsolódási problémák.</span><span class="sxs-lookup"><span data-stu-id="10bec-143">This information can be used to research connection issues.</span></span>
+<span data-ttu-id="29e25-139">válasz a következő hello hello előző példa származik.</span><span class="sxs-lookup"><span data-stu-id="29e25-139">hello following response is from hello previous example.</span></span>  <span data-ttu-id="29e25-140">A válaszban hello `ConnectionStatus` van **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="29e25-140">In this response, hello `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="29e25-141">Láthatja, hogy az összes hello mintavételt küldése sikertelen.</span><span class="sxs-lookup"><span data-stu-id="29e25-141">You can see that all hello probes sent failed.</span></span> <span data-ttu-id="29e25-142">hello kapcsolat meghiúsult hello virtuális készülék felhasználó által konfigurált esedékes tooa `NetworkSecurityRule` nevű **UserRule_Port80**, konfigurált tooblock bejövő forgalmat a 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="29e25-142">hello connectivity failed at hello virtual appliance due tooa user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured tooblock incoming traffic on port 80.</span></span> <span data-ttu-id="29e25-143">Ezek az információk használt tooresearch kapcsolódási problémák lehetnek.</span><span class="sxs-lookup"><span data-stu-id="29e25-143">This information can be used tooresearch connection issues.</span></span>
 
 ```json
 {
@@ -224,11 +224,11 @@ null
 }
 ```
 
-## <a name="validate-routing-issues"></a><span data-ttu-id="10bec-144">Útválasztási problémák ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="10bec-144">Validate routing issues</span></span>
+## <a name="validate-routing-issues"></a><span data-ttu-id="29e25-144">Útválasztási problémák ellenőrzése</span><span class="sxs-lookup"><span data-stu-id="29e25-144">Validate routing issues</span></span>
 
-<span data-ttu-id="10bec-145">A példában egy virtuális gép és a távoli végpont közötti kapcsolatot ellenőrzi.</span><span class="sxs-lookup"><span data-stu-id="10bec-145">The example checks connectivity between a virtual machine and a remote endpoint.</span></span>
+<span data-ttu-id="29e25-145">hello például a virtuális gépek és a távoli végpont közötti kapcsolatot ellenőrzi.</span><span class="sxs-lookup"><span data-stu-id="29e25-145">hello example checks connectivity between a virtual machine and a remote endpoint.</span></span>
 
-### <a name="example"></a><span data-ttu-id="10bec-146">Példa</span><span class="sxs-lookup"><span data-stu-id="10bec-146">Example</span></span>
+### <a name="example"></a><span data-ttu-id="29e25-146">Példa</span><span class="sxs-lookup"><span data-stu-id="29e25-146">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -253,11 +253,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="10bec-147">Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:</span><span class="sxs-lookup"><span data-stu-id="10bec-147">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="29e25-147">Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:</span><span class="sxs-lookup"><span data-stu-id="29e25-147">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="10bec-148">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="10bec-148">**Important Values**</span></span>
+<span data-ttu-id="29e25-148">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="29e25-148">**Important Values**</span></span>
 
-* <span data-ttu-id="10bec-149">**Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI</span><span class="sxs-lookup"><span data-stu-id="10bec-149">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="29e25-149">**Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.</span><span class="sxs-lookup"><span data-stu-id="29e25-149">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -276,9 +276,9 @@ Date: Fri, 02 Jun 2017 20:26:05 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="10bec-150">Válasz</span><span class="sxs-lookup"><span data-stu-id="10bec-150">Response</span></span>
+### <a name="response"></a><span data-ttu-id="29e25-150">Válasz</span><span class="sxs-lookup"><span data-stu-id="29e25-150">Response</span></span>
 
-<span data-ttu-id="10bec-151">A következő példában a `connectionStatus` jelenik meg, mint **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="10bec-151">In the following example, the `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="10bec-152">Az a `hops` részleteket megtekintheti a `issues` , amely a forgalom miatt blokkolta a `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="10bec-152">In the `hops` details, you can see under `issues` that the traffic was blocked due to a `UserDefinedRoute`.</span></span>
+<span data-ttu-id="29e25-151">A következő példa hello, hello `connectionStatus` jelenik meg, mint **Unreachable**.</span><span class="sxs-lookup"><span data-stu-id="29e25-151">In hello following example, hello `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="29e25-152">A hello `hops` részleteket megtekintheti a `issues` hello forgalom miatt blokkolta tooa `UserDefinedRoute`.</span><span class="sxs-lookup"><span data-stu-id="29e25-152">In hello `hops` details, you can see under `issues` that hello traffic was blocked due tooa `UserDefinedRoute`.</span></span>
 
 ```json
 {
@@ -320,11 +320,11 @@ null
 }
 ```
 
-## <a name="check-website-latency"></a><span data-ttu-id="10bec-153">Ellenőrizze a webhely késés</span><span class="sxs-lookup"><span data-stu-id="10bec-153">Check website latency</span></span>
+## <a name="check-website-latency"></a><span data-ttu-id="29e25-153">Ellenőrizze a webhely késés</span><span class="sxs-lookup"><span data-stu-id="29e25-153">Check website latency</span></span>
 
-<span data-ttu-id="10bec-154">A következő példa a webhely csatlakozási ellenőrzi.</span><span class="sxs-lookup"><span data-stu-id="10bec-154">The following example checks the connectivity to a website.</span></span>
+<span data-ttu-id="29e25-154">a következő példa ellenőrzések hello kapcsolat tooa webhely hello.</span><span class="sxs-lookup"><span data-stu-id="29e25-154">hello following example checks hello connectivity tooa website.</span></span>
 
-### <a name="example"></a><span data-ttu-id="10bec-155">Példa</span><span class="sxs-lookup"><span data-stu-id="10bec-155">Example</span></span>
+### <a name="example"></a><span data-ttu-id="29e25-155">Példa</span><span class="sxs-lookup"><span data-stu-id="29e25-155">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -349,11 +349,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="10bec-156">Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:</span><span class="sxs-lookup"><span data-stu-id="10bec-156">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="29e25-156">Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:</span><span class="sxs-lookup"><span data-stu-id="29e25-156">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="10bec-157">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="10bec-157">**Important Values**</span></span>
+<span data-ttu-id="29e25-157">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="29e25-157">**Important Values**</span></span>
 
-* <span data-ttu-id="10bec-158">**Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI</span><span class="sxs-lookup"><span data-stu-id="10bec-158">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="29e25-158">**Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.</span><span class="sxs-lookup"><span data-stu-id="29e25-158">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -372,9 +372,9 @@ Date: Fri, 02 Jun 2017 20:31:00 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="10bec-159">Válasz</span><span class="sxs-lookup"><span data-stu-id="10bec-159">Response</span></span>
+### <a name="response"></a><span data-ttu-id="29e25-159">Válasz</span><span class="sxs-lookup"><span data-stu-id="29e25-159">Response</span></span>
 
-<span data-ttu-id="10bec-160">A következő válasz láthatja a `connectionStatus` jeleníti meg, mint a **elérhető**.</span><span class="sxs-lookup"><span data-stu-id="10bec-160">In the following response, you can see the `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="10bec-161">Sikeres kapcsolat esetén a késési értékek találhatók.</span><span class="sxs-lookup"><span data-stu-id="10bec-161">When a connection is successful, latency values are provided.</span></span>
+<span data-ttu-id="29e25-160">A válasz a következő hello, hogy hello `connectionStatus` jeleníti meg, mint a **elérhető**.</span><span class="sxs-lookup"><span data-stu-id="29e25-160">In hello following response, you can see hello `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="29e25-161">Sikeres kapcsolat esetén a késési értékek találhatók.</span><span class="sxs-lookup"><span data-stu-id="29e25-161">When a connection is successful, latency values are provided.</span></span>
 
 ```json
 {
@@ -407,11 +407,11 @@ null
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a><span data-ttu-id="10bec-162">Ellenőrizze a kapcsolatot a storage-végponthoz</span><span class="sxs-lookup"><span data-stu-id="10bec-162">Check connectivity to a storage endpoint</span></span>
+## <a name="check-connectivity-tooa-storage-endpoint"></a><span data-ttu-id="29e25-162">Ellenőrizze a kapcsolat tooa tárolási végpont</span><span class="sxs-lookup"><span data-stu-id="29e25-162">Check connectivity tooa storage endpoint</span></span>
 
-<span data-ttu-id="10bec-163">A következő példa a kapcsolat a virtuális gépen blog tárfiókba ellenőrzi.</span><span class="sxs-lookup"><span data-stu-id="10bec-163">The following example checks the connectivity from a virtual machine to a blog storage account.</span></span>
+<span data-ttu-id="29e25-163">hello alábbi példa hello kapcsolatát ellenőrzi a virtuális gép tooa blog tárfiókból.</span><span class="sxs-lookup"><span data-stu-id="29e25-163">hello following example checks hello connectivity from a virtual machine tooa blog storage account.</span></span>
 
-### <a name="example"></a><span data-ttu-id="10bec-164">Példa</span><span class="sxs-lookup"><span data-stu-id="10bec-164">Example</span></span>
+### <a name="example"></a><span data-ttu-id="29e25-164">Példa</span><span class="sxs-lookup"><span data-stu-id="29e25-164">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -436,11 +436,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="10bec-165">Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:</span><span class="sxs-lookup"><span data-stu-id="10bec-165">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="29e25-165">Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:</span><span class="sxs-lookup"><span data-stu-id="29e25-165">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="10bec-166">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="10bec-166">**Important Values**</span></span>
+<span data-ttu-id="29e25-166">**Fontos értékek**</span><span class="sxs-lookup"><span data-stu-id="29e25-166">**Important Values**</span></span>
 
-* <span data-ttu-id="10bec-167">**Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI</span><span class="sxs-lookup"><span data-stu-id="10bec-167">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="29e25-167">**Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.</span><span class="sxs-lookup"><span data-stu-id="29e25-167">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -459,9 +459,9 @@ Date: Fri, 02 Jun 2017 20:05:03 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="10bec-168">Válasz</span><span class="sxs-lookup"><span data-stu-id="10bec-168">Response</span></span>
+### <a name="response"></a><span data-ttu-id="29e25-168">Válasz</span><span class="sxs-lookup"><span data-stu-id="29e25-168">Response</span></span>
 
-<span data-ttu-id="10bec-169">A következő példa az előző API-hívás futtató válaszát.</span><span class="sxs-lookup"><span data-stu-id="10bec-169">The following example is the response from running the previous API call.</span></span> <span data-ttu-id="10bec-170">Az ellenőrzés sikeres, mert a `connectionStatus` tulajdonság jeleníti meg, mint a **elérhető**.</span><span class="sxs-lookup"><span data-stu-id="10bec-170">As the check is successful, the `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="10bec-171">A tárolási blob és a késleltetés eléréséhez szükséges ugrások száma kapcsolatos részleteket rendelkezésre állnak.</span><span class="sxs-lookup"><span data-stu-id="10bec-171">You are provided the details regarding the number of hops required to reach the storage blob and latency.</span></span>
+<span data-ttu-id="29e25-169">hello következő példa egy hello válasz hello előző API-hívás futtatását.</span><span class="sxs-lookup"><span data-stu-id="29e25-169">hello following example is hello response from running hello previous API call.</span></span> <span data-ttu-id="29e25-170">Mivel hello ellenőrzés sikeres, hello `connectionStatus` tulajdonság jeleníti meg, mint a **elérhető**.</span><span class="sxs-lookup"><span data-stu-id="29e25-170">As hello check is successful, hello `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="29e25-171">Útválasztók ugrásainak szükséges tooreach hello storage-blob és a késleltetés hello száma hello részleteket rendelkezésre állnak.</span><span class="sxs-lookup"><span data-stu-id="29e25-171">You are provided hello details regarding hello number of hops required tooreach hello storage blob and latency.</span></span>
 
 ```json
 {
@@ -494,11 +494,11 @@ null
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="10bec-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="10bec-172">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="29e25-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="29e25-172">Next steps</span></span>
 
-<span data-ttu-id="10bec-173">Csomag rögzíti a virtuális gép a riasztások megtekintésével automatizálása [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="10bec-173">Learn how to automate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="29e25-173">Ismerje meg, hogyan tooautomate csomagrögzítéseket virtuális gép riasztások megtekintésével [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="29e25-173">Learn how tooautomate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="10bec-174">Keresése, ha bizonyos adatforgalom engedélyezett a virtuális gép kívül vagy belül ellátogatva [ellenőrizze IP folyamat ellenőrzése](network-watcher-check-ip-flow-verify-portal.md)</span><span class="sxs-lookup"><span data-stu-id="10bec-174">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
+<span data-ttu-id="29e25-174">Keresése, ha bizonyos adatforgalom engedélyezett a virtuális gép kívül vagy belül ellátogatva [ellenőrizze IP folyamat ellenőrzése](network-watcher-check-ip-flow-verify-portal.md)</span><span class="sxs-lookup"><span data-stu-id="29e25-174">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
 
 <!-- Image references -->
 

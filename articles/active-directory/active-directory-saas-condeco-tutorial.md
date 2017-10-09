@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Condeco |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Condeco között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Condeco között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,202 +13,202 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: eab1d25abc2fccdeffdf2706269bfd078eb5a09f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 20c57ff0466c28d4fb69f73bc8b5a479715eba0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-condeco"></a><span data-ttu-id="44f87-103">Oktatóanyag: Azure Active Directoryval integrált Condeco</span><span class="sxs-lookup"><span data-stu-id="44f87-103">Tutorial: Azure Active Directory integration with Condeco</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-condeco"></a><span data-ttu-id="d9741-103">Oktatóanyag: Azure Active Directoryval integrált Condeco</span><span class="sxs-lookup"><span data-stu-id="d9741-103">Tutorial: Azure Active Directory integration with Condeco</span></span>
 
-<span data-ttu-id="44f87-104">Ebben az oktatóanyagban elsajátíthatja Condeco integrálása az Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="44f87-104">In this tutorial, you learn how to integrate Condeco with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="d9741-104">Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Condeco az Azure Active Directoryval (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="d9741-104">In this tutorial, you learn how toointegrate Condeco with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="44f87-105">Condeco integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:</span><span class="sxs-lookup"><span data-stu-id="44f87-105">Integrating Condeco with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="d9741-105">Condeco integrálása az Azure AD lehetővé teszi a következő előnyöket hello:</span><span class="sxs-lookup"><span data-stu-id="d9741-105">Integrating Condeco with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="44f87-106">Megadhatja a Condeco hozzáféréssel rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="44f87-106">You can control in Azure AD who has access to Condeco</span></span>
-- <span data-ttu-id="44f87-107">Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Condeco (egyszeri bejelentkezés) számára a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="44f87-107">You can enable your users to automatically get signed-on to Condeco (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="44f87-108">Kezelheti a fiókokat, egy központi helyen – az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="44f87-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="d9741-106">Megadhatja a hozzáférés tooCondeco rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="d9741-106">You can control in Azure AD who has access tooCondeco</span></span>
+- <span data-ttu-id="d9741-107">Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooCondeco (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="d9741-107">You can enable your users tooautomatically get signed-on tooCondeco (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="d9741-108">Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="d9741-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="44f87-109">Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="44f87-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="d9741-109">Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="d9741-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="44f87-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="44f87-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d9741-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="d9741-110">Prerequisites</span></span>
 
-<span data-ttu-id="44f87-111">Konfigurálása az Azure AD-integrációs Condeco, a következőkre van szükség:</span><span class="sxs-lookup"><span data-stu-id="44f87-111">To configure Azure AD integration with Condeco, you need the following items:</span></span>
+<span data-ttu-id="d9741-111">az Azure AD integrálása Condeco tooconfigure, kell a következő elemek hello:</span><span class="sxs-lookup"><span data-stu-id="d9741-111">tooconfigure Azure AD integration with Condeco, you need hello following items:</span></span>
 
-- <span data-ttu-id="44f87-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="44f87-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="44f87-113">Egy Condeco egyszeri bejelentkezés engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="44f87-113">A Condeco single-sign on enabled subscription</span></span>
+- <span data-ttu-id="d9741-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="d9741-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="d9741-113">Egy Condeco egyszeri bejelentkezés engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="d9741-113">A Condeco single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="44f87-114">Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.</span><span class="sxs-lookup"><span data-stu-id="44f87-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="d9741-114">tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.</span><span class="sxs-lookup"><span data-stu-id="d9741-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="44f87-115">Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:</span><span class="sxs-lookup"><span data-stu-id="44f87-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="d9741-115">Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:</span><span class="sxs-lookup"><span data-stu-id="d9741-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="44f87-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="44f87-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="44f87-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="44f87-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="d9741-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="d9741-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="d9741-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="d9741-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="44f87-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="44f87-118">Scenario description</span></span>
-<span data-ttu-id="44f87-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="44f87-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="44f87-120">Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="44f87-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="d9741-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="d9741-118">Scenario description</span></span>
+<span data-ttu-id="d9741-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="d9741-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d9741-120">Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="d9741-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="44f87-121">A gyűjteményből Condeco hozzáadása</span><span class="sxs-lookup"><span data-stu-id="44f87-121">Adding Condeco from the gallery</span></span>
-2. <span data-ttu-id="44f87-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="44f87-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="d9741-121">Hello gyűjteményből Condeco hozzáadása</span><span class="sxs-lookup"><span data-stu-id="d9741-121">Adding Condeco from hello gallery</span></span>
+2. <span data-ttu-id="d9741-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="d9741-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-condeco-from-the-gallery"></a><span data-ttu-id="44f87-123">A gyűjteményből Condeco hozzáadása</span><span class="sxs-lookup"><span data-stu-id="44f87-123">Adding Condeco from the gallery</span></span>
-<span data-ttu-id="44f87-124">Az Azure AD integrálása a Condeco konfigurálásához kell hozzáadnia Condeco a gyűjteményből a felügyelt SaaS-alkalmazások listájára.</span><span class="sxs-lookup"><span data-stu-id="44f87-124">To configure the integration of Condeco into Azure AD, you need to add Condeco from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-condeco-from-hello-gallery"></a><span data-ttu-id="d9741-123">Hello gyűjteményből Condeco hozzáadása</span><span class="sxs-lookup"><span data-stu-id="d9741-123">Adding Condeco from hello gallery</span></span>
+<span data-ttu-id="d9741-124">tooconfigure hello integrációja Condeco az Azure AD-be, meg kell tooadd Condeco hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.</span><span class="sxs-lookup"><span data-stu-id="d9741-124">tooconfigure hello integration of Condeco into Azure AD, you need tooadd Condeco from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="44f87-125">**A gyűjteményből Condeco hozzáadásához hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="44f87-125">**To add Condeco from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="d9741-125">**tooadd Condeco hello gyűjteményből, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="d9741-125">**tooadd Condeco from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="44f87-126">Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="44f87-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="d9741-126">A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="d9741-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="44f87-128">Navigáljon a **vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="44f87-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="44f87-129">Ezután lépjen **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="44f87-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="d9741-128">Keresse meg a túl**vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="d9741-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="d9741-129">Keresse meg a túl**összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="d9741-129">Then go too**All applications**.</span></span>
 
     ![Alkalmazások][2]
     
-3. <span data-ttu-id="44f87-131">Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.</span><span class="sxs-lookup"><span data-stu-id="44f87-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="d9741-131">Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.</span><span class="sxs-lookup"><span data-stu-id="d9741-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Alkalmazások][3]
 
-4. <span data-ttu-id="44f87-133">Írja be a keresőmezőbe, **Condeco**.</span><span class="sxs-lookup"><span data-stu-id="44f87-133">In the search box, type **Condeco**.</span></span>
+4. <span data-ttu-id="d9741-133">Hello keresési mezőbe, írja be a **Condeco**.</span><span class="sxs-lookup"><span data-stu-id="d9741-133">In hello search box, type **Condeco**.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_search.png)
 
-5. <span data-ttu-id="44f87-135">Az eredmények panelen válassza ki a **Condeco**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="44f87-135">In the results panel, select **Condeco**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="d9741-135">A hello eredmények panelen válassza ki a **Condeco**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.</span><span class="sxs-lookup"><span data-stu-id="d9741-135">In hello results panel, select **Condeco**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="44f87-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="44f87-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="44f87-138">Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Condeco</span><span class="sxs-lookup"><span data-stu-id="44f87-138">In this section, you configure and test Azure AD single sign-on with Condeco based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="d9741-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="d9741-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="d9741-138">Ebben a szakaszban konfigurálása, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján Condeco</span><span class="sxs-lookup"><span data-stu-id="d9741-138">In this section, you configure and test Azure AD single sign-on with Condeco based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="44f87-139">Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Condeco a felhasználó Azure AD-ben.</span><span class="sxs-lookup"><span data-stu-id="44f87-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Condeco is to a user in Azure AD.</span></span> <span data-ttu-id="44f87-140">Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Condeco közötti kapcsolat kapcsolatot kell létrehozni.</span><span class="sxs-lookup"><span data-stu-id="44f87-140">In other words, a link relationship between an Azure AD user and the related user in Condeco needs to be established.</span></span>
+<span data-ttu-id="d9741-139">Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Condeco tooa felhasználó az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="d9741-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Condeco is tooa user in Azure AD.</span></span> <span data-ttu-id="d9741-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Condeco közötti kapcsolat kapcsolatot kell létrehozni toobe.</span><span class="sxs-lookup"><span data-stu-id="d9741-140">In other words, a link relationship between an Azure AD user and hello related user in Condeco needs toobe established.</span></span>
 
-<span data-ttu-id="44f87-141">Condeco, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.</span><span class="sxs-lookup"><span data-stu-id="44f87-141">In Condeco, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="d9741-141">Condeco, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.</span><span class="sxs-lookup"><span data-stu-id="d9741-141">In Condeco, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="44f87-142">Az Azure AD egyszeri bejelentkezést a Condeco tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:</span><span class="sxs-lookup"><span data-stu-id="44f87-142">To configure and test Azure AD single sign-on with Condeco, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="d9741-142">tooconfigure és az Azure AD az egyszeri bejelentkezés Condeco-teszthez, a következő építőelemeket toocomplete hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="d9741-142">tooconfigure and test Azure AD single sign-on with Condeco, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="44f87-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="44f87-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="44f87-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.</span><span class="sxs-lookup"><span data-stu-id="44f87-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="44f87-145">**[Condeco tesztfelhasználó létrehozása](#creating-a-condeco-test-user)**  - való Britta Simon valami Condeco, amely csatolva van a felhasználó az Azure AD-ábrázolását.</span><span class="sxs-lookup"><span data-stu-id="44f87-145">**[Creating a Condeco test user](#creating-a-condeco-test-user)** - to have a counterpart of Britta Simon in Condeco that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="44f87-146">**[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="44f87-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="44f87-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="44f87-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="d9741-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="d9741-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="d9741-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d9741-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="d9741-145">**[Condeco tesztfelhasználó létrehozása](#creating-a-condeco-test-user)**  -toohave egy megfelelője a Britta Simon a Condeco, amely a felhasználó csatolt toohello az Azure AD ábrázolása.</span><span class="sxs-lookup"><span data-stu-id="d9741-145">**[Creating a Condeco test user](#creating-a-condeco-test-user)** - toohave a counterpart of Britta Simon in Condeco that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="d9741-146">**[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="d9741-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="d9741-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.</span><span class="sxs-lookup"><span data-stu-id="d9741-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="44f87-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="44f87-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="d9741-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="d9741-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="44f87-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Condeco alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="44f87-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Condeco application.</span></span>
+<span data-ttu-id="d9741-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Condeco alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="d9741-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Condeco application.</span></span>
 
-<span data-ttu-id="44f87-150">**Konfigurálása az Azure AD az egyszeri bejelentkezés Condeco, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="44f87-150">**To configure Azure AD single sign-on with Condeco, perform the following steps:**</span></span>
+<span data-ttu-id="d9741-150">**az Azure AD tooconfigure egyszeri bejelentkezést a Condeco, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="d9741-150">**tooconfigure Azure AD single sign-on with Condeco, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="44f87-151">Az Azure portálon a a **Condeco** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="44f87-151">In the Azure portal, on the **Condeco** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="d9741-151">Az Azure portál, a hello hello **Condeco** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="d9741-151">In hello Azure portal, on hello **Condeco** application integration page, click **Single sign-on**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. <span data-ttu-id="44f87-153">Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="44f87-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="d9741-153">A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="d9741-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_samlbase.png)
 
-3. <span data-ttu-id="44f87-155">Az a **Condeco tartomány és az URL-címek** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="44f87-155">On the **Condeco Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="d9741-155">A hello **Condeco tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="d9741-155">On hello **Condeco Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_url.png)
 
-    <span data-ttu-id="44f87-157">Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.condecosoftware.com`</span><span class="sxs-lookup"><span data-stu-id="44f87-157">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<companyname>.condecosoftware.com`</span></span>
+    <span data-ttu-id="d9741-157">A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.condecosoftware.com`</span><span class="sxs-lookup"><span data-stu-id="d9741-157">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<companyname>.condecosoftware.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="44f87-158">Ez az érték nincs valós.</span><span class="sxs-lookup"><span data-stu-id="44f87-158">This value is not real.</span></span> <span data-ttu-id="44f87-159">Frissítse ezt az értéket a tényleges bejelentkezési URL-címet.</span><span class="sxs-lookup"><span data-stu-id="44f87-159">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="44f87-160">Ügyfél [Condeco ügyfél-támogatási csoport](mailTo:supportna@condecosoftware.com) lekérni ezt az értéket.</span><span class="sxs-lookup"><span data-stu-id="44f87-160">Contact [Condeco Client support team](mailTo:supportna@condecosoftware.com) to get this value.</span></span> 
+    > <span data-ttu-id="d9741-158">Ez az érték nincs valós.</span><span class="sxs-lookup"><span data-stu-id="d9741-158">This value is not real.</span></span> <span data-ttu-id="d9741-159">Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT.</span><span class="sxs-lookup"><span data-stu-id="d9741-159">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="d9741-160">Ügyfél [Condeco ügyfél-támogatási csoport](mailTo:supportna@condecosoftware.com) tooget ezt az értéket.</span><span class="sxs-lookup"><span data-stu-id="d9741-160">Contact [Condeco Client support team](mailTo:supportna@condecosoftware.com) tooget this value.</span></span> 
  
-4. <span data-ttu-id="44f87-161">Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="44f87-161">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="d9741-161">A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="d9741-161">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_certificate.png) 
 
-5. <span data-ttu-id="44f87-163">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="44f87-163">Click **Save** button.</span></span>
+5. <span data-ttu-id="d9741-163">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="d9741-163">Click **Save** button.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-condeco-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="44f87-165">Egyszeri bejelentkezés konfigurálása **Condeco** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [Condeco támogatási csoport](mailTo:supportna@condecosoftware.com).</span><span class="sxs-lookup"><span data-stu-id="44f87-165">To configure single sign-on on **Condeco** side, you need to send the downloaded **Metadata XML** to [Condeco support team](mailTo:supportna@condecosoftware.com).</span></span> <span data-ttu-id="44f87-166">Akkor állítsa be ezt a beállítást, hogy a SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.</span><span class="sxs-lookup"><span data-stu-id="44f87-166">They set this setting to have the SAML SSO connection set properly on both sides.</span></span>
+6. <span data-ttu-id="d9741-165">tooconfigure egyszeri bejelentkezést a **Condeco** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[Condeco támogatási csoport](mailTo:supportna@condecosoftware.com).</span><span class="sxs-lookup"><span data-stu-id="d9741-165">tooconfigure single sign-on on **Condeco** side, you need toosend hello downloaded **Metadata XML** too[Condeco support team](mailTo:supportna@condecosoftware.com).</span></span> <span data-ttu-id="d9741-166">Maguk állítják be ezt a beállítást toohave hello SAML SSO kapcsolat mindkét oldalán megfelelően beállítva.</span><span class="sxs-lookup"><span data-stu-id="d9741-166">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="44f87-167">Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!</span><span class="sxs-lookup"><span data-stu-id="44f87-167">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="44f87-168">Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján.</span><span class="sxs-lookup"><span data-stu-id="44f87-168">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="44f87-169">További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="44f87-169">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="d9741-167">Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!</span><span class="sxs-lookup"><span data-stu-id="d9741-167">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="d9741-168">Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján.</span><span class="sxs-lookup"><span data-stu-id="d9741-168">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="d9741-169">További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="d9741-169">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="44f87-170">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="44f87-170">Creating an Azure AD test user</span></span>
-<span data-ttu-id="44f87-171">Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.</span><span class="sxs-lookup"><span data-stu-id="44f87-171">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="d9741-170">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="d9741-170">Creating an Azure AD test user</span></span>
+<span data-ttu-id="d9741-171">hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.</span><span class="sxs-lookup"><span data-stu-id="d9741-171">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-<span data-ttu-id="44f87-173">**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="44f87-173">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="d9741-173">**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**</span><span class="sxs-lookup"><span data-stu-id="d9741-173">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="44f87-174">Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="44f87-174">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="d9741-174">A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="d9741-174">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="44f87-176">Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="44f87-176">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="d9741-176">toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="d9741-176">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="44f87-178">Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.</span><span class="sxs-lookup"><span data-stu-id="44f87-178">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="d9741-178">tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="d9741-178">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="44f87-180">Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="44f87-180">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="d9741-180">A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="d9741-180">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-condeco-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="44f87-182">a.</span><span class="sxs-lookup"><span data-stu-id="44f87-182">a.</span></span> <span data-ttu-id="44f87-183">Az a **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="44f87-183">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="d9741-182">a.</span><span class="sxs-lookup"><span data-stu-id="d9741-182">a.</span></span> <span data-ttu-id="d9741-183">A hello **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="d9741-183">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="44f87-184">b.</span><span class="sxs-lookup"><span data-stu-id="44f87-184">b.</span></span> <span data-ttu-id="44f87-185">Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="44f87-185">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="d9741-184">b.</span><span class="sxs-lookup"><span data-stu-id="d9741-184">b.</span></span> <span data-ttu-id="d9741-185">A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="d9741-185">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="44f87-186">c.</span><span class="sxs-lookup"><span data-stu-id="44f87-186">c.</span></span> <span data-ttu-id="44f87-187">Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="44f87-187">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="d9741-186">c.</span><span class="sxs-lookup"><span data-stu-id="d9741-186">c.</span></span> <span data-ttu-id="d9741-187">Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="d9741-187">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="44f87-188">d.</span><span class="sxs-lookup"><span data-stu-id="44f87-188">d.</span></span> <span data-ttu-id="44f87-189">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="44f87-189">Click **Create**.</span></span>
+    <span data-ttu-id="d9741-188">d.</span><span class="sxs-lookup"><span data-stu-id="d9741-188">d.</span></span> <span data-ttu-id="d9741-189">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="d9741-189">Click **Create**.</span></span>
  
-### <a name="creating-a-condeco-test-user"></a><span data-ttu-id="44f87-190">Condeco tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="44f87-190">Creating a Condeco test user</span></span>
+### <a name="creating-a-condeco-test-user"></a><span data-ttu-id="d9741-190">Condeco tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="d9741-190">Creating a Condeco test user</span></span>
 
-<span data-ttu-id="44f87-191">Ez a szakasz célja Condeco Britta Simon nevű felhasználót létrehozni.</span><span class="sxs-lookup"><span data-stu-id="44f87-191">The objective of this section is to create a user called Britta Simon in Condeco.</span></span> <span data-ttu-id="44f87-192">Condeco támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.</span><span class="sxs-lookup"><span data-stu-id="44f87-192">Condeco supports just-in-time provisioning, which is by default enabled.</span></span>
+<span data-ttu-id="d9741-191">hello ebben a szakaszban célja toocreate Condeco Britta Simon nevű felhasználó.</span><span class="sxs-lookup"><span data-stu-id="d9741-191">hello objective of this section is toocreate a user called Britta Simon in Condeco.</span></span> <span data-ttu-id="d9741-192">Condeco támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.</span><span class="sxs-lookup"><span data-stu-id="d9741-192">Condeco supports just-in-time provisioning, which is by default enabled.</span></span>
 
-<span data-ttu-id="44f87-193">Nincs ebben a szakaszban az Ön művelet elem.</span><span class="sxs-lookup"><span data-stu-id="44f87-193">There is no action item for you in this section.</span></span> <span data-ttu-id="44f87-194">Új felhasználó jön létre az Condeco elérésére, ha még nem létezik tett kísérlet során.</span><span class="sxs-lookup"><span data-stu-id="44f87-194">A new user is created during an attempt to access Condeco if it doesn't exist yet.</span></span>
+<span data-ttu-id="d9741-193">Nincs ebben a szakaszban az Ön művelet elem.</span><span class="sxs-lookup"><span data-stu-id="d9741-193">There is no action item for you in this section.</span></span> <span data-ttu-id="d9741-194">Új felhasználó jön létre egy kísérlet tooaccess Condeco során, ha még nem létezik.</span><span class="sxs-lookup"><span data-stu-id="d9741-194">A new user is created during an attempt tooaccess Condeco if it doesn't exist yet.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="44f87-195">Hozza létre a felhasználó manuálisan kell, ha szeretné-e lépjen kapcsolatba a [Condeco támogatási csoport](mailTo:supportna@condecosoftware.com).</span><span class="sxs-lookup"><span data-stu-id="44f87-195">If you need to create a user manually, you need to contact the [Condeco support team](mailTo:supportna@condecosoftware.com).</span></span>
+><span data-ttu-id="d9741-195">A felhasználó toocreate manuálisan kell, ha szüksége van-e toocontact hello [Condeco támogatási csoport](mailTo:supportna@condecosoftware.com).</span><span class="sxs-lookup"><span data-stu-id="d9741-195">If you need toocreate a user manually, you need toocontact hello [Condeco support team](mailTo:supportna@condecosoftware.com).</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="44f87-196">Az Azure AD-teszt felhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="44f87-196">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="d9741-196">Az Azure AD hello tesztfelhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="d9741-196">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="44f87-197">Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Condeco Azure egyszeri bejelentkezéshez használandó.</span><span class="sxs-lookup"><span data-stu-id="44f87-197">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Condeco.</span></span>
+<span data-ttu-id="d9741-197">Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooCondeco megadásával engedélyeznie.</span><span class="sxs-lookup"><span data-stu-id="d9741-197">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooCondeco.</span></span>
 
 ![Felhasználó hozzárendelése][200] 
 
-<span data-ttu-id="44f87-199">**Britta Simon hozzárendelése Condeco, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="44f87-199">**To assign Britta Simon to Condeco, perform the following steps:**</span></span>
+<span data-ttu-id="d9741-199">**tooassign Britta Simon tooCondeco, hajtsa végre a következő lépéseket hello:**</span><span class="sxs-lookup"><span data-stu-id="d9741-199">**tooassign Britta Simon tooCondeco, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="44f87-200">Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="44f87-200">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="d9741-200">A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="d9741-200">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Felhasználó hozzárendelése][201] 
 
-2. <span data-ttu-id="44f87-202">Az alkalmazások listában válassza ki a **Condeco**.</span><span class="sxs-lookup"><span data-stu-id="44f87-202">In the applications list, select **Condeco**.</span></span>
+2. <span data-ttu-id="d9741-202">Hello alkalmazások listában válassza ki a **Condeco**.</span><span class="sxs-lookup"><span data-stu-id="d9741-202">In hello applications list, select **Condeco**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-condeco-tutorial/tutorial_condeco_app.png) 
 
-3. <span data-ttu-id="44f87-204">A bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="44f87-204">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="d9741-204">Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="d9741-204">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Felhasználó hozzárendelése][202] 
 
-4. <span data-ttu-id="44f87-206">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="44f87-206">Click **Add** button.</span></span> <span data-ttu-id="44f87-207">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="44f87-207">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="d9741-206">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="d9741-206">Click **Add** button.</span></span> <span data-ttu-id="d9741-207">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="d9741-207">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Felhasználó hozzárendelése][203]
 
-5. <span data-ttu-id="44f87-209">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="44f87-209">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="d9741-209">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="d9741-209">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="44f87-210">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="44f87-210">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="d9741-210">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="d9741-210">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="44f87-211">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="44f87-211">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="d9741-211">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="d9741-211">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="44f87-212">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="44f87-212">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="d9741-212">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="d9741-212">Testing single sign-on</span></span>
 
-<span data-ttu-id="44f87-213">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.</span><span class="sxs-lookup"><span data-stu-id="44f87-213">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="d9741-213">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="d9741-213">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="44f87-214">Ha a hozzáférési panelen Condeco csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Condeco alkalmazására.</span><span class="sxs-lookup"><span data-stu-id="44f87-214">When you click the Condeco tile in the Access Panel, you should get automatically signed-on to your Condeco application.</span></span>
-<span data-ttu-id="44f87-215">A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="44f87-215">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="d9741-214">Ha a hozzáférési Panel hello hello Condeco csempe gombra kattint, automatikusan bejelentkezett tooyour Condeco alkalmazás szerezheti be.</span><span class="sxs-lookup"><span data-stu-id="d9741-214">When you click hello Condeco tile in hello Access Panel, you should get automatically signed-on tooyour Condeco application.</span></span>
+<span data-ttu-id="d9741-215">További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="d9741-215">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="44f87-216">További források</span><span class="sxs-lookup"><span data-stu-id="44f87-216">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="d9741-216">További források</span><span class="sxs-lookup"><span data-stu-id="d9741-216">Additional resources</span></span>
 
-* [<span data-ttu-id="44f87-217">Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása</span><span class="sxs-lookup"><span data-stu-id="44f87-217">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="44f87-218">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="44f87-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="d9741-217">Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="d9741-217">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="d9741-218">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="d9741-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->

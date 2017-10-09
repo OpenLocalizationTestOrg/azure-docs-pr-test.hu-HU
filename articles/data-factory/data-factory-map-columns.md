@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Factoryben az adatkészlet oszlopok leképezése |} Microsoft Docs"
-description: "Megtudhatja, hogyan Forrásoszlopok leképezése cél oszlopok."
+title: Azure Data Factory aaaMapping dataset oszlopai |} Microsoft Docs
+description: "Ismerje meg, hogyan toomap forrás oszlopok toodestination oszlopok."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: a50661b377cfbbff3f1f762342cb275d5da82cea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f78d4af675bec0a70e5f6e83ec1ffb511408b5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-source-dataset-columns-to-destination-dataset-columns"></a><span data-ttu-id="cff92-103">A dataset Forrásoszlopok leképezése cél adatkészlet oszlopok</span><span class="sxs-lookup"><span data-stu-id="cff92-103">Map source dataset columns to destination dataset columns</span></span>
-<span data-ttu-id="cff92-104">Adja meg, hogyan megadott oszlopoknak a "szerkezetének" forrás tábla térkép oszlop szerepel a fogadó tábla "structure" oszlopleképezés is használható.</span><span class="sxs-lookup"><span data-stu-id="cff92-104">Column mapping can be used to specify how columns specified in the “structure” of source table map to columns specified in the “structure” of sink table.</span></span> <span data-ttu-id="cff92-105">A **columnMapping** tulajdonság érhető el a **typeProperties** a másolási tevékenység szakasza.</span><span class="sxs-lookup"><span data-stu-id="cff92-105">The **columnMapping** property is available in the **typeProperties** section of the Copy activity.</span></span>
+# <a name="map-source-dataset-columns-toodestination-dataset-columns"></a><span data-ttu-id="e4183-103">Forrás adatkészlet oszlopok toodestination dataset oszlop leképezése</span><span class="sxs-lookup"><span data-stu-id="e4183-103">Map source dataset columns toodestination dataset columns</span></span>
+<span data-ttu-id="e4183-104">Oszlopleképezés hogyan megadott oszlopoknak megadott hello forrás tábla térkép toocolumns "structure" hello "structure" fogadó tábla használt toospecify lehet.</span><span class="sxs-lookup"><span data-stu-id="e4183-104">Column mapping can be used toospecify how columns specified in hello “structure” of source table map toocolumns specified in hello “structure” of sink table.</span></span> <span data-ttu-id="e4183-105">Hello **columnMapping** tulajdonság érhető el hello **typeProperties** hello másolási tevékenység szakasza.</span><span class="sxs-lookup"><span data-stu-id="e4183-105">hello **columnMapping** property is available in hello **typeProperties** section of hello Copy activity.</span></span>
 
-<span data-ttu-id="cff92-106">Oszlop leképezése a következő szituációkat ismerteti:</span><span class="sxs-lookup"><span data-stu-id="cff92-106">Column mapping supports the following scenarios:</span></span>
+<span data-ttu-id="e4183-106">Oszlop leképezése a következő forgatókönyvek hello támogatja:</span><span class="sxs-lookup"><span data-stu-id="e4183-106">Column mapping supports hello following scenarios:</span></span>
 
-* <span data-ttu-id="cff92-107">A forrás adatkészlet-szerkezetekben összes oszlop összes oszlop szerepel a fogadó adatkészlet-szerkezetekben van leképezve.</span><span class="sxs-lookup"><span data-stu-id="cff92-107">All columns in the source dataset structure are mapped to all columns in the sink dataset structure.</span></span>
-* <span data-ttu-id="cff92-108">A forrás adatkészlet-szerkezetekben oszlopok egy részét az összes oszlop szerepel a fogadó adatkészlet-szerkezetekben van leképezve.</span><span class="sxs-lookup"><span data-stu-id="cff92-108">A subset of the columns in the source dataset structure is mapped to all columns in the sink dataset structure.</span></span>
+* <span data-ttu-id="e4183-107">Minden oszlop hello forrás adatkészlet-szerkezetekben hello fogadó adatkészlet-szerkezetekben csatlakoztatott tooall oszlopok.</span><span class="sxs-lookup"><span data-stu-id="e4183-107">All columns in hello source dataset structure are mapped tooall columns in hello sink dataset structure.</span></span>
+* <span data-ttu-id="e4183-108">Hello forrás adatkészlet-szerkezetekben hello oszlopok csoportja csatlakoztatott tooall oszlopok hello fogadó adatkészlet-szerkezetekben.</span><span class="sxs-lookup"><span data-stu-id="e4183-108">A subset of hello columns in hello source dataset structure is mapped tooall columns in hello sink dataset structure.</span></span>
 
-<span data-ttu-id="cff92-109">Hiba feltételek, amelyek kivételt a következők:</span><span class="sxs-lookup"><span data-stu-id="cff92-109">The following are error conditions that result in an exception:</span></span>
+<span data-ttu-id="e4183-109">Az alábbiakban hello hiba feltételek, amelyek kivétel:</span><span class="sxs-lookup"><span data-stu-id="e4183-109">hello following are error conditions that result in an exception:</span></span>
 
-* <span data-ttu-id="cff92-110">Kevesebb oszlopot vagy több oszlop szerepel a "structure" fogadó tábla mint a leképezésben megadott.</span><span class="sxs-lookup"><span data-stu-id="cff92-110">Either fewer columns or more columns in the “structure” of sink table than specified in the mapping.</span></span>
-* <span data-ttu-id="cff92-111">Ismétlődő leképezés.</span><span class="sxs-lookup"><span data-stu-id="cff92-111">Duplicate mapping.</span></span>
-* <span data-ttu-id="cff92-112">SQL-lekérdezés eredménye nem rendelkezik a leképezésben megadott oszlopnév.</span><span class="sxs-lookup"><span data-stu-id="cff92-112">SQL query result does not have a column name that is specified in the mapping.</span></span>
+* <span data-ttu-id="e4183-110">Kevesebb oszlopot vagy több oszlop szerepel hello "structure" fogadó tábla mint hello leképezésben megadott.</span><span class="sxs-lookup"><span data-stu-id="e4183-110">Either fewer columns or more columns in hello “structure” of sink table than specified in hello mapping.</span></span>
+* <span data-ttu-id="e4183-111">Ismétlődő leképezés.</span><span class="sxs-lookup"><span data-stu-id="e4183-111">Duplicate mapping.</span></span>
+* <span data-ttu-id="e4183-112">SQL-lekérdezés eredménye nincs hello leképezésben megadott oszlop neve.</span><span class="sxs-lookup"><span data-stu-id="e4183-112">SQL query result does not have a column name that is specified in hello mapping.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="cff92-113">A következő mintákat az Azure SQL és az Azure Blob, de bármely adattároló, amely támogatja a téglalap alakú adatkészletek vonatkoznak.</span><span class="sxs-lookup"><span data-stu-id="cff92-113">The following samples are for Azure SQL and Azure Blob but are applicable to any data store that supports rectangular datasets.</span></span> <span data-ttu-id="cff92-114">Állítsa be úgy a DataSet adatkészlet és a társított szolgáltatás definíciók példákban az adatok a megfelelő adatforrás.</span><span class="sxs-lookup"><span data-stu-id="cff92-114">Adjust dataset and linked service definitions in examples to point to data in the relevant data source.</span></span>
+> <span data-ttu-id="e4183-113">hello következő mintákat az Azure SQL és az Azure Blob, de alkalmazható tooany adattároló, amely támogatja a téglalap alakú adatkészletek.</span><span class="sxs-lookup"><span data-stu-id="e4183-113">hello following samples are for Azure SQL and Azure Blob but are applicable tooany data store that supports rectangular datasets.</span></span> <span data-ttu-id="e4183-114">Állítsa be úgy a DataSet adatkészlet és a társított szolgáltatás definíciói példák toopoint toodata hello megfelelő adatforrás.</span><span class="sxs-lookup"><span data-stu-id="e4183-114">Adjust dataset and linked service definitions in examples toopoint toodata in hello relevant data source.</span></span>
 
-## <a name="sample-1--column-mapping-from-azure-sql-to-azure-blob"></a><span data-ttu-id="cff92-115">Oszlopleképezés, az Azure SQL-ből az Azure-blobhoz 1 – minta</span><span class="sxs-lookup"><span data-stu-id="cff92-115">Sample 1 – column mapping from Azure SQL to Azure blob</span></span>
-<span data-ttu-id="cff92-116">Ez a példa a bemeneti táblájának struktúrája, és egy Azure SQL adatbázis SQL táblázat mutat.</span><span class="sxs-lookup"><span data-stu-id="cff92-116">In this sample, the input table has a structure and it points to a SQL table in an Azure SQL database.</span></span>
+## <a name="sample-1--column-mapping-from-azure-sql-tooazure-blob"></a><span data-ttu-id="e4183-115">Az Azure SQL-tooAzure blobból oszlopleképezés 1 – minta</span><span class="sxs-lookup"><span data-stu-id="e4183-115">Sample 1 – column mapping from Azure SQL tooAzure blob</span></span>
+<span data-ttu-id="e4183-116">Ez a példa hello bemeneti táblájának struktúrája, és az Azure SQL-adatbázis tooa SQL táblázat mutat.</span><span class="sxs-lookup"><span data-stu-id="e4183-116">In this sample, hello input table has a structure and it points tooa SQL table in an Azure SQL database.</span></span>
 
 ```json
 {
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="cff92-117">Ez a példa a kimeneti táblához tartozik egy struktúra, és az Azure blob Storage tárolóban lévő blob mutat.</span><span class="sxs-lookup"><span data-stu-id="cff92-117">In this sample, the output table has a structure and it points to a blob in an Azure blob storage.</span></span>
+<span data-ttu-id="e4183-117">Ez a példa hello eredménytábla struktúrája, és az Azure blob Storage tárolóban tooa blob mutat.</span><span class="sxs-lookup"><span data-stu-id="e4183-117">In this sample, hello output table has a structure and it points tooa blob in an Azure blob storage.</span></span>
 
 ```json
 {
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="cff92-118">A következő JSON egy folyamaton belül határozza meg a másolási tevékenység.</span><span class="sxs-lookup"><span data-stu-id="cff92-118">The following JSON defines a copy activity in a pipeline.</span></span> <span data-ttu-id="cff92-119">A forrás oszlop szerepel a fogadó leképezve oszlopokat (**columnMappings**) használatával a **fordító** tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="cff92-119">The columns from source mapped to columns in sink (**columnMappings**) by using the **Translator** property.</span></span>
+<span data-ttu-id="e4183-118">a következő JSON hello a másolási tevékenység során a folyamat határozza meg.</span><span class="sxs-lookup"><span data-stu-id="e4183-118">hello following JSON defines a copy activity in a pipeline.</span></span> <span data-ttu-id="e4183-119">hello oszlopok forrásból leképezve a fogadó toocolumns (**columnMappings**) hello segítségével **fordító** tulajdonság.</span><span class="sxs-lookup"><span data-stu-id="e4183-119">hello columns from source mapped toocolumns in sink (**columnMappings**) by using hello **Translator** property.</span></span>
 
 ```json
 {
@@ -133,12 +133,12 @@ ms.lasthandoff: 07/11/2017
         }
 }
 ```
-<span data-ttu-id="cff92-120">**Oszlop-hozzárendelési folyamat:**</span><span class="sxs-lookup"><span data-stu-id="cff92-120">**Column mapping flow:**</span></span>
+<span data-ttu-id="e4183-120">**Oszlop-hozzárendelési folyamat:**</span><span class="sxs-lookup"><span data-stu-id="e4183-120">**Column mapping flow:**</span></span>
 
 ![Oszlop-hozzárendelési folyamat](./media/data-factory-map-columns/column-mapping-flow.png)
 
-## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-to-azure-blob"></a><span data-ttu-id="cff92-122">Az SQL-lekérdezést az Azure SQL-ből az Azure-blobhoz oszlopleképezés 2 – minta</span><span class="sxs-lookup"><span data-stu-id="cff92-122">Sample 2 – column mapping with SQL query from Azure SQL to Azure blob</span></span>
-<span data-ttu-id="cff92-123">Ez a példa egy SQL-lekérdezés segítségével adatok kinyerése az Azure SQL helyett egyszerűen adja meg a táblanevet és az oszlop neve "structure" szakasz.</span><span class="sxs-lookup"><span data-stu-id="cff92-123">In this sample, a SQL query is used to extract data from Azure SQL instead of simply specifying the table name and the column names in “structure” section.</span></span> 
+## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-tooazure-blob"></a><span data-ttu-id="e4183-122">Az Azure SQL-tooAzure blobból SQL-lekérdezés oszlopleképezés 2 – minta</span><span class="sxs-lookup"><span data-stu-id="e4183-122">Sample 2 – column mapping with SQL query from Azure SQL tooAzure blob</span></span>
+<span data-ttu-id="e4183-123">Ez a példa egy SQL-lekérdezésben használt tooextract adatokat az Azure SQL hello táblanév, az oszlopnevek hello egyszerűen megadása "structure" szakaszban helyett.</span><span class="sxs-lookup"><span data-stu-id="e4183-123">In this sample, a SQL query is used tooextract data from Azure SQL instead of simply specifying hello table name and hello column names in “structure” section.</span></span> 
 
 ```json
 {
@@ -170,13 +170,13 @@ ms.lasthandoff: 07/11/2017
         }
 }
 ```
-<span data-ttu-id="cff92-124">Ebben az esetben a lekérdezés eredményeinek először képezi le a "structure" forrás megadott oszlopok.</span><span class="sxs-lookup"><span data-stu-id="cff92-124">In this case, the query results are first mapped to columns specified in “structure” of source.</span></span> <span data-ttu-id="cff92-125">A következő forrás "structure" oszlopok vannak leképezve oszlop szerepel a fogadó "structure" columnMappings megadott szabályait.</span><span class="sxs-lookup"><span data-stu-id="cff92-125">Next, the columns from source “structure” are mapped to columns in sink “structure” with rules specified in columnMappings.</span></span>  <span data-ttu-id="cff92-126">Tegyük fel, hogy a lekérdezés 5 oszlopok, két további oszlop, mint a forrás "structure" adja vissza.</span><span class="sxs-lookup"><span data-stu-id="cff92-126">Suppose the query returns 5 columns, two more columns than those specified in the “structure” of source.</span></span>
+<span data-ttu-id="e4183-124">Ebben az esetben hello lekérdezés eredményei "structure" forrás megadott első csatlakoztatott toocolumns.</span><span class="sxs-lookup"><span data-stu-id="e4183-124">In this case, hello query results are first mapped toocolumns specified in “structure” of source.</span></span> <span data-ttu-id="e4183-125">A következő forrás "structure" hello oszlopok csatlakoztatott toocolumns a fogadó "structure" columnMappings megadott szabályait.</span><span class="sxs-lookup"><span data-stu-id="e4183-125">Next, hello columns from source “structure” are mapped toocolumns in sink “structure” with rules specified in columnMappings.</span></span>  <span data-ttu-id="e4183-126">Tegyük fel, hogy hello lekérdezés 5 oszlopok, két további oszlop, mint a "structure" forrás hello adja vissza.</span><span class="sxs-lookup"><span data-stu-id="e4183-126">Suppose hello query returns 5 columns, two more columns than those specified in hello “structure” of source.</span></span>
 
-<span data-ttu-id="cff92-127">**Oszlop-hozzárendelési folyamat**</span><span class="sxs-lookup"><span data-stu-id="cff92-127">**Column mapping flow**</span></span>
+<span data-ttu-id="e4183-127">**Oszlop-hozzárendelési folyamat**</span><span class="sxs-lookup"><span data-stu-id="e4183-127">**Column mapping flow**</span></span>
 
 ![Oszlop leképezése adatfolyam-2](./media/data-factory-map-columns/column-mapping-flow-2.png)
 
-## <a name="next-steps"></a><span data-ttu-id="cff92-129">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="cff92-129">Next steps</span></span>
-<span data-ttu-id="cff92-130">Olvassa el a másolási tevékenység az oktatóanyag:</span><span class="sxs-lookup"><span data-stu-id="cff92-130">See the article for a tutorial on using Copy Activity:</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="e4183-129">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e4183-129">Next steps</span></span>
+<span data-ttu-id="e4183-130">A másolási tevékenység az oktatóanyag hello cikke:</span><span class="sxs-lookup"><span data-stu-id="e4183-130">See hello article for a tutorial on using Copy Activity:</span></span> 
 
-- [<span data-ttu-id="cff92-131">A Blob Storage az SQL Database-adatok másolása</span><span class="sxs-lookup"><span data-stu-id="cff92-131">Copy data from Blob Storage to SQL Database</span></span>](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [<span data-ttu-id="e4183-131">Másolja az adatokat a Blob Storage tooSQL adatbázis</span><span class="sxs-lookup"><span data-stu-id="e4183-131">Copy data from Blob Storage tooSQL Database</span></span>](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)

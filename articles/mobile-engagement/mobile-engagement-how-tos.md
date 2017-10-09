@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület - a Reach hogyan"
+title: "Mobile Engagement felhasználói felület – aaaAzure elérni hogyan számára"
 description: "Felhasználói felület és Azure Mobile Engagement áttekintése"
 services: mobile-engagement
 documentationcenter: 
@@ -14,233 +14,233 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 33a0a9d0c399cb7f0a791c4c16dde2e2d62364ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b6dafd09d894214d4c386f5c6f157a77671606f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-using-and-managing-pushes-to-reach-out-to-your-end-users"></a><span data-ttu-id="12fdd-103">Első lépések, használata és kezelése a végfelhasználók számára elérhetők a leküldéses értesítések</span><span class="sxs-lookup"><span data-stu-id="12fdd-103">How to get started using and managing pushes to reach out to your end users</span></span>
-<span data-ttu-id="12fdd-104">Ha az SDK az alkalmazás teljesen integrálva van, is használatának megkezdésében a leküldéses értesítések küldéséhez a felhasználók számára az alkalmazás a felhasználói felület Reach szakasza.</span><span class="sxs-lookup"><span data-stu-id="12fdd-104">Once the SDK is fully integrated into your app, you can get started using the the Reach section of the UI to Push notifications to the users of your app.</span></span>  
+# <a name="how-tooget-started-using-and-managing-pushes-tooreach-out-tooyour-end-users"></a><span data-ttu-id="ad847-103">Hogyan tooget használatának és a kimenő tooyour végfelhasználók tooreach kezelése leküldéses értesítések</span><span class="sxs-lookup"><span data-stu-id="ad847-103">How tooget started using and managing pushes tooreach out tooyour end users</span></span>
+<span data-ttu-id="ad847-104">Miután hello SDK teljesen integrálva van az alkalmazás, elkezdheti hello hello Reach szakaszának hello felhasználói felület tooPush értesítések toohello felhasználók az alkalmazás segítségével.</span><span class="sxs-lookup"><span data-stu-id="ad847-104">Once hello SDK is fully integrated into your app, you can get started using hello hello Reach section of hello UI tooPush notifications toohello users of your app.</span></span>  
 
-## <a name="do-your-first-push-notification-campaign"></a><span data-ttu-id="12fdd-105">Hajtsa végre az első leküldéses Értesítéses kampány</span><span class="sxs-lookup"><span data-stu-id="12fdd-105">Do Your First Push Notification Campaign</span></span>
-* <span data-ttu-id="12fdd-106">Győződjön meg arról, hogy a Reach integrálva van az alkalmazás az SDK-val.</span><span class="sxs-lookup"><span data-stu-id="12fdd-106">Confirm that your Reach is integrated into your app with the SDK.</span></span> 
-* <span data-ttu-id="12fdd-107">Az alkalmazás kiválasztása</span><span class="sxs-lookup"><span data-stu-id="12fdd-107">Select your application</span></span>
+## <a name="do-your-first-push-notification-campaign"></a><span data-ttu-id="ad847-105">Hajtsa végre az első leküldéses Értesítéses kampány</span><span class="sxs-lookup"><span data-stu-id="ad847-105">Do Your First Push Notification Campaign</span></span>
+* <span data-ttu-id="ad847-106">Győződjön meg arról, hogy a Reach integrálva van az alkalmazás a hello SDK.</span><span class="sxs-lookup"><span data-stu-id="ad847-106">Confirm that your Reach is integrated into your app with hello SDK.</span></span> 
+* <span data-ttu-id="ad847-107">Az alkalmazás kiválasztása</span><span class="sxs-lookup"><span data-stu-id="ad847-107">Select your application</span></span>
 
 ![First1][1]
 
-* <span data-ttu-id="12fdd-109">Nyissa meg az "Reach" szakaszban, és kattintson a "közlemény"</span><span class="sxs-lookup"><span data-stu-id="12fdd-109">Go to the "Reach" Section and Click "New announcement"</span></span>
+* <span data-ttu-id="ad847-109">Nyissa meg toohello "Reach" szakaszban, és kattintson a "közlemény"</span><span class="sxs-lookup"><span data-stu-id="ad847-109">Go toohello "Reach" Section and Click "New announcement"</span></span>
 
 ![First2][2]
 
-* <span data-ttu-id="12fdd-111">Hozzon létre egy új kampányt, és adjon neki nevet</span><span class="sxs-lookup"><span data-stu-id="12fdd-111">Create a new campaign and name it</span></span>
+* <span data-ttu-id="ad847-111">Hozzon létre egy új kampányt, és adjon neki nevet</span><span class="sxs-lookup"><span data-stu-id="ad847-111">Create a new campaign and name it</span></span>
   
 ![First3][3]
 
-* <span data-ttu-id="12fdd-113">Válassza ki, hogyan az értesítés kézbesítési, mint alkalmazásbeli csak</span><span class="sxs-lookup"><span data-stu-id="12fdd-113">Select how the notification should be delivered, as In-app only</span></span>
+* <span data-ttu-id="ad847-113">Válassza ki, hogyan hello értesítési kézbesítési, mint alkalmazásbeli csak</span><span class="sxs-lookup"><span data-stu-id="ad847-113">Select how hello notification should be delivered, as In-app only</span></span>
 
 ![First4][4]
 
-* <span data-ttu-id="12fdd-115">A leküldéses üzenet létrehozása</span><span class="sxs-lookup"><span data-stu-id="12fdd-115">Create the message you want to push</span></span>
+* <span data-ttu-id="ad847-115">Azt szeretné, hogy toopush hello üzenet létrehozása</span><span class="sxs-lookup"><span data-stu-id="ad847-115">Create hello message you want toopush</span></span>
 
 ![First5][5]
 
-* <span data-ttu-id="12fdd-117">A cím írhat az értesítésre kattinthat (nem kötelező).</span><span class="sxs-lookup"><span data-stu-id="12fdd-117">You may write a title on the notification (Optional).</span></span>
-* <span data-ttu-id="12fdd-118">Írás a leküldéses üzenet tartalma.</span><span class="sxs-lookup"><span data-stu-id="12fdd-118">Write push message content.</span></span>
-* <span data-ttu-id="12fdd-119">Lemezkép feltöltése</span><span class="sxs-lookup"><span data-stu-id="12fdd-119">You can upload an image.</span></span> <span data-ttu-id="12fdd-120">Vegye figyelembe, hogy a fájl mérete nem haladhatja meg 32768 bájt.</span><span class="sxs-lookup"><span data-stu-id="12fdd-120">Be aware that the size of the file cannot exceed 32,768 bytes.</span></span>
-* <span data-ttu-id="12fdd-121">Akkor is választhatók ki további beállításokat, de ez az oktatóanyag a fókusz, az azt láthatja, hogy később.</span><span class="sxs-lookup"><span data-stu-id="12fdd-121">You also have the ability to select further options, but for the focus of this tutorial, we will see that later.</span></span>
-* <span data-ttu-id="12fdd-122">Jelölje ki a tartalomtípus csak értesítés</span><span class="sxs-lookup"><span data-stu-id="12fdd-122">Select the content type as Notification only</span></span>
+* <span data-ttu-id="ad847-117">A cím írhat hello értesítésre kattinthat (nem kötelező).</span><span class="sxs-lookup"><span data-stu-id="ad847-117">You may write a title on hello notification (Optional).</span></span>
+* <span data-ttu-id="ad847-118">Írás a leküldéses üzenet tartalma.</span><span class="sxs-lookup"><span data-stu-id="ad847-118">Write push message content.</span></span>
+* <span data-ttu-id="ad847-119">Lemezkép feltöltése</span><span class="sxs-lookup"><span data-stu-id="ad847-119">You can upload an image.</span></span> <span data-ttu-id="ad847-120">Vegye figyelembe, hogy a hello hello fájl mérete nem haladhatja meg a 32768 bájt.</span><span class="sxs-lookup"><span data-stu-id="ad847-120">Be aware that hello size of hello file cannot exceed 32,768 bytes.</span></span>
+* <span data-ttu-id="ad847-121">Hello képességét tooselect további beállítások is rendelkezik, de a jelen oktatóanyag hello felvennie a kijelölést, azt láthatja, hogy később.</span><span class="sxs-lookup"><span data-stu-id="ad847-121">You also have hello ability tooselect further options, but for hello focus of this tutorial, we will see that later.</span></span>
+* <span data-ttu-id="ad847-122">Csak az értesítésként hello tartalom típusának kiválasztása</span><span class="sxs-lookup"><span data-stu-id="ad847-122">Select hello content type as Notification only</span></span>
 
 ![First6][6]
 
-* <span data-ttu-id="12fdd-124">A leküldéses kampány létrehozásához, és akkor jelenik meg a kampány listáján.</span><span class="sxs-lookup"><span data-stu-id="12fdd-124">Create your push campaign and it will appear in your campaign list.</span></span>
+* <span data-ttu-id="ad847-124">A leküldéses kampány létrehozásához, és akkor jelenik meg a kampány listáján.</span><span class="sxs-lookup"><span data-stu-id="ad847-124">Create your push campaign and it will appear in your campaign list.</span></span>
 
 ![First7][7]
 
-## <a name="test-your-push-notification-campaign"></a><span data-ttu-id="12fdd-126">A leküldéses értesítési kampány tesztelése</span><span class="sxs-lookup"><span data-stu-id="12fdd-126">Test Your Push Notification Campaign</span></span>
+## <a name="test-your-push-notification-campaign"></a><span data-ttu-id="ad847-126">A leküldéses értesítési kampány tesztelése</span><span class="sxs-lookup"><span data-stu-id="ad847-126">Test Your Push Notification Campaign</span></span>
 ![Test1][8]
 
-* <span data-ttu-id="12fdd-128">Regisztrálja az eszközt.</span><span class="sxs-lookup"><span data-stu-id="12fdd-128">Register your device.</span></span>
-* <span data-ttu-id="12fdd-129">Kattintson az eszköz kíván leküldeni a jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="12fdd-129">Click on the checkbox of the device you want to push.</span></span>
-* <span data-ttu-id="12fdd-130">Kattintson a "Test" gombra a leküldéses küldeni az eszközön.</span><span class="sxs-lookup"><span data-stu-id="12fdd-130">Click on the "Test" button to send the push to the device.</span></span>
+* <span data-ttu-id="ad847-128">Regisztrálja az eszközt.</span><span class="sxs-lookup"><span data-stu-id="ad847-128">Register your device.</span></span>
+* <span data-ttu-id="ad847-129">Kattintson a hello jelölőnégyzetet az hello eszköz toopush szeretné.</span><span class="sxs-lookup"><span data-stu-id="ad847-129">Click on hello checkbox of hello device you want toopush.</span></span>
+* <span data-ttu-id="ad847-130">Kattintson a hello "Test" gomb toosend hello leküldéses toohello eszköz.</span><span class="sxs-lookup"><span data-stu-id="ad847-130">Click on hello "Test" button toosend hello push toohello device.</span></span>
 
 ![Teszt2][9]
 
-* <span data-ttu-id="12fdd-132">Aktiválja a kampányt.</span><span class="sxs-lookup"><span data-stu-id="12fdd-132">Activate the campaign</span></span>
+* <span data-ttu-id="ad847-132">Hello kampány aktiválása</span><span class="sxs-lookup"><span data-stu-id="ad847-132">Activate hello campaign</span></span>
 
 ![Teszt3][10]
 
-* <span data-ttu-id="12fdd-134">Most, hogy létrehozta a kampány csak azt az értesítés a felhasználóknak leküldött aktiválni kell.</span><span class="sxs-lookup"><span data-stu-id="12fdd-134">Now that you have created your campaign you just need to activate it for the notification to be pushed to your users.</span></span>
+* <span data-ttu-id="ad847-134">Most, hogy létrehozta a kampány egyszerűen tooactivate hello értesítési toobe a leküldött tooyour felhasználók.</span><span class="sxs-lookup"><span data-stu-id="ad847-134">Now that you have created your campaign you just need tooactivate it for hello notification toobe pushed tooyour users.</span></span>
 
-## <a name="send-personalized-pushes"></a><span data-ttu-id="12fdd-135">Személyre szabott leküldéses értesítések küldése</span><span class="sxs-lookup"><span data-stu-id="12fdd-135">Send Personalized Pushes</span></span>
-* <span data-ttu-id="12fdd-136">Ez a példa egy leküldéses, ha egy egyéni visszatérítési kódja bekerültek a leküldéses értesítési hoz létre.</span><span class="sxs-lookup"><span data-stu-id="12fdd-136">This example creates a push where a custom rebate code is entered into the push notification.</span></span>
+## <a name="send-personalized-pushes"></a><span data-ttu-id="ad847-135">Személyre szabott leküldéses értesítések küldése</span><span class="sxs-lookup"><span data-stu-id="ad847-135">Send Personalized Pushes</span></span>
+* <span data-ttu-id="ad847-136">Ez a példa egy leküldéses, ahol meg egy egyéni visszatérítési kódja hello leküldéses értesítést hoz létre.</span><span class="sxs-lookup"><span data-stu-id="ad847-136">This example creates a push where a custom rebate code is entered into hello push notification.</span></span>
 
 ![Personalize1][11]
 
-<span data-ttu-id="12fdd-138">Személyre szabás működésével úgy lecserélésével a mutató által egy app-info címke a akkor kell győződjön meg arról, hogy a felhasználó rendelkezik-e a megfelelő app-info első.</span><span class="sxs-lookup"><span data-stu-id="12fdd-138">Personalization works by replacing a marker by from an app info tag so, you'll have to make sure the user has the proper app-info defined first.</span></span> <span data-ttu-id="12fdd-139">Ebben a példában a megcélzott felhasználók rendelkeznek egy meghatározott rebate_code nevű alkalmazás info címke.</span><span class="sxs-lookup"><span data-stu-id="12fdd-139">In this example the targeted users will have an app info tag named rebate_code defined.</span></span>
-<span data-ttu-id="12fdd-140">Ahogy fent látni a leküldéses értesítési tartalom a jelölő ${rebate_code}, amely tájékoztatja arról, hogy azt a tényleges tartalom a app-info címke által cserélni kívánt magában foglalja.</span><span class="sxs-lookup"><span data-stu-id="12fdd-140">As you see above the push notification content includes the marker ${rebate_code} which will indicate that it is to be replaced by the actual content of the app info tag.</span></span>
+<span data-ttu-id="ad847-138">Személyre szabás működésével úgy lecserélésével a mutató által egy app-info címke a konfigurálnia kell a toomake, hello felhasználónak hello megfelelő app-info először definiálva van.</span><span class="sxs-lookup"><span data-stu-id="ad847-138">Personalization works by replacing a marker by from an app info tag so, you'll have toomake sure hello user has hello proper app-info defined first.</span></span> <span data-ttu-id="ad847-139">Ez a példa hello megcélzott felhasználók rendelkeznek egy meghatározott rebate_code nevű alkalmazás info címke.</span><span class="sxs-lookup"><span data-stu-id="ad847-139">In this example hello targeted users will have an app info tag named rebate_code defined.</span></span>
+<span data-ttu-id="ad847-140">Ahogy fent látni hello leküldéses értesítési tartalom hello jelölő ${rebate_code}, amely jelzi, hogy a rendszer lecserélve a tényleges tartalom hello hello app-info címke toobe magában foglalja.</span><span class="sxs-lookup"><span data-stu-id="ad847-140">As you see above hello push notification content includes hello marker ${rebate_code} which will indicate that it is toobe replaced by hello actual content of hello app info tag.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="12fdd-141">Ha a felhasználó nincs definiálva a app-info címke, a felhasználó nem kap a leküldéses.</span><span class="sxs-lookup"><span data-stu-id="12fdd-141">If the app info tag is not defined for the user, the user will not receive the push.</span></span>
+> <span data-ttu-id="ad847-141">Ha hello app-info címke nincs definiálva a következő hello felhasználói, hello felhasználó nem kap hello leküldéses.</span><span class="sxs-lookup"><span data-stu-id="ad847-141">If hello app info tag is not defined for hello user, hello user will not receive hello push.</span></span>
 
-* <span data-ttu-id="12fdd-142">eredménye</span><span class="sxs-lookup"><span data-stu-id="12fdd-142">Result</span></span>
+* <span data-ttu-id="ad847-142">eredménye</span><span class="sxs-lookup"><span data-stu-id="ad847-142">Result</span></span>
 
 ![Personalize2][12]
 
-### <a name="you-can-further-personalize-the-text-your-notification"></a><span data-ttu-id="12fdd-144">További személyre szabhatja a szöveget az értesítés</span><span class="sxs-lookup"><span data-stu-id="12fdd-144">You can further personalize the text your notification</span></span>
+### <a name="you-can-further-personalize-hello-text-your-notification"></a><span data-ttu-id="ad847-144">További szabhatja hello szöveg az értesítés</span><span class="sxs-lookup"><span data-stu-id="ad847-144">You can further personalize hello text your notification</span></span>
 ![Personalize3][13]
 
-* <span data-ttu-id="12fdd-146">Az értesítés címe</span><span class="sxs-lookup"><span data-stu-id="12fdd-146">Including the title of the notification,</span></span>
-* <span data-ttu-id="12fdd-147">És az üzenet tartalma.</span><span class="sxs-lookup"><span data-stu-id="12fdd-147">And the content of the message.</span></span>
-* <span data-ttu-id="12fdd-148">Válassza ki a közlemény (szöveges vagy webes nézetben)</span><span class="sxs-lookup"><span data-stu-id="12fdd-148">Choose the type of announcement (Text view or Web view)</span></span>
+* <span data-ttu-id="ad847-146">Hello értesítési, többek között a következőket hello címe</span><span class="sxs-lookup"><span data-stu-id="ad847-146">Including hello title of hello notification,</span></span>
+* <span data-ttu-id="ad847-147">És üdvözlőüzenetére hello tartalmát.</span><span class="sxs-lookup"><span data-stu-id="ad847-147">And hello content of hello message.</span></span>
+* <span data-ttu-id="ad847-148">Hirdetmény (szöveges vagy webes nézetben) hello típusának kiválasztása</span><span class="sxs-lookup"><span data-stu-id="ad847-148">Choose hello type of announcement (Text view or Web view)</span></span>
 
 ![Personalize4][14]
 
-### <a name="the-body-of-an-announcement-may-also-be-personalized-with"></a><span data-ttu-id="12fdd-150">A szervezet bejelentés előfordulhat, hogy is az általunk:</span><span class="sxs-lookup"><span data-stu-id="12fdd-150">The body of an announcement may also be personalized with:</span></span>
-* <span data-ttu-id="12fdd-151">A műveleti URL-cím kell szeretné testre szabni a kezdőlapja</span><span class="sxs-lookup"><span data-stu-id="12fdd-151">The action URL, should you want to customize the landing page</span></span>
-* <span data-ttu-id="12fdd-152">A cím</span><span class="sxs-lookup"><span data-stu-id="12fdd-152">The title,</span></span>
-* <span data-ttu-id="12fdd-153">Az üzenet törzsét.</span><span class="sxs-lookup"><span data-stu-id="12fdd-153">The body of the message.</span></span>
+### <a name="hello-body-of-an-announcement-may-also-be-personalized-with"></a><span data-ttu-id="ad847-150">bejelentés hello törzsét előfordulhat, hogy is az általunk:</span><span class="sxs-lookup"><span data-stu-id="ad847-150">hello body of an announcement may also be personalized with:</span></span>
+* <span data-ttu-id="ad847-151">hello műveleti URL-cím, azt szeretné, hogy kezdőlapján toocustomize hello</span><span class="sxs-lookup"><span data-stu-id="ad847-151">hello action URL, should you want toocustomize hello landing page</span></span>
+* <span data-ttu-id="ad847-152">hello cím</span><span class="sxs-lookup"><span data-stu-id="ad847-152">hello title,</span></span>
+* <span data-ttu-id="ad847-153">hello hello üzenet törzsében.</span><span class="sxs-lookup"><span data-stu-id="ad847-153">hello body of hello message.</span></span>
 
-## <a name="differentiate-your-push-notification-in-or-out-of-app"></a><span data-ttu-id="12fdd-154">A leküldéses értesítési megkülönböztetéséhez (a vagy alkalmazásból)</span><span class="sxs-lookup"><span data-stu-id="12fdd-154">Differentiate Your Push Notification (in or out of app)</span></span>
-* <span data-ttu-id="12fdd-155">Válassza ki az értesítési fog leküldéses, válassza ki az alkalmazását, nyissa meg a "Elérni" részt, vagy a leküldéses kampány létrehozásához, és nyissa meg az "Értesítések" szakaszhoz.</span><span class="sxs-lookup"><span data-stu-id="12fdd-155">Choose the type of notification you will push, select your application, go to the "Reach" section, select or create a push campaign and go to the "Notification" section.</span></span>
-* <span data-ttu-id="12fdd-156">Kattintson a "szállítási mód" szeretné.</span><span class="sxs-lookup"><span data-stu-id="12fdd-156">Click on the "delivery mode" you want.</span></span>
-* <span data-ttu-id="12fdd-157">Kattintson a "Korlátozása tevékenységek" jelölőnégyzetet, ha azt szeretné, hogy az értesítést az adott tevékenységei (képernyői) történik.</span><span class="sxs-lookup"><span data-stu-id="12fdd-157">Click on the "Restrict Activities" checkbox when you want the notification occurs on specific activities (screens).</span></span>
+## <a name="differentiate-your-push-notification-in-or-out-of-app"></a><span data-ttu-id="ad847-154">A leküldéses értesítési megkülönböztetéséhez (a vagy alkalmazásból)</span><span class="sxs-lookup"><span data-stu-id="ad847-154">Differentiate Your Push Notification (in or out of app)</span></span>
+* <span data-ttu-id="ad847-155">Válassza ki a hello típusú értesítést fog leküldéses, válassza ki az alkalmazást, toohello "Reach" szakasz lépjen, vagy a leküldéses kampány létrehozásához, és nyissa meg toohello "Értesítések" szakasz.</span><span class="sxs-lookup"><span data-stu-id="ad847-155">Choose hello type of notification you will push, select your application, go toohello "Reach" section, select or create a push campaign and go toohello "Notification" section.</span></span>
+* <span data-ttu-id="ad847-156">Kattintson a "szállítási mód" hello szeretné.</span><span class="sxs-lookup"><span data-stu-id="ad847-156">Click on hello "delivery mode" you want.</span></span>
+* <span data-ttu-id="ad847-157">Kattintson a hello "Korlátozása tevékenységek" jelölőnégyzetet, ha azt szeretné, hogy hello értesítési adott tevékenységei (képernyői) történik.</span><span class="sxs-lookup"><span data-stu-id="ad847-157">Click on hello "Restrict Activities" checkbox when you want hello notification occurs on specific activities (screens).</span></span>
 
 ![Differentiate1][15]
 
-### <a name="out-of-app-only-delivery-mode"></a><span data-ttu-id="12fdd-159">"Csak az alkalmazáson kívül" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="12fdd-159">"Out of App Only" delivery mode</span></span>
+### <a name="out-of-app-only-delivery-mode"></a><span data-ttu-id="ad847-159">"Csak az alkalmazáson kívül" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="ad847-159">"Out of App Only" delivery mode</span></span>
 ![Differentiate2][16]
 
-<span data-ttu-id="12fdd-161">"Csak az alkalmazáson kívül" kézbesítési módot biztosít a leküldéses értesítést, ha az alkalmazáshoz be van zárva.</span><span class="sxs-lookup"><span data-stu-id="12fdd-161">"Out of App Only" delivery mode provides push notification when the application is closed.</span></span> <span data-ttu-id="12fdd-162">Ez az a szabványos leküldéses értesítést.</span><span class="sxs-lookup"><span data-stu-id="12fdd-162">This is the standard push notification.</span></span>
-<span data-ttu-id="12fdd-163">Kiválasztásakor "csak az alkalmazáson kívül" kell már megadta a platform, amely az alkalmazás (APNS vagy GCM) van építve a tanúsítványokat.</span><span class="sxs-lookup"><span data-stu-id="12fdd-163">When you select "out of app only" ,you must have already provided the certificates from the platform that your application is building on (APNS or GCM).</span></span>
+<span data-ttu-id="ad847-161">"Csak az alkalmazáson kívül" kézbesítési módot biztosít a leküldéses értesítést, ha hello alkalmazás le van zárva.</span><span class="sxs-lookup"><span data-stu-id="ad847-161">"Out of App Only" delivery mode provides push notification when hello application is closed.</span></span> <span data-ttu-id="ad847-162">Ezt az hello szabványos leküldéses értesítést.</span><span class="sxs-lookup"><span data-stu-id="ad847-162">This is hello standard push notification.</span></span>
+<span data-ttu-id="ad847-163">"Csak az alkalmazáson kívül" kiválasztásakor kell már megadott hello a tanúsítványokat a hello platform, amely az alkalmazás van építve (APNS vagy GCM).</span><span class="sxs-lookup"><span data-stu-id="ad847-163">When you select "out of app only" ,you must have already provided hello certificates from hello platform that your application is building on (APNS or GCM).</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="12fdd-164">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="12fdd-164">See also</span></span>
-* <span data-ttu-id="12fdd-165">[Apple Push Notification szolgáltatás – tanúsítványok](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – tanúsítvány](http://developer.android.com/google/gcm/index.html)</span><span class="sxs-lookup"><span data-stu-id="12fdd-165">[Apple Push Notification Service – Certificates](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – Certificate](http://developer.android.com/google/gcm/index.html)</span></span> 
+### <a name="see-also"></a><span data-ttu-id="ad847-164">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="ad847-164">See also</span></span>
+* <span data-ttu-id="ad847-165">[Apple Push Notification szolgáltatás – tanúsítványok](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – tanúsítvány](http://developer.android.com/google/gcm/index.html)</span><span class="sxs-lookup"><span data-stu-id="ad847-165">[Apple Push Notification Service – Certificates](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – Certificate](http://developer.android.com/google/gcm/index.html)</span></span> 
 
-### <a name="in-app-only-delivery-mode"></a><span data-ttu-id="12fdd-166">"az alkalmazáson belüli csak" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="12fdd-166">"in-App Only" delivery mode</span></span>
+### <a name="in-app-only-delivery-mode"></a><span data-ttu-id="ad847-166">"az alkalmazáson belüli csak" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="ad847-166">"in-App Only" delivery mode</span></span>
 ![Differentiate3][17]
 
-<span data-ttu-id="12fdd-168">"Alkalmazásbeli csak" szállítási mód leküldéses értesítéseket biztosít, az alkalmazás futtatásakor.</span><span class="sxs-lookup"><span data-stu-id="12fdd-168">"In-App Only" delivery mode provides push notification when the application is running.</span></span>
-<span data-ttu-id="12fdd-169">Erre az értesítésre nem kell végighaladnia az APNS-GCM rendszer.</span><span class="sxs-lookup"><span data-stu-id="12fdd-169">For this notification, you do not need to go through the APNS and GCM system.</span></span>
-<span data-ttu-id="12fdd-170">Az alkalmazáson belüli kézbesítési rendszer használhatja, ha a végfelhasználók eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="12fdd-170">You can use the in-app delivery system to reach your end-users.</span></span>
-<span data-ttu-id="12fdd-171">Teljes körű testre szabhatja az értesítés, és döntse el, ahol tevékenység (képernyő) az értesítés jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="12fdd-171">You can fully customize the notification and decide in which activity (screen) the notification will appear.</span></span>
+<span data-ttu-id="ad847-168">"Alkalmazásbeli csak" szállítási mód leküldéses értesítéseket biztosít, hello alkalmazás futtatásakor.</span><span class="sxs-lookup"><span data-stu-id="ad847-168">"In-App Only" delivery mode provides push notification when hello application is running.</span></span>
+<span data-ttu-id="ad847-169">Ehhez az értesítéshez nem kell toogo hello APNS keresztül és a GCM-rendszer.</span><span class="sxs-lookup"><span data-stu-id="ad847-169">For this notification, you do not need toogo through hello APNS and GCM system.</span></span>
+<span data-ttu-id="ad847-170">Hello alkalmazásbeli kézbesítési rendszer tooreach használhatja a végfelhasználók számára.</span><span class="sxs-lookup"><span data-stu-id="ad847-170">You can use hello in-app delivery system tooreach your end-users.</span></span>
+<span data-ttu-id="ad847-171">Teljes körű hello értesítési testreszabása, és döntse el, a tevékenységet (képernyő) hello értesítés jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="ad847-171">You can fully customize hello notification and decide in which activity (screen) hello notification will appear.</span></span>
 
-### <a name="anytime-delivery-mode"></a><span data-ttu-id="12fdd-172">"Bármikor" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="12fdd-172">"Anytime" delivery mode</span></span>
-<span data-ttu-id="12fdd-173">Kiválaszthatja az "Bármikor" szállítási módban, biztosítja, hogy elérni a végfelhasználó használni tudja, hogy az alkalmazás fut-e.</span><span class="sxs-lookup"><span data-stu-id="12fdd-173">You can choose an "Anytime" delivery mode, ensures you to reach your end-user whether the application is running or not.</span></span>
-<span data-ttu-id="12fdd-174">"Bármikor" kiválasztásakor kell már megadta a tanúsítványokat a platform, amely az alkalmazás van építve a (APNS vagy GCM).</span><span class="sxs-lookup"><span data-stu-id="12fdd-174">When you select "Anytime" , you must have already provided the certificates from the platform that your application is building upon (APNS or GCM).</span></span> 
+### <a name="anytime-delivery-mode"></a><span data-ttu-id="ad847-172">"Bármikor" szállítási mód</span><span class="sxs-lookup"><span data-stu-id="ad847-172">"Anytime" delivery mode</span></span>
+<span data-ttu-id="ad847-173">Kiválaszthatja az "Bármikor" szállítási módban, biztosítja, hogy a végfelhasználó használni tudja, hogy hello tooreach alkalmazás fut-e.</span><span class="sxs-lookup"><span data-stu-id="ad847-173">You can choose an "Anytime" delivery mode, ensures you tooreach your end-user whether hello application is running or not.</span></span>
+<span data-ttu-id="ad847-174">"Bármikor" kiválasztásakor kell már megadott hello platform, amely az alkalmazás (APNS vagy GCM) épít hello tanúsítványokat.</span><span class="sxs-lookup"><span data-stu-id="ad847-174">When you select "Anytime" , you must have already provided hello certificates from hello platform that your application is building upon (APNS or GCM).</span></span> 
 
-## <a name="schedule-a-push-campaign"></a><span data-ttu-id="12fdd-175">A leküldéses kampány ütemezése</span><span class="sxs-lookup"><span data-stu-id="12fdd-175">Schedule a Push Campaign</span></span>
-### <a name="plan-to-start-a-campaign"></a><span data-ttu-id="12fdd-176">Tervezze meg a kampány indítására</span><span class="sxs-lookup"><span data-stu-id="12fdd-176">Plan to Start a campaign</span></span>
+## <a name="schedule-a-push-campaign"></a><span data-ttu-id="ad847-175">A leküldéses kampány ütemezése</span><span class="sxs-lookup"><span data-stu-id="ad847-175">Schedule a Push Campaign</span></span>
+### <a name="plan-toostart-a-campaign"></a><span data-ttu-id="ad847-176">A kampány tooStart megtervezése</span><span class="sxs-lookup"><span data-stu-id="ad847-176">Plan tooStart a campaign</span></span>
 ![Shedule1][18]
 
-<span data-ttu-id="12fdd-178">A 21 a március, és rendelkezik egy értesítést, hogy tervezett a a 22. a március éjfélkor.</span><span class="sxs-lookup"><span data-stu-id="12fdd-178">It is the 21st of March and you have an announcement to make and planed for the 22nd of March at midnight.</span></span> <span data-ttu-id="12fdd-179">Nem kell egy leküldéses ehhez a felület elé maradnak!</span><span class="sxs-lookup"><span data-stu-id="12fdd-179">You don’t have to stay in front of the interface to do a push!</span></span> <span data-ttu-id="12fdd-180">Megtervezheti, hogy előzetesen a pontos percet a rendszer értesítést küld.</span><span class="sxs-lookup"><span data-stu-id="12fdd-180">You can plan in advance the exact minute notifications will be sent.</span></span>
+<span data-ttu-id="ad847-178">Hello március 21, és rendelkezik egy bejelentési toomake tervezett a hello március 22nd éjfélkor.</span><span class="sxs-lookup"><span data-stu-id="ad847-178">It is hello 21st of March and you have an announcement toomake and planed for hello 22nd of March at midnight.</span></span> <span data-ttu-id="ad847-179">Hello felület toodo leküldéses elé toostay nincs!</span><span class="sxs-lookup"><span data-stu-id="ad847-179">You don’t have toostay in front of hello interface toodo a push!</span></span> <span data-ttu-id="ad847-180">Megtervezheti, hogy előzetesen hello pontos perc a rendszer értesítést küld.</span><span class="sxs-lookup"><span data-stu-id="ad847-180">You can plan in advance hello exact minute notifications will be sent.</span></span>
 
-* <span data-ttu-id="12fdd-181">UN-ellenőrzése a "None" jelölőnégyzetet, és válassza ki a kezdési idő</span><span class="sxs-lookup"><span data-stu-id="12fdd-181">Un-check the "None" checkbox and select a start time</span></span> 
-* <span data-ttu-id="12fdd-182">Válassza ki a dátum és időpont elindítja a leküldéses kampány.</span><span class="sxs-lookup"><span data-stu-id="12fdd-182">Choose the date and the time you want to start the push campaign.</span></span>
+* <span data-ttu-id="ad847-181">UN-ellenőrzési hello "None" jelölőnégyzetet, és válassza ki a kezdési idő</span><span class="sxs-lookup"><span data-stu-id="ad847-181">Un-check hello "None" checkbox and select a start time</span></span> 
+* <span data-ttu-id="ad847-182">Válassza ki a hello dátum és hello időtartamát toostart hello leküldéses kampány.</span><span class="sxs-lookup"><span data-stu-id="ad847-182">Choose hello date and hello time you want toostart hello push campaign.</span></span>
 
-### <a name="plan-to-end-a-campaign"></a><span data-ttu-id="12fdd-183">Tervezze meg a kampány befejezéséhez</span><span class="sxs-lookup"><span data-stu-id="12fdd-183">Plan to end a campaign</span></span>
+### <a name="plan-tooend-a-campaign"></a><span data-ttu-id="ad847-183">A kampány tooend megtervezése</span><span class="sxs-lookup"><span data-stu-id="ad847-183">Plan tooend a campaign</span></span>
 ![Shedule2][19]
 
-<span data-ttu-id="12fdd-185">Azt szeretné, hogy a kampány du. 3:00 meg a 25 a március leállítására, de Ön tudja róla, hogy akkor van rá.</span><span class="sxs-lookup"><span data-stu-id="12fdd-185">You want your campaign to stop on the 25th of March at 3.00 pm but you know you won't be there to do it.</span></span>
-<span data-ttu-id="12fdd-186">A felület leküldéses elé marad nincs!</span><span class="sxs-lookup"><span data-stu-id="12fdd-186">You don’t have to stay in front of the interface to push!</span></span> <span data-ttu-id="12fdd-187">Megtervezheti, hogy előzetesen a pontos percet a kampány befejeződik.</span><span class="sxs-lookup"><span data-stu-id="12fdd-187">You can plan in advance the exact minute your campaign will stop.</span></span>
+<span data-ttu-id="ad847-185">Azt szeretné, a kampány toostop hello a 25-éig március du. 3:00, de Ön tudja róla, hogy toodo nem lehet azt.</span><span class="sxs-lookup"><span data-stu-id="ad847-185">You want your campaign toostop on hello 25th of March at 3.00 pm but you know you won't be there toodo it.</span></span>
+<span data-ttu-id="ad847-186">Hello felület toopush elé toostay nincs!</span><span class="sxs-lookup"><span data-stu-id="ad847-186">You don’t have toostay in front of hello interface toopush!</span></span> <span data-ttu-id="ad847-187">Megtervezheti, hogy előzetesen hello pontos perc a kampány befejeződik.</span><span class="sxs-lookup"><span data-stu-id="ad847-187">You can plan in advance hello exact minute your campaign will stop.</span></span>
 
-* <span data-ttu-id="12fdd-188">Kattintson a "None" a jelölőnégyzet jelölését, vagy válasszon egy befejezési időpontja</span><span class="sxs-lookup"><span data-stu-id="12fdd-188">Click on the "None" checkbox or select a end time</span></span>
-* <span data-ttu-id="12fdd-189">Válassza ki a dátum és időpont befejezi a leküldéses kampány.</span><span class="sxs-lookup"><span data-stu-id="12fdd-189">Choose the date and the time you want to finish the push campaign.</span></span>
+* <span data-ttu-id="ad847-188">Kattintson a hello "None" jelölőnégyzet jelölését, vagy válasszon egy befejezési időpontja</span><span class="sxs-lookup"><span data-stu-id="ad847-188">Click on hello "None" checkbox or select a end time</span></span>
+* <span data-ttu-id="ad847-189">Válassza ki a hello dátum és hello időtartamát toofinish hello leküldéses kampány.</span><span class="sxs-lookup"><span data-stu-id="ad847-189">Choose hello date and hello time you want toofinish hello push campaign.</span></span>
 
-### <a name="end-a-campaign-manually"></a><span data-ttu-id="12fdd-190">A kampány manuálisan végén</span><span class="sxs-lookup"><span data-stu-id="12fdd-190">End a campaign manually</span></span>
+### <a name="end-a-campaign-manually"></a><span data-ttu-id="ad847-190">A kampány manuálisan végén</span><span class="sxs-lookup"><span data-stu-id="ad847-190">End a campaign manually</span></span>
 ![Shedule3][20]
 
-<span data-ttu-id="12fdd-192">Alapértelmezés szerint a "None"-jelölőnégyzeteket.</span><span class="sxs-lookup"><span data-stu-id="12fdd-192">By default, the "None" check-boxes are selected.</span></span>
-<span data-ttu-id="12fdd-193">Ez azt jelenti, hogy a kampány megkezdődik, amint aktiválja a reach szakaszban, és amikor a reach szakasz leáll.</span><span class="sxs-lookup"><span data-stu-id="12fdd-193">This means that the campaign will start as soon as you activate it in the reach section and will end when you will stop it on the reach section.</span></span>
+<span data-ttu-id="ad847-192">Alapértelmezés szerint hello "None"-jelölőnégyzeteket.</span><span class="sxs-lookup"><span data-stu-id="ad847-192">By default, hello "None" check-boxes are selected.</span></span>
+<span data-ttu-id="ad847-193">Ez azt jelenti, hogy hello kampány megkezdődik, amint hello aktiválnia eléri szakaszban, majd ha leáll a hello end eléri a szakasz.</span><span class="sxs-lookup"><span data-stu-id="ad847-193">This means that hello campaign will start as soon as you activate it in hello reach section and will end when you will stop it on hello reach section.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="12fdd-194">A záró dátum nélküli létrehozott kampányok a leküldéses helyileg tárolja az eszközön, és szerepel, hogy a következő megnyitásakor az alkalmazás akkor is, ha a kampány manuálisan véget ér.</span><span class="sxs-lookup"><span data-stu-id="12fdd-194">Campaigns created without an end date store the push locally on the device and show it the next time the app is opened even if the campaign is manually ended.</span></span>
+> <span data-ttu-id="ad847-194">A záró dátum nélküli létrehozott kampányok hello leküldéses hello eszköz helyileg tárolja, és szerepel, hogy hello következő megnyitásakor hello alkalmazás akkor is, ha hello kampány manuálisan véget ér.</span><span class="sxs-lookup"><span data-stu-id="ad847-194">Campaigns created without an end date store hello push locally on hello device and show it hello next time hello app is opened even if hello campaign is manually ended.</span></span>
 
-## <a name="enhance-a-push-notification-with-a-text-view"></a><span data-ttu-id="12fdd-195">A szöveges nézet a leküldéses értesítés javítása</span><span class="sxs-lookup"><span data-stu-id="12fdd-195">Enhance a Push Notification with a Text View</span></span>
-### <a name="what-is-a-text-view"></a><span data-ttu-id="12fdd-196">Mi az a szöveg nézetet?</span><span class="sxs-lookup"><span data-stu-id="12fdd-196">What is a Text View?</span></span>
+## <a name="enhance-a-push-notification-with-a-text-view"></a><span data-ttu-id="ad847-195">A szöveges nézet a leküldéses értesítés javítása</span><span class="sxs-lookup"><span data-stu-id="ad847-195">Enhance a Push Notification with a Text View</span></span>
+### <a name="what-is-a-text-view"></a><span data-ttu-id="ad847-196">Mi az a szöveg nézetet?</span><span class="sxs-lookup"><span data-stu-id="ad847-196">What is a Text View?</span></span>
 ![TextView1][21]
 
-<span data-ttu-id="12fdd-198">A szöveges nézet olyan szöveges tartalommal előugró ablak.</span><span class="sxs-lookup"><span data-stu-id="12fdd-198">A text view is a pop-up with text content.</span></span> <span data-ttu-id="12fdd-199">Az előugró ablak akkor jelenik meg, miután a végfelhasználó a leküldéses értesítésre kattintott.</span><span class="sxs-lookup"><span data-stu-id="12fdd-199">This pop-up appears after the end-user has clicked on the push notification.</span></span>
-<span data-ttu-id="12fdd-200">A szöveges nézet lehetővé teszi a végfelhasználó használni tudja a további tartalmat.</span><span class="sxs-lookup"><span data-stu-id="12fdd-200">A text view allows you to present more content to your end-user.</span></span> <span data-ttu-id="12fdd-201">Ez egyben a lehetőség van a művelet, például az alkalmazás-Áruházbeli, a weblap megnyitásakor egy földrajzi helyét keresés indítása e-mail, küldés átirányítása egy lap Ugrás hívása stb...</span><span class="sxs-lookup"><span data-stu-id="12fdd-201">This is also the opportunity to present a call to action such as jumping to a page of your app, redirecting to a Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
+<span data-ttu-id="ad847-198">A szöveges nézet olyan szöveges tartalommal előugró ablak.</span><span class="sxs-lookup"><span data-stu-id="ad847-198">A text view is a pop-up with text content.</span></span> <span data-ttu-id="ad847-199">Az előugró ablak hello végfelhasználói kattintott hello leküldéses értesítés jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="ad847-199">This pop-up appears after hello end-user has clicked on hello push notification.</span></span>
+<span data-ttu-id="ad847-200">A szöveges nézet lehetővé teszi a toopresent tartalom tooyour végfelhasználói.</span><span class="sxs-lookup"><span data-stu-id="ad847-200">A text view allows you toopresent more content tooyour end-user.</span></span> <span data-ttu-id="ad847-201">Ez egyben hello lehetőség toopresent egy hívás tooaction például Ugrás tooa lap az alkalmazás átirányítása tooa tároló, a weblap megnyitásakor e-mail, küldés, kezdve egy földrajzi helyét keresési stb...</span><span class="sxs-lookup"><span data-stu-id="ad847-201">This is also hello opportunity toopresent a call tooaction such as jumping tooa page of your app, redirecting tooa Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
 
-### <a name="example-text-view"></a><span data-ttu-id="12fdd-202">Példa: Szöveges nézet</span><span class="sxs-lookup"><span data-stu-id="12fdd-202">Example: Text View</span></span>
-* <span data-ttu-id="12fdd-203">A leküldéses értesítési kampány létrehozásához a "Reach" szakaszban, és nevezze el a kampány</span><span class="sxs-lookup"><span data-stu-id="12fdd-203">Create your Push notification campaign in the "Reach" section and give your campaign a name</span></span>
+### <a name="example-text-view"></a><span data-ttu-id="ad847-202">Példa: Szöveges nézet</span><span class="sxs-lookup"><span data-stu-id="ad847-202">Example: Text View</span></span>
+* <span data-ttu-id="ad847-203">A leküldéses értesítési kampány létrehozásához hello "Elérni" szakaszban, és nevezze el a kampány</span><span class="sxs-lookup"><span data-stu-id="ad847-203">Create your Push notification campaign in hello "Reach" section and give your campaign a name</span></span>
 
 ![TextView2][22]
 
-* <span data-ttu-id="12fdd-205">Az üzenet, amely megjelenik majd írni az értesítésre kattinthat.</span><span class="sxs-lookup"><span data-stu-id="12fdd-205">Write the message that will appear on the notification.</span></span>
-* <span data-ttu-id="12fdd-206">Válassza ki a "text" tartalomtípusa bejelentés</span><span class="sxs-lookup"><span data-stu-id="12fdd-206">Select the Announcement Content Type of “text”</span></span>
+* <span data-ttu-id="ad847-205">Írása, amely megjelenik majd üdvözlőüzenetére hello értesítést.</span><span class="sxs-lookup"><span data-stu-id="ad847-205">Write hello message that will appear on hello notification.</span></span>
+* <span data-ttu-id="ad847-206">Válassza ki a "text" tartalomtípusa közlemény hello</span><span class="sxs-lookup"><span data-stu-id="ad847-206">Select hello Announcement Content Type of “text”</span></span>
 
 ![TextView3][23]
 
 > [!NOTE]
-> <span data-ttu-id="12fdd-208">Amikor a szöveges nézet, azt mindig tartalmaz egy értesítési először.</span><span class="sxs-lookup"><span data-stu-id="12fdd-208">When you push a text view, it always comes with a notification first.</span></span> 
+> <span data-ttu-id="ad847-208">Amikor a szöveges nézet, azt mindig tartalmaz egy értesítési először.</span><span class="sxs-lookup"><span data-stu-id="ad847-208">When you push a text view, it always comes with a notification first.</span></span> 
 
-* <span data-ttu-id="12fdd-209">Adja meg a szöveget (kiválasztását követően a szöveg közlemény tartalmát, a szakasz jelenik meg, lehetővé téve adja meg a megjeleníteni kívánt szöveg.)</span><span class="sxs-lookup"><span data-stu-id="12fdd-209">Define the text (After having selected the text announcement content, the sub-section will appear, allowing you to define the text you want to be displayed.)</span></span>
+* <span data-ttu-id="ad847-209">Adja meg a hello szöveg (kiválasztását követően hello szöveg közlemény tartalmát, hello alterület jelenik meg, így toodefine hello szöveg toobe jelenik meg.)</span><span class="sxs-lookup"><span data-stu-id="ad847-209">Define hello text (After having selected hello text announcement content, hello sub-section will appear, allowing you toodefine hello text you want toobe displayed.)</span></span>
 
 ![TextView4][24]
 
-* <span data-ttu-id="12fdd-211">A cím az üzenet tetején megjelenő írni.</span><span class="sxs-lookup"><span data-stu-id="12fdd-211">Write the title that will appear at the top of the message.</span></span>
-* <span data-ttu-id="12fdd-212">A szöveges nézet fő tartalmának írása.</span><span class="sxs-lookup"><span data-stu-id="12fdd-212">Write the main content of the text view.</span></span>
-* <span data-ttu-id="12fdd-213">Írjon a tartalmat, amely megjelenik majd az akciógombra kattinthat (Akciógomb lehetővé teszi, hogy az alkalmazás megfelelően egy adott művelet, például az alkalmazás, az alkalmazás-áruházra vagy bármilyen típusú források megadhat egy lap megnyitása).</span><span class="sxs-lookup"><span data-stu-id="12fdd-213">Write the content that will appear on the action button (an action button enables the application to make a specific action such as opening a page of the application, redirecting to an App store or any kind of sources you can provide).</span></span>
-* <span data-ttu-id="12fdd-214">Írás a tartalmat, amely megjelenik majd a Kilépés gombra (a Kilépés gombra kattintva, a szöveges nézet eltűnik.)</span><span class="sxs-lookup"><span data-stu-id="12fdd-214">Write the content that will appear on the exit button (by clicking on the exit button, the text view will disappear.)</span></span>
-* <span data-ttu-id="12fdd-215">A leküldéses értesítési kampány létrehozásához, és akkor jelenik meg a kampány listában.</span><span class="sxs-lookup"><span data-stu-id="12fdd-215">Create your push notification campaign and it will appear on the campaign list.</span></span>
+* <span data-ttu-id="ad847-211">Az írási üdvözlőüzenetére hello tetején megjelenő hello cím.</span><span class="sxs-lookup"><span data-stu-id="ad847-211">Write hello title that will appear at hello top of hello message.</span></span>
+* <span data-ttu-id="ad847-212">Hello fő hello szöveg nézet tartalmának írása.</span><span class="sxs-lookup"><span data-stu-id="ad847-212">Write hello main content of hello text view.</span></span>
+* <span data-ttu-id="ad847-213">Írjon hello tartalmat, amely megjelenik majd hello akciógombra kattinthat (a Akciógomb lehetővé teszi a hello alkalmazás toomake egy adott művelet, például egy hello alkalmazás tooan App Store-ból vagy bármilyen típusú adatforrások biztosíthat átirányítása lap megnyitása).</span><span class="sxs-lookup"><span data-stu-id="ad847-213">Write hello content that will appear on hello action button (an action button enables hello application toomake a specific action such as opening a page of hello application, redirecting tooan App store or any kind of sources you can provide).</span></span>
+* <span data-ttu-id="ad847-214">Írási hello tartalom, amely megjelenik majd a Kilépés gombra hello (hello Kilépés gombra kattintva, hello szöveges nézet eltűnik.)</span><span class="sxs-lookup"><span data-stu-id="ad847-214">Write hello content that will appear on hello exit button (by clicking on hello exit button, hello text view will disappear.)</span></span>
+* <span data-ttu-id="ad847-215">A leküldéses értesítési kampány létrehozásához, és hello kampány lista megjelenik.</span><span class="sxs-lookup"><span data-stu-id="ad847-215">Create your push notification campaign and it will appear on hello campaign list.</span></span>
 
 ![TextView5][25]
 
-* <span data-ttu-id="12fdd-217">Aktiválja a leküldéses értesítési kampány történő küldéséhez a szöveges nézet a felhasználók számára.</span><span class="sxs-lookup"><span data-stu-id="12fdd-217">Activate your push notification campaign to send the text view to your users.</span></span>
+* <span data-ttu-id="ad847-217">A leküldéses értesítési kampány toosend hello szöveg nézet tooyour felhasználók aktiválása.</span><span class="sxs-lookup"><span data-stu-id="ad847-217">Activate your push notification campaign toosend hello text view tooyour users.</span></span>
 
 ![TextView6][26]
 
-* <span data-ttu-id="12fdd-219">eredménye</span><span class="sxs-lookup"><span data-stu-id="12fdd-219">Result</span></span>
+* <span data-ttu-id="ad847-219">eredménye</span><span class="sxs-lookup"><span data-stu-id="ad847-219">Result</span></span>
 
 ![TextView7][27]
 
-* <span data-ttu-id="12fdd-221">A felhasználó kap a értesítési, majd kattintson rá.</span><span class="sxs-lookup"><span data-stu-id="12fdd-221">The user receives the notification and click on it.</span></span>
-* <span data-ttu-id="12fdd-222">A szöveges nézet jelenik meg egy előugró ablak, a felhasználó használhatja őket.</span><span class="sxs-lookup"><span data-stu-id="12fdd-222">The text view appears as a pop-up allowing the user to interact with it.</span></span>
+* <span data-ttu-id="ad847-221">hello felhasználó megkapja hello értesítést, és kattintson rá.</span><span class="sxs-lookup"><span data-stu-id="ad847-221">hello user receives hello notification and click on it.</span></span>
+* <span data-ttu-id="ad847-222">egy előugró lehetővé tevő hello felhasználói toointeract vele hello szöveges nézet jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="ad847-222">hello text view appears as a pop-up allowing hello user toointeract with it.</span></span>
 
-## <a name="enhance-a-push-notification-with-a-web-view"></a><span data-ttu-id="12fdd-223">A webes nézet a leküldéses értesítés javítása</span><span class="sxs-lookup"><span data-stu-id="12fdd-223">Enhance a Push Notification with a Web View</span></span>
-### <a name="what-is-a-web-view"></a><span data-ttu-id="12fdd-224">Mi az a webes nézet?</span><span class="sxs-lookup"><span data-stu-id="12fdd-224">What is a Web View?</span></span>
+## <a name="enhance-a-push-notification-with-a-web-view"></a><span data-ttu-id="ad847-223">A webes nézet a leküldéses értesítés javítása</span><span class="sxs-lookup"><span data-stu-id="ad847-223">Enhance a Push Notification with a Web View</span></span>
+### <a name="what-is-a-web-view"></a><span data-ttu-id="ad847-224">Mi az a webes nézet?</span><span class="sxs-lookup"><span data-stu-id="ad847-224">What is a Web View?</span></span>
 ![WebView1][28]
 
-<span data-ttu-id="12fdd-226">A webes nézet egy előugró ablak webtartalmakkal együtt.</span><span class="sxs-lookup"><span data-stu-id="12fdd-226">A web view is a pop-up with web content.</span></span> <span data-ttu-id="12fdd-227">Ez az előugró ablak akkor jelenik meg, ha a végfelhasználó a leküldéses értesítésre kattintott.</span><span class="sxs-lookup"><span data-stu-id="12fdd-227">This pop-up appears when the end-user has clicked on the push notification.</span></span>
-<span data-ttu-id="12fdd-228">A webes nézet több interakciót tesz lehetővé a végfelhasználóval.</span><span class="sxs-lookup"><span data-stu-id="12fdd-228">A web view allows you to have more interaction with the end-user.</span></span>
-<span data-ttu-id="12fdd-229">Ez az App Store áruházból, például az átirányítási teendő bevezetését lehetőséget is egy weblap megnyitásakor, egy e-mailek küldéséhez, a földrajzi helyét keresés indítása stb...</span><span class="sxs-lookup"><span data-stu-id="12fdd-229">This is also the opportunity to present a call to action such as redirection to App Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
+<span data-ttu-id="ad847-226">A webes nézet egy előugró ablak webtartalmakkal együtt.</span><span class="sxs-lookup"><span data-stu-id="ad847-226">A web view is a pop-up with web content.</span></span> <span data-ttu-id="ad847-227">Az előugró ablak akkor jelenik meg, amikor hello végfelhasználói hello leküldéses értesítési kattintott.</span><span class="sxs-lookup"><span data-stu-id="ad847-227">This pop-up appears when hello end-user has clicked on hello push notification.</span></span>
+<span data-ttu-id="ad847-228">A webes nézet lehetővé teszi a toohave több interakciót tesz hello végfelhasználói.</span><span class="sxs-lookup"><span data-stu-id="ad847-228">A web view allows you toohave more interaction with hello end-user.</span></span>
+<span data-ttu-id="ad847-229">Ez egyben hello lehetőség toopresent egy hívás tooaction, például az átirányítási tooApp tároló, a weblap megnyitásakor e-mail, küldés, kezdve egy földrajzi helyét keresési stb...</span><span class="sxs-lookup"><span data-stu-id="ad847-229">This is also hello opportunity toopresent a call tooaction such as redirection tooApp Store, opening a web page, sending an e-mail, starting a geo-localized search, etc...</span></span>
 
-### <a name="example-web-view"></a><span data-ttu-id="12fdd-230">Példa: Webes nézet</span><span class="sxs-lookup"><span data-stu-id="12fdd-230">Example: Web View</span></span>
-* <span data-ttu-id="12fdd-231">A leküldéses kampány létrehozásához a "Reach" szakaszban, és nevezze el a kampányt.</span><span class="sxs-lookup"><span data-stu-id="12fdd-231">Create your Push campaign in the "Reach" section and give your campaign a name.</span></span>
+### <a name="example-web-view"></a><span data-ttu-id="ad847-230">Példa: Webes nézet</span><span class="sxs-lookup"><span data-stu-id="ad847-230">Example: Web View</span></span>
+* <span data-ttu-id="ad847-231">A leküldéses kampány létrehozásához hello "Elérni" szakaszban, és nevezze el a kampányt.</span><span class="sxs-lookup"><span data-stu-id="ad847-231">Create your Push campaign in hello "Reach" section and give your campaign a name.</span></span>
 
 ![WebView2][29]
 
-* <span data-ttu-id="12fdd-233">Az üzenet, amely megjelenik majd írni az értesítésre kattinthat.</span><span class="sxs-lookup"><span data-stu-id="12fdd-233">Write the message that will appear on the notification.</span></span>
-* <span data-ttu-id="12fdd-234">Jelölje ki a közlemény tartalomtípus "web"</span><span class="sxs-lookup"><span data-stu-id="12fdd-234">Select the Announcement Content Type as “web”</span></span>
+* <span data-ttu-id="ad847-233">Írása, amely megjelenik majd üdvözlőüzenetére hello értesítést.</span><span class="sxs-lookup"><span data-stu-id="ad847-233">Write hello message that will appear on hello notification.</span></span>
+* <span data-ttu-id="ad847-234">Jelölje ki "web" hello közlemény tartalom típusa</span><span class="sxs-lookup"><span data-stu-id="ad847-234">Select hello Announcement Content Type as “web”</span></span>
 
 ![WebView3][30]
 
-### <a name="about-announcement-types"></a><span data-ttu-id="12fdd-236">Kapcsolatos bejelentés típusok:</span><span class="sxs-lookup"><span data-stu-id="12fdd-236">About Announcement types:</span></span>
-* <span data-ttu-id="12fdd-237">Csak értesítés: egy egyszerű standard szintű értesítési.</span><span class="sxs-lookup"><span data-stu-id="12fdd-237">Notification only: It is a simple standard notification.</span></span> <span data-ttu-id="12fdd-238">Azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak a hozzá tartozó műveletet hajtja végre.</span><span class="sxs-lookup"><span data-stu-id="12fdd-238">Meaning that if a user clicks on it, no additional view will appear, but only the action associated to it will occur.</span></span>
-* <span data-ttu-id="12fdd-239">Szöveg közlemény: egy értesítés, amely kapcsolatba lép a felhasználó számára a szöveges nézet, tekintse meg a legyen.</span><span class="sxs-lookup"><span data-stu-id="12fdd-239">Text announcement: It is a notification that engages the user to have a look at a text view.</span></span>
-* <span data-ttu-id="12fdd-240">Webes hirdetmény: egy értesítés, amely kapcsolatba lép a felhasználó számára, tekintse meg a következő a webes nézet.</span><span class="sxs-lookup"><span data-stu-id="12fdd-240">Web announcement: It is a notification that engages the user to have a look at a web view.</span></span>
-  <span data-ttu-id="12fdd-241">Válassza ki a "Web közlemény" tartalmat.</span><span class="sxs-lookup"><span data-stu-id="12fdd-241">Select the "Web announcement" content.</span></span>
+### <a name="about-announcement-types"></a><span data-ttu-id="ad847-236">Kapcsolatos bejelentés típusok:</span><span class="sxs-lookup"><span data-stu-id="ad847-236">About Announcement types:</span></span>
+* <span data-ttu-id="ad847-237">Csak értesítés: egy egyszerű standard szintű értesítési.</span><span class="sxs-lookup"><span data-stu-id="ad847-237">Notification only: It is a simple standard notification.</span></span> <span data-ttu-id="ad847-238">Ami azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak hello művelet társított tooit történik.</span><span class="sxs-lookup"><span data-stu-id="ad847-238">Meaning that if a user clicks on it, no additional view will appear, but only hello action associated tooit will occur.</span></span>
+* <span data-ttu-id="ad847-239">Szöveg közlemény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a szöveges nézet.</span><span class="sxs-lookup"><span data-stu-id="ad847-239">Text announcement: It is a notification that engages hello user toohave a look at a text view.</span></span>
+* <span data-ttu-id="ad847-240">Webes hirdetmény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a webes nézet.</span><span class="sxs-lookup"><span data-stu-id="ad847-240">Web announcement: It is a notification that engages hello user toohave a look at a web view.</span></span>
+  <span data-ttu-id="ad847-241">Válassza ki a hello "Webes hirdetmény" tartalom.</span><span class="sxs-lookup"><span data-stu-id="ad847-241">Select hello "Web announcement" content.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="12fdd-242">Amikor a webes nézet, azt mindig tartalmaz egy értesítési először.</span><span class="sxs-lookup"><span data-stu-id="12fdd-242">When you push a web view, it always comes with a notification first.</span></span>
+> <span data-ttu-id="ad847-242">Amikor a webes nézet, azt mindig tartalmaz egy értesítési először.</span><span class="sxs-lookup"><span data-stu-id="ad847-242">When you push a web view, it always comes with a notification first.</span></span>
 
-* <span data-ttu-id="12fdd-243">Adja meg a webes tartalom (kiválasztását követően a webes hirdetmény tartalmat, a szakasz jelenik meg, lehetővé téve adja meg a webes nézet tartalom megjeleníteni kívánt.)</span><span class="sxs-lookup"><span data-stu-id="12fdd-243">Define the web content (After having selected the web announcement content, the subsection will appear, allowing you to define the web view content you want to be displayed.)</span></span>
+* <span data-ttu-id="ad847-243">Adja meg a webes tartalom hello (kiválasztását követően közlemény hello webtartalom, hello alszakasz jelenik meg, így toodefine hello webes nézet kívánt tartalmat toobe jelenik meg.)</span><span class="sxs-lookup"><span data-stu-id="ad847-243">Define hello web content (After having selected hello web announcement content, hello subsection will appear, allowing you toodefine hello web view content you want toobe displayed.)</span></span>
 
 ![WebView4][31]
 
-* <span data-ttu-id="12fdd-245">A cím az üzenet (nem kötelező) tetején megjelenő írni.</span><span class="sxs-lookup"><span data-stu-id="12fdd-245">Write the title that will appear at the top of the message (optional).</span></span>
-* <span data-ttu-id="12fdd-246">Ide írhatja a HTML kódot.</span><span class="sxs-lookup"><span data-stu-id="12fdd-246">Write your HTML code here.</span></span>
-* <span data-ttu-id="12fdd-247">Kattintson a Szerkesztés módban gombra kattintva edition váltson, és megjelenését például a forrás.</span><span class="sxs-lookup"><span data-stu-id="12fdd-247">Click on the source editing mode button to switch edition and see how it looks like.</span></span>
-* <span data-ttu-id="12fdd-248">Írjon a tartalmat, amely megjelenik majd az akciógombra kattinthat (Akciógomb lehetővé teszi, hogy az alkalmazás megfelelően egy adott művelet, például az alkalmazás-Áruházbeli vagy bármilyen típusú adatforrások biztosíthat egy lap megnyitása).</span><span class="sxs-lookup"><span data-stu-id="12fdd-248">Write the content that will appear on the action button (an action button enables the application to make a specific action such as opening a page of the application, redirecting to a Store or any kind of sources you can provide).</span></span>
-* <span data-ttu-id="12fdd-249">Írás a tartalmat, amely megjelenik majd a Kilépés gombra (a Kilépés gombra kattintva, a webes nézet eltűnik).</span><span class="sxs-lookup"><span data-stu-id="12fdd-249">Write the content that will appear on the exit button (by clicking on the exit button, the web view will disappear).</span></span>
-* <span data-ttu-id="12fdd-250">eredménye</span><span class="sxs-lookup"><span data-stu-id="12fdd-250">Result</span></span>
+* <span data-ttu-id="ad847-245">(Választható) üdvözlőüzenetére hello tetején megjelenő hello cím írni.</span><span class="sxs-lookup"><span data-stu-id="ad847-245">Write hello title that will appear at hello top of hello message (optional).</span></span>
+* <span data-ttu-id="ad847-246">Ide írhatja a HTML kódot.</span><span class="sxs-lookup"><span data-stu-id="ad847-246">Write your HTML code here.</span></span>
+* <span data-ttu-id="ad847-247">Kattintson a Szerkesztés módban gomb tooswitch edition hello forrás, és például megjelenését.</span><span class="sxs-lookup"><span data-stu-id="ad847-247">Click on hello source editing mode button tooswitch edition and see how it looks like.</span></span>
+* <span data-ttu-id="ad847-248">Írjon hello tartalmat, amely megjelenik majd hello akciógombra kattinthat (a Akciógomb lehetővé teszi a hello alkalmazás toomake egy adott művelet, például egy hello alkalmazás tooa tároló vagy bármilyen típusú adatforrások biztosíthat átirányítása lap megnyitása).</span><span class="sxs-lookup"><span data-stu-id="ad847-248">Write hello content that will appear on hello action button (an action button enables hello application toomake a specific action such as opening a page of hello application, redirecting tooa Store or any kind of sources you can provide).</span></span>
+* <span data-ttu-id="ad847-249">Írási hello tartalom, amely megjelenik majd a Kilépés gombra hello (hello Kilépés gombra kattintva, hello webes nézet eltűnik).</span><span class="sxs-lookup"><span data-stu-id="ad847-249">Write hello content that will appear on hello exit button (by clicking on hello exit button, hello web view will disappear).</span></span>
+* <span data-ttu-id="ad847-250">eredménye</span><span class="sxs-lookup"><span data-stu-id="ad847-250">Result</span></span>
 
 ![WebView5][32]
 
-* <span data-ttu-id="12fdd-252">A felhasználó az értesítést fogadó, és kattintson rá.</span><span class="sxs-lookup"><span data-stu-id="12fdd-252">The user receive the notification and click on it.</span></span>
-* <span data-ttu-id="12fdd-253">A szöveges nézet jelenik meg egy előugró ablak, a felhasználó használhatja őket.</span><span class="sxs-lookup"><span data-stu-id="12fdd-253">The text view appears as a pop-up allowing the user to interact with it.</span></span>
+* <span data-ttu-id="ad847-252">hello felhasználói hello értesítést kapni, és kattintson rá.</span><span class="sxs-lookup"><span data-stu-id="ad847-252">hello user receive hello notification and click on it.</span></span>
+* <span data-ttu-id="ad847-253">egy előugró lehetővé tevő hello felhasználói toointeract vele hello szöveges nézet jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="ad847-253">hello text view appears as a pop-up allowing hello user toointeract with it.</span></span>
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-how-tos/First1.png

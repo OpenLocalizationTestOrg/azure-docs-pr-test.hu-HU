@@ -8,7 +8,7 @@
 
 # Használati útmutató
 ## [Tároló megőrzése](persisting-shell-storage.md)
-## [Az ablak használata](using-the-shell-window.md)
+## [Hello ablak használata](using-the-shell-window.md)
 
 # [Díjszabás](pricing.md)
 

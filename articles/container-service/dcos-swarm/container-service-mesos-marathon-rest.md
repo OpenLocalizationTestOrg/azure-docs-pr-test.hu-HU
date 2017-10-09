@@ -1,6 +1,6 @@
 ---
-title: "A Marathon REST API-t Azure DC/OS-fürt kezeléséhez |} Microsoft Docs"
-description: "Tárolók telepítése egy Azure tároló szolgáltatás DC/OS fürtben a Marathon REST API használatával."
+title: "aaaManage Azure DC/OS fürtben a Marathon REST API-hoz |} Microsoft Docs"
+description: "Tárolók tooan Azure tároló szolgáltatás DC/OS-fürt üzembe hello Marathon REST API használatával."
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -17,35 +17,35 @@ ms.workload: na
 ms.date: 04/04/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 65f8e0170fa7b89162e811a1d5dd58775fd20d7b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d926b9b90f5d4eda85a015d9ea0d96fea2c4b566
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="dcos-container-management-through-the-marathon-rest-api"></a><span data-ttu-id="bda86-104">A Marathon REST API-t a DC/OS-tárolók kezelése</span><span class="sxs-lookup"><span data-stu-id="bda86-104">DC/OS container management through the Marathon REST API</span></span>
-<span data-ttu-id="bda86-105">A DC/OS biztosítja a fürtözött feladatok telepítését és skálázását lehetővé tevő környezetet, ugyanakkor absztrakciós rétegként működik a hardver fölött.</span><span class="sxs-lookup"><span data-stu-id="bda86-105">DC/OS provides an environment for deploying and scaling clustered workloads, while abstracting the underlying hardware.</span></span> <span data-ttu-id="bda86-106">A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról.</span><span class="sxs-lookup"><span data-stu-id="bda86-106">On top of DC/OS, there is a framework that manages scheduling and executing compute workloads.</span></span> <span data-ttu-id="bda86-107">Bár számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum beolvasása elkezdésének létrehozásán és skálázásán üzemelő tárolópéldányokat a Marathon REST API használatával.</span><span class="sxs-lookup"><span data-stu-id="bda86-107">Although frameworks are available for many popular workloads, this document gets you started creating and scaling container deployments by using the Marathon REST API.</span></span> 
+# <a name="dcos-container-management-through-hello-marathon-rest-api"></a><span data-ttu-id="5d49d-104">A DC/OS hello Marathon REST API-tárolók kezelése</span><span class="sxs-lookup"><span data-stu-id="5d49d-104">DC/OS container management through hello Marathon REST API</span></span>
+<span data-ttu-id="5d49d-105">A DC/OS telepítését és skálázását lehetővé fürtözött munkaterhelések, absztrakt módon megjelenítve a mögöttes hardver hello közben környezetet biztosít.</span><span class="sxs-lookup"><span data-stu-id="5d49d-105">DC/OS provides an environment for deploying and scaling clustered workloads, while abstracting hello underlying hardware.</span></span> <span data-ttu-id="5d49d-106">A DC/OS fölötti keretrendszer gondoskodik a számítási feladatok ütemezéséről és végrehajtásáról.</span><span class="sxs-lookup"><span data-stu-id="5d49d-106">On top of DC/OS, there is a framework that manages scheduling and executing compute workloads.</span></span> <span data-ttu-id="5d49d-107">Bár számos népszerű számítási elérhetők keretrendszerek, ez a dokumentum beolvasása létrehozásán és skálázásán üzemelő tárolópéldányokat a Marathon REST API hello lépésekhez.</span><span class="sxs-lookup"><span data-stu-id="5d49d-107">Although frameworks are available for many popular workloads, this document gets you started creating and scaling container deployments by using hello Marathon REST API.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="bda86-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="bda86-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="5d49d-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="5d49d-108">Prerequisites</span></span>
 
-<span data-ttu-id="bda86-109">A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre,</span><span class="sxs-lookup"><span data-stu-id="bda86-109">Before working through these examples, you need a DC/OS cluster that is configured in Azure Container Service.</span></span> <span data-ttu-id="bda86-110">valamint távoli kapcsolatot kell tudnia létesíteni a fürttel.</span><span class="sxs-lookup"><span data-stu-id="bda86-110">You also need to have remote connectivity to this cluster.</span></span> <span data-ttu-id="bda86-111">Ezekkel az elemekkel kapcsolatban a következő cikkekben talál további tájékoztatást:</span><span class="sxs-lookup"><span data-stu-id="bda86-111">For more information on these items, see the following articles:</span></span>
+<span data-ttu-id="5d49d-109">A példákban szereplő feladatok elvégzéséhez szüksége lesz egy az Azure tárolószolgáltatásban konfigurált DC/OS-fürtre,</span><span class="sxs-lookup"><span data-stu-id="5d49d-109">Before working through these examples, you need a DC/OS cluster that is configured in Azure Container Service.</span></span> <span data-ttu-id="5d49d-110">Meg kell toohave távoli kapcsolatot toothis fürtöt is.</span><span class="sxs-lookup"><span data-stu-id="5d49d-110">You also need toohave remote connectivity toothis cluster.</span></span> <span data-ttu-id="5d49d-111">További információ ezekről az elemekről tekintse meg a következő cikkek hello:</span><span class="sxs-lookup"><span data-stu-id="5d49d-111">For more information on these items, see hello following articles:</span></span>
 
-* [<span data-ttu-id="bda86-112">Azure Container Service-fürt üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="bda86-112">Deploying an Azure Container Service cluster</span></span>](container-service-deployment.md)
-* [<span data-ttu-id="bda86-113">Csatlakozás Azure Container Service-fürthöz</span><span class="sxs-lookup"><span data-stu-id="bda86-113">Connecting to an Azure Container Service cluster</span></span>](../container-service-connect.md)
+* [<span data-ttu-id="5d49d-112">Azure Container Service-fürt üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="5d49d-112">Deploying an Azure Container Service cluster</span></span>](container-service-deployment.md)
+* [<span data-ttu-id="5d49d-113">Csatlakozás Azure Tárolószolgáltatás-fürt tooan</span><span class="sxs-lookup"><span data-stu-id="5d49d-113">Connecting tooan Azure Container Service cluster</span></span>](../container-service-connect.md)
 
-## <a name="access-the-dcos-apis"></a><span data-ttu-id="bda86-114">Hozzáférés a DC/OS API-k</span><span class="sxs-lookup"><span data-stu-id="bda86-114">Access the DC/OS APIs</span></span>
-<span data-ttu-id="bda86-115">Miután csatlakozott az Azure tárolószolgáltatás-fürthöz, a DC/OS-t és a megfelelő REST API-kat a http://localhost:local-port címen érheti el.</span><span class="sxs-lookup"><span data-stu-id="bda86-115">After you are connected to the Azure Container Service cluster, you can access the DC/OS and related REST APIs through http://localhost:local-port.</span></span> <span data-ttu-id="bda86-116">Az ebben a dokumentumban szereplő példák azt feltételezik, hogy az alagutat a 80-as porton keresztül hozta létre.</span><span class="sxs-lookup"><span data-stu-id="bda86-116">The examples in this document assume that you are tunneling on port 80.</span></span> <span data-ttu-id="bda86-117">Például a Marathon végpontok címen érhető el URI-azonosítók kezdve `http://localhost/marathon/v2/`.</span><span class="sxs-lookup"><span data-stu-id="bda86-117">For example, the Marathon endpoints can be reached at URIs beginning with `http://localhost/marathon/v2/`.</span></span> 
+## <a name="access-hello-dcos-apis"></a><span data-ttu-id="5d49d-114">Hozzáférés hello DC/OS API-k</span><span class="sxs-lookup"><span data-stu-id="5d49d-114">Access hello DC/OS APIs</span></span>
+<span data-ttu-id="5d49d-115">Után csatlakoztatott toohello Azure Tárolószolgáltatási fürthöz, a DC/OS hello és a kapcsolódó REST API-k elérheti http://localhost-porton keresztül.</span><span class="sxs-lookup"><span data-stu-id="5d49d-115">After you are connected toohello Azure Container Service cluster, you can access hello DC/OS and related REST APIs through http://localhost:local-port.</span></span> <span data-ttu-id="5d49d-116">Ebben a dokumentumban a hello példák feltételezik, hogy, hogy az alagutat a 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="5d49d-116">hello examples in this document assume that you are tunneling on port 80.</span></span> <span data-ttu-id="5d49d-117">Például hello Marathon végpontok címen érhető el URI-azonosítók kezdve `http://localhost/marathon/v2/`.</span><span class="sxs-lookup"><span data-stu-id="5d49d-117">For example, hello Marathon endpoints can be reached at URIs beginning with `http://localhost/marathon/v2/`.</span></span> 
 
-<span data-ttu-id="bda86-118">A [Marathon API-ról](https://mesosphere.github.io/marathon/docs/rest-api.html) és a [Chronos API-ról](https://mesos.github.io/chronos/docs/api.html) a Mesosphere dokumentációjában, a [Mesos Scheduler API-ról](http://mesos.apache.org/documentation/latest/scheduler-http-api/) pedig az Apache dokumentációjában talál további információt.</span><span class="sxs-lookup"><span data-stu-id="bda86-118">For more information on the various APIs, see the Mesosphere documentation for the [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) and the [Chronos API](https://mesos.github.io/chronos/docs/api.html), and the Apache documentation for the [Mesos Scheduler API](http://mesos.apache.org/documentation/latest/scheduler-http-api/).</span></span>
+<span data-ttu-id="5d49d-118">További információ a hello különböző API-k: hello Mesosphere dokumentációjában hello [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) és a [Chronos API](https://mesos.github.io/chronos/docs/api.html), és az Apache dokumentációjában hello [Mesos Scheduler API-RÓL ](http://mesos.apache.org/documentation/latest/scheduler-http-api/).</span><span class="sxs-lookup"><span data-stu-id="5d49d-118">For more information on hello various APIs, see hello Mesosphere documentation for hello [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) and the [Chronos API](https://mesos.github.io/chronos/docs/api.html), and the Apache documentation for hello [Mesos Scheduler API](http://mesos.apache.org/documentation/latest/scheduler-http-api/).</span></span>
 
-## <a name="gather-information-from-dcos-and-marathon"></a><span data-ttu-id="bda86-119">Információgyűjtés a DC/OS-ről és a Marathonról</span><span class="sxs-lookup"><span data-stu-id="bda86-119">Gather information from DC/OS and Marathon</span></span>
-<span data-ttu-id="bda86-120">Mielőtt tárolókat a DC/OS-fürtről telepít, a DC/OS-fürtről, például nevét és a DC/OS-ügynökök állapotának néhány információt gyűjteni.</span><span class="sxs-lookup"><span data-stu-id="bda86-120">Before you deploy containers to the DC/OS cluster, gather some information about the DC/OS cluster, such as the names and status of the DC/OS agents.</span></span> <span data-ttu-id="bda86-121">Ehhez kérdezze le a DC/OS REST API fő- és alárendelt kiszolgálóinak (`master/slaves`) végpontját.</span><span class="sxs-lookup"><span data-stu-id="bda86-121">To do so, query the `master/slaves` endpoint of the DC/OS REST API.</span></span> <span data-ttu-id="bda86-122">Ha minden megfelelően működik, a lekérdezés a DC/OS-ügynökök listáját és az ügynökök különböző tulajdonságait adja vissza.</span><span class="sxs-lookup"><span data-stu-id="bda86-122">If everything goes well, the query returns a list of DC/OS agents and several properties for each.</span></span>
+## <a name="gather-information-from-dcos-and-marathon"></a><span data-ttu-id="5d49d-119">Információgyűjtés a DC/OS-ről és a Marathonról</span><span class="sxs-lookup"><span data-stu-id="5d49d-119">Gather information from DC/OS and Marathon</span></span>
+<span data-ttu-id="5d49d-120">Tárolók toohello DC/OS-fürt központi telepítése érdekében hello DC/OS fürtben, például hello neveket és hello DC/OS-ügynökök állapotának néhány információt gyűjteni.</span><span class="sxs-lookup"><span data-stu-id="5d49d-120">Before you deploy containers toohello DC/OS cluster, gather some information about hello DC/OS cluster, such as hello names and status of hello DC/OS agents.</span></span> <span data-ttu-id="5d49d-121">Igen, a lekérdezési hello toodo `master/slaves` hello DC/OS REST API végpontja.</span><span class="sxs-lookup"><span data-stu-id="5d49d-121">toodo so, query hello `master/slaves` endpoint of hello DC/OS REST API.</span></span> <span data-ttu-id="5d49d-122">Ha minden megfelelően működik, az hello lekérdezés az egyes DC/OS-ügynökök és több tulajdonságok listáját adja vissza.</span><span class="sxs-lookup"><span data-stu-id="5d49d-122">If everything goes well, hello query returns a list of DC/OS agents and several properties for each.</span></span>
 
 ```bash
 curl http://localhost/mesos/master/slaves
 ```
 
-<span data-ttu-id="bda86-123">A DC/OS-fürtben üzembe helyezett alkalmazások lekérdezéséhez használja a Marathon `/apps` végpontot.</span><span class="sxs-lookup"><span data-stu-id="bda86-123">Now, use the Marathon `/apps` endpoint to check for current application deployments to the DC/OS cluster.</span></span> <span data-ttu-id="bda86-124">Ha ez egy új fürt, akkor az alkalmazásoknál egy üres tömb jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="bda86-124">If this is a new cluster, you see an empty array for apps.</span></span>
+<span data-ttu-id="5d49d-123">Most, használja a hello Marathon `/apps` végpont toocheck az aktuális alkalmazás központi telepítések toohello DC/OS-fürtről.</span><span class="sxs-lookup"><span data-stu-id="5d49d-123">Now, use hello Marathon `/apps` endpoint toocheck for current application deployments toohello DC/OS cluster.</span></span> <span data-ttu-id="5d49d-124">Ha ez egy új fürt, akkor az alkalmazásoknál egy üres tömb jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="5d49d-124">If this is a new cluster, you see an empty array for apps.</span></span>
 
 ```bash
 curl localhost/marathon/v2/apps
@@ -53,8 +53,8 @@ curl localhost/marathon/v2/apps
 {"apps":[]}
 ```
 
-## <a name="deploy-a-docker-formatted-container"></a><span data-ttu-id="bda86-125">Docker-formázású tároló üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="bda86-125">Deploy a Docker-formatted container</span></span>
-<span data-ttu-id="bda86-126">A JSON-fájl, amely leírja a kívánt üzembe helyezéssel segítségével telepítheti Docker-formátumú tárolók Marathon REST API-n keresztül.</span><span class="sxs-lookup"><span data-stu-id="bda86-126">You deploy Docker-formatted containers through the Marathon REST API by using a JSON file that describes the intended deployment.</span></span> <span data-ttu-id="bda86-127">Az alábbi minta egy titkos ügynököt a fürt egy Nginx tároló telepíti.</span><span class="sxs-lookup"><span data-stu-id="bda86-127">The following sample deploys an Nginx container to a private agent in the cluster.</span></span> 
+## <a name="deploy-a-docker-formatted-container"></a><span data-ttu-id="5d49d-125">Docker-formázású tároló üzembe helyezése</span><span class="sxs-lookup"><span data-stu-id="5d49d-125">Deploy a Docker-formatted container</span></span>
+<span data-ttu-id="5d49d-126">Docker-formátumú tárolók Marathon REST API hello telepítése hello szánt központi telepítését ismertető JSON-fájl használatával.</span><span class="sxs-lookup"><span data-stu-id="5d49d-126">You deploy Docker-formatted containers through hello Marathon REST API by using a JSON file that describes hello intended deployment.</span></span> <span data-ttu-id="5d49d-127">hello következő minta Nginx tároló tooa titkos ügynököt telepít hello fürtben.</span><span class="sxs-lookup"><span data-stu-id="5d49d-127">hello following sample deploys an Nginx container tooa private agent in hello cluster.</span></span> 
 
 ```json
 {
@@ -75,59 +75,59 @@ curl localhost/marathon/v2/apps
 }
 ```
 
-<span data-ttu-id="bda86-128">Egy Docker-formátumú tároló üzembe helyezéséhez tárolja elérhető helyen a JSON-fájlt.</span><span class="sxs-lookup"><span data-stu-id="bda86-128">To deploy a Docker-formatted container, store the JSON file in an accessible location.</span></span> <span data-ttu-id="bda86-129">Ezt követően a tároló üzembe helyezéséhez futtassa az alábbi parancsot.</span><span class="sxs-lookup"><span data-stu-id="bda86-129">Next, to deploy the container, run the following command.</span></span> <span data-ttu-id="bda86-130">Adja meg a JSON-fájl nevét (`marathon.json` ebben a példában).</span><span class="sxs-lookup"><span data-stu-id="bda86-130">Specify the name of the JSON file (`marathon.json` in this example).</span></span>
+<span data-ttu-id="5d49d-128">egy Docker-formázású tároló toodeploy hello JSON fájlt tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="5d49d-128">toodeploy a Docker-formatted container, store hello JSON file in an accessible location.</span></span> <span data-ttu-id="5d49d-129">Ezt követően toodeploy hello tároló, futtassa a következő parancs hello.</span><span class="sxs-lookup"><span data-stu-id="5d49d-129">Next, toodeploy hello container, run hello following command.</span></span> <span data-ttu-id="5d49d-130">Adja meg hello hello JSON-fájl nevét (`marathon.json` ebben a példában).</span><span class="sxs-lookup"><span data-stu-id="5d49d-130">Specify hello name of hello JSON file (`marathon.json` in this example).</span></span>
 
 ```bash
 curl -X POST http://localhost/marathon/v2/apps -d @marathon.json -H "Content-type: application/json"
 ```
 
-<span data-ttu-id="bda86-131">A kimenet a következő példához hasonló:</span><span class="sxs-lookup"><span data-stu-id="bda86-131">The output is similar to the following:</span></span>
+<span data-ttu-id="5d49d-131">hello hasonló toohello következő kimenete:</span><span class="sxs-lookup"><span data-stu-id="5d49d-131">hello output is similar toohello following:</span></span>
 
 ```json
 {"version":"2015-11-20T18:59:00.494Z","deploymentId":"b12f8a73-f56a-4eb1-9375-4ac026d6cdec"}
 ```
 
-<span data-ttu-id="bda86-132">Ha ezt követően lekérdezi az alkalmazásokat a Marathonban, az eredmények között megjelenik az új alkalmazás is.</span><span class="sxs-lookup"><span data-stu-id="bda86-132">Now, if you query Marathon for applications, this new application appears in the output.</span></span>
+<span data-ttu-id="5d49d-132">Ha az alkalmazásokat a marathonban, az új alkalmazás megjelenik hello kimeneti.</span><span class="sxs-lookup"><span data-stu-id="5d49d-132">Now, if you query Marathon for applications, this new application appears in hello output.</span></span>
 
 ```bash
 curl localhost/marathon/v2/apps
 ```
 
-## <a name="reach-the-container"></a><span data-ttu-id="bda86-133">A tároló elérése</span><span class="sxs-lookup"><span data-stu-id="bda86-133">Reach the container</span></span>
+## <a name="reach-hello-container"></a><span data-ttu-id="5d49d-133">Hello tároló elérése</span><span class="sxs-lookup"><span data-stu-id="5d49d-133">Reach hello container</span></span>
 
-<span data-ttu-id="bda86-134">Ellenőrizheti, hogy a Nginx tároló fut. a titkos ügynököket a fürt egyik.</span><span class="sxs-lookup"><span data-stu-id="bda86-134">You can verify that the Nginx is running in a container on one of the private agents in the cluster.</span></span> <span data-ttu-id="bda86-135">A gazdagép és a port, amelyen fut a tárolóban található, marathonban a futó feladatok:</span><span class="sxs-lookup"><span data-stu-id="bda86-135">To find the host and port where the container is running, query Marathon for the running tasks:</span></span> 
+<span data-ttu-id="5d49d-134">Ellenőrizheti, hogy Nginx fut a tárolóban lévő titkos ügynökök hello hello fürt egyik hello.</span><span class="sxs-lookup"><span data-stu-id="5d49d-134">You can verify that hello Nginx is running in a container on one of hello private agents in hello cluster.</span></span> <span data-ttu-id="5d49d-135">toofind hello állomás és port hello tárolót futtató marathonban az éppen futó feladatok hello:</span><span class="sxs-lookup"><span data-stu-id="5d49d-135">toofind hello host and port where hello container is running, query Marathon for hello running tasks:</span></span> 
 
 ```bash
 curl localhost/marathon/v2/tasks
 ```
 
-<span data-ttu-id="bda86-136">Keresse meg az értéket a `host` kimenet (hasonló IP-cím `10.32.0.x`), és az értéke `ports`.</span><span class="sxs-lookup"><span data-stu-id="bda86-136">Find the value of `host` in the output (an IP address similar to `10.32.0.x`), and the value of `ports`.</span></span>
+<span data-ttu-id="5d49d-136">Keresse meg a hello értéket `host` hello kimenet (egy IP-hasonló túl`10.32.0.x`), és hello értékének `ports`.</span><span class="sxs-lookup"><span data-stu-id="5d49d-136">Find hello value of `host` in hello output (an IP address similar too`10.32.0.x`), and hello value of `ports`.</span></span>
 
 
-<span data-ttu-id="bda86-137">Egy terminál SSH-kapcsolat (nem bújtatott kapcsolat) Ellenőrizze a fürt FQDN-felügyelet.</span><span class="sxs-lookup"><span data-stu-id="bda86-137">Now make an SSH terminal connection (not a tunneled connection) to the management FQDN of the cluster.</span></span> <span data-ttu-id="bda86-138">A csatlakozás után ellenőrizze a következő kérelmet, és a megfelelő értékeket `host` és `ports`:</span><span class="sxs-lookup"><span data-stu-id="bda86-138">Once connected, make the following request, substituting the correct values of `host` and `ports`:</span></span>
+<span data-ttu-id="5d49d-137">Egy SSH terminál kapcsolat (ez nem egy bújtatott kapcsolat) toohello felügyeleti FQDN hello fürt ellenőrizze.</span><span class="sxs-lookup"><span data-stu-id="5d49d-137">Now make an SSH terminal connection (not a tunneled connection) toohello management FQDN of hello cluster.</span></span> <span data-ttu-id="5d49d-138">A csatlakozás után ellenőrizze a következő kérelmet, és a megfelelő értékeket hello hello `host` és `ports`:</span><span class="sxs-lookup"><span data-stu-id="5d49d-138">Once connected, make hello following request, substituting hello correct values of `host` and `ports`:</span></span>
 
 ```bash
 curl http://host:ports
 ```
 
-<span data-ttu-id="bda86-139">A Nginx server kimenete az alábbihoz hasonló:</span><span class="sxs-lookup"><span data-stu-id="bda86-139">The Nginx server output is similar to the following:</span></span>
+<span data-ttu-id="5d49d-139">hello Nginx server kimenet hasonló toohello következő:</span><span class="sxs-lookup"><span data-stu-id="5d49d-139">hello Nginx server output is similar toohello following:</span></span>
 
 ![Nginx-tárolójából.](./media/container-service-mesos-marathon-rest/nginx.png)
 
 
 
 
-## <a name="scale-your-containers"></a><span data-ttu-id="bda86-141">A tárolók skálázása</span><span class="sxs-lookup"><span data-stu-id="bda86-141">Scale your containers</span></span>
-<span data-ttu-id="bda86-142">A Marathon API segítségével horizontális felskálázás vagy méretezni az alkalmazások központi telepítéseit.</span><span class="sxs-lookup"><span data-stu-id="bda86-142">You can use the Marathon API to scale out or scale in application deployments.</span></span> <span data-ttu-id="bda86-143">Az előző példában üzembe helyezett egy alkalmazáspéldányt.</span><span class="sxs-lookup"><span data-stu-id="bda86-143">In the previous example, you deployed one instance of an application.</span></span> <span data-ttu-id="bda86-144">Ezt most skálázhatja három alkalmazáspéldányra.</span><span class="sxs-lookup"><span data-stu-id="bda86-144">Let's scale this out to three instances of an application.</span></span> <span data-ttu-id="bda86-145">Ehhez hozzon létre egy JSON-fájlt az alábbi JSON-szöveg használatával, és tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="bda86-145">To do so, create a JSON file by using the following JSON text, and store it in an accessible location.</span></span>
+## <a name="scale-your-containers"></a><span data-ttu-id="5d49d-141">A tárolók skálázása</span><span class="sxs-lookup"><span data-stu-id="5d49d-141">Scale your containers</span></span>
+<span data-ttu-id="5d49d-142">Alkalmazások központi telepítésének hello Marathon API tooscale kimenő vagy skálája használhatja.</span><span class="sxs-lookup"><span data-stu-id="5d49d-142">You can use hello Marathon API tooscale out or scale in application deployments.</span></span> <span data-ttu-id="5d49d-143">Hello előző példában üzembe helyezett egy alkalmazáspéldányt az alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="5d49d-143">In hello previous example, you deployed one instance of an application.</span></span> <span data-ttu-id="5d49d-144">Skálázzunk ez toothree alkalmazáspéldányra ki.</span><span class="sxs-lookup"><span data-stu-id="5d49d-144">Let's scale this out toothree instances of an application.</span></span> <span data-ttu-id="5d49d-145">toodo Igen, egy JSON-fájl létrehozása a következő JSON-szöveg hello használatával, és tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="5d49d-145">toodo so, create a JSON file by using hello following JSON text, and store it in an accessible location.</span></span>
 
 ```json
 { "instances": 3 }
 ```
 
-<span data-ttu-id="bda86-146">A bújtatott kapcsolat létrehozásakor futtassa a következő parancsot az alkalmazás horizontális.</span><span class="sxs-lookup"><span data-stu-id="bda86-146">From your tunneled connection, run the following command to scale out the application.</span></span>
+<span data-ttu-id="5d49d-146">A bújtatott kapcsolat létrehozásakor futtassa a következő parancs tooscale hello alkalmazás kimenő hello.</span><span class="sxs-lookup"><span data-stu-id="5d49d-146">From your tunneled connection, run hello following command tooscale out hello application.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="bda86-147">Az URI a http://localhost/marathon/v2/apps/ cím, amelyet a skálázandó alkalmazás azonosítója követ.</span><span class="sxs-lookup"><span data-stu-id="bda86-147">The URI is http://localhost/marathon/v2/apps/ followed by the ID of the application to scale.</span></span> <span data-ttu-id="bda86-148">Ha az itt szerepelő Nginx mintát használja, akkor az URI a http://localhost/marathon/v2/apps/nginx cím lesz.</span><span class="sxs-lookup"><span data-stu-id="bda86-148">If you are using the Nginx sample that is provided here, the URI would be http://localhost/marathon/v2/apps/nginx.</span></span>
+> <span data-ttu-id="5d49d-147">hello URI a http://localhost/marathon/v2/apps/ hello alkalmazás tooscale hello azonosítója követ.</span><span class="sxs-lookup"><span data-stu-id="5d49d-147">hello URI is http://localhost/marathon/v2/apps/ followed by hello ID of hello application tooscale.</span></span> <span data-ttu-id="5d49d-148">Ha itt használ hello Nginx mintát, hello URI http://localhost/marathon/v2/apps/nginx lesz.</span><span class="sxs-lookup"><span data-stu-id="5d49d-148">If you are using hello Nginx sample that is provided here, hello URI would be http://localhost/marathon/v2/apps/nginx.</span></span>
 > 
 > 
 
@@ -135,22 +135,22 @@ curl http://host:ports
 curl http://localhost/marathon/v2/apps/nginx -H "Content-type: application/json" -X PUT -d @scale.json
 ```
 
-<span data-ttu-id="bda86-149">Végül kérdezze le az alkalmazásokat a Marathon végponton.</span><span class="sxs-lookup"><span data-stu-id="bda86-149">Finally, query the Marathon endpoint for applications.</span></span> <span data-ttu-id="bda86-150">Láthatja majd, hogy most már három Nginx-tároló létezik.</span><span class="sxs-lookup"><span data-stu-id="bda86-150">You see that there are now three Nginx containers.</span></span>
+<span data-ttu-id="5d49d-149">Végezetül lekérdezési hello Marathon-végpont alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="5d49d-149">Finally, query hello Marathon endpoint for applications.</span></span> <span data-ttu-id="5d49d-150">Láthatja majd, hogy most már három Nginx-tároló létezik.</span><span class="sxs-lookup"><span data-stu-id="5d49d-150">You see that there are now three Nginx containers.</span></span>
 
 ```bash
 curl localhost/marathon/v2/apps
 ```
 
-## <a name="equivalent-powershell-commands"></a><span data-ttu-id="bda86-151">Egyenértékű PowerShell-parancsok</span><span class="sxs-lookup"><span data-stu-id="bda86-151">Equivalent PowerShell commands</span></span>
-<span data-ttu-id="bda86-152">Ugyanezeket a műveleteket elvégezheti Windows rendszerben is a PowerShell-parancsok használatával.</span><span class="sxs-lookup"><span data-stu-id="bda86-152">You can perform these same actions by using PowerShell commands on a Windows system.</span></span>
+## <a name="equivalent-powershell-commands"></a><span data-ttu-id="5d49d-151">Egyenértékű PowerShell-parancsok</span><span class="sxs-lookup"><span data-stu-id="5d49d-151">Equivalent PowerShell commands</span></span>
+<span data-ttu-id="5d49d-152">Ugyanezeket a műveleteket elvégezheti Windows rendszerben is a PowerShell-parancsok használatával.</span><span class="sxs-lookup"><span data-stu-id="5d49d-152">You can perform these same actions by using PowerShell commands on a Windows system.</span></span>
 
-<span data-ttu-id="bda86-153">Gyűjtsön információt a DC/OS fürtben, mint az ügynökök nevét és állapotát, a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="bda86-153">To gather information about the DC/OS cluster, such as agent names and agent status, run the following command:</span></span>
+<span data-ttu-id="5d49d-153">toogather információ hello DC/OS fürtben, mint az ügynökök nevét és állapotát, futtassa a következő parancs hello:</span><span class="sxs-lookup"><span data-stu-id="5d49d-153">toogather information about hello DC/OS cluster, such as agent names and agent status, run hello following command:</span></span>
 
 ```powershell
 Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 ```
 
-<span data-ttu-id="bda86-154">A Docker-formátumú tárolók Marathon segítségével való üzembe helyezéséhez egy olyan JSON-fájlt kell használnia, amelyben megadhatja a kívánt üzembe helyezéssel kapcsolatos információkat.</span><span class="sxs-lookup"><span data-stu-id="bda86-154">You deploy Docker-formatted containers through Marathon by using a JSON file that describes the intended deployment.</span></span> <span data-ttu-id="bda86-155">Az alábbi példában, amely egy Nginx-tároló üzembe helyezését szemlélteti, a DC/OS-ügynök 80-as portja a tároló 80-as portjával van összekötve.</span><span class="sxs-lookup"><span data-stu-id="bda86-155">The following sample deploys the Nginx container, binding port 80 of the DC/OS agent to port 80 of the container.</span></span>
+<span data-ttu-id="5d49d-154">Docker-formátumú tárolók Marathon telepítése hello szánt központi telepítését ismertető JSON-fájl használatával.</span><span class="sxs-lookup"><span data-stu-id="5d49d-154">You deploy Docker-formatted containers through Marathon by using a JSON file that describes hello intended deployment.</span></span> <span data-ttu-id="5d49d-155">hello következő minta telepíti a kötelező hello DC/OS ügynök tooport 80 hello tároló 80-as portja hello Nginx-tároló.</span><span class="sxs-lookup"><span data-stu-id="5d49d-155">hello following sample deploys hello Nginx container, binding port 80 of hello DC/OS agent tooport 80 of hello container.</span></span>
 
 ```json
 {
@@ -171,22 +171,22 @@ Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 }
 ```
 
-<span data-ttu-id="bda86-156">Egy Docker-formátumú tároló üzembe helyezéséhez tárolja elérhető helyen a JSON-fájlt.</span><span class="sxs-lookup"><span data-stu-id="bda86-156">To deploy a Docker-formatted container, store the JSON file in an accessible location.</span></span> <span data-ttu-id="bda86-157">Ezt követően a tároló üzembe helyezéséhez futtassa az alábbi parancsot.</span><span class="sxs-lookup"><span data-stu-id="bda86-157">Next, to deploy the container, run the following command.</span></span> <span data-ttu-id="bda86-158">Adja meg a JSON-fájl elérési útját (`marathon.json` ebben a példában).</span><span class="sxs-lookup"><span data-stu-id="bda86-158">Specify the path to the JSON file (`marathon.json` in this example).</span></span>
+<span data-ttu-id="5d49d-156">egy Docker-formázású tároló toodeploy hello JSON fájlt tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="5d49d-156">toodeploy a Docker-formatted container, store hello JSON file in an accessible location.</span></span> <span data-ttu-id="5d49d-157">Ezt követően toodeploy hello tároló, futtassa a következő parancs hello.</span><span class="sxs-lookup"><span data-stu-id="5d49d-157">Next, toodeploy hello container, run hello following command.</span></span> <span data-ttu-id="5d49d-158">Adja meg a hello elérési toohello JSON-fájl (`marathon.json` ebben a példában).</span><span class="sxs-lookup"><span data-stu-id="5d49d-158">Specify hello path toohello JSON file (`marathon.json` in this example).</span></span>
 
 ```powershell
 Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile 'c:\marathon.json'
 ```
 
-<span data-ttu-id="bda86-159">A Marathon API-t az üzemelő alkalmazáspéldányok horizontális skálázására is használhatja.</span><span class="sxs-lookup"><span data-stu-id="bda86-159">You can also use the Marathon API to scale out or scale in application deployments.</span></span> <span data-ttu-id="bda86-160">Az előző példában üzembe helyezett egy alkalmazáspéldányt.</span><span class="sxs-lookup"><span data-stu-id="bda86-160">In the previous example, you deployed one instance of an application.</span></span> <span data-ttu-id="bda86-161">Ezt most skálázhatja három alkalmazáspéldányra.</span><span class="sxs-lookup"><span data-stu-id="bda86-161">Let's scale this out to three instances of an application.</span></span> <span data-ttu-id="bda86-162">Ehhez hozzon létre egy JSON-fájlt az alábbi JSON-szöveg használatával, és tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="bda86-162">To do so, create a JSON file by using the following JSON text, and store it in an accessible location.</span></span>
+<span data-ttu-id="5d49d-159">Az alkalmazások központi telepítéseit is hello Marathon API tooscale kimenő vagy skálája használható.</span><span class="sxs-lookup"><span data-stu-id="5d49d-159">You can also use hello Marathon API tooscale out or scale in application deployments.</span></span> <span data-ttu-id="5d49d-160">Hello előző példában üzembe helyezett egy alkalmazáspéldányt az alkalmazások.</span><span class="sxs-lookup"><span data-stu-id="5d49d-160">In hello previous example, you deployed one instance of an application.</span></span> <span data-ttu-id="5d49d-161">Skálázzunk ez toothree alkalmazáspéldányra ki.</span><span class="sxs-lookup"><span data-stu-id="5d49d-161">Let's scale this out toothree instances of an application.</span></span> <span data-ttu-id="5d49d-162">toodo Igen, egy JSON-fájl létrehozása a következő JSON-szöveg hello használatával, és tárolja elérhető helyen.</span><span class="sxs-lookup"><span data-stu-id="5d49d-162">toodo so, create a JSON file by using hello following JSON text, and store it in an accessible location.</span></span>
 
 ```json
 { "instances": 3 }
 ```
 
-<span data-ttu-id="bda86-163">A következő parancsot az alkalmazás horizontális:</span><span class="sxs-lookup"><span data-stu-id="bda86-163">Run the following command to scale out the application:</span></span>
+<span data-ttu-id="5d49d-163">Futtassa a következő parancs tooscale hello alkalmazás kimenő hello:</span><span class="sxs-lookup"><span data-stu-id="5d49d-163">Run hello following command tooscale out hello application:</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="bda86-164">Az URI a http://localhost/marathon/v2/apps/ cím, amelyet a skálázandó alkalmazás azonosítója követ.</span><span class="sxs-lookup"><span data-stu-id="bda86-164">The URI is http://localhost/marathon/v2/apps/ followed by the ID of the application to scale.</span></span> <span data-ttu-id="bda86-165">Ha az Nginx-mintát használja, akkor az URI a http://localhost/marathon/v2/apps/nginx cím lesz.</span><span class="sxs-lookup"><span data-stu-id="bda86-165">If you are using the Nginx sample provided here, the URI would be http://localhost/marathon/v2/apps/nginx.</span></span>
+> <span data-ttu-id="5d49d-164">hello URI a http://localhost/marathon/v2/apps/ hello alkalmazás tooscale hello azonosítója követ.</span><span class="sxs-lookup"><span data-stu-id="5d49d-164">hello URI is http://localhost/marathon/v2/apps/ followed by hello ID of hello application tooscale.</span></span> <span data-ttu-id="5d49d-165">Ha itt használ hello Nginx-mintát, hello URI http://localhost/marathon/v2/apps/nginx lesz.</span><span class="sxs-lookup"><span data-stu-id="5d49d-165">If you are using hello Nginx sample provided here, hello URI would be http://localhost/marathon/v2/apps/nginx.</span></span>
 > 
 > 
 
@@ -194,7 +194,7 @@ Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentTy
 Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -ContentType application/json -InFile 'c:\scale.json'
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="bda86-166">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="bda86-166">Next steps</span></span>
-* [<span data-ttu-id="bda86-167">További tudnivalók a Mesos HTTP-végpontokról</span><span class="sxs-lookup"><span data-stu-id="bda86-167">Read more about the Mesos HTTP endpoints</span></span>](http://mesos.apache.org/documentation/latest/endpoints/)
-* [<span data-ttu-id="bda86-168">További tudnivalók a Marathon REST API</span><span class="sxs-lookup"><span data-stu-id="bda86-168">Read more about the Marathon REST API</span></span>](https://mesosphere.github.io/marathon/docs/rest-api.html)
+## <a name="next-steps"></a><span data-ttu-id="5d49d-166">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5d49d-166">Next steps</span></span>
+* [<span data-ttu-id="5d49d-167">Tudjon meg többet a Mesos HTTP-végpontokról hello</span><span class="sxs-lookup"><span data-stu-id="5d49d-167">Read more about hello Mesos HTTP endpoints</span></span>](http://mesos.apache.org/documentation/latest/endpoints/)
+* [<span data-ttu-id="5d49d-168">Tudjon meg többet a Marathon REST API hello</span><span class="sxs-lookup"><span data-stu-id="5d49d-168">Read more about hello Marathon REST API</span></span>](https://mesosphere.github.io/marathon/docs/rest-api.html)
 

@@ -1,6 +1,6 @@
 ---
-title: "App Service-webapp csatlakoztatása a Redishez a Memcache protokoll segítségével – Azure | Microsoft Docs"
-description: "Webes alkalmazás csatlakoztatása az Azure App Service-ben a Redis Cache-hoz a Memcache protokoll segítségével"
+title: "az App Service web app tooRedis keresztül hello Memcache protokoll - Azure aaaConnect |} Microsoft Docs"
+description: "Webes alkalmazás csatlakoztatása az Azure App service tooRedis gyorsítótár hello Memcache protokoll segítségével"
 services: app-service\web
 documentationcenter: php
 author: SyntaxC4
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: windows
 ms.workload: na
 ms.date: 02/29/2016
 ms.author: cfowler
-ms.openlocfilehash: 0eea1d64a50bec8fb7da155e2088ddfc36b377f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48036d60fbbced59eb1e37584f507fffffff753d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Webes alkalmazás csatlakoztatása az Azure App Service-ben a Redis Cache-hoz a Memcache protokoll segítségével
-Ebből a cikkből megtudhatja, hogyan csatlakoztathat egy WordPress webalkalmazást az [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) szolgáltatásban az [Azure Redis Cache][12] szolgáltatáshoz a [Memcache][13] protokollal. Ha van egy létező webalkalmazása, amely egy Memcached-kiszolgálót használ a memórián belüli gyorsítótárazáshoz, azt áttelepítheti az Azure App Service-be, és az alkalmazás kódjának minimális módosításával vagy módosítása nélkül használhatja a Microsoft Azure saját belső gyorsítótárazási megoldását. Ezenkívül használhatja a Memcache meglévő szakértelmét jól méretezhető, terjesztett alkalmazások létrehozására az Azure App Service-ben az Azure Redis Cache szolgáltatással memórián belüli gyorsítótárazáshoz, olyan népszerű alkalmazás-keretrendszerek használata mellett, mint a .NET, a PHP, a Node.js, a Java és a Python.  
+# Webes alkalmazás csatlakoztatása az Azure App Service tooRedis gyorsítótár hello Memcache protokoll segítségével
+Ebből a cikkből megtudhatja, hogyan tooconnect a WordPress webalkalmazás a [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) túl[Azure Redis Cache] [ 12] hello segítségével [Memcache] [ 13] protokoll. Ha egy létező webalkalmazása, amely egy Memcached-kiszolgálót használ a memórián belüli gyorsítótárazáshoz, áttelepítheti az tooAzure App Service és a használata hello belső gyorsítótárazási megoldását a Microsoft Azure-ban kevéssé vagy egyáltalán ne módosítsa tooyour alkalmazás kód. Ezenkívül használhatja a meglévő Memcache szakértői toocreate jól skálázható, elosztott alkalmazások az Azure App Service szolgáltatásban az Azure Redis Cache memórián belüli gyorsítótárazáshoz, olyan népszerű alkalmazás-keretrendszerek, például a .NET, PHP, Node.js, Java és Python használatával.  
 
-Az App Service Web Apps a webalkalmazások Memcache segédkódjával teszi lehetővé ezt a forgatókönyvet. Ez lényegében egy helyi Memcached-kiszolgáló, amely Memcache-proxyként viselkedik a hívások Azure Redis Cache szolgáltatásba való gyorsítótárazásnál. Ez lehetővé teszi, hogy bármilyen Memcache-protokollal kommunikáló alkalmazás a Redis Cache segítségével gyorsítótárazzon. A Memcache-segédkód a protokoll szintjén működik, tehát bármilyen alkalmazás vagy alkalmazás-keretrendszer képes használni, ha a Memcache protokoll segítségével kommunikál.
+App Service Web Apps lehetővé teszi, hogy az alkalmazás forgatókönyv hello webalkalmazások Memcache-segédkódjának, amely egy helyi Memcached-kiszolgálót, amely a hívások tooAzure Redis Cache-gyorsítótár Memcache-proxyként viselkedik. Ez lehetővé teszi a bármely alkalmazás, amely a Redis Cache hello Memcache protokoll toocache adatok segítségével kommunikál. A Memcache-segédkód hello protokoll szintjén működik, így is használható bármilyen alkalmazás vagy alkalmazás-keretrendszer mindaddig, amíg hello Memcache protokoll segítségével kommunikál.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## Előfeltételek
-A webalkalmazások Memcache-segédkódja bármilyen alkalmazással használható, feltéve, hogy az a Memcache protokoll segítségével kommunikál. Ebben a konkrét példában a referenciaalkalmazás egy méretezhető WordPress-webhely, amely az Azure Piactérről szerezhető be.
+hello webalkalmazások Memcache-segédkódjának bármilyen alkalmazással használható, feltéve hello Memcache protokoll segítségével kommunikál. Ha adott például hello referenciaalkalmazás egy méretezhető WordPress-webhely, amely az Azure piactér hello.
 
-Hajtsa végre az alábbi cikkekben leírt lépéseket:
+Kövesse az alábbi cikkekben leírt hello lépéseket:
 
-* [Az Azure Redis Cache szolgáltatás egy példányának kiosztása][0]
+* [Hello Azure Redis Cache szolgáltatás egy példányának kiosztása][0]
 * [Egy méretezhető WordPress-webhely telepítése az Azure-ban][1]
 
-Ha már telepítette a méretezhető WordPress-webhelyet, és beszerezte a Redis Cache példányt, folytathatja a Memcache-segédkód engedélyezését az Azure App Service Web Apps használatával.
+Miután hello méretezhető WordPress-webhelyet, és a Redis Cache példányt fogja készen tooproceed az Azure App Service Web Apps hello Memcache-segédkód engedélyezését.
 
-## A webalkalmazások Memcache-segédkódjának engedélyezése
-A Memcache-segédkód konfigurálásához létre kell hoznia három alkalmazásbeállítást. Ez különböző módszerekkel hajtható végre, ilyen például az [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715), a [klasszikus portál][3], az [Azure PowerShell-parancsmagok][5] vagy az [Azure parancssori felület][5]. Ebben a bejegyzésben az [Azure Portal][4] használatával fogom megadni az alkalmazásbeállításokat. Az alábbi értékek a Redis Cache példány **Beállítások** paneljéről kérhetők le.
+## Hello webalkalmazások Memcache-segédkódjának engedélyezése
+Rendelés tooconfigure Memcache-segédkód a létre kell hoznia három alkalmazásbeállítást. Ezt megteheti többféle módszerrel, beleértve a hello segítségével [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715), hello [klasszikus portál][3], hello [Azure PowerShell-parancsmagok] [ 5] vagy hello [Azure parancssori felület][5]. Ebben a bejegyzésben hello célokra fogom toouse hello [Azure Portal] [ 4] tooset hello Alkalmazásbeállítások. hello következő értékek lekérhetők **beállítások** a Redis Cache példány panelen.
 
 ![Azure Redis Cache beállításpanel](./media/web-sites-connect-to-redis-using-memcache-protocol/1-azure-redis-cache-settings.png)
 
 ### REDIS_HOST alkalmazásbeállítás hozzáadása
-Az első alkalmazás-beállítás, amelyet létre kell hoznia, az a **REDIS\_HOST** alkalmazásbeállítás. Ez a beállítás megadja a célt, ahová a segédkód továbbítja a gyorsítótárazott adatokat. A REDIS_HOST alkalmazásbeállításhoz szükséges érték a Redis Cache példány **Tulajdonságok** paneljéről kérhető le.
+első Alkalmazásbeállítás kell hello toocreate hello **REDIS\_állomás** Alkalmazásbeállítás. Ez a beállítás megadja hello cél toowhich hello segédkód továbbítja hello információk gyorsítótárazása. hello lekérhetők hello REDIS_HOST alkalmazásbeállításhoz szükséges érték hello **tulajdonságok** a Redis Cache példány panelen.
 
 ![Azure Redis Cache gazdanév](./media/web-sites-connect-to-redis-using-memcache-protocol/2-azure-redis-cache-hostname.png)
 
-Az alkalmazásbeállítás kulcsát állítsa a következőre: **REDIS\_HOST**, az alkalmazásbeállítás értéke pedig legyen a Redis Cache példány**gazdaneve**.
+Set hello kulcsa hello app beállítás túl**REDIS\_állomás** és hello app beállítás toohello hello értékének **állomásnév** hello Redis Cache példány.
 
 ![Webalkalmazás AppSetting REDIS_HOST](./media/web-sites-connect-to-redis-using-memcache-protocol/3-azure-website-appsettings-redis-host.png)
 
 ### REDIS_KEY alkalmazásbeállítás hozzáadása
-A második alkalmazásbeállítás, amelyet létre kell hoznia, az a **REDIS\_KEY**. Ez a beállítás biztosítja a Redis Cache biztonságos eléréséhez szükséges hitelesítési tokent. A REDIS_KEY alkalmazásbeállításhoz szükséges értéket a Redis Cache példány **Hozzáférési kulcsok** paneljéről kérheti le.
+második Alkalmazásbeállítás kell hello toocreate hello **REDIS\_kulcs** Alkalmazásbeállítás. Ez a beállítás hello hitelesítési token szükséges toosecurely hozzáférés hello Redis Cache példányt biztosít. Hello hello REDIS_KEY alkalmazásbeállításhoz szükséges hello értéket le **hívóbetűk** hello Redis Cache példány panelen.
 
 ![Azure Redis Cache elsődleges kulcs](./media/web-sites-connect-to-redis-using-memcache-protocol/4-azure-redis-cache-primarykey.png)
 
-Az alkalmazásbeállítás kulcsát állítsa a következőre: **REDIS\_KEY**, az alkalmazásbeállítás értéke pedig legyen a Redis Cache példány**Elsődleges kulcsa**.
+Set hello kulcsa hello app beállítás túl**REDIS\_kulcs** és hello app beállítás toohello hello értékének **elsődleges kulcs** hello Redis Cache példány.
 
 ![Azure-webhely alkalmazásbeállítás REDIS_KEY](./media/web-sites-connect-to-redis-using-memcache-protocol/5-azure-website-appsettings-redis-primarykey.png)
 
 ### A MEMCACHESHIM_REDIS_ENABLE alkalmazásbeállítás hozzáadása
-Az utolsó alkalmazásbeállítás segítségével engedélyezhető a Memcache-segédkód a webalkalmazásokban, amelyek a REDIS-HOST és a REDIS-KEY segítségével csatlakoznak az Azure Redis Cache-hoz, és továbbítják a gyorsítótárhívásokat. Az alkalmazásbeállítás kulcsát állítsa a következőre: **MEMCACHESHIM\_REDIS\_ENABLE**, az értéke pedig legyen **true**
+hello utolsó Alkalmazásbeállítás használt tooenable hello Memcache-Segédkód a webalkalmazásokban használó hello REDIS_HOST és REDIS_KEY tooconnect toohello Azure Redis Cache és előre hello gyorsítótár hívások. Set hello kulcsa hello app beállítás túl**MEMCACHESHIM\_REDIS\_engedélyezése** és az érték túl hello**igaz**.
 
 ![Webalkalmazás alkalmazásbeállítás MEMCACHESHIM_REDIS_ENABLE](./media/web-sites-connect-to-redis-using-memcache-protocol/6-azure-website-appsettings-enable-shim.png)
 
-Ha hozzáadta a három (3) alkalmazásbeállítást, kattintson a **Mentés** elemre.
+Miután a hozzáadása hello három (3) alkalmazásbeállítást, kattintson a **mentése**.
 
 ## Memcache bővítmény engedélyezése PHP-hoz
-Ahhoz, hogy az alkalmazás képes legyen alkalmazni a Memcache protokollt, telepíteni kell a Memcache bővítményt a PHP-be (a WordPress webhelyének a nyelvi keretrendszerébe).
+Ahhoz, hogy hello alkalmazás toospeak hello Memcache protokollt hogy a rendszer szükséges tooinstall hello Memcache bővítményt tooPHP – hello nyelvi keretrendszert a WordPress webhelyének.
 
-### A php_memcache bővítmény letöltése
-Tallózással keresse meg a következőt: [PECL][6]. A gyorsítótárazás kategóriájában kattintson a [memcache][7] elemre. A letöltések oszlopában kattintson a DLL hivatkozásra.
+### Hello php_memcache bővítmény letöltése
+Keresse meg a túl[PECL][6]. Kattintson a kategória gyorsítótárazás hello, [memcache][7]. Hello letöltések oszlopban hivatkozásra hello dll-Fájljában.
 
 ![PHP PECL webhely](./media/web-sites-connect-to-redis-using-memcache-protocol/7-php-pecl-website.png)
 
-Töltse le a Non-Thread Safe (NTS) x86 hivatkozást a Webalkalmazásokban engedélyezett PHP verzióért. (Az alapértelmezett a PHP 5.4)
+Hello Non-Thread Safe (NTS) x86 hivatkozást a webalkalmazásokban engedélyezett PHP hello verziójának letöltéséhez. (Az alapértelmezett a PHP 5.4)
 
 ![PHP PECL-webhely Memcache-csomagja](./media/web-sites-connect-to-redis-using-memcache-protocol/8-php-pecl-memcache-package.png)
 
-### A php_memcache bővítmény engedélyezése
-Miután letöltötte a fájlt, csomagolja ki, és töltse fel a **php\_memcache.dll** fájlt a **d:\\home\\site\\wwwroot\\bin\\ext\\** könyvtárba. Ha a php_memcache.dll már fel van töltve a webalkalmazásba, engedélyeznie kell a bővítményt a PHP futtatókörnyezetben. A Memcache bővítménynek az Azure Portalon való engedélyezéséhez nyissa meg a webalkalmazás **Alkalmazásbeállítások** paneljét, majd adjon hozzá egy új alkalmazásbeállítást a **PHP\_EXTENSIONS** kulccsal és a **bin\\ext\\php_memcache.dll** értékkel.
+### Hello php_memcache bővítmény engedélyezése
+Hello fájl letöltése után bontsa ki és töltse fel a hello **php\_memcache.dll** történő hello **d:\\otthoni\\hely\\wwwroot\\bin\\ext\\**  könyvtár. Miután hello php_memcache.dll már fel van töltve hello webalkalmazás, meg kell tooenable hello bővítmény toohello PHP futtatókörnyezetben. tooenable hello hello Azure portál, nyissa meg hello Memcache bővítménynek **Alkalmazásbeállítások** panel hello webalkalmazás, majd adja hozzá egy új alkalmazásbeállítást hello kulcsával **PHP\_bővítmények** és hello érték **bin\\ext\\php_memcache.dll**.
 
 > [!NOTE]
-> Ha a webalkalmazásnak több PHP-bővítményt kell betöltenie, a PHP_EXTENSIONS értékének a DLL-fájlokra mutató relatív útvonalak vesszővel elválasztott listájának kell lennie.
+> Ha hello webalkalmazás tooload több PHP-bővítményt, a PHP_EXTENSIONS értékének hello tooDLL fájlok relatív elérési utak vesszővel tagolt listáját kell lennie.
 > 
 > 
 
@@ -93,29 +93,29 @@ Ha kész, kattintson a **Mentés**gombra.
 
 ## A Memcache WordPress beépülő modul telepítése
 > [!NOTE]
-> A Wordpress.org webhelyről letöltheti a [Memcached Object Cache beépülő modult](https://wordpress.org/plugins/memcached/).
+> Emellett letöltheti a hello [Memcached Object Cache beépülő modult](https://wordpress.org/plugins/memcached/) WordPress.org webhelyről.
 > 
 > 
 
-A WordPress beépülő modulok oldalon kattintson az **Új hozzáadása** lehetőségre.
+Az hello WordPress beépülő modulok oldalon kattintson **új hozzáadása**.
 
 ![WordPress beépülő modul oldal](./media/web-sites-connect-to-redis-using-memcache-protocol/10-wordpress-plugin.png)
 
-A keresőmezőbe írja be a **memcached** kifejezést, és nyomja le az **Enter** billentyűt.
+Hello keresési mezőbe, írja be a **memcached** nyomja le az ENTER **Enter**.
 
 ![WordPress Új hozzáadása beépülő modul](./media/web-sites-connect-to-redis-using-memcache-protocol/11-wordpress-add-new-plugin.png)
 
-Keresse meg a **Memcached Object Cache** elemet a listában, majd kattintson a**Telepítés most** lehetőségre.
+Található **Memcached Object Cache** hello listában, majd kattintson **telepítés**.
 
 ![WordPress – A Memcache telepítése beépülő modul](./media/web-sites-connect-to-redis-using-memcache-protocol/12-wordpress-install-memcache-plugin.png)
 
-### A Memcache WordPress beépülő modul engedélyezése
+### Hello Memcache WordPress beépülő modul engedélyezése
 > [!NOTE]
-> A Visual Studio Team Services telepítéséhez kövesse a blog útmutatását: [Webhelybővítmény engedélyezése a Web Apps szolgáltatásban][8].
+> Kövesse az ebben a blogban hello utasításait [hogyan tooenable egy a Web Apps hely bővítmény] [ 8] tooinstall Visual Studio Team Services.
 > 
 > 
 
-A `wp-config.php` fájlban adja hozzá az alábbi kódot a szerkesztésbefejezési megjegyzés fölött, majdnem a fájl végénél.
+A hello `wp-config.php` fájlt, adja hozzá a következő kód fent hello stop szerkesztési Megjegyzés hello fájl végéhez hello hello.
 
 ```php
 $memcached_servers = array(
@@ -123,30 +123,30 @@ $memcached_servers = array(
 );
 ```
 
-Ha beillesztette ezt a kódot, a monaco automatikusan menti a dokumentumot.
+Ha beillesztette ezt a kódot, a monaco automatikusan menti hello dokumentum.
 
-A következő lépés az objektum-gyorsítótár beépülő modul engedélyezése. Ezt úgy teheti meg, ha az **object-cache.php** fájlt áthúzza a **wp-content/plugins/memcached** mappából a **wp-content** mappába, és így engedélyezi a Memcached Object Cache működését.
+következő lépés hello tooenable hello objektum-gyorsítótár beépülő modul. Ehhez húzással **object-cache.php** a **wp-tartalom/plugins/memcached** mappa toohello **wp-content** mappa tooenable hello Memcache objektum Gyorsítótár-funkciókat.
 
-![A memcache object-cache.php beépülő modul megkeresése](./media/web-sites-connect-to-redis-using-memcache-protocol/13-locate-memcache-object-cache-plugin.png)
+![Keresse meg a hello memcache object-cache.php beépülő modul](./media/web-sites-connect-to-redis-using-memcache-protocol/13-locate-memcache-object-cache-plugin.png)
 
-Most, hogy az **object-cache.php** fájl a **wp-content** mappában van, a Memcached Object Cache engedélyezve van.
+Most, hogy hello **object-cache.php** fájl van-e hello **wp-content** mappa, hello Memcached Object Cache engedélyezve van.
 
-![A memcache object-cache.php beépülő modul engedélyezése](./media/web-sites-connect-to-redis-using-memcache-protocol/14-enable-memcache-object-cache-plugin.png)
+![Hello memcache object-cache.php beépülő modul engedélyezése](./media/web-sites-connect-to-redis-using-memcache-protocol/14-enable-memcache-object-cache-plugin.png)
 
-## A Memcache Object Cache beépülő modul működésének ellenőrzése
-A webalkalmazások Memcache-segédkódjának engedélyezéséhez szükséges összes lépést elvégezte. Egy dolog maradt: ellenőrizni kell, hogy az adatok bekerülnek-e a Redis Cache példányába.
+## Hello Memcached Object Cache beépülő modul működésének ellenőrzése
+Hello lépéseket tooenable hello webalkalmazások Memcache-segédkódjának összes most már befejeződött. hello dolog maradt: tooverify, hogy hello adatok bekerülnek-e a Redis Cache példány.
 
-### Nem SSL portok támogatása az Azure Redis Cache-ben
+### Hello nem SSL portok támogatása az Azure Redis Cache-gyorsítótár engedélyezése
 > [!NOTE]
-> A cikk írásának pillanatában a Redis CLI nem támogatja az SSL-kapcsolatot, így végre kell hajtani a következő lépéseket.
+> A cikk írásának hello időpontban hello Redis CLI nem támogatja az SSL-kapcsolatot, így hello következő lépések szükségesek.
 > 
 > 
 
-Az Azure Portalon keresse meg a webalkalmazáshoz létrehozott Redis Cache példányt. Ha a gyorsítótár panelje meg van nyitva, kattintson a **Beállítások** ikonra.
+Hello Azure portál keresse meg a webalkalmazás létrehozott toohello Redis Cache példányt. Ha hello gyorsítótár panelje meg nyitva, kattintson a hello **beállítások** ikonra.
 
 ![Azure Redis Cache beállításgomb](./media/web-sites-connect-to-redis-using-memcache-protocol/15-azure-redis-cache-settings-button.png)
 
-A listáról válassza a **Hozzáférési portok** lehetőséget.
+Válassza ki **hozzáférési portok** hello listából.
 
 ![Azure Redis Cache hozzáférési port](./media/web-sites-connect-to-redis-using-memcache-protocol/16-azure-redis-cache-access-port.png)
 
@@ -154,38 +154,38 @@ Kattintson a **Nem** lehetőségre a **Hozzáférés engedélyezése csak SSL-en
 
 ![Azure Redis Cache hozzáférési port csak SSL](./media/web-sites-connect-to-redis-using-memcache-protocol/17-azure-redis-cache-access-port-ssl-only.png)
 
-Látni fogja, hogy most a NEM SSL port van beállítva. Kattintson a **Save** (Mentés) gombra.
+Látni fogja, hogy a nem SSL port hello most van-e állítva. Kattintson a **Save** (Mentés) gombra.
 
 ![Azure Redis Cache Redis hozzáférési portál nem SSL](./media/web-sites-connect-to-redis-using-memcache-protocol/18-azure-redis-cache-access-port-non-ssl.png)
 
-### Az Azure Redis Cache elérése a Redis CLI-ről
+### Csatlakozás tooAzure Redis Cache redis-cli ről
 > [!NOTE]
 > A lépés feltételezi, hogy a Redis helyben telepítve van a fejlesztési számítógépén. [A Redist ezen utasításokat követve telepítheti helyben][9].
 > 
 > 
 
-Nyissa meg az Önnek megfelelő parancssori konzolt, és írja be az alábbi parancsot:
+Nyissa meg a megfelelő parancssori konzolt, a következő parancs kiválasztása és típus hello:
 
 ```shell
 redis-cli –h <hostname-for-redis-cache> –a <primary-key-for-redis-cache> –p 6379
 ```
 
-Cserélje ki a **&lt;hostname-for-redis-cache&gt;** elemet a tényleges xxxxx.redis.cache.windows.net gazdanévre, és a **&lt;primary-key-for-redis-cache&gt;** elemet a gyorsítótár hozzáférési kulcsára, majd nyomja le az **Enter** billentyűt. Ha a CLI csatlakozott a Redis Cache példányhoz, adjon ki egy redis parancsot. Az alábbi képernyőképen a kulcsok listázását választottam.
+Cserélje le a hello  **&lt;állomásnév a redis gyorsítótár&gt;**  hello tényleges xxxxx.redis.cache.windows.net gazdanévre és hello  **&lt;elsődleges-kulcs-az-redis-cache&gt;**  hello gyorsítótár hello a hozzáférési kulcsot, majd nyomja le a **Enter**. Miután hello parancssori felület csatlakozott toohello Redis Cache példányt, adja ki a redis parancsot. Hello a képernyőfelvételen látható az alábbi I kiválasztott toolist hello kulcsok.
 
-![Az Azure Redis Cache elérése a Redis CLI-ről a Terminálon](./media/web-sites-connect-to-redis-using-memcache-protocol/19-redis-cli-terminal.png)
+![Kapcsolódó tooAzure Redis Cache Redis CLI terminálban](./media/web-sites-connect-to-redis-using-memcache-protocol/19-redis-cli-terminal.png)
 
-A kulcsok listázását kérő hívásnak értéket kell visszaadnia. Ha nem, lépjen ismét a webalkalmazáshoz, és próbálja meg újra.
+hello hívás toolist hello kulcsok értéket kell visszaadnia. Ha nem, próbálja meg máshová toohello webalkalmazás, és próbálkozzon újra.
 
 ## Összegzés
-Gratulálunk! A WordPress alkalmazás mostantól központosított memórián belüli gyorsítótárral segít a teljesítmény növelésében. Ne feledje, a webalkalmazások Memcache-segédkódja bármilyen Memcache-ügyféllel használható, függetlenül a programnyelvtől vagy az alkalmazás keretrendszerétől. Ha visszajelzést szeretne küldeni, vagy kérdése van a Web Apps Memcache-segédkódjáról, küldje el azt az [MSDN Forums][10] vagy a [Stackoverflow][11] fórumra.
+Gratulálunk! hello WordPress alkalmazás most már rendelkezik egy központosított memórián belüli gyorsítótárral tooaid a teljesítmény növelésében. Ne feledje, hogy hello webalkalmazások Memcache-segédkódja bármilyen Memcache-ügyféllel függetlenül programozási nyelven vagy alkalmazás-keretrendszer is használható. hello webalkalmazások Memcache-segédkódjának vonatkozó visszajelzés vagy tooask kérdésekre tooprovide utáni túl[MSDN fórumain] [ 10] vagy [Stackoverflow][11].
 
 > [!NOTE]
-> Ha nem szeretne regisztrálni Azure-fiókot az Azure App Service megismerése előtt, lépjen [Az App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra, ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [0]: ../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache
 [1]: http://bit.ly/1t0KxBQ

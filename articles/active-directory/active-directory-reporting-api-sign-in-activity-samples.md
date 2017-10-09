@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory bejelentkezési tevékenység jelentés API-minták |} Microsoft Docs"
-description: "Útmutató az Azure Active Directory Reporting API használatába"
+title: "az Active Directory-bejelentkezés aaaAzure tevékenység jelentés API minták |} Microsoft Docs"
+description: "Hogyan a tooget hello Azure Active Directory Reporting API használatába"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,28 +15,28 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 7fc2b59fe37ed2ffe85925c457300ef8fd83c3c7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4fbbea95fe0b52828673b997681ae37481e21bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-sign-in-activity-report-api-samples"></a><span data-ttu-id="c9468-103">Azure Active Directory bejelentkezési tevékenység jelentés API-minták</span><span class="sxs-lookup"><span data-stu-id="c9468-103">Azure Active Directory sign-in activity report API samples</span></span>
-<span data-ttu-id="c9468-104">Ez a témakör az Azure Active Directory reporting API-val kapcsolatos témakörök gyűjteményét részét képezi.</span><span class="sxs-lookup"><span data-stu-id="c9468-104">This topic is part of a collection of topics about the Azure Active Directory reporting API.</span></span>  
-<span data-ttu-id="c9468-105">Az Azure AD jelentéskészítési lehetőséget biztosít az API-k, amely lehetővé teszi a kód vagy a kapcsolódó eszközök bejelentkezési tevékenység adatok eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="c9468-105">Azure AD reporting provides you with an API that enables you to access sign-in activity data using code or related tools.</span></span>  
-<span data-ttu-id="c9468-106">Ez a témakör a hatóköre használatával látják el a mintakódot az **bejelentkezés tevékenység API**.</span><span class="sxs-lookup"><span data-stu-id="c9468-106">The scope of this topic is to provide you with sample code for the **sign-in activity API**.</span></span>
+# <a name="azure-active-directory-sign-in-activity-report-api-samples"></a><span data-ttu-id="662ee-103">Azure Active Directory bejelentkezési tevékenység jelentés API-minták</span><span class="sxs-lookup"><span data-stu-id="662ee-103">Azure Active Directory sign-in activity report API samples</span></span>
+<span data-ttu-id="662ee-104">Ez a témakör hello Azure Active Directoryval kapcsolatos témakörök gyűjteményét része reporting API-val.</span><span class="sxs-lookup"><span data-stu-id="662ee-104">This topic is part of a collection of topics about hello Azure Active Directory reporting API.</span></span>  
+<span data-ttu-id="662ee-105">Az Azure AD jelentéskészítési lehetőséget biztosít, amely lehetővé teszi az API-k tooaccess bejelentkezési tevékenység adatok használata a kódban, illetve a kapcsolódó eszközök.</span><span class="sxs-lookup"><span data-stu-id="662ee-105">Azure AD reporting provides you with an API that enables you tooaccess sign-in activity data using code or related tools.</span></span>  
+<span data-ttu-id="662ee-106">hello ebben a témakörben hatóköre példával kódaláírással a hello tooprovide **bejelentkezés tevékenység API**.</span><span class="sxs-lookup"><span data-stu-id="662ee-106">hello scope of this topic is tooprovide you with sample code for hello **sign-in activity API**.</span></span>
 
-<span data-ttu-id="c9468-107">Lásd:</span><span class="sxs-lookup"><span data-stu-id="c9468-107">See:</span></span>
+<span data-ttu-id="662ee-107">Lásd:</span><span class="sxs-lookup"><span data-stu-id="662ee-107">See:</span></span>
 
-* <span data-ttu-id="c9468-108">[A naplók](active-directory-reporting-azure-portal.md#activity-reports) további információ</span><span class="sxs-lookup"><span data-stu-id="c9468-108">[Audit logs](active-directory-reporting-azure-portal.md#activity-reports)  for more conceptual information</span></span>
-* <span data-ttu-id="c9468-109">[Bevezetés az Azure Active Directory Reporting API használatába](active-directory-reporting-api-getting-started.md) a reporting API-val kapcsolatos további információk.</span><span class="sxs-lookup"><span data-stu-id="c9468-109">[Getting started with the Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md) for more information about the reporting API.</span></span>
+* <span data-ttu-id="662ee-108">[A naplók](active-directory-reporting-azure-portal.md#activity-reports) további információ</span><span class="sxs-lookup"><span data-stu-id="662ee-108">[Audit logs](active-directory-reporting-azure-portal.md#activity-reports)  for more conceptual information</span></span>
+* <span data-ttu-id="662ee-109">[Ismerkedés az Azure Active Directory Reporting API hello](active-directory-reporting-api-getting-started.md) hello reporting API-val kapcsolatos további információk.</span><span class="sxs-lookup"><span data-stu-id="662ee-109">[Getting started with hello Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md) for more information about hello reporting API.</span></span>
 
 
-## <a name="prerequisites"></a><span data-ttu-id="c9468-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c9468-110">Prerequisites</span></span>
-<span data-ttu-id="c9468-111">A minták ebben a témakörben használata előtt végre kell hajtania a [Előfeltételek az Azure AD reporting API eléréséhez](active-directory-reporting-api-prerequisites.md).</span><span class="sxs-lookup"><span data-stu-id="c9468-111">Before you can use the samples in this topic, you need to complete the [prerequisites to access the Azure AD reporting API](active-directory-reporting-api-prerequisites.md).</span></span>  
+## <a name="prerequisites"></a><span data-ttu-id="662ee-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="662ee-110">Prerequisites</span></span>
+<span data-ttu-id="662ee-111">Hello minták ebben a témakörben használata előtt kell toocomplete hello [Előfeltételek tooaccess hello Azure AD jelentéskészítési API](active-directory-reporting-api-prerequisites.md).</span><span class="sxs-lookup"><span data-stu-id="662ee-111">Before you can use hello samples in this topic, you need toocomplete hello [prerequisites tooaccess hello Azure AD reporting API](active-directory-reporting-api-prerequisites.md).</span></span>  
 
-## <a name="powershell-script"></a><span data-ttu-id="c9468-112">PowerShell-szkript</span><span class="sxs-lookup"><span data-stu-id="c9468-112">PowerShell script</span></span>
-    # This script will require the Web Application and permissions setup in Azure Active Directory
+## <a name="powershell-script"></a><span data-ttu-id="662ee-112">PowerShell-szkript</span><span class="sxs-lookup"><span data-stu-id="662ee-112">PowerShell script</span></span>
+    # This script will require hello Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
     $loginURL       = "https://login.microsoftonline.com/"
@@ -63,7 +63,7 @@ ms.lasthandoff: 08/03/2017
     Do{
         Write-Output "Fetching data using Uri: $url"
         $myReport = (Invoke-WebRequest -UseBasicParsing -Headers $headerParams -Uri $url)
-        Write-Output "Save the output to a file SigninActivities$i.json"
+        Write-Output "Save hello output tooa file SigninActivities$i.json"
         Write-Output "---------------------------------------------"
         $myReport.Content | Out-File -FilePath SigninActivities$i.json -Force
         $url = ($myReport.Content | ConvertFrom-Json).'@odata.nextLink'
@@ -78,13 +78,13 @@ ms.lasthandoff: 08/03/2017
 
 
 
-## <a name="executing-the-script"></a><span data-ttu-id="c9468-113">A parancsfájl végrehajtása</span><span class="sxs-lookup"><span data-stu-id="c9468-113">Executing the script</span></span>
-<span data-ttu-id="c9468-114">Miután a parancsfájl szerkesztése, futtassa, és győződjön meg arról, hogy a naplózás a várt adatokat naplózza a jelentés adja vissza.</span><span class="sxs-lookup"><span data-stu-id="c9468-114">Once you finish editing the script, run it and verify that the expected data from the Audit logs report is returned.</span></span>
+## <a name="executing-hello-script"></a><span data-ttu-id="662ee-113">Hello-parancsprogram végrehajtása</span><span class="sxs-lookup"><span data-stu-id="662ee-113">Executing hello script</span></span>
+<span data-ttu-id="662ee-114">Egyszer hello parancsfájl szerkesztése, fut azt, és ellenőrizze, hogy hello várt hello naplózási naplók jelentés adatokat ad vissza.</span><span class="sxs-lookup"><span data-stu-id="662ee-114">Once you finish editing hello script, run it and verify that hello expected data from hello Audit logs report is returned.</span></span>
 
-<span data-ttu-id="c9468-115">A parancsfájl kimenete a bejelentkezési jelentés JSON formátumban ad vissza.</span><span class="sxs-lookup"><span data-stu-id="c9468-115">The script returns output from the sign-in report in JSON format.</span></span> <span data-ttu-id="c9468-116">Emellett létrehoz egy `SigninActivities.json` az azonos kimenethez fájlt.</span><span class="sxs-lookup"><span data-stu-id="c9468-116">It also creates an `SigninActivities.json` file with the same output.</span></span> <span data-ttu-id="c9468-117">Ha adatokat más jelentések, és a kimeneti formátum, amely nem kell megjegyzésbe a parancsfájl módosításával kísérletezhet.</span><span class="sxs-lookup"><span data-stu-id="c9468-117">You can experiment by modifying the script to return data from other reports, and comment out the output formats that you do not need.</span></span>
+<span data-ttu-id="662ee-115">hello parancsfájl kimeneti hello bejelentkezési jelentés JSON formátumban ad vissza.</span><span class="sxs-lookup"><span data-stu-id="662ee-115">hello script returns output from hello sign-in report in JSON format.</span></span> <span data-ttu-id="662ee-116">Emellett létrehoz egy `SigninActivities.json` hello fájlt azonos kimeneti.</span><span class="sxs-lookup"><span data-stu-id="662ee-116">It also creates an `SigninActivities.json` file with hello same output.</span></span> <span data-ttu-id="662ee-117">Hello parancsfájl tooreturn adatok más jelentések, és nem kell hello formátumokban megjegyzésbe módosításával kísérletezhet.</span><span class="sxs-lookup"><span data-stu-id="662ee-117">You can experiment by modifying hello script tooreturn data from other reports, and comment out hello output formats that you do not need.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c9468-118">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="c9468-118">Next Steps</span></span>
-* <span data-ttu-id="c9468-119">Szeretné testre szabhatja a minták ebben a témakörben?</span><span class="sxs-lookup"><span data-stu-id="c9468-119">Would you like to customize the samples in this topic?</span></span> <span data-ttu-id="c9468-120">Tekintse meg a [Azure Active Directory bejelentkezési tevékenység API-referencia](active-directory-reporting-api-sign-in-activity-reference.md).</span><span class="sxs-lookup"><span data-stu-id="c9468-120">Check out the [Azure Active Directory sign-in activity API reference](active-directory-reporting-api-sign-in-activity-reference.md).</span></span> 
-* <span data-ttu-id="c9468-121">Ha azt szeretné, hogy teljes áttekintése, az Azure Active Directory reporting API használatával [Bevezetés az Azure Active Directory reporting API használatába](active-directory-reporting-api-getting-started.md).</span><span class="sxs-lookup"><span data-stu-id="c9468-121">If you want to see a complete overview of using the Azure Active Directory reporting API, see [Getting started with the Azure Active Directory reporting API](active-directory-reporting-api-getting-started.md).</span></span>
-* <span data-ttu-id="c9468-122">Ha meg szeretne többet megtudni az Azure Active Directory reporting, tekintse meg a [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).</span><span class="sxs-lookup"><span data-stu-id="c9468-122">If you would like to find out more about Azure Active Directory reporting, see the [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
+## <a name="next-steps"></a><span data-ttu-id="662ee-118">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="662ee-118">Next Steps</span></span>
+* <span data-ttu-id="662ee-119">Ebben a témakörben toocustomize hello minták szeretné használni?</span><span class="sxs-lookup"><span data-stu-id="662ee-119">Would you like toocustomize hello samples in this topic?</span></span> <span data-ttu-id="662ee-120">Tekintse meg a hello [Azure Active Directory bejelentkezési tevékenység API-referencia](active-directory-reporting-api-sign-in-activity-reference.md).</span><span class="sxs-lookup"><span data-stu-id="662ee-120">Check out hello [Azure Active Directory sign-in activity API reference](active-directory-reporting-api-sign-in-activity-reference.md).</span></span> 
+* <span data-ttu-id="662ee-121">Ha azt szeretné, hogy a teljes áttekintése, használatával toosee hello Azure Active Directory reporting API-val, lásd: [Ismerkedés az Azure Active Directory reporting API-val hello](active-directory-reporting-api-getting-started.md).</span><span class="sxs-lookup"><span data-stu-id="662ee-121">If you want toosee a complete overview of using hello Azure Active Directory reporting API, see [Getting started with hello Azure Active Directory reporting API](active-directory-reporting-api-getting-started.md).</span></span>
+* <span data-ttu-id="662ee-122">Ha szeretne további információk az Azure Active Directory reporting toofind, tekintse meg a hello [Azure Active Directory-jelentéskészítés – útmutató](active-directory-reporting-guide.md).</span><span class="sxs-lookup"><span data-stu-id="662ee-122">If you would like toofind out more about Azure Active Directory reporting, see hello [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
 

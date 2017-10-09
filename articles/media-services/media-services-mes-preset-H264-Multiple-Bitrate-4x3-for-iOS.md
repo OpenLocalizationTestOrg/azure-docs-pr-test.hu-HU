@@ -1,6 +1,6 @@
 ---
-title: H264 Multiple Bitrate 4 x 3 IOS |} Microsoft Docs
-description: "A témakör áttekintést a ** H264 Multiple Bitrate 4 x 3 iOS ** feladat készlet."
+title: aaaH264 Multiple Bitrate 4 x 3 IOS |} Microsoft Docs
+description: "hello a témakör áttekintést hello ** H264 Multiple Bitrate 4 x 3 iOS ** feladat készlet."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 0f7c07f504b5ca4461a93c31a85b632d37fc328d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0f28e5a51bf62c8d2b42d0cfc7a306d3b885c7de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-multiple-bitrate-4x3-for-ios"></a><span data-ttu-id="3c558-103">H264 Multiple Bitrate 4 x 3 iOS-hez</span><span class="sxs-lookup"><span data-stu-id="3c558-103">H264 Multiple Bitrate 4x3 for iOS</span></span>
-<span data-ttu-id="3c558-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="3c558-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="3c558-105">Használhatja a `preset name` adhatja meg, melyik formátumba kódolja a médiafájl szeretné.</span><span class="sxs-lookup"><span data-stu-id="3c558-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="3c558-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="3c558-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="3c558-107">Az egyéni készletet a kódoló majd át lesz.</span><span class="sxs-lookup"><span data-stu-id="3c558-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="3c558-108">Ez által támogatott összes előre definiált nevek listája `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="3c558-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-multiple-bitrate-4x3-for-ios"></a><span data-ttu-id="ed622-103">H264 Multiple Bitrate 4 x 3 iOS-hez</span><span class="sxs-lookup"><span data-stu-id="ed622-103">H264 Multiple Bitrate 4x3 for iOS</span></span>
+<span data-ttu-id="ed622-104">`Media Encoder Standard`Meghatározza a kódolási készletek kódolási feladatok létrehozásakor használható.</span><span class="sxs-lookup"><span data-stu-id="ed622-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="ed622-105">Használhatja a `preset name` mely formátumú fájlba szeretné tooencode toospecify a médiafájl.</span><span class="sxs-lookup"><span data-stu-id="ed622-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="ed622-106">Másik lehetőségként létrehozhat saját JSON- vagy XML-alapú készletek (UTF-8 vagy UTF-16 kódolás használatával.</span><span class="sxs-lookup"><span data-stu-id="ed622-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="ed622-107">Majd át kellene hello egyéni előre definiált toohello kódoló.</span><span class="sxs-lookup"><span data-stu-id="ed622-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="ed622-108">Minden hello hello listáját az adott néven beállítás által támogatott nevek `Media Encoder Standard` kódoló, lásd: [feladat készletek a Media Encoder Standard](media-services-mes-presets-overview.md).</span><span class="sxs-lookup"><span data-stu-id="ed622-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="3c558-109">Ez a témakör bemutatja a `H264 Multiple Bitrate 4x3 for iOS` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="3c558-109">This topic shows the `H264 Multiple Bitrate 4x3 for iOS` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="ed622-109">Ez a témakör bemutatja a hello `H264 Multiple Bitrate 4x3 for iOS` beállított XML és a JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="ed622-109">This topic shows hello `H264 Multiple Bitrate 4x3 for iOS` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="3c558-110">Az előre definiált létrejön egy 8 GOP igazított MP4-fájlok 200 KB/s és sztereó AAC hang 8500 kbps kezdve.</span><span class="sxs-lookup"><span data-stu-id="3c558-110">This preset produces a set of 8 GOP-aligned MP4 files, ranging from 8500 kbps to 200 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="3c558-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. a készletet, vizsgálja meg az XML- vagy JSON-ban megadva.</span><span class="sxs-lookup"><span data-stu-id="3c558-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="3c558-112">Az egyes milyen egyes elemei a készletek azt jelenti, és az érvényes értékek az egyes elemekhez, tekintse meg a [Media Encoder Standard séma](media-services-mes-schema.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="3c558-112">For explanations of what each element in these presets means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
+ <span data-ttu-id="ed622-110">Az előre definiált létrejön egy 8 GOP igazított MP4-fájlok közötti 8500 kbps too200 kbit/s és sztereó AAC hang.</span><span class="sxs-lookup"><span data-stu-id="ed622-110">This preset produces a set of 8 GOP-aligned MP4 files, ranging from 8500 kbps too200 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="ed622-111">Profillal kapcsolatos részletes információkért sávszélességű mintavételi arány stb. Ennek az adott néven beállítás esetében vizsgálja meg, XML vagy az alább megadott JSON hello.</span><span class="sxs-lookup"><span data-stu-id="ed622-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="ed622-112">Az egyes milyen egyes elemei a készletek azt jelenti, és hello az érvényes értékek az egyes elemekhez, lásd: hello [Media Encoder Standard séma](media-services-mes-schema.md) témakör.</span><span class="sxs-lookup"><span data-stu-id="ed622-112">For explanations of what each element in these presets means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
   
 > [!NOTE]
->  <span data-ttu-id="3c558-113">Ha módosítja a `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy az eredeti oldalarányok konzisztensek maradnak.</span><span class="sxs-lookup"><span data-stu-id="3c558-113">When modifying the `Width` and `Height` values across layers, make sure that the aspect ratio remains consistent.</span></span> <span data-ttu-id="3c558-114">Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="3c558-114">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="3c558-115">Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="3c558-115">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
+>  <span data-ttu-id="ed622-113">Ha módosítja a hello `Width` és `Height` értékek különböző rétegek, győződjön meg arról, hogy hello oldalarányának konzisztensek maradnak.</span><span class="sxs-lookup"><span data-stu-id="ed622-113">When modifying hello `Width` and `Height` values across layers, make sure that hello aspect ratio remains consistent.</span></span> <span data-ttu-id="ed622-114">Például: 1920 x 1080, 1280 x 720, 1080 x 576, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="ed622-114">For example: 1920x1080, 1280x720, 1080x576, 640x360.</span></span> <span data-ttu-id="ed622-115">Például ne használjon méretarányoknak megfelelően keverékével: 1280 x 720, 720 x 480, 640 x 360.</span><span class="sxs-lookup"><span data-stu-id="ed622-115">You should not use a mixture of aspect ratios, such as: 1280x720, 720x480, 640x360.</span></span>  
   
- <span data-ttu-id="3c558-116">XML</span><span class="sxs-lookup"><span data-stu-id="3c558-116">XML</span></span>  
+ <span data-ttu-id="ed622-116">XML</span><span class="sxs-lookup"><span data-stu-id="ed622-116">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -177,7 +177,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="3c558-117">JSON</span><span class="sxs-lookup"><span data-stu-id="3c558-117">JSON</span></span>  
+ <span data-ttu-id="ed622-117">JSON</span><span class="sxs-lookup"><span data-stu-id="ed622-117">JSON</span></span>  
   
 ```  
 {  

@@ -1,6 +1,6 @@
 ---
-title: "Bejelentkezés felvétele Node.js-webalkalmazásokba az Azure B2C-ben | Microsoft Docs"
-description: "Node.js webalkalmazás létrehozása, amely a B2C-bérlő segítségével képes bejelentkeztetni a felhasználókat."
+title: "aaaAdd bejelentkezési tooa Node.js webalkalmazásokba az Azure B2C |} Microsoft Docs"
+description: "Hogyan toobuild egy Node.js webes alkalmazást, amely a B2C-bérlő segítségével képes bejelentkeztetni a felhasználókat."
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
@@ -14,63 +14,63 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 03/10/2017
 ms.author: xerners
-ms.openlocfilehash: c85b8f8434d1e837ac96ac63b9b37f990677ed6e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4c334b1f7a0669df2d0864140603dc55bbb5408
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-b2c-add-sign-in-to-a-nodejs-web-app"></a><span data-ttu-id="b1429-103">Azure AD B2C: Bejelentkezés felvétele Node.js-webalkalmazásokba</span><span class="sxs-lookup"><span data-stu-id="b1429-103">Azure AD B2C: Add sign-in to a Node.js web app</span></span>
+# <a name="azure-ad-b2c-add-sign-in-tooa-nodejs-web-app"></a><span data-ttu-id="6bb44-103">Az Azure AD B2C: Bejelentkezési tooa Node.js webalkalmazás hozzáadása</span><span class="sxs-lookup"><span data-stu-id="6bb44-103">Azure AD B2C: Add sign-in tooa Node.js web app</span></span>
 
-<span data-ttu-id="b1429-104">A **Passport** a Node.js-hez készült közbenső hitelesítési szoftver.</span><span class="sxs-lookup"><span data-stu-id="b1429-104">**Passport** is authentication middleware for Node.js.</span></span> <span data-ttu-id="b1429-105">A rendkívül rugalmasan működő, moduláris Passport gyakorlatilag bármely Express- vagy Restify-alapú webalkalmazásba diszkréten telepíthető.</span><span class="sxs-lookup"><span data-stu-id="b1429-105">Extremely flexible and modular, Passport can be unobtrusively installed in any Express-based or Restify web application.</span></span> <span data-ttu-id="b1429-106">A program számos különböző lehetőséget kínál a felhasználók hitelesítésére: felhasználónév/jelszó, Facebook- vagy Twitter-fiók és így tovább.</span><span class="sxs-lookup"><span data-stu-id="b1429-106">A comprehensive set of strategies supports authentication by using a user name and password, Facebook, Twitter, and more.</span></span>
+<span data-ttu-id="6bb44-104">A **Passport** a Node.js-hez készült közbenső hitelesítési szoftver.</span><span class="sxs-lookup"><span data-stu-id="6bb44-104">**Passport** is authentication middleware for Node.js.</span></span> <span data-ttu-id="6bb44-105">A rendkívül rugalmasan működő, moduláris Passport gyakorlatilag bármely Express- vagy Restify-alapú webalkalmazásba diszkréten telepíthető.</span><span class="sxs-lookup"><span data-stu-id="6bb44-105">Extremely flexible and modular, Passport can be unobtrusively installed in any Express-based or Restify web application.</span></span> <span data-ttu-id="6bb44-106">A program számos különböző lehetőséget kínál a felhasználók hitelesítésére: felhasználónév/jelszó, Facebook- vagy Twitter-fiók és így tovább.</span><span class="sxs-lookup"><span data-stu-id="6bb44-106">A comprehensive set of strategies supports authentication by using a user name and password, Facebook, Twitter, and more.</span></span>
 
-<span data-ttu-id="b1429-107">Kidolgoztunk egy stratégiát, amellyel a szoftver az Azure Active Directory (Azure AD) esetében is felhasználható.</span><span class="sxs-lookup"><span data-stu-id="b1429-107">We have developed a strategy for Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="b1429-108">Először telepítenie kell a modult, majd hozzá kell adni az Azure AD `passport-azure-ad` bővítményt.</span><span class="sxs-lookup"><span data-stu-id="b1429-108">You will install this module and then add the Azure AD `passport-azure-ad` plug-in.</span></span>
+<span data-ttu-id="6bb44-107">Kidolgoztunk egy stratégiát, amellyel a szoftver az Azure Active Directory (Azure AD) esetében is felhasználható.</span><span class="sxs-lookup"><span data-stu-id="6bb44-107">We have developed a strategy for Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="6bb44-108">Először telepítenie kell a modult, majd adja hozzá az Azure AD hello `passport-azure-ad` beépülő modult.</span><span class="sxs-lookup"><span data-stu-id="6bb44-108">You will install this module and then add hello Azure AD `passport-azure-ad` plug-in.</span></span>
 
-<span data-ttu-id="b1429-109">Ehhez a következőket kell tennie:</span><span class="sxs-lookup"><span data-stu-id="b1429-109">To do this, you need to:</span></span>
+<span data-ttu-id="6bb44-109">toodo, kell:</span><span class="sxs-lookup"><span data-stu-id="6bb44-109">toodo this, you need to:</span></span>
 
-1. <span data-ttu-id="b1429-110">Alkalmazás regisztrálása az Azure AD használatával.</span><span class="sxs-lookup"><span data-stu-id="b1429-110">Register an application by using Azure AD.</span></span>
-2. <span data-ttu-id="b1429-111">Az alkalmazás beállítása a `passport-azure-ad` bővítmény használatára.</span><span class="sxs-lookup"><span data-stu-id="b1429-111">Set up your app to use the `passport-azure-ad` plug-in.</span></span>
-3. <span data-ttu-id="b1429-112">Be- és kijelentkezési kérések kiállítása az Azure AD számára a Passport használatával.</span><span class="sxs-lookup"><span data-stu-id="b1429-112">Use Passport to issue sign-in and sign-out requests to Azure AD.</span></span>
-4. <span data-ttu-id="b1429-113">Felhasználói adatok kinyomtatása.</span><span class="sxs-lookup"><span data-stu-id="b1429-113">Print user data.</span></span>
+1. <span data-ttu-id="6bb44-110">Alkalmazás regisztrálása az Azure AD használatával.</span><span class="sxs-lookup"><span data-stu-id="6bb44-110">Register an application by using Azure AD.</span></span>
+2. <span data-ttu-id="6bb44-111">Állítsa be az alkalmazás toouse hello `passport-azure-ad` beépülő modult.</span><span class="sxs-lookup"><span data-stu-id="6bb44-111">Set up your app toouse hello `passport-azure-ad` plug-in.</span></span>
+3. <span data-ttu-id="6bb44-112">A Passport tooissue bejelentkezési és kijelentkezési kérések tooAzure AD használatára.</span><span class="sxs-lookup"><span data-stu-id="6bb44-112">Use Passport tooissue sign-in and sign-out requests tooAzure AD.</span></span>
+4. <span data-ttu-id="6bb44-113">Felhasználói adatok kinyomtatása.</span><span class="sxs-lookup"><span data-stu-id="6bb44-113">Print user data.</span></span>
 
-<span data-ttu-id="b1429-114">Az oktatóanyag kódjának [kezelése a GitHubon történik](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS).</span><span class="sxs-lookup"><span data-stu-id="b1429-114">The code for this tutorial [is maintained on GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS).</span></span> <span data-ttu-id="b1429-115">A lépések követéséhez [töltse le az alkalmazás vázát .zip-fájlként](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip).</span><span class="sxs-lookup"><span data-stu-id="b1429-115">To follow along, you can [download the app's skeleton as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip).</span></span> <span data-ttu-id="b1429-116">A vázprojektet klónozhatja is:</span><span class="sxs-lookup"><span data-stu-id="b1429-116">You can also clone the skeleton:</span></span>
+<span data-ttu-id="6bb44-114">Ez az oktatóanyag kód hello [kezelése a Githubon történik](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS).</span><span class="sxs-lookup"><span data-stu-id="6bb44-114">hello code for this tutorial [is maintained on GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS).</span></span> <span data-ttu-id="6bb44-115">toofollow mellett, akkor [hello alkalmazás vázát .zip fájl letöltése](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip).</span><span class="sxs-lookup"><span data-stu-id="6bb44-115">toofollow along, you can [download hello app's skeleton as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip).</span></span> <span data-ttu-id="6bb44-116">Hello vázat klónozhatja is:</span><span class="sxs-lookup"><span data-stu-id="6bb44-116">You can also clone hello skeleton:</span></span>
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS.git```
 
-<span data-ttu-id="b1429-117">Az oktatóanyag végén az elkészült alkalmazást is megtalálja.</span><span class="sxs-lookup"><span data-stu-id="b1429-117">The completed application is provided at the end of this tutorial.</span></span>
+<span data-ttu-id="6bb44-117">Ez az oktatóanyag végén hello befejeződött hello alkalmazás valósul meg.</span><span class="sxs-lookup"><span data-stu-id="6bb44-117">hello completed application is provided at hello end of this tutorial.</span></span>
 
-## <a name="get-an-azure-ad-b2c-directory"></a><span data-ttu-id="b1429-118">Az Azure AD B2C-címtár beszerzése</span><span class="sxs-lookup"><span data-stu-id="b1429-118">Get an Azure AD B2C directory</span></span>
+## <a name="get-an-azure-ad-b2c-directory"></a><span data-ttu-id="6bb44-118">Az Azure AD B2C-címtár beszerzése</span><span class="sxs-lookup"><span data-stu-id="6bb44-118">Get an Azure AD B2C directory</span></span>
 
-<span data-ttu-id="b1429-119">Az Azure AD B2C használatához létre kell hoznia egy címtárat vagy bérlőt.</span><span class="sxs-lookup"><span data-stu-id="b1429-119">Before you can use Azure AD B2C, you must create a directory, or tenant.</span></span>  <span data-ttu-id="b1429-120">A címtárban tárolhatja az összes felhasználót, alkalmazást, csoportot és sok minden mást.</span><span class="sxs-lookup"><span data-stu-id="b1429-120">A directory is a container for all of your users, apps, groups, and more.</span></span> <span data-ttu-id="b1429-121">Ha még nem tette meg, [hozzon létre most egy B2C-címtárat](active-directory-b2c-get-started.md), mielőtt továbblépne ebben az útmutatóban.</span><span class="sxs-lookup"><span data-stu-id="b1429-121">If you don't have one already, [create a B2C directory](active-directory-b2c-get-started.md) before you continue in this guide.</span></span>
+<span data-ttu-id="6bb44-119">Az Azure AD B2C használatához létre kell hoznia egy címtárat vagy bérlőt.</span><span class="sxs-lookup"><span data-stu-id="6bb44-119">Before you can use Azure AD B2C, you must create a directory, or tenant.</span></span>  <span data-ttu-id="6bb44-120">A címtárban tárolhatja az összes felhasználót, alkalmazást, csoportot és sok minden mást.</span><span class="sxs-lookup"><span data-stu-id="6bb44-120">A directory is a container for all of your users, apps, groups, and more.</span></span> <span data-ttu-id="6bb44-121">Ha még nem tette meg, [hozzon létre most egy B2C-címtárat](active-directory-b2c-get-started.md), mielőtt továbblépne ebben az útmutatóban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-121">If you don't have one already, [create a B2C directory](active-directory-b2c-get-started.md) before you continue in this guide.</span></span>
 
-## <a name="create-an-application"></a><span data-ttu-id="b1429-122">Alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="b1429-122">Create an application</span></span>
+## <a name="create-an-application"></a><span data-ttu-id="6bb44-122">Alkalmazás létrehozása</span><span class="sxs-lookup"><span data-stu-id="6bb44-122">Create an application</span></span>
 
-<span data-ttu-id="b1429-123">A következő lépésben hozzon létre egy alkalmazást a B2C-címtárban.</span><span class="sxs-lookup"><span data-stu-id="b1429-123">Next, you need to create an app in your B2C directory.</span></span> <span data-ttu-id="b1429-124">Ez biztosítja az alkalmazással történő biztonságos kommunikációhoz szükséges információkat az Azure AD számára.</span><span class="sxs-lookup"><span data-stu-id="b1429-124">This gives Azure AD information that it needs to communicate securely with your app.</span></span> <span data-ttu-id="b1429-125">Az ügyfélalkalmazást és a webes API-t is egyetlen **alkalmazásazonosító** képviseli, mivel a két elem közös logikai alkalmazássá áll össze.</span><span class="sxs-lookup"><span data-stu-id="b1429-125">Both the client app and web API will be represented by a single **Application ID**, because they comprise one logical app.</span></span> <span data-ttu-id="b1429-126">Az alkalmazást a következő [utasítások](active-directory-b2c-app-registration.md) alapján hozza létre.</span><span class="sxs-lookup"><span data-stu-id="b1429-126">To create an app, follow [these instructions](active-directory-b2c-app-registration.md).</span></span> <span data-ttu-id="b1429-127">Ügyeljen arra, hogy:</span><span class="sxs-lookup"><span data-stu-id="b1429-127">Be sure to:</span></span>
+<span data-ttu-id="6bb44-123">A következő lépésben toocreate egy alkalmazást a B2C-címtárban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-123">Next, you need toocreate an app in your B2C directory.</span></span> <span data-ttu-id="6bb44-124">Ez biztosítja, hogy kell-e az alkalmazással biztonságosan toocommunicate az Azure AD-információkat.</span><span class="sxs-lookup"><span data-stu-id="6bb44-124">This gives Azure AD information that it needs toocommunicate securely with your app.</span></span> <span data-ttu-id="6bb44-125">Mindkét hello ügyfélalkalmazás és webes API-t fog megjelenni, egyetlen **Alkalmazásazonosító**, mert alkalmazássá logikai.</span><span class="sxs-lookup"><span data-stu-id="6bb44-125">Both hello client app and web API will be represented by a single **Application ID**, because they comprise one logical app.</span></span> <span data-ttu-id="6bb44-126">hajtsa végre az alkalmazást, és egy toocreate [ezeket az utasításokat](active-directory-b2c-app-registration.md).</span><span class="sxs-lookup"><span data-stu-id="6bb44-126">toocreate an app, follow [these instructions](active-directory-b2c-app-registration.md).</span></span> <span data-ttu-id="6bb44-127">Ügyeljen arra, hogy:</span><span class="sxs-lookup"><span data-stu-id="6bb44-127">Be sure to:</span></span>
 
-- <span data-ttu-id="b1429-128">Az alkalmazás tartalmazzon egy **webalkalmazást**/**webes API-t**.</span><span class="sxs-lookup"><span data-stu-id="b1429-128">Include a **web app**/**web API** in the application.</span></span>
-- <span data-ttu-id="b1429-129">A **Reply URL** (Válasz URL-cím) legyen a következő: `http://localhost:3000/auth/openid/return`.</span><span class="sxs-lookup"><span data-stu-id="b1429-129">Enter `http://localhost:3000/auth/openid/return` as a **Reply URL**.</span></span> <span data-ttu-id="b1429-130">Ez a kódminta alapértelmezett URL-címe.</span><span class="sxs-lookup"><span data-stu-id="b1429-130">It is the default URL for this code sample.</span></span>
-- <span data-ttu-id="b1429-131">Hozzon létre egy **alkalmazástitkot** az alkalmazáshoz, majd másolja.</span><span class="sxs-lookup"><span data-stu-id="b1429-131">Create an **Application secret** for your application and copy it.</span></span> <span data-ttu-id="b1429-132">Erre később még szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="b1429-132">You will need it later.</span></span> <span data-ttu-id="b1429-133">Ne feledje, hogy az értékben használat előtt [az XML-nek megfelelő feloldójelekkel](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) kell megjelölni a vezérlőkaraktereket.</span><span class="sxs-lookup"><span data-stu-id="b1429-133">Note that this value needs to be [XML escaped](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) before you use it.</span></span>
-- <span data-ttu-id="b1429-134">Másolja az alkalmazáshoz rendelt **alkalmazásazonosítót**.</span><span class="sxs-lookup"><span data-stu-id="b1429-134">Copy the **Application ID** that is assigned to your app.</span></span> <span data-ttu-id="b1429-135">Később erre is szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="b1429-135">You'll also need this later.</span></span>
+- <span data-ttu-id="6bb44-128">Tartalmaznak egy **webalkalmazás**/**webes API-t** hello alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-128">Include a **web app**/**web API** in hello application.</span></span>
+- <span data-ttu-id="6bb44-129">A **Reply URL** (Válasz URL-cím) legyen a következő: `http://localhost:3000/auth/openid/return`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-129">Enter `http://localhost:3000/auth/openid/return` as a **Reply URL**.</span></span> <span data-ttu-id="6bb44-130">A fenti hello alapértelmezett URL-.</span><span class="sxs-lookup"><span data-stu-id="6bb44-130">It is hello default URL for this code sample.</span></span>
+- <span data-ttu-id="6bb44-131">Hozzon létre egy **alkalmazástitkot** az alkalmazáshoz, majd másolja.</span><span class="sxs-lookup"><span data-stu-id="6bb44-131">Create an **Application secret** for your application and copy it.</span></span> <span data-ttu-id="6bb44-132">Erre később még szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-132">You will need it later.</span></span> <span data-ttu-id="6bb44-133">Vegye figyelembe, hogy ezt az értéket kell toobe [escape-karaktersorozatot XML](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) használatba vétel előtt.</span><span class="sxs-lookup"><span data-stu-id="6bb44-133">Note that this value needs toobe [XML escaped](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) before you use it.</span></span>
+- <span data-ttu-id="6bb44-134">Másolás hello **Alkalmazásazonosító** , amely hozzárendelt tooyour alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="6bb44-134">Copy hello **Application ID** that is assigned tooyour app.</span></span> <span data-ttu-id="6bb44-135">Később erre is szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-135">You'll also need this later.</span></span>
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
-## <a name="create-your-policies"></a><span data-ttu-id="b1429-136">Szabályzatok létrehozása</span><span class="sxs-lookup"><span data-stu-id="b1429-136">Create your policies</span></span>
+## <a name="create-your-policies"></a><span data-ttu-id="6bb44-136">Szabályzatok létrehozása</span><span class="sxs-lookup"><span data-stu-id="6bb44-136">Create your policies</span></span>
 
-<span data-ttu-id="b1429-137">Az Azure AD B2C-ben a felhasználói élményeket [szabályzatok](active-directory-b2c-reference-policies.md) határozzák meg.</span><span class="sxs-lookup"><span data-stu-id="b1429-137">In Azure AD B2C, every user experience is defined by a [policy](active-directory-b2c-reference-policies.md).</span></span> <span data-ttu-id="b1429-138">Az alkalmazás három különböző, identitással kapcsolatos műveletet tartalmaz: regisztráció, bejelentkezés és bejelentkezés Facebook-fiókkal.</span><span class="sxs-lookup"><span data-stu-id="b1429-138">This app contains three identity experiences: sign up, sign in, and sign in by using Facebook.</span></span> <span data-ttu-id="b1429-139">Az összes típushoz létre kell hoznia egy szabályzatot a [szabályzatok áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy) leírtak szerint.</span><span class="sxs-lookup"><span data-stu-id="b1429-139">You need to create this policy of each type, as described in the [policy reference article](active-directory-b2c-reference-policies.md#create-a-sign-up-policy).</span></span> <span data-ttu-id="b1429-140">A három szabályzat létrehozásakor ügyeljen arra, hogy:</span><span class="sxs-lookup"><span data-stu-id="b1429-140">When you create your three policies, be sure to:</span></span>
+<span data-ttu-id="6bb44-137">Az Azure AD B2C-ben a felhasználói élményeket [szabályzatok](active-directory-b2c-reference-policies.md) határozzák meg.</span><span class="sxs-lookup"><span data-stu-id="6bb44-137">In Azure AD B2C, every user experience is defined by a [policy](active-directory-b2c-reference-policies.md).</span></span> <span data-ttu-id="6bb44-138">Az alkalmazás három különböző, identitással kapcsolatos műveletet tartalmaz: regisztráció, bejelentkezés és bejelentkezés Facebook-fiókkal.</span><span class="sxs-lookup"><span data-stu-id="6bb44-138">This app contains three identity experiences: sign up, sign in, and sign in by using Facebook.</span></span> <span data-ttu-id="6bb44-139">Szüksége toocreate ezt a házirendet az egyes típusok leírtak szerint a [házirendek áttekintésével foglalkozó cikkben](active-directory-b2c-reference-policies.md#create-a-sign-up-policy).</span><span class="sxs-lookup"><span data-stu-id="6bb44-139">You need toocreate this policy of each type, as described in the [policy reference article](active-directory-b2c-reference-policies.md#create-a-sign-up-policy).</span></span> <span data-ttu-id="6bb44-140">A három szabályzat létrehozásakor ügyeljen arra, hogy:</span><span class="sxs-lookup"><span data-stu-id="6bb44-140">When you create your three policies, be sure to:</span></span>
 
-- <span data-ttu-id="b1429-141">A regisztrációs szabályzatban adja meg a **Megjelenített név** értékét, illetve az egyéb regisztrációs attribútumokat.</span><span class="sxs-lookup"><span data-stu-id="b1429-141">Choose the **Display name** and other sign-up attributes in your sign-up policy.</span></span>
-- <span data-ttu-id="b1429-142">Az összes szabályzatban válassza ki a **Megjelenített név** és az **Objektumazonosító** alkalmazási jogcímet.</span><span class="sxs-lookup"><span data-stu-id="b1429-142">Choose the **Display name** and **Object ID** application claims in every policy.</span></span> <span data-ttu-id="b1429-143">Ezenfelül más jogcímeket is használhat.</span><span class="sxs-lookup"><span data-stu-id="b1429-143">You can choose other claims as well.</span></span>
-- <span data-ttu-id="b1429-144">Az egyes házirendek létrehozása után másolja a házirend **nevét**.</span><span class="sxs-lookup"><span data-stu-id="b1429-144">Copy the **Name** of each policy after you create it.</span></span> <span data-ttu-id="b1429-145">A névnek a következő előtaggal kell rendelkeznie: `b2c_1_`.</span><span class="sxs-lookup"><span data-stu-id="b1429-145">It should have the prefix `b2c_1_`.</span></span>  <span data-ttu-id="b1429-146">A házirendek nevére később még szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="b1429-146">You'll need these policy names later.</span></span>
+- <span data-ttu-id="6bb44-141">Válassza ki a hello **megjelenített név** és az egyéb regisztrációs attribútumokat a regisztrációs szabályzatban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-141">Choose hello **Display name** and other sign-up attributes in your sign-up policy.</span></span>
+- <span data-ttu-id="6bb44-142">Válassza ki a hello **megjelenített név** és **Objektumazonosító** minden házirend alkalmazási jogcímet.</span><span class="sxs-lookup"><span data-stu-id="6bb44-142">Choose hello **Display name** and **Object ID** application claims in every policy.</span></span> <span data-ttu-id="6bb44-143">Kiválaszthat egyéb jogcímeket is.</span><span class="sxs-lookup"><span data-stu-id="6bb44-143">You can choose other claims as well.</span></span>
+- <span data-ttu-id="6bb44-144">Másolás hello **neve** egyes házirendek létrehozása után.</span><span class="sxs-lookup"><span data-stu-id="6bb44-144">Copy hello **Name** of each policy after you create it.</span></span> <span data-ttu-id="6bb44-145">Hello előtag nem rendelkezhet `b2c_1_`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-145">It should have hello prefix `b2c_1_`.</span></span>  <span data-ttu-id="6bb44-146">A házirendek nevére később még szüksége lesz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-146">You'll need these policy names later.</span></span>
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-<span data-ttu-id="b1429-147">A három szabályzat létrehozását követően készen áll az alkalmazás elkészítésére.</span><span class="sxs-lookup"><span data-stu-id="b1429-147">After you create your three policies, you're ready to build your app.</span></span>
+<span data-ttu-id="6bb44-147">A három szabályzat létrehozását követően készen áll a toobuild Ön az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="6bb44-147">After you create your three policies, you're ready toobuild your app.</span></span>
 
-<span data-ttu-id="b1429-148">Felhívjuk figyelmét, hogy ebben a cikkben nem foglalkozunk a létrehozott szabályzatok használatával.</span><span class="sxs-lookup"><span data-stu-id="b1429-148">Note that this article does not cover how to use the policies you just created.</span></span> <span data-ttu-id="b1429-149">Ha szeretné megismerni a szabályzatok Azure AD B2C alatti működését, végezze el a [.NET-es webalkalmazások használatába bevezető oktatóanyagot](active-directory-b2c-devquickstarts-web-dotnet.md).</span><span class="sxs-lookup"><span data-stu-id="b1429-149">To learn about how policies work in Azure AD B2C, start with the [.NET web app getting started tutorial](active-directory-b2c-devquickstarts-web-dotnet.md).</span></span>
+<span data-ttu-id="6bb44-148">Vegye figyelembe, hogy a cikk nem tér ki hogyan toouse hello házirendek újonnan létrehozott.</span><span class="sxs-lookup"><span data-stu-id="6bb44-148">Note that this article does not cover how toouse hello policies you just created.</span></span> <span data-ttu-id="6bb44-149">toolearn arról, hogyan házirendek az Azure AD B2C működnek, hello kezdődnie [.NET webalkalmazások használatába bevezető oktatóanyagot](active-directory-b2c-devquickstarts-web-dotnet.md).</span><span class="sxs-lookup"><span data-stu-id="6bb44-149">toolearn about how policies work in Azure AD B2C, start with hello [.NET web app getting started tutorial](active-directory-b2c-devquickstarts-web-dotnet.md).</span></span>
 
-## <a name="add-prerequisites-to-your-directory"></a><span data-ttu-id="b1429-150">Előfeltételek felvétele a könyvtárba</span><span class="sxs-lookup"><span data-stu-id="b1429-150">Add prerequisites to your directory</span></span>
+## <a name="add-prerequisites-tooyour-directory"></a><span data-ttu-id="6bb44-150">Előfeltételek tooyour könyvtár hozzáadása</span><span class="sxs-lookup"><span data-stu-id="6bb44-150">Add prerequisites tooyour directory</span></span>
 
-<span data-ttu-id="b1429-151">A parancssorból módosítsa a könyvtárat a gyökérmappára, ha még nem tette meg.</span><span class="sxs-lookup"><span data-stu-id="b1429-151">From the command line, change directories to your root folder, if you're not already there.</span></span> <span data-ttu-id="b1429-152">Futtassa az alábbi parancsot:</span><span class="sxs-lookup"><span data-stu-id="b1429-152">Run the following commands:</span></span>
+<span data-ttu-id="6bb44-151">Hello parancssorból módosítsa könyvtárak tooyour gyökérmappára, ha már nem létezik.</span><span class="sxs-lookup"><span data-stu-id="6bb44-151">From hello command line, change directories tooyour root folder, if you're not already there.</span></span> <span data-ttu-id="6bb44-152">Futtassa a következő parancsok hello:</span><span class="sxs-lookup"><span data-stu-id="6bb44-152">Run hello following commands:</span></span>
 
 - `npm install express`
 - `npm install ejs`
@@ -85,23 +85,23 @@ ms.lasthandoff: 07/11/2017
 - `npm install express-session`
 - `npm install cookie-parser`
 
-<span data-ttu-id="b1429-153">Az útmutatóban található vázban szereplő előzetes verzióban ezek mellett a `passport-azure-ad`-t is használtuk.</span><span class="sxs-lookup"><span data-stu-id="b1429-153">In addition, we used `passport-azure-ad` for our preview in the skeleton of the Quickstart.</span></span>
+<span data-ttu-id="6bb44-153">Ezenkívül használtuk `passport-azure-ad` a a gyors üzembe helyezés hello hello vázban szereplő előzetes verzióban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-153">In addition, we used `passport-azure-ad` for our preview in hello skeleton of hello Quickstart.</span></span>
 
 - `npm install passport-azure-ad`
 
-<span data-ttu-id="b1429-154">Ez telepíti a kódtárakat, amelyektől a `passport-azure-ad` függ.</span><span class="sxs-lookup"><span data-stu-id="b1429-154">This will install the libraries that `passport-azure-ad` depends on.</span></span>
+<span data-ttu-id="6bb44-154">Ez a hello szalagtárak telepíti, amely `passport-azure-ad` függ.</span><span class="sxs-lookup"><span data-stu-id="6bb44-154">This will install hello libraries that `passport-azure-ad` depends on.</span></span>
 
-## <a name="set-up-your-app-to-use-the-passport-nodejs-strategy"></a><span data-ttu-id="b1429-155">Az alkalmazás beállítása a Passport-Node.js stratégia használatára</span><span class="sxs-lookup"><span data-stu-id="b1429-155">Set up your app to use the Passport-Node.js strategy</span></span>
-<span data-ttu-id="b1429-156">Állítsa be az Express közbenső szoftvert az OpenID Connect hitelesítési protokoll használatára.</span><span class="sxs-lookup"><span data-stu-id="b1429-156">Configure the Express middleware to use the OpenID Connect authentication protocol.</span></span> <span data-ttu-id="b1429-157">A rendszer többek között a Passport használatával fogja kiállítani a be- és kijelentkezési kéréseket, kezelni a felhasználói munkameneteket, valamint lekérni a felhasználókra vonatkozó információkat.</span><span class="sxs-lookup"><span data-stu-id="b1429-157">Passport will be used to issue sign-in and sign-out requests, manage user sessions, and get information about users, among other actions.</span></span>
+## <a name="set-up-your-app-toouse-hello-passport-nodejs-strategy"></a><span data-ttu-id="6bb44-155">Állítsa be az alkalmazás toouse hello Passport-Node.js stratégia</span><span class="sxs-lookup"><span data-stu-id="6bb44-155">Set up your app toouse hello Passport-Node.js strategy</span></span>
+<span data-ttu-id="6bb44-156">Konfigurálja a hello Express köztes toouse hello OpenID Connect hitelesítési protokoll.</span><span class="sxs-lookup"><span data-stu-id="6bb44-156">Configure hello Express middleware toouse hello OpenID Connect authentication protocol.</span></span> <span data-ttu-id="6bb44-157">Passport kell használt tooissue be- és kijelentkezési kéréseket, kezelni a felhasználói munkameneteket, és többek között a felhasználók adatainak beolvasása.</span><span class="sxs-lookup"><span data-stu-id="6bb44-157">Passport will be used tooissue sign-in and sign-out requests, manage user sessions, and get information about users, among other actions.</span></span>
 
-<span data-ttu-id="b1429-158">Nyissa meg a projekt gyökerében található `config.js` fájlt, és adja meg az alkalmazás konfigurációs értékeit az `exports.creds` részben.</span><span class="sxs-lookup"><span data-stu-id="b1429-158">Open the `config.js` file in the root of the project and enter your app's configuration values in the `exports.creds` section.</span></span>
-- <span data-ttu-id="b1429-159">`clientID`: az alkalmazáshoz a regisztrációs portálon rendelt **alkalmazásazonosító**.</span><span class="sxs-lookup"><span data-stu-id="b1429-159">`clientID`: The **Application ID** assigned to your app in the registration portal.</span></span>
-- <span data-ttu-id="b1429-160">`returnURL`: a portálon megadott **átirányítási URI**.</span><span class="sxs-lookup"><span data-stu-id="b1429-160">`returnURL`: The **Redirect URI** you entered in the portal.</span></span>
-- <span data-ttu-id="b1429-161">`tenantName`: az alkalmazáshoz tartozó bérlő neve (például **contoso.onmicrosoft.com**).</span><span class="sxs-lookup"><span data-stu-id="b1429-161">`tenantName`: The tenant name of your app, for example, **contoso.onmicrosoft.com**.</span></span>
+<span data-ttu-id="6bb44-158">Nyissa meg hello `config.js` hello projekt gyökerében hello fájlt, és adja meg az alkalmazás konfigurációs értékeit hello `exports.creds` szakasz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-158">Open hello `config.js` file in hello root of hello project and enter your app's configuration values in hello `exports.creds` section.</span></span>
+- <span data-ttu-id="6bb44-159">`clientID`: hello **Alkalmazásazonosító** tooyour app hello regisztrációs portálon rendelt.</span><span class="sxs-lookup"><span data-stu-id="6bb44-159">`clientID`: hello **Application ID** assigned tooyour app in hello registration portal.</span></span>
+- <span data-ttu-id="6bb44-160">`returnURL`: hello **átirányítási URI-** hello portálon megadott.</span><span class="sxs-lookup"><span data-stu-id="6bb44-160">`returnURL`: hello **Redirect URI** you entered in hello portal.</span></span>
+- <span data-ttu-id="6bb44-161">`tenantName`: hello bérlő nevét az alkalmazás, például **contoso.onmicrosoft.com**.</span><span class="sxs-lookup"><span data-stu-id="6bb44-161">`tenantName`: hello tenant name of your app, for example, **contoso.onmicrosoft.com**.</span></span>
 
 [!INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-<span data-ttu-id="b1429-162">Nyissa meg a projekt gyökerében található `app.js` fájlt.</span><span class="sxs-lookup"><span data-stu-id="b1429-162">Open the `app.js` file in the root of the project.</span></span> <span data-ttu-id="b1429-163">Adja hozzá a következő hívást a `passport-azure-ad`-hez tartozó `OIDCStrategy` stratégia meghívásához.</span><span class="sxs-lookup"><span data-stu-id="b1429-163">Add the following call to invoke the `OIDCStrategy` strategy that comes with `passport-azure-ad`.</span></span>
+<span data-ttu-id="6bb44-162">Nyissa meg hello `app.js` hello hello projekt gyökerében található fájl.</span><span class="sxs-lookup"><span data-stu-id="6bb44-162">Open hello `app.js` file in hello root of hello project.</span></span> <span data-ttu-id="6bb44-163">Adja hozzá a következő hívást tooinvoke hello hello `OIDCStrategy` stratégia `passport-azure-ad`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-163">Add hello following call tooinvoke hello `OIDCStrategy` strategy that comes with `passport-azure-ad`.</span></span>
 
 
 ```JavaScript
@@ -113,10 +113,10 @@ var log = bunyan.createLogger({
 });
 ```
 
-<span data-ttu-id="b1429-164">A bejelentkezési kérések kezelésére használja a korábban említett stratégiát.</span><span class="sxs-lookup"><span data-stu-id="b1429-164">Use the strategy you just referenced to handle sign-in requests.</span></span>
+<span data-ttu-id="6bb44-164">Használja a korábban említett toohandle bejelentkezési kérelmek hello stratégiát.</span><span class="sxs-lookup"><span data-stu-id="6bb44-164">Use hello strategy you just referenced toohandle sign-in requests.</span></span>
 
 ```JavaScript
-// Use the OIDCStrategy in Passport (Section 2).
+// Use hello OIDCStrategy in Passport (Section 2).
 //
 //   Strategies in Passport require a "validate" function that accepts
 //   credentials (in this case, an OpenID identifier), and invokes a callback
@@ -151,21 +151,21 @@ passport.use(new OIDCStrategy({
   }
 ));
 ```
-<span data-ttu-id="b1429-165">A Passport az összes stratégia (ideértve a Twittert és a Facebookot is) esetében hasonló mintát alkalmaz.</span><span class="sxs-lookup"><span data-stu-id="b1429-165">Passport uses a similar pattern for all of its strategies (including Twitter and Facebook).</span></span> <span data-ttu-id="b1429-166">A stratégiafejlesztők általában ehhez a mintához tartják magukat.</span><span class="sxs-lookup"><span data-stu-id="b1429-166">All strategy writers adhere to this pattern.</span></span> <span data-ttu-id="b1429-167">Ha megnézzük a stratégiát, láthatjuk, hogy át kell adni neki egy `function()` elemet, ennek paraméterei egy jogkivonat és egy `done`.</span><span class="sxs-lookup"><span data-stu-id="b1429-167">When you look at the strategy, you can see that you pass it a `function()` that has a token and a `done` as the parameters.</span></span> <span data-ttu-id="b1429-168">Ha a stratégia elvégezte teendőit, visszatér Önhöz.</span><span class="sxs-lookup"><span data-stu-id="b1429-168">The strategy comes back to you after it has done all of its work.</span></span> <span data-ttu-id="b1429-169">Érdemes tárolni a felhasználót és menteni a jogkivonatot, hogy a műveletet ne kelljen megismételni.</span><span class="sxs-lookup"><span data-stu-id="b1429-169">Store the user and stash the token so that you don’t need to ask for it again.</span></span>
+<span data-ttu-id="6bb44-165">A Passport az összes stratégia (ideértve a Twittert és a Facebookot is) esetében hasonló mintát alkalmaz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-165">Passport uses a similar pattern for all of its strategies (including Twitter and Facebook).</span></span> <span data-ttu-id="6bb44-166">Stratégiafejlesztő toothis mintát.</span><span class="sxs-lookup"><span data-stu-id="6bb44-166">All strategy writers adhere toothis pattern.</span></span> <span data-ttu-id="6bb44-167">Ha hello stratégia tekinti meg, láthatja, át kell adni azt egy `function()` , amely rendelkezik egy jogkivonat és egy `done` hello paraméterekként.</span><span class="sxs-lookup"><span data-stu-id="6bb44-167">When you look at hello strategy, you can see that you pass it a `function()` that has a token and a `done` as hello parameters.</span></span> <span data-ttu-id="6bb44-168">hello stratégia ismét elérhető lesz tooyou után fordult elő az összes teendőit.</span><span class="sxs-lookup"><span data-stu-id="6bb44-168">hello strategy comes back tooyou after it has done all of its work.</span></span> <span data-ttu-id="6bb44-169">Hello felhasználói tárolja, és menteni a hello jogkivonat, így nem kell tooask azt újra.</span><span class="sxs-lookup"><span data-stu-id="6bb44-169">Store hello user and stash hello token so that you don’t need tooask for it again.</span></span>
 
 > [!IMPORTANT]
-<span data-ttu-id="b1429-170">Az előzőekben látható kód befogadja a kiszolgáló által hitelesített összes felhasználót.</span><span class="sxs-lookup"><span data-stu-id="b1429-170">The preceding code takes all users whom the server authenticates.</span></span> <span data-ttu-id="b1429-171">Ezt nevezzük automatikus regisztrációnak.</span><span class="sxs-lookup"><span data-stu-id="b1429-171">This is autoregistration.</span></span> <span data-ttu-id="b1429-172">Éles kiszolgálók használata során általában csak akkor érdemes beengedni a felhasználókat, ha már elvégezték az Ön által előírt regisztrációs folyamatot.</span><span class="sxs-lookup"><span data-stu-id="b1429-172">When you use production servers, you don’t want to let in users unless they have gone through a registration process that you have set up.</span></span> <span data-ttu-id="b1429-173">Ez gyakori eljárás a fogyasztói alkalmazásoknál.</span><span class="sxs-lookup"><span data-stu-id="b1429-173">You can often see this pattern in consumer apps.</span></span> <span data-ttu-id="b1429-174">Ezek az alkalmazások sok esetben lehetővé teszik a facebookos regisztrációt, de aztán további adatok megadását is kérik.</span><span class="sxs-lookup"><span data-stu-id="b1429-174">These allow you to register by using Facebook, but then they ask you to fill out additional information.</span></span> <span data-ttu-id="b1429-175">Ha az alkalmazás nem csupán mintaként szolgálna, most kinyerhetnénk a visszaküldött jogkivonat-objektumból az e-mail-címet, majd megkérhetnénk a felhasználót, hogy adjon meg további információkat.</span><span class="sxs-lookup"><span data-stu-id="b1429-175">If our application wasn’t a sample, we could extract an email address from the token object that is returned, and then ask the user to fill out additional information.</span></span> <span data-ttu-id="b1429-176">Mivel a kiszolgáló csak tesztelésre szolgál, egyszerűen hozzáadjuk a felhasználókat a memóriában lévő adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="b1429-176">Because this is a test server, we simply add users to the in-memory database.</span></span>
+<span data-ttu-id="6bb44-170">hello előző kód szükséges minden olyan felhasználó, akinek hello kiszolgáló hitelesíti.</span><span class="sxs-lookup"><span data-stu-id="6bb44-170">hello preceding code takes all users whom hello server authenticates.</span></span> <span data-ttu-id="6bb44-171">Ezt nevezzük automatikus regisztrációnak.</span><span class="sxs-lookup"><span data-stu-id="6bb44-171">This is autoregistration.</span></span> <span data-ttu-id="6bb44-172">Éles kiszolgálók használata, ha nem szeretné, hogy a felhasználók toolet kivéve, ha túl vannak, amelyek állított be regisztrációs folyamatot.</span><span class="sxs-lookup"><span data-stu-id="6bb44-172">When you use production servers, you don’t want toolet in users unless they have gone through a registration process that you have set up.</span></span> <span data-ttu-id="6bb44-173">Ez gyakori eljárás a fogyasztói alkalmazásoknál.</span><span class="sxs-lookup"><span data-stu-id="6bb44-173">You can often see this pattern in consumer apps.</span></span> <span data-ttu-id="6bb44-174">Ezek lehetővé teszik tooregister Facebook-fiókkal, de majd kéri az toofill meg további információkat.</span><span class="sxs-lookup"><span data-stu-id="6bb44-174">These allow you tooregister by using Facebook, but then they ask you toofill out additional information.</span></span> <span data-ttu-id="6bb44-175">Ha az alkalmazás nem csupán mintaként szolgálna, azt sikerült kinyerése egy e-mail címet hello jogkivonat-objektumból ad vissza, és majd kérje meg a hello felhasználói toofill meg további információkat.</span><span class="sxs-lookup"><span data-stu-id="6bb44-175">If our application wasn’t a sample, we could extract an email address from hello token object that is returned, and then ask hello user toofill out additional information.</span></span> <span data-ttu-id="6bb44-176">Mivel ez egy tesztkiszolgálón, egyszerűen hozzáadjuk a felhasználók toohello memóriában lévő adatbázishoz.</span><span class="sxs-lookup"><span data-stu-id="6bb44-176">Because this is a test server, we simply add users toohello in-memory database.</span></span>
 
-<span data-ttu-id="b1429-177">Adja hozzá a metódusokat, amelyek lehetővé teszik a Passport által előírt bejelentkezést elvégző felhasználók nyomon követését.</span><span class="sxs-lookup"><span data-stu-id="b1429-177">Add the methods that allow you to keep track of users who have signed in, as required by Passport.</span></span> <span data-ttu-id="b1429-178">Ehhez tartozik a felhasználói adatok szerializálása és deszerializálása is:</span><span class="sxs-lookup"><span data-stu-id="b1429-178">This includes serializing and deserializing user information:</span></span>
+<span data-ttu-id="6bb44-177">Adja hozzá, amelyek lehetővé teszik a felhasználók, akik bejelentkezett, tookeep követése hello metódusokat Passport által előírt.</span><span class="sxs-lookup"><span data-stu-id="6bb44-177">Add hello methods that allow you tookeep track of users who have signed in, as required by Passport.</span></span> <span data-ttu-id="6bb44-178">Ehhez tartozik a felhasználói adatok szerializálása és deszerializálása is:</span><span class="sxs-lookup"><span data-stu-id="6bb44-178">This includes serializing and deserializing user information:</span></span>
 
 ```JavaScript
 
 // Passport session setup. (Section 2)
 
-//   To support persistent sign-in sessions, Passport needs to be able to
+//   toosupport persistent sign-in sessions, Passport needs toobe able to
 //   serialize users into and deserialize users out of sessions. Typically,
-//   this is as simple as storing the user ID when Passport serializes a user
-//   and finding the user by ID when Passport deserializes that user.
+//   this is as simple as storing hello user ID when Passport serializes a user
+//   and finding hello user by ID when Passport deserializes that user.
 passport.serializeUser(function(user, done) {
   done(null, user.email);
 });
@@ -176,7 +176,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-// Array to hold users who have signed in
+// Array toohold users who have signed in
 var users = [];
 
 var findByEmail = function(email, fn) {
@@ -192,7 +192,7 @@ var findByEmail = function(email, fn) {
 
 ```
 
-<span data-ttu-id="b1429-179">Adja hozzá a kódot az Express motor betöltése érdekében.</span><span class="sxs-lookup"><span data-stu-id="b1429-179">Add the code to load the Express engine.</span></span> <span data-ttu-id="b1429-180">Az alábbiakban megfigyelheti, hogy az Express által biztosított alapértelmezett `/views` és `/routes` mintákat használjuk.</span><span class="sxs-lookup"><span data-stu-id="b1429-180">In the following, you can see that we use the default `/views` and `/routes` pattern that Express provides.</span></span>
+<span data-ttu-id="6bb44-179">Adja hozzá a hello kód tooload hello Express motor.</span><span class="sxs-lookup"><span data-stu-id="6bb44-179">Add hello code tooload hello Express engine.</span></span> <span data-ttu-id="6bb44-180">A következő hello, megtekintheti, hogy használjuk-e hello alapértelmezett `/views` és `/routes` mintát, amely az Express által biztosított.</span><span class="sxs-lookup"><span data-stu-id="6bb44-180">In hello following, you can see that we use hello default `/views` and `/routes` pattern that Express provides.</span></span>
 
 ```JavaScript
 
@@ -209,7 +209,7 @@ app.configure(function() {
   app.use(cookieParser());
   app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
   app.use(bodyParser.urlencoded({ extended : true }));
-  // Initialize Passport!  Also use passport.session() middleware to support
+  // Initialize Passport!  Also use passport.session() middleware toosupport
   // persistent sign-in sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
@@ -219,31 +219,31 @@ app.configure(function() {
 
 ```
 
-<span data-ttu-id="b1429-181">Adja hozzá a `POST` útvonalakat, amelyek kiosztják a tényleges bejelentkezési kéréseket a `passport-azure-ad` motornak:</span><span class="sxs-lookup"><span data-stu-id="b1429-181">Add the `POST` routes that hand off the actual sign-in requests to the `passport-azure-ad` engine:</span></span>
+<span data-ttu-id="6bb44-181">Adja hozzá a hello `POST` útvonalakat, amelyek kiosztják a tényleges bejelentkezési kérelmek toohello hello `passport-azure-ad` motor:</span><span class="sxs-lookup"><span data-stu-id="6bb44-181">Add hello `POST` routes that hand off hello actual sign-in requests toohello `passport-azure-ad` engine:</span></span>
 
 ```JavaScript
 
 // Our Auth routes (Section 3)
 
 // GET /auth/openid
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. The first step in OpenID authentication involves redirecting
-//   the user to an OpenID provider. After the user is authenticated,
-//   the OpenID provider redirects the user back to this application at
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. hello first step in OpenID authentication involves redirecting
+//   hello user tooan OpenID provider. After hello user is authenticated,
+//   hello OpenID provider redirects hello user back toothis application at
 //   /auth/openid/return
 
 app.get('/auth/openid',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Authentication was called in the Sample');
+    log.info('Authentication was called in hello Sample');
     res.redirect('/');
   });
 
 // GET /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it redirects the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it redirects hello user toohello home page.
 app.get('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
@@ -252,10 +252,10 @@ app.get('/auth/openid/return',
   });
 
 // POST /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it will redirect the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it will redirect hello user toohello home page.
 
 app.post('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
@@ -265,11 +265,11 @@ app.post('/auth/openid/return',
   });
 ```
 
-## <a name="use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a><span data-ttu-id="b1429-182">Be- és kijelentkezési kérések küldése az Azure AD-nek a Passport használatával</span><span class="sxs-lookup"><span data-stu-id="b1429-182">Use Passport to issue sign-in and sign-out requests to Azure AD</span></span>
+## <a name="use-passport-tooissue-sign-in-and-sign-out-requests-tooazure-ad"></a><span data-ttu-id="6bb44-182">A Passport tooissue bejelentkezési és kijelentkezési kérések tooAzure AD használatára</span><span class="sxs-lookup"><span data-stu-id="6bb44-182">Use Passport tooissue sign-in and sign-out requests tooAzure AD</span></span>
 
-<span data-ttu-id="b1429-183">Az alkalmazás mostantól az OpenID Connect hitelesítési protokoll segítségével képes kommunikálni a v2.0-végponttal.</span><span class="sxs-lookup"><span data-stu-id="b1429-183">Your app is now properly configured to communicate with the v2.0 endpoint by using the OpenID Connect authentication protocol.</span></span> <span data-ttu-id="b1429-184">`passport-azure-ad` már elvégezte a hitelesítési üzenetek létrehozását, az Azure AD-tól érkező jogkivonatok érvényességének ellenőrzését, valamint a felhasználói munkamenetek fenntartását.</span><span class="sxs-lookup"><span data-stu-id="b1429-184">`passport-azure-ad` has taken care of the details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session.</span></span> <span data-ttu-id="b1429-185">Most már csupán módot kell biztosítani a felhasználóknak a be- és kijelentkezésre, valamint további információkat kell gyűjteni a bejelentkező felhasználókról.</span><span class="sxs-lookup"><span data-stu-id="b1429-185">All that remains is to give your users a way to sign in and sign out, and to gather additional information on users who have signed in.</span></span>
+<span data-ttu-id="6bb44-183">Az alkalmazás már megfelelően konfigurált toocommunicate hello v2.0-végponttal hello OpenID Connect hitelesítési protokoll használatával.</span><span class="sxs-lookup"><span data-stu-id="6bb44-183">Your app is now properly configured toocommunicate with hello v2.0 endpoint by using hello OpenID Connect authentication protocol.</span></span> <span data-ttu-id="6bb44-184">`passport-azure-ad`rendelkezik hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartásáról a felhasználói munkamenet hello részleteit végrehajtott kezeli.</span><span class="sxs-lookup"><span data-stu-id="6bb44-184">`passport-azure-ad` has taken care of hello details of crafting authentication messages, validating tokens from Azure AD, and maintaining user session.</span></span> <span data-ttu-id="6bb44-185">Hogy továbbra is van toogive a felhasználók a módon toosign, és jelentkezzen ki, és bejelentkezett felhasználók toogather további információkat.</span><span class="sxs-lookup"><span data-stu-id="6bb44-185">All that remains is toogive your users a way toosign in and sign out, and toogather additional information on users who have signed in.</span></span>
 
-<span data-ttu-id="b1429-186">Első lépésként adja hozzá az alapértelmezett, bejelentkezési, fiókkal kapcsolatos és kijelentkezési metódusokat az `app.js` fájlhoz:</span><span class="sxs-lookup"><span data-stu-id="b1429-186">First, add the default, sign-in, account, and sign-out methods to your `app.js` file:</span></span>
+<span data-ttu-id="6bb44-186">Először adja hozzá a hello alapértelmezett, bejelentkezési, fiókkal, és kijelentkezési metódusokat tooyour `app.js` fájlt:</span><span class="sxs-lookup"><span data-stu-id="6bb44-186">First, add hello default, sign-in, account, and sign-out methods tooyour `app.js` file:</span></span>
 
 ```JavaScript
 
@@ -286,7 +286,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 app.get('/login',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Login was called in the Sample');
+    log.info('Login was called in hello Sample');
     res.redirect('/');
 });
 
@@ -297,22 +297,22 @@ app.get('/logout', function(req, res){
 
 ```
 
-<span data-ttu-id="b1429-187">A metódusok részletes leírása:</span><span class="sxs-lookup"><span data-stu-id="b1429-187">To review these methods in detail:</span></span>
-- <span data-ttu-id="b1429-188">Az `/` útvonal az `index.ejs` nézetre mutató átirányítást tartalmaz, illetve átadja a kérésben szereplő felhasználót (ha az létezik).</span><span class="sxs-lookup"><span data-stu-id="b1429-188">The `/` route redirects to the `index.ejs` view by passing the user in the request (if it exists).</span></span>
-- <span data-ttu-id="b1429-189">Az `/account` útvonal először ellenőrzi, hogy a felhasználó átment-e a hitelesítésen (ennek implementációja alább található).</span><span class="sxs-lookup"><span data-stu-id="b1429-189">The `/account` route first verifies that you are authenticated (the implementation for this is below).</span></span> <span data-ttu-id="b1429-190">Az útvonal ezt követően átadja a kérésben szereplő felhasználót, hogy Ön további információkat szerezhessen róla.</span><span class="sxs-lookup"><span data-stu-id="b1429-190">It then passes the user in the request so that you can get additional information about the user.</span></span>
-- <span data-ttu-id="b1429-191">A `/login` útvonal hívja meg a `passport-azure-ad`-ben található `azuread-openidconnect` hitelesítőt.</span><span class="sxs-lookup"><span data-stu-id="b1429-191">The `/login` route calls the `azuread-openidconnect` authenticator from `passport-azure-ad`.</span></span> <span data-ttu-id="b1429-192">Ha nem jár sikerrel, az útvonal visszairányítja a felhasználót a `/login`-hoz.</span><span class="sxs-lookup"><span data-stu-id="b1429-192">If it doesn't succeed, the route redirects the user back to `/login`.</span></span>
-- <span data-ttu-id="b1429-193">`/logout` egyszerűen meghívja a `logout.ejs`-t (és annak útvonalát).</span><span class="sxs-lookup"><span data-stu-id="b1429-193">`/logout` simply calls `logout.ejs` (and its route).</span></span> <span data-ttu-id="b1429-194">Ez törli a cookie-kat, és visszairányítja a felhasználót az `index.ejs`-hez.</span><span class="sxs-lookup"><span data-stu-id="b1429-194">This clears cookies and then returns the user back to `index.ejs`.</span></span>
+<span data-ttu-id="6bb44-187">tooreview ezen módszerek részletes információkat:</span><span class="sxs-lookup"><span data-stu-id="6bb44-187">tooreview these methods in detail:</span></span>
+- <span data-ttu-id="6bb44-188">Hello `/` útvonal átirányítja a felhasználókat toohello `index.ejs` nézet úgy, hogy hello felhasználói hello kérelem (ha van ilyen).</span><span class="sxs-lookup"><span data-stu-id="6bb44-188">hello `/` route redirects toohello `index.ejs` view by passing hello user in hello request (if it exists).</span></span>
+- <span data-ttu-id="6bb44-189">Hello `/account` útvonal először ellenőrzi, hogy hitelesítése (hello végrehajtása a következő alatt).</span><span class="sxs-lookup"><span data-stu-id="6bb44-189">hello `/account` route first verifies that you are authenticated (hello implementation for this is below).</span></span> <span data-ttu-id="6bb44-190">Ezután átadja hello felhasználói hello kérelem, hogy hello felhasználó további információt kaphat.</span><span class="sxs-lookup"><span data-stu-id="6bb44-190">It then passes hello user in hello request so that you can get additional information about hello user.</span></span>
+- <span data-ttu-id="6bb44-191">Hello `/login` útvonal hívások hello `azuread-openidconnect` a hitelesítő `passport-azure-ad`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-191">hello `/login` route calls hello `azuread-openidconnect` authenticator from `passport-azure-ad`.</span></span> <span data-ttu-id="6bb44-192">Ha nem jár sikerrel, hello útvonal túl átirányítja a felhasználókat hello felhasználói vissza`/login`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-192">If it doesn't succeed, hello route redirects hello user back too`/login`.</span></span>
+- <span data-ttu-id="6bb44-193">`/logout` egyszerűen meghívja a `logout.ejs`-t (és annak útvonalát).</span><span class="sxs-lookup"><span data-stu-id="6bb44-193">`/logout` simply calls `logout.ejs` (and its route).</span></span> <span data-ttu-id="6bb44-194">Ez törli a cookie-kat, és ezután a beolvasása hello vissza felhasználói túl`index.ejs`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-194">This clears cookies and then returns hello user back too`index.ejs`.</span></span>
 
 
-<span data-ttu-id="b1429-195">Az `app.js` utolsó részeként adja hozzá az `/account` útvonalban használt `EnsureAuthenticated` metódust.</span><span class="sxs-lookup"><span data-stu-id="b1429-195">For the last part of `app.js`, add the `EnsureAuthenticated` method that is used in the `/account` route.</span></span>
+<span data-ttu-id="6bb44-195">Hello utolsó részének `app.js`, vegye fel a hello `EnsureAuthenticated` hello használt módszer `/account` útvonal.</span><span class="sxs-lookup"><span data-stu-id="6bb44-195">For hello last part of `app.js`, add hello `EnsureAuthenticated` method that is used in hello `/account` route.</span></span>
 
 ```JavaScript
 
-// Simple route middleware to ensure that the user is authenticated. (Section 4)
+// Simple route middleware tooensure that hello user is authenticated. (Section 4)
 
-//   Use this route middleware on any resource that needs to be protected. If
-//   the request is authenticated (typically via a persistent sign-in session),
-//   then the request will proceed. Otherwise, the user will be redirected to the
+//   Use this route middleware on any resource that needs toobe protected. If
+//   hello request is authenticated (typically via a persistent sign-in session),
+//   then hello request will proceed. Otherwise, hello user will be redirected toothe
 //   sign-in page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
@@ -321,7 +321,7 @@ function ensureAuthenticated(req, res, next) {
 
 ```
 
-<span data-ttu-id="b1429-196">Végül hozza létre magát a kiszolgálót is az `app.js`-ben.</span><span class="sxs-lookup"><span data-stu-id="b1429-196">Finally, create the server itself in `app.js`.</span></span>
+<span data-ttu-id="6bb44-196">Végezetül hozza létre magát hello kiszolgálót a `app.js`.</span><span class="sxs-lookup"><span data-stu-id="6bb44-196">Finally, create hello server itself in `app.js`.</span></span>
 
 ```JavaScript
 
@@ -330,11 +330,11 @@ app.listen(3000);
 ```
 
 
-## <a name="create-the-views-and-routes-in-express-to-call-your-policies"></a><span data-ttu-id="b1429-197">A szabályzatokat meghívó nézetek és útvonalak létrehozása az Expressben</span><span class="sxs-lookup"><span data-stu-id="b1429-197">Create the views and routes in Express to call your policies</span></span>
+## <a name="create-hello-views-and-routes-in-express-toocall-your-policies"></a><span data-ttu-id="6bb44-197">Hello nézeteket hozhat létre, és az Express toocall továbbítja a házirendek</span><span class="sxs-lookup"><span data-stu-id="6bb44-197">Create hello views and routes in Express toocall your policies</span></span>
 
-<span data-ttu-id="b1429-198">Az `app.js` ezzel elkészült.</span><span class="sxs-lookup"><span data-stu-id="b1429-198">Your `app.js` is now complete.</span></span> <span data-ttu-id="b1429-199">Már csak hozzá kell adnia az útvonalakat és nézeteket, amelyek lehetővé teszik a bejelentkezési és regisztrációs szabályzatok meghívását.</span><span class="sxs-lookup"><span data-stu-id="b1429-199">You just need to add the routes and views that allow you to call the sign-in and sign-up policies.</span></span> <span data-ttu-id="b1429-200">Ezek kezelik a létrehozott `/logout` és `/login` útvonalakat is.</span><span class="sxs-lookup"><span data-stu-id="b1429-200">These also handle the `/logout` and `/login` routes you created.</span></span>
+<span data-ttu-id="6bb44-198">Az `app.js` ezzel elkészült.</span><span class="sxs-lookup"><span data-stu-id="6bb44-198">Your `app.js` is now complete.</span></span> <span data-ttu-id="6bb44-199">Egyszerűen tooadd hello útvonalakat és nézeteket, amelyek lehetővé teszik toocall hello bejelentkezési és regisztrációs szabályzatok.</span><span class="sxs-lookup"><span data-stu-id="6bb44-199">You just need tooadd hello routes and views that allow you toocall hello sign-in and sign-up policies.</span></span> <span data-ttu-id="6bb44-200">Ezek kezelik hello `/logout` és `/login` létrehozott útvonalak.</span><span class="sxs-lookup"><span data-stu-id="6bb44-200">These also handle hello `/logout` and `/login` routes you created.</span></span>
 
-<span data-ttu-id="b1429-201">Hozza létre a gyökérkönyvtárban a `/routes/index.js` útvonalat.</span><span class="sxs-lookup"><span data-stu-id="b1429-201">Create the `/routes/index.js` route under the root directory.</span></span>
+<span data-ttu-id="6bb44-201">Hozzon létre hello `/routes/index.js` útvonal hello gyökérkönyvtárban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-201">Create hello `/routes/index.js` route under hello root directory.</span></span>
 
 ```JavaScript
 
@@ -347,7 +347,7 @@ exports.index = function(req, res){
 };
 ```
 
-<span data-ttu-id="b1429-202">Hozza létre a gyökérkönyvtárban a `/routes/user.js` útvonalat.</span><span class="sxs-lookup"><span data-stu-id="b1429-202">Create the `/routes/user.js` route under the root directory.</span></span>
+<span data-ttu-id="6bb44-202">Hozzon létre hello `/routes/user.js` útvonal hello gyökérkönyvtárban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-202">Create hello `/routes/user.js` route under hello root directory.</span></span>
 
 ```JavaScript
 
@@ -360,9 +360,9 @@ exports.list = function(req, res){
 };
 ```
 
-<span data-ttu-id="b1429-203">Ezek az egyszerű útvonalak adják át a kéréseket a nézeteknek.</span><span class="sxs-lookup"><span data-stu-id="b1429-203">These simple routes pass along requests to your views.</span></span> <span data-ttu-id="b1429-204">Ha elérhető felhasználó, azt is tartalmazzák.</span><span class="sxs-lookup"><span data-stu-id="b1429-204">They include the user, if one is present.</span></span>
+<span data-ttu-id="6bb44-203">Ezek az egyszerű útvonalak adják át a kérelmek tooyour nézetek.</span><span class="sxs-lookup"><span data-stu-id="6bb44-203">These simple routes pass along requests tooyour views.</span></span> <span data-ttu-id="6bb44-204">Ha ilyen hello felhasználói tartalmaznak.</span><span class="sxs-lookup"><span data-stu-id="6bb44-204">They include hello user, if one is present.</span></span>
 
-<span data-ttu-id="b1429-205">Hozza létre a gyökérkönyvtárban a `/views/index.ejs` útvonalat.</span><span class="sxs-lookup"><span data-stu-id="b1429-205">Create the `/views/index.ejs` view under the root directory.</span></span> <span data-ttu-id="b1429-206">Ez egy egyszerű lap, amely a bejelentkezési és kijelentkezési szabályzatok meghívását végzi.</span><span class="sxs-lookup"><span data-stu-id="b1429-206">This is a simple page that calls policies for sign-in and sign-out.</span></span> <span data-ttu-id="b1429-207">Ezenfelül a fiókadatok beszerzésére is használható.</span><span class="sxs-lookup"><span data-stu-id="b1429-207">You can also use it to grab account information.</span></span> <span data-ttu-id="b1429-208">Felhívjuk figyelmét, hogy a felhasználónak egy kéréssel történő átadása közben a feltételes `if (!user)` segítségével megbizonyosodhat róla, hogy a felhasználó bejelentkezett-e.</span><span class="sxs-lookup"><span data-stu-id="b1429-208">Note that you can use the conditional `if (!user)` as the user is passed through in the request to provide evidence that the user is signed in.</span></span>
+<span data-ttu-id="6bb44-205">Hozzon létre hello `/views/index.ejs` nézet hello gyökérkönyvtárban.</span><span class="sxs-lookup"><span data-stu-id="6bb44-205">Create hello `/views/index.ejs` view under hello root directory.</span></span> <span data-ttu-id="6bb44-206">Ez egy egyszerű lap, amely a bejelentkezési és kijelentkezési szabályzatok meghívását végzi. Használhatja az toograb fiók adatait.</span><span class="sxs-lookup"><span data-stu-id="6bb44-206">This is a simple page that calls policies for sign-in and sign-out. You can also use it toograb account information.</span></span> <span data-ttu-id="6bb44-207">Vegye figyelembe, hogy használhatja-e feltételes hello `if (!user)` , hello felhasználói átadott keresztül hello kérelem tooprovide bizonyíték hello felhasználó bejelentkezett.</span><span class="sxs-lookup"><span data-stu-id="6bb44-207">Note that you can use hello conditional `if (!user)` as hello user is passed through in hello request tooprovide evidence that hello user is signed in.</span></span>
 
 ```JavaScript
 <% if (!user) { %>
@@ -377,7 +377,7 @@ exports.list = function(req, res){
 <% } %>
 ```
 
-<span data-ttu-id="b1429-209">Hozza létre a `/views/account.ejs` nézetet a gyökérkönyvtárban, amely lehetővé teszi a `passport-azure-ad` által a felhasználói kérésbe helyezett további információk megtekintését.</span><span class="sxs-lookup"><span data-stu-id="b1429-209">Create the `/views/account.ejs` view under the root directory so that you can view additional information that `passport-azure-ad` put in the user request.</span></span>
+<span data-ttu-id="6bb44-208">Hozzon létre hello `/views/account.ejs` hello gyökérkönyvtárban megtekintheti, hogy további információkat láthat, amelyek `passport-azure-ad` hello felhasználói kérelem be.</span><span class="sxs-lookup"><span data-stu-id="6bb44-208">Create hello `/views/account.ejs` view under hello root directory so that you can view additional information that `passport-azure-ad` put in hello user request.</span></span>
 
 ```Javascript
 <% if (!user) { %>
@@ -396,30 +396,30 @@ exports.list = function(req, res){
 <% } %>
 ```
 
-<span data-ttu-id="b1429-210">Most már lefordíthatja, és futtathatja az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="b1429-210">You can now build and run your app.</span></span>
+<span data-ttu-id="6bb44-209">Most már lefordíthatja, és futtathatja az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="6bb44-209">You can now build and run your app.</span></span>
 
-<span data-ttu-id="b1429-211">Futtassa a `node app.js`-t, és nyissa meg a következő oldalt: `http://localhost:3000`</span><span class="sxs-lookup"><span data-stu-id="b1429-211">Run `node app.js` and navigate to `http://localhost:3000`</span></span>
+<span data-ttu-id="6bb44-210">Futtatás `node app.js` , és keresse meg a túl`http://localhost:3000`</span><span class="sxs-lookup"><span data-stu-id="6bb44-210">Run `node app.js` and navigate too`http://localhost:3000`</span></span>
 
 
-<span data-ttu-id="b1429-212">Regisztráljon az alkalmazásra e-mail vagy Facebook használatával, majd jelentkezzen be.</span><span class="sxs-lookup"><span data-stu-id="b1429-212">Sign up or sign in to the app by using email or Facebook.</span></span> <span data-ttu-id="b1429-213">Jelentkezzen ki, majd jelentkezzen be ismét egy másik felhasználóval.</span><span class="sxs-lookup"><span data-stu-id="b1429-213">Sign out and sign back in as a different user.</span></span>
+<span data-ttu-id="6bb44-211">Regisztráció, vagy jelentkezzen be toohello app e-mail vagy Facebook használatával.</span><span class="sxs-lookup"><span data-stu-id="6bb44-211">Sign up or sign in toohello app by using email or Facebook.</span></span> <span data-ttu-id="6bb44-212">Jelentkezzen ki, majd jelentkezzen be ismét egy másik felhasználóval.</span><span class="sxs-lookup"><span data-stu-id="6bb44-212">Sign out and sign back in as a different user.</span></span>
 
-##<a name="next-steps"></a><span data-ttu-id="b1429-214">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="b1429-214">Next steps</span></span>
+##<a name="next-steps"></a><span data-ttu-id="6bb44-213">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="6bb44-213">Next steps</span></span>
 
-<span data-ttu-id="b1429-215">Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként [.zip-fájlban is letöltheti](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip).</span><span class="sxs-lookup"><span data-stu-id="b1429-215">For reference, the completed sample (without your configuration values) [is provided as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip).</span></span> <span data-ttu-id="b1429-216">Ezenfelül a GitHubból is klónozhatja:</span><span class="sxs-lookup"><span data-stu-id="b1429-216">You can also clone it from GitHub:</span></span>
+<span data-ttu-id="6bb44-214">Referenciaként hello befejeződött (a konfigurációs értékek nélkül) minta [egy .zip-fájlban is](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip).</span><span class="sxs-lookup"><span data-stu-id="6bb44-214">For reference, hello completed sample (without your configuration values) [is provided as a .zip file](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip).</span></span> <span data-ttu-id="6bb44-215">Ezenfelül a GitHubból is klónozhatja:</span><span class="sxs-lookup"><span data-stu-id="6bb44-215">You can also clone it from GitHub:</span></span>
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-nodejs.git```
 
-<span data-ttu-id="b1429-217">Most már továbbléphet az összetettebb témákra.</span><span class="sxs-lookup"><span data-stu-id="b1429-217">You can now move on to more advanced topics.</span></span> <span data-ttu-id="b1429-218">Próbálkozzon meg a következőkkel:</span><span class="sxs-lookup"><span data-stu-id="b1429-218">You might try:</span></span>
+<span data-ttu-id="6bb44-216">Most már továbbléphet a témakörök speciális toomore.</span><span class="sxs-lookup"><span data-stu-id="6bb44-216">You can now move on toomore advanced topics.</span></span> <span data-ttu-id="6bb44-217">Próbálkozzon meg a következőkkel:</span><span class="sxs-lookup"><span data-stu-id="6bb44-217">You might try:</span></span>
 
-[<span data-ttu-id="b1429-219">Védelem biztosítása webes API-k számára a Node.js-hez készült B2C-modell segítségével</span><span class="sxs-lookup"><span data-stu-id="b1429-219">Secure a web API by using the B2C model in Node.js</span></span>](active-directory-b2c-devquickstarts-api-node.md)
+[<span data-ttu-id="6bb44-218">A webes API biztonságossá tétele a node.js hello B2C-modell használatával</span><span class="sxs-lookup"><span data-stu-id="6bb44-218">Secure a web API by using hello B2C model in Node.js</span></span>](active-directory-b2c-devquickstarts-api-node.md)
 
 <!--
 
 For additional resources, check out:
-You can now move on to more advanced B2C topics. You might try:
+You can now move on toomore advanced B2C topics. You might try:
 
 [Call a Node.js web API from a Node.js web app]()
 
-[Customizing the your B2C App's UX >>]()
+[Customizing hello your B2C App's UX >>]()
 
 -->

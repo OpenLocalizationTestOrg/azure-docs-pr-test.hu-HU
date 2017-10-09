@@ -1,6 +1,6 @@
 ---
-title: "Módosítsa a számlázás az Azure RemoteApp |} Microsoft Docs"
-description: "Megtudhatja, hogyan állítsa le az Azure RemoteApp kiszámlázott."
+title: "az Azure RemoteApp aaaChange hello számlázási |} Microsoft Docs"
+description: "Megtudhatja, hogyan toostop kiszámlázott Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,25 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 18c369c4e8ccf828c35ec4a964e61f13613f899b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a0d449a6a9759c4b55156c1694fcd161a1face76
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-stop-being-billed-for-azure-remoteapp"></a><span data-ttu-id="210cf-103">Azure RemoteApp kiszámlázott leállítása</span><span class="sxs-lookup"><span data-stu-id="210cf-103">How to stop being billed for Azure RemoteApp</span></span>
+# <a name="how-toostop-being-billed-for-azure-remoteapp"></a><span data-ttu-id="376ea-103">Hogyan toostop kiszámlázott Azure RemoteApp</span><span class="sxs-lookup"><span data-stu-id="376ea-103">How toostop being billed for Azure RemoteApp</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="210cf-104">Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik.</span><span class="sxs-lookup"><span data-stu-id="210cf-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="210cf-105">A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).</span><span class="sxs-lookup"><span data-stu-id="210cf-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> <span data-ttu-id="376ea-104">Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik.</span><span class="sxs-lookup"><span data-stu-id="376ea-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="376ea-105">Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.</span><span class="sxs-lookup"><span data-stu-id="376ea-105">Read hello [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
 > 
 > 
 
-<span data-ttu-id="210cf-106">Mindaddig, amíg az Azure RemoteApp-gyűjtemények, még akkor is hozzá nem rendelt felhasználókkal rendelkezik, akkor a RemoteApp számlázzuk.</span><span class="sxs-lookup"><span data-stu-id="210cf-106">As long as you have Azure RemoteApp collections, even with no users assigned, you will be billed for RemoteApp.</span></span> <span data-ttu-id="210cf-107">Állítsa le a számlázás, törölje az összes, a gyűjtemények.</span><span class="sxs-lookup"><span data-stu-id="210cf-107">To stop this billing, delete all of your collections.</span></span> 
+<span data-ttu-id="376ea-106">Mindaddig, amíg az Azure RemoteApp-gyűjtemények, még akkor is hozzá nem rendelt felhasználókkal rendelkezik, akkor a RemoteApp számlázzuk.</span><span class="sxs-lookup"><span data-stu-id="376ea-106">As long as you have Azure RemoteApp collections, even with no users assigned, you will be billed for RemoteApp.</span></span> <span data-ttu-id="376ea-107">toostop a számlázást, törölje az összes a gyűjtemények.</span><span class="sxs-lookup"><span data-stu-id="376ea-107">toostop this billing, delete all of your collections.</span></span> 
 
-<span data-ttu-id="210cf-108">A gyűjtemény törlése:</span><span class="sxs-lookup"><span data-stu-id="210cf-108">To delete your collection:</span></span>
+<span data-ttu-id="376ea-108">toodelete a gyűjteményben:</span><span class="sxs-lookup"><span data-stu-id="376ea-108">toodelete your collection:</span></span>
 
-1. <span data-ttu-id="210cf-109">A klasszikus Azure portálon nyissa meg a RemoteApp lapját.</span><span class="sxs-lookup"><span data-stu-id="210cf-109">In the Azure classic portal, open the RemoteApp page.</span></span>
-2. <span data-ttu-id="210cf-110">Kattintson a gyűjtemény törlése, és kattintson a kívánt **törlése** az oldal alján.</span><span class="sxs-lookup"><span data-stu-id="210cf-110">Click the collection you want to delete, and then click **Delete** at the bottom of the page.</span></span>
-3. <span data-ttu-id="210cf-111">Ismételje meg ezt az egyes gyűjtemények az előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="210cf-111">Repeat this for each collection in your subscription.</span></span> 
+1. <span data-ttu-id="376ea-109">A klasszikus Azure portálon hello nyissa meg a hello RemoteApp lapját.</span><span class="sxs-lookup"><span data-stu-id="376ea-109">In hello Azure classic portal, open hello RemoteApp page.</span></span>
+2. <span data-ttu-id="376ea-110">Szeretné, hogy toodelete, és kattintson a hello gyűjteményt **törlése** hello lap hello alján.</span><span class="sxs-lookup"><span data-stu-id="376ea-110">Click hello collection you want toodelete, and then click **Delete** at hello bottom of hello page.</span></span>
+3. <span data-ttu-id="376ea-111">Ismételje meg ezt az egyes gyűjtemények az előfizetésben.</span><span class="sxs-lookup"><span data-stu-id="376ea-111">Repeat this for each collection in your subscription.</span></span> 
 
-<span data-ttu-id="210cf-112">Minden gyűjtemény törlése néhány percig is eltarthat.</span><span class="sxs-lookup"><span data-stu-id="210cf-112">It might take a few minutes to delete each collection.</span></span>
+<span data-ttu-id="376ea-112">Minden gyűjtemény is eltarthat néhány percig toodelete.</span><span class="sxs-lookup"><span data-stu-id="376ea-112">It might take a few minutes toodelete each collection.</span></span>
 

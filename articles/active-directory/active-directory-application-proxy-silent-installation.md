@@ -1,6 +1,6 @@
 ---
-title: "Azure AD alkalmazás alkalmazásproxy-összekötő csendes telepítése |} Microsoft Docs"
-description: "Bemutatja, hogyan adhat az Azure AD alkalmazásproxy-összekötő a helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak a felügyelet nélküli telepítést."
+title: "aaaSilent Azure AD alkalmazás-Proxy összekötőjének telepítése |} Microsoft Docs"
+description: "Ismerteti, hogyan tooperform az Azure AD alkalmazásproxy-összekötő tooprovide biztonságos távoli hozzáférés tooyour felügyelet nélküli telepítés a helyszíni alkalmazások."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,51 +15,51 @@ ms.date: 08/10/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9e28c89d8f64f0ae3d4150017ca544e606075c45
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ce796ff45a65ba7d5f0f63c02085bdc6af494548
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="silently-install-the-azure-ad-application-proxy-connector"></a><span data-ttu-id="46ab5-103">Az Azure AD alkalmazásproxy-összekötő telepítéséhez</span><span class="sxs-lookup"><span data-stu-id="46ab5-103">Silently install the Azure AD Application Proxy Connector</span></span>
-<span data-ttu-id="46ab5-104">Érdemes lehet küldeni egy telepítési parancsfájlt, több Windows kiszolgálót vagy Windows Server kiszolgálókon, amelyek nem rendelkeznek a felhasználói felület engedélyezve van.</span><span class="sxs-lookup"><span data-stu-id="46ab5-104">You want to be able to send an installation script to multiple Windows servers or to Windows Servers that don't have user interface enabled.</span></span> <span data-ttu-id="46ab5-105">Ez a témakör segítségével hozhat létre, amely lehetővé teszi a felügyelet nélküli telepítése és regisztrálása az Azure AD alkalmazásproxy-összekötő a Windows PowerShell-parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="46ab5-105">This topic helps you create a Windows PowerShell script that enables unattended installation and registration for your Azure AD Application Proxy Connector.</span></span>
+# <a name="silently-install-hello-azure-ad-application-proxy-connector"></a><span data-ttu-id="21a4b-103">Csendes telepítéséhez hello Azure AD alkalmazásproxy-összekötő</span><span class="sxs-lookup"><span data-stu-id="21a4b-103">Silently install hello Azure AD Application Proxy Connector</span></span>
+<span data-ttu-id="21a4b-104">Azt szeretné, hogy egy telepítési parancsfájl toomultiple Windows-kiszolgálók vagy tooWindows kiszolgálók, amelyekhez nincs engedélyezve a felhasználói felület toobe képes toosend.</span><span class="sxs-lookup"><span data-stu-id="21a4b-104">You want toobe able toosend an installation script toomultiple Windows servers or tooWindows Servers that don't have user interface enabled.</span></span> <span data-ttu-id="21a4b-105">Ez a témakör segítségével hozhat létre, amely lehetővé teszi a felügyelet nélküli telepítése és regisztrálása az Azure AD alkalmazásproxy-összekötő a Windows PowerShell-parancsfájl.</span><span class="sxs-lookup"><span data-stu-id="21a4b-105">This topic helps you create a Windows PowerShell script that enables unattended installation and registration for your Azure AD Application Proxy Connector.</span></span>
 
-<span data-ttu-id="46ab5-106">Ez a funkció akkor hasznos, ha azt szeretné, hogy:</span><span class="sxs-lookup"><span data-stu-id="46ab5-106">This capability is useful when you want to:</span></span>
+<span data-ttu-id="21a4b-106">Ez a funkció akkor hasznos, ha azt szeretné, hogy:</span><span class="sxs-lookup"><span data-stu-id="21a4b-106">This capability is useful when you want to:</span></span>
 
-* <span data-ttu-id="46ab5-107">Telepítse az összekötőt nincs felhasználói felület réteggel, vagy a gép nem lehet RDP gépek.</span><span class="sxs-lookup"><span data-stu-id="46ab5-107">Install the connector on machines with no UI layer or when you cannot RDP to the machine.</span></span>
-* <span data-ttu-id="46ab5-108">Telepíti és regisztrálja egyszerre sok összekötők.</span><span class="sxs-lookup"><span data-stu-id="46ab5-108">Install and register many connectors at once.</span></span>
-* <span data-ttu-id="46ab5-109">Integrálható a összekötő telepítése és regisztrálása egy másik művelet részeként.</span><span class="sxs-lookup"><span data-stu-id="46ab5-109">Integrate the connector installation and registration as part of another procedure.</span></span>
-* <span data-ttu-id="46ab5-110">Hozzon létre egy szabványos kiszolgálói lemezképet, az összekötő bits tartalmaz, de nincs regisztrálva.</span><span class="sxs-lookup"><span data-stu-id="46ab5-110">Create a standard server image that contains the connector bits but is not registered.</span></span>
+* <span data-ttu-id="21a4b-107">A gépeken, nincs felhasználói felület réteg vagy RDP toohello gépet nem lehet hello összekötő telepítéséhez.</span><span class="sxs-lookup"><span data-stu-id="21a4b-107">Install hello connector on machines with no UI layer or when you cannot RDP toohello machine.</span></span>
+* <span data-ttu-id="21a4b-108">Telepíti és regisztrálja egyszerre sok összekötők.</span><span class="sxs-lookup"><span data-stu-id="21a4b-108">Install and register many connectors at once.</span></span>
+* <span data-ttu-id="21a4b-109">Integrálni hello összekötő telepítése és regisztrálása egy másik művelet részeként.</span><span class="sxs-lookup"><span data-stu-id="21a4b-109">Integrate hello connector installation and registration as part of another procedure.</span></span>
+* <span data-ttu-id="21a4b-110">Hello összekötő bits tartalmaz, de nincs regisztrálva szabványos kiszolgálói lemezképének létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="21a4b-110">Create a standard server image that contains hello connector bits but is not registered.</span></span>
 
-<span data-ttu-id="46ab5-111">Alkalmazásproxy egy slim nevű az összekötő a hálózaton belüli Windows Server-szolgáltatás telepítése során.</span><span class="sxs-lookup"><span data-stu-id="46ab5-111">Application Proxy works by installing a slim Windows Server service called the Connector inside your network.</span></span> <span data-ttu-id="46ab5-112">Az alkalmazásproxy-összekötő működéséhez azt ki regisztrálni kell az Azure AD-címtár globális rendszergazdája és jelszóval.</span><span class="sxs-lookup"><span data-stu-id="46ab5-112">For the Application Proxy Connector to work it has to be registered with your Azure AD directory using a global administrator and password.</span></span> <span data-ttu-id="46ab5-113">Általában ezt az információt is meg kell adni egy előugró párbeszédpanelen összekötő telepítése során.</span><span class="sxs-lookup"><span data-stu-id="46ab5-113">Ordinarily this information is entered during Connector installation in a pop-up dialog box.</span></span> <span data-ttu-id="46ab5-114">Azonban a Windows PowerShell használatával adja meg a termékregisztrációs adatokat hitelesítőadat-objektum létrehozása.</span><span class="sxs-lookup"><span data-stu-id="46ab5-114">However, you can use Windows PowerShell to create a credential object to enter your registration information.</span></span> <span data-ttu-id="46ab5-115">Vagy hozzon létre egy saját tokent, és adja meg a termékregisztrációs adatokat segítségével.</span><span class="sxs-lookup"><span data-stu-id="46ab5-115">Or you can create your own token and use it to enter your registration information.</span></span>
+<span data-ttu-id="21a4b-111">Alkalmazásproxy egy slim nevű hello összekötő a hálózaton belüli Windows Server-szolgáltatás telepítése során.</span><span class="sxs-lookup"><span data-stu-id="21a4b-111">Application Proxy works by installing a slim Windows Server service called hello Connector inside your network.</span></span> <span data-ttu-id="21a4b-112">Az alkalmazásproxy-összekötő toowork hello toobe regisztrálva az Azure AD-címtár globális rendszergazdája és jelszóval rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="21a4b-112">For hello Application Proxy Connector toowork it has toobe registered with your Azure AD directory using a global administrator and password.</span></span> <span data-ttu-id="21a4b-113">Általában ezt az információt is meg kell adni egy előugró párbeszédpanelen összekötő telepítése során.</span><span class="sxs-lookup"><span data-stu-id="21a4b-113">Ordinarily this information is entered during Connector installation in a pop-up dialog box.</span></span> <span data-ttu-id="21a4b-114">Azonban használható Windows PowerShell toocreate a hitelesítő objektum tooenter a regisztrációs adatait.</span><span class="sxs-lookup"><span data-stu-id="21a4b-114">However, you can use Windows PowerShell toocreate a credential object tooenter your registration information.</span></span> <span data-ttu-id="21a4b-115">Vagy hozzon létre egy saját tokent, és tooenter használja a regisztrációs adatait.</span><span class="sxs-lookup"><span data-stu-id="21a4b-115">Or you can create your own token and use it tooenter your registration information.</span></span>
 
-## <a name="install-the-connector"></a><span data-ttu-id="46ab5-116">Az összekötő telepítése</span><span class="sxs-lookup"><span data-stu-id="46ab5-116">Install the connector</span></span>
-<span data-ttu-id="46ab5-117">Az összekötő MSIs telepítése nélkül az összekötő regisztrálása az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="46ab5-117">Install the Connector MSIs without registering the Connector as follows:</span></span>
+## <a name="install-hello-connector"></a><span data-ttu-id="21a4b-116">Hello összekötő telepítése</span><span class="sxs-lookup"><span data-stu-id="21a4b-116">Install hello connector</span></span>
+<span data-ttu-id="21a4b-117">Hello összekötő MSIs telepítése nélkül hello összekötő regisztrálása az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="21a4b-117">Install hello Connector MSIs without registering hello Connector as follows:</span></span>
 
-1. <span data-ttu-id="46ab5-118">Nyisson meg egy parancssort.</span><span class="sxs-lookup"><span data-stu-id="46ab5-118">Open a command prompt.</span></span>
-2. <span data-ttu-id="46ab5-119">Futtassa a következő parancsot, amelyben a /q a csendes telepítés – azt jelenti, hogy a telepítés nem kéri a végfelhasználói licencszerződés elfogadásához.</span><span class="sxs-lookup"><span data-stu-id="46ab5-119">Run the following command in which the /q means quiet installation - the installation doesn't prompt you to accept the End-User License Agreement.</span></span>
+1. <span data-ttu-id="21a4b-118">Nyisson meg egy parancssort.</span><span class="sxs-lookup"><span data-stu-id="21a4b-118">Open a command prompt.</span></span>
+2. <span data-ttu-id="21a4b-119">Futtassa a következő parancs melyik hello /q jelenti csendes telepítést hello – hello telepítés nem kéri a végfelhasználói licencszerződés tooaccept hello.</span><span class="sxs-lookup"><span data-stu-id="21a4b-119">Run hello following command in which hello /q means quiet installation - hello installation doesn't prompt you tooaccept hello End-User License Agreement.</span></span>
    
         AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
-## <a name="register-the-connector-with-azure-ad"></a><span data-ttu-id="46ab5-120">Az összekötő regisztrálására az Azure AD</span><span class="sxs-lookup"><span data-stu-id="46ab5-120">Register the connector with Azure AD</span></span>
-<span data-ttu-id="46ab5-121">Az összekötő regisztrálása segítségével két módszer áll rendelkezésre:</span><span class="sxs-lookup"><span data-stu-id="46ab5-121">There are two methods you can use to register the connector:</span></span>
+## <a name="register-hello-connector-with-azure-ad"></a><span data-ttu-id="21a4b-120">Hello összekötő regisztrálására az Azure AD</span><span class="sxs-lookup"><span data-stu-id="21a4b-120">Register hello connector with Azure AD</span></span>
+<span data-ttu-id="21a4b-121">Tooregister hello összekötővel két módszer áll rendelkezésre:</span><span class="sxs-lookup"><span data-stu-id="21a4b-121">There are two methods you can use tooregister hello connector:</span></span>
 
-* <span data-ttu-id="46ab5-122">Egy Windows PowerShell hitelesítő objektumot használ a connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="46ab5-122">Register the connector using a Windows PowerShell credential object</span></span>
-* <span data-ttu-id="46ab5-123">A létrehozott kapcsolat nélküli jogkivonat használatával connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="46ab5-123">Register the connector using a token created offline</span></span>
+* <span data-ttu-id="21a4b-122">Egy Windows PowerShell hitelesítő objektumot használ hello connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="21a4b-122">Register hello connector using a Windows PowerShell credential object</span></span>
+* <span data-ttu-id="21a4b-123">A létrehozott kapcsolat nélküli tokent hello connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="21a4b-123">Register hello connector using a token created offline</span></span>
 
-### <a name="register-the-connector-using-a-windows-powershell-credential-object"></a><span data-ttu-id="46ab5-124">Egy Windows PowerShell hitelesítő objektumot használ a connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="46ab5-124">Register the connector using a Windows PowerShell credential object</span></span>
-1. <span data-ttu-id="46ab5-125">A Windows PowerShell hitelesítő objektumot létrehozni a következő parancs futtatásával.</span><span class="sxs-lookup"><span data-stu-id="46ab5-125">Create the Windows PowerShell Credentials object by running this command.</span></span> <span data-ttu-id="46ab5-126">Cserélje le  *\<felhasználónév\>*  és  *\<jelszó\>*  a felhasználónévvel és a címtár jelszava:</span><span class="sxs-lookup"><span data-stu-id="46ab5-126">Replace *\<username\>* and *\<password\>* with the username and password for your directory:</span></span>
+### <a name="register-hello-connector-using-a-windows-powershell-credential-object"></a><span data-ttu-id="21a4b-124">Egy Windows PowerShell hitelesítő objektumot használ hello connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="21a4b-124">Register hello connector using a Windows PowerShell credential object</span></span>
+1. <span data-ttu-id="21a4b-125">Hello Windows PowerShell hitelesítő objektumot létrehozni a következő parancs futtatásával.</span><span class="sxs-lookup"><span data-stu-id="21a4b-125">Create hello Windows PowerShell Credentials object by running this command.</span></span> <span data-ttu-id="21a4b-126">Cserélje le  *\<felhasználónév\>*  és  *\<jelszó\>*  hello felhasználónévvel és jelszóval a címtáron:</span><span class="sxs-lookup"><span data-stu-id="21a4b-126">Replace *\<username\>* and *\<password\>* with hello username and password for your directory:</span></span>
    
         $User = "<username>"
         $PlainPassword = '<password>'
         $SecurePassword = $PlainPassword | ConvertTo-SecureString -AsPlainText -Force
         $cred = New-Object –TypeName System.Management.Automation.PSCredential –ArgumentList $User, $SecurePassword
-2. <span data-ttu-id="46ab5-127">Ugrás a **C:\Program Files\Microsoft AAD App alkalmazásproxy-összekötő** és hitelesítő adatok használata a PowerShell parancsfájl futtatása objektum-létrehozott.</span><span class="sxs-lookup"><span data-stu-id="46ab5-127">Go to **C:\Program Files\Microsoft AAD App Proxy Connector** and run the script using the PowerShell credentials object you created.</span></span> <span data-ttu-id="46ab5-128">Cserélje le *$cred* nevű, a PowerShell hitelesítő objektumot hozott létre:</span><span class="sxs-lookup"><span data-stu-id="46ab5-128">Replace *$cred* with the name of the PowerShell credentials object you created:</span></span>
+2. <span data-ttu-id="21a4b-127">Nyissa meg túl**C:\Program Files\Microsoft AAD App alkalmazásproxy-összekötő** és hitelesítő adatok használatával hello PowerShell hello parancsprogrammal objektum-létrehozott.</span><span class="sxs-lookup"><span data-stu-id="21a4b-127">Go too**C:\Program Files\Microsoft AAD App Proxy Connector** and run hello script using hello PowerShell credentials object you created.</span></span> <span data-ttu-id="21a4b-128">Cserélje le *$cred* hello PowerShell hello nevű hitelesítő adatok objektumot hozott létre:</span><span class="sxs-lookup"><span data-stu-id="21a4b-128">Replace *$cred* with hello name of hello PowerShell credentials object you created:</span></span>
    
         RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Credentials -Usercredentials $cred
 
-### <a name="register-the-connector-using-a-token-created-offline"></a><span data-ttu-id="46ab5-129">A létrehozott kapcsolat nélküli jogkivonat használatával connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="46ab5-129">Register the connector using a token created offline</span></span>
-1. <span data-ttu-id="46ab5-130">Hozzon létre egy kapcsolat nélküli token felhasználva a kódrészletet AuthenticationContext osztály használatával:</span><span class="sxs-lookup"><span data-stu-id="46ab5-130">Create an offline token using the AuthenticationContext class using the values in the code snippet:</span></span>
+### <a name="register-hello-connector-using-a-token-created-offline"></a><span data-ttu-id="21a4b-129">A létrehozott kapcsolat nélküli tokent hello connector regisztrálása</span><span class="sxs-lookup"><span data-stu-id="21a4b-129">Register hello connector using a token created offline</span></span>
+1. <span data-ttu-id="21a4b-130">Hozzon létre egy kapcsolat nélküli token hello kódrészletet hello értékekkel hello AuthenticationContext osztály használatával:</span><span class="sxs-lookup"><span data-stu-id="21a4b-130">Create an offline token using hello AuthenticationContext class using hello values in hello code snippet:</span></span>
 
         using System;
         using System.Diagnostics;
@@ -69,22 +69,22 @@ ms.lasthandoff: 08/29/2017
         {
         #region constants
         /// <summary>
-        /// The AAD authentication endpoint uri
+        /// hello AAD authentication endpoint uri
         /// </summary>
         static readonly Uri AadAuthenticationEndpoint = new Uri("https://login.microsoftonline.com/common/oauth2/token?api-version=1.0");
 
         /// <summary>
-        /// The application ID of the connector in AAD
+        /// hello application ID of hello connector in AAD
         /// </summary>
         static readonly string ConnectorAppId = "55747057-9b5d-4bd4-b387-abf52a8bd489";
 
         /// <summary>
-        /// The reply address of the connector application in AAD
+        /// hello reply address of hello connector application in AAD
         /// </summary>
         static readonly Uri ConnectorRedirectAddress = new Uri("urn:ietf:wg:oauth:2.0:oob");
 
         /// <summary>
-        /// The AppIdUri of the registration service in AAD
+        /// hello AppIdUri of hello registration service in AAD
         /// </summary>
         static readonly Uri RegistrationServiceAppIdUri = new Uri("https://proxy.cloudwebappproxy.net/registerapp");
 
@@ -115,17 +115,17 @@ ms.lasthandoff: 08/29/2017
         }
 
 
-2. <span data-ttu-id="46ab5-131">Miután a jogkivonatot, hozzon létre egy SecureString a token használatával:</span><span class="sxs-lookup"><span data-stu-id="46ab5-131">Once you have the token, create a SecureString using the token:</span></span>
+2. <span data-ttu-id="21a4b-131">Miután hello jogkivonat, hozzon létre egy SecureString hello token használatával:</span><span class="sxs-lookup"><span data-stu-id="21a4b-131">Once you have hello token, create a SecureString using hello token:</span></span>
 
    `$SecureToken = $Token | ConvertTo-SecureString -AsPlainText -Force`
 
-3. <span data-ttu-id="46ab5-132">Futtassa a következő Windows PowerShell-parancsot cseréje \<GUID bérlői\> a directory azonosítójú:</span><span class="sxs-lookup"><span data-stu-id="46ab5-132">Run the following Windows PowerShell command, replacing \<tenant GUID\> with your directory ID:</span></span>
+3. <span data-ttu-id="21a4b-132">A következő Windows PowerShell-parancsot, hogy futási hello \<GUID bérlői\> a directory azonosítójú:</span><span class="sxs-lookup"><span data-stu-id="21a4b-132">Run hello following Windows PowerShell command, replacing \<tenant GUID\> with your directory ID:</span></span>
 
    `RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Token -Token $SecureToken -TenantId <tenant GUID>`
 
-## <a name="next-steps"></a><span data-ttu-id="46ab5-133">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="46ab5-133">Next steps</span></span> 
-* [<span data-ttu-id="46ab5-134">Alkalmazások közzététele saját tartománynév használatával</span><span class="sxs-lookup"><span data-stu-id="46ab5-134">Publish applications using your own domain name</span></span>](active-directory-application-proxy-custom-domains.md)
-* [<span data-ttu-id="46ab5-135">Egyszeri bejelentkezés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="46ab5-135">Enable single-sign on</span></span>](active-directory-application-proxy-sso-using-kcd.md)
-* [<span data-ttu-id="46ab5-136">Az alkalmazásproxy problémák elhárítása</span><span class="sxs-lookup"><span data-stu-id="46ab5-136">Troubleshoot issues you're having with Application Proxy</span></span>](active-directory-application-proxy-troubleshoot.md)
+## <a name="next-steps"></a><span data-ttu-id="21a4b-133">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="21a4b-133">Next steps</span></span> 
+* [<span data-ttu-id="21a4b-134">Alkalmazások közzététele saját tartománynév használatával</span><span class="sxs-lookup"><span data-stu-id="21a4b-134">Publish applications using your own domain name</span></span>](active-directory-application-proxy-custom-domains.md)
+* [<span data-ttu-id="21a4b-135">Egyszeri bejelentkezés engedélyezése</span><span class="sxs-lookup"><span data-stu-id="21a4b-135">Enable single-sign on</span></span>](active-directory-application-proxy-sso-using-kcd.md)
+* [<span data-ttu-id="21a4b-136">Az alkalmazásproxy problémák elhárítása</span><span class="sxs-lookup"><span data-stu-id="21a4b-136">Troubleshoot issues you're having with Application Proxy</span></span>](active-directory-application-proxy-troubleshoot.md)
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Velpic SAML |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Velpic SAML között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Velpic SAML között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,256 +13,256 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/04/2017
 ms.author: jeedes
-ms.openlocfilehash: 5325f3cca00167e6b7b687509ce43435447ad2f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 613947d8fe95113382a2cdc0f79ce9eda85a0127
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-velpic-saml"></a><span data-ttu-id="48c0d-103">Oktatóanyag: Azure Active Directoryval integrált Velpic SAML</span><span class="sxs-lookup"><span data-stu-id="48c0d-103">Tutorial: Azure Active Directory integration with Velpic SAML</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-velpic-saml"></a><span data-ttu-id="cda24-103">Oktatóanyag: Azure Active Directoryval integrált Velpic SAML</span><span class="sxs-lookup"><span data-stu-id="cda24-103">Tutorial: Azure Active Directory integration with Velpic SAML</span></span>
 
-<span data-ttu-id="48c0d-104">Ebben az oktatóanyagban elsajátíthatja Velpic SAML integrálása az Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="48c0d-104">In this tutorial, you learn how to integrate Velpic SAML with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="cda24-104">Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Velpic SAML az Azure Active Directoryval (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="cda24-104">In this tutorial, you learn how toointegrate Velpic SAML with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="48c0d-105">Velpic SAML integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:</span><span class="sxs-lookup"><span data-stu-id="48c0d-105">Integrating Velpic SAML with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="cda24-105">Velpic SAML integrálása az Azure AD lehetővé teszi a következő előnyöket hello:</span><span class="sxs-lookup"><span data-stu-id="cda24-105">Integrating Velpic SAML with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="48c0d-106">Megadhatja a Velpic SAML hozzáféréssel rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="48c0d-106">You can control in Azure AD who has access to Velpic SAML</span></span>
-- <span data-ttu-id="48c0d-107">Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Velpic SAML (egyszeri bejelentkezés)</span><span class="sxs-lookup"><span data-stu-id="48c0d-107">You can enable your users to automatically get signed-on to Velpic SAML (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="48c0d-108">Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon</span><span class="sxs-lookup"><span data-stu-id="48c0d-108">You can manage your accounts in one central location - the Azure Management portal</span></span>
+- <span data-ttu-id="cda24-106">Megadhatja a hozzáférés tooVelpic SAML rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="cda24-106">You can control in Azure AD who has access tooVelpic SAML</span></span>
+- <span data-ttu-id="cda24-107">Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooVelpic SAML (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="cda24-107">You can enable your users tooautomatically get signed-on tooVelpic SAML (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="cda24-108">Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon</span><span class="sxs-lookup"><span data-stu-id="cda24-108">You can manage your accounts in one central location - hello Azure Management portal</span></span>
 
-<span data-ttu-id="48c0d-109">Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="48c0d-109">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="cda24-109">Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="cda24-109">If you want tooknow more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="48c0d-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="48c0d-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="cda24-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="cda24-110">Prerequisites</span></span>
 
-<span data-ttu-id="48c0d-111">Velpic SAML konfigurálása az Azure AD-integrációra, a következőkre van szükség:</span><span class="sxs-lookup"><span data-stu-id="48c0d-111">To configure Azure AD integration with Velpic SAML, you need the following items:</span></span>
+<span data-ttu-id="cda24-111">az Azure AD integrálása Velpic SAML tooconfigure, kell a következő elemek hello:</span><span class="sxs-lookup"><span data-stu-id="cda24-111">tooconfigure Azure AD integration with Velpic SAML, you need hello following items:</span></span>
 
-- <span data-ttu-id="48c0d-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="48c0d-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="48c0d-113">Egy Velpic SAML-alapú egyszeri bejelentkezést engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="48c0d-113">A Velpic SAML single-sign on enabled subscription</span></span>
+- <span data-ttu-id="cda24-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="cda24-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="cda24-113">Egy Velpic SAML-alapú egyszeri bejelentkezést engedélyezve van az előfizetésben</span><span class="sxs-lookup"><span data-stu-id="cda24-113">A Velpic SAML single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="48c0d-114">Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.</span><span class="sxs-lookup"><span data-stu-id="48c0d-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="cda24-114">tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.</span><span class="sxs-lookup"><span data-stu-id="cda24-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="48c0d-115">Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:</span><span class="sxs-lookup"><span data-stu-id="48c0d-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="cda24-115">Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:</span><span class="sxs-lookup"><span data-stu-id="cda24-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="48c0d-116">Ne használja az éles környezetben, ha ez nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="48c0d-116">You should not use your production environment, unless this is necessary.</span></span>
-- <span data-ttu-id="48c0d-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="48c0d-117">If you don't have an Azure AD trial environment, you can get an one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="cda24-116">Ne használja az éles környezetben, ha ez nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="cda24-116">You should not use your production environment, unless this is necessary.</span></span>
+- <span data-ttu-id="cda24-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="cda24-117">If you don't have an Azure AD trial environment, you can get an one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="48c0d-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="48c0d-118">Scenario description</span></span>
-<span data-ttu-id="48c0d-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="48c0d-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="48c0d-120">Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="48c0d-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="cda24-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="cda24-118">Scenario description</span></span>
+<span data-ttu-id="cda24-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="cda24-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="cda24-120">Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="cda24-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="48c0d-121">A gyűjteményből Velpic SAML hozzáadása</span><span class="sxs-lookup"><span data-stu-id="48c0d-121">Adding Velpic SAML from the gallery</span></span>
-2. <span data-ttu-id="48c0d-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="48c0d-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="cda24-121">Hello gyűjteményből Velpic SAML hozzáadása</span><span class="sxs-lookup"><span data-stu-id="cda24-121">Adding Velpic SAML from hello gallery</span></span>
+2. <span data-ttu-id="cda24-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="cda24-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-velpic-saml-from-the-gallery"></a><span data-ttu-id="48c0d-123">A gyűjteményből Velpic SAML hozzáadása</span><span class="sxs-lookup"><span data-stu-id="48c0d-123">Adding Velpic SAML from the gallery</span></span>
-<span data-ttu-id="48c0d-124">Az Azure AD integrálása a Velpic SAML konfigurálásához kell hozzáadnia Velpic SAML a gyűjteményből a felügyelt SaaS-alkalmazások listájára.</span><span class="sxs-lookup"><span data-stu-id="48c0d-124">To configure the integration of Velpic SAML into Azure AD, you need to add Velpic SAML from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-velpic-saml-from-hello-gallery"></a><span data-ttu-id="cda24-123">Hello gyűjteményből Velpic SAML hozzáadása</span><span class="sxs-lookup"><span data-stu-id="cda24-123">Adding Velpic SAML from hello gallery</span></span>
+<span data-ttu-id="cda24-124">tooconfigure hello integrációja Velpic SAML az Azure AD-be, meg kell tooadd Velpic SAML hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.</span><span class="sxs-lookup"><span data-stu-id="cda24-124">tooconfigure hello integration of Velpic SAML into Azure AD, you need tooadd Velpic SAML from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="48c0d-125">**A gyűjteményből Velpic SAML hozzáadásához hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="48c0d-125">**To add Velpic SAML from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="cda24-125">**tooadd Velpic SAML hello gyűjteményből, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="cda24-125">**tooadd Velpic SAML from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="48c0d-126">Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-126">In the **[Azure Management Portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="cda24-126">A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="cda24-126">In hello **[Azure Management Portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="48c0d-128">Navigáljon a **vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="48c0d-129">Ezután lépjen **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="cda24-128">Keresse meg a túl**vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="cda24-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="cda24-129">Keresse meg a túl**összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="cda24-129">Then go too**All applications**.</span></span>
 
     ![Alkalmazások][2]
     
-3. <span data-ttu-id="48c0d-131">Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.</span><span class="sxs-lookup"><span data-stu-id="48c0d-131">Click **Add** button on the top of the dialog.</span></span>
+3. <span data-ttu-id="cda24-131">Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.</span><span class="sxs-lookup"><span data-stu-id="cda24-131">Click **Add** button on hello top of hello dialog.</span></span>
 
     ![Alkalmazások][3]
 
-4. <span data-ttu-id="48c0d-133">Írja be a keresőmezőbe, **Velpic SAML**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-133">In the search box, type **Velpic SAML**.</span></span>
+4. <span data-ttu-id="cda24-133">Hello keresési mezőbe, írja be a **Velpic SAML**.</span><span class="sxs-lookup"><span data-stu-id="cda24-133">In hello search box, type **Velpic SAML**.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_search.png)
 
-5. <span data-ttu-id="48c0d-135">Az eredmények panelen válassza ki a **Velpic SAML**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="48c0d-135">In the results panel, select **Velpic SAML**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="cda24-135">A hello eredmények panelen válassza ki a **Velpic SAML**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-135">In hello results panel, select **Velpic SAML**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="48c0d-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="48c0d-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="48c0d-138">Ebben a szakaszban konfigurálhatja, és az Azure AD az egyszeri bejelentkezés Velpic SAML-teszthez "Britta Simon" nevű tesztfelhasználó alapján.</span><span class="sxs-lookup"><span data-stu-id="48c0d-138">In this section, you configure and test Azure AD single sign-on with Velpic SAML based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="cda24-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="cda24-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="cda24-138">Ebben a szakaszban konfigurálhatja, és az Azure AD az egyszeri bejelentkezés Velpic SAML-teszthez "Britta Simon" nevű tesztfelhasználó alapján.</span><span class="sxs-lookup"><span data-stu-id="cda24-138">In this section, you configure and test Azure AD single sign-on with Velpic SAML based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="48c0d-139">Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Velpic SAML a felhasználó Azure AD-ben.</span><span class="sxs-lookup"><span data-stu-id="48c0d-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Velpic SAML is to a user in Azure AD.</span></span> <span data-ttu-id="48c0d-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Velpic SAML közötti kapcsolat kapcsolatot kell létrehozni.</span><span class="sxs-lookup"><span data-stu-id="48c0d-140">In other words, a link relationship between an Azure AD user and the related user in Velpic SAML needs to be established.</span></span>
+<span data-ttu-id="cda24-139">Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Velpic SAML tooa felhasználó az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="cda24-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Velpic SAML is tooa user in Azure AD.</span></span> <span data-ttu-id="cda24-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Velpic SAML közötti kapcsolat kapcsolatot kell létrehozni toobe.</span><span class="sxs-lookup"><span data-stu-id="cda24-140">In other words, a link relationship between an Azure AD user and hello related user in Velpic SAML needs toobe established.</span></span>
 
-<span data-ttu-id="48c0d-141">Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a Velpic SAML.</span><span class="sxs-lookup"><span data-stu-id="48c0d-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Velpic SAML.</span></span>
+<span data-ttu-id="cda24-141">Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Velpic SAML.</span><span class="sxs-lookup"><span data-stu-id="cda24-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Velpic SAML.</span></span>
 
-<span data-ttu-id="48c0d-142">Az Azure AD egyszeri bejelentkezéshez a Velpic SAML tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:</span><span class="sxs-lookup"><span data-stu-id="48c0d-142">To configure and test Azure AD single sign-on with Velpic SAML, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="cda24-142">tooconfigure és az Azure AD az egyszeri bejelentkezés Velpic SAML-teszthez, a következő építőelemeket toocomplete hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="cda24-142">tooconfigure and test Azure AD single sign-on with Velpic SAML, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="48c0d-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="48c0d-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="48c0d-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.</span><span class="sxs-lookup"><span data-stu-id="48c0d-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="48c0d-145">**[Velpic SAML tesztfelhasználó létrehozása](#creating-a-velpic-saml-test-user)**  - való egy megfelelője a Britta Simon Velpic SAML, amely csatolva van rá, hogy az Azure AD ábrázolása.</span><span class="sxs-lookup"><span data-stu-id="48c0d-145">**[Creating a Velpic SAML test user](#creating-a-velpic-saml-test-user)** - to have a counterpart of Britta Simon in Velpic SAML that is linked to the Azure AD representation of her.</span></span>
-4. <span data-ttu-id="48c0d-146">**[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="48c0d-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="48c0d-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="48c0d-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="cda24-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="cda24-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="cda24-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="cda24-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="cda24-145">**[Velpic SAML tesztfelhasználó létrehozása](#creating-a-velpic-saml-test-user)**  -toohave egy megfelelője a Britta Simon a csatolt toohello az Azure AD ábrázolása rá, hogy Velpic SAML-alapú.</span><span class="sxs-lookup"><span data-stu-id="cda24-145">**[Creating a Velpic SAML test user](#creating-a-velpic-saml-test-user)** - toohave a counterpart of Britta Simon in Velpic SAML that is linked toohello Azure AD representation of her.</span></span>
+4. <span data-ttu-id="cda24-146">**[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="cda24-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="cda24-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.</span><span class="sxs-lookup"><span data-stu-id="cda24-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="48c0d-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="48c0d-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="cda24-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="cda24-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="48c0d-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Velpic SAML-alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="48c0d-149">In this section, you enable Azure AD single sign-on in the Azure Management portal and configure single sign-on in your Velpic SAML application.</span></span>
+<span data-ttu-id="cda24-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Velpic SAML-alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="cda24-149">In this section, you enable Azure AD single sign-on in hello Azure Management portal and configure single sign-on in your Velpic SAML application.</span></span>
 
-<span data-ttu-id="48c0d-150">**Velpic SAML konfigurálása az Azure AD egyszeri bejelentkezést, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="48c0d-150">**To configure Azure AD single sign-on with Velpic SAML, perform the following steps:**</span></span>
+<span data-ttu-id="cda24-150">**tooconfigure az Azure AD egyszeri bejelentkezéshez a Velpic SAML, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="cda24-150">**tooconfigure Azure AD single sign-on with Velpic SAML, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="48c0d-151">Az Azure felügyeleti portálján a a **Velpic SAML** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-151">In the Azure Management portal, on the **Velpic SAML** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="cda24-151">Hello Azure felügyeleti portálon, a hello **Velpic SAML** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="cda24-151">In hello Azure Management portal, on hello **Velpic SAML** application integration page, click **Single sign-on**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. <span data-ttu-id="48c0d-153">A a **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.</span><span class="sxs-lookup"><span data-stu-id="48c0d-153">On the **Single sign-on** dialog, as **Mode** select **SAML-based Sign-on** to enable single sign on.</span></span>
+2. <span data-ttu-id="cda24-153">A hello **egyszeri bejelentkezés** párbeszédpanel, mint **mód** kiválasztása **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.</span><span class="sxs-lookup"><span data-stu-id="cda24-153">On hello **Single sign-on** dialog, as **Mode** select **SAML-based Sign-on** tooenable single sign on.</span></span>
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_samlbase.png)
 
-3. <span data-ttu-id="48c0d-155">Adja meg a részleteket a **Velpic SAML-tartomány és az URL-címek** szakasz -</span><span class="sxs-lookup"><span data-stu-id="48c0d-155">Enter the details in the **Velpic SAML Domain and URLs** section-</span></span>
+3. <span data-ttu-id="cda24-155">Adjon meg hello részletet hello **Velpic SAML-tartomány és az URL-címek** szakasz -</span><span class="sxs-lookup"><span data-stu-id="cda24-155">Enter hello details in hello **Velpic SAML Domain and URLs** section-</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_url.png)
 
-    <span data-ttu-id="48c0d-157">a.</span><span class="sxs-lookup"><span data-stu-id="48c0d-157">a.</span></span> <span data-ttu-id="48c0d-158">Az a **bejelentkezési URL-cím** szövegmező, írja be az értéket, mint:`https://<sub-domain>.velpicsaml.net`</span><span class="sxs-lookup"><span data-stu-id="48c0d-158">In the **Sign-on URL** textbox, type the value as: `https://<sub-domain>.velpicsaml.net`</span></span>
+    <span data-ttu-id="cda24-157">a.</span><span class="sxs-lookup"><span data-stu-id="cda24-157">a.</span></span> <span data-ttu-id="cda24-158">A hello **bejelentkezési URL-cím** szövegmezőhöz hello érték típusa:`https://<sub-domain>.velpicsaml.net`</span><span class="sxs-lookup"><span data-stu-id="cda24-158">In hello **Sign-on URL** textbox, type hello value as: `https://<sub-domain>.velpicsaml.net`</span></span>
 
-    <span data-ttu-id="48c0d-159">b.</span><span class="sxs-lookup"><span data-stu-id="48c0d-159">b.</span></span> <span data-ttu-id="48c0d-160">Az a **azonosító** szövegmező, illessze be a **"Egyszeri bejelentkezési URL-címe"** érték`https://auth.velpic.com/saml/v2/<entity-id>/login`</span><span class="sxs-lookup"><span data-stu-id="48c0d-160">In the **Identifier** textbox, paste the **‘Single sign on URL’** value `https://auth.velpic.com/saml/v2/<entity-id>/login`</span></span>
+    <span data-ttu-id="cda24-159">b.</span><span class="sxs-lookup"><span data-stu-id="cda24-159">b.</span></span> <span data-ttu-id="cda24-160">A hello **azonosító** szövegmezőhöz Beillesztés hello **"Egyszeri bejelentkezési URL-címe"** érték`https://auth.velpic.com/saml/v2/<entity-id>/login`</span><span class="sxs-lookup"><span data-stu-id="cda24-160">In hello **Identifier** textbox, paste hello **‘Single sign on URL’** value `https://auth.velpic.com/saml/v2/<entity-id>/login`</span></span>
     
     > [!NOTE]
-    > <span data-ttu-id="48c0d-161">Vegye figyelembe, hogy a Velpic SAML team biztosítja a bejelentkezési URL-címen, és azonosító értéket az SSO beépülő modul Velpic SAML oldalon konfigurálásakor lesz elérhető.</span><span class="sxs-lookup"><span data-stu-id="48c0d-161">Please note that the Sign on URL will be provided by the Velpic SAML team and Identifier value will be available when you configure the SSO Plugin on Velpic SAML side.</span></span> <span data-ttu-id="48c0d-162">Ezt az értéket Velpic SAML alkalmazáslap másolja és illessze be ide kell.</span><span class="sxs-lookup"><span data-stu-id="48c0d-162">You need to copy that value from Velpic SAML application  page and paste it here.</span></span>
+    > <span data-ttu-id="cda24-161">Vegye figyelembe, hogy hello Velpic SAML team biztosítja hello bejelentkezési URL-címen, és azonosító értéket hello SSO beépülő modul Velpic SAML oldalon konfigurálásakor lesz elérhető.</span><span class="sxs-lookup"><span data-stu-id="cda24-161">Please note that hello Sign on URL will be provided by hello Velpic SAML team and Identifier value will be available when you configure hello SSO Plugin on Velpic SAML side.</span></span> <span data-ttu-id="cda24-162">Meg kell toocopy Velpic SAML alkalmazáslap értéket, és illessze be ide.</span><span class="sxs-lookup"><span data-stu-id="cda24-162">You need toocopy that value from Velpic SAML application  page and paste it here.</span></span>
 
-4. <span data-ttu-id="48c0d-163">Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="48c0d-163">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the XML file on your computer.</span></span>
+4. <span data-ttu-id="cda24-163">A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="cda24-163">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello XML file on your computer.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_certificate.png) 
 
-5. <span data-ttu-id="48c0d-165">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-165">Click **Save** button.</span></span>
+5. <span data-ttu-id="cda24-165">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-165">Click **Save** button.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="48c0d-167">Kattintson a Velpic SAML-alapú konfigurációs szakasz Velpic SAML konfigurálása konfigurálása bejelentkezés ablak megnyitásához.</span><span class="sxs-lookup"><span data-stu-id="48c0d-167">On the Velpic SAML Configuration section, click Configure Velpic SAML to open Configure sign-on window.</span></span> <span data-ttu-id="48c0d-168">Másolja a SAML Entitásazonosító rövid összefoglaló szakaszából.</span><span class="sxs-lookup"><span data-stu-id="48c0d-168">Copy the SAML Entity ID from the Quick Reference section.</span></span>
+6. <span data-ttu-id="cda24-167">Hello Velpic SAML-alapú konfigurációs szakaszt kattintson a Velpic SAML konfigurálása tooopen konfigurálása bejelentkezés ablak.</span><span class="sxs-lookup"><span data-stu-id="cda24-167">On hello Velpic SAML Configuration section, click Configure Velpic SAML tooopen Configure sign-on window.</span></span> <span data-ttu-id="cda24-168">Rövid összefoglaló szakasz hello hello SAML Entitásazonosító másolja.</span><span class="sxs-lookup"><span data-stu-id="cda24-168">Copy hello SAML Entity ID from hello Quick Reference section.</span></span>
 
-7. <span data-ttu-id="48c0d-169">Egy másik webes böngészőablakban jelentkezzen be a Velpic SAML-alapú vállalati webhely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="48c0d-169">In a different web browser window, log into your Velpic SAML company site as an administrator.</span></span>
+7. <span data-ttu-id="cda24-169">Egy másik webes böngészőablakban jelentkezzen be a Velpic SAML-alapú vállalati webhely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="cda24-169">In a different web browser window, log into your Velpic SAML company site as an administrator.</span></span>
 
-8. <span data-ttu-id="48c0d-170">Kattintson a **kezelése** lapra, és navigáljon a **integrációs** szakaszban kattintson a kell **beépülő modulok** gombra kattintva hozzon létre új beépülő modul a bejelentkezéshez.</span><span class="sxs-lookup"><span data-stu-id="48c0d-170">Click on **Manage** tab and go to **Integration** section where you need to click on **Plugins** button to create new plugin for Sign-In.</span></span>
+8. <span data-ttu-id="cda24-170">Kattintson a **kezelése** lapra, és nyissa meg túl**integrációs** tooclick kell a szakasz **beépülő modulok** gomb toocreate új beépülő modul a bejelentkezéshez.</span><span class="sxs-lookup"><span data-stu-id="cda24-170">Click on **Manage** tab and go too**Integration** section where you need tooclick on **Plugins** button toocreate new plugin for Sign-In.</span></span>
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_1.png)
 
-9. <span data-ttu-id="48c0d-172">Kattintson a **"Beépülő modul hozzáadása"** gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-172">Click on the **‘Add plugin’** button.</span></span>
+9. <span data-ttu-id="cda24-172">Kattintson a hello **"Beépülő modul hozzáadása"** gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-172">Click on hello **‘Add plugin’** button.</span></span>
     
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_2.png)
 
-10. <span data-ttu-id="48c0d-174">Kattintson a **SAML** a beépülő modul hozzáadása oldalon csempére.</span><span class="sxs-lookup"><span data-stu-id="48c0d-174">Click on the **SAML** tile in the Add Plugin page.</span></span>
+10. <span data-ttu-id="cda24-174">Kattintson a hello **SAML** hello hozzáadása beépülő modul oldal csempére.</span><span class="sxs-lookup"><span data-stu-id="cda24-174">Click on hello **SAML** tile in hello Add Plugin page.</span></span>
     
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_3.png)
 
-11. <span data-ttu-id="48c0d-176">Adja meg az új SAML-alapú beépülő modul nevét, majd kattintson a **"Add"** gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-176">Enter the name of the new SAML plugin and click the **‘Add’** button.</span></span>
+11. <span data-ttu-id="cda24-176">Írja be hello új SAML-alapú beépülő modul hello nevét, és kattintson a hello **"Add"** gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-176">Enter hello name of hello new SAML plugin and click hello **‘Add’** button.</span></span>
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_4.png)
 
-12. <span data-ttu-id="48c0d-178">Adja meg a következőképpen:</span><span class="sxs-lookup"><span data-stu-id="48c0d-178">Enter the details as follows:</span></span>
+12. <span data-ttu-id="cda24-178">Adja meg az alábbiak szerint hello részleteit:</span><span class="sxs-lookup"><span data-stu-id="cda24-178">Enter hello details as follows:</span></span>
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_5.png)
 
-    <span data-ttu-id="48c0d-180">a.</span><span class="sxs-lookup"><span data-stu-id="48c0d-180">a.</span></span> <span data-ttu-id="48c0d-181">Az a **neve** szövegmező, írja be a SAML-alapú beépülő modul nevét.</span><span class="sxs-lookup"><span data-stu-id="48c0d-181">In the **Name** textbox, type the name of SAML plugin.</span></span>
+    <span data-ttu-id="cda24-180">a.</span><span class="sxs-lookup"><span data-stu-id="cda24-180">a.</span></span> <span data-ttu-id="cda24-181">A hello **neve** szövegmezőhöz SAML-alapú beépülő modul hello nevét.</span><span class="sxs-lookup"><span data-stu-id="cda24-181">In hello **Name** textbox, type hello name of SAML plugin.</span></span>
 
-    <span data-ttu-id="48c0d-182">b.</span><span class="sxs-lookup"><span data-stu-id="48c0d-182">b.</span></span> <span data-ttu-id="48c0d-183">A a **kiállítójának URL-címe** szövegmező, illessze be a **SAML Entitásazonosító** , átmásolva a **bejelentkezés konfigurálása** ablakot, az Azure-portálon.</span><span class="sxs-lookup"><span data-stu-id="48c0d-183">In the **Issuer URL** textbox, paste the **SAML Entity ID** you copied from the **Configure sign-on** window of the Azure portal.</span></span>
+    <span data-ttu-id="cda24-182">b.</span><span class="sxs-lookup"><span data-stu-id="cda24-182">b.</span></span> <span data-ttu-id="cda24-183">A hello **kiállítójának URL-címe** szövegmezőhöz Beillesztés hello **SAML Entitásazonosító** hello a másolt **bejelentkezés konfigurálása** ablakot, hello Azure-portálon.</span><span class="sxs-lookup"><span data-stu-id="cda24-183">In hello **Issuer URL** textbox, paste hello **SAML Entity ID** you copied from hello **Configure sign-on** window of hello Azure portal.</span></span>
 
-    <span data-ttu-id="48c0d-184">c.</span><span class="sxs-lookup"><span data-stu-id="48c0d-184">c.</span></span> <span data-ttu-id="48c0d-185">Az a **szolgáltató metaadatok Config** a metaadatok XML-fájl, amely az Azure-portálról letöltött feltöltése.</span><span class="sxs-lookup"><span data-stu-id="48c0d-185">In the **Provider Metadata Config** upload the Metadata XML file which you downloaded from Azure portal.</span></span>
+    <span data-ttu-id="cda24-184">c.</span><span class="sxs-lookup"><span data-stu-id="cda24-184">c.</span></span> <span data-ttu-id="cda24-185">A hello **szolgáltató metaadatok Config** hello metaadatok XML-fájl, amely az Azure-portálról letöltött feltöltése.</span><span class="sxs-lookup"><span data-stu-id="cda24-185">In hello **Provider Metadata Config** upload hello Metadata XML file which you downloaded from Azure portal.</span></span>
 
-    <span data-ttu-id="48c0d-186">d.</span><span class="sxs-lookup"><span data-stu-id="48c0d-186">d.</span></span> <span data-ttu-id="48c0d-187">SAML engedélyezése csak az idő-kiépítés engedélyezése is beállíthatja a **"Automatikus hozzon létre új felhasználók"** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="48c0d-187">You can also choose to enable SAML just in time provisioning by enabling the **‘Auto create new users’** checkbox.</span></span> <span data-ttu-id="48c0d-188">Ha egy felhasználó Velpic nem létezik, és ez a jelző nincs engedélyezve, az Azure-ból a bejelentkezés sikertelen lesz.</span><span class="sxs-lookup"><span data-stu-id="48c0d-188">If a user doesn’t exist in Velpic and this flag is not enabled, the login from Azure will fail.</span></span> <span data-ttu-id="48c0d-189">Ha a jelző engedélyezve van a felhasználó automatikusan megkapják a Velpic bejelentkezés alkalmával.</span><span class="sxs-lookup"><span data-stu-id="48c0d-189">If the flag is enabled the user will automatically be provisioned into Velpic at the time of login.</span></span> 
+    <span data-ttu-id="cda24-186">d.</span><span class="sxs-lookup"><span data-stu-id="cda24-186">d.</span></span> <span data-ttu-id="cda24-187">Másik lehetőségként tooenable SAML csak az idő kiépítés engedélyezése hello **"Automatikus hozzon létre új felhasználók"** jelölőnégyzetet.</span><span class="sxs-lookup"><span data-stu-id="cda24-187">You can also choose tooenable SAML just in time provisioning by enabling hello **‘Auto create new users’** checkbox.</span></span> <span data-ttu-id="cda24-188">Ha egy felhasználó Velpic nem létezik, és ez a jelző nincs engedélyezve, az Azure-ból hello bejelentkezési sikertelen lesz.</span><span class="sxs-lookup"><span data-stu-id="cda24-188">If a user doesn’t exist in Velpic and this flag is not enabled, hello login from Azure will fail.</span></span> <span data-ttu-id="cda24-189">Ha hello jelző engedélyezve hello felhasználói lesz automatikusan üzembe Velpic történő bejelentkezési ideje hello.</span><span class="sxs-lookup"><span data-stu-id="cda24-189">If hello flag is enabled hello user will automatically be provisioned into Velpic at hello time of login.</span></span> 
 
-    <span data-ttu-id="48c0d-190">e.</span><span class="sxs-lookup"><span data-stu-id="48c0d-190">e.</span></span> <span data-ttu-id="48c0d-191">Másolás a **egyszeri bejelentkezés URL-címen** szöveg mezőbe, majd illessze be az Azure-portálon.</span><span class="sxs-lookup"><span data-stu-id="48c0d-191">Copy the **Single sign on URL** from the text box and paste it in the Azure portal.</span></span>
+    <span data-ttu-id="cda24-190">e.</span><span class="sxs-lookup"><span data-stu-id="cda24-190">e.</span></span> <span data-ttu-id="cda24-191">Másolás hello **egyszeri bejelentkezés URL-címen** hello szövegmezőbe, és illessze be azt a hello Azure-portálon.</span><span class="sxs-lookup"><span data-stu-id="cda24-191">Copy hello **Single sign on URL** from hello text box and paste it in hello Azure portal.</span></span>
     
-    <span data-ttu-id="48c0d-192">f.</span><span class="sxs-lookup"><span data-stu-id="48c0d-192">f.</span></span> <span data-ttu-id="48c0d-193">Kattintson a **Save** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-193">Click **Save**.</span></span>
+    <span data-ttu-id="cda24-192">f.</span><span class="sxs-lookup"><span data-stu-id="cda24-192">f.</span></span> <span data-ttu-id="cda24-193">Kattintson a **Save** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-193">Click **Save**.</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="48c0d-194">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="48c0d-194">Creating an Azure AD test user</span></span>
-<span data-ttu-id="48c0d-195">Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.</span><span class="sxs-lookup"><span data-stu-id="48c0d-195">The objective of this section is to create a test user in the Azure Management portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="cda24-194">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="cda24-194">Creating an Azure AD test user</span></span>
+<span data-ttu-id="cda24-195">hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.</span><span class="sxs-lookup"><span data-stu-id="cda24-195">hello objective of this section is toocreate a test user in hello Azure Management portal called Britta Simon.</span></span>
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-<span data-ttu-id="48c0d-197">**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="48c0d-197">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="cda24-197">**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**</span><span class="sxs-lookup"><span data-stu-id="cda24-197">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="48c0d-198">Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-198">In the **Azure Management portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="cda24-198">A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="cda24-198">In hello **Azure Management portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="48c0d-200">Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.</span><span class="sxs-lookup"><span data-stu-id="48c0d-200">Go to **Users and groups** and click **All users** to display the list of users.</span></span>
+2. <span data-ttu-id="cda24-200">Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.</span><span class="sxs-lookup"><span data-stu-id="cda24-200">Go too**Users and groups** and click **All users** toodisplay hello list of users.</span></span>
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="48c0d-202">Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="48c0d-202">At the top of the dialog click **Add** to open the **User** dialog.</span></span>
+3. <span data-ttu-id="cda24-202">Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="cda24-202">At hello top of hello dialog click **Add** tooopen hello **User** dialog.</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="48c0d-204">Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="48c0d-204">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="cda24-204">A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="cda24-204">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-velpicsaml-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="48c0d-206">a.</span><span class="sxs-lookup"><span data-stu-id="48c0d-206">a.</span></span> <span data-ttu-id="48c0d-207">Az a **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-207">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="cda24-206">a.</span><span class="sxs-lookup"><span data-stu-id="cda24-206">a.</span></span> <span data-ttu-id="cda24-207">A hello **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="cda24-207">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="48c0d-208">b.</span><span class="sxs-lookup"><span data-stu-id="48c0d-208">b.</span></span> <span data-ttu-id="48c0d-209">Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="48c0d-209">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="cda24-208">b.</span><span class="sxs-lookup"><span data-stu-id="cda24-208">b.</span></span> <span data-ttu-id="cda24-209">A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="cda24-209">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="48c0d-210">c.</span><span class="sxs-lookup"><span data-stu-id="48c0d-210">c.</span></span> <span data-ttu-id="48c0d-211">Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-211">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="cda24-210">c.</span><span class="sxs-lookup"><span data-stu-id="cda24-210">c.</span></span> <span data-ttu-id="cda24-211">Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="cda24-211">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="48c0d-212">d.</span><span class="sxs-lookup"><span data-stu-id="48c0d-212">d.</span></span> <span data-ttu-id="48c0d-213">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-213">Click **Create**.</span></span>
+    <span data-ttu-id="cda24-212">d.</span><span class="sxs-lookup"><span data-stu-id="cda24-212">d.</span></span> <span data-ttu-id="cda24-213">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-213">Click **Create**.</span></span>
  
-### <a name="creating-a-velpic-saml-test-user"></a><span data-ttu-id="48c0d-214">Velpic SAML tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="48c0d-214">Creating a Velpic SAML test user</span></span>
+### <a name="creating-a-velpic-saml-test-user"></a><span data-ttu-id="cda24-214">Velpic SAML tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="cda24-214">Creating a Velpic SAML test user</span></span>
 
-<span data-ttu-id="48c0d-215">Ebben a lépésben esetén általában nincs szükség, ha az alkalmazás csak az idő a felhasználók átadása támogatja.</span><span class="sxs-lookup"><span data-stu-id="48c0d-215">This step is usually not required as the application supports just in time user provisioning.</span></span> <span data-ttu-id="48c0d-216">Ha nincs engedélyezve az automatikus felhasználó-átadási majd kézi felhasználó létrehozása teheti az alább ismertetett.</span><span class="sxs-lookup"><span data-stu-id="48c0d-216">If the automatic user provisioning is not enabled then manual user creation can be done as described below.</span></span>
+<span data-ttu-id="cda24-215">Ebben a lépésben esetén általában nincs szükség hello alkalmazás támogatja a csak az idő a felhasználók átadása.</span><span class="sxs-lookup"><span data-stu-id="cda24-215">This step is usually not required as hello application supports just in time user provisioning.</span></span> <span data-ttu-id="cda24-216">Ha nincs engedélyezve a hello automatikus felhasználó-átadási majd kézi felhasználó létrehozása teheti az alább ismertetett.</span><span class="sxs-lookup"><span data-stu-id="cda24-216">If hello automatic user provisioning is not enabled then manual user creation can be done as described below.</span></span>
 
-<span data-ttu-id="48c0d-217">Jelentkezzen be rendszergazdaként egy vállalati Velpic SAML-alapú webhelyekhez, és hajtsa végre a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="48c0d-217">Log into your Velpic SAML company site as an administrator and perform following steps:</span></span>
+<span data-ttu-id="cda24-217">Jelentkezzen be rendszergazdaként egy vállalati Velpic SAML-alapú webhelyekhez, és hajtsa végre a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="cda24-217">Log into your Velpic SAML company site as an administrator and perform following steps:</span></span>
     
-1. <span data-ttu-id="48c0d-218">Kattintson a kezelés lapon, majd nyissa meg a felhasználók szakaszban kattintson a felhasználók hozzáadása az új gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-218">Click on Manage tab and go to Users section, then click on New button to add users.</span></span>
+1. <span data-ttu-id="cda24-218">Kattintson a kezelés lapon tooUsers szakasz lépjen, majd kattintson az új gomb tooadd felhasználók.</span><span class="sxs-lookup"><span data-stu-id="cda24-218">Click on Manage tab and go tooUsers section, then click on New button tooadd users.</span></span>
 
     ![felhasználó hozzáadása](./media/active-directory-saas-velpicsaml-tutorial/velpic_7.png)
 
-2. <span data-ttu-id="48c0d-220">Az a **"Az új felhasználó létrehozása"** párbeszédpanel lapon, a következő lépésekkel.</span><span class="sxs-lookup"><span data-stu-id="48c0d-220">On the **“Create New User”** dialog page, perform the following steps.</span></span>
+2. <span data-ttu-id="cda24-220">A hello **"Az új felhasználó létrehozása"** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello lapján.</span><span class="sxs-lookup"><span data-stu-id="cda24-220">On hello **“Create New User”** dialog page, perform hello following steps.</span></span>
 
     ![Felhasználó](./media/active-directory-saas-velpicsaml-tutorial/velpic_8.png)
     
-    <span data-ttu-id="48c0d-222">a.</span><span class="sxs-lookup"><span data-stu-id="48c0d-222">a.</span></span> <span data-ttu-id="48c0d-223">Az a **Keresztnév** szövegmezőhöz Britta Simon az első nevét.</span><span class="sxs-lookup"><span data-stu-id="48c0d-223">In the **First Name** textbox, type the first name of Britta Simon.</span></span>
+    <span data-ttu-id="cda24-222">a.</span><span class="sxs-lookup"><span data-stu-id="cda24-222">a.</span></span> <span data-ttu-id="cda24-223">A hello **Keresztnév** szövegmezőhöz Britta Simon hello első nevét.</span><span class="sxs-lookup"><span data-stu-id="cda24-223">In hello **First Name** textbox, type hello first name of Britta Simon.</span></span>
 
-    <span data-ttu-id="48c0d-224">b.</span><span class="sxs-lookup"><span data-stu-id="48c0d-224">b.</span></span> <span data-ttu-id="48c0d-225">Az a **Vezetéknév** szövegmezőhöz Britta Simon utolsó neve.</span><span class="sxs-lookup"><span data-stu-id="48c0d-225">In the **Last Name** textbox, type the last name of Britta Simon.</span></span>
+    <span data-ttu-id="cda24-224">b.</span><span class="sxs-lookup"><span data-stu-id="cda24-224">b.</span></span> <span data-ttu-id="cda24-225">A hello **Vezetéknév** szövegmezőhöz típus hello vezetékneve Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="cda24-225">In hello **Last Name** textbox, type hello last name of Britta Simon.</span></span>
 
-    <span data-ttu-id="48c0d-226">c.</span><span class="sxs-lookup"><span data-stu-id="48c0d-226">c.</span></span> <span data-ttu-id="48c0d-227">Az a **felhasználónév** szövegmező, írja be a felhasználónevet Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="48c0d-227">In the **User Name** textbox, type the user name of Britta Simon.</span></span>
+    <span data-ttu-id="cda24-226">c.</span><span class="sxs-lookup"><span data-stu-id="cda24-226">c.</span></span> <span data-ttu-id="cda24-227">A hello **felhasználónév** szövegmezőhöz Britta Simon hello felhasználói nevét.</span><span class="sxs-lookup"><span data-stu-id="cda24-227">In hello **User Name** textbox, type hello user name of Britta Simon.</span></span>
 
-    <span data-ttu-id="48c0d-228">d.</span><span class="sxs-lookup"><span data-stu-id="48c0d-228">d.</span></span> <span data-ttu-id="48c0d-229">Az a **E-mail** szövegmezőhöz Britta Simon fiók e-mail címét.</span><span class="sxs-lookup"><span data-stu-id="48c0d-229">In the **Email** textbox, type the email address of Britta Simon account.</span></span>
+    <span data-ttu-id="cda24-228">d.</span><span class="sxs-lookup"><span data-stu-id="cda24-228">d.</span></span> <span data-ttu-id="cda24-229">A hello **E-mail** szövegmezőhöz típus hello Britta Simon fiókhoz tartozó e-mail cím.</span><span class="sxs-lookup"><span data-stu-id="cda24-229">In hello **Email** textbox, type hello email address of Britta Simon account.</span></span>
 
-    <span data-ttu-id="48c0d-230">e.</span><span class="sxs-lookup"><span data-stu-id="48c0d-230">e.</span></span> <span data-ttu-id="48c0d-231">További információk megadása nem kötelező, megadhatja azt, ha szükséges.</span><span class="sxs-lookup"><span data-stu-id="48c0d-231">Rest of the information is optional, you can fill it if needed.</span></span>
+    <span data-ttu-id="cda24-230">e.</span><span class="sxs-lookup"><span data-stu-id="cda24-230">e.</span></span> <span data-ttu-id="cda24-231">Hello információk többi nem kötelező, megadhatja, hogy szükség esetén.</span><span class="sxs-lookup"><span data-stu-id="cda24-231">Rest of hello information is optional, you can fill it if needed.</span></span>
     
-    <span data-ttu-id="48c0d-232">f.</span><span class="sxs-lookup"><span data-stu-id="48c0d-232">f.</span></span> <span data-ttu-id="48c0d-233">Kattintson a **SAVE** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-233">Click **SAVE**.</span></span>  
+    <span data-ttu-id="cda24-232">f.</span><span class="sxs-lookup"><span data-stu-id="cda24-232">f.</span></span> <span data-ttu-id="cda24-233">Kattintson a **SAVE** (Mentés) gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-233">Click **SAVE**.</span></span>  
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="48c0d-234">Az Azure AD-teszt felhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="48c0d-234">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="cda24-234">Az Azure AD hello tesztfelhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="cda24-234">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="48c0d-235">Ebben a szakaszban engedélyezze Britta Simon által biztosított a hozzáférés Velpic SAML Azure egyszeri bejelentkezéshez használandó.</span><span class="sxs-lookup"><span data-stu-id="48c0d-235">In this section, you enable Britta Simon to use Azure single sign-on by granting her access to Velpic SAML.</span></span>
+<span data-ttu-id="cda24-235">Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooVelpic SAML megadásával engedélyeznie.</span><span class="sxs-lookup"><span data-stu-id="cda24-235">In this section, you enable Britta Simon toouse Azure single sign-on by granting her access tooVelpic SAML.</span></span>
 
 ![Felhasználó hozzárendelése][200] 
 
-<span data-ttu-id="48c0d-237">**Britta Simon hozzárendelése Velpic SAML, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="48c0d-237">**To assign Britta Simon to Velpic SAML, perform the following steps:**</span></span>
+<span data-ttu-id="cda24-237">**tooassign Britta Simon tooVelpic SAML, hajtsa végre a következő lépéseket hello:**</span><span class="sxs-lookup"><span data-stu-id="cda24-237">**tooassign Britta Simon tooVelpic SAML, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="48c0d-238">Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-238">In the Azure Management portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="cda24-238">Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="cda24-238">In hello Azure Management portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Felhasználó hozzárendelése][201] 
 
-2. <span data-ttu-id="48c0d-240">Az alkalmazások listában válassza ki a **Velpic SAML**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-240">In the applications list, select **Velpic SAML**.</span></span>
+2. <span data-ttu-id="cda24-240">Hello alkalmazások listában válassza ki a **Velpic SAML**.</span><span class="sxs-lookup"><span data-stu-id="cda24-240">In hello applications list, select **Velpic SAML**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-velpicsaml-tutorial/tutorial_velpicsaml_app.png) 
 
-3. <span data-ttu-id="48c0d-242">A bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="48c0d-242">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="cda24-242">Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="cda24-242">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Felhasználó hozzárendelése][202] 
 
-4. <span data-ttu-id="48c0d-244">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="48c0d-244">Click **Add** button.</span></span> <span data-ttu-id="48c0d-245">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="48c0d-245">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="cda24-244">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="cda24-244">Click **Add** button.</span></span> <span data-ttu-id="cda24-245">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="cda24-245">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Felhasználó hozzárendelése][203]
 
-5. <span data-ttu-id="48c0d-247">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="48c0d-247">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="cda24-247">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="cda24-247">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="48c0d-248">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="48c0d-248">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="cda24-248">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="cda24-248">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="48c0d-249">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="48c0d-249">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="cda24-249">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="cda24-249">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="48c0d-250">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="48c0d-250">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="cda24-250">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="cda24-250">Testing single sign-on</span></span>
 
-<span data-ttu-id="48c0d-251">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.</span><span class="sxs-lookup"><span data-stu-id="48c0d-251">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="cda24-251">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="cda24-251">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-1. <span data-ttu-id="48c0d-252">Ha a hozzáférési panelen Velpic SAML csempére kattint, Velpic SAML alkalmazás bejelentkezési oldalán szerezheti be.</span><span class="sxs-lookup"><span data-stu-id="48c0d-252">When you click the Velpic SAML tile in the Access Panel, you should get login page of Velpic SAML application.</span></span> <span data-ttu-id="48c0d-253">Megjelenik a **"Jelentkezzen be az Azure AD"** a bejelentkezési oldal gombjára.</span><span class="sxs-lookup"><span data-stu-id="48c0d-253">You should see the **‘Log In With Azure AD’** button on the sign in page.</span></span>
+1. <span data-ttu-id="cda24-252">Hello Velpic SAML hello hozzáférési Panel csempére kattintva Velpic SAML alkalmazás bejelentkezési oldalán szerezheti be.</span><span class="sxs-lookup"><span data-stu-id="cda24-252">When you click hello Velpic SAML tile in hello Access Panel, you should get login page of Velpic SAML application.</span></span> <span data-ttu-id="cda24-253">Megtekintheti az hello **"Jelentkezzen be az Azure AD"** hello bejelentkezési oldal gombjára.</span><span class="sxs-lookup"><span data-stu-id="cda24-253">You should see hello **‘Log In With Azure AD’** button on hello sign in page.</span></span>
 
     ![Beépülő modul](./media/active-directory-saas-velpicsaml-tutorial/velpic_6.png)
 
-2. <span data-ttu-id="48c0d-255">Kattintson a **"Az Azure AD bejelentkezés"** gombra kattintva Velpic az Azure AD-fiókkal bejelentkezni.</span><span class="sxs-lookup"><span data-stu-id="48c0d-255">Click on the **‘Log In With Azure AD’** button to log in to Velpic using your Azure AD account.</span></span>
+2. <span data-ttu-id="cda24-255">Kattintson a hello **"Jelentkezzen be az Azure AD"** gomb toolog a tooVelpic az Azure AD-fiókjával.</span><span class="sxs-lookup"><span data-stu-id="cda24-255">Click on hello **‘Log In With Azure AD’** button toolog in tooVelpic using your Azure AD account.</span></span>
 
 
-## <a name="additional-resources"></a><span data-ttu-id="48c0d-256">További források</span><span class="sxs-lookup"><span data-stu-id="48c0d-256">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="cda24-256">További források</span><span class="sxs-lookup"><span data-stu-id="cda24-256">Additional resources</span></span>
 
-* [<span data-ttu-id="48c0d-257">Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása</span><span class="sxs-lookup"><span data-stu-id="48c0d-257">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="48c0d-258">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="48c0d-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="cda24-257">Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="cda24-257">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="cda24-258">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="cda24-258">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

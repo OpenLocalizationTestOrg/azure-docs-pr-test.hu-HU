@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell szerepköralapú hozzáférés-vezérlés (RBAC) kezelése |} Microsoft Docs"
-description: "Hogyan kezelheti az Azure PowerShell, beleértve a szerepköröket, a szerepkörök hozzárendelése és a szerepkör-hozzárendelések törlése RBAC."
+title: "Szerepköralapú hozzáférés-vezérlést (RBAC) az Azure PowerShell aaaManage |} Microsoft Docs"
+description: "Hogyan toomanage RBAC az Azure PowerShell, beleértve a szerepköröket, a szerepkörök hozzárendelése és a szerepkör-hozzárendelések törlése."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,28 +14,28 @@ ms.workload: identity
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: d7b11df21650b5cb27f9c3dd8306f8d12664185e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fa44991113e75b345177867b0bede38de4373e04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-role-based-access-control-with-azure-powershell"></a><span data-ttu-id="e9d49-103">Szerepköralapú hozzáférés-vezérlés kezelése az Azure PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="e9d49-103">Manage Role-Based Access Control with Azure PowerShell</span></span>
+# <a name="manage-role-based-access-control-with-azure-powershell"></a><span data-ttu-id="da99c-103">Szerepköralapú hozzáférés-vezérlés kezelése az Azure PowerShell-lel</span><span class="sxs-lookup"><span data-stu-id="da99c-103">Manage Role-Based Access Control with Azure PowerShell</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="e9d49-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="e9d49-104">PowerShell</span></span>](role-based-access-control-manage-access-powershell.md)
-> * [<span data-ttu-id="e9d49-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="e9d49-105">Azure CLI</span></span>](role-based-access-control-manage-access-azure-cli.md)
-> * [<span data-ttu-id="e9d49-106">REST API</span><span class="sxs-lookup"><span data-stu-id="e9d49-106">REST API</span></span>](role-based-access-control-manage-access-rest.md)
+> * [<span data-ttu-id="da99c-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="da99c-104">PowerShell</span></span>](role-based-access-control-manage-access-powershell.md)
+> * [<span data-ttu-id="da99c-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="da99c-105">Azure CLI</span></span>](role-based-access-control-manage-access-azure-cli.md)
+> * [<span data-ttu-id="da99c-106">REST API</span><span class="sxs-lookup"><span data-stu-id="da99c-106">REST API</span></span>](role-based-access-control-manage-access-rest.md)
 
-<span data-ttu-id="e9d49-107">Szerepköralapú hozzáférés-vezérlést (RBAC) az Azure portálon, és az Azure erőforrás-kezelési API segítségével hozzáférésének kezelése az előfizetéshez a minden részletre kiterjedő szinten.</span><span class="sxs-lookup"><span data-stu-id="e9d49-107">You can use Role-Based Access Control (RBAC) in the Azure portal and Azure Resource Management API to manage access to your subscription at a fine-grained level.</span></span> <span data-ttu-id="e9d49-108">Ez a szolgáltatás egyes szerepkörök hozzárendelése el egy adott hatókörhöz szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.</span><span class="sxs-lookup"><span data-stu-id="e9d49-108">With this feature, you can grant access for Active Directory users, groups, or service principals by assigning some roles to them at a particular scope.</span></span>
+<span data-ttu-id="da99c-107">Szerepköralapú hozzáférés-vezérlést (RBAC) használhatja hello Azure-portál és az Azure erőforrás-kezelési API toomanage hozzáférés tooyour előfizetés részletes szinten.</span><span class="sxs-lookup"><span data-stu-id="da99c-107">You can use Role-Based Access Control (RBAC) in hello Azure portal and Azure Resource Management API toomanage access tooyour subscription at a fine-grained level.</span></span> <span data-ttu-id="da99c-108">Ez a szolgáltatás egyes szerepkörök toothem egy adott hatókör hozzárendelése szerint engedélyezheti a hozzáférést az Active Directory felhasználók, csoportok vagy szolgáltatásnevekről.</span><span class="sxs-lookup"><span data-stu-id="da99c-108">With this feature, you can grant access for Active Directory users, groups, or service principals by assigning some roles toothem at a particular scope.</span></span>
 
-<span data-ttu-id="e9d49-109">PowerShell kezeléséhez RBAC használata előtt kell a következő előfeltételek teljesülését:</span><span class="sxs-lookup"><span data-stu-id="e9d49-109">Before you can use PowerShell to manage RBAC, you need the following prerequisites:</span></span>
+<span data-ttu-id="da99c-109">PowerShell toomanage RBAC használata előtt a következő előfeltételek hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="da99c-109">Before you can use PowerShell toomanage RBAC, you need hello following prerequisites:</span></span>
 
-* <span data-ttu-id="e9d49-110">Az Azure PowerShell 0.8.8 verzió vagy újabb.</span><span class="sxs-lookup"><span data-stu-id="e9d49-110">Azure PowerShell version 0.8.8 or later.</span></span> <span data-ttu-id="e9d49-111">Telepítse a legújabb verziót, és társítsa azt az Azure-előfizetése, [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="e9d49-111">To install the latest version and associate it with your Azure subscription, see [how to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
-* <span data-ttu-id="e9d49-112">Az Azure Resource Manager parancsmagok.</span><span class="sxs-lookup"><span data-stu-id="e9d49-112">Azure Resource Manager cmdlets.</span></span> <span data-ttu-id="e9d49-113">Telepítse a [Azure Resource Manager parancsmagjainak](/powershell/azure/overview) a PowerShellben.</span><span class="sxs-lookup"><span data-stu-id="e9d49-113">Install the [Azure Resource Manager cmdlets](/powershell/azure/overview) in PowerShell.</span></span>
+* <span data-ttu-id="da99c-110">Az Azure PowerShell 0.8.8 verzió vagy újabb.</span><span class="sxs-lookup"><span data-stu-id="da99c-110">Azure PowerShell version 0.8.8 or later.</span></span> <span data-ttu-id="da99c-111">tooinstall hello legújabb verzióját, és rendelje azt az Azure-előfizetéshez, lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="da99c-111">tooinstall hello latest version and associate it with your Azure subscription, see [how tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+* <span data-ttu-id="da99c-112">Az Azure Resource Manager parancsmagok.</span><span class="sxs-lookup"><span data-stu-id="da99c-112">Azure Resource Manager cmdlets.</span></span> <span data-ttu-id="da99c-113">Telepítse a hello [Azure Resource Manager parancsmagjainak](/powershell/azure/overview) a PowerShellben.</span><span class="sxs-lookup"><span data-stu-id="da99c-113">Install hello [Azure Resource Manager cmdlets](/powershell/azure/overview) in PowerShell.</span></span>
 
-## <a name="list-roles"></a><span data-ttu-id="e9d49-114">Lista szerepkörök</span><span class="sxs-lookup"><span data-stu-id="e9d49-114">List roles</span></span>
-### <a name="list-all-available-roles"></a><span data-ttu-id="e9d49-115">Elérhető szerepkörök felsorolása</span><span class="sxs-lookup"><span data-stu-id="e9d49-115">List all available roles</span></span>
-<span data-ttu-id="e9d49-116">A lista RBAC szerepkörökhöz kiosztására használható, és a műveletek, amelyhez azokat hozzáférést, a vizsgálandó használó `Get-AzureRmRoleDefinition`.</span><span class="sxs-lookup"><span data-stu-id="e9d49-116">To list RBAC roles that are available for assignment and to inspect the operations to which they grant access, use `Get-AzureRmRoleDefinition`.</span></span>
+## <a name="list-roles"></a><span data-ttu-id="da99c-114">Lista szerepkörök</span><span class="sxs-lookup"><span data-stu-id="da99c-114">List roles</span></span>
+### <a name="list-all-available-roles"></a><span data-ttu-id="da99c-115">Elérhető szerepkörök felsorolása</span><span class="sxs-lookup"><span data-stu-id="da99c-115">List all available roles</span></span>
+<span data-ttu-id="da99c-116">toolist RBAC-hozzárendelés és tooinspect hello műveletek toowhich azok engedélyezheti a hozzáférést, a rendelkezésre álló használnak `Get-AzureRmRoleDefinition`.</span><span class="sxs-lookup"><span data-stu-id="da99c-116">toolist RBAC roles that are available for assignment and tooinspect hello operations toowhich they grant access, use `Get-AzureRmRoleDefinition`.</span></span>
 
 ```
 Get-AzureRmRoleDefinition | FT Name, Description
@@ -43,8 +43,8 @@ Get-AzureRmRoleDefinition | FT Name, Description
 
 ![Az RBAC PowerShell-Get AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition1.png)
 
-### <a name="list-actions-of-a-role"></a><span data-ttu-id="e9d49-118">Egy szerepkör lista műveletek</span><span class="sxs-lookup"><span data-stu-id="e9d49-118">List actions of a role</span></span>
-<span data-ttu-id="e9d49-119">Kilistázhatja az adott szerepkörhöz műveletek `Get-AzureRmRoleDefinition <role name>`.</span><span class="sxs-lookup"><span data-stu-id="e9d49-119">To list the actions for a specific role, use `Get-AzureRmRoleDefinition <role name>`.</span></span>
+### <a name="list-actions-of-a-role"></a><span data-ttu-id="da99c-118">Egy szerepkör lista műveletek</span><span class="sxs-lookup"><span data-stu-id="da99c-118">List actions of a role</span></span>
+<span data-ttu-id="da99c-119">egy adott szerepkör esetében toolist hello műveletek `Get-AzureRmRoleDefinition <role name>`.</span><span class="sxs-lookup"><span data-stu-id="da99c-119">toolist hello actions for a specific role, use `Get-AzureRmRoleDefinition <role name>`.</span></span>
 
 ```
 Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
@@ -54,11 +54,11 @@ Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
 
 ![Az RBAC PowerShell-Get AzureRmRoleDefinition egy adott szerepkör esetében – képernyőkép](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition2.png)
 
-## <a name="see-who-has-access"></a><span data-ttu-id="e9d49-121">Lásd a kinek van hozzáférése:</span><span class="sxs-lookup"><span data-stu-id="e9d49-121">See who has access</span></span>
-<span data-ttu-id="e9d49-122">A listában a Szerepalapú hozzáférés-hozzárendelések használja `Get-AzureRmRoleAssignment`.</span><span class="sxs-lookup"><span data-stu-id="e9d49-122">To list RBAC access assignments, use `Get-AzureRmRoleAssignment`.</span></span>
+## <a name="see-who-has-access"></a><span data-ttu-id="da99c-121">Lásd a kinek van hozzáférése:</span><span class="sxs-lookup"><span data-stu-id="da99c-121">See who has access</span></span>
+<span data-ttu-id="da99c-122">toolist Szerepalapú hozzáférés-hozzárendelés, használjon `Get-AzureRmRoleAssignment`.</span><span class="sxs-lookup"><span data-stu-id="da99c-122">toolist RBAC access assignments, use `Get-AzureRmRoleAssignment`.</span></span>
 
-### <a name="list-role-assignments-at-a-specific-scope"></a><span data-ttu-id="e9d49-123">Szerepkör-hozzárendelések listáját egy adott hatókörhöz</span><span class="sxs-lookup"><span data-stu-id="e9d49-123">List role assignments at a specific scope</span></span>
-<span data-ttu-id="e9d49-124">A megadott előfizetés, a erőforráscsoport vagy az erőforrás hozzáférés-hozzárendelések tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="e9d49-124">You can see all the access assignments for a specified subscription, resource group, or resource.</span></span> <span data-ttu-id="e9d49-125">Például az összes aktív hozzárendelése egy erőforráscsoport, használja a `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.</span><span class="sxs-lookup"><span data-stu-id="e9d49-125">For example, to see the all the active assignments for a resource group, use `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.</span></span>
+### <a name="list-role-assignments-at-a-specific-scope"></a><span data-ttu-id="da99c-123">Szerepkör-hozzárendelések listáját egy adott hatókörhöz</span><span class="sxs-lookup"><span data-stu-id="da99c-123">List role assignments at a specific scope</span></span>
+<span data-ttu-id="da99c-124">A megadott előfizetés, erőforráscsoportból vagy erőforrás összes hello hozzáférés hozzárendelését tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="da99c-124">You can see all hello access assignments for a specified subscription, resource group, or resource.</span></span> <span data-ttu-id="da99c-125">Például toosee hello összes hello aktív hozzárendelést egy erőforráscsoport, használjon `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.</span><span class="sxs-lookup"><span data-stu-id="da99c-125">For example, toosee hello all hello active assignments for a resource group, use `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`.</span></span>
 
 ```
 Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL DisplayName, RoleDefinitionName, Scope
@@ -66,8 +66,8 @@ Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL Di
 
 ![Az RBAC - Get-AzureRmRoleAssignment erőforráscsoport - PowerShell képernyőképe](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
-### <a name="list-roles-assigned-to-a-user"></a><span data-ttu-id="e9d49-127">A felhasználóhoz rendelt lista szerepkörök</span><span class="sxs-lookup"><span data-stu-id="e9d49-127">List roles assigned to a user</span></span>
-<span data-ttu-id="e9d49-128">Kilistázhatja az adott felhasználóhoz rendelt összes szerepkör és a szerepköröket, amelyek a csoportok, amelyhez a felhasználó tartozik `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.</span><span class="sxs-lookup"><span data-stu-id="e9d49-128">To list all the roles that are assigned to a specified user and the roles that are assigned to the groups to which the user belongs, use `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.</span></span>
+### <a name="list-roles-assigned-tooa-user"></a><span data-ttu-id="da99c-127">Lista tooa felhasználói szerepkörrel</span><span class="sxs-lookup"><span data-stu-id="da99c-127">List roles assigned tooa user</span></span>
+<span data-ttu-id="da99c-128">minden hello szerepkör tooa megadott felhasználói és toowhich hello felhasználó tartozik, toohello csoportok hello szerepkör toolist használata `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.</span><span class="sxs-lookup"><span data-stu-id="da99c-128">toolist all hello roles that are assigned tooa specified user and hello roles that are assigned toohello groups toowhich hello user belongs, use `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`.</span></span>
 
 ```
 Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com | FL DisplayName, RoleDefinitionName, Scope
@@ -77,69 +77,69 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 
 ![Az RBAC PowerShell-Get AzureRmRoleAssignment egy felhasználó számára – képernyőkép](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment2.png)
 
-### <a name="list-classic-service-administrator-and-coadmin-role-assignments"></a><span data-ttu-id="e9d49-130">Lista klasszikus szolgáltatás-rendszergazda és a szerepkör-hozzárendelések társfelügyeletű</span><span class="sxs-lookup"><span data-stu-id="e9d49-130">List classic service administrator and coadmin role assignments</span></span>
-<span data-ttu-id="e9d49-131">Lista access-hozzárendelések a hagyományos előfizetés rendszergazdai és coadministrators, használja:</span><span class="sxs-lookup"><span data-stu-id="e9d49-131">To list access assignments for the classic subscription administrator and coadministrators, use:</span></span>
+### <a name="list-classic-service-administrator-and-coadmin-role-assignments"></a><span data-ttu-id="da99c-130">Lista klasszikus szolgáltatás-rendszergazda és a szerepkör-hozzárendelések társfelügyeletű</span><span class="sxs-lookup"><span data-stu-id="da99c-130">List classic service administrator and coadmin role assignments</span></span>
+<span data-ttu-id="da99c-131">hozzáférés-hozzárendelései toolist hello klasszikus előfizetési rendszergazda, és coadministrators, használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-131">toolist access assignments for hello classic subscription administrator and coadministrators, use:</span></span>
 
     Get-AzureRmRoleAssignment -IncludeClassicAdministrators
 
-## <a name="grant-access"></a><span data-ttu-id="e9d49-132">Hozzáférés biztosítása</span><span class="sxs-lookup"><span data-stu-id="e9d49-132">Grant access</span></span>
-### <a name="search-for-object-ids"></a><span data-ttu-id="e9d49-133">Objektumazonosítók keresése</span><span class="sxs-lookup"><span data-stu-id="e9d49-133">Search for object IDs</span></span>
-<span data-ttu-id="e9d49-134">A szerepkör hozzárendeléséhez kell azonosítani az objektum (felhasználó, csoport vagy alkalmazás) és a hatókör.</span><span class="sxs-lookup"><span data-stu-id="e9d49-134">To assign a role, you need to identify both the object (user, group, or application) and the scope.</span></span>
+## <a name="grant-access"></a><span data-ttu-id="da99c-132">Hozzáférés biztosítása</span><span class="sxs-lookup"><span data-stu-id="da99c-132">Grant access</span></span>
+### <a name="search-for-object-ids"></a><span data-ttu-id="da99c-133">Objektumazonosítók keresése</span><span class="sxs-lookup"><span data-stu-id="da99c-133">Search for object IDs</span></span>
+<span data-ttu-id="da99c-134">szerepkör tooassign, kell tooidentify hello objektum (felhasználó, csoport vagy alkalmazás) és a hello hatókör.</span><span class="sxs-lookup"><span data-stu-id="da99c-134">tooassign a role, you need tooidentify both hello object (user, group, or application) and hello scope.</span></span>
 
-<span data-ttu-id="e9d49-135">Ha az előfizetés-azonosító nem tudja, megtalálja a a **előfizetések** panel az Azure portálon.</span><span class="sxs-lookup"><span data-stu-id="e9d49-135">If you don't know the subscription ID, you can find it in the **Subscriptions** blade on the Azure portal.</span></span> <span data-ttu-id="e9d49-136">Az előfizetés-azonosító lekérdezése, lásd: [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) az MSDN Webhelyén.</span><span class="sxs-lookup"><span data-stu-id="e9d49-136">To learn how to query for the subscription ID, see [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) on MSDN.</span></span>
+<span data-ttu-id="da99c-135">Ha nem tudja hello előfizetés-azonosító, megtalálja a hello **előfizetések** hello Azure-portálon paneljét.</span><span class="sxs-lookup"><span data-stu-id="da99c-135">If you don't know hello subscription ID, you can find it in hello **Subscriptions** blade on hello Azure portal.</span></span> <span data-ttu-id="da99c-136">Hogyan hello előfizetés-azonosító, a tooquery: toolearn [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) az MSDN Webhelyén.</span><span class="sxs-lookup"><span data-stu-id="da99c-136">toolearn how tooquery for hello subscription ID, see [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) on MSDN.</span></span>
 
-<span data-ttu-id="e9d49-137">Az objektum azonosítója az Azure AD-csoport, amelyet:</span><span class="sxs-lookup"><span data-stu-id="e9d49-137">To get the object ID for an Azure AD group, use:</span></span>
+<span data-ttu-id="da99c-137">tooget hello objektum azonosítója az Azure AD-csoport használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-137">tooget hello object ID for an Azure AD group, use:</span></span>
 
     Get-AzureRmADGroup -SearchString <group name in quotes>
 
-<span data-ttu-id="e9d49-138">Az objektum azonosítója az Azure AD szolgáltatás egyszerű vagy az alkalmazás használatához:</span><span class="sxs-lookup"><span data-stu-id="e9d49-138">To get the object ID for an Azure AD service principal or application, use:</span></span>
+<span data-ttu-id="da99c-138">tooget hello Objektumazonosító egy egyszerű Azure AD szolgáltatás vagy alkalmazás használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-138">tooget hello object ID for an Azure AD service principal or application, use:</span></span>
 
     Get-AzureRmADServicePrincipal -SearchString <service name in quotes>
 
-### <a name="assign-a-role-to-an-application-at-the-subscription-scope"></a><span data-ttu-id="e9d49-139">Az alkalmazást az előfizetési hatókört szerepkör hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="e9d49-139">Assign a role to an application at the subscription scope</span></span>
-<span data-ttu-id="e9d49-140">Az előfizetés hatókörből alkalmazáshoz való hozzáférés biztosításához használja:</span><span class="sxs-lookup"><span data-stu-id="e9d49-140">To grant access to an application at the subscription scope, use:</span></span>
+### <a name="assign-a-role-tooan-application-at-hello-subscription-scope"></a><span data-ttu-id="da99c-139">Egy szerepkör tooan alkalmazást hello előfizetés hatókörből</span><span class="sxs-lookup"><span data-stu-id="da99c-139">Assign a role tooan application at hello subscription scope</span></span>
+<span data-ttu-id="da99c-140">toogrant access tooan alkalmazás hello előfizetés hatókörben, használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-140">toogrant access tooan application at hello subscription scope, use:</span></span>
 
     New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name> -Scope <subscription id>
 
 ![Az RBAC PowerShell új AzureRmRoleAssignment – képernyőkép](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment2.png)
 
-### <a name="assign-a-role-to-a-user-at-the-resource-group-scope"></a><span data-ttu-id="e9d49-142">A szerepkör hozzárendelése egy felhasználóhoz a erőforrás csoport hatóköre:</span><span class="sxs-lookup"><span data-stu-id="e9d49-142">Assign a role to a user at the resource group scope</span></span>
-<span data-ttu-id="e9d49-143">Hozzáférés biztosítása a felhasználók a erőforrás hatókörét, használja:</span><span class="sxs-lookup"><span data-stu-id="e9d49-143">To grant access to a user at the resource group scope, use:</span></span>
+### <a name="assign-a-role-tooa-user-at-hello-resource-group-scope"></a><span data-ttu-id="da99c-142">Egy szerepkör tooa felhasználó hello erőforrás csoport hatóköre:</span><span class="sxs-lookup"><span data-stu-id="da99c-142">Assign a role tooa user at hello resource group scope</span></span>
+<span data-ttu-id="da99c-143">toogrant hozzáférés tooa felhasználójának hello erőforrás csoport hatóköre használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-143">toogrant access tooa user at hello resource group scope, use:</span></span>
 
     New-AzureRmRoleAssignment -SignInName <email of user> -RoleDefinitionName <role name in quotes> -ResourceGroupName <resource group name>
 
 ![Az RBAC PowerShell új AzureRmRoleAssignment – képernyőkép](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment3.png)
 
-### <a name="assign-a-role-to-a-group-at-the-resource-scope"></a><span data-ttu-id="e9d49-145">A szerepkör hozzárendelése a erőforrás hatókörben csoporthoz</span><span class="sxs-lookup"><span data-stu-id="e9d49-145">Assign a role to a group at the resource scope</span></span>
-<span data-ttu-id="e9d49-146">Hozzáférés biztosítása a erőforrás hatókörben egy csoportot, használja:</span><span class="sxs-lookup"><span data-stu-id="e9d49-146">To grant access to a group at the resource scope, use:</span></span>
+### <a name="assign-a-role-tooa-group-at-hello-resource-scope"></a><span data-ttu-id="da99c-145">Egy szerepkör tooa csoport hello erőforrás hatókörből hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="da99c-145">Assign a role tooa group at hello resource scope</span></span>
+<span data-ttu-id="da99c-146">toogrant hozzáférési tooa csoport hello erőforrás hatókörben, használja:</span><span class="sxs-lookup"><span data-stu-id="da99c-146">toogrant access tooa group at hello resource scope, use:</span></span>
 
     New-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name in quotes> -ResourceName <resource name> -ResourceType <resource type> -ParentResource <parent resource> -ResourceGroupName <resource group name>
 
 ![Az RBAC PowerShell új AzureRmRoleAssignment – képernyőkép](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment4.png)
 
-## <a name="remove-access"></a><span data-ttu-id="e9d49-148">Megszünteti a hozzáférést</span><span class="sxs-lookup"><span data-stu-id="e9d49-148">Remove access</span></span>
-<span data-ttu-id="e9d49-149">A felhasználók, csoportok és alkalmazások elérésének eltávolításához használja:</span><span class="sxs-lookup"><span data-stu-id="e9d49-149">To remove access for users, groups, and applications, use:</span></span>
+## <a name="remove-access"></a><span data-ttu-id="da99c-148">Megszünteti a hozzáférést</span><span class="sxs-lookup"><span data-stu-id="da99c-148">Remove access</span></span>
+<span data-ttu-id="da99c-149">tooremove hozzáférés a felhasználók, csoportok és alkalmazások számára:</span><span class="sxs-lookup"><span data-stu-id="da99c-149">tooremove access for users, groups, and applications, use:</span></span>
 
     Remove-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name> -Scope <scope such as subscription id>
 
 ![Az RBAC PowerShell-Remove AzureRmRoleAssignment – képernyőkép](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
-## <a name="create-a-custom-role"></a><span data-ttu-id="e9d49-151">Egyéni szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="e9d49-151">Create a custom role</span></span>
-<span data-ttu-id="e9d49-152">Egy egyéni biztonsági szerepkört hozhat létre a ```New-AzureRmRoleDefinition``` parancsot.</span><span class="sxs-lookup"><span data-stu-id="e9d49-152">To create a custom role, use the ```New-AzureRmRoleDefinition``` command.</span></span> <span data-ttu-id="e9d49-153">Kétféleképpen a szerkezetének kialakítása a szerepkörre, PSRoleDefinitionObject vagy egy JSON-sablon használatával.</span><span class="sxs-lookup"><span data-stu-id="e9d49-153">There are two methods of structuring the role, using PSRoleDefinitionObject or a JSON template.</span></span> 
+## <a name="create-a-custom-role"></a><span data-ttu-id="da99c-151">Egyéni szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="da99c-151">Create a custom role</span></span>
+<span data-ttu-id="da99c-152">egy egyéni biztonsági szerepkört, toocreate hello használata ```New-AzureRmRoleDefinition``` parancsot.</span><span class="sxs-lookup"><span data-stu-id="da99c-152">toocreate a custom role, use hello ```New-AzureRmRoleDefinition``` command.</span></span> <span data-ttu-id="da99c-153">Kétféleképpen a szerkezetének kialakítása hello szerepkör PSRoleDefinitionObject vagy egy JSON-sablon használatával.</span><span class="sxs-lookup"><span data-stu-id="da99c-153">There are two methods of structuring hello role, using PSRoleDefinitionObject or a JSON template.</span></span> 
 
-## <a name="get-actions-for-a-resource-provider"></a><span data-ttu-id="e9d49-154">Egy erőforrás-szolgáltató műveleteinek beolvasása</span><span class="sxs-lookup"><span data-stu-id="e9d49-154">Get Actions for a Resource Provider</span></span>
-<span data-ttu-id="e9d49-155">Ha teljesen új egyéni szerepkörök hoz létre, fontos tudni, hogy az erőforrás-szolgáltató az összes lehetséges műveletet.</span><span class="sxs-lookup"><span data-stu-id="e9d49-155">When You are creating custom roles from scratch, it is important to know all the possible operations from the resource providers.</span></span>
-<span data-ttu-id="e9d49-156">Használja a ```Get-AzureRMProviderOperation``` parancs használatával beszerezheti az ezeket az információkat.</span><span class="sxs-lookup"><span data-stu-id="e9d49-156">Use the ```Get-AzureRMProviderOperation``` command to get this information.</span></span>
-<span data-ttu-id="e9d49-157">Például ha ellenőrizni kívánja az elérhető műveletek a virtuális gép használja ezt a parancsot:</span><span class="sxs-lookup"><span data-stu-id="e9d49-157">For example, if you want to check all the available operations for virtual Machine use this command:</span></span>
+## <a name="get-actions-for-a-resource-provider"></a><span data-ttu-id="da99c-154">Egy erőforrás-szolgáltató műveleteinek beolvasása</span><span class="sxs-lookup"><span data-stu-id="da99c-154">Get Actions for a Resource Provider</span></span>
+<span data-ttu-id="da99c-155">Egyéni szerepkörök teljesen új hoz létre, esetén fontos tooknow összes lehetséges műveleteket az erőforrás-szolgáltatók hello hello.</span><span class="sxs-lookup"><span data-stu-id="da99c-155">When You are creating custom roles from scratch, it is important tooknow all hello possible operations from hello resource providers.</span></span>
+<span data-ttu-id="da99c-156">Használjon hello ```Get-AzureRMProviderOperation``` parancs tooget ezt az információt.</span><span class="sxs-lookup"><span data-stu-id="da99c-156">Use hello ```Get-AzureRMProviderOperation``` command tooget this information.</span></span>
+<span data-ttu-id="da99c-157">Például ha azt szeretné, hogy toocheck hello elérhető műveletek a virtuális gép használja ezt a parancsot:</span><span class="sxs-lookup"><span data-stu-id="da99c-157">For example, if you want toocheck all hello available operations for virtual Machine use this command:</span></span>
 
 ```
 Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize
 ```
 
-### <a name="create-role-with-psroledefinitionobject"></a><span data-ttu-id="e9d49-158">PSRoleDefinitionObject szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="e9d49-158">Create role with PSRoleDefinitionObject</span></span>
-<span data-ttu-id="e9d49-159">Amikor a PowerShell segítségével hozzon létre egy egyéni biztonsági szerepkört, új, vagy próbálkozzon a [beépített szerepkörök](role-based-access-built-in-roles.md) kiindulási pontként.</span><span class="sxs-lookup"><span data-stu-id="e9d49-159">When you use PowerShell to create a custom role, you can start from scratch or use one of the [built-in roles](role-based-access-built-in-roles.md) as a starting point.</span></span> <span data-ttu-id="e9d49-160">A jelen szakaszban ismertetett példa egy beépített szerepkör kezdődik, és majd testreszabása további engedélyekkel.</span><span class="sxs-lookup"><span data-stu-id="e9d49-160">The example in this section starts with a built-in role and then customizes it with more privileges.</span></span> <span data-ttu-id="e9d49-161">Szerkessze a attribútumokat kíván hozzáadni a *műveletek*, *notActions*, vagy *hatókörök* , és mentse a módosításokat egy új szerepkörként.</span><span class="sxs-lookup"><span data-stu-id="e9d49-161">Edit the attributes to add the *Actions*, *notActions*, or *scopes* that you want, and then save the changes as a new role.</span></span>
+### <a name="create-role-with-psroledefinitionobject"></a><span data-ttu-id="da99c-158">PSRoleDefinitionObject szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="da99c-158">Create role with PSRoleDefinitionObject</span></span>
+<span data-ttu-id="da99c-159">PowerShell toocreate egy egyéni biztonsági szerepkört használatakor, új, vagy hello valamelyikével [beépített szerepkörök](role-based-access-built-in-roles.md) kiindulási pontként.</span><span class="sxs-lookup"><span data-stu-id="da99c-159">When you use PowerShell toocreate a custom role, you can start from scratch or use one of hello [built-in roles](role-based-access-built-in-roles.md) as a starting point.</span></span> <span data-ttu-id="da99c-160">Ebben a szakaszban hello például egy beépített szerepkör kezdődik, és majd testreszabása további jogosultságokkal.</span><span class="sxs-lookup"><span data-stu-id="da99c-160">hello example in this section starts with a built-in role and then customizes it with more privileges.</span></span> <span data-ttu-id="da99c-161">Hello attribútumok tooadd hello szerkesztése *műveletek*, *notActions*, vagy *hatókörök* , és mentse egy új szerepkörként hello módosítások.</span><span class="sxs-lookup"><span data-stu-id="da99c-161">Edit hello attributes tooadd hello *Actions*, *notActions*, or *scopes* that you want, and then save hello changes as a new role.</span></span>
 
-<span data-ttu-id="e9d49-162">Az alábbi példa kezdődik-e a *virtuális gép közreműködő* szerepkör és a által használt egyéni szerepkör létrehozása, amely nevű *virtuális gépet üzemeltető*.</span><span class="sxs-lookup"><span data-stu-id="e9d49-162">The following example starts with the *Virtual Machine Contributor* role and uses that to create a custom role called *Virtual Machine Operator*.</span></span> <span data-ttu-id="e9d49-163">Az új szerepkör hozzáférést biztosít az összes olvasási műveletek a *Microsoft.Compute*, *Microsoft.Storage*, és *Microsoft.Network* erőforrás szolgáltatók és biztosít hozzáférést indítása , indítsa újra, és a virtuális gépek figyelése.</span><span class="sxs-lookup"><span data-stu-id="e9d49-163">The new role grants access to all read operations of *Microsoft.Compute*, *Microsoft.Storage*, and *Microsoft.Network* resource providers and grants access to start, restart, and monitor virtual machines.</span></span> <span data-ttu-id="e9d49-164">Az egyéni biztonsági szerepkört is használható két előfizetésekhez.</span><span class="sxs-lookup"><span data-stu-id="e9d49-164">The custom role can be used in two subscriptions.</span></span>
+<span data-ttu-id="da99c-162">hello alábbi példa kezdődik hello *virtuális gép közreműködő* szerepkör és használja, hogy egy egyéni biztonsági szerepkört toocreate nevű *virtuális gépet üzemeltető*.</span><span class="sxs-lookup"><span data-stu-id="da99c-162">hello following example starts with hello *Virtual Machine Contributor* role and uses that toocreate a custom role called *Virtual Machine Operator*.</span></span> <span data-ttu-id="da99c-163">hello új szerepkörök hozzáférési tooall olvasási műveletek a *Microsoft.Compute*, *Microsoft.Storage*, és *Microsoft.Network* erőforrás-szolgáltatók és biztosít hozzáférést toostart, indítsa újra, és a virtuális gépek figyelése.</span><span class="sxs-lookup"><span data-stu-id="da99c-163">hello new role grants access tooall read operations of *Microsoft.Compute*, *Microsoft.Storage*, and *Microsoft.Network* resource providers and grants access toostart, restart, and monitor virtual machines.</span></span> <span data-ttu-id="da99c-164">hello egyéni biztonsági szerepkört is használható két előfizetésekhez.</span><span class="sxs-lookup"><span data-stu-id="da99c-164">hello custom role can be used in two subscriptions.</span></span>
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
@@ -164,15 +164,15 @@ New-AzureRmRoleDefinition -Role $role
 
 ![Az RBAC PowerShell-Get AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
-### <a name="create-role-with-json-template"></a><span data-ttu-id="e9d49-166">A JSON-sablon szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="e9d49-166">Create role with JSON template</span></span>
-<span data-ttu-id="e9d49-167">A JSON-sablon az egyéni szerepkör használható legyen a forrás-definíció.</span><span class="sxs-lookup"><span data-stu-id="e9d49-167">A JSON template can be used as the source definition for the custom role.</span></span> <span data-ttu-id="e9d49-168">Az alábbi példa létrehoz egy egyéni biztonsági szerepkört, amely olvasási hozzáférést biztosít a tárolási és számítási erőforrásokat, hozzáférés támogatásához, és adja a szerepkört két előfizetések.</span><span class="sxs-lookup"><span data-stu-id="e9d49-168">The following example creates a custom role that allows read access to storage and compute resources, access to support, and adds that role to two subscriptions.</span></span> <span data-ttu-id="e9d49-169">Hozzon létre egy új fájlt `C:\CustomRoles\customrole1.json` a következő példa a.</span><span class="sxs-lookup"><span data-stu-id="e9d49-169">Create a new file `C:\CustomRoles\customrole1.json` with the following example.</span></span> <span data-ttu-id="e9d49-170">A azonosítóját kell beállítani. `null` a kezdeti szerepkör létrehozásakor egy új ID automatikusan létrejön.</span><span class="sxs-lookup"><span data-stu-id="e9d49-170">The Id should be set to `null` on initial role creation as a new ID is generated automatically.</span></span> 
+### <a name="create-role-with-json-template"></a><span data-ttu-id="da99c-166">A JSON-sablon szerepkör létrehozása</span><span class="sxs-lookup"><span data-stu-id="da99c-166">Create role with JSON template</span></span>
+<span data-ttu-id="da99c-167">A JSON-sablon hello egyéni szerepkör hello adatforrása definíciója is használható.</span><span class="sxs-lookup"><span data-stu-id="da99c-167">A JSON template can be used as hello source definition for hello custom role.</span></span> <span data-ttu-id="da99c-168">hello alábbi példa létrehoz egy egyéni biztonsági szerepkört, amely lehetővé teszi az olvasási hozzáférés toostorage és számítási erőforrásokat, toosupport eléréséhez és hozzáadja az adott szerepkörhöz tootwo előfizetések.</span><span class="sxs-lookup"><span data-stu-id="da99c-168">hello following example creates a custom role that allows read access toostorage and compute resources, access toosupport, and adds that role tootwo subscriptions.</span></span> <span data-ttu-id="da99c-169">Hozzon létre egy új fájlt `C:\CustomRoles\customrole1.json` az alábbi példa hello.</span><span class="sxs-lookup"><span data-stu-id="da99c-169">Create a new file `C:\CustomRoles\customrole1.json` with hello following example.</span></span> <span data-ttu-id="da99c-170">hello azonosítóját kell beállítani. túl`null` a kezdeti szerepkör létrehozásakor egy új ID automatikusan létrejön.</span><span class="sxs-lookup"><span data-stu-id="da99c-170">hello Id should be set too`null` on initial role creation as a new ID is generated automatically.</span></span> 
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": null,
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -186,18 +186,18 @@ New-AzureRmRoleDefinition -Role $role
   ]
 }
 ```
-<span data-ttu-id="e9d49-171">Adja hozzá a szerepkört az előfizetés, futtassa a következő PowerShell-parancsot:</span><span class="sxs-lookup"><span data-stu-id="e9d49-171">To add the role to the subscriptions, run the following PowerShell command:</span></span>
+<span data-ttu-id="da99c-171">tooadd hello szerepkör toohello előfizetések, futtassa a következő PowerShell-paranccsal hello:</span><span class="sxs-lookup"><span data-stu-id="da99c-171">tooadd hello role toohello subscriptions, run hello following PowerShell command:</span></span>
 ```
 New-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
-## <a name="modify-a-custom-role"></a><span data-ttu-id="e9d49-172">Egyéni szerepkör módosítása</span><span class="sxs-lookup"><span data-stu-id="e9d49-172">Modify a custom role</span></span>
-<span data-ttu-id="e9d49-173">Hasonló egyéni szerepkör létrehozása, módosíthatja egy meglévő egyéni szerepkört a PSRoleDefinitionObject vagy egy JSON-sablon használatával.</span><span class="sxs-lookup"><span data-stu-id="e9d49-173">Similar to creating a custom role, you can modify an existing custom role using either the PSRoleDefinitionObject or a JSON template.</span></span>
+## <a name="modify-a-custom-role"></a><span data-ttu-id="da99c-172">Egyéni szerepkör módosítása</span><span class="sxs-lookup"><span data-stu-id="da99c-172">Modify a custom role</span></span>
+<span data-ttu-id="da99c-173">Hasonló toocreating egy egyéni biztonsági szerepkört, módosíthatja egy meglévő egyéni szerepkör hello PSRoleDefinitionObject vagy egy JSON-sablon használatával.</span><span class="sxs-lookup"><span data-stu-id="da99c-173">Similar toocreating a custom role, you can modify an existing custom role using either hello PSRoleDefinitionObject or a JSON template.</span></span>
 
-### <a name="modify-role-with-psroledefinitionobject"></a><span data-ttu-id="e9d49-174">A PSRoleDefinitionObject szerepkör módosítása</span><span class="sxs-lookup"><span data-stu-id="e9d49-174">Modify role with PSRoleDefinitionObject</span></span>
-<span data-ttu-id="e9d49-175">Szeretné módosítani egy egyéni biztonsági szerepkört, először használja a `Get-AzureRmRoleDefinition` parancs beolvasása a szerepkör-definíció.</span><span class="sxs-lookup"><span data-stu-id="e9d49-175">To modify a custom role, first, use the `Get-AzureRmRoleDefinition` command to retrieve the role definition.</span></span> <span data-ttu-id="e9d49-176">A szerepkör-definíció, végezze el a szükséges módosításokat.</span><span class="sxs-lookup"><span data-stu-id="e9d49-176">Second, make the desired changes to the role definition.</span></span> <span data-ttu-id="e9d49-177">Végül a `Set-AzureRmRoleDefinition` parancs menteni a módosított szerepkör-definíció.</span><span class="sxs-lookup"><span data-stu-id="e9d49-177">Finally, use the `Set-AzureRmRoleDefinition` command to save the modified role definition.</span></span>
+### <a name="modify-role-with-psroledefinitionobject"></a><span data-ttu-id="da99c-174">A PSRoleDefinitionObject szerepkör módosítása</span><span class="sxs-lookup"><span data-stu-id="da99c-174">Modify role with PSRoleDefinitionObject</span></span>
+<span data-ttu-id="da99c-175">egy egyéni biztonsági szerepkört, toomodify először használja a hello `Get-AzureRmRoleDefinition` tooretrieve hello szerepkör-definíció parancsot.</span><span class="sxs-lookup"><span data-stu-id="da99c-175">toomodify a custom role, first, use hello `Get-AzureRmRoleDefinition` command tooretrieve hello role definition.</span></span> <span data-ttu-id="da99c-176">Második módosításokat szükséges hello toohello szerepkör-definíció.</span><span class="sxs-lookup"><span data-stu-id="da99c-176">Second, make hello desired changes toohello role definition.</span></span> <span data-ttu-id="da99c-177">Végül, használja a hello `Set-AzureRmRoleDefinition` parancs toosave hello módosítani a szerepkör-definíció.</span><span class="sxs-lookup"><span data-stu-id="da99c-177">Finally, use hello `Set-AzureRmRoleDefinition` command toosave hello modified role definition.</span></span>
 
-<span data-ttu-id="e9d49-178">A következő példakóddal felveheti a `Microsoft.Insights/diagnosticSettings/*` művelet a *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="e9d49-178">The following example adds the `Microsoft.Insights/diagnosticSettings/*` operation to the *Virtual Machine Operator* custom role.</span></span>
+<span data-ttu-id="da99c-178">hello következő példakóddal felveheti a hello `Microsoft.Insights/diagnosticSettings/*` művelet toohello *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="da99c-178">hello following example adds hello `Microsoft.Insights/diagnosticSettings/*` operation toohello *Virtual Machine Operator* custom role.</span></span>
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -207,7 +207,7 @@ Set-AzureRmRoleDefinition -Role $role
 
 ![Az RBAC PowerShell-Set AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-1.png)
 
-<span data-ttu-id="e9d49-180">A következő példa egy Azure-előfizetés hozzáadása a hozzárendelhető hatókörök a *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="e9d49-180">The following example adds an Azure subscription to the assignable scopes of the *Virtual Machine Operator* custom role.</span></span>
+<span data-ttu-id="da99c-180">hello következő példakóddal felveheti az Azure-előfizetés toohello hozzárendelhető hatóköröknek a hello *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="da99c-180">hello following example adds an Azure subscription toohello assignable scopes of hello *Virtual Machine Operator* custom role.</span></span>
 
 ```
 Get-AzureRmSubscription - SubscriptionName Production3
@@ -219,15 +219,15 @@ Set-AzureRmRoleDefinition -Role $role
 
 ![Az RBAC PowerShell-Set AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
-### <a name="modify-role-with-json-template"></a><span data-ttu-id="e9d49-182">Szerepkör JSON-sablon módosítása</span><span class="sxs-lookup"><span data-stu-id="e9d49-182">Modify role with JSON template</span></span>
-<span data-ttu-id="e9d49-183">Az előző JSON-sablon használatával könnyen módosíthatja egy meglévő egyéni szerepkör hozzáadásához vagy eltávolításához műveletek.</span><span class="sxs-lookup"><span data-stu-id="e9d49-183">Using the previous JSON template, you can easily modify an existing custom role to add or remove Actions.</span></span> <span data-ttu-id="e9d49-184">A JSON-sablont módosítani, és adja hozzá az olvasási művelet a hálózatkezeléshez, a következő példában látható módon.</span><span class="sxs-lookup"><span data-stu-id="e9d49-184">Update the JSON template and add the read action for networking as shown in the following example.</span></span> <span data-ttu-id="e9d49-185">A sablon szerepel a definíciók összesítve nem érvényesek egy meglévő definíciójához, ami azt jelenti, hogy a szerepkör pontosan úgy adja meg, ha a sablon megjelenik-e.</span><span class="sxs-lookup"><span data-stu-id="e9d49-185">The definitions listed in the template are not cumulatively applied to an existing definition, meaning that the role appears exactly as you specify in the template.</span></span> <span data-ttu-id="e9d49-186">Is módosítania az azonosítót tartalmazó mezőt, azonosító: a szerepkör.</span><span class="sxs-lookup"><span data-stu-id="e9d49-186">You also need to update the Id field with the ID of the role.</span></span> <span data-ttu-id="e9d49-187">Ha nem tudja biztosan az értéket nem, akkor használhatja a `Get-AzureRmRoleDefinition` parancsmagot, hogy megkapja ezt az információt.</span><span class="sxs-lookup"><span data-stu-id="e9d49-187">If you aren't sure what this value is, you can use the `Get-AzureRmRoleDefinition` cmdlet to get this information.</span></span>
+### <a name="modify-role-with-json-template"></a><span data-ttu-id="da99c-182">Szerepkör JSON-sablon módosítása</span><span class="sxs-lookup"><span data-stu-id="da99c-182">Modify role with JSON template</span></span>
+<span data-ttu-id="da99c-183">Hello előző JSON-sablon használatával könnyen módosíthatja egy meglévő egyéni szerepkör tooadd vagy távolítsa el a műveletek.</span><span class="sxs-lookup"><span data-stu-id="da99c-183">Using hello previous JSON template, you can easily modify an existing custom role tooadd or remove Actions.</span></span> <span data-ttu-id="da99c-184">Hello JSON-sablont módosítani, és adja hozzá a hello olvasási művelet, a hálózatkezeléshez, ahogy az alábbi példa hello.</span><span class="sxs-lookup"><span data-stu-id="da99c-184">Update hello JSON template and add hello read action for networking as shown in hello following example.</span></span> <span data-ttu-id="da99c-185">nincsenek összesítve alkalmazott tooan meglévő definíciót, ami azt jelenti, hogy hello szerepkör jelenik meg, pontosan hello sablonban megadott hello definíciók hello sablon szerepel.</span><span class="sxs-lookup"><span data-stu-id="da99c-185">hello definitions listed in hello template are not cumulatively applied tooan existing definition, meaning that hello role appears exactly as you specify in hello template.</span></span> <span data-ttu-id="da99c-186">Meg kell tooupdate hello azonosító mezőben hello azonosítójú hello szerepkör is.</span><span class="sxs-lookup"><span data-stu-id="da99c-186">You also need tooupdate hello Id field with hello ID of hello role.</span></span> <span data-ttu-id="da99c-187">Ha még nem meg arról, hogy mi az az érték, használhatja a hello `Get-AzureRmRoleDefinition` parancsmag tooget ezt az információt.</span><span class="sxs-lookup"><span data-stu-id="da99c-187">If you aren't sure what this value is, you can use hello `Get-AzureRmRoleDefinition` cmdlet tooget this information.</span></span>
 
 ```
 {
   "Name": "Custom Role 1",
   "Id": "acce7ded-2559-449d-bcd5-e9604e50bad1",
   "IsCustom": true,
-  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Description": "Allows for read access tooAzure storage and compute resources and access toosupport",
   "Actions": [
     "Microsoft.Compute/*/read",
     "Microsoft.Storage/*/read",
@@ -243,15 +243,15 @@ Set-AzureRmRoleDefinition -Role $role
 }
 ```
 
-<span data-ttu-id="e9d49-188">A meglévő szerepkör frissítéséhez futtassa a következő PowerShell-parancsot:</span><span class="sxs-lookup"><span data-stu-id="e9d49-188">To update the existing role, run the following PowerShell command:</span></span>
+<span data-ttu-id="da99c-188">tooupdate hello meglévő szerepkör, futtassa a következő PowerShell-paranccsal hello:</span><span class="sxs-lookup"><span data-stu-id="da99c-188">tooupdate hello existing role, run hello following PowerShell command:</span></span>
 ```
 Set-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
 ```
 
-## <a name="delete-a-custom-role"></a><span data-ttu-id="e9d49-189">Egyéni szerepkör törléséhez</span><span class="sxs-lookup"><span data-stu-id="e9d49-189">Delete a custom role</span></span>
-<span data-ttu-id="e9d49-190">Egyéni szerepkör törléséhez használja a `Remove-AzureRmRoleDefinition` parancsot.</span><span class="sxs-lookup"><span data-stu-id="e9d49-190">To delete a custom role, use the `Remove-AzureRmRoleDefinition` command.</span></span>
+## <a name="delete-a-custom-role"></a><span data-ttu-id="da99c-189">Egyéni szerepkör törléséhez</span><span class="sxs-lookup"><span data-stu-id="da99c-189">Delete a custom role</span></span>
+<span data-ttu-id="da99c-190">egy egyéni biztonsági szerepkört, toodelete hello használata `Remove-AzureRmRoleDefinition` parancsot.</span><span class="sxs-lookup"><span data-stu-id="da99c-190">toodelete a custom role, use hello `Remove-AzureRmRoleDefinition` command.</span></span>
 
-<span data-ttu-id="e9d49-191">A következő példában eltávolítjuk a *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="e9d49-191">The following example removes the *Virtual Machine Operator* custom role.</span></span>
+<span data-ttu-id="da99c-191">hello következő példában eltávolítjuk hello *virtuális gépet üzemeltető* egyéni biztonsági szerepkört.</span><span class="sxs-lookup"><span data-stu-id="da99c-191">hello following example removes hello *Virtual Machine Operator* custom role.</span></span>
 
 ```
 Get-AzureRmRoleDefinition "Virtual Machine Operator"
@@ -261,10 +261,10 @@ Get-AzureRmRoleDefinition "Virtual Machine Operator" | Remove-AzureRmRoleDefinit
 
 ![Az RBAC PowerShell-Remove AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/4-remove-azurermroledefinition.png)
 
-## <a name="list-custom-roles"></a><span data-ttu-id="e9d49-193">Egyéni szerepkörök listája</span><span class="sxs-lookup"><span data-stu-id="e9d49-193">List custom roles</span></span>
-<span data-ttu-id="e9d49-194">A szerepkörök, amelyek rendelhető hozzá hatókör kilistázhatja a `Get-AzureRmRoleDefinition` parancsot.</span><span class="sxs-lookup"><span data-stu-id="e9d49-194">To list the roles that are available for assignment at a scope, use the `Get-AzureRmRoleDefinition` command.</span></span>
+## <a name="list-custom-roles"></a><span data-ttu-id="da99c-193">Egyéni szerepkörök listája</span><span class="sxs-lookup"><span data-stu-id="da99c-193">List custom roles</span></span>
+<span data-ttu-id="da99c-194">toolist hello szerepkörök, amelyek rendelhető hozzá hatókör, használja a hello `Get-AzureRmRoleDefinition` parancsot.</span><span class="sxs-lookup"><span data-stu-id="da99c-194">toolist hello roles that are available for assignment at a scope, use hello `Get-AzureRmRoleDefinition` command.</span></span>
 
-<span data-ttu-id="e9d49-195">Az alábbi példa felsorolja az összes szerepkör, amely a kijelölt előfizetés kiosztására használható.</span><span class="sxs-lookup"><span data-stu-id="e9d49-195">The following example lists all roles that are available for assignment in the selected subscription.</span></span>
+<span data-ttu-id="da99c-195">a következő példa hello hello kiválasztott előfizetésben kiosztására használható összes szerepkörtől sorolja fel.</span><span class="sxs-lookup"><span data-stu-id="da99c-195">hello following example lists all roles that are available for assignment in hello selected subscription.</span></span>
 
 ```
 Get-AzureRmRoleDefinition | FT Name, IsCustom
@@ -272,12 +272,12 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 
 ![Az RBAC PowerShell-Get AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition-1.png)
 
-<span data-ttu-id="e9d49-197">A következő példában a *virtuális gépet üzemeltető* egyéni szerepkör nem érhető el a *Production4* előfizetés, mert az adott előfizetéshez nem szerepel a **AssignableScopes** a szerepkör.</span><span class="sxs-lookup"><span data-stu-id="e9d49-197">In the following example, the *Virtual Machine Operator* custom role isn’t available in the *Production4* subscription because that subscription isn’t in the **AssignableScopes** of the role.</span></span>
+<span data-ttu-id="da99c-197">A következő példa hello, hello *virtuális gépet üzemeltető* egyéni szerepkör nem érhető el a hello *Production4* előfizetés mert, hogy az előfizetés nem hello  **AssignableScopes** hello szerepkör.</span><span class="sxs-lookup"><span data-stu-id="da99c-197">In hello following example, hello *Virtual Machine Operator* custom role isn’t available in hello *Production4* subscription because that subscription isn’t in hello **AssignableScopes** of hello role.</span></span>
 
 ![Az RBAC PowerShell-Get AzureRmRoleDefinition – képernyőkép](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition2.png)
 
-## <a name="see-also"></a><span data-ttu-id="e9d49-199">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="e9d49-199">See also</span></span>
-* <span data-ttu-id="e9d49-200">[Using Azure PowerShell használata az Azure Resource Manager eszközzel](../powershell-azure-resource-manager.md)
-  [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]</span><span class="sxs-lookup"><span data-stu-id="e9d49-200">[Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md)
+## <a name="see-also"></a><span data-ttu-id="da99c-199">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="da99c-199">See also</span></span>
+* <span data-ttu-id="da99c-200">[Using Azure PowerShell használata az Azure Resource Manager eszközzel](../powershell-azure-resource-manager.md)
+  [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]</span><span class="sxs-lookup"><span data-stu-id="da99c-200">[Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md)
 [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]</span></span>
 

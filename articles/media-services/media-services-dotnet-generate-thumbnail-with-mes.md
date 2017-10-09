@@ -1,6 +1,6 @@
 ---
-title: "Miniatűrök létrehozása a .NET-es Media Encoder Standard használatával"
-description: "Ez a témakör bemutatja, hogyan .NET használatával egy eszköz kódolni és indexképének létrehozására használnak Media Encoder Standard használatával egyszerre."
+title: "a .NET Media Encoder Standard használatával aaaHow toogenerate miniatűrök"
+description: "Ez a témakör bemutatja, hogyan toouse .NET tooencode egy eszköz és a hello indexképének létrehozására használnak Media Encoder Standard használatával egyszerre."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: juliako
-ms.openlocfilehash: 89d15cbdf71a140e78f34e07ff208776b7d4cab3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 23d3e4d9bf64a688d45499c045f19d2792167990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-generate-thumbnails-using-media-encoder-standard-with-net"></a><span data-ttu-id="65571-103">Miniatűrök létrehozása a .NET-es Media Encoder Standard használatával</span><span class="sxs-lookup"><span data-stu-id="65571-103">How to generate thumbnails using Media Encoder Standard with .NET</span></span>
+# <a name="how-toogenerate-thumbnails-using-media-encoder-standard-with-net"></a><span data-ttu-id="54f90-103">Hogyan toogenerate miniatűrök .NET Media Encoder Standard használatával</span><span class="sxs-lookup"><span data-stu-id="54f90-103">How toogenerate thumbnails using Media Encoder Standard with .NET</span></span>
 
-<span data-ttu-id="65571-104">Használhatja Media Encoder Standard használatával hozzon létre egy vagy több miniatűrök a bemeneti videóhoz a [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), vagy [BMP](https://en.wikipedia.org/wiki/BMP_file_format) fájlformátumok lemezképet.</span><span class="sxs-lookup"><span data-stu-id="65571-104">You can use Media Encoder Standard to generate one or more thumbnails from your input video in [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), or [BMP](https://en.wikipedia.org/wiki/BMP_file_format) image file formats.</span></span> <span data-ttu-id="65571-105">Elküldheti a feladatokat, amelyek csak a képeket, vagy kombinálhatja a miniatűr generációs kódolással.</span><span class="sxs-lookup"><span data-stu-id="65571-105">You can submit Tasks that produce only images, or you can combine thumbnail generation with encoding.</span></span> <span data-ttu-id="65571-106">Ez a témakör néhány minta XML és JSON miniatűr készletek ilyen forgatókönyvek esetén.</span><span class="sxs-lookup"><span data-stu-id="65571-106">This topic provides a few sample XML and JSON thumbnail presets for such scenarios.</span></span> <span data-ttu-id="65571-107">A témakör végén van egy [példakód](#code_sample) , amely bemutatja, hogyan kódolási a feladatnak a Media Services .NET SDK használatával.</span><span class="sxs-lookup"><span data-stu-id="65571-107">At the end of the topic, there is a [sample code](#code_sample) that shows how to use the Media Services .NET SDK to accomplish the encoding task.</span></span>
+<span data-ttu-id="54f90-104">Használhat Media Encoder Standard toogenerate egy vagy több miniatűrök a bemeneti videó [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), vagy [BMP](https://en.wikipedia.org/wiki/BMP_file_format) fájlformátumok lemezképet.</span><span class="sxs-lookup"><span data-stu-id="54f90-104">You can use Media Encoder Standard toogenerate one or more thumbnails from your input video in [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), or [BMP](https://en.wikipedia.org/wiki/BMP_file_format) image file formats.</span></span> <span data-ttu-id="54f90-105">Elküldheti a feladatokat, amelyek csak a képeket, vagy kombinálhatja a miniatűr generációs kódolással.</span><span class="sxs-lookup"><span data-stu-id="54f90-105">You can submit Tasks that produce only images, or you can combine thumbnail generation with encoding.</span></span> <span data-ttu-id="54f90-106">Ez a témakör néhány minta XML és JSON miniatűr készletek ilyen forgatókönyvek esetén.</span><span class="sxs-lookup"><span data-stu-id="54f90-106">This topic provides a few sample XML and JSON thumbnail presets for such scenarios.</span></span> <span data-ttu-id="54f90-107">Hello témakör hello végén van egy [példakód](#code_sample) , amely bemutatja, hogyan toouse hello Media Services .NET SDK tooaccomplish hello kódolási feladat.</span><span class="sxs-lookup"><span data-stu-id="54f90-107">At hello end of hello topic, there is a [sample code](#code_sample) that shows how toouse hello Media Services .NET SDK tooaccomplish hello encoding task.</span></span>
 
-<span data-ttu-id="65571-108">A minta készletek használt elemein további részletekért tekintse át [Media Encoder Standard séma](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="65571-108">For more details on the elements that are used in sample presets, you should review [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>
+<span data-ttu-id="54f90-108">A minta készletek használt hello elemek további részletekért tekintse át [Media Encoder Standard séma](media-services-mes-schema.md).</span><span class="sxs-lookup"><span data-stu-id="54f90-108">For more details on hello elements that are used in sample presets, you should review [Media Encoder Standard schema](media-services-mes-schema.md).</span></span>
 
-<span data-ttu-id="65571-109">Mindenképpen tekintse át a [szempontok](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) szakasz.</span><span class="sxs-lookup"><span data-stu-id="65571-109">Make sure to review the [Considerations](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) section.</span></span>
+<span data-ttu-id="54f90-109">Győződjön meg arról, hogy tooreview hello [szempontok](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) szakasz.</span><span class="sxs-lookup"><span data-stu-id="54f90-109">Make sure tooreview hello [Considerations](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) section.</span></span>
 
-## <a name="example--single-png-file"></a><span data-ttu-id="65571-110">Példa – egyetlen PNG-fájl</span><span class="sxs-lookup"><span data-stu-id="65571-110">Example – single PNG file</span></span>
+## <a name="example--single-png-file"></a><span data-ttu-id="54f90-110">Példa – egyetlen PNG-fájl</span><span class="sxs-lookup"><span data-stu-id="54f90-110">Example – single PNG file</span></span>
 
-<span data-ttu-id="65571-111">A következő JSON és az XML-készlet feladatvégrehajtás egyetlen kimeneti PNG fájlok kívül az első néhány másodpercet a bemeneti videóhoz, ahol a kódolás lehetővé teszi a legjobb kísérlet egy "érdekes" keret keresése használható.</span><span class="sxs-lookup"><span data-stu-id="65571-111">The following JSON and XML preset can be used to produce a single output PNG file out of the first few seconds of the input video, where the encoder makes a best-effort attempt at finding an “interesting” frame.</span></span> <span data-ttu-id="65571-112">Vegye figyelembe, hogy a kimeneti kép méretei állították be, hogy a 100 %, ami azt jelenti, ezek a dimenziók a bemeneti videó fog egyezni.</span><span class="sxs-lookup"><span data-stu-id="65571-112">Note that the output image dimensions have been set to 100%, meaning these will match the dimensions of the input video.</span></span> <span data-ttu-id="65571-113">Azt is fontos megjegyezni, hogyan "Kimenetek" a "Format" beállítást kell felel meg a "Kodekek" szakasz "PngLayers" használatát.</span><span class="sxs-lookup"><span data-stu-id="65571-113">Note also how the “Format” setting in “Outputs” is required to match the use of “PngLayers” in the “Codecs” section.</span></span> 
+<span data-ttu-id="54f90-111">a következő JSON hello, és XML-készlet használt tooproduce egy egyetlen kimeneti PNG fájlt hello kívül néhány másodperc hello bemeneti videó, ahol hello kódoló lehetővé teszi a legjobb kísérlet egy "érdekes" keret keresése.</span><span class="sxs-lookup"><span data-stu-id="54f90-111">hello following JSON and XML preset can be used tooproduce a single output PNG file out of hello first few seconds of hello input video, where hello encoder makes a best-effort attempt at finding an “interesting” frame.</span></span> <span data-ttu-id="54f90-112">Vegye figyelembe, hogy hello kimeneti kép méretei van állítva too100 %, ami azt jelenti, ezek fog egyezni a hello dimenziók hello bemeneti videó.</span><span class="sxs-lookup"><span data-stu-id="54f90-112">Note that hello output image dimensions have been set too100%, meaning these will match hello dimensions of hello input video.</span></span> <span data-ttu-id="54f90-113">Ügyeljen arra is, hogy a "Kimenetek" hello "Formátum" beállításra akkor szükség toomatch hello használata "PngLayers" hello "Kodekek" szakaszában.</span><span class="sxs-lookup"><span data-stu-id="54f90-113">Note also how hello “Format” setting in “Outputs” is required toomatch hello use of “PngLayers” in hello “Codecs” section.</span></span> 
 
-### <a name="json-preset"></a><span data-ttu-id="65571-114">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-114">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="54f90-114">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-114">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
     
-### <a name="xml-preset"></a><span data-ttu-id="65571-115">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-115">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="54f90-115">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-115">XML preset</span></span>
 
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -80,11 +80,11 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="example--a-series-of-jpeg-images"></a><span data-ttu-id="65571-116">JPEG-képek sorozata – – példa</span><span class="sxs-lookup"><span data-stu-id="65571-116">Example – a series of JPEG images</span></span>
+## <a name="example--a-series-of-jpeg-images"></a><span data-ttu-id="54f90-116">JPEG-képek sorozata – – példa</span><span class="sxs-lookup"><span data-stu-id="54f90-116">Example – a series of JPEG images</span></span>
 
-<span data-ttu-id="65571-117">A következő JSON és az XML-készlet segítségével létrehoznak egy 10 kép időbélyegeket 5, %, 15 %,..., 95 %-a bemeneti ütemterv, ahol a képméret ilyen van megadva a negyedév, amely a bemeneti videó.</span><span class="sxs-lookup"><span data-stu-id="65571-117">The following JSON and XML preset can be used to produce a set of 10 images at timestamps of 5%, 15%, …, 95% of the input timeline, where the image size is specified to be one quarter that of the input video.</span></span>
+<span data-ttu-id="54f90-117">a következő JSON hello, és XML-készlet használt tooproduce 5 %-os időbélyegeket 10 lemezképeit készlete 15 %,..., hello bemeneti ütemterv, ahol hello lemezkép mérete megadott toobe egy negyedév, hello bemeneti videó 95 %-át.</span><span class="sxs-lookup"><span data-stu-id="54f90-117">hello following JSON and XML preset can be used tooproduce a set of 10 images at timestamps of 5%, 15%, …, 95% of hello input timeline, where hello image size is specified toobe one quarter that of hello input video.</span></span>
 
-### <a name="json-preset"></a><span data-ttu-id="65571-118">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-118">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="54f90-118">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-118">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -114,7 +114,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
 
-### <a name="xml-preset"></a><span data-ttu-id="65571-119">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-119">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="54f90-119">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-119">XML preset</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -136,11 +136,11 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="example--one-image-at-a-specific-timestamp"></a><span data-ttu-id="65571-120">Példa – egy lemezképet egy adott időbélyeg</span><span class="sxs-lookup"><span data-stu-id="65571-120">Example – one image at a specific timestamp</span></span>
+## <a name="example--one-image-at-a-specific-timestamp"></a><span data-ttu-id="54f90-120">Példa – egy lemezképet egy adott időbélyeg</span><span class="sxs-lookup"><span data-stu-id="54f90-120">Example – one image at a specific timestamp</span></span>
 
-<span data-ttu-id="65571-121">A következő JSON és az XML-készletet, a 30 második be van jelölve a bemeneti videó egyetlen JPEG-képek létrehozására használható.</span><span class="sxs-lookup"><span data-stu-id="65571-121">The following JSON and XML preset can be used to produce a single JPEG image at the 30 second mark of the input video.</span></span> <span data-ttu-id="65571-122">Az előre definiált vár a bemeneti idő több mint 30 másodperc lehet (ellenkező esetben a feladat sikertelen lesz).</span><span class="sxs-lookup"><span data-stu-id="65571-122">This preset expects the input to be more than 30 seconds in duration (else the job will fail).</span></span>
+<span data-ttu-id="54f90-121">JSON- és XML-készlet a következő hello használt tooproduce egy egyetlen hello képnek JPEG hello bemeneti videó megjelölni 30 másodperc is lehet.</span><span class="sxs-lookup"><span data-stu-id="54f90-121">hello following JSON and XML preset can be used tooproduce a single JPEG image at hello 30 second mark of hello input video.</span></span> <span data-ttu-id="54f90-122">Az előre definiált vár hello bemeneti toobe több mint 30 másodperc az időtartam (más hello feladat sikertelen lesz).</span><span class="sxs-lookup"><span data-stu-id="54f90-122">This preset expects hello input toobe more than 30 seconds in duration (else hello job will fail).</span></span>
 
-### <a name="json-preset"></a><span data-ttu-id="65571-123">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-123">JSON preset</span></span>
+### <a name="json-preset"></a><span data-ttu-id="54f90-123">JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-123">JSON preset</span></span>
 
     {
       "Version": 1.0,
@@ -170,7 +170,7 @@ ms.lasthandoff: 08/29/2017
       ]
     }
     
-### <a name="xml-preset"></a><span data-ttu-id="65571-124">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-124">XML preset</span></span>
+### <a name="xml-preset"></a><span data-ttu-id="54f90-124">XML-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-124">XML preset</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -192,23 +192,23 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <span data-ttu-id="65571-125"><a id="code_sample"></a>Példa – videó kódolása és miniatűr készítése</span><span class="sxs-lookup"><span data-stu-id="65571-125"><a id="code_sample"></a>Example – encode video and generate thumbnail</span></span>
+## <span data-ttu-id="54f90-125"><a id="code_sample"></a>Példa – videó kódolása és miniatűr készítése</span><span class="sxs-lookup"><span data-stu-id="54f90-125"><a id="code_sample"></a>Example – encode video and generate thumbnail</span></span>
 
-<span data-ttu-id="65571-126">Az alábbi példakód Media Services .NET SDK-t használja a következő feladatok végezhetők el:</span><span class="sxs-lookup"><span data-stu-id="65571-126">The following code example uses Media Services .NET SDK to perform the following tasks:</span></span>
+<span data-ttu-id="54f90-126">a következő példakód hello Media Services .NET SDK tooperform hello feladatok a következő használja:</span><span class="sxs-lookup"><span data-stu-id="54f90-126">hello following code example uses Media Services .NET SDK tooperform hello following tasks:</span></span>
 
-* <span data-ttu-id="65571-127">Hozzon létre egy kódolási feladat.</span><span class="sxs-lookup"><span data-stu-id="65571-127">Create an encoding job.</span></span>
-* <span data-ttu-id="65571-128">A Media Encoder Standard encoder mutató hivatkozás beszerzése.</span><span class="sxs-lookup"><span data-stu-id="65571-128">Get a reference to the Media Encoder Standard encoder.</span></span>
-* <span data-ttu-id="65571-129">A készlet betöltéséhez [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) , amelyek tartalmazzák a kódolást és a miniatűrök létrehozásához szükséges információkat az adott néven beállítás.</span><span class="sxs-lookup"><span data-stu-id="65571-129">Load the preset [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) that contain the encoding preset as well as information needed to generate thumbnails.</span></span> <span data-ttu-id="65571-130">Ez mentheti [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) a fájl- és használja a következő kódot betölteni a fájlt.</span><span class="sxs-lookup"><span data-stu-id="65571-130">You can save this  [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) in a file and use the following code to load the file.</span></span>
+* <span data-ttu-id="54f90-127">Hozzon létre egy kódolási feladat.</span><span class="sxs-lookup"><span data-stu-id="54f90-127">Create an encoding job.</span></span>
+* <span data-ttu-id="54f90-128">Egy hivatkozási toohello Media Encoder Standard encoder beolvasása.</span><span class="sxs-lookup"><span data-stu-id="54f90-128">Get a reference toohello Media Encoder Standard encoder.</span></span>
+* <span data-ttu-id="54f90-129">Betöltési hello beállított [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) hello kódolás beállított információk toogenerate miniatűrök igény szerint is tartalmaznak.</span><span class="sxs-lookup"><span data-stu-id="54f90-129">Load hello preset [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) that contain hello encoding preset as well as information needed toogenerate thumbnails.</span></span> <span data-ttu-id="54f90-130">Ez mentheti [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) a következő kód tooload hello fájl egy fájl és -felhasználási hello.</span><span class="sxs-lookup"><span data-stu-id="54f90-130">You can save this  [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) or [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) in a file and use hello following code tooload hello file.</span></span>
   
-        // Load the XML (or JSON) from the local file.
+        // Load hello XML (or JSON) from hello local file.
         string configuration = File.ReadAllText(fileName);  
-* <span data-ttu-id="65571-131">Egy kódolási feladat hozzáadása a projekthez.</span><span class="sxs-lookup"><span data-stu-id="65571-131">Add a single encoding task to the job.</span></span> 
-* <span data-ttu-id="65571-132">Adja meg a bemeneti eszköz kódolni kell.</span><span class="sxs-lookup"><span data-stu-id="65571-132">Specify the input asset to be encoded.</span></span>
-* <span data-ttu-id="65571-133">Hozzon létre egy kimeneti eszközt, amely tartalmazza majd a kódolt objektumhoz.</span><span class="sxs-lookup"><span data-stu-id="65571-133">Create an output asset that will contain the encoded asset.</span></span>
-* <span data-ttu-id="65571-134">Adjon hozzá egy eseménykezelő, ellenőrizze a feladat előrehaladását.</span><span class="sxs-lookup"><span data-stu-id="65571-134">Add an event handler to check the job progress.</span></span>
-* <span data-ttu-id="65571-135">A feladat elküldéséhez.</span><span class="sxs-lookup"><span data-stu-id="65571-135">Submit the job.</span></span>
+* <span data-ttu-id="54f90-131">Adjon hozzá egy kódolási feladat toohello feladatban.</span><span class="sxs-lookup"><span data-stu-id="54f90-131">Add a single encoding task toohello job.</span></span> 
+* <span data-ttu-id="54f90-132">Adjon meg bemeneti hello eszköz toobe kódolású.</span><span class="sxs-lookup"><span data-stu-id="54f90-132">Specify hello input asset toobe encoded.</span></span>
+* <span data-ttu-id="54f90-133">Hozzon létre egy kimeneti eszköz, amely kódolású hello eszköz fogja tartalmazni.</span><span class="sxs-lookup"><span data-stu-id="54f90-133">Create an output asset that will contain hello encoded asset.</span></span>
+* <span data-ttu-id="54f90-134">Adjon hozzá egy esemény kezelő toocheck hello feladat előrehaladását.</span><span class="sxs-lookup"><span data-stu-id="54f90-134">Add an event handler toocheck hello job progress.</span></span>
+* <span data-ttu-id="54f90-135">Hello feladat küldése</span><span class="sxs-lookup"><span data-stu-id="54f90-135">Submit hello job.</span></span>
 
-<span data-ttu-id="65571-136">Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md) témakör utasításait a fejlesztési környezet beállítását ismerteti.</span><span class="sxs-lookup"><span data-stu-id="65571-136">See the [Media Services development with .NET](media-services-dotnet-how-to-use.md) topic for directions on how to set up your dev environment.</span></span>
+<span data-ttu-id="54f90-136">Lásd: hello [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md) kapcsolatos utasításokat a témakör a fejlesztési környezet létrehozása tooset.</span><span class="sxs-lookup"><span data-stu-id="54f90-136">See hello [Media Services development with .NET](media-services-dotnet-how-to-use.md) topic for directions on how tooset up your dev environment.</span></span>
 
         using System;
         using System.Configuration;
@@ -221,7 +221,7 @@ ms.lasthandoff: 08/29/2017
         {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -245,7 +245,7 @@ ms.lasthandoff: 08/29/2017
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the thumbnails.
+            // Encode and generate hello thumbnails.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -255,11 +255,11 @@ ms.lasthandoff: 08/29/2017
             {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load the XML (or JSON) from the local file.
+            // Load hello XML (or JSON) from hello local file.
             string configuration = File.ReadAllText("ThumbnailPreset_JSON.json");
 
             // Create a task
@@ -268,11 +268,11 @@ ms.lasthandoff: 08/29/2017
                 configuration,
                 TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
                 AssetCreationOptions.None);
 
@@ -326,8 +326,8 @@ ms.lasthandoff: 08/29/2017
         }
         }
 
-## <span data-ttu-id="65571-137"><a id="json"></a>A miniatűr JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-137"><a id="json"></a>Thumbnail JSON preset</span></span>
-<span data-ttu-id="65571-138">Séma kapcsolatos információkért lásd: [ez](https://msdn.microsoft.com/library/mt269962.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="65571-138">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
+## <span data-ttu-id="54f90-137"><a id="json"></a>A miniatűr JSON-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-137"><a id="json"></a>Thumbnail JSON preset</span></span>
+<span data-ttu-id="54f90-138">Séma kapcsolatos információkért lásd: [ez](https://msdn.microsoft.com/library/mt269962.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="54f90-138">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
 
     {
       "Version": 1.0,
@@ -389,8 +389,8 @@ ms.lasthandoff: 08/29/2017
       ]
     }
 
-## <span data-ttu-id="65571-139"><a id="xml"></a>A miniatűr XML-készlet</span><span class="sxs-lookup"><span data-stu-id="65571-139"><a id="xml"></a>Thumbnail XML preset</span></span>
-<span data-ttu-id="65571-140">Séma kapcsolatos információkért lásd: [ez](https://msdn.microsoft.com/library/mt269962.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="65571-140">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
+## <span data-ttu-id="54f90-139"><a id="xml"></a>A miniatűr XML-készlet</span><span class="sxs-lookup"><span data-stu-id="54f90-139"><a id="xml"></a>Thumbnail XML preset</span></span>
+<span data-ttu-id="54f90-140">Séma kapcsolatos információkért lásd: [ez](https://msdn.microsoft.com/library/mt269962.aspx) témakör.</span><span class="sxs-lookup"><span data-stu-id="54f90-140">For information about schema, see [this](https://msdn.microsoft.com/library/mt269962.aspx) topic.</span></span>
     
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -442,32 +442,32 @@ ms.lasthandoff: 08/29/2017
       </Outputs>
     </Preset>
 
-## <a name="considerations"></a><span data-ttu-id="65571-141">Megfontolandó szempontok</span><span class="sxs-lookup"><span data-stu-id="65571-141">Considerations</span></span>
-<span data-ttu-id="65571-142">A következők érvényesek:</span><span class="sxs-lookup"><span data-stu-id="65571-142">The following considerations apply:</span></span>
+## <a name="considerations"></a><span data-ttu-id="54f90-141">Megfontolandó szempontok</span><span class="sxs-lookup"><span data-stu-id="54f90-141">Considerations</span></span>
+<span data-ttu-id="54f90-142">a következő szempontok hello vonatkoznak:</span><span class="sxs-lookup"><span data-stu-id="54f90-142">hello following considerations apply:</span></span>
 
-* <span data-ttu-id="65571-143">Start/lépés/címtartomány explicit időbélyegeket használatát feltételezi, hogy a bemeneti forrás legalább 1 percnek hosszú.</span><span class="sxs-lookup"><span data-stu-id="65571-143">The use of explicit timestamps for Start/Step/Range assumes that the input source is at least 1 minute long.</span></span>
-* <span data-ttu-id="65571-144">JPG vagy Png/BmpImage rendelkezniük Start, lépés és karakterlánc-attribútumok tartomány – ezek úgy:</span><span class="sxs-lookup"><span data-stu-id="65571-144">Jpg/Png/BmpImage elements have Start, Step and Range string attributes – these can be interpreted as:</span></span>
+* <span data-ttu-id="54f90-143">Start/lépés/címtartomány explicit időbélyegeket hello használata feltételezi, hogy hello bemeneti forrás legalább 1 percnek hosszú.</span><span class="sxs-lookup"><span data-stu-id="54f90-143">hello use of explicit timestamps for Start/Step/Range assumes that hello input source is at least 1 minute long.</span></span>
+* <span data-ttu-id="54f90-144">JPG vagy Png/BmpImage rendelkezniük Start, lépés és karakterlánc-attribútumok tartomány – ezek úgy:</span><span class="sxs-lookup"><span data-stu-id="54f90-144">Jpg/Png/BmpImage elements have Start, Step and Range string attributes – these can be interpreted as:</span></span>
   
-  * <span data-ttu-id="65571-145">Ha nem negatív egész számokat, például azok veremkeret száma.</span><span class="sxs-lookup"><span data-stu-id="65571-145">Frame Number if they are non-negative integers, eg.</span></span> <span data-ttu-id="65571-146">"Start": "120"</span><span class="sxs-lookup"><span data-stu-id="65571-146">"Start": "120",</span></span>
-  * <span data-ttu-id="65571-147">Ha kifejezett % utótaggal, pl. forrás időtartama viszonyítva.</span><span class="sxs-lookup"><span data-stu-id="65571-147">Relative to source duration if expressed as %-suffixed, eg.</span></span> <span data-ttu-id="65571-148">"Start": "15 %", vagy</span><span class="sxs-lookup"><span data-stu-id="65571-148">"Start": "15%", OR</span></span>
-  * <span data-ttu-id="65571-149">Ha óó: pp: kifejezett időbélyeg...</span><span class="sxs-lookup"><span data-stu-id="65571-149">Timestamp if expressed as HH:MM:SS…</span></span> <span data-ttu-id="65571-150">formátumban.</span><span class="sxs-lookup"><span data-stu-id="65571-150">format.</span></span> <span data-ttu-id="65571-151">EG.</span><span class="sxs-lookup"><span data-stu-id="65571-151">Eg.</span></span> <span data-ttu-id="65571-152">"Start": "00: 01:00"</span><span class="sxs-lookup"><span data-stu-id="65571-152">"Start" : "00:01:00"</span></span>
+  * <span data-ttu-id="54f90-145">Ha nem negatív egész számokat, például azok veremkeret száma.</span><span class="sxs-lookup"><span data-stu-id="54f90-145">Frame Number if they are non-negative integers, eg.</span></span> <span data-ttu-id="54f90-146">"Start": "120"</span><span class="sxs-lookup"><span data-stu-id="54f90-146">"Start": "120",</span></span>
+  * <span data-ttu-id="54f90-147">Ha kifejezett % utótaggal, pl. relatív toosource időtartama.</span><span class="sxs-lookup"><span data-stu-id="54f90-147">Relative toosource duration if expressed as %-suffixed, eg.</span></span> <span data-ttu-id="54f90-148">"Start": "15 %", vagy</span><span class="sxs-lookup"><span data-stu-id="54f90-148">"Start": "15%", OR</span></span>
+  * <span data-ttu-id="54f90-149">Ha óó: pp: kifejezett időbélyeg...</span><span class="sxs-lookup"><span data-stu-id="54f90-149">Timestamp if expressed as HH:MM:SS…</span></span> <span data-ttu-id="54f90-150">formátumban.</span><span class="sxs-lookup"><span data-stu-id="54f90-150">format.</span></span> <span data-ttu-id="54f90-151">EG.</span><span class="sxs-lookup"><span data-stu-id="54f90-151">Eg.</span></span> <span data-ttu-id="54f90-152">"Start": "00: 01:00"</span><span class="sxs-lookup"><span data-stu-id="54f90-152">"Start" : "00:01:00"</span></span>
     
-    <span data-ttu-id="65571-153">Ön szabadon kombinálhatók jelölések, ha Ön adja.</span><span class="sxs-lookup"><span data-stu-id="65571-153">You can mix and match notations as you please.</span></span>
+    <span data-ttu-id="54f90-153">Ön szabadon kombinálhatók jelölések, ha Ön adja.</span><span class="sxs-lookup"><span data-stu-id="54f90-153">You can mix and match notations as you please.</span></span>
     
-    <span data-ttu-id="65571-154">Emellett Start is támogatja a speciális makró: {ajánlott}, amely kísérli meg meghatározni a tartalom "érdekes" első keretében: (lépés, és a tartomány figyelmen kívül lesznek hagyva Ha kezdő {legjobb} értékre van állítva)</span><span class="sxs-lookup"><span data-stu-id="65571-154">Additionally, Start also supports a special Macro:{Best}, which attempts to determine the first “interesting” frame of the content NOTE: (Step and Range are ignored when Start is set to {Best})</span></span>
-  * <span data-ttu-id="65571-155">Alapértelmezett: Start: {legjobb}</span><span class="sxs-lookup"><span data-stu-id="65571-155">Defaults: Start:{Best}</span></span>
-* <span data-ttu-id="65571-156">Kimeneti formátumot kell explicit módon meg kell adni az egyes képformátum: Jpg vagy Png/BmpFormat.</span><span class="sxs-lookup"><span data-stu-id="65571-156">Output format needs to be explicitly provided for each Image format: Jpg/Png/BmpFormat.</span></span> <span data-ttu-id="65571-157">Ha létezik, MES és így tovább a JpgFormat JpgVideo felel meg.</span><span class="sxs-lookup"><span data-stu-id="65571-157">When present, MES will match JpgVideo to JpgFormat and so on.</span></span> <span data-ttu-id="65571-158">OutputFormat bevezet egy új lemezkép-kodek adott makró: {Index}, mely rendelkeznie kell megjeleníteni az (egyszer és csak egyszer) kimeneti képformátum.</span><span class="sxs-lookup"><span data-stu-id="65571-158">OutputFormat introduces a new image-codec specific Macro: {Index}, which needs to be present (once and only once) for image output formats.</span></span>
+    <span data-ttu-id="54f90-154">Emellett Start is támogatja a speciális makró: {ajánlott}, amely megpróbál toodetermine hello első "érdekes" keret hello tartalom Megjegyzés: (lépés, és a tartomány figyelmen kívül lesznek hagyva Start túl beállításakor {legjobb})</span><span class="sxs-lookup"><span data-stu-id="54f90-154">Additionally, Start also supports a special Macro:{Best}, which attempts toodetermine hello first “interesting” frame of hello content NOTE: (Step and Range are ignored when Start is set too{Best})</span></span>
+  * <span data-ttu-id="54f90-155">Alapértelmezett: Start: {legjobb}</span><span class="sxs-lookup"><span data-stu-id="54f90-155">Defaults: Start:{Best}</span></span>
+* <span data-ttu-id="54f90-156">Kimeneti formátumot kell minden egyes képformátum explicit módon megadott toobe: Jpg vagy Png/BmpFormat.</span><span class="sxs-lookup"><span data-stu-id="54f90-156">Output format needs toobe explicitly provided for each Image format: Jpg/Png/BmpFormat.</span></span> <span data-ttu-id="54f90-157">Ha létezik, a MES JpgVideo tooJpgFormat és így tovább fog egyezni.</span><span class="sxs-lookup"><span data-stu-id="54f90-157">When present, MES will match JpgVideo tooJpgFormat and so on.</span></span> <span data-ttu-id="54f90-158">OutputFormat bevezet egy új lemezkép-kodek adott makró: {Index}, amely kell toobe jelen (egyszer és csak egyszer) kép kimeneti formátum.</span><span class="sxs-lookup"><span data-stu-id="54f90-158">OutputFormat introduces a new image-codec specific Macro: {Index}, which needs toobe present (once and only once) for image output formats.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="65571-159">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="65571-159">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="54f90-159">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="54f90-159">Next steps</span></span>
 
-<span data-ttu-id="65571-160">Ellenőrizheti a [folyamatban lévő feladat](media-services-check-job-progress.md) közben a kódolási feladat folyamatban.</span><span class="sxs-lookup"><span data-stu-id="65571-160">You can check the [job progress](media-services-check-job-progress.md) while the encoding job is pending.</span></span>
+<span data-ttu-id="54f90-160">Ellenőrizheti a hello [folyamatban lévő feladat](media-services-check-job-progress.md) közben hello kódolási feladat folyamatban.</span><span class="sxs-lookup"><span data-stu-id="54f90-160">You can check hello [job progress](media-services-check-job-progress.md) while hello encoding job is pending.</span></span>
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="65571-161">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="65571-161">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="54f90-161">Media Services képzési tervek</span><span class="sxs-lookup"><span data-stu-id="54f90-161">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="65571-162">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="65571-162">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="54f90-162">Visszajelzés küldése</span><span class="sxs-lookup"><span data-stu-id="54f90-162">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="see-also"></a><span data-ttu-id="65571-163">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="65571-163">See Also</span></span>
-[<span data-ttu-id="65571-164">Media Services kódolási áttekintése</span><span class="sxs-lookup"><span data-stu-id="65571-164">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
+## <a name="see-also"></a><span data-ttu-id="54f90-163">Lásd még:</span><span class="sxs-lookup"><span data-stu-id="54f90-163">See Also</span></span>
+[<span data-ttu-id="54f90-164">Media Services kódolási áttekintése</span><span class="sxs-lookup"><span data-stu-id="54f90-164">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
 

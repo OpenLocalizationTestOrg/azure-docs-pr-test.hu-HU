@@ -1,6 +1,6 @@
 ---
-title: "Csatlakoztassa a Node.js használatával |} Microsoft Docs"
-description: "Eszköz csatlakoztatása az Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek olyan alkalmazással Node.js nyelven írt ismerteti."
+title: "egy eszköz Node.js segítségével aaaConnect |} Microsoft Docs"
+description: "Ismerteti, hogyan tooconnect egy eszköz toohello Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek Node.js nyelven írt alkalmazás segítségével."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="a3687-103">Csatlakoztassa az eszközt a távoli felügyeleti előkonfigurált megoldás (Node.js)</span><span class="sxs-lookup"><span data-stu-id="a3687-103">Connect your device to the remote monitoring preconfigured solution (Node.js)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="a7abb-103">Csatlakozzon a távoli felügyeleti előkonfigurált megoldás (Node.js) eszköz toohello</span><span class="sxs-lookup"><span data-stu-id="a7abb-103">Connect your device toohello remote monitoring preconfigured solution (Node.js)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="a3687-104">Node.js sample megoldás létrehozása</span><span class="sxs-lookup"><span data-stu-id="a3687-104">Create a node.js sample solution</span></span>
+## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="a7abb-104">Node.js sample megoldás létrehozása</span><span class="sxs-lookup"><span data-stu-id="a7abb-104">Create a node.js sample solution</span></span>
 
-<span data-ttu-id="a3687-105">Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejlesztői gépen telepítve.</span><span class="sxs-lookup"><span data-stu-id="a3687-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="a3687-106">Futtathat `node --version` verziójának a parancssorból.</span><span class="sxs-lookup"><span data-stu-id="a3687-106">You can run `node --version` at the command line to check the version.</span></span>
+<span data-ttu-id="a7abb-105">Győződjön meg arról, hogy Node.js verziót 0.11.5, vagy később a fejlesztői gépen telepítve.</span><span class="sxs-lookup"><span data-stu-id="a7abb-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="a7abb-106">Futtathat `node --version` hello parancssori toocheck hello verziójú.</span><span class="sxs-lookup"><span data-stu-id="a7abb-106">You can run `node --version` at hello command line toocheck hello version.</span></span>
 
-1. <span data-ttu-id="a3687-107">Hozzon létre egy nevű **RemoteMonitoring** a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="a3687-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="a3687-108">Keresse meg a mappát a parancssori környezetben.</span><span class="sxs-lookup"><span data-stu-id="a3687-108">Navigate to this folder in your command-line environment.</span></span>
+1. <span data-ttu-id="a7abb-107">Hozzon létre egy nevű **RemoteMonitoring** a fejlesztési számítógépén.</span><span class="sxs-lookup"><span data-stu-id="a7abb-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="a7abb-108">Keresse meg a parancssori környezetben toothis mappát.</span><span class="sxs-lookup"><span data-stu-id="a7abb-108">Navigate toothis folder in your command-line environment.</span></span>
 
-1. <span data-ttu-id="a3687-109">Futtassa az alábbi parancsokat a végre kell hajtania a mintaalkalmazás letöltése és telepítése a csomagok:</span><span class="sxs-lookup"><span data-stu-id="a3687-109">Run the following commands to download and install the packages you need to complete the sample app:</span></span>
+1. <span data-ttu-id="a7abb-109">A következő futtatási hello parancsok toodownload és a telepítés hello csomagok toocomplete hello mintaalkalmazás van szüksége:</span><span class="sxs-lookup"><span data-stu-id="a7abb-109">Run hello following commands toodownload and install hello packages you need toocomplete hello sample app:</span></span>
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. <span data-ttu-id="a3687-110">Az a **RemoteMonitoring** mappa, hozzon létre egy nevű fájlt **remote_monitoring.js**.</span><span class="sxs-lookup"><span data-stu-id="a3687-110">In the **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="a3687-111">Nyissa meg ezt a fájlt egy szövegszerkesztőben.</span><span class="sxs-lookup"><span data-stu-id="a3687-111">Open this file in a text editor.</span></span>
+1. <span data-ttu-id="a7abb-110">A hello **RemoteMonitoring** mappa, hozzon létre egy nevű fájlt **remote_monitoring.js**.</span><span class="sxs-lookup"><span data-stu-id="a7abb-110">In hello **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="a7abb-111">Nyissa meg ezt a fájlt egy szövegszerkesztőben.</span><span class="sxs-lookup"><span data-stu-id="a7abb-111">Open this file in a text editor.</span></span>
 
-1. <span data-ttu-id="a3687-112">Az a **remote_monitoring.js** fájlt, adja hozzá a következő `require` utasításokat:</span><span class="sxs-lookup"><span data-stu-id="a3687-112">In the **remote_monitoring.js** file, add the following `require` statements:</span></span>
+1. <span data-ttu-id="a7abb-112">A hello **remote_monitoring.js** fájlt, adja hozzá a következő hello `require` utasításokat:</span><span class="sxs-lookup"><span data-stu-id="a7abb-112">In hello **remote_monitoring.js** file, add hello following `require` statements:</span></span>
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ ms.lasthandoff: 08/29/2017
     var Message = require('azure-iot-device').Message;
     ```
 
-1. <span data-ttu-id="a3687-113">Adja hozzá a következő változódeklarációkat az `require` utasítások után.</span><span class="sxs-lookup"><span data-stu-id="a3687-113">Add the following variable declarations after the `require` statements.</span></span> <span data-ttu-id="a3687-114">Cserélje le a [Device Id] és a [Device Key] helyőrzőértékeket az eszközhöz tartozó értékekre a távoli figyelési megoldás irányítópultja alapján.</span><span class="sxs-lookup"><span data-stu-id="a3687-114">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="a3687-115">Cserélje le az [IoTHub Name] értéket a megoldás irányítópultján található IoT Hub gazdanévre.</span><span class="sxs-lookup"><span data-stu-id="a3687-115">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="a3687-116">Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:</span><span class="sxs-lookup"><span data-stu-id="a3687-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
+1. <span data-ttu-id="a7abb-113">Adja hozzá a következő változók deklarációja után hello hello `require` utasításokat.</span><span class="sxs-lookup"><span data-stu-id="a7abb-113">Add hello following variable declarations after hello `require` statements.</span></span> <span data-ttu-id="a7abb-114">Cserélje le a hello helyőrző értékeket [eszközazonosító] és [eszközkulcs] az eszköz a távoli felügyeleti megoldás irányítópultja hello feljegyzett értékekkel.</span><span class="sxs-lookup"><span data-stu-id="a7abb-114">Replace hello placeholder values [Device Id] and [Device Key] with values you noted for your device in hello remote monitoring solution dashboard.</span></span> <span data-ttu-id="a7abb-115">Hello megoldás irányítópult tooreplace [IOT hubbal Name] az IoT Hub állomásnév hello használata.</span><span class="sxs-lookup"><span data-stu-id="a7abb-115">Use hello IoT Hub Hostname from hello solution dashboard tooreplace [IoTHub Name].</span></span> <span data-ttu-id="a7abb-116">Ha például az IoT Hub gazdaneve **contoso.azure-devices.net**, cserélje le az [IoTHub Name] helyőrzőt a **contoso** értékre:</span><span class="sxs-lookup"><span data-stu-id="a7abb-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. <span data-ttu-id="a3687-117">Adja hozzá a következő változók néhány alapvető telemetriai adatok meghatározásához:</span><span class="sxs-lookup"><span data-stu-id="a3687-117">Add the following variables to define some base telemetry data:</span></span>
+1. <span data-ttu-id="a7abb-117">Adja hozzá a következő változók toodefine hello néhány alapvető telemetriai adatokat:</span><span class="sxs-lookup"><span data-stu-id="a7abb-117">Add hello following variables toodefine some base telemetry data:</span></span>
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     var externalTemperature = 55;
     ```
 
-1. <span data-ttu-id="a3687-118">Adja hozzá a következő segítő függvény nyomtatni a művelet eredménye:</span><span class="sxs-lookup"><span data-stu-id="a3687-118">Add the following helper function to print operation results:</span></span>
+1. <span data-ttu-id="a7abb-118">Adja hozzá a következő segítő függvény tooprint művelet eredményeit hello:</span><span class="sxs-lookup"><span data-stu-id="a7abb-118">Add hello following helper function tooprint operation results:</span></span>
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="a3687-119">Adja hozzá a következő segítő függvény használatával a telemetriai adatok értékek ügyfélfuttatási:</span><span class="sxs-lookup"><span data-stu-id="a3687-119">Add the following helper function to use to randomize the telemetry values:</span></span>
+1. <span data-ttu-id="a7abb-119">Adja hozzá a következő segítő függvény toouse toorandomize hello telemetriai értékek hello:</span><span class="sxs-lookup"><span data-stu-id="a7abb-119">Add hello following helper function toouse toorandomize hello telemetry values:</span></span>
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="a3687-120">Adja hozzá a következő definícióját a **deviceinfo információja** objektum indítási küld az eszköz:</span><span class="sxs-lookup"><span data-stu-id="a3687-120">Add the following definition for the **DeviceInfo** object the device sends on startup:</span></span>
+1. <span data-ttu-id="a7abb-120">Adja hozzá a következő hello definíciója hello **deviceinfo információja** objektum hello eszköz küld indításakor:</span><span class="sxs-lookup"><span data-stu-id="a7abb-120">Add hello following definition for hello **DeviceInfo** object hello device sends on startup:</span></span>
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/29/2017
     };
     ```
 
-1. <span data-ttu-id="a3687-121">Adja hozzá a következő definícióját az eszköz iker jelentett értékek.</span><span class="sxs-lookup"><span data-stu-id="a3687-121">Add the following definition for the device twin reported values.</span></span> <span data-ttu-id="a3687-122">Ez a definíció tartalmazza az eszköz támogatja a közvetlen módszerek:</span><span class="sxs-lookup"><span data-stu-id="a3687-122">This definition includes descriptions of the direct methods the device supports:</span></span>
+1. <span data-ttu-id="a7abb-121">Adja hozzá a következő hello hello eszköz iker definíciója jelentett értékek.</span><span class="sxs-lookup"><span data-stu-id="a7abb-121">Add hello following definition for hello device twin reported values.</span></span> <span data-ttu-id="a7abb-122">Ez a definíció hello hello eszköz támogatja a közvetlen módszerek leírását tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="a7abb-122">This definition includes descriptions of hello direct methods hello device supports:</span></span>
 
     ```nodejs
     var reportedProperties = {
@@ -126,63 +126,63 @@ ms.lasthandoff: 08/29/2017
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot the device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
+            "Reboot": "Reboot hello device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
         },
     }
     ```
 
-1. <span data-ttu-id="a3687-123">Adja hozzá a következő függvény kezelni a **újraindítás** közvetlen metódus hívása:</span><span class="sxs-lookup"><span data-stu-id="a3687-123">Add the following function to handle the **Reboot** direct method call:</span></span>
+1. <span data-ttu-id="a7abb-123">Adja hozzá a következő függvény toohandle hello hello **újraindítás** közvetlen metódus hívása:</span><span class="sxs-lookup"><span data-stu-id="a7abb-123">Add hello following function toohandle hello **Reboot** direct method call:</span></span>
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. <span data-ttu-id="a3687-124">Adja hozzá a következő függvény kezelni a **InitiateFirmwareUpdate** közvetlen metódus hívása.</span><span class="sxs-lookup"><span data-stu-id="a3687-124">Add the following function to handle the **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="a3687-125">Ez a közvetlen módszer egy paraméter használatával adja meg a belső vezérlőprogram kép helyét, és kezdeményezi a belső vezérlőprogram frissítése az eszközön aszinkron módon:</span><span class="sxs-lookup"><span data-stu-id="a3687-125">This direct method uses a parameter to specify the location of the firmware image to download, and initiates the firmware update on the device asynchronously:</span></span>
+1. <span data-ttu-id="a7abb-124">Adja hozzá a következő függvény toohandle hello hello **InitiateFirmwareUpdate** közvetlen metódus hívása.</span><span class="sxs-lookup"><span data-stu-id="a7abb-124">Add hello following function toohandle hello **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="a7abb-125">Ez a közvetlen módszer használja az hello belső vezérlőprogram kép toodownload paraméter toospecify hello helyre, és kezdeményezi aszinkron módon hello hello eszköz belső vezérlőprogram frissítése:</span><span class="sxs-lookup"><span data-stu-id="a7abb-125">This direct method uses a parameter toospecify hello location of hello firmware image toodownload, and initiates hello firmware update on hello device asynchronously:</span></span>
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here to perform the firmware update asynchronously
+        // Add logic here tooperform hello firmware update asynchronously
     }
     ```
 
-1. <span data-ttu-id="a3687-126">Adja hozzá az ügyfél-példány létrehozása a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="a3687-126">Add the following code to create a client instance:</span></span>
+1. <span data-ttu-id="a7abb-126">Adja hozzá a következő kód toocreate egy ügyfél példány hello:</span><span class="sxs-lookup"><span data-stu-id="a7abb-126">Add hello following code toocreate a client instance:</span></span>
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. <span data-ttu-id="a3687-127">Adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="a3687-127">Add the following code to:</span></span>
+1. <span data-ttu-id="a7abb-127">Adja hozzá a következő kódot a hello:</span><span class="sxs-lookup"><span data-stu-id="a7abb-127">Add hello following code to:</span></span>
 
-    * <span data-ttu-id="a3687-128">Nyissa meg a kapcsolatot.</span><span class="sxs-lookup"><span data-stu-id="a3687-128">Open the connection.</span></span>
-    * <span data-ttu-id="a3687-129">Küldjön a **deviceinfo információja** objektum.</span><span class="sxs-lookup"><span data-stu-id="a3687-129">Send the **DeviceInfo** object.</span></span>
-    * <span data-ttu-id="a3687-130">A kezelő kívánt tulajdonságok beállítása.</span><span class="sxs-lookup"><span data-stu-id="a3687-130">Set up a handler for desired properties.</span></span>
-    * <span data-ttu-id="a3687-131">Jelentett tulajdonságok küldése.</span><span class="sxs-lookup"><span data-stu-id="a3687-131">Send reported properties.</span></span>
-    * <span data-ttu-id="a3687-132">A közvetlen módszer kezelők regisztrálni.</span><span class="sxs-lookup"><span data-stu-id="a3687-132">Register handlers for the direct methods.</span></span>
-    * <span data-ttu-id="a3687-133">Indítsa el a telemetriai adatok küldését.</span><span class="sxs-lookup"><span data-stu-id="a3687-133">Start sending telemetry.</span></span>
+    * <span data-ttu-id="a7abb-128">Hello kapcsolat megnyitásához.</span><span class="sxs-lookup"><span data-stu-id="a7abb-128">Open hello connection.</span></span>
+    * <span data-ttu-id="a7abb-129">Hello küldése **deviceinfo információja** objektum.</span><span class="sxs-lookup"><span data-stu-id="a7abb-129">Send hello **DeviceInfo** object.</span></span>
+    * <span data-ttu-id="a7abb-130">A kezelő kívánt tulajdonságok beállítása.</span><span class="sxs-lookup"><span data-stu-id="a7abb-130">Set up a handler for desired properties.</span></span>
+    * <span data-ttu-id="a7abb-131">Jelentett tulajdonságok küldése.</span><span class="sxs-lookup"><span data-stu-id="a7abb-131">Send reported properties.</span></span>
+    * <span data-ttu-id="a7abb-132">Regisztrálja a kezelők hello közvetlen módszer.</span><span class="sxs-lookup"><span data-stu-id="a7abb-132">Register handlers for hello direct methods.</span></span>
+    * <span data-ttu-id="a7abb-133">Indítsa el a telemetriai adatok küldését.</span><span class="sxs-lookup"><span data-stu-id="a7abb-133">Start sending telemetry.</span></span>
 
     ```nodejs
     client.open(function (err) {
@@ -242,9 +242,9 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-1. <span data-ttu-id="a3687-134">A módosítások mentése a **remote_monitoring.js** fájlt.</span><span class="sxs-lookup"><span data-stu-id="a3687-134">Save the changes to the **remote_monitoring.js** file.</span></span>
+1. <span data-ttu-id="a7abb-134">Mentse a módosításokat toohello hello **remote_monitoring.js** fájlt.</span><span class="sxs-lookup"><span data-stu-id="a7abb-134">Save hello changes toohello **remote_monitoring.js** file.</span></span>
 
-1. <span data-ttu-id="a3687-135">A következő parancsot egy parancssorból indítsa el a mintaalkalmazást:</span><span class="sxs-lookup"><span data-stu-id="a3687-135">Run the following command at a command prompt to launch the sample application:</span></span>
+1. <span data-ttu-id="a7abb-135">Futtassa a következő parancsot a következő parancssor toolaunch hello mintaalkalmazás hello:</span><span class="sxs-lookup"><span data-stu-id="a7abb-135">Run hello following command at a command prompt toolaunch hello sample application:</span></span>
    
     ```
     node remote_monitoring.js

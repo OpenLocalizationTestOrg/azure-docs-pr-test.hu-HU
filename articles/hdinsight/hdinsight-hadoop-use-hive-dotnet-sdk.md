@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight .NET SDK - Azure használatával Hive-lekérdezések futtatása |} Microsoft Docs"
-description: "Útmutató a Hadoop-feladatok Azure HDInsight Hadoop HDInsight .NET SDK használatával való elküldéséhez."
+title: "a HDInsight .NET SDK - Azure használatával aaaRun Hive-lekérdezések |} Microsoft Docs"
+description: "Ismerje meg, hogyan toosubmit Hadoop feladatok tooAzure HDInsight Hadoop HDInsight .NET SDK használatával."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: 7b1a5f7ea3b2bda438727dc75a85557ea7930280
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11f07d90405d3e804774610e242813927df59a03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="3b64f-103">A HDInsight .NET SDK használatával Hive-lekérdezések futtatása</span><span class="sxs-lookup"><span data-stu-id="3b64f-103">Run Hive queries using HDInsight .NET SDK</span></span>
+# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="5a472-103">A HDInsight .NET SDK használatával Hive-lekérdezések futtatása</span><span class="sxs-lookup"><span data-stu-id="5a472-103">Run Hive queries using HDInsight .NET SDK</span></span>
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-<span data-ttu-id="3b64f-104">Megtudhatja, hogyan elküldeni a Hive-lekérdezéseket a HDInsight .NET SDK használatával.</span><span class="sxs-lookup"><span data-stu-id="3b64f-104">Learn how to submit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="3b64f-105">A C# programban elküldeni a Hive táblák listázása a Hive-lekérdezések írása, és az eredmények megjelenítéséhez.</span><span class="sxs-lookup"><span data-stu-id="3b64f-105">You write a C# program to submit a Hive query for listing Hive tables, and display the results.</span></span>
+<span data-ttu-id="5a472-104">Ismerje meg, hogyan toosubmit Hive lekérdezi a HDInsight .NET SDK használatával.</span><span class="sxs-lookup"><span data-stu-id="5a472-104">Learn how toosubmit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="5a472-105">A C# programban toosubmit Hive táblák listázása a Hive-lekérdezések írása, és hello eredmények megjelenítéséhez.</span><span class="sxs-lookup"><span data-stu-id="5a472-105">You write a C# program toosubmit a Hive query for listing Hive tables, and display hello results.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="3b64f-106">A cikkben leírt lépéseket egy Windows ügyfél kell elvégezni.</span><span class="sxs-lookup"><span data-stu-id="3b64f-106">The steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="3b64f-107">Kapcsolatos információkért használata a Linux, OS X vagy UNIX rendszerű ügyfélnél Hive használata a lap választó, a cikk tetején látható.</span><span class="sxs-lookup"><span data-stu-id="3b64f-107">For information on using a Linux, OS X, or Unix client to work with Hive, use the tab selector shown on the top of the article.</span></span>
+> <span data-ttu-id="5a472-106">egy Windows ügyfél hello cikkben leírt lépéseket kell végrehajtani.</span><span class="sxs-lookup"><span data-stu-id="5a472-106">hello steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="5a472-107">A tájékoztatást a Linux, OS X vagy UNIX rendszerű ügyfél toowork struktúra használja a hello lapon választó hello hello cikk tetején látható.</span><span class="sxs-lookup"><span data-stu-id="5a472-107">For information on using a Linux, OS X, or Unix client toowork with Hive, use hello tab selector shown on hello top of hello article.</span></span>
 > 
 > 
 
-## <a name="prerequisites"></a><span data-ttu-id="3b64f-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="3b64f-108">Prerequisites</span></span>
-<span data-ttu-id="3b64f-109">Ez a cikk megkezdése előtt rendelkeznie kell a következő elemek:</span><span class="sxs-lookup"><span data-stu-id="3b64f-109">Before you begin this article, you must have the following items:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="5a472-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="5a472-108">Prerequisites</span></span>
+<span data-ttu-id="5a472-109">Ez a cikk megkezdése előtt rendelkeznie kell a következő elemek hello:</span><span class="sxs-lookup"><span data-stu-id="5a472-109">Before you begin this article, you must have hello following items:</span></span>
 
-* <span data-ttu-id="3b64f-110">**Hdinsight Hadoop-fürthöz**.</span><span class="sxs-lookup"><span data-stu-id="3b64f-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="3b64f-111">Lásd: [hdinsight Linux-alapú Hadoop használatának megkezdésében](./hdinsight-hadoop-linux-tutorial-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="3b64f-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
-* <span data-ttu-id="3b64f-112">**A Visual Studio 2013 vagy 2015/2017**.</span><span class="sxs-lookup"><span data-stu-id="3b64f-112">**Visual Studio 2013/2015/2017**.</span></span>
+* <span data-ttu-id="5a472-110">**Hdinsight Hadoop-fürthöz**.</span><span class="sxs-lookup"><span data-stu-id="5a472-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="5a472-111">Lásd: [hdinsight Linux-alapú Hadoop használatának megkezdésében](./hdinsight-hadoop-linux-tutorial-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="5a472-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
+* <span data-ttu-id="5a472-112">**A Visual Studio 2013 vagy 2015/2017**.</span><span class="sxs-lookup"><span data-stu-id="5a472-112">**Visual Studio 2013/2015/2017**.</span></span>
 
-## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="3b64f-113">Küldje el a Hive-lekérdezéseket a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="3b64f-113">Submit Hive queries using HDInsight .NET SDK</span></span>
-<span data-ttu-id="3b64f-114">A HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben működéséhez a .NET-HDInsight-fürtökkel.</span><span class="sxs-lookup"><span data-stu-id="3b64f-114">The HDInsight .NET SDK provides .NET client libraries, which makes it easier to work with HDInsight clusters from .NET.</span></span> 
+## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="5a472-113">Küldje el a Hive-lekérdezéseket a HDInsight .NET SDK használatával</span><span class="sxs-lookup"><span data-stu-id="5a472-113">Submit Hive queries using HDInsight .NET SDK</span></span>
+<span data-ttu-id="5a472-114">hello HDInsight .NET SDK biztosít a .NET ügyféloldali kódtáraknál, így azokat könnyebben toowork a .NET-HDInsight-fürtökkel.</span><span class="sxs-lookup"><span data-stu-id="5a472-114">hello HDInsight .NET SDK provides .NET client libraries, which makes it easier toowork with HDInsight clusters from .NET.</span></span> 
 
-<span data-ttu-id="3b64f-115">**Feladatok küldéséhez**</span><span class="sxs-lookup"><span data-stu-id="3b64f-115">**To Submit jobs**</span></span>
+<span data-ttu-id="5a472-115">**tooSubmit feladatok**</span><span class="sxs-lookup"><span data-stu-id="5a472-115">**tooSubmit jobs**</span></span>
 
-1. <span data-ttu-id="3b64f-116">Hozzon létre egy C# konzolalkalmazást a Visual Studióban.</span><span class="sxs-lookup"><span data-stu-id="3b64f-116">Create a C# console application in Visual Studio.</span></span>
-2. <span data-ttu-id="3b64f-117">A Nuget-Csomagkezelő konzolról futtassa a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="3b64f-117">From the Nuget Package Manager Console, run the following command:</span></span>
+1. <span data-ttu-id="5a472-116">Hozzon létre egy C# konzolalkalmazást a Visual Studióban.</span><span class="sxs-lookup"><span data-stu-id="5a472-116">Create a C# console application in Visual Studio.</span></span>
+2. <span data-ttu-id="5a472-117">Hello Nuget Package Manager Console futtassa a következő parancs hello:</span><span class="sxs-lookup"><span data-stu-id="5a472-117">From hello Nuget Package Manager Console, run hello following command:</span></span>
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-3. <span data-ttu-id="3b64f-118">A következő kód használható:</span><span class="sxs-lookup"><span data-stu-id="3b64f-118">Use the following code:</span></span>
+3. <span data-ttu-id="5a472-118">A következő kód hello használata:</span><span class="sxs-lookup"><span data-stu-id="5a472-118">Use hello following code:</span></span>
 
     ```csharp
         using System.Collections.Generic;
@@ -75,14 +75,14 @@ ms.lasthandoff: 08/18/2017
    
                 static void Main(string[] args)
                 {
-                    System.Console.WriteLine("The application is running ...");
+                    System.Console.WriteLine("hello application is running ...");
    
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
    
                     SubmitHiveJob();
    
-                    System.Console.WriteLine("Press ENTER to continue ...");
+                    System.Console.WriteLine("Press ENTER toocontinue ...");
                     System.Console.ReadLine();
                 }
    
@@ -97,13 +97,13 @@ ms.lasthandoff: 08/18/2017
                         Arguments = args
                     };
    
-                    System.Console.WriteLine("Submitting the Hive job to the cluster...");
+                    System.Console.WriteLine("Submitting hello Hive job toohello cluster...");
                     var jobResponse = _hdiJobManagementClient.JobManagement.SubmitHiveJob(parameters);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
    
-                    System.Console.WriteLine("Waiting for the job completion ...");
+                    System.Console.WriteLine("Waiting for hello job completion ...");
    
                     // Wait for job completion
                     var jobDetail = _hdiJobManagementClient.JobManagement.GetJob(jobId).JobDetail;
@@ -131,22 +131,22 @@ ms.lasthandoff: 08/18/2017
             }
         }
     ```
-4. <span data-ttu-id="3b64f-119">Az alkalmazás futtatásához nyomja le az **F5** billentyűt.</span><span class="sxs-lookup"><span data-stu-id="3b64f-119">Press **F5** to run the application.</span></span>
+4. <span data-ttu-id="5a472-119">Nyomja le az **F5** toorun hello alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="5a472-119">Press **F5** toorun hello application.</span></span>
 
-<span data-ttu-id="3b64f-120">Kell, hogy az alkalmazás kimenete hasonló:</span><span class="sxs-lookup"><span data-stu-id="3b64f-120">The output of the application shall be similar to:</span></span>
+<span data-ttu-id="5a472-120">kell, hogy hasonló hello alkalmazás hello kimenete:</span><span class="sxs-lookup"><span data-stu-id="5a472-120">hello output of hello application shall be similar to:</span></span>
 
 ![HDInsight Hadoop Hive feladat kimenetére](./media/hdinsight-hadoop-use-hive-dotnet-sdk/hdinsight-hadoop-use-hive-net-sdk-output.png)
 
-## <a name="next-steps"></a><span data-ttu-id="3b64f-122">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="3b64f-122">Next steps</span></span>
-<span data-ttu-id="3b64f-123">Ebben a cikkben megtanulta rendelkezik többféle módon hozhat létre HDInsight-fürtöt.</span><span class="sxs-lookup"><span data-stu-id="3b64f-123">In this article, you have learned several ways to create an HDInsight cluster.</span></span> <span data-ttu-id="3b64f-124">További tudnivalókért tekintse meg a következő cikkeket:</span><span class="sxs-lookup"><span data-stu-id="3b64f-124">To learn more, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5a472-122">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="5a472-122">Next steps</span></span>
+<span data-ttu-id="5a472-123">Ebben a cikkben megtanulta rendelkezik számos módon toocreate HDInsight-fürtöt.</span><span class="sxs-lookup"><span data-stu-id="5a472-123">In this article, you have learned several ways toocreate an HDInsight cluster.</span></span> <span data-ttu-id="5a472-124">toolearn több, tekintse meg a következő cikkek hello:</span><span class="sxs-lookup"><span data-stu-id="5a472-124">toolearn more, see hello following articles:</span></span>
 
-* <span data-ttu-id="3b64f-125">[Azure HDInsight – első lépések][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="3b64f-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
-* <span data-ttu-id="3b64f-126">[Hdinsight Hadoop-fürtök létrehozása][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="3b64f-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
-* [<span data-ttu-id="3b64f-127">Hdinsight Hadoop-fürtök kezelése az Azure-portál használatával</span><span class="sxs-lookup"><span data-stu-id="3b64f-127">Manage Hadoop clusters in HDInsight by using the Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
-* [<span data-ttu-id="3b64f-128">A HDInsight .NET SDK-referencia</span><span class="sxs-lookup"><span data-stu-id="3b64f-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
-* [<span data-ttu-id="3b64f-129">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="3b64f-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="3b64f-130">Use Sqoop with HDInsight</span><span class="sxs-lookup"><span data-stu-id="3b64f-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
-* [<span data-ttu-id="3b64f-131">Nem interaktív hitelesítéssel ellátott .Net HDInsight-alkalmazások létrehozása</span><span class="sxs-lookup"><span data-stu-id="3b64f-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
+* <span data-ttu-id="5a472-125">[Azure HDInsight – első lépések][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="5a472-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
+* <span data-ttu-id="5a472-126">[Hdinsight Hadoop-fürtök létrehozása][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="5a472-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
+* [<span data-ttu-id="5a472-127">Hdinsight Hadoop-fürtök kezelése hello Azure-portál használatával</span><span class="sxs-lookup"><span data-stu-id="5a472-127">Manage Hadoop clusters in HDInsight by using hello Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
+* [<span data-ttu-id="5a472-128">A HDInsight .NET SDK-referencia</span><span class="sxs-lookup"><span data-stu-id="5a472-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
+* [<span data-ttu-id="5a472-129">A Pig használata a HDInsightban</span><span class="sxs-lookup"><span data-stu-id="5a472-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="5a472-130">Use Sqoop with HDInsight</span><span class="sxs-lookup"><span data-stu-id="5a472-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
+* [<span data-ttu-id="5a472-131">Nem interaktív hitelesítéssel ellátott .Net HDInsight-alkalmazások létrehozása</span><span class="sxs-lookup"><span data-stu-id="5a472-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
 
 [hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md

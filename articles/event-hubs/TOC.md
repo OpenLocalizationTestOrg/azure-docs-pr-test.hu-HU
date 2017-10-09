@@ -16,8 +16,8 @@
 ### [Java](event-hubs-java-get-started-receive-eph.md)
 ### [Apache Storm](event-hubs-storm-getstarted-receive.md)
 ## Események rögzítése
-### [Az Event Hubs Capture engedélyezése az Azure Portal használatával](event-hubs-capture-enable-through-portal.md)
-### [Az Event Hubs Capture engedélyezése Resource Manager-sablon használatával](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
+### [Event Hubs rögzítheti az Azure portál tooenable hello használata](event-hubs-capture-enable-through-portal.md)
+### [Használja a Resource Manager sablon tooenable Event Hubs rögzítése](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
 ## [Programozási útmutató](event-hubs-programming-guide.md)
 
 # Útmutató
@@ -37,7 +37,7 @@
 ### Rögzítés
 #### [Event Hubs Capture](event-hubs-capture-overview.md)
 #### [Event Hubs-adatok rögzítése Python használatával](event-hubs-capture-python.md)
-### [A PowerShell használata entitások üzembe helyezésére](event-hubs-manage-with-ps.md) 
+### [PowerShell tooprovision entitások használata](event-hubs-manage-with-ps.md) 
 ### [Azure Diagnostics-adatok streamelése az Event Hubs használatával](event-hubs-streaming-azure-diags-data.md)
 ### [Eseményközpontok létrehozása és üzembe helyezése Resource Manager-sablonnal](event-hubs-resource-manager-namespace-event-hub.md)
 

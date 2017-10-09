@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management alkalmazássablonok |} Microsoft Docs"
-description: "Ismerje meg, hogyan szabhatja testre a fejlesztői portálra az Azure API Management az alkalmazás lapok tartalmát."
+title: az Azure API Management aaaApplication sablonok |} Microsoft Docs
+description: "Ismerje meg, hogyan toocustomize hello hello lapjain hello developer portálon az Azure API Management tartalmát."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 6d2d44465800219f16866a621d4822614ac9e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4dc078be7163b047ca2e640a9065ba9e5ba709e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="application-templates-in-azure-api-management"></a><span data-ttu-id="d80b3-103">Alkalmazássablonok az Azure API Management</span><span class="sxs-lookup"><span data-stu-id="d80b3-103">Application templates in Azure API Management</span></span>
-<span data-ttu-id="d80b3-104">Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása.</span><span class="sxs-lookup"><span data-stu-id="d80b3-104">Azure API Management provides you the ability to customize the content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="d80b3-105">Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.</span><span class="sxs-lookup"><span data-stu-id="d80b3-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and the editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility to configure the content of the pages as you see fit using these templates.</span></span>  
+# <a name="application-templates-in-azure-api-management"></a><span data-ttu-id="ae968-103">Alkalmazássablonok az Azure API Management</span><span class="sxs-lookup"><span data-stu-id="ae968-103">Application templates in Azure API Management</span></span>
+<span data-ttu-id="ae968-104">Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának.</span><span class="sxs-lookup"><span data-stu-id="ae968-104">Azure API Management provides you hello ability toocustomize hello content of developer portal pages using a set of templates that configure their content.</span></span> <span data-ttu-id="ae968-105">Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.</span><span class="sxs-lookup"><span data-stu-id="ae968-105">Using [DotLiquid](http://dotliquidmarkup.org/) syntax and hello editor of your choice, such as [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), and a provided set of localized [String resources](api-management-template-resources.md#strings), [Glyph resources](api-management-template-resources.md#glyphs), and [Page controls](api-management-page-controls.md), you have great flexibility tooconfigure hello content of hello pages as you see fit using these templates.</span></span>  
   
- <span data-ttu-id="d80b3-106">Ebben a szakaszban a sablonok engedélyezi, hogy testre szabhatja a fejlesztői portálra az alkalmazás lapok tartalmát.</span><span class="sxs-lookup"><span data-stu-id="d80b3-106">The templates in this section allow you to customize the content of the Application pages in the developer portal.</span></span>  
+ <span data-ttu-id="ae968-106">Ebben a szakaszban hello sablonok lehetővé teszik toocustomize hello tartalma hello lapjain hello developer portálon.</span><span class="sxs-lookup"><span data-stu-id="ae968-106">hello templates in this section allow you toocustomize hello content of hello Application pages in hello developer portal.</span></span>  
   
--   [<span data-ttu-id="d80b3-107">– Alkalmazáslista</span><span class="sxs-lookup"><span data-stu-id="d80b3-107">Application list</span></span>](#ProductList)  
+-   [<span data-ttu-id="ae968-107">– Alkalmazáslista</span><span class="sxs-lookup"><span data-stu-id="ae968-107">Application list</span></span>](#ProductList)  
   
--   [<span data-ttu-id="d80b3-108">Alkalmazás</span><span class="sxs-lookup"><span data-stu-id="d80b3-108">Application</span></span>](#Application)  
+-   [<span data-ttu-id="ae968-108">Alkalmazás</span><span class="sxs-lookup"><span data-stu-id="ae968-108">Application</span></span>](#Application)  
   
 > [!NOTE]
->  <span data-ttu-id="d80b3-109">Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat.</span><span class="sxs-lookup"><span data-stu-id="d80b3-109">Sample default templates are included in the following documentation, but are subject to change due to continuous improvements.</span></span> <span data-ttu-id="d80b3-110">Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat.</span><span class="sxs-lookup"><span data-stu-id="d80b3-110">You can view the live default templates in the developer portal by navigating to the desired individual templates.</span></span> <span data-ttu-id="d80b3-111">A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span><span class="sxs-lookup"><span data-stu-id="d80b3-111">For more information about working with templates, see [How to customize the API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
+>  <span data-ttu-id="ae968-109">Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt.</span><span class="sxs-lookup"><span data-stu-id="ae968-109">Sample default templates are included in hello following documentation, but are subject toochange due toocontinuous improvements.</span></span> <span data-ttu-id="ae968-110">Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="ae968-110">You can view hello live default templates in hello developer portal by navigating toohello desired individual templates.</span></span> <span data-ttu-id="ae968-111">A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span><span class="sxs-lookup"><span data-stu-id="ae968-111">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).</span></span>  
   
-##  <span data-ttu-id="d80b3-112"><a name="ProductList"></a>– Alkalmazáslista</span><span class="sxs-lookup"><span data-stu-id="d80b3-112"><a name="ProductList"></a> Application list</span></span>  
- <span data-ttu-id="d80b3-113">A **Alkalmazáslista** sablon lehetővé teszi a fejlesztői portálra az alkalmazás lista lap törzsét testreszabását.</span><span class="sxs-lookup"><span data-stu-id="d80b3-113">The **Application list** template allows you to customize the body of the application list page in the developer portal.</span></span>  
+##  <span data-ttu-id="ae968-112"><a name="ProductList"></a>– Alkalmazáslista</span><span class="sxs-lookup"><span data-stu-id="ae968-112"><a name="ProductList"></a> Application list</span></span>  
+ <span data-ttu-id="ae968-113">Hello **Alkalmazáslista** sablon teszi hello alkalmazás lista lap toocustomize hello törzsében hello developer portálon.</span><span class="sxs-lookup"><span data-stu-id="ae968-113">hello **Application list** template allows you toocustomize hello body of hello application list page in hello developer portal.</span></span>  
   
- <span data-ttu-id="d80b3-114">![Lista lap Developer portálon alkalmazássablonok](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM lista lap Developer portálon alkalmazássablonok")</span><span class="sxs-lookup"><span data-stu-id="d80b3-114">![Application List Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM Application List Page Developer Portal Templates")</span></span>  
+ <span data-ttu-id="ae968-114">![Lista lap Developer portálon alkalmazássablonok](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM lista lap Developer portálon alkalmazássablonok")</span><span class="sxs-lookup"><span data-stu-id="ae968-114">![Application List Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM Application List Page Developer Portal Templates")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="d80b3-115">Alapértelmezett sablon</span><span class="sxs-lookup"><span data-stu-id="d80b3-115">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="ae968-115">Alapértelmezett sablon</span><span class="sxs-lookup"><span data-stu-id="ae968-115">Default template</span></span>  
   
 ```xml  
 <div class="row">  
@@ -69,20 +69,20 @@ ms.lasthandoff: 07/11/2017
 </div>  
 ```  
   
-### <a name="controls"></a><span data-ttu-id="d80b3-116">Vezérlők</span><span class="sxs-lookup"><span data-stu-id="d80b3-116">Controls</span></span>  
- <span data-ttu-id="d80b3-117">A `Product list` sablon előfordulhat, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).</span><span class="sxs-lookup"><span data-stu-id="d80b3-117">The `Product list` template may use the following [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="ae968-116">Vezérlők</span><span class="sxs-lookup"><span data-stu-id="ae968-116">Controls</span></span>  
+ <span data-ttu-id="ae968-117">Hello `Product list` sablon használhat hello következő [vezérlők lapon](api-management-page-controls.md).</span><span class="sxs-lookup"><span data-stu-id="ae968-117">hello `Product list` template may use hello following [page controls](api-management-page-controls.md).</span></span>  
   
--   [<span data-ttu-id="d80b3-118">lapozófájl-vezérlő</span><span class="sxs-lookup"><span data-stu-id="d80b3-118">paging-control</span></span>](api-management-page-controls.md#paging-control)  
+-   [<span data-ttu-id="ae968-118">lapozófájl-vezérlő</span><span class="sxs-lookup"><span data-stu-id="ae968-118">paging-control</span></span>](api-management-page-controls.md#paging-control)  
   
-### <a name="data-model"></a><span data-ttu-id="d80b3-119">Adatmodell</span><span class="sxs-lookup"><span data-stu-id="d80b3-119">Data model</span></span>  
+### <a name="data-model"></a><span data-ttu-id="ae968-119">Adatmodell</span><span class="sxs-lookup"><span data-stu-id="ae968-119">Data model</span></span>  
   
-|<span data-ttu-id="d80b3-120">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="d80b3-120">Property</span></span>|<span data-ttu-id="d80b3-121">Típus</span><span class="sxs-lookup"><span data-stu-id="d80b3-121">Type</span></span>|<span data-ttu-id="d80b3-122">Leírás</span><span class="sxs-lookup"><span data-stu-id="d80b3-122">Description</span></span>|  
+|<span data-ttu-id="ae968-120">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="ae968-120">Property</span></span>|<span data-ttu-id="ae968-121">Típus</span><span class="sxs-lookup"><span data-stu-id="ae968-121">Type</span></span>|<span data-ttu-id="ae968-122">Leírás</span><span class="sxs-lookup"><span data-stu-id="ae968-122">Description</span></span>|  
 |--------------|----------|-----------------|  
-|<span data-ttu-id="d80b3-123">Lapozás</span><span class="sxs-lookup"><span data-stu-id="d80b3-123">Paging</span></span>|<span data-ttu-id="d80b3-124">[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.</span><span class="sxs-lookup"><span data-stu-id="d80b3-124">[Paging](api-management-template-data-model-reference.md#Paging) entity.</span></span>|<span data-ttu-id="d80b3-125">Az alkalmazások gyűjtemény lapozás adatait.</span><span class="sxs-lookup"><span data-stu-id="d80b3-125">The paging information for the applications collection.</span></span>|  
-|<span data-ttu-id="d80b3-126">Alkalmazások</span><span class="sxs-lookup"><span data-stu-id="d80b3-126">Applications</span></span>|<span data-ttu-id="d80b3-127">A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.</span><span class="sxs-lookup"><span data-stu-id="d80b3-127">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="d80b3-128">Az aktuális felhasználó számára látható alkalmazásokat.</span><span class="sxs-lookup"><span data-stu-id="d80b3-128">The applications visible to the current user.</span></span>|  
-|<span data-ttu-id="d80b3-129">CategoryName</span><span class="sxs-lookup"><span data-stu-id="d80b3-129">CategoryName</span></span>|<span data-ttu-id="d80b3-130">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="d80b3-130">string</span></span>|<span data-ttu-id="d80b3-131">A kategória az alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="d80b3-131">The category of application.</span></span>|  
+|<span data-ttu-id="ae968-123">Lapozás</span><span class="sxs-lookup"><span data-stu-id="ae968-123">Paging</span></span>|<span data-ttu-id="ae968-124">[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.</span><span class="sxs-lookup"><span data-stu-id="ae968-124">[Paging](api-management-template-data-model-reference.md#Paging) entity.</span></span>|<span data-ttu-id="ae968-125">hello lapozás információ hello alkalmazások gyűjtemény.</span><span class="sxs-lookup"><span data-stu-id="ae968-125">hello paging information for hello applications collection.</span></span>|  
+|<span data-ttu-id="ae968-126">Alkalmazások</span><span class="sxs-lookup"><span data-stu-id="ae968-126">Applications</span></span>|<span data-ttu-id="ae968-127">A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.</span><span class="sxs-lookup"><span data-stu-id="ae968-127">Collection of [Application](api-management-template-data-model-reference.md#Application) entities.</span></span>|<span data-ttu-id="ae968-128">hello alkalmazások látható toohello aktuális felhasználó.</span><span class="sxs-lookup"><span data-stu-id="ae968-128">hello applications visible toohello current user.</span></span>|  
+|<span data-ttu-id="ae968-129">CategoryName</span><span class="sxs-lookup"><span data-stu-id="ae968-129">CategoryName</span></span>|<span data-ttu-id="ae968-130">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="ae968-130">string</span></span>|<span data-ttu-id="ae968-131">hello kategória az alkalmazás.</span><span class="sxs-lookup"><span data-stu-id="ae968-131">hello category of application.</span></span>|  
   
-### <a name="sample-template-data"></a><span data-ttu-id="d80b3-132">Mintaadatokat sablon</span><span class="sxs-lookup"><span data-stu-id="d80b3-132">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="ae968-132">Mintaadatokat sablon</span><span class="sxs-lookup"><span data-stu-id="ae968-132">Sample template data</span></span>  
   
 ```json  
 {  
@@ -133,12 +133,12 @@ ms.lasthandoff: 07/11/2017
 }  
 ```  
   
-##  <span data-ttu-id="d80b3-133"><a name="Application"></a>Alkalmazás</span><span class="sxs-lookup"><span data-stu-id="d80b3-133"><a name="Application"></a> Application</span></span>  
- <span data-ttu-id="d80b3-134">A **alkalmazás** sablon lehetővé teszi a fejlesztői portálra az alkalmazás lap törzsét testreszabását.</span><span class="sxs-lookup"><span data-stu-id="d80b3-134">The **Application** template allows you to customize the body of the application page in the developer portal.</span></span>  
+##  <span data-ttu-id="ae968-133"><a name="Application"></a>Alkalmazás</span><span class="sxs-lookup"><span data-stu-id="ae968-133"><a name="Application"></a> Application</span></span>  
+ <span data-ttu-id="ae968-134">Hello **alkalmazás** sablon teszi hello alkalmazás lap toocustomize hello törzsében hello developer portálon.</span><span class="sxs-lookup"><span data-stu-id="ae968-134">hello **Application** template allows you toocustomize hello body of hello application page in hello developer portal.</span></span>  
   
- <span data-ttu-id="d80b3-135">![Alkalmazássablonok lap Developer portálon](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM lap Developer portálon alkalmazássablonok")</span><span class="sxs-lookup"><span data-stu-id="d80b3-135">![Application Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM Application Page Developer Portal Templates")</span></span>  
+ <span data-ttu-id="ae968-135">![Alkalmazássablonok lap Developer portálon](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM lap Developer portálon alkalmazássablonok")</span><span class="sxs-lookup"><span data-stu-id="ae968-135">![Application Page Developer Portal Templates](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM Application Page Developer Portal Templates")</span></span>  
   
-### <a name="default-template"></a><span data-ttu-id="d80b3-136">Alapértelmezett sablon</span><span class="sxs-lookup"><span data-stu-id="d80b3-136">Default template</span></span>  
+### <a name="default-template"></a><span data-ttu-id="ae968-136">Alapértelmezett sablon</span><span class="sxs-lookup"><span data-stu-id="ae968-136">Default template</span></span>  
   
 ```xml  
 <h2>{{title}}</h2>  
@@ -176,13 +176,13 @@ ms.lasthandoff: 07/11/2017
   
 ```  
   
-### <a name="controls"></a><span data-ttu-id="d80b3-137">Vezérlők</span><span class="sxs-lookup"><span data-stu-id="d80b3-137">Controls</span></span>  
- <span data-ttu-id="d80b3-138">A `Application` sablon nem teszi lehetővé a használata [vezérlők lapon](api-management-page-controls.md).</span><span class="sxs-lookup"><span data-stu-id="d80b3-138">The `Application` template does not allow the use of any [page controls](api-management-page-controls.md).</span></span>  
+### <a name="controls"></a><span data-ttu-id="ae968-137">Vezérlők</span><span class="sxs-lookup"><span data-stu-id="ae968-137">Controls</span></span>  
+ <span data-ttu-id="ae968-138">Hello `Application` sablon nem teszi lehetővé a hello használata [vezérlők lapon](api-management-page-controls.md).</span><span class="sxs-lookup"><span data-stu-id="ae968-138">hello `Application` template does not allow hello use of any [page controls](api-management-page-controls.md).</span></span>  
   
-### <a name="data-model"></a><span data-ttu-id="d80b3-139">Adatmodell</span><span class="sxs-lookup"><span data-stu-id="d80b3-139">Data model</span></span>  
- <span data-ttu-id="d80b3-140">[Alkalmazás](api-management-template-data-model-reference.md#Application) entitás.</span><span class="sxs-lookup"><span data-stu-id="d80b3-140">[Application](api-management-template-data-model-reference.md#Application) entity.</span></span>  
+### <a name="data-model"></a><span data-ttu-id="ae968-139">Adatmodell</span><span class="sxs-lookup"><span data-stu-id="ae968-139">Data model</span></span>  
+ <span data-ttu-id="ae968-140">[Alkalmazás](api-management-template-data-model-reference.md#Application) entitás.</span><span class="sxs-lookup"><span data-stu-id="ae968-140">[Application](api-management-template-data-model-reference.md#Application) entity.</span></span>  
   
-### <a name="sample-template-data"></a><span data-ttu-id="d80b3-141">Mintaadatokat sablon</span><span class="sxs-lookup"><span data-stu-id="d80b3-141">Sample template data</span></span>  
+### <a name="sample-template-data"></a><span data-ttu-id="ae968-141">Mintaadatokat sablon</span><span class="sxs-lookup"><span data-stu-id="ae968-141">Sample template data</span></span>  
   
 ```json  
 {  
@@ -219,5 +219,5 @@ ms.lasthandoff: 07/11/2017
 }  
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="d80b3-142">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="d80b3-142">Next steps</span></span>
-<span data-ttu-id="d80b3-143">A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).</span><span class="sxs-lookup"><span data-stu-id="d80b3-143">For more information about working with templates, see [How to customize the API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ae968-142">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ae968-142">Next steps</span></span>
+<span data-ttu-id="ae968-143">A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).</span><span class="sxs-lookup"><span data-stu-id="ae968-143">For more information about working with templates, see [How toocustomize hello API Management developer portal using templates](api-management-developer-portal-templates.md).</span></span>

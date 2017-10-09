@@ -1,6 +1,6 @@
 ---
-title: "A Node.js Ismerkedés az Azure CDN SDK-val |} Microsoft Docs"
-description: "Node.js-alkalmazások kezelése az Azure CDN írásának ismertetése."
+title: "a Node.js hello Azure CDN SDK használatába aaaGet |} Microsoft Docs"
+description: "Megtudhatja, hogyan toowrite Node.js alkalmazások toomanage Azure CDN szolgáltatás használata."
 services: cdn
 documentationcenter: nodejs
 author: zhangmanling
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 46ae8cd9775432d126cbde856c1fb06ea319297e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c805e5fb8e0b471e8b248cb2f4b29efd6c85940
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-cdn-development"></a><span data-ttu-id="ecabd-103">Ismerkedés az Azure CDN-fejlesztéssel</span><span class="sxs-lookup"><span data-stu-id="ecabd-103">Get started with Azure CDN development</span></span>
+# <a name="get-started-with-azure-cdn-development"></a><span data-ttu-id="e9ef8-103">Ismerkedés az Azure CDN-fejlesztéssel</span><span class="sxs-lookup"><span data-stu-id="e9ef8-103">Get started with Azure CDN development</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="ecabd-104">Node.js</span><span class="sxs-lookup"><span data-stu-id="ecabd-104">Node.js</span></span>](cdn-app-dev-node.md)
-> * [<span data-ttu-id="ecabd-105">.NET</span><span class="sxs-lookup"><span data-stu-id="ecabd-105">.NET</span></span>](cdn-app-dev-net.md)
+> * [<span data-ttu-id="e9ef8-104">Node.js</span><span class="sxs-lookup"><span data-stu-id="e9ef8-104">Node.js</span></span>](cdn-app-dev-node.md)
+> * [<span data-ttu-id="e9ef8-105">.NET</span><span class="sxs-lookup"><span data-stu-id="e9ef8-105">.NET</span></span>](cdn-app-dev-net.md)
 > 
 > 
 
-<span data-ttu-id="ecabd-106">Használhatja a [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) létrehozása és a CDN-profil és a végpontok automatizálására.</span><span class="sxs-lookup"><span data-stu-id="ecabd-106">You can use the [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) to automate creation and management of CDN profiles and endpoints.</span></span>  <span data-ttu-id="ecabd-107">Ez az oktatóanyag bemutatja, hogyan kell létrehozni egy egyszerű Node.js-Konzolalkalmazás, azt mutatja be a rendelkezésre álló műveletek számos.</span><span class="sxs-lookup"><span data-stu-id="ecabd-107">This tutorial walks through the creation of a simple Node.js console application that demonstrates several of the available operations.</span></span>  <span data-ttu-id="ecabd-108">Ez az oktatóanyag nem célja, hogy a Node.js, részletesen leírja az Azure CDN SDK minden szempontját.</span><span class="sxs-lookup"><span data-stu-id="ecabd-108">This tutorial is not intended to describe all aspects of the Azure CDN SDK for Node.js in detail.</span></span>
+<span data-ttu-id="e9ef8-106">Használhatja a hello [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) tooautomate létrehozását és a CDN-profil és a végpontok.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-106">You can use hello [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) tooautomate creation and management of CDN profiles and endpoints.</span></span>  <span data-ttu-id="e9ef8-107">Ez az oktatóanyag végigvezeti egy egyszerű Node.js-Konzolalkalmazás, azt mutatja be, hogy több hello elérhető műveletek hello létrehozását.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-107">This tutorial walks through hello creation of a simple Node.js console application that demonstrates several of hello available operations.</span></span>  <span data-ttu-id="e9ef8-108">Ez az oktatóanyag van nem tervezett toodescribe minden szempontját hello Azure CDN SDK for Node.js részletesen.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-108">This tutorial is not intended toodescribe all aspects of hello Azure CDN SDK for Node.js in detail.</span></span>
 
-<span data-ttu-id="ecabd-109">Az oktatóanyag elvégzéséhez, akkor már rendelkezik [Node.js](http://www.nodejs.org) **4.x.x** vagy újabb rendszerre telepített és konfigurált.</span><span class="sxs-lookup"><span data-stu-id="ecabd-109">To complete this tutorial, you should already have [Node.js](http://www.nodejs.org) **4.x.x** or higher installed and configured.</span></span>  <span data-ttu-id="ecabd-110">Használhat bármilyen szövegszerkesztővel, a Node.js-alkalmazás létrehozásához.</span><span class="sxs-lookup"><span data-stu-id="ecabd-110">You can use any text editor you want to create your Node.js application.</span></span>  <span data-ttu-id="ecabd-111">Ez az oktatóanyag írni használt [Visual Studio Code](https://code.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="ecabd-111">To write this tutorial, I used [Visual Studio Code](https://code.visualstudio.com).</span></span>  
+<span data-ttu-id="e9ef8-109">toocomplete ebben az oktatóanyagban érdemes már [Node.js](http://www.nodejs.org) **4.x.x** vagy újabb rendszerre telepített és konfigurált.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-109">toocomplete this tutorial, you should already have [Node.js](http://www.nodejs.org) **4.x.x** or higher installed and configured.</span></span>  <span data-ttu-id="e9ef8-110">Használhatja a Node.js-alkalmazás toocreate kívánt szövegszerkesztőben.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-110">You can use any text editor you want toocreate your Node.js application.</span></span>  <span data-ttu-id="e9ef8-111">toowrite ebben az oktatóanyagban használt [Visual Studio Code](https://code.visualstudio.com).</span><span class="sxs-lookup"><span data-stu-id="e9ef8-111">toowrite this tutorial, I used [Visual Studio Code](https://code.visualstudio.com).</span></span>  
 
 > [!TIP]
-> <span data-ttu-id="ecabd-112">A [az oktatóanyagot befejezett projekt](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) letölthető az MSDN Webhelyén.</span><span class="sxs-lookup"><span data-stu-id="ecabd-112">The [completed project from this tutorial](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) is available for download on MSDN.</span></span>
+> <span data-ttu-id="e9ef8-112">Hello [az oktatóanyagot befejezett projekt](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) letölthető az MSDN Webhelyén.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-112">hello [completed project from this tutorial](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) is available for download on MSDN.</span></span>
 > 
 > 
 
 [!INCLUDE [cdn-app-dev-prep](../../includes/cdn-app-dev-prep.md)]
 
-## <a name="create-your-project-and-add-npm-dependencies"></a><span data-ttu-id="ecabd-113">A projekt létrehozása és hozzáadása NPM függőségek</span><span class="sxs-lookup"><span data-stu-id="ecabd-113">Create your project and add NPM dependencies</span></span>
-<span data-ttu-id="ecabd-114">Most, hogy előre létrehozott erőforráscsoport a CDN-profil és a CDN-profil és a csoporton belüli végpontok kezelése az Azure AD-alkalmazás engedélyt kap, nem lehet elindítani, az alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="ecabd-114">Now that we've created a resource group for our CDN profiles and given our Azure AD application permission to manage CDN profiles and endpoints within that group, we can start creating our application.</span></span>
+## <a name="create-your-project-and-add-npm-dependencies"></a><span data-ttu-id="e9ef8-113">A projekt létrehozása és hozzáadása NPM függőségek</span><span class="sxs-lookup"><span data-stu-id="e9ef8-113">Create your project and add NPM dependencies</span></span>
+<span data-ttu-id="e9ef8-114">Most, hogy előre létrehozott erőforráscsoport a CDN-profilok és az Azure AD alkalmazás engedély toomanage CDN-profil és a csoporton belüli végpontok, nem lehet elindítani, az alkalmazás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-114">Now that we've created a resource group for our CDN profiles and given our Azure AD application permission toomanage CDN profiles and endpoints within that group, we can start creating our application.</span></span>
 
-<span data-ttu-id="ecabd-115">Hozzon létre egy mappát az alkalmazás tárolásához.</span><span class="sxs-lookup"><span data-stu-id="ecabd-115">Create a folder to store your application.</span></span>  <span data-ttu-id="ecabd-116">Az aktuális elérési úthoz, a Node.js eszközökkel konzolon az aktuális hely beállítása az új mappába, és a projekt inicializálása a következő futtatásával:</span><span class="sxs-lookup"><span data-stu-id="ecabd-116">From a console with the Node.js tools in your current path, set your current location to this new folder and initialize your project by executing:</span></span>
+<span data-ttu-id="e9ef8-115">Az alkalmazás egy mappában toostore létrehozása.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-115">Create a folder toostore your application.</span></span>  <span data-ttu-id="e9ef8-116">Az aktuális elérési úthoz hello Node.js eszközökkel konzolról állítsa be az aktuális hely toothis új mappát, és a projekt inicializálása a következő futtatásával:</span><span class="sxs-lookup"><span data-stu-id="e9ef8-116">From a console with hello Node.js tools in your current path, set your current location toothis new folder and initialize your project by executing:</span></span>
 
     npm init
 
-<span data-ttu-id="ecabd-117">Majd választhat a projekt inicializálása kérdések sorát teszi fel.</span><span class="sxs-lookup"><span data-stu-id="ecabd-117">You will then be presented a series of questions to initialize your project.</span></span>  <span data-ttu-id="ecabd-118">A **belépési pont**, ez az oktatóanyag használja *app.js*.</span><span class="sxs-lookup"><span data-stu-id="ecabd-118">For **entry point**, this tutorial uses *app.js*.</span></span>  <span data-ttu-id="ecabd-119">Az egyéb lehetőségek az alábbi példában látható.</span><span class="sxs-lookup"><span data-stu-id="ecabd-119">You can see my other choices in the following example.</span></span>
+<span data-ttu-id="e9ef8-117">Ezután jelenik meg a kérdéseket tooinitialize sorozata a projekthez.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-117">You will then be presented a series of questions tooinitialize your project.</span></span>  <span data-ttu-id="e9ef8-118">A **belépési pont**, ez az oktatóanyag használja *app.js*.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-118">For **entry point**, this tutorial uses *app.js*.</span></span>  <span data-ttu-id="e9ef8-119">A következő példa hello a más lehetőségei tekintheti meg.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-119">You can see my other choices in hello following example.</span></span>
 
 ![NPM init kimeneti](./media/cdn-app-dev-node/cdn-npm-init.png)
 
-<span data-ttu-id="ecabd-121">A projekt már inicializálva van egy *packages.json* fájlt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-121">Our project is now initialized with a *packages.json* file.</span></span>  <span data-ttu-id="ecabd-122">A projekt üzemeltetéséhez kívánja használni az NPM csomagban foglalt Azure könyvtárak.</span><span class="sxs-lookup"><span data-stu-id="ecabd-122">Our project is going to use some Azure libraries contained in NPM packages.</span></span>  <span data-ttu-id="ecabd-123">Az Azure-ügyfél futásidejű a Node.js (ms-rest-azure) és az Azure CDN ügyféloldali kódtára a Node.js (azure-arm-cd) fogjuk használni.</span><span class="sxs-lookup"><span data-stu-id="ecabd-123">We'll use the Azure Client Runtime for Node.js (ms-rest-azure) and the Azure CDN Client Library for Node.js (azure-arm-cd).</span></span>  <span data-ttu-id="ecabd-124">Szerint függőségeinek adjuk hozzá azokat a projekthez.</span><span class="sxs-lookup"><span data-stu-id="ecabd-124">Let's add those to the project as dependencies.</span></span>
+<span data-ttu-id="e9ef8-121">A projekt már inicializálva van egy *packages.json* fájlt.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-121">Our project is now initialized with a *packages.json* file.</span></span>  <span data-ttu-id="e9ef8-122">A projekt NPM csomagok szereplő Azure könyvtárak toouse lesz.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-122">Our project is going toouse some Azure libraries contained in NPM packages.</span></span>  <span data-ttu-id="e9ef8-123">Hello Azure ügyfél futásidejű a Node.js (ms-rest-azure) és hello Azure CDN ügyféloldali kódtára a Node.js (azure-arm-cd) fogjuk használni.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-123">We'll use hello Azure Client Runtime for Node.js (ms-rest-azure) and hello Azure CDN Client Library for Node.js (azure-arm-cd).</span></span>  <span data-ttu-id="e9ef8-124">Most adja hozzá ezek toohello projekt függőségek.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-124">Let's add those toohello project as dependencies.</span></span>
 
     npm install --save ms-rest-azure
     npm install --save azure-arm-cdn
 
-<span data-ttu-id="ecabd-125">Miután végzett a csomagok telepítése, a *package.json* fájl ebben a példában (verzió: számok eltérőek lehetnek) hasonlóan kell kinéznie:</span><span class="sxs-lookup"><span data-stu-id="ecabd-125">After the packages are done installing, the *package.json* file should look similar to this example (version numbers may differ):</span></span>
+<span data-ttu-id="e9ef8-125">Hello csomagok befejezése után telepíti, hello *package.json* fájl alábbihoz hasonló toothis példa (számok eltérő verzió):</span><span class="sxs-lookup"><span data-stu-id="e9ef8-125">After hello packages are done installing, hello *package.json* file should look similar toothis example (version numbers may differ):</span></span>
 
 ``` json
 {
@@ -74,18 +74,18 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="ecabd-126">Végezetül a szövegszerkesztővel, hozzon létre egy üres szöveges fájlt, és mentse a projekt mappában gyökérmappájában *app.js*.</span><span class="sxs-lookup"><span data-stu-id="ecabd-126">Finally, using your text editor, create a blank text file and save it in the root of our project folder as *app.js*.</span></span>  <span data-ttu-id="ecabd-127">Most még készen kód írása.</span><span class="sxs-lookup"><span data-stu-id="ecabd-127">We're now ready to begin writing code.</span></span>
+<span data-ttu-id="e9ef8-126">Végezetül a szövegszerkesztővel, hozzon létre egy üres szöveges fájlt, és mentse a projekt mappában hello gyökérmappájában *app.js*.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-126">Finally, using your text editor, create a blank text file and save it in hello root of our project folder as *app.js*.</span></span>  <span data-ttu-id="e9ef8-127">A rendszer most már készen áll a kód írása toobegin.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-127">We're now ready toobegin writing code.</span></span>
 
-## <a name="requires-constants-authentication-and-structure"></a><span data-ttu-id="ecabd-128">Szükséges, állandók, hitelesítési és szerkezete</span><span class="sxs-lookup"><span data-stu-id="ecabd-128">Requires, constants, authentication, and structure</span></span>
-<span data-ttu-id="ecabd-129">A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető szerkezete.</span><span class="sxs-lookup"><span data-stu-id="ecabd-129">With *app.js* open in our editor, let's get the basic structure of our program written.</span></span>
+## <a name="requires-constants-authentication-and-structure"></a><span data-ttu-id="e9ef8-128">Szükséges, állandók, hitelesítési és szerkezete</span><span class="sxs-lookup"><span data-stu-id="e9ef8-128">Requires, constants, authentication, and structure</span></span>
+<span data-ttu-id="e9ef8-129">A *app.js* nyissa meg a szerkesztőben, folytassuk hello alapszintű struktúrát a program írása.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-129">With *app.js* open in our editor, let's get hello basic structure of our program written.</span></span>
 
-1. <span data-ttu-id="ecabd-130">Vegye fel a "szükséges" az NPM-csomagok tetején a következő:</span><span class="sxs-lookup"><span data-stu-id="ecabd-130">Add the "requires" for our NPM packages at the top with the following:</span></span>
+1. <span data-ttu-id="e9ef8-130">Adja hozzá a hello "szükséges" az NPM-csomagok hello felső hello alábbira:</span><span class="sxs-lookup"><span data-stu-id="e9ef8-130">Add hello "requires" for our NPM packages at hello top with hello following:</span></span>
    
     ``` javascript
     var msRestAzure = require('ms-rest-azure');
     var cdnManagementClient = require('azure-arm-cdn');
     ```
-2. <span data-ttu-id="ecabd-131">Adja meg az egyes állandók a módszerek fogja használni kell.</span><span class="sxs-lookup"><span data-stu-id="ecabd-131">We need to define some constants our methods will use.</span></span>  <span data-ttu-id="ecabd-132">Adja hozzá a következő.</span><span class="sxs-lookup"><span data-stu-id="ecabd-132">Add the following.</span></span>  <span data-ttu-id="ecabd-133">Ügyeljen arra, hogy cserélje le a helyőrzőket, beleértve a  **&lt;csúcsos zárójelek&gt;**, igény szerint a saját értékekkel.</span><span class="sxs-lookup"><span data-stu-id="ecabd-133">Be sure to replace the placeholders, including the **&lt;angle brackets&gt;**, with your own values as needed.</span></span>
+2. <span data-ttu-id="e9ef8-131">Toodefine kell néhány állandók a módszerek fogja használni.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-131">We need toodefine some constants our methods will use.</span></span>  <span data-ttu-id="e9ef8-132">Adja hozzá a hello következő.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-132">Add hello following.</span></span>  <span data-ttu-id="e9ef8-133">Lehet, hogy tooreplace hello helyőrzők, beleértve a hello  **&lt;csúcsos zárójelek&gt;**, igény szerint a saját értékekkel.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-133">Be sure tooreplace hello placeholders, including hello **&lt;angle brackets&gt;**, with your own values as needed.</span></span>
    
     ``` javascript
     //Tenant app constants
@@ -98,17 +98,17 @@ ms.lasthandoff: 07/11/2017
     const resourceGroupName = "CdnConsoleTutorial";
     const resourceLocation = "<YOUR PREFERRED AZURE LOCATION, SUCH AS Central US>";
     ```
-3. <span data-ttu-id="ecabd-134">Lesz ezután azt példányt létrehozni a CDN-felügyeleti ügyfél, és adjon neki a hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="ecabd-134">Next, we'll instantiate the CDN management client and give it our credentials.</span></span>
+3. <span data-ttu-id="e9ef8-134">Lesz a következő azt példányosítható hello CDN felügyeleti ügyfél, és adjon neki a hitelesítő adatokat.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-134">Next, we'll instantiate hello CDN management client and give it our credentials.</span></span>
    
     ``` javascript
     var credentials = new msRestAzure.ApplicationTokenCredentials(clientId, tenantId, clientSecret);
     var cdnClient = new cdnManagementClient(credentials, subscriptionId);
     ```
    
-    <span data-ttu-id="ecabd-135">Ha egyéni felhasználói hitelesítést használ, két sort némileg eltérő fog kinézni.</span><span class="sxs-lookup"><span data-stu-id="ecabd-135">If you are using individual user authentication, these two lines will look slightly different.</span></span>
+    <span data-ttu-id="e9ef8-135">Ha egyéni felhasználói hitelesítést használ, két sort némileg eltérő fog kinézni.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-135">If you are using individual user authentication, these two lines will look slightly different.</span></span>
    
    > [!IMPORTANT]
-   > <span data-ttu-id="ecabd-136">Ha használja a kódmintában a felhasználói hitelesítés helyett egy egyszerű szolgáltatás kiválasztása.</span><span class="sxs-lookup"><span data-stu-id="ecabd-136">Only use this code sample if you are choosing to have individual user authentication instead of a service principal.</span></span>  <span data-ttu-id="ecabd-137">Ügyeljen rá, és tartsa titokban az egyéni felhasználói hitelesítő adatait.</span><span class="sxs-lookup"><span data-stu-id="ecabd-137">Be careful to guard your individual user credentials and keep them secret.</span></span>
+   > <span data-ttu-id="e9ef8-136">Ha használja a kódmintában toohave egyes felhasználói hitelesítés helyett egy egyszerű szolgáltatás kiválasztása.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-136">Only use this code sample if you are choosing toohave individual user authentication instead of a service principal.</span></span>  <span data-ttu-id="e9ef8-137">Gondos tooguard kell az egyéni felhasználói hitelesítő adatait, és tartsa titokban.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-137">Be careful tooguard your individual user credentials and keep them secret.</span></span>
    > 
    > 
    
@@ -118,8 +118,8 @@ ms.lasthandoff: 07/11/2017
     var cdnClient = new cdnManagementClient(credentials, subscriptionId);
     ```
    
-    <span data-ttu-id="ecabd-138">Ügyeljen arra, hogy az elemek cseréje  **&lt;csúcsos zárójelek&gt;**  a megfelelő információkkal.</span><span class="sxs-lookup"><span data-stu-id="ecabd-138">Be sure to replace the items in **&lt;angle brackets&gt;** with the correct information.</span></span>  <span data-ttu-id="ecabd-139">A `<redirect URI>`, használja az átirányítási URI-t az Azure ad-ben az alkalmazás regisztrálásakor megadott.</span><span class="sxs-lookup"><span data-stu-id="ecabd-139">For `<redirect URI>`, use the redirect URI you entered when you registered the application in Azure AD.</span></span>
-4. <span data-ttu-id="ecabd-140">A Node.js-Konzolalkalmazás lesz e parancssori paraméterek.</span><span class="sxs-lookup"><span data-stu-id="ecabd-140">Our Node.js console application is going to take some command-line parameters.</span></span>  <span data-ttu-id="ecabd-141">Most ellenőrzi, hogy legalább egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="ecabd-141">Let's validate that at least one parameter was passed.</span></span>
+    <span data-ttu-id="e9ef8-138">Lehet, hogy tooreplace hello elemeinek  **&lt;csúcsos zárójelek&gt;**  hello megfelelő információkat.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-138">Be sure tooreplace hello items in **&lt;angle brackets&gt;** with hello correct information.</span></span>  <span data-ttu-id="e9ef8-139">A `<redirect URI>`, hello átirányítási URI-t az Azure AD hello alkalmazás regisztrálásakor megadott használja.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-139">For `<redirect URI>`, use hello redirect URI you entered when you registered hello application in Azure AD.</span></span>
+4. <span data-ttu-id="e9ef8-140">A Node.js-Konzolalkalmazás érintetlen tootake egyes parancssori paraméterek.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-140">Our Node.js console application is going tootake some command-line parameters.</span></span>  <span data-ttu-id="e9ef8-141">Most ellenőrzi, hogy legalább egy paramétert.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-141">Let's validate that at least one parameter was passed.</span></span>
    
    ```javascript
    //Collect command-line parameters
@@ -133,7 +133,7 @@ ms.lasthandoff: 07/11/2017
        process.exit(1);
    }
    ```
-5. <span data-ttu-id="ecabd-142">Amely számos lehetőséget kínál, a program, ahol azt fiókirodai más funkciók alapján milyen paraméterek lettek átadva a fő részére.</span><span class="sxs-lookup"><span data-stu-id="ecabd-142">That brings us to the main part of our program, where we branch off to other functions based on what parameters were passed.</span></span>
+5. <span data-ttu-id="e9ef8-142">Amely számos lehetőséget kínál, a program, ahol azt fiókirodai, ki milyen paraméterek lettek átadva alapján tooother funkciók toohello fő részét.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-142">That brings us toohello main part of our program, where we branch off tooother functions based on what parameters were passed.</span></span>
    
     ```javascript
     switch(parms[0].toLowerCase())
@@ -159,7 +159,7 @@ ms.lasthandoff: 07/11/2017
             process.exit(1);
     }
     ```
-6. <span data-ttu-id="ecabd-143">A program több helyen igazolnia kell győződjön meg arról, hogy a megfelelő számú paraméter lett átadva, és néhány Súgó megjelenítése, ha megfelelő nem megfelelő.</span><span class="sxs-lookup"><span data-stu-id="ecabd-143">At several places in our program, we'll need to make sure the right number of parameters were passed in and display some help if they don't look correct.</span></span>  <span data-ttu-id="ecabd-144">Hozzon létre, amely függvényt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-144">Let's create functions to do that.</span></span>
+6. <span data-ttu-id="e9ef8-143">A program több helyen kell, hogy hello megfelelő számú paraméter lett átadva, és néhány Súgó megjelenítése, nem fogják látni megfelelő toomake.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-143">At several places in our program, we'll need toomake sure hello right number of parameters were passed in and display some help if they don't look correct.</span></span>  <span data-ttu-id="e9ef8-144">Hozzon létre funkciók toodo, amely.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-144">Let's create functions toodo that.</span></span>
    
    ```javascript
    function requireParms(parmCount) {
@@ -197,7 +197,7 @@ ms.lasthandoff: 07/11/2017
        }
    }
    ```
-7. <span data-ttu-id="ecabd-145">Végezetül a fogjuk használni a CDN-felügyeleti ügyfél függvényei aszinkron, egy metódust kell meghívni, amikor kész van szükségük.</span><span class="sxs-lookup"><span data-stu-id="ecabd-145">Finally, the functions we'll be using on the CDN management client are asynchronous, so they need a method to call back when they're done.</span></span>  <span data-ttu-id="ecabd-146">Ellenőrizze egy, a kimenet a CDN-felügyeleti ügyfél (ha van ilyen), és a szabályosan kilép a programból.</span><span class="sxs-lookup"><span data-stu-id="ecabd-146">Let's make one that can display the output from the CDN management client (if any) and exit the program gracefully.</span></span>
+7. <span data-ttu-id="e9ef8-145">Végezetül használni fogjuk hello CDN felügyeleti ügyfél hello funkciók aszinkron jellegűek, egy módszer toocall vissza, ha kész van szükségük.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-145">Finally, hello functions we'll be using on hello CDN management client are asynchronous, so they need a method toocall back when they're done.</span></span>  <span data-ttu-id="e9ef8-146">Most Meggyőződünk tartalmazó hello kimeneti hello CDN felügyeleti ügyfél (ha van ilyen), és a hello program kilépésre.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-146">Let's make one that can display hello output from hello CDN management client (if any) and exit hello program gracefully.</span></span>
    
     ```javascript
     function callback(err, result, request, response) {
@@ -211,10 +211,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-<span data-ttu-id="ecabd-147">Most, hogy a program alapvető szerkezete írása, azt a függvény hívása a paraméterek alapján kell létrehoznia.</span><span class="sxs-lookup"><span data-stu-id="ecabd-147">Now that the basic structure of our program is written, we should create the functions called based on our parameters.</span></span>
+<span data-ttu-id="e9ef8-147">Most, hogy a program alapvető szerkezete hello írása, a Microsoft hello függvény hívása a paraméterek alapján kell létrehoznia.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-147">Now that hello basic structure of our program is written, we should create hello functions called based on our parameters.</span></span>
 
-## <a name="list-cdn-profiles-and-endpoints"></a><span data-ttu-id="ecabd-148">Lista CDN-profil és -végpontok</span><span class="sxs-lookup"><span data-stu-id="ecabd-148">List CDN profiles and endpoints</span></span>
-<span data-ttu-id="ecabd-149">Kezdjük kód a meglévő profilok és a végpontok listáját.</span><span class="sxs-lookup"><span data-stu-id="ecabd-149">Let's start with code to list our existing profiles and endpoints.</span></span>  <span data-ttu-id="ecabd-150">A kód megjegyzéseket adja meg a várt szintaxist, hogy tudjuk, ahol az egyes paramétereket kerül.</span><span class="sxs-lookup"><span data-stu-id="ecabd-150">My code comments provide the expected syntax so we know where each parameter goes.</span></span>
+## <a name="list-cdn-profiles-and-endpoints"></a><span data-ttu-id="e9ef8-148">Lista CDN-profil és -végpontok</span><span class="sxs-lookup"><span data-stu-id="e9ef8-148">List CDN profiles and endpoints</span></span>
+<span data-ttu-id="e9ef8-149">Kezdjük kód toolist a meglévő profilok és a végpontok.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-149">Let's start with code toolist our existing profiles and endpoints.</span></span>  <span data-ttu-id="e9ef8-150">A kód megjegyzéseket, hogy tudjuk, ahol az egyes paramétereket kerül adja meg a várt hello szintaxist.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-150">My code comments provide hello expected syntax so we know where each parameter goes.</span></span>
 
 ```javascript
 // list profiles
@@ -241,8 +241,8 @@ function cdnList(){
 }
 ```
 
-## <a name="create-cdn-profiles-and-endpoints"></a><span data-ttu-id="ecabd-151">CDN-profil és a végpontok létrehozása</span><span class="sxs-lookup"><span data-stu-id="ecabd-151">Create CDN profiles and endpoints</span></span>
-<span data-ttu-id="ecabd-152">A Funkciók, profilok és a végpontok létrehozása a következő fog írni azt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-152">Next, we'll write the functions to create profiles and endpoints.</span></span>
+## <a name="create-cdn-profiles-and-endpoints"></a><span data-ttu-id="e9ef8-151">CDN-profil és a végpontok létrehozása</span><span class="sxs-lookup"><span data-stu-id="e9ef8-151">Create CDN profiles and endpoints</span></span>
+<span data-ttu-id="e9ef8-152">A következő azt fog írni hello funkciók toocreate profilok és a végpontok.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-152">Next, we'll write hello functions toocreate profiles and endpoints.</span></span>
 
 ```javascript
 function cdnCreate() {
@@ -293,8 +293,8 @@ function cdnCreateEndpoint() {
 }
 ```
 
-## <a name="purge-an-endpoint"></a><span data-ttu-id="ecabd-153">A végpont törlése</span><span class="sxs-lookup"><span data-stu-id="ecabd-153">Purge an endpoint</span></span>
-<span data-ttu-id="ecabd-154">Feltéve, hogy a végpont létrehozását, azt szeretnénk, előfordulhat, hogy a program végrehajtásához egy közös tevékenység a végpont tartalmának van kiürítése.</span><span class="sxs-lookup"><span data-stu-id="ecabd-154">Assuming the endpoint has been created, one common task that we might want to perform in our program is purging content in our endpoint.</span></span>
+## <a name="purge-an-endpoint"></a><span data-ttu-id="e9ef8-153">A végpont törlése</span><span class="sxs-lookup"><span data-stu-id="e9ef8-153">Purge an endpoint</span></span>
+<span data-ttu-id="e9ef8-154">Ha hello végpont létrejött, egy közös feladat, hogy a program célszerű lehet tooperform van végleges törlése a végpont tartalma.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-154">Assuming hello endpoint has been created, one common task that we might want tooperform in our program is purging content in our endpoint.</span></span>
 
 ```javascript
 // purge <profile name> <endpoint name> <path>
@@ -306,8 +306,8 @@ function cdnPurge() {
 }
 ```
 
-## <a name="delete-cdn-profiles-and-endpoints"></a><span data-ttu-id="ecabd-155">CDN-profil és a végpontok törlése</span><span class="sxs-lookup"><span data-stu-id="ecabd-155">Delete CDN profiles and endpoints</span></span>
-<span data-ttu-id="ecabd-156">Az utolsó függvény is végpontok és a profilok törlése.</span><span class="sxs-lookup"><span data-stu-id="ecabd-156">The last function we will include deletes endpoints and profiles.</span></span>
+## <a name="delete-cdn-profiles-and-endpoints"></a><span data-ttu-id="e9ef8-155">CDN-profil és a végpontok törlése</span><span class="sxs-lookup"><span data-stu-id="e9ef8-155">Delete CDN profiles and endpoints</span></span>
+<span data-ttu-id="e9ef8-156">hello utolsó függvény is végpontok és a profilok törlése.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-156">hello last function we will include deletes endpoints and profiles.</span></span>
 
 ```javascript
 function cdnDelete() {
@@ -335,36 +335,36 @@ function cdnDelete() {
 }
 ```
 
-## <a name="running-the-program"></a><span data-ttu-id="ecabd-157">A program futtatása</span><span class="sxs-lookup"><span data-stu-id="ecabd-157">Running the program</span></span>
-<span data-ttu-id="ecabd-158">Most már a Node.js-program használatával a kedvenc hibakereső végezhetünk vagy a konzolon.</span><span class="sxs-lookup"><span data-stu-id="ecabd-158">We can now execute our Node.js program using our favorite debugger or at the console.</span></span>
+## <a name="running-hello-program"></a><span data-ttu-id="e9ef8-157">Hello programot futtat</span><span class="sxs-lookup"><span data-stu-id="e9ef8-157">Running hello program</span></span>
+<span data-ttu-id="e9ef8-158">Most már a Node.js-program használatával a kedvenc hibakereső végezhetünk vagy hello konzolján.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-158">We can now execute our Node.js program using our favorite debugger or at hello console.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="ecabd-159">Visual Studio Code az hibakereső használata, ha szüksége a környezet kialakítása felelt meg a parancssori paraméterek.</span><span class="sxs-lookup"><span data-stu-id="ecabd-159">If you're using Visual Studio Code as your debugger, you'll need to set up your environment to pass in the command-line parameters.</span></span>  <span data-ttu-id="ecabd-160">A Visual Studio Code nem ez a **lanuch.json** fájlt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-160">Visual Studio Code does this in the **lanuch.json** file.</span></span>  <span data-ttu-id="ecabd-161">Keresse meg nevű tulajdonság **argumentum** , és adja hozzá a karakterlánc-értékeket a paraméterek tömbje úgy, hogy hasonló: `"args": ["list", "profiles"]`.</span><span class="sxs-lookup"><span data-stu-id="ecabd-161">Look for a property named **args** and add an array of string values for your parameters, so that it looks similar to this:  `"args": ["list", "profiles"]`.</span></span>
+> <span data-ttu-id="e9ef8-159">Visual Studio Code az hibakereső használata, tooset lesz szüksége a környezet toopass hello parancssori paraméterek mentése.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-159">If you're using Visual Studio Code as your debugger, you'll need tooset up your environment toopass in hello command-line parameters.</span></span>  <span data-ttu-id="e9ef8-160">A Visual Studio Code nem ez hello **lanuch.json** fájlt.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-160">Visual Studio Code does this in hello **lanuch.json** file.</span></span>  <span data-ttu-id="e9ef8-161">Keresse meg nevű tulajdonság **argumentum** és karakterlánc-értékeket a paraméterek tömbjét adja hozzá, úgy, hogy hasonló toothis: `"args": ["list", "profiles"]`.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-161">Look for a property named **args** and add an array of string values for your parameters, so that it looks similar toothis:  `"args": ["list", "profiles"]`.</span></span>
 > 
 > 
 
-<span data-ttu-id="ecabd-162">Először a profilok listázása.</span><span class="sxs-lookup"><span data-stu-id="ecabd-162">Let's start by listing our profiles.</span></span>
+<span data-ttu-id="e9ef8-162">Először a profilok listázása.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-162">Let's start by listing our profiles.</span></span>
 
 ![Lista profilok](./media/cdn-app-dev-node/cdn-list-profiles.png)
 
-<span data-ttu-id="ecabd-164">Azt a kapott vissza üres tömb.</span><span class="sxs-lookup"><span data-stu-id="ecabd-164">We got back an empty array.</span></span>  <span data-ttu-id="ecabd-165">Jelenleg nincs a profil az erőforráscsoportban, mivel a várt érték, amely.</span><span class="sxs-lookup"><span data-stu-id="ecabd-165">Since we don't have any profiles in our resource group, that's expected.</span></span>  <span data-ttu-id="ecabd-166">Most hozzon létre most egy profilt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-166">Let's create a profile now.</span></span>
+<span data-ttu-id="e9ef8-164">Azt a kapott vissza üres tömb.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-164">We got back an empty array.</span></span>  <span data-ttu-id="e9ef8-165">Jelenleg nincs a profil az erőforráscsoportban, mivel a várt érték, amely.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-165">Since we don't have any profiles in our resource group, that's expected.</span></span>  <span data-ttu-id="e9ef8-166">Most hozzon létre most egy profilt.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-166">Let's create a profile now.</span></span>
 
 ![Profil létrehozása](./media/cdn-app-dev-node/cdn-create-profile.png)
 
-<span data-ttu-id="ecabd-168">Most adjuk hozzá egy végpontot.</span><span class="sxs-lookup"><span data-stu-id="ecabd-168">Now, let's add an endpoint.</span></span>
+<span data-ttu-id="e9ef8-168">Most adjuk hozzá egy végpontot.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-168">Now, let's add an endpoint.</span></span>
 
 ![-Végpont létrehozása](./media/cdn-app-dev-node/cdn-create-endpoint.png)
 
-<span data-ttu-id="ecabd-170">Végezetül most törli a profilt.</span><span class="sxs-lookup"><span data-stu-id="ecabd-170">Finally, let's delete our profile.</span></span>
+<span data-ttu-id="e9ef8-170">Végezetül most törli a profilt.</span><span class="sxs-lookup"><span data-stu-id="e9ef8-170">Finally, let's delete our profile.</span></span>
 
 ![Profil törlése](./media/cdn-app-dev-node/cdn-delete-profile.png)
 
-## <a name="next-steps"></a><span data-ttu-id="ecabd-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ecabd-172">Next Steps</span></span>
-<span data-ttu-id="ecabd-173">Ez a forgatókönyv a befejezett projekt megjelenítéséhez [a minta letöltéséhez](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).</span><span class="sxs-lookup"><span data-stu-id="ecabd-173">To see the completed project from this walkthrough, [download the sample](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e9ef8-172">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e9ef8-172">Next Steps</span></span>
+<span data-ttu-id="e9ef8-173">toosee befejeződött hello projektet ebben a forgatókönyvben a [hello minta letöltése](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).</span><span class="sxs-lookup"><span data-stu-id="e9ef8-173">toosee hello completed project from this walkthrough, [download hello sample](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).</span></span>
 
-<span data-ttu-id="ecabd-174">Tekintse meg a referencia az Azure CDN SDK-ban a Node.js, tekintse meg a [hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).</span><span class="sxs-lookup"><span data-stu-id="ecabd-174">To see the reference for the Azure CDN SDK for Node.js, view the [reference](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).</span></span>
+<span data-ttu-id="e9ef8-174">hello Azure CDN SDK for Node.js, a nézet hello toosee hello referencia [hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).</span><span class="sxs-lookup"><span data-stu-id="e9ef8-174">toosee hello reference for hello Azure CDN SDK for Node.js, view hello [reference](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).</span></span>
 
-<span data-ttu-id="ecabd-175">További dokumentációjában talál az Azure SDK-val Node.js, tekintse meg a [hivatkozás teljes](http://azure.github.io/azure-sdk-for-node/).</span><span class="sxs-lookup"><span data-stu-id="ecabd-175">To find additional documentation on the Azure SDK for Node.js, view the [full reference](http://azure.github.io/azure-sdk-for-node/).</span></span>
+<span data-ttu-id="e9ef8-175">toofind további dokumentációiért hello Azure SDK for Node.js, a nézet hello [hivatkozás teljes](http://azure.github.io/azure-sdk-for-node/).</span><span class="sxs-lookup"><span data-stu-id="e9ef8-175">toofind additional documentation on hello Azure SDK for Node.js, view hello [full reference](http://azure.github.io/azure-sdk-for-node/).</span></span>
 
-<span data-ttu-id="ecabd-176">A CDN erőforrások kezelése [PowerShell](cdn-manage-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="ecabd-176">Manage your CDN resources with [PowerShell](cdn-manage-powershell.md).</span></span>
+<span data-ttu-id="e9ef8-176">A CDN erőforrások kezelése [PowerShell](cdn-manage-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="e9ef8-176">Manage your CDN resources with [PowerShell](cdn-manage-powershell.md).</span></span>
 

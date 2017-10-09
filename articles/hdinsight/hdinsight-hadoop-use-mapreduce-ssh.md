@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight - Azure Hadoop MapReduce és SSH kapcsolatot |} Microsoft Docs"
-description: "Útmutató az SSH használata a HDInsight Hadoop használatával MapReduce-feladatok futtatásához."
+title: "aaaMapReduce és a hadooppal a Hdinsightban - Azure SSH-kapcsolat |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse SSH toorun MapReduce feladatokat, a HDInsight Hadoop használatával."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: eaf6278f97cd5ddd7e049ff4745181f39d7949a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9626577687fc5cc119a39d65a9c45298f57f81c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-mapreduce-with-hadoop-on-hdinsight-with-ssh"></a><span data-ttu-id="bdcfe-103">Az SSH hdinsight Hadoop MapReduce használata</span><span class="sxs-lookup"><span data-stu-id="bdcfe-103">Use MapReduce with Hadoop on HDInsight with SSH</span></span>
+# <a name="use-mapreduce-with-hadoop-on-hdinsight-with-ssh"></a><span data-ttu-id="01052-103">Az SSH hdinsight Hadoop MapReduce használata</span><span class="sxs-lookup"><span data-stu-id="01052-103">Use MapReduce with Hadoop on HDInsight with SSH</span></span>
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-<span data-ttu-id="bdcfe-104">Útmutató a HDInsight a Secure Shell (SSH) kapcsolatról MapReduce-feladatok elküldése.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-104">Learn how to submit MapReduce jobs from a Secure Shell (SSH) connection to HDInsight.</span></span>
+<span data-ttu-id="01052-104">Ismerje meg, hogyan toosubmit MapReduce egy Secure Shell (SSH) kapcsolat tooHDInsight a feladatokat.</span><span class="sxs-lookup"><span data-stu-id="01052-104">Learn how toosubmit MapReduce jobs from a Secure Shell (SSH) connection tooHDInsight.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="bdcfe-105">Ha már ismeri a Linux-alapú Hadoop-kiszolgálókat használ, de még nem ismeri a HDInsight, [Linux-alapú HDInsight tippek](hdinsight-hadoop-linux-information.md).</span><span class="sxs-lookup"><span data-stu-id="bdcfe-105">If you are already familiar with using Linux-based Hadoop servers, but you are new to HDInsight, see [Linux-based HDInsight tips](hdinsight-hadoop-linux-information.md).</span></span>
+> <span data-ttu-id="01052-105">Ha már ismeri a Linux-alapú Hadoop használatával kiszolgálók, de új tooHDInsight, lásd: [Linux-alapú HDInsight tippek](hdinsight-hadoop-linux-information.md).</span><span class="sxs-lookup"><span data-stu-id="01052-105">If you are already familiar with using Linux-based Hadoop servers, but you are new tooHDInsight, see [Linux-based HDInsight tips](hdinsight-hadoop-linux-information.md).</span></span>
 
-## <span data-ttu-id="bdcfe-106"><a id="prereq"></a>Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="bdcfe-106"><a id="prereq"></a>Prerequisites</span></span>
+## <span data-ttu-id="01052-106"><a id="prereq"></a>Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="01052-106"><a id="prereq"></a>Prerequisites</span></span>
 
-* <span data-ttu-id="bdcfe-107">(A HDInsight Hadoop) a Linux-alapú HDInsight-fürt</span><span class="sxs-lookup"><span data-stu-id="bdcfe-107">A Linux-based HDInsight (Hadoop on HDInsight) cluster</span></span>
+* <span data-ttu-id="01052-107">(A HDInsight Hadoop) a Linux-alapú HDInsight-fürt</span><span class="sxs-lookup"><span data-stu-id="01052-107">A Linux-based HDInsight (Hadoop on HDInsight) cluster</span></span>
 
   > [!IMPORTANT]
-  > <span data-ttu-id="bdcfe-108">A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-108">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="bdcfe-109">További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="bdcfe-109">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+  > <span data-ttu-id="01052-108">Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója.</span><span class="sxs-lookup"><span data-stu-id="01052-108">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="01052-109">További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span><span class="sxs-lookup"><span data-stu-id="01052-109">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-* <span data-ttu-id="bdcfe-110">Egy SSH-ügyfél.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-110">An SSH client.</span></span> <span data-ttu-id="bdcfe-111">További információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md)</span><span class="sxs-lookup"><span data-stu-id="bdcfe-111">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)</span></span>
+* <span data-ttu-id="01052-110">Egy SSH-ügyfél.</span><span class="sxs-lookup"><span data-stu-id="01052-110">An SSH client.</span></span> <span data-ttu-id="01052-111">További információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md)</span><span class="sxs-lookup"><span data-stu-id="01052-111">For more information, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)</span></span>
 
-## <span data-ttu-id="bdcfe-112"><a id="ssh"></a>Csatlakozzon SSH</span><span class="sxs-lookup"><span data-stu-id="bdcfe-112"><a id="ssh"></a>Connect with SSH</span></span>
+## <span data-ttu-id="01052-112"><a id="ssh"></a>Csatlakozzon SSH</span><span class="sxs-lookup"><span data-stu-id="01052-112"><a id="ssh"></a>Connect with SSH</span></span>
 
-<span data-ttu-id="bdcfe-113">Csatlakozzon a fürthöz SSH használatával.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-113">Connect to the cluster using SSH.</span></span> <span data-ttu-id="bdcfe-114">A következő parancs például nevű fürthöz csatlakozó **myhdinsight**:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-114">For example, the following command connects to a cluster named **myhdinsight**:</span></span>
+<span data-ttu-id="01052-113">Csatlakozzon az SSH használatával toohello fürt.</span><span class="sxs-lookup"><span data-stu-id="01052-113">Connect toohello cluster using SSH.</span></span> <span data-ttu-id="01052-114">Például a következő parancs hello csatlakozik nevű tooa fürt **myhdinsight**:</span><span class="sxs-lookup"><span data-stu-id="01052-114">For example, hello following command connects tooa cluster named **myhdinsight**:</span></span>
 
 ```bash
 ssh admin@myhdinsight-ssh.azurehdinsight.net
 ```
 
-<span data-ttu-id="bdcfe-115">**Ha egy tanúsítvány-kulcsot használ SSH hitelesítés**, adja meg a titkos kulcs helyét az ügyfélrendszeren szeretne:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-115">**If you use a certificate key for SSH authentication**, you may need to specify the location of the private key on your client system, for example:</span></span>
+<span data-ttu-id="01052-115">**Ha egy tanúsítvány-kulcsot használ SSH hitelesítés**, szükség lehet hello titkos kulcs toospecify hello helyét az ügyfél rendszerén, például:</span><span class="sxs-lookup"><span data-stu-id="01052-115">**If you use a certificate key for SSH authentication**, you may need toospecify hello location of hello private key on your client system, for example:</span></span>
 
 ```bash
 ssh -i ~/mykey.key admin@myhdinsight-ssh.azurehdinsight.net
 ```
 
-<span data-ttu-id="bdcfe-116">**Ha jelszót használhat SSH hitelesítés**, meg kell adnia a jelszót.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-116">**If you use a password for SSH authentication**, you need to provide the password when prompted.</span></span>
+<span data-ttu-id="01052-116">**Ha jelszót használhat SSH hitelesítés**, tooprovide hello jelszót van szüksége.</span><span class="sxs-lookup"><span data-stu-id="01052-116">**If you use a password for SSH authentication**, you need tooprovide hello password when prompted.</span></span>
 
-<span data-ttu-id="bdcfe-117">Az SSH és a HDInsight együttes használatával további információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="bdcfe-117">For more information on using SSH with HDInsight, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+<span data-ttu-id="01052-117">Az SSH és a HDInsight együttes használatával további információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).</span><span class="sxs-lookup"><span data-stu-id="01052-117">For more information on using SSH with HDInsight, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-## <span data-ttu-id="bdcfe-118"><a id="hadoop"></a>Hadoop-parancsok használata</span><span class="sxs-lookup"><span data-stu-id="bdcfe-118"><a id="hadoop"></a>Use Hadoop commands</span></span>
+## <span data-ttu-id="01052-118"><a id="hadoop"></a>Hadoop-parancsok használata</span><span class="sxs-lookup"><span data-stu-id="01052-118"><a id="hadoop"></a>Use Hadoop commands</span></span>
 
-1. <span data-ttu-id="bdcfe-119">Miután csatlakozott a HDInsight-fürthöz, a következő parancs segítségével indítsa el a MapReduce feladatot:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-119">After you are connected to the HDInsight cluster, use the following command to start a MapReduce job:</span></span>
+1. <span data-ttu-id="01052-119">Után csatlakoztatott toohello HDInsight-fürtre, használja a következő parancs toostart MapReduce feladatot hello:</span><span class="sxs-lookup"><span data-stu-id="01052-119">After you are connected toohello HDInsight cluster, use hello following command toostart a MapReduce job:</span></span>
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/WordCountOutput
     ```
 
-    <span data-ttu-id="bdcfe-120">A paranccsal elindítja a `wordcount` osztályt, amely tartalmazza a `hadoop-mapreduce-examples.jar` fájlt.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-120">This command starts the `wordcount` class, which is contained in the `hadoop-mapreduce-examples.jar` file.</span></span> <span data-ttu-id="bdcfe-121">Használja a `/example/data/gutenberg/davinci.txt` bemeneti és kimeneti dokumentumot tárolódik `/example/data/WordCountOutput`.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-121">It uses the `/example/data/gutenberg/davinci.txt` document as input, and output is stored at `/example/data/WordCountOutput`.</span></span>
+    <span data-ttu-id="01052-120">A paranccsal elindítja hello `wordcount` osztályt, amelyet hello `hadoop-mapreduce-examples.jar` fájlt.</span><span class="sxs-lookup"><span data-stu-id="01052-120">This command starts hello `wordcount` class, which is contained in hello `hadoop-mapreduce-examples.jar` file.</span></span> <span data-ttu-id="01052-121">Hello használ `/example/data/gutenberg/davinci.txt` bemeneti és kimeneti dokumentumot tárolódik `/example/data/WordCountOutput`.</span><span class="sxs-lookup"><span data-stu-id="01052-121">It uses hello `/example/data/gutenberg/davinci.txt` document as input, and output is stored at `/example/data/WordCountOutput`.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="bdcfe-122">A MapReduce feladatot és a példaadatokat kapcsolatos további információkért lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md).</span><span class="sxs-lookup"><span data-stu-id="bdcfe-122">For more information about this MapReduce job and the example data, see [Use MapReduce in Hadoop on HDInsight](hdinsight-use-mapreduce.md).</span></span>
+    > <span data-ttu-id="01052-122">A MapReduce feladatot és hello példa adatokkal kapcsolatos további információkért lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md).</span><span class="sxs-lookup"><span data-stu-id="01052-122">For more information about this MapReduce job and hello example data, see [Use MapReduce in Hadoop on HDInsight](hdinsight-use-mapreduce.md).</span></span>
 
-2. <span data-ttu-id="bdcfe-123">A feladat részletei bocsát ki, akkor feldolgozza, és olyan információkat ad vissza az alábbihoz hasonló a feladat befejezése után:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-123">The job emits details as it processes, and it returns information similar to the following text when the job completes:</span></span>
+2. <span data-ttu-id="01052-123">hello feladat részletei bocsát ki, akkor feldolgozza, és információt hasonló toohello hello feladat befejezésekor a következő szöveget adja vissza:</span><span class="sxs-lookup"><span data-stu-id="01052-123">hello job emits details as it processes, and it returns information similar toohello following text when hello job completes:</span></span>
 
         File Input Format Counters
         Bytes Read=1395666
         File Output Format Counters
         Bytes Written=337623
 
-3. <span data-ttu-id="bdcfe-124">A feladat befejezése után, használja a következő parancsot a kimeneti fájlok listázásához:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-124">When the job completes, use the following command to list the output files:</span></span>
+3. <span data-ttu-id="01052-124">Hello feladat befejezése után használja a következő parancs toolist hello kimeneti fájlok hello:</span><span class="sxs-lookup"><span data-stu-id="01052-124">When hello job completes, use hello following command toolist hello output files:</span></span>
 
     ```bash
     hdfs dfs -ls /example/data/WordCountOutput
     ```
 
-    <span data-ttu-id="bdcfe-125">Ez a parancs két fájlt megjelenítése `_SUCCESS` és `part-r-00000`.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-125">This command display two files, `_SUCCESS` and `part-r-00000`.</span></span> <span data-ttu-id="bdcfe-126">A `part-r-00000` fájl tartalmazza a kimenet ehhez a feladathoz.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-126">The `part-r-00000` file contains the output for this job.</span></span>
+    <span data-ttu-id="01052-125">Ez a parancs két fájlt megjelenítése `_SUCCESS` és `part-r-00000`.</span><span class="sxs-lookup"><span data-stu-id="01052-125">This command display two files, `_SUCCESS` and `part-r-00000`.</span></span> <span data-ttu-id="01052-126">Hello `part-r-00000` fájl tartalmazza a feladat hello kimenet.</span><span class="sxs-lookup"><span data-stu-id="01052-126">hello `part-r-00000` file contains hello output for this job.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="bdcfe-127">Bizonyos MapReduce-feladatok az eredmények lehet, hogy e osztani több **rész-r-###** fájlokat.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-127">Some MapReduce jobs may split the results across multiple **part-r-#####** files.</span></span> <span data-ttu-id="bdcfe-128">Ha igen, használja a ### utótag fájlok sorrendjét.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-128">If so, use the ##### suffix to indicate the order of the files.</span></span>
+    > <span data-ttu-id="01052-127">Bizonyos MapReduce-feladatok hello eredmények lehet, hogy e osztani több **rész-r-###** fájlokat.</span><span class="sxs-lookup"><span data-stu-id="01052-127">Some MapReduce jobs may split hello results across multiple **part-r-#####** files.</span></span> <span data-ttu-id="01052-128">Ha igen, használjon hello ### utótag hello fájlok tooindicate hello sorrendjét.</span><span class="sxs-lookup"><span data-stu-id="01052-128">If so, use hello ##### suffix tooindicate hello order of hello files.</span></span>
 
-4. <span data-ttu-id="bdcfe-129">A kimenet megtekintéséhez használja a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-129">To view the output, use the following command:</span></span>
+4. <span data-ttu-id="01052-129">tooview hello kimeneti, használja a következő parancs hello:</span><span class="sxs-lookup"><span data-stu-id="01052-129">tooview hello output, use hello following command:</span></span>
 
     ```bash
     hdfs dfs -cat /example/data/WordCountOutput/part-r-00000
     ```
 
-    <span data-ttu-id="bdcfe-130">Ez a parancs megjeleníti a szavakat, amelyek szerepelnek a **wasb://example/data/gutenberg/davinci.txt** fájl- és a szám, ahányszor minden szó történt.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-130">This command displays a list of the words that are contained in the **wasb://example/data/gutenberg/davinci.txt** file and the number of times each word occurred.</span></span> <span data-ttu-id="bdcfe-131">A következő szöveget a fájlban található adatok példája:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-131">The following text is an example of the data that is contained in the file:</span></span>
+    <span data-ttu-id="01052-130">Ez a parancs szereplő hello szavak listáját jeleníti meg hello **wasb://example/data/gutenberg/davinci.txt** fájl- és hello száma minden szó történt.</span><span class="sxs-lookup"><span data-stu-id="01052-130">This command displays a list of hello words that are contained in hello **wasb://example/data/gutenberg/davinci.txt** file and hello number of times each word occurred.</span></span> <span data-ttu-id="01052-131">hello következő szövege hello tárolt adatokat használó hello fájlban egy példát:</span><span class="sxs-lookup"><span data-stu-id="01052-131">hello following text is an example of hello data that is contained in hello file:</span></span>
 
         wreathed        3
         wreathing       1
@@ -105,17 +105,17 @@ ssh -i ~/mykey.key admin@myhdinsight-ssh.azurehdinsight.net
         wretched        6
         wriggling       1
 
-## <span data-ttu-id="bdcfe-132"><a id="summary"></a>Summary (Összefoglalás)</span><span class="sxs-lookup"><span data-stu-id="bdcfe-132"><a id="summary"></a>Summary</span></span>
+## <span data-ttu-id="01052-132"><a id="summary"></a>Summary (Összefoglalás)</span><span class="sxs-lookup"><span data-stu-id="01052-132"><a id="summary"></a>Summary</span></span>
 
-<span data-ttu-id="bdcfe-133">Ahogy látja, a Hadoop parancsok MapReduce-feladatok futtatása a HDInsight-fürtöt, és nézze meg a feladat kimenetére egyszerűen adja meg.</span><span class="sxs-lookup"><span data-stu-id="bdcfe-133">As you can see, Hadoop commands provide an easy way to run MapReduce jobs in an HDInsight cluster and then view the job output.</span></span>
+<span data-ttu-id="01052-133">Ahogy látja, Hadoop parancsok egy egyszerűen toorun MapReduce-feladatok egy HDInsight-fürtöt, és a nézet hello feladatkiemenetét adja meg.</span><span class="sxs-lookup"><span data-stu-id="01052-133">As you can see, Hadoop commands provide an easy way toorun MapReduce jobs in an HDInsight cluster and then view hello job output.</span></span>
 
-## <span data-ttu-id="bdcfe-134"><a id="nextsteps"></a>Következő lépések</span><span class="sxs-lookup"><span data-stu-id="bdcfe-134"><a id="nextsteps"></a>Next steps</span></span>
+## <span data-ttu-id="01052-134"><a id="nextsteps"></a>Következő lépések</span><span class="sxs-lookup"><span data-stu-id="01052-134"><a id="nextsteps"></a>Next steps</span></span>
 
-<span data-ttu-id="bdcfe-135">Általános információk a hdinsight MapReduce-feladatok:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-135">For general information about MapReduce jobs in HDInsight:</span></span>
+<span data-ttu-id="01052-135">Általános információk a hdinsight MapReduce-feladatok:</span><span class="sxs-lookup"><span data-stu-id="01052-135">For general information about MapReduce jobs in HDInsight:</span></span>
 
-* [<span data-ttu-id="bdcfe-136">A HDInsight Hadoop MapReduce használata</span><span class="sxs-lookup"><span data-stu-id="bdcfe-136">Use MapReduce on HDInsight Hadoop</span></span>](hdinsight-use-mapreduce.md)
+* [<span data-ttu-id="01052-136">A HDInsight Hadoop MapReduce használata</span><span class="sxs-lookup"><span data-stu-id="01052-136">Use MapReduce on HDInsight Hadoop</span></span>](hdinsight-use-mapreduce.md)
 
-<span data-ttu-id="bdcfe-137">Más módszerekkel kapcsolatos információk a HDInsight Hadoop dolgozhat:</span><span class="sxs-lookup"><span data-stu-id="bdcfe-137">For information about other ways you can work with Hadoop on HDInsight:</span></span>
+<span data-ttu-id="01052-137">Más módszerekkel kapcsolatos információk a HDInsight Hadoop dolgozhat:</span><span class="sxs-lookup"><span data-stu-id="01052-137">For information about other ways you can work with Hadoop on HDInsight:</span></span>
 
-* [<span data-ttu-id="bdcfe-138">A Hive használata a hdinsight Hadoop</span><span class="sxs-lookup"><span data-stu-id="bdcfe-138">Use Hive with Hadoop on HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="bdcfe-139">A Pig használata a HDInsight Hadoop</span><span class="sxs-lookup"><span data-stu-id="bdcfe-139">Use Pig with Hadoop on HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="01052-138">A Hive használata a hdinsight Hadoop</span><span class="sxs-lookup"><span data-stu-id="01052-138">Use Hive with Hadoop on HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="01052-139">A Pig használata a HDInsight Hadoop</span><span class="sxs-lookup"><span data-stu-id="01052-139">Use Pig with Hadoop on HDInsight</span></span>](hdinsight-use-pig.md)

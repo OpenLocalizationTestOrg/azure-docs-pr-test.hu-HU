@@ -1,22 +1,22 @@
 # Áttekintés
-## [Tudnivalók az Azure Portalról](../azure-portal-overview.md)
+## [Kapcsolatos hello Azure-portálon](../azure-portal-overview.md)
 # oktatóanyagokat
-## [A DevOps és az Azure Portal](tutorial-azureportal-devops.md)
+## [Az Azure-portálon hello DevOps](tutorial-azureportal-devops.md)
 # Alapelvek
 ## [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 ## [Billentyűparancsok](azure-portal-keyboard-shortcuts.md)
 ## [Támogatott böngészők és eszközök](../azure-preview-portal-supported-browsers-devices.md)
-# Útmutatók
+# Hogyan-tooguides
 ## Üzembe helyezés
 ### [Azure Resource Manager-sablonok létrehozása](../azure-resource-manager/resource-group-authoring-templates.md)
 ### [Üzembe helyezés Resource Manager-sablonnal](../azure-resource-manager/resource-group-template-deploy.md)
 ### [Azure-irányítópultok létrehozása és megosztása](azure-portal-dashboards.md)
 ## Kezelés
 ### [Kontrasztos megjelenítés bekapcsolása és téma módosítása](azure-portal-change-theme-high-contrast.md)
-### [Erőforrások kezelése a portálon](../azure-resource-manager/resource-group-portal.md)
+### [Portál toomanage erőforrások használata](../azure-resource-manager/resource-group-portal.md)
 ### [Hozzáférés kezelése szerepköralapú hozzáférés-vezérléssel](../active-directory/role-based-access-control-configure.md)
 ### [Irányítópultok megosztása szerepköralapú hozzáférés-vezérléssel](azure-portal-dashboard-share-access.md)
-### [Címkék használata az erőforrások rendszerezéséhez](../azure-resource-manager/resource-group-using-tags.md)
+### [Címkék tooorganize erőforrások használata](../azure-resource-manager/resource-group-using-tags.md)
 ### [Az erőforrások méretezése](../monitoring-and-diagnostics/insights-how-to-scale.md)
 ### [Egyszerű Azure-szolgáltatás létrehozása](../azure-resource-manager/resource-group-create-service-principal-portal.md)
 ## Figyelés

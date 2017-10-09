@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - telepítés |} Microsoft Docs"
-description: "A központi telepítési információk beolvasása az Azure Resource Manager-sablonok használatára funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - telepítés |} Microsoft Docs"
+description: "Az Azure Resource Manager sablon tooretrieve telepítési információi hello funkciók toouse ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: d7e6bcd669d40cb19de44b646505856ecd8f51a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 458c3f740504fdd6799ed24cc386219726737636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deployment-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="4908d-103">Központi telepítési funkciók az Azure Resource Manager sablonokhoz</span><span class="sxs-lookup"><span data-stu-id="4908d-103">Deployment functions for Azure Resource Manager templates</span></span> 
+# <a name="deployment-functions-for-azure-resource-manager-templates"></a><span data-ttu-id="7c0d4-103">Központi telepítési funkciók az Azure Resource Manager sablonokhoz</span><span class="sxs-lookup"><span data-stu-id="7c0d4-103">Deployment functions for Azure Resource Manager templates</span></span> 
 
-<span data-ttu-id="4908d-104">Erőforrás-kezelő a következő funkciókat nyújt értékek lekérése a sablon és a központi telepítéshez kapcsolódó értékek szakaszait:</span><span class="sxs-lookup"><span data-stu-id="4908d-104">Resource Manager provides the following functions for getting values from sections of the template and values related to the deployment:</span></span>
+<span data-ttu-id="7c0d4-104">A Resource Manager biztosít hello alábbi az értékek lekérése hello sablon szakaszok működik, és kapcsolódó toohello telepítési értékeket:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-104">Resource Manager provides hello following functions for getting values from sections of hello template and values related toohello deployment:</span></span>
 
-* [<span data-ttu-id="4908d-105">központi telepítés</span><span class="sxs-lookup"><span data-stu-id="4908d-105">deployment</span></span>](#deployment)
-* [<span data-ttu-id="4908d-106">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="4908d-106">parameters</span></span>](#parameters)
-* [<span data-ttu-id="4908d-107">változók</span><span class="sxs-lookup"><span data-stu-id="4908d-107">variables</span></span>](#variables)
+* [<span data-ttu-id="7c0d4-105">központi telepítés</span><span class="sxs-lookup"><span data-stu-id="7c0d4-105">deployment</span></span>](#deployment)
+* [<span data-ttu-id="7c0d4-106">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="7c0d4-106">parameters</span></span>](#parameters)
+* [<span data-ttu-id="7c0d4-107">változók</span><span class="sxs-lookup"><span data-stu-id="7c0d4-107">variables</span></span>](#variables)
 
-<span data-ttu-id="4908d-108">Értékek erőforrásokat, erőforráscsoport-sablonok vagy előfizetések megtekinteni [erőforrás funkciók](resource-group-template-functions-resource.md).</span><span class="sxs-lookup"><span data-stu-id="4908d-108">To get values from resources, resource groups, or subscriptions, see [Resource functions](resource-group-template-functions-resource.md).</span></span>
+<span data-ttu-id="7c0d4-108">tooget értékek erőforrásokat, erőforráscsoport-sablonok vagy előfizetések, lásd: [erőforrás funkciók](resource-group-template-functions-resource.md).</span><span class="sxs-lookup"><span data-stu-id="7c0d4-108">tooget values from resources, resource groups, or subscriptions, see [Resource functions](resource-group-template-functions-resource.md).</span></span>
 
 <a id="deployment" />
 
-## <a name="deployment"></a><span data-ttu-id="4908d-109">üzembe helyezés</span><span class="sxs-lookup"><span data-stu-id="4908d-109">deployment</span></span>
+## <a name="deployment"></a><span data-ttu-id="7c0d4-109">üzembe helyezés</span><span class="sxs-lookup"><span data-stu-id="7c0d4-109">deployment</span></span>
 `deployment()`
 
-<span data-ttu-id="4908d-110">Az aktuális központi telepítési művelet információt ad vissza.</span><span class="sxs-lookup"><span data-stu-id="4908d-110">Returns information about the current deployment operation.</span></span>
+<span data-ttu-id="7c0d4-110">Hello aktuális telepítési művelet információt ad vissza.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-110">Returns information about hello current deployment operation.</span></span>
 
-### <a name="return-value"></a><span data-ttu-id="4908d-111">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="4908d-111">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="7c0d4-111">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="7c0d4-111">Return value</span></span>
 
-<span data-ttu-id="4908d-112">Ez a funkció a telepítés során átadott objektum adja vissza.</span><span class="sxs-lookup"><span data-stu-id="4908d-112">This function returns the object that is passed during deployment.</span></span> <span data-ttu-id="4908d-113">A tulajdonságokat a visszaadott objektumot az attól függően változnak, hogy a központi telepítési objektum közlekednek hivatkozásként vagy beágyazott objektumként.</span><span class="sxs-lookup"><span data-stu-id="4908d-113">The properties in the returned object differ based on whether the deployment object is passed as a link or as an in-line object.</span></span> <span data-ttu-id="4908d-114">Ha a központi telepítési objektum átadása egysoros, többek között használata esetén a **- TemplateFile** az Azure PowerShell helyi fájlra mutat, a visszaadott objektumot paraméternek a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="4908d-114">When the deployment object is passed in-line, such as when using the **-TemplateFile** parameter in Azure PowerShell to point to a local file, the returned object has the following format:</span></span>
+<span data-ttu-id="7c0d4-112">Ez a funkció a telepítés során átadott hello-objektumot ad vissza.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-112">This function returns hello object that is passed during deployment.</span></span> <span data-ttu-id="7c0d4-113">hello objektumot adott vissza a hello tulajdonságok attól függően változnak, hogy hello központi telepítési objektum közlekednek hivatkozásként vagy beágyazott objektumként.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-113">hello properties in hello returned object differ based on whether hello deployment object is passed as a link or as an in-line object.</span></span> <span data-ttu-id="7c0d4-114">Ha hello központi telepítési objektum átadása egysoros, többek között hello használatakor **- TemplateFile** paraméter az Azure PowerShell toopoint tooa helyi fájlban hello visszaadott objektumnak hello a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-114">When hello deployment object is passed in-line, such as when using hello **-TemplateFile** parameter in Azure PowerShell toopoint tooa local file, hello returned object has hello following format:</span></span>
 
 ```json
 {
@@ -61,7 +61,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="4908d-115">Ha az objektum átadása hivatkozásként, például a használatakor a **- TemplateUri** paraméterrel a távoli objektumra mutat az objektumot ad vissza a következő formátumban:</span><span class="sxs-lookup"><span data-stu-id="4908d-115">When the object is passed as a link, such as when using the **-TemplateUri** parameter to point to a remote object, the object is returned in the following format:</span></span> 
+<span data-ttu-id="7c0d4-115">Ha hello objektum átadása hivatkozásként, például amikor használatával hello **- TemplateUri** paraméter toopoint tooa távoli objektum hello objektum eredmény abban az esetben a következő formátumban hello:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-115">When hello object is passed as a link, such as when using hello **-TemplateUri** parameter toopoint tooa remote object, hello object is returned in hello following format:</span></span> 
 
 ```json
 {
@@ -85,9 +85,9 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-### <a name="remarks"></a><span data-ttu-id="4908d-116">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="4908d-116">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="7c0d4-116">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="7c0d4-116">Remarks</span></span>
 
-<span data-ttu-id="4908d-117">Deployment() használatával kapcsolódik egy másik sablont, az URI a szülő-sablon alapján.</span><span class="sxs-lookup"><span data-stu-id="4908d-117">You can use deployment() to link to another template based on the URI of the parent template.</span></span>
+<span data-ttu-id="7c0d4-117">Deployment() toolink tooanother sablon hello URI hello szülő sablon alapján is használhatja.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-117">You can use deployment() toolink tooanother template based on hello URI of hello parent template.</span></span>
 
 ```json
 "variables": {  
@@ -95,9 +95,9 @@ ms.lasthandoff: 08/03/2017
 }
 ```  
 
-### <a name="example"></a><span data-ttu-id="4908d-118">Példa</span><span class="sxs-lookup"><span data-stu-id="4908d-118">Example</span></span>
+### <a name="example"></a><span data-ttu-id="7c0d4-118">Példa</span><span class="sxs-lookup"><span data-stu-id="7c0d4-118">Example</span></span>
 
-<span data-ttu-id="4908d-119">A következő példa a központi telepítési objektum beállítása/beolvasása:</span><span class="sxs-lookup"><span data-stu-id="4908d-119">The following example returns the deployment object:</span></span>
+<span data-ttu-id="7c0d4-119">hello alábbi példa hello központi telepítési objektum beállítása/beolvasása:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-119">hello following example returns hello deployment object:</span></span>
 
 ```json
 {
@@ -113,7 +113,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="4908d-120">A fenti példa adja a következő objektumot:</span><span class="sxs-lookup"><span data-stu-id="4908d-120">The preceding example returns the following object:</span></span>
+<span data-ttu-id="7c0d4-120">hello előző példa adja vissza a következő objektum hello:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-120">hello preceding example returns hello following object:</span></span>
 
 ```json
 {
@@ -139,24 +139,24 @@ ms.lasthandoff: 08/03/2017
 
 <a id="parameters" />
 
-## <a name="parameters"></a><span data-ttu-id="4908d-121">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="4908d-121">parameters</span></span>
+## <a name="parameters"></a><span data-ttu-id="7c0d4-121">paraméterek</span><span class="sxs-lookup"><span data-stu-id="7c0d4-121">parameters</span></span>
 `parameters(parameterName)`
 
-<span data-ttu-id="4908d-122">A paraméter értékét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="4908d-122">Returns a parameter value.</span></span> <span data-ttu-id="4908d-123">A megadott paraméternév definiálni kell a sablon a Paraméterek szakaszban.</span><span class="sxs-lookup"><span data-stu-id="4908d-123">The specified parameter name must be defined in the parameters section of the template.</span></span>
+<span data-ttu-id="7c0d4-122">A paraméter értékét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-122">Returns a parameter value.</span></span> <span data-ttu-id="7c0d4-123">hello megadott paraméternév hello paraméterek szakaszban hello sablon definiálni kell.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-123">hello specified parameter name must be defined in hello parameters section of hello template.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="4908d-124">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="4908d-124">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="7c0d4-124">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="7c0d4-124">Parameters</span></span>
 
-| <span data-ttu-id="4908d-125">Paraméter</span><span class="sxs-lookup"><span data-stu-id="4908d-125">Parameter</span></span> | <span data-ttu-id="4908d-126">Szükséges</span><span class="sxs-lookup"><span data-stu-id="4908d-126">Required</span></span> | <span data-ttu-id="4908d-127">Típus</span><span class="sxs-lookup"><span data-stu-id="4908d-127">Type</span></span> | <span data-ttu-id="4908d-128">Leírás</span><span class="sxs-lookup"><span data-stu-id="4908d-128">Description</span></span> |
+| <span data-ttu-id="7c0d4-125">Paraméter</span><span class="sxs-lookup"><span data-stu-id="7c0d4-125">Parameter</span></span> | <span data-ttu-id="7c0d4-126">Szükséges</span><span class="sxs-lookup"><span data-stu-id="7c0d4-126">Required</span></span> | <span data-ttu-id="7c0d4-127">Típus</span><span class="sxs-lookup"><span data-stu-id="7c0d4-127">Type</span></span> | <span data-ttu-id="7c0d4-128">Leírás</span><span class="sxs-lookup"><span data-stu-id="7c0d4-128">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="4908d-129">parameterName</span><span class="sxs-lookup"><span data-stu-id="4908d-129">parameterName</span></span> |<span data-ttu-id="4908d-130">Igen</span><span class="sxs-lookup"><span data-stu-id="4908d-130">Yes</span></span> |<span data-ttu-id="4908d-131">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-131">string</span></span> |<span data-ttu-id="4908d-132">Vissza a paraméter neve.</span><span class="sxs-lookup"><span data-stu-id="4908d-132">The name of the parameter to return.</span></span> |
+| <span data-ttu-id="7c0d4-129">parameterName</span><span class="sxs-lookup"><span data-stu-id="7c0d4-129">parameterName</span></span> |<span data-ttu-id="7c0d4-130">Igen</span><span class="sxs-lookup"><span data-stu-id="7c0d4-130">Yes</span></span> |<span data-ttu-id="7c0d4-131">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-131">string</span></span> |<span data-ttu-id="7c0d4-132">hello paraméter tooreturn hello neve.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-132">hello name of hello parameter tooreturn.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="4908d-133">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="4908d-133">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="7c0d4-133">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="7c0d4-133">Return value</span></span>
 
-<span data-ttu-id="4908d-134">A megadott paraméter értéke.</span><span class="sxs-lookup"><span data-stu-id="4908d-134">The value of the specified parameter.</span></span>
+<span data-ttu-id="7c0d4-134">hello hello értéket adott paraméter.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-134">hello value of hello specified parameter.</span></span>
 
-### <a name="remarks"></a><span data-ttu-id="4908d-135">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="4908d-135">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="7c0d4-135">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="7c0d4-135">Remarks</span></span>
 
-<span data-ttu-id="4908d-136">Általában használja a paraméterek erőforrás értékeinek beállításához.</span><span class="sxs-lookup"><span data-stu-id="4908d-136">Typically, you use parameters to set resource values.</span></span> <span data-ttu-id="4908d-137">A következő példa a telepítés során az átadott paraméter értéke a webhely nevének megadása.</span><span class="sxs-lookup"><span data-stu-id="4908d-137">The following example sets the name of web site to the parameter value passed in during deployment.</span></span>
+<span data-ttu-id="7c0d4-136">Általában akkor használják tooset erőforrás paraméterértéket.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-136">Typically, you use parameters tooset resource values.</span></span> <span data-ttu-id="7c0d4-137">hello alábbi mintakód webhely toohello paraméter értéke üzembe helyezése során átadott hello nevét.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-137">hello following example sets hello name of web site toohello parameter value passed in during deployment.</span></span>
 
 ```json
 "parameters": { 
@@ -174,9 +174,9 @@ ms.lasthandoff: 08/03/2017
 ]
 ```
 
-### <a name="example"></a><span data-ttu-id="4908d-138">Példa</span><span class="sxs-lookup"><span data-stu-id="4908d-138">Example</span></span>
+### <a name="example"></a><span data-ttu-id="7c0d4-138">Példa</span><span class="sxs-lookup"><span data-stu-id="7c0d4-138">Example</span></span>
 
-<span data-ttu-id="4908d-139">A következő példa bemutatja a paraméterek függvény egy egyszerűsített használata.</span><span class="sxs-lookup"><span data-stu-id="4908d-139">The following example shows a simplified use of the parameters function.</span></span>
+<span data-ttu-id="7c0d4-139">hello következő példa bemutatja egy egyszerűsített hello paraméterek függvény használata.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-139">hello following example shows a simplified use of hello parameters function.</span></span>
 
 ```json
 {
@@ -231,36 +231,36 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="4908d-140">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="4908d-140">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="7c0d4-140">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-140">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="4908d-141">Név</span><span class="sxs-lookup"><span data-stu-id="4908d-141">Name</span></span> | <span data-ttu-id="4908d-142">Típus</span><span class="sxs-lookup"><span data-stu-id="4908d-142">Type</span></span> | <span data-ttu-id="4908d-143">Érték</span><span class="sxs-lookup"><span data-stu-id="4908d-143">Value</span></span> |
+| <span data-ttu-id="7c0d4-141">Név</span><span class="sxs-lookup"><span data-stu-id="7c0d4-141">Name</span></span> | <span data-ttu-id="7c0d4-142">Típus</span><span class="sxs-lookup"><span data-stu-id="7c0d4-142">Type</span></span> | <span data-ttu-id="7c0d4-143">Érték</span><span class="sxs-lookup"><span data-stu-id="7c0d4-143">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="4908d-144">stringOutput</span><span class="sxs-lookup"><span data-stu-id="4908d-144">stringOutput</span></span> | <span data-ttu-id="4908d-145">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-145">String</span></span> | <span data-ttu-id="4908d-146">1. lehetőséget</span><span class="sxs-lookup"><span data-stu-id="4908d-146">option 1</span></span> |
-| <span data-ttu-id="4908d-147">intOutput</span><span class="sxs-lookup"><span data-stu-id="4908d-147">intOutput</span></span> | <span data-ttu-id="4908d-148">int</span><span class="sxs-lookup"><span data-stu-id="4908d-148">Int</span></span> | <span data-ttu-id="4908d-149">1</span><span class="sxs-lookup"><span data-stu-id="4908d-149">1</span></span> |
-| <span data-ttu-id="4908d-150">objectOutput</span><span class="sxs-lookup"><span data-stu-id="4908d-150">objectOutput</span></span> | <span data-ttu-id="4908d-151">Objektum</span><span class="sxs-lookup"><span data-stu-id="4908d-151">Object</span></span> | <span data-ttu-id="4908d-152">{"egy": "a", "2": "b"}</span><span class="sxs-lookup"><span data-stu-id="4908d-152">{"one": "a", "two": "b"}</span></span> |
-| <span data-ttu-id="4908d-153">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="4908d-153">arrayOutput</span></span> | <span data-ttu-id="4908d-154">A tömb</span><span class="sxs-lookup"><span data-stu-id="4908d-154">Array</span></span> | <span data-ttu-id="4908d-155">[1, 2, 3]</span><span class="sxs-lookup"><span data-stu-id="4908d-155">[1, 2, 3]</span></span> |
-| <span data-ttu-id="4908d-156">crossOutput</span><span class="sxs-lookup"><span data-stu-id="4908d-156">crossOutput</span></span> | <span data-ttu-id="4908d-157">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-157">String</span></span> | <span data-ttu-id="4908d-158">1. lehetőséget</span><span class="sxs-lookup"><span data-stu-id="4908d-158">option 1</span></span> |
+| <span data-ttu-id="7c0d4-144">stringOutput</span><span class="sxs-lookup"><span data-stu-id="7c0d4-144">stringOutput</span></span> | <span data-ttu-id="7c0d4-145">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-145">String</span></span> | <span data-ttu-id="7c0d4-146">1. lehetőséget</span><span class="sxs-lookup"><span data-stu-id="7c0d4-146">option 1</span></span> |
+| <span data-ttu-id="7c0d4-147">intOutput</span><span class="sxs-lookup"><span data-stu-id="7c0d4-147">intOutput</span></span> | <span data-ttu-id="7c0d4-148">int</span><span class="sxs-lookup"><span data-stu-id="7c0d4-148">Int</span></span> | <span data-ttu-id="7c0d4-149">1</span><span class="sxs-lookup"><span data-stu-id="7c0d4-149">1</span></span> |
+| <span data-ttu-id="7c0d4-150">objectOutput</span><span class="sxs-lookup"><span data-stu-id="7c0d4-150">objectOutput</span></span> | <span data-ttu-id="7c0d4-151">Objektum</span><span class="sxs-lookup"><span data-stu-id="7c0d4-151">Object</span></span> | <span data-ttu-id="7c0d4-152">{"egy": "a", "2": "b"}</span><span class="sxs-lookup"><span data-stu-id="7c0d4-152">{"one": "a", "two": "b"}</span></span> |
+| <span data-ttu-id="7c0d4-153">arrayOutput</span><span class="sxs-lookup"><span data-stu-id="7c0d4-153">arrayOutput</span></span> | <span data-ttu-id="7c0d4-154">Tömb</span><span class="sxs-lookup"><span data-stu-id="7c0d4-154">Array</span></span> | <span data-ttu-id="7c0d4-155">[1, 2, 3]</span><span class="sxs-lookup"><span data-stu-id="7c0d4-155">[1, 2, 3]</span></span> |
+| <span data-ttu-id="7c0d4-156">crossOutput</span><span class="sxs-lookup"><span data-stu-id="7c0d4-156">crossOutput</span></span> | <span data-ttu-id="7c0d4-157">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-157">String</span></span> | <span data-ttu-id="7c0d4-158">1. lehetőséget</span><span class="sxs-lookup"><span data-stu-id="7c0d4-158">option 1</span></span> |
 
 <a id="variables" />
 
-## <a name="variables"></a><span data-ttu-id="4908d-159">változók</span><span class="sxs-lookup"><span data-stu-id="4908d-159">variables</span></span>
+## <a name="variables"></a><span data-ttu-id="7c0d4-159">változók</span><span class="sxs-lookup"><span data-stu-id="7c0d4-159">variables</span></span>
 `variables(variableName)`
 
-<span data-ttu-id="4908d-160">A változó értékét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="4908d-160">Returns the value of variable.</span></span> <span data-ttu-id="4908d-161">A változók szakaszban a sablon a megadott változónév definiálni kell.</span><span class="sxs-lookup"><span data-stu-id="4908d-161">The specified variable name must be defined in the variables section of the template.</span></span>
+<span data-ttu-id="7c0d4-160">Beolvasása hello változó értékét.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-160">Returns hello value of variable.</span></span> <span data-ttu-id="7c0d4-161">hello megadott változónév hello változók szakaszban hello sablon definiálni kell.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-161">hello specified variable name must be defined in hello variables section of hello template.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="4908d-162">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="4908d-162">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="7c0d4-162">Paraméterek</span><span class="sxs-lookup"><span data-stu-id="7c0d4-162">Parameters</span></span>
 
-| <span data-ttu-id="4908d-163">Paraméter</span><span class="sxs-lookup"><span data-stu-id="4908d-163">Parameter</span></span> | <span data-ttu-id="4908d-164">Szükséges</span><span class="sxs-lookup"><span data-stu-id="4908d-164">Required</span></span> | <span data-ttu-id="4908d-165">Típus</span><span class="sxs-lookup"><span data-stu-id="4908d-165">Type</span></span> | <span data-ttu-id="4908d-166">Leírás</span><span class="sxs-lookup"><span data-stu-id="4908d-166">Description</span></span> |
+| <span data-ttu-id="7c0d4-163">Paraméter</span><span class="sxs-lookup"><span data-stu-id="7c0d4-163">Parameter</span></span> | <span data-ttu-id="7c0d4-164">Szükséges</span><span class="sxs-lookup"><span data-stu-id="7c0d4-164">Required</span></span> | <span data-ttu-id="7c0d4-165">Típus</span><span class="sxs-lookup"><span data-stu-id="7c0d4-165">Type</span></span> | <span data-ttu-id="7c0d4-166">Leírás</span><span class="sxs-lookup"><span data-stu-id="7c0d4-166">Description</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="4908d-167">variableName</span><span class="sxs-lookup"><span data-stu-id="4908d-167">variableName</span></span> |<span data-ttu-id="4908d-168">Igen</span><span class="sxs-lookup"><span data-stu-id="4908d-168">Yes</span></span> |<span data-ttu-id="4908d-169">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-169">String</span></span> |<span data-ttu-id="4908d-170">Vissza a változó neve.</span><span class="sxs-lookup"><span data-stu-id="4908d-170">The name of the variable to return.</span></span> |
+| <span data-ttu-id="7c0d4-167">variableName</span><span class="sxs-lookup"><span data-stu-id="7c0d4-167">variableName</span></span> |<span data-ttu-id="7c0d4-168">Igen</span><span class="sxs-lookup"><span data-stu-id="7c0d4-168">Yes</span></span> |<span data-ttu-id="7c0d4-169">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-169">String</span></span> |<span data-ttu-id="7c0d4-170">hello változó tooreturn hello neve.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-170">hello name of hello variable tooreturn.</span></span> |
 
-### <a name="return-value"></a><span data-ttu-id="4908d-171">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="4908d-171">Return value</span></span>
+### <a name="return-value"></a><span data-ttu-id="7c0d4-171">Visszatérési érték</span><span class="sxs-lookup"><span data-stu-id="7c0d4-171">Return value</span></span>
 
-<span data-ttu-id="4908d-172">A megadott változó értékét.</span><span class="sxs-lookup"><span data-stu-id="4908d-172">The value of the specified variable.</span></span>
+<span data-ttu-id="7c0d4-172">hello hello megadott változó értékét.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-172">hello value of hello specified variable.</span></span>
 
-### <a name="remarks"></a><span data-ttu-id="4908d-173">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="4908d-173">Remarks</span></span>
+### <a name="remarks"></a><span data-ttu-id="7c0d4-173">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="7c0d4-173">Remarks</span></span>
 
-<span data-ttu-id="4908d-174">Általában a változókkal egyszerűbbé teheti a sablont hozhat létre csak egyszer összetett értékeket.</span><span class="sxs-lookup"><span data-stu-id="4908d-174">Typically, you use variables to simplify your template by constructing complex values only once.</span></span> <span data-ttu-id="4908d-175">A következő példa egy egyedi nevet a tárfiók hoz létre.</span><span class="sxs-lookup"><span data-stu-id="4908d-175">The following example constructs a unique name for a storage account.</span></span>
+<span data-ttu-id="7c0d4-174">Általában akkor használják változók toosimplify a sablont hozhat létre csak egyszer összetett értékeket.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-174">Typically, you use variables toosimplify your template by constructing complex values only once.</span></span> <span data-ttu-id="7c0d4-175">hello alábbi példa hoz létre egy egyedi nevet a tárfiók.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-175">hello following example constructs a unique name for a storage account.</span></span>
 
 ```json
 "variables": {
@@ -282,9 +282,9 @@ ms.lasthandoff: 08/03/2017
 ],
 ```
 
-### <a name="example"></a><span data-ttu-id="4908d-176">Példa</span><span class="sxs-lookup"><span data-stu-id="4908d-176">Example</span></span>
+### <a name="example"></a><span data-ttu-id="7c0d4-176">Példa</span><span class="sxs-lookup"><span data-stu-id="7c0d4-176">Example</span></span>
 
-<span data-ttu-id="4908d-177">A példa sablon más változók értékeinek adja vissza.</span><span class="sxs-lookup"><span data-stu-id="4908d-177">The example template returns different variable values.</span></span>
+<span data-ttu-id="7c0d4-177">hello példa sablon más változók értékeinek adja vissza.</span><span class="sxs-lookup"><span data-stu-id="7c0d4-177">hello example template returns different variable values.</span></span>
 
 ```json
 {
@@ -322,18 +322,18 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-<span data-ttu-id="4908d-178">Az alapértelmezett értékeit az előző példából kimenete:</span><span class="sxs-lookup"><span data-stu-id="4908d-178">The output from the preceding example with the default values is:</span></span>
+<span data-ttu-id="7c0d4-178">hello kimenetét hello előző példa hello alapértelmezett értékekkel:</span><span class="sxs-lookup"><span data-stu-id="7c0d4-178">hello output from hello preceding example with hello default values is:</span></span>
 
-| <span data-ttu-id="4908d-179">Név</span><span class="sxs-lookup"><span data-stu-id="4908d-179">Name</span></span> | <span data-ttu-id="4908d-180">Típus</span><span class="sxs-lookup"><span data-stu-id="4908d-180">Type</span></span> | <span data-ttu-id="4908d-181">Érték</span><span class="sxs-lookup"><span data-stu-id="4908d-181">Value</span></span> |
+| <span data-ttu-id="7c0d4-179">Név</span><span class="sxs-lookup"><span data-stu-id="7c0d4-179">Name</span></span> | <span data-ttu-id="7c0d4-180">Típus</span><span class="sxs-lookup"><span data-stu-id="7c0d4-180">Type</span></span> | <span data-ttu-id="7c0d4-181">Érték</span><span class="sxs-lookup"><span data-stu-id="7c0d4-181">Value</span></span> |
 | ---- | ---- | ----- |
-| <span data-ttu-id="4908d-182">exampleOutput1</span><span class="sxs-lookup"><span data-stu-id="4908d-182">exampleOutput1</span></span> | <span data-ttu-id="4908d-183">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-183">String</span></span> | <span data-ttu-id="4908d-184">myVariable</span><span class="sxs-lookup"><span data-stu-id="4908d-184">myVariable</span></span> |
-| <span data-ttu-id="4908d-185">exampleOutput2</span><span class="sxs-lookup"><span data-stu-id="4908d-185">exampleOutput2</span></span> | <span data-ttu-id="4908d-186">A tömb</span><span class="sxs-lookup"><span data-stu-id="4908d-186">Array</span></span> | <span data-ttu-id="4908d-187">[1, 2, 3, 4]</span><span class="sxs-lookup"><span data-stu-id="4908d-187">[1, 2, 3, 4]</span></span> |
-| <span data-ttu-id="4908d-188">exampleOutput3</span><span class="sxs-lookup"><span data-stu-id="4908d-188">exampleOutput3</span></span> | <span data-ttu-id="4908d-189">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="4908d-189">String</span></span> | <span data-ttu-id="4908d-190">myVariable</span><span class="sxs-lookup"><span data-stu-id="4908d-190">myVariable</span></span> |
-| <span data-ttu-id="4908d-191">exampleOutput4</span><span class="sxs-lookup"><span data-stu-id="4908d-191">exampleOutput4</span></span> |  <span data-ttu-id="4908d-192">Objektum</span><span class="sxs-lookup"><span data-stu-id="4908d-192">Object</span></span> | <span data-ttu-id="4908d-193">{"Tulajdonság1": "érték1", "Tulajdonság2": "érték2"}</span><span class="sxs-lookup"><span data-stu-id="4908d-193">{"property1": "value1", "property2": "value2"}</span></span> |
+| <span data-ttu-id="7c0d4-182">exampleOutput1</span><span class="sxs-lookup"><span data-stu-id="7c0d4-182">exampleOutput1</span></span> | <span data-ttu-id="7c0d4-183">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-183">String</span></span> | <span data-ttu-id="7c0d4-184">myVariable</span><span class="sxs-lookup"><span data-stu-id="7c0d4-184">myVariable</span></span> |
+| <span data-ttu-id="7c0d4-185">exampleOutput2</span><span class="sxs-lookup"><span data-stu-id="7c0d4-185">exampleOutput2</span></span> | <span data-ttu-id="7c0d4-186">Tömb</span><span class="sxs-lookup"><span data-stu-id="7c0d4-186">Array</span></span> | <span data-ttu-id="7c0d4-187">[1, 2, 3, 4]</span><span class="sxs-lookup"><span data-stu-id="7c0d4-187">[1, 2, 3, 4]</span></span> |
+| <span data-ttu-id="7c0d4-188">exampleOutput3</span><span class="sxs-lookup"><span data-stu-id="7c0d4-188">exampleOutput3</span></span> | <span data-ttu-id="7c0d4-189">Karakterlánc</span><span class="sxs-lookup"><span data-stu-id="7c0d4-189">String</span></span> | <span data-ttu-id="7c0d4-190">myVariable</span><span class="sxs-lookup"><span data-stu-id="7c0d4-190">myVariable</span></span> |
+| <span data-ttu-id="7c0d4-191">exampleOutput4</span><span class="sxs-lookup"><span data-stu-id="7c0d4-191">exampleOutput4</span></span> |  <span data-ttu-id="7c0d4-192">Objektum</span><span class="sxs-lookup"><span data-stu-id="7c0d4-192">Object</span></span> | <span data-ttu-id="7c0d4-193">{"Tulajdonság1": "érték1", "Tulajdonság2": "érték2"}</span><span class="sxs-lookup"><span data-stu-id="7c0d4-193">{"property1": "value1", "property2": "value2"}</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="4908d-194">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="4908d-194">Next steps</span></span>
-* <span data-ttu-id="4908d-195">A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="4908d-195">For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
-* <span data-ttu-id="4908d-196">Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="4908d-196">To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
-* <span data-ttu-id="4908d-197">Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="4908d-197">To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
-* <span data-ttu-id="4908d-198">A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="4908d-198">To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="7c0d4-194">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="7c0d4-194">Next steps</span></span>
+* <span data-ttu-id="7c0d4-195">Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="7c0d4-195">For a description of hello sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).</span></span>
+* <span data-ttu-id="7c0d4-196">toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).</span><span class="sxs-lookup"><span data-stu-id="7c0d4-196">toomerge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).</span></span>
+* <span data-ttu-id="7c0d4-197">megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).</span><span class="sxs-lookup"><span data-stu-id="7c0d4-197">tooiterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).</span></span>
+* <span data-ttu-id="7c0d4-198">toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).</span><span class="sxs-lookup"><span data-stu-id="7c0d4-198">toosee how toodeploy hello template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md).</span></span>
 

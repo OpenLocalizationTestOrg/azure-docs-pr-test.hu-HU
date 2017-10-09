@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Multi-Factor Authentication dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogyan helyezhet üzembe olyan, ellenőrzési módszerek sorát felvonultató többtényezős hitelesítést (Multi-Factor Authentication), amely mégis egyszerű bejelentkezést biztosít. Oktatóanyagok, SDK és további anyagok."
+title: "a multi-factor Authentication – dokumentáció - oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan toodeploy a multi-factor authentication hitelesítési módszerek tartománnyal, amely biztosít egy egyszerű bejelentkezési folyamat. Oktatóanyagok, SDK és további anyagok."
 services: multi-factor-authentication
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c4aaa14007bf441f99ef6599bda411bcaed92a92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0ede2ad48a3d4e756aeb0b1f6bc0e07e4e7b1fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multi-factor-authentication-documentation"></a>Multi-Factor Authentication – dokumentáció
 
-Ismerje meg, hogyan helyezheti üzembe és felügyelheti az Azure Multi-Factor Authentication kétlépéses identitás-ellenőrzési rendszert. Az oktatóanyagok, az SDK és az egyéb dokumentáció bemutatják, hogyan vezethet be olyan, ellenőrzési módszerek sorát felvonultató erős hitelesítést, amely mégis egyszerű bejelentkezést biztosít.
+Megtudhatja, hogyan toodeploy és kezelése az Azure multi-factor Authentication egy kétlépéses ellenőrzés identitásrendszere. Oktatóanyagok, az SDK és egyéb dokumentációt mutatja be toodeliver erős hitelesítés, az ellenőrzési módszereket széles biztosít egy egyszerű bejelentkezési folyamat során.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Ismerje meg, hogyan helyezheti üzembe és felügyelheti az Azure Multi-Factor A
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Multi-Factor Authentication a felhőben – első lépések</h3>
+                        <h3>Ismerkedés az Azure multi-factor Authentication hello felhőben</h3>
                     </div>
                 </div>
             </div>

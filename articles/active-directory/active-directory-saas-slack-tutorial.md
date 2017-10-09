@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Slackhez |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és a Slackhez között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és a Slackhez között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,259 +13,259 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 5aca630b2077d3f7d4ce9273ee668ed6a5f9843d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7f0151401af4dc63d2f714d4b4f66380c4b51e0d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-slack"></a><span data-ttu-id="8538a-103">Oktatóanyag: Azure Active Directoryval integrált Slackhez</span><span class="sxs-lookup"><span data-stu-id="8538a-103">Tutorial: Azure Active Directory integration with Slack</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-slack"></a><span data-ttu-id="b2b0d-103">Oktatóanyag: Azure Active Directoryval integrált Slackhez</span><span class="sxs-lookup"><span data-stu-id="b2b0d-103">Tutorial: Azure Active Directory integration with Slack</span></span>
 
-<span data-ttu-id="8538a-104">Ebben az oktatóanyagban elsajátíthatja Slackhez integrálása az Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="8538a-104">In this tutorial, you learn how to integrate Slack with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="b2b0d-104">Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Slack-e az Azure Active Directoryval (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="b2b0d-104">In this tutorial, you learn how toointegrate Slack with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="8538a-105">Slackhez integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:</span><span class="sxs-lookup"><span data-stu-id="8538a-105">Integrating Slack with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="b2b0d-105">Slackhez integrálása az Azure AD lehetővé teszi a következő előnyöket hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-105">Integrating Slack with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="8538a-106">Megadhatja a Slackhez hozzáféréssel rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="8538a-106">You can control in Azure AD who has access to Slack</span></span>
-- <span data-ttu-id="8538a-107">Engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett slackhez (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="8538a-107">You can enable your users to automatically get signed-on to Slack (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="8538a-108">Kezelheti a fiókokat, egy központi helyen – az Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="8538a-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="b2b0d-106">Megadhatja a hozzáférés tooSlack rendelkező Azure AD-ben</span><span class="sxs-lookup"><span data-stu-id="b2b0d-106">You can control in Azure AD who has access tooSlack</span></span>
+- <span data-ttu-id="b2b0d-107">Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSlack (egyszeri bejelentkezés) a saját Azure AD-fiókok</span><span class="sxs-lookup"><span data-stu-id="b2b0d-107">You can enable your users tooautomatically get signed-on tooSlack (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="b2b0d-108">Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon</span><span class="sxs-lookup"><span data-stu-id="b2b0d-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="8538a-109">Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="8538a-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="b2b0d-109">Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="b2b0d-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8538a-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8538a-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="b2b0d-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="b2b0d-110">Prerequisites</span></span>
 
-<span data-ttu-id="8538a-111">Az Azure AD-integráció konfigurálása a Slackhez, a következőkre van szükség:</span><span class="sxs-lookup"><span data-stu-id="8538a-111">To configure Azure AD integration with Slack, you need the following items:</span></span>
+<span data-ttu-id="b2b0d-111">tooconfigure az Azure AD-integráció a Slackhez, a következő elemek hello kell:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-111">tooconfigure Azure AD integration with Slack, you need hello following items:</span></span>
 
-- <span data-ttu-id="8538a-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="8538a-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="8538a-113">A Slack egyszeri bejelentkezés engedélyezve van az előfizetés</span><span class="sxs-lookup"><span data-stu-id="8538a-113">A Slack single sign-on enabled subscription</span></span>
+- <span data-ttu-id="b2b0d-112">Az Azure AD szolgáltatásra</span><span class="sxs-lookup"><span data-stu-id="b2b0d-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="b2b0d-113">A Slack egyszeri bejelentkezés engedélyezve van az előfizetés</span><span class="sxs-lookup"><span data-stu-id="b2b0d-113">A Slack single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8538a-114">Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.</span><span class="sxs-lookup"><span data-stu-id="8538a-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="b2b0d-114">tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="8538a-115">Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:</span><span class="sxs-lookup"><span data-stu-id="8538a-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="b2b0d-115">Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="8538a-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="8538a-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="8538a-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="8538a-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="b2b0d-116">Ne használja az éles környezetben, nem szükséges.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="b2b0d-117">Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="b2b0d-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="8538a-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="8538a-118">Scenario description</span></span>
-<span data-ttu-id="8538a-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="8538a-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="8538a-120">Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="8538a-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="b2b0d-118">Forgatókönyv leírása</span><span class="sxs-lookup"><span data-stu-id="b2b0d-118">Scenario description</span></span>
+<span data-ttu-id="b2b0d-119">Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="b2b0d-120">Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="8538a-121">A gyűjteményből Slackhez hozzáadása</span><span class="sxs-lookup"><span data-stu-id="8538a-121">Adding Slack from the gallery</span></span>
-2. <span data-ttu-id="8538a-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="8538a-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="b2b0d-121">Hozzáadás a Slackhez hello gyűjteményből</span><span class="sxs-lookup"><span data-stu-id="b2b0d-121">Adding Slack from hello gallery</span></span>
+2. <span data-ttu-id="b2b0d-122">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="b2b0d-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-slack-from-the-gallery"></a><span data-ttu-id="8538a-123">A gyűjteményből Slackhez hozzáadása</span><span class="sxs-lookup"><span data-stu-id="8538a-123">Adding Slack from the gallery</span></span>
-<span data-ttu-id="8538a-124">A Slackhez az Azure AD-integráció konfigurálása, szüksége Slackhez hozzáadása a kezelt SaaS-alkalmazások listáját a gyűjteményből.</span><span class="sxs-lookup"><span data-stu-id="8538a-124">To configure the integration of Slack into Azure AD, you need to add Slack from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-slack-from-hello-gallery"></a><span data-ttu-id="b2b0d-123">Hozzáadás a Slackhez hello gyűjteményből</span><span class="sxs-lookup"><span data-stu-id="b2b0d-123">Adding Slack from hello gallery</span></span>
+<span data-ttu-id="b2b0d-124">tooconfigure hello integrálása az Azure AD-be Slackhez, meg kell tooadd Slackhez hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-124">tooconfigure hello integration of Slack into Azure AD, you need tooadd Slack from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="8538a-125">**Adja hozzá a Slackhez a gyűjteményből, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="8538a-125">**To add Slack from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="b2b0d-125">**tooadd Slackhez hello gyűjteményből, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="b2b0d-125">**tooadd Slack from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8538a-126">Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="8538a-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="b2b0d-126">A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="8538a-128">Navigáljon a **vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="8538a-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="8538a-129">Ezután lépjen **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="8538a-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="b2b0d-128">Keresse meg a túl**vállalati alkalmazások**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="b2b0d-129">Keresse meg a túl**összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-129">Then go too**All applications**.</span></span>
 
     ![Alkalmazások][2]
     
-3. <span data-ttu-id="8538a-131">Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.</span><span class="sxs-lookup"><span data-stu-id="8538a-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="b2b0d-131">Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Alkalmazások][3]
 
-4. <span data-ttu-id="8538a-133">Írja be a keresőmezőbe, **Slackhez**.</span><span class="sxs-lookup"><span data-stu-id="8538a-133">In the search box, type **Slack**.</span></span>
+4. <span data-ttu-id="b2b0d-133">Hello keresési mezőbe, írja be a **Slackhez**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-133">In hello search box, type **Slack**.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/tutorial_slack_search.png)
 
-5. <span data-ttu-id="8538a-135">Az eredmények panelen válassza ki a **Slackhez**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="8538a-135">In the results panel, select **Slack**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="b2b0d-135">A hello eredmények panelen válassza ki a **Slackhez**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-135">In hello results panel, select **Slack**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/tutorial_slack_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="8538a-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="8538a-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="8538a-138">Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Slackhez.</span><span class="sxs-lookup"><span data-stu-id="8538a-138">In this section, you configure and test Azure AD single sign-on with Slack based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="b2b0d-137">És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés</span><span class="sxs-lookup"><span data-stu-id="b2b0d-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="b2b0d-138">Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Slackhez.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-138">In this section, you configure and test Azure AD single sign-on with Slack based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="8538a-139">Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a Slackhez tartozó felhasználót a felhasználó Azure AD-ben.</span><span class="sxs-lookup"><span data-stu-id="8538a-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Slack is to a user in Azure AD.</span></span> <span data-ttu-id="8538a-140">Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Slackhez közötti kapcsolat kapcsolatot kell létrehozni.</span><span class="sxs-lookup"><span data-stu-id="8538a-140">In other words, a link relationship between an Azure AD user and the related user in Slack needs to be established.</span></span>
+<span data-ttu-id="b2b0d-139">Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói a Slackhez tooa felhasználó az Azure ad-ben.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Slack is tooa user in Azure AD.</span></span> <span data-ttu-id="b2b0d-140">Ez azt jelenti hello kapcsolódó felhasználó a Slackhez és az Azure AD-felhasználó közötti kapcsolat kapcsolatot kell létrehozni toobe.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-140">In other words, a link relationship between an Azure AD user and hello related user in Slack needs toobe established.</span></span>
 
-<span data-ttu-id="8538a-141">A Slackhez, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.</span><span class="sxs-lookup"><span data-stu-id="8538a-141">In Slack, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="b2b0d-141">A Slackhez, rendelje a hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-141">In Slack, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="8538a-142">Az Azure AD egyszeri bejelentkezést a Slackhez tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:</span><span class="sxs-lookup"><span data-stu-id="8538a-142">To configure and test Azure AD single sign-on with Slack, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="b2b0d-142">tooconfigure és tesztelése az Azure AD egyszeri bejelentkezést a Slackhez, a következő építőelemeket toocomplete hello szüksége:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-142">tooconfigure and test Azure AD single sign-on with Slack, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="8538a-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.</span><span class="sxs-lookup"><span data-stu-id="8538a-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="8538a-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.</span><span class="sxs-lookup"><span data-stu-id="8538a-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="8538a-145">**[Slack tesztfelhasználó létrehozása](#creating-a-slack-test-user)**  - való Britta Simon egy megfelelője a Slackhez, amely csatolva van a felhasználó az Azure AD-ábrázolását.</span><span class="sxs-lookup"><span data-stu-id="8538a-145">**[Creating a Slack test user](#creating-a-slack-test-user)** - to have a counterpart of Britta Simon in Slack that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="8538a-146">**[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="8538a-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="8538a-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="8538a-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="b2b0d-143">**[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="b2b0d-144">**[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="b2b0d-145">**[Slack tesztfelhasználó létrehozása](#creating-a-slack-test-user)**  -toohave egy megfelelője a Britta Simon a Slackhez, amely a felhasználó csatolt toohello az Azure AD ábrázolása.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-145">**[Creating a Slack test user](#creating-a-slack-test-user)** - toohave a counterpart of Britta Simon in Slack that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="b2b0d-146">**[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="b2b0d-147">**[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="8538a-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="8538a-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="b2b0d-148">Az Azure AD az egyszeri bejelentkezés konfigurálása</span><span class="sxs-lookup"><span data-stu-id="b2b0d-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="8538a-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az közzététele a Slack-alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="8538a-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Slack application.</span></span>
+<span data-ttu-id="b2b0d-149">Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az közzététele a Slack-alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Slack application.</span></span>
 
-<span data-ttu-id="8538a-150">**Konfigurálja az Azure AD egyszeri bejelentkezést a Slackhez, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="8538a-150">**To configure Azure AD single sign-on with Slack, perform the following steps:**</span></span>
+<span data-ttu-id="b2b0d-150">**az Azure AD tooconfigure egyszeri bejelentkezést a Slackhez, hajtsa végre a lépéseket követve hello:**</span><span class="sxs-lookup"><span data-stu-id="b2b0d-150">**tooconfigure Azure AD single sign-on with Slack, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8538a-151">Az Azure portálon a a **Slackhez** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="8538a-151">In the Azure portal, on the **Slack** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="b2b0d-151">Az Azure portál, a hello hello **Slackhez** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-151">In hello Azure portal, on hello **Slack** application integration page, click **Single sign-on**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. <span data-ttu-id="8538a-153">Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="8538a-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="b2b0d-153">A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_samlbase.png)
 
-3. <span data-ttu-id="8538a-155">Az a **Slackhez tartomány és az URL-címek** területen tegye a következőket:</span><span class="sxs-lookup"><span data-stu-id="8538a-155">On the **Slack Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="b2b0d-155">A hello **Slackhez tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-155">On hello **Slack Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_url.png)
 
-    <span data-ttu-id="8538a-157">a.</span><span class="sxs-lookup"><span data-stu-id="8538a-157">a.</span></span> <span data-ttu-id="8538a-158">Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.slack.com`</span><span class="sxs-lookup"><span data-stu-id="8538a-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<companyname>.slack.com`</span></span>
+    <span data-ttu-id="b2b0d-157">a.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-157">a.</span></span> <span data-ttu-id="b2b0d-158">A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.slack.com`</span><span class="sxs-lookup"><span data-stu-id="b2b0d-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<companyname>.slack.com`</span></span>
 
-    <span data-ttu-id="8538a-159">b.</span><span class="sxs-lookup"><span data-stu-id="8538a-159">b.</span></span> <span data-ttu-id="8538a-160">Az a **azonosító** szövegmező, írja be az URL-cím:`https://slack.com`</span><span class="sxs-lookup"><span data-stu-id="8538a-160">In the **Identifier** textbox, type the URL: `https://slack.com`</span></span>
+    <span data-ttu-id="b2b0d-159">b.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-159">b.</span></span> <span data-ttu-id="b2b0d-160">A hello **azonosító** szövegmezőhöz típus hello URL-címe:`https://slack.com`</span><span class="sxs-lookup"><span data-stu-id="b2b0d-160">In hello **Identifier** textbox, type hello URL: `https://slack.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="8538a-161">Az érték nincs valós.</span><span class="sxs-lookup"><span data-stu-id="8538a-161">The value is not real.</span></span> <span data-ttu-id="8538a-162">Frissítse az értéket a tényleges bejelentkezési az URL-címmel rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="8538a-162">You have to update the value with the actual Sign On URL.</span></span> <span data-ttu-id="8538a-163">Ügyfél [Slack támogatási csoport](https://slack.com/help/contact) a érték</span><span class="sxs-lookup"><span data-stu-id="8538a-163">Contact [Slack support team](https://slack.com/help/contact) to get the value</span></span>
+    > <span data-ttu-id="b2b0d-161">hello érték nincs valós.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-161">hello value is not real.</span></span> <span data-ttu-id="b2b0d-162">Hogy tooupdate hello értékének hello tényleges bejelentkezési URL-cím.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-162">You have tooupdate hello value with hello actual Sign On URL.</span></span> <span data-ttu-id="b2b0d-163">Ügyfél [Slack támogatási csoport](https://slack.com/help/contact) tooget hello érték</span><span class="sxs-lookup"><span data-stu-id="b2b0d-163">Contact [Slack support team](https://slack.com/help/contact) tooget hello value</span></span>
      
-4. <span data-ttu-id="8538a-164">Alkalmazás közzététele a Slack vár a SAML helyességi feltételek egy meghatározott formátumban.</span><span class="sxs-lookup"><span data-stu-id="8538a-164">Slack application expects the SAML assertions in a specific format.</span></span> <span data-ttu-id="8538a-165">A következő jogcímek alkalmazás konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="8538a-165">Configure the following claims for this application.</span></span> <span data-ttu-id="8538a-166">Ezek az attribútumok értékének kezelheti a "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján.</span><span class="sxs-lookup"><span data-stu-id="8538a-166">You can manage the values of these attributes from the "**User Attributes**" section on application integration page.</span></span> <span data-ttu-id="8538a-167">Az alábbi képernyőfelvételen látható egy példa a.</span><span class="sxs-lookup"><span data-stu-id="8538a-167">The following screenshot shows an example for this.</span></span>
+4. <span data-ttu-id="b2b0d-164">Alkalmazás közzététele a Slack hello SAML helyességi feltételek vár egy meghatározott formátumban.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-164">Slack application expects hello SAML assertions in a specific format.</span></span> <span data-ttu-id="b2b0d-165">Az alkalmazás jogcímek a következő hello konfigurálása.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-165">Configure hello following claims for this application.</span></span> <span data-ttu-id="b2b0d-166">Ezek az attribútumok értékének hello hello kezelése "**felhasználói attribútumok**" szakasz alkalmazás integráció lapján.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-166">You can manage hello values of these attributes from hello "**User Attributes**" section on application integration page.</span></span> <span data-ttu-id="b2b0d-167">a következő képernyőkép hello ezen mutat egy példát.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-167">hello following screenshot shows an example for this.</span></span>
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute.png)
 
-5. <span data-ttu-id="8538a-169">Az a **felhasználói attribútumok** a szakasz a **egyszeri bejelentkezés** párbeszédablakban válassza **user.mail** , **felhasználói azonosító** és az alábbi táblázatban szereplő minden egyes sorhoz kapcsolódóan végezze el a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="8538a-169">In the **User Attributes** section on the **Single sign-on** dialog, select **user.mail**  as **User Identifier** and for each row shown in the table below, perform the following steps:</span></span>
+5. <span data-ttu-id="b2b0d-169">A hello **felhasználói attribútumok** hello szakaszt **egyszeri bejelentkezés** párbeszédablakban válassza **user.mail** , **felhasználói azonosító** és minden egyes sorára látható hello az alábbi táblázatban szereplő hajtsa végre a lépéseket követve hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-169">In hello **User Attributes** section on hello **Single sign-on** dialog, select **user.mail**  as **User Identifier** and for each row shown in hello table below, perform hello following steps:</span></span>
     
-    | <span data-ttu-id="8538a-170">Attribútum neve</span><span class="sxs-lookup"><span data-stu-id="8538a-170">Attribute Name</span></span> | <span data-ttu-id="8538a-171">Attribútum-érték</span><span class="sxs-lookup"><span data-stu-id="8538a-171">Attribute Value</span></span> |
+    | <span data-ttu-id="b2b0d-170">Attribútum neve</span><span class="sxs-lookup"><span data-stu-id="b2b0d-170">Attribute Name</span></span> | <span data-ttu-id="b2b0d-171">Attribútum-érték</span><span class="sxs-lookup"><span data-stu-id="b2b0d-171">Attribute Value</span></span> |
     | --- | --- |
-    | <span data-ttu-id="8538a-172">Utónév</span><span class="sxs-lookup"><span data-stu-id="8538a-172">first_name</span></span> | <span data-ttu-id="8538a-173">User.givenName</span><span class="sxs-lookup"><span data-stu-id="8538a-173">user.givenname</span></span> |
-    | <span data-ttu-id="8538a-174">Vezetéknév</span><span class="sxs-lookup"><span data-stu-id="8538a-174">last_name</span></span> | <span data-ttu-id="8538a-175">User.surname</span><span class="sxs-lookup"><span data-stu-id="8538a-175">user.surname</span></span> |
-    | <span data-ttu-id="8538a-176">User.Email</span><span class="sxs-lookup"><span data-stu-id="8538a-176">User.Email</span></span> | <span data-ttu-id="8538a-177">User.mail</span><span class="sxs-lookup"><span data-stu-id="8538a-177">user.mail</span></span> |  
-    | <span data-ttu-id="8538a-178">User.Username</span><span class="sxs-lookup"><span data-stu-id="8538a-178">User.Username</span></span> | <span data-ttu-id="8538a-179">User.userPrincipalName</span><span class="sxs-lookup"><span data-stu-id="8538a-179">user.userprincipalname</span></span> |
+    | <span data-ttu-id="b2b0d-172">Utónév</span><span class="sxs-lookup"><span data-stu-id="b2b0d-172">first_name</span></span> | <span data-ttu-id="b2b0d-173">User.givenName</span><span class="sxs-lookup"><span data-stu-id="b2b0d-173">user.givenname</span></span> |
+    | <span data-ttu-id="b2b0d-174">Vezetéknév</span><span class="sxs-lookup"><span data-stu-id="b2b0d-174">last_name</span></span> | <span data-ttu-id="b2b0d-175">User.surname</span><span class="sxs-lookup"><span data-stu-id="b2b0d-175">user.surname</span></span> |
+    | <span data-ttu-id="b2b0d-176">User.Email</span><span class="sxs-lookup"><span data-stu-id="b2b0d-176">User.Email</span></span> | <span data-ttu-id="b2b0d-177">User.mail</span><span class="sxs-lookup"><span data-stu-id="b2b0d-177">user.mail</span></span> |  
+    | <span data-ttu-id="b2b0d-178">User.Username</span><span class="sxs-lookup"><span data-stu-id="b2b0d-178">User.Username</span></span> | <span data-ttu-id="b2b0d-179">User.userPrincipalName</span><span class="sxs-lookup"><span data-stu-id="b2b0d-179">user.userprincipalname</span></span> |
 
-    <span data-ttu-id="8538a-180">a.</span><span class="sxs-lookup"><span data-stu-id="8538a-180">a.</span></span> <span data-ttu-id="8538a-181">Kattintson a **attribútum** megnyitásához **attribútum szerkesztése** párbeszédpanel mezőbe, majd hajtsa végre a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="8538a-181">Click on **Attribute** to open **Edit Attribute** dialog box and perform the following steps:</span></span>
+    <span data-ttu-id="b2b0d-180">a.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-180">a.</span></span> <span data-ttu-id="b2b0d-181">Kattintson a **attribútum** tooopen **attribútum szerkesztése** párbeszédpanel mezőbe, majd hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-181">Click on **Attribute** tooopen **Edit Attribute** dialog box and perform hello following steps:</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute1.png)
 
-    <span data-ttu-id="8538a-183">a.</span><span class="sxs-lookup"><span data-stu-id="8538a-183">a.</span></span> <span data-ttu-id="8538a-184">Az a **neve** szövegmező, írja be az adott sorhoz feltüntetett attribútumot nevét.</span><span class="sxs-lookup"><span data-stu-id="8538a-184">In the **Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="b2b0d-183">a.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-183">a.</span></span> <span data-ttu-id="b2b0d-184">A hello **neve** szövegmezőben, az adott sorhoz feltüntetett hello attribútum neve.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-184">In hello **Name** textbox, type hello attribute name shown for that row.</span></span>
     
-    <span data-ttu-id="8538a-185">b.</span><span class="sxs-lookup"><span data-stu-id="8538a-185">b.</span></span> <span data-ttu-id="8538a-186">Az a **érték** listára, válassza ki a sorhoz látható attribútum értéke.</span><span class="sxs-lookup"><span data-stu-id="8538a-186">From the **Value** list, select the attribute value shown for that row.</span></span>
+    <span data-ttu-id="b2b0d-185">b.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-185">b.</span></span> <span data-ttu-id="b2b0d-186">A hello **érték** listájában, az adott sorhoz feltüntetett válassza hello attribútum értéke.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-186">From hello **Value** list, select hello attribute value shown for that row.</span></span>
     
-    <span data-ttu-id="8538a-187">c.</span><span class="sxs-lookup"><span data-stu-id="8538a-187">c.</span></span> <span data-ttu-id="8538a-188">Kattintson az **OK** gombra</span><span class="sxs-lookup"><span data-stu-id="8538a-188">Click **OK**</span></span>
+    <span data-ttu-id="b2b0d-187">c.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-187">c.</span></span> <span data-ttu-id="b2b0d-188">Kattintson az **OK** gombra</span><span class="sxs-lookup"><span data-stu-id="b2b0d-188">Click **OK**</span></span>
 
-6. <span data-ttu-id="8538a-189">A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a tanúsítványfájlt, a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="8538a-189">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+6. <span data-ttu-id="b2b0d-189">A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-189">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_certificate.png)
 
-7. <span data-ttu-id="8538a-191">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="8538a-191">Click **Save** button.</span></span>
+7. <span data-ttu-id="b2b0d-191">Kattintson a **mentése** gombra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-191">Click **Save** button.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_general_400.png)
 
-8. <span data-ttu-id="8538a-193">A a **Slackhez konfigurációs** kattintson **konfigurálása Slackhez** megnyitásához **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="8538a-193">On the **Slack Configuration** section, click **Configure Slack** to open **Configure sign-on** window.</span></span> <span data-ttu-id="8538a-194">Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="8538a-194">Copy the **SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+8. <span data-ttu-id="b2b0d-193">A hello **Slackhez konfigurációs** kattintson **konfigurálása Slackhez** tooopen **bejelentkezés konfigurálása** ablak.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-193">On hello **Slack Configuration** section, click **Configure Slack** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="b2b0d-194">Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**</span><span class="sxs-lookup"><span data-stu-id="b2b0d-194">Copy hello **SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_configure.png) 
 
-9.  <span data-ttu-id="8538a-196">Egy másik webes böngészőablakban jelentkezzen be a Slack vállalati webhely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="8538a-196">In a different web browser window, log in to your Slack company site as an administrator.</span></span>
+9.  <span data-ttu-id="b2b0d-196">Egy másik webes böngészőablakban jelentkezzen tooyour Slack vállalati hely rendszergazdaként.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-196">In a different web browser window, log in tooyour Slack company site as an administrator.</span></span>
 
-10.  <span data-ttu-id="8538a-197">Navigáljon a **Microsoft Azure AD** majd navigáljon **Team beállításainak**.</span><span class="sxs-lookup"><span data-stu-id="8538a-197">Navigate to **Microsoft Azure AD** then go to **Team Settings**.</span></span>
+10.  <span data-ttu-id="b2b0d-197">Keresse meg a túl**Microsoft Azure AD** folytassa túl**Team beállításainak**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-197">Navigate too**Microsoft Azure AD** then go too**Team Settings**.</span></span>
 
      ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_001.png)
 
-11.  <span data-ttu-id="8538a-199">Az a **Team beállításainak** területen kattintson a **hitelesítési** fülre, majd **beállításainak módosítása**.</span><span class="sxs-lookup"><span data-stu-id="8538a-199">In the **Team Settings** section, click the **Authentication** tab, and then click **Change Settings**.</span></span>
+11.  <span data-ttu-id="b2b0d-199">A hello **Team beállításainak** területen kattintson a hello **hitelesítési** fülre, majd **beállításainak módosítása**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-199">In hello **Team Settings** section, click hello **Authentication** tab, and then click **Change Settings**.</span></span>
 
      ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_002.png)
 
-12. <span data-ttu-id="8538a-201">Az a **SAML-alapú hitelesítési beállítások** párbeszédpanelen hajtsa végre a következő lépéseket:</span><span class="sxs-lookup"><span data-stu-id="8538a-201">On the **SAML Authentication Settings** dialog, perform the following steps:</span></span>
+12. <span data-ttu-id="b2b0d-201">A hello **SAML-alapú hitelesítési beállítások** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-201">On hello **SAML Authentication Settings** dialog, perform hello following steps:</span></span>
 
     ![Alkalmazás ügyféloldali egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_003.png)
 
-    <span data-ttu-id="8538a-203">a.</span><span class="sxs-lookup"><span data-stu-id="8538a-203">a.</span></span>  <span data-ttu-id="8538a-204">Az a **SAML 2.0 végpontot (HTTP)** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="8538a-204">In the **SAML 2.0 Endpoint (HTTP)** textbox, paste the value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="b2b0d-203">a.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-203">a.</span></span>  <span data-ttu-id="b2b0d-204">A hello **SAML 2.0 végpontot (HTTP)** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-204">In hello **SAML 2.0 Endpoint (HTTP)** textbox, paste hello value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="8538a-205">b.</span><span class="sxs-lookup"><span data-stu-id="8538a-205">b.</span></span>  <span data-ttu-id="8538a-206">A a **Identity Provider kibocsátó** szövegmezőhöz illessze be az értékét **SAML Entitásazonosító**, amely az Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="8538a-206">In the **Identity Provider Issuer** textbox, paste the value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="b2b0d-205">b.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-205">b.</span></span>  <span data-ttu-id="b2b0d-206">A hello **Identity Provider kibocsátó** szövegmezőhöz Beillesztés hello értékének **SAML Entitásazonosító**, amely Azure-portálon másolta.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-206">In hello **Identity Provider Issuer** textbox, paste hello value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="8538a-207">c.</span><span class="sxs-lookup"><span data-stu-id="8538a-207">c.</span></span>  <span data-ttu-id="8538a-208">Nyissa meg a letöltött fájlt a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be azt a **nyilvános tanúsítvány** szövegmező.</span><span class="sxs-lookup"><span data-stu-id="8538a-208">Open your downloaded certificate file in notepad, copy the content of it into your clipboard, and then paste it to the **Public Certificate** textbox.</span></span>
+    <span data-ttu-id="b2b0d-207">c.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-207">c.</span></span>  <span data-ttu-id="b2b0d-208">Nyissa meg a letöltött fájlt a Jegyzettömbben, a vágólapra tartalmának másolása hello és toohello Beillesztés **nyilvános tanúsítvány** szövegmező.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-208">Open your downloaded certificate file in notepad, copy hello content of it into your clipboard, and then paste it toohello **Public Certificate** textbox.</span></span>
 
-    <span data-ttu-id="8538a-209">d.</span><span class="sxs-lookup"><span data-stu-id="8538a-209">d.</span></span> <span data-ttu-id="8538a-210">Állítsa be a fenti három megfelelő beállításokat a Slack-csoport.</span><span class="sxs-lookup"><span data-stu-id="8538a-210">Configure the above three settings as appropriate for your Slack team.</span></span> <span data-ttu-id="8538a-211">A beállításokkal kapcsolatos további információkért kérjük található a **Slackhez tartozó SSO konfigurációs útmutató** itt.</span><span class="sxs-lookup"><span data-stu-id="8538a-211">For more information about the settings, please find the **Slack's SSO configuration guide** here.</span></span> `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
+    <span data-ttu-id="b2b0d-209">d.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-209">d.</span></span> <span data-ttu-id="b2b0d-210">A fenti három beállítások hello beállítása a Slack-csoport nem megfelelő.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-210">Configure hello above three settings as appropriate for your Slack team.</span></span> <span data-ttu-id="b2b0d-211">Hello beállításaival kapcsolatos további információkért kérjük található hello **Slackhez tartozó SSO konfigurációs útmutató** itt.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-211">For more information about hello settings, please find hello **Slack's SSO configuration guide** here.</span></span> `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
 
-    <span data-ttu-id="8538a-212">e.</span><span class="sxs-lookup"><span data-stu-id="8538a-212">e.</span></span>  <span data-ttu-id="8538a-213">Kattintson a **konfigurációjának mentéséhez**.</span><span class="sxs-lookup"><span data-stu-id="8538a-213">Click **Save Configuration**.</span></span>
+    <span data-ttu-id="b2b0d-212">e.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-212">e.</span></span>  <span data-ttu-id="b2b0d-213">Kattintson a **konfigurációjának mentéséhez**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-213">Click **Save Configuration**.</span></span>
      
-    <!-- Deselect **Allow users to change their email address**.
+    <!-- Deselect **Allow users toochange their email address**.
 
-    e.  Select **Allow users to choose their own username**.
+    e.  Select **Allow users toochoose their own username**.
 
     f.  As **Authentication for your team must be used by**, select **It’s optional**. -->
 
 > [!TIP]
-> <span data-ttu-id="8538a-214">Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!</span><span class="sxs-lookup"><span data-stu-id="8538a-214">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="8538a-215">Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján.</span><span class="sxs-lookup"><span data-stu-id="8538a-215">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="8538a-216">További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="8538a-216">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="b2b0d-214">Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!</span><span class="sxs-lookup"><span data-stu-id="b2b0d-214">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="b2b0d-215">Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-215">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="b2b0d-216">További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="b2b0d-216">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="8538a-217">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="8538a-217">Creating an Azure AD test user</span></span>
-<span data-ttu-id="8538a-218">Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.</span><span class="sxs-lookup"><span data-stu-id="8538a-218">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="b2b0d-217">Az Azure AD tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="b2b0d-217">Creating an Azure AD test user</span></span>
+<span data-ttu-id="b2b0d-218">hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-218">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-<span data-ttu-id="8538a-220">**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="8538a-220">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="b2b0d-220">**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**</span><span class="sxs-lookup"><span data-stu-id="b2b0d-220">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8538a-221">Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="8538a-221">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="b2b0d-221">A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-221">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="8538a-223">Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="8538a-223">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="b2b0d-223">toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-223">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="8538a-225">Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.</span><span class="sxs-lookup"><span data-stu-id="8538a-225">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="b2b0d-225">tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-225">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="8538a-227">Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="8538a-227">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="b2b0d-227">A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:</span><span class="sxs-lookup"><span data-stu-id="b2b0d-227">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-slack-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="8538a-229">a.</span><span class="sxs-lookup"><span data-stu-id="8538a-229">a.</span></span> <span data-ttu-id="8538a-230">Az a **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="8538a-230">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="b2b0d-229">a.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-229">a.</span></span> <span data-ttu-id="b2b0d-230">A hello **neve** szövegmezőhöz típus **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-230">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="8538a-231">b.</span><span class="sxs-lookup"><span data-stu-id="8538a-231">b.</span></span> <span data-ttu-id="8538a-232">Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="8538a-232">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="b2b0d-231">b.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-231">b.</span></span> <span data-ttu-id="b2b0d-232">A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-232">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="8538a-233">c.</span><span class="sxs-lookup"><span data-stu-id="8538a-233">c.</span></span> <span data-ttu-id="8538a-234">Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="8538a-234">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="b2b0d-233">c.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-233">c.</span></span> <span data-ttu-id="b2b0d-234">Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-234">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="8538a-235">d.</span><span class="sxs-lookup"><span data-stu-id="8538a-235">d.</span></span> <span data-ttu-id="8538a-236">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="8538a-236">Click **Create**.</span></span>
+    <span data-ttu-id="b2b0d-235">d.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-235">d.</span></span> <span data-ttu-id="b2b0d-236">Kattintson a **Create** (Létrehozás) gombra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-236">Click **Create**.</span></span>
  
-### <a name="creating-a-slack-test-user"></a><span data-ttu-id="8538a-237">Slack tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="8538a-237">Creating a Slack test user</span></span>
+### <a name="creating-a-slack-test-user"></a><span data-ttu-id="b2b0d-237">Slack tesztfelhasználó létrehozása</span><span class="sxs-lookup"><span data-stu-id="b2b0d-237">Creating a Slack test user</span></span>
 
-<span data-ttu-id="8538a-238">Ez a szakasz célja a Slackhez Britta Simon nevű felhasználót létrehozni.</span><span class="sxs-lookup"><span data-stu-id="8538a-238">The objective of this section is to create a user called Britta Simon in Slack.</span></span> <span data-ttu-id="8538a-239">Slackhez támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.</span><span class="sxs-lookup"><span data-stu-id="8538a-239">Slack supports just-in-time provisioning, which is by default enabled.</span></span>
+<span data-ttu-id="b2b0d-238">hello ebben a szakaszban célja toocreate a Slackhez Britta Simon nevű felhasználó.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-238">hello objective of this section is toocreate a user called Britta Simon in Slack.</span></span> <span data-ttu-id="b2b0d-239">Slackhez támogatja just-in-time kiosztást, amely alapértelmezés szerint van engedélyezve.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-239">Slack supports just-in-time provisioning, which is by default enabled.</span></span>
 
-<span data-ttu-id="8538a-240">Nincs ebben a szakaszban az Ön művelet elem.</span><span class="sxs-lookup"><span data-stu-id="8538a-240">There is no action item for you in this section.</span></span> <span data-ttu-id="8538a-241">Új felhasználó jön létre az Ha még nem létezik a Slackhez elérésére tett kísérlet során.</span><span class="sxs-lookup"><span data-stu-id="8538a-241">A new user is created during an attempt to access Slack if it doesn't exist yet.</span></span>
+<span data-ttu-id="b2b0d-240">Nincs ebben a szakaszban az Ön művelet elem.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-240">There is no action item for you in this section.</span></span> <span data-ttu-id="b2b0d-241">Új felhasználó jön létre egy kísérlet tooaccess Slackhez során, ha még nem létezik.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-241">A new user is created during an attempt tooaccess Slack if it doesn't exist yet.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8538a-242">Ha manuálisan hozzon létre egy felhasználó van szüksége, lépjen kapcsolatba kell [Slack támogatási csoport](https://slack.com/help/contact).</span><span class="sxs-lookup"><span data-stu-id="8538a-242">If you need to create a user manually, you need to Contact [Slack support team](https://slack.com/help/contact).</span></span>
+> <span data-ttu-id="b2b0d-242">A felhasználó toocreate manuálisan kell, ha szüksége van-e tooContact [Slack támogatási csoport](https://slack.com/help/contact).</span><span class="sxs-lookup"><span data-stu-id="b2b0d-242">If you need toocreate a user manually, you need tooContact [Slack support team](https://slack.com/help/contact).</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="8538a-243">Az Azure AD-teszt felhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="8538a-243">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="b2b0d-243">Az Azure AD hello tesztfelhasználó hozzárendelése</span><span class="sxs-lookup"><span data-stu-id="b2b0d-243">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="8538a-244">Ebben a szakaszban Britta Simon hozzáférés biztosítása a slackhez által használandó Azure egyszeri bejelentkezés engedélyezése.</span><span class="sxs-lookup"><span data-stu-id="8538a-244">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Slack.</span></span>
+<span data-ttu-id="b2b0d-244">Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSlack megadásával engedélyeznie.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-244">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooSlack.</span></span>
 
 ![Felhasználó hozzárendelése][200] 
 
-<span data-ttu-id="8538a-246">**Britta Simon hozzárendelése a Slackhez, hajtsa végre a következő lépéseket:**</span><span class="sxs-lookup"><span data-stu-id="8538a-246">**To assign Britta Simon to Slack, perform the following steps:**</span></span>
+<span data-ttu-id="b2b0d-246">**tooassign Britta Simon tooSlack, hajtsa végre a következő lépéseket hello:**</span><span class="sxs-lookup"><span data-stu-id="b2b0d-246">**tooassign Britta Simon tooSlack, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8538a-247">Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="8538a-247">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="b2b0d-247">A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-247">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Felhasználó hozzárendelése][201] 
 
-2. <span data-ttu-id="8538a-249">Az alkalmazások listában válassza ki a **Slackhez**.</span><span class="sxs-lookup"><span data-stu-id="8538a-249">In the applications list, select **Slack**.</span></span>
+2. <span data-ttu-id="b2b0d-249">Hello alkalmazások listában válassza ki a **Slackhez**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-249">In hello applications list, select **Slack**.</span></span>
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-slack-tutorial/tutorial_slack_app.png) 
 
-3. <span data-ttu-id="8538a-251">A bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="8538a-251">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="b2b0d-251">Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-251">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Felhasználó hozzárendelése][202] 
 
-4. <span data-ttu-id="8538a-253">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="8538a-253">Click **Add** button.</span></span> <span data-ttu-id="8538a-254">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="8538a-254">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="b2b0d-253">Kattintson a **Hozzáadás** gombra.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-253">Click **Add** button.</span></span> <span data-ttu-id="b2b0d-254">Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-254">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Felhasználó hozzárendelése][203]
 
-5. <span data-ttu-id="8538a-256">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="8538a-256">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="b2b0d-256">A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-256">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="8538a-257">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="8538a-257">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="b2b0d-257">Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-257">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="8538a-258">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="8538a-258">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="b2b0d-258">Kattintson a **hozzárendelése** gombra **hozzáadása hozzárendelés** párbeszédpanel.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-258">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="8538a-259">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="8538a-259">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="b2b0d-259">Egyszeri bejelentkezés tesztelése</span><span class="sxs-lookup"><span data-stu-id="b2b0d-259">Testing single sign-on</span></span>
 
-<span data-ttu-id="8538a-260">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.</span><span class="sxs-lookup"><span data-stu-id="8538a-260">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="b2b0d-260">Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-260">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="8538a-261">A Slack csempe elemre a hozzáférési panelen, meg kell beolvasása automatikusan bejelentkezett a Slack alkalmazásba.</span><span class="sxs-lookup"><span data-stu-id="8538a-261">When you click the Slack tile in the Access Panel, you should get automatically signed-on to your Slack application.</span></span>
+<span data-ttu-id="b2b0d-261">Hello Slack csempére kattintva a hozzáférési Panel hello, automatikusan bejelentkezett tooyour Slack alkalmazás kapja meg.</span><span class="sxs-lookup"><span data-stu-id="b2b0d-261">When you click hello Slack tile in hello Access Panel, you should get automatically signed-on tooyour Slack application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="8538a-262">További források</span><span class="sxs-lookup"><span data-stu-id="8538a-262">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="b2b0d-262">További források</span><span class="sxs-lookup"><span data-stu-id="b2b0d-262">Additional resources</span></span>
 
-* [<span data-ttu-id="8538a-263">Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása</span><span class="sxs-lookup"><span data-stu-id="8538a-263">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="8538a-264">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="8538a-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="b2b0d-263">Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval</span><span class="sxs-lookup"><span data-stu-id="b2b0d-263">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="b2b0d-264">Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?</span><span class="sxs-lookup"><span data-stu-id="b2b0d-264">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions F # fejlesztői leírás |} Microsoft Docs"
-description: "Megtudhatja, hogyan fejleszthet Azure Functions használatával F #."
+title: "aaaAzure funkciók F # fejlesztői útmutató |} Microsoft Docs"
+description: "Megértéséhez hogyan toodevelop Azure Functions használatával F #."
 services: functions
 documentationcenter: fsharp
 author: sylvanc
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/09/2016
 ms.author: syclebsc
-ms.openlocfilehash: 1691d378263f6b4ce5072f5c621d8db02f774b5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ac366ba6f73d191c582dcd9214b688ef719617a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-f-developer-reference"></a><span data-ttu-id="e4710-104">Az Azure Functions F # fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="e4710-104">Azure Functions F# Developer Reference</span></span>
+# <a name="azure-functions-f-developer-reference"></a><span data-ttu-id="18277-104">Az Azure Functions F # fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="18277-104">Azure Functions F# Developer Reference</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="e4710-105">C# parancsfájl</span><span class="sxs-lookup"><span data-stu-id="e4710-105">C# script</span></span>](functions-reference-csharp.md)
-> * [<span data-ttu-id="e4710-106">F # parancsfájl</span><span class="sxs-lookup"><span data-stu-id="e4710-106">F# script</span></span>](functions-reference-fsharp.md)
-> * [<span data-ttu-id="e4710-107">Node.js</span><span class="sxs-lookup"><span data-stu-id="e4710-107">Node.js</span></span>](functions-reference-node.md)
+> * [<span data-ttu-id="18277-105">C# parancsfájl</span><span class="sxs-lookup"><span data-stu-id="18277-105">C# script</span></span>](functions-reference-csharp.md)
+> * [<span data-ttu-id="18277-106">F # parancsfájl</span><span class="sxs-lookup"><span data-stu-id="18277-106">F# script</span></span>](functions-reference-fsharp.md)
+> * [<span data-ttu-id="18277-107">Node.js</span><span class="sxs-lookup"><span data-stu-id="18277-107">Node.js</span></span>](functions-reference-node.md)
 > 
 > 
 
-<span data-ttu-id="e4710-108">F # az Azure Functions egy megoldással egyszerűen futtathatók kisebb kódrészletek, más néven "függvények" a felhőben.</span><span class="sxs-lookup"><span data-stu-id="e4710-108">F# for Azure Functions is a solution for easily running small pieces of code, or "functions," in the cloud.</span></span> <span data-ttu-id="e4710-109">Az F # függvénynek keresztül Függvényargumentumok adatáramlás.</span><span class="sxs-lookup"><span data-stu-id="e4710-109">Data flows into your F# function via function arguments.</span></span> <span data-ttu-id="e4710-110">Argumentum neve meg van határozva a `function.json`, és nincsenek előre definiált nevek többek között a funkció naplózó és a megszakítási jogkivonatok eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="e4710-110">Argument names are specified in `function.json`, and there are predefined names for accessing things like the function logger and cancellation tokens.</span></span>
+<span data-ttu-id="18277-108">F # az Azure Functions egy megoldással egyszerűen futtathatók kisebb kódrészletek, más néven "függvények" hello felhőben.</span><span class="sxs-lookup"><span data-stu-id="18277-108">F# for Azure Functions is a solution for easily running small pieces of code, or "functions," in hello cloud.</span></span> <span data-ttu-id="18277-109">Az F # függvénynek keresztül Függvényargumentumok adatáramlás.</span><span class="sxs-lookup"><span data-stu-id="18277-109">Data flows into your F# function via function arguments.</span></span> <span data-ttu-id="18277-110">Argumentum neve meg van határozva a `function.json`, és nincsenek előre definiált nevek mint függvény naplózó és a megszakítási jogkivonatok hello eléréséhez.</span><span class="sxs-lookup"><span data-stu-id="18277-110">Argument names are specified in `function.json`, and there are predefined names for accessing things like hello function logger and cancellation tokens.</span></span>
 
-<span data-ttu-id="e4710-111">Ez a cikk feltételezi, hogy Ön már elolvasta a [Azure Functions fejlesztői segédanyagai](functions-reference.md).</span><span class="sxs-lookup"><span data-stu-id="e4710-111">This article assumes that you've already read the [Azure Functions developer reference](functions-reference.md).</span></span>
+<span data-ttu-id="18277-111">Ez a cikk feltételezi, hogy Ön már elolvasta hello [Azure Functions fejlesztői segédanyagai](functions-reference.md).</span><span class="sxs-lookup"><span data-stu-id="18277-111">This article assumes that you've already read hello [Azure Functions developer reference](functions-reference.md).</span></span>
 
-## <a name="how-fsx-works"></a><span data-ttu-id="e4710-112">.Fsx működése</span><span class="sxs-lookup"><span data-stu-id="e4710-112">How .fsx works</span></span>
-<span data-ttu-id="e4710-113">Egy `.fsx` fájl az F #-parancsfájlok.</span><span class="sxs-lookup"><span data-stu-id="e4710-113">An `.fsx` file is an F# script.</span></span> <span data-ttu-id="e4710-114">Akkor tekinthető az F # projekt egyetlen fájlban található.</span><span class="sxs-lookup"><span data-stu-id="e4710-114">It can be thought of as an F# project that's contained in a single file.</span></span> <span data-ttu-id="e4710-115">A fájl tartalmazza a kódban a program (ebben az esetben, az Azure-függvény) és irányelveket függőségek kezelése.</span><span class="sxs-lookup"><span data-stu-id="e4710-115">The file contains both the code for your program (in this case, your Azure Function) and directives for managing dependencies.</span></span>
+## <a name="how-fsx-works"></a><span data-ttu-id="18277-112">.Fsx működése</span><span class="sxs-lookup"><span data-stu-id="18277-112">How .fsx works</span></span>
+<span data-ttu-id="18277-113">Egy `.fsx` fájl az F #-parancsfájlok.</span><span class="sxs-lookup"><span data-stu-id="18277-113">An `.fsx` file is an F# script.</span></span> <span data-ttu-id="18277-114">Akkor tekinthető az F # projekt egyetlen fájlban található.</span><span class="sxs-lookup"><span data-stu-id="18277-114">It can be thought of as an F# project that's contained in a single file.</span></span> <span data-ttu-id="18277-115">hello fájl tartalmaz mindkét hello kódját (ebben az esetben, az Azure-függvény) a program és irányelveket függőségek kezelése.</span><span class="sxs-lookup"><span data-stu-id="18277-115">hello file contains both hello code for your program (in this case, your Azure Function) and directives for managing dependencies.</span></span>
 
-<span data-ttu-id="e4710-116">Ha egy `.fsx` egy Azure-függvény, általában a szükséges szerelvényeket automatikusan érhetők el, ezáltal jobban összpontosíthat az "bolierplate" helyett a függvény a kódban.</span><span class="sxs-lookup"><span data-stu-id="e4710-116">When you use an `.fsx` for an Azure Function, commonly required assemblies are automatically included for you, allowing you to focus on the function rather than "boilerplate" code.</span></span>
+<span data-ttu-id="18277-116">Ha egy `.fsx` egy Azure-függvény, általában a szükséges szerelvényeket automatikusan érhetők el, hogy lehetővé teszi a toofocus hello "bolierplate" helyett függvény kódja.</span><span class="sxs-lookup"><span data-stu-id="18277-116">When you use an `.fsx` for an Azure Function, commonly required assemblies are automatically included for you, allowing you toofocus on hello function rather than "boilerplate" code.</span></span>
 
-## <a name="binding-to-arguments"></a><span data-ttu-id="e4710-117">Argumentum kötése</span><span class="sxs-lookup"><span data-stu-id="e4710-117">Binding to arguments</span></span>
-<span data-ttu-id="e4710-118">Minden egyes kötés támogatja-e bizonyos argumentumok, ahogy az az készletét a [Azure Functions eseményindítók és kötések fejlesztői segédanyagai](functions-triggers-bindings.md).</span><span class="sxs-lookup"><span data-stu-id="e4710-118">Each binding supports some set of arguments, as detailed in the [Azure Functions triggers and bindings developer reference](functions-triggers-bindings.md).</span></span> <span data-ttu-id="e4710-119">Például egy blob eseményindító támogatja argumentum kötéseket egyik egy POCO, amelyek használatával az F # rekord jelöl.</span><span class="sxs-lookup"><span data-stu-id="e4710-119">For example, one of the argument bindings a blob trigger supports is a POCO, which can be expressed using an F# record.</span></span> <span data-ttu-id="e4710-120">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-120">For example:</span></span>
+## <a name="binding-tooarguments"></a><span data-ttu-id="18277-117">Kötési tooarguments</span><span class="sxs-lookup"><span data-stu-id="18277-117">Binding tooarguments</span></span>
+<span data-ttu-id="18277-118">Minden egyes kötés támogatja-e bizonyos argumentumok, beállítása a részletes hello [Azure Functions eseményindítók és kötések fejlesztői segédanyagai](functions-triggers-bindings.md).</span><span class="sxs-lookup"><span data-stu-id="18277-118">Each binding supports some set of arguments, as detailed in hello [Azure Functions triggers and bindings developer reference](functions-triggers-bindings.md).</span></span> <span data-ttu-id="18277-119">Például hello argumentum kötések blob eseményindító támogatja az egyik egy POCO, amelyek használatával az F # rekord jelöl.</span><span class="sxs-lookup"><span data-stu-id="18277-119">For example, one of hello argument bindings a blob trigger supports is a POCO, which can be expressed using an F# record.</span></span> <span data-ttu-id="18277-120">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-120">For example:</span></span>
 
 ```fsharp
 type Item = { Id: string }
@@ -50,11 +50,11 @@ let Run(blob: string, output: byref<Item>) =
     output <- item
 ```
 
-<span data-ttu-id="e4710-121">Az F # Azure-függvény lépnek egy vagy több argumentum.</span><span class="sxs-lookup"><span data-stu-id="e4710-121">Your F# Azure Function will take one or more arguments.</span></span> <span data-ttu-id="e4710-122">Amikor döntésről bővebben az Azure Functions argumentumok, hivatkozunk *bemeneti* argumentumok és *kimeneti* argumentumok.</span><span class="sxs-lookup"><span data-stu-id="e4710-122">When we talk about Azure Functions arguments, we refer to *input* arguments and *output* arguments.</span></span> <span data-ttu-id="e4710-123">Egy bemeneti argumentum pontosan mit úgy tűnik, hogy például: az F # Azure-függvény a bemeneti.</span><span class="sxs-lookup"><span data-stu-id="e4710-123">An input argument is exactly what it sounds like: input to your F# Azure Function.</span></span> <span data-ttu-id="e4710-124">Egy *kimeneti* argumentum változtatható adatok vagy egy `byref<>` argumentumot, amelynek vissza az adatok úgy funkcionál *kimenő* a függvény.</span><span class="sxs-lookup"><span data-stu-id="e4710-124">An *output* argument is mutable data or a `byref<>` argument that serves as a way to pass data back *out* of your function.</span></span>
+<span data-ttu-id="18277-121">Az F # Azure-függvény lépnek egy vagy több argumentum.</span><span class="sxs-lookup"><span data-stu-id="18277-121">Your F# Azure Function will take one or more arguments.</span></span> <span data-ttu-id="18277-122">Amikor döntésről bővebben az Azure Functions argumentumok, irányítjuk túl*bemeneti* argumentumok és *kimeneti* argumentumok.</span><span class="sxs-lookup"><span data-stu-id="18277-122">When we talk about Azure Functions arguments, we refer too*input* arguments and *output* arguments.</span></span> <span data-ttu-id="18277-123">Egy bemeneti argumentum pontosan mit úgy tűnik, hogy például: bemeneti tooyour F # Azure-függvény.</span><span class="sxs-lookup"><span data-stu-id="18277-123">An input argument is exactly what it sounds like: input tooyour F# Azure Function.</span></span> <span data-ttu-id="18277-124">Egy *kimeneti* argumentum változtatható adatok vagy egy `byref<>` vissza módon toopass adatokat ellátó argumentum *kimenő* a függvény.</span><span class="sxs-lookup"><span data-stu-id="18277-124">An *output* argument is mutable data or a `byref<>` argument that serves as a way toopass data back *out* of your function.</span></span>
 
-<span data-ttu-id="e4710-125">A példában `blob` egy bemeneti argumentum, és `output` kimeneti argumentum van.</span><span class="sxs-lookup"><span data-stu-id="e4710-125">In the example above, `blob` is an input argument, and `output` is an output argument.</span></span> <span data-ttu-id="e4710-126">Figyelje meg, hogy használtuk `byref<>` a `output` (nincs szükség hozzáadása a `[<Out>]` jegyzet).</span><span class="sxs-lookup"><span data-stu-id="e4710-126">Notice that we used `byref<>` for `output` (there's no need to add the `[<Out>]` annotation).</span></span> <span data-ttu-id="e4710-127">Használja a `byref<>` típus lehetővé teszi, hogy a függvény melyik rekord vagy argumentum a hivatkozott objektum módosítása.</span><span class="sxs-lookup"><span data-stu-id="e4710-127">Using a `byref<>` type allows your function to change which record or object the argument refers to.</span></span>
+<span data-ttu-id="18277-125">A fenti, hello példa `blob` egy bemeneti argumentum, és `output` kimeneti argumentum van.</span><span class="sxs-lookup"><span data-stu-id="18277-125">In hello example above, `blob` is an input argument, and `output` is an output argument.</span></span> <span data-ttu-id="18277-126">Figyelje meg, hogy használtuk `byref<>` a `output` (nincs szükség tooadd hello van `[<Out>]` jegyzet).</span><span class="sxs-lookup"><span data-stu-id="18277-126">Notice that we used `byref<>` for `output` (there's no need tooadd hello `[<Out>]` annotation).</span></span> <span data-ttu-id="18277-127">Használja a `byref<>` típus lehetővé teszi, hogy a függvény toochange, mely rekord vagy objektum hello argumentum hivatkozik.</span><span class="sxs-lookup"><span data-stu-id="18277-127">Using a `byref<>` type allows your function toochange which record or object hello argument refers to.</span></span>
 
-<span data-ttu-id="e4710-128">Az F # rekord bemeneti típusként használata esetén a rekord definition fel kell tüntetni az `[<CLIMutable>]` annak érdekében, hogy az Azure Functions keretrendszer a mezők megfelelően beállítása előtt a rekord a függvénynek.</span><span class="sxs-lookup"><span data-stu-id="e4710-128">When an F# record is used as an input type, the record definition must be marked with `[<CLIMutable>]` in order to allow the Azure Functions framework to set the fields appropriately before passing the record to your function.</span></span> <span data-ttu-id="e4710-129">A technikai részletek alatt `[<CLIMutable>]` állít elő, a rekord tulajdonságok Setter elemek.</span><span class="sxs-lookup"><span data-stu-id="e4710-129">Under the hood, `[<CLIMutable>]` generates setters for the record properties.</span></span> <span data-ttu-id="e4710-130">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-130">For example:</span></span>
+<span data-ttu-id="18277-128">Az F # rekord mint egy bemeneti típus használatakor hello rekord definition fel kell tüntetni az `[<CLIMutable>]` a rendezés tooallow hello Azure Functions keretrendszer tooset hello mezők megfelelően átadása előtt hello rekord tooyour függvény.</span><span class="sxs-lookup"><span data-stu-id="18277-128">When an F# record is used as an input type, hello record definition must be marked with `[<CLIMutable>]` in order tooallow hello Azure Functions framework tooset hello fields appropriately before passing hello record tooyour function.</span></span> <span data-ttu-id="18277-129">A hello technikai `[<CLIMutable>]` hello rekord tulajdonságai a Setter elemek állít elő.</span><span class="sxs-lookup"><span data-stu-id="18277-129">Under hello hood, `[<CLIMutable>]` generates setters for hello record properties.</span></span> <span data-ttu-id="18277-130">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-130">For example:</span></span>
 
 ```fsharp
 [<CLIMutable>]
@@ -66,7 +66,7 @@ let Run(req: TestObject, log: TraceWriter) =
     { req with Greeting = sprintf "Hello, %s" req.SenderName }
 ```
 
-<span data-ttu-id="e4710-131">Az F # osztály mindkét és argumentumokat is használható.</span><span class="sxs-lookup"><span data-stu-id="e4710-131">An F# class can also be used for both in and out arguments.</span></span> <span data-ttu-id="e4710-132">Egy osztály tulajdonságok általában kell beolvasókat és Setter elemek.</span><span class="sxs-lookup"><span data-stu-id="e4710-132">For a class, properties will usually need getters and setters.</span></span> <span data-ttu-id="e4710-133">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-133">For example:</span></span>
+<span data-ttu-id="18277-131">Az F # osztály mindkét és argumentumokat is használható.</span><span class="sxs-lookup"><span data-stu-id="18277-131">An F# class can also be used for both in and out arguments.</span></span> <span data-ttu-id="18277-132">Egy osztály tulajdonságok általában kell beolvasókat és Setter elemek.</span><span class="sxs-lookup"><span data-stu-id="18277-132">For a class, properties will usually need getters and setters.</span></span> <span data-ttu-id="18277-133">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-133">For example:</span></span>
 
 ```fsharp
 type Item() =
@@ -78,8 +78,8 @@ let Run(input: string, item: byref<Item>) =
     item <- result
 ```
 
-## <a name="logging"></a><span data-ttu-id="e4710-134">Naplózás</span><span class="sxs-lookup"><span data-stu-id="e4710-134">Logging</span></span>
-<span data-ttu-id="e4710-135">A kimeneti bejelentkezni a [a folyamatos átviteli naplók](../app-service-web/web-sites-streaming-logs-and-console.md) F #, a függvény típusú argumentumot kell venniük `TraceWriter`.</span><span class="sxs-lookup"><span data-stu-id="e4710-135">To log output to your [streaming logs](../app-service-web/web-sites-streaming-logs-and-console.md) in F#, your function should take an argument of type `TraceWriter`.</span></span> <span data-ttu-id="e4710-136">A konzisztencia, javasoljuk, ez az argumentum neve `log`.</span><span class="sxs-lookup"><span data-stu-id="e4710-136">For consistency, we recommend this argument is named `log`.</span></span> <span data-ttu-id="e4710-137">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-137">For example:</span></span>
+## <a name="logging"></a><span data-ttu-id="18277-134">Naplózás</span><span class="sxs-lookup"><span data-stu-id="18277-134">Logging</span></span>
+<span data-ttu-id="18277-135">a kimeneti tooyour toolog [a folyamatos átviteli naplók](../app-service-web/web-sites-streaming-logs-and-console.md) F #, a függvény típusú argumentumot kell venniük `TraceWriter`.</span><span class="sxs-lookup"><span data-stu-id="18277-135">toolog output tooyour [streaming logs](../app-service-web/web-sites-streaming-logs-and-console.md) in F#, your function should take an argument of type `TraceWriter`.</span></span> <span data-ttu-id="18277-136">A konzisztencia, javasoljuk, ez az argumentum neve `log`.</span><span class="sxs-lookup"><span data-stu-id="18277-136">For consistency, we recommend this argument is named `log`.</span></span> <span data-ttu-id="18277-137">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-137">For example:</span></span>
 
 ```fsharp
 let Run(blob: string, output: byref<string>, log: TraceWriter) =
@@ -87,8 +87,8 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     output <- input
 ```
 
-## <a name="async"></a><span data-ttu-id="e4710-138">Aszinkron</span><span class="sxs-lookup"><span data-stu-id="e4710-138">Async</span></span>
-<span data-ttu-id="e4710-139">A `async` munkafolyamat is használható, de az eredmény vissza kell adnia egy `Task`.</span><span class="sxs-lookup"><span data-stu-id="e4710-139">The `async` workflow can be used, but the result needs to return a `Task`.</span></span> <span data-ttu-id="e4710-140">Ezt megteheti a `Async.StartAsTask`, például:</span><span class="sxs-lookup"><span data-stu-id="e4710-140">This can be done with `Async.StartAsTask`, for example:</span></span>
+## <a name="async"></a><span data-ttu-id="18277-138">Aszinkron</span><span class="sxs-lookup"><span data-stu-id="18277-138">Async</span></span>
+<span data-ttu-id="18277-139">Hello `async` munkafolyamat is használható, de hello eredmény kell tooreturn egy `Task`.</span><span class="sxs-lookup"><span data-stu-id="18277-139">hello `async` workflow can be used, but hello result needs tooreturn a `Task`.</span></span> <span data-ttu-id="18277-140">Ezt megteheti a `Async.StartAsTask`, például:</span><span class="sxs-lookup"><span data-stu-id="18277-140">This can be done with `Async.StartAsTask`, for example:</span></span>
 
 ```fsharp
 let Run(req: HttpRequestMessage) =
@@ -97,8 +97,8 @@ let Run(req: HttpRequestMessage) =
     } |> Async.StartAsTask
 ```
 
-## <a name="cancellation-token"></a><span data-ttu-id="e4710-141">Token törlése</span><span class="sxs-lookup"><span data-stu-id="e4710-141">Cancellation Token</span></span>
-<span data-ttu-id="e4710-142">Ha a függvény leállítási szabályosan kezelni, amelynek megadhatja egy [ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argumentum.</span><span class="sxs-lookup"><span data-stu-id="e4710-142">If your function needs to handle shutdown gracefully, you can give it a [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argument.</span></span> <span data-ttu-id="e4710-143">Ez kombinálva `async`, például:</span><span class="sxs-lookup"><span data-stu-id="e4710-143">This can be combined with `async`, for example:</span></span>
+## <a name="cancellation-token"></a><span data-ttu-id="18277-141">Token törlése</span><span class="sxs-lookup"><span data-stu-id="18277-141">Cancellation Token</span></span>
+<span data-ttu-id="18277-142">Ha a függvény szabályosan kell toohandle leállítás, amelynek megadhatja egy [ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argumentum.</span><span class="sxs-lookup"><span data-stu-id="18277-142">If your function needs toohandle shutdown gracefully, you can give it a [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argument.</span></span> <span data-ttu-id="18277-143">Ez kombinálva `async`, például:</span><span class="sxs-lookup"><span data-stu-id="18277-143">This can be combined with `async`, for example:</span></span>
 
 ```fsharp
 let Run(req: HttpRequestMessage, token: CancellationToken)
@@ -109,8 +109,8 @@ let Run(req: HttpRequestMessage, token: CancellationToken)
     Async.StartAsTask(f, token)
 ```
 
-## <a name="importing-namespaces"></a><span data-ttu-id="e4710-144">Névterek importálása</span><span class="sxs-lookup"><span data-stu-id="e4710-144">Importing namespaces</span></span>
-<span data-ttu-id="e4710-145">Névterek megnyithatók a szokásos módon:</span><span class="sxs-lookup"><span data-stu-id="e4710-145">Namespaces can be opened in the usual way:</span></span>
+## <a name="importing-namespaces"></a><span data-ttu-id="18277-144">Névterek importálása</span><span class="sxs-lookup"><span data-stu-id="18277-144">Importing namespaces</span></span>
+<span data-ttu-id="18277-145">Névterek megnyitható hello a szokásos módon:</span><span class="sxs-lookup"><span data-stu-id="18277-145">Namespaces can be opened in hello usual way:</span></span>
 
 ```fsharp
 open System.Net
@@ -120,7 +120,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-<span data-ttu-id="e4710-146">A következő névterek automatikusan megnyitása:</span><span class="sxs-lookup"><span data-stu-id="e4710-146">The following namespaces are automatically opened:</span></span>
+<span data-ttu-id="18277-146">a következő névterek hello automatikusan megnyitása:</span><span class="sxs-lookup"><span data-stu-id="18277-146">hello following namespaces are automatically opened:</span></span>
 
 * `System`
 * `System.Collections.Generic`
@@ -129,10 +129,10 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
 * `System.Net.Http`
 * `System.Threading.Tasks`
 * `Microsoft.Azure.WebJobs`
-* <span data-ttu-id="e4710-147">`Microsoft.Azure.WebJobs.Host`.</span><span class="sxs-lookup"><span data-stu-id="e4710-147">`Microsoft.Azure.WebJobs.Host`.</span></span>
+* <span data-ttu-id="18277-147">`Microsoft.Azure.WebJobs.Host`.</span><span class="sxs-lookup"><span data-stu-id="18277-147">`Microsoft.Azure.WebJobs.Host`.</span></span>
 
-## <a name="referencing-external-assemblies"></a><span data-ttu-id="e4710-148">Külső szerelvények hivatkozik</span><span class="sxs-lookup"><span data-stu-id="e4710-148">Referencing External Assemblies</span></span>
-<span data-ttu-id="e4710-149">Hasonlóképpen, a keretrendszer szerelvény hivatkozások adhatók hozzá, amelyeknél a `#r "AssemblyName"` direktívát.</span><span class="sxs-lookup"><span data-stu-id="e4710-149">Similarly, framework assembly references be added with the `#r "AssemblyName"` directive.</span></span>
+## <a name="referencing-external-assemblies"></a><span data-ttu-id="18277-148">Külső szerelvények hivatkozik</span><span class="sxs-lookup"><span data-stu-id="18277-148">Referencing External Assemblies</span></span>
+<span data-ttu-id="18277-149">Hasonlóképpen, a keretrendszer szerelvény hivatkozások adhatók hozzá, amelyeknél hello `#r "AssemblyName"` direktívát.</span><span class="sxs-lookup"><span data-stu-id="18277-149">Similarly, framework assembly references be added with hello `#r "AssemblyName"` directive.</span></span>
 
 ```fsharp
 #r "System.Web.Http"
@@ -145,9 +145,9 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-<span data-ttu-id="e4710-150">A következő szerelvények a rendszer automatikusan hozzáadja a üzemeltetési környezet az Azure Functions:</span><span class="sxs-lookup"><span data-stu-id="e4710-150">The following assemblies are automatically added by the Azure Functions hosting environment:</span></span>
+<span data-ttu-id="18277-150">hello következő szerelvények automatikusan hello az Azure Functions Gazdakörnyezet:</span><span class="sxs-lookup"><span data-stu-id="18277-150">hello following assemblies are automatically added by hello Azure Functions hosting environment:</span></span>
 
-* <span data-ttu-id="e4710-151">`mscorlib`,</span><span class="sxs-lookup"><span data-stu-id="e4710-151">`mscorlib`,</span></span>
+* <span data-ttu-id="18277-151">`mscorlib`,</span><span class="sxs-lookup"><span data-stu-id="18277-151">`mscorlib`,</span></span>
 * `System`
 * `System.Core`
 * `System.Xml`
@@ -156,20 +156,20 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
 * `Microsoft.Azure.WebJobs.Host`
 * `Microsoft.Azure.WebJobs.Extensions`
 * `System.Web.Http`
-* <span data-ttu-id="e4710-152">`System.Net.Http.Formatting`.</span><span class="sxs-lookup"><span data-stu-id="e4710-152">`System.Net.Http.Formatting`.</span></span>
+* <span data-ttu-id="18277-152">`System.Net.Http.Formatting`.</span><span class="sxs-lookup"><span data-stu-id="18277-152">`System.Net.Http.Formatting`.</span></span>
 
-<span data-ttu-id="e4710-153">Ezenkívül a következő szerelvényekben különleges cased és simplename is hivatkozhat (pl. `#r "AssemblyName"`):</span><span class="sxs-lookup"><span data-stu-id="e4710-153">In addition, the following assemblies are special cased and may be referenced by simplename (e.g. `#r "AssemblyName"`):</span></span>
+<span data-ttu-id="18277-153">Ezenkívül a következő szerelvények hello különleges cased és simplename is hivatkozhat (pl. `#r "AssemblyName"`):</span><span class="sxs-lookup"><span data-stu-id="18277-153">In addition, hello following assemblies are special cased and may be referenced by simplename (e.g. `#r "AssemblyName"`):</span></span>
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
 * `Microsoft.ServiceBus`
 * `Microsoft.AspNet.WebHooks.Receivers`
-* <span data-ttu-id="e4710-154">`Microsoft.AspNEt.WebHooks.Common`.</span><span class="sxs-lookup"><span data-stu-id="e4710-154">`Microsoft.AspNEt.WebHooks.Common`.</span></span>
+* <span data-ttu-id="18277-154">`Microsoft.AspNEt.WebHooks.Common`.</span><span class="sxs-lookup"><span data-stu-id="18277-154">`Microsoft.AspNEt.WebHooks.Common`.</span></span>
 
-<span data-ttu-id="e4710-155">A belső szerelvény hivatkoznia kell, ha a szerelvény fájlból feltöltheti egy `bin` mappa viszonyítva az függvény és a hivatkozási (pl. name, a fájl használatával  `#r "MyAssembly.dll"`).</span><span class="sxs-lookup"><span data-stu-id="e4710-155">If you need to reference a private assembly, you can upload the assembly file into a `bin` folder relative to your function and reference it by using the file name (e.g.  `#r "MyAssembly.dll"`).</span></span> <span data-ttu-id="e4710-156">A fájlok feltöltéséről a függvény mappába információkért lásd a következő felügyeleti csomag.</span><span class="sxs-lookup"><span data-stu-id="e4710-156">For information on how to upload files to your function folder, see the following section on package management.</span></span>
+<span data-ttu-id="18277-155">Belső szerelvény tooreference van szüksége, ha feltöltheti hello szerelvényfájl be egy `bin` mappa relatív tooyour függvény és a hivatkozás (pl. hello azt a fájlnevet  `#r "MyAssembly.dll"`).</span><span class="sxs-lookup"><span data-stu-id="18277-155">If you need tooreference a private assembly, you can upload hello assembly file into a `bin` folder relative tooyour function and reference it by using hello file name (e.g.  `#r "MyAssembly.dll"`).</span></span> <span data-ttu-id="18277-156">Hogyan tooupload fájlmappa tooyour függvény a további információkért lásd: a következő szakasz a felügyeleti csomag hello.</span><span class="sxs-lookup"><span data-stu-id="18277-156">For information on how tooupload files tooyour function folder, see hello following section on package management.</span></span>
 
-## <a name="editor-prelude"></a><span data-ttu-id="e4710-157">Szerkesztő Prelude</span><span class="sxs-lookup"><span data-stu-id="e4710-157">Editor Prelude</span></span>
-<span data-ttu-id="e4710-158">Egy szerkesztővel, amely támogatja az F # fordítóprogram szolgáltatások semmit sem éreznek a névterek és-szerelvényt, amely automatikusan felveszi az Azure Functions.</span><span class="sxs-lookup"><span data-stu-id="e4710-158">An editor that supports F# Compiler Services will not be aware of the namespaces and assemblies that Azure Functions automatically includes.</span></span> <span data-ttu-id="e4710-159">Ilyen hasznos lehet egy prelude található használja a szerelvényeket a szerkesztő segítségével, és explicit módon a névterek megnyitásához.</span><span class="sxs-lookup"><span data-stu-id="e4710-159">As such, it can be useful to include a prelude that helps the editor find the assemblies you are using, and to explicitly open namespaces.</span></span> <span data-ttu-id="e4710-160">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-160">For example:</span></span>
+## <a name="editor-prelude"></a><span data-ttu-id="18277-157">Szerkesztő Prelude</span><span class="sxs-lookup"><span data-stu-id="18277-157">Editor Prelude</span></span>
+<span data-ttu-id="18277-158">Egy szerkesztővel, amely támogatja az F # fordítóprogram szolgáltatások semmit sem éreznek hello névterek és-szerelvényt, amely automatikusan felveszi az Azure Functions.</span><span class="sxs-lookup"><span data-stu-id="18277-158">An editor that supports F# Compiler Services will not be aware of hello namespaces and assemblies that Azure Functions automatically includes.</span></span> <span data-ttu-id="18277-159">Ilyen lehet hasznos tooinclude egy prelude hello szerelvények használata található hello szerkesztő segítségével, és tooexplicitly nyissa meg a névterek.</span><span class="sxs-lookup"><span data-stu-id="18277-159">As such, it can be useful tooinclude a prelude that helps hello editor find hello assemblies you are using, and tooexplicitly open namespaces.</span></span> <span data-ttu-id="18277-160">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-160">For example:</span></span>
 
 ```fsharp
 #if !COMPILED
@@ -184,12 +184,12 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     ...
 ```
 
-<span data-ttu-id="e4710-161">A kód az Azure Functions végrehajtásakor feldolgozza az adatforrással, amelynek `COMPILED` definiálva, ezért figyelmen kívül hagyja a szerkesztő prelude.</span><span class="sxs-lookup"><span data-stu-id="e4710-161">When Azure Functions executes your code, it processes the source with `COMPILED` defined, so the editor prelude will be ignored.</span></span>
+<span data-ttu-id="18277-161">A kód az Azure Functions végrehajtásakor hello adatforrással, amelynek feldolgozza `COMPILED` definiálva, ezért hello szerkesztő prelude figyelmen kívül hagyja.</span><span class="sxs-lookup"><span data-stu-id="18277-161">When Azure Functions executes your code, it processes hello source with `COMPILED` defined, so hello editor prelude will be ignored.</span></span>
 
 <a name="package"></a>
 
-## <a name="package-management"></a><span data-ttu-id="e4710-162">Felügyeleti csomag</span><span class="sxs-lookup"><span data-stu-id="e4710-162">Package management</span></span>
-<span data-ttu-id="e4710-163">Az F # függvény NuGet-csomagok használatához vegye fel a `project.json` fájlt a a függvény mappa, a függvény app fájlrendszer.</span><span class="sxs-lookup"><span data-stu-id="e4710-163">To use NuGet packages in an F# function, add a `project.json` file to the the function's folder in the function app's file system.</span></span> <span data-ttu-id="e4710-164">Példa `project.json` hozzáad egy NuGet csomag hivatkozást tartalmazó `Microsoft.ProjectOxford.Face` 1.1.0-ás verzió:</span><span class="sxs-lookup"><span data-stu-id="e4710-164">Here is an example `project.json` file that adds a NuGet package reference to `Microsoft.ProjectOxford.Face` version 1.1.0:</span></span>
+## <a name="package-management"></a><span data-ttu-id="18277-162">Felügyeleti csomag</span><span class="sxs-lookup"><span data-stu-id="18277-162">Package management</span></span>
+<span data-ttu-id="18277-163">az F # függvényben, toouse NuGet-csomagok hozzáadása egy `project.json` toohello hello függvény mappa fájl hello függvény app fájlrendszerben.</span><span class="sxs-lookup"><span data-stu-id="18277-163">toouse NuGet packages in an F# function, add a `project.json` file toohello hello function's folder in hello function app's file system.</span></span> <span data-ttu-id="18277-164">Példa `project.json` fájl, amely túl ad hozzá a NuGet csomag referenciája`Microsoft.ProjectOxford.Face` 1.1.0-ás verzió:</span><span class="sxs-lookup"><span data-stu-id="18277-164">Here is an example `project.json` file that adds a NuGet package reference too`Microsoft.ProjectOxford.Face` version 1.1.0:</span></span>
 
 ```json
 {
@@ -203,16 +203,16 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 }
 ```
 
-<span data-ttu-id="e4710-165">Csak a .NET keretrendszer 4.6-os támogatott, ezért győződjön meg arról, hogy a `project.json` fájl határozza meg `net46` itt látható módon.</span><span class="sxs-lookup"><span data-stu-id="e4710-165">Only the .NET Framework 4.6 is supported, so make sure that your `project.json` file specifies `net46` as shown here.</span></span>
+<span data-ttu-id="18277-165">Csak hello .NET-keretrendszer 4.6 támogatott, ezért győződjön meg arról, hogy a `project.json` fájl határozza meg `net46` itt látható módon.</span><span class="sxs-lookup"><span data-stu-id="18277-165">Only hello .NET Framework 4.6 is supported, so make sure that your `project.json` file specifies `net46` as shown here.</span></span>
 
-<span data-ttu-id="e4710-166">Feltöltése egy `project.json` fájl, a futtatókörnyezet lekérdezi a csomagokat, és automatikusan hozzáadja a csomag szerelvények hivatkozik.</span><span class="sxs-lookup"><span data-stu-id="e4710-166">When you upload a `project.json` file, the runtime gets the packages and automatically adds references to the package assemblies.</span></span> <span data-ttu-id="e4710-167">Nem kell hozzáadnia `#r "AssemblyName"` irányelvek.</span><span class="sxs-lookup"><span data-stu-id="e4710-167">You don't need to add `#r "AssemblyName"` directives.</span></span> <span data-ttu-id="e4710-168">A szükséges hozzá `open` utasítást, hogy a `.fsx` fájlt.</span><span class="sxs-lookup"><span data-stu-id="e4710-168">Just add the required `open` statements to your `.fsx` file.</span></span>
+<span data-ttu-id="18277-166">Feltöltése egy `project.json` fájlt, hello futásidejű hello csomagok lekérdezi és automatikusan hozzáadja a hivatkozások toohello csomag szerelvényeket.</span><span class="sxs-lookup"><span data-stu-id="18277-166">When you upload a `project.json` file, hello runtime gets hello packages and automatically adds references toohello package assemblies.</span></span> <span data-ttu-id="18277-167">Nem kell tooadd `#r "AssemblyName"` irányelvek.</span><span class="sxs-lookup"><span data-stu-id="18277-167">You don't need tooadd `#r "AssemblyName"` directives.</span></span> <span data-ttu-id="18277-168">Csak adja hozzá a szükséges hello `open` utasítások tooyour `.fsx` fájlt.</span><span class="sxs-lookup"><span data-stu-id="18277-168">Just add hello required `open` statements tooyour `.fsx` file.</span></span>
 
-<span data-ttu-id="e4710-169">Kezdésként érdemes lehet helyezni a szerkesztő prelude, F # lefordítani a szolgáltatások a szerkesztő interakcióba javítása érdekében automatikusan hivatkozásokat szerelvényeket.</span><span class="sxs-lookup"><span data-stu-id="e4710-169">You may wish to put automatically references assemblies in your editor prelude, to improve your editor's interaction with F# Compile Services.</span></span>
+<span data-ttu-id="18277-169">Kezdésként tooput automatikusan hivatkozik a szerkesztő prelude tooimprove szerelvényeket a szerkesztő interakcióba F # fordítási szolgáltatások.</span><span class="sxs-lookup"><span data-stu-id="18277-169">You may wish tooput automatically references assemblies in your editor prelude, tooimprove your editor's interaction with F# Compile Services.</span></span>
 
-### <a name="how-to-add-a-projectjson-file-to-your-azure-function"></a><span data-ttu-id="e4710-170">Hogyan lehet hozzáadni egy `project.json` fájlt az Azure-függvény</span><span class="sxs-lookup"><span data-stu-id="e4710-170">How to add a `project.json` file to your Azure Function</span></span>
-1. <span data-ttu-id="e4710-171">Először meggyőződött arról, hogy a függvény alkalmazás fut, amely a függvény nyissa meg az Azure portálon teheti.</span><span class="sxs-lookup"><span data-stu-id="e4710-171">Begin by making sure your function app is running, which you can do by opening your function in the Azure portal.</span></span> <span data-ttu-id="e4710-172">Ez is hozzáférést biztosít a folyamatos átviteli naplók ahol csomag telepítési kimenet jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="e4710-172">This also gives access to the streaming logs where package installation output will be displayed.</span></span>
-2. <span data-ttu-id="e4710-173">Töltse fel a `project.json` fájlt, az ismertetett módszerek egyikével [függvény alkalmazásfájlok frissítése](functions-reference.md#fileupdate).</span><span class="sxs-lookup"><span data-stu-id="e4710-173">To upload a `project.json` file, use one of the methods described in [how to update function app files](functions-reference.md#fileupdate).</span></span> <span data-ttu-id="e4710-174">Ha használ [folyamatos üzembe helyezés az Azure Functions](functions-continuous-deployment.md), adhat hozzá egy `project.json` ahhoz, hogy mielőtt hozzáadná a központi telepítés fiókirodai kísérletezhet az átmeneti ágában fájlt.</span><span class="sxs-lookup"><span data-stu-id="e4710-174">If you are using [Continuous Deployment for Azure Functions](functions-continuous-deployment.md), you can add a `project.json` file to your staging branch in order to experiment with it before adding it to your deployment branch.</span></span>
-3. <span data-ttu-id="e4710-175">Miután a `project.json` fájl kerül, látni fogja, a függvény az alábbi példához hasonló kimenetet a streaming naplóban:</span><span class="sxs-lookup"><span data-stu-id="e4710-175">After the `project.json` file is added, you will see output similar to the following example in your function's streaming log:</span></span>
+### <a name="how-tooadd-a-projectjson-file-tooyour-azure-function"></a><span data-ttu-id="18277-170">Hogyan tooadd egy `project.json` tooyour Azure-függvény fájl</span><span class="sxs-lookup"><span data-stu-id="18277-170">How tooadd a `project.json` file tooyour Azure Function</span></span>
+1. <span data-ttu-id="18277-171">Először meggyőződött arról, hogy a függvény alkalmazás fut, amely el ellenőrzéséhez nyissa meg a függvény hello Azure-portálon.</span><span class="sxs-lookup"><span data-stu-id="18277-171">Begin by making sure your function app is running, which you can do by opening your function in hello Azure portal.</span></span> <span data-ttu-id="18277-172">Ez is hozzáférést toohello folyamatos átviteli naplók ahol csomag telepítési kimenet jelenik meg.</span><span class="sxs-lookup"><span data-stu-id="18277-172">This also gives access toohello streaming logs where package installation output will be displayed.</span></span>
+2. <span data-ttu-id="18277-173">tooupload egy `project.json` fájlt, az ismertetett hello módszerekkel [hogyan tooupdate működni az alkalmazás fájljai](functions-reference.md#fileupdate).</span><span class="sxs-lookup"><span data-stu-id="18277-173">tooupload a `project.json` file, use one of hello methods described in [how tooupdate function app files](functions-reference.md#fileupdate).</span></span> <span data-ttu-id="18277-174">Használata [folyamatos üzembe helyezés az Azure Functions](functions-continuous-deployment.md), hozzáadhat egy `project.json` rendelés tooexperiment vele, mielőtt hozzáadná tooyour telepítési fiókirodai ágát átmeneti tooyour fájlt.</span><span class="sxs-lookup"><span data-stu-id="18277-174">If you are using [Continuous Deployment for Azure Functions](functions-continuous-deployment.md), you can add a `project.json` file tooyour staging branch in order tooexperiment with it before adding it tooyour deployment branch.</span></span>
+3. <span data-ttu-id="18277-175">Hello után `project.json` fájl kerül, látni fogja, például a függvényben a következő kimeneti hasonló toohello tartozó streaming napló:</span><span class="sxs-lookup"><span data-stu-id="18277-175">After hello `project.json` file is added, you will see output similar toohello following example in your function's streaming log:</span></span>
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -231,8 +231,8 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 2016-04-04T19:02:57.455 Packages restored.
 ```
 
-## <a name="environment-variables"></a><span data-ttu-id="e4710-176">Környezeti változók</span><span class="sxs-lookup"><span data-stu-id="e4710-176">Environment variables</span></span>
-<span data-ttu-id="e4710-177">Egy környezeti változó vagy olyan alkalmazás, beállítás értékét, amelyet `System.Environment.GetEnvironmentVariable`, például:</span><span class="sxs-lookup"><span data-stu-id="e4710-177">To get an environment variable or an app setting value, use `System.Environment.GetEnvironmentVariable`, for example:</span></span>
+## <a name="environment-variables"></a><span data-ttu-id="18277-176">Környezeti változók</span><span class="sxs-lookup"><span data-stu-id="18277-176">Environment variables</span></span>
+<span data-ttu-id="18277-177">tooget egy környezeti változó vagy egy alkalmazás beállításérték, használjon `System.Environment.GetEnvironmentVariable`, például:</span><span class="sxs-lookup"><span data-stu-id="18277-177">tooget an environment variable or an app setting value, use `System.Environment.GetEnvironmentVariable`, for example:</span></span>
 
 ```fsharp
 open System.Environment
@@ -242,8 +242,8 @@ let Run(timer: TimerInfo, log: TraceWriter) =
     log.Info("Site = " + GetEnvironmentVariable("WEBSITE_SITE_NAME"))
 ```
 
-## <a name="reusing-fsx-code"></a><span data-ttu-id="e4710-178">Újbóli felhasználása .fsx kódot</span><span class="sxs-lookup"><span data-stu-id="e4710-178">Reusing .fsx code</span></span>
-<span data-ttu-id="e4710-179">A többi kódot használhatja `.fsx` a fájlok egy `#load` direktívát.</span><span class="sxs-lookup"><span data-stu-id="e4710-179">You can use code from other `.fsx` files by using a `#load` directive.</span></span> <span data-ttu-id="e4710-180">Példa:</span><span class="sxs-lookup"><span data-stu-id="e4710-180">For example:</span></span>
+## <a name="reusing-fsx-code"></a><span data-ttu-id="18277-178">Újbóli felhasználása .fsx kódot</span><span class="sxs-lookup"><span data-stu-id="18277-178">Reusing .fsx code</span></span>
+<span data-ttu-id="18277-179">A többi kódot használhatja `.fsx` a fájlok egy `#load` direktívát.</span><span class="sxs-lookup"><span data-stu-id="18277-179">You can use code from other `.fsx` files by using a `#load` directive.</span></span> <span data-ttu-id="18277-180">Példa:</span><span class="sxs-lookup"><span data-stu-id="18277-180">For example:</span></span>
 
 `run.fsx`
 
@@ -261,23 +261,23 @@ let mylog(log: TraceWriter, text: string) =
     log.Verbose(text);
 ```
 
-<span data-ttu-id="e4710-181">Elérési utak biztosít a `#load` helyéhez viszonyított irányelv vannak a `.fsx` fájlt.</span><span class="sxs-lookup"><span data-stu-id="e4710-181">Paths provides to the `#load` directive are relative to the location of your `.fsx` file.</span></span>
+<span data-ttu-id="18277-181">Elérési utak biztosít toohello `#load` irányelv relatív toohello helyét a `.fsx` fájlt.</span><span class="sxs-lookup"><span data-stu-id="18277-181">Paths provides toohello `#load` directive are relative toohello location of your `.fsx` file.</span></span>
 
-* <span data-ttu-id="e4710-182">`#load "logger.fsx"`a függvény mappában található fájl betöltése.</span><span class="sxs-lookup"><span data-stu-id="e4710-182">`#load "logger.fsx"` loads a file located in the function folder.</span></span>
-* <span data-ttu-id="e4710-183">`#load "package\logger.fsx"`található fájl betöltése a `package` mappája a függvény.</span><span class="sxs-lookup"><span data-stu-id="e4710-183">`#load "package\logger.fsx"` loads a file located in the `package` folder in the function folder.</span></span>
-* <span data-ttu-id="e4710-184">`#load "..\shared\mylogger.fsx"`található fájl betöltése a `shared` mappaként a funkciót, ez azt jelenti, hogy ugyanazon a szinten mappát közvetlenül a `wwwroot`.</span><span class="sxs-lookup"><span data-stu-id="e4710-184">`#load "..\shared\mylogger.fsx"` loads a file located in the `shared` folder at the same level as the function folder, that is, directly under `wwwroot`.</span></span>
+* <span data-ttu-id="18277-182">`#load "logger.fsx"`hello függvény mappában található fájl betöltése.</span><span class="sxs-lookup"><span data-stu-id="18277-182">`#load "logger.fsx"` loads a file located in hello function folder.</span></span>
+* <span data-ttu-id="18277-183">`#load "package\logger.fsx"`hello található fájl betöltése `package` hello függvény mappája.</span><span class="sxs-lookup"><span data-stu-id="18277-183">`#load "package\logger.fsx"` loads a file located in hello `package` folder in hello function folder.</span></span>
+* <span data-ttu-id="18277-184">`#load "..\shared\mylogger.fsx"`hello található fájl betöltése `shared` mappát a hello azonos szinten hello függvény mappaként Ez azt jelenti, hogy közvetlenül a `wwwroot`.</span><span class="sxs-lookup"><span data-stu-id="18277-184">`#load "..\shared\mylogger.fsx"` loads a file located in hello `shared` folder at hello same level as hello function folder, that is, directly under `wwwroot`.</span></span>
 
-<span data-ttu-id="e4710-185">A `#load` direktíva csak együttműködve `.fsx` (F # parancsfájl) fájlok, és nem a `.fs` fájlokat.</span><span class="sxs-lookup"><span data-stu-id="e4710-185">The `#load` directive only works with `.fsx` (F# script) files, and not with `.fs` files.</span></span>
+<span data-ttu-id="18277-185">Hello `#load` direktíva csak együttműködve `.fsx` (F # parancsfájl) fájlok, és nem a `.fs` fájlokat.</span><span class="sxs-lookup"><span data-stu-id="18277-185">hello `#load` directive only works with `.fsx` (F# script) files, and not with `.fs` files.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="e4710-186">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e4710-186">Next steps</span></span>
-<span data-ttu-id="e4710-187">További információkért lásd a következőket:</span><span class="sxs-lookup"><span data-stu-id="e4710-187">For more information, see the following resources:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="18277-186">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="18277-186">Next steps</span></span>
+<span data-ttu-id="18277-187">További információkért tekintse meg a következő erőforrások hello:</span><span class="sxs-lookup"><span data-stu-id="18277-187">For more information, see hello following resources:</span></span>
 
-* [<span data-ttu-id="e4710-188">F # útmutató</span><span class="sxs-lookup"><span data-stu-id="e4710-188">F# Guide</span></span>](/dotnet/articles/fsharp/index)
-* [<span data-ttu-id="e4710-189">Azure Functions – ajánlott eljárások</span><span class="sxs-lookup"><span data-stu-id="e4710-189">Best Practices for Azure Functions</span></span>](functions-best-practices.md)
-* [<span data-ttu-id="e4710-190">Az Azure Functions fejlesztői segédanyagai</span><span class="sxs-lookup"><span data-stu-id="e4710-190">Azure Functions developer reference</span></span>](functions-reference.md)
-* [<span data-ttu-id="e4710-191">Az Azure Functions C# fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="e4710-191">Azure Functions C# developer reference</span></span>](functions-reference-csharp.md)
-* [<span data-ttu-id="e4710-192">Az Azure Functions NodeJS fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="e4710-192">Azure Functions NodeJS developer reference</span></span>](functions-reference-node.md)
-* [<span data-ttu-id="e4710-193">Az Azure Functions eseményindítók és kötések</span><span class="sxs-lookup"><span data-stu-id="e4710-193">Azure Functions triggers and bindings</span></span>](functions-triggers-bindings.md)
-* [<span data-ttu-id="e4710-194">Az Azure Functions tesztelése</span><span class="sxs-lookup"><span data-stu-id="e4710-194">Azure Functions testing</span></span>](functions-test-a-function.md)
-* [<span data-ttu-id="e4710-195">Az Azure Functions méretezése</span><span class="sxs-lookup"><span data-stu-id="e4710-195">Azure Functions scaling</span></span>](functions-scale.md)
+* [<span data-ttu-id="18277-188">F # útmutató</span><span class="sxs-lookup"><span data-stu-id="18277-188">F# Guide</span></span>](/dotnet/articles/fsharp/index)
+* [<span data-ttu-id="18277-189">Azure Functions – ajánlott eljárások</span><span class="sxs-lookup"><span data-stu-id="18277-189">Best Practices for Azure Functions</span></span>](functions-best-practices.md)
+* [<span data-ttu-id="18277-190">Az Azure Functions fejlesztői segédanyagai</span><span class="sxs-lookup"><span data-stu-id="18277-190">Azure Functions developer reference</span></span>](functions-reference.md)
+* [<span data-ttu-id="18277-191">Az Azure Functions C# fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="18277-191">Azure Functions C# developer reference</span></span>](functions-reference-csharp.md)
+* [<span data-ttu-id="18277-192">Az Azure Functions NodeJS fejlesztői leírás</span><span class="sxs-lookup"><span data-stu-id="18277-192">Azure Functions NodeJS developer reference</span></span>](functions-reference-node.md)
+* [<span data-ttu-id="18277-193">Az Azure Functions eseményindítók és kötések</span><span class="sxs-lookup"><span data-stu-id="18277-193">Azure Functions triggers and bindings</span></span>](functions-triggers-bindings.md)
+* [<span data-ttu-id="18277-194">Az Azure Functions tesztelése</span><span class="sxs-lookup"><span data-stu-id="18277-194">Azure Functions testing</span></span>](functions-test-a-function.md)
+* [<span data-ttu-id="18277-195">Az Azure Functions méretezése</span><span class="sxs-lookup"><span data-stu-id="18277-195">Azure Functions scaling</span></span>](functions-scale.md)
 

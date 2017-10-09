@@ -1,6 +1,6 @@
 ---
-title: "Index létrehozása (.NET API – Azure Search) | Microsoft Docs"
-description: "Index létrehozása kódban Azure Search .NET SDK használatával."
+title: "AAA \"(.NET API - Azure Search) index létrehozása |} Microsoft dokumentumok\""
+description: "Index létrehozása kódban hello Azure Search .NET SDK használatával."
 services: search
 documentationcenter: 
 author: brjohnstmsft
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/22/2017
 ms.author: brjohnst
-ms.openlocfilehash: fac41903c3e5731d17f832ff58145fe74dfa29f1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7fa4030b8c3565bc02b1d6bb4426331657cf3a5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-search-index-using-the-net-sdk"></a>Azure Search-index létrehozása .NET SDK használatával
+# <a name="create-an-azure-search-index-using-hello-net-sdk"></a>Hozzon létre egy Azure Search-index hello .NET SDK használatával
 > [!div class="op_single_selector"]
 > * [Áttekintés](search-what-is-an-index.md)
 > * [Portál](search-create-index-portal.md)
@@ -30,34 +30,34 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Ez a cikk végigvezeti az Azure Search-[index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) [Azure Search .NET SDK](https://aka.ms/search-sdk) használatával történő létrehozásának folyamatán.
+Ez a cikk végigvezeti az Azure Search létrehozásának folyamatán hello [index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) hello segítségével [Azure Search .NET SDK](https://aka.ms/search-sdk).
 
 Már az útmutató követése és az index létrehozása előtt [létre kell hoznia egy Azure Search szolgáltatást](search-create-service-portal.md).
 
 > [!NOTE]
-> A cikkben szereplő összes példakód C# nyelven van megírva. A teljes forráskódot a [GitHub](http://aka.ms/search-dotnet-howto) webhelyén találja. Az [Azure Search .NET SDK](search-howto-dotnet-sdk.md) leírásában részletesebb útmutatást kaphat a példakóddal kapcsolatban.
+> A cikkben szereplő összes példakód C# nyelven van megírva. Hello teljes forráskód található [a Githubon](http://aka.ms/search-dotnet-howto). Hello is olvashat [Azure Search .NET SDK](search-howto-dotnet-sdk.md) egy részletesebb lépésein végighaladva hello mintakódot az.
 
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>Azonosítsa az Azure Search szolgáltatás rendszergazdai API-kulcsát
-Most, hogy létrehozta az Azure Search szolgáltatást, csaknem készen áll arra, hogy a .NET SDK használatával kérelmeket bocsásson ki a szolgáltatásvégponton. Először meg kell szereznie a létrehozott keresőszolgáltatáshoz generált adminisztrációs API-kulcsok egyikét. A .NET SDK minden kérelemnél elküldi ezt az API-kulcsot a szolgáltatásának. Érvényes kulcs birtokában kérelmenként létesíthető megbízhatósági kapcsolat a kérést küldő alkalmazás és az azt kezelő szolgáltatás között.
+Most, hogy létrehozta az Azure Search szolgáltatást, csaknem készen áll tooissue kérelmek a szolgáltatásvégponton hello .NET SDK használatával. Először szüksége lesz egy hello adminisztrációs api-kulcsok lett létrehozva, tooobtain hello keresőszolgáltatáshoz. hello .NET SDK minden kérelem tooyour szolgáltatás elküld az api-kulcsot. Érvényes kulcs birtokában létesít megbízhatósági, egy kérelem alapon hello küldő hello kérelem és a kezelő hello szolgáltatás között.
 
-1. A szolgáltatás API-kulcsainak megkereséséhez jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
-2. Nyissa meg az Azure Search szolgáltatáspaneljét
-3. Kattintson a „Kulcsok” ikonra
+1. toofind a szolgáltatás api-kulcsokat, jelentkezzen be a toohello [Azure-portálon](https://portal.azure.com/)
+2. Nyissa meg tooyour Azure Search szolgáltatás paneljét
+3. Kattintson a hello "Kulcsok" ikonra
 
 A szolgáltatás *rendszergazdai kulcsokkal* és *lekérdezési kulcsokkal* fog rendelkezni.
 
-* Az elsődleges és másodlagos *rendszergazdai kulcsok* teljes jogosultságot biztosítanak az összes művelethez, beleértve a szolgáltatás felügyeletének, valamint az indexek, indexelők és adatforrások létrehozásának és törlésének képességét. Két kulcs létezi, tehát ha az elsődleges kulcs újbóli létrehozása mellett dönt, a másodlagos kulcsot továbbra is használhatja (ez fordítva is igaz).
-* A *lekérdezési kulcsok* csak olvasási hozzáférést biztosítanak az indexekhez és dokumentumokhoz, és általában a keresési kérelmeket kibocsátó ügyfélalkalmazások kapják meg őket.
+* Az elsődleges és másodlagos *adminisztrációs kulcsok* teljes körű tooall műveleteket, köztük a hello képességét toomanage hello szolgáltatást biztosítania hozzon létre, és törölje az indexek, az indexelők és az adatforrások. Két kulcs van, hogy a Folytatás toouse hello másodlagos kulcsát. Ha úgy dönt, hogy tooregenerate hello elsődleges kulcs, és fordítva.
+* A *lekérdezési kulcsok* adjon olvasási hozzáférést tooindexes és a dokumentumok és keresési kérelmeket kibocsátó általában elosztott tooclient alkalmazások.
 
-Index létrehozása céljából az elsődleges és a másodlagos adminisztrációs kulcsot is használhatja.
+Index létrehozása hello célokra is használhatja az elsődleges vagy másodlagos adminisztrátori kulcsot.
 
 <a name="CreateSearchServiceClient"></a>
 
-## <a name="create-an-instance-of-the-searchserviceclient-class"></a>A SearchServiceClient osztály példányának létrehozása
-Az Azure Search .NET SDK használatához létre kell hoznia a `SearchServiceClient` osztály egy példányát. Ez az osztály több konstruktorral rendelkezik. Az, amelyiket Ön szeretne, a keresőszolgáltatása nevét és egy `SearchCredentials` objektumot használ paraméterként. A `SearchCredentials` becsomagolja az API-kulcsot.
+## <a name="create-an-instance-of-hello-searchserviceclient-class"></a>Hello SearchServiceClient osztály példányának létrehozása
+Azure Search .NET SDK használatával toostart hello, szüksége lesz a toocreate hello példányának `SearchServiceClient` osztály. Ez az osztály több konstruktorral rendelkezik. hello kívánt veszi a keresőszolgáltatása nevét és egy `SearchCredentials` objektumot használ paraméterként. A `SearchCredentials` becsomagolja az API-kulcsot.
 
-Az alábbi kód egy új `SearchServiceClient`-példányt hoz létre a keresőszolgáltatás nevének, valamint az API-kulcsnak az alkalmazás konfigurációs fájljában (a [mintaalkalmazás](http://aka.ms/search-dotnet-howto) esetében az `appsettings.json` fájlban) tárolt értékének a felhasználásával:
+az alábbi hello kód létrehoz egy új `SearchServiceClient` hello keresőszolgáltatás nevének, valamint hello alkalmazás konfigurációs fájljában tárolt api-kulcs értékeket használja (`appsettings.json` hello hello esetében [mintaalkalmazás](http://aka.ms/search-dotnet-howto)):
 
 ```csharp
 private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot configuration)
@@ -70,29 +70,29 @@ private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot 
 }
 ```
 
-`SearchServiceClient` `Indexes`tulajdonsággal rendelkezik. Ez a tulajdonság az Azure Search-indexek létrehozásához, listázásához, frissítéséhez vagy törléséhez szükséges összes módszert biztosítja.
+`SearchServiceClient``Indexes`tulajdonsággal rendelkezik. Ez a tulajdonság kell toocreate, a listában, a frissítés, vagy törölje az Azure Search-indexek összes hello módszert biztosít.
 
 > [!NOTE]
-> A `SearchServiceClient` osztály kezeli a keresőszolgáltatása kapcsolatait. A túl sok kapcsolat megnyitásának elkerülése érdekében, ha lehetséges, próbálja meg a `SearchServiceClient` egyetlen példányát megosztani az alkalmazásban. A módszerei szálbiztosak az ilyen megosztás engedélyezéséhez.
+> Hello `SearchServiceClient` osztály kapcsolatok tooyour keresési szolgáltatás kezeli. A sorrend tooavoid túl sok kapcsolat megnyitásának, meg kell tooshare egyetlen példányát `SearchServiceClient` lehetőleg az alkalmazásban. A módszerek ilyen megosztás szálbiztos tooenable vannak.
 > 
 > 
 
 <a name="DefineIndex"></a>
 
 ## <a name="define-your-azure-search-index"></a>Az Azure Search-index meghatározása
-A `Indexes.Create` módszer egyetlen meghívása létrehozza az indexet. Ez a módszer egy `Index` objektumot használ paraméterként, amely meghatározza az Azure Search-indexet. Létre kell hoznia és inicializálnia kell egy `Index` objektumot az alábbiak szerint:
+A hívást toohello `Indexes.Create` metódus létrehozza az indexet. Ez a módszer egy `Index` objektumot használ paraméterként, amely meghatározza az Azure Search-indexet. Toocreate van szüksége egy `Index` objektumra, és inicializálja az alábbiak szerint:
 
-1. Állítsa be az `Index` objektum `Name` tulajdonságát az index nevének.
-2. Állítsa be az `Index` objektum `Fields` tulajdonságát a `Field` objektumok tömbjének. A `Field` objektumok létrehozásának legegyszerűbb módja az, ha meghívja a `FieldBuilder.BuildForType` metódust, és a típus paraméternél egy modellosztályt ad meg. A modellosztály olyan tulajdonságokkal rendelkezik, amelyek az index mezőire mutatnak. Ez lehetővé teszi a keresési indexben található dokumentumok modellosztály-példányokhoz kötését is.
+1. Set hello `Name` hello tulajdonságának `Index` toohello objektumnév az index.
+2. Set hello `Fields` hello tulajdonságának `Index` objektum tooan tömbje `Field` objektumok. hello legegyszerűbb módja toocreate hello `Field` objektumok hívó hello szerint van `FieldBuilder.BuildForType` módszer, átadja egy modellosztállyal hello típusú paraméter. A modell osztály tulajdonságai toohello mezők az index. Ez lehetővé teszi a keresési index tooinstances a modell osztály toobind dokumentumok.
 
 > [!NOTE]
-> Ha nem tervez modellosztályt használni, közvetlenül `Field` objektumok létrehozásával is meghatározhatja az indexet. A konstruktornak megadhatja a mező nevét és az adattípust (vagy karakterláncmezők esetében az elemzőnek). Más tulajdonságokat is beállíthat, például: `IsSearchable`, `IsFilterable` stb.
+> Ha nem tervezi toouse egy modellosztállyal, továbbra is megadhat az index létrehozásával `Field` közvetlenül objektumokat. Megadhatja, hogy hello neve hello mező toohello konstruktor, hello adattípust (vagy karakterláncmezők esetében az elemzőnek) együtt. Más tulajdonságokat is beállíthat, például: `IsSearchable`, `IsFilterable` stb.
 >
 >
 
-Fontos, hogy az index megtervezésekor a felhasználóként szerzett keresési tapasztalatának és üzleti igényeinek szem előtt tartásával járjon el, és az egyes mezőkhöz a [megfelelő tulajdonságokat](https://docs.microsoft.com/rest/api/searchservice/Create-Index) rendelje. Ezek a tulajdonságok határozzák meg, hogy melyik mezőkre melyik keresési funkciók (szűrés, értékkorlátozás, rendezés, teljes szöveges keresés stb.) vonatkoznak. Azon tulajdonságok esetében, amelyeket külön nem állított be, a `Field` osztály alapértelmezés szerint letiltja a megfelelő keresési funkciót, kivéve, ha Ön kifejezetten engedélyezi.
+Fontos, hogy a keresés felhasználói élményt és az üzleti igényeket figyelembe venni az index tervezésekor, mivel minden egyes mezőt hozzá kell rendelni hello [megfelelő attribútumokhoz](https://docs.microsoft.com/rest/api/searchservice/Create-Index). Ezek a tulajdonságok határozzák melyik keresési funkciók (szűrés, értékkorlátozás, rendezés, teljes szöveges keresés stb.) alkalmazni toowhich mezőket. Bármely tulajdonság nincs explicit módon megadva, hello `Field` osztály alapértelmezés szerint toodisabling hello megfelelő keresési funkciót, kivéve, ha kifejezetten engedélyezi.
 
-A fenti példában az indexnek a „hotels” nevet adtuk, és a mezőket egy modellosztály segítségével definiáltuk. A modellosztály minden tulajdonsága olyan attribútumokkal rendelkezik, amelyek meghatározzák a vonatkozó indexmező kereséssel kapcsolatos viselkedéseit. A modellosztály meghatározása a következőképpen történik:
+A fenti példában az indexnek a „hotels” nevet adtuk, és a mezőket egy modellosztály segítségével definiáltuk. Minden egyes hello modellosztállyal tulajdonságnak hello hello megfelelő mezőjét keresési kapcsolatos viselkedését meghatározó attribútumok. hello modellosztállyal a következők:
 
 ```csharp
 using System;
@@ -101,9 +101,9 @@ using Microsoft.Azure.Search.Models;
 using Microsoft.Spatial;
 using Newtonsoft.Json;
 
-// The SerializePropertyNamesAsCamelCase attribute is defined in the Azure Search .NET SDK.
-// It ensures that Pascal-case property names in the model class are mapped to camel-case
-// field names in the index.
+// hello SerializePropertyNamesAsCamelCase attribute is defined in hello Azure Search .NET SDK.
+// It ensures that Pascal-case property names in hello model class are mapped toocamel-case
+// field names in hello index.
 [SerializePropertyNamesAsCamelCase]
 public partial class Hotel
 {
@@ -148,14 +148,14 @@ public partial class Hotel
 }
 ```
 
-Minden tulajdonság esetében annak alapján választottuk ki az attribútumokat, ahogyan szerintünk az alkalmazások használni fogják őket. Valószínű például, hogy a hotelekre kereső felhasználókat érdekelhetik majd a `description` mezőben megadott kulcsszavak, így erre a mezőre vonatkozóan engedélyeztük a teljes szöveges keresést úgy, hogy a `Description` tulajdonsághoz hozzáadtuk az `IsSearchable` attribútumot.
+Hello az attribútumoknak ahogyan szerintünk használni fogják őket egy alkalmazásban alapján választottuk ki. Például, akkor valószínű, hogy a szállodákat kereső személyeket érdekelni fogják kulcsszóra kapott találatok hello `description` mezőt, így engedélyezzük a teljes szöveges keresés mező hello hozzáadásával `IsSearchable` toohello attribútum `Description` tulajdonság.
 
-Vegye figyelembe, hogy az indexben csak egy `string` típusú mező lehet kijelölve *kulcsmezőként* a `Key` attribútum hozzáadásával (lásd a fenti példában: `HotelId`).
+Vegye figyelembe, hogy pontosan egy mezőt az indexben típusú `string` hello kijelölt hello *kulcs* mező hello hozzáadásával `Key` attribútum (lásd: `HotelId` a fenti példa hello).
 
-A fenti indexdefiníció egy nyelvi elemzőt használ a `description_fr` mező esetében, mivel annak francia nyelvű szöveget kell tartalmaznia. A nyelvi elemzőkkel kapcsolatos további információkért lásd a [Nyelvi támogatás című témakört](https://docs.microsoft.com/rest/api/searchservice/Language-support), valamint a vonatkozó [blogbejegyzést](https://azure.microsoft.com/blog/language-support-in-azure-search/).
+a fenti hello Indexdefiníció nyelvi elemzőt használ a hello `description_fr` mezőben, mert az adott toostore francia szöveg. Lásd: [hello nyelvi támogatás című](https://docs.microsoft.com/rest/api/searchservice/Language-support) valamint hello vonatkozó [blogbejegyzés](https://azure.microsoft.com/blog/language-support-in-azure-search/) nyelvi elemzőkkel kapcsolatos további információk.
 
 > [!NOTE]
-> Alapértelmezés szerint az index minden mezőjének neve megegyezik a modellosztály megfelelő tulajdonságainak a nevével. Ha minden tulajdonságnevet szóközök nélküli, nagybetűs szavakat (CamelCase) tartalmazó mezőnevekhez szeretne hozzárendelni, akkor jelölje meg az osztályt a `SerializePropertyNamesAsCamelCase` attribútummal. Ha másik névhez szeretné őket hozzárendelni, akkor a fenti `DescriptionFr` tulajdonsághoz hasonlóan a `JsonProperty` attribútumot is használhatja. A `JsonProperty` attribútum előnyt élvez a `SerializePropertyNamesAsCamelCase` attribútummal szemben.
+> Alapértelmezés szerint a modell osztály egyes tulajdonságai hello neve hello megfelelő mező hello index hello neve lesz. Ha toomap összes tulajdonság nevek toocamel eset mező nevét, jelölje meg a hello hello osztályt `SerializePropertyNamesAsCamelCase` attribútum. Ha azt szeretné, hogy toomap tooa másik nevet, használhatja a hello `JsonProperty` attribútum például hello `DescriptionFr` fenti tulajdonság. Hello `JsonProperty` attribútum elsőbbséget élvez hello `SerializePropertyNamesAsCamelCase` attribútum.
 > 
 > 
 
@@ -169,26 +169,26 @@ var definition = new Index()
 };
 ```
 
-## <a name="create-the-index"></a>Az index létrehozása
-Most, hogy már rendelkezik egy inicializált `Index` objektummal, a `SearchServiceClient` objektumon lévő `Indexes.Create` meghívásával egyszerűen létrehozhatja az indexet:
+## <a name="create-hello-index"></a>Hello index létrehozása
+Most, hogy már rendelkezik egy inicializált `Index` objektum meghívásával egyszerűen létrehozhat hello index `Indexes.Create` a a `SearchServiceClient` objektum:
 
 ```csharp
 serviceClient.Indexes.Create(definition);
 ```
 
-Sikeres kérelem esetén a módszer normálisan tér vissza. Ha probléma merül fel, például érvénytelen egy paraméter, a módszer a `CloudException` kivételt fogja kijelezni.
+A kérelem sikeres hello módszer általában visszaadható. Például érvénytelen egy paraméter hello kérelemmel probléma merül fel, ha hello metódus kivételhibát `CloudException`.
 
-Miután létrehozta az indexet, és törölni szeretné, csak hívja meg a `SearchServiceClient` objektumon lévő `Indexes.Delete` módszert. A „hotels” nevű index például a következőképpen törölhető:
+Amikor végzett az index és a kívánt toodelete azt, csak hívja hello `Indexes.Delete` metódust a `SearchServiceClient`. Ez az például hello "Hotels nevű" index következőképpen törölhető:
 
 ```csharp
 serviceClient.Indexes.Delete("hotels");
 ```
 
 > [!NOTE]
-> Ebben a cikkben a példakód az egyszerűség érdekében az Azure Search .NET SDK szinkron módszereit használja. Azt javasoljuk, hogy a méretezhetőség és a gyors válaszadás érdekében használja saját alkalmazásaiban az aszinkron módszereket. Például a fenti esetekben használhatja a `CreateAsync` és a `DeleteAsync` módszert a `Create` és a `Delete` helyett.
+> hello példakódot ebben a cikkben az egyszerűség kedvéért hello hello Azure Search .NET SDK szinkron módszereit használja. Javasoljuk, hogy a saját alkalmazások tookeep hello aszinkron metódusok használja őket a méretezhető és rugalmas. Például a hello példák fent akkor használhat, `CreateAsync` és `DeleteAsync` helyett `Create` és `Delete`.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure Search-index létrehozása után készen áll arra, hogy [feltöltse a tartalmát az indexbe](search-what-is-data-import.md), és megkezdje az adatok keresését.
+Miután létrehozta az Azure Search-index, lehetővé válik túl[feltöltse a tartalmát hello indexbe](search-what-is-data-import.md) , és megkezdje az adatok keresését.
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure AD v2 iOS Getting Started - használata |} Microsoft Docs"
+title: "aaaAzure AD v2 iOS Getting Started - használata |} Microsoft Docs"
 description: "Hogyan iOS (Swift) alkalmazások Azure Active Directory-v2 végpontja hozzáférési jogkivonatok igénylő API meghívása"
 services: active-directory
 documentationcenter: dev-center-name
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 2ac1117a31a101705539a1f75520ce8de43809a2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 22e67850e2e0b14b6d68815d8f23e18ce2e878ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="use-the-microsoft-authentication-library-msal-to-get-a-token-for-the-microsoft-graph-api"></a><span data-ttu-id="d9522-103">A Microsoft hitelesítési könyvtár (MSAL) segítségével szolgáltatáshitelesítést egy token a Microsoft Graph API-hoz.</span><span class="sxs-lookup"><span data-stu-id="d9522-103">Use the Microsoft Authentication Library (MSAL) to get a token for the Microsoft Graph API</span></span>
+## <a name="use-hello-microsoft-authentication-library-msal-tooget-a-token-for-hello-microsoft-graph-api"></a><span data-ttu-id="07156-103">Hello Microsoft hitelesítési könyvtár (MSAL) tooget jogkivonat használata hello Microsoft Graph API-val</span><span class="sxs-lookup"><span data-stu-id="07156-103">Use hello Microsoft Authentication Library (MSAL) tooget a token for hello Microsoft Graph API</span></span>
 
-<span data-ttu-id="d9522-104">Nyissa meg `ViewController.swift` , és cserélje le a kódot:</span><span class="sxs-lookup"><span data-stu-id="d9522-104">Open `ViewController.swift` and replace the code with:</span></span>
+<span data-ttu-id="07156-104">Nyissa meg `ViewController.swift` , és cserélje le a hello kódot:</span><span class="sxs-lookup"><span data-stu-id="07156-104">Open `ViewController.swift` and replace hello code with:</span></span>
 
 ```swift
 import UIKit
@@ -42,16 +42,16 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
     @IBOutlet weak var loggingText: UITextView!
     @IBOutlet weak var signoutButton: UIButton!
 
-     // This button will invoke the call to the Microsoft Graph API. It uses the
-     // built in Swift libraries to create a connection.
+     // This button will invoke hello call toohello Microsoft Graph API. It uses the
+     // built in Swift libraries toocreate a connection.
     
     @IBAction func callGraphButton(_ sender: UIButton) {
         
         
         do {
             
-            // We check to see if we have a current logged in user. If we don't, then we need to sign someone in.
-            // We throw an interactionRequired so that we trigger the interactive signin.
+            // We check toosee if we have a current logged in user. If we don't, then we need toosign someone in.
+            // We throw an interactionRequired so that we trigger hello interactive signin.
             
             if  try self.applicationContext.users().isEmpty {
                 throw NSError.init(domain: "MSALErrorDomain", code: MSALErrorCode.interactionRequired.rawValue, userInfo: nil)
@@ -77,8 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             }
         }  catch let error as NSError {
             
-            // interactionRequired means we need to ask the user to sign-in. This usually happens
-            // when the user's Refresh Token is expired or if the user has changed their password
+            // interactionRequired means we need tooask hello user toosign-in. This usually happens
+            // when hello user's Refresh Token is expired or if hello user has changed their password
             // among other possible reasons.
             
             if error.code == MSALErrorCode.interactionRequired.rawValue {
@@ -99,9 +99,9 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
             
         } catch {
             
-            // This is the catch all error.
+            // This is hello catch all error.
             
-            self.loggingText.text = "Unable to acquire token. Got error: \(error)"
+            self.loggingText.text = "Unable tooacquire token. Got error: \(error)"
             
         }
     }
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
              // Initialize a MSALPublicClientApplication with a given clientID and authority
             self.applicationContext = try MSALPublicClientApplication.init(clientId: kClientID, authority: kAuthority)
         } catch {
-            self.loggingText.text = "Unable to create Application Context. Error: \(error)"
+            self.loggingText.text = "Unable toocreate Application Context. Error: \(error)"
         }
     }
 
@@ -133,35 +133,35 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
 ```
 
 <!--start-collapse-->
-### <a name="more-information"></a><span data-ttu-id="d9522-105">További információ</span><span class="sxs-lookup"><span data-stu-id="d9522-105">More Information</span></span>
-#### <a name="getting-a-user-token-interactively"></a><span data-ttu-id="d9522-106">A felhasználói token első interaktív módon</span><span class="sxs-lookup"><span data-stu-id="d9522-106">Getting a user token interactively</span></span>
-<span data-ttu-id="d9522-107">Hívja a `acquireToken` módszer eredményezi egy böngészőablakban, jelentkezzen be a felhasználótól.</span><span class="sxs-lookup"><span data-stu-id="d9522-107">Calling the `acquireToken` method results in a browser window prompting the user to sign in.</span></span> <span data-ttu-id="d9522-108">Az alkalmazásoknak általában egy felhasználó a védett erőforrások eléréséhez szükséges először interaktív bejelentkezéshez, vagy ha egy figyelő művelet szerezzen be egy tokent sikertelen (pl. a jelszó lejárt).</span><span class="sxs-lookup"><span data-stu-id="d9522-108">Applications usually require a user to sign in interactively the first time they need to access a protected resource, or when a silent operation to acquire a token fails (e.g. the user’s password expired).</span></span>
+### <a name="more-information"></a><span data-ttu-id="07156-105">További információ</span><span class="sxs-lookup"><span data-stu-id="07156-105">More Information</span></span>
+#### <a name="getting-a-user-token-interactively"></a><span data-ttu-id="07156-106">A felhasználói token első interaktív módon</span><span class="sxs-lookup"><span data-stu-id="07156-106">Getting a user token interactively</span></span>
+<span data-ttu-id="07156-107">Hívása hello `acquireToken` egy böngésző ablak arra kéri a módszer eredményezi a felhasználó toosign hello.</span><span class="sxs-lookup"><span data-stu-id="07156-107">Calling hello `acquireToken` method results in a browser window prompting hello user toosign in.</span></span> <span data-ttu-id="07156-108">Alkalmazások általában egy felhasználó toosign az interaktív hello tooaccess van szükségük, amikor első alkalommal védett erőforrás, vagy sikertelen, ha egy figyelő művelet tooacquire jogkivonat (pl. hello jelszó lejárt).</span><span class="sxs-lookup"><span data-stu-id="07156-108">Applications usually require a user toosign in interactively hello first time they need tooaccess a protected resource, or when a silent operation tooacquire a token fails (e.g. hello user’s password expired).</span></span>
 
-#### <a name="getting-a-user-token-silently"></a><span data-ttu-id="d9522-109">A felhasználói token első beavatkozás nélkül</span><span class="sxs-lookup"><span data-stu-id="d9522-109">Getting a user token silently</span></span>
-<span data-ttu-id="d9522-110">A `acquireTokenSilent` metódus kezeli a token kérése és -megújítás felhasználói beavatkozás nélkül.</span><span class="sxs-lookup"><span data-stu-id="d9522-110">The `acquireTokenSilent` method handles token acquisitions and renewal without any user interaction.</span></span> <span data-ttu-id="d9522-111">Miután `acquireToken` végrehajtása az első alkalommal `acquireTokenSilent` az beszerzése a jogkivonatokat, mivel kérelmezése vagy megújítása jogkivonatok hívásainak beavatkozás nélkül történik a további hívások - védett erőforrások eléréséhez használt általánosan használt módszer.</span><span class="sxs-lookup"><span data-stu-id="d9522-111">After `acquireToken` is executed for the first time, `acquireTokenSilent` is the method commonly used to obtain tokens used to access protected resources for subsequent calls - as calls to request or renew tokens are made silently.</span></span>
+#### <a name="getting-a-user-token-silently"></a><span data-ttu-id="07156-109">A felhasználói token első beavatkozás nélkül</span><span class="sxs-lookup"><span data-stu-id="07156-109">Getting a user token silently</span></span>
+<span data-ttu-id="07156-110">Hello `acquireTokenSilent` metódus kezeli a token kérése és -megújítás felhasználói beavatkozás nélkül.</span><span class="sxs-lookup"><span data-stu-id="07156-110">hello `acquireTokenSilent` method handles token acquisitions and renewal without any user interaction.</span></span> <span data-ttu-id="07156-111">Után `acquireToken` hajtanak végre hello első alkalommal `acquireTokenSilent` hello általánosan használt módszer tooobtain használt a jogkivonatokat tooaccess későbbi hívások - erőforrások védelmét szolgálja hívások toorequest vagy megújítása jogkivonatok beavatkozás nélkül történik.</span><span class="sxs-lookup"><span data-stu-id="07156-111">After `acquireToken` is executed for hello first time, `acquireTokenSilent` is hello method commonly used tooobtain tokens used tooaccess protected resources for subsequent calls - as calls toorequest or renew tokens are made silently.</span></span>
 
-<span data-ttu-id="d9522-112">Végül `acquireTokenSilent` sikertelen lesz, – például a felhasználó rendelkezik-e kijelentkezteti, vagy egy másik eszközön a jelszó megváltozott.</span><span class="sxs-lookup"><span data-stu-id="d9522-112">Eventually, `acquireTokenSilent` will fail – e.g. the user has signed out, or has changed their password on another device.</span></span> <span data-ttu-id="d9522-113">Amikor MSAL azt észleli, hogy a probléma megoldásához érdemes egy interaktív műveletet igénylő, akkor következik be egy `MSALErrorCode.interactionRequired` kivétel.</span><span class="sxs-lookup"><span data-stu-id="d9522-113">When MSAL detects that the issue can be resolved by requiring an interactive action, it fires an `MSALErrorCode.interactionRequired` exception.</span></span> <span data-ttu-id="d9522-114">Az alkalmazás kezeli ezt a kivételt, két módon:</span><span class="sxs-lookup"><span data-stu-id="d9522-114">Your application can handle this exception in two ways:</span></span>
+<span data-ttu-id="07156-112">Végül `acquireTokenSilent` sikertelen lesz, – pl. hello felhasználó rendelkezik-e kijelentkezteti, vagy egy másik eszközön a jelszó megváltozott.</span><span class="sxs-lookup"><span data-stu-id="07156-112">Eventually, `acquireTokenSilent` will fail – e.g. hello user has signed out, or has changed their password on another device.</span></span> <span data-ttu-id="07156-113">Amikor MSAL azt észleli, hogy hello probléma oldható meg azzal, hogy egy interaktív műveletet, akkor következik be egy `MSALErrorCode.interactionRequired` kivétel.</span><span class="sxs-lookup"><span data-stu-id="07156-113">When MSAL detects that hello issue can be resolved by requiring an interactive action, it fires an `MSALErrorCode.interactionRequired` exception.</span></span> <span data-ttu-id="07156-114">Az alkalmazás kezeli ezt a kivételt, két módon:</span><span class="sxs-lookup"><span data-stu-id="07156-114">Your application can handle this exception in two ways:</span></span>
 
-1.  <span data-ttu-id="d9522-115">Hívás elleni `acquireToken` azonnal, ennek eredményeképpen a felhasználótól a bejelentkezéshez.</span><span class="sxs-lookup"><span data-stu-id="d9522-115">Make a call against `acquireToken` immediately, which results in prompting the user to sign in.</span></span> <span data-ttu-id="d9522-116">Ebben a mintában általában az online alkalmazások használják, ha nincs kapcsolat nélküli tartalom az alkalmazásban a felhasználó számára elérhető.</span><span class="sxs-lookup"><span data-stu-id="d9522-116">This pattern is usually used in online applications where there is no offline content in the application available for the user.</span></span> <span data-ttu-id="d9522-117">A mintaalkalmazás az interaktív telepítő által létrehozott használja ezt a mintát: tekintheti meg a kérelem végrehajtása az első művelet időben.</span><span class="sxs-lookup"><span data-stu-id="d9522-117">The sample application generated by this guided setup uses this pattern: you can see it in action the first time you execute the application.</span></span> <span data-ttu-id="d9522-118">Mivel a felhasználó nem használta az alkalmazás `applicationContext.users().first` fogja tartalmazni null értékű, és egy ` MSALErrorCode.interactionRequired ` kivételt fog jelezni.</span><span class="sxs-lookup"><span data-stu-id="d9522-118">Because no user ever used the application, `applicationContext.users().first` will contain a null value, and an ` MSALErrorCode.interactionRequired ` exception will be thrown.</span></span> <span data-ttu-id="d9522-119">A kód a minta majd kezeli a kivételt meghívásával `acquireToken` eredményezve jelentkezzen be a felhasználótól.</span><span class="sxs-lookup"><span data-stu-id="d9522-119">The code in the sample then handles the exception by calling `acquireToken` resulting in prompting the user to sign in.</span></span>
+1.  <span data-ttu-id="07156-115">Hívás elleni `acquireToken` azonnal, mely eredmények arra kéri a hello a felhasználó toosign.</span><span class="sxs-lookup"><span data-stu-id="07156-115">Make a call against `acquireToken` immediately, which results in prompting hello user toosign in.</span></span> <span data-ttu-id="07156-116">Ebben a mintában általában az online alkalmazások használják, ha nincs kapcsolat nélküli tartalom hello alkalmazásban hello felhasználó számára elérhető.</span><span class="sxs-lookup"><span data-stu-id="07156-116">This pattern is usually used in online applications where there is no offline content in hello application available for hello user.</span></span> <span data-ttu-id="07156-117">az interaktív telepítő által létrehozott hello mintaalkalmazás használja ezt a mintát: tekintheti meg a művelet hello hello alkalmazás végrehajtása első alkalommal.</span><span class="sxs-lookup"><span data-stu-id="07156-117">hello sample application generated by this guided setup uses this pattern: you can see it in action hello first time you execute hello application.</span></span> <span data-ttu-id="07156-118">Felhasználó nem használta a hello alkalmazást, mert `applicationContext.users().first` fogja tartalmazni null értékű, és egy ` MSALErrorCode.interactionRequired ` kivételt fog jelezni.</span><span class="sxs-lookup"><span data-stu-id="07156-118">Because no user ever used hello application, `applicationContext.users().first` will contain a null value, and an ` MSALErrorCode.interactionRequired ` exception will be thrown.</span></span> <span data-ttu-id="07156-119">hello hello mintában kód, majd leírók kivétel hello meghívásával `acquireToken` hello felhasználói toosign a kérdés eredményez.</span><span class="sxs-lookup"><span data-stu-id="07156-119">hello code in hello sample then handles hello exception by calling `acquireToken` resulting in prompting hello user toosign in.</span></span>
 
-2.  <span data-ttu-id="d9522-120">Alkalmazások is végezhet egy visual arra utal, hogy a felhasználót, hogy egy interaktív bejelentkezés szükség, hogy a felhasználó kiválaszthatja a megfelelő időben való bejelentkezéshez, vagy az alkalmazás újra `acquireTokenSilent` egy későbbi időpontban.</span><span class="sxs-lookup"><span data-stu-id="d9522-120">Applications can also make a visual indication to the user that an interactive sign-in is required, so the user can select the right time to sign in, or the application can retry `acquireTokenSilent` at a later time.</span></span> <span data-ttu-id="d9522-121">Ez általában akkor használatos, amikor a felhasználó éppen megszakad nélkül tudja használni az alkalmazás egyéb funkciók – például nincs offline tartalma elérhető az alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="d9522-121">This is usually used when the user can use other functionality of the application without being disrupted - for example, there is offline content available in the application.</span></span> <span data-ttu-id="d9522-122">Ebben az esetben a felhasználó eldöntheti, ha szeretne jelentkezzen be a védett erőforrások eléréséhez, vagy frissítse a elavult adatait, vagy eldöntheti, hogy az alkalmazást, majd ismételje meg `acquireTokenSilent` amikor hálózati átmenetileg nem érhető el állapota után állítják vissza.</span><span class="sxs-lookup"><span data-stu-id="d9522-122">In this case, the user can decide when they want to sign in to access the protected resource, or to refresh the outdated information, or your application can decide to retry `acquireTokenSilent` when network is restored after being unavailable temporarily.</span></span>
+2.  <span data-ttu-id="07156-120">Alkalmazások is készíthet, amelyek egy interaktív bejelentkezés szükség, hogy hello felhasználó kiválaszthatja a hello megfelelő időben toosign, vagy megpróbálhatja hello alkalmazás jelzést toohello felhasználó `acquireTokenSilent` egy későbbi időpontban.</span><span class="sxs-lookup"><span data-stu-id="07156-120">Applications can also make a visual indication toohello user that an interactive sign-in is required, so hello user can select hello right time toosign in, or hello application can retry `acquireTokenSilent` at a later time.</span></span> <span data-ttu-id="07156-121">Ez általában akkor használatos, amikor hello felhasználói alatt megszakad nélkül tudja használni hello alkalmazás vonatkozó egyéb funkciók – például érhető el kapcsolat nélküli tartalmat hello alkalmazásban.</span><span class="sxs-lookup"><span data-stu-id="07156-121">This is usually used when hello user can use other functionality of hello application without being disrupted - for example, there is offline content available in hello application.</span></span> <span data-ttu-id="07156-122">Ebben az esetben hello felhasználói dönthet, ha szeretnék toosign tooaccess hello védett erőforrás, vagy toorefresh hello elavult információkat vagy eldöntheti, hogy az alkalmazás tooretry `acquireTokenSilent` amikor hálózati átmenetileg nem érhető el állapota után állítják vissza.</span><span class="sxs-lookup"><span data-stu-id="07156-122">In this case, hello user can decide when they want toosign in tooaccess hello protected resource, or toorefresh hello outdated information, or your application can decide tooretry `acquireTokenSilent` when network is restored after being unavailable temporarily.</span></span>
 
 <!--end-collapse-->
 
-## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a><span data-ttu-id="d9522-123">A Microsoft Graph API használatával csak megszerzett jogkivonattal hívható</span><span class="sxs-lookup"><span data-stu-id="d9522-123">Call the Microsoft Graph API using the token you just obtained</span></span>
+## <a name="call-hello-microsoft-graph-api-using-hello-token-you-just-obtained"></a><span data-ttu-id="07156-123">Csak kapott hello tokent hello Microsoft Graph API hívása</span><span class="sxs-lookup"><span data-stu-id="07156-123">Call hello Microsoft Graph API using hello token you just obtained</span></span>
 
-<span data-ttu-id="d9522-124">Adja hozzá az új metódust alatt `ViewController.swift`.</span><span class="sxs-lookup"><span data-stu-id="d9522-124">Add the new method below to `ViewController.swift`.</span></span> <span data-ttu-id="d9522-125">Ez a módszer biztosítja a `GET` kérelmet a Microsoft Graph API segítségével egy *HTTP Authorization fejlécet*:</span><span class="sxs-lookup"><span data-stu-id="d9522-125">This method is used to make a `GET` request against the Microsoft Graph API using an *HTTP Authorization header*:</span></span>
+<span data-ttu-id="07156-124">Adja hozzá az alábbi új módszer hello túl`ViewController.swift`.</span><span class="sxs-lookup"><span data-stu-id="07156-124">Add hello new method below too`ViewController.swift`.</span></span> <span data-ttu-id="07156-125">Ez a módszer akkor használható toomake egy `GET` hello Microsoft Graph API segítségével kérelmet egy *HTTP Authorization fejlécet*:</span><span class="sxs-lookup"><span data-stu-id="07156-125">This method is used toomake a `GET` request against hello Microsoft Graph API using an *HTTP Authorization header*:</span></span>
 
 ```swift
 func getContentWithToken() {
     
     let sessionConfig = URLSessionConfiguration.default
     
-    // Specify the Graph API endpoint
+    // Specify hello Graph API endpoint
     let url = URL(string: kGraphURI)
     var request = URLRequest(url: url!)
     
-    // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+    // Set hello Authorization header for hello request. We use Bearer tokens, so we specify Bearer + hello token we got from hello result
     request.setValue("Bearer \(self.accessToken)", forHTTPHeaderField: "Authorization")
     let urlSession = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: OperationQueue.main)
     
@@ -176,22 +176,22 @@ func getContentWithToken() {
 ```
 
 <!--start-collapse-->
-### <a name="making-a-rest-call-against-a-protected-api"></a><span data-ttu-id="d9522-126">Így egy REST-hívást ellen védett API</span><span class="sxs-lookup"><span data-stu-id="d9522-126">Making a REST call against a protected API</span></span>
+### <a name="making-a-rest-call-against-a-protected-api"></a><span data-ttu-id="07156-126">Így egy REST-hívást ellen védett API</span><span class="sxs-lookup"><span data-stu-id="07156-126">Making a REST call against a protected API</span></span>
 
-<span data-ttu-id="d9522-127">Ebben a minta az alkalmazásban a `getContentWithToken()` módszer használható HTTP `GET` kérelem ellen védett erőforrás jogkivonat szükséges, és térjen vissza a tartalom a hívó.</span><span class="sxs-lookup"><span data-stu-id="d9522-127">In this sample application, the `getContentWithToken()` method is used to make an HTTP `GET` request against a protected resource that requires a token and then return the content to the caller.</span></span> <span data-ttu-id="d9522-128">Ez a módszer hozzáadja a megszerzett lexikális elem szerepel a *HTTP Authorization fejlécet*.</span><span class="sxs-lookup"><span data-stu-id="d9522-128">This method adds the acquired token in the *HTTP Authorization header*.</span></span> <span data-ttu-id="d9522-129">Ez a minta az erőforrás a Microsoft Graph API *me* végpont – amely a felhasználói profil adatait jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="d9522-129">For this sample, the resource is the Microsoft Graph API *me* endpoint – which displays the user's profile information.</span></span>
+<span data-ttu-id="07156-127">A mintaalkalmazás az hello `getContentWithToken()` metódus használt toomake HTTP `GET` egy jogkivonat és majd visszatérési hello tartalom toohello hívó igénylő védett erőforrás kérelmet.</span><span class="sxs-lookup"><span data-stu-id="07156-127">In this sample application, hello `getContentWithToken()` method is used toomake an HTTP `GET` request against a protected resource that requires a token and then return hello content toohello caller.</span></span> <span data-ttu-id="07156-128">Ez a módszer szerzett hello token helyez hello *HTTP Authorization fejlécet*.</span><span class="sxs-lookup"><span data-stu-id="07156-128">This method adds hello acquired token in hello *HTTP Authorization header*.</span></span> <span data-ttu-id="07156-129">Ez a minta hello erőforrás hello Microsoft Graph API *me* végpont – hello felhasználói profil adatait jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="07156-129">For this sample, hello resource is hello Microsoft Graph API *me* endpoint – which displays hello user's profile information.</span></span>
 <!--end-collapse-->
 
-## <a name="set-up-sign-out"></a><span data-ttu-id="d9522-130">Kijelentkezési beállítása</span><span class="sxs-lookup"><span data-stu-id="d9522-130">Set up sign-out</span></span>
+## <a name="set-up-sign-out"></a><span data-ttu-id="07156-130">Kijelentkezési beállítása</span><span class="sxs-lookup"><span data-stu-id="07156-130">Set up sign-out</span></span>
 
-<span data-ttu-id="d9522-131">Adja hozzá a következő metódust `ViewController.swift` a felhasználó kijelentkezik:</span><span class="sxs-lookup"><span data-stu-id="d9522-131">Add the following method to `ViewController.swift` to sign out the user:</span></span>
+<span data-ttu-id="07156-131">Adja hozzá a következő metódus túl hello`ViewController.swift` toosign hello felhasználói ki:</span><span class="sxs-lookup"><span data-stu-id="07156-131">Add hello following method too`ViewController.swift` toosign out hello user:</span></span>
 
 ```swift 
 @IBAction func signoutButton(_ sender: UIButton) {
 
     do {
         
-        // Removes all tokens from the cache for this application for the provided user
-        // first parameter:   The user to remove from the cache
+        // Removes all tokens from hello cache for this application for hello provided user
+        // first parameter:   hello user tooremove from hello cache
         
         try self.applicationContext.remove(self.applicationContext.users().first)
         self.signoutButton.isEnabled = false;
@@ -202,18 +202,18 @@ func getContentWithToken() {
 }
 ```
 <!--start-collapse-->
-### <a name="more-info-on-sign-out"></a><span data-ttu-id="d9522-132">További információ a kijelentkezési</span><span class="sxs-lookup"><span data-stu-id="d9522-132">More info on sign-out</span></span>
+### <a name="more-info-on-sign-out"></a><span data-ttu-id="07156-132">További információ a kijelentkezési</span><span class="sxs-lookup"><span data-stu-id="07156-132">More info on sign-out</span></span>
 
-<span data-ttu-id="d9522-133">A `signoutButton` metódus eltávolítja a felhasználót a MSAL felhasználói gyorsítótárból – Ez hatékonyan jelzi az aktuális felhasználó törlésére, így a későbbi kérelmek egy jogkivonat csak akkor sikeres, ha történik, hogy interaktív MSAL.</span><span class="sxs-lookup"><span data-stu-id="d9522-133">The `signoutButton` method removes the user from the MSAL user cache – this will effectively tell MSAL to forget the current user so a future request to acquire a token will only succeed if it is made to be interactive.</span></span>
+<span data-ttu-id="07156-133">Hello `signoutButton` metódus hello felhasználó eltávolítása hello MSAL felhasználói gyorsítótár – ez gyakorlatilag jelzi a MSAL tooforget hello aktuális felhasználó, egy későbbi kérés tooacquire jogkivonat csak sikeres lesz, ha azt toobe interaktív.</span><span class="sxs-lookup"><span data-stu-id="07156-133">hello `signoutButton` method removes hello user from hello MSAL user cache – this will effectively tell MSAL tooforget hello current user so a future request tooacquire a token will only succeed if it is made toobe interactive.</span></span>
 
-<span data-ttu-id="d9522-134">Bár ez a példa az alkalmazás támogatja az egy-egy felhasználóhoz, MSAL szituációkat ahol több fiók is bejelentkezhet a egyszerre – Ha a felhasználó rendelkezik-e a több fiók például e-mail alkalmazást.</span><span class="sxs-lookup"><span data-stu-id="d9522-134">Although the application in this sample supports a single user, MSAL supports scenarios where multiple accounts can be signed in at the same time – an example is an email application where a user has multiple accounts.</span></span>
+<span data-ttu-id="07156-134">Bár ez a példa hello alkalmazás támogatja az egy-egy felhasználóhoz, MSAL támogatja-e a forgatókönyvekben, ahol több fiók is bejelentkezhet a következő hello ugyanannyi időt vesz igénybe – példa, hogy e-mail alkalmazást ahol a felhasználó rendelkezik-e a több fiók.</span><span class="sxs-lookup"><span data-stu-id="07156-134">Although hello application in this sample supports a single user, MSAL supports scenarios where multiple accounts can be signed in at hello same time – an example is an email application where a user has multiple accounts.</span></span>
 <!--end-collapse-->
 
-## <a name="register-the-callback"></a><span data-ttu-id="d9522-135">A visszahívási regisztrálása</span><span class="sxs-lookup"><span data-stu-id="d9522-135">Register the callback</span></span>
+## <a name="register-hello-callback"></a><span data-ttu-id="07156-135">Hello visszahívási regisztrálása</span><span class="sxs-lookup"><span data-stu-id="07156-135">Register hello callback</span></span>
 
-<span data-ttu-id="d9522-136">Miután a felhasználó hitelesíti magát, a böngésző átirányítja a felhasználót az alkalmazásnak.</span><span class="sxs-lookup"><span data-stu-id="d9522-136">Once the user authenticates, the browser redirects the user back to the application.</span></span> <span data-ttu-id="d9522-137">A visszahívási regisztrálni az alábbi lépésekkel:</span><span class="sxs-lookup"><span data-stu-id="d9522-137">Follow the steps below to register this callback:</span></span>
+<span data-ttu-id="07156-136">Miután hello felhasználó hitelesíti magát, a hello böngésző hello felhasználói hátsó toohello alkalmazás irányítja át.</span><span class="sxs-lookup"><span data-stu-id="07156-136">Once hello user authenticates, hello browser redirects hello user back toohello application.</span></span> <span data-ttu-id="07156-137">Lépésekkel hello tooregister alatt a visszahívási:</span><span class="sxs-lookup"><span data-stu-id="07156-137">Follow hello steps below tooregister this callback:</span></span>
 
-1.  <span data-ttu-id="d9522-138">Nyissa meg `AppDelegate.swift` és MSAL importálása:</span><span class="sxs-lookup"><span data-stu-id="d9522-138">Open `AppDelegate.swift` and import MSAL:</span></span>
+1.  <span data-ttu-id="07156-138">Nyissa meg `AppDelegate.swift` és MSAL importálása:</span><span class="sxs-lookup"><span data-stu-id="07156-138">Open `AppDelegate.swift` and import MSAL:</span></span>
 
 ```swift
 import MSAL
@@ -221,13 +221,13 @@ import MSAL
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-<span data-ttu-id="d9522-139">Adja hozzá a következő metódust a <code>AppDelegate</code> osztály visszahívások kezeléséhez:</span><span class="sxs-lookup"><span data-stu-id="d9522-139">Add the following method to your <code>AppDelegate</code> class to handle callbacks:</span></span>
+<span data-ttu-id="07156-139">Adja hozzá a következő metódus tooyour hello <code>AppDelegate</code> toohandle visszahívások osztályban:</span><span class="sxs-lookup"><span data-stu-id="07156-139">Add hello following method tooyour <code>AppDelegate</code> class toohandle callbacks:</span></span>
 </li>
 </ol>
 
 ```swift
-// @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending AppAuth
-// authorization request and if so, will look for the code in the response.
+// @brief Handles inbound URLs. Checks if hello URL matches hello redirect URI for a pending AppAuth
+// authorization request and if so, will look for hello code in hello response.
 
 func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     

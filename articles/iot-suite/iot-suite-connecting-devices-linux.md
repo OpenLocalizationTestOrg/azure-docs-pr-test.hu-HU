@@ -1,6 +1,6 @@
 ---
-title: "Csatlakoztassa a C használatával Linux |} Microsoft Docs"
-description: "Eszköz csatlakoztatása az Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek a futó Linux C alkalmazással ismerteti."
+title: "egy eszköz használatával C Linux aaaConnect |} Microsoft Docs"
+description: "Ismerteti, hogyan tooconnect egy eszköz toohello Azure IoT Suite előre konfigurált távoli figyelési megoldást igényelnek a futó Linux C alkalmazás segítségével."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 9adbc9cc13f0b4cafa3a3a7703c46f8085b15232
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57393817d40d3555177956a01fa71058bc256988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-linux"></a><span data-ttu-id="0d2e7-103">Csatlakoztassa az eszközt a távoli felügyeleti előkonfigurált megoldás (Linux)</span><span class="sxs-lookup"><span data-stu-id="0d2e7-103">Connect your device to the remote monitoring preconfigured solution (Linux)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-linux"></a><span data-ttu-id="60ee7-103">Csatlakozás az eszköz toohello távoli felügyeleti előkonfigurált megoldás (Linux)</span><span class="sxs-lookup"><span data-stu-id="60ee7-103">Connect your device toohello remote monitoring preconfigured solution (Linux)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="build-and-run-a-sample-c-client-linux"></a><span data-ttu-id="0d2e7-104">Hozza létre, és egy minta C-ügyfél Linux</span><span class="sxs-lookup"><span data-stu-id="0d2e7-104">Build and run a sample C client Linux</span></span>
-<span data-ttu-id="0d2e7-105">A következő lépések bemutatják a hozzon létre egy ügyfélalkalmazást, amely kommunikál a távoli felügyeleti előkonfigurált megoldás.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-105">The following steps show you how to create a client application that communicates with the remote monitoring preconfigured solution.</span></span> <span data-ttu-id="0d2e7-106">Ez az alkalmazás a C és beépített és Ubuntu Linux rendszeren futtassa.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-106">This application is written in C and built and run on Ubuntu Linux.</span></span>
+## <a name="build-and-run-a-sample-c-client-linux"></a><span data-ttu-id="60ee7-104">Hozza létre, és egy minta C-ügyfél Linux</span><span class="sxs-lookup"><span data-stu-id="60ee7-104">Build and run a sample C client Linux</span></span>
+<span data-ttu-id="60ee7-105">hello lépések bemutatják, hogyan toocreate hello távoli megfigyelési kommunikáló ügyfélalkalmazás előre konfigurált megoldás.</span><span class="sxs-lookup"><span data-stu-id="60ee7-105">hello following steps show you how toocreate a client application that communicates with hello remote monitoring preconfigured solution.</span></span> <span data-ttu-id="60ee7-106">Ez az alkalmazás a C és beépített és Ubuntu Linux rendszeren futtassa.</span><span class="sxs-lookup"><span data-stu-id="60ee7-106">This application is written in C and built and run on Ubuntu Linux.</span></span>
 
-<span data-ttu-id="0d2e7-107">A lépések elvégzésével Ubuntu 15.04 vagy 15.10 verzióját futtató eszközök kell.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-107">To complete these steps, you need a device running Ubuntu version 15.04 or 15.10.</span></span> <span data-ttu-id="0d2e7-108">A folytatás előtt telepítse a csomagokat az Ubuntu eszközre, a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-108">Before proceeding, install the prerequisite packages on your Ubuntu device using the following command:</span></span>
+<span data-ttu-id="60ee7-107">Ezek a lépések toocomplete, az Ubuntu 15.04 vagy 15.10 verzióját futtató eszközök szüksége.</span><span class="sxs-lookup"><span data-stu-id="60ee7-107">toocomplete these steps, you need a device running Ubuntu version 15.04 or 15.10.</span></span> <span data-ttu-id="60ee7-108">A folytatás előtt egy Ubuntu eszközt a következő parancs hello hello csomagokat telepíthető:</span><span class="sxs-lookup"><span data-stu-id="60ee7-108">Before proceeding, install hello prerequisite packages on your Ubuntu device using hello following command:</span></span>
 
 ```
 sudo apt-get install cmake gcc g++
 ```
 
-## <a name="install-the-client-libraries-on-your-device"></a><span data-ttu-id="0d2e7-109">A klienskódtárak segítségével telepítse az eszközre</span><span class="sxs-lookup"><span data-stu-id="0d2e7-109">Install the client libraries on your device</span></span>
-<span data-ttu-id="0d2e7-110">Az Azure IoT Hub klienskódtárak segítségével telepítheti az Ubuntu eszköz használt csomag érhetők el a **apt get** parancsot.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-110">The Azure IoT Hub client libraries are available as a package you can install on your Ubuntu device using the **apt-get** command.</span></span> <span data-ttu-id="0d2e7-111">Az alábbi lépésekkel telepítse a csomagot, amely tartalmazza az IoT-központ ügyfél és a fejléc fájlokat a számítógépre Ubuntu:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-111">Complete the following steps to install the package that contains the IoT Hub client library and header files on your Ubuntu computer:</span></span>
+## <a name="install-hello-client-libraries-on-your-device"></a><span data-ttu-id="60ee7-109">Hello klienskódtárak segítségével telepítse az eszközre</span><span class="sxs-lookup"><span data-stu-id="60ee7-109">Install hello client libraries on your device</span></span>
+<span data-ttu-id="60ee7-110">hello Azure IoT Hub klienskódtárak érhetők el is telepíthető egy Ubuntu eszközt hello csomag **apt get** parancsot.</span><span class="sxs-lookup"><span data-stu-id="60ee7-110">hello Azure IoT Hub client libraries are available as a package you can install on your Ubuntu device using hello **apt-get** command.</span></span> <span data-ttu-id="60ee7-111">Hajtsa végre a következő lépéseket tooinstall hello tartalmazó csomagot hello IoT-központ ügyféloldali kódtár és Ubuntu számítógépre fejlécfájlok hello:</span><span class="sxs-lookup"><span data-stu-id="60ee7-111">Complete hello following steps tooinstall hello package that contains hello IoT Hub client library and header files on your Ubuntu computer:</span></span>
 
-1. <span data-ttu-id="0d2e7-112">A rendszerhéj a AzureIoT tárház hozzáadása a számítógéphez:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-112">In a shell, add the AzureIoT repository to your computer:</span></span>
+1. <span data-ttu-id="60ee7-112">A rendszerhéj hello AzureIoT tárház tooyour számítógép hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="60ee7-112">In a shell, add hello AzureIoT repository tooyour computer:</span></span>
    
     ```
     sudo add-apt-repository ppa:aziotsdklinux/ppa-azureiot
     sudo apt-get update
     ```
-2. <span data-ttu-id="0d2e7-113">Az azure-iot-sdk-c-fejlesztői csomag telepítése</span><span class="sxs-lookup"><span data-stu-id="0d2e7-113">Install the azure-iot-sdk-c-dev package</span></span>
+2. <span data-ttu-id="60ee7-113">Hello azure-iot-sdk-c-fejlesztői csomag telepítése</span><span class="sxs-lookup"><span data-stu-id="60ee7-113">Install hello azure-iot-sdk-c-dev package</span></span>
    
     ```
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
-## <a name="install-the-parson-json-parser"></a><span data-ttu-id="0d2e7-114">Telepítse a Parson JSON-elemző</span><span class="sxs-lookup"><span data-stu-id="0d2e7-114">Install the Parson JSON parser</span></span>
-<span data-ttu-id="0d2e7-115">Az IoT-központ klienskódtárak segítségével a Parson JSON-elemző használatával elemezni üzenet Payload van jelen.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-115">The IoT Hub client libraries use the Parson JSON parser to parse message payloads.</span></span> <span data-ttu-id="0d2e7-116">A megfelelő mappát a számítógépén klónozza a Parson GitHub-tárházban, a következő parancsot:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-116">In a suitable folder on your computer, clone the Parson GitHub repository using the following command:</span></span>
+## <a name="install-hello-parson-json-parser"></a><span data-ttu-id="60ee7-114">Hello Parson JSON elemző telepítése</span><span class="sxs-lookup"><span data-stu-id="60ee7-114">Install hello Parson JSON parser</span></span>
+<span data-ttu-id="60ee7-115">szalagtárak használata az IoT-központ ügyfél hello hello Parson JSON elemző tooparse üzenet hasznos adat található.</span><span class="sxs-lookup"><span data-stu-id="60ee7-115">hello IoT Hub client libraries use hello Parson JSON parser tooparse message payloads.</span></span> <span data-ttu-id="60ee7-116">A megfelelő mappát a számítógépén klónozni hello Parson GitHub-tárházban hello a következő parancs használatával:</span><span class="sxs-lookup"><span data-stu-id="60ee7-116">In a suitable folder on your computer, clone hello Parson GitHub repository using hello following command:</span></span>
 
 ```
 git clone https://github.com/kgabis/parson.git
 ```
 
-## <a name="prepare-your-project"></a><span data-ttu-id="0d2e7-117">Készítse elő a projekthez</span><span class="sxs-lookup"><span data-stu-id="0d2e7-117">Prepare your project</span></span>
-<span data-ttu-id="0d2e7-118">A Ubuntu gépen, hozzon létre egy nevű **távoli\_figyelési**.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-118">On your Ubuntu machine, create a folder called **remote\_monitoring**.</span></span> <span data-ttu-id="0d2e7-119">Az a **távoli\_figyelési** mappába:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-119">In the **remote\_monitoring** folder:</span></span>
+## <a name="prepare-your-project"></a><span data-ttu-id="60ee7-117">Készítse elő a projekthez</span><span class="sxs-lookup"><span data-stu-id="60ee7-117">Prepare your project</span></span>
+<span data-ttu-id="60ee7-118">A Ubuntu gépen, hozzon létre egy nevű **távoli\_figyelési**.</span><span class="sxs-lookup"><span data-stu-id="60ee7-118">On your Ubuntu machine, create a folder called **remote\_monitoring**.</span></span> <span data-ttu-id="60ee7-119">A hello **távoli\_figyelési** mappába:</span><span class="sxs-lookup"><span data-stu-id="60ee7-119">In hello **remote\_monitoring** folder:</span></span>
 
-- <span data-ttu-id="0d2e7-120">Hozza létre a négy fájlokat **main.c**, **távoli\_monitoring.c**, **távoli\_monitoring.h**, és **CMakeLists.txt**.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-120">Create the four files **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h**, and **CMakeLists.txt**.</span></span>
-- <span data-ttu-id="0d2e7-121">Hozzon létre nevű **parson**.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-121">Create folder called **parson**.</span></span>
+- <span data-ttu-id="60ee7-120">Hozzon létre hello négy fájlok **main.c**, **távoli\_monitoring.c**, **távoli\_monitoring.h**, és **CMakeLists.txt**.</span><span class="sxs-lookup"><span data-stu-id="60ee7-120">Create hello four files **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h**, and **CMakeLists.txt**.</span></span>
+- <span data-ttu-id="60ee7-121">Hozzon létre nevű **parson**.</span><span class="sxs-lookup"><span data-stu-id="60ee7-121">Create folder called **parson**.</span></span>
 
-<span data-ttu-id="0d2e7-122">Másolja a fájlokat **parson.c** és **parson.h** Parson összetevőtárházat be helyi másolatát a **távoli\_figyelési/parson** mappa.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-122">Copy the files **parson.c** and **parson.h** from your local copy of the Parson repository into the **remote\_monitoring/parson** folder.</span></span>
+<span data-ttu-id="60ee7-122">Hello fájlok másolása **parson.c** és **parson.h** hello Parson tárház helyi másolatát a hello **távoli\_figyelési/parson** mappa.</span><span class="sxs-lookup"><span data-stu-id="60ee7-122">Copy hello files **parson.c** and **parson.h** from your local copy of hello Parson repository into hello **remote\_monitoring/parson** folder.</span></span>
 
-<span data-ttu-id="0d2e7-123">Egy szövegszerkesztőben nyissa meg a **távoli\_monitoring.c** fájlt.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-123">In a text editor, open the **remote\_monitoring.c** file.</span></span> <span data-ttu-id="0d2e7-124">Adja hozzá a következő `#include`-utasításokat:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-124">Add the following `#include` statements:</span></span>
+<span data-ttu-id="60ee7-123">Egy szövegszerkesztőben nyissa meg a hello **távoli\_monitoring.c** fájlt.</span><span class="sxs-lookup"><span data-stu-id="60ee7-123">In a text editor, open hello **remote\_monitoring.c** file.</span></span> <span data-ttu-id="60ee7-124">Adja hozzá a következő hello `#include` utasításokat:</span><span class="sxs-lookup"><span data-stu-id="60ee7-124">Add hello following `#include` statements:</span></span>
    
 ```
 #include "iothubtransportmqtt.h"
@@ -78,14 +78,14 @@ git clone https://github.com/kgabis/parson.git
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="call-the-remotemonitoringrun-function"></a><span data-ttu-id="0d2e7-125">A távoli eljáráshívás\_figyelési\_függvény futtatása</span><span class="sxs-lookup"><span data-stu-id="0d2e7-125">Call the remote\_monitoring\_run function</span></span>
-<span data-ttu-id="0d2e7-126">Egy szövegszerkesztőben nyissa meg a **remote_monitoring.h** fájlt.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-126">In a text editor, open the **remote_monitoring.h** file.</span></span> <span data-ttu-id="0d2e7-127">Adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-127">Add the following code:</span></span>
+## <a name="call-hello-remotemonitoringrun-function"></a><span data-ttu-id="60ee7-125">Távoli eljáráshívás hello\_figyelési\_függvény futtatása</span><span class="sxs-lookup"><span data-stu-id="60ee7-125">Call hello remote\_monitoring\_run function</span></span>
+<span data-ttu-id="60ee7-126">Egy szövegszerkesztőben nyissa meg a hello **remote_monitoring.h** fájlt.</span><span class="sxs-lookup"><span data-stu-id="60ee7-126">In a text editor, open hello **remote_monitoring.h** file.</span></span> <span data-ttu-id="60ee7-127">Adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="60ee7-127">Add hello following code:</span></span>
 
 ```
 void remote_monitoring_run(void);
 ```
 
-<span data-ttu-id="0d2e7-128">Egy szövegszerkesztőben nyissa meg a **main.c** fájlt.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-128">In a text editor, open the **main.c** file.</span></span> <span data-ttu-id="0d2e7-129">Adja hozzá a következő kódot:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-129">Add the following code:</span></span>
+<span data-ttu-id="60ee7-128">Egy szövegszerkesztőben nyissa meg a hello **main.c** fájlt.</span><span class="sxs-lookup"><span data-stu-id="60ee7-128">In a text editor, open hello **main.c** file.</span></span> <span data-ttu-id="60ee7-129">Adja hozzá a következő kód hello:</span><span class="sxs-lookup"><span data-stu-id="60ee7-129">Add hello following code:</span></span>
 
 ```
 #include "remote_monitoring.h"
@@ -98,12 +98,12 @@ int main(void)
 }
 ```
 
-## <a name="build-and-run-the-application"></a><span data-ttu-id="0d2e7-130">Az alkalmazás fordítása és futtatása</span><span class="sxs-lookup"><span data-stu-id="0d2e7-130">Build and run the application</span></span>
-<span data-ttu-id="0d2e7-131">Az alábbi lépések bemutatják, hogyan használható *CMake* hozhat létre az ügyfélalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-131">The following steps describe how to use *CMake* to build your client application.</span></span>
+## <a name="build-and-run-hello-application"></a><span data-ttu-id="60ee7-130">Hozza létre és hello alkalmazás futtatása</span><span class="sxs-lookup"><span data-stu-id="60ee7-130">Build and run hello application</span></span>
+<span data-ttu-id="60ee7-131">hello következő lépések bemutatják, hogyan toouse *CMake* toobuild az ügyfélalkalmazást.</span><span class="sxs-lookup"><span data-stu-id="60ee7-131">hello following steps describe how toouse *CMake* toobuild your client application.</span></span>
 
-1. <span data-ttu-id="0d2e7-132">Egy szövegszerkesztőben nyissa meg a **CMakeLists.txt** fájlt a **remote_monitoring** mappa.</span><span class="sxs-lookup"><span data-stu-id="0d2e7-132">In a text editor, open the **CMakeLists.txt** file in the **remote_monitoring** folder.</span></span>
+1. <span data-ttu-id="60ee7-132">Egy szövegszerkesztőben nyissa meg a hello **CMakeLists.txt** hello fájlban **remote_monitoring** mappa.</span><span class="sxs-lookup"><span data-stu-id="60ee7-132">In a text editor, open hello **CMakeLists.txt** file in hello **remote_monitoring** folder.</span></span>
 
-1. <span data-ttu-id="0d2e7-133">Az alábbi utasítások segítségével meghatározhatja, hogyan hozható létre az ügyfél-alkalmazás hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-133">Add the following instructions to define how to build your client application:</span></span>
+1. <span data-ttu-id="60ee7-133">Adja hozzá a következő utasításokat toodefine hogyan hello toobuild az ügyfélalkalmazás:</span><span class="sxs-lookup"><span data-stu-id="60ee7-133">Add hello following instructions toodefine how toobuild your client application:</span></span>
    
     ```
     macro(compileAsC99)
@@ -151,7 +151,7 @@ int main(void)
         m
     )
     ```
-1. <span data-ttu-id="0d2e7-134">Az a **remote_monitoring** mappa, hozzon létre egy mappát tárolásához a *ellenőrizze* CMake hoz létre fájlokat, majd futtassa a **cmake** és **győződjön** parancsok az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-134">In the **remote_monitoring** folder, create a folder to store the *make* files that CMake generates and then run the **cmake** and **make** commands as follows:</span></span>
+1. <span data-ttu-id="60ee7-134">A hello **remote_monitoring** mappa, hozzon létre egy mappát toostore hello *ellenőrizze* fájlok adott CMake állít elő, és futtassa a hello **cmake** és **Ellenőrizze** parancsok az alábbiak szerint:</span><span class="sxs-lookup"><span data-stu-id="60ee7-134">In hello **remote_monitoring** folder, create a folder toostore hello *make* files that CMake generates and then run hello **cmake** and **make** commands as follows:</span></span>
    
     ```
     mkdir cmake
@@ -160,7 +160,7 @@ int main(void)
     make
     ```
 
-1. <span data-ttu-id="0d2e7-135">Az ügyfélalkalmazás futtatása, és telemetriai adatokat küldhet az IoT hubhoz:</span><span class="sxs-lookup"><span data-stu-id="0d2e7-135">Run the client application and send telemetry to IoT Hub:</span></span>
+1. <span data-ttu-id="60ee7-135">Hello ügyfélalkalmazás futtatása, és telemetriai tooIoT Hub küldeni:</span><span class="sxs-lookup"><span data-stu-id="60ee7-135">Run hello client application and send telemetry tooIoT Hub:</span></span>
    
     ```
     ./sample_app

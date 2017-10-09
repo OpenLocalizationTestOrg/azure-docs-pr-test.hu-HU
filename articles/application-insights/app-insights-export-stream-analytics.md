@@ -1,6 +1,6 @@
 ---
-title: "Exportálja a Stream Analytics az Azure Application Insights segítségével |} Microsoft Docs"
-description: "A Stream Analytics folyamatosan átalakíthatja, szűrésére és az adatok az Application Insights exportálnia útvonalát."
+title: "az Azure Application Insights Stream Analytics segítségével aaaExport |} Microsoft Docs"
+description: "A Stream Analytics folyamatosan alakíthatja át, és a útvonal hello adatok exportálása az Application Insights."
 services: application-insights
 documentationcenter: 
 author: noamben
@@ -13,139 +13,139 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: bwren
-ms.openlocfilehash: 6a84d8ff67c420ce712de905ab1172632502a863
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fda9b64f588c520833b2669eafdf650efc3de6be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-stream-analytics-to-process-exported-data-from-application-insights"></a><span data-ttu-id="ae3cd-103">Az Application Insights exportált adatok feldolgozása a Stream Analytics segítségével</span><span class="sxs-lookup"><span data-stu-id="ae3cd-103">Use Stream Analytics to process exported data from Application Insights</span></span>
-<span data-ttu-id="ae3cd-104">[Az Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) adatok feldolgozására ideális eszköz [Application Insights-ból exportált](app-insights-export-telemetry.md).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-104">[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) is the ideal tool for processing data [exported from Application Insights](app-insights-export-telemetry.md).</span></span> <span data-ttu-id="ae3cd-105">A Stream Analytics segítségével olvasnak be adatokat különböző forrásokból.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-105">Stream Analytics can pull data from a variety of sources.</span></span> <span data-ttu-id="ae3cd-106">Az átalakítási és szűrje az adatokat és mosdók számos irányítja.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-106">It can transform and filter the data, and then route it to a variety of sinks.</span></span>
+# <a name="use-stream-analytics-tooprocess-exported-data-from-application-insights"></a><span data-ttu-id="e9b2c-103">Használja a Stream Analytics tooprocess az exportált adatok az Application Insights</span><span class="sxs-lookup"><span data-stu-id="e9b2c-103">Use Stream Analytics tooprocess exported data from Application Insights</span></span>
+<span data-ttu-id="e9b2c-104">[Az Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) hello ideális eszköz adatfeldolgozás [Application Insights-ból exportált](app-insights-export-telemetry.md).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-104">[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) is hello ideal tool for processing data [exported from Application Insights](app-insights-export-telemetry.md).</span></span> <span data-ttu-id="e9b2c-105">A Stream Analytics segítségével olvasnak be adatokat különböző forrásokból.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-105">Stream Analytics can pull data from a variety of sources.</span></span> <span data-ttu-id="e9b2c-106">Az átalakítási és hello adatok szűrése és tooa különböző nyelő irányításához.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-106">It can transform and filter hello data, and then route it tooa variety of sinks.</span></span>
 
-<span data-ttu-id="ae3cd-107">Ebben a példában mi létrehozunk egy adaptert, amely beolvassa az Application Insights, átnevezése és feldolgozza az egyes mezőit és kiszolgálókészletéhez azt a Power BI-bA.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-107">In this example, we'll create an adaptor that takes data from Application Insights, renames and processes some of the fields, and pipes it into Power BI.</span></span>
+<span data-ttu-id="e9b2c-107">Ebben a példában mi létrehozunk egy adaptert, amely beolvassa az Application Insights, átnevezése és dolgozza fel néhány hello mező, és kiszolgálókészletéhez azt a Power BI-bA.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-107">In this example, we'll create an adaptor that takes data from Application Insights, renames and processes some of hello fields, and pipes it into Power BI.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="ae3cd-108">Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját Application Insights adatainak megjelenítése Power BI-ban](app-insights-export-power-bi.md).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-108">There are much better and easier [recommended ways to display Application Insights data in Power BI](app-insights-export-power-bi.md).</span></span> <span data-ttu-id="ae3cd-109">A bemutatott elérési út csak egy példa az exportált adatok feldolgozása mutatja be.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-109">The path illustrated here is just an example to illustrate how to process exported data.</span></span>
+> <span data-ttu-id="e9b2c-108">Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját toodisplay Application Insights adatokat a Power BI](app-insights-export-power-bi.md).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-108">There are much better and easier [recommended ways toodisplay Application Insights data in Power BI](app-insights-export-power-bi.md).</span></span> <span data-ttu-id="e9b2c-109">hello bemutatott elérési út csak egy példa tooillustrate hogyan tooprocess exportált adatok.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-109">hello path illustrated here is just an example tooillustrate how tooprocess exported data.</span></span>
 > 
 > 
 
-![Az exportált keresztül SA PBI blokk diagramja](./media/app-insights-export-stream-analytics/020.png)
+![SA tooPBI keresztül exportálás letiltása diagramja](./media/app-insights-export-stream-analytics/020.png)
 
-## <a name="create-storage-in-azure"></a><span data-ttu-id="ae3cd-111">Tároló létrehozása az Azure-ban</span><span class="sxs-lookup"><span data-stu-id="ae3cd-111">Create storage in Azure</span></span>
-<span data-ttu-id="ae3cd-112">A folyamatos exportálás mindig kimenete adatokat egy Azure Storage-fiók, ezért meg kell először hozza létre a tárolót.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-112">Continuous export always outputs data to an Azure Storage account, so you need to create the storage first.</span></span>
+## <a name="create-storage-in-azure"></a><span data-ttu-id="e9b2c-111">Tároló létrehozása az Azure-ban</span><span class="sxs-lookup"><span data-stu-id="e9b2c-111">Create storage in Azure</span></span>
+<span data-ttu-id="e9b2c-112">A folyamatos exportálás adatok tooan Azure Storage-fiók esetén mindig kimenete, ezért először a toocreate hello tárolási kell.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-112">Continuous export always outputs data tooan Azure Storage account, so you need toocreate hello storage first.</span></span>
 
-1. <span data-ttu-id="ae3cd-113">Az előfizetésben a "klasszikus" storage-fiók létrehozása a [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-113">Create a "classic" storage account in your subscription in the [Azure portal](https://portal.azure.com).</span></span>
+1. <span data-ttu-id="e9b2c-113">Hozzon létre egy "klasszikus" tárfiókot az előfizetésében szereplő hello [Azure-portálon](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-113">Create a "classic" storage account in your subscription in hello [Azure portal](https://portal.azure.com).</span></span>
    
    ![Azure-portálon válassza ki az új, az adatok, a tárolás](./media/app-insights-export-stream-analytics/030.png)
-2. <span data-ttu-id="ae3cd-115">Tároló létrehozása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-115">Create a container</span></span>
+2. <span data-ttu-id="e9b2c-115">Tároló létrehozása</span><span class="sxs-lookup"><span data-stu-id="e9b2c-115">Create a container</span></span>
    
-    ![Az új tárterületen található tárolók kiválasztása, kattintson a tárolók csempe, majd a Hozzáadás](./media/app-insights-export-stream-analytics/040.png)
-3. <span data-ttu-id="ae3cd-117">A tárelérési kulcs másolása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-117">Copy the storage access key</span></span>
+    ![Az új tárolási hello tárolók kiválasztása, hello tárolók csempére, majd a Hozzáadás gombra](./media/app-insights-export-stream-analytics/040.png)
+3. <span data-ttu-id="e9b2c-117">Hello tárelérési kulcs másolása</span><span class="sxs-lookup"><span data-stu-id="e9b2c-117">Copy hello storage access key</span></span>
    
-    <span data-ttu-id="ae3cd-118">Kell, hogy hamarosan állítsa be a stream analytics szolgáltatás bemenete.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-118">You'll need it soon to set up the input to the stream analytics service.</span></span>
+    <span data-ttu-id="e9b2c-118">Szüksége lehet rájuk hamarosan tooset hello bemeneti toohello stream analytics szolgáltatás.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-118">You'll need it soon tooset up hello input toohello stream analytics service.</span></span>
    
-    ![A tárolóban nyissa meg a beállításokat, a kulcsokat, és az elsődleges elérési kulcsot másolatot](./media/app-insights-export-stream-analytics/045.png)
+    ![Hello tárolóban nyissa meg a beállításokat, a kulcsokat, és másolatot hello elsődleges elérési kulcsot](./media/app-insights-export-stream-analytics/045.png)
 
-## <a name="start-continuous-export-to-azure-storage"></a><span data-ttu-id="ae3cd-120">Indítsa el az Azure storage a folyamatos exportálás</span><span class="sxs-lookup"><span data-stu-id="ae3cd-120">Start continuous export to Azure storage</span></span>
-<span data-ttu-id="ae3cd-121">[A folyamatos exportálás](app-insights-export-telemetry.md) helyezi át az adatokat az Application Insights az Azure storage-be.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-121">[Continuous export](app-insights-export-telemetry.md) moves data from Application Insights into Azure storage.</span></span>
+## <a name="start-continuous-export-tooazure-storage"></a><span data-ttu-id="e9b2c-120">Indítsa el a folyamatos exportálás tooAzure tároló</span><span class="sxs-lookup"><span data-stu-id="e9b2c-120">Start continuous export tooAzure storage</span></span>
+<span data-ttu-id="e9b2c-121">[A folyamatos exportálás](app-insights-export-telemetry.md) helyezi át az adatokat az Application Insights az Azure storage-be.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-121">[Continuous export](app-insights-export-telemetry.md) moves data from Application Insights into Azure storage.</span></span>
 
-1. <span data-ttu-id="ae3cd-122">Az Azure portálon tallózással keresse meg az Application Insights-erőforrást az alkalmazáshoz létrehozott.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-122">In the Azure portal, browse to the Application Insights resource you created for your application.</span></span>
+1. <span data-ttu-id="e9b2c-122">Hello Azure-portálon keresse meg az alkalmazáshoz létrehozott toohello Application Insights-erőforrást.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-122">In hello Azure portal, browse toohello Application Insights resource you created for your application.</span></span>
    
     ![A Tallózás, az Application Insights az alkalmazáshoz](./media/app-insights-export-stream-analytics/050.png)
-2. <span data-ttu-id="ae3cd-124">A folyamatos exportálás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-124">Create a continuous export.</span></span>
+2. <span data-ttu-id="e9b2c-124">A folyamatos exportálás létrehozása.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-124">Create a continuous export.</span></span>
    
     ![Válassza a beállítások, folyamatos exportálási hozzáadása](./media/app-insights-export-stream-analytics/060.png)
 
-    <span data-ttu-id="ae3cd-126">Válassza ki a korábban létrehozott tárfiókot:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-126">Select the storage account you created earlier:</span></span>
+    <span data-ttu-id="e9b2c-126">Válassza ki a korábban létrehozott hello tárfiókot:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-126">Select hello storage account you created earlier:</span></span>
 
-    ![Exportálás céljának beállítása](./media/app-insights-export-stream-analytics/070.png)
+    ![Hello exportálási cél beállítása](./media/app-insights-export-stream-analytics/070.png)
 
-    <span data-ttu-id="ae3cd-128">Állítsa be a megjeleníteni kívánt típusait:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-128">Set the event types you want to see:</span></span>
+    <span data-ttu-id="e9b2c-128">Állítsa be a kívánt hello eseménytípusok toosee:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-128">Set hello event types you want toosee:</span></span>
 
     ![Válassza ki az esemény típusa](./media/app-insights-export-stream-analytics/080.png)
 
-1. <span data-ttu-id="ae3cd-130">Néhány adat gyűlik össze legyen.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-130">Let some data accumulate.</span></span> <span data-ttu-id="ae3cd-131">Elhelyezkedik vissza, és a felhasználók használhassa az alkalmazást egy ideig.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-131">Sit back and let people use your application for a while.</span></span> <span data-ttu-id="ae3cd-132">Telemetria határozza meg, és látni fogja, statisztikai diagramok [metrika explorer](app-insights-metrics-explorer.md) és az egyes események [diagnosztikai keresési](app-insights-diagnostic-search.md).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-132">Telemetry will come in and you'll see statistical charts in [metric explorer](app-insights-metrics-explorer.md) and individual events in [diagnostic search](app-insights-diagnostic-search.md).</span></span> 
+1. <span data-ttu-id="e9b2c-130">Néhány adat gyűlik össze legyen.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-130">Let some data accumulate.</span></span> <span data-ttu-id="e9b2c-131">Elhelyezkedik vissza, és a felhasználók használhassa az alkalmazást egy ideig.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-131">Sit back and let people use your application for a while.</span></span> <span data-ttu-id="e9b2c-132">Telemetria határozza meg, és látni fogja, statisztikai diagramok [metrika explorer](app-insights-metrics-explorer.md) és az egyes események [diagnosztikai keresési](app-insights-diagnostic-search.md).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-132">Telemetry will come in and you'll see statistical charts in [metric explorer](app-insights-metrics-explorer.md) and individual events in [diagnostic search](app-insights-diagnostic-search.md).</span></span> 
    
-    <span data-ttu-id="ae3cd-133">És is, exportálja az adatokat a tárhelyre.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-133">And also, the data will export to your storage.</span></span> 
-2. <span data-ttu-id="ae3cd-134">Vizsgálja meg az exportált adatokat.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-134">Inspect the exported data.</span></span> <span data-ttu-id="ae3cd-135">A Visual Studio felületén válassza **megtekintése / Cloud Explorer**, és nyissa meg az Azure / tárolási.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-135">In Visual Studio, choose **View / Cloud Explorer**, and open Azure / Storage.</span></span> <span data-ttu-id="ae3cd-136">(Ha még nem rendelkezik a menüpont, szeretné-e az Azure SDK telepítése: az új projekt párbeszédpanel megnyitásához, és nyissa meg a Visual C# / felhő / Microsoft Azure SDK beolvasása a .NET-hez.)</span><span class="sxs-lookup"><span data-stu-id="ae3cd-136">(If you don't have this menu option, you need to install the Azure SDK: Open the New Project dialog and open Visual C# / Cloud / Get Microsoft Azure SDK for .NET.)</span></span>
+    <span data-ttu-id="e9b2c-133">És is, hello adatok tooyour tárolási exportálja.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-133">And also, hello data will export tooyour storage.</span></span> 
+2. <span data-ttu-id="e9b2c-134">Vizsgálja meg az exportált hello adatokat.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-134">Inspect hello exported data.</span></span> <span data-ttu-id="e9b2c-135">A Visual Studio felületén válassza **megtekintése / Cloud Explorer**, és nyissa meg az Azure / tárolási.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-135">In Visual Studio, choose **View / Cloud Explorer**, and open Azure / Storage.</span></span> <span data-ttu-id="e9b2c-136">(Ha még nem rendelkezik a menüpont, tooinstall hello Azure SDK-t kell: hello új projekt párbeszédpanel megnyitásához, és nyissa meg a Visual C# / felhő / Microsoft Azure SDK beolvasása a .NET-hez.)</span><span class="sxs-lookup"><span data-stu-id="e9b2c-136">(If you don't have this menu option, you need tooinstall hello Azure SDK: Open hello New Project dialog and open Visual C# / Cloud / Get Microsoft Azure SDK for .NET.)</span></span>
    
     ![](./media/app-insights-export-stream-analytics/04-data.png)
    
-    <span data-ttu-id="ae3cd-137">Jegyezze fel az elérési út, az alkalmazás nevét és instrumentation kulcsból származtatott közös részét.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-137">Make a note of the common part of the path name, which is derived from the application name and instrumentation key.</span></span> 
+    <span data-ttu-id="e9b2c-137">Jegyezze fel a hello közös hello alkalmazás nevét és instrumentation kulcsból származtatott hello elérési út része.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-137">Make a note of hello common part of hello path name, which is derived from hello application name and instrumentation key.</span></span> 
 
-<span data-ttu-id="ae3cd-138">Az események a blob-JSON formátumú fájlok kerülnek.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-138">The events are written to blob files in JSON format.</span></span> <span data-ttu-id="ae3cd-139">Minden fájl tartalmazhat egy vagy több esemény.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-139">Each file may contain one or more events.</span></span> <span data-ttu-id="ae3cd-140">Ezért szeretnénk az esemény-adatok olvasása, és azt szeretnénk, ha a mezők szűrik.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-140">So we'd like to read the event data and filter out the fields we want.</span></span> <span data-ttu-id="ae3cd-141">Nincsenek a különböző dolgok, azt megteheti az adatokat, de a terv ma Stream Analytics segítségével átadhatja az adatokat a Power bi-bA.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-141">There are all kinds of things we could do with the data, but our plan today is to use Stream Analytics to pipe the data to Power BI.</span></span>
+<span data-ttu-id="e9b2c-138">hello események tooblob fájlok írt JSON formátumban.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-138">hello events are written tooblob files in JSON format.</span></span> <span data-ttu-id="e9b2c-139">Minden fájl tartalmazhat egy vagy több esemény.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-139">Each file may contain one or more events.</span></span> <span data-ttu-id="e9b2c-140">Ezért szeretnénk tooread hello eseményadatok és szűrő ki szeretnénk hello mezőket.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-140">So we'd like tooread hello event data and filter out hello fields we want.</span></span> <span data-ttu-id="e9b2c-141">Azt sikerült műveletekből hello adatokkal az összes típusú léteznek, de a terv ma toouse Stream Analytics toopipe hello adatok tooPower BI.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-141">There are all kinds of things we could do with hello data, but our plan today is toouse Stream Analytics toopipe hello data tooPower BI.</span></span>
 
-## <a name="create-an-azure-stream-analytics-instance"></a><span data-ttu-id="ae3cd-142">Hozzon létre egy Azure Stream Analytics-példányt</span><span class="sxs-lookup"><span data-stu-id="ae3cd-142">Create an Azure Stream Analytics instance</span></span>
-<span data-ttu-id="ae3cd-143">Az a [klasszikus Azure portálon](https://manage.windowsazure.com/), válassza ki az Azure Stream Analytics szolgáltatás, és hozzon létre egy új Stream Analytics-feladatot:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-143">From the [Classic Azure Portal](https://manage.windowsazure.com/), select the Azure Stream Analytics service, and create a new Stream Analytics job:</span></span>
+## <a name="create-an-azure-stream-analytics-instance"></a><span data-ttu-id="e9b2c-142">Hozzon létre egy Azure Stream Analytics-példányt</span><span class="sxs-lookup"><span data-stu-id="e9b2c-142">Create an Azure Stream Analytics instance</span></span>
+<span data-ttu-id="e9b2c-143">A hello [klasszikus Azure portálon](https://manage.windowsazure.com/), válassza ki a hello Azure Stream Analytics szolgáltatás, és hozzon létre egy új Stream Analytics-feladatot:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-143">From hello [Classic Azure Portal](https://manage.windowsazure.com/), select hello Azure Stream Analytics service, and create a new Stream Analytics job:</span></span>
 
 ![](./media/app-insights-export-stream-analytics/090.png)
 
 ![](./media/app-insights-export-stream-analytics/100.png)
 
-<span data-ttu-id="ae3cd-144">Ha az új feladat jön létre, bontsa ki a hozzá tartozó részletek:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-144">When the new job is created, expand its details:</span></span>
+<span data-ttu-id="e9b2c-144">Amikor hello új feladatot hoz létre, bontsa ki a hozzá tartozó részletek:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-144">When hello new job is created, expand its details:</span></span>
 
 ![](./media/app-insights-export-stream-analytics/110.png)
 
-### <a name="set-blob-location"></a><span data-ttu-id="ae3cd-145">A blob hely beállítása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-145">Set blob location</span></span>
-<span data-ttu-id="ae3cd-146">Állítsa be úgy, hogy a folyamatos exportálás blobból bemeneti:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-146">Set it to take input from your Continuous Export blob:</span></span>
+### <a name="set-blob-location"></a><span data-ttu-id="e9b2c-145">A blob hely beállítása</span><span class="sxs-lookup"><span data-stu-id="e9b2c-145">Set blob location</span></span>
+<span data-ttu-id="e9b2c-146">A folyamatos exportálás blob tootake bemenetének állítsa be:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-146">Set it tootake input from your Continuous Export blob:</span></span>
 
 ![](./media/app-insights-export-stream-analytics/120.png)
 
-<span data-ttu-id="ae3cd-147">Most szüksége lesz az elsődleges elérési kulcsot importáljon a Tárfiókba, amelyet korábban feljegyzett.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-147">Now you'll need the Primary Access Key from your Storage Account, which you noted earlier.</span></span> <span data-ttu-id="ae3cd-148">Állítsa be ezt a Tárfiók kulcsára.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-148">Set this as the Storage Account Key.</span></span>
+<span data-ttu-id="e9b2c-147">Most importáljon a Tárfiókba, amelyet korábban feljegyzett hello elsődleges elérési kulcsot lesz szüksége.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-147">Now you'll need hello Primary Access Key from your Storage Account, which you noted earlier.</span></span> <span data-ttu-id="e9b2c-148">Állítsa be a hello Tárfiók kulcsa.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-148">Set this as hello Storage Account Key.</span></span>
 
 ![](./media/app-insights-export-stream-analytics/130.png)
 
-### <a name="set-path-prefix-pattern"></a><span data-ttu-id="ae3cd-149">Set elérési út előtag mintája</span><span class="sxs-lookup"><span data-stu-id="ae3cd-149">Set path prefix pattern</span></span>
+### <a name="set-path-prefix-pattern"></a><span data-ttu-id="e9b2c-149">Set elérési út előtag mintája</span><span class="sxs-lookup"><span data-stu-id="e9b2c-149">Set path prefix pattern</span></span>
 ![](./media/app-insights-export-stream-analytics/140.png)
 
-<span data-ttu-id="ae3cd-150">**Győződjön meg arról, hogy beállítása a Date formátum éééé-hh-nn-(kötőjel).**</span><span class="sxs-lookup"><span data-stu-id="ae3cd-150">**Be sure to set the Date Format to YYYY-MM-DD (with dashes).**</span></span>
+<span data-ttu-id="e9b2c-150">**Lehet, hogy tooset hello dátumformátum tooYYYY-hh-nn (a szaggatott vonal).**</span><span class="sxs-lookup"><span data-stu-id="e9b2c-150">**Be sure tooset hello Date Format tooYYYY-MM-DD (with dashes).**</span></span>
 
-<span data-ttu-id="ae3cd-151">Az elérési út előtag mintája határozza meg, ahol a Stream Analytics talál a bemeneti fájlok a tároló.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-151">The Path Prefix Pattern specifies where Stream Analytics finds the input files in the storage.</span></span> <span data-ttu-id="ae3cd-152">Állítsa be úgy, hogy hogyan tárolja az adatokat folyamatos exportálni kell.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-152">You need to set it to correspond to how Continuous Export stores the data.</span></span> <span data-ttu-id="ae3cd-153">Állítsa be ehhez hasonló:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-153">Set it like this:</span></span>
+<span data-ttu-id="e9b2c-151">elérési út előtag mintája hello határozza meg, ahol a Stream Analytics hello tárolási hello bemeneti fájlok talál.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-151">hello Path Prefix Pattern specifies where Stream Analytics finds hello input files in hello storage.</span></span> <span data-ttu-id="e9b2c-152">Tooset kell azt a folyamatos exportálás toocorrespond toohow hello adatokat tárolja.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-152">You need tooset it toocorrespond toohow Continuous Export stores hello data.</span></span> <span data-ttu-id="e9b2c-153">Állítsa be ehhez hasonló:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-153">Set it like this:</span></span>
 
     webapplication27_12345678123412341234123456789abcdef0/PageViews/{date}/{time}
 
-<span data-ttu-id="ae3cd-154">Ebben a példában:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-154">In this example:</span></span>
+<span data-ttu-id="e9b2c-154">Ebben a példában:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-154">In this example:</span></span>
 
-* <span data-ttu-id="ae3cd-155">`webapplication27`az Application Insights-erőforrás neve **összes kisbetű**.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-155">`webapplication27` is the name of the Application Insights resource **all lower case**.</span></span>
-* <span data-ttu-id="ae3cd-156">`1234...`az Application Insights-erőforrások instrumentation kulcsa **kötőjelek kihagyásával**.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-156">`1234...` is the instrumentation key of the Application Insights resource, **omitting dashes**.</span></span> 
-* <span data-ttu-id="ae3cd-157">`PageViews`az elemezni kívánt adatok típusát.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-157">`PageViews` is the type of data you want to analyze.</span></span> <span data-ttu-id="ae3cd-158">A használható típusok a folyamatos exportálás beállítása szűrő függ.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-158">The available types depend on the filter you set in Continuous Export.</span></span> <span data-ttu-id="ae3cd-159">Vizsgálja meg az exportált adatok megtekintéséhez a használható típusok, és tekintse meg a [exportálja az adatokat az adatmodellbe](app-insights-export-data-model.md).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-159">Examine the exported data to see the other available types, and see the [export data model](app-insights-export-data-model.md).</span></span>
-* <span data-ttu-id="ae3cd-160">`/{date}/{time}`a minta írt szó.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-160">`/{date}/{time}` is a pattern written literally.</span></span>
+* <span data-ttu-id="e9b2c-155">`webapplication27`hello Application Insights-erőforrás neve hello **összes kisbetű**.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-155">`webapplication27` is hello name of hello Application Insights resource **all lower case**.</span></span>
+* <span data-ttu-id="e9b2c-156">`1234...`az Application Insights-erőforrást, hello hello instrumentation kulcsa **kötőjelek kihagyásával**.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-156">`1234...` is hello instrumentation key of hello Application Insights resource, **omitting dashes**.</span></span> 
+* <span data-ttu-id="e9b2c-157">`PageViews`hello típusú adatok tooanalyze szeretné.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-157">`PageViews` is hello type of data you want tooanalyze.</span></span> <span data-ttu-id="e9b2c-158">rendelkezésre álló típusok hello hello szűrő, beállíthatja a folyamatos exportálás függ.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-158">hello available types depend on hello filter you set in Continuous Export.</span></span> <span data-ttu-id="e9b2c-159">Vizsgálja meg a hello exportált adatok toosee hello más elérhető típusok, és tekintse meg a hello [exportálja az adatokat az adatmodellbe](app-insights-export-data-model.md).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-159">Examine hello exported data toosee hello other available types, and see hello [export data model](app-insights-export-data-model.md).</span></span>
+* <span data-ttu-id="e9b2c-160">`/{date}/{time}`a minta írt szó.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-160">`/{date}/{time}` is a pattern written literally.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ae3cd-161">Vizsgálja meg a tárolás ellenőrizze, hogy az elérési út jobb beolvasása.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-161">Inspect the storage to make sure you get the path right.</span></span>
+> <span data-ttu-id="e9b2c-161">Vizsgálja meg a hello tárolási toomake meg arról, hogy a megfelelő beolvasni hello elérési útját.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-161">Inspect hello storage toomake sure you get hello path right.</span></span>
 > 
 > 
 
-### <a name="finish-initial-setup"></a><span data-ttu-id="ae3cd-162">Kezdeti telepítés befejezése</span><span class="sxs-lookup"><span data-stu-id="ae3cd-162">Finish initial setup</span></span>
-<span data-ttu-id="ae3cd-163">Erősítse meg a szerializálási formátum:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-163">Confirm the serialization format:</span></span>
+### <a name="finish-initial-setup"></a><span data-ttu-id="e9b2c-162">Kezdeti telepítés befejezése</span><span class="sxs-lookup"><span data-stu-id="e9b2c-162">Finish initial setup</span></span>
+<span data-ttu-id="e9b2c-163">Erősítse meg a hello szerializálási formátum:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-163">Confirm hello serialization format:</span></span>
 
 ![Erősítse meg, és zárja be a varázsló](./media/app-insights-export-stream-analytics/150.png)
 
-<span data-ttu-id="ae3cd-165">Zárja be a varázslót, és várja meg, a telepítés befejezéséhez.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-165">Close the wizard and wait for the setup to complete.</span></span>
+<span data-ttu-id="e9b2c-165">Hello bezárása, és várjon, amíg a telepítő toocomplete hello.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-165">Close hello wizard and wait for hello setup toocomplete.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="ae3cd-166">A minta paranccsal bizonyos adatok letöltése.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-166">Use the Sample command to download some data.</span></span> <span data-ttu-id="ae3cd-167">Legyen a lekérdezés hibakeresési teszt mintaként.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-167">Keep it as a test sample to debug your query.</span></span>
+> <span data-ttu-id="e9b2c-166">Hello minta parancs toodownload bizonyos adatok felhasználásával.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-166">Use hello Sample command toodownload some data.</span></span> <span data-ttu-id="e9b2c-167">Legyen, a teszt minta toodebug a lekérdezést.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-167">Keep it as a test sample toodebug your query.</span></span>
 > 
 > 
 
-## <a name="set-the-output"></a><span data-ttu-id="ae3cd-168">A kimeneti beállítása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-168">Set the output</span></span>
-<span data-ttu-id="ae3cd-169">Most jelölje ki a feladatot, és állítsa be a kimenetet.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-169">Now select your job and set the output.</span></span>
+## <a name="set-hello-output"></a><span data-ttu-id="e9b2c-168">Set hello kimeneti</span><span class="sxs-lookup"><span data-stu-id="e9b2c-168">Set hello output</span></span>
+<span data-ttu-id="e9b2c-169">Most jelölje ki a feladatot, és állítsa be a hello kimeneti.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-169">Now select your job and set hello output.</span></span>
 
-![Jelölje ki az új csatornát, kattintson a kimenetek, a Hozzáadás, a Power bi-ban](./media/app-insights-export-stream-analytics/160.png)
+![Válassza ki a hello új csatorna, kattintson a kimenetek, a Hozzáadás, a Power bi-ban](./media/app-insights-export-stream-analytics/160.png)
 
-<span data-ttu-id="ae3cd-171">Adja meg a **munkahelyi vagy iskolai fiók** engedélyezése a Stream Analytics a Power BI erőforrás elérésére.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-171">Provide your **work or school account** to authorize Stream Analytics to access your Power BI resource.</span></span> <span data-ttu-id="ae3cd-172">Majd találjon ki a kimenetet, és a cél a Power BI DataSet adatkészlet és a tábla nevét.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-172">Then invent a name for the output, and for the target Power BI dataset and table.</span></span>
+<span data-ttu-id="e9b2c-171">Adja meg a **munkahelyi vagy iskolai fiók** tooauthorize Stream Analytics tooaccess a Power BI-erőforrás.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-171">Provide your **work or school account** tooauthorize Stream Analytics tooaccess your Power BI resource.</span></span> <span data-ttu-id="e9b2c-172">Majd készlet hello kimeneti, és hello cél Power BI DataSet adatkészlet és a tábla nevét.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-172">Then invent a name for hello output, and for hello target Power BI dataset and table.</span></span>
 
 ![A neveket készlet](./media/app-insights-export-stream-analytics/170.png)
 
-## <a name="set-the-query"></a><span data-ttu-id="ae3cd-174">A lekérdezés beállítása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-174">Set the query</span></span>
-<span data-ttu-id="ae3cd-175">A lekérdezés fordítása bemeneti, kimeneti szabályozza.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-175">The query governs the translation from input to output.</span></span>
+## <a name="set-hello-query"></a><span data-ttu-id="e9b2c-174">Set hello lekérdezés</span><span class="sxs-lookup"><span data-stu-id="e9b2c-174">Set hello query</span></span>
+<span data-ttu-id="e9b2c-175">hello lekérdezés hello fordítási a bemeneti toooutput szabályozza.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-175">hello query governs hello translation from input toooutput.</span></span>
 
-![Jelölje ki a feladatot, és kattintson a lekérdezést.](./media/app-insights-export-stream-analytics/180.png)
+![Jelölje ki a hello feladat, majd kattintson a lekérdezést.](./media/app-insights-export-stream-analytics/180.png)
 
-<span data-ttu-id="ae3cd-178">A teszt funkció segítségével ellenőrizze, hogy a megfelelő kimeneti kap.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-178">Use the Test function to check that you get the right output.</span></span> <span data-ttu-id="ae3cd-179">A mintaadatok, amely a bemeneti adatok oldalról lejegyezte adjon neki.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-179">Give it the sample data that you took from the inputs page.</span></span> 
+<span data-ttu-id="e9b2c-178">Hello teszt függvény toocheck, hogy elérhetővé hello jobb oldali kimeneti használja.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-178">Use hello Test function toocheck that you get hello right output.</span></span> <span data-ttu-id="e9b2c-179">Adjon meg hozzá hello bemenetek oldalról lejegyezte hello mintaadatok.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-179">Give it hello sample data that you took from hello inputs page.</span></span> 
 
-### <a name="query-to-display-counts-of-events"></a><span data-ttu-id="ae3cd-180">Megjelenítendő lekérdezések események száma</span><span class="sxs-lookup"><span data-stu-id="ae3cd-180">Query to display counts of events</span></span>
-<span data-ttu-id="ae3cd-181">Illessze be a lekérdezést:</span><span class="sxs-lookup"><span data-stu-id="ae3cd-181">Paste this query:</span></span>
+### <a name="query-toodisplay-counts-of-events"></a><span data-ttu-id="e9b2c-180">Lekérdezés toodisplay számát is események</span><span class="sxs-lookup"><span data-stu-id="e9b2c-180">Query toodisplay counts of events</span></span>
+<span data-ttu-id="e9b2c-181">Illessze be a lekérdezést:</span><span class="sxs-lookup"><span data-stu-id="e9b2c-181">Paste this query:</span></span>
 
 ```SQL
 
@@ -160,11 +160,11 @@ ms.lasthandoff: 08/18/2017
     GROUP BY TumblingWindow(minute, 1), flat.ArrayValue.name
 ```
 
-* <span data-ttu-id="ae3cd-182">export-bemeneti érték a jelenleg megadott, a bemeneti adatfolyam alias</span><span class="sxs-lookup"><span data-stu-id="ae3cd-182">export-input is the alias we gave to the stream input</span></span>
-* <span data-ttu-id="ae3cd-183">o-pbi a kimeneti alias meghatározott</span><span class="sxs-lookup"><span data-stu-id="ae3cd-183">pbi-output is the output alias we defined</span></span>
-* <span data-ttu-id="ae3cd-184">Használjuk [külső alkalmazása GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) mert egy beágyazott JSON arrray az esemény nevét.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-184">We use [OUTER APPLY GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) because the event name is in a nested JSON arrray.</span></span> <span data-ttu-id="ae3cd-185">A Select választja, majd az esemény-névvel, az adott időszakban ilyen nevű példányok számát.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-185">Then the Select picks the event name, together with a count of the number of instances with that name in the time period.</span></span> <span data-ttu-id="ae3cd-186">A [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) záradék csoportosítja az elemek 1 perces időszakokra.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-186">The [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) clause groups the elements into time periods of 1 minute.</span></span>
+* <span data-ttu-id="e9b2c-182">export-bemeneti érték azt a nevet adott toohello adatfolyam-bemenet hello alias</span><span class="sxs-lookup"><span data-stu-id="e9b2c-182">export-input is hello alias we gave toohello stream input</span></span>
+* <span data-ttu-id="e9b2c-183">pbi-kimeneti rendszer hello kimeneti alias meghatározott</span><span class="sxs-lookup"><span data-stu-id="e9b2c-183">pbi-output is hello output alias we defined</span></span>
+* <span data-ttu-id="e9b2c-184">Használjuk [külső alkalmazása GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) mert egy beágyazott JSON arrray hello esemény neve.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-184">We use [OUTER APPLY GetElements](https://msdn.microsoft.com/library/azure/dn706229.aspx) because hello event name is in a nested JSON arrray.</span></span> <span data-ttu-id="e9b2c-185">Majd hello válassza kivételezések hello esemény-névvel, hello több példányban található ilyen nevű hello időszak számát.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-185">Then hello Select picks hello event name, together with a count of hello number of instances with that name in hello time period.</span></span> <span data-ttu-id="e9b2c-186">Hello [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) záradék hello elemek csoportok 1 perces időszakokra.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-186">hello [Group By](https://msdn.microsoft.com/library/azure/dn835023.aspx) clause groups hello elements into time periods of 1 minute.</span></span>
 
-### <a name="query-to-display-metric-values"></a><span data-ttu-id="ae3cd-187">Lekérdezés metrika értékek megjelenítése</span><span class="sxs-lookup"><span data-stu-id="ae3cd-187">Query to display metric values</span></span>
+### <a name="query-toodisplay-metric-values"></a><span data-ttu-id="e9b2c-187">Lekérdezés toodisplay metrika értékek</span><span class="sxs-lookup"><span data-stu-id="e9b2c-187">Query toodisplay metric values</span></span>
 ```SQL
 
     SELECT
@@ -179,9 +179,9 @@ ms.lasthandoff: 08/18/2017
 
 ``` 
 
-* <span data-ttu-id="ae3cd-188">Ez a lekérdezés eseményrögzítési azokat a metrikák telemetriai adat az esemény időpontja és a Átjárómetrika értékeként.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-188">This query drills into the metrics telemetry to get the event time and the metric value.</span></span> <span data-ttu-id="ae3cd-189">A metrika értékei egy tömb belül, a külső alkalmazása GetElements mintát használjuk a sor kibontásához.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-189">The metric values are inside an array, so we use the OUTER APPLY GetElements pattern to extract the rows.</span></span> <span data-ttu-id="ae3cd-190">"myMetric" Ebben az esetben a mérőszám a neve.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-190">"myMetric" is the name of the metric in this case.</span></span> 
+* <span data-ttu-id="e9b2c-188">Ez a lekérdezés eseményrögzítési hello metrikák telemetriai tooget hello esemény időpontja és hello Átjárómetrika értékeként.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-188">This query drills into hello metrics telemetry tooget hello event time and hello metric value.</span></span> <span data-ttu-id="e9b2c-189">hello metrika értékei belül tömb, így hello külső alkalmazása GetElements mintát tooextract hello sorok használjuk.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-189">hello metric values are inside an array, so we use hello OUTER APPLY GetElements pattern tooextract hello rows.</span></span> <span data-ttu-id="e9b2c-190">"myMetric" Ebben az esetben az hello metrika hello név.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-190">"myMetric" is hello name of hello metric in this case.</span></span> 
 
-### <a name="query-to-include-values-of-dimension-properties"></a><span data-ttu-id="ae3cd-191">Lekérdezés dimenzió a tulajdonságokat tartalmazza</span><span class="sxs-lookup"><span data-stu-id="ae3cd-191">Query to include values of dimension properties</span></span>
+### <a name="query-tooinclude-values-of-dimension-properties"></a><span data-ttu-id="e9b2c-191">Lekérdezés tooinclude értékek dimenzió tulajdonságai</span><span class="sxs-lookup"><span data-stu-id="e9b2c-191">Query tooinclude values of dimension properties</span></span>
 ```SQL
 
     WITH flat AS (
@@ -201,41 +201,41 @@ ms.lasthandoff: 08/18/2017
 
 ```
 
-* <span data-ttu-id="ae3cd-192">Ez a lekérdezés a dimenzió tulajdonságok nélkül attól függően, hogy egy adott dimenzió alatt a dimenzió tömb rögzített indexnél értékeket tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-192">This query includes values of the dimension properties without depending on a particular dimension being at a fixed index in the dimension array.</span></span>
+* <span data-ttu-id="e9b2c-192">Ez a lekérdezés hello dimenziótulajdonságok nélkül attól függően, hogy egy adott dimenzió hello dimenzió tömb rögzített indexnél alatt az értékeket tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-192">This query includes values of hello dimension properties without depending on a particular dimension being at a fixed index in hello dimension array.</span></span>
 
-## <a name="run-the-job"></a><span data-ttu-id="ae3cd-193">A feladat futtatása</span><span class="sxs-lookup"><span data-stu-id="ae3cd-193">Run the job</span></span>
-<span data-ttu-id="ae3cd-194">A múltban elindítani a feladatot, kiválaszthatja a dátumot.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-194">You can select a date in the past to start the job from.</span></span> 
+## <a name="run-hello-job"></a><span data-ttu-id="e9b2c-193">Hello feladat futtatása</span><span class="sxs-lookup"><span data-stu-id="e9b2c-193">Run hello job</span></span>
+<span data-ttu-id="e9b2c-194">A múltbeli toostart hello feladatot hello kiválaszthatja a dátumot.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-194">You can select a date in hello past toostart hello job from.</span></span> 
 
-![Jelölje ki a feladatot, és kattintson a lekérdezést.](./media/app-insights-export-stream-analytics/190.png)
+![Jelölje ki a hello feladat, majd kattintson a lekérdezést.](./media/app-insights-export-stream-analytics/190.png)
 
-<span data-ttu-id="ae3cd-197">Várjon, amíg a feladat fut-e.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-197">Wait until the job is Running.</span></span>
+<span data-ttu-id="e9b2c-197">Várjon, amíg hello feladat fut-e.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-197">Wait until hello job is Running.</span></span>
 
-## <a name="see-results-in-power-bi"></a><span data-ttu-id="ae3cd-198">A Power BI eredmények megtekintése</span><span class="sxs-lookup"><span data-stu-id="ae3cd-198">See results in Power BI</span></span>
+## <a name="see-results-in-power-bi"></a><span data-ttu-id="e9b2c-198">A Power BI eredmények megtekintése</span><span class="sxs-lookup"><span data-stu-id="e9b2c-198">See results in Power BI</span></span>
 > [!WARNING]
-> <span data-ttu-id="ae3cd-199">Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját Application Insights adatainak megjelenítése Power BI-ban](app-insights-export-power-bi.md).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-199">There are much better and easier [recommended ways to display Application Insights data in Power BI](app-insights-export-power-bi.md).</span></span> <span data-ttu-id="ae3cd-200">A bemutatott elérési út csak egy példa az exportált adatok feldolgozása mutatja be.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-200">The path illustrated here is just an example to illustrate how to process exported data.</span></span>
+> <span data-ttu-id="e9b2c-199">Nincsenek sokkal hatékonyabb és könnyebben [javasolt módját toodisplay Application Insights adatokat a Power BI](app-insights-export-power-bi.md).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-199">There are much better and easier [recommended ways toodisplay Application Insights data in Power BI](app-insights-export-power-bi.md).</span></span> <span data-ttu-id="e9b2c-200">hello bemutatott elérési út csak egy példa tooillustrate hogyan tooprocess exportált adatok.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-200">hello path illustrated here is just an example tooillustrate how tooprocess exported data.</span></span>
 > 
 > 
 
-<span data-ttu-id="ae3cd-201">Nyissa meg a Power BI a munkahelyi vagy iskolai fiókkal, majd válassza ki a DataSet adatkészlet és a tábla, amelyet a Stream Analytics-feladat eredményének.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-201">Open Power BI with your work or school account, and select the dataset and table that you defined as the output of the Stream Analytics job.</span></span>
+<span data-ttu-id="e9b2c-201">Nyissa meg a munkahelyi vagy iskolai fiókját, és jelölje be hello dataset és tábla, amelyet hello Stream Analytics-feladat eredményének hello Power bi-ban.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-201">Open Power BI with your work or school account, and select hello dataset and table that you defined as hello output of hello Stream Analytics job.</span></span>
 
 ![A Power bi-ban válassza ki a DataSet adatkészlet és a mezőket.](./media/app-insights-export-stream-analytics/200.png)
 
-<span data-ttu-id="ae3cd-203">Most már használhat ez az adatkészlet a jelentések és irányítópultok a [Power BI](https://powerbi.microsoft.com).</span><span class="sxs-lookup"><span data-stu-id="ae3cd-203">Now you can use this dataset in reports and dashboards in [Power BI](https://powerbi.microsoft.com).</span></span>
+<span data-ttu-id="e9b2c-203">Most már használhat ez az adatkészlet a jelentések és irányítópultok a [Power BI](https://powerbi.microsoft.com).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-203">Now you can use this dataset in reports and dashboards in [Power BI](https://powerbi.microsoft.com).</span></span>
 
 ![A Power bi-ban válassza ki a DataSet adatkészlet és a mezőket.](./media/app-insights-export-stream-analytics/210.png)
 
-## <a name="no-data"></a><span data-ttu-id="ae3cd-205">Nincs adat?</span><span class="sxs-lookup"><span data-stu-id="ae3cd-205">No data?</span></span>
-* <span data-ttu-id="ae3cd-206">Ellenőrizze, hogy [a dátum formátum beállítása](#set-path-prefix-pattern) megfelelően éééé-hh-nn (a kötőjeleket) számára.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-206">Check that you [set the date format](#set-path-prefix-pattern) correctly to YYYY-MM-DD (with dashes).</span></span>
+## <a name="no-data"></a><span data-ttu-id="e9b2c-205">Nincs adat?</span><span class="sxs-lookup"><span data-stu-id="e9b2c-205">No data?</span></span>
+* <span data-ttu-id="e9b2c-206">Ellenőrizze, hogy [set hello dátumformátum](#set-path-prefix-pattern) megfelelően tooYYYY-hh-nn (a szaggatott vonal).</span><span class="sxs-lookup"><span data-stu-id="e9b2c-206">Check that you [set hello date format](#set-path-prefix-pattern) correctly tooYYYY-MM-DD (with dashes).</span></span>
 
-## <a name="video"></a><span data-ttu-id="ae3cd-207">Videó</span><span class="sxs-lookup"><span data-stu-id="ae3cd-207">Video</span></span>
-<span data-ttu-id="ae3cd-208">Noam Ben Zeev bemutatja, hogyan használja a Stream Analytics exportált adatok feldolgozása.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-208">Noam Ben Zeev shows how to process exported data using Stream Analytics.</span></span>
+## <a name="video"></a><span data-ttu-id="e9b2c-207">Videó</span><span class="sxs-lookup"><span data-stu-id="e9b2c-207">Video</span></span>
+<span data-ttu-id="e9b2c-208">Noam Ben Zeev bemutatja, hogyan tooprocess exportált adatok használatával a Stream Analytics.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-208">Noam Ben Zeev shows how tooprocess exported data using Stream Analytics.</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Export-to-Power-BI-from-Application-Insights/player]
 > 
 > 
 
-## <a name="next-steps"></a><span data-ttu-id="ae3cd-209">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="ae3cd-209">Next steps</span></span>
-* [<span data-ttu-id="ae3cd-210">Folyamatos exportálás</span><span class="sxs-lookup"><span data-stu-id="ae3cd-210">Continuous export</span></span>](app-insights-export-telemetry.md)
-* [<span data-ttu-id="ae3cd-211">A részletes adatok modell útmutató a tulajdonság típusát és értékét.</span><span class="sxs-lookup"><span data-stu-id="ae3cd-211">Detailed data model reference for the property types and values.</span></span>](app-insights-export-data-model.md)
-* [<span data-ttu-id="ae3cd-212">Application Insights</span><span class="sxs-lookup"><span data-stu-id="ae3cd-212">Application Insights</span></span>](app-insights-overview.md)
+## <a name="next-steps"></a><span data-ttu-id="e9b2c-209">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="e9b2c-209">Next steps</span></span>
+* [<span data-ttu-id="e9b2c-210">Folyamatos exportálás</span><span class="sxs-lookup"><span data-stu-id="e9b2c-210">Continuous export</span></span>](app-insights-export-telemetry.md)
+* [<span data-ttu-id="e9b2c-211">Részletes adatok modellhez tartozó referencia hello Tulajdonságtípusok és értékeket.</span><span class="sxs-lookup"><span data-stu-id="e9b2c-211">Detailed data model reference for hello property types and values.</span></span>](app-insights-export-data-model.md)
+* [<span data-ttu-id="e9b2c-212">Application Insights</span><span class="sxs-lookup"><span data-stu-id="e9b2c-212">Application Insights</span></span>](app-insights-overview.md)
 

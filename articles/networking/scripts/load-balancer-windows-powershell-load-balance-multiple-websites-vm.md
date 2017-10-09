@@ -1,0 +1,70 @@
+---
+title: "PowerShell parancsfájl minta - aaaAzure terhelésének elosztása több webhely, az Azure PowerShell |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minta - terhelésének elosztása több webhelyek toohello ugyanahhoz a virtuális géphez"
+services: load-balancer
+documentationcenter: load-balancer
+author: georgewallace
+manager: timlt
+editor: tysonn
+tags: 
+ms.assetid: 
+ms.service: load-balancer
+ms.devlang: powershell
+ms.topic: article
+ms.tgt_pltfrm: 
+ms.workload: infrastructure
+ms.date: 05/16/2017
+ms.author: gwallace
+ms.openlocfilehash: 316818964eb6928fe4163ef69eb7f05da2dc9636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="load-balance-multiple-websites"></a><span data-ttu-id="71f87-103">Terhelésének elosztása több webhely</span><span class="sxs-lookup"><span data-stu-id="71f87-103">Load balance multiple websites</span></span>
+
+<span data-ttu-id="71f87-104">Parancsfájl a következő példában két virtuális gépekkel (VM), amelyek egy rendelkezésre állási csoport tagjai hoz létre egy virtuális hálózatot.</span><span class="sxs-lookup"><span data-stu-id="71f87-104">This script sample creates a virtual network with two virtual machines (VM) that are members of an availability set.</span></span> <span data-ttu-id="71f87-105">A terheléselosztó irányítja a forgalmat a két külön IP-címek toohello két virtuális gépeket.</span><span class="sxs-lookup"><span data-stu-id="71f87-105">A load balancer directs traffic for two separate IP addresses toohello two VMs.</span></span> <span data-ttu-id="71f87-106">Hello a parancsfájl futtatását, miután sikerült web server szoftver toohello virtuális gépek telepítése, és mindegyiket a saját IP-cím több webhely üzemeltetésére.</span><span class="sxs-lookup"><span data-stu-id="71f87-106">After running hello script, you could deploy web server software toohello VMs and host multiple web sites, each with its own IP address.</span></span>
+
+<span data-ttu-id="71f87-107">Szükség esetén telepítse az Azure PowerShell használatával hello utasítás található hello hello [Azure PowerShell útmutató](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/), majd futtassa a `Login-AzureRmAccount` toocreate Azure kapcsolatot.</span><span class="sxs-lookup"><span data-stu-id="71f87-107">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/), and then run `Login-AzureRmAccount` toocreate a connection with Azure.</span></span>
+
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+
+## <a name="sample-script"></a><span data-ttu-id="71f87-108">Mintaparancsfájl</span><span class="sxs-lookup"><span data-stu-id="71f87-108">Sample script</span></span>
+
+[!code-powershell[main](../../../powershell_scripts/load-balancer/load-balance-multiple-web-sites-vm/load-balance-multiple-web-sites-vm.ps1  "Load balance multiple web sites")]
+
+## <a name="clean-up-deployment"></a><span data-ttu-id="71f87-109">Az üzemelő példány eltávolítása</span><span class="sxs-lookup"><span data-stu-id="71f87-109">Clean up deployment</span></span> 
+
+<span data-ttu-id="71f87-110">Futtassa a következő parancs tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások hello.</span><span class="sxs-lookup"><span data-stu-id="71f87-110">Run hello following command tooremove hello resource group, VM, and all related resources.</span></span>
+
+```powershell
+Remove-AzureRmResourceGroup -Name myResourceGroup
+```
+
+## <a name="script-explanation"></a><span data-ttu-id="71f87-111">Parancsfájl ismertetése</span><span class="sxs-lookup"><span data-stu-id="71f87-111">Script explanation</span></span>
+
+<span data-ttu-id="71f87-112">A parancsfájl a következő parancsok toocreate egy erőforráscsoport, virtuális hálózati terheléselosztó, és minden kapcsolódó erőforrások betöltése hello.</span><span class="sxs-lookup"><span data-stu-id="71f87-112">This script uses hello following commands toocreate a resource group, virtual network, load balancer, and all related resources.</span></span> <span data-ttu-id="71f87-113">Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.</span><span class="sxs-lookup"><span data-stu-id="71f87-113">Each command in hello table links toocommand specific documentation.</span></span>
+
+| <span data-ttu-id="71f87-114">Parancs</span><span class="sxs-lookup"><span data-stu-id="71f87-114">Command</span></span> | <span data-ttu-id="71f87-115">Megjegyzések</span><span class="sxs-lookup"><span data-stu-id="71f87-115">Notes</span></span> |
+|---|---|
+| [<span data-ttu-id="71f87-116">Új-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="71f87-116">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="71f87-117">Az összes erőforrás tároló erőforrás csoportot hoz létre.</span><span class="sxs-lookup"><span data-stu-id="71f87-117">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="71f87-118">Új AzureRmAvailabilitySet</span><span class="sxs-lookup"><span data-stu-id="71f87-118">New-AzureRmAvailabilitySet</span></span>](/powershell/module/azurerm.compute/new-azurermavailabilityset) | <span data-ttu-id="71f87-119">Létrehoz egy Azure rendelkezésre állási készlet tooprovide magas rendelkezésre állású.</span><span class="sxs-lookup"><span data-stu-id="71f87-119">Creates an Azure availability set tooprovide high availability.</span></span> |
+| [<span data-ttu-id="71f87-120">Új AzureRmVirtualNetworkSubnetConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-120">New-AzureRmVirtualNetworkSubnetConfig</span></span>](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) | <span data-ttu-id="71f87-121">Létrehoz egy alhálózati konfigurációt.</span><span class="sxs-lookup"><span data-stu-id="71f87-121">Creates a subnet configuration.</span></span> <span data-ttu-id="71f87-122">Ebben a konfigurációban használatos hello virtuális hálózat létrehozásának folyamatát.</span><span class="sxs-lookup"><span data-stu-id="71f87-122">This configuration is used with hello virtual network creation process.</span></span> |
+| [<span data-ttu-id="71f87-123">Új-AzureRmVirtualNetwork</span><span class="sxs-lookup"><span data-stu-id="71f87-123">New-AzureRmVirtualNetwork</span></span>](/powershell/module/azurerm.network/new-azurermvirtualnetwork) | <span data-ttu-id="71f87-124">Virtuális hálózat létrehozása.</span><span class="sxs-lookup"><span data-stu-id="71f87-124">Creates a virtual network.</span></span> |
+| [<span data-ttu-id="71f87-125">Új AzureRmPublicIpAddress</span><span class="sxs-lookup"><span data-stu-id="71f87-125">New-AzureRmPublicIpAddress</span></span>](/powershell/module/azurerm.network/new-azurermpublicipaddress) | <span data-ttu-id="71f87-126">Létrehoz egy nyilvános IP-címet.</span><span class="sxs-lookup"><span data-stu-id="71f87-126">Creates a public IP address.</span></span> |
+| [<span data-ttu-id="71f87-127">Új AzureRmLoadBalancerFrontendIpConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-127">New-AzureRmLoadBalancerFrontendIpConfig</span></span>](/powershell/module/azurerm.network/new-azurermloadbalancerfrontendipconfig) | <span data-ttu-id="71f87-128">Létrehoz egy terheléselosztó előtér-IP config.</span><span class="sxs-lookup"><span data-stu-id="71f87-128">Creates a front end IP config for a load balancer.</span></span> |
+| [<span data-ttu-id="71f87-129">Új AzureRmLoadBalancerBackendAddressPoolConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-129">New-AzureRmLoadBalancerBackendAddressPoolConfig</span></span>](/powershell/module/azurerm.network/new-azurermloadbalancerbackendaddresspoolconfig) | <span data-ttu-id="71f87-130">Létrehoz egy háttér címkészlet terheléselosztó beállítása.</span><span class="sxs-lookup"><span data-stu-id="71f87-130">Creates a backend address pool configuration for a load balancer.</span></span> |
+| [<span data-ttu-id="71f87-131">Új AzureRmLoadBalancerProbeConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-131">New-AzureRmLoadBalancerProbeConfig</span></span>](/powershell/module/azurerm.network/new-azurermloadbalancerprobeconfig) | <span data-ttu-id="71f87-132">Létrehoz egy hálózati Terheléselosztási mintavételt.</span><span class="sxs-lookup"><span data-stu-id="71f87-132">Creates an NLB probe.</span></span> <span data-ttu-id="71f87-133">Az NLB mintavételi használt toomonitor az egyes virtuális gépek hello hálózati Terheléselosztási készletben.</span><span class="sxs-lookup"><span data-stu-id="71f87-133">An NLB probe is used toomonitor each VM in hello NLB set.</span></span> <span data-ttu-id="71f87-134">Ha minden virtuális gép elérhetetlenné válik, akkor kimenő forgalomról nem útválasztásos toohello VM.</span><span class="sxs-lookup"><span data-stu-id="71f87-134">If any VM becomes inaccessible, traffic is not routed toohello VM.</span></span> |
+| [<span data-ttu-id="71f87-135">Új AzureRmLoadBalancerRuleConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-135">New-AzureRmLoadBalancerRuleConfig</span></span>](/powershell/module/azurerm.network/new-azurermloadbalancerruleconfig) | <span data-ttu-id="71f87-136">Egy hálózati Terheléselosztási szabályt hoz létre.</span><span class="sxs-lookup"><span data-stu-id="71f87-136">Creates an NLB rule.</span></span> <span data-ttu-id="71f87-137">Ez a példa létrejön egy szabály 80-as porton.</span><span class="sxs-lookup"><span data-stu-id="71f87-137">In this sample, a rule is created for port 80.</span></span> <span data-ttu-id="71f87-138">HTTP-forgalom érkezik hello NLB, mivel irányított tooport 80 egy hello virtuális gépek hello hálózati Terheléselosztási készletben.</span><span class="sxs-lookup"><span data-stu-id="71f87-138">As HTTP traffic arrives at hello NLB, it is routed tooport 80 one of hello VMs in hello NLB set.</span></span> |
+| [<span data-ttu-id="71f87-139">Új AzureRmLoadBalancer</span><span class="sxs-lookup"><span data-stu-id="71f87-139">New-AzureRmLoadBalancer</span></span>](/powershell/module/azurerm.network/new-azurermloadbalancer) | <span data-ttu-id="71f87-140">Létrehoz egy terheléselosztót.</span><span class="sxs-lookup"><span data-stu-id="71f87-140">Creates a load balancer.</span></span> |
+| [<span data-ttu-id="71f87-141">Új AzureRmNetworkInterfaceIpConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-141">New-AzureRmNetworkInterfaceIpConfig</span></span>](/powershell/module/azurerm.network/new-azurermnetworkinterfaceipconfig) | <span data-ttu-id="71f87-142">Határozza meg a virtuális hálózati adapter speciális szolgáltatásai.</span><span class="sxs-lookup"><span data-stu-id="71f87-142">Defines advanced features for a virtual network interface.</span></span> |
+| [<span data-ttu-id="71f87-143">Új AzureRmNetworkInterface</span><span class="sxs-lookup"><span data-stu-id="71f87-143">New-AzureRmNetworkInterface</span></span>](/powershell/module/azurerm.network/new-azurermnetworkinterface) | <span data-ttu-id="71f87-144">Létrehoz egy adott hálózati csatoló.</span><span class="sxs-lookup"><span data-stu-id="71f87-144">Creates a network interface.</span></span> |
+| [<span data-ttu-id="71f87-145">Új AzureRmVMConfig</span><span class="sxs-lookup"><span data-stu-id="71f87-145">New-AzureRmVMConfig</span></span>](/powershell/module/azurerm.compute/new-azurermvmconfig) | <span data-ttu-id="71f87-146">Létrehoz egy Virtuálisgép-konfiguráció.</span><span class="sxs-lookup"><span data-stu-id="71f87-146">Creates a VM configuration.</span></span> <span data-ttu-id="71f87-147">Ez a konfiguráció tartoznak a virtuális gép nevét, az operációs rendszer és a rendszergazdai hitelesítő adatokkal.</span><span class="sxs-lookup"><span data-stu-id="71f87-147">This configuration includes information such as VM name, operating system, and administrative credentials.</span></span> <span data-ttu-id="71f87-148">hello konfigurációs szolgál a virtuális gép létrehozása során.</span><span class="sxs-lookup"><span data-stu-id="71f87-148">hello configuration is used during VM creation.</span></span> |
+| [<span data-ttu-id="71f87-149">Új AzureRmVM</span><span class="sxs-lookup"><span data-stu-id="71f87-149">New-AzureRmVM</span></span>](/powershell/module/azurerm.compute/new-azurermvm) | <span data-ttu-id="71f87-150">Hozzon létre egy virtuális gépet.</span><span class="sxs-lookup"><span data-stu-id="71f87-150">Create a virtual machine.</span></span> |
+|[<span data-ttu-id="71f87-151">Remove-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="71f87-151">Remove-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | <span data-ttu-id="71f87-152">Eltávolítja az erőforráscsoportot és belül található összes erőforrást.</span><span class="sxs-lookup"><span data-stu-id="71f87-152">Removes a resource group and all resources contained within.</span></span> |
+
+## <a name="next-steps"></a><span data-ttu-id="71f87-153">Következő lépések</span><span class="sxs-lookup"><span data-stu-id="71f87-153">Next steps</span></span>
+
+<span data-ttu-id="71f87-154">Az Azure PowerShell hello további információkért lásd: [Azure PowerShell dokumentációs](https://docs.microsoft.com/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="71f87-154">For more information on hello Azure PowerShell, see [Azure PowerShell documentation](https://docs.microsoft.com/powershell/azure/overview).</span></span>
+
+<span data-ttu-id="71f87-155">További hálózati PowerShell parancsfájl-mintában hello található [Azure hálózati áttekintés dokumentáció](../powershell-samples.md?toc=%2fazure%2fnetworking%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="71f87-155">Additional networking PowerShell script samples can be found in hello [Azure Networking Overview documentation](../powershell-samples.md?toc=%2fazure%2fnetworking%2ftoc.json).</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Backup dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "A biztonsági mentések felhőben való létrehozásának folyamatát a Backup dokumentációjából ismerheti meg. Tekintse meg az alkalmazások, Windows-kiszolgálók és Azure virtuális gépek biztonsági mentését bemutató oktatóanyagokat és videókat."
+title: "biztonsági mentés dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Hogyan tooback be toohello felhőalapú biztonsági mentés dokumentáció toolearn használja. Tekintse meg az alkalmazások, Windows-kiszolgálók és Azure virtuális gépek biztonsági mentését bemutató oktatóanyagokat és videókat."
 services: backup
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3d8b07dc9903a48f6481ceda1922479cc7cd9ef6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 648c83a3ecdc4770859fbea0cc5af9ac2d1fdfd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="backup-documentation"></a>Backup – dokumentáció
 
-Ismerje meg, hogyan biztosíthatja adatai védelmét a felhőben az Azure Backup segítségével hosszú távú megőrzés és helyreállítás esetén. Az oktatóanyagok, videók és az egyéb dokumentáció bemutatják, hogyan készíthet biztonsági másolatot adatairól, alkalmazásairól, Windows-kiszolgálóiról és Azure virtuális gépeiről.
+Ismerje meg, hogyan hello az Azure Backup toouse felhőalapú tooprotect adatok hosszú távú megőrzési és a helyreállításra. Oktatóanyagok, videókat és egyéb dokumentációt mutatja be tooback adatok, alkalmazások, Windows Server-kiszolgálók és az Azure virtuális gépek.
 
 <ul class="panelContent cardsFTitle">
     <li>

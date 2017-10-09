@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory hitelesítési protokolljai |} Microsoft Docs"
-description: "A támogatott által Azure Active Directory (AD) hitelesítési protokollokat áttekintése"
+title: "Active Directory hitelesítési protokolljai aaaAzure |} Microsoft Docs"
+description: "Hello hitelesítési protokollok támogatott által Azure Active Directory (AD) áttekintése"
 documentationcenter: dev-center-name
 author: priyamohanram
 services: active-directory
@@ -15,24 +15,24 @@ ms.workload: identity
 ms.date: 04/27/2017
 ms.author: priyamo
 ms.custom: aaddev
-ms.openlocfilehash: 91416669281aa8eeef5916db008f9b0cbcbf77e2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1584efa83d30746075e970b8523c3abdccd34859
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Az Azure Active Directory hitelesítési protokolljai
-Azure Active Directory (Azure AD) támogatja a legelterjedtebb hitelesítési és engedélyezési protokollokat számos. Ez a szakasz témakörei ismertetik a támogatott protokollok és a végrehajtása az Azure ad-ben. A témakörök támogatott jogcímtípusok, bevezetést használatát az összevonási metaadatok áttekintését tartalmazza, részletes OAuth 2.0-s. SAML 2.0 protokoll referenciadokumentációt és a hibaelhárítási szakaszt.
+Azure Active Directory (Azure AD) támogatja a több hello legszélesebb körben használt hitelesítési és engedélyezési protokollokat. hello a szakasz témakörei ismertetik hello támogatott protokollok és a végrehajtása az Azure ad-ben. hello témaköröket tartalmazza a támogatott jogcímtípusok, egy bevezető toohello használatát az összevonási metaadatok áttekintése, részletes OAuth 2.0-s. SAML 2.0 protokoll referenciadokumentációt és a hibaelhárítási szakaszt.
 
 ## Hitelesítési protokollok cikkek és referencia
-* [Fontos információk kapcsolatos aláírási kulcs átfordulási az Azure AD](active-directory-signing-key-rollover.md) – Azure AD-aláíró kulcsváltás ütemben történik, módosításokat végezhet automatikusan frissíteni a kulcsot és arról, hogyan frissítse a leggyakrabban használt alkalmazás-forgatókönyveket ismertető ismertetése.
-* [Támogatott Token- és jogcímtípusok](active-directory-token-and-claims.md) – további információk a jogcímek, az Azure AD kibocsát jogkivonatokat.
-* [Az összevonási metaadatok](active-directory-federation-metadata.md) -megtudhatja, hogyan keresse meg és értelmezni a metaadat-dokumentumok, amely az Azure AD-hoz létre.
-* [Az Azure AD OAuth 2.0-s](active-directory-protocols-oauth-code.md) -OAuth 2.0 Azure AD-ben való megvalósításával kapcsolatos tudnivalók.
-* [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) -OAuth 2.0 hitelesítési protokoll használata a hitelesítéshez.
-* [Az ügyfél hitelesítő adatait a szolgáltatások közötti hívások](active-directory-protocols-oauth-service-to-service.md) -szolgáltatások közötti hívások OAuth 2.0 ügyfél hitelesítő adatok grant flow használata.
-* [Szolgáltatások közötti hívások On-Behalf-Of folyamat](active-directory-protocols-oauth-on-behalf-of.md) -szolgáltatások közötti hívások OAuth 2.0 On-Behalf-Of adatfolyam használata.
-* [SAML protokoll referenciája](active-directory-saml-protocol-reference.md) -további tudnivalók az Azure AD egyszeri bejelentkezéshez, és egyetlen Sign-out SAML profilok.
+* [Fontos információk kapcsolatos aláírási kulcs átfordulási az Azure AD](active-directory-signing-key-rollover.md) – további információ az Azure AD-aláíró kulcsváltás ütemben történik, módosításokat végezhet automatikusan tooupdate hello kulcs és az hogyan tooupdate hello leggyakrabban használt alkalmazás-forgatókönyveket ismertető.
+* [Támogatott Token- és jogcímtípusok](active-directory-token-and-claims.md) -hello jogcím szerepel az Azure AD kibocsát hello jogkivonatok megismerése.
+* [Az összevonási metaadatok](active-directory-federation-metadata.md) -megtudhatja, hogyan toofind és értelmezni hello metaadatok dokumentumok, amely az Azure AD-hoz létre.
+* [Az Azure AD OAuth 2.0-s](active-directory-protocols-oauth-code.md) -további tudnivalók az Azure AD hello OAuth 2.0 végrehajtása.
+* [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) -megtudhatja, hogyan toouse hitelesítési protokoll, az OAuth 2.0 típusú hitelesítés.
+* [Ügyfél-hitelesítő adatokkal tooService hívások szolgáltatás](active-directory-protocols-oauth-service-to-service.md) -megtudhatja, hogyan a toouse OAuth 2.0 ügyfél hitelesítő adatai megadják a tooservice hívások folyamata.
+* [Szolgáltatás On-Behalf-Of folyamat tooService hívások](active-directory-protocols-oauth-on-behalf-of.md) -megtudhatja, hogyan meghívja a toouse szolgáltatás tooservice OAuth 2.0 On-Behalf-Of folyamata.
+* [SAML protokoll referenciája](active-directory-saml-protocol-reference.md) -hello egyszeri bejelentkezést és egyetlen Sign-out SAML-profilokat az Azure AD megismerése.
 
 ## Lásd még:
 [Az Azure Active Directory fejlesztői útmutatója](active-directory-developers-guide.md)
